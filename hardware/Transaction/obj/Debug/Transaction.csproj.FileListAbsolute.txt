@@ -1,0 +1,5 @@
+D:\POS\SecretCellar\hardware\Transaction\bin\Debug\Transaction.dll
+D:\POS\SecretCellar\hardware\Transaction\bin\Debug\Transaction.pdb
+D:\POS\SecretCellar\hardware\Transaction\obj\Debug\Transaction.csprojAssemblyReference.cache
+D:\POS\SecretCellar\hardware\Transaction\obj\Debug\Transaction.dll
+D:\POS\SecretCellar\hardware\Transaction\obj\Debug\Transaction.pdb

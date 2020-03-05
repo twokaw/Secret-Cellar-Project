@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Printer", "Printer.csproj",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HardwareTestApp", "..\HardwareTestApp\HardwareTestApp.csproj", "{801EECD2-0D4F-4132-B936-48A565E5AC74}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Transaction", "..\Transaction\Transaction.csproj", "{D07EBFAF-04B8-4553-A5DA-E23F5410AAC6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{801EECD2-0D4F-4132-B936-48A565E5AC74}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{801EECD2-0D4F-4132-B936-48A565E5AC74}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{801EECD2-0D4F-4132-B936-48A565E5AC74}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D07EBFAF-04B8-4553-A5DA-E23F5410AAC6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D07EBFAF-04B8-4553-A5DA-E23F5410AAC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D07EBFAF-04B8-4553-A5DA-E23F5410AAC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D07EBFAF-04B8-4553-A5DA-E23F5410AAC6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
