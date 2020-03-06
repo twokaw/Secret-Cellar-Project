@@ -16,5 +16,10 @@ namespace SecretCellar
         {
             InitializeComponent();
         }
+
+        private void frmTransaction_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
