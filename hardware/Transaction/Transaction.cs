@@ -6,9 +6,15 @@ namespace Transaction
 {
     public class Item
     {
+        //Available
+        //num sold
+        //type
+        //barcode
         public uint Id { get; set; }         // Barcode ID
         public string Name { get; set; }     // Name of product
         public decimal Price { get; set; }   // Price in dollars
+        //bool isTaxable
+        //uint numOfBottles
         public Item(uint Id, string Name, decimal Price)
         {
             this.Id = Id;
@@ -33,6 +39,7 @@ namespace Transaction
         public bool TaxExempt { get; set; }
         public string PayMethod { get; set; }
         public string PayNum { get; set; }  // Credit card digits, check num, or nothing for cash
+        //discount
 
         // Default constructor
         public Transaction()
@@ -91,7 +98,7 @@ namespace Transaction
             PayMethod = (string)info.GetValue("PayMethod", typeof(string));
             PayNum = (string)info.GetValue("PayNum", typeof(string));
         }
-
+        
         // Serialization method
         public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
         {
