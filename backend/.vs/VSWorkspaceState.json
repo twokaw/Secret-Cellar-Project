@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\pos-core-api",
+    "\\pos-core-api\\bin",
+    "\\pos-core-api\\Controllers",
+    "\\pos-core-api\\Entities",
+    "\\pos-core-api\\Helpers",
+    "\\pos-core-api\\Models",
+    "\\pos-core-api\\Models\\Users",
+    "\\pos-core-api\\obj",
+    "\\pos-core-api\\Properties"
+  ],
+  "SelectedNode": "\\pos-core-api.sln",
+  "PreviewInSolutionExplorer": false
+}

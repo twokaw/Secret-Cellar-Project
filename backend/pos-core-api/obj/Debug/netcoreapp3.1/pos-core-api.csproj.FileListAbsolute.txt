@@ -1,0 +1,108 @@
+D:\visual studio 2019\Projects\pos-core-api\pos-core-api\obj\Debug\netcoreapp3.1\pos-core-api.csprojAssemblyReference.cache
+D:\visual studio 2019\Projects\pos-core-api\pos-core-api\obj\Debug\netcoreapp3.1\staticwebassets\pos-core-api.StaticWebAssets.Manifest.cache
+D:\visual studio 2019\Projects\pos-core-api\pos-core-api\obj\Debug\netcoreapp3.1\staticwebassets\pos-core-api.StaticWebAssets.xml
+D:\visual studio 2019\Projects\pos-core-api\pos-core-api\obj\Debug\netcoreapp3.1\pos-core-api.MvcApplicationPartsAssemblyInfo.cache
+D:\visual studio 2019\Projects\pos-core-api\pos-core-api\obj\Debug\netcoreapp3.1\pos-core-api.AssemblyInfoInputs.cache
+D:\visual studio 2019\Projects\pos-core-api\pos-core-api\obj\Debug\netcoreapp3.1\pos-core-api.AssemblyInfo.cs
+D:\visual studio 2019\Projects\pos-core-api\pos-core-api\bin\Debug\netcoreapp3.1\appsettings.Development.json
+D:\visual studio 2019\Projects\pos-core-api\pos-core-api\bin\Debug\netcoreapp3.1\appsettings.json
+D:\visual studio 2019\Projects\pos-core-api\pos-core-api\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
+D:\visual studio 2019\Projects\pos-core-api\pos-core-api\bin\Debug\netcoreapp3.1\pos-core-api.exe
+D:\visual studio 2019\Projects\pos-core-api\pos-core-api\bin\Debug\netcoreapp3.1\pos-core-api.deps.json
+D:\visual studio 2019\Projects\pos-core-api\pos-core-api\bin\Debug\netcoreapp3.1\pos-core-api.runtimeconfig.json
+D:\visual studio 2019\Projects\pos-core-api\pos-core-api\bin\Debug\netcoreapp3.1\pos-core-api.runtimeconfig.dev.json
+D:\visual studio 2019\Projects\pos-core-api\pos-core-api\bin\Debug\netcoreapp3.1\pos-core-api.dll
+D:\visual studio 2019\Projects\pos-core-api\pos-core-api\bin\Debug\netcoreapp3.1\pos-core-api.pdb
+D:\visual studio 2019\Projects\pos-core-api\pos-core-api\obj\Debug\netcoreapp3.1\pos-core-api.RazorTargetAssemblyInfo.cache
+D:\visual studio 2019\Projects\pos-core-api\pos-core-api\obj\Debug\netcoreapp3.1\pos-core-api.dll
+D:\visual studio 2019\Projects\pos-core-api\pos-core-api\obj\Debug\netcoreapp3.1\pos-core-api.pdb
+D:\visual studio 2019\Projects\pos-core-api\pos-core-api\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\visual studio 2019\Projects\pos-core-api\pos-core-api\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\visual studio 2019\Projects\pos-core-api\pos-core-api\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Logging.dll
+D:\visual studio 2019\Projects\pos-core-api\pos-core-api\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.dll
+D:\visual studio 2019\Projects\pos-core-api\pos-core-api\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+D:\visual studio 2019\Projects\pos-core-api\pos-core-api\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Tokens.dll
+D:\visual studio 2019\Projects\pos-core-api\pos-core-api\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+D:\visual studio 2019\Projects\pos-core-api\pos-core-api\bin\Debug\netcoreapp3.1\System.IdentityModel.Tokens.Jwt.dll
+D:\visual studio 2019\Projects\pos-core-api\pos-core-api\obj\Debug\netcoreapp3.1\pos-core-api.csproj.CopyComplete
+I:\Mount Mercy\Senior Project\POS\pos-core-api\pos-core-api\bin\Debug\netcoreapp3.1\appsettings.Development.json
+I:\Mount Mercy\Senior Project\POS\pos-core-api\pos-core-api\bin\Debug\netcoreapp3.1\appsettings.json
+I:\Mount Mercy\Senior Project\POS\pos-core-api\pos-core-api\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
+I:\Mount Mercy\Senior Project\POS\pos-core-api\pos-core-api\bin\Debug\netcoreapp3.1\pos-core-api.exe
+I:\Mount Mercy\Senior Project\POS\pos-core-api\pos-core-api\bin\Debug\netcoreapp3.1\pos-core-api.deps.json
+I:\Mount Mercy\Senior Project\POS\pos-core-api\pos-core-api\bin\Debug\netcoreapp3.1\pos-core-api.runtimeconfig.json
+I:\Mount Mercy\Senior Project\POS\pos-core-api\pos-core-api\bin\Debug\netcoreapp3.1\pos-core-api.runtimeconfig.dev.json
+I:\Mount Mercy\Senior Project\POS\pos-core-api\pos-core-api\bin\Debug\netcoreapp3.1\pos-core-api.dll
+I:\Mount Mercy\Senior Project\POS\pos-core-api\pos-core-api\bin\Debug\netcoreapp3.1\pos-core-api.pdb
+I:\Mount Mercy\Senior Project\POS\pos-core-api\pos-core-api\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+I:\Mount Mercy\Senior Project\POS\pos-core-api\pos-core-api\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.JsonWebTokens.dll
+I:\Mount Mercy\Senior Project\POS\pos-core-api\pos-core-api\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Logging.dll
+I:\Mount Mercy\Senior Project\POS\pos-core-api\pos-core-api\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.dll
+I:\Mount Mercy\Senior Project\POS\pos-core-api\pos-core-api\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+I:\Mount Mercy\Senior Project\POS\pos-core-api\pos-core-api\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Tokens.dll
+I:\Mount Mercy\Senior Project\POS\pos-core-api\pos-core-api\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+I:\Mount Mercy\Senior Project\POS\pos-core-api\pos-core-api\bin\Debug\netcoreapp3.1\System.IdentityModel.Tokens.Jwt.dll
+I:\Mount Mercy\Senior Project\POS\pos-core-api\pos-core-api\obj\Debug\netcoreapp3.1\pos-core-api.csprojAssemblyReference.cache
+I:\Mount Mercy\Senior Project\POS\pos-core-api\pos-core-api\obj\Debug\netcoreapp3.1\staticwebassets\pos-core-api.StaticWebAssets.Manifest.cache
+I:\Mount Mercy\Senior Project\POS\pos-core-api\pos-core-api\obj\Debug\netcoreapp3.1\staticwebassets\pos-core-api.StaticWebAssets.xml
+I:\Mount Mercy\Senior Project\POS\pos-core-api\pos-core-api\obj\Debug\netcoreapp3.1\pos-core-api.MvcApplicationPartsAssemblyInfo.cache
+I:\Mount Mercy\Senior Project\POS\pos-core-api\pos-core-api\obj\Debug\netcoreapp3.1\pos-core-api.AssemblyInfoInputs.cache
+I:\Mount Mercy\Senior Project\POS\pos-core-api\pos-core-api\obj\Debug\netcoreapp3.1\pos-core-api.AssemblyInfo.cs
+I:\Mount Mercy\Senior Project\POS\pos-core-api\pos-core-api\obj\Debug\netcoreapp3.1\pos-core-api.RazorTargetAssemblyInfo.cache
+I:\Mount Mercy\Senior Project\POS\pos-core-api\pos-core-api\obj\Debug\netcoreapp3.1\pos-core-api.csproj.CopyComplete
+I:\Mount Mercy\Senior Project\POS\pos-core-api\pos-core-api\obj\Debug\netcoreapp3.1\pos-core-api.dll
+I:\Mount Mercy\Senior Project\POS\pos-core-api\pos-core-api\obj\Debug\netcoreapp3.1\pos-core-api.pdb
+G:\Mount Mercy\Senior Project\POS\pos-core-api\pos-core-api\bin\Debug\netcoreapp3.1\appsettings.Development.json
+G:\Mount Mercy\Senior Project\POS\pos-core-api\pos-core-api\bin\Debug\netcoreapp3.1\appsettings.json
+G:\Mount Mercy\Senior Project\POS\pos-core-api\pos-core-api\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
+G:\Mount Mercy\Senior Project\POS\pos-core-api\pos-core-api\bin\Debug\netcoreapp3.1\pos-core-api.exe
+G:\Mount Mercy\Senior Project\POS\pos-core-api\pos-core-api\bin\Debug\netcoreapp3.1\pos-core-api.deps.json
+G:\Mount Mercy\Senior Project\POS\pos-core-api\pos-core-api\bin\Debug\netcoreapp3.1\pos-core-api.runtimeconfig.json
+G:\Mount Mercy\Senior Project\POS\pos-core-api\pos-core-api\bin\Debug\netcoreapp3.1\pos-core-api.runtimeconfig.dev.json
+G:\Mount Mercy\Senior Project\POS\pos-core-api\pos-core-api\bin\Debug\netcoreapp3.1\pos-core-api.dll
+G:\Mount Mercy\Senior Project\POS\pos-core-api\pos-core-api\bin\Debug\netcoreapp3.1\pos-core-api.pdb
+G:\Mount Mercy\Senior Project\POS\pos-core-api\pos-core-api\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+G:\Mount Mercy\Senior Project\POS\pos-core-api\pos-core-api\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.JsonWebTokens.dll
+G:\Mount Mercy\Senior Project\POS\pos-core-api\pos-core-api\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Logging.dll
+G:\Mount Mercy\Senior Project\POS\pos-core-api\pos-core-api\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.dll
+G:\Mount Mercy\Senior Project\POS\pos-core-api\pos-core-api\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+G:\Mount Mercy\Senior Project\POS\pos-core-api\pos-core-api\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Tokens.dll
+G:\Mount Mercy\Senior Project\POS\pos-core-api\pos-core-api\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+G:\Mount Mercy\Senior Project\POS\pos-core-api\pos-core-api\bin\Debug\netcoreapp3.1\System.IdentityModel.Tokens.Jwt.dll
+G:\Mount Mercy\Senior Project\POS\pos-core-api\pos-core-api\obj\Debug\netcoreapp3.1\pos-core-api.csprojAssemblyReference.cache
+G:\Mount Mercy\Senior Project\POS\pos-core-api\pos-core-api\obj\Debug\netcoreapp3.1\staticwebassets\pos-core-api.StaticWebAssets.Manifest.cache
+G:\Mount Mercy\Senior Project\POS\pos-core-api\pos-core-api\obj\Debug\netcoreapp3.1\staticwebassets\pos-core-api.StaticWebAssets.xml
+G:\Mount Mercy\Senior Project\POS\pos-core-api\pos-core-api\obj\Debug\netcoreapp3.1\pos-core-api.MvcApplicationPartsAssemblyInfo.cache
+G:\Mount Mercy\Senior Project\POS\pos-core-api\pos-core-api\obj\Debug\netcoreapp3.1\pos-core-api.AssemblyInfoInputs.cache
+G:\Mount Mercy\Senior Project\POS\pos-core-api\pos-core-api\obj\Debug\netcoreapp3.1\pos-core-api.AssemblyInfo.cs
+G:\Mount Mercy\Senior Project\POS\pos-core-api\pos-core-api\obj\Debug\netcoreapp3.1\pos-core-api.RazorTargetAssemblyInfo.cache
+G:\Mount Mercy\Senior Project\POS\pos-core-api\pos-core-api\obj\Debug\netcoreapp3.1\pos-core-api.csproj.CopyComplete
+G:\Mount Mercy\Senior Project\POS\pos-core-api\pos-core-api\obj\Debug\netcoreapp3.1\pos-core-api.dll
+G:\Mount Mercy\Senior Project\POS\pos-core-api\pos-core-api\obj\Debug\netcoreapp3.1\pos-core-api.pdb
+C:\Users\Zach Tinkey\Desktop\pos-core-api\pos-core-api\bin\Debug\netcoreapp3.1\appsettings.Development.json
+C:\Users\Zach Tinkey\Desktop\pos-core-api\pos-core-api\bin\Debug\netcoreapp3.1\appsettings.json
+C:\Users\Zach Tinkey\Desktop\pos-core-api\pos-core-api\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
+C:\Users\Zach Tinkey\Desktop\pos-core-api\pos-core-api\bin\Debug\netcoreapp3.1\pos-core-api.exe
+C:\Users\Zach Tinkey\Desktop\pos-core-api\pos-core-api\bin\Debug\netcoreapp3.1\pos-core-api.deps.json
+C:\Users\Zach Tinkey\Desktop\pos-core-api\pos-core-api\bin\Debug\netcoreapp3.1\pos-core-api.runtimeconfig.json
+C:\Users\Zach Tinkey\Desktop\pos-core-api\pos-core-api\bin\Debug\netcoreapp3.1\pos-core-api.runtimeconfig.dev.json
+C:\Users\Zach Tinkey\Desktop\pos-core-api\pos-core-api\bin\Debug\netcoreapp3.1\pos-core-api.dll
+C:\Users\Zach Tinkey\Desktop\pos-core-api\pos-core-api\bin\Debug\netcoreapp3.1\pos-core-api.pdb
+C:\Users\Zach Tinkey\Desktop\pos-core-api\pos-core-api\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\Zach Tinkey\Desktop\pos-core-api\pos-core-api\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\Zach Tinkey\Desktop\pos-core-api\pos-core-api\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Logging.dll
+C:\Users\Zach Tinkey\Desktop\pos-core-api\pos-core-api\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.dll
+C:\Users\Zach Tinkey\Desktop\pos-core-api\pos-core-api\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\Zach Tinkey\Desktop\pos-core-api\pos-core-api\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Tokens.dll
+C:\Users\Zach Tinkey\Desktop\pos-core-api\pos-core-api\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+C:\Users\Zach Tinkey\Desktop\pos-core-api\pos-core-api\bin\Debug\netcoreapp3.1\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\Zach Tinkey\Desktop\pos-core-api\pos-core-api\obj\Debug\netcoreapp3.1\pos-core-api.csprojAssemblyReference.cache
+C:\Users\Zach Tinkey\Desktop\pos-core-api\pos-core-api\obj\Debug\netcoreapp3.1\staticwebassets\pos-core-api.StaticWebAssets.Manifest.cache
+C:\Users\Zach Tinkey\Desktop\pos-core-api\pos-core-api\obj\Debug\netcoreapp3.1\staticwebassets\pos-core-api.StaticWebAssets.xml
+C:\Users\Zach Tinkey\Desktop\pos-core-api\pos-core-api\obj\Debug\netcoreapp3.1\pos-core-api.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Zach Tinkey\Desktop\pos-core-api\pos-core-api\obj\Debug\netcoreapp3.1\pos-core-api.AssemblyInfoInputs.cache
+C:\Users\Zach Tinkey\Desktop\pos-core-api\pos-core-api\obj\Debug\netcoreapp3.1\pos-core-api.AssemblyInfo.cs
+C:\Users\Zach Tinkey\Desktop\pos-core-api\pos-core-api\obj\Debug\netcoreapp3.1\pos-core-api.RazorTargetAssemblyInfo.cache
+C:\Users\Zach Tinkey\Desktop\pos-core-api\pos-core-api\obj\Debug\netcoreapp3.1\pos-core-api.csproj.CopyComplete
+C:\Users\Zach Tinkey\Desktop\pos-core-api\pos-core-api\obj\Debug\netcoreapp3.1\pos-core-api.dll
+C:\Users\Zach Tinkey\Desktop\pos-core-api\pos-core-api\obj\Debug\netcoreapp3.1\pos-core-api.pdb
