@@ -23,9 +23,14 @@ namespace HardwareTestApp
 
         private void button1_OnClick(object sender, EventArgs e)
         {
+
+            CashDrawer drawer = new CashDrawer();
+            drawer.open();
+
             Image logo = Image.FromFile("Z:\\SecretCellar\\hardware\\logo.bmp");
             Receipt r = new Receipt(logo, "Secret Cellar", new double[] { 0.99, 1.35, 4415.34 });
             r.print();
+
         }
     }
 }
