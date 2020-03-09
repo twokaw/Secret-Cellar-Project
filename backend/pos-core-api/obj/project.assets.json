@@ -3580,19 +3580,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Zach Tinkey\\.nuget\\packages\\": {}
+    "C:\\Users\\ComradSSD\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Zach Tinkey\\Documents\\GitHub\\Secret-Cellar-Project\\backend\\pos-core-api\\pos-core-api.csproj",
+      "projectUniqueName": "D:\\POS\\SecretCellar\\backend\\pos-core-api\\pos-core-api.csproj",
       "projectName": "pos-core-api",
-      "projectPath": "C:\\Users\\Zach Tinkey\\Documents\\GitHub\\Secret-Cellar-Project\\backend\\pos-core-api\\pos-core-api.csproj",
-      "packagesPath": "C:\\Users\\Zach Tinkey\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Zach Tinkey\\Documents\\GitHub\\Secret-Cellar-Project\\backend\\pos-core-api\\obj\\",
+      "projectPath": "D:\\POS\\SecretCellar\\backend\\pos-core-api\\pos-core-api.csproj",
+      "packagesPath": "C:\\Users\\ComradSSD\\.nuget\\packages\\",
+      "outputPath": "D:\\POS\\SecretCellar\\backend\\pos-core-api\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Zach Tinkey\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\ComradSSD\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

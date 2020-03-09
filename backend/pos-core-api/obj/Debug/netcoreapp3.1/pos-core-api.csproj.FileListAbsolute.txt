@@ -106,3 +106,30 @@ C:\Users\Zach Tinkey\Desktop\pos-core-api\pos-core-api\obj\Debug\netcoreapp3.1\p
 C:\Users\Zach Tinkey\Desktop\pos-core-api\pos-core-api\obj\Debug\netcoreapp3.1\pos-core-api.csproj.CopyComplete
 C:\Users\Zach Tinkey\Desktop\pos-core-api\pos-core-api\obj\Debug\netcoreapp3.1\pos-core-api.dll
 C:\Users\Zach Tinkey\Desktop\pos-core-api\pos-core-api\obj\Debug\netcoreapp3.1\pos-core-api.pdb
+D:\POS\SecretCellar\backend\pos-core-api\bin\Debug\netcoreapp3.1\appsettings.Development.json
+D:\POS\SecretCellar\backend\pos-core-api\bin\Debug\netcoreapp3.1\appsettings.json
+D:\POS\SecretCellar\backend\pos-core-api\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
+D:\POS\SecretCellar\backend\pos-core-api\bin\Debug\netcoreapp3.1\pos-core-api.exe
+D:\POS\SecretCellar\backend\pos-core-api\bin\Debug\netcoreapp3.1\pos-core-api.deps.json
+D:\POS\SecretCellar\backend\pos-core-api\bin\Debug\netcoreapp3.1\pos-core-api.runtimeconfig.json
+D:\POS\SecretCellar\backend\pos-core-api\bin\Debug\netcoreapp3.1\pos-core-api.runtimeconfig.dev.json
+D:\POS\SecretCellar\backend\pos-core-api\bin\Debug\netcoreapp3.1\pos-core-api.dll
+D:\POS\SecretCellar\backend\pos-core-api\bin\Debug\netcoreapp3.1\pos-core-api.pdb
+D:\POS\SecretCellar\backend\pos-core-api\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\POS\SecretCellar\backend\pos-core-api\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\POS\SecretCellar\backend\pos-core-api\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Logging.dll
+D:\POS\SecretCellar\backend\pos-core-api\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.dll
+D:\POS\SecretCellar\backend\pos-core-api\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+D:\POS\SecretCellar\backend\pos-core-api\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Tokens.dll
+D:\POS\SecretCellar\backend\pos-core-api\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+D:\POS\SecretCellar\backend\pos-core-api\bin\Debug\netcoreapp3.1\System.IdentityModel.Tokens.Jwt.dll
+D:\POS\SecretCellar\backend\pos-core-api\obj\Debug\netcoreapp3.1\pos-core-api.csprojAssemblyReference.cache
+D:\POS\SecretCellar\backend\pos-core-api\obj\Debug\netcoreapp3.1\staticwebassets\pos-core-api.StaticWebAssets.Manifest.cache
+D:\POS\SecretCellar\backend\pos-core-api\obj\Debug\netcoreapp3.1\staticwebassets\pos-core-api.StaticWebAssets.xml
+D:\POS\SecretCellar\backend\pos-core-api\obj\Debug\netcoreapp3.1\pos-core-api.MvcApplicationPartsAssemblyInfo.cache
+D:\POS\SecretCellar\backend\pos-core-api\obj\Debug\netcoreapp3.1\pos-core-api.AssemblyInfoInputs.cache
+D:\POS\SecretCellar\backend\pos-core-api\obj\Debug\netcoreapp3.1\pos-core-api.AssemblyInfo.cs
+D:\POS\SecretCellar\backend\pos-core-api\obj\Debug\netcoreapp3.1\pos-core-api.RazorTargetAssemblyInfo.cache
+D:\POS\SecretCellar\backend\pos-core-api\obj\Debug\netcoreapp3.1\pos-core-api.csproj.CopyComplete
+D:\POS\SecretCellar\backend\pos-core-api\obj\Debug\netcoreapp3.1\pos-core-api.dll
+D:\POS\SecretCellar\backend\pos-core-api\obj\Debug\netcoreapp3.1\pos-core-api.pdb
