@@ -6,20 +6,36 @@ namespace Transaction
 {
     public class Item
     {
-        //Available
-        //num sold
-        //type
-        //barcode
-        public uint Id { get; set; }         // Barcode ID
         public string Name { get; set; }     // Name of product
+        public uint Id { get; set; }
+        public uint Barcode { get; set; }
+        public uint Available { get; set; }
+        public uint NumSold { get; set; }
         public decimal Price { get; set; }   // Price in dollars
-        //bool isTaxable
-        //uint numOfBottles
-        public Item(uint Id, string Name, decimal Price)
+        public bool IsTaxable { get; set; }
+        public string ItemType { get; set; }
+        public uint NumBottles { get; set; }
+
+
+        public Item(string Name,
+                    uint Id,
+                    uint Barcode,
+                    uint Available,
+                    uint NumSold,
+                    decimal Price,
+                    bool IsTaxable,
+                    string ItemType,
+                    uint NumBottles)
         {
-            this.Id = Id;
-            this.Name = Name;
-            this.Price = Price;
+            this.Available  = Available;
+            this.NumSold    = NumSold;
+            this.Barcode    = Barcode;
+            this.Id         = Id;
+            this.Name       = Name;
+            this.Price      = Price;
+            this.IsTaxable  = IsTaxable;
+            this.ItemType   = ItemType;
+            this.NumBottles = NumBottles;
         }
     }
 
@@ -39,7 +55,7 @@ namespace Transaction
         public bool TaxExempt { get; set; }
         public string PayMethod { get; set; }
         public string PayNum { get; set; }  // Credit card digits, check num, or nothing for cash
-        //discount
+        public decimal Discount { get; set; } 
 
         // Default constructor
         public Transaction()
@@ -55,6 +71,7 @@ namespace Transaction
             TaxExempt  = false;
             PayMethod  = "";
             PayNum     = "";
+            Discount = 0.0M;
         }
 
         // Parameterized constructor
@@ -63,6 +80,7 @@ namespace Transaction
                            DateTime TransactionDateTime,
                            string Location,
                            List<Item> Items,
+                           decimal Discount,
                            decimal Subtotal,
                            decimal Tax,
                            decimal Total,
@@ -75,12 +93,14 @@ namespace Transaction
             this.TransactionDateTime = TransactionDateTime;
             this.Location   = Location;
             this.Items      = Items;
+            this.Discount   = Discount; // Will this be applied before or after subtotal is calculated?
             this.Subtotal   = Subtotal;
             this.Tax        = Tax;
             this.Total      = Total;
             this.TaxExempt  = TaxExempt;
             this.PayMethod  = PayMethod;
             this.PayNum     = PayNum;
+            
         }
 
         // Deserialization constructor
@@ -91,6 +111,7 @@ namespace Transaction
             TransactionDateTime = (DateTime)info.GetValue("TransactionDateTime", typeof(DateTime));
             Location = (string)info.GetValue("Location", typeof(string));
             Items = (List<Item>)info.GetValue("Items", typeof(List<Item>));
+            Discount = (decimal)info.GetValue("Decimal", typeof(decimal));
             Subtotal = (decimal)info.GetValue("Subtotal", typeof(decimal));
             Tax = (decimal)info.GetValue("Tax", typeof(decimal));
             Total = (decimal)info.GetValue("Total", typeof(decimal));
@@ -107,6 +128,7 @@ namespace Transaction
             info.AddValue("TransactionDateTime", TransactionDateTime);
             info.AddValue("Location", Location);
             info.AddValue("Items", Items);
+            info.AddValue("Discount", Discount);
             info.AddValue("Subtotal", Subtotal);
             info.AddValue("Tax", Tax);
             info.AddValue("Total", Total);
