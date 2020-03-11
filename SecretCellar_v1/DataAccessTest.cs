@@ -17,13 +17,14 @@ namespace SecretCellar
                 {
                     pin = pin,
                     FirstName = "Generic"
+                    
                 };
             else if (pin == 123)
             {
                 user = new User()
                 {
                     pin = pin,
-                    FirstName = "Admin"
+                    FirstName = "Welcome"
                 };
             }
             else if (pin == 456)

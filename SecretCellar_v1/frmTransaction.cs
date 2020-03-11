@@ -19,6 +19,21 @@ namespace SecretCellar
 
         private void frmTransaction_Load(object sender, EventArgs e)
         {
+            this.Visible = false;
+            frmLogin login = new frmLogin();
+            if (login.ShowDialog() == DialogResult.OK)
+            {
+                this.Visible = true;
+            }
+            else
+            {
+                this.Dispose();
+            }
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
 
         }
     }
