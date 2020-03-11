@@ -1,4 +1,4 @@
-﻿namespace SecretCellar1
+﻿namespace SecretCellar
 {
     partial class EditInventory
     {
@@ -69,6 +69,7 @@
             this.txtBarcode.Name = "txtBarcode";
             this.txtBarcode.Size = new System.Drawing.Size(100, 20);
             this.txtBarcode.TabIndex = 0;
+            this.txtBarcode.TextChanged += new System.EventHandler(this.txtBarcode_TextChanged);
             // 
             // txtItemDesc
             // 
@@ -76,6 +77,7 @@
             this.txtItemDesc.Name = "txtItemDesc";
             this.txtItemDesc.Size = new System.Drawing.Size(100, 20);
             this.txtItemDesc.TabIndex = 1;
+            this.txtItemDesc.TextChanged += new System.EventHandler(this.txtItemDesc_TextChanged);
             // 
             // txtSupplyPrice
             // 
@@ -83,6 +85,7 @@
             this.txtSupplyPrice.Name = "txtSupplyPrice";
             this.txtSupplyPrice.Size = new System.Drawing.Size(100, 20);
             this.txtSupplyPrice.TabIndex = 2;
+            this.txtSupplyPrice.TextChanged += new System.EventHandler(this.txtSupplyPrice_TextChanged);
             // 
             // txtBottleDeposite
             // 
@@ -90,6 +93,7 @@
             this.txtBottleDeposite.Name = "txtBottleDeposite";
             this.txtBottleDeposite.Size = new System.Drawing.Size(100, 20);
             this.txtBottleDeposite.TabIndex = 5;
+            this.txtBottleDeposite.TextChanged += new System.EventHandler(this.txtBottleDeposite_TextChanged);
             // 
             // txtSupplierPhone
             // 
@@ -97,6 +101,7 @@
             this.txtSupplierPhone.Name = "txtSupplierPhone";
             this.txtSupplierPhone.Size = new System.Drawing.Size(100, 20);
             this.txtSupplierPhone.TabIndex = 9;
+            this.txtSupplierPhone.TextChanged += new System.EventHandler(this.txtSupplierPhone_TextChanged);
             // 
             // txtTax
             // 
@@ -104,6 +109,7 @@
             this.txtTax.Name = "txtTax";
             this.txtTax.Size = new System.Drawing.Size(100, 20);
             this.txtTax.TabIndex = 10;
+            this.txtTax.TextChanged += new System.EventHandler(this.txtTax_TextChanged);
             // 
             // txtMarkUp
             // 
@@ -111,6 +117,7 @@
             this.txtMarkUp.Name = "txtMarkUp";
             this.txtMarkUp.Size = new System.Drawing.Size(100, 20);
             this.txtMarkUp.TabIndex = 11;
+            this.txtMarkUp.TextChanged += new System.EventHandler(this.txtMarkUp_TextChanged);
             // 
             // txtLowStock
             // 
@@ -118,6 +125,7 @@
             this.txtLowStock.Name = "txtLowStock";
             this.txtLowStock.Size = new System.Drawing.Size(100, 20);
             this.txtLowStock.TabIndex = 12;
+            this.txtLowStock.TextChanged += new System.EventHandler(this.txtLowStock_TextChanged);
             // 
             // txtExistingQty
             // 
@@ -125,6 +133,7 @@
             this.txtExistingQty.Name = "txtExistingQty";
             this.txtExistingQty.Size = new System.Drawing.Size(100, 20);
             this.txtExistingQty.TabIndex = 13;
+            this.txtExistingQty.TextChanged += new System.EventHandler(this.txtExistingQty_TextChanged);
             // 
             // txtAddToQty
             // 
@@ -132,6 +141,7 @@
             this.txtAddToQty.Name = "txtAddToQty";
             this.txtAddToQty.Size = new System.Drawing.Size(100, 20);
             this.txtAddToQty.TabIndex = 14;
+            this.txtAddToQty.TextChanged += new System.EventHandler(this.txtAddToQty_TextChanged);
             // 
             // txtSalesPrice
             // 
@@ -139,6 +149,7 @@
             this.txtSalesPrice.Name = "txtSalesPrice";
             this.txtSalesPrice.Size = new System.Drawing.Size(100, 20);
             this.txtSalesPrice.TabIndex = 15;
+            this.txtSalesPrice.TextChanged += new System.EventHandler(this.txtSalesPrice_TextChanged);
             // 
             // label1
             // 
@@ -246,6 +257,7 @@
             this.cboProdClass.Name = "cboProdClass";
             this.cboProdClass.Size = new System.Drawing.Size(100, 21);
             this.cboProdClass.TabIndex = 29;
+            this.cboProdClass.SelectedIndexChanged += new System.EventHandler(this.cboProdClass_SelectedIndexChanged);
             // 
             // cboSupplierName
             // 
@@ -254,6 +266,7 @@
             this.cboSupplierName.Name = "cboSupplierName";
             this.cboSupplierName.Size = new System.Drawing.Size(100, 21);
             this.cboSupplierName.TabIndex = 30;
+            this.cboSupplierName.SelectedIndexChanged += new System.EventHandler(this.cboSupplierName_SelectedIndexChanged);
             // 
             // btnEditSup
             // 
@@ -300,6 +313,7 @@
             this.btnClear.TabIndex = 36;
             this.btnClear.Text = "Clear";
             this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // btnBrowseInv
             // 
@@ -310,6 +324,7 @@
             this.btnBrowseInv.TabIndex = 37;
             this.btnBrowseInv.Text = "Browse Inv.";
             this.btnBrowseInv.UseVisualStyleBackColor = true;
+            this.btnBrowseInv.Click += new System.EventHandler(this.btnBrowseInv_Click);
             // 
             // btnMainMenu
             // 
@@ -320,6 +335,7 @@
             this.btnMainMenu.TabIndex = 38;
             this.btnMainMenu.Text = "Main Menu";
             this.btnMainMenu.UseVisualStyleBackColor = true;
+            this.btnMainMenu.Click += new System.EventHandler(this.btnMainMenu_Click);
             // 
             // btnCalcMarkUp
             // 
@@ -330,6 +346,7 @@
             this.btnCalcMarkUp.TabIndex = 39;
             this.btnCalcMarkUp.Text = "Calc Mark Up";
             this.btnCalcMarkUp.UseVisualStyleBackColor = true;
+            this.btnCalcMarkUp.Click += new System.EventHandler(this.btnCalcMarkUp_Click);
             // 
             // btnAdd
             // 
