@@ -1,0 +1,8 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "C:\\Users\\ComradSSD\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\ComradSSD\\.nuget\\packages"
+    ]
+  }
+}

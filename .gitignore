@@ -1,10 +1,6 @@
-
-SecretCellar_v1/.vs/SecretCellar/v16/.suo
-SecretCellar_v1/.vs/SecretCellar/v16/.suo
-SecretCellar_v1/.vs/SecretCellar/v16/.suo
+*.suo
 *.pdb
 *.exe
 *.cache
-*.cache
 SecretCellar_v1/obj/Debug/SecretCellar.csproj.FileListAbsolute.txt
-SecretCellar_v1/obj/Debug/SecretCellar.csproj.CoreCompileInputs.cache
+*\.vs/*

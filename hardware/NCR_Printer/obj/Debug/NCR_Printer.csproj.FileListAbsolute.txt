@@ -1,0 +1,5 @@
+D:\POS\SecretCellar\hardware\NCR_Printer\bin\Debug\NCR_Printer.dll
+D:\POS\SecretCellar\hardware\NCR_Printer\bin\Debug\NCR_Printer.pdb
+D:\POS\SecretCellar\hardware\NCR_Printer\obj\Debug\NCR_Printer.csprojAssemblyReference.cache
+D:\POS\SecretCellar\hardware\NCR_Printer\obj\Debug\NCR_Printer.dll
+D:\POS\SecretCellar\hardware\NCR_Printer\obj\Debug\NCR_Printer.pdb

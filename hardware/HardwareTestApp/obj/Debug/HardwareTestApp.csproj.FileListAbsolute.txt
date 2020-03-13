@@ -1,0 +1,12 @@
+D:\POS\SecretCellar\hardware\HardwareTestApp\obj\Debug\HardwareTestApp.csprojAssemblyReference.cache
+D:\POS\SecretCellar\hardware\HardwareTestApp\obj\Debug\HardwareTestApp.Form1.resources
+D:\POS\SecretCellar\hardware\HardwareTestApp\obj\Debug\HardwareTestApp.Properties.Resources.resources
+D:\POS\SecretCellar\hardware\HardwareTestApp\obj\Debug\HardwareTestApp.csproj.GenerateResource.cache
+D:\POS\SecretCellar\hardware\HardwareTestApp\bin\Debug\HardwareTestApp.exe.config
+D:\POS\SecretCellar\hardware\HardwareTestApp\bin\Debug\HardwareTestApp.exe
+D:\POS\SecretCellar\hardware\HardwareTestApp\bin\Debug\HardwareTestApp.pdb
+D:\POS\SecretCellar\hardware\HardwareTestApp\bin\Debug\NCR_PrinterLibrary.dll
+D:\POS\SecretCellar\hardware\HardwareTestApp\bin\Debug\NCR_PrinterLibrary.pdb
+D:\POS\SecretCellar\hardware\HardwareTestApp\obj\Debug\HardwareTestApp.csproj.CopyComplete
+D:\POS\SecretCellar\hardware\HardwareTestApp\obj\Debug\HardwareTestApp.exe
+D:\POS\SecretCellar\hardware\HardwareTestApp\obj\Debug\HardwareTestApp.pdb
