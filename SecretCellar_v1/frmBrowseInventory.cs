@@ -16,5 +16,25 @@ namespace SecretCellar
         {
             InitializeComponent();
         }
+
+        private void frmBrowseInventory_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnRadioShowAll_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
