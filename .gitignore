@@ -1,2 +1,6 @@
-*\.vs/*
+*.suo
+*.pdb
+*.exe
 *.cache
+SecretCellar_v1/obj/Debug/SecretCellar.csproj.FileListAbsolute.txt
+*\.vs/*
