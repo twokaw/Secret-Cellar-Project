@@ -46,5 +46,11 @@
     <Compile Include="Receipt.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\shared\Transaction\Shared.csproj">
+      <Project>{d07ebfaf-04b8-4553-a5da-e23f5410aac6}</Project>
+      <Name>Shared</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

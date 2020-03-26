@@ -80,6 +80,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\shared\Transaction\Shared.csproj">
+      <Project>{d07ebfaf-04b8-4553-a5da-e23f5410aac6}</Project>
+      <Name>Shared</Name>
+    </ProjectReference>
     <ProjectReference Include="..\NCR_Printer\Printer.csproj">
       <Project>{1225fd83-24b3-42ad-83c0-255eb79c0c64}</Project>
       <Name>Printer</Name>

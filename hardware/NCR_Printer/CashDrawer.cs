@@ -3,25 +3,20 @@ using System.IO.Ports;
 
 namespace NCR_Printer
 {
-    public class CashDrawer
+    public class CashDrawer : SerialPort
     {
-        SerialPort port;
 
-        readonly Byte[] BEEP = { 0x1B, 0x07 };
         readonly Byte[] OPEN = { 0x1B, 0x70, 0x0, 0x10, 0xFA };
 
-        public CashDrawer()
+        public CashDrawer() : base("COM3", 9600, Parity.None, 8, StopBits.One)
         {
-            port = new SerialPort("COM3", 9600, Parity.None, 8, StopBits.One);
-
         }
 
-        public void open()
+        public void openDrawer()
         {
-            port.Open();
-            port.Write(BEEP, 0, BEEP.Length);
-            port.Write(OPEN, 0, OPEN.Length);
-            port.Close();
+            Open();
+            Write(OPEN, 0, OPEN.Length);
+            Close();
         }
     }
 }
