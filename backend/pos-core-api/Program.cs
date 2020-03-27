@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using WebApi.Helpers;
 
 namespace WebApi
 {
@@ -13,6 +14,11 @@ namespace WebApi
     {
         public static void Main(string[] args)
         {
+            //DbConn db = new DbConn();
+            //db.OpenConnection();
+            //db.CloseConnnection();
+            //db.GetPrice();
+
             CreateHostBuilder(args).Build().Run();
         }
 

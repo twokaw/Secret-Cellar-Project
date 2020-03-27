@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Zach Tinkey\\Desktop\\backend\\pos-core-api\\pos-core-api.csproj": {}
+    "C:\\Users\\Dane\\source\\repos\\twokaw\\Secret-Cellar-Project\\backend\\pos-core-api\\pos-core-api.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Zach Tinkey\\Desktop\\backend\\pos-core-api\\pos-core-api.csproj": {
+    "C:\\Users\\Dane\\source\\repos\\twokaw\\Secret-Cellar-Project\\backend\\pos-core-api\\pos-core-api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Zach Tinkey\\Desktop\\backend\\pos-core-api\\pos-core-api.csproj",
+        "projectUniqueName": "C:\\Users\\Dane\\source\\repos\\twokaw\\Secret-Cellar-Project\\backend\\pos-core-api\\pos-core-api.csproj",
         "projectName": "pos-core-api",
-        "projectPath": "C:\\Users\\Zach Tinkey\\Desktop\\backend\\pos-core-api\\pos-core-api.csproj",
-        "packagesPath": "C:\\Users\\Zach Tinkey\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Zach Tinkey\\Desktop\\backend\\pos-core-api\\obj\\",
+        "projectPath": "C:\\Users\\Dane\\source\\repos\\twokaw\\Secret-Cellar-Project\\backend\\pos-core-api\\pos-core-api.csproj",
+        "packagesPath": "C:\\Users\\Dane\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Dane\\source\\repos\\twokaw\\Secret-Cellar-Project\\backend\\pos-core-api\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Zach Tinkey\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Dane\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -41,6 +41,14 @@
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
               "version": "[3.1.0, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[3.1.1, )"
+            },
+            "MySql.Data": {
+              "target": "Package",
+              "version": "[8.0.19, )"
             },
             "System.IdentityModel.Tokens.Jwt": {
               "target": "Package",

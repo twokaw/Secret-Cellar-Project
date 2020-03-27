@@ -1,8 +1,8 @@
 {
   "runtimeOptions": {
     "additionalProbingPaths": [
-      "C:\\Users\\Zach Tinkey\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\Zach Tinkey\\.nuget\\packages"
+      "C:\\Users\\Dane\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\Dane\\.nuget\\packages"
     ]
   }
 }
