@@ -133,3 +133,5 @@ D:\POS\SecretCellar\backend\pos-core-api\obj\Debug\netcoreapp3.1\pos-core-api.Ra
 D:\POS\SecretCellar\backend\pos-core-api\obj\Debug\netcoreapp3.1\pos-core-api.csproj.CopyComplete
 D:\POS\SecretCellar\backend\pos-core-api\obj\Debug\netcoreapp3.1\pos-core-api.dll
 D:\POS\SecretCellar\backend\pos-core-api\obj\Debug\netcoreapp3.1\pos-core-api.pdb
+C:\Users\Dane\source\repos\twokaw\Secret-Cellar-Project\backend\pos-core-api\obj\Debug\netcoreapp3.1\pos-core-api.dll
+C:\Users\Dane\source\repos\twokaw\Secret-Cellar-Project\backend\pos-core-api\obj\Debug\netcoreapp3.1\pos-core-api.pdb
