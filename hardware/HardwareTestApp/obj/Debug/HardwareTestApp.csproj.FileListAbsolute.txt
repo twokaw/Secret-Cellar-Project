@@ -10,3 +10,9 @@ D:\POS\SecretCellar\hardware\HardwareTestApp\bin\Debug\NCR_PrinterLibrary.pdb
 D:\POS\SecretCellar\hardware\HardwareTestApp\obj\Debug\HardwareTestApp.csproj.CopyComplete
 D:\POS\SecretCellar\hardware\HardwareTestApp\obj\Debug\HardwareTestApp.exe
 D:\POS\SecretCellar\hardware\HardwareTestApp\obj\Debug\HardwareTestApp.pdb
+C:\Users\Dane\source\repos\twokaw\Secret-Cellar-Project\hardware\HardwareTestApp\obj\Debug\HardwareTestApp.csprojAssemblyReference.cache
+C:\Users\Dane\source\repos\twokaw\Secret-Cellar-Project\hardware\HardwareTestApp\obj\Debug\HardwareTestApp.Form1.resources
+C:\Users\Dane\source\repos\twokaw\Secret-Cellar-Project\hardware\HardwareTestApp\obj\Debug\HardwareTestApp.Properties.Resources.resources
+C:\Users\Dane\source\repos\twokaw\Secret-Cellar-Project\hardware\HardwareTestApp\obj\Debug\HardwareTestApp.csproj.GenerateResource.cache
+C:\Users\Dane\source\repos\twokaw\Secret-Cellar-Project\hardware\HardwareTestApp\obj\Debug\HardwareTestApp.exe
+C:\Users\Dane\source\repos\twokaw\Secret-Cellar-Project\hardware\HardwareTestApp\obj\Debug\HardwareTestApp.pdb

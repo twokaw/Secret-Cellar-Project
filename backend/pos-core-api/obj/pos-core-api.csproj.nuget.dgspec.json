@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\POS\\SecretCellar\\backend\\pos-core-api\\pos-core-api.csproj": {}
+    "C:\\Users\\Dane\\source\\repos\\twokaw\\Secret-Cellar-Project\\backend\\pos-core-api\\pos-core-api.csproj": {}
   },
   "projects": {
-    "D:\\POS\\SecretCellar\\backend\\pos-core-api\\pos-core-api.csproj": {
+    "C:\\Users\\Dane\\source\\repos\\twokaw\\Secret-Cellar-Project\\backend\\pos-core-api\\pos-core-api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\POS\\SecretCellar\\backend\\pos-core-api\\pos-core-api.csproj",
+        "projectUniqueName": "C:\\Users\\Dane\\source\\repos\\twokaw\\Secret-Cellar-Project\\backend\\pos-core-api\\pos-core-api.csproj",
         "projectName": "pos-core-api",
-        "projectPath": "D:\\POS\\SecretCellar\\backend\\pos-core-api\\pos-core-api.csproj",
-        "packagesPath": "C:\\Users\\ComradSSD\\.nuget\\packages\\",
-        "outputPath": "D:\\POS\\SecretCellar\\backend\\pos-core-api\\obj\\",
+        "projectPath": "C:\\Users\\Dane\\source\\repos\\twokaw\\Secret-Cellar-Project\\backend\\pos-core-api\\pos-core-api.csproj",
+        "packagesPath": "C:\\Users\\Dane\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Dane\\source\\repos\\twokaw\\Secret-Cellar-Project\\backend\\pos-core-api\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\ComradSSD\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Dane\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -41,6 +41,10 @@
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
               "version": "[3.1.0, )"
+            },
+            "MySql.Data": {
+              "target": "Package",
+              "version": "[8.0.19, )"
             },
             "System.IdentityModel.Tokens.Jwt": {
               "target": "Package",

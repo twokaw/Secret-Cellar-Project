@@ -20,17 +20,14 @@ namespace WebApi.Controllers
          * This class allows me to open and close a connection to the database via methods. 
          */
         DbConn db = new DbConn();
-
-        //test list
-        Inventory item = new Inventory();
-
-
+        
         // GET: api/Inventory
         [HttpGet]
         public List<Inventory> Get()
         {
             List<Inventory> output = new List<Inventory>();
             Inventory outputItem;
+            uint dumpInventoryID;
             db.OpenConnection();
 
             string sqlStatement = "SELECT * FROM inventory_description LEFT OUTER JOIN inventory_price USING(inventoryID) LEFT OUTER JOIN inventory_type USING(typeID);";
@@ -42,7 +39,7 @@ namespace WebApi.Controllers
                 while (reader.Read())
                 {
                     outputItem = new Inventory();
-                    outputItem.InventoryID = reader.GetUInt32("inventoryID");
+                    dumpInventoryID = reader.GetUInt32("inventoryID");
                     outputItem.Name = reader.GetString("name");
                     outputItem.SupplierID = reader.GetUInt32("supplierID");
                     outputItem.Barcode = reader.GetString("barcode");
@@ -72,13 +69,15 @@ namespace WebApi.Controllers
 
         // GET: api/Inventory/id
         [HttpGet("{id}", Name = "Get")]
-        public Inventory Get(int id)
+        public Inventory Get(String id)
         {
+            Inventory item = new Inventory();
+
             try
             {
                 db.OpenConnection();
 
-                string sqlStatement = "SELECT * FROM inventory_description WHERE inventoryID = @bar";
+                string sqlStatement = "SELECT * FROM inventory_description LEFT OUTER JOIN inventory_price USING(inventoryID) LEFT OUTER JOIN inventory_type USING(typeID) WHERE barcode = @bar";
 
                 MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
                 cmd.Parameters.Add(new MySqlParameter("bar", id));
@@ -87,7 +86,7 @@ namespace WebApi.Controllers
                 {
                     while (reader.Read())
                     {
-                        item.InventoryID = reader.GetUInt32("inventoryID");
+                        //item.InventoryID = reader.GetUInt32("inventoryID");
                         item.Name = reader.GetString("name");
                         item.SupplierID = reader.GetUInt32("supplierID");
                         item.Barcode = reader.GetString("barcode");
@@ -97,6 +96,12 @@ namespace WebApi.Controllers
                         item.BottleDepositQty = reader.GetUInt32("bottle_deposit_qty");
                         item.NonTaxable =(0 != reader.GetInt16("nontaxable"));
                         item.NonTaxableLocal = (0 != reader.GetInt16("nontaxable_local"));
+                        item.InventoryQty = reader.GetUInt32("inventory_qty");
+                        item.SupplierPrice = reader.GetDouble("supplier_price");
+                        item.PurchasedDate = reader.GetDateTime("purchased_date");
+                        item.InventoryType = reader.GetString("inventory_type_name");
+                        item.DiscountDown = reader.GetDouble("6_to_11_case_discount");
+                        item.DiscountUp = reader.GetDouble("12_or_more_case_discount");
                     }
 
                 }
@@ -123,9 +128,9 @@ namespace WebApi.Controllers
             {
                 db.OpenConnection();
 
-                string sqlStatement = "INSERT INTO inventory_description VALUES (@id, @name, @supplierID, @barcode, @retailPrice, @description, @typeID, @bottleDepositQty, @nonTaxable, @nonTaxableLocal)";
+                string sqlStatement = "INSERT INTO inventory_description (name, supplierID, barcode, retail_price, description, typeID, bottle_deposit_qty, nontaxable, nontaxable_local) VALUES (@name, @supplierID, @barcode, @retailPrice, @description, @typeID, @bottleDepositQty, @nonTaxable, @nonTaxableLocal)";
                 MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
-                cmd.Parameters.Add(new MySqlParameter("id", tester.InventoryID));
+                //cmd.Parameters.Add(new MySqlParameter("id", tester.InventoryID));
                 cmd.Parameters.Add(new MySqlParameter("name", tester.Name));
                 cmd.Parameters.Add(new MySqlParameter("supplierID", tester.SupplierID));
                 cmd.Parameters.Add(new MySqlParameter("barcode", tester.Barcode));
@@ -149,13 +154,13 @@ namespace WebApi.Controllers
 
         // PUT: api/Inventory/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] Inventory tester)
+        public void Put(String id, [FromBody] Inventory tester)
         {
             try
             {
                 db.OpenConnection();
 
-                string sqlStatement = "UPDATE inventory SET ItemDescription = @name WHERE ItemID = @bar";
+                string sqlStatement = "UPDATE inventory_description SET name = @name WHERE barcode = @bar";
                 MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
                 cmd.Parameters.Add(new MySqlParameter("name", tester.Name));
                 cmd.Parameters.Add(new MySqlParameter("bar", id));

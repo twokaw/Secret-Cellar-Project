@@ -10,7 +10,7 @@ namespace WebApi.Models
         /*
          * Inventory description section of the database.
          */
-        public uint InventoryID { get; set; }
+        //public uint InventoryID { get; set; }
         public String Name { get; set; }
         public Double SupplierID { get; set; }
         public String Barcode { get; set; }
