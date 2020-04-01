@@ -27,7 +27,6 @@ namespace WebApi.Controllers
         {
             List<Inventory> output = new List<Inventory>();
             Inventory outputItem;
-            uint dumpInventoryID;
             db.OpenConnection();
 
             string sqlStatement = "SELECT * FROM inventory_description LEFT OUTER JOIN inventory_price USING(inventoryID) LEFT OUTER JOIN inventory_type USING(typeID);";
@@ -36,10 +35,12 @@ namespace WebApi.Controllers
             MySqlDataReader reader = cmd.ExecuteReader();
             try
             {
+                
+
                 while (reader.Read())
                 {
                     outputItem = new Inventory();
-                    dumpInventoryID = reader.GetUInt32("inventoryID");
+                    outputItem.InventoryID = reader.GetUInt32("inventoryID");
                     outputItem.Name = reader.GetString("name");
                     outputItem.SupplierID = reader.GetUInt32("supplierID");
                     outputItem.Barcode = reader.GetString("barcode");
@@ -86,7 +87,7 @@ namespace WebApi.Controllers
                 {
                     while (reader.Read())
                     {
-                        //item.InventoryID = reader.GetUInt32("inventoryID");
+                        item.InventoryID = reader.GetUInt32("inventoryID");
                         item.Name = reader.GetString("name");
                         item.SupplierID = reader.GetUInt32("supplierID");
                         item.Barcode = reader.GetString("barcode");
@@ -128,8 +129,9 @@ namespace WebApi.Controllers
             {
                 db.OpenConnection();
 
-                string sqlStatement = "INSERT INTO inventory_description (name, supplierID, barcode, retail_price, description, typeID, bottle_deposit_qty, nontaxable, nontaxable_local) VALUES (@name, @supplierID, @barcode, @retailPrice, @description, @typeID, @bottleDepositQty, @nonTaxable, @nonTaxableLocal)";
-                MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
+                //Inserting into inventory_description
+                string sqlStatementDesc = "SET SQL_MODE = '';INSERT INTO inventory_description (name, supplierID, barcode, retail_price, description, typeID, bottle_deposit_qty, nontaxable, nontaxable_local) VALUES (@name, @supplierID, @barcode, @retailPrice, @description, @typeID, @bottleDepositQty, @nonTaxable, @nonTaxableLocal)";
+                MySqlCommand cmd = new MySqlCommand(sqlStatementDesc, db.Connection());
                 //cmd.Parameters.Add(new MySqlParameter("id", tester.InventoryID));
                 cmd.Parameters.Add(new MySqlParameter("name", tester.Name));
                 cmd.Parameters.Add(new MySqlParameter("supplierID", tester.SupplierID));
@@ -143,6 +145,39 @@ namespace WebApi.Controllers
                 MySqlDataReader reader = cmd.ExecuteReader();
                 reader.Read();
                 reader.Close();
+
+                string sqlInventoryID = "SET SQL_MODE = '';SELECT * FROM inventory_description WHERE barcode = @bar";
+                MySqlCommand cmdID = new MySqlCommand(sqlInventoryID, db.Connection());
+                cmdID.Parameters.Add(new MySqlParameter("bar", tester.Barcode));
+                MySqlDataReader read = cmdID.ExecuteReader();
+                read.Read();
+                uint grabbedID = read.GetUInt32("inventoryID");
+                Console.WriteLine(grabbedID);
+                read.Close();
+
+                //Inserting into inventory_price
+                string sqlStatementPrice = "SET SQL_MODE = '';INSERT INTO inventory_price VALUES (@id, @inventoryQty, @supplierPrice, @purchasedDate)";
+                MySqlCommand cmdPrice = new MySqlCommand(sqlStatementPrice, db.Connection());
+                cmdPrice.Parameters.Add(new MySqlParameter("id", grabbedID));
+                cmdPrice.Parameters.Add(new MySqlParameter("inventoryQty", tester.InventoryQty));
+                cmdPrice.Parameters.Add(new MySqlParameter("supplierPrice", tester.SupplierPrice));
+                cmdPrice.Parameters.Add(new MySqlParameter("purchasedDate", tester.PurchasedDate));
+                MySqlDataReader reader1 = cmdPrice.ExecuteReader();
+                reader1.Read();
+                reader1.Close();
+
+                //Inserting into inventory_type
+                string sqlStatementType = "SET SQL_MODE = '';INSERT INTO inventory_type VALUES (@typeID, @inventoryType, @discountDown, @discountUp)";
+                MySqlCommand cmdType = new MySqlCommand(sqlStatementType, db.Connection());
+
+                cmdType.Parameters.Add(new MySqlParameter("typeID", tester.TypeID));
+                cmdType.Parameters.Add(new MySqlParameter("inventoryType", tester.InventoryType));
+                cmdType.Parameters.Add(new MySqlParameter("discountDown", tester.DiscountDown));
+                cmdType.Parameters.Add(new MySqlParameter("discountUp", tester.DiscountUp));
+                MySqlDataReader reader2 = cmdType.ExecuteReader();
+                reader2.Read();
+                reader2.Close();
+
             }
             catch (Exception ex)
             {
