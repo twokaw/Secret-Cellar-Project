@@ -247,10 +247,16 @@ namespace WebApi.Controllers
             return Ok();
         }
 
+        //Create a post method for adding items to the inventory_price.
+
         // PUT: api/Inventory/5
         [HttpPut("{id}")]
         public void Put(String id, [FromBody] Inventory tester)
         {
+
+
+
+
             try
             {
                 db.OpenConnection();
