@@ -172,6 +172,10 @@ C:\Users\Dane\source\repos\twokaw\Secret-Cellar-Project\backend\pos-core-api\bin
 C:\Users\Dane\source\repos\twokaw\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\MySQL.Data.EntityFrameworkCore.xml
 C:\Users\Dane\source\repos\twokaw\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\MySQL.Data.EntityFrameworkCore.Design.xml
 C:\Users\Dane\source\repos\twokaw\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\MySql.Web.xml
+C:\Users\Dane\source\repos\twokaw\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\Microsoft.OpenApi.dll
+C:\Users\Dane\source\repos\twokaw\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\Dane\source\repos\twokaw\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\Dane\source\repos\twokaw\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerUI.dll
 C:\Users\Dane\source\repos\twokaw\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\Microsoft.Win32.SystemEvents.dll
 C:\Users\Dane\source\repos\twokaw\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\SshNet.Security.Cryptography.dll
 C:\Users\Dane\source\repos\twokaw\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\System.Configuration.ConfigurationManager.dll
@@ -182,4 +186,7 @@ C:\Users\Dane\source\repos\twokaw\Secret-Cellar-Project\backend\pos-core-api\bin
 C:\Users\Dane\source\repos\twokaw\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
 C:\Users\Dane\source\repos\twokaw\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
 C:\Users\Dane\source\repos\twokaw\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\Dane\source\repos\twokaw\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\DocumentFormat.OpenXml.dll
+C:\Users\Dane\source\repos\twokaw\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\System.IO.Packaging.dll
+C:\Users\Dane\source\repos\twokaw\Secret-Cellar-Project\backend\pos-core-api\obj\Debug\netcoreapp3.1\pos-core-api.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\Dane\source\repos\twokaw\Secret-Cellar-Project\backend\pos-core-api\obj\Debug\netcoreapp3.1\pos-core-api.MvcApplicationPartsAssemblyInfo.cache
