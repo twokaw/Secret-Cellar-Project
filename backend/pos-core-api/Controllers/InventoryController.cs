@@ -59,6 +59,12 @@ namespace WebApi.Controllers
             }
         }
 
+        /// <summary>
+        /// A get all request that retrieves all the items in the inventory. 
+        /// </summary>
+        /// <returns>
+        /// Returns a list of iventory items. 
+        /// </returns>
         // GET: api/Inventory
         [HttpGet]
         public List<Inventory> Get()
@@ -66,7 +72,7 @@ namespace WebApi.Controllers
             List<Inventory> output = new List<Inventory>();
             Inventory outputItem;
             db.OpenConnection();
-
+            //change to view that does sum
             string sqlStatement = "SELECT * FROM inventory_description LEFT OUTER JOIN inventory_price USING(inventoryID) LEFT OUTER JOIN inventory_type USING(typeID);";
 
             MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
@@ -115,9 +121,17 @@ namespace WebApi.Controllers
         {
             return DoesBarcodeExist(barcode);
         }*/
-   
+        
+
+        /// <summary>
+        /// Returns a single item that matches the barcode that is sent. 
+        /// </summary>
+        /// <param name="barcode"></param>
+        /// <returns>
+        /// A single inventory item that matches the barcode. 
+        /// </returns>
         // GET: api/Inventory/barcode
-        [HttpGet("{barcode}", Name = "Get")]
+        [HttpGet("{barcode}", Name = "GetInventory")]
         public IActionResult Get(String barcode)
         {
             Inventory outputItem = new Inventory();
@@ -125,7 +139,7 @@ namespace WebApi.Controllers
             try
             {
                 db.OpenConnection();
-
+                // change this to select from a view that can do sums
                 string sqlStatement = "SELECT * FROM inventory_description LEFT OUTER JOIN inventory_price USING(inventoryID) LEFT OUTER JOIN inventory_type USING(typeID) WHERE barcode = @bar";
 
                 MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
