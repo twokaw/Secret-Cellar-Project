@@ -13,7 +13,7 @@ namespace WebApi.Helpers
 
         public static User WithoutPassword(this User user)
         {
-            user.Password = null;
+            user.Pin = 0;
             return user;
         }
     }
