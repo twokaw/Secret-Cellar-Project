@@ -15,6 +15,8 @@ namespace Shared
         public bool IsTaxable { get; set; }
         public string ItemType { get; set; }
         public uint NumBottles { get; set; }
+        public decimal discount { get; set; }
+        
 
 
         public Item(string Name,
@@ -25,7 +27,8 @@ namespace Shared
                     decimal Price,
                     bool IsTaxable,
                     string ItemType,
-                    uint NumBottles)
+                    uint NumBottles,
+                    decimal discount)
         {
             this.Available  = Available;
             this.NumSold    = NumSold;
@@ -36,6 +39,7 @@ namespace Shared
             this.IsTaxable  = IsTaxable;
             this.ItemType   = ItemType;
             this.NumBottles = NumBottles;
+            this.discount = discount;
         }
     }
 
