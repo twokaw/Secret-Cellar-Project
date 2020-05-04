@@ -1,20 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Dane\\source\\repos\\twokaw\\Secret-Cellar-Project\\backend\\pos-core-api\\pos-core-api.csproj": {}
+    "D:\\class\\_senior design\\2020\\Project\\Secret-Cellar-Project\\backend\\pos-core-api\\pos-core-api.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Dane\\source\\repos\\twokaw\\Secret-Cellar-Project\\backend\\pos-core-api\\pos-core-api.csproj": {
+    "D:\\class\\_senior design\\2020\\Project\\Secret-Cellar-Project\\backend\\pos-core-api\\pos-core-api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Dane\\source\\repos\\twokaw\\Secret-Cellar-Project\\backend\\pos-core-api\\pos-core-api.csproj",
+        "projectUniqueName": "D:\\class\\_senior design\\2020\\Project\\Secret-Cellar-Project\\backend\\pos-core-api\\pos-core-api.csproj",
         "projectName": "pos-core-api",
-        "projectPath": "C:\\Users\\Dane\\source\\repos\\twokaw\\Secret-Cellar-Project\\backend\\pos-core-api\\pos-core-api.csproj",
-        "packagesPath": "C:\\Users\\Dane\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Dane\\source\\repos\\twokaw\\Secret-Cellar-Project\\backend\\pos-core-api\\obj\\",
+        "projectPath": "D:\\class\\_senior design\\2020\\Project\\Secret-Cellar-Project\\backend\\pos-core-api\\pos-core-api.csproj",
+        "packagesPath": "C:\\Users\\wjpit\\.nuget\\packages\\",
+        "outputPath": "D:\\class\\_senior design\\2020\\Project\\Secret-Cellar-Project\\backend\\pos-core-api\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Dane\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\wjpit\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -38,17 +41,41 @@
       "frameworks": {
         "netcoreapp3.1": {
           "dependencies": {
+            "DocumentFormat.OpenXml": {
+              "target": "Package",
+              "version": "[2.10.1, )"
+            },
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
               "version": "[3.1.0, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[3.1.1, )"
             },
             "MySql.Data": {
               "target": "Package",
               "version": "[8.0.19, )"
             },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[5.3.1, )"
+            },
+            "System.Configuration.ConfigurationManager": {
+              "target": "Package",
+              "version": "[4.7.0, )"
+            },
+            "System.Data.SqlClient": {
+              "target": "Package",
+              "version": "[4.8.1, )"
+            },
             "System.IdentityModel.Tokens.Jwt": {
               "target": "Package",
               "version": "[5.6.0, )"
+            },
+            "System.Management": {
+              "target": "Package",
+              "version": "[4.7.0, )"
             }
           },
           "imports": [
