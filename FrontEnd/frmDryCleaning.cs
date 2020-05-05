@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace SecretCellar
+namespace SecretCellarProject
 {
     public partial class frmDryCleaning : Form
     {

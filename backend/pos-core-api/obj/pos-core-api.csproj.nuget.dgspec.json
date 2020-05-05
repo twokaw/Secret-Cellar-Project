@@ -1,23 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\class\\_senior design\\2020\\Project\\Secret-Cellar-Project\\backend\\pos-core-api\\pos-core-api.csproj": {}
+    "C:\\Users\\suepp\\Documents\\GitHub\\Secret-Cellar-Project\\backend\\pos-core-api\\pos-core-api.csproj": {}
   },
   "projects": {
-    "D:\\class\\_senior design\\2020\\Project\\Secret-Cellar-Project\\backend\\pos-core-api\\pos-core-api.csproj": {
+    "C:\\Users\\suepp\\Documents\\GitHub\\Secret-Cellar-Project\\backend\\pos-core-api\\pos-core-api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\class\\_senior design\\2020\\Project\\Secret-Cellar-Project\\backend\\pos-core-api\\pos-core-api.csproj",
+        "projectUniqueName": "C:\\Users\\suepp\\Documents\\GitHub\\Secret-Cellar-Project\\backend\\pos-core-api\\pos-core-api.csproj",
         "projectName": "pos-core-api",
-        "projectPath": "D:\\class\\_senior design\\2020\\Project\\Secret-Cellar-Project\\backend\\pos-core-api\\pos-core-api.csproj",
-        "packagesPath": "C:\\Users\\wjpit\\.nuget\\packages\\",
-        "outputPath": "D:\\class\\_senior design\\2020\\Project\\Secret-Cellar-Project\\backend\\pos-core-api\\obj\\",
+        "projectPath": "C:\\Users\\suepp\\Documents\\GitHub\\Secret-Cellar-Project\\backend\\pos-core-api\\pos-core-api.csproj",
+        "packagesPath": "C:\\Users\\suepp\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\suepp\\Documents\\GitHub\\Secret-Cellar-Project\\backend\\pos-core-api\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\wjpit\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\suepp\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

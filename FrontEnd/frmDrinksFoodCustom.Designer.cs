@@ -1,4 +1,4 @@
-﻿namespace SecretCellar
+﻿namespace SecretCellarProject
 {
     partial class frmDrinksFoodCustom
     {
@@ -28,38 +28,39 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dataGridNonBarcodedInventory = new System.Windows.Forms.DataGridView();
             this.Barcode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ItemClass = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ItemDesc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.dataGridItemsToAdddToSale = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            this.btnCancel = new System.Windows.Forms.Button();
+            this.btnAddItem = new System.Windows.Forms.Button();
+            this.btnRemoveItem = new System.Windows.Forms.Button();
+            this.btnClearAll = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridNonBarcodedInventory)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridItemsToAdddToSale)).BeginInit();
             this.SuspendLayout();
             // 
-            // dataGridView1
+            // dataGridNonBarcodedInventory
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridNonBarcodedInventory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridNonBarcodedInventory.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Barcode,
             this.ItemClass,
             this.ItemDesc,
             this.Price});
-            this.dataGridView1.Location = new System.Drawing.Point(12, 169);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(444, 240);
-            this.dataGridView1.TabIndex = 0;
+            this.dataGridNonBarcodedInventory.Location = new System.Drawing.Point(12, 169);
+            this.dataGridNonBarcodedInventory.Name = "dataGridNonBarcodedInventory";
+            this.dataGridNonBarcodedInventory.Size = new System.Drawing.Size(444, 240);
+            this.dataGridNonBarcodedInventory.TabIndex = 0;
+            this.dataGridNonBarcodedInventory.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridNonBarcodedInventory_CellContentClick);
             // 
             // Barcode
             // 
@@ -81,18 +82,19 @@
             this.Price.HeaderText = "Price";
             this.Price.Name = "Price";
             // 
-            // dataGridView2
+            // dataGridItemsToAdddToSale
             // 
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridItemsToAdddToSale.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridItemsToAdddToSale.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
             this.dataGridViewTextBoxColumn2,
             this.dataGridViewTextBoxColumn3,
             this.dataGridViewTextBoxColumn4});
-            this.dataGridView2.Location = new System.Drawing.Point(554, 169);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(444, 240);
-            this.dataGridView2.TabIndex = 1;
+            this.dataGridItemsToAdddToSale.Location = new System.Drawing.Point(554, 169);
+            this.dataGridItemsToAdddToSale.Name = "dataGridItemsToAdddToSale";
+            this.dataGridItemsToAdddToSale.Size = new System.Drawing.Size(444, 240);
+            this.dataGridItemsToAdddToSale.TabIndex = 1;
+            this.dataGridItemsToAdddToSale.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridItemsToAdddToSale_CellContentClick);
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -134,63 +136,67 @@
             this.label2.TabIndex = 3;
             this.label2.Text = "Items to Add to Sale";
             // 
-            // button1
+            // btnCancel
             // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F);
-            this.button1.Location = new System.Drawing.Point(84, 433);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(161, 107);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "Cancel";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F);
+            this.btnCancel.Location = new System.Drawing.Point(84, 433);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(161, 107);
+            this.btnCancel.TabIndex = 4;
+            this.btnCancel.Text = "Cancel";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
-            // button2
+            // btnAddItem
             // 
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F);
-            this.button2.Location = new System.Drawing.Point(765, 433);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(161, 107);
-            this.button2.TabIndex = 5;
-            this.button2.Text = "Add Item(s)";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnAddItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F);
+            this.btnAddItem.Location = new System.Drawing.Point(765, 433);
+            this.btnAddItem.Name = "btnAddItem";
+            this.btnAddItem.Size = new System.Drawing.Size(161, 107);
+            this.btnAddItem.TabIndex = 5;
+            this.btnAddItem.Text = "Add Item(s)";
+            this.btnAddItem.UseVisualStyleBackColor = true;
+            this.btnAddItem.Click += new System.EventHandler(this.btnAddItem_Click);
             // 
-            // button3
+            // btnRemoveItem
             // 
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F);
-            this.button3.Location = new System.Drawing.Point(538, 433);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(161, 107);
-            this.button3.TabIndex = 6;
-            this.button3.Text = "Remove Item(s)";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnRemoveItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F);
+            this.btnRemoveItem.Location = new System.Drawing.Point(538, 433);
+            this.btnRemoveItem.Name = "btnRemoveItem";
+            this.btnRemoveItem.Size = new System.Drawing.Size(161, 107);
+            this.btnRemoveItem.TabIndex = 6;
+            this.btnRemoveItem.Text = "Remove Item(s)";
+            this.btnRemoveItem.UseVisualStyleBackColor = true;
+            this.btnRemoveItem.Click += new System.EventHandler(this.btnRemoveItem_Click);
             // 
-            // button4
+            // btnClearAll
             // 
-            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F);
-            this.button4.Location = new System.Drawing.Point(311, 433);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(161, 107);
-            this.button4.TabIndex = 7;
-            this.button4.Text = "Clear All";
-            this.button4.UseVisualStyleBackColor = true;
+            this.btnClearAll.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F);
+            this.btnClearAll.Location = new System.Drawing.Point(311, 433);
+            this.btnClearAll.Name = "btnClearAll";
+            this.btnClearAll.Size = new System.Drawing.Size(161, 107);
+            this.btnClearAll.TabIndex = 7;
+            this.btnClearAll.Text = "Clear All";
+            this.btnClearAll.UseVisualStyleBackColor = true;
+            this.btnClearAll.Click += new System.EventHandler(this.btnClearAll_Click);
             // 
             // frmDrinksFoodCustom
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1010, 578);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnClearAll);
+            this.Controls.Add(this.btnRemoveItem);
+            this.Controls.Add(this.btnAddItem);
+            this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.dataGridView2);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dataGridItemsToAdddToSale);
+            this.Controls.Add(this.dataGridNonBarcodedInventory);
             this.Name = "frmDrinksFoodCustom";
             this.Text = "Drinks/Food/Custom";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridNonBarcodedInventory)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridItemsToAdddToSale)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -198,21 +204,21 @@
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dataGridNonBarcodedInventory;
         private System.Windows.Forms.DataGridViewTextBoxColumn Barcode;
         private System.Windows.Forms.DataGridViewTextBoxColumn ItemClass;
         private System.Windows.Forms.DataGridViewTextBoxColumn ItemDesc;
         private System.Windows.Forms.DataGridViewTextBoxColumn Price;
-        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.DataGridView dataGridItemsToAdddToSale;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.Button btnAddItem;
+        private System.Windows.Forms.Button btnRemoveItem;
+        private System.Windows.Forms.Button btnClearAll;
     }
 }
