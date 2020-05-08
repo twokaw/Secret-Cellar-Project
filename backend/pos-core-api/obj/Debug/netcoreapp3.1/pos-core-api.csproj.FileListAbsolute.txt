@@ -297,7 +297,6 @@ C:\Users\zachtinkey\Source\Repos\Updated\Secret-Cellar-Project\backend\pos-core-
 C:\Users\zachtinkey\Source\Repos\Updated\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\BouncyCastle.Crypto.dll
 C:\Users\zachtinkey\Source\Repos\Updated\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\Ubiety.Dns.Core.dll
 C:\Users\zachtinkey\Source\Repos\Updated\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\Renci.SshNet.dll
-C:\Users\zachtinkey\Source\Repos\Updated\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\MySql.Data.xml
 C:\Users\zachtinkey\Source\Repos\Updated\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\MySql.Data.EntityFramework.xml
 C:\Users\zachtinkey\Source\Repos\Updated\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\MySQL.Data.EntityFrameworkCore.xml
 C:\Users\zachtinkey\Source\Repos\Updated\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\MySQL.Data.EntityFrameworkCore.Design.xml
@@ -322,3 +321,6 @@ C:\Users\zachtinkey\Source\Repos\Updated\Secret-Cellar-Project\backend\pos-core-
 C:\Users\zachtinkey\Source\Repos\Updated\Secret-Cellar-Project\backend\pos-core-api\obj\Debug\netcoreapp3.1\pos-core-api.csproj.CoreCompileInputs.cache
 C:\Users\zachtinkey\Source\Repos\Updated\Secret-Cellar-Project\backend\pos-core-api\obj\Debug\netcoreapp3.1\pos-core-api.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\zachtinkey\Source\Repos\Updated\Secret-Cellar-Project\backend\pos-core-api\obj\Debug\netcoreapp3.1\pos-core-api.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\zachtinkey\Source\Repos\Updated\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\MySql.Data.xml
+C:\Users\zachtinkey\Source\Repos\Updated\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\Transaction.dll
+C:\Users\zachtinkey\Source\Repos\Updated\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\Transaction.pdb

@@ -26,7 +26,11 @@
         },
         "frameworks": {
           "netcoreapp3.1": {
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\Users\\zachtinkey\\Source\\Repos\\Updated\\Secret-Cellar-Project\\shared\\Transaction\\Shared.csproj": {
+                "projectPath": "C:\\Users\\zachtinkey\\Source\\Repos\\Updated\\Secret-Cellar-Project\\shared\\Transaction\\Shared.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -69,6 +73,10 @@
             "System.IdentityModel.Tokens.Jwt": {
               "target": "Package",
               "version": "[5.6.0, )"
+            },
+            "System.Management": {
+              "target": "Package",
+              "version": "[4.7.0, )"
             }
           },
           "imports": [
@@ -91,6 +99,17 @@
           },
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.200\\RuntimeIdentifierGraph.json"
         }
+      }
+    },
+    "C:\\Users\\zachtinkey\\Source\\Repos\\Updated\\Secret-Cellar-Project\\shared\\Transaction\\Shared.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\zachtinkey\\Source\\Repos\\Updated\\Secret-Cellar-Project\\shared\\Transaction\\Shared.csproj",
+        "projectName": "Shared",
+        "projectPath": "C:\\Users\\zachtinkey\\Source\\Repos\\Updated\\Secret-Cellar-Project\\shared\\Transaction\\Shared.csproj"
+      },
+      "frameworks": {
+        "net472": {}
       }
     }
   }
