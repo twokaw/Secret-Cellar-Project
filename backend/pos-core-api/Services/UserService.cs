@@ -8,22 +8,53 @@ using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using WebApi.Entities;
 using WebApi.Helpers;
+using WebApi.Models;
+using MySql.Data.MySqlClient;
+using MySql.Data.Types;
+using System.Data;
 
 namespace WebApi.Services
 {
     public interface IUserService
     {
-        User Authenticate(string username, string password);
+        User Authenticate(uint username, uint password);
+        bool isTokenValid(string token);
         IEnumerable<User> GetAll();
     }
 
     public class UserService : IUserService
     {
-        // users hardcoded for simplicity, store in a db with hashed passwords in production applications
-        private List<User> _users = new List<User>
+
+        DbConn db = new DbConn();
+        private List<User> _users = new List<User>();
+        private void getCredentials()
         {
-            new User { Id = 1, FirstName = "Test", LastName = "User", Username = "test", Password = "test" }
-        };
+            User cred;
+            db.OpenConnection();
+
+            string sqlStatement = "SELECT emp_id, pin_number, admin FROM employee";
+
+            MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
+            MySqlDataReader reader = cmd.ExecuteReader();
+
+            try
+            {
+                while (reader.Read())
+                {
+                    cred = new User();
+                    cred.EmployeeID = reader.IsDBNull("emp_id") ? 0 : reader.GetUInt32("emp_id");
+                    cred.Pin = reader.IsDBNull("pin_number") ? 0 : reader.GetUInt32("pin_number");
+                    cred.IsAdmin = reader.IsDBNull("admin") ? false : (0 != reader.GetUInt16("admin"));
+                    _users.Add(cred);
+                }
+            }
+            finally
+            {
+                reader.Close();
+            }
+            db.CloseConnnection();
+        }
+
 
         private readonly AppSettings _appSettings;
 
@@ -32,9 +63,11 @@ namespace WebApi.Services
             _appSettings = appSettings.Value;
         }
 
-        public User Authenticate(string username, string password)
+        public User Authenticate(uint username, uint password)
         {
-            var user = _users.SingleOrDefault(x => x.Username == username && x.Password == password);
+
+            getCredentials();
+            var user = _users.SingleOrDefault(x => x.EmployeeID == username && x.Pin == password);
 
             // return null if user not found
             if (user == null)
@@ -47,15 +80,40 @@ namespace WebApi.Services
             {
                 Subject = new ClaimsIdentity(new Claim[]
                 {
-                    new Claim(ClaimTypes.Name, user.Id.ToString())
+                    new Claim(ClaimTypes.Name, user.EmployeeID.ToString())
                 }),
-                Expires = DateTime.UtcNow.AddDays(7),
+                Expires = DateTime.UtcNow.AddMinutes(60),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };
             var token = tokenHandler.CreateToken(tokenDescriptor);
             user.Token = tokenHandler.WriteToken(token);
 
             return user.WithoutPassword();
+        }
+
+
+        // check to see if token is still valid. If not, will need to re-authenticate
+        public bool isTokenValid(string token)
+        {
+            var key = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(_appSettings.Secret));
+            var tokenHandler = new JwtSecurityTokenHandler();
+
+            try
+            {
+                tokenHandler.ValidateToken(token, new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    ValidateIssuer = false,
+                    ValidateAudience = false,
+                    ValidateLifetime = true,
+                    IssuerSigningKey = key
+                }, out SecurityToken validatedToken);
+            }
+            catch
+            {
+                return false;
+            }
+            return true;
         }
 
         public IEnumerable<User> GetAll()

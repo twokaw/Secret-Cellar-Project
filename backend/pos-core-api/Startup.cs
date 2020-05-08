@@ -23,7 +23,7 @@ namespace WebApi
         }
 
         public IConfiguration Configuration { get; }
-        
+
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
@@ -32,8 +32,6 @@ namespace WebApi
             services.AddControllers();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
-
-            // adds documentation to api
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebApi Docs", Version = "v1" });
@@ -60,7 +58,8 @@ namespace WebApi
                     ValidateIssuerSigningKey = true,
                     IssuerSigningKey = new SymmetricSecurityKey(key),
                     ValidateIssuer = false,
-                    ValidateAudience = false
+                    ValidateAudience = false,
+                    ValidateLifetime = true
                 };
             });
 
@@ -80,7 +79,7 @@ namespace WebApi
             app.UseCors();
 
             app.UseSwagger();
-            app.UseSwaggerUI(c => 
+            app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "API V1");
                 c.RoutePrefix = string.Empty;

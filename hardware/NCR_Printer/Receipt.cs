@@ -4,7 +4,6 @@ using System.Drawing;
 using System.Drawing.Printing;
 using Shared;
 
-
 namespace NCR_Printer
 {
     public class Receipt : Transaction
@@ -21,16 +20,17 @@ namespace NCR_Printer
                            string Location,
                            List<Item> Items,
                            decimal Discount,
+                           decimal Coupon,
                            decimal Subtotal,
                            decimal Tax,
                            decimal Total,
                            bool TaxExempt,
                            string PayMethod,
-                           string PayNum,
+                           string PayNum, 
                            string header,
                            string footer,
                            Image logo) 
-            : base(InvoiceID, RegisterID, TransactionDateTime, Location, Items, Discount, Subtotal, Tax, Total, TaxExempt, PayMethod, PayNum)
+            : base(InvoiceID, RegisterID, TransactionDateTime, Location, Items, Discount, Coupon, Subtotal, Tax, Total, TaxExempt, PayMethod, PayNum)
         {
             this.header = header;
             this.footer = footer;
@@ -45,6 +45,7 @@ namespace NCR_Printer
                  trans.Location,
                  trans.Items,
                  trans.Discount,
+                 trans.Coupon,
                  trans.Subtotal,
                  trans.Tax,
                  trans.Total,
@@ -69,89 +70,115 @@ namespace NCR_Printer
             rcpt.Print();
         }
 
+        // Print the text with the given alignment at the cursor and return an advanced cursor based on newLine
+        RectangleF printText(string text, bool newLine, Graphics g, Font font, Brush brush, RectangleF cursor, StringFormat align, float lSpacing)
+        {
+            g.DrawString(text, font, brush, cursor, align);
+            if(newLine) cursor.Y += font.Height + lSpacing;
+            return cursor;
+        }
+
+        // Print a horizontal line at the cursor and return an advanced cursor
+        RectangleF printHorizontalLine(Graphics g, Font font, Pen pen, RectangleF cursor, float lSpacing)
+        {
+            cursor.Y += (font.Height + lSpacing) / 2;
+            g.DrawLine(pen, cursor.X, cursor.Y, cursor.X + cursor.Width, cursor.Y);
+            cursor.Y += (font.Height + lSpacing) / 2;
+            return cursor;
+        }
+
+        // Print the header/footer text with the given alignment at the cursor and return an advanced cursor.
+        // This handles newline characters and wrapping of arbitrary length lines.
+        RectangleF printHeaderFooter(string text, Graphics g, Font font, Brush brush, RectangleF cursor, StringFormat align, float lSpacing)
+        {
+            // Figure out the box we want to draw in
+            SizeF wrappedSize = g.MeasureString(text, font, (int)cursor.Width, align);
+            wrappedSize.Width = cursor.Width; // We just wanted height from MeasureString
+            RectangleF wrappedCursor = new RectangleF(cursor.Location, wrappedSize);
+            // Print using box
+            g.DrawString(header, font, brush, wrappedCursor, align);
+            cursor.Y += wrappedSize.Height + lSpacing;
+            return cursor;
+        }
+
+        // Event handler for printing receipt
         void rcpt_PrintPage(object sender, PrintPageEventArgs e)
         {
             // Initialize printing stuff
             Graphics g = e.Graphics;
 
-            Font font = new Font("Arial", 12);
-            Brush brush = Brushes.Black;
+            Font font = new Font("Arial", 10);
+            Font barcodeFont = new Font("Free 3 of 9", 36);
 
+            float lSpacing = 5F;
+            Brush brush = Brushes.Black;
+            Pen pen = new Pen(brush);
+            
             StringFormat leftAlign = new StringFormat() { Alignment = StringAlignment.Near };
-            StringFormat rightAlign = new StringFormat() { Alignment = StringAlignment.Far };
             StringFormat centerAlign = new StringFormat() { Alignment = StringAlignment.Center };
+            StringFormat rightAlign = new StringFormat() { Alignment = StringAlignment.Far };
 
             RectangleF cursor = new RectangleF(e.PageBounds.X, e.PageBounds.Y, e.PageBounds.Width, font.Height);
 
             // Print Logo
             g.DrawImage(logo, cursor.Width/2-logo.Width/2, cursor.Top);
-            cursor.Y += logo.Height;
+            cursor.Y += logo.Height + lSpacing;
 
             // Print InvoiceID Barcode
-            g.DrawString(InvoiceID.ToString(), font, brush, cursor, leftAlign);
-            cursor.Y += font.Height;
+            cursor = printText("*" + InvoiceID.ToString() + "*", true, g, barcodeFont, brush, cursor, centerAlign, lSpacing);
 
             // Print Header
-            g.DrawString(header, font, brush, cursor, centerAlign);
-            cursor.Y += font.Height; //TODO: Will nee to handle multiline headers well
+            cursor = printHeaderFooter(header, g, font, brush, cursor, centerAlign, lSpacing);
 
             // Print InvoiceID
-            g.DrawString("Invoice #: " + InvoiceID.ToString(), font, brush, cursor, leftAlign);
-            
+            cursor = printText("Invoice #: " + InvoiceID.ToString(), true, g, font, brush, cursor, leftAlign, lSpacing);
+
+            // Print RegisterID
+            cursor = printText("Register ID: " + RegisterID.ToString(), false, g, font, brush, cursor, leftAlign, lSpacing);
 
             // Print Location
-            g.DrawString("Location" + Location, font, brush, cursor, rightAlign);
-            cursor.Y += font.Height;
+            cursor = printText("Location: " + Location, true, g, font, brush, cursor, rightAlign, lSpacing);
 
             // Date and time
-            g.DrawString("Date and time: " + TransactionDateTime.ToString(), font, brush, cursor, leftAlign);
-            cursor.Y += font.Height;
+            cursor = printText("Date and time: " + TransactionDateTime.ToString(), true, g, font, brush, cursor, leftAlign, lSpacing);
+
+            // Print Separator
+            cursor = printHorizontalLine(g, font, pen, cursor, lSpacing);
 
             // Print Items
-            g.DrawString("---------------------------------", font, brush, cursor, leftAlign);
-            cursor.Y += font.Height;
-
             foreach (Item item in Items)
             {
-                g.DrawString(item.NumSold + " " + item.Name, font, brush, cursor, leftAlign);
-                g.DrawString("$ " + item.Price.ToString(), font, brush, cursor, rightAlign);
-                cursor.Y += font.Height;
+                cursor = printText(item.NumSold + " " + item.Name, false, g, font, brush, cursor, leftAlign, lSpacing);
+                cursor = printText("$ " + item.Price.ToString(), true, g, font, brush, cursor, rightAlign, lSpacing);
             }
 
-            g.DrawString("---------------------------------", font, brush, cursor, leftAlign);
-            cursor.Y += font.Height;
+            // Print Separator
+            cursor = printHorizontalLine(g, font, pen, cursor, lSpacing);
 
             // Print subtotal
-            g.DrawString("SubTotal:", font, brush, cursor, leftAlign);
-            g.DrawString("$ " + Subtotal.ToString(), font, brush, cursor, rightAlign);
-            cursor.Y += font.Height;
+            cursor = printText("SubTotal:", false, g, font, brush, cursor, leftAlign, lSpacing);
+            cursor = printText("$ " + Subtotal.ToString(), true, g, font, brush, cursor, rightAlign, lSpacing);
 
             // Print tax
-            g.DrawString("Tax:", font, brush, cursor, leftAlign);
-            g.DrawString("$ " + Tax.ToString(), font, brush, cursor, rightAlign);
-            cursor.Y += font.Height;
+            cursor = printText("Tax:", false, g, font, brush, cursor, leftAlign, lSpacing);
+            cursor = printText("$ " + Tax.ToString(), true, g, font, brush, cursor, rightAlign, lSpacing);
 
             // Print total
-            g.DrawString("TOTAL:", font, brush, cursor, leftAlign);
-            g.DrawString("$ " + Total.ToString(), font, brush, cursor, rightAlign);
-            cursor.Y += font.Height;
+            cursor = printText("TOTAL:", false, g, font, brush, cursor, leftAlign, lSpacing);
+            cursor = printText("$ " + Total.ToString(), true, g, font, brush, cursor, rightAlign, lSpacing);
 
-            g.DrawString("---------------------------------", font, brush, cursor, leftAlign);
-            cursor.Y += font.Height;
+            // Print Separator
+            cursor = printHorizontalLine(g, font, pen, cursor, lSpacing);
 
             // Print # of items
-            g.DrawString("# of Items: " + Items.Count.ToString(), font, brush, cursor, leftAlign);
-            cursor.Y += font.Height;
+            cursor = printText("# of Items: " + Items.Count.ToString(), true, g, font, brush, cursor, leftAlign, lSpacing);
 
             // Print Payment Method
-            // Print # of items
-            g.DrawString("Payment Method: " + PayMethod + ": " + PayNum, font, brush, cursor, leftAlign);
-            cursor.Y += font.Height;
+            cursor = printText("Payment Method: " + PayMethod + ": " + PayNum, true, g, font, brush, cursor, leftAlign, lSpacing);
 
             //Print footer
-            // Print # of items
-            g.DrawString(footer, font, brush, cursor, centerAlign);
-            cursor.Y += font.Height; //TODO: Will nee to handle multiline footers well
+            cursor = printHeaderFooter(footer, g, font, brush, cursor, centerAlign, lSpacing);
+
         }
     }
 }

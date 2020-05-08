@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Dane\\source\\repos\\twokaw\\Secret-Cellar-Project\\backend\\pos-core-api\\pos-core-api.csproj": {}
+    "C:\\Users\\zachtinkey\\Source\\Repos\\updated5_7\\Secret-Cellar-Project\\backend\\pos-core-api\\pos-core-api.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Dane\\source\\repos\\twokaw\\Secret-Cellar-Project\\backend\\pos-core-api\\pos-core-api.csproj": {
+    "C:\\Users\\zachtinkey\\Source\\Repos\\updated5_7\\Secret-Cellar-Project\\backend\\pos-core-api\\pos-core-api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Dane\\source\\repos\\twokaw\\Secret-Cellar-Project\\backend\\pos-core-api\\pos-core-api.csproj",
+        "projectUniqueName": "C:\\Users\\zachtinkey\\Source\\Repos\\updated5_7\\Secret-Cellar-Project\\backend\\pos-core-api\\pos-core-api.csproj",
         "projectName": "pos-core-api",
-        "projectPath": "C:\\Users\\Dane\\source\\repos\\twokaw\\Secret-Cellar-Project\\backend\\pos-core-api\\pos-core-api.csproj",
-        "packagesPath": "C:\\Users\\Dane\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Dane\\source\\repos\\twokaw\\Secret-Cellar-Project\\backend\\pos-core-api\\obj\\",
+        "projectPath": "C:\\Users\\zachtinkey\\Source\\Repos\\updated5_7\\Secret-Cellar-Project\\backend\\pos-core-api\\pos-core-api.csproj",
+        "packagesPath": "C:\\Users\\zachtinkey\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\zachtinkey\\Source\\Repos\\updated5_7\\Secret-Cellar-Project\\backend\\pos-core-api\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Dane\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\zachtinkey\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -26,7 +26,11 @@
         },
         "frameworks": {
           "netcoreapp3.1": {
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\Users\\zachtinkey\\Source\\Repos\\updated5_7\\Secret-Cellar-Project\\shared\\Transaction\\Shared.csproj": {
+                "projectPath": "C:\\Users\\zachtinkey\\Source\\Repos\\updated5_7\\Secret-Cellar-Project\\shared\\Transaction\\Shared.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -58,9 +62,21 @@
               "target": "Package",
               "version": "[5.3.1, )"
             },
+            "System.Configuration.ConfigurationManager": {
+              "target": "Package",
+              "version": "[4.7.0, )"
+            },
+            "System.Data.SqlClient": {
+              "target": "Package",
+              "version": "[4.8.1, )"
+            },
             "System.IdentityModel.Tokens.Jwt": {
               "target": "Package",
               "version": "[5.6.0, )"
+            },
+            "System.Management": {
+              "target": "Package",
+              "version": "[4.7.0, )"
             }
           },
           "imports": [
@@ -81,8 +97,19 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.200\\RuntimeIdentifierGraph.json"
         }
+      }
+    },
+    "C:\\Users\\zachtinkey\\Source\\Repos\\updated5_7\\Secret-Cellar-Project\\shared\\Transaction\\Shared.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\zachtinkey\\Source\\Repos\\updated5_7\\Secret-Cellar-Project\\shared\\Transaction\\Shared.csproj",
+        "projectName": "Shared",
+        "projectPath": "C:\\Users\\zachtinkey\\Source\\Repos\\updated5_7\\Secret-Cellar-Project\\shared\\Transaction\\Shared.csproj"
+      },
+      "frameworks": {
+        "net472": {}
       }
     }
   }

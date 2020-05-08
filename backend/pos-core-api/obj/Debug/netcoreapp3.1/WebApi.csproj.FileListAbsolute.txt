@@ -93,3 +93,173 @@ C:\Users\Dane\source\repos\twokaw\Secret-Cellar-Project\backend\pos-core-api\bin
 C:\Users\Dane\source\repos\twokaw\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
 C:\Users\Dane\source\repos\twokaw\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
 C:\Users\Dane\source\repos\twokaw\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\zachtinkey\Source\Repos\Updated\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\appsettings.Development.json
+C:\Users\zachtinkey\Source\Repos\Updated\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\appsettings.json
+C:\Users\zachtinkey\Source\Repos\Updated\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
+C:\Users\zachtinkey\Source\Repos\Updated\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\WebApi.exe
+C:\Users\zachtinkey\Source\Repos\Updated\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\WebApi.deps.json
+C:\Users\zachtinkey\Source\Repos\Updated\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\WebApi.runtimeconfig.json
+C:\Users\zachtinkey\Source\Repos\Updated\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\WebApi.runtimeconfig.dev.json
+C:\Users\zachtinkey\Source\Repos\Updated\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\WebApi.dll
+C:\Users\zachtinkey\Source\Repos\Updated\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\WebApi.pdb
+C:\Users\zachtinkey\Source\Repos\Updated\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\zachtinkey\Source\Repos\Updated\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\zachtinkey\Source\Repos\Updated\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Logging.dll
+C:\Users\zachtinkey\Source\Repos\Updated\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.dll
+C:\Users\zachtinkey\Source\Repos\Updated\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\zachtinkey\Source\Repos\Updated\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Tokens.dll
+C:\Users\zachtinkey\Source\Repos\Updated\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\Microsoft.OpenApi.dll
+C:\Users\zachtinkey\Source\Repos\Updated\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+C:\Users\zachtinkey\Source\Repos\Updated\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\zachtinkey\Source\Repos\Updated\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\zachtinkey\Source\Repos\Updated\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\zachtinkey\Source\Repos\Updated\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\zachtinkey\Source\Repos\Updated\Secret-Cellar-Project\backend\pos-core-api\obj\Debug\netcoreapp3.1\WebApi.csprojAssemblyReference.cache
+C:\Users\zachtinkey\Source\Repos\Updated\Secret-Cellar-Project\backend\pos-core-api\obj\Debug\netcoreapp3.1\WebApi.AssemblyInfoInputs.cache
+C:\Users\zachtinkey\Source\Repos\Updated\Secret-Cellar-Project\backend\pos-core-api\obj\Debug\netcoreapp3.1\WebApi.AssemblyInfo.cs
+C:\Users\zachtinkey\Source\Repos\Updated\Secret-Cellar-Project\backend\pos-core-api\obj\Debug\netcoreapp3.1\WebApi.RazorTargetAssemblyInfo.cache
+C:\Users\zachtinkey\Source\Repos\Updated\Secret-Cellar-Project\backend\pos-core-api\obj\Debug\netcoreapp3.1\WebApi.csproj.CopyComplete
+C:\Users\zachtinkey\Source\Repos\Updated\Secret-Cellar-Project\backend\pos-core-api\obj\Debug\netcoreapp3.1\staticwebassets\WebApi.StaticWebAssets.Manifest.cache
+C:\Users\zachtinkey\Source\Repos\Updated\Secret-Cellar-Project\backend\pos-core-api\obj\Debug\netcoreapp3.1\staticwebassets\WebApi.StaticWebAssets.xml
+C:\Users\zachtinkey\Source\Repos\Updated\Secret-Cellar-Project\backend\pos-core-api\obj\Debug\netcoreapp3.1\WebApi.dll
+C:\Users\zachtinkey\Source\Repos\Updated\Secret-Cellar-Project\backend\pos-core-api\obj\Debug\netcoreapp3.1\WebApi.pdb
+C:\Users\zachtinkey\Source\Repos\Updated\Secret-Cellar-Project\backend\pos-core-api\obj\Debug\netcoreapp3.1\WebApi.genruntimeconfig.cache
+C:\Users\zachtinkey\Source\Repos\Updated\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\System.Data.SqlClient.dll
+C:\Users\zachtinkey\Source\Repos\Updated\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\runtimes\win-arm64\native\sni.dll
+C:\Users\zachtinkey\Source\Repos\Updated\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\sni.dll
+C:\Users\zachtinkey\Source\Repos\Updated\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\sni.dll
+C:\Users\zachtinkey\Source\Repos\Updated\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\zachtinkey\Source\Repos\Updated\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\zachtinkey\Source\Repos\Updated\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\System.Configuration.ConfigurationManager.dll
+C:\Users\zachtinkey\Source\Repos\Updated\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\System.Security.Cryptography.ProtectedData.dll
+C:\Users\zachtinkey\Source\Repos\Updated\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\appsettings.Development.json
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\appsettings.json
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\WebApi.exe
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\WebApi.deps.json
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\WebApi.runtimeconfig.json
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\WebApi.runtimeconfig.dev.json
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\WebApi.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\WebApi.pdb
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\BouncyCastle.Crypto.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\DocumentFormat.OpenXml.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\Google.Protobuf.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Razor.Language.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\Microsoft.CodeAnalysis.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\Microsoft.CodeAnalysis.CSharp.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\Microsoft.CodeAnalysis.CSharp.Workspaces.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\Microsoft.CodeAnalysis.Razor.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\Microsoft.CodeAnalysis.Workspaces.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Logging.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Tokens.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\Microsoft.OpenApi.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\Microsoft.VisualStudio.Web.CodeGeneration.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\Microsoft.VisualStudio.Web.CodeGeneration.Contracts.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\Microsoft.VisualStudio.Web.CodeGeneration.Core.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\dotnet-aspnet-codegenerator-design.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\Microsoft.VisualStudio.Web.CodeGeneration.EntityFrameworkCore.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\Microsoft.VisualStudio.Web.CodeGeneration.Templating.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\Microsoft.VisualStudio.Web.CodeGeneration.Utils.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\Microsoft.VisualStudio.Web.CodeGenerators.Mvc.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\Microsoft.Win32.SystemEvents.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\MySql.Data.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\Ubiety.Dns.Core.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\NuGet.Frameworks.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\Renci.SshNet.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\SshNet.Security.Cryptography.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.Swagger.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerGen.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerUI.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\System.CodeDom.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\System.Composition.AttributedModel.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\System.Composition.Convention.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\System.Composition.Hosting.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\System.Composition.Runtime.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\System.Composition.TypedParts.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\System.Configuration.ConfigurationManager.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\System.Data.SqlClient.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\System.Drawing.Common.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\System.IdentityModel.Tokens.Jwt.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\System.IO.Packaging.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\System.Management.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\System.Security.Cryptography.ProtectedData.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\System.Xml.XPath.XmlDocument.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\cs\Microsoft.CodeAnalysis.resources.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\de\Microsoft.CodeAnalysis.resources.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\es\Microsoft.CodeAnalysis.resources.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\fr\Microsoft.CodeAnalysis.resources.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\it\Microsoft.CodeAnalysis.resources.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\ja\Microsoft.CodeAnalysis.resources.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\ko\Microsoft.CodeAnalysis.resources.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\pl\Microsoft.CodeAnalysis.resources.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\pt-BR\Microsoft.CodeAnalysis.resources.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\ru\Microsoft.CodeAnalysis.resources.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\tr\Microsoft.CodeAnalysis.resources.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\zh-Hans\Microsoft.CodeAnalysis.resources.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\zh-Hant\Microsoft.CodeAnalysis.resources.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\cs\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\de\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\es\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\fr\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\it\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\ja\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\ko\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\pl\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\pt-BR\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\ru\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\tr\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\zh-Hans\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\zh-Hant\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\cs\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\de\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\es\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\fr\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\it\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\ja\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\ko\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\pl\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\pt-BR\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\ru\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\tr\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\zh-Hans\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\zh-Hant\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\cs\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\de\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\es\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\fr\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\it\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\ja\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\ko\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\pl\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\pt-BR\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\ru\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\tr\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp3.0\Microsoft.Win32.SystemEvents.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\runtimes\win-arm64\native\sni.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\sni.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\sni.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Management.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\obj\Debug\netcoreapp3.1\WebApi.csprojAssemblyReference.cache
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\obj\Debug\netcoreapp3.1\staticwebassets\WebApi.StaticWebAssets.Manifest.cache
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\obj\Debug\netcoreapp3.1\staticwebassets\WebApi.StaticWebAssets.xml
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\obj\Debug\netcoreapp3.1\WebApi.MvcApplicationPartsAssemblyInfo.cs
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\obj\Debug\netcoreapp3.1\WebApi.MvcApplicationPartsAssemblyInfo.cache
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\obj\Debug\netcoreapp3.1\WebApi.AssemblyInfoInputs.cache
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\obj\Debug\netcoreapp3.1\WebApi.AssemblyInfo.cs
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\obj\Debug\netcoreapp3.1\WebApi.RazorTargetAssemblyInfo.cache
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\obj\Debug\netcoreapp3.1\WebApi.csproj.CopyComplete
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\obj\Debug\netcoreapp3.1\WebApi.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\obj\Debug\netcoreapp3.1\WebApi.pdb
