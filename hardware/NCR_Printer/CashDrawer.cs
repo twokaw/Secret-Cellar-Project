@@ -12,11 +12,26 @@ namespace NCR_Printer
         {
         }
 
+        public CashDrawer(string portName, int baudRate, Parity parity, int dataBits, StopBits stopBits) 
+            : base(portName, baudRate, parity, dataBits, stopBits)
+        {
+        }
+        
+
         public void openDrawer()
         {
-            Open();
-            Write(OPEN, 0, OPEN.Length);
-            Close();
+            
+            try 
+            {
+                Open();
+                Write(OPEN, 0, OPEN.Length);
+                Close();
+            } 
+            catch(UnauthorizedAccessException e)
+            {
+                // Something must be printing because the COM port is busy.
+                // The door must already be open, so do nothing.
+            }
         }
     }
 }
