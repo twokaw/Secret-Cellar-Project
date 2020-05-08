@@ -1,9 +1,9 @@
 {
   "runtimeOptions": {
     "additionalProbingPaths": [
-      "C:\\Users\\wjpit\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\wjpit\\.nuget\\packages",
-      "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+      "C:\\Users\\twoka\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\twoka\\.nuget\\packages",
+      "C:\\Microsoft\\Xamarin\\NuGet"
     ]
   }
 }

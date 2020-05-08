@@ -7,27 +7,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Shared;
 
 namespace SecretCellar
 {
 
-    //public class Item
-    //{
-        //public string barcode;
-        //public string description;
-        //public double price;
-        //public int qty;
-    //}
 
     public partial class frmTransaction : Form
     {
 
-        //private List<Item> items = new List<Item>();
-        //private List<Item> inventory = new List<Item>();
-
-
-
-        
+        private Transaction transaction = new Transaction();
+       
         public frmTransaction()
         {
             InitializeComponent();
@@ -79,7 +69,7 @@ namespace SecretCellar
 
         }
 
-        private void addRow(AddTransaction trans)
+        private void addRow(Transaction trans)
         {
             //DataGridViewRow row = dataGridView1.Rows.Add()
         }
@@ -100,6 +90,12 @@ namespace SecretCellar
             {
                 // do nothing
             }
+        }
+
+        private void txtBarcode_TextChanged(object sender, EventArgs e)
+        {
+            txtBarcode.Focus();
+
         }
     }
 }
