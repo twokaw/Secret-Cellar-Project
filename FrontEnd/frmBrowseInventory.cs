@@ -29,18 +29,30 @@ namespace SecretCellar
 
         private void rbtnRadioShowAll_CheckedChanged(object sender, EventArgs e)
         {
-
+            if(rbtnRadioShowAll.Checked == true)
+            {
+                rbtnRadioShowInStock.Checked = false;
+                rbtnRadioShowOutOfStock.Checked = false;
+            }
         }
 
         private void rbtnRadioShowInStock_CheckedChanged(object sender, EventArgs e)
         {
-
+            if (rbtnRadioShowInStock.Checked == true)
+            {
+                rbtnRadioShowAll.Checked = false;
+                rbtnRadioShowOutOfStock.Checked = false;
+            }
 
         }
 
         private void rbtnRadioShowOutOfStock_CheckedChanged(object sender, EventArgs e)
         {
-
+            if (rbtnRadioShowOutOfStock.Checked == true)
+            {
+                rbtnRadioShowInStock.Checked = false;
+                rbtnRadioShowAll.Checked = false;
+            }
         }
 
         private void txtBoxSearch_TextChanged(object sender, EventArgs e)
