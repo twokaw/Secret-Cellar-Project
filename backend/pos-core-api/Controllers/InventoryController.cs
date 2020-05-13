@@ -22,6 +22,11 @@ namespace WebApi.Controllers
          */
         DbConn db = new DbConn();
 
+        /// <summary>
+        /// Method that checks if the barcode already exist.
+        /// </summary>
+        /// <param name="barcode"></param>
+        /// <returns>True if the barcode exist.</returns>
         private bool DoesBarcodeExist(string barcode)
         {
             try
@@ -67,13 +72,13 @@ namespace WebApi.Controllers
         /// </returns>
         // GET: api/Inventory
         [HttpGet]
-        public List<Inventory> Get()
+        public IActionResult Get()
         {
             List<Inventory> output = new List<Inventory>();
             Inventory outputItem;
             db.OpenConnection();
             //change to view that does sum
-            string sqlStatement = "SELECT * FROM inventory_description LEFT OUTER JOIN inventory_price USING(inventoryID) LEFT OUTER JOIN inventory_type USING(typeID);";
+            string sqlStatement = "SELECT * FROM inventory_quantity;";
 
             MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
             MySqlDataReader reader = cmd.ExecuteReader();
@@ -109,19 +114,10 @@ namespace WebApi.Controllers
                 reader.Close();
             }
             db.CloseConnnection();
-            return output;
+            return Ok(output);
         }
 
-        
-
-        /*//GET: api/Inventory/barcode/exist
-        [HttpGet("{barcode}", Name = "Get")]
-        [Route("/api/Inventory/barcode/exist")]
-        public bool Get(string barcode)
-        {
-            return DoesBarcodeExist(barcode);
-        }*/
-        
+       
 
         /// <summary>
         /// Returns a single item that matches the barcode that is sent. 
@@ -136,11 +132,13 @@ namespace WebApi.Controllers
         {
             Inventory outputItem = new Inventory();
 
+            if (!DoesBarcodeExist(barcode)) return StatusCode(400, String.Format("That item with the barcode '{0}' does not exist. Please enter a valid barcode.", barcode));
+
             try
             {
                 db.OpenConnection();
-                // change this to select from a view that can do sums
-                string sqlStatement = "SELECT * FROM inventory_description LEFT OUTER JOIN inventory_price USING(inventoryID) LEFT OUTER JOIN inventory_type USING(typeID) WHERE barcode = @bar";
+                
+                string sqlStatement = "SELECT * FROM inventory_quantity WHERE barcode = @bar LIMIT 1";
 
                 MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
                 cmd.Parameters.Add(new MySqlParameter("bar", barcode));
@@ -185,7 +183,11 @@ namespace WebApi.Controllers
             Console.WriteLine("\nConnection closed.");
             return Ok(outputItem);
         }
-
+        /// <summary>
+        /// Creates a new inventory item and stores it in the inventory description table.
+        /// </summary>
+        /// <param name="tester"></param>
+        /// <returns></returns>
         // POST: api/Inventory
         [HttpPost]
         public IActionResult Post([FromBody] Inventory tester)
@@ -215,38 +217,46 @@ namespace WebApi.Controllers
                 reader.Read();
                 reader.Close();
 
-                string sqlInventoryID = "SET SQL_MODE = '';SELECT * FROM inventory_description WHERE barcode = @bar";
-                MySqlCommand cmdID = new MySqlCommand(sqlInventoryID, db.Connection());
-                cmdID.Parameters.Add(new MySqlParameter("bar", tester.Barcode));
-                MySqlDataReader read = cmdID.ExecuteReader();
-                read.Read();
-                uint grabbedID = read.GetUInt32("inventoryID");
-                Console.WriteLine(grabbedID);
-                read.Close();
+            }
+            catch (Exception ex)
+            {
+                return Content(ex.Message);
+            }
+            db.CloseConnnection();
+            Console.WriteLine("\nConnection closed.");
 
-                //Inserting into inventory_price
-                string sqlStatementPrice = "SET SQL_MODE = '';INSERT INTO inventory_price VALUES (@id, @inventoryQty, @supplierPrice, @purchasedDate)";
-                MySqlCommand cmdPrice = new MySqlCommand(sqlStatementPrice, db.Connection());
-                cmdPrice.Parameters.Add(new MySqlParameter("id", grabbedID));
-                cmdPrice.Parameters.Add(new MySqlParameter("inventoryQty", tester.InventoryQty));
-                cmdPrice.Parameters.Add(new MySqlParameter("supplierPrice", tester.SupplierPrice));
-                cmdPrice.Parameters.Add(new MySqlParameter("purchasedDate", DateTime.Now));
-                MySqlDataReader reader1 = cmdPrice.ExecuteReader();
-                reader1.Read();
-                reader1.Close();
+            return StatusCode(201, "Item succesfully created.");
+        }
 
+        //Create a post method for adding items to the inventory_price.
+        /// <summary>
+        /// Udpates and existing item in the inventory_description table.
+        /// </summary>
+        /// <param name="barcode"></param>
+        /// <param name="tester"></param>
+        /// <returns></returns>
+        // PUT: api/Inventory/barcode
+        [HttpPut("{barcode}", Name = "PutDescription")]
+        public IActionResult Put(String barcode, [FromBody] Inventory tester)
+        {
+            try
+            {
+                db.OpenConnection();
 
-                //Not needed to be created with item when a new item is added. the types will be managed on their own. The type will get selected
-                //as a drop down...... so not necessary for us to manage*.. 
-                //Inserting into inventory_type
-                string sqlStatementType = "SET SQL_MODE = '';INSERT INTO inventory_type VALUES (@typeID, @inventoryType, @discountDown, @discountUp)";
-                MySqlCommand cmdType = new MySqlCommand(sqlStatementType, db.Connection());
-
-                cmdType.Parameters.Add(new MySqlParameter("typeID", tester.TypeID));
-                cmdType.Parameters.Add(new MySqlParameter("inventoryType", tester.InventoryType));
-                cmdType.Parameters.Add(new MySqlParameter("discountDown", tester.DiscountDown));
-                cmdType.Parameters.Add(new MySqlParameter("discountUp", tester.DiscountUp));
-                MySqlDataReader reader2 = cmdType.ExecuteReader();
+                string sqlStatementType = "UPDATE inventory_description SET name = @name, supplierID = @supplierID, barcode = @barcode, retail_price = @retailPrice, description = @description, typeID = @typeID, bottle_deposit_qty = @bottleDepositQty, nontaxable = @nonTaxable, nontaxable_local = @nonTaxableLocal WHERE barcode = @bar";
+                MySqlCommand cmd = new MySqlCommand(sqlStatementType, db.Connection());
+                cmd.Parameters.Add(new MySqlParameter("bar", barcode));
+                cmd.Parameters.Add(new MySqlParameter("id", tester.InventoryID));
+                cmd.Parameters.Add(new MySqlParameter("name", tester.Name));
+                cmd.Parameters.Add(new MySqlParameter("supplierID", tester.SupplierID));
+                cmd.Parameters.Add(new MySqlParameter("barcode", tester.Barcode));
+                cmd.Parameters.Add(new MySqlParameter("retailPrice", tester.RetailPrice));
+                cmd.Parameters.Add(new MySqlParameter("description", tester.Description));
+                cmd.Parameters.Add(new MySqlParameter("typeID", tester.TypeID));
+                cmd.Parameters.Add(new MySqlParameter("bottleDepositQty", tester.BottleDepositQty));
+                cmd.Parameters.Add(new MySqlParameter("nonTaxable", tester.NonTaxable));
+                cmd.Parameters.Add(new MySqlParameter("nonTaxableLocal", tester.NonTaxableLocal));
+                MySqlDataReader reader2 = cmd.ExecuteReader();
                 reader2.Read();
                 reader2.Close();
 
@@ -258,40 +268,7 @@ namespace WebApi.Controllers
             db.CloseConnnection();
             Console.WriteLine("\nConnection closed.");
 
-            return Ok();
-        }
-
-        //Create a post method for adding items to the inventory_price.
-
-        // PUT: api/Inventory/5
-        [HttpPut("{id}")]
-        public void Put(String id, [FromBody] Inventory tester)
-        {
-
-
-
-
-            try
-            {
-                db.OpenConnection();
-
-                //This was a test for adding to the bottle deposit qty.
-                //Either work on new controllers and models or for the other table of the database
-
-                string sqlStatement = "UPDATE inventory_description SET bottle_deposit_qty = bottle_deposit_qty + @quantity WHERE barcode = @bar";
-                MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
-                cmd.Parameters.Add(new MySqlParameter("quantity", tester.BottleDepositQty));
-                cmd.Parameters.Add(new MySqlParameter("bar", id));
-                MySqlDataReader reader = cmd.ExecuteReader();
-                reader.Read();
-                reader.Close();
-            }
-            catch(Exception ex)
-            {
-                throw ex;
-            }
-            db.CloseConnnection();
-            Console.WriteLine("\nConnection closed.");
+            return Ok("Item succesfully updated.");
         }
 
         // DELETE: api/ApiWithActions/5
@@ -302,6 +279,3 @@ namespace WebApi.Controllers
     }
 }
 
-//Create model and controllor for inventory_type.
-//Create model and controller for users (customer, employee).
-//Create model and controller for transaction(transaction, transaction_items).

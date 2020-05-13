@@ -9,6 +9,7 @@ using MySql.Data.Types;
 using System.Data;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using System.Linq.Expressions;
 
 namespace WebApi.Controllers
 {
@@ -18,12 +19,13 @@ namespace WebApi.Controllers
     {
         DbConn db = new DbConn();
 
+        // Get: api/employee
         [HttpGet]
-        public List<EmployeeModel> Get()
+        public List<EmployeeeModel> Get()
         {
 
-            List<EmployeeModel> output = new List<EmployeeModel>();
-            EmployeeModel outputItem = new EmployeeModel();
+            List<EmployeeeModel> output = new List<EmployeeeModel>();
+            EmployeeeModel outputItem;
             db.OpenConnection();
 
             string sqlStatement = "SELECT * FROM employee";
@@ -33,8 +35,9 @@ namespace WebApi.Controllers
 
             try
             {
-                while(reader.Read())
+                while (reader.Read())
                 {
+                    outputItem = new EmployeeeModel();
                     outputItem.EmpID = reader.IsDBNull("emp_id") ? 0 : reader.GetUInt32("emp_id");
                     outputItem.PinNumber = reader.IsDBNull("pin_number") ? 0 : reader.GetUInt32("pin_number");
                     outputItem.IsAdmin = reader.IsDBNull("admin") ? false : (0 != reader.GetInt16("admin"));
@@ -46,7 +49,7 @@ namespace WebApi.Controllers
                     outputItem.City = reader.IsDBNull("city") ? "" : reader.GetString("city");
                     outputItem.State = reader.IsDBNull("state") ? "" : reader.GetString("state");
                     outputItem.ZipCode = reader.IsDBNull("zip") ? "" : reader.GetString("zip");
-                    outputItem.PhoneNumber = reader.IsDBNull("phone") ? 0 : reader.GetUInt32("phone");
+                    outputItem.PhoneNumber = reader.IsDBNull("phone") ? "" : reader.GetString("phone");
                     output.Add(outputItem);
                 }
             }
@@ -62,7 +65,7 @@ namespace WebApi.Controllers
         [HttpGet("{employeeID}")]
         public IActionResult Get(String employeeID)
         {
-            EmployeeModel outputItem = new EmployeeModel();
+            EmployeeeModel outputItem = new EmployeeeModel();
             try
             {
                 db.OpenConnection();
@@ -88,7 +91,7 @@ namespace WebApi.Controllers
                         outputItem.City = reader.IsDBNull("city") ? "" : reader.GetString("city");
                         outputItem.State = reader.IsDBNull("state") ? "" : reader.GetString("state");
                         outputItem.ZipCode = reader.IsDBNull("zip") ? "" : reader.GetString("zip");
-                        outputItem.PhoneNumber = reader.IsDBNull("phone") ? 0 : reader.GetUInt32("phone");
+                        outputItem.PhoneNumber = reader.IsDBNull("phone") ? "" : reader.GetString("phone");
                     }
 
                 }
@@ -107,5 +110,144 @@ namespace WebApi.Controllers
             return Ok(outputItem);
         }
 
+
+        // POST: api/Employee
+        [HttpPost]
+        public IActionResult Post([FromBody] EmployeeeUpdateModel emp)
+        {
+            // first, check if employee ID already exists
+            /*if (DoesEmployeeExist(tester.EmpID))
+            {
+                return StatusCode(400, "Employee ID already exists.");
+            }*/
+
+            try
+            {
+                db.OpenConnection();
+
+                string sqlStatementDesc =
+                    "SET SQL_MODE = '';" +
+                    "INSERT INTO employee (pin_number, admin, first_name, last_name, email, addr1, addr2, city, state, zip, phone) " +
+                    "VALUES (@pinNumber, @admin, @firstName, @lastName, @email, @addr1, @addr2, @city, @state, @zip, @phone)";
+                MySqlCommand cmd = new MySqlCommand(sqlStatementDesc, db.Connection());
+                cmd.Parameters.Add(new MySqlParameter("pinNumber", emp.PinNumber));
+                cmd.Parameters.Add(new MySqlParameter("admin", emp.IsAdmin));
+                cmd.Parameters.Add(new MySqlParameter("firstName", emp.FirstName));
+                cmd.Parameters.Add(new MySqlParameter("lastName", emp.LastName));
+                cmd.Parameters.Add(new MySqlParameter("email", emp.Email));
+                cmd.Parameters.Add(new MySqlParameter("addr1", emp.Address1));
+                cmd.Parameters.Add(new MySqlParameter("addr2", emp.Address2));
+                cmd.Parameters.Add(new MySqlParameter("city", emp.City));
+                cmd.Parameters.Add(new MySqlParameter("state", emp.State));
+                cmd.Parameters.Add(new MySqlParameter("zip", emp.ZipCode));
+                cmd.Parameters.Add(new MySqlParameter("phone", emp.PhoneNumber));
+                MySqlDataReader reader = cmd.ExecuteReader();
+                reader.Read();
+                reader.Close();
+
+            }
+            catch (Exception ex)
+            {
+                return Content(ex.Message);
+            }
+            db.CloseConnnection();
+            Console.WriteLine("\nConnection closed.");
+
+            return Ok();
+        }
+
+        // PUT: api/Employee/{EmpID}
+        [HttpPut("{empID}")]
+        public IActionResult Put(uint empID, [FromBody] EmployeeeUpdateModel emp)
+        {
+            db.OpenConnection();
+
+            try
+            {
+                string sqlStatementDesc = "UPDATE employee SET pin_number = @pinNumber, admin = @admin, first_name = @firstName, last_name = @lastName, email = @email, addr1 = @addr1, addr2 = @addr2, city = @city, state = @state, zip = @zip, phone = @phone WHERE emp_id = @empID";
+
+                MySqlCommand cmd = new MySqlCommand(sqlStatementDesc, db.Connection());
+                cmd.Parameters.Add(new MySqlParameter("pinNumber", emp.PinNumber));
+                cmd.Parameters.Add(new MySqlParameter("admin", emp.IsAdmin));
+                cmd.Parameters.Add(new MySqlParameter("firstName", emp.FirstName));
+                cmd.Parameters.Add(new MySqlParameter("lastName", emp.LastName));
+                cmd.Parameters.Add(new MySqlParameter("email", emp.Email));
+                cmd.Parameters.Add(new MySqlParameter("addr1", emp.Address1));
+                cmd.Parameters.Add(new MySqlParameter("addr2", emp.Address2));
+                cmd.Parameters.Add(new MySqlParameter("city", emp.City));
+                cmd.Parameters.Add(new MySqlParameter("state", emp.State));
+                cmd.Parameters.Add(new MySqlParameter("zip", emp.ZipCode));
+                cmd.Parameters.Add(new MySqlParameter("phone", emp.PhoneNumber));
+                cmd.Parameters.Add(new MySqlParameter("empID", empID));
+                MySqlDataReader reader = cmd.ExecuteReader();
+                reader.Read();
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            db.CloseConnnection();
+            Console.WriteLine("\nConnection closed.");
+            return Ok();
+        }
+
+        // Delete: api/Employee/{EmpID}
+        [HttpDelete("{EmpID}")]
+        public void Delete(uint EmpID)
+        {
+            db.OpenConnection();
+            try
+            {
+                string sqlStatementDesc = "DELETE FROM employee WHERE emp_id = @EmpID";
+
+                MySqlCommand cmd = new MySqlCommand(sqlStatementDesc, db.Connection());
+                cmd.Parameters.Add(new MySqlParameter("EmpID", EmpID));
+                MySqlDataReader reader = cmd.ExecuteReader();
+                reader.Read();
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            db.CloseConnnection();
+            Console.WriteLine("\nConnection closed.");
+        }
+
+        private bool DoesEmployeeExist(uint empID)
+        {
+            try {
+                
+                db.OpenConnection();
+                string sqlStatement = "SELECT emp_id FROM employee WHERE emp_id = @empID";
+            
+                MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
+                cmd.Parameters.Add(new MySqlParameter("empID", empID));
+                MySqlDataReader reader = cmd.ExecuteReader();
+                try
+                {
+                    return reader.Read();
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+                finally
+                {
+                    reader.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                db.CloseConnnection();
+
+            }
+
+        }
     }
 }

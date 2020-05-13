@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace WebApi.Models
 {
-    public class EmployeeeModel
-    {
-        public uint EmpID { get; set; }
+    public class EmployeeeUpdateModel
+    { 
         public uint PinNumber { get; set; }
         public bool IsAdmin { get; set; }
         public string FirstName { get; set; }

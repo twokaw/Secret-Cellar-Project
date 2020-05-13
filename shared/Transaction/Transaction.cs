@@ -8,11 +8,11 @@ namespace Shared
     {
         public string Name { get; set; }     // Name of product
         public uint Id { get; set; }
-        public uint Barcode { get; set; }
+        public string Barcode { get; set; }
         public uint Available { get; set; }
         public uint NumSold { get; set; }
         public decimal Price { get; set; }   // Price in dollars
-        public bool IsTaxable { get; set; }
+        public bool NonTaxable { get; set; }
         public string ItemType { get; set; }
         public uint NumBottles { get; set; }
         public decimal Discount { get; set; }
@@ -22,11 +22,11 @@ namespace Shared
 
         public Item(string Name,
                     uint Id,
-                    uint Barcode,
+                    string Barcode,
                     uint Available,
                     uint NumSold,
                     decimal Price,
-                    bool IsTaxable,
+                    bool NonTaxable,
                     string ItemType,
                     uint NumBottles,
                     decimal Discount,
@@ -38,7 +38,7 @@ namespace Shared
             this.Id         = Id;
             this.Name       = Name;
             this.Price      = Price;
-            this.IsTaxable  = IsTaxable;
+            this.NonTaxable  = NonTaxable;
             this.ItemType   = ItemType;
             this.NumBottles = NumBottles;
             this.Discount = Discount;
@@ -63,7 +63,7 @@ namespace Shared
         public string PayMethod { get; set; }
         public string PayNum { get; set; }  // Credit card digits, check num, or nothing for cash
         public decimal Discount { get; set; } 
-        public decimal Coupon { get; set; }
+       
 
         // Default constructor
         public Transaction()
@@ -80,7 +80,6 @@ namespace Shared
             PayMethod  = "";
             PayNum     = "";
             Discount = 0.0M;
-            Coupon = 0.0M;
         }
 
         // Parameterized constructor
@@ -90,7 +89,6 @@ namespace Shared
                            string Location,
                            List<Item> Items,
                            decimal Discount,
-                           decimal Coupon,
                            decimal Subtotal,
                            decimal Tax,
                            decimal Total,
@@ -104,7 +102,6 @@ namespace Shared
             this.Location   = Location;
             this.Items      = Items;
             this.Discount   = Discount; // Will this be applied before or after subtotal is calculated?
-            this.Coupon     = Coupon;
             this.Subtotal   = Subtotal;
             this.Tax        = Tax;
             this.Total      = Total;
@@ -123,7 +120,6 @@ namespace Shared
             Location = (string)info.GetValue("Location", typeof(string));
             Items = (List<Item>)info.GetValue("Items", typeof(List<Item>));
             Discount = (decimal)info.GetValue("Decimal", typeof(decimal));
-            Coupon = (decimal)info.GetValue("Decimal", typeof(decimal));
             Subtotal = (decimal)info.GetValue("Subtotal", typeof(decimal));
             Tax = (decimal)info.GetValue("Tax", typeof(decimal));
             Total = (decimal)info.GetValue("Total", typeof(decimal));
@@ -141,7 +137,6 @@ namespace Shared
             info.AddValue("Location", Location);
             info.AddValue("Items", Items);
             info.AddValue("Discount", Discount);
-            info.AddValue("Coupon", Coupon);
             info.AddValue("Subtotal", Subtotal);
             info.AddValue("Tax", Tax);
             info.AddValue("Total", Total);
