@@ -1,9 +1,8 @@
 {
   "runtimeOptions": {
     "additionalProbingPaths": [
-      "C:\\Users\\twoka\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\twoka\\.nuget\\packages",
-      "C:\\Microsoft\\Xamarin\\NuGet"
+      "C:\\Users\\zachtinkey\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\zachtinkey\\.nuget\\packages"
     ]
   }
 }
