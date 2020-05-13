@@ -1,18 +1,18 @@
 ﻿using SecretCellar.models;
 using System;
 using System.Windows.Forms;
+using WebApi.Models;
 
 namespace SecretCellar
 {
     public partial class frmLogin : Form
     {
-        private IDataAccess _dataAccess;
+        private DataAccess _dataAccess;
         public frmLogin()
         {
-            if (Properties.Settings.Default.Live)
-                _dataAccess = new DataAccess();
-            else
-                _dataAccess = new DataAccessTest();
+                _dataAccess = new DataAccess(Properties.Settings.Default.URL);
+            
+
 
             InitializeComponent();
         }
@@ -34,14 +34,14 @@ namespace SecretCellar
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            User user = null;
+            EmployeeModel user = null;
             if (txtPin.Text == "")
             {
-                user = _dataAccess.GetUser(0);
+                user = _dataAccess.GetEmployee(0);
             }
             else if (int.TryParse(txtPin.Text, out int pin))
             {
-                user = _dataAccess.GetUser(pin);
+                user = _dataAccess.GetEmployee(pin);
             }
 
             if (user == null)

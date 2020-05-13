@@ -7,34 +7,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
+using Shared;
 
 namespace SecretCellar
 {
 
-    //public class Item
-    //{
-        //public string barcode;
-        //public string description;
-        //public double price;
-        //public int qty;
-    //}
 
     public partial class frmTransaction : Form
     {
 
-        //private List<Item> items = new List<Item>();
-        //private List<Item> inventory = new List<Item>();
-
-
-
-        
+        private Transaction transaction = new Transaction();
+        private DataAccess dataAccess;
         public frmTransaction()
         {
             InitializeComponent();
-           
-       }
+            txtBarcode.Focus();
 
-     
+        }
+
+
 
         private void frmTransaction_Load(object sender, EventArgs e)
         {
@@ -48,10 +40,11 @@ namespace SecretCellar
             {
                 this.Dispose();
             }
+            dataAccess = new DataAccess(Properties.Settings.Default.URL);
 
         }
 
-        
+
 
         private void btnDiscount_Click(object sender, EventArgs e)
         {
@@ -68,10 +61,10 @@ namespace SecretCellar
             }
             else
             {
-               // return to transaction
+                // return to transaction
             }
 
-            
+
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -79,9 +72,33 @@ namespace SecretCellar
 
         }
 
-        private void addRow(AddTransaction trans)
+        private void addRow(Transaction trans)
         {
-            //DataGridViewRow row = dataGridView1.Rows.Add()
+            dataGridView1.Rows.Clear();
+
+            double transactionTotal = 0;
+            double transactionBottleDeposit = 0;
+
+            foreach (Item item in trans.Items)
+            {
+                int row = dataGridView1.Rows.Add();
+                using (var r = dataGridView1.Rows[row])
+                {
+                    r.Cells["Description"].Value = item.Name;
+                    r.Cells["Price"].Value = item.Price;
+                    r.Cells["Qty"].Value = item.NumSold;
+                    r.Cells["Total"].Value = item.Price * item.NumSold * (1 - item.Discount);
+                    transactionTotal += Convert.ToDouble(r.Cells["Total"].Value.ToString());
+                    transactionBottleDeposit += item.NumSold * item.NumBottles;
+                    r.Cells["BOTTLE DEPOSIT"].Value = item.NumSold * item.NumBottles *.05;
+                }
+                
+            }
+            txt_transSubTotal.Text = transactionTotal.ToString("C");
+            txt_transBTLDPT.Text = transactionBottleDeposit.ToString("C");
+
+            
+
         }
 
         private void btnDeleteItem_Click(object sender, EventArgs e)
@@ -100,6 +117,43 @@ namespace SecretCellar
             {
                 // do nothing
             }
+        }
+
+        private void txtBarcode_TextChanged(object sender, EventArgs e)
+        {         
+
+        } 
+
+
+        private void txtBarcode_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData == Keys.Enter)
+            {
+                Inventory i = dataAccess.GetItem(txtBarcode.Text.Trim());
+                Item item = transaction.Items.FirstOrDefault(x => x.Id == i.InventoryID);
+                if (item == null)
+                {
+                    uint Barcode = 0;
+                    uint.TryParse(i.Barcode, out Barcode);
+                    transaction.Items.Add(new Item(i.Name, i.InventoryID, Barcode, i.InventoryQty, 1, (decimal)i.RetailPrice, !i.NonTaxable, i.InventoryType, i.BottleDepositQty));
+                }
+                else
+                {
+                    item.NumSold++;
+                }
+                addRow(transaction);
+                txtBarcode.Clear();
+            }
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
