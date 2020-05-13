@@ -27,14 +27,45 @@ namespace SecretCellar
 
         }
 
-        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        private void rbtnRadioShowAll_CheckedChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void btnRadioShowAll_CheckedChanged(object sender, EventArgs e)
+        private void rbtnRadioShowInStock_CheckedChanged(object sender, EventArgs e)
         {
 
+
+        }
+
+        private void rbtnRadioShowOutOfStock_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtBoxSearch_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnExport_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnMainMenu_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

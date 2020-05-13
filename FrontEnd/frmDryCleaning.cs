@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace SecretCellarProject
+namespace SecretCellar
 {
     public partial class frmDryCleaning : Form
     {
@@ -32,7 +32,8 @@ namespace SecretCellarProject
 
         private decimal addCharge()
         {
-            dryClean.Subtotal += decimal.Parse(txtCharge.Text);
+           // if (decimal.TryParse(txtPercentTotalSale.Text, out d))
+                dryClean.Subtotal += decimal.Parse(txtCharge.Text);
             return dryClean.Subtotal;
         }
 

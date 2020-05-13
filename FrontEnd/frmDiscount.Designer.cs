@@ -140,7 +140,6 @@
             this.txtFixedDiscount.Name = "txtFixedDiscount";
             this.txtFixedDiscount.Size = new System.Drawing.Size(193, 20);
             this.txtFixedDiscount.TabIndex = 15;
-            this.txtFixedDiscount.Text = "b";
             this.txtFixedDiscount.TextChanged += new System.EventHandler(this.txtFixedDiscount_TextChanged);
             // 
             // dataGridSelectItems

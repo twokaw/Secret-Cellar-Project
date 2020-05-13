@@ -21,6 +21,7 @@ namespace SecretCellar
         {
             InitializeComponent();
             grid = items;
+            populate();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -83,18 +84,33 @@ namespace SecretCellar
 
         private void btnApplyDiscount_Click(object sender, EventArgs e)
         {
-            grid.Discount = decimal.Parse(txtPercentTotalSale.Text);
-            coupon.Price = (-1 * (decimal.Parse(txtFixedDiscount.Text)));
-            grid.Items.Add(coupon);
-            grid.Subtotal = (grid.Subtotal + (grid.Subtotal * grid.Discount));
-
+            decimal d = 0.0M;
+            if (decimal.TryParse(txtPercentTotalSale.Text, out d))
+            {
+                grid.Discount = d;
+            }
+            if (decimal.TryParse(txtFixedDiscount.Text, out d))
+            {
+                coupon.Price = (-1 * (decimal.Parse(txtFixedDiscount.Text)));
+                grid.Items.Add(coupon);
+                grid.Subtotal = (grid.Subtotal + (grid.Subtotal * grid.Discount));
+            }
             this.Close();
 
         }
 
         private void dataGridSelectItems_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (selectedRows.Contains(e.RowIndex))
+                selectedRows.Remove(e.RowIndex);
+            else
+                selectedRows.Add(e.RowIndex);
 
+
+
+            foreach (DataGridViewRow r in ((DataGridView)sender).Rows)
+                if (r.Selected != selectedRows.Contains(r.Index))
+                    r.Selected = selectedRows.Contains(r.Index);
         }
        
         private void populate()
@@ -107,7 +123,7 @@ namespace SecretCellar
                 using (var r = dataGridSelectItems.Rows[row])
                 {
                     r.Cells["ItemNumber"].Value = i.Id;
-                    r.Cells["ItemDesscription"].Value = i.Name;
+                    r.Cells["ItemDescription"].Value = i.Name;
                     r.Cells["Price"].Value = i.Price;
                 }
             }
@@ -123,8 +139,8 @@ namespace SecretCellar
             // dataGridSelectItems.SelectedRows for selected items
             foreach(DataGridViewRow row in dataGridSelectItems.SelectedRows)
             {
-                Item i = grid.Items.First((x) => x.Id == (int)row.Cells["ItemNumber"].Value);
-                i.Discount = decimal.Parse(txtPercentLineItem.Text);
+                Item i = grid.Items.First((x) => x.Id == int.Parse(row.Cells["ItemNumber"].Value.ToString()));
+                i.Discount = decimal.Parse(txtPercentLineItem.Text) / 100;
                 row.Cells["Price"].Value = (i.Price - (i.Price * i.Discount));
             }
         }

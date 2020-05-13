@@ -1,4 +1,4 @@
-﻿namespace SecretCellarProject
+﻿namespace SecretCellar
 {
     partial class frmDryCleaning
     {
