@@ -25,13 +25,13 @@ namespace SecretCellar.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool Live {
+        [global::System.Configuration.DefaultSettingValueAttribute("https://localhost:5001")]
+        public string URL {
             get {
-                return ((bool)(this["Live"]));
+                return ((string)(this["URL"]));
             }
             set {
-                this["Live"] = value;
+                this["URL"] = value;
             }
         }
     }

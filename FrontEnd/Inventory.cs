@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SecretCellar
 {
-    class Inventory
+    public class Inventory
     {
         /*
         * Inventory description section of the database.
