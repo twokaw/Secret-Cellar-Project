@@ -21,6 +21,6 @@ namespace WebApi.Models
         // may want to change to char string [2] to allow only for state initials
         public string State { get; set; }
         public string ZipCode { get; set; }
-        public uint PhoneNumber { get; set; }
+        public string PhoneNumber { get; set; }
     }
 }
