@@ -74,17 +74,30 @@ namespace SecretCellar
 
         private void addRow(Transaction trans)
         {
+            dataGridView1.Rows.Clear();
+
+            double transactionTotal = 0;
+            double transactionBottleDeposit = 0;
+
             foreach (Item item in trans.Items)
             {
                 int row = dataGridView1.Rows.Add();
                 using (var r = dataGridView1.Rows[row])
                 {
-                    r.Cells["Name"].Value = item.Name;
+                    r.Cells["Description"].Value = item.Name;
                     r.Cells["Price"].Value = item.Price;
                     r.Cells["Qty"].Value = item.NumSold;
-                    r.Cells["Total"].Value = item.Price * item.NumSold;
+                    r.Cells["Total"].Value = item.Price * item.NumSold * (1 - item.Discount);
+                    transactionTotal += Convert.ToDouble(r.Cells["Total"].Value.ToString());
+                    transactionBottleDeposit += item.NumSold * item.NumBottles;
+                    r.Cells["BOTTLE DEPOSIT"].Value = item.NumSold * item.NumBottles *.05;
                 }
+                
             }
+            txt_transSubTotal.Text = transactionTotal.ToString("C");
+            txt_transBTLDPT.Text = transactionBottleDeposit.ToString("C");
+
+            
 
         }
 
@@ -129,7 +142,18 @@ namespace SecretCellar
                     item.NumSold++;
                 }
                 addRow(transaction);
+                txtBarcode.Clear();
             }
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

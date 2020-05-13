@@ -53,6 +53,9 @@
             this.LB_SubTotal = new System.Windows.Forms.Label();
             this.txtBarcode = new System.Windows.Forms.TextBox();
             this.btnTender = new ePOSOne.btnProduct.Button_WOC();
+            this.LB_Discount = new System.Windows.Forms.Label();
+            this.txt_transSubTotal = new System.Windows.Forms.TextBox();
+            this.txt_transBTLDPT = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -252,6 +255,9 @@
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.txt_transBTLDPT);
+            this.panel1.Controls.Add(this.txt_transSubTotal);
+            this.panel1.Controls.Add(this.LB_Discount);
             this.panel1.Controls.Add(this.LB_TOTAL);
             this.panel1.Controls.Add(this.LB_BTLDPT);
             this.panel1.Controls.Add(this.LB_Tax);
@@ -260,8 +266,9 @@
             this.panel1.Location = new System.Drawing.Point(1693, 710);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(418, 286);
+            this.panel1.Size = new System.Drawing.Size(455, 286);
             this.panel1.TabIndex = 13;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // LB_TOTAL
             // 
@@ -277,7 +284,7 @@
             // 
             this.LB_BTLDPT.AutoSize = true;
             this.LB_BTLDPT.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.1F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LB_BTLDPT.Location = new System.Drawing.Point(67, 160);
+            this.LB_BTLDPT.Location = new System.Drawing.Point(67, 178);
             this.LB_BTLDPT.Name = "LB_BTLDPT";
             this.LB_BTLDPT.Size = new System.Drawing.Size(137, 32);
             this.LB_BTLDPT.TabIndex = 2;
@@ -287,7 +294,7 @@
             // 
             this.LB_Tax.AutoSize = true;
             this.LB_Tax.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.1F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LB_Tax.Location = new System.Drawing.Point(131, 86);
+            this.LB_Tax.Location = new System.Drawing.Point(131, 121);
             this.LB_Tax.Name = "LB_Tax";
             this.LB_Tax.Size = new System.Drawing.Size(73, 32);
             this.LB_Tax.TabIndex = 1;
@@ -337,6 +344,33 @@
             this.btnTender.TextColor = System.Drawing.Color.Black;
             this.btnTender.UseVisualStyleBackColor = false;
             this.btnTender.Click += new System.EventHandler(this.btnTender_Click);
+            // 
+            // LB_Discount
+            // 
+            this.LB_Discount.AutoSize = true;
+            this.LB_Discount.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.1F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LB_Discount.Location = new System.Drawing.Point(6, 69);
+            this.LB_Discount.Name = "LB_Discount";
+            this.LB_Discount.Size = new System.Drawing.Size(198, 32);
+            this.LB_Discount.TabIndex = 4;
+            this.LB_Discount.Text = "DISC. TOTAL";
+            // 
+            // txt_transSubTotal
+            // 
+            this.txt_transSubTotal.Location = new System.Drawing.Point(277, 13);
+            this.txt_transSubTotal.Name = "txt_transSubTotal";
+            this.txt_transSubTotal.ReadOnly = true;
+            this.txt_transSubTotal.Size = new System.Drawing.Size(151, 45);
+            this.txt_transSubTotal.TabIndex = 5;
+            this.txt_transSubTotal.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
+            // txt_transBTLDPT
+            // 
+            this.txt_transBTLDPT.Location = new System.Drawing.Point(277, 170);
+            this.txt_transBTLDPT.Name = "txt_transBTLDPT";
+            this.txt_transBTLDPT.ReadOnly = true;
+            this.txt_transBTLDPT.Size = new System.Drawing.Size(151, 45);
+            this.txt_transBTLDPT.TabIndex = 6;
             // 
             // frmTransaction
             // 
@@ -396,5 +430,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn BOTTLE_DEPOSIT;
         private System.Windows.Forms.DataGridViewTextBoxColumn TOTAL;
         private System.Windows.Forms.TextBox txtBarcode;
+        private System.Windows.Forms.Label LB_Discount;
+        private System.Windows.Forms.TextBox txt_transSubTotal;
+        private System.Windows.Forms.TextBox txt_transBTLDPT;
     }
 }
