@@ -4537,20 +4537,25 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\zachtinkey\\.nuget\\packages\\": {}
+    "C:\\Users\\twoka\\.nuget\\packages\\": {},
+    "C:\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\zachtinkey\\Source\\Repos\\updated5_7\\Secret-Cellar-Project\\backend\\pos-core-api\\WebApi.csproj",
+      "projectUniqueName": "C:\\Secret-Cellar-Project\\backend\\pos-core-api\\WebApi.csproj",
       "projectName": "WebApi",
-      "projectPath": "C:\\Users\\zachtinkey\\Source\\Repos\\updated5_7\\Secret-Cellar-Project\\backend\\pos-core-api\\WebApi.csproj",
-      "packagesPath": "C:\\Users\\zachtinkey\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\zachtinkey\\Source\\Repos\\updated5_7\\Secret-Cellar-Project\\backend\\pos-core-api\\obj\\",
+      "projectPath": "C:\\Secret-Cellar-Project\\backend\\pos-core-api\\WebApi.csproj",
+      "packagesPath": "C:\\Users\\twoka\\.nuget\\packages\\",
+      "outputPath": "C:\\Secret-Cellar-Project\\backend\\pos-core-api\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Microsoft\\Xamarin\\NuGet\\"
+      ],
       "configFilePaths": [
-        "C:\\Users\\zachtinkey\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\twoka\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
@@ -4616,7 +4621,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.200\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.200-preview-014977\\RuntimeIdentifierGraph.json"
       }
     }
   }
