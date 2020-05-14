@@ -134,6 +134,7 @@ namespace SecretCellar
                 if (item == null)
                 {
                     uint Barcode = 0;
+                    
                     uint.TryParse(i.Barcode, out Barcode);
                     transaction.Items.Add(new Item(i.Name, i.InventoryID, Barcode, i.InventoryQty, 1, (decimal)i.RetailPrice, !i.NonTaxable, i.InventoryType, i.BottleDepositQty));
                 }
