@@ -28,13 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridinventory = new System.Windows.Forms.DataGridView();
-            this.ITEM_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ITEM_DESC = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CLASS = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.INV_COUNT = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SUPPLIER = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SALES_PRICE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridInventory = new System.Windows.Forms.DataGridView();
             this.rbtnRadioShowAll = new System.Windows.Forms.RadioButton();
             this.rbtnRadioShowInStock = new System.Windows.Forms.RadioButton();
             this.rbtnRadioShowOutOfStock = new System.Windows.Forms.RadioButton();
@@ -43,58 +37,33 @@
             this.btnPrint = new System.Windows.Forms.Button();
             this.btnExport = new System.Windows.Forms.Button();
             this.btnMainMenu = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridinventory)).BeginInit();
+            this.ItemId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ItemDesc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CLASS = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.InvCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SUPPLIER = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SalesPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridInventory)).BeginInit();
             this.SuspendLayout();
             // 
-            // dataGridinventory
+            // dataGridInventory
             // 
-            this.dataGridinventory.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.dataGridInventory.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridinventory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridinventory.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ITEM_ID,
-            this.ITEM_DESC,
+            this.dataGridInventory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridInventory.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ItemId,
+            this.ItemDesc,
             this.CLASS,
-            this.INV_COUNT,
+            this.InvCount,
             this.SUPPLIER,
-            this.SALES_PRICE});
-            this.dataGridinventory.Location = new System.Drawing.Point(34, 12);
-            this.dataGridinventory.Name = "dataGridinventory";
-            this.dataGridinventory.RowHeadersVisible = false;
-            this.dataGridinventory.Size = new System.Drawing.Size(732, 302);
-            this.dataGridinventory.TabIndex = 0;
-            this.dataGridinventory.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
-            // 
-            // ITEM_ID
-            // 
-            this.ITEM_ID.HeaderText = "ITEM ID";
-            this.ITEM_ID.Name = "ITEM_ID";
-            // 
-            // ITEM_DESC
-            // 
-            this.ITEM_DESC.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ITEM_DESC.HeaderText = "ITEM DESC";
-            this.ITEM_DESC.Name = "ITEM_DESC";
-            // 
-            // CLASS
-            // 
-            this.CLASS.HeaderText = "CLASS";
-            this.CLASS.Name = "CLASS";
-            // 
-            // INV_COUNT
-            // 
-            this.INV_COUNT.HeaderText = "INV COUNT";
-            this.INV_COUNT.Name = "INV_COUNT";
-            // 
-            // SUPPLIER
-            // 
-            this.SUPPLIER.HeaderText = "SUPPLIER";
-            this.SUPPLIER.Name = "SUPPLIER";
-            // 
-            // SALES_PRICE
-            // 
-            this.SALES_PRICE.HeaderText = "SALES PRICE";
-            this.SALES_PRICE.Name = "SALES_PRICE";
+            this.SalesPrice});
+            this.dataGridInventory.Location = new System.Drawing.Point(34, 12);
+            this.dataGridInventory.Name = "dataGridInventory";
+            this.dataGridInventory.RowHeadersVisible = false;
+            this.dataGridInventory.Size = new System.Drawing.Size(732, 302);
+            this.dataGridInventory.TabIndex = 0;
+            this.dataGridInventory.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridInventory_CellContentClick);
             // 
             // rbtnRadioShowAll
             // 
@@ -180,6 +149,37 @@
             this.btnMainMenu.UseVisualStyleBackColor = true;
             this.btnMainMenu.Click += new System.EventHandler(this.btnMainMenu_Click);
             // 
+            // ItemId
+            // 
+            this.ItemId.HeaderText = "ITEM ID";
+            this.ItemId.Name = "ItemId";
+            // 
+            // ItemDesc
+            // 
+            this.ItemDesc.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ItemDesc.HeaderText = "ITEM DESC";
+            this.ItemDesc.Name = "ItemDesc";
+            // 
+            // CLASS
+            // 
+            this.CLASS.HeaderText = "CLASS";
+            this.CLASS.Name = "CLASS";
+            // 
+            // InvCount
+            // 
+            this.InvCount.HeaderText = "INV COUNT";
+            this.InvCount.Name = "InvCount";
+            // 
+            // SUPPLIER
+            // 
+            this.SUPPLIER.HeaderText = "SUPPLIER";
+            this.SUPPLIER.Name = "SUPPLIER";
+            // 
+            // SalesPrice
+            // 
+            this.SalesPrice.HeaderText = "SALES PRICE";
+            this.SalesPrice.Name = "SalesPrice";
+            // 
             // frmBrowseInventory
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -193,24 +193,18 @@
             this.Controls.Add(this.rbtnRadioShowOutOfStock);
             this.Controls.Add(this.rbtnRadioShowInStock);
             this.Controls.Add(this.rbtnRadioShowAll);
-            this.Controls.Add(this.dataGridinventory);
+            this.Controls.Add(this.dataGridInventory);
             this.Name = "frmBrowseInventory";
             this.Text = "Browse Inventory";
             this.Load += new System.EventHandler(this.frmBrowseInventory_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridinventory)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridInventory)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
 
-        private System.Windows.Forms.DataGridView dataGridinventory;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ITEM_ID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ITEM_DESC;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CLASS;
-        private System.Windows.Forms.DataGridViewTextBoxColumn INV_COUNT;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SUPPLIER;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SALES_PRICE;
+        private System.Windows.Forms.DataGridView dataGridInventory;
         private System.Windows.Forms.RadioButton rbtnRadioShowAll;
         private System.Windows.Forms.RadioButton rbtnRadioShowInStock;
         private System.Windows.Forms.RadioButton rbtnRadioShowOutOfStock;
@@ -220,5 +214,12 @@
         private System.Windows.Forms.Button btnExport;
         private System.Windows.Forms.Button btnMainMenu;
         #endregion
+
+        private System.Windows.Forms.DataGridViewTextBoxColumn ItemId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ItemDesc;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CLASS;
+        private System.Windows.Forms.DataGridViewTextBoxColumn InvCount;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SUPPLIER;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SalesPrice;
     }
 }
