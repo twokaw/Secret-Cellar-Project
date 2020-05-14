@@ -25,6 +25,7 @@
       "pos-core-api/1.0.0": {
         "dependencies": {
           "Microsoft.AspNetCore.Authentication.JwtBearer": "3.1.0",
+          "Shared": "1.0.0",
           "Swashbuckle.AspNetCore": "5.3.1",
           "System.Configuration.ConfigurationManager": "4.7.0",
           "System.Data.SqlClient": "4.8.1",
@@ -1098,6 +1099,14 @@
           "System.Text.Encoding": "4.3.0",
           "System.Threading": "4.3.0",
           "System.Xml.ReaderWriter": "4.3.0"
+        }
+      },
+      "Shared/1.0.0": {
+        "runtime": {
+          "Transaction.dll": {}
+        },
+        "compile": {
+          "Transaction.dll": {}
         }
       },
       "MySql.Data/8.0.19.0": {
@@ -3357,6 +3366,11 @@
       "sha512": "sha512-lJ8AxvkX7GQxpC6GFCeBj8ThYVyQczx2+f/cWHJU8tjS7YfI6Cv6bon70jVEgs2CiFbmmM8b9j1oZVx0dSI2Ww==",
       "path": "system.xml.xmldocument/4.3.0",
       "hashPath": "system.xml.xmldocument.4.3.0.nupkg.sha512"
+    },
+    "Shared/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     },
     "MySql.Data/8.0.19.0": {
       "type": "reference",

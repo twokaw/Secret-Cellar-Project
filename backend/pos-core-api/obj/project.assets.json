@@ -1134,6 +1134,15 @@
         "runtime": {
           "lib/netstandard1.3/System.Xml.XmlDocument.dll": {}
         }
+      },
+      "Shared/1.0.0": {
+        "type": "project",
+        "compile": {
+          "bin/placeholder/Shared.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Shared.dll": {}
+        }
       }
     }
   },
@@ -4524,11 +4533,17 @@
         "system.xml.xmldocument.4.3.0.nupkg.sha512",
         "system.xml.xmldocument.nuspec"
       ]
+    },
+    "Shared/1.0.0": {
+      "type": "project",
+      "path": "../../shared/Transaction/Shared.csproj",
+      "msbuildProject": "../../shared/Transaction/Shared.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 3.1.0",
+      "Shared >= 1.0.0",
       "Swashbuckle.AspNetCore >= 5.3.1",
       "System.Configuration.ConfigurationManager >= 4.7.0",
       "System.Data.SqlClient >= 4.8.1",
@@ -4542,11 +4557,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\zachtinkey\\Source\\Repos\\updated5_7\\Secret-Cellar-Project\\backend\\pos-core-api\\WebApi.csproj",
+      "projectUniqueName": "C:\\Users\\zachtinkey\\Source\\Repos\\Updated5_14\\Secret-Cellar-Project\\backend\\pos-core-api\\WebApi.csproj",
       "projectName": "WebApi",
-      "projectPath": "C:\\Users\\zachtinkey\\Source\\Repos\\updated5_7\\Secret-Cellar-Project\\backend\\pos-core-api\\WebApi.csproj",
+      "projectPath": "C:\\Users\\zachtinkey\\Source\\Repos\\Updated5_14\\Secret-Cellar-Project\\backend\\pos-core-api\\WebApi.csproj",
       "packagesPath": "C:\\Users\\zachtinkey\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\zachtinkey\\Source\\Repos\\updated5_7\\Secret-Cellar-Project\\backend\\pos-core-api\\obj\\",
+      "outputPath": "C:\\Users\\zachtinkey\\Source\\Repos\\Updated5_14\\Secret-Cellar-Project\\backend\\pos-core-api\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\zachtinkey\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -4561,7 +4576,11 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\zachtinkey\\Source\\Repos\\Updated5_14\\Secret-Cellar-Project\\shared\\Transaction\\Shared.csproj": {
+              "projectPath": "C:\\Users\\zachtinkey\\Source\\Repos\\Updated5_14\\Secret-Cellar-Project\\shared\\Transaction\\Shared.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
