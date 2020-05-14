@@ -20,14 +20,19 @@ namespace NCR_Printer
 
         public void openDrawer()
         {
-            
-            try 
+
+            try
             {
                 Open();
                 Write(OPEN, 0, OPEN.Length);
                 Close();
-            } 
-            catch(UnauthorizedAccessException e)
+            }
+            catch (System.IO.IOException e)
+            { 
+                // COM3 is disconnected.
+                // Can't connect to the cash drawer, but may still be able to print.
+            }
+            catch (UnauthorizedAccessException e)
             {
                 // Something must be printing because the COM port is busy.
                 // The door must already be open, so do nothing.
