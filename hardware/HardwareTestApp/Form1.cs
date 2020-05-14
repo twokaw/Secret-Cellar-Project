@@ -29,7 +29,7 @@ namespace HardwareTestApp
             Transaction trans = new Transaction(2286, 1, DateTime.Now, "Shueyville, IA", items, 0.0M, 0.0M, 99.99M, 0.13M, 99.99M+0.13M, false, "Card", "1234");
 
             Image logo = Image.FromFile("Z:\\SecretCellar\\hardware\\SecretCellar.jpg");
-            Receipt r = new Receipt(trans, "The Secret Cellar This is an arbitrary sized header line that is in fact very long, too long in fact.\n(319) 841-2172\n1205 Curtis Bridge Rd NE adomw oawmd oamwd aowd maowm doawmd oaimwdoam wdoawidmaoimd wao wdmaw domwodmao\n\n\n", "Thank youd awdokawpdo kapdka pkdpawkd pakdp kadpw kapd kapdk apkd apkfapfgkpakwfpawkpakdpakdwp akk apkdpakwdowapdap kpakd wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww!\nCheck our website for events and classes\n\n\nwww.SecretCellarwines.com", logo);
+            Receipt r = new Receipt(trans, "The Secret Cellar This is an arbitrary sized header line that is in fact very long, too long in fact, which is automatically wrapped.\n(319) 841-2172\n1205 Curtis Bridge Rd NE\n\n\n", "Thank you!\nCheck our website for events and classes\nwww.SecretCellarwines.com\n\nJoin us for our next Wine Party, on January 1st! Check out the whole 2020 schedule at https://www.secretcellarwines.com/2020_Wine_Party_Schedule.php\n\n This month, get a free corkscrew when you purchase $30 or more in delicious wine!", logo);
             r.print();
 
             /*List<Item> items2 = new List<Item>();

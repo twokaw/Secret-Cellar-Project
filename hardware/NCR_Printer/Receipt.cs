@@ -96,7 +96,7 @@ namespace NCR_Printer
             wrappedSize.Width = cursor.Width; // We just wanted height from MeasureString
             RectangleF wrappedCursor = new RectangleF(cursor.Location, wrappedSize);
             // Print using box
-            g.DrawString(header, font, brush, wrappedCursor, align);
+            g.DrawString(text, font, brush, wrappedCursor, align);
             cursor.Y += wrappedSize.Height + lSpacing;
             return cursor;
         }
