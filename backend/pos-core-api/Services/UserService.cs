@@ -29,7 +29,7 @@ namespace WebApi.Services
         private List<User> _users = new List<User>();
         private void getCredentials()
         {
-            User cred = new User();
+            User cred;
             db.OpenConnection();
 
             string sqlStatement = "SELECT emp_id, pin_number, admin FROM employee";
@@ -41,6 +41,7 @@ namespace WebApi.Services
             {
                 while (reader.Read())
                 {
+                    cred = new User();
                     cred.EmployeeID = reader.IsDBNull("emp_id") ? 0 : reader.GetUInt32("emp_id");
                     cred.Pin = reader.IsDBNull("pin_number") ? 0 : reader.GetUInt32("pin_number");
                     cred.IsAdmin = reader.IsDBNull("admin") ? false : (0 != reader.GetUInt16("admin"));
@@ -81,7 +82,7 @@ namespace WebApi.Services
                 {
                     new Claim(ClaimTypes.Name, user.EmployeeID.ToString())
                 }),
-                Expires = DateTime.UtcNow.AddMinutes(1),
+                Expires = DateTime.UtcNow.AddMinutes(60),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };
             var token = tokenHandler.CreateToken(tokenDescriptor);

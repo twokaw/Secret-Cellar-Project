@@ -14,7 +14,7 @@ namespace WebApi.Helpers
 
         public DbConn()
         {
-            connString = "Server=localhost;Port=3306;Database=mydb;Uid=invuser;Pwd=testinv!;";
+            connString = "Server=localhost;Port=3306;Database=inventory;Uid=invuser;Pwd=testinv!;";
 
             conn = new MySqlConnection(connString);
         }
