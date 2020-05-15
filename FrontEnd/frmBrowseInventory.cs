@@ -12,10 +12,11 @@ namespace SecretCellar
 {
     public partial class frmBrowseInventory : Form
     {
-        private Transaction grid = GetInventory();
+        private List<Inventory> grid;
         
-        public frmBrowseInventory()
+        public frmBrowseInventory(List<Inventory> inventoryList)
         {
+            grid = inventoryList;
             InitializeComponent();
         }
 
@@ -39,9 +40,9 @@ namespace SecretCellar
             {
                 rbtnRadioShowAll.Checked = false;
                 rbtnRadioShowOutOfStock.Checked = false;
-                for(int i = 0; i < grid.Items.Count; i++)
+                for(int i = 0; i < grid.Count; i++)
                 {
-                    if(grid.Items[i].Available > 0)
+                    if(grid[i].InventoryQty > 0)
                     {
                         populate();
                     }
@@ -56,9 +57,9 @@ namespace SecretCellar
             {
                 rbtnRadioShowInStock.Checked = false;
                 rbtnRadioShowAll.Checked = false;
-                for (int i = 0; i < grid.Items.Count; i++)
+                for (int i = 0; i < grid.Count; i++)
                 {
-                    if (grid.Items[i].Available < 0)
+                    if (grid[i].InventoryQty < 0)
                     {
                         populate();
                     }
@@ -74,9 +75,9 @@ namespace SecretCellar
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < grid.Items.Count; i++)
+            for (int i = 0; i < grid.Count; i++)
             {
-                if (grid.Items[i].Name.Contains(txtBoxSearch.Text))
+                if (grid[i].Name.Contains(txtBoxSearch.Text))
                 {
                     populate();
                 }
@@ -102,17 +103,17 @@ namespace SecretCellar
         {
             dataGridInventory.Rows.Clear();
 
-            foreach (Item i in grid.Items)
+            foreach (Inventory i in grid.Where(x => (x.InventoryQty > 0 || !rbtnRadioShowInStock.Checked) && (x.InventoryQty == 0 || !rbtnRadioShowOutOfStock.Checked)))
             {
                 int row = dataGridInventory.Rows.Add();
                 using (var r = dataGridInventory.Rows[row])
                 {
-                    r.Cells["ItemId"].Value = i.Id;
+                    r.Cells["ItemId"].Value = i.InventoryID;
                     r.Cells["ItemDesc"].Value = i.Name;
-                    r.Cells["CLASS"].Value = i.ItemType;
-                    r.Cells["InvCount"].Value = i.Available;
-                 //   r.Cells["SUPPLIER"].Value = i.Supplier;
-                    r.Cells["SalesPrice"].Value = i.Price;
+                    r.Cells["CLASS"].Value = i.InventoryType;
+                    r.Cells["InvCount"].Value = i.InventoryQty;
+                    r.Cells["SUPPLIER"].Value = i.SupplierID;
+                    r.Cells["SalesPrice"].Value = i.RetailPrice;
                 }
             }
         }

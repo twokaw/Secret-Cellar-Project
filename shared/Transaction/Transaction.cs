@@ -17,7 +17,7 @@ namespace Shared
         public uint NumBottles { get; set; }
         public decimal Discount { get; set; }
         public decimal Coupon { get; set; }
-        public string Supplier { get; set; }
+        
 
 
 
@@ -31,8 +31,7 @@ namespace Shared
                     string ItemType,
                     uint NumBottles,
                     decimal Discount,
-                    decimal Coupon,
-                    string Supplier)
+                    decimal Coupon)
         {
             this.Available  = Available;
             this.NumSold    = NumSold;
@@ -65,7 +64,7 @@ namespace Shared
         public string PayMethod { get; set; }
         public string PayNum { get; set; }  // Credit card digits, check num, or nothing for cash
         public decimal Discount { get; set; }
-        public string Supplier { get; set; }
+        
 
 
         // Default constructor
@@ -83,7 +82,7 @@ namespace Shared
             PayMethod  = "";
             PayNum     = "";
             Discount = 0.0M;
-            Supplier = "";
+            
         }
 
         // Parameterized constructor

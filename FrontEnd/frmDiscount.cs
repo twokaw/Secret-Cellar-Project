@@ -99,6 +99,7 @@ namespace SecretCellar
 
         }
 
+        private List<int> selectedRows = new List<int>();
         private void dataGridSelectItems_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (selectedRows.Contains(e.RowIndex))

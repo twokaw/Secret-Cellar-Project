@@ -39,11 +39,13 @@ namespace SecretCellar
 
         private void btnDeleteTab_Click(object sender, EventArgs e)
         {
-            foreach (DataGridViewRow r in ((DataGridView)sender).Rows)
-                if(r.Selected == true)
+            for(int i = 0; i < dataGridTabs.Rows.Count; i++)
+            {
+                if (dataGridTabs.Rows[i].Selected)
                 {
-                    
+                    dataGridTabs.Rows.RemoveAt(i);
                 }
+            }
         }
 
         private void btnPayOutTab_Click(object sender, EventArgs e)
@@ -55,18 +57,7 @@ namespace SecretCellar
         {
             this.Close();
         }
-
-        /* public void selectTab()
-         {
-             // dataGridSelectItems.SelectedRows for selected items
-             foreach (DataGridViewRow row in dataGridTabs.SelectedRows)
-             {
-                 Item i = grid.Items.First((x) => x.Id == int.Parse(row.Cells["ItemNumber"].Value.ToString()));
-                 i.Discount = decimal.Parse(txtPercentLineItem.Text) / 100;
-                 row.Cells["Price"].Value = (i.Price - (i.Price * i.Discount));
-             }
-         } */
-
+ 
         private void grpBoxAddTab_Enter(object sender, EventArgs e)
         {
 
