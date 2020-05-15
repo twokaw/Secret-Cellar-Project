@@ -12,7 +12,7 @@ namespace WebApi.Models
          */
         public uint InventoryID { get; set; }
         public String Name { get; set; }
-        public Double SupplierID { get; set; }
+        public uint SupplierID { get; set; }
         public String Barcode { get; set; }
         public Double RetailPrice { get; set; }
         public String Description { get; set; }
