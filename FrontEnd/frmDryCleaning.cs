@@ -32,7 +32,8 @@ namespace SecretCellar
 
         private decimal addCharge()
         {
-            dryClean.Subtotal += decimal.Parse(txtCharge.Text);
+           // if (decimal.TryParse(txtPercentTotalSale.Text, out d))
+                dryClean.Subtotal += decimal.Parse(txtCharge.Text);
             return dryClean.Subtotal;
         }
 

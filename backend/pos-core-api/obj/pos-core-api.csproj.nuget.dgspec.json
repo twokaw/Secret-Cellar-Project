@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\zachtinkey\\Source\\Repos\\Updated5_14\\Secret-Cellar-Project\\backend\\pos-core-api\\pos-core-api.csproj": {}
+    "C:\\Users\\suepp\\Documents\\GitHub\\Secret-Cellar-Project\\backend\\pos-core-api\\pos-core-api.csproj": {}
   },
   "projects": {
-    "C:\\Users\\zachtinkey\\Source\\Repos\\Updated5_14\\Secret-Cellar-Project\\backend\\pos-core-api\\pos-core-api.csproj": {
+    "C:\\Users\\suepp\\Documents\\GitHub\\Secret-Cellar-Project\\backend\\pos-core-api\\pos-core-api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\zachtinkey\\Source\\Repos\\Updated5_14\\Secret-Cellar-Project\\backend\\pos-core-api\\pos-core-api.csproj",
+        "projectUniqueName": "C:\\Users\\suepp\\Documents\\GitHub\\Secret-Cellar-Project\\backend\\pos-core-api\\pos-core-api.csproj",
         "projectName": "pos-core-api",
-        "projectPath": "C:\\Users\\zachtinkey\\Source\\Repos\\Updated5_14\\Secret-Cellar-Project\\backend\\pos-core-api\\pos-core-api.csproj",
-        "packagesPath": "C:\\Users\\zachtinkey\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\zachtinkey\\Source\\Repos\\Updated5_14\\Secret-Cellar-Project\\backend\\pos-core-api\\obj\\",
+        "projectPath": "C:\\Users\\suepp\\Documents\\GitHub\\Secret-Cellar-Project\\backend\\pos-core-api\\pos-core-api.csproj",
+        "packagesPath": "C:\\Users\\suepp\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\suepp\\Documents\\GitHub\\Secret-Cellar-Project\\backend\\pos-core-api\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\zachtinkey\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\suepp\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -27,8 +27,8 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "C:\\Users\\zachtinkey\\Source\\Repos\\Updated5_14\\Secret-Cellar-Project\\shared\\Transaction\\Shared.csproj": {
-                "projectPath": "C:\\Users\\zachtinkey\\Source\\Repos\\Updated5_14\\Secret-Cellar-Project\\shared\\Transaction\\Shared.csproj"
+              "C:\\Users\\suepp\\Documents\\GitHub\\Secret-Cellar-Project\\shared\\Transaction\\Shared.csproj": {
+                "projectPath": "C:\\Users\\suepp\\Documents\\GitHub\\Secret-Cellar-Project\\shared\\Transaction\\Shared.csproj"
               }
             }
           }
@@ -52,7 +52,7 @@
             },
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
-              "version": "[3.1.2, )"
+              "version": "[3.1.1, )"
             },
             "MySql.Data": {
               "target": "Package",
@@ -97,16 +97,16 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.200\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\zachtinkey\\Source\\Repos\\Updated5_14\\Secret-Cellar-Project\\shared\\Transaction\\Shared.csproj": {
+    "C:\\Users\\suepp\\Documents\\GitHub\\Secret-Cellar-Project\\shared\\Transaction\\Shared.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\zachtinkey\\Source\\Repos\\Updated5_14\\Secret-Cellar-Project\\shared\\Transaction\\Shared.csproj",
+        "projectUniqueName": "C:\\Users\\suepp\\Documents\\GitHub\\Secret-Cellar-Project\\shared\\Transaction\\Shared.csproj",
         "projectName": "Shared",
-        "projectPath": "C:\\Users\\zachtinkey\\Source\\Repos\\Updated5_14\\Secret-Cellar-Project\\shared\\Transaction\\Shared.csproj"
+        "projectPath": "C:\\Users\\suepp\\Documents\\GitHub\\Secret-Cellar-Project\\shared\\Transaction\\Shared.csproj"
       },
       "frameworks": {
         "net472": {}
