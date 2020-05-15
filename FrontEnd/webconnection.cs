@@ -33,6 +33,8 @@ namespace SecretCellar
         private string _password = "";
         private string _url = "";
 
+        private AuthenticateModel _cred = new AuthenticateModel() { EmployeeID = 1, Pin = 123 };
+
         public bool AutoRelogin = true;
         public CookieCollection Cookies;
         public Response LastResponse = null;
@@ -59,18 +61,13 @@ namespace SecretCellar
         }
 
         #region 'Constructor'
-        public WebConnector(string url, string password)
+        public WebConnector(string url, uint employeeID, uint pin)
         {
             Url = url;
-            _password = password;
+            _cred = new AuthenticateModel() { EmployeeID = employeeID, Pin = pin};
             Login();
         }
-        public WebConnector(string url)
-        {
-            Url = url;
-            _password = "";
-            Login();
-        }
+        public WebConnector(string url) : this(url, 1, 123) {}
 
         #endregion
 
@@ -156,7 +153,7 @@ namespace SecretCellar
     #region 'Private Methods'
     private bool IsLoginPage(Response response)
         {
-            if (response.StatusCode == HttpStatusCode.InternalServerError || response.Result.Contains("/Login.aspx"))
+            if (response.StatusCode == HttpStatusCode.InternalServerError )
             {
                 if (AutoRelogin)
                     Login();
@@ -185,15 +182,15 @@ namespace SecretCellar
 
         public bool Login()
         {
-            return _Login( _password );
+            return _Login( _cred );
         }
 
-        private bool _Login(string cred)
+        private bool _Login(AuthenticateModel cred)
         {
             if (string.IsNullOrWhiteSpace(_url))
                 return false;
 
-            string loginurl = $"{_url}/api/Login";
+            string loginurl = $"{_url}/api/EmployeeAuth/authenticate";
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(loginurl);
             JavaScriptSerializer serial = new JavaScriptSerializer();
             string postdata = serial.Serialize(cred);

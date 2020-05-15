@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
 using Shared;
+using NCR_Printer;
 
 namespace SecretCellar
 {
@@ -58,6 +59,9 @@ namespace SecretCellar
             if (payment.ShowDialog() == DialogResult.OK)
             {
                 //transaction complete, clear the form
+                Image logo = Image.FromFile("CHANGEME!");
+                Receipt r = new Receipt(transaction, "The Secret Cellar\n(319) 841-2172\n1205 Curtis Bridge Rd NE", "Thank you!\nCheck our website for events and classes\nwww.SecretCellarwines.com", logo);
+                r.print();
             }
             else
             {
@@ -133,9 +137,9 @@ namespace SecretCellar
                 Item item = transaction.Items.FirstOrDefault(x => x.Id == i.InventoryID);
                 if (item == null)
                 {
-                    uint Barcode = 0;
-                    uint.TryParse(i.Barcode, out Barcode);
-                    transaction.Items.Add(new Item(i.Name, i.InventoryID, Barcode, i.InventoryQty, 1, (decimal)i.RetailPrice, !i.NonTaxable, i.InventoryType, i.BottleDepositQty));
+                    /*uint Barcode = 0;
+                    uint.TryParse(i.Barcode, out Barcode);*/
+                    transaction.Items.Add(new Item(i.Name, i.InventoryID, i.Barcode, i.InventoryQty, 1, (decimal)i.RetailPrice, !i.NonTaxable, i.InventoryType, i.BottleDepositQty, 0.0M, 0.0M));
                 }
                 else
                 {
