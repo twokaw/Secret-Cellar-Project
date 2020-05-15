@@ -20,22 +20,24 @@ namespace NCR_Printer
                            string Location,
                            List<Item> Items,
                            decimal Discount,
-                           decimal Coupon,
                            decimal Subtotal,
                            decimal Tax,
                            decimal Total,
                            bool TaxExempt,
                            string PayMethod,
-                           string PayNum, 
+                           string PayNum,
+                           decimal LocalTax,
+                           uint EmployeeID,
+                           uint CustomerID,
                            string header,
                            string footer,
                            Image logo) 
-            : base(InvoiceID, RegisterID, TransactionDateTime, Location, Items, Discount, Coupon, Subtotal, Tax, Total, TaxExempt, PayMethod, PayNum)
+            : base(InvoiceID, RegisterID, TransactionDateTime, Location, Items, Discount, Subtotal, Tax, Total, TaxExempt, PayMethod, PayNum, LocalTax, EmployeeID, CustomerID)
         {
             this.header = header;
             this.footer = footer;
             this.logo = logo;
-            drawer = new CashDrawer();
+            drawer = new CashDrawer();            
         }
 
         public Receipt(Transaction trans, string header, string footer, Image logo)
@@ -45,13 +47,15 @@ namespace NCR_Printer
                  trans.Location,
                  trans.Items,
                  trans.Discount,
-                 trans.Coupon,
                  trans.Subtotal,
                  trans.Tax,
                  trans.Total,
                  trans.TaxExempt,
                  trans.PayMethod,
                  trans.PayNum,
+                 trans.LocalTax,
+                 trans.EmployeeID,
+                 trans.CustomerID,
                  header,
                  footer,
                  logo)
@@ -61,7 +65,7 @@ namespace NCR_Printer
         public void print()
         {
             // Open Cash drawer
-            drawer.openDrawer();
+            if(drawer != null) drawer.openDrawer();
 
             // Print receipt
             rcpt = new PrintDocument();
@@ -96,7 +100,7 @@ namespace NCR_Printer
             wrappedSize.Width = cursor.Width; // We just wanted height from MeasureString
             RectangleF wrappedCursor = new RectangleF(cursor.Location, wrappedSize);
             // Print using box
-            g.DrawString(header, font, brush, wrappedCursor, align);
+            g.DrawString(text, font, brush, wrappedCursor, align);
             cursor.Y += wrappedSize.Height + lSpacing;
             return cursor;
         }
@@ -108,7 +112,7 @@ namespace NCR_Printer
             Graphics g = e.Graphics;
 
             Font font = new Font("Arial", 10);
-            Font barcodeFont = new Font("Free 3 of 9", 36);
+            Font barcodeFont = new Font("Free 3 of 9", 36); //Will default to Sans Serif if not installed
 
             float lSpacing = 5F;
             Brush brush = Brushes.Black;

@@ -20,6 +20,7 @@ namespace Shared
         
 
 
+
         public Item(string Name,
                     uint Id,
                     string Barcode,
@@ -62,8 +63,9 @@ namespace Shared
         public bool TaxExempt { get; set; }
         public string PayMethod { get; set; }
         public string PayNum { get; set; }  // Credit card digits, check num, or nothing for cash
-        public decimal Discount { get; set; } 
-       
+        public decimal Discount { get; set; }
+        
+
 
         // Default constructor
         public Transaction()
@@ -80,6 +82,7 @@ namespace Shared
             PayMethod  = "";
             PayNum     = "";
             Discount = 0.0M;
+            
         }
 
         // Parameterized constructor
