@@ -63,6 +63,9 @@ namespace Shared
         public string PayMethod { get; set; }
         public string PayNum { get; set; }  // Credit card digits, check num, or nothing for cash
         public decimal Discount { get; set; } 
+        public decimal LocalTax { get; set; }
+        public uint EmployeeID { get; set; }
+        public uint CustomerID { get; set; }
        
 
         // Default constructor
@@ -80,6 +83,9 @@ namespace Shared
             PayMethod  = "";
             PayNum     = "";
             Discount = 0.0M;
+            LocalTax = 0.0M;
+            EmployeeID = 0;
+            CustomerID = 0;
         }
 
         // Parameterized constructor
@@ -94,7 +100,10 @@ namespace Shared
                            decimal Total,
                            bool TaxExempt,
                            string PayMethod,
-                           string PayNum)
+                           string PayNum,
+                           decimal LocalTax,
+                           uint EmployeeID,
+                           uint CustomerID)
         {
             this.InvoiceID  = InvoiceID;
             this.RegisterID = RegisterID;
@@ -108,7 +117,9 @@ namespace Shared
             this.TaxExempt  = TaxExempt;
             this.PayMethod  = PayMethod;
             this.PayNum     = PayNum;
-            
+            this.LocalTax   = LocalTax;
+            this.EmployeeID = EmployeeID;
+            this.CustomerID = CustomerID;
         }
 
         // Deserialization constructor
@@ -119,13 +130,16 @@ namespace Shared
             TransactionDateTime = (DateTime)info.GetValue("TransactionDateTime", typeof(DateTime));
             Location = (string)info.GetValue("Location", typeof(string));
             Items = (List<Item>)info.GetValue("Items", typeof(List<Item>));
-            Discount = (decimal)info.GetValue("Decimal", typeof(decimal));
+            Discount = (decimal)info.GetValue("Discount", typeof(decimal));
             Subtotal = (decimal)info.GetValue("Subtotal", typeof(decimal));
             Tax = (decimal)info.GetValue("Tax", typeof(decimal));
             Total = (decimal)info.GetValue("Total", typeof(decimal));
             TaxExempt = (bool)info.GetValue("TaxExempt", typeof(bool));
             PayMethod = (string)info.GetValue("PayMethod", typeof(string));
             PayNum = (string)info.GetValue("PayNum", typeof(string));
+            LocalTax = (decimal)info.GetValue("LocalTax", typeof(decimal));
+            EmployeeID = (uint)info.GetValue("EmployeeID", typeof(uint));
+            CustomerID = (uint)info.GetValue("CustomerID", typeof(uint));
         }
         
         // Serialization method
@@ -143,6 +157,9 @@ namespace Shared
             info.AddValue("TaxExempt", TaxExempt);
             info.AddValue("PayMethod", PayMethod);
             info.AddValue("PayNum", PayNum);
+            info.AddValue("LocalTax", LocalTax);
+            info.AddValue("EmployeeID", EmployeeID);
+            info.AddValue("CustomerID", CustomerID);
         }
     }
 }

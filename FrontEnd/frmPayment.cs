@@ -57,5 +57,11 @@ namespace SecretCellar
         {
 
         }
+
+        private void btnCompleteSale_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.OK;
+            this.Close();
+        }
     }
 }
