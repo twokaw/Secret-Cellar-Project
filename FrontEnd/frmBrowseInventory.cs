@@ -40,13 +40,7 @@ namespace SecretCellar
             {
                 rbtnRadioShowAll.Checked = false;
                 rbtnRadioShowOutOfStock.Checked = false;
-                for(int i = 0; i < grid.Count; i++)
-                {
-                    if(grid[i].InventoryQty > 0)
-                    {
-                        populate();
-                    }
-                }
+                populate();
             }
 
         }
@@ -57,13 +51,7 @@ namespace SecretCellar
             {
                 rbtnRadioShowInStock.Checked = false;
                 rbtnRadioShowAll.Checked = false;
-                for (int i = 0; i < grid.Count; i++)
-                {
-                    if (grid[i].InventoryQty < 0)
-                    {
-                        populate();
-                    }
-                }
+                populate();
 
             }
         }
