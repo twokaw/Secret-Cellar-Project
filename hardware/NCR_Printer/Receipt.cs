@@ -25,11 +25,14 @@ namespace NCR_Printer
                            decimal Total,
                            bool TaxExempt,
                            string PayMethod,
-                           string PayNum, 
+                           string PayNum,
+                           decimal LocalTax,
+                           uint EmployeeID,
+                           uint CustomerID,
                            string header,
                            string footer,
                            Image logo) 
-            : base(InvoiceID, RegisterID, TransactionDateTime, Location, Items, Discount, Subtotal, Tax, Total, TaxExempt, PayMethod, PayNum)
+            : base(InvoiceID, RegisterID, TransactionDateTime, Location, Items, Discount, Subtotal, Tax, Total, TaxExempt, PayMethod, PayNum, LocalTax, EmployeeID, CustomerID)
         {
             this.header = header;
             this.footer = footer;
@@ -50,6 +53,9 @@ namespace NCR_Printer
                  trans.TaxExempt,
                  trans.PayMethod,
                  trans.PayNum,
+                 trans.LocalTax,
+                 trans.EmployeeID,
+                 trans.CustomerID,
                  header,
                  footer,
                  logo)
