@@ -34,7 +34,7 @@
             this.btnDeleteTab = new System.Windows.Forms.Button();
             this.btnPayOutTab = new System.Windows.Forms.Button();
             this.dataGridTabs = new System.Windows.Forms.DataGridView();
-            this.Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PurchasedItems = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TotalPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnExit = new System.Windows.Forms.Button();
@@ -105,7 +105,7 @@
             // 
             this.dataGridTabs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridTabs.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Name,
+            this.Description,
             this.PurchasedItems,
             this.TotalPrice});
             this.dataGridTabs.Location = new System.Drawing.Point(94, 206);
@@ -114,11 +114,11 @@
             this.dataGridTabs.TabIndex = 5;
             this.dataGridTabs.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridTabs_CellContentClick);
             // 
-            // Name
+            // Description
             // 
-            this.Name.HeaderText = "Name";
-            this.Name.Name = "Name";
-            this.Name.Width = 200;
+            this.Description.HeaderText = "Name";
+            this.Description.Name = "Name";
+            this.Description.Width = 200;
             // 
             // PurchasedItems
             // 
@@ -233,7 +233,7 @@
         private System.Windows.Forms.Button btnDeleteTab;
         private System.Windows.Forms.Button btnPayOutTab;
         private System.Windows.Forms.DataGridView dataGridTabs;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Name;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Description;
         private System.Windows.Forms.DataGridViewTextBoxColumn PurchasedItems;
         private System.Windows.Forms.DataGridViewTextBoxColumn TotalPrice;
         private System.Windows.Forms.Button btnExit;
