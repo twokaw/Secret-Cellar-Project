@@ -360,3 +360,7 @@ MigrationBackup/
 
 # End of https://www.gitignore.io/api/visualstudio
 *.cache
+backend/pos-core-api/obj/pos-core-api.csproj.nuget.g.props
+*.json
+*.json
+*.props

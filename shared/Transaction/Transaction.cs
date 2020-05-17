@@ -58,17 +58,18 @@ namespace Shared
         public string Location { get; set; }
         public List<Item> Items { get; set; }
         public decimal Subtotal { get; set; }
+        public decimal LocalTax { get; set; }
         public decimal Tax { get; set; }
         public decimal Total { get; set; }
         public bool TaxExempt { get; set; }
         public string PayMethod { get; set; }
         public string PayNum { get; set; }  // Credit card digits, check num, or nothing for cash
         public decimal Discount { get; set; }
-        
+        public uint EmployeeID { get; set; }
+        public uint CustomerID { get; set; }
 
-
-        // Default constructor
-        public Transaction()
+    // Default constructor
+    public Transaction()
         {
             TransactionDateTime = DateTime.Now;
             InvoiceID  = 0;
@@ -97,7 +98,10 @@ namespace Shared
                            decimal Total,
                            bool TaxExempt,
                            string PayMethod,
-                           string PayNum)
+                           string PayNum,
+                           decimal LocalTax,
+                           uint EmployeeID,
+                           uint CustomerID)
         {
             this.InvoiceID  = InvoiceID;
             this.RegisterID = RegisterID;
@@ -111,6 +115,9 @@ namespace Shared
             this.TaxExempt  = TaxExempt;
             this.PayMethod  = PayMethod;
             this.PayNum     = PayNum;
+            this.LocalTax = LocalTax;
+            this.EmployeeID = EmployeeID;
+            this.CustomerID = CustomerID;
             
         }
 
