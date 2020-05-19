@@ -57,6 +57,7 @@
             this.txtBarcode = new System.Windows.Forms.TextBox();
             this.btnTender = new ePOSOne.btnProduct.Button_WOC();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnBrowseInventory = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -153,6 +154,7 @@
             this.btnBeverages.TabStop = false;
             this.btnBeverages.Text = "BEVERAGES";
             this.btnBeverages.UseVisualStyleBackColor = true;
+            this.btnBeverages.Click += new System.EventHandler(this.btnBeverages_Click);
             // 
             // btnFood
             // 
@@ -278,6 +280,7 @@
             this.txt_transBTLDPT.ReadOnly = true;
             this.txt_transBTLDPT.Size = new System.Drawing.Size(151, 45);
             this.txt_transBTLDPT.TabIndex = 6;
+            this.txt_transBTLDPT.TabStop = false;
             // 
             // txt_transSubTotal
             // 
@@ -286,6 +289,7 @@
             this.txt_transSubTotal.ReadOnly = true;
             this.txt_transSubTotal.Size = new System.Drawing.Size(151, 45);
             this.txt_transSubTotal.TabIndex = 5;
+            this.txt_transSubTotal.TabStop = false;
             this.txt_transSubTotal.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // LB_Discount
@@ -359,7 +363,7 @@
             this.btnTender.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnTender.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTender.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTender.Location = new System.Drawing.Point(1225, 801);
+            this.btnTender.Location = new System.Drawing.Point(1160, 928);
             this.btnTender.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnTender.Name = "btnTender";
             this.btnTender.OnHoverBorderColor = System.Drawing.Color.Transparent;
@@ -382,6 +386,19 @@
             this.label1.TabIndex = 17;
             this.label1.Text = "label1";
             // 
+            // btnBrowseInventory
+            // 
+            this.btnBrowseInventory.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBrowseInventory.Location = new System.Drawing.Point(1160, 673);
+            this.btnBrowseInventory.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnBrowseInventory.Name = "btnBrowseInventory";
+            this.btnBrowseInventory.Size = new System.Drawing.Size(320, 105);
+            this.btnBrowseInventory.TabIndex = 18;
+            this.btnBrowseInventory.TabStop = false;
+            this.btnBrowseInventory.Text = "BROWSE INVENTORY";
+            this.btnBrowseInventory.UseVisualStyleBackColor = true;
+            this.btnBrowseInventory.Click += new System.EventHandler(this.button1_Click);
+            // 
             // frmTransaction
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
@@ -389,6 +406,7 @@
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(63)))), ((int)(((byte)(64)))));
             this.ClientSize = new System.Drawing.Size(2296, 1245);
+            this.Controls.Add(this.btnBrowseInventory);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtBarcode);
             this.Controls.Add(this.btnTender);
@@ -445,5 +463,6 @@
         private System.Windows.Forms.TextBox txt_transSubTotal;
         private System.Windows.Forms.TextBox txt_transBTLDPT;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnBrowseInventory;
     }
 }

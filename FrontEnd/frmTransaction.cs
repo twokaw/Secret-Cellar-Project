@@ -156,5 +156,31 @@ namespace SecretCellar
         {
 
         }
+
+        private void btnBeverages_Click(object sender, EventArgs e)
+        {
+            frmDryCleaning dryCleaning = new frmDryCleaning();
+            if (dryCleaning.ShowDialog() == DialogResult.OK)
+            {
+                //Add dry cleaning
+            }
+            else
+            {
+                // do nothing
+            }
+        }
+
+        private void btnBrowseInventory_Click(object sender, EventArgs e)
+        {
+            frmBrowseInventory browseInventory = new frmBrowseInventory();
+            if (browseInventory.ShowDialog() == DialogResult.OK)
+            {
+                //Add dry cleaning
+            }
+            else
+            {
+                // do nothing
+            }
+        }
     }
 }
