@@ -4,11 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using WebApi.Models;
 using WebApi.Helpers;
 using MySql.Data.MySqlClient;
 using MySql.Data.Types;
 using System.Data;
+using Shared;
 
 namespace WebApi.Controllers
 {
@@ -27,7 +27,7 @@ namespace WebApi.Controllers
         /// </summary>
         /// <param name="barcode"></param>
         /// <returns>True if the barcode exist.</returns>
-        private bool DoesBarcodeExist(string barcode)
+        private bool DoesBarcodeExist(string barcode)  
         {
             try
             {
@@ -88,25 +88,27 @@ namespace WebApi.Controllers
 
                 while (reader.Read())
                 {
-                    outputItem = new Inventory();
-                    outputItem.InventoryID = reader.IsDBNull("inventoryID") ? 0 : reader.GetUInt32("inventoryID");
-                    outputItem.Name = reader.IsDBNull("name") ? "" : reader.GetString("name");
-                    outputItem.SupplierID = reader.IsDBNull("supplierID") ? 0 : reader.GetUInt32("supplierID");
-                    outputItem.Barcode = reader.IsDBNull("barcode") ? "" : reader.GetString("barcode");
-                    outputItem.RetailPrice = reader.IsDBNull("retail_price") ? 0.00 : reader.GetDouble("retail_price");
-                    outputItem.Description = reader.IsDBNull("description") ? "" : reader.GetString("description");
-                    outputItem.TypeID = reader.IsDBNull("typeID") ? 0 : reader.GetUInt32("typeID");
-                    outputItem.BottleDepositQty = reader.IsDBNull("bottle_deposit_qty") ? 0 : reader.GetUInt32("bottle_deposit_qty");
-                    outputItem.NonTaxable = reader.IsDBNull("nontaxable") ? false : (0 != reader.GetInt16("nontaxable"));
-                    outputItem.NonTaxableLocal = reader.IsDBNull("nontaxable_local") ? false : (0 != reader.GetInt16("nontaxable_local"));
-                    outputItem.InventoryQty = reader.IsDBNull("inventory_qty") ? 0 : reader.GetUInt32("inventory_qty");
-                    outputItem.SupplierPrice = reader.IsDBNull("supplier_price") ? 0.00 : reader.GetDouble("supplier_price");
-                    outputItem.PurchasedDate = reader.IsDBNull("purchased_date") ? DateTime.Now : reader.GetDateTime("purchased_date");
-                    outputItem.InventoryType = reader.IsDBNull("inventory_type_name") ? "" : reader.GetString("inventory_type_name");
-                    outputItem.DiscountDown = reader.IsDBNull("6_to_11_case_discount") ? 0.00 : reader.GetDouble("6_to_11_case_discount");
-                    outputItem.DiscountUp = reader.IsDBNull("12_or_more_case_discount") ? 0.00 : reader.GetDouble("12_or_more_case_discount");
+                    outputItem = new Shared.Inventory
+                    {
+                        InventoryID = reader.IsDBNull("inventoryID") ? 0 : reader.GetUInt32("inventoryID"),
+                        Name = reader.IsDBNull("name") ? "" : reader.GetString("name"),
+                        SupplierID = reader.IsDBNull("supplierID") ? 0 : reader.GetUInt32("supplierID"),
+                        Barcode = reader.IsDBNull("barcode") ? "" : reader.GetString("barcode"),
+                        RetailPrice = reader.IsDBNull("retail_price") ? 0.00 : reader.GetDouble("retail_price"),
+                        Description = reader.IsDBNull("description") ? "" : reader.GetString("description"),
+                        TypeID = reader.IsDBNull("typeID") ? 0 : reader.GetUInt32("typeID"),
+                        BottleDepositQty = reader.IsDBNull("bottle_deposit_qty") ? 0 : reader.GetUInt32("bottle_deposit_qty"),
+                        NonTaxable = reader.IsDBNull("nontaxable") ? false : (0 != reader.GetInt16("nontaxable")),
+                        NonTaxableLocal = reader.IsDBNull("nontaxable_local") ? false : (0 != reader.GetInt16("nontaxable_local")),
+                        InventoryQty = reader.IsDBNull("inventory_qty") ? 0 : reader.GetUInt32("inventory_qty"),
+                        SupplierPrice = reader.IsDBNull("supplier_price") ? 0.00 : reader.GetDouble("supplier_price"),
+                        PurchasedDate = reader.IsDBNull("purchased_date") ? DateTime.Now : reader.GetDateTime("purchased_date"),
+                        InventoryType = reader.IsDBNull("inventory_type_name") ? "" : reader.GetString("inventory_type_name"),
+                        DiscountDown = reader.IsDBNull("6_to_11_case_discount") ? 0.00 : reader.GetDouble("6_to_11_case_discount"),
+                        DiscountUp = reader.IsDBNull("12_or_more_case_discount") ? 0.00 : reader.GetDouble("12_or_more_case_discount")
+                    };
+
                     output.Add(outputItem);
-                    
                 }
             }
             finally
