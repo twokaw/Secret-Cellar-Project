@@ -1,7 +1,6 @@
-﻿using SecretCellar.models;
-using System;
+﻿using System;
 using System.Windows.Forms;
-using WebApi.Models;
+using Shared;
 
 namespace SecretCellar
 {
@@ -10,9 +9,7 @@ namespace SecretCellar
         private DataAccess _dataAccess;
         public frmLogin()
         {
-                _dataAccess = new DataAccess(Properties.Settings.Default.URL);
-            
-
+            _dataAccess = new DataAccess(Properties.Settings.Default.URL);
 
             InitializeComponent();
         }

@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using WebApi.Helpers;
-using WebApi.Models;
 using MySql.Data.MySqlClient;
 using System.Data;
+using Shared;
 
 namespace WebApi.Controllers
 {

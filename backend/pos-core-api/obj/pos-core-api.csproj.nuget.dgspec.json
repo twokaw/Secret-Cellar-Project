@@ -1,20 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\suepp\\Documents\\GitHub\\Secret-Cellar-Project\\backend\\pos-core-api\\pos-core-api.csproj": {}
+    "D:\\class\\_senior design\\2020\\Project\\Secret-Cellar-Project\\backend\\pos-core-api\\pos-core-api.csproj": {}
   },
   "projects": {
-    "C:\\Users\\suepp\\Documents\\GitHub\\Secret-Cellar-Project\\backend\\pos-core-api\\pos-core-api.csproj": {
+    "D:\\class\\_senior design\\2020\\Project\\Secret-Cellar-Project\\backend\\pos-core-api\\pos-core-api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\suepp\\Documents\\GitHub\\Secret-Cellar-Project\\backend\\pos-core-api\\pos-core-api.csproj",
+        "projectUniqueName": "D:\\class\\_senior design\\2020\\Project\\Secret-Cellar-Project\\backend\\pos-core-api\\pos-core-api.csproj",
         "projectName": "pos-core-api",
-        "projectPath": "C:\\Users\\suepp\\Documents\\GitHub\\Secret-Cellar-Project\\backend\\pos-core-api\\pos-core-api.csproj",
-        "packagesPath": "C:\\Users\\suepp\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\suepp\\Documents\\GitHub\\Secret-Cellar-Project\\backend\\pos-core-api\\obj\\",
+        "projectPath": "D:\\class\\_senior design\\2020\\Project\\Secret-Cellar-Project\\backend\\pos-core-api\\pos-core-api.csproj",
+        "packagesPath": "C:\\Users\\wjpit\\.nuget\\packages\\",
+        "outputPath": "D:\\class\\_senior design\\2020\\Project\\Secret-Cellar-Project\\backend\\pos-core-api\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\suepp\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\wjpit\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -27,8 +30,8 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "C:\\Users\\suepp\\Documents\\GitHub\\Secret-Cellar-Project\\shared\\Transaction\\Shared.csproj": {
-                "projectPath": "C:\\Users\\suepp\\Documents\\GitHub\\Secret-Cellar-Project\\shared\\Transaction\\Shared.csproj"
+              "D:\\class\\_senior design\\2020\\Project\\Secret-Cellar-Project\\shared\\Transaction\\Shared.csproj": {
+                "projectPath": "D:\\class\\_senior design\\2020\\Project\\Secret-Cellar-Project\\shared\\Transaction\\Shared.csproj"
               }
             }
           }
@@ -57,6 +60,10 @@
             "MySql.Data": {
               "target": "Package",
               "version": "[8.0.19, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[12.0.3, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
@@ -101,12 +108,12 @@
         }
       }
     },
-    "C:\\Users\\suepp\\Documents\\GitHub\\Secret-Cellar-Project\\shared\\Transaction\\Shared.csproj": {
+    "D:\\class\\_senior design\\2020\\Project\\Secret-Cellar-Project\\shared\\Transaction\\Shared.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\suepp\\Documents\\GitHub\\Secret-Cellar-Project\\shared\\Transaction\\Shared.csproj",
+        "projectUniqueName": "D:\\class\\_senior design\\2020\\Project\\Secret-Cellar-Project\\shared\\Transaction\\Shared.csproj",
         "projectName": "Shared",
-        "projectPath": "C:\\Users\\suepp\\Documents\\GitHub\\Secret-Cellar-Project\\shared\\Transaction\\Shared.csproj"
+        "projectPath": "D:\\class\\_senior design\\2020\\Project\\Secret-Cellar-Project\\shared\\Transaction\\Shared.csproj"
       },
       "frameworks": {
         "net472": {}

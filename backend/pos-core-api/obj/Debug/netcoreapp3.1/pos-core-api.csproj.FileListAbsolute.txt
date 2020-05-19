@@ -646,3 +646,6 @@ C:\Users\suepp\Documents\GitHub\Secret-Cellar-Project\backend\pos-core-api\obj\D
 C:\Users\suepp\Documents\GitHub\Secret-Cellar-Project\backend\pos-core-api\obj\Debug\netcoreapp3.1\pos-core-api.csproj.CopyComplete
 C:\Users\suepp\Documents\GitHub\Secret-Cellar-Project\backend\pos-core-api\obj\Debug\netcoreapp3.1\pos-core-api.dll
 C:\Users\suepp\Documents\GitHub\Secret-Cellar-Project\backend\pos-core-api\obj\Debug\netcoreapp3.1\pos-core-api.pdb
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\Transaction.dll
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\Transaction.pdb
+D:\class\_senior design\2020\Project\Secret-Cellar-Project\backend\pos-core-api\bin\Debug\netcoreapp3.1\Transaction.dll.config

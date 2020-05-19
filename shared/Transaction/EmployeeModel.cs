@@ -1,12 +1,7 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
-
-
-namespace WebApi.Models
+﻿
+namespace Shared
 {
-    public class EmployeeeModel
+    public class EmployeeModel
     {
         public uint EmpID { get; set; }
         public uint PinNumber { get; set; }
