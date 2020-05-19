@@ -1,15 +1,10 @@
 ﻿using System;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Authorization;
-using WebApi.Services;
-using WebApi.Models;
+using Shared;
 using WebApi.Helpers;
 using MySql.Data.MySqlClient;
-using MySql.Data.Types;
 using System.Data;
 using System.Collections.Generic;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using System.Linq.Expressions;
 
 namespace WebApi.Controllers
 {
@@ -21,11 +16,11 @@ namespace WebApi.Controllers
 
         // Get: api/employee
         [HttpGet]
-        public List<EmployeeeModel> Get()
+        public List<EmployeeModel> Get()
         {
 
-            List<EmployeeeModel> output = new List<EmployeeeModel>();
-            EmployeeeModel outputItem;
+            List<EmployeeModel> output = new List<EmployeeModel>();
+            EmployeeModel outputItem;
             db.OpenConnection();
 
             string sqlStatement = "SELECT * FROM employee";
@@ -37,7 +32,7 @@ namespace WebApi.Controllers
             {
                 while (reader.Read())
                 {
-                    outputItem = new EmployeeeModel();
+                    outputItem = new EmployeeModel();
                     outputItem.EmpID = reader.IsDBNull("emp_id") ? 0 : reader.GetUInt32("emp_id");
                     outputItem.PinNumber = reader.IsDBNull("pin_number") ? 0 : reader.GetUInt32("pin_number");
                     outputItem.IsAdmin = reader.IsDBNull("admin") ? false : (0 != reader.GetInt16("admin"));
@@ -65,7 +60,7 @@ namespace WebApi.Controllers
         [HttpGet("{employeeID}")]
         public IActionResult Get(String employeeID)
         {
-            EmployeeeModel outputItem = new EmployeeeModel();
+            EmployeeModel outputItem = new EmployeeModel();
             try
             {
                 db.OpenConnection();
@@ -113,7 +108,7 @@ namespace WebApi.Controllers
 
         // POST: api/Employee
         [HttpPost]
-        public IActionResult Post([FromBody] EmployeeeUpdateModel emp)
+        public IActionResult Post([FromBody] EmployeeUpdateModel emp)
         {
             // first, check if employee ID already exists
             /*if (DoesEmployeeExist(tester.EmpID))
@@ -158,7 +153,7 @@ namespace WebApi.Controllers
 
         // PUT: api/Employee/{EmpID}
         [HttpPut("{empID}")]
-        public IActionResult Put(uint empID, [FromBody] EmployeeeUpdateModel emp)
+        public IActionResult Put(uint empID, [FromBody] EmployeeUpdateModel emp)
         {
             db.OpenConnection();
 
@@ -245,9 +240,7 @@ namespace WebApi.Controllers
             finally
             {
                 db.CloseConnnection();
-
             }
-
         }
     }
 }

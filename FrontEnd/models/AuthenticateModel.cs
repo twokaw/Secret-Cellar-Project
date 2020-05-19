@@ -1,13 +1,13 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿//using System.ComponentModel.DataAnnotations;
 
-namespace SecretCellar
-{
-    public class AuthenticateModel
-    {
-        [Required]
-        public uint EmployeeID { get; set; }
+//namespace SecretCellar
+//{
+//    public class AuthenticateModel
+//    {
+//        [Required]
+//        public uint EmployeeID { get; set; }
 
-        [Required]
-        public uint Pin { get; set; }
-    }
-}
+//        [Required]
+//        public uint Pin { get; set; }
+//    }
+//}

@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using WebApi.Services;
-using WebApi.Models;
 using WebApi.Helpers;
 using MySql.Data.MySqlClient;
 using MySql.Data.Types;
@@ -10,6 +9,7 @@ using System.Data;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using System.Linq.Expressions;
+using Shared;
 
 namespace WebApi.Controllers
 {

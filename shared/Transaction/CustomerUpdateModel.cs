@@ -4,11 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 
 
-namespace WebApi.Models
+namespace Shared
 {
-    public class CustomerModel
+    public class CustomerUpdateModel
     {
-        public uint CustomerID { get; set; }
         public double CustomerDiscount { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }

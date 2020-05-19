@@ -8,9 +8,8 @@ using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using WebApi.Entities;
 using WebApi.Helpers;
-using WebApi.Models;
+using Shared;
 using MySql.Data.MySqlClient;
-using MySql.Data.Types;
 using System.Data;
 
 namespace WebApi.Services

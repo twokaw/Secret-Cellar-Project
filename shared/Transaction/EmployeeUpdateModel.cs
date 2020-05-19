@@ -1,12 +1,7 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
-
-
-namespace WebApi.Models
+﻿
+namespace Shared
 {
-    public class EmployeeeUpdateModel
+    public class EmployeeUpdateModel
     { 
         public uint PinNumber { get; set; }
         public bool IsAdmin { get; set; }
