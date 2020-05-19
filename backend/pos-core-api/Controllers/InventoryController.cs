@@ -78,14 +78,18 @@ namespace WebApi.Controllers
             Inventory outputItem;
             db.OpenConnection();
             //change to view that does sum
-            string sqlStatement = "SELECT * FROM inventory_quantity;";
-
-            MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
+            //string sqlStatement = "SELECT * FROM inventory_quantity;";
+            string sql = @"
+                SELECT *
+                FROM inventory_description
+                JOIN  inventory_price
+                using(inventoryID)
+                JOIN inventory_type
+                USING (typeID);";
+            MySqlCommand cmd = new MySqlCommand(sql, db.Connection());
             MySqlDataReader reader = cmd.ExecuteReader();
             try
             {
-                
-
                 while (reader.Read())
                 {
                     outputItem = new Shared.Inventory
@@ -139,8 +143,15 @@ namespace WebApi.Controllers
             try
             {
                 db.OpenConnection();
-                
-                string sqlStatement = "SELECT * FROM inventory_quantity WHERE barcode = @bar LIMIT 1";
+
+                string sqlStatement = @"
+                SELECT *
+                FROM inventory_description
+                JOIN  inventory_price
+                using (inventoryID)
+                    JOIN inventory_type
+                USING(typeID)
+                WHERE barcode = @bar LIMIT 1";
 
                 MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
                 cmd.Parameters.Add(new MySqlParameter("bar", barcode));
