@@ -368,3 +368,7 @@ backend/pos-core-api/obj/pos-core-api.csproj.nuget.g.props
 *.json
 *.pdb
 *.cache
+*.dll
+*.pdb
+*.dll
+*.pdb
