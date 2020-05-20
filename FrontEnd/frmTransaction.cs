@@ -76,8 +76,8 @@ namespace SecretCellar
         {
             dataGridView1.Rows.Clear();
 
-            double transactionTotal = 0;
-            double transactionBottleDeposit = 0;
+            double transactionTotal = 0.0;
+            double transactionBottleDeposit = 0.0;
 
             foreach (Item item in trans.Items)
             {
