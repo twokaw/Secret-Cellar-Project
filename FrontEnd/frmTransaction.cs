@@ -84,20 +84,22 @@ namespace SecretCellar
                 int row = dataGridView1.Rows.Add();
                 using (var r = dataGridView1.Rows[row])
                 {
+                    // Populate tranaction datagrid row
                     r.Cells["Description"].Value = item.Name;
                     r.Cells["Price"].Value = item.Price.ToString("C");
                     r.Cells["Qty"].Value = item.NumSold;
                     r.Cells["Total"].Value = (item.Price * item.NumSold * (1 - item.Discount)).ToString("C");
-                    transactionTotal += Convert.ToDouble(r.Cells["Total"].Value.ToString());
-                    transactionBottleDeposit += item.NumSold * item.Bottles * .05;
                     r.Cells["BOTTLE_DEPOSIT"].Value = (item.NumSold * item.Bottles *.05).ToString("C");
+
+                    // Sum subtotal values for the subtotal box
+                    transactionTotal += item.Price * item.NumSold * (1 - item.Discount);
+                    transactionBottleDeposit += item.NumSold * item.Bottles * .05;
                 }
-                
             }
+
+            // Populate subtotal box
             txt_transSubTotal.Text = transactionTotal.ToString("C");
             txt_transBTLDPT.Text = transactionBottleDeposit.ToString("C");
-
-            
 
         }
 
