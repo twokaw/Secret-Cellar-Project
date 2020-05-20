@@ -388,3 +388,10 @@ backend/pos-core-api/obj/pos-core-api.csproj.nuget.g.props
 *.props
 *.json
 *.json
+backend/pos-core-api/obj/project.assets.json
+backend/pos-core-api/obj/pos-core-api.csproj.nuget.g.props
+backend/pos-core-api/obj/pos-core-api.csproj.nuget.dgspec.json
+backend/pos-core-api/obj/Debug/netcoreapp3.1/WebApi.csprojAssemblyReference.cache
+backend/pos-core-api/obj/Debug/netcoreapp3.1/WebApi.assets.cache
+backend/pos-core-api/obj/Debug/netcoreapp3.1/pos-core-api.csprojAssemblyReference.cache
+backend/pos-core-api/obj/Debug/netcoreapp3.1/pos-core-api.assets.cache
