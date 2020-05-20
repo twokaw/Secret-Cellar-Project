@@ -76,8 +76,8 @@ namespace SecretCellar
         {
             dataGridView1.Rows.Clear();
 
-            double transactionTotal = 0;
-            double transactionBottleDeposit = 0;
+            double transactionTotal = 0.0;
+            double transactionBottleDeposit = 0.0;
 
             foreach (Item item in trans.Items)
             {
@@ -89,8 +89,8 @@ namespace SecretCellar
                     r.Cells["Qty"].Value = item.NumSold;
                     r.Cells["Total"].Value = item.Price * item.NumSold * (1 - item.Discount);
                     transactionTotal += Convert.ToDouble(r.Cells["Total"].Value.ToString());
-                    transactionBottleDeposit += item.NumSold * item.NumBottles;
-                    r.Cells["BOTTLE DEPOSIT"].Value = item.NumSold * item.NumBottles *.05;
+                    transactionBottleDeposit += item.NumSold * item.NumBottles * .05;
+                    r.Cells["BOTTLE_DEPOSIT"].Value = item.NumSold * item.NumBottles *.05;
                 }
                 
             }

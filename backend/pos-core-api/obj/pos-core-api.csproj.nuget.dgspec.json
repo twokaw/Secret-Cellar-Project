@@ -1,24 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "D:\\class\\_senior design\\2020\\Project\\Secret-Cellar-Project\\backend\\pos-core-api\\pos-core-api.csproj": {}
+    "C:\\Secret-Cellar-Project\\backend\\pos-core-api\\pos-core-api.csproj": {}
   },
   "projects": {
-    "D:\\class\\_senior design\\2020\\Project\\Secret-Cellar-Project\\backend\\pos-core-api\\pos-core-api.csproj": {
+    "C:\\Secret-Cellar-Project\\backend\\pos-core-api\\pos-core-api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\class\\_senior design\\2020\\Project\\Secret-Cellar-Project\\backend\\pos-core-api\\pos-core-api.csproj",
+        "projectUniqueName": "C:\\Secret-Cellar-Project\\backend\\pos-core-api\\pos-core-api.csproj",
         "projectName": "pos-core-api",
-        "projectPath": "D:\\class\\_senior design\\2020\\Project\\Secret-Cellar-Project\\backend\\pos-core-api\\pos-core-api.csproj",
-        "packagesPath": "C:\\Users\\wjpit\\.nuget\\packages\\",
-        "outputPath": "D:\\class\\_senior design\\2020\\Project\\Secret-Cellar-Project\\backend\\pos-core-api\\obj\\",
+        "projectPath": "C:\\Secret-Cellar-Project\\backend\\pos-core-api\\pos-core-api.csproj",
+        "packagesPath": "C:\\Users\\twoka\\.nuget\\packages\\",
+        "outputPath": "C:\\Secret-Cellar-Project\\backend\\pos-core-api\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\wjpit\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\twoka\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -30,8 +31,8 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "D:\\class\\_senior design\\2020\\Project\\Secret-Cellar-Project\\shared\\Transaction\\Shared.csproj": {
-                "projectPath": "D:\\class\\_senior design\\2020\\Project\\Secret-Cellar-Project\\shared\\Transaction\\Shared.csproj"
+              "C:\\Secret-Cellar-Project\\shared\\Transaction\\Shared.csproj": {
+                "projectPath": "C:\\Secret-Cellar-Project\\shared\\Transaction\\Shared.csproj"
               }
             }
           }
@@ -104,16 +105,16 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.200-preview-014977\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\class\\_senior design\\2020\\Project\\Secret-Cellar-Project\\shared\\Transaction\\Shared.csproj": {
+    "C:\\Secret-Cellar-Project\\shared\\Transaction\\Shared.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\class\\_senior design\\2020\\Project\\Secret-Cellar-Project\\shared\\Transaction\\Shared.csproj",
+        "projectUniqueName": "C:\\Secret-Cellar-Project\\shared\\Transaction\\Shared.csproj",
         "projectName": "Shared",
-        "projectPath": "D:\\class\\_senior design\\2020\\Project\\Secret-Cellar-Project\\shared\\Transaction\\Shared.csproj"
+        "projectPath": "C:\\Secret-Cellar-Project\\shared\\Transaction\\Shared.csproj"
       },
       "frameworks": {
         "net472": {}
