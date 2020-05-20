@@ -92,15 +92,15 @@ namespace SecretCellar
         {
             dataGridInventory.Rows.Clear();
 
-            foreach (Inventory i in grid.Where(x => (x.InventoryQty > 0 || !rbtnRadioShowInStock.Checked) && (x.InventoryQty == 0 || !rbtnRadioShowOutOfStock.Checked)))
+            foreach (Inventory i in grid.Where(x => (x.Qty > 0 || !rbtnRadioShowInStock.Checked) && (x.Qty == 0 || !rbtnRadioShowOutOfStock.Checked)))
             {
                 int row = dataGridInventory.Rows.Add();
                 using (var r = dataGridInventory.Rows[row])
                 {
-                    r.Cells["ItemId"].Value = i.InventoryID;
+                    r.Cells["ItemId"].Value = i.Id;
                     r.Cells["ItemDesc"].Value = i.Name;
-                    r.Cells["CLASS"].Value = i.InventoryType;
-                    r.Cells["InvCount"].Value = i.InventoryQty;
+                    r.Cells["CLASS"].Value = i.ItemType;
+                    r.Cells["InvCount"].Value = i.Qty;
                     r.Cells["SUPPLIER"].Value = i.SupplierID;
                     r.Cells["SalesPrice"].Value = i.RetailPrice;
                 }

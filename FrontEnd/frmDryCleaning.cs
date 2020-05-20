@@ -31,10 +31,10 @@ namespace SecretCellar
             this.Close();
         }
 
-        private decimal addCharge()
+        private double addCharge()
         {
-           // if (decimal.TryParse(txtPercentTotalSale.Text, out d))
-                dryClean.Subtotal += decimal.Parse(txtCharge.Text);
+           // if (double.TryParse(txtPercentTotalSale.Text, out d))
+                dryClean.Subtotal += double.Parse(txtCharge.Text);
             return dryClean.Subtotal;
         }
 
