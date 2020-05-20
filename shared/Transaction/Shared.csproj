@@ -7,8 +7,8 @@
     <ProjectGuid>{D07EBFAF-04B8-4553-A5DA-E23F5410AAC6}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Transaction</RootNamespace>
-    <AssemblyName>Transaction</AssemblyName>
+    <RootNamespace>Shared</RootNamespace>
+    <AssemblyName>Shared</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -193,12 +193,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AuthenticateModel.cs" />
+    <Compile Include="BaseItem.cs" />
     <Compile Include="CustomerModel.cs" />
     <Compile Include="CustomerUpdateModel.cs" />
     <Compile Include="EmployeeModel.cs" />
     <Compile Include="EmployeeUpdateModel.cs" />
     <Compile Include="Inventory.cs" />
     <Compile Include="InventoryType.cs" />
+    <Compile Include="Item.cs" />
     <Compile Include="Transaction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

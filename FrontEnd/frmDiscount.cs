@@ -15,8 +15,8 @@ namespace SecretCellar
     {
         private Transaction grid = null;
         private Item coupon;
-        private decimal dollar;
-        private decimal percent;
+        private double dollar;
+        private double percent;
  
         public frmDiscount(Transaction items)
         {
@@ -85,14 +85,14 @@ namespace SecretCellar
 
         private void btnApplyDiscount_Click(object sender, EventArgs e)
         {
-            decimal d = 0.0M;
-            if (decimal.TryParse(txtPercentTotalSale.Text, out d))
+            double d = 0.0;
+            if (double.TryParse(txtPercentTotalSale.Text, out d))
             {
                 grid.Discount = d;
             }
-            if (decimal.TryParse(txtFixedDiscount.Text, out d))
+            if (double.TryParse(txtFixedDiscount.Text, out d))
             {
-                coupon.Price = (-1 * (decimal.Parse(txtFixedDiscount.Text)));
+                coupon.Price = (-1 * (double.Parse(txtFixedDiscount.Text)));
                 grid.Items.Add(coupon);
                 grid.Subtotal = (grid.Subtotal + (grid.Subtotal * grid.Discount));
             }
@@ -142,7 +142,7 @@ namespace SecretCellar
             foreach(DataGridViewRow row in dataGridSelectItems.SelectedRows)
             {
                 Item i = grid.Items.First((x) => x.Id == int.Parse(row.Cells["ItemNumber"].Value.ToString()));
-                i.Discount = decimal.Parse(txtPercentLineItem.Text) / 100;
+                i.Discount = double.Parse(txtPercentLineItem.Text) / 100;
                 row.Cells["Price"].Value = (i.Price - (i.Price * i.Discount));
             }
         }

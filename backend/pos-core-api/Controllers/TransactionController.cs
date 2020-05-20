@@ -48,13 +48,13 @@ namespace WebApi.Controllers
                     outputItem.RegisterID = reader.IsDBNull("register") ? 0 : reader.GetUInt32("register");
                     outputItem.TransactionDateTime = reader.IsDBNull("sold_datetime") ? aDate : reader.GetDateTime("sold_datetime");
                     outputItem.Location = reader.IsDBNull("location") ? "" : reader.GetString("location");
-                    outputItem.Subtotal = reader.IsDBNull("subtotal") ? 0 : reader.GetDecimal("subtotal");
-                    outputItem.Tax = reader.IsDBNull("tax") ? 0 : reader.GetDecimal("tax");
-                    outputItem.Total = reader.IsDBNull("total") ? 0 : reader.GetDecimal("total");
+                    outputItem.Subtotal = reader.IsDBNull("subtotal") ? 0 : reader.GetDouble("subtotal");
+                    outputItem.Tax = reader.IsDBNull("tax") ? 0 : reader.GetDouble("tax");
+                    outputItem.Total = reader.IsDBNull("total") ? 0 : reader.GetDouble("total");
                     outputItem.TaxExempt = reader.IsDBNull("tax_exempt") ? false : reader.GetBoolean("tax_exempt");
                     outputItem.PayMethod = reader.IsDBNull("payment_methods") ? "" : reader.GetString("payment_methods");
                     outputItem.PayNum = reader.IsDBNull("paymentID") ? "" : reader.GetString("paymentID");
-                    outputItem.Discount = reader.IsDBNull("discount") ? 0.0M : reader.GetDecimal("discount");
+                    outputItem.Discount = reader.IsDBNull("discount") ? 0.0 : reader.GetDouble("discount");
 
                     output.Add(outputItem);
 
@@ -71,12 +71,12 @@ namespace WebApi.Controllers
                 List<Item> itemOutput = new List<Item>();
                 Item itemOut;
                 string itemSQLStatement =
-                    "SELECT id.inventoryID, id.name, id.barcode, id.nontaxable, id.bottle_deposit_qty, id.typeID, " +
+                    "SELECT id.Id, id.name, id.barcode, id.nontaxable, id.bottle_deposit_qty, id.typeID, " +
                            "ti.receiptID, ti.sold_qty, ti.sold_price, ti.discount, ti.coupon, inventory_type_name, " +
                            "inventory_qty " +
                     "FROM transaction_items ti " +
-                    "JOIN inventory_description id ON ti.inventoryID = id.inventoryID " +
-                    "JOIN inventory_price ip ON id.inventoryID = ip.inventoryID " +
+                    "JOIN inventory_description id ON ti.Id = id.Id " +
+                    "JOIN inventory_price ip ON id.Id = ip.Id " +
                     "JOIN inventory_type it ON it.typeID = id.typeID " +
                     "WHERE receiptID = 1";
 
@@ -91,7 +91,7 @@ namespace WebApi.Controllers
                             // from inventory_description
                             itemReader.IsDBNull("name") ? "" : itemReader.GetString("name"),
                             // from inventory_description
-                            itemReader.IsDBNull("inventoryID") ? 0 : itemReader.GetUInt32("inventoryID"),
+                            itemReader.IsDBNull("Id") ? 0 : itemReader.GetUInt32("Id"),
                             // from inventory_description
                             itemReader.IsDBNull("barcode") ? "" : itemReader.GetString("barcode"),
                             // from inventory_price
@@ -99,7 +99,7 @@ namespace WebApi.Controllers
                             // from transaction_items
                             itemReader.IsDBNull("sold_qty") ? 0 : itemReader.GetUInt32("sold_qty"),
                             // from transaction_items
-                            itemReader.IsDBNull("sold_price") ? 0.0M : itemReader.GetDecimal("sold_price"),
+                            itemReader.IsDBNull("sold_price") ? 0.0 : itemReader.GetDouble("sold_price"),
                             // from inventory_description 
                             itemReader.IsDBNull("nontaxable") ? false : itemReader.GetBoolean("nontaxable"),
                             // from inventory_type
@@ -107,9 +107,9 @@ namespace WebApi.Controllers
                             // from inventory_descripion
                             itemReader.IsDBNull("bottle_deposit_qty") ? 0 : itemReader.GetUInt32("bottle_deposit_qty"),
                             // from transaction_items
-                            itemReader.IsDBNull("discount") ? 0.0M : itemReader.GetDecimal("discount"),
+                            itemReader.IsDBNull("discount") ? 0.0 : itemReader.GetDouble("discount"),
                             // from transaction_items
-                            itemReader.IsDBNull("coupon") ? 0.0M : itemReader.GetDecimal("coupon")
+                            itemReader.IsDBNull("coupon") ? 0.0 : itemReader.GetDouble("coupon")
                             );
                         itemOutput.Add(itemOut);
                     }
@@ -155,13 +155,13 @@ namespace WebApi.Controllers
                     outputItem.RegisterID = reader.IsDBNull("register") ? 0 : reader.GetUInt32("register");
                     outputItem.TransactionDateTime = reader.IsDBNull("sold_datetime") ? aDate : reader.GetDateTime("sold_datetime");
                     outputItem.Location = reader.IsDBNull("location") ? "" : reader.GetString("location");
-                    outputItem.Subtotal = reader.IsDBNull("subtotal") ? 0 : reader.GetDecimal("subtotal");
-                    outputItem.Tax = reader.IsDBNull("tax") ? 0 : reader.GetDecimal("tax");
-                    outputItem.Total = reader.IsDBNull("total") ? 0 : reader.GetDecimal("total");
+                    outputItem.Subtotal = reader.IsDBNull("subtotal") ? 0 : reader.GetDouble("subtotal");
+                    outputItem.Tax = reader.IsDBNull("tax") ? 0 : reader.GetDouble("tax");
+                    outputItem.Total = reader.IsDBNull("total") ? 0 : reader.GetDouble("total");
                     outputItem.TaxExempt = reader.IsDBNull("tax_exempt") ? false : reader.GetBoolean("tax_exempt");
                     outputItem.PayMethod = reader.IsDBNull("payment_methods") ? "" : reader.GetString("payment_methods");
                     outputItem.PayNum = reader.IsDBNull("paymentID") ? "" : reader.GetString("paymentID");
-                    outputItem.Discount = reader.IsDBNull("discount") ? 0.0M : reader.GetDecimal("discount");
+                    outputItem.Discount = reader.IsDBNull("discount") ? 0.0 : reader.GetDouble("discount");
 
                     output.Add(outputItem);
 
@@ -178,12 +178,12 @@ namespace WebApi.Controllers
                 List<Item> itemOutput = new List<Item>();
                 Item itemOut;
                 string itemSQLStatement =
-                    "SELECT id.inventoryID, id.name, id.barcode, id.nontaxable, id.bottle_deposit_qty, id.typeID, " +
+                    "SELECT id.Id, id.name, id.barcode, id.nontaxable, id.bottle_deposit_qty, id.typeID, " +
                            "ti.receiptID, ti.sold_qty, ti.sold_price, ti.discount, ti.coupon, inventory_type_name, " +
                            "inventory_qty " +
                     "FROM transaction_items ti " +
-                    "JOIN inventory_description id ON ti.inventoryID = id.inventoryID " +
-                    "JOIN inventory_price ip ON id.inventoryID = ip.inventoryID " +
+                    "JOIN inventory_description id ON ti.Id = id.Id " +
+                    "JOIN inventory_price ip ON id.Id = ip.Id " +
                     "JOIN inventory_type it ON it.typeID = id.typeID " +
                     "WHERE receiptID = 1";
 
@@ -198,7 +198,7 @@ namespace WebApi.Controllers
                             // from inventory_description
                             itemReader.IsDBNull("name") ? "" : itemReader.GetString("name"),
                             // from inventory_description
-                            itemReader.IsDBNull("inventoryID") ? 0 : itemReader.GetUInt32("inventoryID"),
+                            itemReader.IsDBNull("Id") ? 0 : itemReader.GetUInt32("Id"),
                             // from inventory_description
                             itemReader.IsDBNull("barcode") ? "" : itemReader.GetString("barcode"),
                             // from inventory_price
@@ -206,7 +206,7 @@ namespace WebApi.Controllers
                             // from transaction_items
                             itemReader.IsDBNull("sold_qty") ? 0 : itemReader.GetUInt32("sold_qty"),
                             // from transaction_items
-                            itemReader.IsDBNull("sold_price") ? 0.0M : itemReader.GetDecimal("sold_price"),
+                            itemReader.IsDBNull("sold_price") ? 0.0 : itemReader.GetDouble("sold_price"),
                             // from inventory_description 
                             itemReader.IsDBNull("nontaxable") ? false : itemReader.GetBoolean("nontaxable"),
                             // from inventory_type
@@ -214,9 +214,9 @@ namespace WebApi.Controllers
                             // from inventory_descripion
                             itemReader.IsDBNull("bottle_deposit_qty") ? 0 : itemReader.GetUInt32("bottle_deposit_qty"),
                             // from transaction_items
-                            itemReader.IsDBNull("discount") ? 0.0M : itemReader.GetDecimal("discount"),
+                            itemReader.IsDBNull("discount") ? 0.0 : itemReader.GetDouble("discount"),
                             // from transaction_items
-                            itemReader.IsDBNull("coupon") ? 0.0M : itemReader.GetDecimal("coupon")
+                            itemReader.IsDBNull("coupon") ? 0.0 : itemReader.GetDouble("coupon")
                             );
                         itemOutput.Add(itemOut);
                     }
