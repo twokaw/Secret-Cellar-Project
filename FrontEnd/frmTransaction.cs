@@ -84,22 +84,20 @@ namespace SecretCellar
                 int row = dataGridView1.Rows.Add();
                 using (var r = dataGridView1.Rows[row])
                 {
-                    // Populate tranaction datagrid row
                     r.Cells["Description"].Value = item.Name;
                     r.Cells["Price"].Value = item.Price.ToString("C");
                     r.Cells["Qty"].Value = item.NumSold;
                     r.Cells["Total"].Value = (item.Price * item.NumSold * (1 - item.Discount)).ToString("C");
-                    r.Cells["BOTTLE_DEPOSIT"].Value = (item.NumSold * item.Bottles *.05).ToString("C");
-
-                    // Sum subtotal values for the subtotal box
-                    transactionTotal += item.Price * item.NumSold * (1 - item.Discount);
-                    transactionBottleDeposit += item.NumSold * item.Bottles * .05;
+                    transactionTotal += Convert.ToDouble(r.Cells["Total"].Value.ToString());
+                    transactionBottleDeposit += item.NumSold * item.NumBottles * .05;
+                    r.Cells["BOTTLE_DEPOSIT"].Value = item.NumSold * item.NumBottles *.05;
                 }
+                
             }
-
-            // Populate subtotal box
             txt_transSubTotal.Text = transactionTotal.ToString("C");
             txt_transBTLDPT.Text = transactionBottleDeposit.ToString("C");
+
+            
 
         }
 
@@ -134,10 +132,10 @@ namespace SecretCellar
                 Inventory i = dataAccess.GetItem(txtBarcode.Text.Trim());
                 if (i != null)
                 {
-                    Item item = transaction.Items.FirstOrDefault(x => x.Id == i.Id);
+                    Item item = transaction.Items.FirstOrDefault(x => x.Id == i.InventoryID);
                     if (item == null)
                     {
-                        transaction.Items.Add(new Item(i.Name, i.Id, i.Barcode, i.Qty, 1, i.RetailPrice, !i.NonTaxable, i.ItemType, i.Bottles, 0, 0));
+                        transaction.Items.Add(new Item(i.Name, i.InventoryID, i.Barcode, i.InventoryQty, 1, (decimal)i.RetailPrice, !i.NonTaxable, i.InventoryType, i.BottleDepositQty, 0, 0));
                     }
                     else
                     {
