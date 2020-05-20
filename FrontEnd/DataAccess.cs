@@ -16,7 +16,7 @@ namespace SecretCellar
 
         public void DeleteItem(Inventory inv)
         {
-            web.DataDelete ($"api/inventory/{inv.InventoryID}");
+            web.DataDelete ($"api/inventory/{inv.Id}");
         }  
 
         public List<Inventory> GetInventory()
@@ -38,7 +38,7 @@ namespace SecretCellar
         }
         public void UpdateItem(Inventory inv)
         {
-            web.DataPut($"api/inventory/{inv.InventoryID}", inv);
+            web.DataPut($"api/inventory/{inv.Id}", inv);
         }
     }
 }

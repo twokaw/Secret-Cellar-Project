@@ -85,12 +85,12 @@ namespace SecretCellar
                 using (var r = dataGridView1.Rows[row])
                 {
                     r.Cells["Description"].Value = item.Name;
-                    r.Cells["Price"].Value = item.Price;
+                    r.Cells["Price"].Value = item.Price.ToString("C");
                     r.Cells["Qty"].Value = item.NumSold;
-                    r.Cells["Total"].Value = item.Price * item.NumSold * (1 - item.Discount);
+                    r.Cells["Total"].Value = (item.Price * item.NumSold * (1 - item.Discount)).ToString("C");
                     transactionTotal += Convert.ToDouble(r.Cells["Total"].Value.ToString());
-                    transactionBottleDeposit += item.NumSold * item.NumBottles;
-                    r.Cells["BOTTLE DEPOSIT"].Value = item.NumSold * item.NumBottles *.05;
+                    transactionBottleDeposit += item.NumSold * item.Bottles * .05;
+                    r.Cells["BOTTLE_DEPOSIT"].Value = (item.NumSold * item.Bottles *.05).ToString("C");
                 }
                 
             }
@@ -132,10 +132,10 @@ namespace SecretCellar
                 Inventory i = dataAccess.GetItem(txtBarcode.Text.Trim());
                 if (i != null)
                 {
-                    Item item = transaction.Items.FirstOrDefault(x => x.Id == i.InventoryID);
+                    Item item = transaction.Items.FirstOrDefault(x => x.Id == i.Id);
                     if (item == null)
                     {
-                        transaction.Items.Add(new Item(i.Name, i.InventoryID, i.Barcode, i.InventoryQty, 1, (decimal)i.RetailPrice, !i.NonTaxable, i.InventoryType, i.BottleDepositQty, 0, 0));
+                        transaction.Items.Add(new Item(i.Name, i.Id, i.Barcode, i.Qty, 1, i.RetailPrice, !i.NonTaxable, i.ItemType, i.Bottles, 0, 0));
                     }
                     else
                     {
