@@ -85,7 +85,8 @@ namespace WebApi.Controllers
                 JOIN  inventory_price
                 using(inventoryID)
                 JOIN inventory_type
-                USING (typeID);";
+                USING (typeID);
+            ";
             MySqlCommand cmd = new MySqlCommand(sql, db.Connection());
             MySqlDataReader reader = cmd.ExecuteReader();
             try
@@ -122,9 +123,7 @@ namespace WebApi.Controllers
             db.CloseConnnection();
             return Ok(output);
         }
-
-       
-
+      
         /// <summary>
         /// Returns a single item that matches the barcode that is sent. 
         /// </summary>
@@ -145,13 +144,14 @@ namespace WebApi.Controllers
                 db.OpenConnection();
 
                 string sqlStatement = @"
-                SELECT *
-                FROM inventory_description
-                JOIN  inventory_price
-                using (inventoryID)
+                    SELECT *
+                    FROM inventory_description
+                    JOIN  inventory_price
+                    using (inventoryID)
                     JOIN inventory_type
-                USING(typeID)
-                WHERE barcode = @bar LIMIT 1";
+                    USING(typeID)
+                    WHERE barcode = @bar LIMIT 1    
+                ";
 
                 MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
                 cmd.Parameters.Add(new MySqlParameter("bar", barcode));
