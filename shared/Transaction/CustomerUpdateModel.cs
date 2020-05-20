@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 
 
-namespace WebApi.Models
+namespace Shared
 {
     public class CustomerUpdateModel
     {

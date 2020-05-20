@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmTransaction));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.DESCRIPTION = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.QTY = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -55,11 +56,12 @@
             this.LB_Tax = new System.Windows.Forms.Label();
             this.LB_SubTotal = new System.Windows.Forms.Label();
             this.txtBarcode = new System.Windows.Forms.TextBox();
+            this.lbl_BARCODE = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnTender = new ePOSOne.btnProduct.Button_WOC();
-            this.label1 = new System.Windows.Forms.Label();
-            this.btnBrowseInventory = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -89,7 +91,7 @@
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowHeadersWidth = 102;
             this.dataGridView1.RowTemplate.Height = 40;
-            this.dataGridView1.Size = new System.Drawing.Size(1354, 458);
+            this.dataGridView1.Size = new System.Drawing.Size(1551, 458);
             this.dataGridView1.TabIndex = 2;
             this.dataGridView1.TabStop = false;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
@@ -154,7 +156,6 @@
             this.btnBeverages.TabStop = false;
             this.btnBeverages.Text = "BEVERAGES";
             this.btnBeverages.UseVisualStyleBackColor = true;
-            this.btnBeverages.Click += new System.EventHandler(this.btnBeverages_Click);
             // 
             // btnFood
             // 
@@ -352,10 +353,30 @@
             this.txtBarcode.TextChanged += new System.EventHandler(this.txtBarcode_TextChanged);
             this.txtBarcode.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtBarcode_KeyUp);
             // 
+            // lbl_BARCODE
+            // 
+            this.lbl_BARCODE.AutoSize = true;
+            this.lbl_BARCODE.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_BARCODE.Location = new System.Drawing.Point(712, 83);
+            this.lbl_BARCODE.Name = "lbl_BARCODE";
+            this.lbl_BARCODE.Size = new System.Drawing.Size(169, 36);
+            this.lbl_BARCODE.TabIndex = 17;
+            this.lbl_BARCODE.Text = "BARCODE";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(86, 221);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(296, 269);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 18;
+            this.pictureBox1.TabStop = false;
+            // 
             // btnTender
             // 
             this.btnTender.AutoSize = true;
-            this.btnTender.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(63)))), ((int)(((byte)(64)))));
+            this.btnTender.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(152)))), ((int)(((byte)(151)))), ((int)(((byte)(152)))));
             this.btnTender.BorderColor = System.Drawing.Color.Transparent;
             this.btnTender.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(24)))), ((int)(((byte)(24)))));
             this.btnTender.FlatAppearance.BorderSize = 0;
@@ -363,7 +384,7 @@
             this.btnTender.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnTender.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTender.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTender.Location = new System.Drawing.Point(1160, 928);
+            this.btnTender.Location = new System.Drawing.Point(1225, 801);
             this.btnTender.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnTender.Name = "btnTender";
             this.btnTender.OnHoverBorderColor = System.Drawing.Color.Transparent;
@@ -377,37 +398,15 @@
             this.btnTender.UseVisualStyleBackColor = false;
             this.btnTender.Click += new System.EventHandler(this.btnTender_Click);
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(764, 47);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(93, 32);
-            this.label1.TabIndex = 17;
-            this.label1.Text = "label1";
-            // 
-            // btnBrowseInventory
-            // 
-            this.btnBrowseInventory.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBrowseInventory.Location = new System.Drawing.Point(1160, 673);
-            this.btnBrowseInventory.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnBrowseInventory.Name = "btnBrowseInventory";
-            this.btnBrowseInventory.Size = new System.Drawing.Size(320, 105);
-            this.btnBrowseInventory.TabIndex = 18;
-            this.btnBrowseInventory.TabStop = false;
-            this.btnBrowseInventory.Text = "BROWSE INVENTORY";
-            this.btnBrowseInventory.UseVisualStyleBackColor = true;
-            this.btnBrowseInventory.Click += new System.EventHandler(this.button1_Click);
-            // 
             // frmTransaction
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(63)))), ((int)(((byte)(64)))));
-            this.ClientSize = new System.Drawing.Size(2296, 1245);
-            this.Controls.Add(this.btnBrowseInventory);
-            this.Controls.Add(this.label1);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(152)))), ((int)(((byte)(151)))), ((int)(((byte)(152)))));
+            this.ClientSize = new System.Drawing.Size(3168, 1712);
+            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.lbl_BARCODE);
             this.Controls.Add(this.txtBarcode);
             this.Controls.Add(this.btnTender);
             this.Controls.Add(this.panel1);
@@ -425,10 +424,12 @@
             this.Name = "frmTransaction";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmTransaction";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmTransaction_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -462,7 +463,7 @@
         private System.Windows.Forms.Label LB_Discount;
         private System.Windows.Forms.TextBox txt_transSubTotal;
         private System.Windows.Forms.TextBox txt_transBTLDPT;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btnBrowseInventory;
+        private System.Windows.Forms.Label lbl_BARCODE;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

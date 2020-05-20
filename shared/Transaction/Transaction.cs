@@ -4,50 +4,7 @@ using System.Runtime.Serialization;
 
 namespace Shared
 {
-    public class Item
-    {
-        public string Name { get; set; }     // Name of product
-        public uint Id { get; set; }
-        public string Barcode { get; set; }
-        public uint Available { get; set; }
-        public uint NumSold { get; set; }
-        public decimal Price { get; set; }   // Price in dollars
-        public bool NonTaxable { get; set; }
-        public string ItemType { get; set; }
-        public uint NumBottles { get; set; }
-        public decimal Discount { get; set; }
-        public decimal Coupon { get; set; }
-        
-
-
-        public Item(string Name,
-                    uint Id,
-                    string Barcode,
-                    uint Available,
-                    uint NumSold,
-                    decimal Price,
-                    bool NonTaxable,
-                    string ItemType,
-                    uint NumBottles,
-                    decimal Discount,
-                    decimal Coupon)
-        {
-            this.Available  = Available;
-            this.NumSold    = NumSold;
-            this.Barcode    = Barcode;
-            this.Id         = Id;
-            this.Name       = Name;
-            this.Price      = Price;
-            this.NonTaxable  = NonTaxable;
-            this.ItemType   = ItemType;
-            this.NumBottles = NumBottles;
-            this.Discount = Discount;
-            this.Coupon = Coupon;
-        }
-    }
-
-
-    [Serializable()]
+    [Serializable]
     public class Transaction : ISerializable
     {
         // Define properties. The way I set them up, we can add accessors later.
@@ -56,36 +13,33 @@ namespace Shared
         public DateTime TransactionDateTime { get; set; }
         public string Location { get; set; }
         public List<Item> Items { get; set; }
-        public decimal Subtotal { get; set; }
-        public decimal Tax { get; set; }
-        public decimal Total { get; set; }
+        public double Subtotal { get; set; }
+        public double LocalTax { get; set; }
+        public double Tax { get; set; }
+        public double Total { get; set; }
         public bool TaxExempt { get; set; }
         public string PayMethod { get; set; }
         public string PayNum { get; set; }  // Credit card digits, check num, or nothing for cash
-        public decimal Discount { get; set; } 
-        public decimal LocalTax { get; set; }
+        public double Discount { get; set; }
         public uint EmployeeID { get; set; }
         public uint CustomerID { get; set; }
-       
 
-        // Default constructor
-        public Transaction()
+    // Default constructor
+    public Transaction()
         {
             TransactionDateTime = DateTime.Now;
             InvoiceID  = 0;
             RegisterID = 1;
             Location   = "";
             Items      = new List<Item>();
-            Subtotal   = 0.0M;
-            Tax        = 0.0M;
-            Total      = 0.0M;
+            Subtotal   = 0.0;
+            Tax        = 0.0;
+            Total      = 0.0;
             TaxExempt  = false;
             PayMethod  = "";
             PayNum     = "";
-            Discount = 0.0M;
-            LocalTax = 0.0M;
-            EmployeeID = 0;
-            CustomerID = 0;
+            Discount = 0.0;
+            
         }
 
         // Parameterized constructor
@@ -94,14 +48,14 @@ namespace Shared
                            DateTime TransactionDateTime,
                            string Location,
                            List<Item> Items,
-                           decimal Discount,
-                           decimal Subtotal,
-                           decimal Tax,
-                           decimal Total,
+                           double Discount,
+                           double Subtotal,
+                           double Tax,
+                           double Total,
                            bool TaxExempt,
                            string PayMethod,
                            string PayNum,
-                           decimal LocalTax,
+                           double LocalTax,
                            uint EmployeeID,
                            uint CustomerID)
         {
@@ -117,9 +71,10 @@ namespace Shared
             this.TaxExempt  = TaxExempt;
             this.PayMethod  = PayMethod;
             this.PayNum     = PayNum;
-            this.LocalTax   = LocalTax;
+            this.LocalTax = LocalTax;
             this.EmployeeID = EmployeeID;
             this.CustomerID = CustomerID;
+            
         }
 
         // Deserialization constructor
@@ -130,16 +85,13 @@ namespace Shared
             TransactionDateTime = (DateTime)info.GetValue("TransactionDateTime", typeof(DateTime));
             Location = (string)info.GetValue("Location", typeof(string));
             Items = (List<Item>)info.GetValue("Items", typeof(List<Item>));
-            Discount = (decimal)info.GetValue("Discount", typeof(decimal));
-            Subtotal = (decimal)info.GetValue("Subtotal", typeof(decimal));
-            Tax = (decimal)info.GetValue("Tax", typeof(decimal));
-            Total = (decimal)info.GetValue("Total", typeof(decimal));
+            Discount = (double)info.GetValue("double", typeof(double));
+            Subtotal = (double)info.GetValue("Subtotal", typeof(double));
+            Tax = (double)info.GetValue("Tax", typeof(double));
+            Total = (double)info.GetValue("Total", typeof(double));
             TaxExempt = (bool)info.GetValue("TaxExempt", typeof(bool));
             PayMethod = (string)info.GetValue("PayMethod", typeof(string));
             PayNum = (string)info.GetValue("PayNum", typeof(string));
-            LocalTax = (decimal)info.GetValue("LocalTax", typeof(decimal));
-            EmployeeID = (uint)info.GetValue("EmployeeID", typeof(uint));
-            CustomerID = (uint)info.GetValue("CustomerID", typeof(uint));
         }
         
         // Serialization method
@@ -157,9 +109,6 @@ namespace Shared
             info.AddValue("TaxExempt", TaxExempt);
             info.AddValue("PayMethod", PayMethod);
             info.AddValue("PayNum", PayNum);
-            info.AddValue("LocalTax", LocalTax);
-            info.AddValue("EmployeeID", EmployeeID);
-            info.AddValue("CustomerID", CustomerID);
         }
     }
 }

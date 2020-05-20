@@ -48,7 +48,7 @@ namespace SecretCellar
 
         private void btnDiscount_Click(object sender, EventArgs e)
         {
-            frmDiscount discount = new frmDiscount(); //instantiates frmDiscount using discount
+            frmDiscount discount = new frmDiscount(transaction); //instantiates frmDiscount using discount
             discount.ShowDialog(); // opens form associated with discount instantiation
         }
 
@@ -76,8 +76,8 @@ namespace SecretCellar
         {
             dataGridView1.Rows.Clear();
 
-            double transactionTotal = 0;
-            double transactionBottleDeposit = 0;
+            double transactionTotal = 0.0;
+            double transactionBottleDeposit = 0.0;
 
             foreach (Item item in trans.Items)
             {
@@ -85,12 +85,12 @@ namespace SecretCellar
                 using (var r = dataGridView1.Rows[row])
                 {
                     r.Cells["Description"].Value = item.Name;
-                    r.Cells["Price"].Value = item.Price;
+                    r.Cells["Price"].Value = item.Price.ToString("C");
                     r.Cells["Qty"].Value = item.NumSold;
-                    r.Cells["Total"].Value = item.Price * item.NumSold * (1 - item.Discount);
+                    r.Cells["Total"].Value = (item.Price * item.NumSold * (1 - item.Discount)).ToString("C");
                     transactionTotal += Convert.ToDouble(r.Cells["Total"].Value.ToString());
-                    transactionBottleDeposit += item.NumSold * item.NumBottles;
-                    r.Cells["BOTTLE DEPOSIT"].Value = item.NumSold * item.NumBottles *.05;
+                    transactionBottleDeposit += item.NumSold * item.NumBottles * .05;
+                    r.Cells["BOTTLE_DEPOSIT"].Value = item.NumSold * item.NumBottles *.05;
                 }
                 
             }
@@ -130,19 +130,21 @@ namespace SecretCellar
             if (e.KeyData == Keys.Enter)
             {
                 Inventory i = dataAccess.GetItem(txtBarcode.Text.Trim());
-                Item item = transaction.Items.FirstOrDefault(x => x.Id == i.InventoryID);
-                if (item == null)
+                if (i != null)
                 {
-                    uint Barcode = 0;
-                    
-                    uint.TryParse(i.Barcode, out Barcode);
-                    transaction.Items.Add(new Item(i.Name, i.InventoryID, Barcode, i.InventoryQty, 1, (decimal)i.RetailPrice, !i.NonTaxable, i.InventoryType, i.BottleDepositQty));
+                    Item item = transaction.Items.FirstOrDefault(x => x.Id == i.InventoryID);
+                    if (item == null)
+                    {
+                        transaction.Items.Add(new Item(i.Name, i.InventoryID, i.Barcode, i.InventoryQty, 1, (decimal)i.RetailPrice, !i.NonTaxable, i.InventoryType, i.BottleDepositQty, 0, 0));
+                    }
+                    else
+                    {
+                        item.NumSold++;
+                    }
+                    addRow(transaction);
                 }
                 else
-                {
-                    item.NumSold++;
-                }
-                addRow(transaction);
+                    MessageBox.Show("Barcode not found");
                 txtBarcode.Clear();
             }
         }
@@ -155,32 +157,6 @@ namespace SecretCellar
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
-        }
-
-        private void btnBeverages_Click(object sender, EventArgs e)
-        {
-            frmDryCleaning dryCleaning = new frmDryCleaning();
-            if (dryCleaning.ShowDialog() == DialogResult.OK)
-            {
-                //Add dry cleaning
-            }
-            else
-            {
-                // do nothing
-            }
-        }
-
-        private void btnBrowseInventory_Click(object sender, EventArgs e)
-        {
-            frmBrowseInventory browseInventory = new frmBrowseInventory();
-            if (browseInventory.ShowDialog() == DialogResult.OK)
-            {
-                //Add dry cleaning
-            }
-            else
-            {
-                // do nothing
-            }
         }
     }
 }
