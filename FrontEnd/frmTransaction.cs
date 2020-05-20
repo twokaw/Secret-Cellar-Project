@@ -85,9 +85,9 @@ namespace SecretCellar
                 using (var r = dataGridView1.Rows[row])
                 {
                     r.Cells["Description"].Value = item.Name;
-                    r.Cells["Price"].Value = item.Price;
+                    r.Cells["Price"].Value = item.Price.ToString("C");
                     r.Cells["Qty"].Value = item.NumSold;
-                    r.Cells["Total"].Value = item.Price * item.NumSold * (1 - item.Discount);
+                    r.Cells["Total"].Value = (item.Price * item.NumSold * (1 - item.Discount)).ToString("C");
                     transactionTotal += Convert.ToDouble(r.Cells["Total"].Value.ToString());
                     transactionBottleDeposit += item.NumSold * item.NumBottles * .05;
                     r.Cells["BOTTLE_DEPOSIT"].Value = item.NumSold * item.NumBottles *.05;
