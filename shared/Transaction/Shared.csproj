@@ -196,6 +196,7 @@
     <Compile Include="BaseItem.cs" />
     <Compile Include="CustomerModel.cs" />
     <Compile Include="CustomerUpdateModel.cs" />
+    <Compile Include="Discount.cs" />
     <Compile Include="EmployeeModel.cs" />
     <Compile Include="EmployeeUpdateModel.cs" />
     <Compile Include="Inventory.cs" />

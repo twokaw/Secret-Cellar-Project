@@ -1,8 +1,5 @@
-﻿using System;
+﻿
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Shared
 {
@@ -17,5 +14,7 @@ namespace Shared
         public bool NonTaxableLocal { get; set; }
         public string ItemType { get; set; }
         public uint Bottles { get; set; }
+        public List<Discount> Discount { get; set; } = new List<Discount>();
     }
+
 }
