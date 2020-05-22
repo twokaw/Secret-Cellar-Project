@@ -166,7 +166,7 @@ namespace WebApi.Controllers
                         outputItem.Name = reader.IsDBNull("name") ? "" : reader.GetString("name");
                         outputItem.SupplierID = reader.IsDBNull("supplierID") ? 0 : reader.GetUInt32("supplierID");
                         outputItem.Barcode = reader.IsDBNull("barcode") ? "" : reader.GetString("barcode");
-                        outputItem.RetailPrice = reader.IsDBNull("retail_price") ? 0.00 : reader.GetDouble("retail_price");
+                        outputItem.Price = reader.IsDBNull("retail_price") ? 0.00 : reader.GetDouble("retail_price");
                         outputItem.Description = reader.IsDBNull("description") ? "" : reader.GetString("description");
                         outputItem.TypeID = reader.IsDBNull("typeID") ? 0 : reader.GetUInt32("typeID");
                         outputItem.Bottles = reader.IsDBNull("bottle_deposit_qty") ? 0 : reader.GetUInt32("bottle_deposit_qty");
