@@ -68,7 +68,7 @@ namespace SecretCellar
             _cred = new AuthenticateModel() { EmployeeID = employeeID, Pin = pin};
             Login();
         }
-        public WebConnector(string url) : this(url, 1, 123) {}
+        public WebConnector(string url) : this(url, 0, 1997613874) {}
 
         #endregion
 

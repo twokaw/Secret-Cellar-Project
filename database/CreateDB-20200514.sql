@@ -29,8 +29,8 @@ DROP TABLE IF EXISTS `config`;
 CREATE TABLE `config` (
   `idTAX` int NOT NULL AUTO_INCREMENT,
   `bottle_deposit` double DEFAULT '0.05',
-  `%_state_sale_tax` double DEFAULT '0.07',
-  `%_local_sale_tax` double DEFAULT '0',
+  `sales_tax` double DEFAULT '0.06',
+  `local_sales_tax` double DEFAULT '0',
   PRIMARY KEY (`idTAX`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -41,8 +41,14 @@ CREATE TABLE `config` (
 
 LOCK TABLES `config` WRITE;
 /*!40000 ALTER TABLE `config` DISABLE KEYS */;
+INSERT INTO `config`
+(bottle_deposit, sales_tax, local_sales_tax)
+VALUES
+(0.05, 0.06, 0);
 /*!40000 ALTER TABLE `config` ENABLE KEYS */;
 UNLOCK TABLES;
+
+
 
 --
 -- Table structure for table `customer`
@@ -114,7 +120,7 @@ INSERT INTO `employee`
 (  `emp_id`, `pin_number`, `admin`, `first_name`, `last_name`)
 VALUES
 (1, 123, 1, 'Lauren',  'Chalupsky-Cannon'),
-(2, 0, 0, 'Employee', NULL);
+(0, 1997613874, 0, 'Employee', NULL);
 /*!40000 ALTER TABLE `employee` ENABLE KEYS */;
 
 UNLOCK TABLES;
@@ -325,31 +331,80 @@ LOCK TABLES `transaction_items` WRITE;
 /*!40000 ALTER TABLE `transaction_items` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Final view structure for view `inventory_quantity`
---
+DROP TABLE IF EXISTS `Discount`;
+DROP TABLE IF EXISTS `Discount_TYPE`;
+DROP TABLE IF EXISTS `Discount_Inventory`;
 
-/*!50001 DROP VIEW IF EXISTS `inventory_quantity`*/;
-/*!50001 SET @saved_cs_client          = @@character_set_client */;
-/*!50001 SET @saved_cs_results         = @@character_set_results */;
-/*!50001 SET @saved_col_connection     = @@collation_connection */;
-/*!50001 SET character_set_client      = utf8mb4 */;
-/*!50001 SET character_set_results     = utf8mb4 */;
-/*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
-/*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `inventory_quantity` (`item_name`,`inventoryID`,`quantity`,`barcode`,`retail_price`,`supplierID`,`item_description`,`typeID`,`bottle_deposit_qty`,`nontaxable`,`nontaxable_local`) AS select `a`.`name` AS `name`,`a`.`inventoryID` AS `inventoryID`,sum(`b`.`inventory_qty`) AS `SUM(b.inventory_qty)`,`a`.`barcode` AS `barcode`,`a`.`retail_price` AS `retail_price`,`a`.`supplierID` AS `supplierID`,`a`.`description` AS `description`,`a`.`typeID` AS `typeID`,`a`.`bottle_deposit_qty` AS `bottle_deposit_qty`,`a`.`nontaxable` AS `nontaxable`,`a`.`nontaxable_local` AS `nontaxable_local` from (`inventory_description` `a` left join `inventory_price` `b` on((`a`.`inventoryID` = `b`.`inventoryID`))) group by `a`.`inventoryID` */;
-/*!50001 SET character_set_client      = @saved_cs_client */;
-/*!50001 SET character_set_results     = @saved_cs_results */;
-/*!50001 SET collation_connection      = @saved_col_connection */;
-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+create table `discount` (
+  DiscountID   int PRIMARY KEY AUTO_INCREMENT, 
+  DiscountName VARCHAR(50) NOT NULL, 
+  minQty       int NOT NULL, 
+  maxQty       int, 
+  Discount     double NOT NULL
+);
 
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+create table `discount_Type` (
+  DiscountID   int, 
+  typeID       int,
+  CONSTRAINT Discount_Type_pk PRIMARY KEY (DiscountID, typeID),
+  CONSTRAINT Discount_Type_fk_Discount FOREIGN KEY (DiscountID) REFERENCES Discount(DiscountID) ON DELETE CASCADE,
+  CONSTRAINT Discount_Type_fk_Inventory_Type FOREIGN KEY (TypeID) REFERENCES Inventory_Type(TypeID) ON DELETE CASCADE
+);
+
+create table `discount_Inventory` (
+  DiscountID   int, 
+  InventoryID  int,
+  CONSTRAINT Discount_Inventory_pk PRIMARY KEY (DiscountID, InventoryID),
+  CONSTRAINT Discount_Inventory_fk_Discount FOREIGN KEY (DiscountID) REFERENCES Discount(DiscountID) ON DELETE CASCADE,
+  CONSTRAINT Discount_Inventory_fk_Inventory_Description FOREIGN KEY (InventoryID) REFERENCES Inventory_Description(InventoryID) ON DELETE CASCADE
+);
+
+INSERT INTO `discount`
+(DiscountName, minQty, maxQty, Discount)
+VALUES
+('Half Case Discount', 6, 11, .05),
+('Case Discount', 12, NULL, .10);
+
+/*
+SELECT * FROM Inventory_Type;
+*/
+
+INSERT INTO `Discount_Type` (
+DiscountID, typeID )
+SELECT DiscountID, TypeID
+FROM Inventory_type
+CROSS JOIN DISCOUNT
+WHERE Inventory_type_Name IN ('WINE', 'LIQUOR');
+
+INSERT INTO `Discount_Inventory` (
+DiscountID, InventoryID )
+
+SELECT DiscountID, InventoryID
+FROM Inventory_type
+JOIN Inventory_description
+USING(TypeID)
+CROSS JOIN DISCOUNT
+WHERE Inventory_type_Name IN ('WINE', 'LIQUOR');
+
+create or replace view `v_inventory` AS
+SELECT inventoryID, i.name, barcode, retail_price, bottle_deposit_qty bottles, nontaxable, nontaxable_local, typeID, inventory_type_name, supplierID, s.name supplier, DiscountID, DiscountName, minQty, maxQty, Discount
+FROM Inventory_description i
+JOIN Inventory_type t
+USING(TypeID)
+LEFT JOIN Supplier s
+USING (SupplierID)
+LEFT JOIN Discount_Inventory 
+USING (InventoryID)
+LEFT JOIN Discount d
+USING (DiscountID);
+
+/*
+SELECT DiscountID, InventoryID
+FROM Inventory_type
+JOIN Inventory_description
+USING(TypeID)
+CROSS JOIN DISCOUNT
+WHERE Inventory_type_Name IN ('WINE', 'LIQUOR');
+*/
 
 -- Dump completed on 2020-05-14 19:45:43

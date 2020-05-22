@@ -165,11 +165,16 @@ namespace WebApi.Controllers
 
                 //Inserting into inventory_description
                 string sql = @"
+                  BEGIN
                     SET SQL_MODE = '';
                     INSERT INTO inventory_description 
                     (name, supplierID, barcode, retail_price, description, typeID, bottle_deposit_qty, nontaxable, nontaxable_local) 
                     VALUES 
-                    (@name, @supplierID, @barcode, @retailPrice, @description, @typeID, @bottleDepositQty, @nonTaxable, @nonTaxableLocal)";
+                    (@name, @supplierID, @barcode, @retailPrice, @description, @typeID, @bottles, @nonTaxable, @nonTaxableLocal);
+                    
+                    SET @InventoryID = LAST_INSERT_ID();
+                  END;
+                ";
 
                 MySqlCommand cmd = new MySqlCommand(sql, db.Connection());
                 //cmd.Parameters.Add(new MySqlParameter("id", tester.Id));
@@ -179,19 +184,23 @@ namespace WebApi.Controllers
                 cmd.Parameters.Add(new MySqlParameter("retailPrice", tester.RetailPrice));
                 cmd.Parameters.Add(new MySqlParameter("description", tester.Description));
                 cmd.Parameters.Add(new MySqlParameter("typeID", tester.TypeID));
-                cmd.Parameters.Add(new MySqlParameter("bottleDepositQty", tester.Bottles));
+                cmd.Parameters.Add(new MySqlParameter("bottles", tester.Bottles));
                 cmd.Parameters.Add(new MySqlParameter("nonTaxable", tester.NonTaxable));
                 cmd.Parameters.Add(new MySqlParameter("nonTaxableLocal", tester.NonTaxableLocal));
-                MySqlDataReader reader = cmd.ExecuteReader();
-                reader.Read();
-                reader.Close();
+                cmd.Parameters.Add(new MySqlParameter("discount", string.Join(",", tester.Discount.Select(x => x.DiscountID))));
 
+                cmd.Parameters.Add(new MySqlParameter("InventoryID", MySqlDbType.UInt32, 4,ParameterDirection.Output,false,100, 0,"",DataRowVersion.Default, null));
+                cmd.ExecuteNonQuery();
             }
             catch (Exception ex)
             {
                 return Content(ex.Message);
             }
-            db.CloseConnnection();
+            finally
+            {
+                db.CloseConnnection();
+
+            }
 
             return StatusCode(201, "Item succesfully created.");
         }
@@ -211,7 +220,24 @@ namespace WebApi.Controllers
             {
                 db.OpenConnection();
 
-                string sqlStatementType = "UPDATE inventory_description SET name = @name, supplierID = @supplierID, barcode = @barcode, retail_price = @retailPrice, description = @description, typeID = @typeID, bottle_deposit_qty = @bottleDepositQty, nontaxable = @nonTaxable, nontaxable_local = @nonTaxableLocal WHERE barcode = @bar";
+                string sqlStatementType = @"
+                  BEGIN
+                    UPDATE inventory_description 
+                    SET name = @name, supplierID = @supplierID, 
+                        barcode = @barcode, retail_price = @retailPrice, 
+                        description = @description, typeID = @typeID, 
+                        bottle_deposit_qty = @bottleDepositQty,
+                        nontaxable = @nonTaxable, 
+                        nontaxable_local = @nonTaxableLocal 
+                    WHERE barcode = @bar;
+
+                    DELETE FROM discount_inventory 
+                    WHERE inventoryID in (@id);
+
+                    UPDATE Discount_Inventory
+                    WHERE Inventory
+                  END;
+                ";
                 MySqlCommand cmd = new MySqlCommand(sqlStatementType, db.Connection());
                 cmd.Parameters.Add(new MySqlParameter("bar", barcode));
                 cmd.Parameters.Add(new MySqlParameter("id", tester.Id));
@@ -223,17 +249,19 @@ namespace WebApi.Controllers
                 cmd.Parameters.Add(new MySqlParameter("typeID", tester.TypeID));
                 cmd.Parameters.Add(new MySqlParameter("bottleDepositQty", tester.Bottles));
                 cmd.Parameters.Add(new MySqlParameter("nonTaxable", tester.NonTaxable));
-                cmd.Parameters.Add(new MySqlParameter("nonTaxableLocal", tester.NonTaxableLocal));
-                MySqlDataReader reader2 = cmd.ExecuteReader();
-                reader2.Read();
-                reader2.Close();
+                cmd.Parameters.Add(new MySqlParameter("Discounts", string.Join(",", tester.Discount.Select(x => x.DiscountID))));
+                
+                cmd.ExecuteNonQuery();
 
             }
             catch (Exception ex)
             {
                 return Content(ex.Message);
             }
-            db.CloseConnnection();
+            finally
+            {
+                db.CloseConnnection();
+            }
             Console.WriteLine("\nConnection closed.");
 
             return Ok("Item succesfully updated.");
