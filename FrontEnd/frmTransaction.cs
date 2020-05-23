@@ -70,8 +70,9 @@ namespace SecretCellar
             dataGridView1.Rows.Clear();
 
 
-            double transactionTotal = 0.0;
+            double transactionSubTotal = 0.0;
             double transactionBottleDeposit = 0.0;
+            double transactionTotal = 0.0;
 
 
             foreach (Item item in trans.Items)
@@ -88,14 +89,16 @@ namespace SecretCellar
 
 
                     // Sum subtotal values for the subtotal box
-                    transactionTotal += item.Price * item.NumSold * (1 - item.Discount);
+                    transactionSubTotal += item.Price * item.NumSold * (1 - item.Discount);
                     transactionBottleDeposit += item.NumSold * item.Bottles * .05;
+                    transactionTotal = transactionSubTotal + transactionBottleDeposit;
                 }
             }
 
             // Populate subtotal box
-            txt_transSubTotal.Text = transactionTotal.ToString("C");
+            txt_transSubTotal.Text = transactionSubTotal.ToString("C");
             txt_transBTLDPT.Text = transactionBottleDeposit.ToString("C");
+            txt_TransTotal.Text = transactionTotal.ToString("C");
         }
 
         private void btnDeleteItem_Click(object sender, EventArgs e)
