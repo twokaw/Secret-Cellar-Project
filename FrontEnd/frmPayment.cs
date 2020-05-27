@@ -7,15 +7,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Shared;
 
 namespace SecretCellar
 {
     public partial class frmPayment : Form
     {
+
+        private Transaction transaction;
         public frmPayment()
         {
             InitializeComponent();
         }
+
+       
 
         private void label1_Click(object sender, EventArgs e)
         {
@@ -62,6 +67,11 @@ namespace SecretCellar
         {
             this.DialogResult = DialogResult.OK;
             this.Close();
+        }
+
+        private void txt_TransTotal_TextChanged(object sender, EventArgs e)
+        {
+            txt_TenderTransTotal.Text = transaction.Total.ToString("C");
         }
     }
 }
