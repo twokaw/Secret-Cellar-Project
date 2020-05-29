@@ -15,9 +15,10 @@ namespace SecretCellar
     public partial class frmDryCleaning : Form
     {
         private Transaction dryClean = null;
-        public frmDryCleaning()
+        public frmDryCleaning(Transaction transaction)
         {
             InitializeComponent();
+            dryClean = transaction;
         }
 
         private void btnAddCharge_Click(object sender, EventArgs e)
@@ -31,11 +32,23 @@ namespace SecretCellar
             this.Close();
         }
 
-        private double addCharge()
+        private void addCharge()
         {
-           // if (double.TryParse(txtPercentTotalSale.Text, out d))
-                dryClean.Subtotal += double.Parse(txtCharge.Text);
-            return dryClean.Subtotal;
+            if (double.TryParse(txtCharge.Text, out double d))
+            {
+                dryClean.Items.Add(new Item()
+                {
+                    Name = "Dry Cleaning",
+                    Id = 2722,
+                    Barcode = "DRY CLEANING",
+                    Price = d,
+                    NumSold = 1
+
+                });
+                dryClean.Subtotal += d;
+            }
+
+
         }
 
         private void txtCharge_TextChanged(object sender, EventArgs e)
