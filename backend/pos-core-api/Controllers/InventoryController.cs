@@ -16,10 +16,8 @@ namespace WebApi.Controllers
     [ApiController]
     public class InventoryController : ControllerBase
     {
-        /*
-         * Initializing a new database connection objection from the DbConn helper.
-         * This class allows me to open and close a connection to the database via methods. 
-         */
+        // Initializing a new database connection objection from the DbConn helper.
+        // This class allows me to open and close a connection to the database via methods. 
         DbConn db = new DbConn();
 
         /// <summary>
@@ -284,10 +282,27 @@ namespace WebApi.Controllers
             return Ok("Item succesfully updated.");
         }
 
-        // DELETE: api/ApiWithActions/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        // DELETE: api/[controller]/id
+        [HttpDelete("{Invid}")]
+        public IActionResult Delete(int Invid)
         {
+
+            try
+            {
+                db.OpenConnection();
+
+                string sqlStatementType = "DELETE FROM inventory_description WHERE InventoryID = @id";
+                MySqlCommand cmd = new MySqlCommand(sqlStatementType, db.Connection());
+                cmd.Parameters.Add(new MySqlParameter("id", Invid));
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                return Content(ex.Message);
+            }
+            db.CloseConnnection();
+
+            return Ok("Item succesfully Deleted.");
         }
     }
 }
