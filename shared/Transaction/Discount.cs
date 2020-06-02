@@ -3,11 +3,15 @@ namespace Shared
 {
     public class Discount
     {
-        public uint DiscountID;
-        public string DiscountName;
-        public uint Min;
-        public uint Max;
-        public double Amount;
-        public bool Enabled = false;
+        public uint DiscountID { get; set; }
+        public string DiscountName { get; set; }
+        public uint Min { get; set; }
+        public uint Max { get; set; }
+        public double Amount { get; set; }
+        public bool Enabled { get; set; }
+        public Discount()
+        {
+            Enabled = false;
+        }
     }
 }

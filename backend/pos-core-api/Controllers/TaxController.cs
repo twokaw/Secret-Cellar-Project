@@ -23,8 +23,7 @@ namespace WebApi.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-
-            List<Tax> output = new List<Tax>();
+          List<Tax> output = new List<Tax>();
             Tax outputItem;
             db.OpenConnection();
 
@@ -170,18 +169,20 @@ namespace WebApi.Controllers
 
 
             MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
-            cmd.Parameters.Add(taxId);
+            cmd.Parameters.Add(new MySqlParameter("ID", taxId));
             MySqlDataReader reader = cmd.ExecuteReader();
 
             try
             {
                 if (reader.Read())
                 {
-                    outputItem = new Tax();
-                    outputItem.idTAX = reader.IsDBNull("idTAX") ? 0 : reader.GetUInt32("idTAX");
-                    outputItem.bottle_deposit = reader.IsDBNull("bottle_deposit") ? 0.0 : reader.GetDouble("bottle_deposit");
-                    outputItem.sales_tax = reader.IsDBNull("sales_tax") ? 0.0 : reader.GetDouble("sales_tax");
-                    outputItem.local_sales_tax = reader.IsDBNull("local_sales_tax") ? 0.0 : reader.GetDouble("local_sales_tax");
+                    outputItem = new Tax
+                    {
+                        idTAX = reader.IsDBNull("idTAX") ? 0 : reader.GetUInt32("idTAX"),
+                        bottle_deposit = reader.IsDBNull("bottle_deposit") ? 0.0 : reader.GetDouble("bottle_deposit"),
+                        sales_tax = reader.IsDBNull("sales_tax") ? 0.0 : reader.GetDouble("sales_tax"),
+                        local_sales_tax = reader.IsDBNull("local_sales_tax") ? 0.0 : reader.GetDouble("local_sales_tax")
+                    };
                 }
             }
             finally

@@ -38,7 +38,6 @@ namespace WebApi.Controllers
             string sqlStatement = @"
                     SELECT *
                     FROM v_inventory 
-                    WHERE barcode = @bar
                ";
             MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
             MySqlDataReader reader = cmd.ExecuteReader();
