@@ -14,7 +14,7 @@ namespace SecretCellar
     public partial class frmPayment : Form
     {
 
-        private Transaction transaction;
+        private Transaction transaction = new Transaction();
         public frmPayment()
         {
             InitializeComponent();
