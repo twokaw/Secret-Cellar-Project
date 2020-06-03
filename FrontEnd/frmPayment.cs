@@ -14,13 +14,15 @@ namespace SecretCellar
     public partial class frmPayment : Form
     {
 
-        private Transaction transaction = new Transaction();
-        public frmPayment()
+        private Transaction transaction = null;
+
+        public frmPayment(Transaction transaction)
         {
             InitializeComponent();
-        }
 
-       
+            this.transaction = transaction;
+            txt_TenderTransTotal.Text = transaction.Total.ToString("C");
+        }
 
         private void label1_Click(object sender, EventArgs e)
         {
@@ -53,11 +55,6 @@ namespace SecretCellar
 
         }
 
-        private void textBox3_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
@@ -65,6 +62,16 @@ namespace SecretCellar
 
         private void btnCompleteSale_Click(object sender, EventArgs e)
         {
+
+            if (txtCreditCardAmt.Text.All(char.IsNumber))
+                transaction.PayMethod = "Credit";
+
+            else if (txtCheckAmt.Text.All(char.IsNumber))
+                transaction.PayMethod = "Check";
+
+            else if (txtGiftAmt.Text.All(char.IsNumber))
+                transaction.PayMethod = "Gift";
+
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
@@ -72,6 +79,17 @@ namespace SecretCellar
         private void txt_TransTotal_TextChanged(object sender, EventArgs e)
         {
             txt_TenderTransTotal.Text = transaction.Total.ToString("C");
+        }
+
+        private void NumberOnly(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) 
+             && !char.IsDigit(e.KeyChar) 
+             && e.KeyChar != '.' 
+             || (e.KeyChar == '.' && ((TextBox)sender).Text.IndexOf('.') > -1))
+            {
+                e.Handled = true;
+            }
         }
     }
 }
