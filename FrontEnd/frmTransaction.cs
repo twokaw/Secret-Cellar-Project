@@ -101,15 +101,10 @@ namespace SecretCellar
 
         private void btnDryClean_Click(object sender, EventArgs e)
         {
-            frmDryCleaning dryCleaning = new frmDryCleaning();
-            if (dryCleaning.ShowDialog() == DialogResult.OK)
-            {
-                //Add dry cleaning
-            }
-            else
-            {
-                // do nothing
-            }
+            frmDryCleaning dryCleaning = new frmDryCleaning(transaction);
+           
+            dryCleaning.ShowDialog();
+            addRow(transaction);
         }
 
         private void txtBarcode_TextChanged(object sender, EventArgs e)
