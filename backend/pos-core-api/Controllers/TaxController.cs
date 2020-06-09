@@ -21,7 +21,7 @@ namespace WebApi.Controllers
 
         // Get: api/Tax
         [HttpGet]
-        public IActionResult Get()
+        public IActionResult GetTax()
         {
           List<Tax> output = new List<Tax>();
             Tax outputItem;
@@ -54,7 +54,7 @@ namespace WebApi.Controllers
 
         // Get: api/Tax
         [HttpGet("{taxId}")]
-        public IActionResult Get(uint taxId)
+        public IActionResult GetTaxby(uint taxId)
         {
             Tax outputItem = GetTax(taxId);
             if (outputItem == null)
@@ -62,6 +62,7 @@ namespace WebApi.Controllers
             else
                 return Ok(outputItem);
         }
+    /*
         
         //Post: api/Tax
         [HttpPost()]
@@ -159,8 +160,9 @@ namespace WebApi.Controllers
             return Ok("Tax Id deleted");
         }
 
+    */
         // Get: api/Tax
-        public Tax GetTax(uint taxId)
+        private Tax GetTax(uint taxId)
         {
             Tax outputItem = null;
             db.OpenConnection();
