@@ -153,5 +153,12 @@ namespace SecretCellar
         {
 
         }
+
+        private void btnBeverages_Click(object sender, EventArgs e)
+        {
+            frmLookup lookup = new frmLookup(transaction);
+            if (lookup.ShowDialog() == DialogResult.OK)
+                addRow(transaction);
+        }
     }
 }
