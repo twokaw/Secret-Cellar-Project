@@ -162,5 +162,13 @@ namespace SecretCellar
                 transaction.Total = transaction.Subtotal + transactionBottleDeposit;
             }
         }
+
+        private void btnLookup_Click(object sender, EventArgs e)
+        {
+            {
+                frmLookup lookup = new frmLookup(transaction); //instantiates frmLookup using Lookup
+                lookup.ShowDialog(); // opens form associated with Lookup instantiation
+            }
+        }
     }
 }
