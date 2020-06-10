@@ -203,6 +203,7 @@
     <Compile Include="Inventory.cs" />
     <Compile Include="InventoryType.cs" />
     <Compile Include="Item.cs" />
+    <Compile Include="Supplier.cs" />
     <Compile Include="Transaction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

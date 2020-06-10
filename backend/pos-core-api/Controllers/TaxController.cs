@@ -21,7 +21,7 @@ namespace WebApi.Controllers
 
         // Get: api/Tax
         [HttpGet]
-        public IActionResult Get()
+        public IActionResult GetTax()
         {
           List<Tax> output = new List<Tax>();
             Tax outputItem;
@@ -54,7 +54,7 @@ namespace WebApi.Controllers
 
         // Get: api/Tax
         [HttpGet("{taxId}")]
-        public IActionResult Get(uint taxId)
+        public IActionResult GetTaxby(uint taxId)
         {
             Tax outputItem = GetTax(taxId);
             if (outputItem == null)
@@ -73,8 +73,9 @@ namespace WebApi.Controllers
                 INSERT INTO config
                 (bottle_deposit, sales_tax, local_sales_tax)
                 VALUES
-                (@bottle_deposit, @sales_tax, @local_sales_tax)";
-
+                (@bottle_deposit, @sales_tax, @local_sales_tax)
+            ";
+            
             try
             {
                 MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
@@ -160,7 +161,7 @@ namespace WebApi.Controllers
         }
 
         // Get: api/Tax
-        public Tax GetTax(uint taxId)
+        private Tax GetTax(uint taxId)
         {
             Tax outputItem = null;
             db.OpenConnection();
