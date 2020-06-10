@@ -58,7 +58,7 @@ namespace SecretCellar
                 MessageBox.Show("Invalid Pin");
             else
             {
-                MessageBox.Show($"welcome {user.FirstName}");
+                MessageBox.Show($"   Welcome {user.FirstName}");
                 this.DialogResult = DialogResult.OK;
                 this.Dispose();
             }
