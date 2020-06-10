@@ -75,22 +75,53 @@ namespace WebApi.Controllers
         /// </summary>
         /// <param name="supplier"></param>
         /// <returns></returns>
-        // POST: api/Supplier
-        [HttpPost]
-        public IActionResult Post([FromBody] Supplier supplier)
+        // PUT: api/Supplier
+        [HttpPut]
+        public IActionResult Put([FromBody] Supplier supplier)
         {
-            long lastID = -1;
-            if (supplier.SupplierID != 0 && Get_Supplier(supplier.SupplierID) == null)
+            if (supplier.SupplierID != 0 && Get_Supplier(supplier.SupplierID) != null)
             {
-                return StatusCode(400, "Supplier already exist.");
+                try
+                {
+                    UpdateSupplier(supplier);
+                }
+                catch(Exception ex)
+                {
+                    return StatusCode(500, ex.Message);
+                }
+                return StatusCode(201, supplier.SupplierID);
             }
+            
+            // The Id is invalid and the supplier name is in the system
+            if(Get_Supplier(supplier.Name) != null)
+            {
+                return StatusCode(500, "Supplier already in the system");
+            }
+
+            // The Supplier is not in the system so insert it
+            try
+            {
+                return StatusCode(201, InsertSupplier(supplier));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+            finally
+            {
+                db.CloseConnnection();
+            }
+        }
+
+        private uint InsertSupplier(Supplier supplier)
+        {
             try
             {
                 db.OpenConnection();
 
                 //Inserting into inventory_description
                 string sql = @"
-                    INSERT INTO inventory_description 
+                    INSERT INTO supplier
                     (name,  web, phone) 
                     VALUES 
                     (@name,  @Web, @phone);
@@ -103,20 +134,50 @@ namespace WebApi.Controllers
                 cmd.Parameters.Add(new MySqlParameter("phone", supplier.Phone));
 
                 cmd.ExecuteNonQuery();
-                lastID = cmd.LastInsertedId;
 
-                supplier.SupplierID = Convert.ToUInt32(cmd.LastInsertedId);
+                return Convert.ToUInt32(cmd.LastInsertedId);
             }
             catch (Exception ex)
             {
-                return StatusCode(500, ex.Message);
+                throw ex;
             }
             finally
             {
                 db.CloseConnnection();
             }
+        }
 
-            return StatusCode(201, lastID);
+        private void  UpdateSupplier(Supplier supplier)
+        {
+            try
+            {
+                db.OpenConnection();
+
+                //Inserting into inventory_description
+                string sql = @"
+                    UPDATE Supplier
+                    SET name = @name,
+                        web  =  @Web,
+                        phone = @phone
+                    WHERE SupplierID = @SupplierID;
+                ";
+
+                MySqlCommand cmd = new MySqlCommand(sql, db.Connection());
+                cmd.Parameters.Add(new MySqlParameter("SupplierID", supplier.SupplierID));
+                cmd.Parameters.Add(new MySqlParameter("name", supplier.Name));
+                cmd.Parameters.Add(new MySqlParameter("web", supplier.Web));
+                cmd.Parameters.Add(new MySqlParameter("phone", supplier.Phone));
+
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                db.CloseConnnection();
+            }
         }
 
 
@@ -133,6 +194,42 @@ namespace WebApi.Controllers
             ";
             MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
             cmd.Parameters.Add(new MySqlParameter("id", supplierID));
+
+            try
+            {
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    if (reader.Read())
+                        output = new Supplier()
+                        {
+                            SupplierID = uint.Parse(reader["supplierID"].ToString()),
+                            Name = reader["name"].ToString(),
+                            Phone = reader["phone"].ToString(),
+                            Web = reader["web"].ToString()
+                        };
+                }
+            }
+            finally
+            {
+                db.CloseConnnection();
+            }
+
+            return output;
+        }
+
+        private Supplier Get_Supplier(string name)
+        {
+            Supplier output = null;
+            db.OpenConnection();
+
+            //change to view that does sum
+            string sqlStatement = @"
+                SELECT *
+                FROM supplier
+                WHERE name = @name
+            ";
+            MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
+            cmd.Parameters.Add(new MySqlParameter("name", name));
 
             try
             {

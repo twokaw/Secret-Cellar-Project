@@ -62,7 +62,6 @@ namespace WebApi.Controllers
             else
                 return Ok(outputItem);
         }
-    /*
         
         //Post: api/Tax
         [HttpPost()]
@@ -74,8 +73,9 @@ namespace WebApi.Controllers
                 INSERT INTO config
                 (bottle_deposit, sales_tax, local_sales_tax)
                 VALUES
-                (@bottle_deposit, @sales_tax, @local_sales_tax)";
-
+                (@bottle_deposit, @sales_tax, @local_sales_tax)
+            ";
+            
             try
             {
                 MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
@@ -160,7 +160,6 @@ namespace WebApi.Controllers
             return Ok("Tax Id deleted");
         }
 
-    */
         // Get: api/Tax
         private Tax GetTax(uint taxId)
         {
