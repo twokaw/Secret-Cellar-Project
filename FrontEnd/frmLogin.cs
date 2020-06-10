@@ -31,12 +31,25 @@ namespace SecretCellar
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
+            Validate_user(txtPin.Text);
+        }
+
+        private void txtPin_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData == Keys.Enter || e.KeyData == Keys.Return)
+            {
+                Validate_user(txtPin.Text);
+            }
+        }
+
+        private void Validate_user(string text)
+        {
             EmployeeModel user = null;
-            if (txtPin.Text == "")
+            if (text == "")
             {
                 user = _dataAccess.GetEmployee(0);
             }
-            else if (int.TryParse(txtPin.Text, out int pin))
+            else if (int.TryParse(text, out int pin))
             {
                 user = _dataAccess.GetEmployee(pin);
             }
@@ -49,7 +62,6 @@ namespace SecretCellar
                 this.DialogResult = DialogResult.OK;
                 this.Dispose();
             }
-
         }
     }
 }

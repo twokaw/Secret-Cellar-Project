@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using WebApi.Helpers;
 using MySql.Data.MySqlClient;
-using MySql.Data.Types;
 using System.Data;
 using Shared;
 
@@ -180,7 +177,6 @@ namespace WebApi.Controllers
             cmd.Parameters.Add(new MySqlParameter("InventoryID", inv.Id));
             cmd.ExecuteNonQuery();
         }
-
 
         //Create a post method for adding items to the inventory_price.
         /// <summary>
