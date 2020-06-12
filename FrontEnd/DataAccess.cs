@@ -91,5 +91,10 @@ namespace SecretCellar
             else
                 return 0;
         }
+
+        public static Item ConvertInvtoItem(Inventory inv)
+        {
+            return new Item(inv.Name, inv.Id, inv.Barcode, inv.Qty, 1, inv.Price, !inv.NonTaxable, inv.ItemType, inv.Bottles, 0, 0);
+        }
     }
 }
