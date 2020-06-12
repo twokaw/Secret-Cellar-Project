@@ -16,13 +16,20 @@ namespace SecretCellar
     {
         private Transaction lookUp = null;
         private DataAccess dataAccess = new DataAccess(Properties.Settings.Default.URL);
-        private List<Inventory> inventory= null;
+        private List<Inventory> inventory = null;
+        private List<Supplier> suppliers = null;
         public frmLookup(Transaction transaction)
         {
             lookUp = transaction;
             InitializeComponent();
             inventory = dataAccess.GetInventory();
-            populate();
+            suppliers = dataAccess.GetSuppliers();
+            LookupView.DataSource = inventory.
+                Select(x => new { Name = x.Name, Id = x.Id, ItemType = x.ItemType, Qty = x.Qty, Barcode = x.Barcode, Price = x.Price }).
+                OrderBy(x => x.Name).
+                ToList();
+
+            cbo_Supplier.DataSource = suppliers;
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -32,7 +39,7 @@ namespace SecretCellar
 
         private void btn_add_Click(object sender, EventArgs e)
         {
-            if(addCharge())
+            if (addCharge())
             {
                 this.DialogResult = DialogResult.OK;
                 this.Close();
@@ -64,22 +71,9 @@ namespace SecretCellar
 
         private void populate()
         {
-            LookupView.DataSource = inventory;
-            /*LookupView.Rows.Clear();
 
-            foreach (Inventory i in inventory.Where(x => (x.Qty > 0)))
-            {
-                int row = LookupView.Rows.Add();
-                using (var r = LookupView.Rows[row])
-                {
-                    r.Cells["ItemId"].Value = i.Id;
-                    r.Cells["Description"].Value = i.Name;
-                    r.Cells["CLASS"].Value = i.ItemType;
-                    r.Cells["Qty"].Value = i.Qty;
-                    r.Cells["Barcode"].Value = i.Barcode;
-                    r.Cells["Price"].Value = i.RetailPrice;
-                }
-            }*/
+
+
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -97,5 +91,17 @@ namespace SecretCellar
                 ToList();
         }
 
+        private void LookupView_SelectionChanged(object sender, EventArgs e)
+        {
+
+
+            if (LookupView.SelectedRows.Count > 0)
+            {
+                Inventory i = inventory.First(x => x.Id == uint.Parse(LookupView.SelectedRows[0].Cells["id"].Value.ToString()));
+                txtName.Text = i.Name;
+                txt_qty.Text = i.Qty.ToString();
+                cboType.Text = i.ItemType;
+            }
+        }
     }
 }
