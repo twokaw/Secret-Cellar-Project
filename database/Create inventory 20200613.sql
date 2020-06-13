@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `inventory` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `inventory`;
 -- MySQL dump 10.13  Distrib 8.0.17, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: inventory
@@ -293,7 +291,7 @@ CREATE TABLE `inventory_type` (
   PRIMARY KEY (`typeID`),
   KEY `Inventory_type_fk_Config` (`idTax`),
   CONSTRAINT `Inventory_type_fk_Config` FOREIGN KEY (`idTax`) REFERENCES `config` (`idTAX`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -444,9 +442,13 @@ SET @saved_cs_client     = @@character_set_client;
 /*!50503 SET character_set_client = utf8mb4 */;
 /*!50001 CREATE VIEW `v_type` AS SELECT 
  1 AS `idTax`,
+ 1 AS `DiscountID`,
  1 AS `typeID`,
  1 AS `inventory_type_name`,
- 1 AS `DiscountID`,
+ 1 AS `DiscountName`,
+ 1 AS `minQty`,
+ 1 AS `maxQty`,
+ 1 AS `Discount`,
  1 AS `bottle_deposit`,
  1 AS `sales_tax`,
  1 AS `local_sales_tax`,
@@ -506,7 +508,7 @@ SET character_set_client = @saved_cs_client;
 /*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `v_type` AS select `inventory_type`.`idTax` AS `idTax`,`inventory_type`.`typeID` AS `typeID`,`inventory_type`.`inventory_type_name` AS `inventory_type_name`,`discount_type`.`DiscountID` AS `DiscountID`,`config`.`bottle_deposit` AS `bottle_deposit`,`config`.`sales_tax` AS `sales_tax`,`config`.`local_sales_tax` AS `local_sales_tax`,`config`.`Tax_Name` AS `Tax_Name` from ((`inventory_type` left join `discount_type` on((`inventory_type`.`typeID` = `discount_type`.`typeID`))) join `config` on((`inventory_type`.`idTax` = `config`.`idTAX`))) */;
+/*!50001 VIEW `v_type` AS select `inventory_type`.`idTax` AS `idTax`,`discount_type`.`DiscountID` AS `DiscountID`,`inventory_type`.`typeID` AS `typeID`,`inventory_type`.`inventory_type_name` AS `inventory_type_name`,`discount`.`DiscountName` AS `DiscountName`,`discount`.`minQty` AS `minQty`,`discount`.`maxQty` AS `maxQty`,`discount`.`Discount` AS `Discount`,`config`.`bottle_deposit` AS `bottle_deposit`,`config`.`sales_tax` AS `sales_tax`,`config`.`local_sales_tax` AS `local_sales_tax`,`config`.`Tax_Name` AS `Tax_Name` from (((`inventory_type` left join `discount_type` on((`inventory_type`.`typeID` = `discount_type`.`typeID`))) left join `discount` on((`discount_type`.`DiscountID` = `discount`.`DiscountID`))) join `config` on((`inventory_type`.`idTax` = `config`.`idTAX`))) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -520,4 +522,4 @@ SET character_set_client = @saved_cs_client;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-06-12 23:28:52
+-- Dump completed on 2020-06-13 14:55:07
