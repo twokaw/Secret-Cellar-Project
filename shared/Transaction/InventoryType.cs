@@ -5,11 +5,14 @@ using System.Threading.Tasks;
 
 namespace Shared
 {
-    public class InventoryType
+    public class InventoryType: Tax
     {
-        public uint TypeID { get; set; }
-        public String TypeName { get; set; }
-        public Double DiscountDown { get; set; } //Discount of  6 to 11 bottles.
-        public Double DiscountUp { get; set; } //Discount of 12 bottles or more.
+        public uint TypeId { get; set; }
+        public string TypeName { get; set; }
+        public List<Discount> Discount { get; set; }
+        public InventoryType()
+        {
+            Discount = new List<Discount>();
+        }
     }
 }

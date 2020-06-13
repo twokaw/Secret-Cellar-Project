@@ -2,9 +2,9 @@
 {
     public class Tax
     {
-        public uint idTAX { get; set; }
-        public double bottle_deposit { get; set; }
-        public double sales_tax { get; set; }
-        public double local_sales_tax { get; set; }
+        public uint IdTax { get; set; }
+        public double BottleDeposit { get; set; }
+        public double SalesTax { get; set; }
+        public double LocalSalesTax { get; set; }
     }
 }
