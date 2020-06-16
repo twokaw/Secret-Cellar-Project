@@ -156,18 +156,17 @@ namespace WebApi.Controllers
             return StatusCode(201, lastID);
         }
 
-
         private void updateDiscount(Inventory inv)
         {
             //Inserting into inventory_description
            string sql = @"                   
-                    DELETE FROM Discount_Inventory WHERE InventoryID = @InventoryID;
-                ";
+                DELETE FROM Discount_Inventory WHERE InventoryID = @InventoryID;
+            ";
 
             MySqlCommand cmd = new MySqlCommand(sql, db.Connection()); 
             
             inv.Discount.ForEach(x => sql += @$"                   
-                    INSERT INTO inventory_description 
+                    INSERT INTO Discount_Inventory
                     (discountID, InventoryID) 
                     VALUES 
                     ({x.DiscountID}, @InventoryID);

@@ -7,15 +7,16 @@ namespace SecretCellar
 {
     public class DataAccess
     {      
-        private readonly WebConnector web ;
-
+        private static WebConnector web = null;
 
         public DataAccess(string connectionString)
         {
-            web = new WebConnector(connectionString);
+            if(web == null)
+                web = new WebConnector(connectionString);
         }
+        public DataAccess() { }
 
-        public void DeleteItem(Inventory inv)
+            public void DeleteItem(Inventory inv)
         {
             web.DataDelete ($"api/inventory/{inv.Id}");
         }  
@@ -86,6 +87,43 @@ namespace SecretCellar
         {
             Response resp = null;
             string result = web.DataPut($"api/Tax", tax, resp);
+            if (uint.TryParse(result, out uint id))
+                return id;
+            else
+                return 0;
+        }
+
+        public List<InventoryType> GetInventoryType()
+        {
+            string result = web.DataGet("api/InventoryType");
+            return JsonConvert.DeserializeObject<List<InventoryType>>(result);
+        }
+
+        public InventoryType GetInventoryType(uint taxID)
+        {
+            string result = web.DataGet($"api/InventoryType/{taxID}");
+            return JsonConvert.DeserializeObject<InventoryType>(result);
+        }
+        public InventoryType GetInventoryType(string name)
+        {
+            string result = web.DataGet($"api/InventoryType/name/{name}");
+            return JsonConvert.DeserializeObject<InventoryType>(result);
+        }
+
+        public uint UpdateInventoryType(InventoryType invType)
+        {
+            Response resp = null;
+            string result = web.DataPut($"api/InventoryType", invType, resp);
+            if (uint.TryParse(result, out uint id))
+                return id;
+            else
+                return 0;
+        }
+
+        public uint DeleteInventoryType(uint typeId)
+        {
+            Response resp = null;
+            string result = web.DataPut($"api/InventoryType/{typeId}", resp);
             if (uint.TryParse(result, out uint id))
                 return id;
             else
