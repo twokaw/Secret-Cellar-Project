@@ -29,7 +29,8 @@ namespace WebApi.Controllers
             Transaction outputItem;
             db.OpenConnection();
 
-            string sqlStatement = "SELECT * FROM transaction WHERE sold_datetime BETWEEN @date1 AND @date2";
+            string sqlStatement = @"
+                SELECT * FROM transaction WHERE sold_datetime BETWEEN @date1 AND @date2";
 
             MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
             cmd.Parameters.Add(new MySqlParameter("date1", date1));
