@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.txtlookup = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.LookupView = new System.Windows.Forms.DataGridView();
@@ -39,7 +40,20 @@
             this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btn_cancel = new System.Windows.Forms.Button();
             this.btn_add = new System.Windows.Forms.Button();
+            this.cboType = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txt_qty = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtName = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.btn_update = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.cbo_Supplier = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.LookupView)).BeginInit();
+            this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtlookup
@@ -65,9 +79,7 @@
             // 
             // LookupView
             // 
-            this.LookupView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.LookupView.AllowUserToResizeRows = false;
             this.LookupView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.LookupView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Id,
@@ -76,15 +88,17 @@
             this.Barcode,
             this.Qty,
             this.Price});
-            this.LookupView.Location = new System.Drawing.Point(23, 54);
+            this.LookupView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LookupView.Location = new System.Drawing.Point(0, 0);
             this.LookupView.Margin = new System.Windows.Forms.Padding(2);
             this.LookupView.MultiSelect = false;
             this.LookupView.Name = "LookupView";
             this.LookupView.RowHeadersVisible = false;
             this.LookupView.RowTemplate.Height = 24;
             this.LookupView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.LookupView.Size = new System.Drawing.Size(557, 257);
+            this.LookupView.Size = new System.Drawing.Size(701, 390);
             this.LookupView.TabIndex = 2;
+            this.LookupView.SelectionChanged += new System.EventHandler(this.LookupView_SelectionChanged);
             // 
             // Id
             // 
@@ -129,6 +143,9 @@
             // 
             this.Price.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.Price.DataPropertyName = "Price";
+            dataGridViewCellStyle3.Format = "C2";
+            dataGridViewCellStyle3.NullValue = null;
+            this.Price.DefaultCellStyle = dataGridViewCellStyle3;
             this.Price.HeaderText = "Price";
             this.Price.Name = "Price";
             this.Price.Width = 56;
@@ -137,7 +154,7 @@
             // 
             this.btn_cancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_cancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_cancel.Location = new System.Drawing.Point(515, 326);
+            this.btn_cancel.Location = new System.Drawing.Point(880, 449);
             this.btn_cancel.Margin = new System.Windows.Forms.Padding(2);
             this.btn_cancel.Name = "btn_cancel";
             this.btn_cancel.Size = new System.Drawing.Size(74, 30);
@@ -150,7 +167,7 @@
             // 
             this.btn_add.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_add.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_add.Location = new System.Drawing.Point(434, 326);
+            this.btn_add.Location = new System.Drawing.Point(799, 449);
             this.btn_add.Margin = new System.Windows.Forms.Padding(2);
             this.btn_add.Name = "btn_add";
             this.btn_add.Size = new System.Drawing.Size(73, 30);
@@ -159,14 +176,131 @@
             this.btn_add.UseVisualStyleBackColor = true;
             this.btn_add.Click += new System.EventHandler(this.btn_add_Click);
             // 
+            // cboType
+            // 
+            this.cboType.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cboType.FormattingEnabled = true;
+            this.cboType.Location = new System.Drawing.Point(70, 67);
+            this.cboType.Name = "cboType";
+            this.cboType.Size = new System.Drawing.Size(155, 21);
+            this.cboType.TabIndex = 5;
+            // 
+            // label4
+            // 
+            this.label4.Location = new System.Drawing.Point(9, 66);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(55, 20);
+            this.label4.TabIndex = 4;
+            this.label4.Text = "Type:";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // txt_qty
+            // 
+            this.txt_qty.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txt_qty.Location = new System.Drawing.Point(70, 40);
+            this.txt_qty.Name = "txt_qty";
+            this.txt_qty.Size = new System.Drawing.Size(155, 20);
+            this.txt_qty.TabIndex = 3;
+            // 
+            // label3
+            // 
+            this.label3.Location = new System.Drawing.Point(9, 40);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(55, 20);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "Qty:";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // txtName
+            // 
+            this.txtName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtName.Location = new System.Drawing.Point(70, 14);
+            this.txtName.Name = "txtName";
+            this.txtName.Size = new System.Drawing.Size(155, 20);
+            this.txtName.TabIndex = 1;
+            // 
+            // label2
+            // 
+            this.label2.Location = new System.Drawing.Point(9, 20);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(55, 20);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "Name:";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // btn_update
+            // 
+            this.btn_update.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_update.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_update.Location = new System.Drawing.Point(152, 346);
+            this.btn_update.Margin = new System.Windows.Forms.Padding(2);
+            this.btn_update.Name = "btn_update";
+            this.btn_update.Size = new System.Drawing.Size(73, 30);
+            this.btn_update.TabIndex = 6;
+            this.btn_update.Text = "Update";
+            this.btn_update.UseVisualStyleBackColor = true;
+            // 
+            // panel1
+            // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.Controls.Add(this.LookupView);
+            this.panel1.Location = new System.Drawing.Point(13, 54);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(701, 390);
+            this.panel1.TabIndex = 7;
+            // 
+            // panel2
+            // 
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel2.Controls.Add(this.cbo_Supplier);
+            this.panel2.Controls.Add(this.label5);
+            this.panel2.Controls.Add(this.cboType);
+            this.panel2.Controls.Add(this.btn_update);
+            this.panel2.Controls.Add(this.txtName);
+            this.panel2.Controls.Add(this.label2);
+            this.panel2.Controls.Add(this.label3);
+            this.panel2.Controls.Add(this.txt_qty);
+            this.panel2.Controls.Add(this.label4);
+            this.panel2.Location = new System.Drawing.Point(720, 54);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(234, 390);
+            this.panel2.TabIndex = 8;
+            // 
+            // cbo_Supplier
+            // 
+            this.cbo_Supplier.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbo_Supplier.DisplayMember = "Name";
+            this.cbo_Supplier.FormattingEnabled = true;
+            this.cbo_Supplier.Location = new System.Drawing.Point(70, 94);
+            this.cbo_Supplier.Name = "cbo_Supplier";
+            this.cbo_Supplier.Size = new System.Drawing.Size(155, 21);
+            this.cbo_Supplier.TabIndex = 8;
+            // 
+            // label5
+            // 
+            this.label5.Location = new System.Drawing.Point(6, 93);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(58, 20);
+            this.label5.TabIndex = 7;
+            this.label5.Text = "Supplier:";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // frmLookup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(600, 366);
+            this.ClientSize = new System.Drawing.Size(965, 489);
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.btn_add);
             this.Controls.Add(this.btn_cancel);
-            this.Controls.Add(this.LookupView);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtlookup);
             this.Margin = new System.Windows.Forms.Padding(2);
@@ -174,6 +308,9 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "frmLookup";
             ((System.ComponentModel.ISupportInitialize)(this.LookupView)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -192,5 +329,16 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Barcode;
         private System.Windows.Forms.DataGridViewTextBoxColumn Qty;
         private System.Windows.Forms.DataGridViewTextBoxColumn Price;
+        private System.Windows.Forms.TextBox txtName;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox cboType;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox txt_qty;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button btn_update;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.ComboBox cbo_Supplier;
+        private System.Windows.Forms.Label label5;
     }
 }

@@ -115,7 +115,7 @@ namespace SecretCellar
 
         private void txtBarcode_KeyUp(object sender, KeyEventArgs e)
         {
-            if (e.KeyData == Keys.Enter)
+            if (e.KeyData == Keys.Enter && !string.IsNullOrWhiteSpace(txtBarcode.Text))
             {
                 Inventory i = dataAccess.GetItem(txtBarcode.Text.Trim());
                 if (i != null)
@@ -166,7 +166,8 @@ namespace SecretCellar
         private void btnLookup_Click(object sender, EventArgs e)
         {
             frmLookup lookup = new frmLookup(transaction); //instantiates frmLookup using Lookup
-            lookup.ShowDialog(); // opens form associated with Lookup instantiation
+            if (lookup.ShowDialog() == DialogResult.OK) // opens form associated with Lookup instantiation
+                addRow(transaction);
 
         }
     }
