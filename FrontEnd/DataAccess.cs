@@ -16,7 +16,8 @@ namespace SecretCellar
         }
         public DataAccess() { }
 
-            public void DeleteItem(Inventory inv)
+#region Inventory
+        public void DeleteItem(Inventory inv)
         {
             web.DataDelete ($"api/inventory/{inv.Id}");
         }  
@@ -25,7 +26,6 @@ namespace SecretCellar
         {
             string test = web.DataGet("api/inventory");
             return (List<Inventory>)JsonConvert.DeserializeObject(test, typeof(List<Inventory>));
-           
         }
 
         public Inventory GetItem(string barcode)
@@ -38,16 +38,38 @@ namespace SecretCellar
             return null;
         }
 
+        public uint UpdateItem(Inventory item)
+        {
+            Response resp = null;
+            string result = web.DataPut($"api/Inventory/{item.Id}", item, resp);
+
+            if (uint.TryParse(result, out uint id))
+                return id;
+            else
+                return 0;
+        }
+
+        public uint InsertItem(Inventory item)
+        {
+            Response resp = null;
+            string result = web.DataPost($"api/Inventory", item, resp);
+
+            if (uint.TryParse(result, out uint id))
+                return id;
+            else
+                return 0;
+        }
+#endregion
+
+#region Employee
         public EmployeeModel GetEmployee(int EmpID)
         {
             string result = web.DataGet($"api/Employee/{EmpID}");
             return (EmployeeModel)JsonConvert.DeserializeObject(result, typeof(EmployeeModel));
         }
-        public void UpdateItem(Inventory inv)
-        {
-            web.DataPut($"api/inventory/{inv.Id}", inv);
-        }
+#endregion
 
+#region Suppliers
         public List<Supplier> GetSuppliers()
         {
             string result = web.DataGet("api/Supplier");
@@ -70,7 +92,9 @@ namespace SecretCellar
             else 
                 return 0;
         }
+#endregion
 
+#region Tax
         public List<Tax> GetTax()
         {
             string result = web.DataGet("api/Tax");
@@ -92,7 +116,9 @@ namespace SecretCellar
             else
                 return 0;
         }
+#endregion
 
+#region InventoryType
         public List<InventoryType> GetInventoryType()
         {
             string result = web.DataGet("api/InventoryType");
@@ -104,6 +130,7 @@ namespace SecretCellar
             string result = web.DataGet($"api/InventoryType/{taxID}");
             return JsonConvert.DeserializeObject<InventoryType>(result);
         }
+
         public InventoryType GetInventoryType(string name)
         {
             string result = web.DataGet($"api/InventoryType/name/{name}");
@@ -129,6 +156,7 @@ namespace SecretCellar
             else
                 return 0;
         }
+#endregion
 
         public static Item ConvertInvtoItem(Inventory inv)
         {
