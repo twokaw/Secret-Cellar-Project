@@ -48,12 +48,7 @@ namespace WebApi.Controllers
                     outputItem.RegisterID = reader.IsDBNull("register") ? 0 : reader.GetUInt32("register");
                     outputItem.TransactionDateTime = reader.IsDBNull("sold_datetime") ? aDate : reader.GetDateTime("sold_datetime");
                     outputItem.Location = reader.IsDBNull("location") ? "" : reader.GetString("location");
-                    outputItem.Subtotal = reader.IsDBNull("subtotal") ? 0 : reader.GetDouble("subtotal");
-                    outputItem.Tax = reader.IsDBNull("tax") ? 0 : reader.GetDouble("tax");
-                    outputItem.Total = reader.IsDBNull("total") ? 0 : reader.GetDouble("total");
                     outputItem.TaxExempt = reader.IsDBNull("tax_exempt") ? false : reader.GetBoolean("tax_exempt");
-                    outputItem.PayMethod = reader.IsDBNull("payment_methods") ? "" : reader.GetString("payment_methods");
-                    outputItem.PayNum = reader.IsDBNull("paymentID") ? "" : reader.GetString("paymentID");
                     outputItem.Discount = reader.IsDBNull("discount") ? 0.0 : reader.GetDouble("discount");
 
                     output.Add(outputItem);
@@ -155,16 +150,10 @@ namespace WebApi.Controllers
                     outputItem.RegisterID = reader.IsDBNull("register") ? 0 : reader.GetUInt32("register");
                     outputItem.TransactionDateTime = reader.IsDBNull("sold_datetime") ? aDate : reader.GetDateTime("sold_datetime");
                     outputItem.Location = reader.IsDBNull("location") ? "" : reader.GetString("location");
-                    outputItem.Subtotal = reader.IsDBNull("subtotal") ? 0 : reader.GetDouble("subtotal");
-                    outputItem.Tax = reader.IsDBNull("tax") ? 0 : reader.GetDouble("tax");
-                    outputItem.Total = reader.IsDBNull("total") ? 0 : reader.GetDouble("total");
                     outputItem.TaxExempt = reader.IsDBNull("tax_exempt") ? false : reader.GetBoolean("tax_exempt");
-                    outputItem.PayMethod = reader.IsDBNull("payment_methods") ? "" : reader.GetString("payment_methods");
-                    outputItem.PayNum = reader.IsDBNull("paymentID") ? "" : reader.GetString("paymentID");
                     outputItem.Discount = reader.IsDBNull("discount") ? 0.0 : reader.GetDouble("discount");
 
                     output.Add(outputItem);
-
                 }
             }
             finally

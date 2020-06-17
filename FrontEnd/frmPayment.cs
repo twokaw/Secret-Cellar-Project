@@ -22,6 +22,7 @@ namespace SecretCellar
 
             this.transaction = transaction;
             txt_TenderTransTotal.Text = transaction.Total.ToString("C");
+
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -62,16 +63,6 @@ namespace SecretCellar
 
         private void btnCompleteSale_Click(object sender, EventArgs e)
         {
-
-            if (txtCreditCardAmt.Text.All(char.IsNumber))
-                transaction.PayMethod = "Credit";
-
-            else if (txtCheckAmt.Text.All(char.IsNumber))
-                transaction.PayMethod = "Check";
-
-            else if (txtGiftAmt.Text.All(char.IsNumber))
-                transaction.PayMethod = "Gift";
-
             this.DialogResult = DialogResult.OK;
             this.Close();
         }

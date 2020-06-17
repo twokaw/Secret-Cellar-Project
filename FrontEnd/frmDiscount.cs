@@ -94,7 +94,6 @@ namespace SecretCellar
             {
                 coupon.Price = (-1 * (double.Parse(txtFixedDiscount.Text)));
                 grid.Items.Add(coupon);
-                grid.Subtotal = (grid.Subtotal + (grid.Subtotal * grid.Discount));
             }
             this.Close();
 

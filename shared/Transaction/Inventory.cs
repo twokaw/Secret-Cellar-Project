@@ -17,7 +17,6 @@ namespace Shared
          */
         public double SupplierPrice { get; set; }
         public DateTime PurchasedDate { get; set; }
-
         /*
          * Inventory type section of the database. 
          */

@@ -13,13 +13,91 @@ namespace Shared
         public DateTime TransactionDateTime { get; set; }
         public string Location { get; set; }
         public List<Item> Items { get; set; }
-        public double Subtotal { get; set; }
-        public double LocalTax { get; set; }
-        public double Tax { get; set; }
-        public double Total { get; set; }
+        public double Subtotal
+        {
+            get
+            {
+                double sub = 0;
+
+                Items.ForEach(x => sub += x.Price * x.NumSold);
+
+                return sub * (1 - Discount);
+            }
+        }
+        public double LocalTax
+        {
+            get
+            {
+                double tax = 0;
+
+                if (!TaxExempt)
+                    Items.ForEach(x => tax += (x.NonTaxableLocal && x.Price > 0) ? x.Price * x.Discount * x.NumSold * (1 + x.local_sales_tax) : 0);
+
+                return tax;
+            }
+        }
+        public double Bottle_deposit
+        {
+            get
+            {
+                double tax = 0;
+
+                Items.ForEach(x => tax += x.Bottles * x.NumSold * x.bottle_deposit);
+
+                return tax;
+            }
+        }
+        public double Tax
+        {
+            get
+            {
+                double tax = 0;
+
+                if (!TaxExempt)
+                    Items.ForEach(x => tax += (x.NonTaxable && x.Price > 0) ? x.Price * x.Discount * x.NumSold * (1 + x.sales_tax) : 0);
+
+                return tax;
+            }
+        }
+        public double Total
+        {
+            get
+            {
+                return Subtotal + Tax + LocalTax + Bottle_deposit ;
+            }
+        }
         public bool TaxExempt { get; set; }
-        public string PayMethod { get; set; }
-        public string PayNum { get; set; }  // Credit card digits, check num, or nothing for cash
+        public List<Payment> Payments { get; set; }
+        public string PayMethod
+        {
+            get
+            { 
+                if (Payments != null && Payments.Count > 0)
+                {
+                    if (Payments.Exists(x => x.Method.ToUpper() == "CREDIT"))
+                        return "CREDIT";
+                    else if (Payments.Exists(x => x.Method.ToUpper() == "CHECK"))
+                        return "CHECK";
+
+                    else if (Payments.Exists(x => x.Method.ToUpper() == "GIFT"))
+                        return "GIFT";
+                }
+                return "CASH";
+            }
+        }
+
+        public string PayNum
+        {
+            get
+            {
+                string meth = PayMethod;
+
+                if (meth != "CASH")
+                    return Payments.Find(x => x.Method.ToUpper() == meth).Number;
+
+                return "";
+            }  // Credit card digits, check num, or nothing for cash
+        }
         public double Discount { get; set; }
         public uint EmployeeID { get; set; }
         public uint CustomerID { get; set; }
@@ -32,12 +110,8 @@ namespace Shared
             RegisterID = 1;
             Location   = "";
             Items      = new List<Item>();
-            Subtotal   = 0.0;
-            Tax        = 0.0;
-            Total      = 0.0;
+            Payments = new List<Payment>();
             TaxExempt  = false;
-            PayMethod  = "";
-            PayNum     = "";
             Discount = 0.0;
             
         }
@@ -49,13 +123,8 @@ namespace Shared
                            string Location,
                            List<Item> Items,
                            double Discount,
-                           double Subtotal,
-                           double Tax,
-                           double Total,
                            bool TaxExempt,
-                           string PayMethod,
-                           string PayNum,
-                           double LocalTax,
+                           List<Payment> Payments,
                            uint EmployeeID,
                            uint CustomerID)
         {
@@ -64,17 +133,11 @@ namespace Shared
             this.TransactionDateTime = TransactionDateTime;
             this.Location   = Location;
             this.Items      = Items;
-            this.Discount   = Discount; // Will this be applied before or after subtotal is calculated?
-            this.Subtotal   = Subtotal;
-            this.Tax        = Tax;
-            this.Total      = Total;
+            this.Discount   = Discount;
             this.TaxExempt  = TaxExempt;
-            this.PayMethod  = PayMethod;
-            this.PayNum     = PayNum;
-            this.LocalTax = LocalTax;
+            this.Payments   = Payments;
             this.EmployeeID = EmployeeID;
             this.CustomerID = CustomerID;
-            
         }
 
         // Deserialization constructor
@@ -85,13 +148,9 @@ namespace Shared
             TransactionDateTime = (DateTime)info.GetValue("TransactionDateTime", typeof(DateTime));
             Location = (string)info.GetValue("Location", typeof(string));
             Items = (List<Item>)info.GetValue("Items", typeof(List<Item>));
+            Payments = (List<Payment>)info.GetValue("Payments", typeof(List<Payment>));
             Discount = (double)info.GetValue("double", typeof(double));
-            Subtotal = (double)info.GetValue("Subtotal", typeof(double));
-            Tax = (double)info.GetValue("Tax", typeof(double));
-            Total = (double)info.GetValue("Total", typeof(double));
             TaxExempt = (bool)info.GetValue("TaxExempt", typeof(bool));
-            PayMethod = (string)info.GetValue("PayMethod", typeof(string));
-            PayNum = (string)info.GetValue("PayNum", typeof(string));
         }
         
         // Serialization method
@@ -104,6 +163,7 @@ namespace Shared
             info.AddValue("Items", Items);
             info.AddValue("Discount", Discount);
             info.AddValue("Subtotal", Subtotal);
+            info.AddValue("Payments", Payments);
             info.AddValue("Tax", Tax);
             info.AddValue("Total", Total);
             info.AddValue("TaxExempt", TaxExempt);
