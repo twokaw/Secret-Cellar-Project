@@ -22,6 +22,7 @@ namespace SecretCellar
 
             this.transaction = transaction;
             txt_TenderTransTotal.Text = transaction.Total.ToString("C");
+            txtCash.Text = txtCashAmt.Text.ToString("C");
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -62,8 +63,10 @@ namespace SecretCellar
 
         private void btnCompleteSale_Click(object sender, EventArgs e)
         {
+            if (txtCashAmt.Text.All(char.IsNumber))
+                transaction.PayMethod = "Cash";
 
-            if (txtCreditCardAmt.Text.All(char.IsNumber))
+            else if (txtCreditCardAmt.Text.All(char.IsNumber))
                 transaction.PayMethod = "Credit";
 
             else if (txtCheckAmt.Text.All(char.IsNumber))
@@ -79,7 +82,10 @@ namespace SecretCellar
         private void txt_TransTotal_TextChanged(object sender, EventArgs e)
         {
             txt_TenderTransTotal.Text = transaction.Total.ToString("C");
-        }
+        }.032
+
+
+
 
         private void NumberOnly(object sender, KeyPressEventArgs e)
         {
