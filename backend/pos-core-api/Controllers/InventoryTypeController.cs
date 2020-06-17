@@ -5,6 +5,7 @@ using WebApi.Helpers;
 using MySql.Data.MySqlClient;
 using System.Data;
 using Shared;
+using System.Linq;
 
 namespace WebApi.Controllers
 {
@@ -16,49 +17,6 @@ namespace WebApi.Controllers
         /// Initializes a new database connection to be used in this controller.
         /// </summary>
         DbConn db = new DbConn();
-
-        /// <summary>
-        /// The function checks the database to validate whether a type already exist given the name of that type.
-        /// </summary>
-        /// <param name="typeName"></param>
-        /// <returns>true if the type already exists</returns>
-        private bool DoesTypeExist(string typeName)
-        {
-            try
-            {
-                db.OpenConnection();
-
-                string sqlStatement = "SELECT inventory_type_name FROM inventory_type WHERE inventory_type_name = @name";
-
-                MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
-                cmd.Parameters.Add(new MySqlParameter("name", typeName));
-                MySqlDataReader reader = cmd.ExecuteReader();
-
-                try
-                {
-                    return reader.Read();
-                }
-                catch (Exception ex)
-                {
-                    throw ex;
-                }
-                finally
-                {
-                    reader.Close();
-                }
-
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                db.CloseConnnection();
-
-            }
-        }
-
         
         /// <summary>
         /// Get call that returns all the item types that are stored in the database.
@@ -68,35 +26,27 @@ namespace WebApi.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            List<InventoryType> output = new List<InventoryType>();
-            InventoryType outputItem;
-            db.OpenConnection();
-            //change to view that does sum
-            string sqlStatement = "SELECT * FROM inventory_type";
+            List<InventoryType> types = new List<InventoryType>();
 
-            MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
-            MySqlDataReader reader = cmd.ExecuteReader();
+            string sqlStatement = "SELECT * FROM V_type";
+
             try
             {
-
-
-                while (reader.Read())
-                {
-                    outputItem = new InventoryType();
-                    outputItem.TypeID = reader.IsDBNull("typeID") ? 0 : reader.GetUInt32("typeID");
-                    outputItem.TypeName = reader.IsDBNull("inventory_type_name") ? "" : reader.GetString("inventory_type_name");
-                    outputItem.DiscountDown = reader.IsDBNull("6_to_11_case_discount") ? 0.00 : reader.GetDouble("6_to_11_case_discount");
-                    outputItem.DiscountUp = reader.IsDBNull("12_or_more_case_discount") ? 0.00 : reader.GetDouble("12_or_more_case_discount");
-                    output.Add(outputItem);
-
-                }
+                db.OpenConnection();
+                using MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
+                using MySqlDataReader reader = cmd.ExecuteReader();
+                types = FetchType(reader);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
             }
             finally
             {
-                reader.Close();
+                db.CloseConnnection();
             }
-            db.CloseConnnection();
-            return Ok(output);
+
+            return Ok(types);
         }
 
         /// <summary>
@@ -105,113 +55,344 @@ namespace WebApi.Controllers
         /// <param name="typeName"></param>
         /// <returns>An object of the requested type.</returns>
         // GET: api/InventoryType/typeName
-        [HttpGet("{typeName}", Name = "GetType")]
-        public IActionResult Get(String typeName)
+        [HttpGet("{typeId}", Name = "GetTypeById")]
+        public IActionResult GetID(int typeId)
         {
-            InventoryType outputItem = new InventoryType();
+            List<InventoryType> types = null;
 
-            if (!DoesTypeExist(typeName)) return StatusCode(400, String.Format("There exists no type with the name '{0}'.", typeName));
+            if (GetTypeQty(typeId, "") == -1)
+                return StatusCode(400, $"There exists no type with the Id '{typeId}'.");
 
-            db.OpenConnection();
-            string sqlStatement = "SELECT * FROM inventory_type WHERE inventory_type_name = @name";
+            string sqlStatement = @"
+                SELECT * 
+                FROM v_type 
+                WHERE typeid = @id
+            ";
 
-            MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
-            cmd.Parameters.Add(new MySqlParameter("name", typeName));
-            MySqlDataReader reader = cmd.ExecuteReader();
             try
             {
+                db.OpenConnection();
 
+                using MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
+                cmd.Parameters.Add(new MySqlParameter("id", typeId));
 
-                while (reader.Read())
-                {
-                    outputItem.TypeID = reader.IsDBNull("typeID") ? 0 : reader.GetUInt32("typeID");
-                    outputItem.TypeName = reader.IsDBNull("inventory_type_name") ? "" : reader.GetString("inventory_type_name");
-                    outputItem.DiscountDown = reader.IsDBNull("6_to_11_case_discount") ? 0.00 : reader.GetDouble("6_to_11_case_discount");
-                    outputItem.DiscountUp = reader.IsDBNull("12_or_more_case_discount") ? 0.00 : reader.GetDouble("12_or_more_case_discount");
-                }
+                using MySqlDataReader reader = cmd.ExecuteReader();
+                types = FetchType(reader);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
             }
             finally
             {
-                reader.Close();
+                db.CloseConnnection();
             }
-            db.CloseConnnection();
-            return Ok(outputItem);
+
+            if (types != null && types.Count > 0)
+                return Ok(types[0]);
+            else
+                return NotFound($"{typeId} not found");
+        }
+
+        /// <summary>
+        /// Get call that returns one item type specified by the type name. 
+        /// </summary>
+        /// <param name="typeName"></param>
+        /// <returns>An object of the requested type.</returns>
+        // GET: api/InventoryType/typeName
+        [HttpGet("Name/{typeName}", Name = "GetTypeByName")]
+        public IActionResult GetName(string typeName)
+        {
+            List<InventoryType> types = null;
+
+            if (GetTypeQty(-1, typeName) == -1)
+                return StatusCode(400, $"There exists no type with the name '{typeName}'.");
+
+            string sqlStatement = @"
+                SELECT * 
+                FROM v_type 
+                WHERE inventory_type_name = @name
+            ";
+
+            try
+            {
+                db.OpenConnection();
+
+                using MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
+                cmd.Parameters.Add(new MySqlParameter("name", typeName));
+
+                using MySqlDataReader reader = cmd.ExecuteReader();
+                types = FetchType(reader);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+            finally
+            {
+                db.CloseConnnection();
+            }
+
+            if (types != null && types.Count > 0)
+                return Ok(types[0]);
+            else
+                return NotFound($"{typeName} not found");
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="tester"></param>
+        /// <param name="invType"></param>
         /// <returns></returns>
         // POST: api/InventoryType
         [HttpPost]
-        public IActionResult Post([FromBody] InventoryType tester)
+        public IActionResult Post([FromBody] InventoryType invType)
         {
-            if (DoesTypeExist(tester.TypeName)) return StatusCode(400, "Type already exist.");
+            if (GetTypeQty(-1, invType.TypeName) > -1) 
+                return StatusCode(400, "Type already exist.");
 
+            uint newId = 0;
             try
             {
-                db.OpenConnection();
-
-                //Inserting into inventory_type
-                string sqlStatementType = "SET SQL_MODE = '';INSERT INTO inventory_type VALUES (@typeID, @inventoryType, @discountDown, @discountUp)";
-                MySqlCommand cmdType = new MySqlCommand(sqlStatementType, db.Connection());
-
-                cmdType.Parameters.Add(new MySqlParameter("typeID", tester.TypeID));
-                cmdType.Parameters.Add(new MySqlParameter("inventoryType", tester.TypeName));
-                cmdType.Parameters.Add(new MySqlParameter("discountDown", tester.DiscountDown));
-                cmdType.Parameters.Add(new MySqlParameter("discountUp", tester.DiscountUp));
-                MySqlDataReader reader2 = cmdType.ExecuteReader();
-                reader2.Read();
-                reader2.Close();
-
+                newId = Insert(invType);
             }
             catch (Exception ex)
             {
-                return Content(ex.Message);
+                return StatusCode(500, ex.Message); 
             }
-            db.CloseConnnection();
-            Console.WriteLine("\nConnection closed.");
 
-            return StatusCode(201, "Type succesfully created.");
+            return StatusCode(201, newId);
         }
 
-        // PUT: api/InventoryType/typeName
-        [HttpPut("{typeName}", Name = "PutType")]
-        public IActionResult Put(String typeName, [FromBody] InventoryType tester)
+        // PUT: api/InventoryType
+        [HttpPut()]
+        public IActionResult Put([FromBody] InventoryType invType)
         {
-            try
+            uint newId = 0;
+
+            // if id and name doesn't exist then call the post
+            if (GetTypeQty(Convert.ToInt32(invType.TypeId), invType.TypeName) == -1)
+                newId = Insert(invType);
+            else
             {
-                db.OpenConnection();
-
-                //Inserting into inventory_type
-                string sqlStatementType = "UPDATE inventory_type SET typeID = @typeID, inventory_type_name = @inventoryType, 6_to_11_case_discount = @discountDown, 12_or_more_case_discount = @discountUp WHERE inventory_type_name = @name";
-                MySqlCommand cmdType = new MySqlCommand(sqlStatementType, db.Connection());
-
-                cmdType.Parameters.Add(new MySqlParameter("name", typeName));
-                cmdType.Parameters.Add(new MySqlParameter("typeID", tester.TypeID));
-                cmdType.Parameters.Add(new MySqlParameter("inventoryType", tester.TypeName));
-                cmdType.Parameters.Add(new MySqlParameter("discountDown", tester.DiscountDown));
-                cmdType.Parameters.Add(new MySqlParameter("discountUp", tester.DiscountUp));
-                MySqlDataReader reader2 = cmdType.ExecuteReader();
-                reader2.Read();
-                reader2.Close();
-
+                Update(invType);
+                newId = invType.TypeId;
             }
-            catch (Exception ex)
-            {
-                return Content(ex.Message);
-            }
-            db.CloseConnnection();
-            Console.WriteLine("\nConnection closed.");
 
-            return Ok("Type succesfully updated.");
+            return Ok($"{newId}");
         }
 
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(int id)
         {
+            int qty = GetTypeQty(id, "");
+
+            if(qty == -1)
+                return StatusCode(400, $"No type with the id '{id}'.");
+            else if (qty > 0)
+                return StatusCode(400, $"Can't delete Type id '{id}'.  It has {qty} inventory items assigned to it");
+
+            try
+            {
+                db.OpenConnection();
+
+                //Inserting into inventory_type
+                string sqlStatementType = @"
+                    DELETE FROM  inventory_type 
+                    WHERE typeID = @typeID";
+
+                using MySqlCommand cmdType = new MySqlCommand(sqlStatementType, db.Connection());
+
+                cmdType.Parameters.Add(new MySqlParameter("typeID",id));
+
+                cmdType.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+            db.CloseConnnection();
+
+            return Ok("Type succesfully Deleted");
+        }
+
+        private List<InventoryType> FetchType(MySqlDataReader reader)
+        {
+            List<InventoryType> output = new List<InventoryType>();
+
+            InventoryType outputItem = null;
+
+            while (reader.Read())
+            {
+                outputItem = output.FirstOrDefault(x => x.TypeId == reader.GetUInt32("TypeId"));
+
+                if (outputItem == null)
+                {
+                    outputItem = new InventoryType
+                    {
+                        TypeId = reader.GetUInt32("TypeId"),
+                        TypeName = reader.GetString("inventory_type_name"),
+
+                        IdTax = reader.IsDBNull("IdTax") ? 0 : reader.GetUInt32("idTAX"),
+                        BottleDeposit = reader.IsDBNull("bottle_deposit") ? 0.00 : reader.GetDouble("bottle_deposit"),
+                        SalesTax = reader.IsDBNull("sales_tax") ? 0.00 : reader.GetDouble("sales_tax"),
+                        LocalSalesTax = reader.IsDBNull("local_sales_tax") ? 0.00 : reader.GetDouble("local_sales_tax"),
+                    };
+                    output.Add(outputItem);
+                }
+
+                if (!reader.IsDBNull("discountID"))
+                    outputItem.Discount.Add(new Discount()
+                    {
+                        DiscountID = reader.GetUInt32("discountID"),
+                        DiscountName = reader.GetString("discountName"),
+                        Min = reader.IsDBNull("minqty") ? 0 : reader.GetUInt32("minqty"),
+                        Max = reader.IsDBNull("maxqty") ? 99999999 : reader.GetUInt32("maxqty"),
+                        Amount = reader.GetDouble("Discount"),
+                        Enabled = reader.IsDBNull("minqty") && reader.IsDBNull("maxqty")
+                    });
+            }
+            return output;
+        }
+
+        /// The function checks the database to validate whether a type already exist given the name of that type.
+        /// </summary>
+        /// <param name="typeName"></param>
+        /// <returns>true if the type already exists</returns>
+        private int GetTypeQty(int id, string name)
+        {
+            try
+            {
+                db.OpenConnection();
+
+                string sql = @"
+                    SELECT COUNT(inventoryID) inv
+                    FROM inventory_type
+                    LEFT JOIN inventory_description
+                    USING(typeID)
+                    WHERE 1 <> 1
+                    -- name -- OR   inventory_type_name = @name
+                    -- typeid -- OR   typeid = @typeId
+                    GROUP BY typeID
+                ";
+
+                using MySqlCommand cmd = new MySqlCommand
+                {
+                    Connection = db.Connection()
+                };
+
+                if (!string.IsNullOrEmpty(name))
+                {
+                    cmd.Parameters.Add(new MySqlParameter("name", name));
+                    sql = sql.Replace("-- name --", "");
+                }
+
+                if (id > 0)
+                {
+                    cmd.Parameters.Add(new MySqlParameter("typeId", id));
+                    sql = sql.Replace("-- typeid --", "");
+                }
+
+                cmd.CommandText = sql;
+
+                using MySqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.Read())
+                    return reader.GetInt32("inv");
+                else
+                    return -1;
+
+            }
+            finally { db.CloseConnnection(); }
+        }
+        /// <summary>
+        /// Update the type's discount
+        /// </summary>
+        /// <param name="inv"></param>
+        private void UpdateDiscount(InventoryType inv)
+        {
+            //Inserting into inventory_description
+            string sql = @"                   
+                DELETE FROM Discount_Type WHERE TypeID = @TypeID;
+            ";
+
+            MySqlCommand cmd = new MySqlCommand(sql, db.Connection());
+
+            inv.Discount.ForEach(x => sql += @$"                   
+                    INSERT INTO Discount_Type
+                    (discountID, InventoryID) 
+                    VALUES 
+                    ({x.DiscountID}, @TypeID);
+                ");
+
+            cmd = new MySqlCommand(sql, db.Connection());
+            cmd.Parameters.Add(new MySqlParameter("TypeID", inv.TypeId));
+            cmd.ExecuteNonQuery();
+        }
+
+        private uint Insert(InventoryType invType)
+        {
+            try
+            {
+                db.OpenConnection();
+
+                //Inserting into inventory_type
+                string sqlStatementType = @"
+                    SET SQL_MODE = '';
+
+                    INSERT INTO inventory_type
+                    (typeID, Inventory_Type_name, idTax)
+                    VALUES 
+                    (@typeID, @inventoryType, @idTax)";
+
+                using MySqlCommand cmd = new MySqlCommand(sqlStatementType, db.Connection());
+
+                cmd.Parameters.Add(new MySqlParameter("typeID", invType.TypeId));
+                cmd.Parameters.Add(new MySqlParameter("inventoryType", invType.TypeName));
+                cmd.Parameters.Add(new MySqlParameter("idTax", invType.IdTax));
+
+                cmd.ExecuteNonQuery();
+
+                invType.TypeId = Convert.ToUInt32(cmd.LastInsertedId);
+                UpdateDiscount(invType);
+            }
+            finally
+            {
+                db.CloseConnnection();
+            }
+
+            return invType.TypeId;
+        }
+
+
+        private void Update(InventoryType invType)
+        {
+            try
+            {
+                db.OpenConnection();
+
+                //Inserting into inventory_type
+                string sqlStatementType = @"
+                    UPDATE inventory_type 
+                    SET inventory_type_name = @inventoryType, 
+                        idTax = @idTax
+                    WHERE typeID = @typeID";
+
+                using MySqlCommand cmdType = new MySqlCommand(sqlStatementType, db.Connection());
+
+                cmdType.Parameters.Add(new MySqlParameter("typeID", invType.TypeId));
+                cmdType.Parameters.Add(new MySqlParameter("inventoryType", invType.TypeName));
+                cmdType.Parameters.Add(new MySqlParameter("idTax", invType.IdTax));
+
+                cmdType.ExecuteNonQuery();
+                UpdateDiscount(invType);
+            }
+            finally
+            {
+                db.CloseConnnection();
+            }
         }
     }
+
 }

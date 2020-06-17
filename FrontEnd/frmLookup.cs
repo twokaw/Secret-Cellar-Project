@@ -30,22 +30,32 @@ namespace SecretCellar
 
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void btn_add_Click(object sender, EventArgs e)
         {
-            addCharge();
+            if(addCharge())
+            {
+                this.DialogResult = DialogResult.OK;
+                this.Close();
+            }
+        }
+
+        private void btn_Cancel_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.Cancel;
             this.Close();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private bool addCharge()
         {
-            this.Close();
-        }
+            if (LookupView.SelectedRows.Count > 0)
+            {
+                Inventory i = inventory.First(x => x.Id == uint.Parse(LookupView.SelectedRows[0].Cells["id"].Value.ToString()));
 
-        private double addCharge()
-        {
-            // if (double.TryParse(txtPercentTotalSale.Text, out d))
-           // lookUp.Subtotal += double.Parse(txtCharge.Text);
-            return lookUp.Subtotal;
+                Item item = DataAccess.ConvertInvtoItem(i);
+                lookUp.Items.Add(item);
+                return true;
+            }
+            return false;
         }
         private void txtCharge_TextChanged(object sender, EventArgs e)
         {
@@ -76,9 +86,16 @@ namespace SecretCellar
         {
             //BindingSource dv = ((DataTable)LookupView.DataSource).DefaultView;
             //dv.RowFilter = $"Description like '%{txtlookup.Text}%'";
-           
-            LookupView.DataSource = inventory.Where(x=> x.Name.Contains(txtlookup.Text) || x.Barcode.Contains(txtlookup.Text)).
-                Select (x=> new { Name = x.Name, Id = x.Id, ItemType = x.ItemType, Qty = x.Qty, Barcode = x.Barcode, Price = x.Price }).ToList();
+
+
+            //LookupView.DataSource = inventory.Where(x => x.Name.Contains(txtlookup.Text) || x.Barcode.Contains(txtlookup.Text)).
+            //    Select(x => new { Name = x.Name, Id = x.Id, ItemType = x.ItemType, Qty = x.Qty, Barcode = x.Barcode, Price = x.Price }).ToList();
+
+            LookupView.DataSource = inventory.Where(x => x.Name.Contains(txtlookup.Text) || x.Barcode.Contains(txtlookup.Text)).
+                Select(x => new { Name = x.Name, Id = x.Id, ItemType = x.ItemType, Qty = x.Qty, Barcode = x.Barcode, Price = x.Price }).
+                OrderBy(x => x.Name).
+                ToList();
         }
+
     }
 }

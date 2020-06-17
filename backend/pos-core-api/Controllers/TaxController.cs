@@ -37,10 +37,10 @@ namespace WebApi.Controllers
                 while (reader.Read())
                 {
                     outputItem = new Tax();
-                    outputItem.idTAX = reader.IsDBNull("idTAX") ? 0 : reader.GetUInt32("idTAX");
-                    outputItem.bottle_deposit = reader.IsDBNull("bottle_deposit") ? 0.0 : reader.GetDouble("bottle_deposit");
-                    outputItem.sales_tax = reader.IsDBNull("sales_tax") ? 0.0 : reader.GetDouble("sales_tax");
-                    outputItem.local_sales_tax = reader.IsDBNull("local_sales_tax") ? 0.0 : reader.GetDouble("local_sales_tax");
+                    outputItem.IdTax = reader.IsDBNull("idTAX") ? 0 : reader.GetUInt32("idTAX");
+                    outputItem.BottleDeposit = reader.IsDBNull("bottle_deposit") ? 0.0 : reader.GetDouble("bottle_deposit");
+                    outputItem.SalesTax = reader.IsDBNull("sales_tax") ? 0.0 : reader.GetDouble("sales_tax");
+                    outputItem.LocalSalesTax = reader.IsDBNull("local_sales_tax") ? 0.0 : reader.GetDouble("local_sales_tax");
                     output.Add(outputItem);
                 }
             }
@@ -79,10 +79,10 @@ namespace WebApi.Controllers
             try
             {
                 MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
-                cmd.Parameters.Add(new MySqlParameter("idTAX", tax.idTAX));
-                cmd.Parameters.Add(new MySqlParameter("bottle_deposit", tax.bottle_deposit));
-                cmd.Parameters.Add(new MySqlParameter("sales_tax", tax.sales_tax));
-                cmd.Parameters.Add(new MySqlParameter("local_sales_tax", tax.local_sales_tax));
+                cmd.Parameters.Add(new MySqlParameter("idTAX", tax.IdTax));
+                cmd.Parameters.Add(new MySqlParameter("bottle_deposit", tax.BottleDeposit));
+                cmd.Parameters.Add(new MySqlParameter("sales_tax", tax.SalesTax));
+                cmd.Parameters.Add(new MySqlParameter("local_sales_tax", tax.LocalSalesTax));
                 cmd.ExecuteNonQuery();
                 newId = cmd.LastInsertedId;
             }
@@ -99,7 +99,7 @@ namespace WebApi.Controllers
         public IActionResult Put([FromBody] Tax tax)
         {
             db.OpenConnection();
-            if (GetTax(tax.idTAX) == null)
+            if (GetTax(tax.IdTax) == null)
                 return Post(tax);
             else
             {
@@ -115,10 +115,10 @@ namespace WebApi.Controllers
                 try
                 {
                     MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
-                    cmd.Parameters.Add(new MySqlParameter("idTAX", tax.idTAX));
-                    cmd.Parameters.Add(new MySqlParameter("bottle_deposit", tax.bottle_deposit));
-                    cmd.Parameters.Add(new MySqlParameter("sales_tax", tax.sales_tax));
-                    cmd.Parameters.Add(new MySqlParameter("local_sales_tax", tax.local_sales_tax));
+                    cmd.Parameters.Add(new MySqlParameter("idTAX", tax.IdTax));
+                    cmd.Parameters.Add(new MySqlParameter("bottle_deposit", tax.BottleDeposit));
+                    cmd.Parameters.Add(new MySqlParameter("sales_tax", tax.SalesTax));
+                    cmd.Parameters.Add(new MySqlParameter("local_sales_tax", tax.LocalSalesTax));
                     cmd.ExecuteNonQuery();
                     newId = cmd.LastInsertedId;
                 }
@@ -128,7 +128,7 @@ namespace WebApi.Controllers
                 }
             }
 
-            return Ok(tax.idTAX);
+            return Ok(tax.IdTax);
         }
 
         //Put: api/Tax
@@ -179,10 +179,10 @@ namespace WebApi.Controllers
                 {
                     outputItem = new Tax
                     {
-                        idTAX = reader.IsDBNull("idTAX") ? 0 : reader.GetUInt32("idTAX"),
-                        bottle_deposit = reader.IsDBNull("bottle_deposit") ? 0.0 : reader.GetDouble("bottle_deposit"),
-                        sales_tax = reader.IsDBNull("sales_tax") ? 0.0 : reader.GetDouble("sales_tax"),
-                        local_sales_tax = reader.IsDBNull("local_sales_tax") ? 0.0 : reader.GetDouble("local_sales_tax")
+                        IdTax = reader.IsDBNull("idTAX") ? 0 : reader.GetUInt32("idTAX"),
+                        BottleDeposit = reader.IsDBNull("bottle_deposit") ? 0.0 : reader.GetDouble("bottle_deposit"),
+                        SalesTax = reader.IsDBNull("sales_tax") ? 0.0 : reader.GetDouble("sales_tax"),
+                        LocalSalesTax = reader.IsDBNull("local_sales_tax") ? 0.0 : reader.GetDouble("local_sales_tax")
                     };
                 }
             }

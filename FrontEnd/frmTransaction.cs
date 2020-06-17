@@ -123,7 +123,7 @@ namespace SecretCellar
                     Item item = transaction.Items.FirstOrDefault(x => x.Id == i.Id);
                     if (item == null)
                     {
-                        transaction.Items.Add(new Item(i.Name, i.Id, i.Barcode, i.Qty, 1, i.Price, !i.NonTaxable, i.ItemType, i.Bottles, 0, 0));
+                        transaction.Items.Add(DataAccess.ConvertInvtoItem(i));
                     }
                     else
                     {
@@ -165,10 +165,9 @@ namespace SecretCellar
 
         private void btnLookup_Click(object sender, EventArgs e)
         {
-            {
-                frmLookup lookup = new frmLookup(transaction); //instantiates frmLookup using Lookup
-                lookup.ShowDialog(); // opens form associated with Lookup instantiation
-            }
+            frmLookup lookup = new frmLookup(transaction); //instantiates frmLookup using Lookup
+            lookup.ShowDialog(); // opens form associated with Lookup instantiation
+
         }
     }
 }
