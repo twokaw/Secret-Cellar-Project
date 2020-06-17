@@ -32,7 +32,8 @@ namespace NCR_Printer
                            string header,
                            string footer,
                            Image logo) 
-            : base(InvoiceID, RegisterID, TransactionDateTime, Location, Items, Discount, Subtotal, Tax, Total, TaxExempt, PayMethod, PayNum, LocalTax, EmployeeID, CustomerID)
+            : base(InvoiceID, RegisterID, TransactionDateTime, Location, Items, Discount, TaxExempt,
+                   new List<Payment>(){ new Payment() { Method = PayMethod, Number = PayNum, Amount = 0.0 }}, EmployeeID, CustomerID)
         {
             this.header = header;
             this.footer = footer;

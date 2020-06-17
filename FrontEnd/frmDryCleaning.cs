@@ -45,7 +45,7 @@ namespace SecretCellar
                     NumSold = 1
 
                 });
-                dryClean.Subtotal += d;
+              //  dryClean.Subtotal += d;
             }
 
 

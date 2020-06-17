@@ -26,7 +26,7 @@ namespace HardwareTestApp
 
             List<Item> items = new List<Item>();
             items.Add(new Item("Wine", 911, "911", 3, 1, 99.99, true, "WINE", 1, 0.0, 0.0));
-            Transaction trans = new Transaction(2286, 1, DateTime.Now, "Shueyville, IA", items, 0.0, 99.99, 0.13, 99.99, false, "Card", "1234", 0.0, 1, 2);
+            Transaction trans = new Transaction(2286, 1, DateTime.Now, "Shueyville, IA", items, 0.0, false, new List<Payment>() { new Payment() { Method = "CREDIT", Amount = 99.99, Number = "1234" } }, 1, 2);
 
             Image logo = Image.FromFile("Z:\\SecretCellar\\hardware\\SecretCellar.jpg");
             Receipt r = new Receipt(trans, "The Secret Cellar\n(319) 841-2172\n1205 Curtis Bridge Rd NE", "Thank you!\nCheck our website for events and classes\nwww.SecretCellarwines.com", logo);

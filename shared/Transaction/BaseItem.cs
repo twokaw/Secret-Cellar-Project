@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Shared
 {
-    public class BaseItem
+    public class BaseItem: Tax
     {
         public string Name { get; set; }     // Name of product
         public uint Id { get; set; }

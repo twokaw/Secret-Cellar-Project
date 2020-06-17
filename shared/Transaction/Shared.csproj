@@ -194,6 +194,7 @@
   <ItemGroup>
     <Compile Include="AuthenticateModel.cs" />
     <Compile Include="BaseItem.cs" />
+    <Compile Include="Payment.cs" />
     <Compile Include="Tax.cs" />
     <Compile Include="CustomerModel.cs" />
     <Compile Include="CustomerUpdateModel.cs" />

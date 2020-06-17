@@ -150,17 +150,17 @@ namespace SecretCellar
 
         private void updateTransaction()
         {
-            transaction.Subtotal = 0.0;
-            double transactionBottleDeposit = 0.0;
-            transaction.Total = 0.0;
+          //  transaction.Subtotal = 0.0;
+           // double transactionBottleDeposit = 0.0;
+           // transaction.Total = 0.0;
 
-            foreach (Item item in transaction.Items)
-            {
+          //  foreach (Item item in transaction.Items)
+          //  {
                 // Sum subtotal values for the subtotal box
-                transaction.Subtotal += item.Price * item.NumSold * (1 - item.Discount);
-                transactionBottleDeposit += item.NumSold * item.Bottles * .05;
-                transaction.Total = transaction.Subtotal + transactionBottleDeposit;
-            }
+             //   transaction.Subtotal += item.Price * item.NumSold * (1 - item.Discount);
+            //    transactionBottleDeposit += item.NumSold * item.Bottles * .05;
+             //   transaction.Total = transaction.Subtotal + transactionBottleDeposit;
+          //  }
         }
 
         private void btnLookup_Click(object sender, EventArgs e)
