@@ -8,6 +8,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.UI.WebControls;
 using System.Windows.Forms;
 
 namespace SecretCellar
@@ -85,10 +86,7 @@ namespace SecretCellar
             //LookupView.DataSource = inventory.Where(x => x.Name.Contains(txtlookup.Text) || x.Barcode.Contains(txtlookup.Text)).
             //    Select(x => new { Name = x.Name, Id = x.Id, ItemType = x.ItemType, Qty = x.Qty, Barcode = x.Barcode, Price = x.Price }).ToList();
 
-            LookupView.DataSource = inventory.Where(x => x.Name.Contains(txtlookup.Text) || x.Barcode.Contains(txtlookup.Text)).
-                Select(x => new { Name = x.Name, Id = x.Id, ItemType = x.ItemType, Qty = x.Qty, Barcode = x.Barcode, Price = x.Price }).
-                OrderBy(x => x.Name).
-                ToList();
+            refresh();
         }
 
         private void LookupView_SelectionChanged(object sender, EventArgs e)
@@ -101,7 +99,52 @@ namespace SecretCellar
                 txtName.Text = i.Name;
                 txt_qty.Text = i.Qty.ToString();
                 cboType.Text = i.ItemType;
+                txtBarcode.Text = i.Barcode;
+                txtPrice.Text = i.Price.ToString();
+                cbo_Supplier.Text = suppliers.First(x=>x.SupplierID == i.SupplierID).Name;
+                txtNetPrice.Text = i.SupplierPrice.ToString();
+
+
+
             }
+        }
+
+        private void btn_update_Click(object sender, EventArgs e)
+        {
+            if (LookupView.SelectedRows.Count > 0)
+            {
+                Inventory i = inventory.First(x => x.Id == uint.Parse(LookupView.SelectedRows[0].Cells["id"].Value.ToString()));
+                i.Name= txtName.Text ;
+                if (uint.TryParse(txt_qty.Text, out uint qty)) i.Qty= qty; 
+                else 
+                {
+                    txt_qty.Focus();
+                    txt_qty.SelectAll();
+                    MessageBox.Show("Invalid Quantity");
+                    return;
+                }
+                i.ItemType = cboType.Text;
+                dataAccess.UpdateItem(i);
+                refresh();
+            }
+            
+        }
+        private void refresh()
+        {
+            LookupView.DataSource = inventory.Where(x => x.Name.Contains(txtlookup.Text) || x.Barcode.Contains(txtlookup.Text)).
+               Select(x => new { Name = x.Name, Id = x.Id, ItemType = x.ItemType, Qty = x.Qty, Barcode = x.Barcode, Price = x.Price }).
+               OrderBy(x => x.Name).
+               ToList();
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void txtBarcode_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

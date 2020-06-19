@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.txtlookup = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.LookupView = new System.Windows.Forms.DataGridView();
@@ -49,6 +49,13 @@
             this.btn_update = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btn_new = new System.Windows.Forms.Button();
+            this.lbl_netPrice = new System.Windows.Forms.Label();
+            this.txtNetPrice = new System.Windows.Forms.TextBox();
+            this.Price_txt = new System.Windows.Forms.Label();
+            this.txtPrice = new System.Windows.Forms.TextBox();
+            this.barcode_label = new System.Windows.Forms.Label();
+            this.txtBarcode = new System.Windows.Forms.TextBox();
             this.cbo_Supplier = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.LookupView)).BeginInit();
@@ -143,9 +150,9 @@
             // 
             this.Price.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.Price.DataPropertyName = "Price";
-            dataGridViewCellStyle3.Format = "C2";
-            dataGridViewCellStyle3.NullValue = null;
-            this.Price.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Format = "C2";
+            dataGridViewCellStyle1.NullValue = null;
+            this.Price.DefaultCellStyle = dataGridViewCellStyle1;
             this.Price.HeaderText = "Price";
             this.Price.Name = "Price";
             this.Price.Width = 56;
@@ -181,14 +188,14 @@
             this.cboType.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cboType.FormattingEnabled = true;
-            this.cboType.Location = new System.Drawing.Point(70, 67);
+            this.cboType.Location = new System.Drawing.Point(70, 40);
             this.cboType.Name = "cboType";
             this.cboType.Size = new System.Drawing.Size(155, 21);
             this.cboType.TabIndex = 5;
             // 
             // label4
             // 
-            this.label4.Location = new System.Drawing.Point(9, 66);
+            this.label4.Location = new System.Drawing.Point(9, 39);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(55, 20);
             this.label4.TabIndex = 4;
@@ -199,14 +206,14 @@
             // 
             this.txt_qty.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txt_qty.Location = new System.Drawing.Point(70, 40);
+            this.txt_qty.Location = new System.Drawing.Point(70, 93);
             this.txt_qty.Name = "txt_qty";
             this.txt_qty.Size = new System.Drawing.Size(155, 20);
             this.txt_qty.TabIndex = 3;
             // 
             // label3
             // 
-            this.label3.Location = new System.Drawing.Point(9, 40);
+            this.label3.Location = new System.Drawing.Point(9, 93);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(55, 20);
             this.label3.TabIndex = 2;
@@ -242,6 +249,7 @@
             this.btn_update.TabIndex = 6;
             this.btn_update.Text = "Update";
             this.btn_update.UseVisualStyleBackColor = true;
+            this.btn_update.Click += new System.EventHandler(this.btn_update_Click);
             // 
             // panel1
             // 
@@ -258,6 +266,13 @@
             // 
             this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel2.Controls.Add(this.btn_new);
+            this.panel2.Controls.Add(this.lbl_netPrice);
+            this.panel2.Controls.Add(this.txtNetPrice);
+            this.panel2.Controls.Add(this.Price_txt);
+            this.panel2.Controls.Add(this.txtPrice);
+            this.panel2.Controls.Add(this.barcode_label);
+            this.panel2.Controls.Add(this.txtBarcode);
             this.panel2.Controls.Add(this.cbo_Supplier);
             this.panel2.Controls.Add(this.label5);
             this.panel2.Controls.Add(this.cboType);
@@ -271,6 +286,69 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(234, 390);
             this.panel2.TabIndex = 8;
+            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
+            // 
+            // btn_new
+            // 
+            this.btn_new.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btn_new.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_new.Location = new System.Drawing.Point(20, 346);
+            this.btn_new.Name = "btn_new";
+            this.btn_new.Size = new System.Drawing.Size(86, 30);
+            this.btn_new.TabIndex = 15;
+            this.btn_new.Text = "New Item";
+            this.btn_new.UseVisualStyleBackColor = true;
+            // 
+            // lbl_netPrice
+            // 
+            this.lbl_netPrice.AutoSize = true;
+            this.lbl_netPrice.Location = new System.Drawing.Point(13, 175);
+            this.lbl_netPrice.Name = "lbl_netPrice";
+            this.lbl_netPrice.Size = new System.Drawing.Size(54, 13);
+            this.lbl_netPrice.TabIndex = 14;
+            this.lbl_netPrice.Text = "Net Price:";
+            // 
+            // txtNetPrice
+            // 
+            this.txtNetPrice.Location = new System.Drawing.Point(70, 172);
+            this.txtNetPrice.Name = "txtNetPrice";
+            this.txtNetPrice.Size = new System.Drawing.Size(155, 20);
+            this.txtNetPrice.TabIndex = 13;
+            // 
+            // Price_txt
+            // 
+            this.Price_txt.AutoSize = true;
+            this.Price_txt.Location = new System.Drawing.Point(30, 122);
+            this.Price_txt.Name = "Price_txt";
+            this.Price_txt.Size = new System.Drawing.Size(34, 13);
+            this.Price_txt.TabIndex = 12;
+            this.Price_txt.Text = "Price:";
+            // 
+            // txtPrice
+            // 
+            this.txtPrice.Location = new System.Drawing.Point(70, 119);
+            this.txtPrice.Name = "txtPrice";
+            this.txtPrice.Size = new System.Drawing.Size(155, 20);
+            this.txtPrice.TabIndex = 11;
+            // 
+            // barcode_label
+            // 
+            this.barcode_label.AutoSize = true;
+            this.barcode_label.Location = new System.Drawing.Point(17, 71);
+            this.barcode_label.Name = "barcode_label";
+            this.barcode_label.Size = new System.Drawing.Size(50, 13);
+            this.barcode_label.TabIndex = 10;
+            this.barcode_label.Text = "Barcode:";
+            // 
+            // txtBarcode
+            // 
+            this.txtBarcode.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtBarcode.Location = new System.Drawing.Point(70, 67);
+            this.txtBarcode.Name = "txtBarcode";
+            this.txtBarcode.Size = new System.Drawing.Size(155, 20);
+            this.txtBarcode.TabIndex = 9;
+            this.txtBarcode.TextChanged += new System.EventHandler(this.txtBarcode_TextChanged);
             // 
             // cbo_Supplier
             // 
@@ -278,14 +356,14 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cbo_Supplier.DisplayMember = "Name";
             this.cbo_Supplier.FormattingEnabled = true;
-            this.cbo_Supplier.Location = new System.Drawing.Point(70, 94);
+            this.cbo_Supplier.Location = new System.Drawing.Point(70, 145);
             this.cbo_Supplier.Name = "cbo_Supplier";
             this.cbo_Supplier.Size = new System.Drawing.Size(155, 21);
             this.cbo_Supplier.TabIndex = 8;
             // 
             // label5
             // 
-            this.label5.Location = new System.Drawing.Point(6, 93);
+            this.label5.Location = new System.Drawing.Point(6, 144);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(58, 20);
             this.label5.TabIndex = 7;
@@ -340,5 +418,12 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.ComboBox cbo_Supplier;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button btn_new;
+        private System.Windows.Forms.Label lbl_netPrice;
+        private System.Windows.Forms.TextBox txtNetPrice;
+        private System.Windows.Forms.Label Price_txt;
+        private System.Windows.Forms.TextBox txtPrice;
+        private System.Windows.Forms.Label barcode_label;
+        private System.Windows.Forms.TextBox txtBarcode;
     }
 }
