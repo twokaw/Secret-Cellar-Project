@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Mvc;
 using WebApi.Helpers;
 using MySql.Data.MySqlClient;
 using System.Data;
-using System.Collections.Generic;
 using Shared;
 using System.CodeDom;
 
@@ -30,12 +29,14 @@ namespace WebApi.Controllers
             db.OpenConnection();
 
             string sqlStatement = @"
-                SELECT * FROM transaction WHERE sold_datetime BETWEEN @date1 AND @date2";
+                SELECT * 
+                FROM transaction 
+                WHERE sold_datetime BETWEEN @date1 AND @date2";
 
-            MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
+            using MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
             cmd.Parameters.Add(new MySqlParameter("date1", date1));
             cmd.Parameters.Add(new MySqlParameter("date2", date2));
-            MySqlDataReader reader = cmd.ExecuteReader();
+            using MySqlDataReader reader = cmd.ExecuteReader();
 
             try
             {
@@ -43,17 +44,18 @@ namespace WebApi.Controllers
                 {
                     DateTime aDate = new DateTime();
                     // output item will be a list of all transactions containing a list of all items associated w/ each transaction
-                    outputItem = new Transaction();
-                    // outputItems are retrieved from transaction table
-                    outputItem.InvoiceID = reader.IsDBNull("receiptID") ? 0 : reader.GetUInt32("receiptID");
-                    outputItem.RegisterID = reader.IsDBNull("register") ? 0 : reader.GetUInt32("register");
-                    outputItem.TransactionDateTime = reader.IsDBNull("sold_datetime") ? aDate : reader.GetDateTime("sold_datetime");
-                    outputItem.Location = reader.IsDBNull("location") ? "" : reader.GetString("location");
-                    outputItem.TaxExempt = reader.IsDBNull("tax_exempt") ? false : reader.GetBoolean("tax_exempt");
-                    outputItem.Discount = reader.IsDBNull("discount") ? 0.0 : reader.GetDouble("discount");
+                    outputItem = new Transaction
+                    {
+                        // outputItems are retrieved from transaction table
+                        InvoiceID = reader.IsDBNull("receiptID") ? 0 : reader.GetUInt32("receiptID"),
+                        RegisterID = reader.IsDBNull("register") ? 0 : reader.GetUInt32("register"),
+                        TransactionDateTime = reader.IsDBNull("sold_datetime") ? aDate : reader.GetDateTime("sold_datetime"),
+                        Location = reader.IsDBNull("location") ? "" : reader.GetString("location"),
+                        TaxExempt = reader.IsDBNull("tax_exempt") ? false : reader.GetBoolean("tax_exempt"),
+                        Discount = reader.IsDBNull("discount") ? 0.0 : reader.GetDouble("discount")
+                    };
 
                     output.Add(outputItem);
-
                 }
             }
             finally
@@ -66,15 +68,16 @@ namespace WebApi.Controllers
                 // Grabbing list of all items, to fill sublist of transaction
                 List<Item> itemOutput = new List<Item>();
                 Item itemOut;
-                string itemSQLStatement =
-                    "SELECT id.Id, id.name, id.barcode, id.nontaxable, id.bottle_deposit_qty, id.typeID, " +
-                           "ti.receiptID, ti.sold_qty, ti.sold_price, ti.discount, ti.coupon, inventory_type_name, " +
-                           "inventory_qty " +
-                    "FROM transaction_items ti " +
-                    "JOIN inventory_description id ON ti.Id = id.Id " +
-                    "JOIN inventory_price ip ON id.Id = ip.Id " +
-                    "JOIN inventory_type it ON it.typeID = id.typeID " +
-                    "WHERE receiptID = 1";
+                string itemSQLStatement = @"
+                    SELECT id.Id, id.name, id.barcode, id.nontaxable, id.bottle_deposit_qty, id.typeID, 
+                           ti.receiptID, ti.sold_qty, ti.sold_price, ti.discount, ti.coupon, inventory_type_name, 
+                           inventory_qty
+                    FROM transaction_items ti 
+                    JOIN inventory_description id ON ti.Id = id.Id
+                    JOIN inventory_price ip ON id.Id = ip.Id 
+                    JOIN v_type it ON it.typeID = id.typeID
+                    WHERE receiptID = @receiptID
+                ";
 
                 MySqlCommand itemCmd = new MySqlCommand(itemSQLStatement, db.Connection());
                 itemCmd.Parameters.Add(new MySqlParameter("receiptID", transaction.InvoiceID));
