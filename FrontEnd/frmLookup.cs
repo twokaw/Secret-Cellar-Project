@@ -146,5 +146,44 @@ namespace SecretCellar
         {
 
         }
+
+        private void btn_new_Click(object sender, EventArgs e)
+        {
+            if (LookupView.SelectedRows.Count > 0)
+            {
+                Inventory i = inventory.First(x => x.Id == uint.Parse(LookupView.SelectedRows[0].Cells["id"].Value.ToString()));
+                i.Name = txtName.Text;
+                i.Barcode = txtBarcode.Text;
+                if (uint.TryParse(txt_qty.Text, out uint qty)) i.Qty = qty;
+                else
+                {
+                    txt_qty.Focus();
+                    txt_qty.SelectAll();
+                    MessageBox.Show("Invalid Quantity");
+                    return;
+                }
+                if (uint.TryParse(txtPrice.Text, out uint price)) i.RetailPrice = price;
+                else
+                {
+                    txtPrice.Focus();
+                    txtPrice.SelectAll();
+                    MessageBox.Show("Invalid Price");
+                    return;
+                }
+                if (uint.TryParse(txtNetPrice.Text, out uint netprice)) i.Price = netprice;
+                else
+                {
+                    txtNetPrice.Focus();
+                    txtNetPrice.SelectAll();
+                    MessageBox.Show("Invalid Net Price");
+                    return;
+                }
+                i.ItemType = cboType.Text;
+                (uint.TryParse(cbo_Supplier.Text, out uint cbo_supplier))i.SupplierID = cbo_Supplier.Text;
+
+                dataAccess.InsertItem(i);
+                refresh();
+            }
+        }
     }
 }
