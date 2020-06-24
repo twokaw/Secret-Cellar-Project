@@ -15,6 +15,7 @@ namespace Shared
         public string ItemType { get; set; }
         public uint Bottles { get; set; }
         public List<Discount> Discounts { get; set; } = new List<Discount>();
+        public double SupplierPrice { get; set; }
     }
 
 }

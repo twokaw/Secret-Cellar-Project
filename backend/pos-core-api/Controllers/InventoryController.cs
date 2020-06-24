@@ -107,9 +107,8 @@ namespace WebApi.Controllers
             long lastID = -1;
 
             if (DoesBarcodeExist(inv.Barcode))
-            {
                 return StatusCode(400, "Barcode already exist.");
-            }
+
             try
             {
                 db.OpenConnection();
@@ -439,46 +438,6 @@ namespace WebApi.Controllers
 
                 MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
                 cmd.Parameters.Add(new MySqlParameter("barcode", barcode));
-                MySqlDataReader reader = cmd.ExecuteReader();
-
-                try
-                {
-                    return reader.Read();
-                }
-                catch (Exception ex)
-                {
-                    throw ex;
-                }
-                finally
-                {
-                    reader.Close();
-                }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                db.CloseConnnection();
-            }
-        }
-
-        /// <summary>
-        /// Method that checks if the id already exist.
-        /// </summary>
-        /// <param name="barcode"></param>
-        /// <returns>True if the barcode exist.</returns>
-        private bool DoesIDExist(uint id)
-        {
-            try
-            {
-                db.OpenConnection();
-
-                string sqlStatement = "SELECT id FROM inventory_description WHERE InventoryID = @id";
-
-                MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
-                cmd.Parameters.Add(new MySqlParameter("id", id));
                 MySqlDataReader reader = cmd.ExecuteReader();
 
                 try

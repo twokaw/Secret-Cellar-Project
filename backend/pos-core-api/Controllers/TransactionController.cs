@@ -16,216 +16,349 @@ namespace WebApi.Controllers
     [ApiController]
     public class TransactionController : ControllerBase
     {
-        DbConn db = new DbConn();
+        private readonly DbConn db = new DbConn();
 
-        // Gets list of all transactions within date period. Format: YYYY-MM-DD HH:MM:SS
-        // GET: api/Transaction/
         [HttpGet]
-        public List<Transaction> Get(DateTime date1, DateTime date2)
+        public ActionResult Get()
         {
+            try
+            {
+                return Ok(GetTransactions());
+            }
+            catch(Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+        /*
+       // Gets list of all transactions within date period. Format: YYYY-MM-DD HH:MM:SS
+       // GET: api/Transaction?start= date&
+       [HttpGet]
+        public ActionResult Get([FromQuery] DateTime start, [FromQuery] DateTime end)
+        {
+            try
+            {
+                return Ok(GetTransactions(start, end));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+        */
+        // Get call to be used when barcode on receipt is scanned
+        //Get: api/Transaction/receiptID
+        [HttpGet("{receiptID}")]
+        public ActionResult Get(uint receiptID)
+        {
+            try
+            {
+                return Ok(GetTransaction(receiptID));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            };
+        }
 
-            List<Transaction> output = new List<Transaction>();
-            Transaction outputItem;
+        [HttpPost]
+        public IActionResult Post([FromBody] Transaction transaction)
+        {
+            if(transaction.InvoiceID > 0 && GetTransaction(transaction.InvoiceID, false, false) == null)
+                return StatusCode(400, "Transaction already exists");
+            
+            try
+            {
+                return Ok(InsertTransaction(transaction));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            };
+        }
+
+        private List<Transaction> GetTransactions(bool includeItems = true, bool includePayments = true)
+        {
             db.OpenConnection();
+            try
+            {
+                string sqlStatement = @"
+                 SELECT receiptID, register, sold_datetime, customerID, empID, location, tax_exempt, discount
+                 FROM transaction;
+                ";
 
-            string sqlStatement = @"
-                SELECT * 
-                FROM transaction 
-                WHERE sold_datetime BETWEEN @date1 AND @date2";
+                using MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
+                return GetTransactions(cmd, includeItems, includePayments);
+            }
+            finally
+            {
+                db.CloseConnnection();
+            }
+        }
+        private List<Transaction> GetTransactions(DateTime start, DateTime end, bool includeItems = true, bool includePayments = true)
+        {
+            db.OpenConnection();
+            try
+            {
+                string sqlStatement = @"
+                 SELECT receiptID, register, sold_datetime, customerID, empID, location, tax_exempt, discount
+                 FROM transaction
+                 WHERE sold_datetime BETWEEN @start AND @end;
+                ";
 
-            using MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
-            cmd.Parameters.Add(new MySqlParameter("date1", date1));
-            cmd.Parameters.Add(new MySqlParameter("date2", date2));
-            using MySqlDataReader reader = cmd.ExecuteReader();
+                using MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
+                cmd.Parameters.Add(new MySqlParameter("start", start));
+                cmd.Parameters.Add(new MySqlParameter("end", end));
+                return GetTransactions(cmd, includeItems, includePayments);
+            }
+            finally
+            {
+                db.CloseConnnection();
+            }
+        }
+        private Transaction GetTransaction(uint invoiceID, bool includeItems = true, bool includePayments = true)
+        {
+            db.OpenConnection();
+            try
+            {
+                string sqlStatement = @"
+                 SELECT receiptID, register, sold_datetime, customerID, empID, location, tax_exempt, discount
+                 FROM transaction
+                 WHERE receiptID = @invoiceID;
+                ";
+
+                using MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
+                cmd.Parameters.Add(new MySqlParameter("invoiceID", invoiceID));
+                List<Transaction> transaction = GetTransactions(cmd, includeItems, includePayments);
+
+                return (transaction.Count > 0) ? transaction[0] : null;
+            }
+            finally
+            {
+                db.CloseConnnection();
+            }
+        }
+
+        private List<Transaction> GetTransactions(MySqlCommand cmd, bool includeItems, bool includePayments)
+        {
+            Transaction transaction;
+            List<Transaction> output = new List<Transaction>();
 
             try
             {
+                using MySqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    DateTime aDate = new DateTime();
-                    // output item will be a list of all transactions containing a list of all items associated w/ each transaction
-                    outputItem = new Transaction
+                    transaction = new Transaction
                     {
-                        // outputItems are retrieved from transaction table
                         InvoiceID = reader.IsDBNull("receiptID") ? 0 : reader.GetUInt32("receiptID"),
                         RegisterID = reader.IsDBNull("register") ? 0 : reader.GetUInt32("register"),
-                        TransactionDateTime = reader.IsDBNull("sold_datetime") ? aDate : reader.GetDateTime("sold_datetime"),
+                        TransactionDateTime = reader.IsDBNull("sold_datetime") ? new DateTime() : reader.GetDateTime("sold_datetime"),
+                        CustomerID = reader.IsDBNull("customerID") ? 0 : reader.GetUInt32("customerID"),
+                        EmployeeID = reader.IsDBNull("empID") ? 0 : reader.GetUInt32("empID"),
                         Location = reader.IsDBNull("location") ? "" : reader.GetString("location"),
                         TaxExempt = reader.IsDBNull("tax_exempt") ? false : reader.GetBoolean("tax_exempt"),
                         Discount = reader.IsDBNull("discount") ? 0.0 : reader.GetDouble("discount")
                     };
-
-                    output.Add(outputItem);
+                output.Add(transaction);
                 }
             }
-            finally
-            {
-                reader.Close();
+            finally {
             }
 
-            foreach (Transaction transaction in output)
-            {
-                // Grabbing list of all items, to fill sublist of transaction
-                List<Item> itemOutput = new List<Item>();
-                Item itemOut;
-                string itemSQLStatement = @"
-                    SELECT id.Id, id.name, id.barcode, id.nontaxable, id.bottle_deposit_qty, id.typeID, 
-                           ti.receiptID, ti.sold_qty, ti.sold_price, ti.discount, ti.coupon, inventory_type_name, 
-                           inventory_qty
-                    FROM transaction_items ti 
-                    JOIN inventory_description id ON ti.Id = id.Id
-                    JOIN inventory_price ip ON id.Id = ip.Id 
-                    JOIN v_type it ON it.typeID = id.typeID
-                    WHERE receiptID = @receiptID
-                ";
+            if (includeItems) output.ForEach(x => GetItems(x));
+            if (includePayments) output.ForEach(x => GetPayments(x));
 
-                MySqlCommand itemCmd = new MySqlCommand(itemSQLStatement, db.Connection());
-                itemCmd.Parameters.Add(new MySqlParameter("receiptID", transaction.InvoiceID));
-                MySqlDataReader itemReader = itemCmd.ExecuteReader();
-                try
-                {
-                    while (itemReader.Read())
-                    {
-                        itemOut = new Item(
-                            // from inventory_description
-                            itemReader.IsDBNull("name") ? "" : itemReader.GetString("name"),
-                            // from inventory_description
-                            itemReader.IsDBNull("Id") ? 0 : itemReader.GetUInt32("Id"),
-                            // from inventory_description
-                            itemReader.IsDBNull("barcode") ? "" : itemReader.GetString("barcode"),
-                            // from inventory_price
-                            itemReader.IsDBNull("inventory_qty") ? 0 : itemReader.GetUInt32("inventory_qty"),
-                            // from transaction_items
-                            itemReader.IsDBNull("sold_qty") ? 0 : itemReader.GetUInt32("sold_qty"),
-                            // from transaction_items
-                            itemReader.IsDBNull("sold_price") ? 0.0 : itemReader.GetDouble("sold_price"),
-                            // from inventory_description 
-                            itemReader.IsDBNull("nontaxable") ? false : itemReader.GetBoolean("nontaxable"),
-                            // from inventory_type
-                            itemReader.IsDBNull("inventory_type_name") ? "" : itemReader.GetString("inventory_type_name"),
-                            // from inventory_descripion
-                            itemReader.IsDBNull("bottle_deposit_qty") ? 0 : itemReader.GetUInt32("bottle_deposit_qty"),
-                            // from transaction_items
-                            itemReader.IsDBNull("discount") ? 0.0 : itemReader.GetDouble("discount"),
-                            // from transaction_items
-                            itemReader.IsDBNull("coupon") ? 0.0 : itemReader.GetDouble("coupon")
-                            );
-                        itemOutput.Add(itemOut);
-                    }
-                }
-                finally
-                {
-                    itemReader.Close();
-
-                }
-                db.CloseConnnection();
-
-                transaction.Items = itemOutput;
-
-            }
             return output;
         }
-
-        // Get call to be used when barcode on receipt is scanned
-        //Get: api/Transaction/receiptID
-        [HttpGet("{receiptID}")]
-        public List<Transaction> Get(uint receiptID)
+        private void GetItems(Transaction transaction)
         {
+            string itemSQLStatement = @"
+                SELECT receiptID, name, InventoryID, barcode, sold_qty, sold_price, supplier_price, 
+                        bottles, inventory_type_name, nontaxable, nontaxable_local, inventory_qty
+                FROM v_transaction_items
+                WHERE receiptID = @receiptID
+            ";
 
-            List<Transaction> output = new List<Transaction>();
-            Transaction outputItem;
+            using MySqlCommand cmd = new MySqlCommand(itemSQLStatement, db.Connection());
+            cmd.Parameters.Add(new MySqlParameter("receiptID", transaction.InvoiceID));
+
+            using MySqlDataReader itemReader = cmd.ExecuteReader();
+            while (itemReader.Read())
+            {
+                transaction.Items.Add( new Item
+                {
+                    Name = itemReader.IsDBNull("name") ? "" : itemReader.GetString("name"),
+                    Id = itemReader.IsDBNull("inventoryid") ? 0 : itemReader.GetUInt32("inventoryid"),
+                    Barcode = itemReader.IsDBNull("barcode") ? "" : itemReader.GetString("barcode"),
+                    NumSold = itemReader.IsDBNull("sold_qty") ? 0 : itemReader.GetUInt32("sold_qty"),
+                    Price = itemReader.IsDBNull("sold_price") ? 0.0 : itemReader.GetDouble("sold_price"),
+                    SupplierPrice = itemReader.IsDBNull("supplier_price") ? 0.0 : itemReader.GetDouble("supplier_price"),
+                    Bottles = itemReader.IsDBNull("bottles") ? 0 : itemReader.GetUInt32("bottles"),
+                    ItemType = itemReader.IsDBNull("inventory_type_name") ? "" : itemReader.GetString("inventory_type_name"),
+                    NonTaxable = itemReader.IsDBNull("nontaxable") ? false : itemReader.GetBoolean("nontaxable"),
+                    NonTaxableLocal = itemReader.IsDBNull("nontaxable_local") ? false : itemReader.GetBoolean("nontaxable_local"),
+                    Qty = itemReader.IsDBNull("inventory_qty") ? 0 : itemReader.GetUInt32("inventory_qty"),
+                });
+            }   
+        }
+        private void GetPayments(Transaction transaction)
+        {
+            string itemSQLStatement = @"
+                SELECT PayId, Method, Number, Amount
+                FROM payments
+                WHERE receiptID = @receiptID
+            ";
+
+            using MySqlCommand cmd = new MySqlCommand(itemSQLStatement, db.Connection());
+            cmd.Parameters.Add(new MySqlParameter("receiptID", transaction.InvoiceID));
+
+            using MySqlDataReader itemReader = cmd.ExecuteReader();
+            while (itemReader.Read())
+            {
+                transaction.Payments.Add(new Payment
+                {
+                    Method = itemReader.IsDBNull("method") ? "" : itemReader.GetString("method"),
+                    PayId  = itemReader.IsDBNull("payid")  ? 0  : itemReader.GetUInt32("payid"),
+                    Number = itemReader.IsDBNull("Number") ? "" : itemReader.GetString("Number"),
+                    Amount = itemReader.IsDBNull("Amount") ? 0  : itemReader.GetUInt32("Amount")                        
+                });
+            }
+        }
+        
+        private uint InsertTransaction(Transaction transaction)
+        {
             db.OpenConnection();
-
-            string sqlStatement = "SELECT * FROM transaction WHERE receiptID = @receiptID";
-
-            MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
-            cmd.Parameters.Add(new MySqlParameter("receiptID", receiptID));
-            MySqlDataReader reader = cmd.ExecuteReader();
-
             try
             {
-                while (reader.Read())
-                {
-                    DateTime aDate = new DateTime();
-                    // output item will be a list of all tranactions containing a list of all items associated w/ each transaction
-                    outputItem = new Transaction();
-                    // outputItems are retrieved from transaction table
-                    outputItem.InvoiceID = reader.IsDBNull("receiptID") ? 0 : reader.GetUInt32("receiptID");
-                    outputItem.RegisterID = reader.IsDBNull("register") ? 0 : reader.GetUInt32("register");
-                    outputItem.TransactionDateTime = reader.IsDBNull("sold_datetime") ? aDate : reader.GetDateTime("sold_datetime");
-                    outputItem.Location = reader.IsDBNull("location") ? "" : reader.GetString("location");
-                    outputItem.TaxExempt = reader.IsDBNull("tax_exempt") ? false : reader.GetBoolean("tax_exempt");
-                    outputItem.Discount = reader.IsDBNull("discount") ? 0.0 : reader.GetDouble("discount");
+                string sql = @"
+                  INSERT INTO transaction
+                  (register,  sold_datetime,  customerID,  empID,  location,  tax_exempt,  discount)
+                  VALUES
+                  (@register, @sold_datetime, @customerID, @empID, @location, @tax_exempt, @discount)
+                ";
 
-                    output.Add(outputItem);
+                MySqlCommand cmd = new MySqlCommand(sql, db.Connection());
+                cmd.Parameters.Add(new MySqlParameter("register", transaction.RegisterID));
+                cmd.Parameters.Add(new MySqlParameter("sold_datetime", transaction.TransactionDateTime));
+                cmd.Parameters.Add(new MySqlParameter("customerID", transaction.CustomerID));
+                cmd.Parameters.Add(new MySqlParameter("empID", transaction.EmployeeID));
+                cmd.Parameters.Add(new MySqlParameter("location", transaction.Location));
+                cmd.Parameters.Add(new MySqlParameter("tax_exempt", transaction.TaxExempt));
+                cmd.Parameters.Add(new MySqlParameter("discount", transaction.Discount));
+
+                cmd.ExecuteNonQuery();
+                transaction.InvoiceID = Convert.ToUInt32(cmd.LastInsertedId);
+            }
+            finally
+            {
+                db.CloseConnnection();
+            }
+            InsertItems(transaction);
+            InsertPayments(transaction);
+
+            return transaction.InvoiceID;
+        }
+        private void InsertItems(Transaction transaction)
+        {
+            MySqlCommand cmd;
+            string sql;
+            db.OpenConnection();
+            try
+            {
+                foreach (Item item in transaction.Items)
+                {
+                    sql = @"
+                     INSERT INTO transaction_items
+                     ( receiptID,  inventoryID,  sold_price,  supplier_price,  sold_qty)
+                     VALUES
+                     (@receiptID, @inventoryID, @sold_price, @supplier_price, @sold_qty)
+                    ";
+
+                    cmd = new MySqlCommand(sql, db.Connection());
+                    cmd.Parameters.Add(new MySqlParameter("receiptID", transaction.InvoiceID));
+                    cmd.Parameters.Add(new MySqlParameter("inventoryID", item.Id));
+                    cmd.Parameters.Add(new MySqlParameter("sold_price", item.Price));
+                    cmd.Parameters.Add(new MySqlParameter("supplier_price", item.SupplierPrice));
+                    cmd.Parameters.Add(new MySqlParameter("sold_qty", item.NumSold));
+
+                    cmd.ExecuteNonQuery();
+                    DecrementInventoryQty(item);
+                    cmd.Dispose();
                 }
             }
             finally
             {
-                reader.Close();
-            }
-
-            foreach (Transaction transaction in output)
-            {
-                // Grabbing list of all items, to fill sublist of transaction
-                List<Item> itemOutput = new List<Item>();
-                Item itemOut;
-                string itemSQLStatement =
-                    "SELECT id.Id, id.name, id.barcode, id.nontaxable, id.bottle_deposit_qty, id.typeID, " +
-                           "ti.receiptID, ti.sold_qty, ti.sold_price, ti.discount, ti.coupon, inventory_type_name, " +
-                           "inventory_qty " +
-                    "FROM transaction_items ti " +
-                    "JOIN inventory_description id ON ti.Id = id.Id " +
-                    "JOIN inventory_price ip ON id.Id = ip.Id " +
-                    "JOIN inventory_type it ON it.typeID = id.typeID " +
-                    "WHERE receiptID = 1";
-
-                MySqlCommand itemCmd = new MySqlCommand(itemSQLStatement, db.Connection());
-                itemCmd.Parameters.Add(new MySqlParameter("receiptID", transaction.InvoiceID));
-                MySqlDataReader itemReader = itemCmd.ExecuteReader();
-                try
-                {
-                    while (itemReader.Read())
-                    {
-                        itemOut = new Item(
-                            // from inventory_description
-                            itemReader.IsDBNull("name") ? "" : itemReader.GetString("name"),
-                            // from inventory_description
-                            itemReader.IsDBNull("Id") ? 0 : itemReader.GetUInt32("Id"),
-                            // from inventory_description
-                            itemReader.IsDBNull("barcode") ? "" : itemReader.GetString("barcode"),
-                            // from inventory_price
-                            itemReader.IsDBNull("inventory_qty") ? 0 : itemReader.GetUInt32("inventory_qty"),
-                            // from transaction_items
-                            itemReader.IsDBNull("sold_qty") ? 0 : itemReader.GetUInt32("sold_qty"),
-                            // from transaction_items
-                            itemReader.IsDBNull("sold_price") ? 0.0 : itemReader.GetDouble("sold_price"),
-                            // from inventory_description 
-                            itemReader.IsDBNull("nontaxable") ? false : itemReader.GetBoolean("nontaxable"),
-                            // from inventory_type
-                            itemReader.IsDBNull("inventory_type_name") ? "" : itemReader.GetString("inventory_type_name"),
-                            // from inventory_descripion
-                            itemReader.IsDBNull("bottle_deposit_qty") ? 0 : itemReader.GetUInt32("bottle_deposit_qty"),
-                            // from transaction_items
-                            itemReader.IsDBNull("discount") ? 0.0 : itemReader.GetDouble("discount"),
-                            // from transaction_items
-                            itemReader.IsDBNull("coupon") ? 0.0 : itemReader.GetDouble("coupon")
-                            );
-                        itemOutput.Add(itemOut);
-                    }
-                }
-                finally
-                {
-                    itemReader.Close();
-
-                }
                 db.CloseConnnection();
-
-                transaction.Items = itemOutput;
-
             }
-            return output;
         }
-    
+
+        private void DecrementInventoryQty(Item item)
+        {
+            string sql = @"
+                UPDATE Inventory_price
+                SET Inventory_qty = GREATEST(Inventory_qty - @qty, 0 ) 
+                WHERE inventoryID = @inventoryID 
+            ";
+
+            using MySqlCommand cmd = new MySqlCommand(sql, db.Connection());
+            cmd.Parameters.Add(new MySqlParameter("qty", item.NumSold));
+            cmd.Parameters.Add(new MySqlParameter("inventoryID", item.Id));
+
+            cmd.ExecuteNonQuery();
+        }
+
+        private void AddInventoryQty(Item item)
+        {
+            string sql = @"
+                UPDATE Inventory_price 
+                SET Inventory_qty = Inventory_qty + @qty 
+                WHERE inventoryID = @inventoryID 
+            ";
+
+            db.OpenConnection();
+            try
+            {
+                using MySqlCommand cmd = new MySqlCommand(sql, db.Connection());
+                cmd.Parameters.Add(new MySqlParameter("qty", item.NumSold));
+                cmd.Parameters.Add(new MySqlParameter("inventoryID", item.Id));
+
+                cmd.ExecuteNonQuery();
+            }
+            finally
+            {
+                db.CloseConnnection();
+            }
+        }
+        
+        private void InsertPayments(Transaction transaction)
+        {
+            MySqlCommand cmd;
+            string sql = @"
+                INSERT INTO Payments
+                ( ReceiptID,  Method,  Number,  Amount)
+                VALUES
+                (@ReceiptID, @Method, @Number, @Amount)
+            ";
+
+            db.OpenConnection();
+            try
+            {
+                foreach (Payment pay in transaction.Payments)
+                {
+                    cmd = new MySqlCommand(sql, db.Connection());
+                    cmd.Parameters.Add(new MySqlParameter("receiptID", transaction.InvoiceID));
+                    cmd.Parameters.Add(new MySqlParameter("Method", pay.Method));
+                    cmd.Parameters.Add(new MySqlParameter("Number", pay.Number));
+                    cmd.Parameters.Add(new MySqlParameter("Amount", pay.Amount));
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            finally
+            {
+                db.CloseConnnection();
+            }
+        }
     }
 }
