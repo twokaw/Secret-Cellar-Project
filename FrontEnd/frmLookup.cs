@@ -19,18 +19,22 @@ namespace SecretCellar
         private DataAccess dataAccess = new DataAccess(Properties.Settings.Default.URL);
         private List<Inventory> inventory = null;
         private List<Supplier> suppliers = null;
+        private List<InventoryType> types = null;
         public frmLookup(Transaction transaction)
         {
             lookUp = transaction;
             InitializeComponent();
             inventory = dataAccess.GetInventory();
             suppliers = dataAccess.GetSuppliers();
+            types = dataAccess.GetInventoryType();
+
             LookupView.DataSource = inventory.
                 Select(x => new { Name = x.Name, Id = x.Id, ItemType = x.ItemType, Qty = x.Qty, Barcode = x.Barcode, Price = x.Price }).
                 OrderBy(x => x.Name).
                 ToList();
 
             cbo_Supplier.DataSource = suppliers;
+            cboType.DataSource = types;
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -123,7 +127,8 @@ namespace SecretCellar
                     MessageBox.Show("Invalid Quantity");
                     return;
                 }
-                i.ItemType = cboType.Text;
+               // i.ItemType = cboType.Text;
+                i.TypeID = types.First(x => x.TypeName == cboType.Text).TypeId;
                 dataAccess.UpdateItem(i);
                 refresh();
             }
@@ -178,8 +183,9 @@ namespace SecretCellar
                     MessageBox.Show("Invalid Net Price");
                     return;
                 }
-                i.ItemType = cboType.Text;
-                (uint.TryParse(cbo_Supplier.Text, out uint cbo_supplier))i.SupplierID = cbo_Supplier.Text;
+                //i.ItemType = cboType.Text;
+                i.TypeID = types.First(x => x.TypeName == cboType.Text).TypeId;
+                i.SupplierID = suppliers.First(x => x.Name ==  cbo_Supplier.Text).SupplierID;
 
                 dataAccess.InsertItem(i);
                 refresh();

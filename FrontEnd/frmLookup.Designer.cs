@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.txtlookup = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.LookupView = new System.Windows.Forms.DataGridView();
@@ -150,9 +150,9 @@
             // 
             this.Price.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.Price.DataPropertyName = "Price";
-            dataGridViewCellStyle2.Format = "C2";
-            dataGridViewCellStyle2.NullValue = null;
-            this.Price.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle3.Format = "C2";
+            dataGridViewCellStyle3.NullValue = null;
+            this.Price.DefaultCellStyle = dataGridViewCellStyle3;
             this.Price.HeaderText = "Price";
             this.Price.Name = "Price";
             this.Price.Width = 56;
@@ -187,6 +187,7 @@
             // 
             this.cboType.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.cboType.DisplayMember = "TypeName";
             this.cboType.FormattingEnabled = true;
             this.cboType.Location = new System.Drawing.Point(70, 40);
             this.cboType.Name = "cboType";
