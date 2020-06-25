@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Shared;
 using static SecretCellar.WebConnector;
+using System;
 
 namespace SecretCellar
 {
@@ -16,7 +17,7 @@ namespace SecretCellar
         }
         public DataAccess() { }
 
-#region Inventory
+        #region Inventory
         public void DeleteItem(Inventory inv)
         {
             web.DataDelete ($"api/inventory/{inv.Id}");
@@ -59,17 +60,17 @@ namespace SecretCellar
             else
                 return 0;
         }
-#endregion
+        #endregion
 
-#region Employee
+        #region Employee
         public EmployeeModel GetEmployee(int EmpID)
         {
             string result = web.DataGet($"api/Employee/{EmpID}");
             return (EmployeeModel)JsonConvert.DeserializeObject(result, typeof(EmployeeModel));
         }
-#endregion
+        #endregion
 
-#region Suppliers
+        #region Suppliers
         public List<Supplier> GetSuppliers()
         {
             string result = web.DataGet("api/Supplier");
@@ -92,9 +93,9 @@ namespace SecretCellar
             else 
                 return 0;
         }
-#endregion
+        #endregion
 
-#region Tax
+        #region Tax
         public List<Tax> GetTax()
         {
             string result = web.DataGet("api/Tax");
@@ -116,9 +117,9 @@ namespace SecretCellar
             else
                 return 0;
         }
-#endregion
+        #endregion
 
-#region InventoryType
+        #region InventoryType
         public List<InventoryType> GetInventoryType()
         {
             string result = web.DataGet("api/InventoryType");
@@ -151,13 +152,33 @@ namespace SecretCellar
         {
             Response resp = null;
             string result = web.DataPut($"api/InventoryType/{typeId}", resp);
-            if (uint.TryParse(result, out uint id))
-                return id;
-            else
-                return 0;
+            return uint.TryParse(result, out uint id) ? id : 0;
         }
-#endregion
+        #endregion
 
+        #region Transaction
+        public Transaction Get(uint transactionID)
+        {
+            string result = web.DataGet($"api/Transaction/{transactionID}");
+            return JsonConvert.DeserializeObject<Transaction>(result);
+        }
+        public List<Transaction> Get()
+        {
+            string result = web.DataGet($"api/Transaction");
+            return JsonConvert.DeserializeObject<List<Transaction>>(result);
+        }
+        public List<Transaction> Get(DateTime start, DateTime end )
+        {
+            string result = web.DataGet($"api/Transaction?start={start}&end={end}");
+            return JsonConvert.DeserializeObject<List<Transaction>>(result);
+        }
+        public uint ProcessTransaction(Transaction transaction) 
+        {
+            Response resp = null;
+            string result = web.DataPut($"api/Transaction", transaction, resp);
+            return uint.TryParse(result, out uint id)? id: 0;
+        }  
+        #endregion
         public static Item ConvertInvtoItem(Inventory inv)
         {
             return new Item(inv.Name, inv.Id, inv.Barcode, inv.Qty, 1, inv.Price, !inv.NonTaxable, inv.ItemType, inv.Bottles, 0, 0);

@@ -14,7 +14,9 @@ namespace Shared
         public bool NonTaxableLocal { get; set; }
         public string ItemType { get; set; }
         public uint Bottles { get; set; }
-        public List<Discount> Discount { get; set; } = new List<Discount>();
+        public List<Discount> Discounts { get; set; } = new List<Discount>();
+        public double SupplierPrice { get; set; }
     }
 
 }
+ 
