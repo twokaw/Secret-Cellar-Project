@@ -20,9 +20,10 @@ namespace SecretCellar
         {
             InitializeComponent();
 
-            this.transaction = transaction;
-            txt_TenderTransTotal.Text = transaction.Total.ToString("C");
-
+            //this.transaction = transaction;
+            //txt_TenderTransTotal.Text = transaction.Total.ToString("C");
+            if (txtCashAmt.Text = 
+           
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -66,7 +67,7 @@ namespace SecretCellar
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
-
+        //possibly a duplicate and not needed
         private void txt_TransTotal_TextChanged(object sender, EventArgs e)
         {
             txt_TenderTransTotal.Text = transaction.Total.ToString("C");
@@ -81,6 +82,11 @@ namespace SecretCellar
             {
                 e.Handled = true;
             }
+        }
+
+        private void frmPayment_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
