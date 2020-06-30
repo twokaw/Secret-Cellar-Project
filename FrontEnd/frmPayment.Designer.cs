@@ -30,18 +30,12 @@
         {
             this.LB_CheckAmt = new System.Windows.Forms.Label();
             this.LB_Due = new System.Windows.Forms.Label();
-            this.LB_Check = new System.Windows.Forms.Label();
-            this.LB_CC = new System.Windows.Forms.Label();
-            this.LB_Cash = new System.Windows.Forms.Label();
             this.LB_Total = new System.Windows.Forms.Label();
             this.LB_ChangeDue = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.txt_TenderTransTotal = new System.Windows.Forms.TextBox();
             this.LB_RemainingGiftCardBal = new System.Windows.Forms.Label();
             this.btnCompleteSale = new System.Windows.Forms.Button();
-            this.txtCash = new System.Windows.Forms.TextBox();
-            this.txtCheck = new System.Windows.Forms.TextBox();
-            this.txtCC = new System.Windows.Forms.TextBox();
             this.txtCreditCardAmt = new System.Windows.Forms.TextBox();
             this.LB_CreditCardAmt = new System.Windows.Forms.Label();
             this.txtCheckAmt = new System.Windows.Forms.TextBox();
@@ -52,6 +46,7 @@
             this.txtCashAmt = new System.Windows.Forms.TextBox();
             this.btnMainMenu = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.txtDue = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -69,51 +64,22 @@
             // 
             // LB_Due
             // 
+            this.LB_Due.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.LB_Due.AutoSize = true;
             this.LB_Due.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LB_Due.ForeColor = System.Drawing.Color.Crimson;
-            this.LB_Due.Location = new System.Drawing.Point(431, 485);
+            this.LB_Due.Location = new System.Drawing.Point(474, 390);
             this.LB_Due.Name = "LB_Due";
             this.LB_Due.Size = new System.Drawing.Size(145, 63);
             this.LB_Due.TabIndex = 16;
             this.LB_Due.Text = "Due:";
             // 
-            // LB_Check
-            // 
-            this.LB_Check.AutoSize = true;
-            this.LB_Check.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LB_Check.Location = new System.Drawing.Point(400, 377);
-            this.LB_Check.Name = "LB_Check";
-            this.LB_Check.Size = new System.Drawing.Size(176, 54);
-            this.LB_Check.TabIndex = 17;
-            this.LB_Check.Text = "Check:";
-            // 
-            // LB_CC
-            // 
-            this.LB_CC.AutoSize = true;
-            this.LB_CC.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LB_CC.Location = new System.Drawing.Point(469, 261);
-            this.LB_CC.Name = "LB_CC";
-            this.LB_CC.Size = new System.Drawing.Size(107, 54);
-            this.LB_CC.TabIndex = 18;
-            this.LB_CC.Text = "CC:";
-            // 
-            // LB_Cash
-            // 
-            this.LB_Cash.AutoSize = true;
-            this.LB_Cash.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LB_Cash.ForeColor = System.Drawing.Color.Green;
-            this.LB_Cash.Location = new System.Drawing.Point(425, 143);
-            this.LB_Cash.Name = "LB_Cash";
-            this.LB_Cash.Size = new System.Drawing.Size(151, 54);
-            this.LB_Cash.TabIndex = 19;
-            this.LB_Cash.Text = "Cash:";
-            // 
             // LB_Total
             // 
+            this.LB_Total.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.LB_Total.AutoSize = true;
             this.LB_Total.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LB_Total.Location = new System.Drawing.Point(354, 38);
+            this.LB_Total.Location = new System.Drawing.Point(397, 241);
             this.LB_Total.Name = "LB_Total";
             this.LB_Total.Size = new System.Drawing.Size(222, 63);
             this.LB_Total.TabIndex = 20;
@@ -121,9 +87,10 @@
             // 
             // LB_ChangeDue
             // 
+            this.LB_ChangeDue.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.LB_ChangeDue.AutoSize = true;
             this.LB_ChangeDue.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LB_ChangeDue.Location = new System.Drawing.Point(221, 579);
+            this.LB_ChangeDue.Location = new System.Drawing.Point(264, 494);
             this.LB_ChangeDue.Name = "LB_ChangeDue";
             this.LB_ChangeDue.Size = new System.Drawing.Size(355, 63);
             this.LB_ChangeDue.TabIndex = 21;
@@ -132,29 +99,25 @@
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.txtDue);
             this.panel1.Controls.Add(this.txt_TenderTransTotal);
             this.panel1.Controls.Add(this.LB_RemainingGiftCardBal);
             this.panel1.Controls.Add(this.btnCompleteSale);
-            this.panel1.Controls.Add(this.txtCash);
-            this.panel1.Controls.Add(this.txtCheck);
-            this.panel1.Controls.Add(this.txtCC);
             this.panel1.Controls.Add(this.LB_ChangeDue);
             this.panel1.Controls.Add(this.LB_Total);
-            this.panel1.Controls.Add(this.LB_Cash);
-            this.panel1.Controls.Add(this.LB_CC);
-            this.panel1.Controls.Add(this.LB_Check);
             this.panel1.Controls.Add(this.LB_Due);
-            this.panel1.Location = new System.Drawing.Point(843, 138);
+            this.panel1.Location = new System.Drawing.Point(980, 138);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1002, 982);
+            this.panel1.Size = new System.Drawing.Size(918, 982);
             this.panel1.TabIndex = 22;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // txt_TenderTransTotal
             // 
+            this.txt_TenderTransTotal.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txt_TenderTransTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_TenderTransTotal.Location = new System.Drawing.Point(687, 38);
+            this.txt_TenderTransTotal.Location = new System.Drawing.Point(634, 250);
             this.txt_TenderTransTotal.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txt_TenderTransTotal.Name = "txt_TenderTransTotal";
             this.txt_TenderTransTotal.ReadOnly = true;
@@ -165,9 +128,10 @@
             // 
             // LB_RemainingGiftCardBal
             // 
+            this.LB_RemainingGiftCardBal.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.LB_RemainingGiftCardBal.AutoSize = true;
             this.LB_RemainingGiftCardBal.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LB_RemainingGiftCardBal.Location = new System.Drawing.Point(69, 694);
+            this.LB_RemainingGiftCardBal.Location = new System.Drawing.Point(112, 608);
             this.LB_RemainingGiftCardBal.Name = "LB_RemainingGiftCardBal";
             this.LB_RemainingGiftCardBal.Size = new System.Drawing.Size(507, 63);
             this.LB_RemainingGiftCardBal.TabIndex = 25;
@@ -175,8 +139,9 @@
             // 
             // btnCompleteSale
             // 
+            this.btnCompleteSale.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnCompleteSale.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCompleteSale.Location = new System.Drawing.Point(261, 796);
+            this.btnCompleteSale.Location = new System.Drawing.Point(252, 779);
             this.btnCompleteSale.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnCompleteSale.Name = "btnCompleteSale";
             this.btnCompleteSale.Size = new System.Drawing.Size(472, 105);
@@ -184,36 +149,6 @@
             this.btnCompleteSale.Text = "Complete Sale";
             this.btnCompleteSale.UseVisualStyleBackColor = true;
             this.btnCompleteSale.Click += new System.EventHandler(this.btnCompleteSale_Click);
-            // 
-            // txtCash
-            // 
-            this.txtCash.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCash.Location = new System.Drawing.Point(687, 143);
-            this.txtCash.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.txtCash.Name = "txtCash";
-            this.txtCash.ReadOnly = true;
-            this.txtCash.Size = new System.Drawing.Size(247, 53);
-            this.txtCash.TabIndex = 24;
-            // 
-            // txtCheck
-            // 
-            this.txtCheck.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCheck.Location = new System.Drawing.Point(687, 377);
-            this.txtCheck.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.txtCheck.Name = "txtCheck";
-            this.txtCheck.ReadOnly = true;
-            this.txtCheck.Size = new System.Drawing.Size(247, 53);
-            this.txtCheck.TabIndex = 23;
-            // 
-            // txtCC
-            // 
-            this.txtCC.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCC.Location = new System.Drawing.Point(687, 265);
-            this.txtCC.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.txtCC.Name = "txtCC";
-            this.txtCC.ReadOnly = true;
-            this.txtCC.Size = new System.Drawing.Size(247, 53);
-            this.txtCC.TabIndex = 22;
             // 
             // txtCreditCardAmt
             // 
@@ -283,7 +218,7 @@
             this.panel2.Location = new System.Drawing.Point(101, 138);
             this.panel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(621, 984);
+            this.panel2.Size = new System.Drawing.Size(849, 984);
             this.panel2.TabIndex = 23;
             // 
             // LB_EnterCashAmt
@@ -300,7 +235,7 @@
             // txtCashAmt
             // 
             this.txtCashAmt.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCashAmt.Location = new System.Drawing.Point(288, 134);
+            this.txtCashAmt.Location = new System.Drawing.Point(288, 133);
             this.txtCashAmt.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtCashAmt.Name = "txtCashAmt";
             this.txtCashAmt.Size = new System.Drawing.Size(247, 53);
@@ -329,6 +264,18 @@
             this.label1.TabIndex = 24;
             this.label1.Text = "PAYMENT";
             // 
+            // txtDue
+            // 
+            this.txtDue.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.txtDue.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDue.Location = new System.Drawing.Point(634, 399);
+            this.txtDue.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtDue.Name = "txtDue";
+            this.txtDue.ReadOnly = true;
+            this.txtDue.Size = new System.Drawing.Size(247, 53);
+            this.txtDue.TabIndex = 27;
+            this.txtDue.TabStop = false;
+            // 
             // frmPayment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
@@ -341,6 +288,7 @@
             this.Name = "frmPayment";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmPayment";
+            this.Load += new System.EventHandler(this.frmPayment_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
@@ -353,16 +301,10 @@
         #endregion
         private System.Windows.Forms.Label LB_CheckAmt;
         private System.Windows.Forms.Label LB_Due;
-        private System.Windows.Forms.Label LB_Check;
-        private System.Windows.Forms.Label LB_CC;
-        private System.Windows.Forms.Label LB_Cash;
         private System.Windows.Forms.Label LB_Total;
         private System.Windows.Forms.Label LB_ChangeDue;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnCompleteSale;
-        private System.Windows.Forms.TextBox txtCash;
-        private System.Windows.Forms.TextBox txtCheck;
-        private System.Windows.Forms.TextBox txtCC;
         private System.Windows.Forms.TextBox txtCreditCardAmt;
         private System.Windows.Forms.Label LB_CreditCardAmt;
         private System.Windows.Forms.TextBox txtCheckAmt;
@@ -375,5 +317,6 @@
         private System.Windows.Forms.TextBox txtCashAmt;
         private System.Windows.Forms.Label LB_RemainingGiftCardBal;
         private System.Windows.Forms.TextBox txt_TenderTransTotal;
+        private System.Windows.Forms.TextBox txtDue;
     }
 }
