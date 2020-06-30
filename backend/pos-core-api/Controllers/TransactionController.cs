@@ -75,7 +75,7 @@ namespace WebApi.Controllers
             {
                 return StatusCode(500, ex.Message);
             };
-        }
+         }
 
         private List<Transaction> GetTransactions(bool includeItems = true, bool includePayments = true)
         {
