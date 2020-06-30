@@ -15,7 +15,7 @@ namespace WebApi.Controllers
     {
         // Initializing a new database connection objection from the DbConn helper.
         // This class allows me to open and close a connection to the database via methods. 
-        DbConn db = new DbConn();
+        readonly DbConn db = new DbConn();
 
 
         /// <summary>
@@ -28,28 +28,16 @@ namespace WebApi.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            List<Inventory> output = new List<Inventory>();
-            db.OpenConnection();
-
-            //change to view that does sum
-            string sqlStatement = @"
-                    SELECT *
-                    FROM v_inventory 
-               ";
-            MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
-            MySqlDataReader reader = cmd.ExecuteReader();
             try
             {
-                output = fetchInventory(reader);
+                return Ok(GetInv());
             }
-            finally
+            catch (Exception ex)
             {
-                reader.Close();
+                return StatusCode(500, ex.Message);
             }
-            db.CloseConnnection();
-            return Ok(output);
         }
-      
+
         /// <summary>
         /// Returns a single item that matches the barcode that is sent. 
         /// </summary>
@@ -58,62 +46,69 @@ namespace WebApi.Controllers
         /// A single inventory item that matches the barcode. 
         /// </returns>
         // GET: api/Inventory/barcode
-        [HttpGet("{barcode}", Name = "GetInventory")]
-        public IActionResult Get(String barcode)
+        [HttpGet("id/{id}", Name = "GetInventory")]
+        public IActionResult Get(uint id)
         {
-            List<Inventory> output = null;
-
+            Inventory output;
             try
             {
-                db.OpenConnection();
-
-                string sqlStatement = @"
-                    SELECT *
-                    FROM v_inventory 
-                    WHERE barcode = @bar
-                ";
-
-                MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
-                cmd.Parameters.Add(new MySqlParameter("bar", barcode));
-                MySqlDataReader reader = cmd.ExecuteReader();
-                try
-                {
-                    output = fetchInventory(reader);
-                }
-                finally
-                {
-                    reader.Close();
-                }
+                output = GetInv(id);
             }
             catch (Exception ex)
             {
                 return StatusCode(500, ex.Message);
             }
-            finally
+
+            if (output == null)
+                return StatusCode(400, $"The item with the id '{id}' does not exist.");
+            else
+                return Ok(output);
+        }
+
+
+
+        /// <summary>
+        /// Returns a single item that matches the barcode that is sent. 
+        /// </summary>
+        /// <param name="barcode"></param>
+        /// <returns>
+        /// A single inventory item that matches the barcode. 
+        /// </returns>
+        // GET: api/Inventory/barcode
+        [HttpGet("{barcode}", Name = "GetInventoryBarcode")]
+        public IActionResult Get(string barcode)
+        {
+            Inventory output;
+
+            try
             {
-                db.CloseConnnection();
+                output = GetInv(barcode);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
             }
 
-            if (output == null || output.Count == 0) 
-                return StatusCode(400, $"That item with the barcode '{barcode}' does not exist. Please enter a valid barcode.");
+            if (output == null) 
+                return StatusCode(400, $"That item with the barcode '{barcode}' does not exist.");
             else
-                return Ok(output[0]);
+                return Ok(output);
         }
 
         /// <summary>
         /// Creates a new inventory item and stores it in the inventory description table.
         /// </summary>
-        /// <param name="tester"></param>
+        /// <param name="inv"></param>
         /// <returns></returns>
         // POST: api/Inventory
         [HttpPost]
-        public IActionResult Post([FromBody] Inventory tester)
+        public IActionResult Post([FromBody] Inventory inv)
         {
             long lastID = -1;
-            if (DoesBarcodeExist(tester.Barcode))
-            {
+
+            if (DoesBarcodeExist(inv.Barcode))
                 return StatusCode(400, "Barcode already exist.");
-            }
+
             try
             {
                 db.OpenConnection();
@@ -126,23 +121,45 @@ namespace WebApi.Controllers
                     (@name, @supplierID, @barcode, @retailPrice, @description, @typeID, @bottles, @nonTaxable, @nonTaxableLocal);
                 ";
 
+                if (string.IsNullOrWhiteSpace(inv.Barcode))
+                    inv.Barcode = inv.Name.Replace(" ", "").ToUpper();
+                else
+                    inv.Barcode = inv.Barcode.Replace(" ", "").ToUpper();
+
                 MySqlCommand cmd = new MySqlCommand(sql, db.Connection());
-                //cmd.Parameters.Add(new MySqlParameter("id", tester.Id));
-                cmd.Parameters.Add(new MySqlParameter("name", tester.Name));
-                cmd.Parameters.Add(new MySqlParameter("supplierID", tester.SupplierID));
-                cmd.Parameters.Add(new MySqlParameter("barcode", tester.Barcode));
-                cmd.Parameters.Add(new MySqlParameter("retailPrice", tester.RetailPrice));
-                cmd.Parameters.Add(new MySqlParameter("description", tester.Description));
-                cmd.Parameters.Add(new MySqlParameter("typeID", tester.TypeID));
-                cmd.Parameters.Add(new MySqlParameter("bottles", tester.Bottles));
-                cmd.Parameters.Add(new MySqlParameter("nonTaxable", tester.NonTaxable));
-                cmd.Parameters.Add(new MySqlParameter("nonTaxableLocal", tester.NonTaxableLocal));
+
+                //cmd.Parameters.Add(new MySqlParameter("id", inv.Id));
+                cmd.Parameters.Add(new MySqlParameter("name", inv.Name.Trim()));
+                cmd.Parameters.Add(new MySqlParameter("supplierID", inv.SupplierID));
+                cmd.Parameters.Add(new MySqlParameter("barcode", inv.Barcode.Trim().ToUpper()));
+                cmd.Parameters.Add(new MySqlParameter("retailPrice", inv.RetailPrice));
+                cmd.Parameters.Add(new MySqlParameter("description", inv.Description.Trim()));
+                cmd.Parameters.Add(new MySqlParameter("typeID", inv.TypeID));
+                cmd.Parameters.Add(new MySqlParameter("bottles", inv.Bottles));
+                cmd.Parameters.Add(new MySqlParameter("nonTaxable", inv.NonTaxable));
+                cmd.Parameters.Add(new MySqlParameter("nonTaxableLocal", inv.NonTaxableLocal));
                 cmd.ExecuteNonQuery();
-                lastID = cmd.LastInsertedId;
 
-                tester.Id = Convert.ToUInt32(cmd.LastInsertedId);
+                inv.Id = Convert.ToUInt32(cmd.LastInsertedId);
+                cmd.Dispose();
 
-                updateDiscount(tester);
+
+                //Inserting into inventory_description
+                sql = @"
+                    INSERT INTO inventory_price 
+                    (name, Inventory_Qty, Supplier_price) 
+                    VALUES 
+                    (@id, @qty, @supplier_price);
+                ";
+
+                cmd = new MySqlCommand(sql, db.Connection());
+                //cmd.Parameters.Add(new MySqlParameter("id", inv.Id));
+                cmd.Parameters.Add(new MySqlParameter("id", inv.Id));
+                cmd.Parameters.Add(new MySqlParameter("Qty", inv.Qty));
+                cmd.Parameters.Add(new MySqlParameter("Supplier_price", inv.SupplierPrice));
+                cmd.ExecuteNonQuery();
+
+                UpdateDiscount(inv);
             }
             catch (Exception ex)
             {
@@ -156,7 +173,7 @@ namespace WebApi.Controllers
             return StatusCode(201, lastID);
         }
 
-        private void updateDiscount(Inventory inv)
+        private void UpdateDiscount(Inventory inv)
         {
             //Inserting into inventory_description
            string sql = @"                   
@@ -165,12 +182,12 @@ namespace WebApi.Controllers
 
             MySqlCommand cmd = new MySqlCommand(sql, db.Connection()); 
             
-            inv.Discount.ForEach(x => sql += @$"                   
-                    INSERT INTO Discount_Inventory
-                    (discountID, InventoryID) 
-                    VALUES 
-                    ({x.DiscountID}, @InventoryID);
-                ");
+            inv.Discounts.ForEach(x => sql += @$"                   
+                INSERT INTO Discount_Inventory
+                (discountID, InventoryID) 
+                VALUES 
+                ({x.DiscountID}, @InventoryID);
+            ");
 
             cmd = new MySqlCommand(sql, db.Connection());
             cmd.Parameters.Add(new MySqlParameter("InventoryID", inv.Id));
@@ -182,20 +199,29 @@ namespace WebApi.Controllers
         /// Udpates and existing item in the inventory_description table.
         /// </summary>
         /// <param name="barcode"></param>
-        /// <param name="tester"></param>
+        /// <param name="inv"></param>
         /// <returns></returns>
         // PUT: api/Inventory/barcode
         [HttpPut("{barcode}", Name = "PutDescription")]
-        public IActionResult Put(String barcode, [FromBody] Inventory tester)
+        public IActionResult Put([FromBody] Inventory inv)
         {
-            if(DoesBarcodeExist(tester.Barcode))
-                return Post(tester);
+            Inventory i = GetInv(inv.Id);
 
+            if (string.IsNullOrWhiteSpace(inv.Barcode))
+                inv.Barcode = inv.Name.Replace(" ", "").ToUpper();
+            else
+                inv.Barcode = inv.Barcode.Replace(" ", "").ToUpper();
+
+            if (i == null)
+                return Post(inv);
+            else if(i.Barcode != inv.Barcode.Trim().ToUpper() && DoesBarcodeExist(i.Barcode))
+                return StatusCode(400, "Barcode already exist.");
+        
             try
             {
                 db.OpenConnection();
 
-                string sqlStatementType = @"
+                string sql = @"
                     UPDATE inventory_description 
                     SET name = @name, supplierID = @supplierID, 
                         barcode = @barcode, retail_price = @retailPrice, 
@@ -206,20 +232,36 @@ namespace WebApi.Controllers
                     WHERE barcode = @bar;
                 ";
 
-                MySqlCommand cmd = new MySqlCommand(sqlStatementType, db.Connection());
-                cmd.Parameters.Add(new MySqlParameter("bar", barcode));
-                cmd.Parameters.Add(new MySqlParameter("id", tester.Id));
-                cmd.Parameters.Add(new MySqlParameter("name", tester.Name));
-                cmd.Parameters.Add(new MySqlParameter("supplierID", tester.SupplierID));
-                cmd.Parameters.Add(new MySqlParameter("barcode", tester.Barcode));
-                cmd.Parameters.Add(new MySqlParameter("retailPrice", tester.RetailPrice));
-                cmd.Parameters.Add(new MySqlParameter("description", tester.Description));
-                cmd.Parameters.Add(new MySqlParameter("typeID", tester.TypeID));
-                cmd.Parameters.Add(new MySqlParameter("bottleDepositQty", tester.Bottles));
-                cmd.Parameters.Add(new MySqlParameter("nonTaxable", tester.NonTaxable));
+                MySqlCommand cmd = new MySqlCommand(sql, db.Connection());
+                cmd.Parameters.Add(new MySqlParameter("bar", inv.Barcode));
+                cmd.Parameters.Add(new MySqlParameter("id", inv.Id));
+                cmd.Parameters.Add(new MySqlParameter("name", inv.Name));
+                cmd.Parameters.Add(new MySqlParameter("supplierID", inv.SupplierID));
+                cmd.Parameters.Add(new MySqlParameter("barcode", inv.Barcode));
+                cmd.Parameters.Add(new MySqlParameter("retailPrice", inv.RetailPrice));
+                cmd.Parameters.Add(new MySqlParameter("description", inv.Description));
+                cmd.Parameters.Add(new MySqlParameter("typeID", inv.TypeID));
+                cmd.Parameters.Add(new MySqlParameter("bottleDepositQty", inv.Bottles));
+                cmd.Parameters.Add(new MySqlParameter("nonTaxable", inv.NonTaxable));
                 
                 cmd.ExecuteNonQuery();
-                updateDiscount(tester);
+
+                //Inserting into inventory_description
+                sql = @"
+                    UPDATE inventory_price 
+                      Inventory_Qty = @qty, 
+                      Supplier_price =  @supplier_price
+                   WHERE InventoryId = @id;
+                ";
+
+                cmd = new MySqlCommand(sql, db.Connection());
+                //cmd.Parameters.Add(new MySqlParameter("id", inv.Id));
+                cmd.Parameters.Add(new MySqlParameter("id", inv.Id));
+                cmd.Parameters.Add(new MySqlParameter("Qty", inv.Qty));
+                cmd.Parameters.Add(new MySqlParameter("Supplier_price", inv.SupplierPrice));
+                cmd.ExecuteNonQuery();
+
+                UpdateDiscount(inv);
             }
             catch (Exception ex)
             {
@@ -230,14 +272,13 @@ namespace WebApi.Controllers
                 db.CloseConnnection();
             }
 
-            return Ok(tester.Id);
+            return Ok(inv.Id);
         }
 
         // DELETE: api/[controller]/id
         [HttpDelete("{Invid}")]
         public IActionResult Delete(int Invid)
         {
-
             try
             {
                 db.OpenConnection();
@@ -254,6 +295,85 @@ namespace WebApi.Controllers
             db.CloseConnnection();
 
             return Ok("Item succesfully Deleted.");
+        }
+
+
+        private List<Inventory> GetInv()
+        {
+            List<Inventory> output = new List<Inventory>();
+            db.OpenConnection();
+            try
+            {
+                //change to view that does sum
+                string sqlStatement = @"
+                        SELECT *
+                        FROM v_inventory 
+                   ";
+                using MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
+                using MySqlDataReader reader = cmd.ExecuteReader();
+                output = fetchInventory(reader);
+            }
+            finally
+            {
+                db.CloseConnnection();
+            }
+            
+            return output;
+        }
+
+        private Inventory GetInv(uint id)
+        {
+            List<Inventory> output = null;
+
+            try
+            {
+                db.OpenConnection();
+
+                string sqlStatement = @"
+                    SELECT *
+                    FROM v_inventory 
+                    WHERE Inventoryid = @id
+                ";
+
+                using MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
+                cmd.Parameters.Add(new MySqlParameter("id", id));
+                using MySqlDataReader reader = cmd.ExecuteReader();
+                output = fetchInventory(reader);
+            }
+            finally
+            {
+                db.CloseConnnection();
+            }
+
+            return output[0];
+        }
+
+        private Inventory GetInv(string barcode)
+        {
+            List<Inventory> output = null;
+
+            try
+            {
+                db.OpenConnection();
+
+                string sqlStatement = @"
+                    SELECT *
+                    FROM v_inventory 
+                    WHERE barcode = @bar
+                ";
+
+                using MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
+                cmd.Parameters.Add(new MySqlParameter("bar", barcode));
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                output = fetchInventory(reader);
+            }
+            finally
+            {
+                db.CloseConnnection();
+            }
+
+            return output[0];
         }
 
         private List<Inventory> fetchInventory(MySqlDataReader reader)
@@ -282,11 +402,15 @@ namespace WebApi.Controllers
                     outputItem.SupplierPrice = reader.IsDBNull("supplier_price") ? 0.00 : reader.GetDouble("supplier_price");
                     outputItem.PurchasedDate = reader.IsDBNull("purchased_date") ? DateTime.Now : reader.GetDateTime("purchased_date");
                     outputItem.ItemType = reader.IsDBNull("inventory_type_name") ? "" : reader.GetString("inventory_type_name");
+                    outputItem.BottleDeposit = reader.IsDBNull("bottle_deposit") ? 0 : reader.GetDouble("bottle_deposit");
+                    outputItem.IdTax = reader.IsDBNull("idTax") ? 0 : reader.GetUInt32("idTax");
+                    outputItem.SalesTax = reader.IsDBNull("sales_tax") ? 0 : reader.GetDouble("sales_tax");
+                    outputItem.LocalSalesTax = reader.IsDBNull("local_sales_tax") ? 0 : reader.GetDouble("local_sales_tax");
                     output.Add(outputItem);
                 }
 
                 if (!reader.IsDBNull("discountID"))
-                    outputItem.Discount.Add(new Discount()
+                    outputItem.Discounts.Add(new Discount()
                     {
                         DiscountID = reader.GetUInt32("discountID"),
                         DiscountName = reader.GetString("discountName"),
@@ -314,46 +438,6 @@ namespace WebApi.Controllers
 
                 MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
                 cmd.Parameters.Add(new MySqlParameter("barcode", barcode));
-                MySqlDataReader reader = cmd.ExecuteReader();
-
-                try
-                {
-                    return reader.Read();
-                }
-                catch (Exception ex)
-                {
-                    throw ex;
-                }
-                finally
-                {
-                    reader.Close();
-                }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                db.CloseConnnection();
-            }
-        }
-
-        /// <summary>
-        /// Method that checks if the id already exist.
-        /// </summary>
-        /// <param name="barcode"></param>
-        /// <returns>True if the barcode exist.</returns>
-        private bool DoesIDExist(uint id)
-        {
-            try
-            {
-                db.OpenConnection();
-
-                string sqlStatement = "SELECT id FROM inventory_description WHERE InventoryID = @id";
-
-                MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
-                cmd.Parameters.Add(new MySqlParameter("id", id));
                 MySqlDataReader reader = cmd.ExecuteReader();
 
                 try
