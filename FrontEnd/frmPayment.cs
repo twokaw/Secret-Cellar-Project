@@ -22,7 +22,8 @@ namespace SecretCellar
 
             //this.transaction = transaction;
             //txt_TenderTransTotal.Text = transaction.Total.ToString("C");
-            if (txtCashAmt.Text = 
+
+            //if (txtCashAmt.Text =  
            
         }
 
