@@ -224,12 +224,12 @@ namespace WebApi.Controllers
                 string sql = @"
                     UPDATE inventory_description 
                     SET name = @name, supplierID = @supplierID, 
-                        barcode = @barcode, retail_price = @retailPrice, 
+                        barcode = @barcode, retail_price = @Price, 
                         description = @description, typeID = @typeID, 
                         bottle_deposit_qty = @bottleDepositQty,
                         nontaxable = @nonTaxable, 
                         nontaxable_local = @nonTaxableLocal 
-                    WHERE barcode = @bar;
+                    WHERE InventoryId = @id;
                 ";
 
                 MySqlCommand cmd = new MySqlCommand(sql, db.Connection());
@@ -238,29 +238,28 @@ namespace WebApi.Controllers
                 cmd.Parameters.Add(new MySqlParameter("name", inv.Name));
                 cmd.Parameters.Add(new MySqlParameter("supplierID", inv.SupplierID));
                 cmd.Parameters.Add(new MySqlParameter("barcode", inv.Barcode));
-                cmd.Parameters.Add(new MySqlParameter("retailPrice", inv.Price));
+                cmd.Parameters.Add(new MySqlParameter("Price", inv.Price));
                 cmd.Parameters.Add(new MySqlParameter("description", inv.Description));
                 cmd.Parameters.Add(new MySqlParameter("typeID", inv.TypeID));
                 cmd.Parameters.Add(new MySqlParameter("bottleDepositQty", inv.Bottles));
                 cmd.Parameters.Add(new MySqlParameter("nonTaxable", inv.NonTaxable));
-                
+                cmd.Parameters.Add(new MySqlParameter("nonTaxableLocal", inv.NonTaxableLocal));
+
                 cmd.ExecuteNonQuery();
-
-                //Inserting into inventory_description
-                sql = @"
-                   UPDATE inventory_price 
-                      Inventory_Qty  = @qty, 
-                      Supplier_price = @supplier_price
-                   WHERE InventoryId = @id;
-                ";
-
-                cmd = new MySqlCommand(sql, db.Connection());
-                //cmd.Parameters.Add(new MySqlParameter("id", inv.Id));
+                cmd.Dispose();
+                
+                cmd = new MySqlCommand(@"
+                  UPDATE inventory_price 
+                  SET Inventory_Qty = @qty, 
+                      Supplier_price = @supplier_price 
+                  WHERE InventoryId = @id;
+                ", db.Connection());
+                
                 cmd.Parameters.Add(new MySqlParameter("id", inv.Id));
                 cmd.Parameters.Add(new MySqlParameter("Qty", inv.Qty));
                 cmd.Parameters.Add(new MySqlParameter("Supplier_price", inv.SupplierPrice));
                 cmd.ExecuteNonQuery();
-
+                cmd.Dispose();
                 UpdateDiscount(inv);
             }
             catch (Exception ex)

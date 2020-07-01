@@ -17,24 +17,11 @@ namespace WebApi.Controllers
     public class TransactionController : ControllerBase
     {
         private readonly DbConn db = new DbConn();
-
+        
+        // Gets list of all transactions within date period. Format: YYYY-MM-DD HH:MM:SS
+        // GET: api/Transaction?start= date&end= date
         [HttpGet]
-        public ActionResult Get()
-        {
-            try
-            {
-                return Ok(GetTransactions());
-            }
-            catch(Exception ex)
-            {
-                return StatusCode(500, ex.Message);
-            }
-        }
-        /*
-       // Gets list of all transactions within date period. Format: YYYY-MM-DD HH:MM:SS
-       // GET: api/Transaction?start= date&
-       [HttpGet]
-        public ActionResult Get([FromQuery] DateTime start, [FromQuery] DateTime end)
+        public ActionResult Get(DateTime start, DateTime end)
         {
             try
             {
@@ -45,7 +32,7 @@ namespace WebApi.Controllers
                 return StatusCode(500, ex.Message);
             }
         }
-        */
+        
         // Get call to be used when barcode on receipt is scanned
         //Get: api/Transaction/receiptID
         [HttpGet("{receiptID}")]
@@ -61,6 +48,11 @@ namespace WebApi.Controllers
             };
         }
 
+        /// <summary>
+        /// Insert a new transaction 
+        /// </summary>
+        /// <param name="transaction"></param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult Post([FromBody] Transaction transaction)
         {
@@ -76,25 +68,6 @@ namespace WebApi.Controllers
                 return StatusCode(500, ex.Message);
             };
          }
-
-        private List<Transaction> GetTransactions(bool includeItems = true, bool includePayments = true)
-        {
-            db.OpenConnection();
-            try
-            {
-                string sqlStatement = @"
-                 SELECT receiptID, register, sold_datetime, customerID, empID, location, tax_exempt, discount
-                 FROM transaction;
-                ";
-
-                using MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
-                return GetTransactions(cmd, includeItems, includePayments);
-            }
-            finally
-            {
-                db.CloseConnnection();
-            }
-        }
         private List<Transaction> GetTransactions(DateTime start, DateTime end, bool includeItems = true, bool includePayments = true)
         {
             db.OpenConnection();
@@ -103,12 +76,22 @@ namespace WebApi.Controllers
                 string sqlStatement = @"
                  SELECT receiptID, register, sold_datetime, customerID, empID, location, tax_exempt, discount
                  FROM transaction
-                 WHERE sold_datetime BETWEEN @start AND @end;
                 ";
 
                 using MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
-                cmd.Parameters.Add(new MySqlParameter("start", start));
-                cmd.Parameters.Add(new MySqlParameter("end", end));
+
+
+                if (start > DateTime.MinValue)
+                {
+                    cmd.Parameters.Add(new MySqlParameter("start", start));
+                    cmd.CommandText += " AND sold_datetime >= @start";
+
+                    if (end >= start)
+                    {
+                        cmd.CommandText += " AND sold_datetime <= @end";
+                        cmd.Parameters.Add(new MySqlParameter("end", end));
+                    }
+                }
                 return GetTransactions(cmd, includeItems, includePayments);
             }
             finally
