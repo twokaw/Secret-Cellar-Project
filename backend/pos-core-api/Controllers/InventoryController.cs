@@ -118,7 +118,7 @@ namespace WebApi.Controllers
                     INSERT INTO inventory_description 
                     (name, supplierID, barcode, retail_price, description, typeID, bottle_deposit_qty, nontaxable, nontaxable_local) 
                     VALUES 
-                    (@name, @supplierID, @barcode, @retailPrice, @description, @typeID, @bottles, @nonTaxable, @nonTaxableLocal);
+                    (@name, @supplierID, @barcode, @Price, @description, @typeID, @bottles, @nonTaxable, @nonTaxableLocal);
                 ";
 
                 if (string.IsNullOrWhiteSpace(inv.Barcode))
@@ -132,7 +132,7 @@ namespace WebApi.Controllers
                 cmd.Parameters.Add(new MySqlParameter("name", inv.Name.Trim()));
                 cmd.Parameters.Add(new MySqlParameter("supplierID", inv.SupplierID));
                 cmd.Parameters.Add(new MySqlParameter("barcode", inv.Barcode.Trim().ToUpper()));
-                cmd.Parameters.Add(new MySqlParameter("retailPrice", inv.RetailPrice));
+                cmd.Parameters.Add(new MySqlParameter("Price", inv.Price));
                 cmd.Parameters.Add(new MySqlParameter("description", inv.Description.Trim()));
                 cmd.Parameters.Add(new MySqlParameter("typeID", inv.TypeID));
                 cmd.Parameters.Add(new MySqlParameter("bottles", inv.Bottles));
@@ -238,7 +238,7 @@ namespace WebApi.Controllers
                 cmd.Parameters.Add(new MySqlParameter("name", inv.Name));
                 cmd.Parameters.Add(new MySqlParameter("supplierID", inv.SupplierID));
                 cmd.Parameters.Add(new MySqlParameter("barcode", inv.Barcode));
-                cmd.Parameters.Add(new MySqlParameter("retailPrice", inv.RetailPrice));
+                cmd.Parameters.Add(new MySqlParameter("retailPrice", inv.Price));
                 cmd.Parameters.Add(new MySqlParameter("description", inv.Description));
                 cmd.Parameters.Add(new MySqlParameter("typeID", inv.TypeID));
                 cmd.Parameters.Add(new MySqlParameter("bottleDepositQty", inv.Bottles));
