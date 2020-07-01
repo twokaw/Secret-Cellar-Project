@@ -180,8 +180,6 @@ namespace WebApi.Controllers
                 DELETE FROM Discount_Inventory WHERE InventoryID = @InventoryID;
             ";
 
-            MySqlCommand cmd = new MySqlCommand(sql, db.Connection()); 
-            
             inv.Discounts.ForEach(x => sql += @$"                   
                 INSERT INTO Discount_Inventory
                 (discountID, InventoryID) 
@@ -189,6 +187,8 @@ namespace WebApi.Controllers
                 ({x.DiscountID}, @InventoryID);
             ");
 
+            MySqlCommand cmd = new MySqlCommand(sql, db.Connection()); 
+            
             cmd = new MySqlCommand(sql, db.Connection());
             cmd.Parameters.Add(new MySqlParameter("InventoryID", inv.Id));
             cmd.ExecuteNonQuery();
@@ -214,7 +214,7 @@ namespace WebApi.Controllers
 
             if (i == null)
                 return Post(inv);
-            else if(i.Barcode != inv.Barcode.Trim().ToUpper() && DoesBarcodeExist(i.Barcode))
+            else if(i.Barcode != inv.Barcode.Trim().ToUpper() && DoesBarcodeExist(inv.Barcode))
                 return StatusCode(400, "Barcode already exist.");
         
             try
@@ -244,16 +244,25 @@ namespace WebApi.Controllers
                 cmd.Parameters.Add(new MySqlParameter("bottleDepositQty", inv.Bottles));
                 cmd.Parameters.Add(new MySqlParameter("nonTaxable", inv.NonTaxable));
                 cmd.Parameters.Add(new MySqlParameter("nonTaxableLocal", inv.NonTaxableLocal));
+                cmd.ExecuteNonQuery();
 
+                //Inserting into inventory_description
+                sql = @"
+                   UPDATE inventory_price 
+                      Inventory_Qty  = @qty, 
+                      Supplier_price = @supplier_price
+                   WHERE InventoryId = @id;
+                ";
                 cmd.ExecuteNonQuery();
                 cmd.Dispose();
+
                 cmd = new MySqlCommand(@"
                   UPDATE inventory_price 
                   SET Inventory_Qty = @qty, 
                       Supplier_price = @supplier_price 
                   WHERE InventoryId = @id;
                 ", db.Connection());
-                //cmd.Parameters.Add(new MySqlParameter("id", inv.Id));
+
                 cmd.Parameters.Add(new MySqlParameter("id", inv.Id));
                 cmd.Parameters.Add(new MySqlParameter("Qty", inv.Qty));
                 cmd.Parameters.Add(new MySqlParameter("Supplier_price", inv.SupplierPrice));
@@ -442,18 +451,10 @@ namespace WebApi.Controllers
                 {
                     return reader.Read();
                 }
-                catch (Exception ex)
-                {
-                    throw ex;
-                }
                 finally
                 {
                     reader.Close();
                 }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
             }
             finally
             {
