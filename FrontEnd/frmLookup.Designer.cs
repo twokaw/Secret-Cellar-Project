@@ -49,6 +49,8 @@
             this.btn_update = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.Btl_Dep_Lb = new System.Windows.Forms.Label();
+            this.txtProd_Qty = new System.Windows.Forms.TextBox();
             this.btn_new = new System.Windows.Forms.Button();
             this.lbl_netPrice = new System.Windows.Forms.Label();
             this.txtNetPrice = new System.Windows.Forms.TextBox();
@@ -58,8 +60,6 @@
             this.txtBarcode = new System.Windows.Forms.TextBox();
             this.cbo_Supplier = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.txtProd_Qty = new System.Windows.Forms.TextBox();
-            this.Btl_Dep_Lb = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.LookupView)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -293,6 +293,24 @@
             this.panel2.TabIndex = 8;
             this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
+            // Btl_Dep_Lb
+            // 
+            this.Btl_Dep_Lb.AutoSize = true;
+            this.Btl_Dep_Lb.Location = new System.Drawing.Point(12, 206);
+            this.Btl_Dep_Lb.Name = "Btl_Dep_Lb";
+            this.Btl_Dep_Lb.Size = new System.Drawing.Size(56, 13);
+            this.Btl_Dep_Lb.TabIndex = 17;
+            this.Btl_Dep_Lb.Text = "Bottle Oty:";
+            this.Btl_Dep_Lb.Click += new System.EventHandler(this.Btl_Dep_Lb_Click);
+            // 
+            // txtProd_Qty
+            // 
+            this.txtProd_Qty.Location = new System.Drawing.Point(75, 202);
+            this.txtProd_Qty.Name = "txtProd_Qty";
+            this.txtProd_Qty.Size = new System.Drawing.Size(162, 20);
+            this.txtProd_Qty.TabIndex = 16;
+            this.txtProd_Qty.TextChanged += new System.EventHandler(this.txtBtl_Deposit_TextChanged);
+            // 
             // btn_new
             // 
             this.btn_new.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -369,30 +387,12 @@
             // 
             // label5
             // 
-            this.label5.Location = new System.Drawing.Point(6, 144);
+            this.label5.Location = new System.Drawing.Point(6, 145);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(58, 20);
             this.label5.TabIndex = 7;
             this.label5.Text = "Supplier:";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // txtProd_Qty
-            // 
-            this.txtProd_Qty.Location = new System.Drawing.Point(75, 202);
-            this.txtProd_Qty.Name = "txtProd_Qty";
-            this.txtProd_Qty.Size = new System.Drawing.Size(162, 20);
-            this.txtProd_Qty.TabIndex = 16;
-            this.txtProd_Qty.TextChanged += new System.EventHandler(this.txtBtl_Deposit_TextChanged);
-            // 
-            // Btl_Dep_Lb
-            // 
-            this.Btl_Dep_Lb.AutoSize = true;
-            this.Btl_Dep_Lb.Location = new System.Drawing.Point(6, 206);
-            this.Btl_Dep_Lb.Name = "Btl_Dep_Lb";
-            this.Btl_Dep_Lb.Size = new System.Drawing.Size(66, 13);
-            this.Btl_Dep_Lb.TabIndex = 17;
-            this.Btl_Dep_Lb.Text = "Product Oty:";
-            this.Btl_Dep_Lb.Click += new System.EventHandler(this.Btl_Dep_Lb_Click);
             // 
             // frmLookup
             // 
