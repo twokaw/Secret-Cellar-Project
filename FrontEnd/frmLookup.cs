@@ -167,7 +167,7 @@ namespace SecretCellar
                     MessageBox.Show("Invalid Quantity");
                     return;
                 }
-                if (uint.TryParse(txtPrice.Text, out uint price)) i.RetailPrice = price;
+                if (uint.TryParse(txtPrice.Text, out uint price)) i.Price = price;
                 else
                 {
                     txtPrice.Focus();
