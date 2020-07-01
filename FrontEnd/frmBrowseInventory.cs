@@ -102,7 +102,7 @@ namespace SecretCellar
                     r.Cells["CLASS"].Value = i.ItemType;
                     r.Cells["InvCount"].Value = i.Qty;
                     r.Cells["SUPPLIER"].Value = i.SupplierID;
-                    r.Cells["SalesPrice"].Value = i.RetailPrice;
+                    r.Cells["SalesPrice"].Value = i.Price;
                 }
             }
         }
