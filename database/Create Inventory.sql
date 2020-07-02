@@ -1,4 +1,4 @@
-CREATE DATABASE  IF NOT EXISTS `inventory` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+configCREATE DATABASE  IF NOT EXISTS `inventory` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `inventory`;
 -- MySQL dump 10.13  Distrib 8.0.17, for Win64 (x86_64)
 --
@@ -378,6 +378,7 @@ DROP TABLE IF EXISTS `transaction_items`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `transaction_items` (
+  `receiptItemId`int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `receiptID` int(11) NOT NULL,
   `inventoryID` int(11) NOT NULL,
   `sold_price` double NOT NULL,

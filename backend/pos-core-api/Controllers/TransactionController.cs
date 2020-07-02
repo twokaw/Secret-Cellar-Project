@@ -68,6 +68,31 @@ namespace WebApi.Controllers
                 return StatusCode(500, ex.Message);
             };
          }
+
+
+        /// <summary>
+        /// Insert a new transaction 
+        /// </summary>
+        /// <param name="transaction"></param>
+        /// <returns></returns>
+        [HttpDelete("/item/{receiptId}")]
+        public IActionResult DeleteItem(int receiptId, uint itemid, int qty = -1, bool returnQty = false)
+        {
+            return StatusCode(400, "Item already exists");
+            /*
+            if (item.Id > 0 && GetTransaction(transaction.InvoiceID, false, false) == null)
+                return StatusCode(400, "Transaction already exists");
+
+            try
+            {
+                return Ok(InsertTransaction(transaction));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            };
+            */
+        }
         private List<Transaction> GetTransactions(DateTime start, DateTime end, bool includeItems = true, bool includePayments = true)
         {
             db.OpenConnection();
