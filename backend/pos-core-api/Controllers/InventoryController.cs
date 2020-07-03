@@ -244,17 +244,25 @@ namespace WebApi.Controllers
                 cmd.Parameters.Add(new MySqlParameter("bottleDepositQty", inv.Bottles));
                 cmd.Parameters.Add(new MySqlParameter("nonTaxable", inv.NonTaxable));
                 cmd.Parameters.Add(new MySqlParameter("nonTaxableLocal", inv.NonTaxableLocal));
+                cmd.ExecuteNonQuery();
 
+                //Inserting into inventory_description
+                sql = @"
+                   UPDATE inventory_price 
+                      Inventory_Qty  = @qty, 
+                      Supplier_price = @supplier_price
+                   WHERE InventoryId = @id;
+                ";
                 cmd.ExecuteNonQuery();
                 cmd.Dispose();
-                
+
                 cmd = new MySqlCommand(@"
                   UPDATE inventory_price 
                   SET Inventory_Qty = @qty, 
                       Supplier_price = @supplier_price 
                   WHERE InventoryId = @id;
                 ", db.Connection());
-                
+
                 cmd.Parameters.Add(new MySqlParameter("id", inv.Id));
                 cmd.Parameters.Add(new MySqlParameter("Qty", inv.Qty));
                 cmd.Parameters.Add(new MySqlParameter("Supplier_price", inv.SupplierPrice));

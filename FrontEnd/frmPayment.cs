@@ -22,8 +22,7 @@ namespace SecretCellar
 
             //this.transaction = transaction;
             //txt_TenderTransTotal.Text = transaction.Total.ToString("C");
-
-            //if (txtCashAmt.Text =  
+            
            
         }
 
@@ -86,6 +85,11 @@ namespace SecretCellar
         }
 
         private void frmPayment_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtCashAmt_TextChanged(object sender, EventArgs e)
         {
 
         }
