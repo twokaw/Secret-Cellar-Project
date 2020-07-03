@@ -102,11 +102,12 @@ namespace SecretCellar
                 Inventory i = inventory.First(x => x.Id == uint.Parse(LookupView.SelectedRows[0].Cells["id"].Value.ToString()));
                 txtName.Text = i.Name;
                 txt_qty.Text = i.Qty.ToString();
-                cboType.Text = i.ItemType;
+                cboType.Text = types.First(x => x.TypeId == i.TypeID).TypeName;
                 txtBarcode.Text = i.Barcode;
                 txtPrice.Text = i.Price.ToString();
                 cbo_Supplier.Text = suppliers.First(x=>x.SupplierID == i.SupplierID).Name;
                 txtNetPrice.Text = i.SupplierPrice.ToString();
+                txtProd_Qty.Text = i.Bottles.ToString();
 
 
 
@@ -118,7 +119,10 @@ namespace SecretCellar
             if (LookupView.SelectedRows.Count > 0)
             {
                 Inventory i = inventory.First(x => x.Id == uint.Parse(LookupView.SelectedRows[0].Cells["id"].Value.ToString()));
+               
                 i.Name= txtName.Text ;
+                i.Barcode = txtBarcode.Text;
+
                 if (uint.TryParse(txt_qty.Text, out uint qty)) i.Qty= qty; 
                 else 
                 {
@@ -127,8 +131,34 @@ namespace SecretCellar
                     MessageBox.Show("Invalid Quantity");
                     return;
                 }
-               // i.ItemType = cboType.Text;
+                if (double.TryParse(txtPrice.Text, out double price)) i.Price = price;
+                else
+                {
+                    txtPrice.Focus();
+                    txtPrice.SelectAll();
+                    MessageBox.Show("Invalid Price");
+                    return;
+                }
+                if (double.TryParse(txtNetPrice.Text, out double netprice)) i.SupplierPrice = netprice;
+                else
+                {
+                    txtNetPrice.Focus();
+                    txtNetPrice.SelectAll();
+                    MessageBox.Show("Invalid Supply Price");
+                    return;
+                }
+                if (uint.TryParse(txtProd_Qty.Text, out uint product)) i.Bottles = product;
+                else
+                {
+                    txtProd_Qty.Focus();
+                    txtProd_Qty.SelectAll();
+                    MessageBox.Show("Invalid Product Quantity");
+                    return;
+                }
+               
+                i.ItemType = cboType.Text;
                 i.TypeID = types.First(x => x.TypeName == cboType.Text).TypeId;
+                i.SupplierID = suppliers.First(x => x.Name == cbo_Supplier.Text).SupplierID;
                 dataAccess.UpdateItem(i);
                 refresh();
             }
@@ -137,7 +167,7 @@ namespace SecretCellar
         private void refresh()
         {
             LookupView.DataSource = inventory.Where(x => x.Name.Contains(txtlookup.Text) || x.Barcode.Contains(txtlookup.Text)).
-               Select(x => new { Name = x.Name, Id = x.Id, ItemType = x.ItemType, Qty = x.Qty, Barcode = x.Barcode, Price = x.Price }).
+               Select(x => new { Name = x.Name, Id = x.Id, ItemType = x.TypeID == types.First(i => i.TypeName == cboType.Text).TypeId, Qty = x.Qty, Barcode = x.Barcode, Price = x.Price }).
                OrderBy(x => x.Name).
                ToList();
         }
@@ -167,7 +197,7 @@ namespace SecretCellar
                     MessageBox.Show("Invalid Quantity");
                     return;
                 }
-                if (uint.TryParse(txtPrice.Text, out uint price)) i.Price = price;
+                if (double.TryParse(txtPrice.Text, out double price)) i.Price = price;
                 else
                 {
                     txtPrice.Focus();
@@ -175,21 +205,44 @@ namespace SecretCellar
                     MessageBox.Show("Invalid Price");
                     return;
                 }
-                if (uint.TryParse(txtNetPrice.Text, out uint netprice)) i.Price = netprice;
+                if (double.TryParse(txtNetPrice.Text, out double netprice)) i.SupplierPrice = netprice;
                 else
                 {
                     txtNetPrice.Focus();
                     txtNetPrice.SelectAll();
-                    MessageBox.Show("Invalid Net Price");
+                    MessageBox.Show("Invalid Supply Price");
                     return;
                 }
-                //i.ItemType = cboType.Text;
+                if (uint.TryParse(txtProd_Qty.Text, out uint product)) i.Bottles = product;
+                else
+                {
+                    txtProd_Qty.Focus();
+                    txtProd_Qty.SelectAll();
+                    MessageBox.Show("Invalid Product Quantity");
+                    return;
+                }
+                i.ItemType = cboType.Text;
                 i.TypeID = types.First(x => x.TypeName == cboType.Text).TypeId;
                 i.SupplierID = suppliers.First(x => x.Name ==  cbo_Supplier.Text).SupplierID;
 
                 dataAccess.InsertItem(i);
                 refresh();
             }
+        }
+
+        private void txtBtl_Deposit_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Btl_Dep_Lb_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtNetPrice_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
