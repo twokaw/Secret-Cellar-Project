@@ -76,22 +76,49 @@ namespace WebApi.Controllers
         /// <param name="transaction"></param>
         /// <returns></returns>
         [HttpDelete("/item/{receiptId}")]
-        public IActionResult DeleteItem(int receiptId, uint itemid, int qty = -1, bool returnQty = false)
+        public IActionResult DeleteItem(uint receiptId, uint itemid, int qty = -1, bool returnQty = false)
         {
-            return StatusCode(400, "Item already exists");
-            /*
-            if (item.Id > 0 && GetTransaction(transaction.InvoiceID, false, false) == null)
-                return StatusCode(400, "Transaction already exists");
+            if (qty == 0)
+                return StatusCode(400, "Invalid Qty: 0");
+
+            Transaction transaction = GetTransaction(receiptId, false, false);
+
+            if (transaction == null)
+                return StatusCode(400, "Missing Transaction");
+
+            Item item = transaction.Items.FirstOrDefault(z => z.Id == itemid);
+
+            if (item == null)
+                return StatusCode(400, "Missing Transaction Item");
+
+            if (item.NumSold == 0)
+                return StatusCode(400, $"Item already returned");
+
+            if (item.NumSold < qty)
+                return StatusCode(400, $"Insuffiencent receipt Qty {item.NumSold} < {qty}");
+
+            qty = (qty == -1) ? (int)item.NumSold : qty;
+
+            if (returnQty)
+                AddInventoryQty(item, qty);
+
+            UpdateItemQty(receiptId, itemid, (int)(item.NumSold - qty));
 
             try
             {
-                return Ok(InsertTransaction(transaction));
+                // Return the refund qty * ((price * Tax * localTax) + bottle deposit * bottles)
+                return Ok((qty  
+                           * (item.Price 
+                           * (1 + (item.NonTaxable ? 0 : item.SalesTax) 
+                                + (item.NonTaxableLocal ? 0 : item.LocalSalesTax)
+                           + item.Bottles * item.BottleDeposit)
+                             )).ToString());
             }
             catch (Exception ex)
             {
                 return StatusCode(500, ex.Message);
             };
-            */
+            
         }
         private List<Transaction> GetTransactions(DateTime start, DateTime end, bool includeItems = true, bool includePayments = true)
         {
@@ -301,6 +328,32 @@ namespace WebApi.Controllers
             }
         }
 
+
+        private void UpdateItemQty(uint receiptId, uint itemId, int qty)
+        {
+            db.OpenConnection();
+            try
+            {
+                using MySqlCommand cmd =  new MySqlCommand(@"
+                     UPDATE transaction_items
+                     SET sold_qty = GREATER(sold_qty, 0)
+                     WHERE  receiptID = @receiptID
+                     AND    inventoryID = @inventoryID
+                    ", db.Connection()); 
+
+                    cmd.Parameters.Add(new MySqlParameter("receiptID", receiptId));
+                    cmd.Parameters.Add(new MySqlParameter("inventoryID", itemId));
+                    cmd.Parameters.Add(new MySqlParameter("sold_qty", qty));
+
+                    cmd.ExecuteNonQuery();
+            }
+            finally
+            {
+                db.CloseConnnection();
+            }
+        }
+
+
         private void DecrementInventoryQty(Item item)
         {
             string sql = @"
@@ -316,7 +369,7 @@ namespace WebApi.Controllers
             cmd.ExecuteNonQuery();
         }
 
-        private void AddInventoryQty(Item item)
+        private void AddInventoryQty(Item item, int qty)
         {
             string sql = @"
                 UPDATE Inventory_price 
@@ -328,7 +381,7 @@ namespace WebApi.Controllers
             try
             {
                 using MySqlCommand cmd = new MySqlCommand(sql, db.Connection());
-                cmd.Parameters.Add(new MySqlParameter("qty", item.NumSold));
+                cmd.Parameters.Add(new MySqlParameter("qty", Math.Min(item.NumSold, qty)));
                 cmd.Parameters.Add(new MySqlParameter("inventoryID", item.Id));
 
                 cmd.ExecuteNonQuery();
