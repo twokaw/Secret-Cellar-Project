@@ -338,6 +338,7 @@
             this.txtNetPrice.Name = "txtNetPrice";
             this.txtNetPrice.Size = new System.Drawing.Size(162, 20);
             this.txtNetPrice.TabIndex = 13;
+            this.txtNetPrice.TextChanged += new System.EventHandler(this.txtNetPrice_TextChanged);
             // 
             // Price_txt
             // 
