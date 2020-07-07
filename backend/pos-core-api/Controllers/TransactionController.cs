@@ -17,24 +17,11 @@ namespace WebApi.Controllers
     public class TransactionController : ControllerBase
     {
         private readonly DbConn db = new DbConn();
-
+        
+        // Gets list of all transactions within date period. Format: YYYY-MM-DD HH:MM:SS
+        // GET: api/Transaction?start= date&end= date
         [HttpGet]
-        public ActionResult Get()
-        {
-            try
-            {
-                return Ok(GetTransactions());
-            }
-            catch(Exception ex)
-            {
-                return StatusCode(500, ex.Message);
-            }
-        }
-        /*
-       // Gets list of all transactions within date period. Format: YYYY-MM-DD HH:MM:SS
-       // GET: api/Transaction?start= date&
-       [HttpGet]
-        public ActionResult Get([FromQuery] DateTime start, [FromQuery] DateTime end)
+        public ActionResult Get(DateTime start, DateTime end)
         {
             try
             {
@@ -45,7 +32,7 @@ namespace WebApi.Controllers
                 return StatusCode(500, ex.Message);
             }
         }
-        */
+        
         // Get call to be used when barcode on receipt is scanned
         //Get: api/Transaction/receiptID
         [HttpGet("{receiptID}")]
@@ -61,6 +48,11 @@ namespace WebApi.Controllers
             };
         }
 
+        /// <summary>
+        /// Insert a new transaction 
+        /// </summary>
+        /// <param name="transaction"></param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult Post([FromBody] Transaction transaction)
         {
@@ -75,25 +67,58 @@ namespace WebApi.Controllers
             {
                 return StatusCode(500, ex.Message);
             };
-        }
+         }
 
-        private List<Transaction> GetTransactions(bool includeItems = true, bool includePayments = true)
+
+        /// <summary>
+        /// Insert a new transaction 
+        /// </summary>
+        /// <param name="transaction"></param>
+        /// <returns></returns>
+        [HttpDelete("/item/{receiptId}")]
+        public IActionResult DeleteItem(uint receiptId, uint itemid, int qty = -1, bool returnQty = false)
         {
-            db.OpenConnection();
+            if (qty == 0)
+                return StatusCode(400, "Invalid Qty: 0");
+
+            Transaction transaction = GetTransaction(receiptId, false, false);
+
+            if (transaction == null)
+                return StatusCode(400, "Missing Transaction");
+
+            Item item = transaction.Items.FirstOrDefault(z => z.Id == itemid);
+
+            if (item == null)
+                return StatusCode(400, "Missing Transaction Item");
+
+            if (item.NumSold == 0)
+                return StatusCode(400, $"Item already returned");
+
+            if (item.NumSold < qty)
+                return StatusCode(400, $"Insuffiencent receipt Qty {item.NumSold} < {qty}");
+
+            qty = (qty == -1) ? (int)item.NumSold : qty;
+
+            if (returnQty)
+                AddInventoryQty(item, qty);
+
+            UpdateItemQty(receiptId, itemid, (int)(item.NumSold - qty));
+
             try
             {
-                string sqlStatement = @"
-                 SELECT receiptID, register, sold_datetime, customerID, empID, location, tax_exempt, discount
-                 FROM transaction;
-                ";
-
-                using MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
-                return GetTransactions(cmd, includeItems, includePayments);
+                // Return the refund qty * ((price * Tax * localTax) + bottle deposit * bottles)
+                return Ok((qty  
+                           * (item.Price 
+                           * (1 + (item.NonTaxable ? 0 : item.SalesTax) 
+                                + (item.NonTaxableLocal ? 0 : item.LocalSalesTax)
+                           + item.Bottles * item.BottleDeposit)
+                             )).ToString());
             }
-            finally
+            catch (Exception ex)
             {
-                db.CloseConnnection();
-            }
+                return StatusCode(500, ex.Message);
+            };
+            
         }
         private List<Transaction> GetTransactions(DateTime start, DateTime end, bool includeItems = true, bool includePayments = true)
         {
@@ -103,12 +128,22 @@ namespace WebApi.Controllers
                 string sqlStatement = @"
                  SELECT receiptID, register, sold_datetime, customerID, empID, location, tax_exempt, discount
                  FROM transaction
-                 WHERE sold_datetime BETWEEN @start AND @end;
                 ";
 
                 using MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
-                cmd.Parameters.Add(new MySqlParameter("start", start));
-                cmd.Parameters.Add(new MySqlParameter("end", end));
+
+
+                if (start > DateTime.MinValue)
+                {
+                    cmd.Parameters.Add(new MySqlParameter("start", start));
+                    cmd.CommandText += " AND sold_datetime >= @start";
+
+                    if (end >= start)
+                    {
+                        cmd.CommandText += " AND sold_datetime <= @end";
+                        cmd.Parameters.Add(new MySqlParameter("end", end));
+                    }
+                }
                 return GetTransactions(cmd, includeItems, includePayments);
             }
             finally
@@ -293,6 +328,32 @@ namespace WebApi.Controllers
             }
         }
 
+
+        private void UpdateItemQty(uint receiptId, uint itemId, int qty)
+        {
+            db.OpenConnection();
+            try
+            {
+                using MySqlCommand cmd =  new MySqlCommand(@"
+                     UPDATE transaction_items
+                     SET sold_qty = GREATER(sold_qty, 0)
+                     WHERE  receiptID = @receiptID
+                     AND    inventoryID = @inventoryID
+                    ", db.Connection()); 
+
+                    cmd.Parameters.Add(new MySqlParameter("receiptID", receiptId));
+                    cmd.Parameters.Add(new MySqlParameter("inventoryID", itemId));
+                    cmd.Parameters.Add(new MySqlParameter("sold_qty", qty));
+
+                    cmd.ExecuteNonQuery();
+            }
+            finally
+            {
+                db.CloseConnnection();
+            }
+        }
+
+
         private void DecrementInventoryQty(Item item)
         {
             string sql = @"
@@ -308,7 +369,7 @@ namespace WebApi.Controllers
             cmd.ExecuteNonQuery();
         }
 
-        private void AddInventoryQty(Item item)
+        private void AddInventoryQty(Item item, int qty)
         {
             string sql = @"
                 UPDATE Inventory_price 
@@ -320,7 +381,7 @@ namespace WebApi.Controllers
             try
             {
                 using MySqlCommand cmd = new MySqlCommand(sql, db.Connection());
-                cmd.Parameters.Add(new MySqlParameter("qty", item.NumSold));
+                cmd.Parameters.Add(new MySqlParameter("qty", Math.Min(item.NumSold, qty)));
                 cmd.Parameters.Add(new MySqlParameter("inventoryID", item.Id));
 
                 cmd.ExecuteNonQuery();
