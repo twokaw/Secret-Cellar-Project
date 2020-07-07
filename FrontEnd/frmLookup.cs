@@ -104,9 +104,9 @@ namespace SecretCellar
                 txt_qty.Text = i.Qty.ToString();
                 cboType.Text = types.First(x => x.TypeId == i.TypeID).TypeName;
                 txtBarcode.Text = i.Barcode;
-                txtPrice.Text = i.Price.ToString();
+                txtPrice.Text = i.Price.ToString("C");
                 cbo_Supplier.Text = suppliers.First(x=>x.SupplierID == i.SupplierID).Name;
-                txtNetPrice.Text = i.SupplierPrice.ToString();
+                txtNetPrice.Text = i.SupplierPrice.ToString("C");
                 txtProd_Qty.Text = i.Bottles.ToString();
 
 
@@ -131,7 +131,7 @@ namespace SecretCellar
                     MessageBox.Show("Invalid Quantity");
                     return;
                 }
-                if (double.TryParse(txtPrice.Text, out double price)) i.Price = price;
+                if (double.TryParse(txtPrice.Text.Replace("$",""), out double price)) i.Price = price;
                 else
                 {
                     txtPrice.Focus();
@@ -139,7 +139,7 @@ namespace SecretCellar
                     MessageBox.Show("Invalid Price");
                     return;
                 }
-                if (double.TryParse(txtNetPrice.Text, out double netprice)) i.SupplierPrice = netprice;
+                if (double.TryParse(txtNetPrice.Text.Replace("$", ""), out double netprice)) i.SupplierPrice = netprice;
                 else
                 {
                     txtNetPrice.Focus();
@@ -167,7 +167,7 @@ namespace SecretCellar
         private void refresh()
         {
             LookupView.DataSource = inventory.Where(x => x.Name.Contains(txtlookup.Text) || x.Barcode.Contains(txtlookup.Text)).
-               Select(x => new { Name = x.Name, Id = x.Id, ItemType = x.TypeID == types.First(i => i.TypeName == cboType.Text).TypeId, Qty = x.Qty, Barcode = x.Barcode, Price = x.Price }).
+               Select(x => new { Name = x.Name, Id = x.Id, ItemType = types.First(i => i.TypeId == x.TypeID).TypeName, Qty = x.Qty, Barcode = x.Barcode, Price = x.Price }).
                OrderBy(x => x.Name).
                ToList();
         }
@@ -197,7 +197,7 @@ namespace SecretCellar
                     MessageBox.Show("Invalid Quantity");
                     return;
                 }
-                if (double.TryParse(txtPrice.Text, out double price)) i.Price = price;
+                if (double.TryParse(txtPrice.Text.Replace("$", ""), out double price)) i.Price = price;
                 else
                 {
                     txtPrice.Focus();
@@ -205,7 +205,7 @@ namespace SecretCellar
                     MessageBox.Show("Invalid Price");
                     return;
                 }
-                if (double.TryParse(txtNetPrice.Text, out double netprice)) i.SupplierPrice = netprice;
+                if (double.TryParse(txtNetPrice.Text.Replace("$", ""), out double netprice)) i.SupplierPrice = netprice;
                 else
                 {
                     txtNetPrice.Focus();
