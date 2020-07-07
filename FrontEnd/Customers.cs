@@ -10,10 +10,10 @@ using System.Windows.Forms;
 
 namespace SecretCellar
 {
-    public partial class frmEvent : Form
+    public partial class Customers : Form
     {
         public string customerName;
-        public frmEvent()
+        public Customers()
         {
             InitializeComponent();
         }
