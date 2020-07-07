@@ -33,6 +33,10 @@
             this.btnMainMenu = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.paymentType = new System.Windows.Forms.DataGridView();
+            this.CASH = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CHECK = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CREDIT_CARD = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.GIFT_CARD = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.LB_Due = new System.Windows.Forms.Label();
             this.LB_Total = new System.Windows.Forms.Label();
             this.LB_ChangeDue = new System.Windows.Forms.Label();
@@ -44,10 +48,6 @@
             this.btn_Check = new System.Windows.Forms.Button();
             this.btn_Credit = new System.Windows.Forms.Button();
             this.btn_GiftCard = new System.Windows.Forms.Button();
-            this.CASH = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CHECK = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CREDIT_CARD = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.GIFT_CARD = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.paymentType)).BeginInit();
             this.SuspendLayout();
             // 
@@ -107,8 +107,37 @@
             this.paymentType.Name = "paymentType";
             this.paymentType.RowHeadersWidth = 102;
             this.paymentType.RowTemplate.Height = 40;
-            this.paymentType.Size = new System.Drawing.Size(1168, 150);
+            this.paymentType.Size = new System.Drawing.Size(1168, 164);
             this.paymentType.TabIndex = 9;
+            this.paymentType.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.paymentType_CellContentClick);
+            // 
+            // CASH
+            // 
+            this.CASH.HeaderText = "CASH";
+            this.CASH.MinimumWidth = 12;
+            this.CASH.Name = "CASH";
+            this.CASH.Width = 250;
+            // 
+            // CHECK
+            // 
+            this.CHECK.HeaderText = "CHECK";
+            this.CHECK.MinimumWidth = 12;
+            this.CHECK.Name = "CHECK";
+            this.CHECK.Width = 250;
+            // 
+            // CREDIT_CARD
+            // 
+            this.CREDIT_CARD.HeaderText = "CREDIT CARD";
+            this.CREDIT_CARD.MinimumWidth = 12;
+            this.CREDIT_CARD.Name = "CREDIT_CARD";
+            this.CREDIT_CARD.Width = 250;
+            // 
+            // GIFT_CARD
+            // 
+            this.GIFT_CARD.HeaderText = "GIFT CARD";
+            this.GIFT_CARD.MinimumWidth = 12;
+            this.GIFT_CARD.Name = "GIFT_CARD";
+            this.GIFT_CARD.Width = 250;
             // 
             // LB_Due
             // 
@@ -232,34 +261,6 @@
             this.btn_GiftCard.TabIndex = 31;
             this.btn_GiftCard.Text = "GIFT CARD";
             this.btn_GiftCard.UseVisualStyleBackColor = true;
-            // 
-            // CASH
-            // 
-            this.CASH.HeaderText = "CASH";
-            this.CASH.MinimumWidth = 12;
-            this.CASH.Name = "CASH";
-            this.CASH.Width = 250;
-            // 
-            // CHECK
-            // 
-            this.CHECK.HeaderText = "CHECK";
-            this.CHECK.MinimumWidth = 12;
-            this.CHECK.Name = "CHECK";
-            this.CHECK.Width = 250;
-            // 
-            // CREDIT_CARD
-            // 
-            this.CREDIT_CARD.HeaderText = "CREDIT CARD";
-            this.CREDIT_CARD.MinimumWidth = 12;
-            this.CREDIT_CARD.Name = "CREDIT_CARD";
-            this.CREDIT_CARD.Width = 250;
-            // 
-            // GIFT_CARD
-            // 
-            this.GIFT_CARD.HeaderText = "GIFT CARD";
-            this.GIFT_CARD.MinimumWidth = 12;
-            this.GIFT_CARD.Name = "GIFT_CARD";
-            this.GIFT_CARD.Width = 250;
             // 
             // frmPayment
             // 
