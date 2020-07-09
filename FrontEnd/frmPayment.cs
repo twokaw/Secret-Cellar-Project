@@ -20,8 +20,8 @@ namespace SecretCellar
         {
             InitializeComponent();
 
-            //this.transaction = transaction;
-            //txt_TenderTransTotal.Text = transaction.Total.ToString("C");
+            this.transaction = transaction;
+            txt_TenderTransTotal.Text = transaction.Total.ToString("C");
             
            
         }
