@@ -363,7 +363,7 @@ namespace WebApi.Controllers
 
                 using MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
                 cmd.Parameters.Add(new MySqlParameter("bar", barcode));
-                MySqlDataReader reader = cmd.ExecuteReader();
+                using MySqlDataReader reader = cmd.ExecuteReader();
 
                 output = fetchInventory(reader);
             }
