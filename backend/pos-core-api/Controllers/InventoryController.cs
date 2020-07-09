@@ -405,8 +405,6 @@ namespace WebApi.Controllers
                     outputItem.Bottles = reader.IsDBNull("bottles") ? 0 : reader.GetUInt32("bottles");
                     outputItem.NonTaxable = reader.IsDBNull("nontaxable") ? false : (0 != reader.GetInt16("nontaxable"));
                     outputItem.NonTaxableLocal = reader.IsDBNull("nontaxable_local") ? false : (0 != reader.GetInt16("nontaxable_local"));
-                    outputItem.Qty = reader.IsDBNull("inventory_qty") ? 0 : reader.GetUInt32("inventory_qty");
-                    outputItem.SupplierPrice = reader.IsDBNull("supplier_price") ? 0.00 : reader.GetDouble("supplier_price");
                     outputItem.PurchasedDate = reader.IsDBNull("purchased_date") ? DateTime.Now : reader.GetDateTime("purchased_date");
                     outputItem.ItemType = reader.IsDBNull("inventory_type_name") ? "" : reader.GetString("inventory_type_name");
                     outputItem.BottleDeposit = reader.IsDBNull("bottle_deposit") ? 0 : reader.GetDouble("bottle_deposit");
@@ -416,7 +414,8 @@ namespace WebApi.Controllers
                     output.Add(outputItem);
                 }
 
-                if (!reader.IsDBNull("discountID"))
+                if (!reader.IsDBNull("discountID") 
+                && outputItem.Discounts.FirstOrDefault(x => x.DiscountID == reader.GetUInt32("discountID")) == null)
                     outputItem.Discounts.Add(new Discount()
                     {
                         DiscountID = reader.GetUInt32("discountID"),
@@ -426,6 +425,15 @@ namespace WebApi.Controllers
                         Amount = reader.GetDouble("Discount"),
                         Enabled = reader.IsDBNull("minqty") && reader.IsDBNull("maxqty")
                     }) ;
+
+                if (!reader.IsDBNull("supplier_Price")
+                &&  outputItem.AllQty.FirstOrDefault(x => x.SupplierPrice == reader.GetDouble("supplier_Price")) == null)
+                    outputItem.AllQty.Add(new InventoryQty()
+                    {
+                        PurchasedDate = reader.GetDateTime("purchased_date"),
+                        SupplierPrice = reader.GetDouble("Supplier_price"),
+                        Qty = reader.IsDBNull("Qty") ? 0 : reader.GetUInt32("qty"),
+                    });
             }
             return output;
         }

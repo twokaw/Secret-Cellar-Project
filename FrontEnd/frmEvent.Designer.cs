@@ -34,15 +34,15 @@
             this.btnDeleteTab = new System.Windows.Forms.Button();
             this.btnPayOutTab = new System.Windows.Forms.Button();
             this.dataGridTabs = new System.Windows.Forms.DataGridView();
-            this.Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PurchasedItems = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TotalPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnExit = new System.Windows.Forms.Button();
             this.grpBoxAddTab = new System.Windows.Forms.GroupBox();
-            this.btnAddTab = new System.Windows.Forms.Button();
-            this.btnCancel = new System.Windows.Forms.Button();
-            this.txtBoxName = new System.Windows.Forms.TextBox();
             this.lblEnterName = new System.Windows.Forms.Label();
+            this.txtBoxName = new System.Windows.Forms.TextBox();
+            this.btnCancel = new System.Windows.Forms.Button();
+            this.btnAddTab = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridTabs)).BeginInit();
             this.grpBoxAddTab.SuspendLayout();
             this.SuspendLayout();
@@ -105,7 +105,7 @@
             // 
             this.dataGridTabs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridTabs.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Description,
+            this.Name,
             this.PurchasedItems,
             this.TotalPrice});
             this.dataGridTabs.Location = new System.Drawing.Point(94, 206);
@@ -114,11 +114,11 @@
             this.dataGridTabs.TabIndex = 5;
             this.dataGridTabs.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridTabs_CellContentClick);
             // 
-            // Description
+            // Name
             // 
-            this.Description.HeaderText = "Name";
-            this.Description.Name = "Name";
-            this.Description.Width = 200;
+            this.Name.HeaderText = "Name";
+            this.Name.Name = "Name";
+            this.Name.Width = 200;
             // 
             // PurchasedItems
             // 
@@ -151,7 +151,7 @@
             this.grpBoxAddTab.Controls.Add(this.txtBoxName);
             this.grpBoxAddTab.Controls.Add(this.btnCancel);
             this.grpBoxAddTab.Controls.Add(this.btnAddTab);
-            this.grpBoxAddTab.Location = new System.Drawing.Point(246, 159);
+            this.grpBoxAddTab.Location = new System.Drawing.Point(357, 242);
             this.grpBoxAddTab.Name = "grpBoxAddTab";
             this.grpBoxAddTab.Size = new System.Drawing.Size(362, 209);
             this.grpBoxAddTab.TabIndex = 7;
@@ -160,16 +160,25 @@
             this.grpBoxAddTab.Visible = false;
             this.grpBoxAddTab.Enter += new System.EventHandler(this.grpBoxAddTab_Enter);
             // 
-            // btnAddTab
+            // lblEnterName
             // 
-            this.btnAddTab.Location = new System.Drawing.Point(79, 143);
-            this.btnAddTab.Name = "btnAddTab";
-            this.btnAddTab.Size = new System.Drawing.Size(75, 23);
-            this.btnAddTab.TabIndex = 0;
-            this.btnAddTab.Text = "Add Tab";
-            this.btnAddTab.UseVisualStyleBackColor = true;
-            this.btnAddTab.Visible = false;
-            this.btnAddTab.Click += new System.EventHandler(this.btnAddTab_Click);
+            this.lblEnterName.AutoSize = true;
+            this.lblEnterName.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.25F);
+            this.lblEnterName.Location = new System.Drawing.Point(108, 47);
+            this.lblEnterName.Name = "lblEnterName";
+            this.lblEnterName.Size = new System.Drawing.Size(131, 25);
+            this.lblEnterName.TabIndex = 3;
+            this.lblEnterName.Text = "Enter Name:";
+            this.lblEnterName.Visible = false;
+            // 
+            // txtBoxName
+            // 
+            this.txtBoxName.Location = new System.Drawing.Point(102, 76);
+            this.txtBoxName.Name = "txtBoxName";
+            this.txtBoxName.Size = new System.Drawing.Size(147, 20);
+            this.txtBoxName.TabIndex = 2;
+            this.txtBoxName.Visible = false;
+            this.txtBoxName.TextChanged += new System.EventHandler(this.txtBoxName_TextChanged);
             // 
             // btnCancel
             // 
@@ -182,25 +191,16 @@
             this.btnCancel.Visible = false;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
-            // txtBoxName
+            // btnAddTab
             // 
-            this.txtBoxName.Location = new System.Drawing.Point(102, 76);
-            this.txtBoxName.Name = "txtBoxName";
-            this.txtBoxName.Size = new System.Drawing.Size(147, 20);
-            this.txtBoxName.TabIndex = 2;
-            this.txtBoxName.Visible = false;
-            this.txtBoxName.TextChanged += new System.EventHandler(this.txtBoxName_TextChanged);
-            // 
-            // lblEnterName
-            // 
-            this.lblEnterName.AutoSize = true;
-            this.lblEnterName.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.25F);
-            this.lblEnterName.Location = new System.Drawing.Point(108, 47);
-            this.lblEnterName.Name = "lblEnterName";
-            this.lblEnterName.Size = new System.Drawing.Size(131, 25);
-            this.lblEnterName.TabIndex = 3;
-            this.lblEnterName.Text = "Enter Name:";
-            this.lblEnterName.Visible = false;
+            this.btnAddTab.Location = new System.Drawing.Point(79, 143);
+            this.btnAddTab.Name = "btnAddTab";
+            this.btnAddTab.Size = new System.Drawing.Size(75, 23);
+            this.btnAddTab.TabIndex = 0;
+            this.btnAddTab.Text = "Add Tab";
+            this.btnAddTab.UseVisualStyleBackColor = true;
+            this.btnAddTab.Visible = false;
+            this.btnAddTab.Click += new System.EventHandler(this.btnAddTab_Click);
             // 
             // frmEvent
             // 
@@ -242,5 +242,6 @@
         private System.Windows.Forms.TextBox txtBoxName;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnAddTab;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Name;
     }
 }
