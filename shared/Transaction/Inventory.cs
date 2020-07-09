@@ -14,11 +14,14 @@ namespace Shared
         /*
          * Inventory price section of the database.
          */
-        public DateTime PurchasedDate { get; set; }
-        /*
-         * Inventory type section of the database. 
-         */
-        public double DiscountDown { get; set; } //Discount of  6 to 11 bottles.
-        public double DiscountUp { get; set; } //Discount of 12 bottles or more.
+        public DateTime PurchasedDate
+        {
+            get
+            {
+                DateTime last = DateTime.MinValue;
+                AllQty.ForEach(x => last = (last < x.PurchasedDate) ? x.PurchasedDate : last);
+                return last;
+            }
+        }
     }
 }
