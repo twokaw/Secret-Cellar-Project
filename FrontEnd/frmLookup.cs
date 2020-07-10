@@ -123,28 +123,75 @@ namespace SecretCellar
                 i.Name= txtName.Text ;
                 i.Barcode = txtBarcode.Text;
 
-                if (uint.TryParse(txt_qty.Text, out uint qty)) i.Qty= qty; 
-                else 
+                
+                if (!uint.TryParse(txt_qty.Text, out uint qty))
                 {
                     txt_qty.Focus();
                     txt_qty.SelectAll();
                     MessageBox.Show("Invalid Quantity");
                     return;
                 }
+
+                if (!double.TryParse(txtNetPrice.Text, out double netprice)) 
+                {
+                    txtNetPrice.Focus();
+                    txtNetPrice.SelectAll();
+                    MessageBox.Show("Invalid Supply Price");
+                    return;
+                }
+
+                // find the inventory price object
+                InventoryQty inventoryQty = i.AllQty.FirstOrDefault(x => x.SupplierPrice == netprice);
+
+                // if it is not found then create it and add it
+                if (inventoryQty == null)
+                {
+                    inventoryQty = new InventoryQty
+                    {
+                        Qty = 0,
+                        SupplierPrice = netprice,
+                        PurchasedDate = DateTime.Now
+                    };
+
+                    i.AllQty.Add(inventoryQty);
+                }
+
+                // if the supply price is the same and there is only 1 supply price then we can just set the qty
+                if (i.AllQty.Count == 1 && i.AllQty[0].SupplierPrice == netprice ) 
+                    inventoryQty.Qty = qty;
+
+                // New inventory was added to the specific supply price.  Items of this price are now the default price
+                else if(i.Qty < qty)
+                {
+                    inventoryQty.Qty += qty - i.Qty;
+                    inventoryQty.PurchasedDate = DateTime.Now;
+                }
+
+                // The Qty was written off
+                else if (i.Qty > qty)
+                {
+                    qty = i.Qty - qty;
+                    foreach(InventoryQty iq in i.AllQty.OrderBy(x=> x.PurchasedDate).ToArray())
+                    {
+                        if (iq.Qty >= qty)
+                        {
+                            iq.Qty -= qty;
+                            break;
+                        }
+                        else
+                        {
+                            qty -= iq.Qty;
+                            iq.Qty = 0;
+                        }   
+                    }
+                }
+
                 if (double.TryParse(txtPrice.Text, out double price)) i.Price = price;
                 else
                 {
                     txtPrice.Focus();
                     txtPrice.SelectAll();
                     MessageBox.Show("Invalid Price");
-                    return;
-                }
-                if (double.TryParse(txtNetPrice.Text, out double netprice)) i.SupplierPrice = netprice;
-                else
-                {
-                    txtNetPrice.Focus();
-                    txtNetPrice.SelectAll();
-                    MessageBox.Show("Invalid Supply Price");
                     return;
                 }
                 if (uint.TryParse(txtProd_Qty.Text, out uint product)) i.Bottles = product;
@@ -186,31 +233,50 @@ namespace SecretCellar
         {
             if (LookupView.SelectedRows.Count > 0)
             {
-                Inventory i = inventory.First(x => x.Id == uint.Parse(LookupView.SelectedRows[0].Cells["id"].Value.ToString()));
+                Inventory i = inventory.First(x => x.Barcode == txtBarcode.Text);
+
+                if (i == null)
+                    i = new Inventory();
+                else
+                {
+                    txtBarcode.Focus();
+                    txtBarcode.SelectAll();
+                    MessageBox.Show("Barcode already used");
+                    return;
+                }
+ 
                 i.Name = txtName.Text;
                 i.Barcode = txtBarcode.Text;
-                if (uint.TryParse(txt_qty.Text, out uint qty)) i.Qty = qty;
-                else
+
+                if (!uint.TryParse(txt_qty.Text, out uint qty))
                 {
                     txt_qty.Focus();
                     txt_qty.SelectAll();
                     MessageBox.Show("Invalid Quantity");
                     return;
                 }
+
+                if (!double.TryParse(txtNetPrice.Text, out double netprice))
+                {
+                    txtNetPrice.Focus();
+                    txtNetPrice.SelectAll();
+                    MessageBox.Show("Invalid Supply Price");
+                    return;
+                }
+
+                i.AllQty.Add(new InventoryQty
+                {
+                    Qty = qty,
+                    SupplierPrice = netprice,
+                    PurchasedDate = DateTime.Now
+                });
+
                 if (double.TryParse(txtPrice.Text, out double price)) i.Price = price;
                 else
                 {
                     txtPrice.Focus();
                     txtPrice.SelectAll();
                     MessageBox.Show("Invalid Price");
-                    return;
-                }
-                if (double.TryParse(txtNetPrice.Text, out double netprice)) i.SupplierPrice = netprice;
-                else
-                {
-                    txtNetPrice.Focus();
-                    txtNetPrice.SelectAll();
-                    MessageBox.Show("Invalid Supply Price");
                     return;
                 }
                 if (uint.TryParse(txtProd_Qty.Text, out uint product)) i.Bottles = product;

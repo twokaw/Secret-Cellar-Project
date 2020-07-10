@@ -22,7 +22,6 @@ namespace Shared
                     double Discount,
                     double Coupon) : base()
         {
-            this.Qty = Qty;
             this.NumSold = NumSold;
             this.Barcode = Barcode;
             this.Id = Id;
@@ -33,6 +32,7 @@ namespace Shared
             this.Bottles = Bottles;
             this.Discount = Discount;
             this.Coupon = Coupon;
+            AllQty.Add(new InventoryQty() { Qty = Qty });
         }
     }
 }

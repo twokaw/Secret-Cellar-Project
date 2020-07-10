@@ -34,7 +34,7 @@
             this.btnDeleteTab = new System.Windows.Forms.Button();
             this.btnPayOutTab = new System.Windows.Forms.Button();
             this.dataGridTabs = new System.Windows.Forms.DataGridView();
-            this.Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EventName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PurchasedItems = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TotalPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnExit = new System.Windows.Forms.Button();
@@ -105,7 +105,7 @@
             // 
             this.dataGridTabs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridTabs.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Name,
+            this.EventName,
             this.PurchasedItems,
             this.TotalPrice});
             this.dataGridTabs.Location = new System.Drawing.Point(94, 206);
@@ -116,9 +116,9 @@
             // 
             // Name
             // 
-            this.Name.HeaderText = "Name";
-            this.Name.Name = "Name";
-            this.Name.Width = 200;
+            this.EventName.HeaderText = "Name";
+            this.EventName.Name = "Name";
+            this.EventName.Width = 200;
             // 
             // PurchasedItems
             // 
@@ -242,6 +242,6 @@
         private System.Windows.Forms.TextBox txtBoxName;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnAddTab;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Name;
+        private System.Windows.Forms.DataGridViewTextBoxColumn EventName;
     }
 }

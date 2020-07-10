@@ -42,7 +42,7 @@ namespace Shared
             }
         }
 
-        public List<InventoryQty> AllQty { get; set; }
+        public List<InventoryQty> AllQty { get; set; } = new List<InventoryQty>();
     }
 
 }
