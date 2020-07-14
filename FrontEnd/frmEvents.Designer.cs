@@ -45,6 +45,7 @@
             this.btnCancel.TabIndex = 7;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = false;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnAddCharge
             // 
@@ -57,6 +58,7 @@
             this.btnAddCharge.TabIndex = 6;
             this.btnAddCharge.Text = "Add Charge";
             this.btnAddCharge.UseVisualStyleBackColor = false;
+            this.btnAddCharge.Click += new System.EventHandler(this.btnAddCharge_Click);
             // 
             // txtCharge
             // 
@@ -73,20 +75,22 @@
             this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.25F);
             this.lblTitle.Location = new System.Drawing.Point(145, 103);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(345, 39);
+            this.lblTitle.Size = new System.Drawing.Size(234, 39);
             this.lblTitle.TabIndex = 4;
-            this.lblTitle.Text = "Dry Cleaning Charge:";
+            this.lblTitle.Text = "Event Charge:";
             // 
             // frmEvents
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ControlDark;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnAddCharge);
             this.Controls.Add(this.txtCharge);
             this.Controls.Add(this.lblTitle);
             this.Name = "frmEvents";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "frmEvents";
             this.ResumeLayout(false);
             this.PerformLayout();
