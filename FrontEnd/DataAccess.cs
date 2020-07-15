@@ -9,11 +9,12 @@ namespace SecretCellar
     public class DataAccess
     {      
         private static WebConnector web = null;
-
+        public static DataAccess instance;
         public DataAccess(string connectionString)
         {
             if(web == null)
                 web = new WebConnector(connectionString);
+            instance = new DataAccess();
         }
         public DataAccess() { }
 

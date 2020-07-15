@@ -20,8 +20,8 @@ namespace SecretCellar
         {
             InitializeComponent();
 
-            //this.transaction = transaction;
-            //txt_TenderTransTotal.Text = transaction.Total.ToString("C");
+            this.transaction = transaction;
+            txt_TenderTransTotal.Text = transaction.Total.ToString("C");
             
            
         }
@@ -90,6 +90,11 @@ namespace SecretCellar
         }
 
         private void txtCashAmt_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void paymentType_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }

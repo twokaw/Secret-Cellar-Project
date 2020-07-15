@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.txtlookup = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.LookupView = new System.Windows.Forms.DataGridView();
@@ -152,9 +152,9 @@
             // 
             this.Price.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.Price.DataPropertyName = "Price";
-            dataGridViewCellStyle1.Format = "C2";
-            dataGridViewCellStyle1.NullValue = null;
-            this.Price.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Format = "C2";
+            dataGridViewCellStyle2.NullValue = null;
+            this.Price.DefaultCellStyle = dataGridViewCellStyle2;
             this.Price.HeaderText = "Price";
             this.Price.Name = "Price";
             this.Price.Width = 56;
