@@ -36,16 +36,9 @@ namespace SecretCellar
         {
             if (double.TryParse(txtCharge.Text, out double d))
             {
-                dryClean.Items.Add(new Item()
-                {
-                    Name = "Dry Cleaning",
-                    Id = 2722,
-                    Barcode = "DRY CLEANING",
-                    Price = d,
-                    NumSold = 1
-
-                });
-              //  dryClean.Subtotal += d;
+                Item i = DataAccess.ConvertInvtoItem(DataAccess.instance.GetItem("DRY CLEANING"));
+                i.Price = d;
+                dryClean.Items.Add(i);
             }
 
 
