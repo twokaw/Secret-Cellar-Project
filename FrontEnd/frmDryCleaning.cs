@@ -46,7 +46,7 @@ namespace SecretCellar
 
         private void txtCharge_TextChanged(object sender, EventArgs e)
         {
-
+            Console.WriteLine(((TextBox)sender).Name);
         }
     }
 }
