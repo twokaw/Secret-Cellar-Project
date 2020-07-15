@@ -96,7 +96,11 @@ namespace SecretCellar
 
         private void paymentType_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
+            private void addRow(Payment payment)
+            {
+                paymentType.Rows.Clear();
+                if (btn_Cash)
+            }
         }
     }
 }
