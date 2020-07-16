@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Shared;
 
 namespace SecretCellar
 {
@@ -15,6 +16,7 @@ namespace SecretCellar
         public frmShipping()
         {
             InitializeComponent();
+
         }
 
         private void lblTitle_Click(object sender, EventArgs e)
@@ -43,7 +45,7 @@ namespace SecretCellar
             {
                 Item i = DataAccess.ConvertInvtoItem(DataAccess.instance.GetItem("SHIPPING"));
                 i.Price = d;
-                shipping.Items.Add(i);
+              //  shipping.Items.Add(i);
                 /*ship.Items.Add(new Item()
                 {
                     Name = "Shipping",

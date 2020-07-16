@@ -213,27 +213,39 @@ namespace WebApi.Controllers
                         bottles, inventory_type_name, nontaxable, nontaxable_local, inventory_qty
                 FROM v_transaction_items
                 WHERE receiptID = @receiptID
+                ORDER BY InventoryID
             ";
 
             using MySqlCommand cmd = new MySqlCommand(itemSQLStatement, db.Connection());
             cmd.Parameters.Add(new MySqlParameter("receiptID", transaction.InvoiceID));
 
             using MySqlDataReader itemReader = cmd.ExecuteReader();
+            Item item = null;
             while (itemReader.Read())
             {
-                transaction.Items.Add( new Item
+                if(item?.Id != itemReader.GetUInt32("inventoryid"))
                 {
-                    Name = itemReader.IsDBNull("name") ? "" : itemReader.GetString("name"),
-                    Id = itemReader.IsDBNull("inventoryid") ? 0 : itemReader.GetUInt32("inventoryid"),
-                    Barcode = itemReader.IsDBNull("barcode") ? "" : itemReader.GetString("barcode"),
-                    NumSold = itemReader.IsDBNull("sold_qty") ? 0 : itemReader.GetUInt32("sold_qty"),
-                    Price = itemReader.IsDBNull("sold_price") ? 0.0 : itemReader.GetDouble("sold_price"),
+                    item = new Item()
+                    {
+                        Name = itemReader.IsDBNull("name") ? "" : itemReader.GetString("name"),
+                        Id =  itemReader.GetUInt32("inventoryid"),
+                        Barcode = itemReader.IsDBNull("barcode") ? "" : itemReader.GetString("barcode"),
+                        Price = itemReader.IsDBNull("sold_price") ? 0.0 : itemReader.GetDouble("sold_price"),
+                        Bottles = itemReader.IsDBNull("bottles") ? 0 : itemReader.GetUInt32("bottles"),
+                        ItemType = itemReader.IsDBNull("inventory_type_name") ? "" : itemReader.GetString("inventory_type_name"),
+                        NonTaxable = itemReader.IsDBNull("nontaxable") ? false : itemReader.GetBoolean("nontaxable"),
+                        NonTaxableLocal = itemReader.IsDBNull("nontaxable_local") ? false : itemReader.GetBoolean("nontaxable_local")
+                    };
+                    transaction.Items.Add(item);
+                }
+
+                item.NumSold += itemReader.IsDBNull("sold_qty") ? 0 : itemReader.GetUInt32("sold_qty");
+
+                item.AllQty.Add(new InventoryQty
+                {
+                    PurchasedDate = DateTime.Now,
+                    Qty = itemReader.IsDBNull("sold_qty") ? 0 : itemReader.GetUInt32("sold_qty"), 
                     SupplierPrice = itemReader.IsDBNull("supplier_price") ? 0.0 : itemReader.GetDouble("supplier_price"),
-                    Bottles = itemReader.IsDBNull("bottles") ? 0 : itemReader.GetUInt32("bottles"),
-                    ItemType = itemReader.IsDBNull("inventory_type_name") ? "" : itemReader.GetString("inventory_type_name"),
-                    NonTaxable = itemReader.IsDBNull("nontaxable") ? false : itemReader.GetBoolean("nontaxable"),
-                    NonTaxableLocal = itemReader.IsDBNull("nontaxable_local") ? false : itemReader.GetBoolean("nontaxable_local"),
-                    Qty = itemReader.IsDBNull("inventory_qty") ? 0 : itemReader.GetUInt32("inventory_qty"),
                 });
             }   
         }
