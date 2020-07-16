@@ -403,8 +403,8 @@ namespace WebApi.Controllers
                     outputItem.Description = reader.IsDBNull("description") ? "" : reader.GetString("description");
                     outputItem.TypeID = reader.IsDBNull("typeID") ? 0 : reader.GetUInt32("typeID");
                     outputItem.Bottles = reader.IsDBNull("bottles") ? 0 : reader.GetUInt32("bottles");
-                    outputItem.NonTaxable = reader.IsDBNull("nontaxable") ? false : (0 != reader.GetInt16("nontaxable"));
-                    outputItem.NonTaxableLocal = reader.IsDBNull("nontaxable_local") ? false : (0 != reader.GetInt16("nontaxable_local"));
+                    outputItem.NonTaxable = !reader.IsDBNull("nontaxable") && (0 != reader.GetInt16("nontaxable"));
+                    outputItem.NonTaxableLocal = !reader.IsDBNull("nontaxable_local") && (0 != reader.GetInt16("nontaxable_local"));
                     outputItem.ItemType = reader.IsDBNull("inventory_type_name") ? "" : reader.GetString("inventory_type_name");
                     outputItem.BottleDeposit = reader.IsDBNull("bottle_deposit") ? 0 : reader.GetDouble("bottle_deposit");
                     outputItem.IdTax = reader.IsDBNull("idTax") ? 0 : reader.GetUInt32("idTax");
@@ -431,7 +431,7 @@ namespace WebApi.Controllers
                     {
                         PurchasedDate = reader.GetDateTime("purchased_date"),
                         SupplierPrice = reader.GetDouble("Supplier_price"),
-                        Qty = reader.IsDBNull("Qty") ? 0 : reader.GetUInt32("qty")
+                        Qty = reader.IsDBNull("Inventory_Qty") ? 0 : reader.GetUInt32("Inventory_Qty")
                     });
             }
             return output;
