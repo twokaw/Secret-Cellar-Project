@@ -42,7 +42,8 @@ namespace SecretCellar
         private void btnDiscount_Click(object sender, EventArgs e)
         {
             frmDiscount discount = new frmDiscount(transaction); //instantiates frmDiscount using discount
-            discount.ShowDialog(); // opens form associated with discount instantiation
+            discount.ShowDialog();
+            addRow(transaction);// opens form associated with discount instantiation
         }
 
         private void btnTender_Click(object sender, EventArgs e)
@@ -80,6 +81,7 @@ namespace SecretCellar
                     // Populate tranaction datagrid row
                     r.Cells["Description"].Value = item.Name;
                     r.Cells["Price"].Value = item.Price.ToString("C");
+                    r.Cells["Discount"].Value = item.Discount.ToString("p0");
                     r.Cells["Qty"].Value = item.NumSold;
                     r.Cells["Total"].Value = (item.Price * item.NumSold * (1 - item.Discount)).ToString("C");
                     r.Cells["BOTTLE_DEPOSIT"].Value = (item.NumSold * item.Bottles * .05).ToString("C");
@@ -166,8 +168,8 @@ namespace SecretCellar
         private void btnLookup_Click(object sender, EventArgs e)
         {
             frmLookup lookup = new frmLookup(transaction); //instantiates frmLookup using Lookup
-            if (lookup.ShowDialog() == DialogResult.OK) // opens form associated with Lookup instantiation
-                addRow(transaction);
+            lookup.ShowDialog(); // opens form associated with Lookup instantiation
+            addRow(transaction);
 
         }
     }

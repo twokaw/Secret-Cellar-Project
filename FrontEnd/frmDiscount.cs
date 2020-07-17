@@ -13,10 +13,8 @@ namespace SecretCellar
 {
     public partial class frmDiscount : Form
     {
-        private Transaction grid = null;
-        private Item coupon;
-        private double dollar;
-        private double percent;
+        public Transaction grid = null;
+        
  
         public frmDiscount(Transaction items)
         {
@@ -72,30 +70,23 @@ namespace SecretCellar
 
         private void btnSelectItems_Click(object sender, EventArgs e)
         {
-            // frmSelectItems newfrom = new frmSelectItems();
+            
             this.Show();
         }
 
         private void btnClear_Click(object sender, EventArgs e)
         {
-            txtFixedDiscount.Text = null;
-            txtPercentLineItem.Text = null;
-            txtPercentTotalSale.Text = null;
+            txtFixedDiscount.Clear();
+            txtPercentLineItem.Clear();
+            txtPercentTotalSale.Clear();
         }
 
         private void btnApplyDiscount_Click(object sender, EventArgs e)
         {
-            double d = 0.0;
-            if (double.TryParse(txtPercentTotalSale.Text, out d))
-            {
-                grid.Discount = d;
-            }
-            if (double.TryParse(txtFixedDiscount.Text, out d))
-            {
-                coupon.Price = (-1 * (double.Parse(txtFixedDiscount.Text)));
-                grid.Items.Add(coupon);
-            }
-            this.Close();
+            percent_discount();
+           
+
+                this.Close();
 
         }
 
@@ -125,7 +116,8 @@ namespace SecretCellar
                 {
                     r.Cells["ItemNumber"].Value = i.Id;
                     r.Cells["ItemDescription"].Value = i.Name;
-                    r.Cells["Price"].Value = i.Price;
+                    r.Cells["Price"].Value = ((1-i.Discount)* i.Price).ToString("c");
+                    r.Cells["Discount"].Value = i.Discount.ToString("p0");
                 }
             }
         }
@@ -138,17 +130,72 @@ namespace SecretCellar
         public void selectItemDiscount()
         {
             // dataGridSelectItems.SelectedRows for selected items
+            if(txtPercentLineItem.Text != "")
             foreach(DataGridViewRow row in dataGridSelectItems.SelectedRows)
             {
-                Item i = grid.Items.First((x) => x.Id == int.Parse(row.Cells["ItemNumber"].Value.ToString()));
+                 Item i= grid.Items.First((x) => x.Id == int.Parse(row.Cells["ItemNumber"].Value.ToString())&& (x.Price*(1-x.Discount)).ToString("c") == row.Cells["Price"].Value.ToString());
                 i.Discount = double.Parse(txtPercentLineItem.Text) / 100;
-                row.Cells["Price"].Value = (i.Price - (i.Price * i.Discount));
+                row.Cells["Price"].Value = (i.Price - (i.Price * i.Discount)).ToString("c");
+                row.Cells["Discount"].Value = i.Discount.ToString("p0");
             }
+        }
+
+        public void percent_discount()
+        {
+            
+            if (int.TryParse(txtPercentTotalSale.Text, out int d))
+            {
+                grid.Discount = d/100;
+            }
+            
+        }
+        public void coupons_discount()
+        {
+         
+            if (double.TryParse(txtFixedDiscount.Text, out double d))
+            {
+                grid.Items.Add(new Item() { Price = -d, Name = "Coupon", NumSold = 1});
+            }
+            
+        }
+
+       
+
+        private void txtPercentTotalSale_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar))
+                e.Handled = true;
         }
 
         private void btnExit_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void digit_only(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar))
+                e.Handled = true;
+        }
+
+        private void txtFixedDiscount_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && (e.KeyChar != '.' || txtFixedDiscount.Text.Contains('.')))
+                e.Handled = true;
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void coupon_btn_Click(object sender, EventArgs e)
+        {
+            coupons_discount();
+            txtFixedDiscount.Clear();
+            populate();
+            //dataGridSelectItems.Update();
+            //dataGridSelectItems.Refresh();
         }
     }
 }
