@@ -88,6 +88,7 @@
             // 
             // LookupView
             // 
+            this.LookupView.AllowUserToResizeColumns = false;
             this.LookupView.AllowUserToResizeRows = false;
             this.LookupView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.LookupView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
