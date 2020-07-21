@@ -104,9 +104,9 @@ namespace SecretCellar
                 txt_qty.Text = i.Qty.ToString();
                 cboType.Text = types.First(x => x.TypeId == i.TypeID).TypeName;
                 txtBarcode.Text = i.Barcode;
-                txtPrice.Text = i.Price.ToString("C");
-                cbo_Supplier.Text = suppliers.First(x=>x.SupplierID == i.SupplierID).Name;
-                txtNetPrice.Text = i.SupplierPrice.ToString("C");
+                txtPrice.Text = i.Price.ToString();
+                cbo_Supplier.Text = suppliers.First(x => x.SupplierID == i.SupplierID).Name;
+                txtNetPrice.Text = i.SupplierPrice.ToString();
                 txtProd_Qty.Text = i.Bottles.ToString();
 
 
@@ -119,32 +119,79 @@ namespace SecretCellar
             if (LookupView.SelectedRows.Count > 0)
             {
                 Inventory i = inventory.First(x => x.Id == uint.Parse(LookupView.SelectedRows[0].Cells["id"].Value.ToString()));
-               
-                i.Name= txtName.Text ;
+
+                i.Name = txtName.Text;
                 i.Barcode = txtBarcode.Text;
 
-                if (uint.TryParse(txt_qty.Text, out uint qty)) i.Qty= qty; 
-                else 
+
+                if (!uint.TryParse(txt_qty.Text, out uint qty))
                 {
                     txt_qty.Focus();
                     txt_qty.SelectAll();
                     MessageBox.Show("Invalid Quantity");
                     return;
                 }
-                if (double.TryParse(txtPrice.Text.Replace("$",""), out double price)) i.Price = price;
+
+                if (!double.TryParse(txtNetPrice.Text, out double netprice))
+                {
+                    txtNetPrice.Focus();
+                    txtNetPrice.SelectAll();
+                    MessageBox.Show("Invalid Supply Price");
+                    return;
+                }
+
+                // find the inventory price object
+                InventoryQty inventoryQty = i.AllQty.FirstOrDefault(x => x.SupplierPrice == netprice);
+
+                // if it is not found then create it and add it
+                if (inventoryQty == null)
+                {
+                    inventoryQty = new InventoryQty
+                    {
+                        Qty = 0,
+                        SupplierPrice = netprice,
+                        PurchasedDate = DateTime.Now
+                    };
+
+                    i.AllQty.Add(inventoryQty);
+                }
+
+                // if the supply price is the same and there is only 1 supply price then we can just set the qty
+                if (i.AllQty.Count == 1 && i.AllQty[0].SupplierPrice == netprice)
+                    inventoryQty.Qty = qty;
+
+                // New inventory was added to the specific supply price.  Items of this price are now the default price
+                else if (i.Qty < qty)
+                {
+                    inventoryQty.Qty += qty - i.Qty;
+                    inventoryQty.PurchasedDate = DateTime.Now;
+                }
+
+                // The Qty was written off
+                else if (i.Qty > qty)
+                {
+                    qty = i.Qty - qty;
+                    foreach (InventoryQty iq in i.AllQty.OrderBy(x => x.PurchasedDate).ToArray())
+                    {
+                        if (iq.Qty >= qty)
+                        {
+                            iq.Qty -= qty;
+                            break;
+                        }
+                        else
+                        {
+                            qty -= iq.Qty;
+                            iq.Qty = 0;
+                        }
+                    }
+                }
+
+                if (double.TryParse(txtPrice.Text, out double price)) i.Price = price;
                 else
                 {
                     txtPrice.Focus();
                     txtPrice.SelectAll();
                     MessageBox.Show("Invalid Price");
-                    return;
-                }
-                if (double.TryParse(txtNetPrice.Text.Replace("$", ""), out double netprice)) i.SupplierPrice = netprice;
-                else
-                {
-                    txtNetPrice.Focus();
-                    txtNetPrice.SelectAll();
-                    MessageBox.Show("Invalid Supply Price");
                     return;
                 }
                 if (uint.TryParse(txtProd_Qty.Text, out uint product)) i.Bottles = product;
@@ -155,19 +202,19 @@ namespace SecretCellar
                     MessageBox.Show("Invalid Product Quantity");
                     return;
                 }
-               
+
                 i.ItemType = cboType.Text;
                 i.TypeID = types.First(x => x.TypeName == cboType.Text).TypeId;
                 i.SupplierID = suppliers.First(x => x.Name == cbo_Supplier.Text).SupplierID;
                 dataAccess.UpdateItem(i);
                 refresh();
             }
-            
+
         }
         private void refresh()
         {
             LookupView.DataSource = inventory.Where(x => x.Name.Contains(txtlookup.Text) || x.Barcode.Contains(txtlookup.Text)).
-               Select(x => new { Name = x.Name, Id = x.Id, ItemType = types.First(i => i.TypeId == x.TypeID).TypeName, Qty = x.Qty, Barcode = x.Barcode, Price = x.Price }).
+               Select(x => new { Name = x.Name, Id = x.Id, ItemType = x.TypeID == types.First(i => i.TypeName == cboType.Text).TypeId, Qty = x.Qty, Barcode = x.Barcode, Price = x.Price }).
                OrderBy(x => x.Name).
                ToList();
         }
@@ -186,31 +233,50 @@ namespace SecretCellar
         {
             if (LookupView.SelectedRows.Count > 0)
             {
-                Inventory i = inventory.First(x => x.Id == uint.Parse(LookupView.SelectedRows[0].Cells["id"].Value.ToString()));
+                Inventory i = inventory.First(x => x.Barcode == txtBarcode.Text);
+
+                if (i == null)
+                    i = new Inventory();
+                else
+                {
+                    txtBarcode.Focus();
+                    txtBarcode.SelectAll();
+                    MessageBox.Show("Barcode already used");
+                    return;
+                }
+
                 i.Name = txtName.Text;
                 i.Barcode = txtBarcode.Text;
-                if (uint.TryParse(txt_qty.Text, out uint qty)) i.Qty = qty;
-                else
+
+                if (!uint.TryParse(txt_qty.Text, out uint qty))
                 {
                     txt_qty.Focus();
                     txt_qty.SelectAll();
                     MessageBox.Show("Invalid Quantity");
                     return;
                 }
-                if (double.TryParse(txtPrice.Text.Replace("$", ""), out double price)) i.Price = price;
+
+                if (!double.TryParse(txtNetPrice.Text, out double netprice))
+                {
+                    txtNetPrice.Focus();
+                    txtNetPrice.SelectAll();
+                    MessageBox.Show("Invalid Supply Price");
+                    return;
+                }
+
+                i.AllQty.Add(new InventoryQty
+                {
+                    Qty = qty,
+                    SupplierPrice = netprice,
+                    PurchasedDate = DateTime.Now
+                });
+
+                if (double.TryParse(txtPrice.Text, out double price)) i.Price = price;
                 else
                 {
                     txtPrice.Focus();
                     txtPrice.SelectAll();
                     MessageBox.Show("Invalid Price");
-                    return;
-                }
-                if (double.TryParse(txtNetPrice.Text.Replace("$", ""), out double netprice)) i.SupplierPrice = netprice;
-                else
-                {
-                    txtNetPrice.Focus();
-                    txtNetPrice.SelectAll();
-                    MessageBox.Show("Invalid Supply Price");
                     return;
                 }
                 if (uint.TryParse(txtProd_Qty.Text, out uint product)) i.Bottles = product;
@@ -223,7 +289,7 @@ namespace SecretCellar
                 }
                 i.ItemType = cboType.Text;
                 i.TypeID = types.First(x => x.TypeName == cboType.Text).TypeId;
-                i.SupplierID = suppliers.First(x => x.Name ==  cbo_Supplier.Text).SupplierID;
+                i.SupplierID = suppliers.First(x => x.Name == cbo_Supplier.Text).SupplierID;
 
                 dataAccess.InsertItem(i);
                 refresh();
@@ -241,6 +307,11 @@ namespace SecretCellar
         }
 
         private void txtNetPrice_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txt_qty_TextChanged(object sender, EventArgs e)
         {
 
         }

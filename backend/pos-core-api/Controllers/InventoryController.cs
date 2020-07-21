@@ -244,17 +244,25 @@ namespace WebApi.Controllers
                 cmd.Parameters.Add(new MySqlParameter("bottleDepositQty", inv.Bottles));
                 cmd.Parameters.Add(new MySqlParameter("nonTaxable", inv.NonTaxable));
                 cmd.Parameters.Add(new MySqlParameter("nonTaxableLocal", inv.NonTaxableLocal));
+                cmd.ExecuteNonQuery();
 
+                //Inserting into inventory_description
+                sql = @"
+                   UPDATE inventory_price 
+                      Inventory_Qty  = @qty, 
+                      Supplier_price = @supplier_price
+                   WHERE InventoryId = @id;
+                ";
                 cmd.ExecuteNonQuery();
                 cmd.Dispose();
-                
+
                 cmd = new MySqlCommand(@"
                   UPDATE inventory_price 
                   SET Inventory_Qty = @qty, 
                       Supplier_price = @supplier_price 
                   WHERE InventoryId = @id;
                 ", db.Connection());
-                
+
                 cmd.Parameters.Add(new MySqlParameter("id", inv.Id));
                 cmd.Parameters.Add(new MySqlParameter("Qty", inv.Qty));
                 cmd.Parameters.Add(new MySqlParameter("Supplier_price", inv.SupplierPrice));
@@ -395,11 +403,8 @@ namespace WebApi.Controllers
                     outputItem.Description = reader.IsDBNull("description") ? "" : reader.GetString("description");
                     outputItem.TypeID = reader.IsDBNull("typeID") ? 0 : reader.GetUInt32("typeID");
                     outputItem.Bottles = reader.IsDBNull("bottles") ? 0 : reader.GetUInt32("bottles");
-                    outputItem.NonTaxable = reader.IsDBNull("nontaxable") ? false : (0 != reader.GetInt16("nontaxable"));
-                    outputItem.NonTaxableLocal = reader.IsDBNull("nontaxable_local") ? false : (0 != reader.GetInt16("nontaxable_local"));
-                    outputItem.Qty = reader.IsDBNull("inventory_qty") ? 0 : reader.GetUInt32("inventory_qty");
-                    outputItem.SupplierPrice = reader.IsDBNull("supplier_price") ? 0.00 : reader.GetDouble("supplier_price");
-                    outputItem.PurchasedDate = reader.IsDBNull("purchased_date") ? DateTime.Now : reader.GetDateTime("purchased_date");
+                    outputItem.NonTaxable = !reader.IsDBNull("nontaxable") && (0 != reader.GetInt16("nontaxable"));
+                    outputItem.NonTaxableLocal = !reader.IsDBNull("nontaxable_local") && (0 != reader.GetInt16("nontaxable_local"));
                     outputItem.ItemType = reader.IsDBNull("inventory_type_name") ? "" : reader.GetString("inventory_type_name");
                     outputItem.BottleDeposit = reader.IsDBNull("bottle_deposit") ? 0 : reader.GetDouble("bottle_deposit");
                     outputItem.IdTax = reader.IsDBNull("idTax") ? 0 : reader.GetUInt32("idTax");
@@ -408,7 +413,8 @@ namespace WebApi.Controllers
                     output.Add(outputItem);
                 }
 
-                if (!reader.IsDBNull("discountID"))
+                if (!reader.IsDBNull("discountID") 
+                && outputItem.Discounts.FirstOrDefault(x => x.DiscountID == reader.GetUInt32("discountID")) == null)
                     outputItem.Discounts.Add(new Discount()
                     {
                         DiscountID = reader.GetUInt32("discountID"),
@@ -418,6 +424,15 @@ namespace WebApi.Controllers
                         Amount = reader.GetDouble("Discount"),
                         Enabled = reader.IsDBNull("minqty") && reader.IsDBNull("maxqty")
                     }) ;
+
+                if (!reader.IsDBNull("supplier_Price")
+                &&  outputItem.AllQty.FirstOrDefault(x => x.SupplierPrice == reader.GetDouble("supplier_Price")) == null)
+                    outputItem.AllQty.Add(new InventoryQty()
+                    {
+                        PurchasedDate = reader.GetDateTime("purchased_date"),
+                        SupplierPrice = reader.GetDouble("Supplier_price"),
+                        Qty = reader.IsDBNull("Inventory_Qty") ? 0 : reader.GetUInt32("Inventory_Qty")
+                    });
             }
             return output;
         }
