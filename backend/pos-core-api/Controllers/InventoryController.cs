@@ -6,6 +6,7 @@ using WebApi.Helpers;
 using MySql.Data.MySqlClient;
 using System.Data;
 using Shared;
+using pos_core_api.ORM;
 
 namespace WebApi.Controllers
 {
@@ -30,7 +31,7 @@ namespace WebApi.Controllers
         {
             try
             {
-                return Ok(GetInv());
+                return Ok(DataAccess.Instance.Inventory.GetInv());
             }
             catch (Exception ex)
             {
@@ -52,7 +53,7 @@ namespace WebApi.Controllers
             Inventory output;
             try
             {
-                output = GetInv(id);
+                output = DataAccess.Instance.Inventory.GetInv(id);
             }
             catch (Exception ex)
             {
@@ -82,7 +83,7 @@ namespace WebApi.Controllers
 
             try
             {
-                output = GetInv(barcode);
+                output = DataAccess.Instance.Inventory.GetInv(barcode);
             }
             catch (Exception ex)
             {
@@ -106,7 +107,7 @@ namespace WebApi.Controllers
         {
             long lastID = -1;
 
-            if (DoesBarcodeExist(inv.Barcode))
+            if (DataAccess.Instance.Inventory.DoesBarcodeExist(inv.Barcode))
                 return StatusCode(400, "Barcode already exist.");
 
             try
@@ -116,9 +117,9 @@ namespace WebApi.Controllers
                 //Inserting into inventory_description
                 string sql = @"
                     INSERT INTO inventory_description 
-                    (name, supplierID, barcode, retail_price, description, typeID, bottle_deposit_qty, nontaxable, nontaxable_local) 
+                    (name, supplierID, barcode, retail_price, typeID, bottle_deposit_qty, nontaxable, nontaxable_local) 
                     VALUES 
-                    (@name, @supplierID, @barcode, @Price, @description, @typeID, @bottles, @nonTaxable, @nonTaxableLocal);
+                    (@name, @supplierID, @barcode, @Price, @typeID, @bottles, @nonTaxable, @nonTaxableLocal);
                 ";
 
                 if (string.IsNullOrWhiteSpace(inv.Barcode))
@@ -133,7 +134,6 @@ namespace WebApi.Controllers
                 cmd.Parameters.Add(new MySqlParameter("supplierID", inv.SupplierID));
                 cmd.Parameters.Add(new MySqlParameter("barcode", inv.Barcode.Trim().ToUpper()));
                 cmd.Parameters.Add(new MySqlParameter("Price", inv.Price));
-                cmd.Parameters.Add(new MySqlParameter("description", inv.Description.Trim()));
                 cmd.Parameters.Add(new MySqlParameter("typeID", inv.TypeID));
                 cmd.Parameters.Add(new MySqlParameter("bottles", inv.Bottles));
                 cmd.Parameters.Add(new MySqlParameter("nonTaxable", inv.NonTaxable));
@@ -205,7 +205,7 @@ namespace WebApi.Controllers
         [HttpPut("{barcode}", Name = "PutDescription")]
         public IActionResult Put([FromBody] Inventory inv)
         {
-            Inventory i = GetInv(inv.Id);
+            Inventory i = DataAccess.Instance.Inventory.GetInv(inv.Id);
 
             if (string.IsNullOrWhiteSpace(inv.Barcode))
                 inv.Barcode = inv.Name.Replace(" ", "").ToUpper();
@@ -214,7 +214,7 @@ namespace WebApi.Controllers
 
             if (i == null)
                 return Post(inv);
-            else if(i.Barcode != inv.Barcode.Trim().ToUpper() && DoesBarcodeExist(inv.Barcode))
+            else if(i.Barcode != inv.Barcode.Trim().ToUpper() && DataAccess.Instance.Inventory.DoesBarcodeExist(inv.Barcode))
                 return StatusCode(400, "Barcode already exist.");
         
             try
@@ -225,7 +225,7 @@ namespace WebApi.Controllers
                     UPDATE inventory_description 
                     SET name = @name, supplierID = @supplierID, 
                         barcode = @barcode, retail_price = @Price, 
-                        description = @description, typeID = @typeID, 
+                        typeID = @typeID, 
                         bottle_deposit_qty = @bottleDepositQty,
                         nontaxable = @nonTaxable, 
                         nontaxable_local = @nonTaxableLocal 
@@ -239,7 +239,6 @@ namespace WebApi.Controllers
                 cmd.Parameters.Add(new MySqlParameter("supplierID", inv.SupplierID));
                 cmd.Parameters.Add(new MySqlParameter("barcode", inv.Barcode));
                 cmd.Parameters.Add(new MySqlParameter("Price", inv.Price));
-                cmd.Parameters.Add(new MySqlParameter("description", inv.Description));
                 cmd.Parameters.Add(new MySqlParameter("typeID", inv.TypeID));
                 cmd.Parameters.Add(new MySqlParameter("bottleDepositQty", inv.Bottles));
                 cmd.Parameters.Add(new MySqlParameter("nonTaxable", inv.NonTaxable));
@@ -305,169 +304,7 @@ namespace WebApi.Controllers
         }
 
 
-        private List<Inventory> GetInv()
-        {
-            List<Inventory> output = new List<Inventory>();
-            db.OpenConnection();
-            try
-            {
-                //change to view that does sum
-                string sqlStatement = @"
-                        SELECT *
-                        FROM v_inventory 
-                   ";
-                using MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
-                using MySqlDataReader reader = cmd.ExecuteReader();
-                output = fetchInventory(reader);
-            }
-            finally
-            {
-                db.CloseConnnection();
-            }
-            
-            return output;
-        }
 
-        private Inventory GetInv(uint id)
-        {
-            List<Inventory> output = null;
-
-            try
-            {
-                db.OpenConnection();
-
-                string sqlStatement = @"
-                    SELECT *
-                    FROM v_inventory 
-                    WHERE Inventoryid = @id
-                ";
-
-                using MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
-                cmd.Parameters.Add(new MySqlParameter("id", id));
-                using MySqlDataReader reader = cmd.ExecuteReader();
-                output = fetchInventory(reader);
-            }
-            finally
-            {
-                db.CloseConnnection();
-            }
-
-            return output[0];
-        }
-
-        private Inventory GetInv(string barcode)
-        {
-            List<Inventory> output = null;
-
-            try
-            {
-                db.OpenConnection();
-
-                string sqlStatement = @"
-                    SELECT *
-                    FROM v_inventory 
-                    WHERE barcode = @bar
-                ";
-
-                using MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
-                cmd.Parameters.Add(new MySqlParameter("bar", barcode));
-                using MySqlDataReader reader = cmd.ExecuteReader();
-
-                output = fetchInventory(reader);
-            }
-            finally
-            {
-                db.CloseConnnection();
-            }
-
-            return output[0];
-        }
-
-        private List<Inventory> fetchInventory(MySqlDataReader reader)
-        {
-            List<Inventory> output = new List<Inventory>();
-
-            Inventory outputItem = null;
-            while (reader.Read())
-            {
-                outputItem = output.FirstOrDefault(x => x.Id == reader.GetUInt32("InventoryId"));
-
-                if (outputItem == null)
-                {
-                    outputItem = new Inventory();
-                    outputItem.Id = reader.IsDBNull("InventoryId") ? 0 : reader.GetUInt32("InventoryId");
-                    outputItem.Name = reader.IsDBNull("name") ? "" : reader.GetString("name");
-                    outputItem.SupplierID = reader.IsDBNull("supplierID") ? 0 : reader.GetUInt32("supplierID");
-                    outputItem.Barcode = reader.IsDBNull("barcode") ? "" : reader.GetString("barcode");
-                    outputItem.Price = reader.IsDBNull("retail_price") ? 0.00 : reader.GetDouble("retail_price");
-                    outputItem.Description = reader.IsDBNull("description") ? "" : reader.GetString("description");
-                    outputItem.TypeID = reader.IsDBNull("typeID") ? 0 : reader.GetUInt32("typeID");
-                    outputItem.Bottles = reader.IsDBNull("bottles") ? 0 : reader.GetUInt32("bottles");
-                    outputItem.NonTaxable = !reader.IsDBNull("nontaxable") && (0 != reader.GetInt16("nontaxable"));
-                    outputItem.NonTaxableLocal = !reader.IsDBNull("nontaxable_local") && (0 != reader.GetInt16("nontaxable_local"));
-                    outputItem.ItemType = reader.IsDBNull("inventory_type_name") ? "" : reader.GetString("inventory_type_name");
-                    outputItem.BottleDeposit = reader.IsDBNull("bottle_deposit") ? 0 : reader.GetDouble("bottle_deposit");
-                    outputItem.IdTax = reader.IsDBNull("idTax") ? 0 : reader.GetUInt32("idTax");
-                    outputItem.SalesTax = reader.IsDBNull("sales_tax") ? 0 : reader.GetDouble("sales_tax");
-                    outputItem.LocalSalesTax = reader.IsDBNull("local_sales_tax") ? 0 : reader.GetDouble("local_sales_tax");
-                    output.Add(outputItem);
-                }
-
-                if (!reader.IsDBNull("discountID") 
-                && outputItem.Discounts.FirstOrDefault(x => x.DiscountID == reader.GetUInt32("discountID")) == null)
-                    outputItem.Discounts.Add(new Discount()
-                    {
-                        DiscountID = reader.GetUInt32("discountID"),
-                        DiscountName = reader.GetString("discountName"),
-                        Min = reader.IsDBNull("minqty") ? 0 : reader.GetUInt32("minqty"),
-                        Max = reader.IsDBNull("maxqty") ? 99999999 : reader.GetUInt32("maxqty"),
-                        Amount = reader.GetDouble("Discount"),
-                        Enabled = reader.IsDBNull("minqty") && reader.IsDBNull("maxqty")
-                    }) ;
-
-                if (!reader.IsDBNull("supplier_Price")
-                &&  outputItem.AllQty.FirstOrDefault(x => x.SupplierPrice == reader.GetDouble("supplier_Price")) == null)
-                    outputItem.AllQty.Add(new InventoryQty()
-                    {
-                        PurchasedDate = reader.GetDateTime("purchased_date"),
-                        SupplierPrice = reader.GetDouble("Supplier_price"),
-                        Qty = reader.IsDBNull("Inventory_Qty") ? 0 : reader.GetUInt32("Inventory_Qty")
-                    });
-            }
-            return output;
-        }
-
-        /// <summary>
-        /// Method that checks if the barcode already exist.
-        /// </summary>
-        /// <param name="barcode"></param>
-        /// <returns>True if the barcode exist.</returns>
-        private bool DoesBarcodeExist(string barcode)
-        {
-            try
-            {
-                db.OpenConnection();
-
-                string sqlStatement = "SELECT barcode FROM inventory_description WHERE barcode = @barcode";
-
-                MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
-                cmd.Parameters.Add(new MySqlParameter("barcode", barcode));
-                MySqlDataReader reader = cmd.ExecuteReader();
-
-                try
-                {
-                    return reader.Read();
-                }
-                finally
-                {
-                    reader.Close();
-                }
-            }
-            finally
-            {
-                db.CloseConnnection();
-            }
-        }
     }
 }
 

@@ -124,7 +124,7 @@ namespace SecretCellar
                 using (var r = dataGridSelectItems.Rows[row])
                 {
                     r.Cells["ItemNumber"].Value = i.Id;
-                    r.Cells["ItemDescription"].Value = i.Name;
+                    r.Cells["ItemDescription"].Value = i.Description;
                     r.Cells["Price"].Value = i.Price;
                 }
             }
