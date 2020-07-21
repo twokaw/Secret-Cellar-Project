@@ -310,5 +310,10 @@ namespace SecretCellar
         {
 
         }
+
+        private void txt_qty_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

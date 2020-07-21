@@ -38,13 +38,17 @@
             this.lblFixedDiscount = new System.Windows.Forms.Label();
             this.txtFixedDiscount = new System.Windows.Forms.TextBox();
             this.dataGridSelectItems = new System.Windows.Forms.DataGridView();
-            this.ItemNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ItemDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.btnApplyToItem = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.ItemNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ItemDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Discount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.total_lbl = new System.Windows.Forms.Label();
+            this.coupon_btn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridSelectItems)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -53,22 +57,22 @@
             // 
             // btnExit
             // 
-            this.btnExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 40.25F);
+            this.btnExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F);
             this.btnExit.ForeColor = System.Drawing.Color.Red;
-            this.btnExit.Location = new System.Drawing.Point(462, 458);
+            this.btnExit.Location = new System.Drawing.Point(293, 460);
             this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(254, 123);
+            this.btnExit.Size = new System.Drawing.Size(198, 82);
             this.btnExit.TabIndex = 4;
-            this.btnExit.Text = "Exit";
+            this.btnExit.Text = "Cancel";
             this.btnExit.UseVisualStyleBackColor = true;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
             // btnClear
             // 
             this.btnClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 30.25F);
-            this.btnClear.Location = new System.Drawing.Point(94, 458);
+            this.btnClear.Location = new System.Drawing.Point(904, 12);
             this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(254, 123);
+            this.btnClear.Size = new System.Drawing.Size(170, 82);
             this.btnClear.TabIndex = 5;
             this.btnClear.Text = "Clear";
             this.btnClear.UseVisualStyleBackColor = true;
@@ -77,11 +81,11 @@
             // btnApplyDiscount
             // 
             this.btnApplyDiscount.Font = new System.Drawing.Font("Microsoft Sans Serif", 30.25F);
-            this.btnApplyDiscount.Location = new System.Drawing.Point(830, 458);
+            this.btnApplyDiscount.Location = new System.Drawing.Point(557, 460);
             this.btnApplyDiscount.Name = "btnApplyDiscount";
-            this.btnApplyDiscount.Size = new System.Drawing.Size(254, 123);
+            this.btnApplyDiscount.Size = new System.Drawing.Size(135, 82);
             this.btnApplyDiscount.TabIndex = 6;
-            this.btnApplyDiscount.Text = "Apply Discount";
+            this.btnApplyDiscount.Text = "Apply ";
             this.btnApplyDiscount.UseVisualStyleBackColor = true;
             this.btnApplyDiscount.Click += new System.EventHandler(this.btnApplyDiscount_Click);
             // 
@@ -92,6 +96,7 @@
             this.txtPercentLineItem.Size = new System.Drawing.Size(200, 20);
             this.txtPercentLineItem.TabIndex = 8;
             this.txtPercentLineItem.TextChanged += new System.EventHandler(this.txtPercentLineItem_TextChanged);
+            this.txtPercentLineItem.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.digit_only);
             // 
             // lblPercentLineItem
             // 
@@ -122,12 +127,13 @@
             this.txtPercentTotalSale.Size = new System.Drawing.Size(200, 20);
             this.txtPercentTotalSale.TabIndex = 13;
             this.txtPercentTotalSale.TextChanged += new System.EventHandler(this.txtPercentTotalSale_TextChanged);
+            this.txtPercentTotalSale.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.digit_only);
             // 
             // lblFixedDiscount
             // 
             this.lblFixedDiscount.AutoSize = true;
             this.lblFixedDiscount.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F);
-            this.lblFixedDiscount.Location = new System.Drawing.Point(116, 46);
+            this.lblFixedDiscount.Location = new System.Drawing.Point(46, 49);
             this.lblFixedDiscount.Name = "lblFixedDiscount";
             this.lblFixedDiscount.Size = new System.Drawing.Size(222, 31);
             this.lblFixedDiscount.TabIndex = 14;
@@ -136,11 +142,12 @@
             // 
             // txtFixedDiscount
             // 
-            this.txtFixedDiscount.Location = new System.Drawing.Point(122, 80);
+            this.txtFixedDiscount.Location = new System.Drawing.Point(52, 83);
             this.txtFixedDiscount.Name = "txtFixedDiscount";
             this.txtFixedDiscount.Size = new System.Drawing.Size(193, 20);
             this.txtFixedDiscount.TabIndex = 15;
             this.txtFixedDiscount.TextChanged += new System.EventHandler(this.txtFixedDiscount_TextChanged);
+            this.txtFixedDiscount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtFixedDiscount_KeyPress);
             // 
             // dataGridSelectItems
             // 
@@ -148,34 +155,20 @@
             this.dataGridSelectItems.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ItemNumber,
             this.ItemDescription,
-            this.Price});
+            this.Price,
+            this.Discount});
             this.dataGridSelectItems.Location = new System.Drawing.Point(19, 120);
             this.dataGridSelectItems.Name = "dataGridSelectItems";
+            this.dataGridSelectItems.RowHeadersVisible = false;
             this.dataGridSelectItems.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridSelectItems.Size = new System.Drawing.Size(624, 175);
             this.dataGridSelectItems.TabIndex = 16;
             this.dataGridSelectItems.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridSelectItems_CellContentClick);
             // 
-            // ItemNumber
-            // 
-            this.ItemNumber.HeaderText = "Item Number";
-            this.ItemNumber.Name = "ItemNumber";
-            this.ItemNumber.Width = 200;
-            // 
-            // ItemDescription
-            // 
-            this.ItemDescription.HeaderText = "Item Desc.";
-            this.ItemDescription.Name = "ItemDescription";
-            this.ItemDescription.Width = 300;
-            // 
-            // Price
-            // 
-            this.Price.HeaderText = "Price";
-            this.Price.Name = "Price";
-            // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.panel1.Controls.Add(this.coupon_btn);
             this.panel1.Controls.Add(this.lblFixedDiscount);
             this.panel1.Controls.Add(this.txtFixedDiscount);
             this.panel1.Location = new System.Drawing.Point(36, 125);
@@ -217,11 +210,69 @@
             this.btnApplyToItem.UseVisualStyleBackColor = false;
             this.btnApplyToItem.Click += new System.EventHandler(this.btnApplyToItem_Click);
             // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(968, 460);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(160, 20);
+            this.textBox1.TabIndex = 20;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
+            // ItemNumber
+            // 
+            this.ItemNumber.HeaderText = "Item Number";
+            this.ItemNumber.Name = "ItemNumber";
+            this.ItemNumber.ReadOnly = true;
+            this.ItemNumber.Visible = false;
+            this.ItemNumber.Width = 200;
+            // 
+            // ItemDescription
+            // 
+            this.ItemDescription.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ItemDescription.HeaderText = "Item Desc.";
+            this.ItemDescription.Name = "ItemDescription";
+            this.ItemDescription.ReadOnly = true;
+            // 
+            // Price
+            // 
+            this.Price.HeaderText = "Price";
+            this.Price.Name = "Price";
+            this.Price.ReadOnly = true;
+            // 
+            // Discount
+            // 
+            this.Discount.HeaderText = "Discount";
+            this.Discount.Name = "Discount";
+            this.Discount.ReadOnly = true;
+            // 
+            // total_lbl
+            // 
+            this.total_lbl.AutoSize = true;
+            this.total_lbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.total_lbl.Location = new System.Drawing.Point(822, 460);
+            this.total_lbl.Name = "total_lbl";
+            this.total_lbl.Size = new System.Drawing.Size(140, 20);
+            this.total_lbl.TabIndex = 21;
+            this.total_lbl.Text = "Total Discount $";
+            // 
+            // coupon_btn
+            // 
+            this.coupon_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold);
+            this.coupon_btn.Location = new System.Drawing.Point(300, 42);
+            this.coupon_btn.Name = "coupon_btn";
+            this.coupon_btn.Size = new System.Drawing.Size(135, 82);
+            this.coupon_btn.TabIndex = 16;
+            this.coupon_btn.Text = "Apply Coupon ";
+            this.coupon_btn.UseVisualStyleBackColor = true;
+            this.coupon_btn.Click += new System.EventHandler(this.coupon_btn_Click);
+            // 
             // frmDiscount
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1179, 603);
+            this.Controls.Add(this.total_lbl);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -239,6 +290,7 @@
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -253,12 +305,16 @@
         private System.Windows.Forms.Label lblFixedDiscount;
         private System.Windows.Forms.TextBox txtFixedDiscount;
         private System.Windows.Forms.DataGridView dataGridSelectItems;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ItemNumber;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ItemDescription;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Price;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Button btnApplyToItem;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ItemNumber;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ItemDescription;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Price;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Discount;
+        private System.Windows.Forms.Label total_lbl;
+        private System.Windows.Forms.Button coupon_btn;
     }
 }

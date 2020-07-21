@@ -42,7 +42,8 @@ namespace SecretCellar
         private void btnDiscount_Click(object sender, EventArgs e)
         {
             frmDiscount discount = new frmDiscount(transaction); //instantiates frmDiscount using discount
-            discount.ShowDialog(); // opens form associated with discount instantiation
+            discount.ShowDialog();
+            addRow(transaction);// opens form associated with discount instantiation
         }
 
         private void btnTender_Click(object sender, EventArgs e)
@@ -167,8 +168,8 @@ namespace SecretCellar
         private void btnLookup_Click(object sender, EventArgs e)
         {
             frmLookup lookup = new frmLookup(transaction); //instantiates frmLookup using Lookup
-            if (lookup.ShowDialog() == DialogResult.OK) // opens form associated with Lookup instantiation
-                addRow(transaction);
+            lookup.ShowDialog(); // opens form associated with Lookup instantiation
+            addRow(transaction);
 
         }
     }

@@ -96,7 +96,8 @@ namespace SecretCellar
 
         private void paymentType_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
+           
         }
+       
     }
 }
