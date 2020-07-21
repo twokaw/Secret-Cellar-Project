@@ -108,9 +108,6 @@ namespace SecretCellar
                 cbo_Supplier.Text = suppliers.First(x => x.SupplierID == i.SupplierID).Name;
                 txtNetPrice.Text = i.SupplierPrice.ToString();
                 txtProd_Qty.Text = i.Bottles.ToString();
-
-
-
             }
         }
 
