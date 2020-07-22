@@ -32,12 +32,6 @@
             this.txtlookup = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.LookupView = new System.Windows.Forms.DataGridView();
-            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Class = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Barcode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Qty = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btn_cancel = new System.Windows.Forms.Button();
             this.btn_add = new System.Windows.Forms.Button();
             this.cboType = new System.Windows.Forms.ComboBox();
@@ -60,6 +54,12 @@
             this.txtBarcode = new System.Windows.Forms.TextBox();
             this.cbo_Supplier = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Class = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Barcode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Qty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.LookupView)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -109,56 +109,6 @@
             this.LookupView.Size = new System.Drawing.Size(759, 390);
             this.LookupView.TabIndex = 2;
             this.LookupView.SelectionChanged += new System.EventHandler(this.LookupView_SelectionChanged);
-            // 
-            // Id
-            // 
-            this.Id.DataPropertyName = "Id";
-            this.Id.HeaderText = "ItemId";
-            this.Id.Name = "Id";
-            this.Id.Visible = false;
-            // 
-            // Description
-            // 
-            this.Description.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Description.DataPropertyName = "Description";
-            this.Description.HeaderText = "Name";
-            this.Description.Name = "Description";
-            this.Description.Width = 60;
-            // 
-            // Class
-            // 
-            this.Class.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Class.DataPropertyName = "ItemType";
-            this.Class.HeaderText = "Class";
-            this.Class.Name = "Class";
-            this.Class.Width = 57;
-            // 
-            // Barcode
-            // 
-            this.Barcode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Barcode.DataPropertyName = "Barcode";
-            this.Barcode.HeaderText = "Barcode";
-            this.Barcode.Name = "Barcode";
-            this.Barcode.Width = 72;
-            // 
-            // Qty
-            // 
-            this.Qty.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Qty.DataPropertyName = "Qty";
-            this.Qty.HeaderText = "Qty";
-            this.Qty.Name = "Qty";
-            this.Qty.Width = 48;
-            // 
-            // Price
-            // 
-            this.Price.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Price.DataPropertyName = "Price";
-            dataGridViewCellStyle1.Format = "C2";
-            dataGridViewCellStyle1.NullValue = null;
-            this.Price.DefaultCellStyle = dataGridViewCellStyle1;
-            this.Price.HeaderText = "Price";
-            this.Price.Name = "Price";
-            this.Price.Width = 56;
             // 
             // btn_cancel
             // 
@@ -397,6 +347,56 @@
             this.label5.Text = "Supplier:";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // Id
+            // 
+            this.Id.DataPropertyName = "Id";
+            this.Id.HeaderText = "ItemId";
+            this.Id.Name = "Id";
+            this.Id.Visible = false;
+            // 
+            // Description
+            // 
+            this.Description.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Description.DataPropertyName = "Name";
+            this.Description.HeaderText = "Name";
+            this.Description.Name = "Description";
+            this.Description.Width = 60;
+            // 
+            // Class
+            // 
+            this.Class.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Class.DataPropertyName = "ItemType";
+            this.Class.HeaderText = "Class";
+            this.Class.Name = "Class";
+            this.Class.Width = 57;
+            // 
+            // Barcode
+            // 
+            this.Barcode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Barcode.DataPropertyName = "Barcode";
+            this.Barcode.HeaderText = "Barcode";
+            this.Barcode.Name = "Barcode";
+            this.Barcode.Width = 72;
+            // 
+            // Qty
+            // 
+            this.Qty.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Qty.DataPropertyName = "Qty";
+            this.Qty.HeaderText = "Qty";
+            this.Qty.Name = "Qty";
+            this.Qty.Width = 48;
+            // 
+            // Price
+            // 
+            this.Price.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Price.DataPropertyName = "Price";
+            dataGridViewCellStyle1.Format = "C2";
+            dataGridViewCellStyle1.NullValue = null;
+            this.Price.DefaultCellStyle = dataGridViewCellStyle1;
+            this.Price.HeaderText = "Price";
+            this.Price.Name = "Price";
+            this.Price.Width = 56;
+            // 
             // frmLookup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -428,12 +428,6 @@
         private System.Windows.Forms.DataGridView LookupView;
         private System.Windows.Forms.Button btn_cancel;
         private System.Windows.Forms.Button btn_add;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Description;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Class;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Barcode;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Qty;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Price;
         private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox cboType;
@@ -454,5 +448,11 @@
         private System.Windows.Forms.TextBox txtBarcode;
         private System.Windows.Forms.Label Btl_Dep_Lb;
         private System.Windows.Forms.TextBox txtProd_Qty;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Description;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Class;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Barcode;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Qty;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Price;
     }
 }
