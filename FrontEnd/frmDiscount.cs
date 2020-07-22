@@ -169,6 +169,7 @@ namespace SecretCellar
 
         private void btnExit_Click(object sender, EventArgs e)
         {
+            // grid.Items.Remove(() { Price = 0, Name = "Coupon", NumSold = 0 });
             this.Close();
         }
 
@@ -184,7 +185,7 @@ namespace SecretCellar
                 e.Handled = true;
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        private void txt_discountTotal_TextChanged(object sender, EventArgs e)
         {
 
         }
@@ -196,6 +197,17 @@ namespace SecretCellar
             populate();
             //dataGridSelectItems.Update();
             //dataGridSelectItems.Refresh();
+        }
+        private void update_Discount_Total()
+        {
+
+            double sum = 0.0;
+
+            foreach (int i in dataGridSelectItems.Rows)
+            {
+                sum += i;
+            }
+            
         }
     }
 }
