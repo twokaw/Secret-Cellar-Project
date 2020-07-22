@@ -93,6 +93,8 @@ namespace SecretCellar
             // Populate subtotal box
             txt_transSubTotal.Text = transaction.Subtotal.ToString("C");
             txt_transBTLDPT.Text = transactionBottleDeposit.ToString("C");
+            txt_transTax.Text = (transaction.Tax + transaction.LocalTax).ToString("C");
+            txt_transDiscount.Text = (transaction.Subtotal * transaction.Discount).ToString("C");
             txt_TransTotal.Text = transaction.Total.ToString("C");
         }
 

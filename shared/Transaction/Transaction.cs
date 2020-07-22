@@ -31,7 +31,7 @@ namespace Shared
                 double tax = 0;
 
                 if (!TaxExempt)
-                    Items.ForEach(x => tax += (x.NonTaxableLocal && x.Price > 0) ? x.Price * (1 - x.Discount) * x.NumSold * (1 + x.LocalSalesTax) : 0);
+                    Items.ForEach(x => tax += (!x.NonTaxableLocal && x.Price > 0) ? x.Price * (1 - x.Discount) * x.NumSold * (x.LocalSalesTax) : 0);
 
                 return tax;
             }
@@ -54,7 +54,7 @@ namespace Shared
                 double tax = 0;
 
                 if (!TaxExempt)
-                    Items.ForEach(x => tax += (x.NonTaxable && x.Price > 0) ? x.Price * (1 - x.Discount) * x.NumSold * (1 + x.SalesTax) : 0);
+                    Items.ForEach(x => tax += (!x.NonTaxable && x.Price > 0) ? x.Price * (1 - x.Discount) * x.NumSold * (x.SalesTax) : 0);
 
                 return tax;
             }
