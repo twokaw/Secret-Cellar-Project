@@ -143,7 +143,7 @@ namespace SecretCellar
         public void percent_discount()
         {
             
-            if (int.TryParse(txtPercentTotalSale.Text, out int d))
+            if (double.TryParse(txtPercentTotalSale.Text, out double d))
             {
                 grid.Discount = d/100;
             }
