@@ -169,7 +169,7 @@ namespace SecretCellar
 
         private void btnExit_Click(object sender, EventArgs e)
         {
-            //grid.Items.Remove(() { Price = 0, Name = "Coupon", NumSold = 0 });
+            // grid.Items.Remove(() { Price = 0, Name = "Coupon", NumSold = 0 });
             this.Close();
         }
 
