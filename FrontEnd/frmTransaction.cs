@@ -174,5 +174,10 @@ namespace SecretCellar
             addRow(transaction);
 
         }
+
+        private void txt_TransTotal_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

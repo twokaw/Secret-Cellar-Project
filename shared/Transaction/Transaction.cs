@@ -19,7 +19,7 @@ namespace Shared
             {
                 double sub = 0;
 
-                Items.ForEach(x => sub += x.Price * (1 - x.Discount) * x.NumSold);
+                Items.ForEach(x => sub += x.Price * x.NumSold);
 
                 return sub * (1 - Discount);
             }
@@ -32,7 +32,6 @@ namespace Shared
 
                 if (!TaxExempt)
                     Items.ForEach(x => tax += (!x.NonTaxableLocal && x.Price > 0) ? x.Price * (1 - x.Discount) * x.NumSold * (x.LocalSalesTax) : 0);
-
                 return tax;
             }
         }
@@ -63,7 +62,7 @@ namespace Shared
         {
             get
             {
-                return Subtotal + Tax + LocalTax + Bottle_deposit ;
+                return Subtotal * (1 - Discount) + Tax + LocalTax + Bottle_deposit ;
             }
         }
         public bool TaxExempt { get; set; }
