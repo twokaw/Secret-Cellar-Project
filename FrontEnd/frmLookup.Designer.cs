@@ -120,7 +120,7 @@
             // Description
             // 
             this.Description.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Description.DataPropertyName = "Name";
+            this.Description.DataPropertyName = "Description";
             this.Description.HeaderText = "Name";
             this.Description.Name = "Description";
             this.Description.Width = 60;
