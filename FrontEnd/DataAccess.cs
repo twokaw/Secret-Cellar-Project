@@ -182,7 +182,25 @@ namespace SecretCellar
         #endregion
         public static Item ConvertInvtoItem(Inventory inv)
         {
-            return new Item(inv.Name, inv.Id, inv.Barcode, inv.Qty, 1, inv.Price, !inv.NonTaxable, inv.ItemType, inv.Bottles, 0, 0);
+            return new Item
+            {
+                Name = inv.Name,
+                Id = inv.Id,
+                Barcode = inv.Barcode,
+                AllQty = inv.AllQty,
+                BottleDeposit = inv.BottleDeposit,
+                NumSold = 1,
+                Price = inv.Price,
+                NonTaxable = inv.NonTaxable, 
+                ItemType = inv.ItemType,
+                Bottles = inv.Bottles,
+                SalesTax = inv.SalesTax,
+                LocalSalesTax = inv.LocalSalesTax, 
+                IdTax = inv.IdTax ,
+                NonTaxableLocal = inv.NonTaxableLocal ,
+                Discounts = inv.Discounts
+            }
+            ;
         }
     }
 }
