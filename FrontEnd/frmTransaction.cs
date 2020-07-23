@@ -179,5 +179,13 @@ namespace SecretCellar
         {
 
         }
+
+        private void btnEvents_Click(object sender, EventArgs e)
+        {
+            frmEvents events = new frmEvents(transaction);
+
+            events.ShowDialog();
+            addRow(transaction);
+        }
     }
 }
