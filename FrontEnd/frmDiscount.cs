@@ -115,7 +115,7 @@ namespace SecretCellar
                 using (var r = dataGridSelectItems.Rows[row])
                 {
                     r.Cells["ItemNumber"].Value = i.Id;
-                    r.Cells["ItemDescription"].Value = i.Name;
+                    r.Cells["ItemDescription"].Value = i.Description;
                     r.Cells["Price"].Value = ((1-i.Discount)* i.Price).ToString("c");
                     r.Cells["Discount"].Value = i.Discount.ToString("p0");
                 }
@@ -143,7 +143,7 @@ namespace SecretCellar
         public void percent_discount()
         {
             
-            if (int.TryParse(txtPercentTotalSale.Text, out int d))
+            if (double.TryParse(txtPercentTotalSale.Text, out double d))
             {
                 grid.Discount = d/100;
             }
@@ -169,22 +169,23 @@ namespace SecretCellar
 
         private void btnExit_Click(object sender, EventArgs e)
         {
+            // grid.Items.Remove(() { Price = 0, Name = "Coupon", NumSold = 0 });
             this.Close();
         }
 
         private void digit_only(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsDigit(e.KeyChar))
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != 8 && e.KeyChar != 127)
                 e.Handled = true;
         }
 
         private void txtFixedDiscount_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsDigit(e.KeyChar) && (e.KeyChar != '.' || txtFixedDiscount.Text.Contains('.')))
+            if (!char.IsDigit(e.KeyChar) && (e.KeyChar != '.' || txtFixedDiscount.Text.Contains('.')) && e.KeyChar != 8 && e.KeyChar != 127)
                 e.Handled = true;
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        private void txt_discountTotal_TextChanged(object sender, EventArgs e)
         {
 
         }
@@ -196,6 +197,17 @@ namespace SecretCellar
             populate();
             //dataGridSelectItems.Update();
             //dataGridSelectItems.Refresh();
+        }
+        private void update_Discount_Total()
+        {
+
+            double sum = 0.0;
+
+            foreach (int i in dataGridSelectItems.Rows)
+            {
+                sum += i;
+            }
+            
         }
     }
 }

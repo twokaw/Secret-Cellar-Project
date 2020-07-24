@@ -108,9 +108,6 @@ namespace SecretCellar
                 cbo_Supplier.Text = suppliers.First(x => x.SupplierID == i.SupplierID).Name;
                 txtNetPrice.Text = i.SupplierPrice.ToString();
                 txtProd_Qty.Text = i.Bottles.ToString();
-
-
-
             }
         }
 
@@ -214,7 +211,7 @@ namespace SecretCellar
         private void refresh()
         {
             LookupView.DataSource = inventory.Where(x => x.Name.Contains(txtlookup.Text) || x.Barcode.Contains(txtlookup.Text)).
-               Select(x => new { Name = x.Name, Id = x.Id, ItemType = x.TypeID == types.First(i => i.TypeName == cboType.Text).TypeId, Qty = x.Qty, Barcode = x.Barcode, Price = x.Price }).
+               Select(x => new { Name = x.Name, Id = x.Id, ItemType = x.ItemType, Qty = x.Qty, Barcode = x.Barcode, Price = x.Price }).
                OrderBy(x => x.Name).
                ToList();
         }

@@ -1,14 +1,23 @@
 ﻿
+using System.Linq;
+
 namespace Shared
 {
     public class Item: BaseItem
     {
 
-        public uint NumSold { get; set; }
+        public string Description
+        {
+            get
+            {
+                return $"{Name}{((Discount > 0)  ? $" *{Discount :P0} OFF*": "")} {string.Join(" ", Discounts.Where(x => x.Enabled).Select(x=>x.DiscountName))} ";
+            }
+        }
+        public uint NumSold { get; set; } 
         public double Discount { get; set; }
         public double Coupon { get; set; }
 
-        public Item():base() { }
+        public Item():base() { NumSold = 1; }
 
         public Item(string Name,
                     uint Id,

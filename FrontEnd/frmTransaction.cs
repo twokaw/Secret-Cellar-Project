@@ -79,9 +79,9 @@ namespace SecretCellar
                 using (var r = dataGridView1.Rows[row])
                 {
                     // Populate tranaction datagrid row
-                    r.Cells["Description"].Value = item.Name;
-                    r.Cells["Price"].Value = item.Price.ToString("C");
-                    r.Cells["Discount"].Value = item.Discount.ToString("p0");
+                    r.Cells["Description"].Value = item.Description;
+                    r.Cells["Discount"].Value =  item.Discount.ToString("P0");
+                    r.Cells["Price"].Value = (item.Price * (1 - item.Discount)).ToString("C");
                     r.Cells["Qty"].Value = item.NumSold;
                     r.Cells["Total"].Value = (item.Price * item.NumSold * (1 - item.Discount)).ToString("C");
                     r.Cells["BOTTLE_DEPOSIT"].Value = (item.NumSold * item.Bottles * .05).ToString("C");
@@ -93,6 +93,8 @@ namespace SecretCellar
             // Populate subtotal box
             txt_transSubTotal.Text = transaction.Subtotal.ToString("C");
             txt_transBTLDPT.Text = transactionBottleDeposit.ToString("C");
+            txt_transTax.Text = (transaction.Tax + transaction.LocalTax).ToString("C");
+            txt_transDiscount.Text = (transaction.Subtotal * transaction.Discount).ToString("C");
             txt_TransTotal.Text = transaction.Total.ToString("C");
         }
 
@@ -171,6 +173,19 @@ namespace SecretCellar
             lookup.ShowDialog(); // opens form associated with Lookup instantiation
             addRow(transaction);
 
+        }
+
+        private void txt_TransTotal_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnEvents_Click(object sender, EventArgs e)
+        {
+            frmEvents events = new frmEvents(transaction);
+
+            events.ShowDialog();
+            addRow(transaction);
         }
     }
 }
