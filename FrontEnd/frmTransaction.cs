@@ -187,5 +187,13 @@ namespace SecretCellar
             events.ShowDialog();
             addRow(transaction);
         }
+
+        private void btnShipping_Click(object sender, EventArgs e)
+        {
+            frmShipping shipping = new frmShipping(transaction);
+
+            shipping.ShowDialog();
+            addRow(transaction);
+        }
     }
 }

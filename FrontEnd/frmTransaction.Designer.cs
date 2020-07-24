@@ -211,6 +211,7 @@
             this.btnShipping.TabStop = false;
             this.btnShipping.Text = "SHIPPING";
             this.btnShipping.UseVisualStyleBackColor = true;
+            this.btnShipping.Click += new System.EventHandler(this.btnShipping_Click);
             // 
             // btnEvents
             // 
