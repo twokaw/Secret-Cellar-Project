@@ -19,11 +19,25 @@ namespace pos_core_api.ORM
 
         public InventoryORM Inventory
         {
-            get{
+            get
+            {
                 if (inventoryORM == null)
                     inventoryORM = new InventoryORM();
 
                 return inventoryORM;
+            }
+        }
+
+        private static CustomerORM customerORM = null;
+
+        public CustomerORM Customer
+        {
+            get
+            {
+                if (customerORM == null)
+                    customerORM = new CustomerORM();
+
+                return customerORM;
             }
         }
     }
