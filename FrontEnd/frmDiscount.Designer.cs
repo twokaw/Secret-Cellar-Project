@@ -280,6 +280,7 @@
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.btnExit);
             this.Name = "frmDiscount";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Discount";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridSelectItems)).EndInit();

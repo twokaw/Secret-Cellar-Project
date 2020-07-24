@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SecretCellar;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,9 +14,11 @@ namespace SecretCellar
 {
     public partial class frmShipping : Form
     {
-        public frmShipping()
+        private Transaction shipping = null;
+        public frmShipping(Transaction transaction)
         {
             InitializeComponent();
+            shipping = transaction; 
 
         }
 
@@ -45,17 +48,8 @@ namespace SecretCellar
             {
                 Item i = DataAccess.ConvertInvtoItem(DataAccess.instance.GetItem("SHIPPING"));
                 i.Price = d;
-              //  shipping.Items.Add(i);
-                /*ship.Items.Add(new Item()
-                {
-                    Name = "Shipping",
-                    Id = xxxx,
-                    Barcode = "SHIPPING",
-                    Price = d,
-                    NumSold = 1
 
-                });
-                //  dryClean.Subtotal += d;*/
+                shipping.Items.Add(i);
             }
 
 
