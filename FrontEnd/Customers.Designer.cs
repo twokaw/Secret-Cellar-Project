@@ -34,7 +34,7 @@
             this.btnDeleteTab = new System.Windows.Forms.Button();
             this.btnPayOutTab = new System.Windows.Forms.Button();
             this.dataGridTabs = new System.Windows.Forms.DataGridView();
-            this.EventName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CustomerName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PurchasedItems = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TotalPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnExit = new System.Windows.Forms.Button();
@@ -105,7 +105,7 @@
             // 
             this.dataGridTabs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridTabs.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.EventName,
+            this.CustomerName,
             this.PurchasedItems,
             this.TotalPrice});
             this.dataGridTabs.Location = new System.Drawing.Point(94, 206);
@@ -116,9 +116,9 @@
             // 
             // Name
             // 
-            this.EventName.HeaderText = "Name";
-            this.EventName.Name = "Name";
-            this.EventName.Width = 200;
+            this.CustomerName.HeaderText = "Name";
+            this.CustomerName.Name = "Name";
+            this.CustomerName.Width = 200;
             // 
             // PurchasedItems
             // 
@@ -202,7 +202,7 @@
             this.btnAddTab.Visible = false;
             this.btnAddTab.Click += new System.EventHandler(this.btnAddTab_Click);
             // 
-            // frmEvent
+            // Customers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -215,7 +215,8 @@
             this.Controls.Add(this.btnAddToTab);
             this.Controls.Add(this.btnNewTab);
             this.Controls.Add(this.label1);
-            this.Name = "frmEvent";
+            this.Name = "Customers";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Event Tabs";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridTabs)).EndInit();
             this.grpBoxAddTab.ResumeLayout(false);
@@ -243,5 +244,6 @@
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnAddTab;
         private System.Windows.Forms.DataGridViewTextBoxColumn EventName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CustomerName;
     }
 }

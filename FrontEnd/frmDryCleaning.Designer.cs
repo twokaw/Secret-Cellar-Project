@@ -91,6 +91,7 @@
             this.Controls.Add(this.txtCharge);
             this.Controls.Add(this.lblTitle);
             this.Name = "frmDryCleaning";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Dry Cleaning";
             this.ResumeLayout(false);
             this.PerformLayout();
