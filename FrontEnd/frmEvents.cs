@@ -1,4 +1,6 @@
-﻿using System;
+﻿using SecretCellar;
+using Shared;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +14,11 @@ namespace SecretCellar
 {
     public partial class frmEvents : Form
     {
-        public frmEvents()
+        private Transaction events = null;
+        public frmEvents(Transaction transaction)
         {
             InitializeComponent();
+            events = transaction;
         }
 
         private void btnAddCharge_Click(object sender, EventArgs e)
@@ -31,16 +35,9 @@ namespace SecretCellar
         {
             if (double.TryParse(txtCharge.Text, out double d))
             {
-                //events.Items.Add(new Item()
-                //{
-                //    Name = "Events",
-                //    Id = xxxx,
-                //    Barcode = "EVENTS",
-                //    Price = d,
-                //    NumSold = 1
-
-                //});
-                //  dryClean.Subtotal += d;
+                Item i = DataAccess.ConvertInvtoItem(DataAccess.instance.GetItem("EVENT"));
+                i.Price = d;
+                events.Items.Add(i);
             }
 
 

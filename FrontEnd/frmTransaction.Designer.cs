@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmTransaction));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.DESCRIPTION = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -75,14 +75,14 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.1F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.1F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.DESCRIPTION,
@@ -93,7 +93,7 @@
             this.BOTTLE_DEPOSIT,
             this.TOTAL});
             this.dataGridView1.Location = new System.Drawing.Point(15, 51);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(1);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowHeadersWidth = 102;
@@ -165,7 +165,7 @@
             this.btnBeverages.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnBeverages.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBeverages.Location = new System.Drawing.Point(15, 332);
-            this.btnBeverages.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.btnBeverages.Margin = new System.Windows.Forms.Padding(1);
             this.btnBeverages.Name = "btnBeverages";
             this.btnBeverages.Size = new System.Drawing.Size(120, 44);
             this.btnBeverages.TabIndex = 3;
@@ -178,7 +178,7 @@
             this.btnFood.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnFood.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnFood.Location = new System.Drawing.Point(15, 407);
-            this.btnFood.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.btnFood.Margin = new System.Windows.Forms.Padding(1);
             this.btnFood.Name = "btnFood";
             this.btnFood.Size = new System.Drawing.Size(120, 44);
             this.btnFood.TabIndex = 4;
@@ -191,7 +191,7 @@
             this.btnCustom.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnCustom.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCustom.Location = new System.Drawing.Point(15, 483);
-            this.btnCustom.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.btnCustom.Margin = new System.Windows.Forms.Padding(1);
             this.btnCustom.Name = "btnCustom";
             this.btnCustom.Size = new System.Drawing.Size(120, 44);
             this.btnCustom.TabIndex = 5;
@@ -204,33 +204,35 @@
             this.btnShipping.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnShipping.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnShipping.Location = new System.Drawing.Point(154, 483);
-            this.btnShipping.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.btnShipping.Margin = new System.Windows.Forms.Padding(1);
             this.btnShipping.Name = "btnShipping";
             this.btnShipping.Size = new System.Drawing.Size(120, 44);
             this.btnShipping.TabIndex = 8;
             this.btnShipping.TabStop = false;
             this.btnShipping.Text = "SHIPPING";
             this.btnShipping.UseVisualStyleBackColor = true;
+            this.btnShipping.Click += new System.EventHandler(this.btnShipping_Click);
             // 
             // btnEvents
             // 
             this.btnEvents.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnEvents.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEvents.Location = new System.Drawing.Point(154, 407);
-            this.btnEvents.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.btnEvents.Margin = new System.Windows.Forms.Padding(1);
             this.btnEvents.Name = "btnEvents";
             this.btnEvents.Size = new System.Drawing.Size(120, 44);
             this.btnEvents.TabIndex = 7;
             this.btnEvents.TabStop = false;
             this.btnEvents.Text = "EVENTS";
             this.btnEvents.UseVisualStyleBackColor = true;
+            this.btnEvents.Click += new System.EventHandler(this.btnEvents_Click);
             // 
             // btnDryClean
             // 
             this.btnDryClean.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnDryClean.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDryClean.Location = new System.Drawing.Point(154, 332);
-            this.btnDryClean.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.btnDryClean.Margin = new System.Windows.Forms.Padding(1);
             this.btnDryClean.Name = "btnDryClean";
             this.btnDryClean.Size = new System.Drawing.Size(120, 44);
             this.btnDryClean.TabIndex = 6;
@@ -244,7 +246,7 @@
             this.btnDiscount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnDiscount.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDiscount.Location = new System.Drawing.Point(292, 483);
-            this.btnDiscount.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.btnDiscount.Margin = new System.Windows.Forms.Padding(1);
             this.btnDiscount.Name = "btnDiscount";
             this.btnDiscount.Size = new System.Drawing.Size(120, 44);
             this.btnDiscount.TabIndex = 11;
@@ -258,7 +260,7 @@
             this.btnVoidTrx.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnVoidTrx.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnVoidTrx.Location = new System.Drawing.Point(292, 407);
-            this.btnVoidTrx.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.btnVoidTrx.Margin = new System.Windows.Forms.Padding(1);
             this.btnVoidTrx.Name = "btnVoidTrx";
             this.btnVoidTrx.Size = new System.Drawing.Size(120, 44);
             this.btnVoidTrx.TabIndex = 10;
@@ -271,7 +273,7 @@
             this.btnDeleteItem.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnDeleteItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDeleteItem.Location = new System.Drawing.Point(292, 332);
-            this.btnDeleteItem.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.btnDeleteItem.Margin = new System.Windows.Forms.Padding(1);
             this.btnDeleteItem.Name = "btnDeleteItem";
             this.btnDeleteItem.Size = new System.Drawing.Size(120, 44);
             this.btnDeleteItem.TabIndex = 9;
@@ -296,7 +298,7 @@
             this.panel1.Controls.Add(this.LB_SubTotal);
             this.panel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panel1.Location = new System.Drawing.Point(976, 348);
-            this.panel1.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.panel1.Margin = new System.Windows.Forms.Padding(1);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(196, 173);
             this.panel1.TabIndex = 13;
@@ -306,7 +308,7 @@
             // 
             this.txt_TransTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_TransTotal.Location = new System.Drawing.Point(96, 136);
-            this.txt_TransTotal.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.txt_TransTotal.Margin = new System.Windows.Forms.Padding(1);
             this.txt_TransTotal.Name = "txt_TransTotal";
             this.txt_TransTotal.ReadOnly = true;
             this.txt_TransTotal.Size = new System.Drawing.Size(89, 26);
@@ -316,7 +318,7 @@
             // txt_transTax
             // 
             this.txt_transTax.Location = new System.Drawing.Point(96, 58);
-            this.txt_transTax.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.txt_transTax.Margin = new System.Windows.Forms.Padding(1);
             this.txt_transTax.Name = "txt_transTax";
             this.txt_transTax.ReadOnly = true;
             this.txt_transTax.Size = new System.Drawing.Size(88, 23);
@@ -326,7 +328,7 @@
             // txt_transDiscount
             // 
             this.txt_transDiscount.Location = new System.Drawing.Point(96, 33);
-            this.txt_transDiscount.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.txt_transDiscount.Margin = new System.Windows.Forms.Padding(1);
             this.txt_transDiscount.Name = "txt_transDiscount";
             this.txt_transDiscount.ReadOnly = true;
             this.txt_transDiscount.Size = new System.Drawing.Size(88, 23);
@@ -336,7 +338,7 @@
             // txt_transBTLDPT
             // 
             this.txt_transBTLDPT.Location = new System.Drawing.Point(96, 83);
-            this.txt_transBTLDPT.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.txt_transBTLDPT.Margin = new System.Windows.Forms.Padding(1);
             this.txt_transBTLDPT.Name = "txt_transBTLDPT";
             this.txt_transBTLDPT.ReadOnly = true;
             this.txt_transBTLDPT.Size = new System.Drawing.Size(88, 23);
@@ -346,7 +348,7 @@
             // txt_transSubTotal
             // 
             this.txt_transSubTotal.Location = new System.Drawing.Point(96, 9);
-            this.txt_transSubTotal.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.txt_transSubTotal.Margin = new System.Windows.Forms.Padding(1);
             this.txt_transSubTotal.Name = "txt_transSubTotal";
             this.txt_transSubTotal.ReadOnly = true;
             this.txt_transSubTotal.Size = new System.Drawing.Size(88, 23);
@@ -413,7 +415,7 @@
             // 
             this.txtBarcode.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBarcode.Location = new System.Drawing.Point(444, 12);
-            this.txtBarcode.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.txtBarcode.Margin = new System.Windows.Forms.Padding(1);
             this.txtBarcode.Name = "txtBarcode";
             this.txtBarcode.Size = new System.Drawing.Size(166, 26);
             this.txtBarcode.TabIndex = 15;
@@ -437,7 +439,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(435, 343);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(1);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(286, 184);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -448,7 +450,7 @@
             // 
             this.btnLookup.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLookup.Location = new System.Drawing.Point(643, 10);
-            this.btnLookup.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.btnLookup.Margin = new System.Windows.Forms.Padding(1);
             this.btnLookup.Name = "btnLookup";
             this.btnLookup.Size = new System.Drawing.Size(104, 29);
             this.btnLookup.TabIndex = 19;
@@ -470,7 +472,7 @@
             this.btnTender.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTender.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTender.Location = new System.Drawing.Point(782, 397);
-            this.btnTender.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.btnTender.Margin = new System.Windows.Forms.Padding(1);
             this.btnTender.Name = "btnTender";
             this.btnTender.OnHoverBorderColor = System.Drawing.Color.Transparent;
             this.btnTender.OnHoverButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(24)))), ((int)(((byte)(24)))));
@@ -506,7 +508,7 @@
             this.Controls.Add(this.btnFood);
             this.Controls.Add(this.btnBeverages);
             this.Controls.Add(this.dataGridView1);
-            this.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.Margin = new System.Windows.Forms.Padding(1);
             this.Name = "frmTransaction";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmTransaction";

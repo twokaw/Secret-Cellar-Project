@@ -31,11 +31,11 @@
             this.TabSettings = new System.Windows.Forms.TabControl();
             this.tabHardware = new System.Windows.Forms.TabPage();
             this.TabTypes = new System.Windows.Forms.TabPage();
+            this.label3 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.lstTypes = new System.Windows.Forms.ListBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.TabSettings.SuspendLayout();
             this.TabTypes.SuspendLayout();
             this.SuspendLayout();
@@ -75,6 +75,23 @@
             this.TabTypes.Text = "Types";
             this.TabTypes.UseVisualStyleBackColor = true;
             // 
+            // label3
+            // 
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(207, 227);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(102, 15);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "Tax Type";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(204, 249);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(151, 21);
+            this.comboBox1.TabIndex = 3;
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -103,23 +120,6 @@
             this.lstTypes.Size = new System.Drawing.Size(103, 342);
             this.lstTypes.TabIndex = 0;
             // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(204, 249);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(151, 21);
-            this.comboBox1.TabIndex = 3;
-            // 
-            // label3
-            // 
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(207, 227);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(102, 15);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Tax Type";
-            // 
             // FrmSetting
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -127,6 +127,7 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.TabSettings);
             this.Name = "FrmSetting";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "frmSetting";
             this.Load += new System.EventHandler(this.FrmSetting_Load);
             this.TabSettings.ResumeLayout(false);
