@@ -151,6 +151,10 @@
             // 
             // dataGridSelectItems
             // 
+            this.dataGridSelectItems.AllowUserToAddRows = false;
+            this.dataGridSelectItems.AllowUserToDeleteRows = false;
+            this.dataGridSelectItems.AllowUserToResizeColumns = false;
+            this.dataGridSelectItems.AllowUserToResizeRows = false;
             this.dataGridSelectItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridSelectItems.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ItemNumber,

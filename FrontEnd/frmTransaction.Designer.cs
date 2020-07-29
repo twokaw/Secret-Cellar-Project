@@ -70,6 +70,10 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.AllowUserToResizeColumns = false;
+            this.dataGridView1.AllowUserToResizeRows = false;
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -99,6 +103,7 @@
             this.dataGridView1.RowHeadersWidth = 102;
             this.dataGridView1.RowTemplate.Height = 40;
             this.dataGridView1.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(1157, 266);
             this.dataGridView1.TabIndex = 2;
             this.dataGridView1.TabStop = false;
@@ -267,6 +272,7 @@
             this.btnVoidTrx.TabStop = false;
             this.btnVoidTrx.Text = "VOID TRX";
             this.btnVoidTrx.UseVisualStyleBackColor = true;
+            this.btnVoidTrx.Click += new System.EventHandler(this.btnVoidTrx_Click);
             // 
             // btnDeleteItem
             // 
