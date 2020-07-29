@@ -100,6 +100,14 @@ namespace SecretCellar
 
         private void btnDeleteItem_Click(object sender, EventArgs e)
         {
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+                string desc = dataGridView1.SelectedRows[0].Cells["DESCRIPTION"].Value.ToString();
+                uint qty = uint.Parse(dataGridView1.SelectedRows[0].Cells["QTY"].Value.ToString());
+                Item i =   transaction.Items.First(x => x.Description == desc  && x.NumSold == qty );
+                transaction.Items.Remove(i);
+                addRow(transaction);
+            }
 
         }
 
@@ -193,6 +201,12 @@ namespace SecretCellar
             frmShipping shipping = new frmShipping(transaction);
 
             shipping.ShowDialog();
+            addRow(transaction);
+        }
+
+        private void btnVoidTrx_Click(object sender, EventArgs e)
+        {
+            transaction = new Transaction();
             addRow(transaction);
         }
     }

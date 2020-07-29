@@ -28,10 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.txtlookup = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.LookupView = new System.Windows.Forms.DataGridView();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Class = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Barcode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Qty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btn_cancel = new System.Windows.Forms.Button();
             this.btn_add = new System.Windows.Forms.Button();
             this.cboType = new System.Windows.Forms.ComboBox();
@@ -54,12 +60,10 @@
             this.txtBarcode = new System.Windows.Forms.TextBox();
             this.cbo_Supplier = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Class = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Barcode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Qty = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cbxTypeFilter = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.cbxSupplyFilter = new System.Windows.Forms.ComboBox();
+            this.lblSupplyFilter = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.LookupView)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -108,7 +112,58 @@
             this.LookupView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.LookupView.Size = new System.Drawing.Size(759, 390);
             this.LookupView.TabIndex = 2;
+            this.LookupView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.LookupView_CellContentClick);
             this.LookupView.SelectionChanged += new System.EventHandler(this.LookupView_SelectionChanged);
+            // 
+            // Id
+            // 
+            this.Id.DataPropertyName = "Id";
+            this.Id.HeaderText = "ItemId";
+            this.Id.Name = "Id";
+            this.Id.Visible = false;
+            // 
+            // Description
+            // 
+            this.Description.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Description.DataPropertyName = "Name";
+            this.Description.HeaderText = "Name";
+            this.Description.Name = "Description";
+            this.Description.Width = 60;
+            // 
+            // Class
+            // 
+            this.Class.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Class.DataPropertyName = "ItemType";
+            this.Class.HeaderText = "Class";
+            this.Class.Name = "Class";
+            this.Class.Width = 57;
+            // 
+            // Barcode
+            // 
+            this.Barcode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Barcode.DataPropertyName = "Barcode";
+            this.Barcode.HeaderText = "Barcode";
+            this.Barcode.Name = "Barcode";
+            this.Barcode.Width = 72;
+            // 
+            // Qty
+            // 
+            this.Qty.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Qty.DataPropertyName = "Qty";
+            this.Qty.HeaderText = "Qty";
+            this.Qty.Name = "Qty";
+            this.Qty.Width = 48;
+            // 
+            // Price
+            // 
+            this.Price.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Price.DataPropertyName = "Price";
+            dataGridViewCellStyle5.Format = "C2";
+            dataGridViewCellStyle5.NullValue = null;
+            this.Price.DefaultCellStyle = dataGridViewCellStyle5;
+            this.Price.HeaderText = "Price";
+            this.Price.Name = "Price";
+            this.Price.Width = 56;
             // 
             // btn_cancel
             // 
@@ -146,6 +201,7 @@
             this.cboType.Name = "cboType";
             this.cboType.Size = new System.Drawing.Size(163, 21);
             this.cboType.TabIndex = 5;
+            this.cboType.SelectedIndexChanged += new System.EventHandler(this.cboType_SelectedIndexChanged);
             // 
             // label4
             // 
@@ -347,61 +403,56 @@
             this.label5.Text = "Supplier:";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // Id
+            // cbxTypeFilter
             // 
-            this.Id.DataPropertyName = "Id";
-            this.Id.HeaderText = "ItemId";
-            this.Id.Name = "Id";
-            this.Id.Visible = false;
+            this.cbxTypeFilter.DisplayMember = "TypeName";
+            this.cbxTypeFilter.FormattingEnabled = true;
+            this.cbxTypeFilter.Location = new System.Drawing.Point(448, 21);
+            this.cbxTypeFilter.Name = "cbxTypeFilter";
+            this.cbxTypeFilter.Size = new System.Drawing.Size(121, 21);
+            this.cbxTypeFilter.TabIndex = 9;
+            this.cbxTypeFilter.SelectedIndexChanged += new System.EventHandler(this.cbxTypeFilter_SelectedIndexChanged);
             // 
-            // Description
+            // label6
             // 
-            this.Description.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Description.DataPropertyName = "Name";
-            this.Description.HeaderText = "Name";
-            this.Description.Name = "Description";
-            this.Description.Width = 60;
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(411, 24);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(35, 13);
+            this.label6.TabIndex = 10;
+            this.label6.Text = "Type";
+            this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
-            // Class
+            // cbxSupplyFilter
             // 
-            this.Class.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Class.DataPropertyName = "ItemType";
-            this.Class.HeaderText = "Class";
-            this.Class.Name = "Class";
-            this.Class.Width = 57;
+            this.cbxSupplyFilter.DisplayMember = "Name";
+            this.cbxSupplyFilter.FormattingEnabled = true;
+            this.cbxSupplyFilter.Location = new System.Drawing.Point(717, 21);
+            this.cbxSupplyFilter.Name = "cbxSupplyFilter";
+            this.cbxSupplyFilter.Size = new System.Drawing.Size(121, 21);
+            this.cbxSupplyFilter.TabIndex = 11;
+            this.cbxSupplyFilter.SelectedIndexChanged += new System.EventHandler(this.cbxSupplyFilter_SelectedIndexChanged);
             // 
-            // Barcode
+            // lblSupplyFilter
             // 
-            this.Barcode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Barcode.DataPropertyName = "Barcode";
-            this.Barcode.HeaderText = "Barcode";
-            this.Barcode.Name = "Barcode";
-            this.Barcode.Width = 72;
-            // 
-            // Qty
-            // 
-            this.Qty.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Qty.DataPropertyName = "Qty";
-            this.Qty.HeaderText = "Qty";
-            this.Qty.Name = "Qty";
-            this.Qty.Width = 48;
-            // 
-            // Price
-            // 
-            this.Price.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Price.DataPropertyName = "Price";
-            dataGridViewCellStyle1.Format = "C2";
-            dataGridViewCellStyle1.NullValue = null;
-            this.Price.DefaultCellStyle = dataGridViewCellStyle1;
-            this.Price.HeaderText = "Price";
-            this.Price.Name = "Price";
-            this.Price.Width = 56;
+            this.lblSupplyFilter.AutoSize = true;
+            this.lblSupplyFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSupplyFilter.Location = new System.Drawing.Point(659, 25);
+            this.lblSupplyFilter.Name = "lblSupplyFilter";
+            this.lblSupplyFilter.Size = new System.Drawing.Size(57, 13);
+            this.lblSupplyFilter.TabIndex = 12;
+            this.lblSupplyFilter.Text = "Supplier:";
             // 
             // frmLookup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1023, 489);
+            this.Controls.Add(this.lblSupplyFilter);
+            this.Controls.Add(this.cbxSupplyFilter);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.cbxTypeFilter);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btn_add);
@@ -454,5 +505,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Barcode;
         private System.Windows.Forms.DataGridViewTextBoxColumn Qty;
         private System.Windows.Forms.DataGridViewTextBoxColumn Price;
+        private System.Windows.Forms.ComboBox cbxTypeFilter;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ComboBox cbxSupplyFilter;
+        private System.Windows.Forms.Label lblSupplyFilter;
     }
 }
