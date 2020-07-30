@@ -340,6 +340,7 @@
             this.txt_transDiscount.Size = new System.Drawing.Size(88, 23);
             this.txt_transDiscount.TabIndex = 7;
             this.txt_transDiscount.TabStop = false;
+            this.txt_transDiscount.TextChanged += new System.EventHandler(this.txt_transDiscount_TextChanged);
             // 
             // txt_transBTLDPT
             // 

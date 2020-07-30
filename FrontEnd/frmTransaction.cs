@@ -209,5 +209,10 @@ namespace SecretCellar
             transaction = new Transaction();
             addRow(transaction);
         }
+
+        private void txt_transDiscount_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
