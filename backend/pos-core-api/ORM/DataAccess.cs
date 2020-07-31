@@ -11,10 +11,8 @@ namespace pos_core_api.ORM
 
         public static DataAccess Instance = new DataAccess();
 
-        public DataAccess()
-        {
-            
-        }
+        public DataAccess() { }
+
         private static InventoryORM inventoryORM = null;
 
         public InventoryORM Inventory
@@ -38,6 +36,19 @@ namespace pos_core_api.ORM
                     customerORM = new CustomerORM();
 
                 return customerORM;
+            }
+        }
+
+        private static EventORM eventORM = null;
+
+        public EventORM Event
+        {
+            get
+            {
+                if (eventORM == null)
+                    eventORM = new EventORM(Inventory);
+
+                return eventORM;
             }
         }
     }

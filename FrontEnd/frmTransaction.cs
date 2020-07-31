@@ -100,7 +100,18 @@ namespace SecretCellar
 
         private void btnDeleteItem_Click(object sender, EventArgs e)
         {
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+                Item i = transaction.Items.FirstOrDefault(x => x.Description == dataGridView1.SelectedRows[0].Cells["DESCRIPTION"].Value.ToString() && x.NumSold == uint.Parse(dataGridView1.SelectedRows[0].Cells["QTY"].Value.ToString()));
 
+                if (i != null)
+                {
+                    transaction.Items.Remove(i);
+                    addRow(transaction);
+                }
+
+
+            }
         }
 
         private void btnDryClean_Click(object sender, EventArgs e)

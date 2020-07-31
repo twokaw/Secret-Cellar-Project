@@ -6,11 +6,21 @@ using System.Linq;
 using System.Threading.Tasks;
 using WebApi.Helpers;
 using System;
+using DocumentFormat.OpenXml.Wordprocessing;
+using Microsoft.IdentityModel.Protocols.OpenIdConnect;
+using System.ComponentModel;
+using DocumentFormat.OpenXml.Office2010.Excel;
 
 namespace pos_core_api.ORM
 {
     public class EventORM
     {
+        private readonly InventoryORM invORM;
+        public EventORM(InventoryORM invORM)
+        {
+            this.invORM = invORM;
+        }
+
         readonly DbConn db = new DbConn();
 
         /// <summary>
@@ -49,7 +59,7 @@ namespace pos_core_api.ORM
             }
         }
 
-        public List<Event> GetInv()
+        public List<Event> Get()
         {
             List<Event> output = new List<Event>();
             db.OpenConnection();
@@ -62,7 +72,7 @@ namespace pos_core_api.ORM
                    ";
                 using MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
                 using MySqlDataReader reader = cmd.ExecuteReader();
-                output = fetchEvent(reader);
+                output = FetchEvent(reader);
             }
             finally
             {
@@ -72,7 +82,7 @@ namespace pos_core_api.ORM
             return output;
         }
 
-        public Event GetInv(uint id)
+        public Event Get(uint id)
         {
             List<Event> output = null;
 
@@ -89,7 +99,7 @@ namespace pos_core_api.ORM
                 using MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
                 cmd.Parameters.Add(new MySqlParameter("id", id));
                 using MySqlDataReader reader = cmd.ExecuteReader();
-                output = fetchEvent(reader);
+                output = FetchEvent(reader);
             }
             finally
             {
@@ -99,7 +109,7 @@ namespace pos_core_api.ORM
             return output[0];
         }
 
-        public Event GetInv(string barcode)
+        public Event Get(string barcode)
         {
             List<Event> output = null;
 
@@ -117,7 +127,7 @@ namespace pos_core_api.ORM
                 cmd.Parameters.Add(new MySqlParameter("bar", barcode));
                 using MySqlDataReader reader = cmd.ExecuteReader();
 
-                output = fetchEvent(reader);
+                output = FetchEvent(reader);
             }
             finally
             {
@@ -127,7 +137,36 @@ namespace pos_core_api.ORM
             return output[0];
         }
 
-        public List<Event> fetchEvent(MySqlDataReader reader)
+        public long Insert(Event evnt)
+        {
+            Inventory inv = EventToInv(evnt);
+            long id =  invORM.Insert(inv);
+
+            return id;
+        }
+
+        private void addEvent(Event evnt)
+        {
+
+        }
+
+        private  Inventory EventToInv(Event evnt)
+        {
+            return new Inventory
+            {
+                Barcode = evnt.Barcode,
+                Name = evnt.Name,
+                Id = evnt.Id,
+                IdTax = evnt.IdTax,
+                NonTaxable = evnt.NonTaxable,
+                NonTaxableLocal = evnt.NonTaxableLocal,
+                SalesTax = evnt.SalesTax,
+                Price = evnt.Price,
+                TypeID = evnt.TypeID,
+                LocalSalesTax = evnt.LocalSalesTax
+            };
+        }
+        private List<Event> FetchEvent(MySqlDataReader reader)
         {
             List<Event> output = new List<Event>();
 
