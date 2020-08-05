@@ -35,6 +35,11 @@ namespace SecretCellar
 
             cbo_Supplier.DataSource = suppliers;
             cboType.DataSource = types;
+            cbxSupplyFilter.Items.Add("");
+            cbxSupplyFilter.Items.AddRange((string[])suppliers.Select(x => x.Name).ToArray());
+            cbxTypeFilter.Items.Add("");
+            cbxTypeFilter.Items.AddRange((string[])types.Select(x => x.TypeName).ToArray());
+            
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -210,7 +215,9 @@ namespace SecretCellar
         }
         private void refresh()
         {
-            LookupView.DataSource = inventory.Where(x => x.Name.Contains(txtlookup.Text) || x.Barcode.Contains(txtlookup.Text)).
+            LookupView.DataSource = inventory.Where(x =>( x.Name.Contains(txtlookup.Text) || x.Barcode.Contains(txtlookup.Text)) 
+            && (cbxTypeFilter.Text == "" || cbxTypeFilter.Text == x.ItemType) 
+            && (cbxSupplyFilter.Text == "" || suppliers.First (s => s.Name ==cbxSupplyFilter.Text).SupplierID == x.SupplierID)).
                Select(x => new { Name = x.Name, Id = x.Id, ItemType = x.ItemType, Qty = x.Qty, Barcode = x.Barcode, Price = x.Price }).
                OrderBy(x => x.Name).
                ToList();
@@ -311,6 +318,31 @@ namespace SecretCellar
         private void txt_qty_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void LookupView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cbxTypeFilter_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            refresh();
+        }
+
+        private void cboType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void cbxSupplyFilter_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            refresh();
         }
     }
 }
