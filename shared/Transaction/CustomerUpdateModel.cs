@@ -8,6 +8,7 @@ namespace Shared
 {
     public class CustomerUpdateModel
     {
+        public uint Id { get; set; }
         public double CustomerDiscount { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }

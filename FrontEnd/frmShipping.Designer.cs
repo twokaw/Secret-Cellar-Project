@@ -67,7 +67,6 @@
             this.txtCharge.Name = "txtCharge";
             this.txtCharge.Size = new System.Drawing.Size(160, 38);
             this.txtCharge.TabIndex = 5;
-            this.txtCharge.TextChanged += new System.EventHandler(this.txtCharge_TextChanged);
             // 
             // lblTitle
             // 
@@ -79,7 +78,6 @@
             this.lblTitle.Size = new System.Drawing.Size(281, 39);
             this.lblTitle.TabIndex = 4;
             this.lblTitle.Text = "Shipping Charge:";
-            this.lblTitle.Click += new System.EventHandler(this.lblTitle_Click);
             // 
             // frmShipping
             // 
