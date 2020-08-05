@@ -242,14 +242,14 @@
             this.CASH.HeaderText = "TYPE";
             this.CASH.MinimumWidth = 12;
             this.CASH.Name = "CASH";
-            this.CASH.Width = 150;
+            this.CASH.Width = 75;
             // 
             // CHECK
             // 
             this.CHECK.HeaderText = "AMOUNT";
             this.CHECK.MinimumWidth = 12;
             this.CHECK.Name = "CHECK";
-            this.CHECK.Width = 150;
+            this.CHECK.Width = 75;
             // 
             // frmPayment
             // 
