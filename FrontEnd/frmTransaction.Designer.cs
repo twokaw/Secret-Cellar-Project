@@ -63,6 +63,8 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnLookup = new System.Windows.Forms.Button();
             this.btnTender = new ePOSOne.btnProduct.Button_WOC();
+            this.txtShip = new System.Windows.Forms.TextBox();
+            this.lblShip = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -292,6 +294,8 @@
             // 
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.lblShip);
+            this.panel1.Controls.Add(this.txtShip);
             this.panel1.Controls.Add(this.txt_TransTotal);
             this.panel1.Controls.Add(this.txt_transTax);
             this.panel1.Controls.Add(this.txt_transDiscount);
@@ -492,6 +496,25 @@
             this.btnTender.UseVisualStyleBackColor = false;
             this.btnTender.Click += new System.EventHandler(this.btnTender_Click);
             // 
+            // txtShip
+            // 
+            this.txtShip.Location = new System.Drawing.Point(96, 110);
+            this.txtShip.Name = "txtShip";
+            this.txtShip.ReadOnly = true;
+            this.txtShip.Size = new System.Drawing.Size(89, 23);
+            this.txtShip.TabIndex = 10;
+            this.txtShip.TextChanged += new System.EventHandler(this.txtShip_TextChanged);
+            // 
+            // lblShip
+            // 
+            this.lblShip.AutoSize = true;
+            this.lblShip.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblShip.Location = new System.Drawing.Point(10, 114);
+            this.lblShip.Name = "lblShip";
+            this.lblShip.Size = new System.Drawing.Size(80, 17);
+            this.lblShip.TabIndex = 11;
+            this.lblShip.Text = "SHIPPING";
+            // 
             // frmTransaction
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -563,5 +586,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn TAX;
         private System.Windows.Forms.DataGridViewTextBoxColumn BOTTLE_DEPOSIT;
         private System.Windows.Forms.DataGridViewTextBoxColumn TOTAL;
+        private System.Windows.Forms.Label lblShip;
+        private System.Windows.Forms.TextBox txtShip;
     }
 }

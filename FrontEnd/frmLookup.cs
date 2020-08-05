@@ -237,7 +237,7 @@ namespace SecretCellar
         {
             if (LookupView.SelectedRows.Count > 0)
             {
-                Inventory i = inventory.First(x => x.Barcode == txtBarcode.Text);
+                Inventory i = inventory.FirstOrDefault(x => x.Barcode == txtBarcode.Text);
 
                 if (i == null)
                     i = new Inventory();

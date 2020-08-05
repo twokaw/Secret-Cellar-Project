@@ -33,6 +33,11 @@
             this.btnMainMenu = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.paymentType = new System.Windows.Forms.DataGridView();
+            this.CASH = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CHECK = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CREDIT_CARD = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.GIFT_CARD = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CHECK_NUMBER = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.LB_Due = new System.Windows.Forms.Label();
             this.LB_Total = new System.Windows.Forms.Label();
             this.LB_ChangeDue = new System.Windows.Forms.Label();
@@ -44,8 +49,6 @@
             this.btn_Check = new System.Windows.Forms.Button();
             this.btn_Credit = new System.Windows.Forms.Button();
             this.btn_GiftCard = new System.Windows.Forms.Button();
-            this.CASH = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CHECK = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.paymentType)).BeginInit();
             this.SuspendLayout();
             // 
@@ -53,9 +56,10 @@
             // 
             this.LB_EnterAmt.AutoSize = true;
             this.LB_EnterAmt.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LB_EnterAmt.Location = new System.Drawing.Point(1037, 72);
+            this.LB_EnterAmt.Location = new System.Drawing.Point(389, 30);
+            this.LB_EnterAmt.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.LB_EnterAmt.Name = "LB_EnterAmt";
-            this.LB_EnterAmt.Size = new System.Drawing.Size(264, 46);
+            this.LB_EnterAmt.Size = new System.Drawing.Size(108, 20);
             this.LB_EnterAmt.TabIndex = 8;
             this.LB_EnterAmt.Text = "Enter Amount";
             this.LB_EnterAmt.Click += new System.EventHandler(this.label2_Click);
@@ -63,10 +67,10 @@
             // txtCashAmt
             // 
             this.txtCashAmt.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCashAmt.Location = new System.Drawing.Point(1048, 148);
-            this.txtCashAmt.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtCashAmt.Location = new System.Drawing.Point(393, 62);
+            this.txtCashAmt.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.txtCashAmt.Name = "txtCashAmt";
-            this.txtCashAmt.Size = new System.Drawing.Size(247, 60);
+            this.txtCashAmt.Size = new System.Drawing.Size(95, 29);
             this.txtCashAmt.TabIndex = 7;
             this.txtCashAmt.TextChanged += new System.EventHandler(this.txtCashAmt_TextChanged);
             this.txtCashAmt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumberOnly);
@@ -74,10 +78,10 @@
             // btnMainMenu
             // 
             this.btnMainMenu.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMainMenu.Location = new System.Drawing.Point(59, 932);
-            this.btnMainMenu.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnMainMenu.Location = new System.Drawing.Point(22, 391);
+            this.btnMainMenu.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.btnMainMenu.Name = "btnMainMenu";
-            this.btnMainMenu.Size = new System.Drawing.Size(344, 105);
+            this.btnMainMenu.Size = new System.Drawing.Size(129, 44);
             this.btnMainMenu.TabIndex = 6;
             this.btnMainMenu.Text = "Main Menu";
             this.btnMainMenu.UseVisualStyleBackColor = true;
@@ -87,9 +91,10 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(133, 41);
+            this.label1.Location = new System.Drawing.Point(50, 17);
+            this.label1.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(295, 63);
+            this.label1.Size = new System.Drawing.Size(126, 26);
             this.label1.TabIndex = 24;
             this.label1.Text = "PAYMENT";
             // 
@@ -99,16 +104,54 @@
             this.paymentType.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.paymentType.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.CASH,
-            this.CHECK});
-            this.paymentType.Location = new System.Drawing.Point(950, 369);
-            this.paymentType.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.CHECK,
+            this.CREDIT_CARD,
+            this.GIFT_CARD,
+            this.CHECK_NUMBER});
+            this.paymentType.Location = new System.Drawing.Point(213, 156);
+            this.paymentType.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.paymentType.Name = "paymentType";
             this.paymentType.RowHeadersVisible = false;
             this.paymentType.RowHeadersWidth = 102;
             this.paymentType.RowTemplate.Height = 40;
-            this.paymentType.Size = new System.Drawing.Size(399, 165);
+            this.paymentType.Size = new System.Drawing.Size(1387, 69);
             this.paymentType.TabIndex = 9;
             this.paymentType.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.paymentType_CellContentClick);
+            // 
+            // CASH
+            // 
+            this.CASH.HeaderText = "TYPE";
+            this.CASH.MinimumWidth = 12;
+            this.CASH.Name = "CASH";
+            this.CASH.Width = 150;
+            // 
+            // CHECK
+            // 
+            this.CHECK.HeaderText = "AMOUNT";
+            this.CHECK.MinimumWidth = 12;
+            this.CHECK.Name = "CHECK";
+            this.CHECK.Width = 150;
+            // 
+            // CREDIT_CARD
+            // 
+            this.CREDIT_CARD.HeaderText = "CREDIT CARD NUMBER";
+            this.CREDIT_CARD.MinimumWidth = 12;
+            this.CREDIT_CARD.Name = "CREDIT_CARD";
+            this.CREDIT_CARD.Width = 250;
+            // 
+            // GIFT_CARD
+            // 
+            this.GIFT_CARD.HeaderText = "GIFT CARD REMAINING BALANCE";
+            this.GIFT_CARD.MinimumWidth = 12;
+            this.GIFT_CARD.Name = "GIFT_CARD";
+            this.GIFT_CARD.Width = 250;
+            // 
+            // CHECK_NUMBER
+            // 
+            this.CHECK_NUMBER.HeaderText = "CHECK_NUMBER";
+            this.CHECK_NUMBER.MinimumWidth = 12;
+            this.CHECK_NUMBER.Name = "CHECK_NUMBER";
+            this.CHECK_NUMBER.Width = 250;
             // 
             // LB_Due
             // 
@@ -116,9 +159,10 @@
             this.LB_Due.AutoSize = true;
             this.LB_Due.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LB_Due.ForeColor = System.Drawing.Color.Crimson;
-            this.LB_Due.Location = new System.Drawing.Point(1675, 577);
+            this.LB_Due.Location = new System.Drawing.Point(970, 242);
+            this.LB_Due.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.LB_Due.Name = "LB_Due";
-            this.LB_Due.Size = new System.Drawing.Size(145, 63);
+            this.LB_Due.Size = new System.Drawing.Size(62, 26);
             this.LB_Due.TabIndex = 16;
             this.LB_Due.Text = "Due:";
             // 
@@ -127,9 +171,10 @@
             this.LB_Total.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.LB_Total.AutoSize = true;
             this.LB_Total.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LB_Total.Location = new System.Drawing.Point(912, 577);
+            this.LB_Total.Location = new System.Drawing.Point(684, 242);
+            this.LB_Total.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.LB_Total.Name = "LB_Total";
-            this.LB_Total.Size = new System.Drawing.Size(222, 63);
+            this.LB_Total.Size = new System.Drawing.Size(92, 26);
             this.LB_Total.TabIndex = 20;
             this.LB_Total.Text = "TOTAL:";
             // 
@@ -138,9 +183,10 @@
             this.LB_ChangeDue.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.LB_ChangeDue.AutoSize = true;
             this.LB_ChangeDue.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LB_ChangeDue.Location = new System.Drawing.Point(1040, 713);
+            this.LB_ChangeDue.Location = new System.Drawing.Point(732, 299);
+            this.LB_ChangeDue.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.LB_ChangeDue.Name = "LB_ChangeDue";
-            this.LB_ChangeDue.Size = new System.Drawing.Size(355, 63);
+            this.LB_ChangeDue.Size = new System.Drawing.Size(151, 26);
             this.LB_ChangeDue.TabIndex = 21;
             this.LB_ChangeDue.Text = "Change Due:";
             // 
@@ -148,10 +194,10 @@
             // 
             this.btnCompleteSale.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnCompleteSale.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCompleteSale.Location = new System.Drawing.Point(1784, 932);
-            this.btnCompleteSale.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnCompleteSale.Location = new System.Drawing.Point(1011, 391);
+            this.btnCompleteSale.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.btnCompleteSale.Name = "btnCompleteSale";
-            this.btnCompleteSale.Size = new System.Drawing.Size(472, 105);
+            this.btnCompleteSale.Size = new System.Drawing.Size(177, 44);
             this.btnCompleteSale.TabIndex = 7;
             this.btnCompleteSale.Text = "Complete Sale";
             this.btnCompleteSale.UseVisualStyleBackColor = true;
@@ -162,9 +208,10 @@
             this.LB_RemainingGiftCardBal.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.LB_RemainingGiftCardBal.AutoSize = true;
             this.LB_RemainingGiftCardBal.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LB_RemainingGiftCardBal.Location = new System.Drawing.Point(888, 827);
+            this.LB_RemainingGiftCardBal.Location = new System.Drawing.Point(675, 347);
+            this.LB_RemainingGiftCardBal.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.LB_RemainingGiftCardBal.Name = "LB_RemainingGiftCardBal";
-            this.LB_RemainingGiftCardBal.Size = new System.Drawing.Size(507, 63);
+            this.LB_RemainingGiftCardBal.Size = new System.Drawing.Size(217, 26);
             this.LB_RemainingGiftCardBal.TabIndex = 25;
             this.LB_RemainingGiftCardBal.Text = "Remaining GC Bal:";
             // 
@@ -172,11 +219,11 @@
             // 
             this.txt_TenderTransTotal.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txt_TenderTransTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_TenderTransTotal.Location = new System.Drawing.Point(1149, 587);
-            this.txt_TenderTransTotal.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txt_TenderTransTotal.Location = new System.Drawing.Point(773, 246);
+            this.txt_TenderTransTotal.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.txt_TenderTransTotal.Name = "txt_TenderTransTotal";
             this.txt_TenderTransTotal.ReadOnly = true;
-            this.txt_TenderTransTotal.Size = new System.Drawing.Size(247, 53);
+            this.txt_TenderTransTotal.Size = new System.Drawing.Size(95, 26);
             this.txt_TenderTransTotal.TabIndex = 26;
             this.txt_TenderTransTotal.TabStop = false;
             this.txt_TenderTransTotal.TextChanged += new System.EventHandler(this.txt_TransTotal_TextChanged);
@@ -185,21 +232,21 @@
             // 
             this.txtDue.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtDue.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDue.Location = new System.Drawing.Point(1835, 587);
-            this.txtDue.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtDue.Location = new System.Drawing.Point(1030, 246);
+            this.txtDue.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.txtDue.Name = "txtDue";
             this.txtDue.ReadOnly = true;
-            this.txtDue.Size = new System.Drawing.Size(247, 53);
+            this.txtDue.Size = new System.Drawing.Size(95, 26);
             this.txtDue.TabIndex = 27;
             this.txtDue.TabStop = false;
             // 
             // btn_Cash
             // 
             this.btn_Cash.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.1F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_Cash.Location = new System.Drawing.Point(565, 258);
-            this.btn_Cash.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btn_Cash.Location = new System.Drawing.Point(212, 108);
+            this.btn_Cash.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.btn_Cash.Name = "btn_Cash";
-            this.btn_Cash.Size = new System.Drawing.Size(232, 69);
+            this.btn_Cash.Size = new System.Drawing.Size(87, 29);
             this.btn_Cash.TabIndex = 28;
             this.btn_Cash.Text = "CASH";
             this.btn_Cash.UseVisualStyleBackColor = true;
@@ -207,10 +254,10 @@
             // btn_Check
             // 
             this.btn_Check.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.1F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_Check.Location = new System.Drawing.Point(853, 258);
-            this.btn_Check.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btn_Check.Location = new System.Drawing.Point(320, 108);
+            this.btn_Check.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.btn_Check.Name = "btn_Check";
-            this.btn_Check.Size = new System.Drawing.Size(232, 69);
+            this.btn_Check.Size = new System.Drawing.Size(87, 29);
             this.btn_Check.TabIndex = 29;
             this.btn_Check.Text = "CHECK";
             this.btn_Check.UseVisualStyleBackColor = true;
@@ -218,10 +265,10 @@
             // btn_Credit
             // 
             this.btn_Credit.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.1F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_Credit.Location = new System.Drawing.Point(1149, 258);
-            this.btn_Credit.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btn_Credit.Location = new System.Drawing.Point(431, 108);
+            this.btn_Credit.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.btn_Credit.Name = "btn_Credit";
-            this.btn_Credit.Size = new System.Drawing.Size(291, 69);
+            this.btn_Credit.Size = new System.Drawing.Size(109, 29);
             this.btn_Credit.TabIndex = 30;
             this.btn_Credit.Text = "CREDIT CARD";
             this.btn_Credit.UseVisualStyleBackColor = true;
@@ -229,33 +276,19 @@
             // btn_GiftCard
             // 
             this.btn_GiftCard.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.1F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_GiftCard.Location = new System.Drawing.Point(1499, 258);
-            this.btn_GiftCard.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btn_GiftCard.Location = new System.Drawing.Point(562, 108);
+            this.btn_GiftCard.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.btn_GiftCard.Name = "btn_GiftCard";
-            this.btn_GiftCard.Size = new System.Drawing.Size(232, 69);
+            this.btn_GiftCard.Size = new System.Drawing.Size(87, 29);
             this.btn_GiftCard.TabIndex = 31;
             this.btn_GiftCard.Text = "GIFT CARD";
             this.btn_GiftCard.UseVisualStyleBackColor = true;
             // 
-            // CASH
-            // 
-            this.CASH.HeaderText = "TYPE";
-            this.CASH.MinimumWidth = 12;
-            this.CASH.Name = "CASH";
-            this.CASH.Width = 75;
-            // 
-            // CHECK
-            // 
-            this.CHECK.HeaderText = "AMOUNT";
-            this.CHECK.MinimumWidth = 12;
-            this.CHECK.Name = "CHECK";
-            this.CHECK.Width = 75;
-            // 
             // frmPayment
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(2643, 1061);
+            this.ClientSize = new System.Drawing.Size(1406, 445);
             this.Controls.Add(this.btn_GiftCard);
             this.Controls.Add(this.btn_Credit);
             this.Controls.Add(this.btn_Check);
@@ -272,7 +305,7 @@
             this.Controls.Add(this.LB_ChangeDue);
             this.Controls.Add(this.LB_Due);
             this.Controls.Add(this.LB_Total);
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.Name = "frmPayment";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmPayment";
@@ -302,5 +335,8 @@
         private System.Windows.Forms.Button btn_GiftCard;
         private System.Windows.Forms.DataGridViewTextBoxColumn CASH;
         private System.Windows.Forms.DataGridViewTextBoxColumn CHECK;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CREDIT_CARD;
+        private System.Windows.Forms.DataGridViewTextBoxColumn GIFT_CARD;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CHECK_NUMBER;
     }
 }
