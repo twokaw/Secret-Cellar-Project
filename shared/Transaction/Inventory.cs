@@ -8,7 +8,6 @@ namespace Shared
          * Inventory description section of the database.
          */
         public uint SupplierID { get; set; }
-        public uint TypeID { get; set; }
 
         /*
          * Inventory price section of the database.
