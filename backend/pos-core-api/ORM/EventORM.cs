@@ -6,10 +6,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using WebApi.Helpers;
 using System;
-using DocumentFormat.OpenXml.Wordprocessing;
-using Microsoft.IdentityModel.Protocols.OpenIdConnect;
-using System.ComponentModel;
-using DocumentFormat.OpenXml.Office2010.Excel;
 
 namespace pos_core_api.ORM
 {
@@ -67,9 +63,9 @@ namespace pos_core_api.ORM
             {
                 //change to view that does sum
                 string sqlStatement = @"
-                        SELECT *
-                        FROM v_event 
-                   ";
+                    SELECT *
+                    FROM v_event 
+                ";
                 using MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
                 using MySqlDataReader reader = cmd.ExecuteReader();
                 output = FetchEvent(reader);
@@ -145,9 +141,66 @@ namespace pos_core_api.ORM
             return id;
         }
 
-        private void addEvent(Event evnt)
+        private uint addEvent(Event evnt)
         {
+            if (DoesBarcodeExist(evnt.Barcode))
+                throw new Exception("Barcode already exist.");
 
+            try
+            {
+                db.OpenConnection();
+
+                //Inserting into inventory_description
+                string sql = @"
+                    INSERT INTO inventory_description 
+                    (name, barcode, retail_price, typeID, bottle_deposit_qty, nontaxable, nontaxable_local) 
+                    VALUES 
+                    (@name, @barcode, @Price, @typeID, @bottles, @nonTaxable, @nonTaxableLocal);
+                ";
+
+                if (string.IsNullOrWhiteSpace(evnt.Barcode))
+                    evnt.Barcode = evnt.Name.Replace(" ", "").ToUpper();
+                else
+                    evnt.Barcode = evnt.Barcode.Replace(" ", "").ToUpper();
+
+                MySqlCommand cmd = new MySqlCommand(sql, db.Connection());
+
+                //cmd.Parameters.Add(new MySqlParameter("id", inv.Id));
+                cmd.Parameters.Add(new MySqlParameter("name", evnt.Name.Trim()));
+                cmd.Parameters.Add(new MySqlParameter("barcode", evnt.Barcode.Trim().ToUpper()));
+                cmd.Parameters.Add(new MySqlParameter("Price", evnt.Price));
+                cmd.Parameters.Add(new MySqlParameter("typeID", evnt.TypeID));
+                cmd.Parameters.Add(new MySqlParameter("bottles", evnt.Bottles));
+                cmd.Parameters.Add(new MySqlParameter("nonTaxable", evnt.NonTaxable));
+                cmd.Parameters.Add(new MySqlParameter("nonTaxableLocal", evnt.NonTaxableLocal));
+                cmd.ExecuteNonQuery();
+
+                evnt.Id = Convert.ToUInt32(cmd.LastInsertedId);
+                cmd.Dispose();
+
+
+                //Inserting into inventory_description
+                sql = @"
+                    INSERT INTO inventory_price 
+                    (name, Inventory_Qty, Supplier_price) 
+                    VALUES 
+                    (@id, @qty, @supplier_price);
+                ";
+
+                cmd = new MySqlCommand(sql, db.Connection());
+                //cmd.Parameters.Add(new MySqlParameter("id", inv.Id));
+                cmd.Parameters.Add(new MySqlParameter("id", evnt.Id));
+                cmd.Parameters.Add(new MySqlParameter("Qty", evnt.Qty));
+                cmd.Parameters.Add(new MySqlParameter("Supplier_price", evnt.SupplierPrice));
+                cmd.ExecuteNonQuery();
+
+            }
+            finally
+            {
+                db.CloseConnnection();
+            }
+
+            return evnt.Id;
         }
 
         private  Inventory EventToInv(Event evnt)

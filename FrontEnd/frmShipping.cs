@@ -19,23 +19,12 @@ namespace SecretCellar
         {
             InitializeComponent();
             shipping = transaction; 
-
-        }
-
-        private void lblTitle_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void btnAddCharge_Click(object sender, EventArgs e)
         {
             addCharge();
             this.Close();
-        }
-
-        private void txtCharge_TextChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -45,14 +34,7 @@ namespace SecretCellar
         private void addCharge()
         {
             if (double.TryParse(txtCharge.Text, out double d))
-            {
-                Item i = DataAccess.ConvertInvtoItem(DataAccess.instance.GetItem("SHIPPING"));
-                i.Price = d;
-
-                shipping.Items.Add(i);
-            }
-
-
+                shipping.Shipping = d;
         }
     }
 }

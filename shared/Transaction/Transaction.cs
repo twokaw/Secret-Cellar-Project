@@ -21,7 +21,7 @@ namespace Shared
 
                 Items.ForEach(x => sub += x.Price * x.NumSold);
 
-                return sub * (1 - Discount);
+                return sub;
             }
         }
         public double LocalTax
@@ -31,7 +31,7 @@ namespace Shared
                 double tax = 0;
 
                 if (!TaxExempt)
-                    Items.ForEach(x => tax += (!x.NonTaxableLocal && x.Price > 0) ? x.Price * (1 - x.Discount) * x.NumSold * (x.LocalSalesTax) : 0);
+                    Items.ForEach(x => tax += (!x.NonTaxableLocal ) ? GetItemPrice(x) * x.LocalSalesTax : 0);
                 return tax;
             }
         }
@@ -46,6 +46,22 @@ namespace Shared
                 return tax;
             }
         }
+
+        private double GetItemPrice(Item i)
+        {
+            return i.Price * i.NumSold * ((i.Price > 0) ? (1 - i.Discount) * (1 - Discount) : 1);
+        }
+
+        public double TotalWithDiscounts()
+        {
+            double value = 0;
+
+            if (!TaxExempt)
+                Items.ForEach(x => value += GetItemPrice(x));
+
+            return value;
+        }
+
         public double Tax
         {
             get
@@ -53,7 +69,7 @@ namespace Shared
                 double tax = 0;
 
                 if (!TaxExempt)
-                    Items.ForEach(x => tax += (!x.NonTaxable && x.Price > 0) ? x.Price * (1 - x.Discount) * x.NumSold * (x.SalesTax) : 0);
+                    Items.ForEach(x => tax += (!x.NonTaxable) ? GetItemPrice(x) * x.SalesTax : 0);
 
                 return tax;
             }
@@ -62,7 +78,7 @@ namespace Shared
         {
             get
             {
-                return Subtotal * (1 - Discount) + Tax + LocalTax + Bottle_deposit ;
+                return TotalWithDiscounts() + Tax + LocalTax + Bottle_deposit + Shipping ;
             }
         }
         public bool TaxExempt { get; set; }
@@ -100,9 +116,10 @@ namespace Shared
         public double Discount { get; set; }
         public uint EmployeeID { get; set; }
         public uint CustomerID { get; set; }
+        public double Shipping { get; set; }
 
-    // Default constructor
-    public Transaction()
+        // Default constructor
+        public Transaction()
         {
             TransactionDateTime = DateTime.Now;
             InvoiceID  = 0;

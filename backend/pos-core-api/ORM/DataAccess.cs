@@ -51,5 +51,17 @@ namespace pos_core_api.ORM
                 return eventORM;
             }
         }
+
+        private static TransactionORM transactionORM = null;
+        public TransactionORM Transaction
+        {
+            get
+            {
+                if(transactionORM == null)
+                    transactionORM = new TransactionORM();
+
+                return transactionORM;
+            }
+        }
     }
 }
