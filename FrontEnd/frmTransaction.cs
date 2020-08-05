@@ -214,5 +214,10 @@ namespace SecretCellar
         {
 
         }
+
+        private void txtShip_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
