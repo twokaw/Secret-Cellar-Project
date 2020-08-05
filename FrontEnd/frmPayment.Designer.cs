@@ -46,9 +46,6 @@
             this.btn_GiftCard = new System.Windows.Forms.Button();
             this.CASH = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CHECK = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CREDIT_CARD = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.GIFT_CARD = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CHECK_NUMBER = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.paymentType)).BeginInit();
             this.SuspendLayout();
             // 
@@ -102,17 +99,14 @@
             this.paymentType.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.paymentType.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.CASH,
-            this.CHECK,
-            this.CREDIT_CARD,
-            this.GIFT_CARD,
-            this.CHECK_NUMBER});
-            this.paymentType.Location = new System.Drawing.Point(568, 372);
+            this.CHECK});
+            this.paymentType.Location = new System.Drawing.Point(950, 369);
             this.paymentType.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.paymentType.Name = "paymentType";
             this.paymentType.RowHeadersVisible = false;
             this.paymentType.RowHeadersWidth = 102;
             this.paymentType.RowTemplate.Height = 40;
-            this.paymentType.Size = new System.Drawing.Size(1875, 165);
+            this.paymentType.Size = new System.Drawing.Size(399, 165);
             this.paymentType.TabIndex = 9;
             this.paymentType.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.paymentType_CellContentClick);
             // 
@@ -257,27 +251,6 @@
             this.CHECK.Name = "CHECK";
             this.CHECK.Width = 150;
             // 
-            // CREDIT_CARD
-            // 
-            this.CREDIT_CARD.HeaderText = "CREDIT CARD NUMBER";
-            this.CREDIT_CARD.MinimumWidth = 12;
-            this.CREDIT_CARD.Name = "CREDIT_CARD";
-            this.CREDIT_CARD.Width = 250;
-            // 
-            // GIFT_CARD
-            // 
-            this.GIFT_CARD.HeaderText = "GIFT CARD REMAINING BALANCE";
-            this.GIFT_CARD.MinimumWidth = 12;
-            this.GIFT_CARD.Name = "GIFT_CARD";
-            this.GIFT_CARD.Width = 250;
-            // 
-            // CHECK_NUMBER
-            // 
-            this.CHECK_NUMBER.HeaderText = "CHECK_NUMBER";
-            this.CHECK_NUMBER.MinimumWidth = 12;
-            this.CHECK_NUMBER.Name = "CHECK_NUMBER";
-            this.CHECK_NUMBER.Width = 250;
-            // 
             // frmPayment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
@@ -329,8 +302,5 @@
         private System.Windows.Forms.Button btn_GiftCard;
         private System.Windows.Forms.DataGridViewTextBoxColumn CASH;
         private System.Windows.Forms.DataGridViewTextBoxColumn CHECK;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CREDIT_CARD;
-        private System.Windows.Forms.DataGridViewTextBoxColumn GIFT_CARD;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CHECK_NUMBER;
     }
 }

@@ -110,9 +110,6 @@ namespace SecretCellar
                 {
                     transaction.Items.Remove(i);
                     addRow(transaction);
-                }
-
-
             }
         }
 
@@ -207,6 +204,17 @@ namespace SecretCellar
 
             shipping.ShowDialog();
             addRow(transaction);
+        }
+
+        private void btnVoidTrx_Click(object sender, EventArgs e)
+        {
+            transaction = new Transaction();
+            addRow(transaction);
+        }
+
+        private void txt_transDiscount_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
