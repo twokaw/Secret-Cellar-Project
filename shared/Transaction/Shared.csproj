@@ -233,6 +233,7 @@
   <ItemGroup>
     <Compile Include="AuthenticateModel.cs" />
     <Compile Include="BaseItem.cs" />
+    <Compile Include="Event.cs" />
     <Compile Include="InventoryQty.cs" />
     <Compile Include="Payment.cs" />
     <Compile Include="Tax.cs" />

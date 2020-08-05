@@ -71,6 +71,7 @@ namespace SecretCellar
         {
             updateTransaction();
             dataGridView1.Rows.Clear();
+            double discount = 0.0;
 
             double transactionBottleDeposit = 0.0;
             foreach (Item item in trans.Items)
@@ -81,11 +82,12 @@ namespace SecretCellar
                     // Populate tranaction datagrid row
                     r.Cells["Description"].Value = item.Description;
                     r.Cells["Discount"].Value =  item.Discount.ToString("P0");
-                    r.Cells["Price"].Value = (item.Price * (1 - item.Discount)).ToString("C");
+                    r.Cells["Price"].Value = (item.Price).ToString("C");
                     r.Cells["Qty"].Value = item.NumSold;
-                    r.Cells["Total"].Value = (item.Price * item.NumSold * (1 - item.Discount)).ToString("C");
+                    r.Cells["Total"].Value = (item.Price * item.NumSold * (1 - item.Discount) * (1 - transaction.Discount)).ToString("C");
                     r.Cells["BOTTLE_DEPOSIT"].Value = (item.NumSold * item.Bottles * .05).ToString("C");
 
+                    discount += item.Price * item.NumSold * item.Discount;
                     transactionBottleDeposit += item.NumSold * item.Bottles * .05;
                 }
             }
@@ -94,7 +96,7 @@ namespace SecretCellar
             txt_transSubTotal.Text = transaction.Subtotal.ToString("C");
             txt_transBTLDPT.Text = transactionBottleDeposit.ToString("C");
             txt_transTax.Text = (transaction.Tax + transaction.LocalTax).ToString("C");
-            txt_transDiscount.Text = (transaction.Subtotal * transaction.Discount).ToString("C");
+            txt_transDiscount.Text = (transaction.Subtotal * transaction.Discount + discount).ToString("C");
             txt_TransTotal.Text = transaction.Total.ToString("C");
         }
 
@@ -102,13 +104,13 @@ namespace SecretCellar
         {
             if (dataGridView1.SelectedRows.Count > 0)
             {
-                string desc = dataGridView1.SelectedRows[0].Cells["DESCRIPTION"].Value.ToString();
-                uint qty = uint.Parse(dataGridView1.SelectedRows[0].Cells["QTY"].Value.ToString());
-                Item i =   transaction.Items.First(x => x.Description == desc  && x.NumSold == qty );
-                transaction.Items.Remove(i);
-                addRow(transaction);
-            }
+                Item i = transaction.Items.FirstOrDefault(x => x.Description == dataGridView1.SelectedRows[0].Cells["DESCRIPTION"].Value.ToString() && x.NumSold == uint.Parse(dataGridView1.SelectedRows[0].Cells["QTY"].Value.ToString()));
 
+                if (i != null)
+                {
+                    transaction.Items.Remove(i);
+                    addRow(transaction);
+            }
         }
 
         private void btnDryClean_Click(object sender, EventArgs e)
