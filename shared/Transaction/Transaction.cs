@@ -13,17 +13,33 @@ namespace Shared
         public DateTime TransactionDateTime { get; set; }
         public string Location { get; set; }
         public List<Item> Items { get; set; }
-        public double Subtotal
+
+        public double ItemTotal
+        {
+            get
+            {
+                double sub = 0;
+                // All items with price * qty
+                Items.ForEach(x => sub += (x.Price > 0) ?  x.Price * x.NumSold : 0);
+
+                return sub;
+            }
+        }
+
+
+        public double DiscountTotal
         {
             get
             {
                 double sub = 0;
 
-                Items.ForEach(x => sub += x.Price * x.NumSold);
+                // All items discounts + coupons
+                Items.ForEach(x => sub += (x.Price > 0) ? x.Price * x.NumSold * x.Discount * Discount : x.Price);
 
                 return sub;
             }
         }
+
         public double LocalTax
         {
             get
@@ -49,17 +65,21 @@ namespace Shared
 
         private double GetItemPrice(Item i)
         {
+            // Get item 
             return i.Price * i.NumSold * ((i.Price > 0) ? (1 - i.Discount) * (1 - Discount) : 1);
         }
 
-        public double TotalWithDiscounts()
+        public double Subtotal
         {
-            double value = 0;
+            get
+            {
+                double value = 0;
 
-            if (!TaxExempt)
-                Items.ForEach(x => value += GetItemPrice(x));
+                if (!TaxExempt)
+                    Items.ForEach(x => value += GetItemPrice(x));
 
-            return value;
+                return value;
+            }
         }
 
         public double Tax
@@ -78,7 +98,7 @@ namespace Shared
         {
             get
             {
-                return TotalWithDiscounts() + Tax + LocalTax + Bottle_deposit + Shipping ;
+                return Subtotal + Tax + LocalTax + Bottle_deposit + Shipping ;
             }
         }
         public bool TaxExempt { get; set; }
@@ -91,6 +111,7 @@ namespace Shared
                 {
                     if (Payments.Exists(x => x.Method.ToUpper() == "CREDIT"))
                         return "CREDIT";
+
                     else if (Payments.Exists(x => x.Method.ToUpper() == "CHECK"))
                         return "CHECK";
 

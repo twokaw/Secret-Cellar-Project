@@ -88,13 +88,12 @@ namespace pos_core_api.Controllers
             }
         }
 
-
         [HttpPut]
         public IActionResult Put([FromBody] Event evt)
         {
             try
             {
-                return Ok(DataAccess.Instance.Event.Insert(evt));
+                return Ok(DataAccess.Instance.Event.Update(evt));
             }
             catch (Exception ex)
             {
