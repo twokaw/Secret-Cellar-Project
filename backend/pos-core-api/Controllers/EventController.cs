@@ -74,6 +74,32 @@ namespace pos_core_api.Controllers
             else
                 return Ok(output);
         }
-    }
 
+        [HttpPost]
+        public IActionResult Post([FromBody] Event evt)
+        {
+            try
+            {
+                return Ok(DataAccess.Instance.Event.Insert(evt));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
+
+        [HttpPut]
+        public IActionResult Put([FromBody] Event evt)
+        {
+            try
+            {
+                return Ok(DataAccess.Instance.Event.Insert(evt));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+    }
 }
