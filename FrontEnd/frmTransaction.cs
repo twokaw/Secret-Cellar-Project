@@ -93,9 +93,11 @@ namespace SecretCellar
             // Populate subtotal box
             txt_transSubTotal.Text = transaction.Subtotal.ToString("C");
             txt_transBTLDPT.Text = transactionBottleDeposit.ToString("C");
+            txt_itemTotal.Text = transaction.Subtotal.ToString("C");
             txt_transTax.Text = (transaction.Tax + transaction.LocalTax).ToString("C");
             txt_transDiscount.Text = (transaction.Subtotal * transaction.Discount).ToString("C");
             txt_TransTotal.Text = transaction.Total.ToString("C");
+            txt_Ship.Text = transaction.Shipping.ToString("C");
         }
 
         private void btnDeleteItem_Click(object sender, EventArgs e)
@@ -216,6 +218,11 @@ namespace SecretCellar
         }
 
         private void txtShip_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txt_TransTotal_TextChanged_1(object sender, EventArgs e)
         {
 
         }
