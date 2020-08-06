@@ -295,7 +295,8 @@ namespace SecretCellar
                 i.TypeID = types.First(x => x.TypeName == cboType.Text).TypeId;
                 i.SupplierID = suppliers.First(x => x.Name == cbo_Supplier.Text).SupplierID;
 
-                dataAccess.InsertItem(i);
+                i.Id = dataAccess.InsertItem(i);
+                inventory.Add(i);
                 refresh();
             }
         }
