@@ -48,6 +48,8 @@
             this.btnVoidTrx = new System.Windows.Forms.Button();
             this.btnDeleteItem = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lbl_item_total = new System.Windows.Forms.Label();
+            this.txt_itemTotal = new System.Windows.Forms.TextBox();
             this.lblShip = new System.Windows.Forms.Label();
             this.txt_Ship = new System.Windows.Forms.TextBox();
             this.txt_TransTotal = new System.Windows.Forms.TextBox();
@@ -65,8 +67,6 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnLookup = new System.Windows.Forms.Button();
             this.btnTender = new ePOSOne.btnProduct.Button_WOC();
-            this.txt_itemTotal = new System.Windows.Forms.TextBox();
-            this.lbl_item_total = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -318,13 +318,34 @@
             this.panel1.TabIndex = 13;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
+            // lbl_item_total
+            // 
+            this.lbl_item_total.AutoSize = true;
+            this.lbl_item_total.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.1F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_item_total.Location = new System.Drawing.Point(6, 13);
+            this.lbl_item_total.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
+            this.lbl_item_total.Name = "lbl_item_total";
+            this.lbl_item_total.Size = new System.Drawing.Size(81, 13);
+            this.lbl_item_total.TabIndex = 13;
+            this.lbl_item_total.Text = "ITEM TOTAL";
+            // 
+            // txt_itemTotal
+            // 
+            this.txt_itemTotal.Location = new System.Drawing.Point(96, 8);
+            this.txt_itemTotal.Margin = new System.Windows.Forms.Padding(1);
+            this.txt_itemTotal.Name = "txt_itemTotal";
+            this.txt_itemTotal.ReadOnly = true;
+            this.txt_itemTotal.Size = new System.Drawing.Size(88, 23);
+            this.txt_itemTotal.TabIndex = 12;
+            this.txt_itemTotal.TabStop = false;
+            // 
             // lblShip
             // 
             this.lblShip.AutoSize = true;
-            this.lblShip.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblShip.Location = new System.Drawing.Point(10, 145);
+            this.lblShip.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.1F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblShip.Location = new System.Drawing.Point(21, 146);
             this.lblShip.Name = "lblShip";
-            this.lblShip.Size = new System.Drawing.Size(80, 17);
+            this.lblShip.Size = new System.Drawing.Size(66, 13);
             this.lblShip.TabIndex = 11;
             this.lblShip.Text = "SHIPPING";
             // 
@@ -519,27 +540,6 @@
             this.btnTender.TextColor = System.Drawing.Color.Black;
             this.btnTender.UseVisualStyleBackColor = false;
             this.btnTender.Click += new System.EventHandler(this.btnTender_Click);
-            // 
-            // txt_itemTotal
-            // 
-            this.txt_itemTotal.Location = new System.Drawing.Point(96, 8);
-            this.txt_itemTotal.Margin = new System.Windows.Forms.Padding(1);
-            this.txt_itemTotal.Name = "txt_itemTotal";
-            this.txt_itemTotal.ReadOnly = true;
-            this.txt_itemTotal.Size = new System.Drawing.Size(88, 23);
-            this.txt_itemTotal.TabIndex = 12;
-            this.txt_itemTotal.TabStop = false;
-            // 
-            // lbl_item_total
-            // 
-            this.lbl_item_total.AutoSize = true;
-            this.lbl_item_total.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.1F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_item_total.Location = new System.Drawing.Point(6, 13);
-            this.lbl_item_total.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
-            this.lbl_item_total.Name = "lbl_item_total";
-            this.lbl_item_total.Size = new System.Drawing.Size(81, 13);
-            this.lbl_item_total.TabIndex = 13;
-            this.lbl_item_total.Text = "ITEM TOTAL";
             // 
             // frmTransaction
             // 
