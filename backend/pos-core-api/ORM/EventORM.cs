@@ -135,14 +135,6 @@ namespace pos_core_api.ORM
 
         public long Insert(Event evnt)
         {
-            Inventory inv = EventToInv(evnt);
-            long id =  invORM.Insert(inv);
-
-            return id;
-        }
-
-        private uint addEvent(Event evnt)
-        {
             if (DoesBarcodeExist(evnt.Barcode))
                 throw new Exception("Barcode already exist.");
 
@@ -153,9 +145,9 @@ namespace pos_core_api.ORM
                 //Inserting into inventory_description
                 string sql = @"
                     INSERT INTO inventory_description 
-                    (name, barcode, retail_price, typeID, bottle_deposit_qty, nontaxable, nontaxable_local) 
+                    (name, barcode, retail_price, typeID, nontaxable, nontaxable_local) 
                     VALUES 
-                    (@name, @barcode, @Price, @typeID, @bottles, @nonTaxable, @nonTaxableLocal);
+                    (@name, @barcode, @Price, @typeID, @nonTaxable, @nonTaxableLocal);
                 ";
 
                 if (string.IsNullOrWhiteSpace(evnt.Barcode))
@@ -170,7 +162,6 @@ namespace pos_core_api.ORM
                 cmd.Parameters.Add(new MySqlParameter("barcode", evnt.Barcode.Trim().ToUpper()));
                 cmd.Parameters.Add(new MySqlParameter("Price", evnt.Price));
                 cmd.Parameters.Add(new MySqlParameter("typeID", evnt.TypeID));
-                cmd.Parameters.Add(new MySqlParameter("bottles", evnt.Bottles));
                 cmd.Parameters.Add(new MySqlParameter("nonTaxable", evnt.NonTaxable));
                 cmd.Parameters.Add(new MySqlParameter("nonTaxableLocal", evnt.NonTaxableLocal));
                 cmd.ExecuteNonQuery();
@@ -178,11 +169,10 @@ namespace pos_core_api.ORM
                 evnt.Id = Convert.ToUInt32(cmd.LastInsertedId);
                 cmd.Dispose();
 
-
                 //Inserting into inventory_description
                 sql = @"
                     INSERT INTO inventory_price 
-                    (name, Inventory_Qty, Supplier_price) 
+                    (InventoryID, Inventory_Qty, Supplier_price) 
                     VALUES 
                     (@id, @qty, @supplier_price);
                 ";
@@ -194,6 +184,21 @@ namespace pos_core_api.ORM
                 cmd.Parameters.Add(new MySqlParameter("Supplier_price", evnt.SupplierPrice));
                 cmd.ExecuteNonQuery();
 
+                //Inserting into events
+                cmd = new MySqlCommand(@"
+                    INSERT INTO events 
+                    ( inventoryID,  eventDate,  Duration,  preorder,  atDoor) 
+                    VALUES 
+                    (@inventoryID, @eventDate, @Duration, @preorder, @atDoor);
+                ");
+
+                //cmd.Parameters.Add(new MySqlParameter("id", inv.Id));
+                cmd.Parameters.Add(new MySqlParameter("inventoryID", evnt.Id));
+                cmd.Parameters.Add(new MySqlParameter("eventDate", evnt.EventDate));
+                cmd.Parameters.Add(new MySqlParameter("Duration", evnt.Duration));
+                cmd.Parameters.Add(new MySqlParameter("preorder", evnt.PreOrder));
+                cmd.Parameters.Add(new MySqlParameter("atDoor", evnt.AtDoor));
+                cmd.ExecuteNonQuery();
             }
             finally
             {
@@ -203,7 +208,88 @@ namespace pos_core_api.ORM
             return evnt.Id;
         }
 
-        private  Inventory EventToInv(Event evnt)
+
+        public long Update(Event evnt)
+        {
+            try
+            {
+                db.OpenConnection();
+
+                //Inserting into inventory_description
+                string sql = @"
+                   UPDATE inventory_description 
+                   SET    name    = @name, 
+                          barcode = @barcode, 
+                          retail_price = @Price, 
+                          typeID = @typeID, 
+                          nontaxable = @nonTaxable, 
+                          nontaxable_local = @nonTaxableLocal
+                    WHERE inventoryid = @id;
+                ";
+
+                if (string.IsNullOrWhiteSpace(evnt.Barcode))
+                    evnt.Barcode = evnt.Name.Replace(" ", "").ToUpper();
+                else
+                    evnt.Barcode = evnt.Barcode.Replace(" ", "").ToUpper();
+
+                MySqlCommand cmd = new MySqlCommand(sql, db.Connection());
+
+                //cmd.Parameters.Add(new MySqlParameter("id", inv.Id));
+                cmd.Parameters.Add(new MySqlParameter("id", evnt.Id));
+                cmd.Parameters.Add(new MySqlParameter("name", evnt.Name.Trim()));
+                cmd.Parameters.Add(new MySqlParameter("barcode", evnt.Barcode.Trim().ToUpper()));
+                cmd.Parameters.Add(new MySqlParameter("Price", evnt.Price));
+                cmd.Parameters.Add(new MySqlParameter("typeID", evnt.TypeID));
+                cmd.Parameters.Add(new MySqlParameter("nonTaxable", evnt.NonTaxable));
+                cmd.Parameters.Add(new MySqlParameter("nonTaxableLocal", evnt.NonTaxableLocal));
+                cmd.ExecuteNonQuery();
+
+                evnt.Id = Convert.ToUInt32(cmd.LastInsertedId);
+                cmd.Dispose();
+
+                //Inserting into inventory_description
+                sql = @"
+                    UPDATE inventory_price 
+                    SET , 
+                        Inventory_Qty = @qty, 
+                        Supplier_price = @supplier_price
+                    WHERE inventoryID = @id;
+                ";
+
+                cmd = new MySqlCommand(sql, db.Connection());
+                //cmd.Parameters.Add(new MySqlParameter("id", inv.Id));
+                cmd.Parameters.Add(new MySqlParameter("id", evnt.Id));
+                cmd.Parameters.Add(new MySqlParameter("Qty", evnt.Qty));
+                cmd.Parameters.Add(new MySqlParameter("Supplier_price", evnt.SupplierPrice));
+                cmd.ExecuteNonQuery();
+
+                //Inserting into events
+                cmd = new MySqlCommand(@"
+                    UPDATE events 
+                    SET eventDate = @eventDate,  
+                        Duration = @Duration,  
+                        preorder = @preorder,  
+                        atDoor = @atDoor
+                    WHERE inventoryID = @id;
+                ");
+
+                //cmd.Parameters.Add(new MySqlParameter("id", inv.Id));
+                cmd.Parameters.Add(new MySqlParameter("inventoryID", evnt.Id));
+                cmd.Parameters.Add(new MySqlParameter("eventDate", evnt.EventDate));
+                cmd.Parameters.Add(new MySqlParameter("Duration", evnt.Duration));
+                cmd.Parameters.Add(new MySqlParameter("preorder", evnt.PreOrder));
+                cmd.Parameters.Add(new MySqlParameter("atDoor", evnt.AtDoor));
+                cmd.ExecuteNonQuery();
+            }
+            finally
+            {
+                db.CloseConnnection();
+            }
+
+            return evnt.Id;
+        }
+
+        public Inventory EventToInv(Event evnt)
         {
             return new Inventory
             {
@@ -253,7 +339,6 @@ namespace pos_core_api.ORM
                     output.Add(outputItem);
                 }
 
-                
                 outputItem.AllQty.Add(new InventoryQty()
                 {
                     PurchasedDate = reader.GetDateTime("purchased_date"),
@@ -263,6 +348,5 @@ namespace pos_core_api.ORM
             }
             return output;
         }
-
     }
 }
