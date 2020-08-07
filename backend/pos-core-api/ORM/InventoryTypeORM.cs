@@ -46,7 +46,7 @@ namespace pos_core_api.ORM
         /// </summary>
         /// <param name="typeName"></param>
         /// <returns>An object of the requested type.</returns>
-        public InventoryType GetID(int typeId)
+        public InventoryType Get(int typeId)
         {
             List<InventoryType> types = null;
 
@@ -82,7 +82,7 @@ namespace pos_core_api.ORM
         /// </summary>
         /// <param name="typeName"></param>
         /// <returns>An object of the requested type.</returns>
-        public InventoryType GetName(string typeName)
+        public InventoryType Get(string typeName)
         {
             List<InventoryType> types = null;
 

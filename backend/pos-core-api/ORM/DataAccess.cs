@@ -75,5 +75,17 @@ namespace pos_core_api.ORM
                 return employeeORM;
             }
         }
+
+        private static InventoryTypeORM inventoryTypeORM = null;
+        public InventoryTypeORM InventoryType
+        {
+            get
+            {
+                if (inventoryTypeORM == null)
+                    inventoryTypeORM = new InventoryTypeORM();
+
+                return inventoryTypeORM;
+            }
+        }
     }
 }
