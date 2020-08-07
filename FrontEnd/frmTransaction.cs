@@ -64,7 +64,7 @@ namespace SecretCellar
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
+            txtBarcode.Focus();
         }
 
         private void addRow(Transaction trans)
@@ -221,10 +221,9 @@ namespace SecretCellar
         {
 
         }
-
-        private void txt_TransTotal_TextChanged_1(object sender, EventArgs e)
+        private void dataGridView1_Click(object sender, EventArgs e)
         {
-
+            txtBarcode.Focus();
         }
     }
 }
