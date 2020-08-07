@@ -237,7 +237,7 @@ namespace SecretCellar
         {
             if (LookupView.SelectedRows.Count > 0)
             {
-                Inventory i = inventory.First(x => x.Barcode == txtBarcode.Text);
+                Inventory i = inventory.FirstOrDefault(x => x.Barcode == txtBarcode.Text);
 
                 if (i == null)
                     i = new Inventory();
@@ -295,7 +295,8 @@ namespace SecretCellar
                 i.TypeID = types.First(x => x.TypeName == cboType.Text).TypeId;
                 i.SupplierID = suppliers.First(x => x.Name == cbo_Supplier.Text).SupplierID;
 
-                dataAccess.InsertItem(i);
+                i.Id = dataAccess.InsertItem(i);
+                inventory.Add(i);
                 refresh();
             }
         }

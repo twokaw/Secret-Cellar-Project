@@ -48,6 +48,8 @@
             this.btnVoidTrx = new System.Windows.Forms.Button();
             this.btnDeleteItem = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lblShip = new System.Windows.Forms.Label();
+            this.txt_Ship = new System.Windows.Forms.TextBox();
             this.txt_TransTotal = new System.Windows.Forms.TextBox();
             this.txt_transTax = new System.Windows.Forms.TextBox();
             this.txt_transDiscount = new System.Windows.Forms.TextBox();
@@ -63,6 +65,8 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnLookup = new System.Windows.Forms.Button();
             this.btnTender = new ePOSOne.btnProduct.Button_WOC();
+            this.txt_itemTotal = new System.Windows.Forms.TextBox();
+            this.lbl_item_total = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -292,6 +296,10 @@
             // 
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.lbl_item_total);
+            this.panel1.Controls.Add(this.txt_itemTotal);
+            this.panel1.Controls.Add(this.lblShip);
+            this.panel1.Controls.Add(this.txt_Ship);
             this.panel1.Controls.Add(this.txt_TransTotal);
             this.panel1.Controls.Add(this.txt_transTax);
             this.panel1.Controls.Add(this.txt_transDiscount);
@@ -303,27 +311,47 @@
             this.panel1.Controls.Add(this.LB_Tax);
             this.panel1.Controls.Add(this.LB_SubTotal);
             this.panel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panel1.Location = new System.Drawing.Point(976, 348);
+            this.panel1.Location = new System.Drawing.Point(976, 319);
             this.panel1.Margin = new System.Windows.Forms.Padding(1);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(196, 173);
+            this.panel1.Size = new System.Drawing.Size(196, 202);
             this.panel1.TabIndex = 13;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            // 
+            // lblShip
+            // 
+            this.lblShip.AutoSize = true;
+            this.lblShip.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblShip.Location = new System.Drawing.Point(10, 145);
+            this.lblShip.Name = "lblShip";
+            this.lblShip.Size = new System.Drawing.Size(80, 17);
+            this.lblShip.TabIndex = 11;
+            this.lblShip.Text = "SHIPPING";
+            // 
+            // txt_Ship
+            // 
+            this.txt_Ship.Location = new System.Drawing.Point(96, 141);
+            this.txt_Ship.Name = "txt_Ship";
+            this.txt_Ship.ReadOnly = true;
+            this.txt_Ship.Size = new System.Drawing.Size(89, 23);
+            this.txt_Ship.TabIndex = 10;
+            this.txt_Ship.TextChanged += new System.EventHandler(this.txtShip_TextChanged);
             // 
             // txt_TransTotal
             // 
             this.txt_TransTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_TransTotal.Location = new System.Drawing.Point(96, 136);
+            this.txt_TransTotal.Location = new System.Drawing.Point(96, 167);
             this.txt_TransTotal.Margin = new System.Windows.Forms.Padding(1);
             this.txt_TransTotal.Name = "txt_TransTotal";
             this.txt_TransTotal.ReadOnly = true;
             this.txt_TransTotal.Size = new System.Drawing.Size(89, 26);
             this.txt_TransTotal.TabIndex = 9;
             this.txt_TransTotal.TabStop = false;
+            this.txt_TransTotal.TextChanged += new System.EventHandler(this.txt_TransTotal_TextChanged_1);
             // 
             // txt_transTax
             // 
-            this.txt_transTax.Location = new System.Drawing.Point(96, 58);
+            this.txt_transTax.Location = new System.Drawing.Point(96, 89);
             this.txt_transTax.Margin = new System.Windows.Forms.Padding(1);
             this.txt_transTax.Name = "txt_transTax";
             this.txt_transTax.ReadOnly = true;
@@ -344,7 +372,7 @@
             // 
             // txt_transBTLDPT
             // 
-            this.txt_transBTLDPT.Location = new System.Drawing.Point(96, 83);
+            this.txt_transBTLDPT.Location = new System.Drawing.Point(96, 114);
             this.txt_transBTLDPT.Margin = new System.Windows.Forms.Padding(1);
             this.txt_transBTLDPT.Name = "txt_transBTLDPT";
             this.txt_transBTLDPT.ReadOnly = true;
@@ -354,7 +382,7 @@
             // 
             // txt_transSubTotal
             // 
-            this.txt_transSubTotal.Location = new System.Drawing.Point(96, 9);
+            this.txt_transSubTotal.Location = new System.Drawing.Point(96, 63);
             this.txt_transSubTotal.Margin = new System.Windows.Forms.Padding(1);
             this.txt_transSubTotal.Name = "txt_transSubTotal";
             this.txt_transSubTotal.ReadOnly = true;
@@ -367,7 +395,7 @@
             // 
             this.LB_Discount.AutoSize = true;
             this.LB_Discount.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.1F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LB_Discount.Location = new System.Drawing.Point(6, 36);
+            this.LB_Discount.Location = new System.Drawing.Point(6, 37);
             this.LB_Discount.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.LB_Discount.Name = "LB_Discount";
             this.LB_Discount.Size = new System.Drawing.Size(84, 13);
@@ -378,7 +406,7 @@
             // 
             this.LB_TOTAL.AutoSize = true;
             this.LB_TOTAL.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LB_TOTAL.Location = new System.Drawing.Point(31, 138);
+            this.LB_TOTAL.Location = new System.Drawing.Point(31, 169);
             this.LB_TOTAL.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.LB_TOTAL.Name = "LB_TOTAL";
             this.LB_TOTAL.Size = new System.Drawing.Size(64, 20);
@@ -389,7 +417,7 @@
             // 
             this.LB_BTLDPT.AutoSize = true;
             this.LB_BTLDPT.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.1F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LB_BTLDPT.Location = new System.Drawing.Point(31, 86);
+            this.LB_BTLDPT.Location = new System.Drawing.Point(31, 117);
             this.LB_BTLDPT.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.LB_BTLDPT.Name = "LB_BTLDPT";
             this.LB_BTLDPT.Size = new System.Drawing.Size(59, 13);
@@ -400,7 +428,7 @@
             // 
             this.LB_Tax.AutoSize = true;
             this.LB_Tax.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.1F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LB_Tax.Location = new System.Drawing.Point(52, 61);
+            this.LB_Tax.Location = new System.Drawing.Point(52, 92);
             this.LB_Tax.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.LB_Tax.Name = "LB_Tax";
             this.LB_Tax.Size = new System.Drawing.Size(31, 13);
@@ -411,7 +439,7 @@
             // 
             this.LB_SubTotal.AutoSize = true;
             this.LB_SubTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.1F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LB_SubTotal.Location = new System.Drawing.Point(12, 11);
+            this.LB_SubTotal.Location = new System.Drawing.Point(12, 68);
             this.LB_SubTotal.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.LB_SubTotal.Name = "LB_SubTotal";
             this.LB_SubTotal.Size = new System.Drawing.Size(76, 13);
@@ -492,6 +520,27 @@
             this.btnTender.UseVisualStyleBackColor = false;
             this.btnTender.Click += new System.EventHandler(this.btnTender_Click);
             // 
+            // txt_itemTotal
+            // 
+            this.txt_itemTotal.Location = new System.Drawing.Point(96, 8);
+            this.txt_itemTotal.Margin = new System.Windows.Forms.Padding(1);
+            this.txt_itemTotal.Name = "txt_itemTotal";
+            this.txt_itemTotal.ReadOnly = true;
+            this.txt_itemTotal.Size = new System.Drawing.Size(88, 23);
+            this.txt_itemTotal.TabIndex = 12;
+            this.txt_itemTotal.TabStop = false;
+            // 
+            // lbl_item_total
+            // 
+            this.lbl_item_total.AutoSize = true;
+            this.lbl_item_total.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.1F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_item_total.Location = new System.Drawing.Point(6, 13);
+            this.lbl_item_total.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
+            this.lbl_item_total.Name = "lbl_item_total";
+            this.lbl_item_total.Size = new System.Drawing.Size(81, 13);
+            this.lbl_item_total.TabIndex = 13;
+            this.lbl_item_total.Text = "ITEM TOTAL";
+            // 
             // frmTransaction
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -563,5 +612,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn TAX;
         private System.Windows.Forms.DataGridViewTextBoxColumn BOTTLE_DEPOSIT;
         private System.Windows.Forms.DataGridViewTextBoxColumn TOTAL;
+        private System.Windows.Forms.Label lblShip;
+        private System.Windows.Forms.TextBox txt_Ship;
+        private System.Windows.Forms.Label lbl_item_total;
+        private System.Windows.Forms.TextBox txt_itemTotal;
     }
 }
