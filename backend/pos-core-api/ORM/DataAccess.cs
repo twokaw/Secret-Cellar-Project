@@ -57,10 +57,22 @@ namespace pos_core_api.ORM
         {
             get
             {
-                if(transactionORM == null)
+                if (transactionORM == null)
                     transactionORM = new TransactionORM();
 
                 return transactionORM;
+            }
+        }
+
+        private static EmployeeORM employeeORM = null;
+        public EmployeeORM Employee
+        {
+            get
+            {
+                if (employeeORM == null)
+                    employeeORM = new EmployeeORM();
+
+                return employeeORM;
             }
         }
     }
