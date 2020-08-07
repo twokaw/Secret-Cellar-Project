@@ -14,9 +14,10 @@ namespace pos_core_api.ORM
         readonly DbConn db = new DbConn();
 
         private const string SQLGET = @"
-                 SELECT receiptID, register, sold_datetime, customerID, empID, location, tax_exempt, discount, shipping
-                 FROM transaction
-                ";
+            SELECT receiptID, register, sold_datetime, customerID, empID, location, tax_exempt, discount, shipping
+            FROM transaction
+        ";
+
         public List<Transaction> GetTransactions(DateTime start, DateTime end, bool includeItems = true, bool includePayments = true)
         {
             db.OpenConnection();
@@ -25,7 +26,6 @@ namespace pos_core_api.ORM
                 string sqlStatement = SQLGET;
 
                 using MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
-
 
                 if (start > DateTime.MinValue)
                 {
@@ -243,11 +243,11 @@ namespace pos_core_api.ORM
             try
             {
                 using MySqlCommand cmd = new MySqlCommand(@"
-                     UPDATE transaction_items
-                     SET sold_qty = GREATER(sold_qty, 0)
-                     WHERE  receiptID = @receiptID
-                     AND    inventoryID = @inventoryID
-                    ", db.Connection());
+                    UPDATE transaction_items
+                    SET sold_qty = GREATER(sold_qty, 0)
+                    WHERE  receiptID = @receiptID
+                    AND    inventoryID = @inventoryID
+                ", db.Connection());
 
                 cmd.Parameters.Add(new MySqlParameter("receiptID", receiptId));
                 cmd.Parameters.Add(new MySqlParameter("inventoryID", itemId));
