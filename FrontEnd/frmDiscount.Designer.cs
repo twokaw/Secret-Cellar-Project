@@ -59,7 +59,7 @@
             // 
             this.btnExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F);
             this.btnExit.ForeColor = System.Drawing.Color.Red;
-            this.btnExit.Location = new System.Drawing.Point(293, 460);
+            this.btnExit.Location = new System.Drawing.Point(459, 460);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(198, 82);
             this.btnExit.TabIndex = 4;
@@ -81,7 +81,7 @@
             // btnApplyDiscount
             // 
             this.btnApplyDiscount.Font = new System.Drawing.Font("Microsoft Sans Serif", 30.25F);
-            this.btnApplyDiscount.Location = new System.Drawing.Point(557, 460);
+            this.btnApplyDiscount.Location = new System.Drawing.Point(300, 43);
             this.btnApplyDiscount.Name = "btnApplyDiscount";
             this.btnApplyDiscount.Size = new System.Drawing.Size(135, 82);
             this.btnApplyDiscount.TabIndex = 6;
@@ -113,7 +113,7 @@
             // 
             this.lblPercentTotalSale.AutoSize = true;
             this.lblPercentTotalSale.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F);
-            this.lblPercentTotalSale.Location = new System.Drawing.Point(112, 46);
+            this.lblPercentTotalSale.Location = new System.Drawing.Point(28, 43);
             this.lblPercentTotalSale.Name = "lblPercentTotalSale";
             this.lblPercentTotalSale.Size = new System.Drawing.Size(231, 31);
             this.lblPercentTotalSale.TabIndex = 12;
@@ -122,7 +122,7 @@
             // 
             // txtPercentTotalSale
             // 
-            this.txtPercentTotalSale.Location = new System.Drawing.Point(118, 80);
+            this.txtPercentTotalSale.Location = new System.Drawing.Point(34, 77);
             this.txtPercentTotalSale.Name = "txtPercentTotalSale";
             this.txtPercentTotalSale.Size = new System.Drawing.Size(200, 20);
             this.txtPercentTotalSale.TabIndex = 13;
@@ -223,6 +223,7 @@
             this.panel2.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.panel2.Controls.Add(this.lblPercentTotalSale);
             this.panel2.Controls.Add(this.txtPercentTotalSale);
+            this.panel2.Controls.Add(this.btnApplyDiscount);
             this.panel2.Location = new System.Drawing.Point(36, 286);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(455, 146);
@@ -280,7 +281,6 @@
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.btnApplyDiscount);
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.btnExit);
             this.Name = "frmDiscount";
