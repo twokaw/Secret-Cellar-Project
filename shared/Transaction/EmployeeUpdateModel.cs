@@ -1,8 +1,9 @@
 ﻿
 namespace Shared
-{
+{/*
     public class EmployeeUpdateModel
     { 
+        /*
         public uint PinNumber { get; set; }
         public bool IsAdmin { get; set; }
         public string FirstName { get; set; }
@@ -15,4 +16,5 @@ namespace Shared
         public string ZipCode { get; set; }
         public string PhoneNumber { get; set; }
     }
+    */
 }
