@@ -87,5 +87,29 @@ namespace pos_core_api.ORM
                 return inventoryTypeORM;
             }
         }
+
+        private static TaxORM taxORM = null;
+        public TaxORM Tax
+        {
+            get
+            {
+                if (taxORM == null)
+                    taxORM = new TaxORM();
+
+                return taxORM;
+            }
+        }
+
+        private static SupplierORM supplierORM = null;
+        public SupplierORM Supplier
+        {
+            get
+            {
+                if (supplierORM == null)
+                    supplierORM = new SupplierORM();
+
+                return supplierORM;
+            }
+        }
     }
 }
