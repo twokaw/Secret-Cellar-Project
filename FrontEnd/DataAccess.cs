@@ -177,7 +177,9 @@ namespace SecretCellar
         {
             Response resp = null;
             string result = web.DataPut($"api/Transaction", transaction, resp);
-            return uint.TryParse(result, out uint id)? id: 0;
+            transaction.InvoiceID = uint.TryParse(result, out uint id) ? id : 0;
+
+            return transaction.InvoiceID;
         }  
         #endregion
         public static Item ConvertInvtoItem(Inventory inv)

@@ -1,11 +1,5 @@
-﻿using System;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Mvc;
 using WebApi.Services;
-using WebApi.Helpers;
-using Microsoft.IdentityModel.Tokens;
-using System.IdentityModel.Tokens.Jwt;
-using System.Text;
 
 namespace WebApi.Controllers
 { 
@@ -13,8 +7,7 @@ namespace WebApi.Controllers
     [ApiController]
     public class ValidateTokenController : ControllerBase
     {
-        private IUserService _userService;
-        private readonly AppSettings _appSettings;
+        private readonly IUserService _userService;
 
         public ValidateTokenController(IUserService userService)
         {
@@ -22,7 +15,7 @@ namespace WebApi.Controllers
         }
 
         [HttpPost]
-        public bool isTokenValid(string token)
+        public bool IsTokenValid(string token)
         {
             bool status = _userService.isTokenValid(token);
 

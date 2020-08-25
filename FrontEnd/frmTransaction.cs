@@ -1,6 +1,10 @@
 ﻿using System;
+using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Windows.Forms;
+using NCR_Printer;
 using Shared;
 
 namespace SecretCellar
@@ -12,14 +16,18 @@ namespace SecretCellar
 
         private Transaction transaction = new Transaction();
         private DataAccess dataAccess;
+        private Image logo = null;
         public frmTransaction()
         {
             InitializeComponent();
             txtBarcode.Focus();
-
+            ReloadLogo();
         }
 
-
+        private void ReloadLogo()
+        {
+            logo = Image.FromFile($"{Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}/{Properties.Settings.Default.Logo}");
+        }
 
         private void frmTransaction_Load(object sender, EventArgs e)
         {
@@ -52,6 +60,15 @@ namespace SecretCellar
             frmPayment payment = new frmPayment(transaction);
             if (payment.ShowDialog() == DialogResult.OK)
             {
+                DataAccess.instance.ProcessTransaction(transaction);
+
+                // TODO: Add print receipt check box to the frmPayment to allow the use to select if they want to print a receipt
+                if (false) 
+                    new Receipt(transaction, Properties.Settings.Default.Header, Properties.Settings.Default.Footer, logo).print();
+
+                transaction = new Transaction();
+                addRow(transaction);
+
                 //transaction complete, clear the form
             }
             else
