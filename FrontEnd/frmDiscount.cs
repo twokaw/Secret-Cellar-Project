@@ -13,13 +13,16 @@ namespace SecretCellar
 {
     public partial class frmDiscount : Form
     {
-        public Transaction grid = null;
+        public Transaction transaction = null;
+
+        
         
  
         public frmDiscount(Transaction items)
         {
             InitializeComponent();
-            grid = items;
+            transaction = items;
+            txtPercentTotalSale.Text = (transaction.Discount * 100).ToString();
             populate();
         }
 
@@ -86,7 +89,7 @@ namespace SecretCellar
             percent_discount();
            
 
-                this.Close();
+     
 
         }
 
@@ -107,9 +110,10 @@ namespace SecretCellar
        
         private void populate()
         {
+            txt_discountTotal.Text = transaction.DiscountTotal.ToString("c");
             dataGridSelectItems.Rows.Clear();
 
-            foreach (Item i in grid.Items)
+            foreach (Item i in transaction.Items)
             {
                 int row = dataGridSelectItems.Rows.Add();
                 using (var r = dataGridSelectItems.Rows[row])
@@ -133,11 +137,12 @@ namespace SecretCellar
             if(txtPercentLineItem.Text != "")
             foreach(DataGridViewRow row in dataGridSelectItems.SelectedRows)
             {
-                 Item i= grid.Items.First((x) => x.Id == int.Parse(row.Cells["ItemNumber"].Value.ToString())&& (x.Price*(1-x.Discount)).ToString("c") == row.Cells["Price"].Value.ToString());
+                 Item i= transaction.Items.First((x) => x.Id == int.Parse(row.Cells["ItemNumber"].Value.ToString())&& (x.Price*(1-x.Discount)).ToString("c") == row.Cells["Price"].Value.ToString());
                 i.Discount = double.Parse(txtPercentLineItem.Text) / 100;
                 row.Cells["Price"].Value = (i.Price - (i.Price * i.Discount)).ToString("c");
                 row.Cells["Discount"].Value = i.Discount.ToString("p0");
             }
+            txt_discountTotal.Text = transaction.DiscountTotal.ToString("c");
         }
 
         public void percent_discount()
@@ -145,16 +150,16 @@ namespace SecretCellar
             
             if (double.TryParse(txtPercentTotalSale.Text, out double d))
             {
-                grid.Discount = d/100;
+                transaction.Discount = d/100;
             }
-            
+            txt_discountTotal.Text = transaction.DiscountTotal.ToString("c");
         }
         public void coupons_discount()
         {
          
             if (double.TryParse(txtFixedDiscount.Text, out double d))
             {
-                grid.Items.Add(new Item() { Price = -d, Name = "Coupon", NumSold = 1});
+                transaction.Items.Add(new Item() { Price = -d, Name = "Coupon", NumSold = 1});
             }
             
         }
@@ -169,7 +174,7 @@ namespace SecretCellar
 
         private void btnExit_Click(object sender, EventArgs e)
         {
-            // grid.Items.Remove(() { Price = 0, Name = "Coupon", NumSold = 0 });
+            // transaction.Items.Remove(() { Price = 0, Name = "Coupon", NumSold = 0 });
             this.Close();
         }
 

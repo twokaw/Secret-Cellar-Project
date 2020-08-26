@@ -112,7 +112,7 @@ namespace SecretCellar
             txt_transBTLDPT.Text = transactionBottleDeposit.ToString("C");
             txt_itemTotal.Text = transaction.Subtotal.ToString("C");
             txt_transTax.Text = (transaction.Tax + transaction.LocalTax).ToString("C");
-            txt_transDiscount.Text = (transaction.Subtotal * transaction.Discount).ToString("C");
+            txt_transDiscount.Text = transaction.DiscountTotal.ToString("C");
             txt_TransTotal.Text = transaction.Total.ToString("C");
             txt_Ship.Text = transaction.Shipping.ToString("C");
         }
