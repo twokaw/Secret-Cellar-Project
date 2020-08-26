@@ -30,7 +30,7 @@ namespace WebApi.Controllers
         /// Returns a list of supplier. 
         /// </returns>
         // GET: api/Supplier
-        [HttpGet("{name}", Name = "Get Supplier")]
+        [HttpGet("{name}", Name = "Get Supplier by name")]
         public IActionResult Get(string name)
         {
             try
@@ -50,7 +50,7 @@ namespace WebApi.Controllers
         /// Returns a list of iventory items. 
         /// </returns>
         // GET: api/Supplier
-        [HttpGet("id/{id}", Name = "Get Supplier")]
+        [HttpGet("id/{id}", Name = "Get Supplier by ID")]
         public IActionResult GetSupplier(uint id)
         {
             Supplier output = DataAccess.Instance.Supplier.Get(id);
