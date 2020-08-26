@@ -22,6 +22,7 @@ namespace SecretCellar
         {
             InitializeComponent();
             transaction = items;
+            txtPercentTotalSale.Text = (transaction.Discount * 100).ToString();
             populate();
         }
 
