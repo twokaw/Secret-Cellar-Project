@@ -33,8 +33,16 @@ namespace Shared
             {
                 double sub = 0;
 
+
+
                 // All items discounts + coupons
-                Items.ForEach(x => sub += (x.Price > 0) ? x.Price * x.NumSold * x.Discount * Discount : x.Price);
+
+                // for each item with a positive value
+                //  (item * num) * ItemDiscount + ((item * num) * (1 - ItemDiscount)) * transaction discount 
+                // 
+                //   Coupons are negative, to get the discount they will need to be negated to make them po
+
+                Items.ForEach(x => sub += (x.Price > 0) ? x.Price * x.NumSold * ( x.Discount + (1 - x.Discount) * Discount) : -x.Price);
 
                 return sub;
             }
