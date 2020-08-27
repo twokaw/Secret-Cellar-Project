@@ -66,7 +66,7 @@ namespace NCR_Printer
         public void print()
         {
             // Open Cash drawer
-            if(drawer != null) drawer.openDrawer();
+            if(drawer != null) drawer.OpenDrawer();
 
             // Print receipt
             rcpt = new PrintDocument();

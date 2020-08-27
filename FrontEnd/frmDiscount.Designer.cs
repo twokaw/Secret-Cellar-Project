@@ -74,9 +74,9 @@
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(170, 82);
             this.btnClear.TabIndex = 5;
-            this.btnClear.Text = "Clear";
+            this.btnClear.Text = "Reset";
             this.btnClear.UseVisualStyleBackColor = true;
-            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
+            this.btnClear.Click += new System.EventHandler(this.btnReset_Click);
             // 
             // btnApplyDiscount
             // 

@@ -26,7 +26,17 @@ namespace SecretCellar
 
         private void ReloadLogo()
         {
-            logo = Image.FromFile($"{Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}/{Properties.Settings.Default.Logo}");
+
+            if (!string.IsNullOrEmpty(Properties.Settings.Default.Logo))
+            {
+                string logoPath = $"{Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}/{Properties.Settings.Default.Logo}";
+
+                if(Directory.Exists(logoPath))
+                    logo = Image.FromFile(logoPath); 
+            }
+
+            if(logo == null)
+                logo = Properties.Resources.Logo;
         }
 
         private void frmTransaction_Load(object sender, EventArgs e)
@@ -45,8 +55,6 @@ namespace SecretCellar
 
         }
 
-
-
         private void btnDiscount_Click(object sender, EventArgs e)
         {
             frmDiscount discount = new frmDiscount(transaction); //instantiates frmDiscount using discount
@@ -57,26 +65,28 @@ namespace SecretCellar
         private void btnTender_Click(object sender, EventArgs e)
         {
             updateTransaction();
-            frmPayment payment = new frmPayment(transaction);
-            if (payment.ShowDialog() == DialogResult.OK)
-            {
-                DataAccess.instance.ProcessTransaction(transaction);
 
-                // TODO: Add print receipt check box to the frmPayment to allow the use to select if they want to print a receipt
-                if (false) 
-                    new Receipt(transaction, Properties.Settings.Default.Header, Properties.Settings.Default.Footer, logo).print();
-
-                transaction = new Transaction();
-                addRow(transaction);
-
-                //transaction complete, clear the form
-            }
+            if (transaction.Items.Count == 0)
+                openCashDrawer();
             else
             {
-                // return to transaction
+                frmPayment payment = new frmPayment(transaction);
+                if (payment.ShowDialog() == DialogResult.OK)
+                {
+                    DataAccess.instance.ProcessTransaction(transaction);
+
+                    // TODO: Add print receipt check box to the frmPayment to allow the use to select if they want to print a receipt
+                    if (false) 
+                        new Receipt(transaction, Properties.Settings.Default.Header, Properties.Settings.Default.Footer, logo).print();
+
+                    if (transaction.Payments.FirstOrDefault(x => x.Method == "CASH" || x.Method == "CHECK") != null)
+                        openCashDrawer();
+
+                    //transaction complete, clear the form
+                    transaction = new Transaction();
+                    addRow(transaction);
+                }
             }
-
-
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -112,7 +122,7 @@ namespace SecretCellar
             txt_transBTLDPT.Text = transactionBottleDeposit.ToString("C");
             txt_itemTotal.Text = transaction.Subtotal.ToString("C");
             txt_transTax.Text = (transaction.Tax + transaction.LocalTax).ToString("C");
-            txt_transDiscount.Text = (transaction.Subtotal * transaction.Discount).ToString("C");
+            txt_transDiscount.Text = transaction.DiscountTotal.ToString("C");
             txt_TransTotal.Text = transaction.Total.ToString("C");
             txt_Ship.Text = transaction.Shipping.ToString("C");
         }
@@ -241,6 +251,18 @@ namespace SecretCellar
         private void dataGridView1_Click(object sender, EventArgs e)
         {
             txtBarcode.Focus();
+        }
+
+        private void openCashDrawer()
+        {
+            try
+            {
+                new CashDrawer(Properties.Settings.Default.CashDrawerPort).OpenDrawer();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }
