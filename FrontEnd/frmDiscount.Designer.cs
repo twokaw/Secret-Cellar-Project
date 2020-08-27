@@ -126,6 +126,7 @@
             this.txtPercentTotalSale.Name = "txtPercentTotalSale";
             this.txtPercentTotalSale.Size = new System.Drawing.Size(200, 20);
             this.txtPercentTotalSale.TabIndex = 13;
+            this.txtPercentTotalSale.Click += new System.EventHandler(this.txtPercentTotalSale_Click);
             this.txtPercentTotalSale.TextChanged += new System.EventHandler(this.txtPercentTotalSale_TextChanged);
             this.txtPercentTotalSale.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.digit_only);
             // 

@@ -41,10 +41,6 @@ namespace SecretCellar
            
         }
 
-        private void txtPercentTotalSale_TextChanged(object sender, EventArgs e)
-        {
-           
-        }
 
         private void lblPercentTotalSale_Click(object sender, EventArgs e)
         {
@@ -175,11 +171,11 @@ namespace SecretCellar
             foreach (DataGridViewRow row in dataGridSelectItems.Rows)
                 {
                     Item i = transaction.Items.First((x) => x.Id == int.Parse(row.Cells["ItemNumber"].Value.ToString()) && (x.Price * (1 - x.Discount)).ToString("c") == row.Cells["Price"].Value.ToString());
-
-                    row.Cells["Price"].Value = (i.Price).ToString("c");
-                    row.Cells["Discount"].Value = 0.ToString("p0");
+                    i.Discount = 0;
+                    
                 }
-            txt_discountTotal.Text = transaction.DiscountTotal.ToString("c");
+            populate();
+            
         }
 
 
@@ -230,6 +226,16 @@ namespace SecretCellar
                 sum += i;
             }
             
+        }
+
+        private void txtPercentTotalSale_Click(object sender, EventArgs e)
+        {
+            txtPercentTotalSale.SelectAll();
+        }
+
+        private void txtPercentTotalSale_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
