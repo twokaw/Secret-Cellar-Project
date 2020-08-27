@@ -77,11 +77,15 @@ namespace SecretCellar
             this.Show();
         }
 
-        private void btnClear_Click(object sender, EventArgs e)
+        private void btnReset_Click(object sender, EventArgs e)
         {
+            txtFixedDiscount.Text = "0";
+            txtPercentLineItem.Text = "0";
+            txtPercentTotalSale.Text = "0";
+            resetselectItemDiscount();
+            percent_discount();
             txtFixedDiscount.Clear();
-            txtPercentLineItem.Clear();
-            txtPercentTotalSale.Clear();
+            populate();
         }
 
         private void btnApplyDiscount_Click(object sender, EventArgs e)
@@ -164,9 +168,23 @@ namespace SecretCellar
             
         }
 
-       
+        public void resetselectItemDiscount()
+        {
+            // dataGrid all rows
 
-        private void txtPercentTotalSale_KeyPress(object sender, KeyPressEventArgs e)
+            foreach (DataGridViewRow row in dataGridSelectItems.Rows)
+                {
+                    Item i = transaction.Items.First((x) => x.Id == int.Parse(row.Cells["ItemNumber"].Value.ToString()) && (x.Price * (1 - x.Discount)).ToString("c") == row.Cells["Price"].Value.ToString());
+
+                    row.Cells["Price"].Value = (i.Price).ToString("c");
+                    row.Cells["Discount"].Value = 0.ToString("p0");
+                }
+            txt_discountTotal.Text = transaction.DiscountTotal.ToString("c");
+        }
+
+
+
+            private void txtPercentTotalSale_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsDigit(e.KeyChar))
                 e.Handled = true;
