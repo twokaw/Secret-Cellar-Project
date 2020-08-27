@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using pos_core_api.ORM;
 using Shared;
-using WebApi.Helpers;
 
 namespace pos_core_api.Controllers
 {
