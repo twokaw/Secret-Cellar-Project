@@ -125,8 +125,8 @@ namespace WebApi.Controllers
         {
             long lastID = -1;
 
-            if (DataAccess.Instance.Inventory.DoesBarcodeExist(inv.Barcode))
-                return StatusCode(400, "Barcode already exist.");
+            if (!DataAccess.Instance.Inventory.DoesBarcodeExist(inv.Barcode))
+                return Post(inv);
 
             try
             {

@@ -153,7 +153,6 @@ namespace SecretCellar
 
         }
 
-
         private void txtBarcode_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.KeyData == Keys.Enter && !string.IsNullOrWhiteSpace(txtBarcode.Text))
