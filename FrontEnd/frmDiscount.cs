@@ -200,8 +200,7 @@ namespace SecretCellar
             coupons_discount();
             txtFixedDiscount.Clear();
             populate();
-            //dataGridSelectItems.Update();
-            //dataGridSelectItems.Refresh();
+         
         }
         private void update_Discount_Total()
         {
