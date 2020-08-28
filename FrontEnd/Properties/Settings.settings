@@ -17,5 +17,8 @@
     <Setting Name="CashDrawerPort" Type="System.String" Scope="Application">
       <Value Profile="(Default)">COM3</Value>
     </Setting>
+    <Setting Name="PrintReceipt" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
