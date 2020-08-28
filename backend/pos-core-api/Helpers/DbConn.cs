@@ -10,7 +10,7 @@ namespace WebApi.Helpers
     public class DbConn
     {
         private MySqlConnection conn;
-        private String connString;
+        private string connString;
 
         public DbConn()
         {
@@ -21,29 +21,13 @@ namespace WebApi.Helpers
 
         public void OpenConnection()
         {
-            try
-            {
-                conn.Open(); //open the connection.
-
-                Console.WriteLine("Connection status: " + conn.Ping()); //if true then connected. 
-            }
-            catch(Exception ex)
-            {
-                throw ex;
-            }
+            conn.Open();
         }
 
         public void CloseConnnection()
         {
             if(conn.Ping() == true)
-            {
-                Console.WriteLine("Closing connection...");
                 conn.Close();
-            }
-            else
-            {
-                Console.WriteLine("Connection is closed.");
-            }
         }
 
         public MySqlConnection Connection()

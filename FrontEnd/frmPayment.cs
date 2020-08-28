@@ -14,6 +14,7 @@ namespace SecretCellar
     public partial class frmPayment : Form
     {
 
+        public bool PrintReceipt { get; set; }
         private Transaction transaction = null;
 
 
@@ -87,7 +88,8 @@ namespace SecretCellar
 
         private void frmPayment_Load(object sender, EventArgs e)
         {
-
+            PrintReceipt = Properties.Settings.Default.PrintReceipt;
+            chk_printReceipt.Checked = PrintReceipt;
         }
 
         private void txtCashAmt_TextChanged(object sender, EventArgs e)
@@ -177,6 +179,12 @@ namespace SecretCellar
                 transaction.Payments.Remove(p);
                 RefreshGrid();
             }
+        }
+
+        private void chk_printReceipt_CheckedChanged(object sender, EventArgs e)
+        {
+            PrintReceipt = chk_printReceipt.Checked;
+
         }
     }
 }

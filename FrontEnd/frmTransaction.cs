@@ -11,8 +11,6 @@ using Shared;
 
 namespace SecretCellar
 {
-
-
     public partial class frmTransaction : Form
     {
 
@@ -89,10 +87,8 @@ namespace SecretCellar
                     if (transaction.Payments.FirstOrDefault(x => x.Method == "CASH" || x.Method == "CHECK") != null)
                         openCashDrawer();
 
-                    // TODO: Add print receipt check box to the frmPayment to allow the use to select if they want to print a receipt
-                  //  if (false) 
-                    new Receipt(transaction, Properties.Settings.Default.Header, Properties.Settings.Default.Footer, logo).print();
-
+                    if (payment.PrintReceipt) 
+                        new Receipt(transaction, Properties.Settings.Default.Header, Properties.Settings.Default.Footer, logo).print();
 
                     //transaction complete, clear the form
                     transaction = new Transaction();
