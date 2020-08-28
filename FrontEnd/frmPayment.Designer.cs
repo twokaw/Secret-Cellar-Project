@@ -50,6 +50,7 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.btnDelete = new System.Windows.Forms.Button();
+            this.chk_printReceipt = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.paymentType)).BeginInit();
             this.SuspendLayout();
             // 
@@ -305,11 +306,24 @@
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
+            // chk_printReceipt
+            // 
+            this.chk_printReceipt.AutoSize = true;
+            this.chk_printReceipt.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chk_printReceipt.Location = new System.Drawing.Point(884, 530);
+            this.chk_printReceipt.Name = "chk_printReceipt";
+            this.chk_printReceipt.Size = new System.Drawing.Size(200, 36);
+            this.chk_printReceipt.TabIndex = 36;
+            this.chk_printReceipt.Text = "Print Recipt";
+            this.chk_printReceipt.UseVisualStyleBackColor = true;
+            this.chk_printReceipt.CheckedChanged += new System.EventHandler(this.chk_printReceipt_CheckedChanged);
+            // 
             // frmPayment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1803, 685);
+            this.Controls.Add(this.chk_printReceipt);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.textBox2);
@@ -363,5 +377,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn TYPE;
         private System.Windows.Forms.DataGridViewTextBoxColumn AMOUNT;
         private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.CheckBox chk_printReceipt;
     }
 }
