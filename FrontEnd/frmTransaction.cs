@@ -76,7 +76,7 @@ namespace SecretCellar
                     DataAccess.instance.ProcessTransaction(transaction);
 
                     // TODO: Add print receipt check box to the frmPayment to allow the use to select if they want to print a receipt
-                    if (false) 
+                    //if (false) 
                         new Receipt(transaction, Properties.Settings.Default.Header, Properties.Settings.Default.Footer, logo).print();
 
                     if (transaction.Payments.FirstOrDefault(x => x.Method == "CASH" || x.Method == "CHECK") != null)
