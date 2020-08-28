@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmShipping));
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnAddCharge = new System.Windows.Forms.Button();
             this.txtCharge = new System.Windows.Forms.TextBox();
@@ -39,9 +40,10 @@
             this.btnCancel.BackColor = System.Drawing.SystemColors.Desktop;
             this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.25F);
             this.btnCancel.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnCancel.Location = new System.Drawing.Point(484, 222);
+            this.btnCancel.Location = new System.Drawing.Point(726, 342);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(178, 125);
+            this.btnCancel.Size = new System.Drawing.Size(267, 192);
             this.btnCancel.TabIndex = 7;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = false;
@@ -52,9 +54,10 @@
             this.btnAddCharge.BackColor = System.Drawing.SystemColors.Desktop;
             this.btnAddCharge.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.25F);
             this.btnAddCharge.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnAddCharge.Location = new System.Drawing.Point(139, 222);
+            this.btnAddCharge.Location = new System.Drawing.Point(208, 342);
+            this.btnAddCharge.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnAddCharge.Name = "btnAddCharge";
-            this.btnAddCharge.Size = new System.Drawing.Size(178, 125);
+            this.btnAddCharge.Size = new System.Drawing.Size(267, 192);
             this.btnAddCharge.TabIndex = 6;
             this.btnAddCharge.Text = "Add Charge";
             this.btnAddCharge.UseVisualStyleBackColor = false;
@@ -63,9 +66,10 @@
             // txtCharge
             // 
             this.txtCharge.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F);
-            this.txtCharge.Location = new System.Drawing.Point(496, 106);
+            this.txtCharge.Location = new System.Drawing.Point(744, 163);
+            this.txtCharge.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtCharge.Name = "txtCharge";
-            this.txtCharge.Size = new System.Drawing.Size(160, 38);
+            this.txtCharge.Size = new System.Drawing.Size(238, 53);
             this.txtCharge.TabIndex = 5;
             // 
             // lblTitle
@@ -73,22 +77,25 @@
             this.lblTitle.AutoSize = true;
             this.lblTitle.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.25F);
-            this.lblTitle.Location = new System.Drawing.Point(145, 103);
+            this.lblTitle.Location = new System.Drawing.Point(218, 158);
+            this.lblTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(281, 39);
+            this.lblTitle.Size = new System.Drawing.Size(415, 59);
             this.lblTitle.TabIndex = 4;
             this.lblTitle.Text = "Shipping Charge:";
             // 
             // frmShipping
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1200, 692);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnAddCharge);
             this.Controls.Add(this.txtCharge);
             this.Controls.Add(this.lblTitle);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "frmShipping";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "frmShipping";
