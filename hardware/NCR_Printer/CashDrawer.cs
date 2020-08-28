@@ -36,6 +36,10 @@ namespace NCR_Printer
                 // The door must already be open, so do nothing.
                 throw (new Exception("Something must be printing because the COM port is busy.  The door must already be open, so do nothing.", e));
             }
+            catch(Exception e)
+            {
+                throw (e);
+            }
         }
     }
 }

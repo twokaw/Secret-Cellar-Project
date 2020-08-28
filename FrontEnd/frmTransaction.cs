@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Drawing;
 using System.IO;
+using System.IO.Ports;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Reflection;
 using System.Windows.Forms;
 using NCR_Printer;
@@ -32,7 +34,9 @@ namespace SecretCellar
                 string logoPath = $"{Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}/{Properties.Settings.Default.Logo}";
 
                 if(Directory.Exists(logoPath))
-                    logo = Image.FromFile(logoPath); 
+                    logo = Image.FromFile(logoPath);
+
+                pictureBox1.Image = logo;
             }
 
             if(logo == null)
@@ -72,15 +76,23 @@ namespace SecretCellar
             {
                 frmPayment payment = new frmPayment(transaction);
                 if (payment.ShowDialog() == DialogResult.OK)
-                {
-                    DataAccess.instance.ProcessTransaction(transaction);
-
-                    // TODO: Add print receipt check box to the frmPayment to allow the use to select if they want to print a receipt
-                    //if (false) 
-                        new Receipt(transaction, Properties.Settings.Default.Header, Properties.Settings.Default.Footer, logo).print();
+                { 
+                    try
+                    {
+                        DataAccess.instance.ProcessTransaction(transaction);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Error writing to the database\n Error: \n {ex.Message}");
+                    }
 
                     if (transaction.Payments.FirstOrDefault(x => x.Method == "CASH" || x.Method == "CHECK") != null)
                         openCashDrawer();
+
+                    // TODO: Add print receipt check box to the frmPayment to allow the use to select if they want to print a receipt
+                  //  if (false) 
+                    new Receipt(transaction, Properties.Settings.Default.Header, Properties.Settings.Default.Footer, logo).print();
+
 
                     //transaction complete, clear the form
                     transaction = new Transaction();
@@ -256,7 +268,8 @@ namespace SecretCellar
         {
             try
             {
-                new CashDrawer(Properties.Settings.Default.CashDrawerPort).OpenDrawer();
+                if (SerialPort.GetPortNames().Contains(Properties.Settings.Default.CashDrawerPort))
+                    new CashDrawer(Properties.Settings.Default.CashDrawerPort).OpenDrawer();
             }
             catch(Exception ex)
             {

@@ -1,14 +1,21 @@
 ﻿using System;
+using System.Drawing;
+using System.Web.UI.WebControls;
 using System.Windows.Forms;
 using Shared;
+using Image = System.Drawing.Image;
 
 namespace SecretCellar
 {
     public partial class frmLogin : Form
     {
         private DataAccess _dataAccess;
-        public frmLogin()
+        private Image logo = null;
+        public frmLogin(Image logo = null)
         {
+            if (logo == null)
+                this.logo = Properties.Resources.Logo;
+
             _dataAccess = new DataAccess(Properties.Settings.Default.URL);
 
             InitializeComponent();
@@ -26,7 +33,7 @@ namespace SecretCellar
 
         private void frmLogin_Load(object sender, EventArgs e)
         {
-
+            pictureBox1.Image = logo;
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
