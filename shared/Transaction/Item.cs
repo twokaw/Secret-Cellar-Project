@@ -10,9 +10,18 @@ namespace Shared
         {
             get
             {
-                return $"{Name}{((Discount > 0)  ? $" *{Discount :P0} OFF*": "")} {string.Join(" ", Discounts.Where(x => x.Enabled).Select(x=>x.DiscountName))} ";
+                return $"{Name}{DiscountText}";
             }
         }
+
+        public string DiscountText
+        {
+            get
+            {
+                return $"{((Discount > 0) ? $" *{Discount:P0} OFF*" : "")} {string.Join(" ", Discounts.Where(x => x.Enabled).Select(x => x.DiscountName))}";
+            }
+        }
+
         public uint NumSold { get; set; } 
         public double Discount { get; set; }
         public double Coupon { get; set; }

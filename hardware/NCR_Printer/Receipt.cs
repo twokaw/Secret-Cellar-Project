@@ -6,14 +6,15 @@ using Shared;
 
 namespace NCR_Printer
 {
-    public class Receipt : Transaction
+    public class Receipt
     {
-        Image logo = null;
-        string header;
-        string footer;
-        PrintDocument rcpt = null;
-        CashDrawer drawer = null;
+        public Image Logo { get; set; } = null;
+        public string Header { get; set; } = null;
+        public string Footer { get; set; } = null;
 
+        private PrintDocument rcpt = null;
+        private Transaction transaction;
+        /*
         public Receipt(uint InvoiceID,
                            uint RegisterID,
                            DateTime TransactionDateTime,
@@ -35,33 +36,45 @@ namespace NCR_Printer
             : base(InvoiceID, RegisterID, TransactionDateTime, Location, Items, Discount, TaxExempt,
                    new List<Payment>(){ new Payment() { Method = PayMethod, Number = PayNum, Amount = 0.0 }}, EmployeeID, CustomerID)
         {
-            this.header = header;
-            this.footer = footer;
-            this.logo = logo;
-            drawer = new CashDrawer();            
-        }
+            this.Header = header;
+            this.Footer = footer;
+            this.Logo = logo;   
+        }*/
 
         public Receipt(Transaction trans, string header, string footer, Image logo)
-            : this(trans.InvoiceID,
-                 trans.RegisterID,
-                 trans.TransactionDateTime,
-                 trans.Location,
-                 trans.Items,
-                 trans.Discount,
-                 trans.Subtotal,
-                 trans.Tax,
-                 trans.Total,
-                 trans.TaxExempt,
-                 trans.PayMethod,
-                 trans.PayNum,
-                 trans.LocalTax,
-                 trans.EmployeeID,
-                 trans.CustomerID,
-                 header,
-                 footer,
-                 logo)
+        //: this(trans.InvoiceID,
+        //     trans.RegisterID,
+        //     trans.TransactionDateTime,
+        //     trans.Location,
+        //     trans.Items,
+        //     trans.Discount,
+        //     trans.Subtotal,
+        //     trans.Tax,
+        //     trans.Total,
+        //     trans.TaxExempt,
+        //     trans.PayMethod,
+        //     trans.PayNum,
+        //     trans.LocalTax,
+        //     trans.EmployeeID,
+        //     trans.CustomerID,
+        //     header,
+        //     footer,
+        //     logo)
         {
+            this.transaction = trans;
+            this.Header = header;
+            this.Footer = footer;
+            this.Logo = logo;
         }
+
+        public string PageType { get; set; } = "receipt";
+        public int Width { get; set; } = 280;
+        public int DesctiptionWidth { get; set; } = 29;
+        public string BarcodeFontName { get; set; } = ""; //"Free 3 of 9";
+        public float BarcodeFontSize { get; set; } = 36;
+
+        public string FontName { get; set; } = "Arial";
+        public float  FontSize { get; set; } = 11;
 
         public void print()
         {
@@ -70,7 +83,7 @@ namespace NCR_Printer
 
             // Print receipt
             rcpt = new PrintDocument();
-            rcpt.DefaultPageSettings.PaperSize = new PaperSize("receipt", 280, 0);
+            rcpt.DefaultPageSettings.PaperSize = new PaperSize(PageType, Width, 0);
             rcpt.PrintPage += new PrintPageEventHandler(rcpt_PrintPage);
             rcpt.Print();
         }
@@ -112,49 +125,52 @@ namespace NCR_Printer
             // Initialize printing stuff
             Graphics g = e.Graphics;
 
-            Font font = new Font("Arial", 10);
-            Font barcodeFont = new Font("Free 3 of 9", 36); //Will default to Sans Serif if not installed
+            Font font = new Font(FontName, FontSize);
+            Font barcodeFont = new Font(BarcodeFontName, BarcodeFontSize); //Will default to Sans Serif if not installed
 
             float lSpacing = 5F;
             Brush brush = Brushes.Black;
             Pen pen = new Pen(brush);
-            
+
             StringFormat leftAlign = new StringFormat() { Alignment = StringAlignment.Near };
             StringFormat centerAlign = new StringFormat() { Alignment = StringAlignment.Center };
             StringFormat rightAlign = new StringFormat() { Alignment = StringAlignment.Far };
 
             RectangleF cursor = new RectangleF(e.PageBounds.X, e.PageBounds.Y, e.PageBounds.Width, font.Height);
 
+            // TODO : Scale image to rectangle
             // Print Logo
-            g.DrawImage(logo, cursor.Width/2-logo.Width/2, cursor.Top);
-            cursor.Y += logo.Height + lSpacing;
+            g.DrawImage(Logo, cursor.Width / 2 - Logo.Width / 2, cursor.Top);
+            cursor.Y += Logo.Height + lSpacing;
 
             // Print InvoiceID Barcode
-            cursor = printText("*" + InvoiceID.ToString() + "*", true, g, barcodeFont, brush, cursor, centerAlign, lSpacing);
+            if(!string.IsNullOrWhiteSpace(BarcodeFontName) )
+                cursor = printText($"*{transaction.InvoiceID}*", true, g, barcodeFont, brush, cursor, centerAlign, lSpacing);
 
             // Print Header
-            cursor = printHeaderFooter(header, g, font, brush, cursor, centerAlign, lSpacing);
+            cursor = printHeaderFooter(Header, g, font, brush, cursor, centerAlign, lSpacing);
 
             // Print InvoiceID
-            cursor = printText("Invoice #: " + InvoiceID.ToString(), true, g, font, brush, cursor, leftAlign, lSpacing);
+            cursor = printText($"Invoice #: {transaction.InvoiceID}", true, g, font, brush, cursor, leftAlign, lSpacing);
 
             // Print RegisterID
-            cursor = printText("Register ID: " + RegisterID.ToString(), false, g, font, brush, cursor, leftAlign, lSpacing);
+            cursor = printText($"Register ID: {transaction.RegisterID}", false, g, font, brush, cursor, leftAlign, lSpacing);
 
             // Print Location
-            cursor = printText("Location: " + Location, true, g, font, brush, cursor, rightAlign, lSpacing);
+            cursor = printText($"Location: {transaction.Location}", true, g, font, brush, cursor, rightAlign, lSpacing);
 
             // Date and time
-            cursor = printText("Date and time: " + TransactionDateTime.ToString(), true, g, font, brush, cursor, leftAlign, lSpacing);
+            cursor = printText("Date and Time:", false, g, font, brush, cursor, leftAlign, lSpacing);
+            cursor = printText($"{transaction.TransactionDateTime: M/dd/yy H:mm}", true, g, font, brush, cursor, rightAlign, lSpacing);
 
             // Print Separator
             cursor = printHorizontalLine(g, font, pen, cursor, lSpacing);
 
             // Print Items
-            foreach (Item item in Items)
+            foreach (Item item in transaction.Items)
             {
-                cursor = printText(item.NumSold + " " + item.Name, false, g, font, brush, cursor, leftAlign, lSpacing);
-                cursor = printText("$ " + item.Price.ToString(), true, g, font, brush, cursor, rightAlign, lSpacing);
+                cursor = printText($"{item.Name.Substring(0, Math.Min(item.Name.Length, DesctiptionWidth - item.DiscountText.Length))}{item.DiscountText}", false, g, font, brush, cursor, leftAlign, lSpacing);
+                cursor = printText($"{item.Price:C}", true, g, font, brush, cursor, rightAlign, lSpacing);
             }
 
             // Print Separator
@@ -162,28 +178,52 @@ namespace NCR_Printer
 
             // Print subtotal
             cursor = printText("SubTotal:", false, g, font, brush, cursor, leftAlign, lSpacing);
-            cursor = printText("$ " + Subtotal.ToString(), true, g, font, brush, cursor, rightAlign, lSpacing);
+            cursor = printText($"{transaction.Subtotal:C}", true, g, font, brush, cursor, rightAlign, lSpacing);
+
+
+            if (transaction.Bottle_deposit > 0)
+            {
+                // Print subtotal
+                cursor = printText("Bottle Deposit:", false, g, font, brush, cursor, leftAlign, lSpacing);
+                cursor = printText($"{transaction.Bottle_deposit:C}", true, g, font, brush, cursor, rightAlign, lSpacing);
+            }
+
+            if (transaction.DiscountTotal > 0)
+            {
+                // Print subtotal
+                cursor = printText("Discount:", false, g, font, brush, cursor, leftAlign, lSpacing);
+                cursor = printText($"{transaction.DiscountTotal:C}", true, g, font, brush, cursor, rightAlign, lSpacing);
+            }
 
             // Print tax
             cursor = printText("Tax:", false, g, font, brush, cursor, leftAlign, lSpacing);
-            cursor = printText("$ " + Tax.ToString(), true, g, font, brush, cursor, rightAlign, lSpacing);
+            cursor = printText($"{transaction.Tax:C}", true, g, font, brush, cursor, rightAlign, lSpacing);
 
             // Print total
-            cursor = printText("TOTAL:", false, g, font, brush, cursor, leftAlign, lSpacing);
-            cursor = printText("$ " + Total.ToString(), true, g, font, brush, cursor, rightAlign, lSpacing);
+            cursor = printText("Total:", false, g, font, brush, cursor, leftAlign, lSpacing);
+            cursor = printText($"{transaction.Total:C}", true, g, font, brush, cursor, rightAlign, lSpacing);
 
             // Print Separator
             cursor = printHorizontalLine(g, font, pen, cursor, lSpacing);
 
             // Print # of items
-            cursor = printText("# of Items: " + Items.Count.ToString(), true, g, font, brush, cursor, leftAlign, lSpacing);
+            cursor = printText($"# of Items: {transaction.Items.Count}", true, g, font, brush, cursor, leftAlign, lSpacing);
 
+            bool first = true;
+            foreach(Payment p in transaction.Payments)
+            {
+                if (first)
+                {
+                    cursor = printText($"Payment Method: {p.Method}{(!string.IsNullOrWhiteSpace(p.Number) ? "" : $": {p.Number}")}", true, g, font, brush, cursor, leftAlign, lSpacing);
+                    first = false;
+                }
+                else
+                    cursor = printText($"                {p.Method}{(string.IsNullOrWhiteSpace(p.Number) ? "" : $": {p.Number}")}", true, g, font, brush, cursor, leftAlign, lSpacing);
+            }
             // Print Payment Method
-            cursor = printText("Payment Method: " + PayMethod + ": " + PayNum, true, g, font, brush, cursor, leftAlign, lSpacing);
 
             //Print footer
-            cursor = printHeaderFooter(footer, g, font, brush, cursor, centerAlign, lSpacing);
-
+            cursor = printHeaderFooter("Footer\n", g, font, brush, cursor, centerAlign, lSpacing);
         }
     }
 }
