@@ -52,15 +52,6 @@ namespace SecretCellar.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Thank You Come Again!")]
-        public string Footer {
-            get {
-                return ((string)(this["Footer"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("COM3")]
         public string CashDrawerPort {
             get {
@@ -74,6 +65,15 @@ namespace SecretCellar.Properties {
         public bool PrintReceipt {
             get {
                 return ((bool)(this["PrintReceipt"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Thank You Come Again!\r\n\r\n")]
+        public string Footer {
+            get {
+                return ((string)(this["Footer"]));
             }
         }
     }
