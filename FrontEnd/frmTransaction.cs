@@ -280,5 +280,12 @@ namespace SecretCellar
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void btnPropane_Click(object sender, EventArgs e)
+        {
+            frmPropane propane= new frmPropane(transaction);
+
+            propane.ShowDialog();
+        }
     }
 }

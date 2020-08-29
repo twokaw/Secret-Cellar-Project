@@ -9,10 +9,9 @@
       <Value Profile="(Default)">logo.png</Value>
     </Setting>
     <Setting Name="Header" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">&lt;Header&gt;</Value>
-    </Setting>
-    <Setting Name="Footer" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">&lt;Footer&gt;</Value>
+      <Value Profile="(Default)">1205 Curtis Bridge Road NE
+Shueyville, IA 52338
+ 319-841-2172</Value>
     </Setting>
     <Setting Name="CashDrawerPort" Type="System.String" Scope="Application">
       <Value Profile="(Default)">COM3</Value>
@@ -31,6 +30,11 @@
     </Setting>
     <Setting Name="ReceiptWidth" Type="System.Int32" Scope="Application">
       <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="Footer" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Thank You Come Again!
+
+</Value>
     </Setting>
   </Settings>
 </SettingsFile>
