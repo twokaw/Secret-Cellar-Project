@@ -5,6 +5,7 @@ using System.IO.Ports;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
+using System.Web.UI;
 using System.Windows.Forms;
 using NCR_Printer;
 using Shared;
@@ -17,11 +18,19 @@ namespace SecretCellar
         private Transaction transaction = new Transaction();
         private DataAccess dataAccess;
         private Image logo = null;
+
         public frmTransaction()
         {
             InitializeComponent();
             txtBarcode.Focus();
             ReloadLogo();
+
+            Receipt.DefaultLayout = new PrintLayout()
+            {
+                Header = Properties.Settings.Default.Header,
+                Footer = Properties.Settings.Default.Footer,
+                Logo = logo
+            };
         }
 
         private void ReloadLogo()
@@ -33,12 +42,11 @@ namespace SecretCellar
 
                 if(Directory.Exists(logoPath))
                     logo = Image.FromFile(logoPath);
-
-                pictureBox1.Image = logo;
             }
 
             if(logo == null)
                 logo = Properties.Resources.Logo;
+            pictureBox1.Image = logo;
         }
 
         private void frmTransaction_Load(object sender, EventArgs e)
@@ -88,7 +96,7 @@ namespace SecretCellar
                         openCashDrawer();
 
                     if (payment.PrintReceipt) 
-                        new Receipt(transaction, Properties.Settings.Default.Header, Properties.Settings.Default.Footer, logo).print();
+                        new Receipt(transaction).Print();
 
                     //transaction complete, clear the form
                     transaction = new Transaction();
