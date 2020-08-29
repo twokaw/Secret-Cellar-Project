@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SecretCellar.Properties {
+namespace NCR_Printer.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace SecretCellar.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("SecretCellar.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("NCR_Printer.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -71,12 +71,38 @@ namespace SecretCellar.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        ///   Looks up a localized string similar to Font: Free 3 of 9 Barcode
+        ///Created By: Matthew Welch
+        ///E-Mail: matt@squaregear.net
+        ///Web Address: http://www.squaregear.net/fonts/
+        ///
+        ///My fonts are all free.  You can use them for personal or commercial projects,
+        ///and I ask for no money.  I would, however, love to hear from you.  If you use
+        ///my fonts for something please e-mail me letting me know how you used it.  Send
+        ///me a copy if you can or let me know where I can find your work. You are under
+        ///no obligation to do this, I just like to see how my fonts get u [rest of string was truncated]&quot;;.
         /// </summary>
-        internal static System.Drawing.Bitmap Logo {
+        internal static string free3of91 {
             get {
-                object obj = ResourceManager.GetObject("Logo", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                return ResourceManager.GetString("free3of91", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Copyright (C) 1997 by Matthew Welch
+        ///
+        ///Permission is hereby granted, free of charge, to any person obtaining a copy of
+        ///this font software and associated documentation files (the &quot;Software&quot;), to deal
+        ///in the Software without restriction, including without limitation the rights to
+        ///use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies
+        ///of the Software, and to permit persons to whom the Software is furnished to do
+        ///so, subject to the following conditions:
+        ///
+        ///The above copyright notice  [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string license {
+            get {
+                return ResourceManager.GetString("license", resourceCulture);
             }
         }
     }

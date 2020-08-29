@@ -30,7 +30,7 @@ namespace HardwareTestApp
 
             Image logo = Image.FromFile("Z:\\SecretCellar\\hardware\\SecretCellar.jpg");
             Receipt r = new Receipt(trans, "The Secret Cellar\n(319) 841-2172\n1205 Curtis Bridge Rd NE", "Thank you!\nCheck our website for events and classes\nwww.SecretCellarwines.com", logo);
-            r.print();
+            r.Print();
 
             /*Image logo = Image.FromFile("Z:\\SecretCellar\\hardware\\SecretCellar.jpg");
             Receipt r = new Receipt(trans, "The Secret Cellar This is an arbitrary sized header line that is in fact very long, too long in fact, which is automatically wrapped.\n(319) 841-2172\n1205 Curtis Bridge Rd NE\n\n\n", "Thank you!\nCheck our website for events and classes\nwww.SecretCellarwines.com\n\nJoin us for our next Wine Party, on January 1st! Check out the whole 2020 schedule at https://www.secretcellarwines.com/2020_Wine_Party_Schedule.php\n\n This month, get a free corkscrew when you purchase $30 or more in delicious wine!", logo);
