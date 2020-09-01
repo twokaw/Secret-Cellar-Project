@@ -51,10 +51,9 @@
             this.btnCancel.BackColor = System.Drawing.SystemColors.Desktop;
             this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.25F);
             this.btnCancel.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnCancel.Location = new System.Drawing.Point(916, 735);
-            this.btnCancel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnCancel.Location = new System.Drawing.Point(611, 478);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(519, 192);
+            this.btnCancel.Size = new System.Drawing.Size(346, 125);
             this.btnCancel.TabIndex = 7;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = false;
@@ -67,10 +66,9 @@
             this.btnAddCharge.BackColor = System.Drawing.SystemColors.Desktop;
             this.btnAddCharge.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.25F);
             this.btnAddCharge.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnAddCharge.Location = new System.Drawing.Point(411, 735);
-            this.btnAddCharge.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnAddCharge.Location = new System.Drawing.Point(274, 478);
             this.btnAddCharge.Name = "btnAddCharge";
-            this.btnAddCharge.Size = new System.Drawing.Size(519, 192);
+            this.btnAddCharge.Size = new System.Drawing.Size(346, 125);
             this.btnAddCharge.TabIndex = 6;
             this.btnAddCharge.Text = "Add Charge";
             this.btnAddCharge.UseVisualStyleBackColor = false;
@@ -79,10 +77,9 @@
             // txtCharge
             // 
             this.txtCharge.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F);
-            this.txtCharge.Location = new System.Drawing.Point(1389, 18);
-            this.txtCharge.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtCharge.Location = new System.Drawing.Point(926, 12);
             this.txtCharge.Name = "txtCharge";
-            this.txtCharge.Size = new System.Drawing.Size(238, 53);
+            this.txtCharge.Size = new System.Drawing.Size(160, 38);
             this.txtCharge.TabIndex = 5;
             // 
             // lblTitle
@@ -90,17 +87,15 @@
             this.lblTitle.AutoSize = true;
             this.lblTitle.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.25F);
-            this.lblTitle.Location = new System.Drawing.Point(1012, 18);
-            this.lblTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTitle.Location = new System.Drawing.Point(675, 12);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(349, 59);
+            this.lblTitle.Size = new System.Drawing.Size(234, 39);
             this.lblTitle.TabIndex = 4;
             this.lblTitle.Text = "Event Charge:";
             // 
             // event_Calendar
             // 
-            this.event_Calendar.Location = new System.Drawing.Point(165, 237);
-            this.event_Calendar.Margin = new System.Windows.Forms.Padding(14, 14, 14, 14);
+            this.event_Calendar.Location = new System.Drawing.Point(110, 154);
             this.event_Calendar.Name = "event_Calendar";
             this.event_Calendar.TabIndex = 8;
             // 
@@ -112,11 +107,10 @@
             this.Event,
             this.Price,
             this.Qty});
-            this.event_dataGridView.Location = new System.Drawing.Point(780, 237);
-            this.event_dataGridView.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.event_dataGridView.Location = new System.Drawing.Point(520, 154);
             this.event_dataGridView.Name = "event_dataGridView";
             this.event_dataGridView.RowHeadersWidth = 62;
-            this.event_dataGridView.Size = new System.Drawing.Size(1060, 377);
+            this.event_dataGridView.Size = new System.Drawing.Size(707, 245);
             this.event_dataGridView.TabIndex = 9;
             this.event_dataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.event_dataGridView_CellContentClick);
             // 
@@ -151,10 +145,9 @@
             // textQty
             // 
             this.textQty.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F);
-            this.textQty.Location = new System.Drawing.Point(1389, 143);
-            this.textQty.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.textQty.Location = new System.Drawing.Point(926, 93);
             this.textQty.Name = "textQty";
-            this.textQty.Size = new System.Drawing.Size(238, 53);
+            this.textQty.Size = new System.Drawing.Size(160, 38);
             this.textQty.TabIndex = 10;
             // 
             // lblQty
@@ -162,19 +155,19 @@
             this.lblQty.AutoSize = true;
             this.lblQty.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.lblQty.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.25F);
-            this.lblQty.Location = new System.Drawing.Point(1012, 143);
-            this.lblQty.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblQty.Location = new System.Drawing.Point(675, 93);
             this.lblQty.Name = "lblQty";
-            this.lblQty.Size = new System.Drawing.Size(269, 59);
+            this.lblQty.Size = new System.Drawing.Size(178, 39);
             this.lblQty.TabIndex = 11;
             this.lblQty.Text = "Ticket Qty:";
             // 
             // frmEvents
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.ClientSize = new System.Drawing.Size(1908, 946);
+            this.ClientSize = new System.Drawing.Size(1272, 615);
             this.Controls.Add(this.lblQty);
             this.Controls.Add(this.textQty);
             this.Controls.Add(this.event_dataGridView);
@@ -184,7 +177,6 @@
             this.Controls.Add(this.txtCharge);
             this.Controls.Add(this.lblTitle);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "frmEvents";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "frmEvents";
