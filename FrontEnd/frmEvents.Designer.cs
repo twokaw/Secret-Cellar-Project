@@ -96,11 +96,13 @@
             // event_Calendar
             // 
             this.event_Calendar.Location = new System.Drawing.Point(110, 154);
+            this.event_Calendar.MaximumSize = new System.Drawing.Size(2, 2);
             this.event_Calendar.Name = "event_Calendar";
             this.event_Calendar.TabIndex = 8;
             // 
             // event_dataGridView
             // 
+            this.event_dataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.event_dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.event_dataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Date,
@@ -119,28 +121,24 @@
             this.Date.HeaderText = "Event Date";
             this.Date.MinimumWidth = 8;
             this.Date.Name = "Date";
-            this.Date.Width = 150;
             // 
             // Event
             // 
             this.Event.HeaderText = "Event Name";
             this.Event.MinimumWidth = 8;
             this.Event.Name = "Event";
-            this.Event.Width = 150;
             // 
             // Price
             // 
             this.Price.HeaderText = "Event Price";
             this.Price.MinimumWidth = 8;
             this.Price.Name = "Price";
-            this.Price.Width = 150;
             // 
             // Qty
             // 
             this.Qty.HeaderText = "Qty on Hand";
             this.Qty.MinimumWidth = 8;
             this.Qty.Name = "Qty";
-            this.Qty.Width = 150;
             // 
             // textQty
             // 
@@ -166,6 +164,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.ControlDark;
             this.ClientSize = new System.Drawing.Size(1272, 615);
             this.Controls.Add(this.lblQty);

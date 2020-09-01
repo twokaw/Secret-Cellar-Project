@@ -73,6 +73,7 @@
             // 
             // dataGrid_propane
             // 
+            this.dataGrid_propane.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGrid_propane.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGrid_propane.Location = new System.Drawing.Point(584, 135);
             this.dataGrid_propane.Name = "dataGrid_propane";
@@ -134,6 +135,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(1023, 450);
             this.Controls.Add(this.btn_plus);
             this.Controls.Add(this.btn_minus);
