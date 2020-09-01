@@ -207,13 +207,15 @@
             // 
             // panel1
             // 
+            this.panel1.AutoSize = true;
+            this.panel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.panel1.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.panel1.Controls.Add(this.coupon_btn);
             this.panel1.Controls.Add(this.lblFixedDiscount);
             this.panel1.Controls.Add(this.txtFixedDiscount);
             this.panel1.Location = new System.Drawing.Point(36, 125);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(455, 146);
+            this.panel1.Size = new System.Drawing.Size(438, 127);
             this.panel1.TabIndex = 17;
             // 
             // coupon_btn
@@ -229,17 +231,21 @@
             // 
             // panel2
             // 
+            this.panel2.AutoSize = true;
+            this.panel2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.panel2.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.panel2.Controls.Add(this.lblPercentTotalSale);
             this.panel2.Controls.Add(this.txtPercentTotalSale);
             this.panel2.Controls.Add(this.btnApplyDiscount);
             this.panel2.Location = new System.Drawing.Point(36, 286);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(455, 146);
+            this.panel2.Size = new System.Drawing.Size(438, 128);
             this.panel2.TabIndex = 18;
             // 
             // panel3
             // 
+            this.panel3.AutoSize = true;
+            this.panel3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.panel3.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.panel3.Controls.Add(this.btnApplyToItem);
             this.panel3.Controls.Add(this.dataGridSelectItems);
@@ -247,7 +253,7 @@
             this.panel3.Controls.Add(this.txtPercentLineItem);
             this.panel3.Location = new System.Drawing.Point(512, 125);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(655, 307);
+            this.panel3.Size = new System.Drawing.Size(646, 298);
             this.panel3.TabIndex = 19;
             // 
             // btnApplyToItem
@@ -285,6 +291,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(1179, 603);
             this.Controls.Add(this.total_lbl);
             this.Controls.Add(this.txt_discountTotal);

@@ -73,7 +73,7 @@
             // txtlookup
             // 
             this.txtlookup.Location = new System.Drawing.Point(192, 21);
-            this.txtlookup.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtlookup.Margin = new System.Windows.Forms.Padding(2);
             this.txtlookup.Name = "txtlookup";
             this.txtlookup.Size = new System.Drawing.Size(181, 20);
             this.txtlookup.TabIndex = 0;
@@ -95,6 +95,7 @@
             // 
             this.LookupView.AllowUserToResizeColumns = false;
             this.LookupView.AllowUserToResizeRows = false;
+            this.LookupView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.LookupView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.LookupView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Id,
@@ -105,7 +106,7 @@
             this.Price});
             this.LookupView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LookupView.Location = new System.Drawing.Point(0, 0);
-            this.LookupView.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.LookupView.Margin = new System.Windows.Forms.Padding(2);
             this.LookupView.MultiSelect = false;
             this.LookupView.Name = "LookupView";
             this.LookupView.RowHeadersVisible = false;
@@ -124,7 +125,6 @@
             this.Id.MinimumWidth = 8;
             this.Id.Name = "Id";
             this.Id.Visible = false;
-            this.Id.Width = 150;
             // 
             // Description
             // 
@@ -179,7 +179,7 @@
             this.btn_cancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_cancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_cancel.Location = new System.Drawing.Point(938, 449);
-            this.btn_cancel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_cancel.Margin = new System.Windows.Forms.Padding(2);
             this.btn_cancel.Name = "btn_cancel";
             this.btn_cancel.Size = new System.Drawing.Size(74, 30);
             this.btn_cancel.TabIndex = 3;
@@ -192,7 +192,7 @@
             this.btn_add.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_add.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_add.Location = new System.Drawing.Point(857, 449);
-            this.btn_add.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_add.Margin = new System.Windows.Forms.Padding(2);
             this.btn_add.Name = "btn_add";
             this.btn_add.Size = new System.Drawing.Size(73, 30);
             this.btn_add.TabIndex = 4;
@@ -263,7 +263,7 @@
             this.btn_update.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_update.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_update.Location = new System.Drawing.Point(160, 346);
-            this.btn_update.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_update.Margin = new System.Windows.Forms.Padding(2);
             this.btn_update.Name = "btn_update";
             this.btn_update.Size = new System.Drawing.Size(73, 30);
             this.btn_update.TabIndex = 6;
@@ -286,6 +286,8 @@
             // 
             this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel2.AutoSize = true;
+            this.panel2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.panel2.Controls.Add(this.Btl_Dep_Lb);
             this.panel2.Controls.Add(this.txtProd_Qty);
             this.panel2.Controls.Add(this.btn_new);
@@ -458,6 +460,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(1023, 489);
             this.Controls.Add(this.lblSupplyFilter);
             this.Controls.Add(this.cbxSupplyFilter);
@@ -470,7 +473,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtlookup);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "frmLookup";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Item lookup";
