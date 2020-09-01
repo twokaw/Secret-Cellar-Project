@@ -36,6 +36,7 @@ namespace NCR_Printer
 
         public Graphics g;
         public RectangleF cursor;
+        public Rectangle margin;
 
         public void Print()
         {
@@ -53,12 +54,20 @@ namespace NCR_Printer
             // Font barcodeFont = Layout.BarcodeFont; 
 
             cursor = new RectangleF(e.PageBounds.X, e.PageBounds.Y, e.PageBounds.Width, Layout.TextFont.Height);
+            margin = e.MarginBounds;
         }
 
         // TODO : Scale image to rectangle
         public void PrintImage(Image img)
         {
-            g.DrawImage(img, cursor.Width / 2 - img.Width / 2, cursor.Top);
+            Rectangle m = margin;
+
+            if ((double)img.Width / (double)img.Height > (double)m.Width / (double)m.Height) // image is wider
+                m.Height = (int)((double)img.Height / (double)img.Width * (double)m.Width);
+            else
+                m.Width = (int)((double)img.Width / (double)img.Height * (double)m.Height);
+
+            g.DrawImage(img, m.Width / 2 - img.Width / 2, m.Top);
             cursor.Y += img.Height + lSpacing;
         }
 
