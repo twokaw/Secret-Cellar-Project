@@ -6,7 +6,6 @@ namespace NCR_Printer
 {
     public class Receipt: PrintDoc
     {
-
         public static PrintLayout DefaultLayout { get; set; }
 
         private readonly Transaction transaction;
