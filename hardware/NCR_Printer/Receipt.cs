@@ -6,7 +6,6 @@ namespace NCR_Printer
 {
     public class Receipt: PrintDoc
     {
-
         public static PrintLayout DefaultLayout { get; set; }
 
         private readonly Transaction transaction;
@@ -104,17 +103,17 @@ namespace NCR_Printer
             {
                 if (first)
                 {
-                    PrintText($"Payment Method: {p.Method}{(string.IsNullOrWhiteSpace(p.Number) ? "" : $"({p.Number})")}: {p.Amount:C}");
+                    PrintText($"Payment: {p.Method}{(string.IsNullOrWhiteSpace(p.Number) ? "" : $"({p.Number})")}: {p.Amount:C}");
                     first = false;
                 }
                 else
-                    PrintText($"                {p.Method}{(string.IsNullOrWhiteSpace(p.Number) ? "" : $"({p.Number})")}: {p.Amount:C}");
+                    PrintText($"         {p.Method}{(string.IsNullOrWhiteSpace(p.Number) ? "" : $"({p.Number})")}: {p.Amount:C}");
 
                 payment += p.Amount;
             }
 
             if(payment > transaction.Total)
-                PrintText($"                Change: {payment - transaction.Total:C}");
+                PrintText($"         Change: {payment - transaction.Total:C}");
 
             //Print footer
            PrintHeaderFooter($"{Layout.Footer}\n\n ");

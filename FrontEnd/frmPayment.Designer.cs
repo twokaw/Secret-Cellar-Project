@@ -103,7 +103,7 @@
             this.paymentType.RowHeadersWidth = 102;
             this.paymentType.RowTemplate.Height = 28;
             this.paymentType.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.paymentType.Size = new System.Drawing.Size(652, 254);
+            this.paymentType.Size = new System.Drawing.Size(672, 254);
             this.paymentType.TabIndex = 9;
             // 
             // TYPE
@@ -128,7 +128,7 @@
             this.LB_Due.AutoSize = true;
             this.LB_Due.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LB_Due.ForeColor = System.Drawing.Color.Crimson;
-            this.LB_Due.Location = new System.Drawing.Point(142, 563);
+            this.LB_Due.Location = new System.Drawing.Point(185, 563);
             this.LB_Due.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.LB_Due.Name = "LB_Due";
             this.LB_Due.Size = new System.Drawing.Size(220, 37);
@@ -140,7 +140,7 @@
             this.LB_Total.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.LB_Total.AutoSize = true;
             this.LB_Total.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LB_Total.Location = new System.Drawing.Point(268, 508);
+            this.LB_Total.Location = new System.Drawing.Point(311, 508);
             this.LB_Total.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.LB_Total.Name = "LB_Total";
             this.LB_Total.Size = new System.Drawing.Size(104, 37);
@@ -152,7 +152,7 @@
             this.LB_ChangeDue.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.LB_ChangeDue.AutoSize = true;
             this.LB_ChangeDue.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LB_ChangeDue.Location = new System.Drawing.Point(147, 617);
+            this.LB_ChangeDue.Location = new System.Drawing.Point(190, 617);
             this.LB_ChangeDue.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.LB_ChangeDue.Name = "LB_ChangeDue";
             this.LB_ChangeDue.Size = new System.Drawing.Size(216, 37);
@@ -164,7 +164,7 @@
             this.btnCompleteSale.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCompleteSale.Enabled = false;
             this.btnCompleteSale.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCompleteSale.Location = new System.Drawing.Point(546, 597);
+            this.btnCompleteSale.Location = new System.Drawing.Point(589, 597);
             this.btnCompleteSale.Margin = new System.Windows.Forms.Padding(2);
             this.btnCompleteSale.Name = "btnCompleteSale";
             this.btnCompleteSale.Size = new System.Drawing.Size(266, 68);
@@ -177,7 +177,7 @@
             // 
             this.txt_TenderTransTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txt_TenderTransTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_TenderTransTotal.Location = new System.Drawing.Point(376, 513);
+            this.txt_TenderTransTotal.Location = new System.Drawing.Point(419, 513);
             this.txt_TenderTransTotal.Margin = new System.Windows.Forms.Padding(2);
             this.txt_TenderTransTotal.Name = "txt_TenderTransTotal";
             this.txt_TenderTransTotal.ReadOnly = true;
@@ -190,7 +190,7 @@
             // 
             this.txtDue.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtDue.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDue.Location = new System.Drawing.Point(376, 570);
+            this.txtDue.Location = new System.Drawing.Point(419, 570);
             this.txtDue.Margin = new System.Windows.Forms.Padding(2);
             this.txtDue.Name = "txtDue";
             this.txtDue.ReadOnly = true;
@@ -250,7 +250,7 @@
             // 
             this.txtChange.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtChange.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtChange.Location = new System.Drawing.Point(376, 623);
+            this.txtChange.Location = new System.Drawing.Point(419, 623);
             this.txtChange.Margin = new System.Windows.Forms.Padding(2);
             this.txtChange.Name = "txtChange";
             this.txtChange.ReadOnly = true;
@@ -282,10 +282,10 @@
             // 
             this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDelete.Location = new System.Drawing.Point(699, 211);
+            this.btnDelete.Location = new System.Drawing.Point(720, 211);
             this.btnDelete.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(113, 88);
+            this.btnDelete.Size = new System.Drawing.Size(135, 88);
             this.btnDelete.TabIndex = 35;
             this.btnDelete.Text = "Delete Item";
             this.btnDelete.UseVisualStyleBackColor = true;
@@ -296,7 +296,7 @@
             this.chk_printReceipt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.chk_printReceipt.AutoSize = true;
             this.chk_printReceipt.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chk_printReceipt.Location = new System.Drawing.Point(584, 535);
+            this.chk_printReceipt.Location = new System.Drawing.Point(627, 535);
             this.chk_printReceipt.Name = "chk_printReceipt";
             this.chk_printReceipt.Size = new System.Drawing.Size(200, 36);
             this.chk_printReceipt.TabIndex = 36;
@@ -308,7 +308,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(832, 685);
+            this.ClientSize = new System.Drawing.Size(875, 685);
             this.Controls.Add(this.chk_printReceipt);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.label2);

@@ -35,8 +35,11 @@ namespace SecretCellar
                 Header = Properties.Settings.Default.Header,
                 Footer = Properties.Settings.Default.Footer,
                 Logo = logo,
-                BarcodeName = "free3of9",
-                FontDirectory = path
+                FontDirectory = path,
+                BarcodeName = Properties.Settings.Default.BarcodeFont,
+                BarcodeFontSize = Properties.Settings.Default.BarcodeSize,
+                FontName = Properties.Settings.Default.ReceiptFont,
+                FontSize = Properties.Settings.Default.ReceiptFontSize
             };
         }
 

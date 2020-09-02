@@ -22,6 +22,7 @@ namespace SecretCellar
 
             this.transaction = transaction;
             txt_TenderTransTotal.Text = transaction.Total.ToString("C");
+            RefreshGrid();
         }
 
         private void btnMainMenu_Click(object sender, EventArgs e)
@@ -58,14 +59,15 @@ namespace SecretCellar
         }
 
         private void btn_Cash_Click(object sender, EventArgs e)     { UpdatePayment("CASH"); }
-        private void btn_Check_Click(object sender, EventArgs e)    { UpdatePayment("CHECK"); }
-        private void btn_Credit_Click(object sender, EventArgs e)   { UpdatePayment("CREDIT CARD"); }
-        private void btn_GiftCard_Click(object sender, EventArgs e) { UpdatePayment("GIFT CARD"); }
+        private void btn_Check_Click(object sender, EventArgs e)    { UpdatePayment("CHECK", txtNumber.Text.Trim()); }
+        private void btn_Credit_Click(object sender, EventArgs e)   { UpdatePayment("CREDIT CARD", txtNumber.Text.Trim()); }
+        private void btn_GiftCard_Click(object sender, EventArgs e) { UpdatePayment("GIFT CARD", txtNumber.Text.Trim()); }
 
-        private void UpdatePayment(string method)
+        private void UpdatePayment(string method, string number = null)
         {
             if (double.TryParse(txtCashAmt.Text, out double amount))
-                transaction.Payments.Add(new Payment { Method = method, Amount = amount });
+                transaction.Payments.Add(new Payment { Method = method, Amount = amount, Number = number });
+
             RefreshGrid();
         }
 
@@ -75,6 +77,7 @@ namespace SecretCellar
 
             paymentType.Rows.Clear();
             txtCashAmt.Clear();
+            txtNumber.Clear();
 
             foreach (Payment p in transaction.Payments)
             {
@@ -87,22 +90,21 @@ namespace SecretCellar
                     r.Cells["AMOUNT"].Value = p.Amount.ToString("C");
                     amountPayed += p.Amount;
                 }
-
-                if(amountPayed >= transaction.Total)
-                {
-                    btnCompleteSale.Enabled = true;
-                    txtChange.Text = (amountPayed - transaction.Total).ToString("C");
-                    txtDue.Text = "$0.00";
-                }
-                else
-                {
-                    btnCompleteSale.Enabled = false;
-                    txtDue.Text = (transaction.Total - amountPayed).ToString("C");
-                    txtChange.Text = "$0.00";
-                }
             }
 
-            btnCompleteSale.Enabled = amountPayed >= transaction.Total;
+            if(amountPayed >= Math.Round(transaction.Total, 2))
+            {
+                btnCompleteSale.Enabled = true;
+                txtChange.Text = (amountPayed - transaction.Total).ToString("C");
+                txtDue.Text = "$0.00";
+            }
+            else
+            {
+                btnCompleteSale.Enabled = false;
+                txtDue.Text = (transaction.Total - amountPayed).ToString("C");
+                txtChange.Text = "$0.00";
+            }
+            txtCashAmt.Focus();
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
