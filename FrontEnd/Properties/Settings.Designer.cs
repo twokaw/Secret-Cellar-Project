@@ -43,19 +43,10 @@ namespace SecretCellar.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("<Header>")]
+        [global::System.Configuration.DefaultSettingValueAttribute("1205 Curtis Bridge Road NE\r\nShueyville, IA 52338\r\n 319-841-2172")]
         public string Header {
             get {
                 return ((string)(this["Header"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("<Footer>")]
-        public string Footer {
-            get {
-                return ((string)(this["Footer"]));
             }
         }
         
@@ -110,6 +101,33 @@ namespace SecretCellar.Properties {
         public int ReceiptWidth {
             get {
                 return ((int)(this["ReceiptWidth"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Thank You Come Again!\r\n\r\n")]
+        public string Footer {
+            get {
+                return ((string)(this["Footer"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Free 3 of 9")]
+        public string BarcodeFont {
+            get {
+                return ((string)(this["BarcodeFont"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("36")]
+        public int BarcodeSize {
+            get {
+                return ((int)(this["BarcodeSize"]));
             }
         }
     }

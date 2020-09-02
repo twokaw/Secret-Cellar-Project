@@ -12,6 +12,8 @@ using Microsoft.IdentityModel.Tokens;
 using Swashbuckle.AspNetCore.Swagger;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.OpenApi.Models;
+using System.Globalization;
+using Microsoft.AspNetCore.Localization;
 
 namespace WebApi
 {
@@ -65,6 +67,25 @@ namespace WebApi
 
             // configure DI for application services
             services.AddScoped<IUserService, UserService>();
+
+            // All of this just to expose resources
+            services.AddLocalization(o => o.ResourcesPath = "Resources");
+            services.Configure<RequestLocalizationOptions>(options =>
+            {
+                var supportedCultures = new[] { new CultureInfo("en-US") } ;
+                options.DefaultRequestCulture = new RequestCulture("en-US", "en-US");
+
+                // You must explicitly state which cultures your application supports.
+                // These are the cultures the app supports for formatting 
+                // numbers, dates, etc.
+
+                options.SupportedCultures = supportedCultures;
+
+                // These are the cultures the app supports for UI strings, 
+                // i.e. we have localized resources for.
+
+                options.SupportedUICultures = supportedCultures;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

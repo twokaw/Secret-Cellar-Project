@@ -35,7 +35,6 @@ namespace NCR_Printer
 
         public Graphics g;
         public RectangleF cursor;
-        public Rectangle margin;
 
         public void Print()
         {
@@ -53,7 +52,6 @@ namespace NCR_Printer
             // Font barcodeFont = Layout.BarcodeFont; 
 
             cursor = new RectangleF(e.PageBounds.X, e.PageBounds.Y, e.PageBounds.Width, Layout.TextFont.Height);
-            margin = e.MarginBounds;
         }
 
         // TODO : Scale image width to rectangle
@@ -66,51 +64,48 @@ namespace NCR_Printer
         }
 
         // Print the text with the given alignment at the cursor and return an advanced cursor based on newLine
-        public RectangleF PrintText(string text, bool newLine = true, TextAlignment align = TextAlignment.Left)
+        public void PrintText(string text, bool newLine = true, TextAlignment align = TextAlignment.Left)
         {
-            return PrintText(text, Layout.TextFont, newLine, align);
+            PrintText(text, Layout.TextFont, newLine, align);
         }
 
         // Print the text with the given alignment at the cursor and return an advanced cursor based on newLine
-        public RectangleF PrintText(string text, Font font, bool newLine = true, TextAlignment align = TextAlignment.Left)
+        public void PrintText(string text, Font font, bool newLine = true, TextAlignment align = TextAlignment.Left)
         {
-            return PrintText(text, newLine, g, font, brush, cursor, GetAlign(align), lSpacing);
+            PrintText(text, newLine, g, font, brush, GetAlign(align), lSpacing);
         }
 
         // Print the text with the given alignment at the cursor and return an advanced cursor based on newLine
-        public RectangleF PrintText(string text, bool newLine, Graphics g, Font font, Brush brush, RectangleF cursor, StringFormat align, float lSpacing)
+        public void PrintText(string text, bool newLine, Graphics g, Font font, Brush brush, StringFormat align, float lSpacing)
         {
             g.DrawString(text, font, brush, cursor, align);
             if (newLine) cursor.Y += font.Height + lSpacing;
-            this.cursor = cursor;
-            return cursor;
         }
 
         // Print a horizontal line at the cursor and return an advanced cursor
-        public RectangleF PrintHorizontalLine()
+        public void PrintHorizontalLine()
         {
-            return PrintHorizontalLine(g, Layout.TextFont, pen, cursor, lSpacing);
+            PrintHorizontalLine(g, Layout.TextFont, pen, lSpacing);
         }
+
         // Print a horizontal line at the cursor and return an advanced cursor
-        public RectangleF PrintHorizontalLine(Graphics g, Font font, Pen pen, RectangleF cursor, float lSpacing)
+        public void PrintHorizontalLine(Graphics g, Font font, Pen pen, float lSpacing)
         {
             cursor.Y += (font.Height + lSpacing) / 2;
             g.DrawLine(pen, cursor.X, cursor.Y, cursor.X + cursor.Width, cursor.Y);
             cursor.Y += (font.Height + lSpacing) / 2;
-            this.cursor = cursor;
-            return cursor;
         }
 
         // Print the header/footer text with the given alignment at the cursor and return an advanced cursor.
         // This handles newline characters and wrapping of arbitrary length lines.
-        public RectangleF PrintHeaderFooter(string text, TextAlignment align = TextAlignment.Center )
+        public void PrintHeaderFooter(string text, TextAlignment align = TextAlignment.Center )
         {
-            return PrintHeaderFooter(text, g, Layout.TextFont, brush, cursor, GetAlign(align), lSpacing);
+            PrintHeaderFooter(text, g, Layout.TextFont, brush, GetAlign(align), lSpacing);
         }
 
         // Print the header/footer text with the given alignment at the cursor and return an advanced cursor.
         // This handles newline characters and wrapping of arbitrary length lines.
-        public RectangleF PrintHeaderFooter(string text, Graphics g, Font font, Brush brush, RectangleF cursor, StringFormat align, float lSpacing)
+        public void PrintHeaderFooter(string text, Graphics g, Font font, Brush brush, StringFormat align, float lSpacing)
         {
             // Figure out the box we want to draw in
             SizeF wrappedSize = g.MeasureString(text, font, (int)cursor.Width, align);
@@ -119,8 +114,6 @@ namespace NCR_Printer
             // Print using box
             g.DrawString(text, font, brush, wrappedCursor, align);
             cursor.Y += wrappedSize.Height + lSpacing;
-            this.cursor = cursor;
-            return cursor;
         }
 
         // Event handler for printing receipt

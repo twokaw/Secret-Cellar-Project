@@ -176,7 +176,7 @@ namespace SecretCellar
         public uint ProcessTransaction(Transaction transaction) 
         {
             Response resp = null;
-            string result = web.DataPut($"api/Transaction", transaction, resp);
+            string result = web.DataPost($"api/Transaction", transaction, resp);
             transaction.InvoiceID = uint.TryParse(result, out uint id) ? id : 0;
 
             return transaction.InvoiceID;

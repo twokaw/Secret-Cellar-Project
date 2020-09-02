@@ -31,7 +31,7 @@ namespace NCR_Printer
             }
             set
             {
-                BarcodeFont = FetchFont(BarcodeName, _BarcodeFontSize);
+                BarcodeFont = FetchFont(value, _BarcodeFontSize);
             }
         }
 
