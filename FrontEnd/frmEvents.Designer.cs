@@ -33,7 +33,6 @@
             this.btnAddCharge = new System.Windows.Forms.Button();
             this.txtCharge = new System.Windows.Forms.TextBox();
             this.lblTitle = new System.Windows.Forms.Label();
-            this.event_Calendar = new System.Windows.Forms.MonthCalendar();
             this.event_dataGridView = new System.Windows.Forms.DataGridView();
             this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Event = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -41,6 +40,7 @@
             this.Qty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.textQty = new System.Windows.Forms.TextBox();
             this.lblQty = new System.Windows.Forms.Label();
+            this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
             ((System.ComponentModel.ISupportInitialize)(this.event_dataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -92,13 +92,6 @@
             this.lblTitle.Size = new System.Drawing.Size(234, 39);
             this.lblTitle.TabIndex = 4;
             this.lblTitle.Text = "Event Charge:";
-            // 
-            // event_Calendar
-            // 
-            this.event_Calendar.Location = new System.Drawing.Point(110, 154);
-            this.event_Calendar.MaximumSize = new System.Drawing.Size(2, 2);
-            this.event_Calendar.Name = "event_Calendar";
-            this.event_Calendar.TabIndex = 8;
             // 
             // event_dataGridView
             // 
@@ -159,6 +152,12 @@
             this.lblQty.TabIndex = 11;
             this.lblQty.Text = "Ticket Qty:";
             // 
+            // monthCalendar1
+            // 
+            this.monthCalendar1.Location = new System.Drawing.Point(183, 189);
+            this.monthCalendar1.Name = "monthCalendar1";
+            this.monthCalendar1.TabIndex = 12;
+            // 
             // frmEvents
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -167,10 +166,10 @@
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.ControlDark;
             this.ClientSize = new System.Drawing.Size(1272, 615);
+            this.Controls.Add(this.monthCalendar1);
             this.Controls.Add(this.lblQty);
             this.Controls.Add(this.textQty);
             this.Controls.Add(this.event_dataGridView);
-            this.Controls.Add(this.event_Calendar);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnAddCharge);
             this.Controls.Add(this.txtCharge);
@@ -191,7 +190,6 @@
         private System.Windows.Forms.Button btnAddCharge;
         private System.Windows.Forms.TextBox txtCharge;
         private System.Windows.Forms.Label lblTitle;
-        private System.Windows.Forms.MonthCalendar event_Calendar;
         private System.Windows.Forms.DataGridView event_dataGridView;
         private System.Windows.Forms.TextBox textQty;
         private System.Windows.Forms.Label lblQty;
@@ -199,5 +197,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Event;
         private System.Windows.Forms.DataGridViewTextBoxColumn Price;
         private System.Windows.Forms.DataGridViewTextBoxColumn Qty;
+        private System.Windows.Forms.MonthCalendar monthCalendar1;
     }
 }

@@ -28,62 +28,32 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btn_propane_ex = new System.Windows.Forms.Button();
-            this.btn_propane_new = new System.Windows.Forms.Button();
             this.lblPropane = new System.Windows.Forms.Label();
-            this.dataGrid_propane = new System.Windows.Forms.DataGridView();
             this.btn_close = new System.Windows.Forms.Button();
-            this.txt_Qty = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.btn_minus = new System.Windows.Forms.Button();
-            this.btn_plus = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGrid_propane)).BeginInit();
+            this.btn_minus_ex = new System.Windows.Forms.Button();
+            this.btn_plus_ex = new System.Windows.Forms.Button();
+            this.txt_Qty_exchange = new System.Windows.Forms.TextBox();
+            this.btn_plus_new = new System.Windows.Forms.Button();
+            this.btn_minus_new = new System.Windows.Forms.Button();
+            this.txt_Qty_new_p = new System.Windows.Forms.TextBox();
+            this.lbl_change = new System.Windows.Forms.Label();
+            this.lbl_new = new System.Windows.Forms.Label();
             this.SuspendLayout();
-            // 
-            // btn_propane_ex
-            // 
-            this.btn_propane_ex.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_propane_ex.Location = new System.Drawing.Point(72, 135);
-            this.btn_propane_ex.Name = "btn_propane_ex";
-            this.btn_propane_ex.Size = new System.Drawing.Size(240, 49);
-            this.btn_propane_ex.TabIndex = 0;
-            this.btn_propane_ex.Text = "Propane Exchange";
-            this.btn_propane_ex.UseVisualStyleBackColor = true;
-            this.btn_propane_ex.Click += new System.EventHandler(this.btn_propane_ex_Click);
-            // 
-            // btn_propane_new
-            // 
-            this.btn_propane_new.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_propane_new.Location = new System.Drawing.Point(72, 256);
-            this.btn_propane_new.Name = "btn_propane_new";
-            this.btn_propane_new.Size = new System.Drawing.Size(240, 49);
-            this.btn_propane_new.TabIndex = 1;
-            this.btn_propane_new.Text = "New Propane";
-            this.btn_propane_new.UseVisualStyleBackColor = true;
             // 
             // lblPropane
             // 
             this.lblPropane.AutoSize = true;
             this.lblPropane.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPropane.Location = new System.Drawing.Point(383, 36);
+            this.lblPropane.Location = new System.Drawing.Point(231, 33);
             this.lblPropane.Name = "lblPropane";
             this.lblPropane.Size = new System.Drawing.Size(214, 55);
             this.lblPropane.TabIndex = 2;
             this.lblPropane.Text = "Propane";
             // 
-            // dataGrid_propane
-            // 
-            this.dataGrid_propane.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGrid_propane.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGrid_propane.Location = new System.Drawing.Point(584, 135);
-            this.dataGrid_propane.Name = "dataGrid_propane";
-            this.dataGrid_propane.Size = new System.Drawing.Size(413, 170);
-            this.dataGrid_propane.TabIndex = 3;
-            // 
             // btn_close
             // 
             this.btn_close.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_close.Location = new System.Drawing.Point(332, 389);
+            this.btn_close.Location = new System.Drawing.Point(223, 359);
             this.btn_close.Name = "btn_close";
             this.btn_close.Size = new System.Drawing.Size(240, 49);
             this.btn_close.TabIndex = 4;
@@ -91,44 +61,91 @@
             this.btn_close.UseVisualStyleBackColor = true;
             this.btn_close.Click += new System.EventHandler(this.btn_close_Click);
             // 
-            // txt_Qty
+            // btn_minus_ex
             // 
-            this.txt_Qty.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_Qty.Location = new System.Drawing.Point(419, 203);
-            this.txt_Qty.Name = "txt_Qty";
-            this.txt_Qty.Size = new System.Drawing.Size(50, 44);
-            this.txt_Qty.TabIndex = 5;
-            this.txt_Qty.TextChanged += new System.EventHandler(this.txt_Qty_TextChanged);
+            this.btn_minus_ex.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_minus_ex.Location = new System.Drawing.Point(384, 143);
+            this.btn_minus_ex.Name = "btn_minus_ex";
+            this.btn_minus_ex.Size = new System.Drawing.Size(50, 44);
+            this.btn_minus_ex.TabIndex = 7;
+            this.btn_minus_ex.Text = "-";
+            this.btn_minus_ex.UseVisualStyleBackColor = true;
+            this.btn_minus_ex.Click += new System.EventHandler(this.btn_minus_ex_Click);
             // 
-            // label1
+            // btn_plus_ex
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(412, 161);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(69, 37);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "Qty";
+            this.btn_plus_ex.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_plus_ex.Location = new System.Drawing.Point(516, 143);
+            this.btn_plus_ex.Name = "btn_plus_ex";
+            this.btn_plus_ex.Size = new System.Drawing.Size(50, 44);
+            this.btn_plus_ex.TabIndex = 8;
+            this.btn_plus_ex.Text = "+";
+            this.btn_plus_ex.UseVisualStyleBackColor = true;
+            this.btn_plus_ex.Click += new System.EventHandler(this.btn_plus_ex_Click);
             // 
-            // btn_minus
+            // txt_Qty_exchange
             // 
-            this.btn_minus.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_minus.Location = new System.Drawing.Point(354, 203);
-            this.btn_minus.Name = "btn_minus";
-            this.btn_minus.Size = new System.Drawing.Size(50, 44);
-            this.btn_minus.TabIndex = 7;
-            this.btn_minus.Text = "-";
-            this.btn_minus.UseVisualStyleBackColor = true;
+            this.txt_Qty_exchange.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_Qty_exchange.Location = new System.Drawing.Point(449, 143);
+            this.txt_Qty_exchange.Name = "txt_Qty_exchange";
+            this.txt_Qty_exchange.ReadOnly = true;
+            this.txt_Qty_exchange.Size = new System.Drawing.Size(50, 44);
+            this.txt_Qty_exchange.TabIndex = 5;
+            this.txt_Qty_exchange.TextChanged += new System.EventHandler(this.txt_Qty_TextChanged);
             // 
-            // btn_plus
+            // btn_plus_new
             // 
-            this.btn_plus.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_plus.Location = new System.Drawing.Point(486, 203);
-            this.btn_plus.Name = "btn_plus";
-            this.btn_plus.Size = new System.Drawing.Size(50, 44);
-            this.btn_plus.TabIndex = 8;
-            this.btn_plus.Text = "+";
-            this.btn_plus.UseVisualStyleBackColor = true;
+            this.btn_plus_new.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_plus_new.Location = new System.Drawing.Point(516, 242);
+            this.btn_plus_new.Name = "btn_plus_new";
+            this.btn_plus_new.Size = new System.Drawing.Size(50, 44);
+            this.btn_plus_new.TabIndex = 11;
+            this.btn_plus_new.Text = "+";
+            this.btn_plus_new.UseVisualStyleBackColor = true;
+            this.btn_plus_new.Click += new System.EventHandler(this.btn_plus_new_Click);
+            // 
+            // btn_minus_new
+            // 
+            this.btn_minus_new.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_minus_new.Location = new System.Drawing.Point(384, 242);
+            this.btn_minus_new.Name = "btn_minus_new";
+            this.btn_minus_new.Size = new System.Drawing.Size(50, 44);
+            this.btn_minus_new.TabIndex = 10;
+            this.btn_minus_new.Text = "-";
+            this.btn_minus_new.UseVisualStyleBackColor = true;
+            this.btn_minus_new.Click += new System.EventHandler(this.btn_minus_new_Click);
+            // 
+            // txt_Qty_new_p
+            // 
+            this.txt_Qty_new_p.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_Qty_new_p.Location = new System.Drawing.Point(449, 242);
+            this.txt_Qty_new_p.Name = "txt_Qty_new_p";
+            this.txt_Qty_new_p.ReadOnly = true;
+            this.txt_Qty_new_p.Size = new System.Drawing.Size(50, 44);
+            this.txt_Qty_new_p.TabIndex = 9;
+            this.txt_Qty_new_p.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
+            // lbl_change
+            // 
+            this.lbl_change.AutoSize = true;
+            this.lbl_change.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_change.Location = new System.Drawing.Point(74, 147);
+            this.lbl_change.Name = "lbl_change";
+            this.lbl_change.Size = new System.Drawing.Size(304, 37);
+            this.lbl_change.TabIndex = 12;
+            this.lbl_change.Text = "Propane Exchange";
+            this.lbl_change.Click += new System.EventHandler(this.label1_Click);
+            // 
+            // lbl_new
+            // 
+            this.lbl_new.AutoSize = true;
+            this.lbl_new.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_new.Location = new System.Drawing.Point(135, 245);
+            this.lbl_new.Name = "lbl_new";
+            this.lbl_new.Size = new System.Drawing.Size(222, 37);
+            this.lbl_new.TabIndex = 13;
+            this.lbl_new.Text = "New Propane";
+            this.lbl_new.Click += new System.EventHandler(this.label2_Click);
             // 
             // frmPropane
             // 
@@ -136,34 +153,34 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(1023, 450);
-            this.Controls.Add(this.btn_plus);
-            this.Controls.Add(this.btn_minus);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.txt_Qty);
+            this.ClientSize = new System.Drawing.Size(695, 450);
+            this.Controls.Add(this.lbl_new);
+            this.Controls.Add(this.lbl_change);
+            this.Controls.Add(this.btn_plus_new);
+            this.Controls.Add(this.btn_minus_new);
+            this.Controls.Add(this.txt_Qty_new_p);
+            this.Controls.Add(this.btn_plus_ex);
+            this.Controls.Add(this.btn_minus_ex);
+            this.Controls.Add(this.txt_Qty_exchange);
             this.Controls.Add(this.btn_close);
-            this.Controls.Add(this.dataGrid_propane);
             this.Controls.Add(this.lblPropane);
-            this.Controls.Add(this.btn_propane_new);
-            this.Controls.Add(this.btn_propane_ex);
             this.Name = "frmPropane";
             this.Text = "Propane";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGrid_propane)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Button btn_propane_ex;
-        private System.Windows.Forms.Button btn_propane_new;
         private System.Windows.Forms.Label lblPropane;
-        private System.Windows.Forms.DataGridView dataGrid_propane;
         private System.Windows.Forms.Button btn_close;
-        private System.Windows.Forms.TextBox txt_Qty;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btn_minus;
-        private System.Windows.Forms.Button btn_plus;
+        private System.Windows.Forms.Button btn_minus_ex;
+        private System.Windows.Forms.Button btn_plus_ex;
+        private System.Windows.Forms.TextBox txt_Qty_exchange;
+        private System.Windows.Forms.Button btn_plus_new;
+        private System.Windows.Forms.Button btn_minus_new;
+        private System.Windows.Forms.TextBox txt_Qty_new_p;
+        private System.Windows.Forms.Label lbl_change;
+        private System.Windows.Forms.Label lbl_new;
     }
 }
