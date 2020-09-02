@@ -91,15 +91,6 @@ namespace NCR_Printer
             PrintText("Total:", false);
             PrintText($"{transaction.Total:C}", true, TextAlignment.Right);
 
-            double payment = 0;
-            transaction.Payments.ForEach(x => payment += x.Amount);
-
-            if(payment > transaction.Total)
-            {
-                PrintText("Change:", false);
-                PrintText($"{payment - transaction.Total:C}", true, TextAlignment.Right);
-            }
-
             // Print Separator
             PrintHorizontalLine();
 
@@ -108,6 +99,7 @@ namespace NCR_Printer
 
             // Print Payment Method
             bool first = true;
+            double payment = 0;
             foreach(Payment p in transaction.Payments)
             {
                 if (first)
@@ -117,10 +109,15 @@ namespace NCR_Printer
                 }
                 else
                     PrintText($"                {p.Method}{(string.IsNullOrWhiteSpace(p.Number) ? "" : $"({p.Number})")}: {p.Amount:C}");
+
+                payment += p.Amount;
             }
 
+            if(payment > transaction.Total)
+                PrintText($"                Change: {payment - transaction.Total:C}");
+
             //Print footer
-           PrintHeaderFooter($"{Layout.Footer}\n");
+           PrintHeaderFooter($"{Layout.Footer}\n\n ");
         }
     }
 }

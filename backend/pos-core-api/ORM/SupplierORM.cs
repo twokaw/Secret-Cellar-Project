@@ -32,15 +32,15 @@ namespace pos_core_api.ORM
             MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
             try
             {
-                using (MySqlDataReader reader = cmd.ExecuteReader())
-                    while (reader.Read())
-                        output.Add(new Supplier()
-                        {
-                            SupplierID = uint.Parse(reader["supplierID"].ToString()),
-                            Name = reader["name"].ToString(),
-                            Phone = reader["phone"].ToString(),
-                            Web = reader["web"].ToString()
-                        });
+                using MySqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                    output.Add(new Supplier()
+                    {
+                        SupplierID = uint.Parse(reader["supplierID"].ToString()),
+                        Name = reader["name"].ToString(),
+                        Phone = reader["phone"].ToString(),
+                        Web = reader["web"].ToString()
+                    });
             }
             finally
             {
@@ -135,17 +135,15 @@ namespace pos_core_api.ORM
 
             try
             {
-                using (MySqlDataReader reader = cmd.ExecuteReader())
-                {
-                    if (reader.Read())
-                        output = new Supplier()
-                        {
-                            SupplierID = uint.Parse(reader["supplierID"].ToString()),
-                            Name = reader["name"].ToString(),
-                            Phone = reader["phone"].ToString(),
-                            Web = reader["web"].ToString()
-                        };
-                }
+                using MySqlDataReader reader = cmd.ExecuteReader();
+                if (reader.Read())
+                    output = new Supplier()
+                    {
+                        SupplierID = uint.Parse(reader["supplierID"].ToString()),
+                        Name = reader["name"].ToString(),
+                        Phone = reader["phone"].ToString(),
+                        Web = reader["web"].ToString()
+                    };
             }
             finally
             {
@@ -171,17 +169,15 @@ namespace pos_core_api.ORM
 
             try
             {
-                using (MySqlDataReader reader = cmd.ExecuteReader())
-                {
-                    if (reader.Read())
-                        output = new Supplier()
-                        {
-                            SupplierID = uint.Parse(reader["supplierID"].ToString()),
-                            Name = reader["name"].ToString(),
-                            Phone = reader["phone"].ToString(),
-                            Web = reader["web"].ToString()
-                        };
-                }
+                using MySqlDataReader reader = cmd.ExecuteReader();
+                if (reader.Read())
+                    output = new Supplier()
+                    {
+                        SupplierID = uint.Parse(reader["supplierID"].ToString()),
+                        Name = reader["name"].ToString(),
+                        Phone = reader["phone"].ToString(),
+                        Web = reader["web"].ToString()
+                    };
             }
             finally
             {

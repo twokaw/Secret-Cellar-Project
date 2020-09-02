@@ -319,7 +319,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(196, 202);
             this.panel1.TabIndex = 13;
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // lbl_item_total
             // 
@@ -361,7 +360,6 @@
             this.txt_Ship.Size = new System.Drawing.Size(89, 23);
             this.txt_Ship.TabIndex = 10;
             this.txt_Ship.TabStop = false;
-            this.txt_Ship.TextChanged += new System.EventHandler(this.txtShip_TextChanged);
             // 
             // txt_TransTotal
             // 
@@ -394,7 +392,6 @@
             this.txt_transDiscount.Size = new System.Drawing.Size(88, 23);
             this.txt_transDiscount.TabIndex = 7;
             this.txt_transDiscount.TabStop = false;
-            this.txt_transDiscount.TextChanged += new System.EventHandler(this.txt_transDiscount_TextChanged);
             // 
             // txt_transBTLDPT
             // 
@@ -415,7 +412,6 @@
             this.txt_transSubTotal.Size = new System.Drawing.Size(88, 23);
             this.txt_transSubTotal.TabIndex = 5;
             this.txt_transSubTotal.TabStop = false;
-            this.txt_transSubTotal.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // LB_Discount
             // 
@@ -480,7 +476,6 @@
             this.txtBarcode.Name = "txtBarcode";
             this.txtBarcode.Size = new System.Drawing.Size(166, 26);
             this.txtBarcode.TabIndex = 15;
-            this.txtBarcode.TextChanged += new System.EventHandler(this.txtBarcode_TextChanged);
             this.txtBarcode.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtBarcode_KeyUp);
             // 
             // lbl_BARCODE

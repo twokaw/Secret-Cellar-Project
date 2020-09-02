@@ -11,7 +11,6 @@ namespace NCR_Printer
         public PrintLayout Layout { get; set; }
 
         private PrintDocument rcpt = null;
-        private readonly Transaction transaction;
 
         private static readonly StringFormat leftAlign = new StringFormat() { Alignment = StringAlignment.Near };
         private static readonly StringFormat centerAlign = new StringFormat() { Alignment = StringAlignment.Center };
@@ -57,18 +56,13 @@ namespace NCR_Printer
             margin = e.MarginBounds;
         }
 
-        // TODO : Scale image to rectangle
+        // TODO : Scale image width to rectangle
         public void PrintImage(Image img)
         {
-            Rectangle m = margin;
+            RectangleF m = new RectangleF(0, cursor.Y, cursor.Width, (float)img.Height / (float)img.Width * cursor.Width);
 
-            if ((double)img.Width / (double)img.Height > (double)m.Width / (double)m.Height) // image is wider
-                m.Height = (int)((double)img.Height / (double)img.Width * (double)m.Width);
-            else
-                m.Width = (int)((double)img.Width / (double)img.Height * (double)m.Height);
-
-            g.DrawImage(img, m.Width / 2 - img.Width / 2, m.Top);
-            cursor.Y += img.Height + lSpacing;
+            g.DrawImage(img, m); // .Width / 2 - img.Width / 2, m.Top);
+            cursor.Y += m.Height + lSpacing;
         }
 
         // Print the text with the given alignment at the cursor and return an advanced cursor based on newLine
