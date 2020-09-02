@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using MySql.Data;
-using MySql.Data.MySqlClient;
+﻿using MySql.Data.MySqlClient;
+using System.Resources;
 
 namespace WebApi.Helpers
 {
     public class DbConn
     {
-        private MySqlConnection conn;
+        private readonly MySqlConnection conn;
         private string connString;
 
         public DbConn()

@@ -254,7 +254,6 @@
         private System.Windows.Forms.Button btnDeleteTab;
         private System.Windows.Forms.Button btnPayOutTab;
         private System.Windows.Forms.DataGridView dataGridTabs;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Description;
         private System.Windows.Forms.DataGridViewTextBoxColumn PurchasedItems;
         private System.Windows.Forms.DataGridViewTextBoxColumn TotalPrice;
         private System.Windows.Forms.Button btnExit;
@@ -263,7 +262,6 @@
         private System.Windows.Forms.TextBox txtBoxName;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnAddTab;
-        private System.Windows.Forms.DataGridViewTextBoxColumn EventName;
         private System.Windows.Forms.DataGridViewTextBoxColumn CustomerName;
     }
 }

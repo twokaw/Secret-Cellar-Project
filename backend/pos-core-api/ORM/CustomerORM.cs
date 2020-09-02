@@ -39,7 +39,7 @@ namespace pos_core_api.ORM
                         LastName = reader.IsDBNull("last_name") ? "" : reader.GetString("last_name"),
                         BusinessName = reader.IsDBNull("business_name") ? "" : reader.GetString("business_name"),
                         Email = reader.IsDBNull("email") ? "" : reader.GetString("email"),
-                        IsWholesale = reader.IsDBNull("isWholesale") ? false : reader.GetBoolean("isWholesale"),
+                        IsWholesale = !reader.IsDBNull("isWholesale") && reader.GetBoolean("isWholesale"),
                         Address1 = reader.IsDBNull("addr1") ? "" : reader.GetString("addr1"),
                         Address2 = reader.IsDBNull("addr2") ? "" : reader.GetString("addr2"),
                         City = reader.IsDBNull("city") ? "" : reader.GetString("city"),
@@ -85,7 +85,7 @@ namespace pos_core_api.ORM
                     outputItem.LastName = reader.IsDBNull("last_name") ? "" : reader.GetString("last_name");
                     outputItem.BusinessName = reader.IsDBNull("business_name") ? "" : reader.GetString("business_name");
                     outputItem.Email = reader.IsDBNull("email") ? "" : reader.GetString("email");
-                    outputItem.IsWholesale = reader.IsDBNull("isWholesale") ? false : reader.GetBoolean("isWholesale");
+                    outputItem.IsWholesale = !reader.IsDBNull("isWholesale") && reader.GetBoolean("isWholesale");
                     outputItem.Address1 = reader.IsDBNull("addr1") ? "" : reader.GetString("addr1");
                     outputItem.Address2 = reader.IsDBNull("addr2") ? "" : reader.GetString("addr2");
                     outputItem.City = reader.IsDBNull("city") ? "" : reader.GetString("city");
