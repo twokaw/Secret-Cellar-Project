@@ -102,13 +102,11 @@ namespace NCR_Printer
             foreach(Payment p in transaction.Payments)
             {
                 if (first)
-                {
                     PrintText($"Payment: {p.Method}{(string.IsNullOrWhiteSpace(p.Number) ? "" : $"({p.Number})")}: {p.Amount:C}");
-                    first = false;
-                }
                 else
                     PrintText($"         {p.Method}{(string.IsNullOrWhiteSpace(p.Number) ? "" : $"({p.Number})")}: {p.Amount:C}");
-
+                
+                first = false;
                 payment += p.Amount;
             }
 
