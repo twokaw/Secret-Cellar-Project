@@ -47,5 +47,10 @@ namespace SecretCellar
         {
 
         }
+
+        private void frmEvents_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
