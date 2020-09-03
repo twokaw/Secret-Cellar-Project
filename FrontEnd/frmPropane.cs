@@ -1,5 +1,6 @@
 ﻿using System;
 using Shared;
+using System.Linq;
 using System.Windows.Forms;
 namespace SecretCellar
 {
@@ -28,6 +29,16 @@ namespace SecretCellar
         private void btn_close_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void frmPropane_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_minus_ex_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
