@@ -40,20 +40,22 @@
             this.Qty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.textQty = new System.Windows.Forms.TextBox();
             this.lblQty = new System.Windows.Forms.Label();
-            this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.lbl_event = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.event_dataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // btnCancel
             // 
-            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.BackColor = System.Drawing.SystemColors.Desktop;
             this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.25F);
             this.btnCancel.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnCancel.Location = new System.Drawing.Point(611, 478);
+            this.btnCancel.Location = new System.Drawing.Point(422, 514);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(346, 125);
+            this.btnCancel.Size = new System.Drawing.Size(365, 125);
             this.btnCancel.TabIndex = 7;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = false;
@@ -61,14 +63,15 @@
             // 
             // btnAddCharge
             // 
-            this.btnAddCharge.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.btnAddCharge.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAddCharge.BackColor = System.Drawing.SystemColors.Desktop;
             this.btnAddCharge.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.25F);
             this.btnAddCharge.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnAddCharge.Location = new System.Drawing.Point(274, 478);
+            this.btnAddCharge.Location = new System.Drawing.Point(85, 514);
             this.btnAddCharge.Name = "btnAddCharge";
-            this.btnAddCharge.Size = new System.Drawing.Size(346, 125);
+            this.btnAddCharge.Size = new System.Drawing.Size(365, 125);
             this.btnAddCharge.TabIndex = 6;
             this.btnAddCharge.Text = "Add Charge";
             this.btnAddCharge.UseVisualStyleBackColor = false;
@@ -76,18 +79,24 @@
             // 
             // txtCharge
             // 
+            this.txtCharge.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtCharge.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F);
-            this.txtCharge.Location = new System.Drawing.Point(926, 12);
+            this.txtCharge.Location = new System.Drawing.Point(470, 387);
             this.txtCharge.Name = "txtCharge";
-            this.txtCharge.Size = new System.Drawing.Size(160, 38);
+            this.txtCharge.Size = new System.Drawing.Size(179, 38);
             this.txtCharge.TabIndex = 5;
             // 
             // lblTitle
             // 
+            this.lblTitle.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lblTitle.AutoSize = true;
             this.lblTitle.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.25F);
-            this.lblTitle.Location = new System.Drawing.Point(675, 12);
+            this.lblTitle.Location = new System.Drawing.Point(219, 387);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(234, 39);
             this.lblTitle.TabIndex = 4;
@@ -95,6 +104,9 @@
             // 
             // event_dataGridView
             // 
+            this.event_dataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.event_dataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.event_dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.event_dataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -102,10 +114,10 @@
             this.Event,
             this.Price,
             this.Qty});
-            this.event_dataGridView.Location = new System.Drawing.Point(520, 154);
+            this.event_dataGridView.Location = new System.Drawing.Point(68, 126);
             this.event_dataGridView.Name = "event_dataGridView";
             this.event_dataGridView.RowHeadersWidth = 62;
-            this.event_dataGridView.Size = new System.Drawing.Size(707, 245);
+            this.event_dataGridView.Size = new System.Drawing.Size(726, 245);
             this.event_dataGridView.TabIndex = 9;
             this.event_dataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.event_dataGridView_CellContentClick);
             // 
@@ -135,28 +147,52 @@
             // 
             // textQty
             // 
+            this.textQty.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.textQty.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F);
-            this.textQty.Location = new System.Drawing.Point(926, 93);
+            this.textQty.Location = new System.Drawing.Point(470, 452);
             this.textQty.Name = "textQty";
-            this.textQty.Size = new System.Drawing.Size(160, 38);
+            this.textQty.Size = new System.Drawing.Size(179, 38);
             this.textQty.TabIndex = 10;
             // 
             // lblQty
             // 
+            this.lblQty.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lblQty.AutoSize = true;
             this.lblQty.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.lblQty.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.25F);
-            this.lblQty.Location = new System.Drawing.Point(675, 93);
+            this.lblQty.Location = new System.Drawing.Point(219, 452);
             this.lblQty.Name = "lblQty";
             this.lblQty.Size = new System.Drawing.Size(178, 39);
             this.lblQty.TabIndex = 11;
             this.lblQty.Text = "Ticket Qty:";
             // 
-            // monthCalendar1
+            // dateTimePicker1
             // 
-            this.monthCalendar1.Location = new System.Drawing.Point(183, 189);
-            this.monthCalendar1.Name = "monthCalendar1";
-            this.monthCalendar1.TabIndex = 12;
+            this.dateTimePicker1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dateTimePicker1.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimePicker1.Location = new System.Drawing.Point(154, 76);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(535, 44);
+            this.dateTimePicker1.TabIndex = 12;
+            // 
+            // lbl_event
+            // 
+            this.lbl_event.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lbl_event.AutoSize = true;
+            this.lbl_event.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_event.Location = new System.Drawing.Point(337, 18);
+            this.lbl_event.Name = "lbl_event";
+            this.lbl_event.Size = new System.Drawing.Size(177, 55);
+            this.lbl_event.TabIndex = 14;
+            this.lbl_event.Text = "Events";
             // 
             // frmEvents
             // 
@@ -165,8 +201,9 @@
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.ClientSize = new System.Drawing.Size(1272, 615);
-            this.Controls.Add(this.monthCalendar1);
+            this.ClientSize = new System.Drawing.Size(902, 658);
+            this.Controls.Add(this.lbl_event);
+            this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.lblQty);
             this.Controls.Add(this.textQty);
             this.Controls.Add(this.event_dataGridView);
@@ -178,6 +215,7 @@
             this.Name = "frmEvents";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "frmEvents";
+            this.Load += new System.EventHandler(this.frmEvents_Load);
             ((System.ComponentModel.ISupportInitialize)(this.event_dataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -197,6 +235,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Event;
         private System.Windows.Forms.DataGridViewTextBoxColumn Price;
         private System.Windows.Forms.DataGridViewTextBoxColumn Qty;
-        private System.Windows.Forms.MonthCalendar monthCalendar1;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.Label lbl_event;
     }
 }
