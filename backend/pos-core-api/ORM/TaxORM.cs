@@ -80,7 +80,6 @@ namespace pos_core_api.ORM
                 return Insert(tax);
             else
             {
-                long newId = -1;
                 string sqlStatement = @"
                     UPDATE config
                         bottle_deposit = @bottle_deposit, 
@@ -97,7 +96,7 @@ namespace pos_core_api.ORM
                     cmd.Parameters.Add(new MySqlParameter("sales_tax", tax.SalesTax));
                     cmd.Parameters.Add(new MySqlParameter("local_sales_tax", tax.LocalSalesTax));
                     cmd.ExecuteNonQuery();
-                    newId = cmd.LastInsertedId;
+                    long newId = cmd.LastInsertedId;
                 }
                 finally
                 {

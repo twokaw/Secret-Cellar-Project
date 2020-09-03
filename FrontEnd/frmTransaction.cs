@@ -25,11 +25,21 @@ namespace SecretCellar
             txtBarcode.Focus();
             ReloadLogo();
 
+            string path = Properties.Settings.Default.FontPath;
+            if (path.Length > 0 && path[0] == '.')
+                path =  $"{Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}{path.Substring(1)}";
+
+
             Receipt.DefaultLayout = new PrintLayout()
             {
                 Header = Properties.Settings.Default.Header,
                 Footer = Properties.Settings.Default.Footer,
-                Logo = logo
+                Logo = logo,
+                FontDirectory = path,
+                BarcodeName = Properties.Settings.Default.BarcodeFont,
+                BarcodeFontSize = Properties.Settings.Default.BarcodeSize,
+                FontName = Properties.Settings.Default.ReceiptFont,
+                FontSize = Properties.Settings.Default.ReceiptFontSize
             };
         }
 
@@ -38,7 +48,7 @@ namespace SecretCellar
 
             if (!string.IsNullOrEmpty(Properties.Settings.Default.Logo))
             {
-                string logoPath = $"{Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}/{Properties.Settings.Default.Logo}";
+                string logoPath = $"{Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}\\{Properties.Settings.Default.Logo}";
 
                 if(Directory.Exists(logoPath))
                     logo = Image.FromFile(logoPath);
@@ -61,8 +71,8 @@ namespace SecretCellar
             {
                 this.Dispose();
             }
-            dataAccess = new DataAccess(Properties.Settings.Default.URL);
 
+            dataAccess = new DataAccess(Properties.Settings.Default.URL);
         }
 
         private void btnDiscount_Click(object sender, EventArgs e)
@@ -74,8 +84,6 @@ namespace SecretCellar
 
         private void btnTender_Click(object sender, EventArgs e)
         {
-            updateTransaction();
-
             if (transaction.Items.Count == 0)
                 openCashDrawer();
             else
@@ -112,7 +120,6 @@ namespace SecretCellar
 
         private void addRow(Transaction trans)
         {
-            updateTransaction();
             dataGridView1.Rows.Clear();
 
             double transactionBottleDeposit = 0.0;
@@ -164,11 +171,6 @@ namespace SecretCellar
             addRow(transaction);
         }
 
-        private void txtBarcode_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void txtBarcode_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.KeyData == Keys.Enter && !string.IsNullOrWhiteSpace(txtBarcode.Text))
@@ -191,32 +193,6 @@ namespace SecretCellar
                     MessageBox.Show("Barcode not found");
                 txtBarcode.Clear();
             }
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-
-        private void updateTransaction()
-        {
-          //  transaction.Subtotal = 0.0;
-           // double transactionBottleDeposit = 0.0;
-           // transaction.Total = 0.0;
-
-          //  foreach (Item item in transaction.Items)
-          //  {
-                // Sum subtotal values for the subtotal box
-             //   transaction.Subtotal += item.Price * item.NumSold * (1 - item.Discount);
-            //    transactionBottleDeposit += item.NumSold * item.Bottles * .05;
-             //   transaction.Total = transaction.Subtotal + transactionBottleDeposit;
-          //  }
         }
 
         private void btnLookup_Click(object sender, EventArgs e)
@@ -254,15 +230,6 @@ namespace SecretCellar
             addRow(transaction);
         }
 
-        private void txt_transDiscount_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtShip_TextChanged(object sender, EventArgs e)
-        {
-
-        }
         private void dataGridView1_Click(object sender, EventArgs e)
         {
             txtBarcode.Focus();

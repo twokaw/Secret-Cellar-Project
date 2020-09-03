@@ -61,7 +61,6 @@ namespace WebApi.Controllers
             };
          }
 
-
         /// <summary>
         /// Insert a new transaction 
         /// </summary>

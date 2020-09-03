@@ -85,7 +85,7 @@ namespace pos_core_api.ORM
                         CustomerID = reader.IsDBNull("customerID") ? 0 : reader.GetUInt32("customerID"),
                         EmployeeID = reader.IsDBNull("empID") ? 0 : reader.GetUInt32("empID"),
                         Location = reader.IsDBNull("location") ? "" : reader.GetString("location"),
-                        TaxExempt = reader.IsDBNull("tax_exempt") ? false : reader.GetBoolean("tax_exempt"),
+                        TaxExempt = !reader.IsDBNull("tax_exempt") && reader.GetBoolean("tax_exempt"),
                         Discount = reader.IsDBNull("discount") ? 0.0 : reader.GetDouble("discount"),
                         Shipping = reader.IsDBNull("shipping") ? 0.0 : reader.GetDouble("shipping")
                     };
@@ -128,8 +128,8 @@ namespace pos_core_api.ORM
                         Price = itemReader.IsDBNull("sold_price") ? 0.0 : itemReader.GetDouble("sold_price"),
                         Bottles = itemReader.IsDBNull("bottles") ? 0 : itemReader.GetUInt32("bottles"),
                         ItemType = itemReader.IsDBNull("inventory_type_name") ? "" : itemReader.GetString("inventory_type_name"),
-                        NonTaxable = itemReader.IsDBNull("nontaxable") ? false : itemReader.GetBoolean("nontaxable"),
-                        NonTaxableLocal = itemReader.IsDBNull("nontaxable_local") ? false : itemReader.GetBoolean("nontaxable_local")
+                        NonTaxable = !itemReader.IsDBNull("nontaxable") && itemReader.GetBoolean("nontaxable"),
+                        NonTaxableLocal = !itemReader.IsDBNull("nontaxable_local") && itemReader.GetBoolean("nontaxable_local")
                     };
                     transaction.Items.Add(item);
                 }

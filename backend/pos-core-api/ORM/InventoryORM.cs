@@ -135,21 +135,23 @@ namespace pos_core_api.ORM
 
                 if (outputItem == null)
                 {
-                    outputItem = new Inventory();
-                    outputItem.Id = reader.IsDBNull("InventoryId") ? 0 : reader.GetUInt32("InventoryId");
-                    outputItem.Name = reader.IsDBNull("name") ? "" : reader.GetString("name");
-                    outputItem.SupplierID = reader.IsDBNull("supplierID") ? 0 : reader.GetUInt32("supplierID");
-                    outputItem.Barcode = reader.IsDBNull("barcode") ? "" : reader.GetString("barcode");
-                    outputItem.Price = reader.IsDBNull("retail_price") ? 0.00 : reader.GetDouble("retail_price");
-                    outputItem.TypeID = reader.IsDBNull("typeID") ? 0 : reader.GetUInt32("typeID");
-                    outputItem.Bottles = reader.IsDBNull("bottles") ? 0 : reader.GetUInt32("bottles");
-                    outputItem.NonTaxable = !reader.IsDBNull("nontaxable") && (0 != reader.GetInt16("nontaxable"));
-                    outputItem.NonTaxableLocal = !reader.IsDBNull("nontaxable_local") && (0 != reader.GetInt16("nontaxable_local"));
-                    outputItem.ItemType = reader.IsDBNull("inventory_type_name") ? "" : reader.GetString("inventory_type_name");
-                    outputItem.BottleDeposit = reader.IsDBNull("bottle_deposit") ? 0 : reader.GetDouble("bottle_deposit");
-                    outputItem.IdTax = reader.IsDBNull("idTax") ? 0 : reader.GetUInt32("idTax");
-                    outputItem.SalesTax = reader.IsDBNull("sales_tax") ? 0 : reader.GetDouble("sales_tax");
-                    outputItem.LocalSalesTax = reader.IsDBNull("local_sales_tax") ? 0 : reader.GetDouble("local_sales_tax");
+                    outputItem = new Inventory
+                    {
+                        Id = reader.IsDBNull("InventoryId") ? 0 : reader.GetUInt32("InventoryId"),
+                        Name = reader.IsDBNull("name") ? "" : reader.GetString("name"),
+                        SupplierID = reader.IsDBNull("supplierID") ? 0 : reader.GetUInt32("supplierID"),
+                        Barcode = reader.IsDBNull("barcode") ? "" : reader.GetString("barcode"),
+                        Price = reader.IsDBNull("retail_price") ? 0.00 : reader.GetDouble("retail_price"),
+                        TypeID = reader.IsDBNull("typeID") ? 0 : reader.GetUInt32("typeID"),
+                        Bottles = reader.IsDBNull("bottles") ? 0 : reader.GetUInt32("bottles"),
+                        NonTaxable = !reader.IsDBNull("nontaxable") && (0 != reader.GetInt16("nontaxable")),
+                        NonTaxableLocal = !reader.IsDBNull("nontaxable_local") && (0 != reader.GetInt16("nontaxable_local")),
+                        ItemType = reader.IsDBNull("inventory_type_name") ? "" : reader.GetString("inventory_type_name"),
+                        BottleDeposit = reader.IsDBNull("bottle_deposit") ? 0 : reader.GetDouble("bottle_deposit"),
+                        IdTax = reader.IsDBNull("idTax") ? 0 : reader.GetUInt32("idTax"),
+                        SalesTax = reader.IsDBNull("sales_tax") ? 0 : reader.GetDouble("sales_tax"),
+                        LocalSalesTax = reader.IsDBNull("local_sales_tax") ? 0 : reader.GetDouble("local_sales_tax")
+                    };
                     output.Add(outputItem);
                 }
 

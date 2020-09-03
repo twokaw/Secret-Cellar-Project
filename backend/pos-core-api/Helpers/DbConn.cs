@@ -1,22 +1,63 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using MySql.Data;
-using MySql.Data.MySqlClient;
+﻿using MySql.Data.MySqlClient;
+using System.Collections;
+using System.Resources;
 
 namespace WebApi.Helpers
 {
     public class DbConn
     {
-        private MySqlConnection conn;
-        private string connString;
+        private readonly MySqlConnection conn;
+        private static readonly string defaultConnectionString = "Server=localhost;Port=3306;Database=inventory;Uid=invuser;Pwd=testinv!;";
+        private static string connString = null;
 
         public DbConn()
         {
-            connString = "Server=localhost;Port=3306;Database=inventory;Uid=invuser;Pwd=testinv!;";
+            conn = new MySqlConnection(GetConnectionString());
+        }
 
-            conn = new MySqlConnection(connString);
+        public void SetConnectionString(string conString)
+        {
+            using IResourceWriter writer = new ResourceWriter("myResources.resources");
+
+            // TODO: Encrypt connection string
+            // Adds resources to the resource writer.
+            writer.AddResource("ConnectionString", conString);
+
+            // Writes the resources to the file or stream, and closes it.
+            writer.Close();
+            connString = conString;
+        }
+
+        public string GetConnectionString()
+        {
+            if(connString == null)
+            {
+                try
+                {
+                    // try to read the resource file
+                    ResourceReader rw = new ResourceReader("myResources.resources");
+
+                    IDictionaryEnumerator dict = rw.GetEnumerator();
+
+                    while(dict.MoveNext())
+                        if(dict.Key.ToString() == "ConnectionString")
+                        {
+                            connString = dict.Value.ToString();
+                            break;
+                        }
+                }
+                catch
+                {
+                    // if reading the file fails, then create a new file
+                    SetConnectionString(defaultConnectionString);
+                }
+
+                // if that fails then use the default connection string
+                if (connString == null) 
+                    connString = defaultConnectionString;
+            }
+
+            return connString;
         }
 
         public void OpenConnection()

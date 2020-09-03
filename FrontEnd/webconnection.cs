@@ -101,7 +101,7 @@ namespace SecretCellar
                 _password = password;
                 Login();
             }
-            catch (Exception ex)
+            catch 
             {
                 return false;
             }
@@ -214,21 +214,14 @@ namespace SecretCellar
                 StreamReader reader = new StreamReader(datastream);
                 string responsefromserver = reader.ReadToEnd();
 
-                try
+                if (Convert.ToBoolean(responsefromserver))
                 {
-                    if (Convert.ToBoolean(responsefromserver))
-                    {
-                        _loggedin = true;
-                        Cookies = ((HttpWebResponse)response).Cookies;
-                        return true;
-                    }
-                }
-                catch (Exception ex)
-                {
-
+                    _loggedin = true;
+                    Cookies = ((HttpWebResponse)response).Cookies;
+                    return true;
                 }
             }
-            catch (Exception ex)
+            catch
             {
                 _loggedin = false;
             }
@@ -336,7 +329,7 @@ namespace SecretCellar
             }
             catch (Exception ex)
             {
-                return request;
+                Console.WriteLine($"SetupRequest Error {ex.Message}");
             }
 
             return request;
@@ -364,7 +357,7 @@ namespace SecretCellar
             }
             catch (Exception ex)
             {
-                return request;
+                Console.WriteLine($"SetupRequest Error {ex.Message}");
             }
 
             return request;
