@@ -254,5 +254,13 @@ namespace SecretCellar
 
             propane.ShowDialog();
         }
+
+        private void btnCustom_Click(object sender, EventArgs e)
+        {
+            frmCustom customItem = new frmCustom(transaction);
+
+            customItem.ShowDialog();
+            addRow(transaction);
+        }
     }
 }
