@@ -210,6 +210,7 @@
             this.btnCustom.TabStop = false;
             this.btnCustom.Text = "CUSTOM";
             this.btnCustom.UseVisualStyleBackColor = true;
+            this.btnCustom.Click += new System.EventHandler(this.btnCustom_Click);
             // 
             // btnShipping
             // 
