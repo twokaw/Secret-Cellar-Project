@@ -1,6 +1,5 @@
-﻿using SecretCellar;
+﻿using System;
 using Shared;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,13 +11,15 @@ using System.Windows.Forms;
 
 namespace SecretCellar
 {
-    public partial class frmEvents : Form
+    public partial class frmCustom : Form
     {
-        private Transaction events = null;
-        public frmEvents(Transaction transaction)
+        private Transaction customItem = null;
+
+        public frmCustom(Transaction transaction)
         {
             InitializeComponent();
-            events = transaction;
+            customItem = transaction;
+
         }
 
         private void btnAddCharge_Click(object sender, EventArgs e)
@@ -31,24 +32,27 @@ namespace SecretCellar
         {
             this.Close();
         }
+
         private void addCharge()
         {
-            if (double.TryParse(txtCharge.Text, out double d))
+            if (double.TryParse(txt_charge_am.Text, out double d))
             {
-                Item i = DataAccess.ConvertInvtoItem(DataAccess.instance.GetItem("EVENT"));
+                Item i = DataAccess.ConvertInvtoItem(DataAccess.instance.GetItem("Custom"));
                 i.Price = d;
-                events.Items.Add(i);
+                i.Description = txt_descript.Text;
+                i.NumSold = 1;
+                customItem.Items.Add(i);
             }
 
 
         }
 
-        private void event_dataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void txt_charge_am_TextChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void frmEvents_Load(object sender, EventArgs e)
+        private void txt_descript_TextChanged(object sender, EventArgs e)
         {
 
         }
