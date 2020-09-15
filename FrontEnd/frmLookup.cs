@@ -215,13 +215,14 @@ namespace SecretCellar
         }
         private void refresh()
         {
-            LookupView.DataSource = inventory.Where(x => (x.Name.IndexOf(txtlookup.Text, StringComparison.OrdinalIgnoreCase) >= 0 || x.Barcode.IndexOf(txtlookup.Text, StringComparison.OrdinalIgnoreCase) >= 0)
-            && (cbxTypeFilter.Text == "" || cbxTypeFilter.Text == x.ItemType)
-            && (cbxSupplyFilter.Text == "" || suppliers.First(s => s.Name == cbxSupplyFilter.Text).SupplierID == x.SupplierID)).
+            LookupView.DataSource = inventory.Where(x =>( x.Name.IndexOf(txtlookup.Text, StringComparison.OrdinalIgnoreCase) >= 0 || x.Barcode.IndexOf(txtlookup.Text, StringComparison.OrdinalIgnoreCase) >=0)
+            && (cbxTypeFilter.Text == "" || cbxTypeFilter.Text == x.ItemType) 
+            && (cbxSupplyFilter.Text == "" || suppliers.First (s => s.Name ==cbxSupplyFilter.Text).SupplierID == x.SupplierID)).
                Select(x => new { Name = x.Name, Id = x.Id, ItemType = x.ItemType, Qty = x.Qty, Barcode = x.Barcode, Price = x.Price }).
                OrderBy(x => x.Name).
                ToList();
         }
+
         private void panel2_Paint(object sender, PaintEventArgs e)
         {
 
