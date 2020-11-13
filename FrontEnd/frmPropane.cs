@@ -16,19 +16,22 @@ namespace SecretCellar
     public partial class frmPropane : Form
     {
         public Transaction transaction = null;
-
+        private const string PROPANEEXCHANGE = "PROPANEEXCHANGE";
+        private const string PROPANENEW = "PROPANENEW";
         public frmPropane(Transaction items)
         {
             InitializeComponent();
             transaction = items;
-            //txt_ex_Qty.Text = transaction.Items.Numsold()
-            
+            txt_ex_Qty.Text = (transaction.Items.FirstOrDefault(x => x.Barcode == PROPANEEXCHANGE)?.NumSold+0).ToString();
+            txt_new_Qty.Text = (transaction.Items.FirstOrDefault(x => x.Barcode == PROPANENEW)?.NumSold + 0).ToString();
+
         }
 
        
 
         private void btn_close_Click(object sender, EventArgs e)
         {
+
             this.Close();
         }
 
@@ -39,12 +42,12 @@ namespace SecretCellar
 
         private void btn_minus_ex_Click(object sender, EventArgs e)
         {
-
+            txt_ex_Qty.Text = (Convert.ToUInt32(txt_ex_Qty.Text)-1).ToString();
         }
 
         private void btn_plus_ex_Click(object sender, EventArgs e)
         {
-
+            txt_ex_Qty.Text = (Convert.ToUInt32(txt_ex_Qty.Text) + 1).ToString();
         }
 
         private void txt_ex_Qty_TextChanged(object sender, EventArgs e)
