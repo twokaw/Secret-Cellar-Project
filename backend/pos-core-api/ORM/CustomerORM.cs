@@ -18,7 +18,7 @@ namespace pos_core_api.ORM
             db.OpenConnection();
 
             string sqlStatement = @"
-              SELECT customerID, customer_discount, first_name, last_name
+              SELECT customerID, customer_discount, first_name, last_name,
                      business_name, email, isWholesale, 
                      addr1, addr2, city, state, zip, phone
               FROM customer
@@ -64,7 +64,7 @@ namespace pos_core_api.ORM
             db.OpenConnection();
 
             string sqlStatement = @"
-              SELECT customerID, customer_discount, first_name, last_name
+              SELECT customerID, customer_discount, first_name, last_name,
                      business_name, email, isWholesale, 
                      addr1, addr2, city, state, zip, phone
               FROM customer 
@@ -108,7 +108,6 @@ namespace pos_core_api.ORM
                 db.OpenConnection();
 
                 string sqlStatementDesc = @"
-                  SET SQL_MODE = ''
                   INSERT INTO customer 
                   (customer_discount, first_name, last_name, business_name, email, isWholesale, addr1, addr2, city, state, zip, phone)
                   VALUES 
@@ -145,8 +144,12 @@ namespace pos_core_api.ORM
             {
                 string sqlStatementDesc = @"
                  UPDATE customer 
-                 SET customer_discount = @customerDiscount, first_name = @firstName, last_name = @lastName, business_name = @businessName,
-                     email = @email, isWholesale = @isWholesale, addr1 = @addr1, addr2 = @addr2, city = @city, state = @state, zip = @zip, phone = @phone 
+                 SET customer_discount = @customerDiscount, first_name = @firstName,
+                     last_name = @lastName, business_name = @businessName,
+                     email = @email, isWholesale = @isWholesale,
+                     addr1 = @addr1, addr2 = @addr2, 
+                     city = @city, state = @state, 
+                     zip = @zip, phone = @phone 
                  WHERE customerID = @custID
                 ";
 
@@ -166,7 +169,6 @@ namespace pos_core_api.ORM
                 cmd.Parameters.Add(new MySqlParameter("custID", cust.Id));
 
                 return cmd.ExecuteNonQuery();
-
             }
             finally
             {
@@ -179,7 +181,10 @@ namespace pos_core_api.ORM
             db.OpenConnection();
             try
             {
-                string sqlStatementDesc = "DELETE FROM customer WHERE customerID = @CustID";
+                string sqlStatementDesc = @"
+                  DELETE FROM customer 
+                  WHERE customerID = @CustID
+                ";
 
                 MySqlCommand cmd = new MySqlCommand(sqlStatementDesc, db.Connection());
                 cmd.Parameters.Add(new MySqlParameter("custID", custID));

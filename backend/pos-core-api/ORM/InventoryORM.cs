@@ -274,7 +274,7 @@ namespace pos_core_api.ORM
                 ";
 
                 MySqlCommand cmd = new MySqlCommand(sql, db.Connection());
-                cmd.Parameters.Add(new MySqlParameter("bar", inv.Barcode));
+               // cmd.Parameters.Add(new MySqlParameter("bar", inv.Barcode));
                 cmd.Parameters.Add(new MySqlParameter("id", inv.Id));
                 cmd.Parameters.Add(new MySqlParameter("name", inv.Name));
                 cmd.Parameters.Add(new MySqlParameter("supplierID", inv.SupplierID));
