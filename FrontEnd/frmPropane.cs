@@ -57,12 +57,13 @@ namespace SecretCellar
 
         private void btn_minus_new_Click(object sender, EventArgs e)
         {
+            txt_new_Qty.Text = (Convert.ToUInt32(txt_new_Qty.Text) - 1).ToString();
 
         }
 
         private void btn_plus_new_Click(object sender, EventArgs e)
         {
-
+            txt_new_Qty.Text = (Convert.ToUInt32(txt_new_Qty.Text) + 1).ToString();
         }
 
         private void txt_new_Qty_TextChanged(object sender, EventArgs e)
