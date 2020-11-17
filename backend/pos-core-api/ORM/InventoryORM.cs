@@ -16,7 +16,7 @@ namespace pos_core_api.ORM
         /// <summary>
         /// Method that checks if the barcode already exist.
         /// </summary>
-        /// <param name="barcode"></param>
+        /// <param name="barcode">Item Barcode to check</param>
         /// <returns>True if the barcode exist.</returns>
         public bool DoesBarcodeExist(string barcode)
         {
@@ -52,7 +52,6 @@ namespace pos_core_api.ORM
             db.OpenConnection();
             try
             {
-                //change to view that does sum
                 string sqlStatement = @"
                         SELECT *
                         FROM v_inventory 
@@ -262,7 +261,7 @@ namespace pos_core_api.ORM
             {
                 db.OpenConnection();
 
-                string sql = @"
+                MySqlCommand cmd = new MySqlCommand(@"
                     UPDATE inventory_description 
                     SET name = @name, supplierID = @supplierID, 
                         barcode = @barcode, retail_price = @Price, 
@@ -271,10 +270,8 @@ namespace pos_core_api.ORM
                         nontaxable = @nonTaxable, 
                         nontaxable_local = @nonTaxableLocal 
                     WHERE InventoryId = @id;
-                ";
+                ", db.Connection());
 
-                MySqlCommand cmd = new MySqlCommand(sql, db.Connection());
-               // cmd.Parameters.Add(new MySqlParameter("bar", inv.Barcode));
                 cmd.Parameters.Add(new MySqlParameter("id", inv.Id));
                 cmd.Parameters.Add(new MySqlParameter("name", inv.Name));
                 cmd.Parameters.Add(new MySqlParameter("supplierID", inv.SupplierID));
@@ -287,20 +284,14 @@ namespace pos_core_api.ORM
                 cmd.ExecuteNonQuery();
 
                 //Inserting into inventory_description
-                sql = @"
-                   UPDATE inventory_price 
-                      Inventory_Qty  = @qty, 
-                      Supplier_price = @supplier_price
-                   WHERE InventoryId = @id;
-                ";
                 cmd.ExecuteNonQuery();
                 cmd.Dispose();
 
                 cmd = new MySqlCommand(@"
-                  UPDATE inventory_price 
-                  SET Inventory_Qty = @qty, 
-                      Supplier_price = @supplier_price 
-                  WHERE InventoryId = @id;
+                   UPDATE inventory_price 
+                      Inventory_Qty  = @qty, 
+                      Supplier_price = @supplier_price
+                   WHERE InventoryId = @id;
                 ", db.Connection());
 
                 cmd.Parameters.Add(new MySqlParameter("id", inv.Id));
@@ -355,7 +346,5 @@ namespace pos_core_api.ORM
             cmd.Parameters.Add(new MySqlParameter("InventoryID", inv.Id));
             cmd.ExecuteNonQuery();
         }
-
-
     }
 }

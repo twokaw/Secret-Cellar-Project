@@ -39,7 +39,6 @@ namespace SecretCellar
             {
                 Item i = DataAccess.ConvertInvtoItem(DataAccess.instance.GetItem("Custom"));
                 i.Price = d;
-                i.Price = d
 				
 				/*
                   <<<<<<< HEAD
