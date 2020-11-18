@@ -32,7 +32,8 @@ namespace SecretCellar
 
         private void btn_close_Click(object sender, EventArgs e)
         {
-            
+            DataAccess.instance.ChangeItemQty(transaction, PROPANENEW, uint.Parse(txt_new_Qty.Text));
+            DataAccess.instance.ChangeItemQty(transaction, PROPANEEXCHANGE, uint.Parse(txt_new_Qty.Text));
             this.Close();
         }
 
