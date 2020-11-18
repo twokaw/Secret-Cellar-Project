@@ -32,12 +32,14 @@
             this.TabSettings = new System.Windows.Forms.TabControl();
             this.tabHardware = new System.Windows.Forms.TabPage();
             this.TabTypes = new System.Windows.Forms.TabPage();
+            this.caseDiscount = new System.Windows.Forms.CheckBox();
             this.label3 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.lstTypes = new System.Windows.Forms.ListBox();
-            this.caseDiscount = new System.Windows.Forms.CheckBox();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.TabSettings.SuspendLayout();
             this.TabTypes.SuspendLayout();
             this.SuspendLayout();
@@ -46,6 +48,8 @@
             // 
             this.TabSettings.Controls.Add(this.tabHardware);
             this.TabSettings.Controls.Add(this.TabTypes);
+            this.TabSettings.Controls.Add(this.tabPage1);
+            this.TabSettings.Controls.Add(this.tabPage2);
             this.TabSettings.Location = new System.Drawing.Point(32, 28);
             this.TabSettings.Margin = new System.Windows.Forms.Padding(7, 8, 7, 8);
             this.TabSettings.Name = "TabSettings";
@@ -80,6 +84,18 @@
             this.TabTypes.TabIndex = 1;
             this.TabTypes.Text = "Types";
             this.TabTypes.UseVisualStyleBackColor = true;
+            // 
+            // caseDiscount
+            // 
+            this.caseDiscount.AutoSize = true;
+            this.caseDiscount.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.1F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.caseDiscount.Location = new System.Drawing.Point(544, 452);
+            this.caseDiscount.Name = "caseDiscount";
+            this.caseDiscount.Size = new System.Drawing.Size(250, 36);
+            this.caseDiscount.TabIndex = 5;
+            this.caseDiscount.Text = "Case Discount";
+            this.caseDiscount.UseVisualStyleBackColor = true;
+            this.caseDiscount.CheckedChanged += new System.EventHandler(this.CaseDiscount_CheckedChanged);
             // 
             // label3
             // 
@@ -132,17 +148,23 @@
             this.lstTypes.Size = new System.Drawing.Size(267, 810);
             this.lstTypes.TabIndex = 0;
             // 
-            // caseDiscount
+            // tabPage1
             // 
-            this.caseDiscount.AutoSize = true;
-            this.caseDiscount.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.1F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.caseDiscount.Location = new System.Drawing.Point(544, 452);
-            this.caseDiscount.Name = "caseDiscount";
-            this.caseDiscount.Size = new System.Drawing.Size(250, 36);
-            this.caseDiscount.TabIndex = 5;
-            this.caseDiscount.Text = "Case Discount";
-            this.caseDiscount.UseVisualStyleBackColor = true;
-            this.caseDiscount.CheckedChanged += new System.EventHandler(this.CaseDiscount_CheckedChanged);
+            this.tabPage1.Location = new System.Drawing.Point(10, 48);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Size = new System.Drawing.Size(2049, 948);
+            this.tabPage1.TabIndex = 2;
+            this.tabPage1.Text = "General";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Location = new System.Drawing.Point(10, 48);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Size = new System.Drawing.Size(2049, 948);
+            this.tabPage2.TabIndex = 3;
+            this.tabPage2.Text = "Reports";
+            this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // FrmSetting
             // 
@@ -174,5 +196,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.CheckBox caseDiscount;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPage2;
     }
 }
