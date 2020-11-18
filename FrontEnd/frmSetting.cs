@@ -23,5 +23,17 @@ namespace SecretCellar
         {
             lstTypes.DataSource = dataAccess.GetInventoryType();
         }
+
+        private void CaseDiscount_CheckedChanged(object sender, EventArgs e)
+        {
+            if (caseDiscount.Checked)
+            {
+                // Do something when CheckBox is checked  
+            }
+            else
+            {
+                // Do something here when CheckBox is not checked  
+            }
+        }
     }
 }
