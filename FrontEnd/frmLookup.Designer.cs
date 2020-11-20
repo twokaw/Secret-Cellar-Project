@@ -65,6 +65,7 @@
 			this.label6 = new System.Windows.Forms.Label();
 			this.cbxSupplyFilter = new System.Windows.Forms.ComboBox();
 			this.lblSupplyFilter = new System.Windows.Forms.Label();
+			this.cbxOnlyItemsWithInventory = new System.Windows.Forms.CheckBox();
 			((System.ComponentModel.ISupportInitialize)(this.LookupView)).BeginInit();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
@@ -418,7 +419,7 @@
 			// 
 			this.cbxTypeFilter.DisplayMember = "TypeName";
 			this.cbxTypeFilter.FormattingEnabled = true;
-			this.cbxTypeFilter.Location = new System.Drawing.Point(448, 21);
+			this.cbxTypeFilter.Location = new System.Drawing.Point(425, 20);
 			this.cbxTypeFilter.Name = "cbxTypeFilter";
 			this.cbxTypeFilter.Size = new System.Drawing.Size(121, 21);
 			this.cbxTypeFilter.TabIndex = 9;
@@ -428,7 +429,7 @@
 			// 
 			this.label6.AutoSize = true;
 			this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label6.Location = new System.Drawing.Point(411, 24);
+			this.label6.Location = new System.Drawing.Point(388, 23);
 			this.label6.Name = "label6";
 			this.label6.Size = new System.Drawing.Size(35, 13);
 			this.label6.TabIndex = 10;
@@ -439,7 +440,7 @@
 			// 
 			this.cbxSupplyFilter.DisplayMember = "Name";
 			this.cbxSupplyFilter.FormattingEnabled = true;
-			this.cbxSupplyFilter.Location = new System.Drawing.Point(717, 21);
+			this.cbxSupplyFilter.Location = new System.Drawing.Point(786, 20);
 			this.cbxSupplyFilter.Name = "cbxSupplyFilter";
 			this.cbxSupplyFilter.Size = new System.Drawing.Size(121, 21);
 			this.cbxSupplyFilter.TabIndex = 11;
@@ -449,11 +450,22 @@
 			// 
 			this.lblSupplyFilter.AutoSize = true;
 			this.lblSupplyFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lblSupplyFilter.Location = new System.Drawing.Point(659, 25);
+			this.lblSupplyFilter.Location = new System.Drawing.Point(729, 24);
 			this.lblSupplyFilter.Name = "lblSupplyFilter";
 			this.lblSupplyFilter.Size = new System.Drawing.Size(57, 13);
 			this.lblSupplyFilter.TabIndex = 12;
 			this.lblSupplyFilter.Text = "Supplier:";
+			// 
+			// cbxOnlyItemsWithInventory
+			// 
+			this.cbxOnlyItemsWithInventory.AutoSize = true;
+			this.cbxOnlyItemsWithInventory.Location = new System.Drawing.Point(561, 22);
+			this.cbxOnlyItemsWithInventory.Name = "cbxOnlyItemsWithInventory";
+			this.cbxOnlyItemsWithInventory.Size = new System.Drawing.Size(148, 17);
+			this.cbxOnlyItemsWithInventory.TabIndex = 13;
+			this.cbxOnlyItemsWithInventory.Text = "Only Items WIth Inventory";
+			this.cbxOnlyItemsWithInventory.UseVisualStyleBackColor = true;
+			this.cbxOnlyItemsWithInventory.CheckedChanged += new System.EventHandler(this.cbxOnlyItemsWithInventory_CheckedChanged);
 			// 
 			// frmLookup
 			// 
@@ -462,6 +474,7 @@
 			this.AutoSize = true;
 			this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
 			this.ClientSize = new System.Drawing.Size(1023, 489);
+			this.Controls.Add(this.cbxOnlyItemsWithInventory);
 			this.Controls.Add(this.lblSupplyFilter);
 			this.Controls.Add(this.cbxSupplyFilter);
 			this.Controls.Add(this.label6);
@@ -523,5 +536,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox cbxSupplyFilter;
         private System.Windows.Forms.Label lblSupplyFilter;
-    }
+		private System.Windows.Forms.CheckBox cbxOnlyItemsWithInventory;
+	}
 }
