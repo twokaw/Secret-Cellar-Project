@@ -263,5 +263,11 @@ namespace SecretCellar
             customItem.ShowDialog();
             addRow(transaction);
         }
+
+        private void pb_settings_Click(object sender, EventArgs e)
+        {
+            FrmSetting setting= new FrmSetting();
+            setting.ShowDialog();
+        }
     }
 }
