@@ -35,5 +35,23 @@ namespace SecretCellar
                 // Do something here when CheckBox is not checked  
             }
         }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_color_Click(object sender, EventArgs e)
+        {
+            ColorDialog colorPicker = new ColorDialog
+            {
+                Color = Color.Green
+            };
+
+
+
+            if (colorPicker.ShowDialog() == DialogResult.OK)
+                BackColor = colorPicker.Color;
+        }
     }
 }
