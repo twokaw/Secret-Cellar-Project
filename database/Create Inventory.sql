@@ -525,6 +525,7 @@ SET @saved_cs_client     = @@character_set_client;
  1 AS `Tax_Name`*/;
 SET character_set_client = @saved_cs_client;
 
+
 --
 -- Temporary view structure for view `v_tax`
 --
