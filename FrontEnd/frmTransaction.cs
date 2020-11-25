@@ -19,7 +19,7 @@ namespace SecretCellar
         private DataAccess dataAccess;
         private Image logo = null;
 
-        public frmTransaction()
+        public frmTransaction():base()
         {
             InitializeComponent();
             txtBarcode.Focus();

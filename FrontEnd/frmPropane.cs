@@ -18,7 +18,7 @@ namespace SecretCellar
         public Transaction transaction = null;
         private const string PROPANEEXCHANGE = "PROPANEEXCHANGE";
         private const string PROPANENEW = "PROPANENEW";
-        public frmPropane(Transaction items)
+        public frmPropane(Transaction items):base()
         {
             InitializeComponent();
             transaction = items;

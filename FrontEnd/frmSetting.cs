@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace SecretCellar
 {
-    public partial class FrmSetting : Form
+    public partial class FrmSetting : ManagedForm
     {
         private readonly DataAccess dataAccess = new DataAccess();
 
@@ -23,7 +23,6 @@ namespace SecretCellar
         {
             lstTypes.DataSource = dataAccess.GetInventoryType();
         }
-
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -38,7 +37,8 @@ namespace SecretCellar
             };
 
             if (colorPicker.ShowDialog() == DialogResult.OK)
-                 ManagedForm.SetBackColor (colorPicker.Color);
+                ManagedForm.SetBackColor (colorPicker.Color);
+                //BackColor = colorPicker.Color;
         }
 
         private void btn_cancel_Click(object sender, EventArgs e)
