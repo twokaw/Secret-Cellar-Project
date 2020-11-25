@@ -51,6 +51,7 @@ namespace SecretCellar
 
 
             if (colorPicker.ShowDialog() == DialogResult.OK)
+                // ManagedForm.setcolor;
                 BackColor = colorPicker.Color;
         }
 

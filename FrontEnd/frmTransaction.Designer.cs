@@ -546,6 +546,7 @@
             // 
             // pb_settings
             // 
+            this.pb_settings.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pb_settings.Image = global::SecretCellar.Properties.Resources.Gears;
             this.pb_settings.Location = new System.Drawing.Point(1085, 7);
             this.pb_settings.Name = "pb_settings";
