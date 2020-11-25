@@ -97,6 +97,7 @@ namespace SecretCellar
 
         private void btn_font_Click_1(object sender, EventArgs e)
         {
+
             FontDialog fontDlg = new FontDialog();
             fontDlg.ShowDialog();
         }
