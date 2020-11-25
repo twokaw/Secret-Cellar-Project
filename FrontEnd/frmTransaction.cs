@@ -18,7 +18,7 @@ namespace SecretCellar
         private Transaction transaction = new Transaction();
         private DataAccess dataAccess;
         private Image logo = null;
-
+        public static DataGridViewRowCollection chosenItems;
         public frmTransaction()
         {
             InitializeComponent();
@@ -41,6 +41,8 @@ namespace SecretCellar
                 FontName = Properties.Settings.Default.ReceiptFont,
                 FontSize = Properties.Settings.Default.ReceiptFontSize
             };
+
+            btnSuspendTransaction.Visible = false;
         }
 
         private void ReloadLogo()
@@ -205,7 +207,12 @@ namespace SecretCellar
 
         private void txt_TransTotal_TextChanged(object sender, EventArgs e)
         {
-
+            if (!txt_TransTotal.Text.Equals("$0.00") && !txt_TransTotal.Text.Replace(" ", "").Equals("")) {
+                btnSuspendTransaction.Visible = true;
+            }
+            else {
+                btnSuspendTransaction.Visible = false;
+            }
         }
 
         private void btnEvents_Click(object sender, EventArgs e)
@@ -233,6 +240,11 @@ namespace SecretCellar
         private void dataGridView1_Click(object sender, EventArgs e)
         {
             txtBarcode.Focus();
+        }
+
+        private void dataGridView1_Changed(object sender, EventArgs e)
+		{
+            chosenItems = this.dataGridView1.Rows;
         }
 
         private void openCashDrawer()
@@ -269,5 +281,11 @@ namespace SecretCellar
             FrmSetting setting= new FrmSetting();
             setting.ShowDialog();
         }
-    }
+
+		private void btnSuspendTransaction_Click(object sender, EventArgs e)
+		{
+            frmSuspendTransaction suspendTransaction = new frmSuspendTransaction();
+            suspendTransaction.ShowDialog();
+		}
+	}
 }
