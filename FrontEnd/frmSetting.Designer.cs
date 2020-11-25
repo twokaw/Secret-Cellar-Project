@@ -32,20 +32,14 @@
             this.TabSettings = new System.Windows.Forms.TabControl();
             this.tabHardware = new System.Windows.Forms.TabPage();
             this.TabTypes = new System.Windows.Forms.TabPage();
-            this.caseDiscount = new System.Windows.Forms.CheckBox();
             this.label3 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.lstTypes = new System.Windows.Forms.ListBox();
             this.tab_General = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.btn_color = new System.Windows.Forms.Button();
-            this.btn_panel_color = new System.Windows.Forms.Button();
-            this.btn_font = new System.Windows.Forms.Button();
-            this.btn_ok = new System.Windows.Forms.Button();
-            this.btn_cancel = new System.Windows.Forms.Button();
-            this.btn_apply = new System.Windows.Forms.Button();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.TabSettings.SuspendLayout();
             this.TabTypes.SuspendLayout();
             this.tab_General.SuspendLayout();
@@ -53,91 +47,81 @@
             // 
             // TabSettings
             // 
-            this.TabSettings.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.TabSettings.Controls.Add(this.tabHardware);
             this.TabSettings.Controls.Add(this.TabTypes);
             this.TabSettings.Controls.Add(this.tab_General);
             this.TabSettings.Controls.Add(this.tabPage2);
-            this.TabSettings.Location = new System.Drawing.Point(12, 12);
+            this.TabSettings.Location = new System.Drawing.Point(32, 29);
+            this.TabSettings.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
             this.TabSettings.Name = "TabSettings";
             this.TabSettings.SelectedIndex = 0;
-            this.TabSettings.Size = new System.Drawing.Size(776, 422);
+            this.TabSettings.Size = new System.Drawing.Size(2069, 1006);
             this.TabSettings.TabIndex = 0;
             // 
             // tabHardware
             // 
-            this.tabHardware.Location = new System.Drawing.Point(4, 22);
+            this.tabHardware.Location = new System.Drawing.Point(10, 48);
+            this.tabHardware.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
             this.tabHardware.Name = "tabHardware";
-            this.tabHardware.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            this.tabHardware.Size = new System.Drawing.Size(768, 396);
+            this.tabHardware.Padding = new System.Windows.Forms.Padding(8, 7, 8, 7);
+            this.tabHardware.Size = new System.Drawing.Size(2049, 948);
             this.tabHardware.TabIndex = 0;
             this.tabHardware.Text = "Hardware";
             this.tabHardware.UseVisualStyleBackColor = true;
             // 
             // TabTypes
             // 
-            this.TabTypes.Controls.Add(this.caseDiscount);
             this.TabTypes.Controls.Add(this.label3);
             this.TabTypes.Controls.Add(this.comboBox1);
             this.TabTypes.Controls.Add(this.label2);
             this.TabTypes.Controls.Add(this.label1);
             this.TabTypes.Controls.Add(this.lstTypes);
-            this.TabTypes.Location = new System.Drawing.Point(4, 22);
+            this.TabTypes.Location = new System.Drawing.Point(10, 48);
+            this.TabTypes.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
             this.TabTypes.Name = "TabTypes";
-            this.TabTypes.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            this.TabTypes.Size = new System.Drawing.Size(768, 396);
+            this.TabTypes.Padding = new System.Windows.Forms.Padding(8, 7, 8, 7);
+            this.TabTypes.Size = new System.Drawing.Size(2049, 948);
             this.TabTypes.TabIndex = 1;
             this.TabTypes.Text = "Types";
             this.TabTypes.UseVisualStyleBackColor = true;
             // 
-            // caseDiscount
-            // 
-            this.caseDiscount.AutoSize = true;
-            this.caseDiscount.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.1F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.caseDiscount.Location = new System.Drawing.Point(204, 190);
-            this.caseDiscount.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
-            this.caseDiscount.Name = "caseDiscount";
-            this.caseDiscount.Size = new System.Drawing.Size(108, 17);
-            this.caseDiscount.TabIndex = 5;
-            this.caseDiscount.Text = "Case Discount";
-            this.caseDiscount.UseVisualStyleBackColor = true;
-            this.caseDiscount.CheckedChanged += new System.EventHandler(this.CaseDiscount_CheckedChanged);
-            // 
             // label3
             // 
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(207, 227);
+            this.label3.Location = new System.Drawing.Point(552, 541);
+            this.label3.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(102, 15);
+            this.label3.Size = new System.Drawing.Size(272, 36);
             this.label3.TabIndex = 4;
             this.label3.Text = "Tax Type";
             // 
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(204, 249);
+            this.comboBox1.Location = new System.Drawing.Point(544, 594);
+            this.comboBox1.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(151, 21);
+            this.comboBox1.Size = new System.Drawing.Size(396, 39);
             this.comboBox1.TabIndex = 3;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(194, 46);
+            this.label2.Location = new System.Drawing.Point(517, 110);
+            this.label2.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(10, 13);
+            this.label2.Size = new System.Drawing.Size(22, 32);
             this.label2.TabIndex = 2;
             this.label2.Text = " ";
             // 
             // label1
             // 
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(20, 14);
+            this.label1.Location = new System.Drawing.Point(53, 33);
+            this.label1.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(102, 13);
+            this.label1.Size = new System.Drawing.Size(272, 31);
             this.label1.TabIndex = 1;
             this.label1.Text = "Inventory Type";
             // 
@@ -146,114 +130,53 @@
             this.lstTypes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.lstTypes.FormattingEnabled = true;
-            this.lstTypes.Location = new System.Drawing.Point(19, 33);
+            this.lstTypes.ItemHeight = 31;
+            this.lstTypes.Location = new System.Drawing.Point(51, 79);
+            this.lstTypes.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
             this.lstTypes.Name = "lstTypes";
-            this.lstTypes.Size = new System.Drawing.Size(103, 342);
+            this.lstTypes.Size = new System.Drawing.Size(268, 810);
             this.lstTypes.TabIndex = 0;
             // 
             // tab_General
             // 
-            this.tab_General.Controls.Add(this.btn_font);
-            this.tab_General.Controls.Add(this.btn_panel_color);
             this.tab_General.Controls.Add(this.btn_color);
-            this.tab_General.Location = new System.Drawing.Point(4, 22);
-            this.tab_General.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.tab_General.Location = new System.Drawing.Point(10, 48);
+            this.tab_General.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tab_General.Name = "tab_General";
-            this.tab_General.Size = new System.Drawing.Size(768, 396);
+            this.tab_General.Size = new System.Drawing.Size(2049, 948);
             this.tab_General.TabIndex = 2;
             this.tab_General.Text = "General";
             this.tab_General.UseVisualStyleBackColor = true;
-            this.tab_General.Click += new System.EventHandler(this.tab_General_Click);
+            // 
+            // btn_color
+            // 
+            this.btn_color.Location = new System.Drawing.Point(627, 222);
+            this.btn_color.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
+            this.btn_color.Name = "btn_color";
+            this.btn_color.Size = new System.Drawing.Size(464, 55);
+            this.btn_color.TabIndex = 0;
+            this.btn_color.Text = "Color Settings";
+            this.btn_color.UseVisualStyleBackColor = true;
+            this.btn_color.Click += new System.EventHandler(this.btn_color_Click);
             // 
             // tabPage2
             // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.tabPage2.Location = new System.Drawing.Point(10, 48);
+            this.tabPage2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Size = new System.Drawing.Size(768, 396);
+            this.tabPage2.Size = new System.Drawing.Size(2049, 948);
             this.tabPage2.TabIndex = 3;
             this.tabPage2.Text = "Reports";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // btn_color
-            // 
-            this.btn_color.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_color.Location = new System.Drawing.Point(235, 93);
-            this.btn_color.Name = "btn_color";
-            this.btn_color.Size = new System.Drawing.Size(174, 23);
-            this.btn_color.TabIndex = 0;
-            this.btn_color.Text = "Background Color Settings";
-            this.btn_color.UseVisualStyleBackColor = true;
-            this.btn_color.Click += new System.EventHandler(this.btn_color_Click);
-            // 
-            // btn_panel_color
-            // 
-            this.btn_panel_color.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_panel_color.Location = new System.Drawing.Point(235, 157);
-            this.btn_panel_color.Name = "btn_panel_color";
-            this.btn_panel_color.Size = new System.Drawing.Size(174, 23);
-            this.btn_panel_color.TabIndex = 1;
-            this.btn_panel_color.Text = "Panel Color Settings";
-            this.btn_panel_color.UseVisualStyleBackColor = true;
-            this.btn_panel_color.Click += new System.EventHandler(this.btn_panel_color_Click);
-            // 
-            // btn_font
-            // 
-            this.btn_font.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_font.Location = new System.Drawing.Point(235, 219);
-            this.btn_font.Name = "btn_font";
-            this.btn_font.Size = new System.Drawing.Size(174, 23);
-            this.btn_font.TabIndex = 2;
-            this.btn_font.Text = "Font Settings";
-            this.btn_font.UseVisualStyleBackColor = true;
-            this.btn_font.Click += new System.EventHandler(this.btn_font_Click_1);
-            // 
-            // btn_ok
-            // 
-            this.btn_ok.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btn_ok.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_ok.Location = new System.Drawing.Point(240, 470);
-            this.btn_ok.Name = "btn_ok";
-            this.btn_ok.Size = new System.Drawing.Size(75, 23);
-            this.btn_ok.TabIndex = 3;
-            this.btn_ok.Text = "ok";
-            this.btn_ok.UseVisualStyleBackColor = true;
-            this.btn_ok.Click += new System.EventHandler(this.btn_ok_Click);
-            // 
-            // btn_cancel
-            // 
-            this.btn_cancel.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btn_cancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_cancel.Location = new System.Drawing.Point(321, 470);
-            this.btn_cancel.Name = "btn_cancel";
-            this.btn_cancel.Size = new System.Drawing.Size(75, 23);
-            this.btn_cancel.TabIndex = 4;
-            this.btn_cancel.Text = "cancel";
-            this.btn_cancel.UseVisualStyleBackColor = true;
-            this.btn_cancel.Click += new System.EventHandler(this.btn_cancel_Click);
-            // 
-            // btn_apply
-            // 
-            this.btn_apply.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btn_apply.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_apply.Location = new System.Drawing.Point(411, 470);
-            this.btn_apply.Name = "btn_apply";
-            this.btn_apply.Size = new System.Drawing.Size(75, 23);
-            this.btn_apply.TabIndex = 5;
-            this.btn_apply.Text = "apply";
-            this.btn_apply.UseVisualStyleBackColor = true;
-            this.btn_apply.Click += new System.EventHandler(this.btn_apply_Click);
-            // 
             // FrmSetting
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(889, 505);
-            this.Controls.Add(this.btn_apply);
-            this.Controls.Add(this.btn_cancel);
-            this.Controls.Add(this.btn_ok);
+            this.ClientSize = new System.Drawing.Size(1925, 1061);
             this.Controls.Add(this.TabSettings);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
             this.Name = "FrmSetting";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "frmSetting";
@@ -276,14 +199,8 @@
         private System.Windows.Forms.ListBox lstTypes;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.CheckBox caseDiscount;
         private System.Windows.Forms.TabPage tab_General;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.Button btn_color;
-        private System.Windows.Forms.Button btn_font;
-        private System.Windows.Forms.Button btn_panel_color;
-        private System.Windows.Forms.Button btn_ok;
-        private System.Windows.Forms.Button btn_cancel;
-        private System.Windows.Forms.Button btn_apply;
     }
 }

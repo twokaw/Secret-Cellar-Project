@@ -269,5 +269,15 @@ namespace SecretCellar
             FrmSetting setting= new FrmSetting();
             setting.ShowDialog();
         }
+
+        private void caseDiscount_CheckedChanged(object sender, EventArgs e)
+        {
+            string msg = "";
+
+            if (caseDiscount.Checked == true)
+            {
+                msg = "Case Discounts Applied!";
+            }
+        }
     }
 }
