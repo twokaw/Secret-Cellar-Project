@@ -13,12 +13,12 @@ using System.Windows.Forms;
 
 namespace SecretCellar
 {
-    public partial class frmPropane : Form
+    public partial class frmPropane : ManagedForm
     {
         public Transaction transaction = null;
         private const string PROPANEEXCHANGE = "PROPANEEXCHANGE";
         private const string PROPANENEW = "PROPANENEW";
-        public frmPropane(Transaction items)
+        public frmPropane(Transaction items):base()
         {
             InitializeComponent();
             transaction = items;
