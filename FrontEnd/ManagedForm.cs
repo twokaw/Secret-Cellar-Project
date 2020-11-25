@@ -11,32 +11,14 @@ namespace SecretCellar
         private static Color CommonBackColor = DefaultColor();
         private static Font CommonFont = Default_Font();
         private static readonly List<ManagedForm> Forms = new List<ManagedForm>();
-        private static bool flag = false;
+
         public ManagedForm()
         {
             Forms.Add(this);
             Console.WriteLine($"Constructed: {Forms.Count}");
             base.BackColor = CommonBackColor;
             base.Font = CommonFont;
-            Font f;
-
-            if (flag)
-            {
-                SetBackColor(Color.SandyBrown);
-                f = new Font(CommonFont.Name, CommonFont.Size + 3, CommonFont.Style);
-
-            }
-            else
-            {
-                SetBackColor(Color.Beige);
-                f = new Font(CommonFont.Name, CommonFont.Size - 3, CommonFont.Style);
-
-            }
-
-            flag = !flag;
-            SetFont(f);
-
-            base.FormClosed += ManagedForm_FormClosed;
+           base.FormClosed += ManagedForm_FormClosed;
         }
 
         private void ManagedForm_FormClosed(object sender, FormClosedEventArgs e)

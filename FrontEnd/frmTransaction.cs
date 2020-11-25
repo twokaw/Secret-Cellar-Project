@@ -12,7 +12,7 @@ using Shared;
 
 namespace SecretCellar
 {
-    public partial class frmTransaction : Form
+    public partial class frmTransaction : ManagedForm
     {
 
         private Transaction transaction = new Transaction();
