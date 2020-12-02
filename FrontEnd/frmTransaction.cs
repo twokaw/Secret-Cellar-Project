@@ -253,6 +253,7 @@ namespace SecretCellar
             frmPropane propane= new frmPropane(transaction);
 
             propane.ShowDialog();
+            addRow(transaction);
         }
 
         private void btnCustom_Click(object sender, EventArgs e)
@@ -261,6 +262,20 @@ namespace SecretCellar
 
             customItem.ShowDialog();
             addRow(transaction);
+        }
+
+        private void pb_settings_Click(object sender, EventArgs e)
+        {
+            FrmSetting setting= new FrmSetting();
+            setting.ShowDialog();
+        }
+
+        private void caseDiscount_CheckedChanged(object sender, EventArgs e)
+        {
+            if (caseDiscount.Checked == true)
+            {
+                System.Windows.Forms.MessageBox.Show("Case Discounts Applied!");
+            }             
         }
     }
 }

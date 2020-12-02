@@ -144,6 +144,7 @@ namespace pos_core_api.ORM
                 });
             }
         }
+
         public void GetPayments(Transaction transaction)
         {
             string itemSQLStatement = @"

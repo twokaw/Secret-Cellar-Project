@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Shared
 {
-    public class InventoryType: Tax
+    public class InventoryType:Tax 
     {
         public uint TypeId { get; set; }
         public string TypeName { get; set; }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Shared;
 using static SecretCellar.WebConnector;
 using System;
+using System.Linq;
 
 namespace SecretCellar
 {
@@ -203,6 +204,48 @@ namespace SecretCellar
                 Discounts = inv.Discounts
             }
             ;
+
         }
+
+        public bool ChangeItemQty(Transaction t,  string barcode, uint qty)
+        {
+            bool result = false;
+            Item i = t.Items.FirstOrDefault(x => x.Barcode == barcode);
+
+            if (qty == 0)
+            {
+                if(i != null)
+                {
+                    t.Items.Remove(i);
+                    result = true;
+                }
+            }
+            else
+            {
+                if (i != null && i.NumSold != qty)
+                {
+                    i.NumSold = qty;
+                    result = true;
+                }
+                else if(i == null)
+                {
+                    i = ConvertInvtoItem(GetItem(barcode));
+                    if (i != null)
+                    {
+                        i.NumSold = qty;
+                        t.Items.Add(i);
+                        result = true;
+                    }
+                    else
+                        throw new Exception("Barcode not in the database");
+                }
+            }
+            return result;
+        }
+
+
+
+
+
     }
 }

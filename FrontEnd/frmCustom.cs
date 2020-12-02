@@ -39,7 +39,16 @@ namespace SecretCellar
             {
                 Item i = DataAccess.ConvertInvtoItem(DataAccess.instance.GetItem("Custom"));
                 i.Price = d;
+				
+				/*
+                  <<<<<<< HEAD
+                    //  i.Description = txt_descript.Text;
+                  =======
                 i.Name = txt_descript.Text;
+                >>>>>>> master
+                */
+				i.Name = txt_descript.Text;
+
                 i.NumSold = 1;
                 customItem.Items.Add(i);
             }

@@ -3,12 +3,12 @@
     partial class frmTransaction
     {
         /// <summary>
-        /// Required designer variable.
+        /// Required designer variable.  
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
         /// <summary>
-        /// Clean up any resources being used.
+        /// Clean up any resources being used.  
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
@@ -64,12 +64,15 @@
             this.LB_SubTotal = new System.Windows.Forms.Label();
             this.txtBarcode = new System.Windows.Forms.TextBox();
             this.lbl_BARCODE = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnLookup = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pb_settings = new System.Windows.Forms.PictureBox();
+            this.caseDiscount = new System.Windows.Forms.CheckBox();
             this.btnTender = new ePOSOne.btnProduct.Button_WOC();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_settings)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -100,7 +103,7 @@
             this.TAX,
             this.BOTTLE_DEPOSIT,
             this.TOTAL});
-            this.dataGridView1.Location = new System.Drawing.Point(15, 51);
+            this.dataGridView1.Location = new System.Drawing.Point(10, 97);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(1);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersVisible = false;
@@ -108,7 +111,7 @@
             this.dataGridView1.RowTemplate.Height = 40;
             this.dataGridView1.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(1157, 266);
+            this.dataGridView1.Size = new System.Drawing.Size(1160, 180);
             this.dataGridView1.TabIndex = 2;
             this.dataGridView1.TabStop = false;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
@@ -175,7 +178,7 @@
             // 
             this.btnPropane.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnPropane.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPropane.Location = new System.Drawing.Point(15, 332);
+            this.btnPropane.Location = new System.Drawing.Point(28, 415);
             this.btnPropane.Margin = new System.Windows.Forms.Padding(1);
             this.btnPropane.Name = "btnPropane";
             this.btnPropane.Size = new System.Drawing.Size(120, 44);
@@ -189,7 +192,7 @@
             // 
             this.btnFood.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnFood.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFood.Location = new System.Drawing.Point(15, 407);
+            this.btnFood.Location = new System.Drawing.Point(28, 490);
             this.btnFood.Margin = new System.Windows.Forms.Padding(1);
             this.btnFood.Name = "btnFood";
             this.btnFood.Size = new System.Drawing.Size(120, 44);
@@ -202,7 +205,7 @@
             // 
             this.btnCustom.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnCustom.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCustom.Location = new System.Drawing.Point(15, 483);
+            this.btnCustom.Location = new System.Drawing.Point(15, 674);
             this.btnCustom.Margin = new System.Windows.Forms.Padding(1);
             this.btnCustom.Name = "btnCustom";
             this.btnCustom.Size = new System.Drawing.Size(120, 44);
@@ -216,7 +219,7 @@
             // 
             this.btnShipping.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnShipping.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnShipping.Location = new System.Drawing.Point(154, 483);
+            this.btnShipping.Location = new System.Drawing.Point(154, 674);
             this.btnShipping.Margin = new System.Windows.Forms.Padding(1);
             this.btnShipping.Name = "btnShipping";
             this.btnShipping.Size = new System.Drawing.Size(120, 44);
@@ -230,7 +233,7 @@
             // 
             this.btnEvents.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnEvents.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEvents.Location = new System.Drawing.Point(154, 407);
+            this.btnEvents.Location = new System.Drawing.Point(167, 490);
             this.btnEvents.Margin = new System.Windows.Forms.Padding(1);
             this.btnEvents.Name = "btnEvents";
             this.btnEvents.Size = new System.Drawing.Size(120, 44);
@@ -244,7 +247,7 @@
             // 
             this.btnDryClean.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnDryClean.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDryClean.Location = new System.Drawing.Point(154, 332);
+            this.btnDryClean.Location = new System.Drawing.Point(167, 415);
             this.btnDryClean.Margin = new System.Windows.Forms.Padding(1);
             this.btnDryClean.Name = "btnDryClean";
             this.btnDryClean.Size = new System.Drawing.Size(120, 44);
@@ -258,7 +261,7 @@
             // 
             this.btnDiscount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnDiscount.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDiscount.Location = new System.Drawing.Point(292, 483);
+            this.btnDiscount.Location = new System.Drawing.Point(292, 674);
             this.btnDiscount.Margin = new System.Windows.Forms.Padding(1);
             this.btnDiscount.Name = "btnDiscount";
             this.btnDiscount.Size = new System.Drawing.Size(120, 44);
@@ -272,7 +275,7 @@
             // 
             this.btnVoidTrx.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnVoidTrx.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnVoidTrx.Location = new System.Drawing.Point(292, 407);
+            this.btnVoidTrx.Location = new System.Drawing.Point(305, 490);
             this.btnVoidTrx.Margin = new System.Windows.Forms.Padding(1);
             this.btnVoidTrx.Name = "btnVoidTrx";
             this.btnVoidTrx.Size = new System.Drawing.Size(120, 44);
@@ -286,7 +289,7 @@
             // 
             this.btnDeleteItem.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnDeleteItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDeleteItem.Location = new System.Drawing.Point(292, 332);
+            this.btnDeleteItem.Location = new System.Drawing.Point(305, 415);
             this.btnDeleteItem.Margin = new System.Windows.Forms.Padding(1);
             this.btnDeleteItem.Name = "btnDeleteItem";
             this.btnDeleteItem.Size = new System.Drawing.Size(120, 44);
@@ -315,7 +318,7 @@
             this.panel1.Controls.Add(this.LB_Tax);
             this.panel1.Controls.Add(this.LB_SubTotal);
             this.panel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panel1.Location = new System.Drawing.Point(976, 319);
+            this.panel1.Location = new System.Drawing.Point(945, 373);
             this.panel1.Margin = new System.Windows.Forms.Padding(1);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(196, 202);
@@ -471,9 +474,13 @@
             // 
             // txtBarcode
             // 
+            this.txtBarcode.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBarcode.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBarcode.Location = new System.Drawing.Point(444, 12);
+            this.txtBarcode.Location = new System.Drawing.Point(455, 18);
             this.txtBarcode.Margin = new System.Windows.Forms.Padding(1);
+            this.txtBarcode.MaximumSize = new System.Drawing.Size(166, 26);
+            this.txtBarcode.MinimumSize = new System.Drawing.Size(166, 26);
             this.txtBarcode.Name = "txtBarcode";
             this.txtBarcode.Size = new System.Drawing.Size(166, 26);
             this.txtBarcode.TabIndex = 15;
@@ -481,33 +488,25 @@
             // 
             // lbl_BARCODE
             // 
+            this.lbl_BARCODE.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lbl_BARCODE.AutoSize = true;
             this.lbl_BARCODE.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_BARCODE.Location = new System.Drawing.Point(357, 17);
+            this.lbl_BARCODE.Location = new System.Drawing.Point(368, 23);
             this.lbl_BARCODE.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.lbl_BARCODE.Name = "lbl_BARCODE";
             this.lbl_BARCODE.Size = new System.Drawing.Size(72, 15);
             this.lbl_BARCODE.TabIndex = 17;
             this.lbl_BARCODE.Text = "BARCODE";
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(435, 343);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(1);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(286, 184);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 18;
-            this.pictureBox1.TabStop = false;
-            // 
             // btnLookup
             // 
+            this.btnLookup.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.btnLookup.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLookup.Location = new System.Drawing.Point(643, 10);
+            this.btnLookup.Location = new System.Drawing.Point(654, 16);
             this.btnLookup.Margin = new System.Windows.Forms.Padding(1);
+            this.btnLookup.MaximumSize = new System.Drawing.Size(104, 29);
             this.btnLookup.Name = "btnLookup";
             this.btnLookup.Size = new System.Drawing.Size(104, 29);
             this.btnLookup.TabIndex = 19;
@@ -515,6 +514,45 @@
             this.btnLookup.Text = "LOOKUP";
             this.btnLookup.UseVisualStyleBackColor = true;
             this.btnLookup.Click += new System.EventHandler(this.btnLookup_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(444, 383);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(1);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(303, 184);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 18;
+            this.pictureBox1.TabStop = false;
+            // 
+            // pb_settings
+            // 
+            this.pb_settings.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pb_settings.Image = global::SecretCellar.Properties.Resources.Gears;
+            this.pb_settings.Location = new System.Drawing.Point(1122, 10);
+            this.pb_settings.Name = "pb_settings";
+            this.pb_settings.Size = new System.Drawing.Size(48, 40);
+            this.pb_settings.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pb_settings.TabIndex = 20;
+            this.pb_settings.TabStop = false;
+            this.pb_settings.Click += new System.EventHandler(this.pb_settings_Click);
+            // 
+            // caseDiscount
+            // 
+            this.caseDiscount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.caseDiscount.AutoSize = true;
+            this.caseDiscount.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.1F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.caseDiscount.Location = new System.Drawing.Point(832, 26);
+            this.caseDiscount.Margin = new System.Windows.Forms.Padding(1);
+            this.caseDiscount.Name = "caseDiscount";
+            this.caseDiscount.Size = new System.Drawing.Size(143, 17);
+            this.caseDiscount.TabIndex = 21;
+            this.caseDiscount.Text = "Apply Case Discount";
+            this.caseDiscount.UseVisualStyleBackColor = true;
+            this.caseDiscount.CheckedChanged += new System.EventHandler(this.caseDiscount_CheckedChanged);
             // 
             // btnTender
             // 
@@ -528,7 +566,7 @@
             this.btnTender.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnTender.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTender.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTender.Location = new System.Drawing.Point(782, 397);
+            this.btnTender.Location = new System.Drawing.Point(764, 435);
             this.btnTender.Margin = new System.Windows.Forms.Padding(1);
             this.btnTender.Name = "btnTender";
             this.btnTender.OnHoverBorderColor = System.Drawing.Color.Transparent;
@@ -549,7 +587,9 @@
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(152)))), ((int)(((byte)(151)))), ((int)(((byte)(152)))));
-            this.ClientSize = new System.Drawing.Size(1188, 546);
+            this.ClientSize = new System.Drawing.Size(1184, 636);
+            this.Controls.Add(this.caseDiscount);
+            this.Controls.Add(this.pb_settings);
             this.Controls.Add(this.btnLookup);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.lbl_BARCODE);
@@ -576,6 +616,7 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_settings)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -619,5 +660,7 @@
         private System.Windows.Forms.TextBox txt_Ship;
         private System.Windows.Forms.Label lbl_item_total;
         private System.Windows.Forms.TextBox txt_itemTotal;
+        private System.Windows.Forms.PictureBox pb_settings;
+        private System.Windows.Forms.CheckBox caseDiscount;
     }
 }

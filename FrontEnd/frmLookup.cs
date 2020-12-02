@@ -345,5 +345,24 @@ namespace SecretCellar
         {
             refresh();
         }
-    }
+
+        private void cbxOnlyItemsWithInventory_CheckedChanged(object sender, EventArgs e)
+        {
+            //WHEN THE CHECKBOX IS CHECKED CALL THE REFRESH CODE BUT ADD 'WHERE QTY DOES NOT EQUAL 0'
+            if (cbxOnlyItemsWithInventory.Checked) {
+                LookupView.DataSource = inventory.Where(x => (x.Name.IndexOf(txtlookup.Text, StringComparison.OrdinalIgnoreCase) >= 0 || x.Barcode.IndexOf(txtlookup.Text, StringComparison.OrdinalIgnoreCase) >= 0)
+                && (cbxTypeFilter.Text == "" || cbxTypeFilter.Text == x.ItemType)
+                && (cbxSupplyFilter.Text == "" || suppliers.First(s => s.Name == cbxSupplyFilter.Text).SupplierID == x.SupplierID)).
+                    Select(x => new { Name = x.Name, Id = x.Id, ItemType = x.ItemType, Qty = x.Qty, Barcode = x.Barcode, Price = x.Price }).
+                    Where(x => x.Qty != 0).
+                    OrderBy(x => x.Name).
+                    ToList();
+            }
+
+            //OTHERWISE JUST REFRESH LIKE NORMAL TO BRING ALL THE ITEMS IN
+            else {
+                refresh();
+			}
+		}
+	}
 }

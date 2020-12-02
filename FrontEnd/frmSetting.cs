@@ -23,5 +23,26 @@ namespace SecretCellar
         {
             lstTypes.DataSource = dataAccess.GetInventoryType();
         }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_color_Click(object sender, EventArgs e)
+        {
+            ColorDialog colorPicker = new ColorDialog
+            {
+                Color = Color.Green
+            };
+
+            if (colorPicker.ShowDialog() == DialogResult.OK)
+                BackColor = colorPicker.Color;
+        }
+
+        private void tab_General_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
