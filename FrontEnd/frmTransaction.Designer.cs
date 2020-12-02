@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmTransaction));
 			this.dataGridView1 = new System.Windows.Forms.DataGridView();
 			this.DESCRIPTION = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -65,10 +65,11 @@
 			this.txtBarcode = new System.Windows.Forms.TextBox();
 			this.lbl_BARCODE = new System.Windows.Forms.Label();
 			this.btnLookup = new System.Windows.Forms.Button();
-			this.btnTender = new ePOSOne.btnProduct.Button_WOC();
 			this.pictureBox1 = new System.Windows.Forms.PictureBox();
 			this.pb_settings = new System.Windows.Forms.PictureBox();
+			this.btnSuspendedTransactions = new System.Windows.Forms.Button();
 			this.btnSuspendTransaction = new System.Windows.Forms.Button();
+			this.btnTender = new ePOSOne.btnProduct.Button_WOC();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
 			this.panel1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -86,14 +87,14 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
 			this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-			dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-			dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-			dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.1F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-			dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-			dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-			dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-			this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+			dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+			dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+			dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.1F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+			dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+			dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+			this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
 			this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.DESCRIPTION,
@@ -116,8 +117,9 @@
 			this.dataGridView1.TabStop = false;
 			this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
 			this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+			this.dataGridView1.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dataGridView1_RowsAdded);
+			this.dataGridView1.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.dataGridView1_RowsRemoved);
 			this.dataGridView1.Click += new System.EventHandler(this.dataGridView1_Click);
-			this.dataGridView1.Rows.CollectionChanged += new System.ComponentModel.CollectionChangeEventHandler(this.dataGridView1_Changed);
 			// 
 			// DESCRIPTION
 			// 
@@ -476,7 +478,7 @@
 			// txtBarcode
 			// 
 			this.txtBarcode.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.txtBarcode.Location = new System.Drawing.Point(444, 12);
+			this.txtBarcode.Location = new System.Drawing.Point(507, 9);
 			this.txtBarcode.Margin = new System.Windows.Forms.Padding(1);
 			this.txtBarcode.Name = "txtBarcode";
 			this.txtBarcode.Size = new System.Drawing.Size(166, 26);
@@ -487,7 +489,7 @@
 			// 
 			this.lbl_BARCODE.AutoSize = true;
 			this.lbl_BARCODE.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lbl_BARCODE.Location = new System.Drawing.Point(357, 17);
+			this.lbl_BARCODE.Location = new System.Drawing.Point(421, 15);
 			this.lbl_BARCODE.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
 			this.lbl_BARCODE.Name = "lbl_BARCODE";
 			this.lbl_BARCODE.Size = new System.Drawing.Size(72, 15);
@@ -497,7 +499,7 @@
 			// btnLookup
 			// 
 			this.btnLookup.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnLookup.Location = new System.Drawing.Point(643, 10);
+			this.btnLookup.Location = new System.Drawing.Point(706, 9);
 			this.btnLookup.Margin = new System.Windows.Forms.Padding(1);
 			this.btnLookup.Name = "btnLookup";
 			this.btnLookup.Size = new System.Drawing.Size(104, 29);
@@ -506,6 +508,56 @@
 			this.btnLookup.Text = "LOOKUP";
 			this.btnLookup.UseVisualStyleBackColor = true;
 			this.btnLookup.Click += new System.EventHandler(this.btnLookup_Click);
+			// 
+			// pictureBox1
+			// 
+			this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+			this.pictureBox1.Location = new System.Drawing.Point(435, 343);
+			this.pictureBox1.Margin = new System.Windows.Forms.Padding(1);
+			this.pictureBox1.Name = "pictureBox1";
+			this.pictureBox1.Size = new System.Drawing.Size(286, 184);
+			this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+			this.pictureBox1.TabIndex = 18;
+			this.pictureBox1.TabStop = false;
+			// 
+			// pb_settings
+			// 
+			this.pb_settings.Image = global::SecretCellar.Properties.Resources.Gears;
+			this.pb_settings.Location = new System.Drawing.Point(1085, 7);
+			this.pb_settings.Name = "pb_settings";
+			this.pb_settings.Size = new System.Drawing.Size(48, 40);
+			this.pb_settings.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+			this.pb_settings.TabIndex = 20;
+			this.pb_settings.TabStop = false;
+			this.pb_settings.Click += new System.EventHandler(this.pb_settings_Click);
+			// 
+			// btnSuspendedTransactions
+			// 
+			this.btnSuspendedTransactions.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btnSuspendedTransactions.Location = new System.Drawing.Point(15, 9);
+			this.btnSuspendedTransactions.Margin = new System.Windows.Forms.Padding(1);
+			this.btnSuspendedTransactions.Name = "btnSuspendedTransactions";
+			this.btnSuspendedTransactions.Size = new System.Drawing.Size(218, 30);
+			this.btnSuspendedTransactions.TabIndex = 23;
+			this.btnSuspendedTransactions.TabStop = false;
+			this.btnSuspendedTransactions.Text = "SUSPENDED TRANSACTIONS";
+			this.btnSuspendedTransactions.UseVisualStyleBackColor = true;
+			this.btnSuspendedTransactions.Click += new System.EventHandler(this.btnSuspendedTransactions_Click);
+			// 
+			// btnSuspendTransaction
+			// 
+			this.btnSuspendTransaction.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btnSuspendTransaction.Location = new System.Drawing.Point(265, 9);
+			this.btnSuspendTransaction.Margin = new System.Windows.Forms.Padding(1);
+			this.btnSuspendTransaction.Name = "btnSuspendTransaction";
+			this.btnSuspendTransaction.Size = new System.Drawing.Size(110, 30);
+			this.btnSuspendTransaction.TabIndex = 24;
+			this.btnSuspendTransaction.TabStop = false;
+			this.btnSuspendTransaction.Text = "SUSPEND";
+			this.btnSuspendTransaction.UseVisualStyleBackColor = true;
+			this.btnSuspendTransaction.Click += new System.EventHandler(this.btnSuspendTransaction_Click);
 			// 
 			// btnTender
 			// 
@@ -533,43 +585,6 @@
 			this.btnTender.UseVisualStyleBackColor = false;
 			this.btnTender.Click += new System.EventHandler(this.btnTender_Click);
 			// 
-			// pictureBox1
-			// 
-			this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-			this.pictureBox1.Location = new System.Drawing.Point(435, 343);
-			this.pictureBox1.Margin = new System.Windows.Forms.Padding(1);
-			this.pictureBox1.Name = "pictureBox1";
-			this.pictureBox1.Size = new System.Drawing.Size(286, 184);
-			this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-			this.pictureBox1.TabIndex = 18;
-			this.pictureBox1.TabStop = false;
-			// 
-			// pb_settings
-			// 
-			this.pb_settings.Image = global::SecretCellar.Properties.Resources.Gears;
-			this.pb_settings.Location = new System.Drawing.Point(1085, 7);
-			this.pb_settings.Name = "pb_settings";
-			this.pb_settings.Size = new System.Drawing.Size(48, 40);
-			this.pb_settings.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-			this.pb_settings.TabIndex = 20;
-			this.pb_settings.TabStop = false;
-			this.pb_settings.Click += new System.EventHandler(this.pb_settings_Click);
-			// 
-			// btnSuspendTransaction
-			// 
-			this.btnSuspendTransaction.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnSuspendTransaction.Location = new System.Drawing.Point(15, 12);
-			this.btnSuspendTransaction.Margin = new System.Windows.Forms.Padding(1);
-			this.btnSuspendTransaction.Name = "btnSuspendTransaction";
-			this.btnSuspendTransaction.Size = new System.Drawing.Size(173, 29);
-			this.btnSuspendTransaction.TabIndex = 21;
-			this.btnSuspendTransaction.TabStop = false;
-			this.btnSuspendTransaction.Text = "Suspend Transaction";
-			this.btnSuspendTransaction.UseVisualStyleBackColor = true;
-			this.btnSuspendTransaction.Click += new System.EventHandler(this.btnSuspendTransaction_Click);
-			// 
 			// frmTransaction
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -579,6 +594,7 @@
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(152)))), ((int)(((byte)(151)))), ((int)(((byte)(152)))));
 			this.ClientSize = new System.Drawing.Size(1188, 546);
 			this.Controls.Add(this.btnSuspendTransaction);
+			this.Controls.Add(this.btnSuspendedTransactions);
 			this.Controls.Add(this.pb_settings);
 			this.Controls.Add(this.btnLookup);
 			this.Controls.Add(this.pictureBox1);
@@ -651,6 +667,7 @@
         private System.Windows.Forms.Label lbl_item_total;
         private System.Windows.Forms.TextBox txt_itemTotal;
         private System.Windows.Forms.PictureBox pb_settings;
+		private System.Windows.Forms.Button btnSuspendedTransactions;
 		private System.Windows.Forms.Button btnSuspendTransaction;
 	}
 }

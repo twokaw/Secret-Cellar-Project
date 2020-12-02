@@ -207,12 +207,7 @@ namespace SecretCellar
 
         private void txt_TransTotal_TextChanged(object sender, EventArgs e)
         {
-            if (!txt_TransTotal.Text.Equals("$0.00") && !txt_TransTotal.Text.Replace(" ", "").Equals("")) {
-                btnSuspendTransaction.Visible = true;
-            }
-            else {
-                btnSuspendTransaction.Visible = false;
-            }
+           
         }
 
         private void btnEvents_Click(object sender, EventArgs e)
@@ -242,9 +237,27 @@ namespace SecretCellar
             txtBarcode.Focus();
         }
 
-        private void dataGridView1_Changed(object sender, EventArgs e)
+        private void dataGridView1_RowsAdded(object sender, EventArgs e)
 		{
+            //UPDATE THE STATIC 'chosenItems' field
             chosenItems = this.dataGridView1.Rows;
+
+            //IF THE COUNT IS BIGGER THAN 0, MEANING AT LEAST
+            //ONE ITEM IS SELECTED, THEN SHOW THE SUSPEND TRANSACTION BUTTON
+            if (chosenItems.Count > 0) {
+                btnSuspendTransaction.Visible = true;
+            }
+        }
+        private void dataGridView1_RowsRemoved(object sender, EventArgs e)
+		{
+            //UPDATE THE STATIC 'chosenItems' field
+            chosenItems = this.dataGridView1.Rows;
+
+            //IF THE COUNT EQUALS 0, MEANING NOTHING IS SELECTED
+            //THEN HIDE THE SUSPEND TRANSACTION BUTTON
+            if (chosenItems.Count == 0) {
+                btnSuspendTransaction.Visible = false;
+            }
         }
 
         private void openCashDrawer()
@@ -282,10 +295,55 @@ namespace SecretCellar
             setting.ShowDialog();
         }
 
+		private void btnSuspendedTransactions_Click(object sender, EventArgs e)
+		{
+            frmSuspendedTransactions suspendedTransactions = new frmSuspendedTransactions();
+            suspendedTransactions.ShowDialog();
+		}
+
 		private void btnSuspendTransaction_Click(object sender, EventArgs e)
 		{
-            frmSuspendTransaction suspendTransaction = new frmSuspendTransaction();
-            suspendTransaction.ShowDialog();
-		}
+            //CREATE A POP UP MENU FOR THE USER TO ENTER THE NAME OF THE TRANSACTION TO BE SUSPENDED
+            frmSuspendedTransactionsNamePopUp popUp = new frmSuspendedTransactionsNamePopUp();
+            popUp.ShowDialog();
+
+            String transactionInfo = popUp.nameOfSuspendedTransaction + ";";
+
+            //GET ALL THE SELECTED ITEMS INTO A STRING ARRAY TO SEND TO 'frmSuspendedTransactions'
+            if (frmTransaction.chosenItems != null) {
+                //LOOP THROUGH EACH OF THE 'chosenItems' ROWS IN THE TRANSACTION FORM
+                for (int i=0; i<chosenItems.Count; i++) {
+                    DataGridViewRow row = chosenItems[i];
+                    
+                    //FOR EACH CELL IN EACH ROW
+                    for (int k=0; k<row.Cells.Count; k++) {
+                        DataGridViewCell cell = row.Cells[k];
+
+                        //ADD EACH CELL VALUE
+                        if (cell.Value != null) {
+                           if (k == row.Cells.Count-1) {
+                                transactionInfo = transactionInfo + cell.Value.ToString();
+                            }
+                           else {
+                                transactionInfo = transactionInfo + cell.Value.ToString() + ",";
+						   }
+                        }
+                        else {
+                            if (k == row.Cells.Count-1) {
+                                transactionInfo = transactionInfo + " ";
+                            }
+                            else {
+                                transactionInfo = transactionInfo + " ,";
+                            }
+                        }
+                    }
+
+                    transactionInfo = transactionInfo + ";";
+                }
+            }
+
+            //UPDATE THE STRING ARRAYLIST FIELD IN 'frmSuspendedTransactions'
+            frmSuspendedTransactions.suspendedTransactionsList.Add(transactionInfo);
+        }
 	}
 }
