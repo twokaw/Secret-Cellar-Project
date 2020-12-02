@@ -14,7 +14,7 @@ namespace SecretCellar
     {
         private readonly DataAccess dataAccess = new DataAccess();
 
-        public FrmSetting()
+        public FrmSetting(): base()
         {
             InitializeComponent();
         }

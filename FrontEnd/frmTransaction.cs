@@ -270,7 +270,7 @@ namespace SecretCellar
             setting.ShowDialog();
         }
 
-        private void caseDiscount_CheckedChanged(object sender, EventArgs e)
+       /* private void caseDiscount_CheckedChanged(object sender, EventArgs e)
         {
             string msg = "";
 
@@ -278,6 +278,6 @@ namespace SecretCellar
             {
                 msg = "Case Discounts Applied!";
             }
-        }
+        }*/
     }
 }
