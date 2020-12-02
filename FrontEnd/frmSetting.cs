@@ -24,18 +24,6 @@ namespace SecretCellar
             lstTypes.DataSource = dataAccess.GetInventoryType();
         }
 
-        private void CaseDiscount_CheckedChanged(object sender, EventArgs e)
-        {
-            if (caseDiscount.Checked)
-            {
-                // Do something when CheckBox is checked  
-            }
-            else
-            {
-                // Do something here when CheckBox is not checked  
-            }
-        }
-
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
@@ -52,6 +40,11 @@ namespace SecretCellar
 
             if (colorPicker.ShowDialog() == DialogResult.OK)
                 BackColor = colorPicker.Color;
+        }
+
+        private void tab_General_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

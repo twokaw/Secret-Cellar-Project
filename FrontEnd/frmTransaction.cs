@@ -272,12 +272,12 @@ namespace SecretCellar
 
         private void caseDiscount_CheckedChanged(object sender, EventArgs e)
         {
-            string msg = "";
+            //string message = " ";
 
             if (caseDiscount.Checked == true)
             {
-                msg = "Case Discounts Applied!";
-            }
+                System.Windows.Forms.MessageBox.Show("Case Discounts Applied!");
+            }             
         }
     }
 }

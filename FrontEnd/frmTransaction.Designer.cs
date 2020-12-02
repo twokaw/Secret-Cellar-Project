@@ -65,10 +65,10 @@
             this.txtBarcode = new System.Windows.Forms.TextBox();
             this.lbl_BARCODE = new System.Windows.Forms.Label();
             this.btnLookup = new System.Windows.Forms.Button();
-            this.btnTender = new ePOSOne.btnProduct.Button_WOC();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pb_settings = new System.Windows.Forms.PictureBox();
             this.caseDiscount = new System.Windows.Forms.CheckBox();
+            this.btnTender = new ePOSOne.btnProduct.Button_WOC();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -88,7 +88,7 @@
             this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.1F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.1F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -132,7 +132,7 @@
             this.QTY.HeaderText = "QTY";
             this.QTY.MinimumWidth = 12;
             this.QTY.Name = "QTY";
-            this.QTY.Width = 130;
+            this.QTY.Width = 127;
             // 
             // PRICE
             // 
@@ -498,32 +498,6 @@
             this.btnLookup.UseVisualStyleBackColor = true;
             this.btnLookup.Click += new System.EventHandler(this.btnLookup_Click);
             // 
-            // btnTender
-            // 
-            this.btnTender.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnTender.AutoSize = true;
-            this.btnTender.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(152)))), ((int)(((byte)(151)))), ((int)(((byte)(152)))));
-            this.btnTender.BorderColor = System.Drawing.Color.Transparent;
-            this.btnTender.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(24)))), ((int)(((byte)(24)))));
-            this.btnTender.FlatAppearance.BorderSize = 0;
-            this.btnTender.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.btnTender.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.btnTender.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnTender.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTender.Location = new System.Drawing.Point(2085, 947);
-            this.btnTender.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnTender.Name = "btnTender";
-            this.btnTender.OnHoverBorderColor = System.Drawing.Color.Transparent;
-            this.btnTender.OnHoverButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(24)))), ((int)(((byte)(24)))));
-            this.btnTender.OnHoverTextColor = System.Drawing.Color.Black;
-            this.btnTender.Size = new System.Drawing.Size(384, 191);
-            this.btnTender.TabIndex = 14;
-            this.btnTender.TabStop = false;
-            this.btnTender.Text = "TENDER";
-            this.btnTender.TextColor = System.Drawing.Color.Black;
-            this.btnTender.UseVisualStyleBackColor = false;
-            this.btnTender.Click += new System.EventHandler(this.btnTender_Click);
-            // 
             // pictureBox1
             // 
             this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
@@ -552,14 +526,39 @@
             // caseDiscount
             // 
             this.caseDiscount.AutoSize = true;
-            this.caseDiscount.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.1F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.caseDiscount.Location = new System.Drawing.Point(2107, 841);
+            this.caseDiscount.Location = new System.Drawing.Point(2115, 847);
             this.caseDiscount.Name = "caseDiscount";
-            this.caseDiscount.Size = new System.Drawing.Size(335, 36);
+            this.caseDiscount.Size = new System.Drawing.Size(332, 36);
             this.caseDiscount.TabIndex = 21;
-            this.caseDiscount.Text = "Apply Case Discount";
+            this.caseDiscount.Text = "Apply Case Discount?";
             this.caseDiscount.UseVisualStyleBackColor = true;
             this.caseDiscount.CheckedChanged += new System.EventHandler(this.caseDiscount_CheckedChanged);
+            // 
+            // btnTender
+            // 
+            this.btnTender.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnTender.AutoSize = true;
+            this.btnTender.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(152)))), ((int)(((byte)(151)))), ((int)(((byte)(152)))));
+            this.btnTender.BorderColor = System.Drawing.Color.Transparent;
+            this.btnTender.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(24)))), ((int)(((byte)(24)))));
+            this.btnTender.FlatAppearance.BorderSize = 0;
+            this.btnTender.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnTender.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnTender.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTender.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTender.Location = new System.Drawing.Point(2085, 947);
+            this.btnTender.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnTender.Name = "btnTender";
+            this.btnTender.OnHoverBorderColor = System.Drawing.Color.Transparent;
+            this.btnTender.OnHoverButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(24)))), ((int)(((byte)(24)))));
+            this.btnTender.OnHoverTextColor = System.Drawing.Color.Black;
+            this.btnTender.Size = new System.Drawing.Size(384, 191);
+            this.btnTender.TabIndex = 14;
+            this.btnTender.TabStop = false;
+            this.btnTender.Text = "TENDER";
+            this.btnTender.TextColor = System.Drawing.Color.Black;
+            this.btnTender.UseVisualStyleBackColor = false;
+            this.btnTender.Click += new System.EventHandler(this.btnTender_Click);
             // 
             // frmTransaction
             // 
@@ -587,11 +586,13 @@
             this.Controls.Add(this.btnFood);
             this.Controls.Add(this.btnPropane);
             this.Controls.Add(this.dataGridView1);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.1F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "frmTransaction";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Secret Cellar POS";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmTransaction_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.panel1.ResumeLayout(false);
