@@ -36,8 +36,6 @@ namespace SecretCellar
                 Color = Color.Green
             };
 
-
-
             if (colorPicker.ShowDialog() == DialogResult.OK)
                 BackColor = colorPicker.Color;
         }

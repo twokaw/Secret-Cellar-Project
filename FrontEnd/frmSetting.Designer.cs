@@ -165,8 +165,6 @@
             this.btn_font_settings.TabIndex = 2;
             this.btn_font_settings.Text = "Font Settings";
             this.btn_font_settings.UseVisualStyleBackColor = true;
-            this.btn_font_settings.Click += new System.EventHandler(this.btn_font_settings_Click);
-            // 
             // btn_panel_color
             // 
             this.btn_panel_color.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -179,8 +177,6 @@
             this.btn_panel_color.TabIndex = 1;
             this.btn_panel_color.Text = "Panel Color Settings";
             this.btn_panel_color.UseVisualStyleBackColor = true;
-            this.btn_panel_color.Click += new System.EventHandler(this.btn_panel_color_Click);
-            // 
             // btn_color
             // 
             this.btn_color.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
