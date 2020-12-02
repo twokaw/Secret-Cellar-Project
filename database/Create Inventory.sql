@@ -4,6 +4,9 @@
 -- ------------------------------------------------------
 -- Server version	8.0.17
 
+
+CREATE USER IF NOT EXISTS 'invuser'@'localhost' IDENTIFIED BY 'testinv!';
+
 DROP DATABASE IF EXISTS inventory;
 CREATE DATABASE inventory;
 USE Inventory;
@@ -589,6 +592,14 @@ SET @saved_cs_client     = @@character_set_client;
  1 AS `Tax_Name`*/;
 SET character_set_client = @saved_cs_client;
 
+
+
+Create VIEW v_SuspendedTransaction AS 
+SELECT receiptID, SUM(sold_price) TotalSale, sum(amount) TotalPayment FROM inventory.transaction
+Left JOIN Transaction_items USING(ReceiptID)
+Left JOIN Payments USING(ReceiptID)
+GROUP BY receiptID
+HAVING TotalSale > TotalPayment;
 --
 -- Dumping events for database 'inventory'
 --

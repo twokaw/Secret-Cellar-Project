@@ -26,14 +26,7 @@ namespace SecretCellar
 
         private void CaseDiscount_CheckedChanged(object sender, EventArgs e)
         {
-            if (caseDiscount.Checked)
-            {
-                // Do something when CheckBox is checked  
-            }
-            else
-            {
-                // Do something here when CheckBox is not checked  
-            }
+
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
