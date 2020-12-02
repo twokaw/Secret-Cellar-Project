@@ -10,11 +10,11 @@ using System.Windows.Forms;
 
 namespace SecretCellar
 {
-    public partial class FrmSetting : ManagedForm
+    public partial class FrmSetting : Form
     {
         private readonly DataAccess dataAccess = new DataAccess();
 
-        public FrmSetting(): base()
+        public FrmSetting()
         {
             InitializeComponent();
         }
@@ -24,6 +24,10 @@ namespace SecretCellar
             lstTypes.DataSource = dataAccess.GetInventoryType();
         }
 
+        private void CaseDiscount_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
