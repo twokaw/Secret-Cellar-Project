@@ -12,14 +12,14 @@ using Shared;
 
 namespace SecretCellar
 {
-    public partial class frmTransaction : ManagedForm
+    public partial class frmTransaction : Form
     {
 
         private Transaction transaction = new Transaction();
         private DataAccess dataAccess;
         private Image logo = null;
 
-        public frmTransaction(): base()
+        public frmTransaction()
         {
             InitializeComponent();
             txtBarcode.Focus();
@@ -272,12 +272,12 @@ namespace SecretCellar
 
         private void caseDiscount_CheckedChanged(object sender, EventArgs e)
         {
-            
+            //string message = " ";
 
             if (caseDiscount.Checked == true)
             {
-               System.Windows.Forms.MessageBox.Show("Case Discounts Applied!");
-            }
+                System.Windows.Forms.MessageBox.Show("Case Discounts Applied!");
+            }             
         }
     }
 }

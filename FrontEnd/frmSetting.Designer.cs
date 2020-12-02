@@ -151,6 +151,7 @@
             this.tab_General.TabIndex = 2;
             this.tab_General.Text = "General";
             this.tab_General.UseVisualStyleBackColor = true;
+            this.tab_General.Click += new System.EventHandler(this.tab_General_Click);
             // 
             // btn_font_settings
             // 
