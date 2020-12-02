@@ -24,11 +24,6 @@ namespace SecretCellar
             lstTypes.DataSource = dataAccess.GetInventoryType();
         }
 
-        private void CaseDiscount_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
@@ -41,32 +36,13 @@ namespace SecretCellar
                 Color = Color.Green
             };
 
-
-
             if (colorPicker.ShowDialog() == DialogResult.OK)
                 BackColor = colorPicker.Color;
         }
 
-        private void btn_panel_color_Click(object sender, EventArgs e)
+        private void tab_General_Click(object sender, EventArgs e)
         {
-            ColorDialog colorPicker = new ColorDialog
-            {
-                Color = Color.Green
-            };
 
-
-
-            if (colorPicker.ShowDialog() == DialogResult.OK)
-            {
-                Color color = colorPicker.Color;
-                Color dataGridView = color;
-            }
-        }
-
-        private void btn_font_settings_Click(object sender, EventArgs e)
-        {
-            FontDialog fontDlg = new FontDialog();
-            fontDlg.ShowDialog();
         }
     }
 }
