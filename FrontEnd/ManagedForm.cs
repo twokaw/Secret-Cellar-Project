@@ -7,10 +7,10 @@ namespace SecretCellar
 {
     public partial class ManagedForm : Form
     {
-
         private static Color CommonBackColor = DefaultColor();
         private static Font CommonFont = Default_Font();
         private static readonly List<ManagedForm> Forms = new List<ManagedForm>();
+
         public ManagedForm()
         {
             Forms.Add(this);
@@ -28,7 +28,7 @@ namespace SecretCellar
 
         private static Color DefaultColor()
         {
-            return Color.Black;
+            return Color.Beige;
         }
 
         public static void SetBackColor(Color c)
