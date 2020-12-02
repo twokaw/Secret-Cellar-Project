@@ -5,7 +5,6 @@ using System.Windows.Forms;
 
 namespace SecretCellar
 {
-    // NOTE: You will need to build your project before you can view the form in the designer.
     public partial class ManagedForm : Form
     {
         private static Color CommonBackColor = DefaultColor();
@@ -16,7 +15,6 @@ namespace SecretCellar
         {
             Forms.Add(this);
             Console.WriteLine($"Constructed: {Forms.Count}");
-
             base.BackColor = CommonBackColor;
             base.Font = CommonFont;
             base.FormClosed += ManagedForm_FormClosed;
@@ -30,7 +28,7 @@ namespace SecretCellar
 
         private static Color DefaultColor()
         {
-            return Color.Tan;
+            return Color.Beige;
         }
 
         public static void SetBackColor(Color c)
@@ -47,7 +45,7 @@ namespace SecretCellar
         public static void SetFont(Font font)
         {
             CommonFont = font;
-            foreach (ManagedForm f in Forms)
+            foreach(ManagedForm f in Forms)
             {
                 f.Font = CommonFont;
                 /*

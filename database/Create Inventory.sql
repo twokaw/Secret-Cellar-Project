@@ -4,6 +4,9 @@
 -- ------------------------------------------------------
 -- Server version	8.0.17
 
+
+CREATE USER IF NOT EXISTS 'invuser'@'localhost' IDENTIFIED BY 'testinv!';
+
 DROP DATABASE IF EXISTS inventory;
 CREATE DATABASE inventory;
 USE Inventory;

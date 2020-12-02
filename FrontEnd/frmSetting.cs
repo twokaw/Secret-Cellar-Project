@@ -10,11 +10,11 @@ using System.Windows.Forms;
 
 namespace SecretCellar
 {
-    public partial class FrmSetting : ManagedForm
+    public partial class FrmSetting : Form
     {
         private readonly DataAccess dataAccess = new DataAccess();
 
-        public FrmSetting(): base()
+        public FrmSetting()
         {
             InitializeComponent();
         }
@@ -22,6 +22,11 @@ namespace SecretCellar
         private void FrmSetting_Load(object sender, EventArgs e)
         {
             lstTypes.DataSource = dataAccess.GetInventoryType();
+        }
+
+        private void CaseDiscount_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -36,29 +41,10 @@ namespace SecretCellar
                 Color = Color.Green
             };
 
+
+
             if (colorPicker.ShowDialog() == DialogResult.OK)
-                ManagedForm.SetBackColor (colorPicker.Color);
-                //BackColor = colorPicker.Color;
-        }
-
-        private void btn_cancel_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        private void btn_ok_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        private void btn_apply_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tab_General_Click(object sender, EventArgs e)
-        {
-
+                BackColor = colorPicker.Color;
         }
 
         private void btn_panel_color_Click(object sender, EventArgs e)
@@ -77,14 +63,8 @@ namespace SecretCellar
             }
         }
 
-        private void btn_font_Click(object sender, EventArgs e)
+        private void btn_font_settings_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void btn_font_Click_1(object sender, EventArgs e)
-        {
-
             FontDialog fontDlg = new FontDialog();
             fontDlg.ShowDialog();
         }
