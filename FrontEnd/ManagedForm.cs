@@ -55,5 +55,23 @@ namespace SecretCellar
                 */
             }
         }
+
+        private void InitializeComponent()
+        {
+            this.SuspendLayout();
+            // 
+            // ManagedForm
+            // 
+            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.Name = "ManagedForm";
+            this.Load += new System.EventHandler(this.ManagedForm_Load);
+            this.ResumeLayout(false);
+
+        }
+
+        private void ManagedForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
