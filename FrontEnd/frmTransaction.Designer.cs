@@ -31,13 +31,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmTransaction));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.DESCRIPTION = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.QTY = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PRICE = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DISCOUNT = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TAX = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BOTTLE_DEPOSIT = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TOTAL = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnPropane = new System.Windows.Forms.Button();
             this.btnFood = new System.Windows.Forms.Button();
             this.btnCustom = new System.Windows.Forms.Button();
@@ -65,14 +58,21 @@
             this.txtBarcode = new System.Windows.Forms.TextBox();
             this.lbl_BARCODE = new System.Windows.Forms.Label();
             this.btnLookup = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.pb_settings = new System.Windows.Forms.PictureBox();
             this.caseDiscount = new System.Windows.Forms.CheckBox();
+            this.pb_settings = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnTender = new ePOSOne.btnProduct.Button_WOC();
+            this.DESCRIPTION = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.QTY = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PRICE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DISCOUNT = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TAX = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BOTTLE_DEPOSIT = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TOTAL = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb_settings)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -103,83 +103,27 @@
             this.TAX,
             this.BOTTLE_DEPOSIT,
             this.TOTAL});
-            this.dataGridView1.Location = new System.Drawing.Point(10, 97);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(1);
+            this.dataGridView1.Location = new System.Drawing.Point(10, 55);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowHeadersWidth = 102;
             this.dataGridView1.RowTemplate.Height = 40;
             this.dataGridView1.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(1160, 180);
+            this.dataGridView1.Size = new System.Drawing.Size(1160, 355);
             this.dataGridView1.TabIndex = 2;
             this.dataGridView1.TabStop = false;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             this.dataGridView1.Click += new System.EventHandler(this.dataGridView1_Click);
             // 
-            // DESCRIPTION
-            // 
-            this.DESCRIPTION.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.DESCRIPTION.FillWeight = 205.876F;
-            this.DESCRIPTION.HeaderText = "DESCRIPTION";
-            this.DESCRIPTION.MinimumWidth = 12;
-            this.DESCRIPTION.Name = "DESCRIPTION";
-            // 
-            // QTY
-            // 
-            this.QTY.FillWeight = 154.4118F;
-            this.QTY.HeaderText = "QTY";
-            this.QTY.MinimumWidth = 12;
-            this.QTY.Name = "QTY";
-            this.QTY.Width = 57;
-            // 
-            // PRICE
-            // 
-            this.PRICE.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.PRICE.FillWeight = 18.80306F;
-            this.PRICE.HeaderText = "PRICE";
-            this.PRICE.MinimumWidth = 12;
-            this.PRICE.Name = "PRICE";
-            // 
-            // DISCOUNT
-            // 
-            this.DISCOUNT.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.DISCOUNT.FillWeight = 37.25315F;
-            this.DISCOUNT.HeaderText = "DISCOUNT";
-            this.DISCOUNT.MinimumWidth = 25;
-            this.DISCOUNT.Name = "DISCOUNT";
-            // 
-            // TAX
-            // 
-            this.TAX.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.TAX.FillWeight = 57.0944F;
-            this.TAX.HeaderText = "TAX";
-            this.TAX.MinimumWidth = 12;
-            this.TAX.Name = "TAX";
-            // 
-            // BOTTLE_DEPOSIT
-            // 
-            this.BOTTLE_DEPOSIT.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.BOTTLE_DEPOSIT.FillWeight = 88.47124F;
-            this.BOTTLE_DEPOSIT.HeaderText = "BOTTLE DEPOSIT";
-            this.BOTTLE_DEPOSIT.MinimumWidth = 12;
-            this.BOTTLE_DEPOSIT.Name = "BOTTLE_DEPOSIT";
-            // 
-            // TOTAL
-            // 
-            this.TOTAL.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.TOTAL.FillWeight = 138.0905F;
-            this.TOTAL.HeaderText = "TOTAL";
-            this.TOTAL.MinimumWidth = 12;
-            this.TOTAL.Name = "TOTAL";
-            // 
             // btnPropane
             // 
             this.btnPropane.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnPropane.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPropane.Location = new System.Drawing.Point(28, 415);
-            this.btnPropane.Margin = new System.Windows.Forms.Padding(1);
+            this.btnPropane.Location = new System.Drawing.Point(12, 426);
+            this.btnPropane.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.btnPropane.Name = "btnPropane";
             this.btnPropane.Size = new System.Drawing.Size(120, 44);
             this.btnPropane.TabIndex = 3;
@@ -192,8 +136,8 @@
             // 
             this.btnFood.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnFood.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFood.Location = new System.Drawing.Point(28, 490);
-            this.btnFood.Margin = new System.Windows.Forms.Padding(1);
+            this.btnFood.Location = new System.Drawing.Point(12, 493);
+            this.btnFood.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.btnFood.Name = "btnFood";
             this.btnFood.Size = new System.Drawing.Size(120, 44);
             this.btnFood.TabIndex = 4;
@@ -205,8 +149,8 @@
             // 
             this.btnCustom.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnCustom.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCustom.Location = new System.Drawing.Point(15, 674);
-            this.btnCustom.Margin = new System.Windows.Forms.Padding(1);
+            this.btnCustom.Location = new System.Drawing.Point(12, 560);
+            this.btnCustom.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.btnCustom.Name = "btnCustom";
             this.btnCustom.Size = new System.Drawing.Size(120, 44);
             this.btnCustom.TabIndex = 5;
@@ -219,8 +163,8 @@
             // 
             this.btnShipping.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnShipping.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnShipping.Location = new System.Drawing.Point(154, 674);
-            this.btnShipping.Margin = new System.Windows.Forms.Padding(1);
+            this.btnShipping.Location = new System.Drawing.Point(151, 560);
+            this.btnShipping.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.btnShipping.Name = "btnShipping";
             this.btnShipping.Size = new System.Drawing.Size(120, 44);
             this.btnShipping.TabIndex = 8;
@@ -233,8 +177,8 @@
             // 
             this.btnEvents.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnEvents.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEvents.Location = new System.Drawing.Point(167, 490);
-            this.btnEvents.Margin = new System.Windows.Forms.Padding(1);
+            this.btnEvents.Location = new System.Drawing.Point(151, 493);
+            this.btnEvents.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.btnEvents.Name = "btnEvents";
             this.btnEvents.Size = new System.Drawing.Size(120, 44);
             this.btnEvents.TabIndex = 7;
@@ -247,8 +191,8 @@
             // 
             this.btnDryClean.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnDryClean.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDryClean.Location = new System.Drawing.Point(167, 415);
-            this.btnDryClean.Margin = new System.Windows.Forms.Padding(1);
+            this.btnDryClean.Location = new System.Drawing.Point(151, 426);
+            this.btnDryClean.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.btnDryClean.Name = "btnDryClean";
             this.btnDryClean.Size = new System.Drawing.Size(120, 44);
             this.btnDryClean.TabIndex = 6;
@@ -261,8 +205,8 @@
             // 
             this.btnDiscount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnDiscount.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDiscount.Location = new System.Drawing.Point(292, 674);
-            this.btnDiscount.Margin = new System.Windows.Forms.Padding(1);
+            this.btnDiscount.Location = new System.Drawing.Point(289, 560);
+            this.btnDiscount.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.btnDiscount.Name = "btnDiscount";
             this.btnDiscount.Size = new System.Drawing.Size(120, 44);
             this.btnDiscount.TabIndex = 11;
@@ -275,8 +219,8 @@
             // 
             this.btnVoidTrx.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnVoidTrx.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnVoidTrx.Location = new System.Drawing.Point(305, 490);
-            this.btnVoidTrx.Margin = new System.Windows.Forms.Padding(1);
+            this.btnVoidTrx.Location = new System.Drawing.Point(289, 493);
+            this.btnVoidTrx.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.btnVoidTrx.Name = "btnVoidTrx";
             this.btnVoidTrx.Size = new System.Drawing.Size(120, 44);
             this.btnVoidTrx.TabIndex = 10;
@@ -289,8 +233,8 @@
             // 
             this.btnDeleteItem.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnDeleteItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDeleteItem.Location = new System.Drawing.Point(305, 415);
-            this.btnDeleteItem.Margin = new System.Windows.Forms.Padding(1);
+            this.btnDeleteItem.Location = new System.Drawing.Point(289, 426);
+            this.btnDeleteItem.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.btnDeleteItem.Name = "btnDeleteItem";
             this.btnDeleteItem.Size = new System.Drawing.Size(120, 44);
             this.btnDeleteItem.TabIndex = 9;
@@ -318,8 +262,8 @@
             this.panel1.Controls.Add(this.LB_Tax);
             this.panel1.Controls.Add(this.LB_SubTotal);
             this.panel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panel1.Location = new System.Drawing.Point(945, 373);
-            this.panel1.Margin = new System.Windows.Forms.Padding(1);
+            this.panel1.Location = new System.Drawing.Point(973, 421);
+            this.panel1.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(196, 202);
             this.panel1.TabIndex = 13;
@@ -338,7 +282,7 @@
             // txt_itemTotal
             // 
             this.txt_itemTotal.Location = new System.Drawing.Point(96, 8);
-            this.txt_itemTotal.Margin = new System.Windows.Forms.Padding(1);
+            this.txt_itemTotal.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.txt_itemTotal.Name = "txt_itemTotal";
             this.txt_itemTotal.ReadOnly = true;
             this.txt_itemTotal.Size = new System.Drawing.Size(88, 23);
@@ -359,7 +303,7 @@
             // txt_Ship
             // 
             this.txt_Ship.Location = new System.Drawing.Point(96, 141);
-            this.txt_Ship.Margin = new System.Windows.Forms.Padding(1);
+            this.txt_Ship.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.txt_Ship.Name = "txt_Ship";
             this.txt_Ship.Size = new System.Drawing.Size(89, 23);
             this.txt_Ship.TabIndex = 10;
@@ -369,7 +313,7 @@
             // 
             this.txt_TransTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_TransTotal.Location = new System.Drawing.Point(96, 167);
-            this.txt_TransTotal.Margin = new System.Windows.Forms.Padding(1);
+            this.txt_TransTotal.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.txt_TransTotal.Name = "txt_TransTotal";
             this.txt_TransTotal.ReadOnly = true;
             this.txt_TransTotal.Size = new System.Drawing.Size(89, 26);
@@ -380,7 +324,7 @@
             // txt_transTax
             // 
             this.txt_transTax.Location = new System.Drawing.Point(96, 89);
-            this.txt_transTax.Margin = new System.Windows.Forms.Padding(1);
+            this.txt_transTax.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.txt_transTax.Name = "txt_transTax";
             this.txt_transTax.ReadOnly = true;
             this.txt_transTax.Size = new System.Drawing.Size(88, 23);
@@ -390,7 +334,7 @@
             // txt_transDiscount
             // 
             this.txt_transDiscount.Location = new System.Drawing.Point(96, 33);
-            this.txt_transDiscount.Margin = new System.Windows.Forms.Padding(1);
+            this.txt_transDiscount.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.txt_transDiscount.Name = "txt_transDiscount";
             this.txt_transDiscount.ReadOnly = true;
             this.txt_transDiscount.Size = new System.Drawing.Size(88, 23);
@@ -400,7 +344,7 @@
             // txt_transBTLDPT
             // 
             this.txt_transBTLDPT.Location = new System.Drawing.Point(96, 114);
-            this.txt_transBTLDPT.Margin = new System.Windows.Forms.Padding(1);
+            this.txt_transBTLDPT.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.txt_transBTLDPT.Name = "txt_transBTLDPT";
             this.txt_transBTLDPT.ReadOnly = true;
             this.txt_transBTLDPT.Size = new System.Drawing.Size(88, 23);
@@ -410,7 +354,7 @@
             // txt_transSubTotal
             // 
             this.txt_transSubTotal.Location = new System.Drawing.Point(96, 63);
-            this.txt_transSubTotal.Margin = new System.Windows.Forms.Padding(1);
+            this.txt_transSubTotal.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.txt_transSubTotal.Name = "txt_transSubTotal";
             this.txt_transSubTotal.ReadOnly = true;
             this.txt_transSubTotal.Size = new System.Drawing.Size(88, 23);
@@ -478,8 +422,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBarcode.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBarcode.Location = new System.Drawing.Point(455, 18);
-            this.txtBarcode.Margin = new System.Windows.Forms.Padding(1);
-            this.txtBarcode.MaximumSize = new System.Drawing.Size(166, 26);
+            this.txtBarcode.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.txtBarcode.MinimumSize = new System.Drawing.Size(166, 26);
             this.txtBarcode.Name = "txtBarcode";
             this.txtBarcode.Size = new System.Drawing.Size(166, 26);
@@ -488,8 +431,6 @@
             // 
             // lbl_BARCODE
             // 
-            this.lbl_BARCODE.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.lbl_BARCODE.AutoSize = true;
             this.lbl_BARCODE.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_BARCODE.Location = new System.Drawing.Point(368, 23);
@@ -501,11 +442,10 @@
             // 
             // btnLookup
             // 
-            this.btnLookup.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnLookup.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnLookup.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLookup.Location = new System.Drawing.Point(654, 16);
-            this.btnLookup.Margin = new System.Windows.Forms.Padding(1);
+            this.btnLookup.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.btnLookup.MaximumSize = new System.Drawing.Size(104, 29);
             this.btnLookup.Name = "btnLookup";
             this.btnLookup.Size = new System.Drawing.Size(104, 29);
@@ -515,18 +455,19 @@
             this.btnLookup.UseVisualStyleBackColor = true;
             this.btnLookup.Click += new System.EventHandler(this.btnLookup_Click);
             // 
-            // pictureBox1
+            // caseDiscount
             // 
-            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(444, 383);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(1);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(303, 184);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 18;
-            this.pictureBox1.TabStop = false;
+            this.caseDiscount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.caseDiscount.AutoSize = true;
+            this.caseDiscount.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.1F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.caseDiscount.Location = new System.Drawing.Point(793, 431);
+            this.caseDiscount.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.caseDiscount.Name = "caseDiscount";
+            this.caseDiscount.Size = new System.Drawing.Size(143, 17);
+            this.caseDiscount.TabIndex = 21;
+            this.caseDiscount.Text = "Apply Case Discount";
+            this.caseDiscount.UseVisualStyleBackColor = true;
+            this.caseDiscount.CheckedChanged += new System.EventHandler(this.caseDiscount_CheckedChanged);
             // 
             // pb_settings
             // 
@@ -540,19 +481,18 @@
             this.pb_settings.TabStop = false;
             this.pb_settings.Click += new System.EventHandler(this.pb_settings_Click);
             // 
-            // caseDiscount
+            // pictureBox1
             // 
-            this.caseDiscount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.caseDiscount.AutoSize = true;
-            this.caseDiscount.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.1F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.caseDiscount.Location = new System.Drawing.Point(832, 26);
-            this.caseDiscount.Margin = new System.Windows.Forms.Padding(1);
-            this.caseDiscount.Name = "caseDiscount";
-            this.caseDiscount.Size = new System.Drawing.Size(143, 17);
-            this.caseDiscount.TabIndex = 21;
-            this.caseDiscount.Text = "Apply Case Discount";
-            this.caseDiscount.UseVisualStyleBackColor = true;
-            this.caseDiscount.CheckedChanged += new System.EventHandler(this.caseDiscount_CheckedChanged);
+            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(432, 412);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(341, 216);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 18;
+            this.pictureBox1.TabStop = false;
             // 
             // btnTender
             // 
@@ -566,7 +506,7 @@
             this.btnTender.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnTender.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTender.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTender.Location = new System.Drawing.Point(764, 435);
+            this.btnTender.Location = new System.Drawing.Point(792, 482);
             this.btnTender.Margin = new System.Windows.Forms.Padding(1);
             this.btnTender.Name = "btnTender";
             this.btnTender.OnHoverBorderColor = System.Drawing.Color.Transparent;
@@ -579,6 +519,66 @@
             this.btnTender.TextColor = System.Drawing.Color.Black;
             this.btnTender.UseVisualStyleBackColor = false;
             this.btnTender.Click += new System.EventHandler(this.btnTender_Click);
+            // 
+            // DESCRIPTION
+            // 
+            this.DESCRIPTION.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.DESCRIPTION.FillWeight = 205.876F;
+            this.DESCRIPTION.HeaderText = "DESCRIPTION";
+            this.DESCRIPTION.MinimumWidth = 12;
+            this.DESCRIPTION.Name = "DESCRIPTION";
+            // 
+            // QTY
+            // 
+            this.QTY.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.QTY.FillWeight = 154.4118F;
+            this.QTY.HeaderText = "QTY";
+            this.QTY.MinimumWidth = 12;
+            this.QTY.Name = "QTY";
+            // 
+            // PRICE
+            // 
+            this.PRICE.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.PRICE.FillWeight = 18.80306F;
+            this.PRICE.HeaderText = "PRICE";
+            this.PRICE.MinimumWidth = 12;
+            this.PRICE.Name = "PRICE";
+            this.PRICE.Width = 120;
+            // 
+            // DISCOUNT
+            // 
+            this.DISCOUNT.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.DISCOUNT.FillWeight = 37.25315F;
+            this.DISCOUNT.HeaderText = "DISCOUNT";
+            this.DISCOUNT.MinimumWidth = 25;
+            this.DISCOUNT.Name = "DISCOUNT";
+            this.DISCOUNT.Width = 120;
+            // 
+            // TAX
+            // 
+            this.TAX.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.TAX.FillWeight = 57.0944F;
+            this.TAX.HeaderText = "TAX";
+            this.TAX.MinimumWidth = 12;
+            this.TAX.Name = "TAX";
+            // 
+            // BOTTLE_DEPOSIT
+            // 
+            this.BOTTLE_DEPOSIT.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.BOTTLE_DEPOSIT.FillWeight = 88.47124F;
+            this.BOTTLE_DEPOSIT.HeaderText = "BOTTLE DEPOSIT";
+            this.BOTTLE_DEPOSIT.MinimumWidth = 12;
+            this.BOTTLE_DEPOSIT.Name = "BOTTLE_DEPOSIT";
+            this.BOTTLE_DEPOSIT.Width = 180;
+            // 
+            // TOTAL
+            // 
+            this.TOTAL.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.TOTAL.FillWeight = 138.0905F;
+            this.TOTAL.HeaderText = "TOTAL";
+            this.TOTAL.MinimumWidth = 12;
+            this.TOTAL.Name = "TOTAL";
+            this.TOTAL.Width = 180;
             // 
             // frmTransaction
             // 
@@ -607,7 +607,7 @@
             this.Controls.Add(this.btnPropane);
             this.Controls.Add(this.dataGridView1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(1);
+            this.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.Name = "frmTransaction";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Secret Cellar POS";
@@ -615,8 +615,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb_settings)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -649,6 +649,12 @@
         private System.Windows.Forms.TextBox txt_transDiscount;
         private System.Windows.Forms.TextBox txt_TransTotal;
         private System.Windows.Forms.Button btnLookup;
+        private System.Windows.Forms.Label lblShip;
+        private System.Windows.Forms.TextBox txt_Ship;
+        private System.Windows.Forms.Label lbl_item_total;
+        private System.Windows.Forms.TextBox txt_itemTotal;
+        private System.Windows.Forms.PictureBox pb_settings;
+        private System.Windows.Forms.CheckBox caseDiscount;
         private System.Windows.Forms.DataGridViewTextBoxColumn DESCRIPTION;
         private System.Windows.Forms.DataGridViewTextBoxColumn QTY;
         private System.Windows.Forms.DataGridViewTextBoxColumn PRICE;
@@ -656,11 +662,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn TAX;
         private System.Windows.Forms.DataGridViewTextBoxColumn BOTTLE_DEPOSIT;
         private System.Windows.Forms.DataGridViewTextBoxColumn TOTAL;
-        private System.Windows.Forms.Label lblShip;
-        private System.Windows.Forms.TextBox txt_Ship;
-        private System.Windows.Forms.Label lbl_item_total;
-        private System.Windows.Forms.TextBox txt_itemTotal;
-        private System.Windows.Forms.PictureBox pb_settings;
-        private System.Windows.Forms.CheckBox caseDiscount;
     }
 }
