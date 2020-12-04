@@ -109,6 +109,7 @@ namespace SecretCellar
                     //transaction complete, clear the form
                     transaction = new Transaction();
                     addRow(transaction);
+                    caseDiscount.Enabled = false;
                 }
             }
         }
@@ -228,6 +229,7 @@ namespace SecretCellar
         {
             transaction = new Transaction();
             addRow(transaction);
+            caseDiscount.Enabled = false;
         }
 
         private void dataGridView1_Click(object sender, EventArgs e)
@@ -271,13 +273,16 @@ namespace SecretCellar
         }
 
         private void caseDiscount_CheckedChanged(object sender, EventArgs e)
-        {
-            caseDiscount.Enabled = false;
-
-            if (caseDiscount.Checked == true)
+        {        
+            foreach (Discount d in transaction.GetQualifiedBulkDiscounts())
             {
-                System.Windows.Forms.MessageBox.Show("Case Discounts Applied!");
-            }             
+                transaction.EnableBulkDiscount(d, caseDiscount.Checked);
+            }
+                
+            //if (transaction.GetQualifiedBulkDiscounts().Count > 0)
+            //{
+                //System.Windows.Forms.MessageBox.Show("Case Discounts Applied!");
+            //}             
         }
     }
 }
