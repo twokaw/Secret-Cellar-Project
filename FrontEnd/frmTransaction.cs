@@ -272,7 +272,7 @@ namespace SecretCellar
 
         private void caseDiscount_CheckedChanged(object sender, EventArgs e)
         {
-            //string message = " ";
+            caseDiscount.Enabled = false;
 
             if (caseDiscount.Checked == true)
             {
