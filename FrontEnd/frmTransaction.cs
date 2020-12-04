@@ -277,12 +277,7 @@ namespace SecretCellar
             foreach (Discount d in transaction.GetQualifiedBulkDiscounts())
             {
                 transaction.EnableBulkDiscount(d, caseDiscount.Checked);
-            }
-                
-            //if (transaction.GetQualifiedBulkDiscounts().Count > 0)
-            //{
-                //System.Windows.Forms.MessageBox.Show("Case Discounts Applied!");
-            //}             
+            }                                     
         }
     }
 }
