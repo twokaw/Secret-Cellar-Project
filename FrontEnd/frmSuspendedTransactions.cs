@@ -14,52 +14,22 @@ namespace SecretCellar
 	public partial class frmSuspendedTransactions : Form
 	{
 		public static ArrayList suspendedTransactionsList = new ArrayList();
+		private frmTransaction transaction;
 
-		public frmSuspendedTransactions()
+		public frmSuspendedTransactions(frmTransaction t)
 		{
 			InitializeComponent();
+			transaction = t;
 
-			//FOR EACH SUSPENDED TRANSACTION
+			//POPULATE THE LIST OF SUSPENDED TRANSACTIONS
 			for (int i=0; i<suspendedTransactionsList.Count; i++) {
-				String currentSuspendedTransaction = suspendedTransactionsList[i].ToString();
-				String[] currentSuspendedTransactionSplit = currentSuspendedTransaction.Split(';');
-
-				listSuspendedTransactions.Items.Add(currentSuspendedTransactionSplit[0]);
-
-				//FOR EACH ROW IN THE CURRENT SUSPENDED TRANSACTION
-				for (int k=1; k<currentSuspendedTransactionSplit.Length; k++) {
-					int rowIndex = this.dataGridViewSuspendedTransactions.Rows.Add();
-					String[] cells = currentSuspendedTransactionSplit[k].Split(',');
-					
-					for (int j=0; j<cells.Length; j++) {
-						this.dataGridViewSuspendedTransactions.Rows[rowIndex].Cells[j].Value = cells[j];
-					}
-				}
+				listSuspendedTransactions.Items.Add(suspendedTransactionsList[i].ToString().Split(';')[0]);
 			}
 
-			/*
-			if (frmTransaction.chosenItems != null) {
-				//LOOP THROUGH EACH OF THE 'chosenItems' ROWS IN THE TRANSACTION FORM
-				for (int i=0; i<frmTransaction.chosenItems.Count; i++) {
-					DataGridViewRow row = frmTransaction.chosenItems[i];
-					int index = this.dataGridViewSuspendedTransactions.Rows.Add();
-
-					//FOR EACH CELL IN EACH ROW
-					for (int k=0; k<row.Cells.Count; k++) {
-						DataGridViewCell cell = row.Cells[k];
-
-						//ADD EACH CELL VALUE
-						if (cell.Value != null) {
-							this.dataGridViewSuspendedTransactions.Rows[index].Cells[k].Value = cell.Value.ToString();
-						}
-						else {
-							this.dataGridViewSuspendedTransactions.Rows[index].Cells[k].Value = "";
-						}
-					
-					}
-				}
+			//DEFAULT SELECTED ITEM IN THE LIST OF SUSPENDED TRANSACTIONS TO 0
+			if (suspendedTransactionsList.Count > 0) {
+				listSuspendedTransactions.SelectedIndex = 0;
 			}
-			*/
 
 		}
 
@@ -70,15 +40,46 @@ namespace SecretCellar
 
 		private void listSuspendedTransactions_SelectedIndexChanged(object sender, EventArgs e)
 		{
-			//TODO add code that will get the currently selected item and match it in the array/sql database
-			//to then display in the dataGridView
+			if (suspendedTransactionsList.Count > 0) {
+				//SET THE 'currentSuspendedTransaction' TO THE SELECTED ITEM IN THE SUSPENDED TRANSACTION LIST
+				String currentSuspendedTransaction = suspendedTransactionsList[listSuspendedTransactions.SelectedIndex].ToString();
+				String[] currentSuspendedTransactionSplit = currentSuspendedTransaction.Split(';');
 
+				//FOR EACH ROW IN THE CURRENT SUSPENDED TRANSACTION
+				this.dataGridViewSuspendedTransactions.Rows.Clear();
+
+				for (int k = 1; k < currentSuspendedTransactionSplit.Length; k++) {
+					int rowIndex = this.dataGridViewSuspendedTransactions.Rows.Add();
+					String[] cells = currentSuspendedTransactionSplit[k].Split(',');
+
+					//ADD EACH CELL FOR THE CURRENT ROW
+					for (int j = 0; j < cells.Length; j++) {
+						this.dataGridViewSuspendedTransactions.Rows[rowIndex].Cells[j].Value = cells[j];
+					}
+				}
+			}
 
 		}
 
 		private void btnDelete_Click(object sender, EventArgs e)
 		{
+			//TODO This is what will error when you try to delete something. It changes the selected index which then calls the changed event function and that's where it errors
+			suspendedTransactionsList.RemoveAt(listSuspendedTransactions.SelectedIndex);
+			this.dataGridViewSuspendedTransactions.Rows.Clear();
+			
+			if (listSuspendedTransactions.SelectedIndex > 0) {
+				listSuspendedTransactions.SelectedIndex = listSuspendedTransactions.SelectedIndex - 1;
+				listSuspendedTransactions.Items.RemoveAt(listSuspendedTransactions.SelectedIndex);
+			}
+			
+			
+		}
 
+		private void btnAdd_Click(object sender, EventArgs e)
+		{
+			//TODO need to add code to delete the suspended transaction
+			this.Close();
+			transaction.importSuspendedTransaction(this.dataGridViewSuspendedTransactions.Rows);
 		}
 	}
 }

@@ -18,7 +18,7 @@ namespace SecretCellar
         private Transaction transaction = new Transaction();
         private DataAccess dataAccess;
         private Image logo = null;
-        public static DataGridViewRowCollection chosenItems;
+        private DataGridViewRowCollection chosenItems;
         public frmTransaction()
         {
             InitializeComponent();
@@ -105,7 +105,7 @@ namespace SecretCellar
                     if (transaction.Payments.FirstOrDefault(x => x.Method == "CASH" || x.Method == "CHECK") != null)
                         openCashDrawer();
 
-                    if (payment.PrintReceipt) 
+                    if (payment.PrintReceipt)
                         new Receipt(transaction).Print();
 
                     //transaction complete, clear the form
@@ -297,7 +297,7 @@ namespace SecretCellar
 
 		private void btnSuspendedTransactions_Click(object sender, EventArgs e)
 		{
-            frmSuspendedTransactions suspendedTransactions = new frmSuspendedTransactions();
+            frmSuspendedTransactions suspendedTransactions = new frmSuspendedTransactions(this);
             suspendedTransactions.ShowDialog();
 		}
 
@@ -310,7 +310,7 @@ namespace SecretCellar
             String transactionInfo = popUp.nameOfSuspendedTransaction + ";";
 
             //GET ALL THE SELECTED ITEMS INTO A STRING ARRAY TO SEND TO 'frmSuspendedTransactions'
-            if (frmTransaction.chosenItems != null) {
+            if (chosenItems != null) {
                 //LOOP THROUGH EACH OF THE 'chosenItems' ROWS IN THE TRANSACTION FORM
                 for (int i=0; i<chosenItems.Count; i++) {
                     DataGridViewRow row = chosenItems[i];
@@ -344,6 +344,36 @@ namespace SecretCellar
 
             //UPDATE THE STRING ARRAYLIST FIELD IN 'frmSuspendedTransactions'
             frmSuspendedTransactions.suspendedTransactionsList.Add(transactionInfo);
+
+            //CLEAR THE CURRENT TRANSACTION AND THE dataGridView1 SINCE THEY'RE NOW SUSPENDED
+            dataGridView1.Rows.Clear();
+            transaction.Items.Clear();
+
+            //RESET ALL THE TOTALS
+            txt_transSubTotal.Text = "$0.00";
+            txt_transBTLDPT.Text = "$0.00";
+            txt_itemTotal.Text = "$0.00";
+            txt_transTax.Text = "$0.00";
+            txt_transDiscount.Text = "$0.00";
+            txt_TransTotal.Text = "$0.00";
+            txt_Ship.Text = "$0.00";
+
+
         }
+
+        public void importSuspendedTransaction(DataGridViewRowCollection suspendedTransactionRows) {
+            dataGridView1.Rows.Clear();
+            
+            for (int i=0; i<suspendedTransactionRows.Count; i++) {
+                //TODO write code to import the cells
+                int rowIndex = dataGridView1.Rows.Add();
+                Console.WriteLine(suspendedTransactionRows[rowIndex].Cells[0].ToString());
+
+                //dataGridView1.Rows[0].Cells.AddRange(suspendedTransactionRows[0]);
+                //dataGridView1.Rows[rowIndex].Cells;
+
+			}
+
+		}
 	}
 }
