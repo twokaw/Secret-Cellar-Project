@@ -12,14 +12,14 @@ using Shared;
 
 namespace SecretCellar
 {
-    public partial class frmTransaction : Form
+    public partial class frmTransaction : ManagedForm
     {
 
         private Transaction transaction = new Transaction();
         private DataAccess dataAccess;
         private Image logo = null;
 
-        public frmTransaction()
+        public frmTransaction():base()
         {
             InitializeComponent();
             txtBarcode.Focus();
