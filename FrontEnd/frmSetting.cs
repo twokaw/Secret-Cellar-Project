@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace SecretCellar
 {
-    public partial class FrmSetting : Form
+    public partial class FrmSetting : ManagedForm
     {
         private readonly DataAccess dataAccess = new DataAccess();
 
