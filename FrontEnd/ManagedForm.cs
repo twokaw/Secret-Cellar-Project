@@ -28,7 +28,7 @@ namespace SecretCellar
 
         private static Color DefaultColor()
         {
-            return Color.Beige;
+            return Color.DarkSlateGray;
         }
 
         public static void SetBackColor(Color c)
