@@ -42,6 +42,17 @@ namespace SecretCellar
 
         private void tab_General_Click(object sender, EventArgs e)
         {
+
+        }
+
+        private void btn_font_settings_Click(object sender, EventArgs e)
+        {
+            FontDialog fontDlg = new FontDialog();
+            fontDlg.ShowDialog();
+        }
+
+        private void btn_panel_color_Click(object sender, EventArgs e)
+        {
             ColorDialog panelcolorPicker = new ColorDialog
             {
                 Color = Color.Gray
@@ -49,12 +60,6 @@ namespace SecretCellar
 
             if (panelcolorPicker.ShowDialog() == DialogResult.OK)
                 BackColor = panelcolorPicker.Color;
-        }
-
-        private void btn_font_settings_Click(object sender, EventArgs e)
-        {
-            FontDialog fontDlg = new FontDialog();
-            fontDlg.ShowDialog();
         }
     }
 }

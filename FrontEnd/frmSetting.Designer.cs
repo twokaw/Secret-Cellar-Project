@@ -179,6 +179,7 @@
             this.btn_panel_color.TabIndex = 1;
             this.btn_panel_color.Text = "Panel Color Settings";
             this.btn_panel_color.UseVisualStyleBackColor = true;
+            this.btn_panel_color.Click += new System.EventHandler(this.btn_panel_color_Click);
             // 
             // btn_color
             // 
