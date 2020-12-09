@@ -247,12 +247,18 @@ namespace Shared
 
         public void EnableBulkDiscount(Discount discount, bool enabled)
         {
-          //  Items.ForEach(i => i.Discounts.ForEach(x => { if (x.DiscountID == discount.DiscountID) x.Enabled = enabled; }));
+            //  Items.ForEach(i => i.Discounts.ForEach(x => { if (x.DiscountID == discount.DiscountID) x.Enabled = enabled; }));
 
-            foreach(Item i in Items)
-                foreach(Discount x in i.Discounts)
-                    if (x.DiscountID == discount.DiscountID) 
+            foreach (Item i in Items)
+                foreach (Discount x in i.Discounts)
+                    if (x.DiscountID == discount.DiscountID)
                         x.Enabled = enabled;
+        }
+        public void EnableBulkDiscount(bool enabled)
+        {
+            foreach (Item i in Items)
+                foreach (Discount x in i.Discounts)
+                    x.Enabled = enabled;
         }
     }
 }
