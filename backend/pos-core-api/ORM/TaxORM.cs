@@ -96,7 +96,6 @@ namespace pos_core_api.ORM
                     cmd.Parameters.Add(new MySqlParameter("sales_tax", tax.SalesTax));
                     cmd.Parameters.Add(new MySqlParameter("local_sales_tax", tax.LocalSalesTax));
                     cmd.ExecuteNonQuery();
-                    long newId = cmd.LastInsertedId;
                 }
                 finally
                 {

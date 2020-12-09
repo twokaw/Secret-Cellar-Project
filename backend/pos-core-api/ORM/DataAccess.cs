@@ -111,5 +111,17 @@ namespace pos_core_api.ORM
                 return supplierORM;
             }
         }
+
+        private static DiscountORM discountORM = null;
+        public DiscountORM Discount
+        {
+            get
+            {
+                if (discountORM == null)
+                    discountORM = new DiscountORM();
+
+                return discountORM;
+            }
+        }
     }
 }
