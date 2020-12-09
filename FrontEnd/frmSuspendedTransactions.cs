@@ -8,26 +8,34 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Shared;
 
 namespace SecretCellar
 {
 	public partial class frmSuspendedTransactions : Form
 	{
 		public static ArrayList suspendedTransactionsList = new ArrayList();
-		private frmTransaction transaction;
+		public static Dictionary<string, Transaction> suspendedTransactions = new Dictionary<string, Transaction>();
+		private frmTransaction transactionForm;
 
 		public frmSuspendedTransactions(frmTransaction t)
 		{
 			InitializeComponent();
-			transaction = t;
+			transactionForm = t;
 
 			//POPULATE THE LIST OF SUSPENDED TRANSACTIONS
-			for (int i=0; i<suspendedTransactionsList.Count; i++) {
-				listSuspendedTransactions.Items.Add(suspendedTransactionsList[i].ToString().Split(';')[0]);
+			foreach(var transaction in suspendedTransactions) {
+				listSuspendedTransactions.Items.Add(transaction.Key);
 			}
 
+			/* CAN DELETE
+			for (int i=0; i<transactions.Count; i++) {
+				listSuspendedTransactions.Items.Add(transactions.Keys.FirstOrDefault()); //.ToString().Split(';')[0]);
+			}
+			*/
+
 			//DEFAULT SELECTED ITEM IN THE LIST OF SUSPENDED TRANSACTIONS TO 0
-			if (suspendedTransactionsList.Count > 0) {
+			if (suspendedTransactions.Count > 0) {
 				listSuspendedTransactions.SelectedIndex = 0;
 			}
 
@@ -40,25 +48,27 @@ namespace SecretCellar
 
 		private void listSuspendedTransactions_SelectedIndexChanged(object sender, EventArgs e)
 		{
-			if (suspendedTransactionsList.Count > 0) {
-				//SET THE 'currentSuspendedTransaction' TO THE SELECTED ITEM IN THE SUSPENDED TRANSACTION LIST
-				String currentSuspendedTransaction = suspendedTransactionsList[listSuspendedTransactions.SelectedIndex].ToString();
-				String[] currentSuspendedTransactionSplit = currentSuspendedTransaction.Split(';');
-
-				//FOR EACH ROW IN THE CURRENT SUSPENDED TRANSACTION
+			if (suspendedTransactions.Count > 0) {
 				this.dataGridViewSuspendedTransactions.Rows.Clear();
+				int index = listSuspendedTransactions.SelectedIndex;
+				Transaction currentTransaction = suspendedTransactions.ElementAt(index).Value;
 
-				for (int k = 1; k < currentSuspendedTransactionSplit.Length; k++) {
-					int rowIndex = this.dataGridViewSuspendedTransactions.Rows.Add();
-					String[] cells = currentSuspendedTransactionSplit[k].Split(',');
+				foreach (Item item in currentTransaction.Items) {
+					int rowIndex = dataGridViewSuspendedTransactions.Rows.Add();
 
-					//ADD EACH CELL FOR THE CURRENT ROW
-					for (int j = 0; j < cells.Length; j++) {
-						this.dataGridViewSuspendedTransactions.Rows[rowIndex].Cells[j].Value = cells[j];
+					using (var currentRow = dataGridViewSuspendedTransactions.Rows[rowIndex]) {
+						currentRow.Cells[0].Value = item.Description;
+						currentRow.Cells[1].Value = item.NumSold;
+						currentRow.Cells[2].Value = (item.Price * (1 - item.Discount)).ToString("C");
+						currentRow.Cells[3].Value = item.Discount.ToString("P0");
+
+						//TODO FIX THE TAX AMOUNT
+						currentRow.Cells[4].Value = "tax goes here";
+						currentRow.Cells[5].Value = (item.NumSold * item.Bottles * .05).ToString("C");
+						currentRow.Cells[6].Value = (item.Price * item.NumSold * (1 - item.Discount)).ToString("C");
 					}
 				}
 			}
-
 		}
 
 		private void btnDelete_Click(object sender, EventArgs e)
@@ -79,7 +89,7 @@ namespace SecretCellar
 		{
 			//TODO need to add code to delete the suspended transaction
 			this.Close();
-			transaction.importSuspendedTransaction(this.dataGridViewSuspendedTransactions.Rows);
+			transactionForm.importSuspendedTransaction(this.dataGridViewSuspendedTransactions.Rows);
 		}
 	}
 }

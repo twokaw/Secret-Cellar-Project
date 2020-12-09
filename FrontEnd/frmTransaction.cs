@@ -18,7 +18,6 @@ namespace SecretCellar
         private Transaction transaction = new Transaction();
         private DataAccess dataAccess;
         private Image logo = null;
-        private DataGridViewRowCollection chosenItems;
         public frmTransaction()
         {
             InitializeComponent();
@@ -239,23 +238,17 @@ namespace SecretCellar
 
         private void dataGridView1_RowsAdded(object sender, EventArgs e)
 		{
-            //UPDATE THE STATIC 'chosenItems' field
-            chosenItems = this.dataGridView1.Rows;
-
             //IF THE COUNT IS BIGGER THAN 0, MEANING AT LEAST
             //ONE ITEM IS SELECTED, THEN SHOW THE SUSPEND TRANSACTION BUTTON
-            if (chosenItems.Count > 0) {
+            if (transaction.Items.Count > 0) {
                 btnSuspendTransaction.Visible = true;
             }
         }
         private void dataGridView1_RowsRemoved(object sender, EventArgs e)
 		{
-            //UPDATE THE STATIC 'chosenItems' field
-            chosenItems = this.dataGridView1.Rows;
-
             //IF THE COUNT EQUALS 0, MEANING NOTHING IS SELECTED
             //THEN HIDE THE SUSPEND TRANSACTION BUTTON
-            if (chosenItems.Count == 0) {
+            if (transaction.Items.Count == 0) {
                 btnSuspendTransaction.Visible = false;
             }
         }
@@ -307,43 +300,20 @@ namespace SecretCellar
             frmSuspendedTransactionsNamePopUp popUp = new frmSuspendedTransactionsNamePopUp();
             popUp.ShowDialog();
 
-            String transactionInfo = popUp.nameOfSuspendedTransaction + ";";
+            String suspendedTransactionName = popUp.nameOfSuspendedTransaction;
 
             //GET ALL THE SELECTED ITEMS INTO A STRING ARRAY TO SEND TO 'frmSuspendedTransactions'
-            if (chosenItems != null) {
-                //LOOP THROUGH EACH OF THE 'chosenItems' ROWS IN THE TRANSACTION FORM
-                for (int i=0; i<chosenItems.Count; i++) {
-                    DataGridViewRow row = chosenItems[i];
-                    
-                    //FOR EACH CELL IN EACH ROW
-                    for (int k=0; k<row.Cells.Count; k++) {
-                        DataGridViewCell cell = row.Cells[k];
+            if (transaction.Items.Count > 0) {
 
-                        //ADD EACH CELL VALUE
-                        if (cell.Value != null) {
-                           if (k == row.Cells.Count-1) {
-                                transactionInfo = transactionInfo + cell.Value.ToString();
-                            }
-                           else {
-                                transactionInfo = transactionInfo + cell.Value.ToString() + ",";
-						   }
-                        }
-                        else {
-                            if (k == row.Cells.Count-1) {
-                                transactionInfo = transactionInfo + " ";
-                            }
-                            else {
-                                transactionInfo = transactionInfo + " ,";
-                            }
-                        }
-                    }
+                //CREATE A COPY OF THE TRANSACTION SO IT'S NOT LOST WHEN IT'S MOVED TO THE SUSPENDED TRANSACTIONS
+                Transaction transactionCopy = new Transaction();
+                foreach(Item item in transaction.Items) {
+                    transactionCopy.Items.Add(item);
+				}
 
-                    transactionInfo = transactionInfo + ";";
-                }
+                //ADD THE NAME AND THE TRANSACTION TO THE MAP OF SUSPENDED TRANSACTIONS IN 'frmSuspendedTransactions'
+                frmSuspendedTransactions.suspendedTransactions.Add(suspendedTransactionName, transactionCopy);
             }
-
-            //UPDATE THE STRING ARRAYLIST FIELD IN 'frmSuspendedTransactions'
-            frmSuspendedTransactions.suspendedTransactionsList.Add(transactionInfo);
 
             //CLEAR THE CURRENT TRANSACTION AND THE dataGridView1 SINCE THEY'RE NOW SUSPENDED
             dataGridView1.Rows.Clear();
@@ -357,23 +327,37 @@ namespace SecretCellar
             txt_transDiscount.Text = "$0.00";
             txt_TransTotal.Text = "$0.00";
             txt_Ship.Text = "$0.00";
-
-
         }
 
         public void importSuspendedTransaction(DataGridViewRowCollection suspendedTransactionRows) {
+            //CLEAR WHATEVER WAS IN THE TRANSACTION ALREADY
             dataGridView1.Rows.Clear();
-            
-            for (int i=0; i<suspendedTransactionRows.Count; i++) {
-                //TODO write code to import the cells
-                int rowIndex = dataGridView1.Rows.Add();
-                Console.WriteLine(suspendedTransactionRows[rowIndex].Cells[0].ToString());
+            transaction.Items.Clear();
 
-                //dataGridView1.Rows[0].Cells.AddRange(suspendedTransactionRows[0]);
-                //dataGridView1.Rows[rowIndex].Cells;
+            //RESET ALL THE TOTALS
+            txt_transSubTotal.Text = "$0.00";
+            txt_transBTLDPT.Text = "$0.00";
+            txt_itemTotal.Text = "$0.00";
+            txt_transTax.Text = "$0.00";
+            txt_transDiscount.Text = "$0.00";
+            txt_TransTotal.Text = "$0.00";
+            txt_Ship.Text = "$0.00";
 
+
+            Inventory inv = dataAccess.GetInventory().First(x => x.Id == uint.Parse(suspendedTransactionRows[0].Cells["id"].Value.ToString()));
+            Item item = DataAccess.ConvertInvtoItem(inv);
+
+            transaction.Items.Add(item);
+            addRow(transaction);
+
+            /*
+            int rowIndex = dataGridView1.Rows.Add();
+            DataGridViewCellCollection suspendedCells = suspendedTransactionRows[rowIndex].Cells;
+
+            for (int j=0; j<suspendedCells.Count; j++) {
+                dataGridView1.Rows[rowIndex].Cells[j].Value = suspendedCells[j].Value;
 			}
-
+            */
 		}
 	}
 }
