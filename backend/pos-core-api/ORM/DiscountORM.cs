@@ -2,8 +2,6 @@
 using Shared;
 using System.Data;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using WebApi.Helpers;
 
 namespace pos_core_api.ORM
@@ -112,6 +110,57 @@ namespace pos_core_api.ORM
             }
 
             return Discount.DiscountID;
+        }
+        public bool Update(uint discountId, int typeId)
+        {
+            db.OpenConnection();
+            if (Get(discountId) == null || DataAccess.Instance.InventoryType.Get(typeId) == null)
+                return false;
+            else
+            {
+                string sqlStatement = @"
+                    REPLACE INTO discount_type
+                    (discountId, typeId) 
+                    VALUES
+                    (@discountId, @typeId)
+                ";
+
+                try
+                {
+                    MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
+                    cmd.Parameters.Add(new MySqlParameter("discountId", discountId));
+                    cmd.Parameters.Add(new MySqlParameter("typeId", typeId));
+                    cmd.ExecuteNonQuery();
+                }
+                finally
+                {
+                    db.CloseConnnection();
+                }
+            }
+
+            return true;
+        }
+        public void Delete(uint discountId, int typeId)
+        {
+            db.OpenConnection();
+
+            string sqlStatement = @"
+                DELETE FROM discount_type
+                WHERE discountId = @discountId
+                AND   typeId = @typeId
+            ";
+
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
+                cmd.Parameters.Add(new MySqlParameter("discountId", discountId));
+                cmd.Parameters.Add(new MySqlParameter("typeId", typeId));
+                cmd.ExecuteNonQuery();
+            }
+            finally
+            {
+                db.CloseConnnection();
+            }
         }
 
         public bool Delete(uint DiscountId)
