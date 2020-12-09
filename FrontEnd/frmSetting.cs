@@ -37,7 +37,7 @@ namespace SecretCellar
             };
 
             if (colorPicker.ShowDialog() == DialogResult.OK)
-                BackColor = colorPicker.Color;
+                SetBackColor(colorPicker.Color);
         }
 
         private void tab_General_Click(object sender, EventArgs e)
@@ -53,16 +53,33 @@ namespace SecretCellar
 
         private void btn_panel_color_Click(object sender, EventArgs e)
         {
-            DataGridViewCellStyle gridcolor = new DataGridViewCellStyle();
-            style.ForeColor = Color.Black;
-            row.Cells[color.Index].Style = style;
-            //ColorDialog panelcolorPicker = new ColorDialog
+            ColorDialog colorPicker = new ColorDialog
             {
-                Color = Color.Gray
+                Color = DataGridViewBackColor
+            };
+
+            if (colorPicker.ShowDialog() == DialogResult.OK)
+                DataGridViewBackColor = colorPicker.Color;
+        }
+
+        private void btn_row_color_Click(object sender, EventArgs e)
+        {
+            DataGridViewCellStyle cs = DefaultCellStyle;
+
+            ColorDialog gridcolor = new ColorDialog
+            {
+                Color = cs.BackColor
             };
 
             if (gridcolor.ShowDialog() == DialogResult.OK)
-                style.BackColor = Color.panelcolorPicker.Color;
+
+            {
+
+                cs.BackColor = gridcolor.Color;
+                cs.SelectionBackColor = Color.FromArgb(cs.BackColor.A, cs.BackColor.R - 15, cs.BackColor.G - 15, cs.BackColor.B - 15);
+                SetDefaultCellStyle(cs);
+
+            }
         }
     }
 }

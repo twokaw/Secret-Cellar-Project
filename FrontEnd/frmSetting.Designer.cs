@@ -42,6 +42,7 @@
             this.btn_panel_color = new System.Windows.Forms.Button();
             this.btn_color = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.btn_row_color = new System.Windows.Forms.Button();
             this.TabSettings.SuspendLayout();
             this.TabTypes.SuspendLayout();
             this.tab_General.SuspendLayout();
@@ -141,6 +142,7 @@
             // 
             // tab_General
             // 
+            this.tab_General.Controls.Add(this.btn_row_color);
             this.tab_General.Controls.Add(this.btn_font_settings);
             this.tab_General.Controls.Add(this.btn_panel_color);
             this.tab_General.Controls.Add(this.btn_color);
@@ -205,13 +207,26 @@
             this.tabPage2.Text = "Reports";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // btn_row_color
+            // 
+            this.btn_row_color.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_row_color.Location = new System.Drawing.Point(400, 338);
+            this.btn_row_color.Margin = new System.Windows.Forms.Padding(4);
+            this.btn_row_color.Name = "btn_row_color";
+            this.btn_row_color.Size = new System.Drawing.Size(232, 27);
+            this.btn_row_color.TabIndex = 3;
+            this.btn_row_color.Text = "Row Color Settings";
+            this.btn_row_color.UseVisualStyleBackColor = true;
+            this.btn_row_color.Click += new System.EventHandler(this.btn_row_color_Click);
+            // 
             // FrmSetting
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1147, 668);
             this.Controls.Add(this.TabSettings);
-            this.Font = new System.Drawing.Font("Arial", 11F);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FrmSetting";
@@ -241,5 +256,6 @@
         private System.Windows.Forms.Button btn_color;
         private System.Windows.Forms.Button btn_font_settings;
         private System.Windows.Forms.Button btn_panel_color;
+        private System.Windows.Forms.Button btn_row_color;
     }
 }
