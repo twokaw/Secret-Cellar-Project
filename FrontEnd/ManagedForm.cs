@@ -16,6 +16,7 @@ namespace SecretCellar
             Forms.Add(this);
             Console.WriteLine($"Constructed: {Forms.Count}");
             base.BackColor = CommonBackColor;
+            base.
             base.Font = CommonFont;
             base.FormClosed += ManagedForm_FormClosed;
         }

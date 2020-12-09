@@ -33,7 +33,7 @@ namespace SecretCellar
         {
             ColorDialog colorPicker = new ColorDialog
             {
-                Color = Color.Green
+                Color = Color.Gray
             };
 
             if (colorPicker.ShowDialog() == DialogResult.OK)
@@ -53,13 +53,16 @@ namespace SecretCellar
 
         private void btn_panel_color_Click(object sender, EventArgs e)
         {
-            ColorDialog panelcolorPicker = new ColorDialog
+            DataGridViewCellStyle gridcolor = new DataGridViewCellStyle();
+            style.ForeColor = Color.Black;
+            row.Cells[color.Index].Style = style;
+            //ColorDialog panelcolorPicker = new ColorDialog
             {
                 Color = Color.Gray
             };
 
-            if (panelcolorPicker.ShowDialog() == DialogResult.OK)
-                BackColor = panelcolorPicker.Color;
+            if (gridcolor.ShowDialog() == DialogResult.OK)
+                style.BackColor = Color.panelcolorPicker.Color;
         }
     }
 }
