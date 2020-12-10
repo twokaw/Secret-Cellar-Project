@@ -181,7 +181,30 @@ namespace SecretCellar
             transaction.InvoiceID = uint.TryParse(result, out uint id) ? id : 0;
 
             return transaction.InvoiceID;
-        }  
+        }
+        #endregion
+        #region Discount
+        public List<Discount> GetDiscount()
+        {
+            string result = web.DataGet("api/Discount");
+            return JsonConvert.DeserializeObject<List<Discount>>(result);
+        }
+
+        public Discount GetDiscount(uint DiscountID)
+        {
+            string result = web.DataGet($"api/Discount/{DiscountID}");
+            return JsonConvert.DeserializeObject<Discount>(result);
+        }
+
+        public uint UpdateDiscount(Discount Discount)
+        {
+            Response resp = null;
+            string result = web.DataPut($"api/Discount", Discount, resp);
+            if (uint.TryParse(result, out uint id))
+                return id;
+            else
+                return 0;
+        }
         #endregion
         public static Item ConvertInvtoItem(Inventory inv)
         {
