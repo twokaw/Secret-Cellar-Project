@@ -277,5 +277,10 @@ namespace SecretCellar
                 System.Windows.Forms.MessageBox.Show("Case Discounts Applied!");
             }             
         }
+
+        private void lbl_BARCODE_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

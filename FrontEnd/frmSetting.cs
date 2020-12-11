@@ -37,7 +37,7 @@ namespace SecretCellar
             };
 
             if (colorPicker.ShowDialog() == DialogResult.OK)
-                SetBackColor(colorPicker.Color);
+                MainWindowColor = colorPicker.Color;
         }
 
         private void tab_General_Click(object sender, EventArgs e)
@@ -76,7 +76,7 @@ namespace SecretCellar
             {
 
                 cs.BackColor = gridcolor.Color;
-                cs.SelectionBackColor = Color.FromArgb(cs.BackColor.A, cs.BackColor.R - 15, cs.BackColor.G - 15, cs.BackColor.B - 15);
+                cs.SelectionBackColor = Color.FromArgb(cs.BackColor.A, Math.Max(cs.BackColor.R - 25,0), Math.Max(cs.BackColor.G - 25,0), Math.Max(cs.BackColor.B - 25,0));
                 SetDefaultCellStyle(cs);
 
             }

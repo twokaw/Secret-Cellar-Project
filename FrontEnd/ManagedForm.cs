@@ -14,8 +14,8 @@ namespace SecretCellar
         private static readonly List<ManagedForm> Forms = new List<ManagedForm>();
         private static Color CommonDataGridViewColor = Default_DataGridView_Color();
 
-        public static DataGridViewCellStyle DefaultCellStyle 
-        { 
+        public static DataGridViewCellStyle DefaultCellStyle
+        {
             get
             {
                 return CommonCell;
@@ -45,15 +45,22 @@ namespace SecretCellar
             return Color.DarkSlateGray;
         }
 
-        public static void SetBackColor(Color c)
+        public static Color MainWindowColor
         {
-            CommonBackColor = c;
+            get
+            {
+                return CommonBackColor;
+            }
+            set
+            {
+            CommonBackColor = value;
             Forms.ForEach(x => x.BackColor = CommonBackColor);
+            }
         }
 
         private static Font Default_Font()
         {
-            return new Font("Arial", 11);
+            return new Font("Microsoft San Serif", 11,FontStyle.Bold);
         }
 
         public static void SetFont(Font font)
