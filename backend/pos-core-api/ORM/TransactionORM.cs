@@ -67,6 +67,29 @@ namespace pos_core_api.ORM
             }
         }
 
+        public List<Transaction> GetSuspendedTransactions(bool includeItems = true, bool includePayments = true)
+        {
+            db.OpenConnection();
+            try
+            {
+                string sqlStatement = @$"
+                 SELECT receiptID, register, sold_datetime, customerID, empID, location, tax_exempt, discount, shipping
+                 FROM Transaction 
+                 JOIN v_suspendedtransaction
+                 USING(ReceiptID);
+                ";
+
+                using MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
+                List<Transaction> transaction = GetTransactions(cmd, includeItems, includePayments);
+
+                return transaction;
+            }
+            finally
+            {
+                db.CloseConnnection();
+            }
+        }
+
         public List<Transaction> GetTransactions(MySqlCommand cmd, bool includeItems, bool includePayments)
         {
             Transaction transaction;

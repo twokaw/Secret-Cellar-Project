@@ -169,6 +169,11 @@ namespace SecretCellar
             string result = web.DataGet($"api/Transaction");
             return JsonConvert.DeserializeObject<List<Transaction>>(result);
         }
+        public List<Transaction> GetSuspendedTransactions()
+        {
+            string result = web.DataGet($"api/Transaction/Suspended");
+            return JsonConvert.DeserializeObject<List<Transaction>>(result);
+        }
         public List<Transaction> Get(DateTime start, DateTime end )
         {
             string result = web.DataGet($"api/Transaction?start={start}&end={end}");
@@ -183,6 +188,7 @@ namespace SecretCellar
             return transaction.InvoiceID;
         }
         #endregion
+        
         #region Discount
         public List<Discount> GetDiscount()
         {

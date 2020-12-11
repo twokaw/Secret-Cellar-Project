@@ -44,5 +44,9 @@ namespace SecretCellar
         {
 
         }
+
+        private void btn_panel_color_Click(object sender, EventArgs e)
+        {
+        }
     }
 }

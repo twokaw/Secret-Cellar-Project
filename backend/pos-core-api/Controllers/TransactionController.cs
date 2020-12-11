@@ -24,7 +24,7 @@ namespace WebApi.Controllers
                 return StatusCode(500, ex.Message);
             }
         }
-        
+
         // Get call to be used when barcode on receipt is scanned
         //Get: api/Transaction/receiptID
         [HttpGet("{receiptID}")]
@@ -33,6 +33,21 @@ namespace WebApi.Controllers
             try
             {
                 return Ok(DataAccess.Instance.Transaction.GetTransaction(receiptID));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            };
+        }
+
+        // Get call to be used when barcode on receipt is scanned
+        //Get: api/Transaction/Suspended
+        [HttpGet("Suspended/")]
+        public ActionResult GetSuspended()
+        {
+            try
+            {
+                return Ok(DataAccess.Instance.Transaction.GetSuspendedTransactions());
             }
             catch (Exception ex)
             {

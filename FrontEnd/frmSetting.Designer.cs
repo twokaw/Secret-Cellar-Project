@@ -54,7 +54,7 @@
             this.TabSettings.Controls.Add(this.tab_General);
             this.TabSettings.Controls.Add(this.tabPage2);
             this.TabSettings.Location = new System.Drawing.Point(16, 16);
-            this.TabSettings.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.TabSettings.Margin = new System.Windows.Forms.Padding(4);
             this.TabSettings.Name = "TabSettings";
             this.TabSettings.SelectedIndex = 0;
             this.TabSettings.Size = new System.Drawing.Size(1035, 551);
@@ -62,11 +62,11 @@
             // 
             // tabHardware
             // 
-            this.tabHardware.Location = new System.Drawing.Point(4, 23);
-            this.tabHardware.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabHardware.Location = new System.Drawing.Point(4, 34);
+            this.tabHardware.Margin = new System.Windows.Forms.Padding(4);
             this.tabHardware.Name = "tabHardware";
-            this.tabHardware.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.tabHardware.Size = new System.Drawing.Size(1027, 524);
+            this.tabHardware.Padding = new System.Windows.Forms.Padding(4);
+            this.tabHardware.Size = new System.Drawing.Size(1027, 513);
             this.tabHardware.TabIndex = 0;
             this.tabHardware.Text = "Hardware";
             this.tabHardware.UseVisualStyleBackColor = true;
@@ -78,11 +78,11 @@
             this.TabTypes.Controls.Add(this.label2);
             this.TabTypes.Controls.Add(this.label1);
             this.TabTypes.Controls.Add(this.lstTypes);
-            this.TabTypes.Location = new System.Drawing.Point(4, 23);
-            this.TabTypes.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.TabTypes.Location = new System.Drawing.Point(4, 34);
+            this.TabTypes.Margin = new System.Windows.Forms.Padding(4);
             this.TabTypes.Name = "TabTypes";
-            this.TabTypes.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.TabTypes.Size = new System.Drawing.Size(1027, 524);
+            this.TabTypes.Padding = new System.Windows.Forms.Padding(4);
+            this.TabTypes.Size = new System.Drawing.Size(1027, 513);
             this.TabTypes.TabIndex = 1;
             this.TabTypes.Text = "Types";
             this.TabTypes.UseVisualStyleBackColor = true;
@@ -101,9 +101,9 @@
             // 
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Location = new System.Drawing.Point(272, 325);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox1.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(200, 25);
+            this.comboBox1.Size = new System.Drawing.Size(200, 33);
             this.comboBox1.TabIndex = 3;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
@@ -113,7 +113,7 @@
             this.label2.Location = new System.Drawing.Point(259, 61);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(12, 17);
+            this.label2.Size = new System.Drawing.Size(18, 25);
             this.label2.TabIndex = 2;
             this.label2.Text = " ";
             // 
@@ -132,11 +132,11 @@
             this.lstTypes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.lstTypes.FormattingEnabled = true;
-            this.lstTypes.ItemHeight = 17;
+            this.lstTypes.ItemHeight = 25;
             this.lstTypes.Location = new System.Drawing.Point(25, 44);
-            this.lstTypes.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.lstTypes.Margin = new System.Windows.Forms.Padding(4);
             this.lstTypes.Name = "lstTypes";
-            this.lstTypes.Size = new System.Drawing.Size(136, 446);
+            this.lstTypes.Size = new System.Drawing.Size(136, 429);
             this.lstTypes.TabIndex = 0;
             // 
             // tab_General
@@ -144,10 +144,10 @@
             this.tab_General.Controls.Add(this.btn_font_settings);
             this.tab_General.Controls.Add(this.btn_panel_color);
             this.tab_General.Controls.Add(this.btn_color);
-            this.tab_General.Location = new System.Drawing.Point(4, 26);
+            this.tab_General.Location = new System.Drawing.Point(4, 34);
             this.tab_General.Margin = new System.Windows.Forms.Padding(1);
             this.tab_General.Name = "tab_General";
-            this.tab_General.Size = new System.Drawing.Size(1027, 521);
+            this.tab_General.Size = new System.Drawing.Size(1027, 513);
             this.tab_General.TabIndex = 2;
             this.tab_General.Text = "General";
             this.tab_General.UseVisualStyleBackColor = true;
@@ -159,31 +159,34 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_font_settings.Location = new System.Drawing.Point(400, 285);
-            this.btn_font_settings.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_font_settings.Margin = new System.Windows.Forms.Padding(4);
             this.btn_font_settings.Name = "btn_font_settings";
             this.btn_font_settings.Size = new System.Drawing.Size(232, 27);
             this.btn_font_settings.TabIndex = 2;
             this.btn_font_settings.Text = "Font Settings";
             this.btn_font_settings.UseVisualStyleBackColor = true;
+            // 
             // btn_panel_color
             // 
             this.btn_panel_color.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_panel_color.Location = new System.Drawing.Point(400, 234);
-            this.btn_panel_color.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_panel_color.Margin = new System.Windows.Forms.Padding(4);
             this.btn_panel_color.Name = "btn_panel_color";
             this.btn_panel_color.Size = new System.Drawing.Size(232, 27);
             this.btn_panel_color.TabIndex = 1;
             this.btn_panel_color.Text = "Panel Color Settings";
             this.btn_panel_color.UseVisualStyleBackColor = true;
+            this.btn_panel_color.Click += new System.EventHandler(this.btn_panel_color_Click);
+            // 
             // btn_color
             // 
             this.btn_color.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_color.Location = new System.Drawing.Point(400, 181);
-            this.btn_color.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_color.Margin = new System.Windows.Forms.Padding(4);
             this.btn_color.Name = "btn_color";
             this.btn_color.Size = new System.Drawing.Size(232, 27);
             this.btn_color.TabIndex = 0;
@@ -193,23 +196,23 @@
             // 
             // tabPage2
             // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 23);
+            this.tabPage2.Location = new System.Drawing.Point(4, 34);
             this.tabPage2.Margin = new System.Windows.Forms.Padding(1);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Size = new System.Drawing.Size(1027, 524);
+            this.tabPage2.Size = new System.Drawing.Size(1027, 513);
             this.tabPage2.TabIndex = 3;
             this.tabPage2.Text = "Reports";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // FrmSetting
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1147, 668);
             this.Controls.Add(this.TabSettings);
             this.Font = new System.Drawing.Font("Arial", 11F);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FrmSetting";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "frmSetting";
