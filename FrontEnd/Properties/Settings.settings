@@ -51,5 +51,8 @@ Shueyville, IA 52338
     <Setting Name="FontSet" Type="System.Drawing.Font" Scope="User">
       <Value Profile="(Default)">Microsoft Sans Serif, 9.75pt, style=Bold</Value>
     </Setting>
+    <Setting Name="MainFormSize" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">1200, 900</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
