@@ -13,6 +13,7 @@ namespace SecretCellar
     public partial class FrmSetting : ManagedForm
     {
         private readonly DataAccess dataAccess = new DataAccess();
+        private ToolTip ProgramTips = new ToolTip();
 
         public FrmSetting()
         {
@@ -22,6 +23,15 @@ namespace SecretCellar
         private void FrmSetting_Load(object sender, EventArgs e)
         {
             lstTypes.DataSource = dataAccess.GetInventoryType();
+            // Set up the delays for the ToolTip.
+            ProgramTips.AutoPopDelay = 10000;
+            ProgramTips.InitialDelay = 1000;
+            ProgramTips.ReshowDelay = 500;
+            // Force the ToolTip text to be displayed whether or not the form is active.
+            ProgramTips.ShowAlways = true;
+            // Set up the ToolTip text for the Button and Checkbox.
+            ProgramTips.SetToolTip(this.btn_commit, "Click commit to make changes permanent otherwise will reset on program close");
+            //ProgramTips.SetToolTip(this.checkBox1, "My checkBox1");
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -49,6 +59,7 @@ namespace SecretCellar
         {
             FontDialog fontDlg = new FontDialog();
             fontDlg.ShowDialog();
+            CommonFontSetter = fontDlg.Font;
         }
 
         private void btn_panel_color_Click(object sender, EventArgs e)
@@ -80,6 +91,15 @@ namespace SecretCellar
                 SetDefaultCellStyle(cs);
 
             }
+        }
+
+        private void btn_commit_Click(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.BackgroundColor = ManagedForm.MainWindowColor;
+            Properties.Settings.Default.GridColor = ManagedForm.DataGridViewBackColor;
+            Properties.Settings.Default.FontSet = ManagedForm.CommonFontSetter;
+            Properties.Settings.Default.Save();
+            this.Close();
         }
     }
 }

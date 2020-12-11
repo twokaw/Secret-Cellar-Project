@@ -42,7 +42,7 @@ namespace SecretCellar
 
         private static Color DefaultColor()
         {
-            return Color.DarkSlateGray;
+            return Properties.Settings.Default.BackgroundColor;
         }
 
         public static Color MainWindowColor
@@ -60,20 +60,27 @@ namespace SecretCellar
 
         private static Font Default_Font()
         {
-            return new Font("Microsoft San Serif", 11,FontStyle.Bold);
+            return Properties.Settings.Default.FontSet;
         }
 
-        public static void SetFont(Font font)
+        public static Font CommonFontSetter
         {
-            CommonFont = font;
-            foreach(ManagedForm f in Forms)
+            get
+                {
+                return CommonFont;
+            }
+            set
             {
-                f.Font = CommonFont;
-                /*
-                foreach (Control c in f.Controls) {
-                    c.Font = CommonFont;
+                CommonFont = value;
+                foreach (ManagedForm f in Forms)
+                {
+                    f.Font = CommonFont;
+                   
+                    foreach (Control c in f.Controls) {
+                        c.Font = CommonFont;
+                    }
+                    
                 }
-                */
             }
         }
         private static DataGridViewCellStyle Default_Cell_Style()
@@ -98,7 +105,7 @@ namespace SecretCellar
 
         public static Color Default_DataGridView_Color()
         {
-            return Color.Gray;
+            return Properties.Settings.Default.GridColor;
         }
         public static Color DataGridViewBackColor
         {

@@ -5,7 +5,7 @@ using Shared;
 
 namespace SecretCellar
 {
-    public partial class frmPayment : Form
+    public partial class frmPayment : ManagedForm
     {
         public bool PrintReceipt { get; set; }
         private Transaction transaction = null;
