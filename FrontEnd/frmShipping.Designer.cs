@@ -96,6 +96,7 @@
             this.Name = "frmShipping";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "frmShipping";
+            this.Load += new System.EventHandler(this.frmShipping_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

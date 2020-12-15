@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace SecretCellar
 {
-    public partial class frmCustom : Form
+    public partial class frmCustom : ManagedForm
     {
         private Transaction customItem = null;
 
@@ -62,6 +62,11 @@ namespace SecretCellar
         }
 
         private void txt_descript_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void frmCustom_Load(object sender, EventArgs e)
         {
 
         }

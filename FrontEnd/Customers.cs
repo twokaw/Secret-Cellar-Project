@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace SecretCellar
 {
-    public partial class Customers : Form
+    public partial class Customers : ManagedForm
     {
         public string customerName;
         public Customers()
@@ -85,6 +85,11 @@ namespace SecretCellar
         private void addRow(string name)
         {
             dataGridTabs.Rows.Add(name);
+        }
+
+        private void Customers_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

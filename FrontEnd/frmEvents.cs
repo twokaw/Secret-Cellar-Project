@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 namespace SecretCellar
 {
-    public partial class frmEvents : Form
+    public partial class frmEvents : ManagedForm
     {
         private Transaction events = null;
         public frmEvents(Transaction transaction)
