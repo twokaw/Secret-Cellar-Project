@@ -89,6 +89,7 @@ namespace SecretCellar
                 openCashDrawer();
             else
             {
+
                 frmPayment payment = new frmPayment(transaction);
                 if (payment.ShowDialog() == DialogResult.OK)
                 { 
@@ -103,6 +104,13 @@ namespace SecretCellar
 
                     if (transaction.Payments.FirstOrDefault(x => x.Method == "CASH" || x.Method == "CHECK") != null)
                         openCashDrawer();
+
+                    if (transaction.GetQualifiedBulkDiscounts() != null)
+                    {
+                        caseDiscount.Enabled = true;
+                        //if (caseDiscount_CheckedChanged)
+                    }
+
 
                     if (payment.PrintReceipt) 
                         new Receipt(transaction).Print();
