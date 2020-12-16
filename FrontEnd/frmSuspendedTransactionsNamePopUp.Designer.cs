@@ -41,6 +41,7 @@
 			this.textBoxSuspendedTransactionName.Size = new System.Drawing.Size(266, 20);
 			this.textBoxSuspendedTransactionName.TabIndex = 0;
 			this.textBoxSuspendedTransactionName.TextChanged += new System.EventHandler(this.textBoxSuspendedTransactionName_TextChanged);
+			this.textBoxSuspendedTransactionName.KeyDown += new System.Windows.Forms.KeyEventHandler(textBoxSuspendedTransactionName_KeyDown);
 			// 
 			// btnOkay
 			// 

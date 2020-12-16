@@ -18,11 +18,21 @@ namespace SecretCellar
 		public frmSuspendedTransactionsNamePopUp()
 		{
 			InitializeComponent();
+
+			//TODO add a list of customers on the right
 		}
 
 		private void textBoxSuspendedTransactionName_TextChanged(object sender, EventArgs e)
 		{
 
+		}
+
+		private void textBoxSuspendedTransactionName_KeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.KeyCode == Keys.Enter) {
+				this.nameOfSuspendedTransaction = textBoxSuspendedTransactionName.Text;
+				this.Close();
+			}
 		}
 
 		private void btnOkay_Click(object sender, EventArgs e)

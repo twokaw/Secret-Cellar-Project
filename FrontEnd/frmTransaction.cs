@@ -301,35 +301,42 @@ namespace SecretCellar
             popUp.ShowDialog();
 
             String suspendedTransactionName = popUp.nameOfSuspendedTransaction;
+           
+            
+            //TODO add check here to ensure the name is different
 
-            //GET ALL THE SELECTED ITEMS INTO A STRING ARRAY TO SEND TO 'frmSuspendedTransactions'
-            if (transaction.Items.Count > 0) {
 
-                //CREATE A COPY OF THE TRANSACTION SO IT'S NOT LOST WHEN IT'S MOVED TO THE SUSPENDED TRANSACTIONS
-                Transaction transactionCopy = new Transaction();
-                foreach(Item item in transaction.Items) {
-                    transactionCopy.Items.Add(item);
-				}
+            if (suspendedTransactionName != null) {
+                //GET ALL THE SELECTED ITEMS INTO A STRING ARRAY TO SEND TO 'frmSuspendedTransactions'
+                if (transaction.Items.Count > 0) {
+                    //CREATE A COPY OF THE TRANSACTION SO IT'S NOT LOST WHEN IT'S MOVED TO THE SUSPENDED TRANSACTIONS
+                    Transaction transactionCopy = new Transaction();
+                    foreach(Item item in transaction.Items) {
+                        transactionCopy.Items.Add(item);
+	                }
 
-                //ADD THE NAME AND THE TRANSACTION TO THE MAP OF SUSPENDED TRANSACTIONS IN 'frmSuspendedTransactions'
-                frmSuspendedTransactions.suspendedTransactions.Add(suspendedTransactionName, transactionCopy);
-            }
+                    //ADD THE NAME AND THE TRANSACTION TO THE MAP OF SUSPENDED TRANSACTIONS IN 'frmSuspendedTransactions'
+                    frmSuspendedTransactions.suspendedTransactionsMap.Add(suspendedTransactionName, transactionCopy);
+                }
 
-            //CLEAR THE CURRENT TRANSACTION AND THE dataGridView1 SINCE THEY'RE NOW SUSPENDED
-            dataGridView1.Rows.Clear();
-            transaction.Items.Clear();
+                //CLEAR THE CURRENT TRANSACTION AND THE dataGridView1 SINCE THEY'RE NOW SUSPENDED
+                dataGridView1.Rows.Clear();
+                transaction.Items.Clear();
 
-            //RESET ALL THE TOTALS
-            txt_transSubTotal.Text = "$0.00";
-            txt_transBTLDPT.Text = "$0.00";
-            txt_itemTotal.Text = "$0.00";
-            txt_transTax.Text = "$0.00";
-            txt_transDiscount.Text = "$0.00";
-            txt_TransTotal.Text = "$0.00";
-            txt_Ship.Text = "$0.00";
+                //RESET ALL THE TOTALS
+                txt_transSubTotal.Text = "$0.00";
+                txt_transBTLDPT.Text = "$0.00";
+                txt_itemTotal.Text = "$0.00";
+                txt_transTax.Text = "$0.00";
+                txt_transDiscount.Text = "$0.00";
+                txt_TransTotal.Text = "$0.00";
+                txt_Ship.Text = "$0.00";
+
+                dataGridView1_RowsRemoved(this, e);
+			}
         }
 
-        public void importSuspendedTransaction(DataGridViewRowCollection suspendedTransactionRows) {
+        public void importSuspendedTransaction(Transaction suspendedTransaction) {
             //CLEAR WHATEVER WAS IN THE TRANSACTION ALREADY
             dataGridView1.Rows.Clear();
             transaction.Items.Clear();
@@ -343,21 +350,11 @@ namespace SecretCellar
             txt_TransTotal.Text = "$0.00";
             txt_Ship.Text = "$0.00";
 
+            foreach (Item item in suspendedTransaction.Items) {
+                transaction.Items.Add(item);
+            }
 
-            Inventory inv = dataAccess.GetInventory().First(x => x.Id == uint.Parse(suspendedTransactionRows[0].Cells["id"].Value.ToString()));
-            Item item = DataAccess.ConvertInvtoItem(inv);
-
-            transaction.Items.Add(item);
             addRow(transaction);
-
-            /*
-            int rowIndex = dataGridView1.Rows.Add();
-            DataGridViewCellCollection suspendedCells = suspendedTransactionRows[rowIndex].Cells;
-
-            for (int j=0; j<suspendedCells.Count; j++) {
-                dataGridView1.Rows[rowIndex].Cells[j].Value = suspendedCells[j].Value;
-			}
-            */
 		}
 	}
 }

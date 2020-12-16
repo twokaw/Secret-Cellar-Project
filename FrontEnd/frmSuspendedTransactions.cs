@@ -14,8 +14,8 @@ namespace SecretCellar
 {
 	public partial class frmSuspendedTransactions : Form
 	{
-		public static ArrayList suspendedTransactionsList = new ArrayList();
-		public static Dictionary<string, Transaction> suspendedTransactions = new Dictionary<string, Transaction>();
+		Transaction currentTransaction = null;
+		public static Dictionary<string, Transaction> suspendedTransactionsMap = new Dictionary<string, Transaction>();
 		private frmTransaction transactionForm;
 
 		public frmSuspendedTransactions(frmTransaction t)
@@ -24,46 +24,36 @@ namespace SecretCellar
 			transactionForm = t;
 
 			//POPULATE THE LIST OF SUSPENDED TRANSACTIONS
-			foreach(var transaction in suspendedTransactions) {
-				listSuspendedTransactions.Items.Add(transaction.Key);
+			foreach(var transaction in suspendedTransactionsMap) {
+				selectionListSuspendedTransactions.Items.Add(transaction.Key);
 			}
-
-			/* CAN DELETE
-			for (int i=0; i<transactions.Count; i++) {
-				listSuspendedTransactions.Items.Add(transactions.Keys.FirstOrDefault()); //.ToString().Split(';')[0]);
-			}
-			*/
 
 			//DEFAULT SELECTED ITEM IN THE LIST OF SUSPENDED TRANSACTIONS TO 0
-			if (suspendedTransactions.Count > 0) {
-				listSuspendedTransactions.SelectedIndex = 0;
+			if (suspendedTransactionsMap.Count > 0) {
+				selectionListSuspendedTransactions.SelectedIndex = 0;
 			}
 
 		}
 
-		private void dataGridViewSuspendedTransactions_CellContentClick(object sender, DataGridViewCellEventArgs e)
-		{
+		private void dataGridViewSuspendedTransaction_CellContentClick(object sender, DataGridViewCellEventArgs e) {
 
 		}
 
-		private void listSuspendedTransactions_SelectedIndexChanged(object sender, EventArgs e)
-		{
-			if (suspendedTransactions.Count > 0) {
-				this.dataGridViewSuspendedTransactions.Rows.Clear();
-				int index = listSuspendedTransactions.SelectedIndex;
-				Transaction currentTransaction = suspendedTransactions.ElementAt(index).Value;
+		private void selectionListSuspendedTransactions_SelectedIndexChanged(object sender, EventArgs e) {
+			if (suspendedTransactionsMap.Count > 0) {
+				this.dataGridViewSuspendedTransaction.Rows.Clear();
+				int index = selectionListSuspendedTransactions.SelectedIndex;
+				currentTransaction = suspendedTransactionsMap.ElementAt(index).Value;
 
 				foreach (Item item in currentTransaction.Items) {
-					int rowIndex = dataGridViewSuspendedTransactions.Rows.Add();
+					int rowIndex = dataGridViewSuspendedTransaction.Rows.Add();
 
-					using (var currentRow = dataGridViewSuspendedTransactions.Rows[rowIndex]) {
+					using (var currentRow = dataGridViewSuspendedTransaction.Rows[rowIndex]) {
 						currentRow.Cells[0].Value = item.Description;
 						currentRow.Cells[1].Value = item.NumSold;
 						currentRow.Cells[2].Value = (item.Price * (1 - item.Discount)).ToString("C");
 						currentRow.Cells[3].Value = item.Discount.ToString("P0");
-
-						//TODO FIX THE TAX AMOUNT
-						currentRow.Cells[4].Value = "tax goes here";
+						currentRow.Cells[4].Value = "";
 						currentRow.Cells[5].Value = (item.NumSold * item.Bottles * .05).ToString("C");
 						currentRow.Cells[6].Value = (item.Price * item.NumSold * (1 - item.Discount)).ToString("C");
 					}
@@ -73,23 +63,31 @@ namespace SecretCellar
 
 		private void btnDelete_Click(object sender, EventArgs e)
 		{
-			//TODO This is what will error when you try to delete something. It changes the selected index which then calls the changed event function and that's where it errors
-			suspendedTransactionsList.RemoveAt(listSuspendedTransactions.SelectedIndex);
-			this.dataGridViewSuspendedTransactions.Rows.Clear();
-			
-			if (listSuspendedTransactions.SelectedIndex > 0) {
-				listSuspendedTransactions.SelectedIndex = listSuspendedTransactions.SelectedIndex - 1;
-				listSuspendedTransactions.Items.RemoveAt(listSuspendedTransactions.SelectedIndex);
+			suspendedTransactionsMap.Remove(selectionListSuspendedTransactions.SelectedItem.ToString());
+
+			//TODO fix this. It is mostly working but there are still some issues
+			if (selectionListSuspendedTransactions.SelectedIndex != 0) {
+				selectionListSuspendedTransactions.SelectedIndex = selectionListSuspendedTransactions.SelectedIndex - 1;
+				selectionListSuspendedTransactions.Items.RemoveAt(selectionListSuspendedTransactions.SelectedIndex + 1);
+			}
+			else {
+				selectionListSuspendedTransactions.SelectedIndex = selectionListSuspendedTransactions.SelectedIndex + 1;
+				selectionListSuspendedTransactions.Items.RemoveAt(selectionListSuspendedTransactions.SelectedIndex - 1);
 			}
 			
-			
+			//CLEAR THE DATA GRID IF THERE ARE NO ITEMS LEFT
+			if (selectionListSuspendedTransactions.Items.Count == 0) {
+				dataGridViewSuspendedTransaction.Rows.Clear();
+			}
 		}
 
 		private void btnAdd_Click(object sender, EventArgs e)
 		{
 			//TODO need to add code to delete the suspended transaction
 			this.Close();
-			transactionForm.importSuspendedTransaction(this.dataGridViewSuspendedTransactions.Rows);
+			transactionForm.importSuspendedTransaction(this.currentTransaction);
 		}
+
+		
 	}
 }
