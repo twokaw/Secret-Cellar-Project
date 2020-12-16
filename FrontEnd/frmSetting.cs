@@ -104,9 +104,10 @@ namespace SecretCellar
 
         private void btn_reset_Click(object sender, EventArgs e)
         {
-            Properties.Settings.Default.BackgroundColor = Color.Gray;
-            Properties.Settings.Default.GridColor = Color.Gray;
-            Properties.Settings.Default.FontSet = new Font("Microsoft San Serif", 9, FontStyle.Bold);
+            Properties.Settings.Default.BackgroundColor = Properties.Settings.Default.DefaultBackgroundColor;
+            Properties.Settings.Default.GridColor = Properties.Settings.Default.DefaultGridColor;
+            Properties.Settings.Default.FontSet = Properties.Settings.Default.DefaultFont;
+            reset_Default_Properties();
             Properties.Settings.Default.Save();
         }
     }

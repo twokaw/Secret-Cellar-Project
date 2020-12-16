@@ -127,5 +127,11 @@ namespace SecretCellar
                 }
             }
         }
+        public static void reset_Default_Properties()
+        {   
+                MainWindowColor = Properties.Settings.Default.DefaultBackgroundColor;
+                DataGridViewBackColor = Properties.Settings.Default.DefaultGridColor;
+                CommonFontSetter = Properties.Settings.Default.DefaultFont;
+        }
     }
 }
