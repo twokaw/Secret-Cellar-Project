@@ -221,7 +221,7 @@
             this.Controls.Add(this.btnNewTab);
             this.Controls.Add(this.label1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "Customers";
+            this.Text = "Customers";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Event Tabs";
             this.Load += new System.EventHandler(this.Customers_Load);

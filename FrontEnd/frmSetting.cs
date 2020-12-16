@@ -101,5 +101,14 @@ namespace SecretCellar
             Properties.Settings.Default.Save();
             this.Close();
         }
+
+        private void btn_reset_Click(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.BackgroundColor = Properties.Settings.Default.DefaultBackgroundColor;
+            Properties.Settings.Default.GridColor = Properties.Settings.Default.DefaultGridColor;
+            Properties.Settings.Default.FontSet = Properties.Settings.Default.DefaultFont;
+            reset_Default_Properties();
+            Properties.Settings.Default.Save();
+        }
     }
 }
