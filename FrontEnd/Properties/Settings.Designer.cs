@@ -88,7 +88,7 @@ namespace SecretCellar.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("11")]
+        [global::System.Configuration.DefaultSettingValueAttribute("10")]
         public float ReceiptFontSize {
             get {
                 return ((float)(this["ReceiptFontSize"]));
@@ -176,6 +176,33 @@ namespace SecretCellar.Properties {
             }
             set {
                 this["MainFormSize"] = value;
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Gray")]
+        public global::System.Drawing.Color DefaultBackgroundColor {
+            get {
+                return ((global::System.Drawing.Color)(this["DefaultBackgroundColor"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Silver")]
+        public global::System.Drawing.Color DefaultGridColor {
+            get {
+                return ((global::System.Drawing.Color)(this["DefaultGridColor"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Microsoft Sans Serif, 8.25pt, style=Bold")]
+        public global::System.Drawing.Font DefaultFont {
+            get {
+                return ((global::System.Drawing.Font)(this["DefaultFont"]));
             }
         }
     }
