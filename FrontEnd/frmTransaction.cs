@@ -16,6 +16,7 @@ namespace SecretCellar
         private Transaction transaction = new Transaction();
         private DataAccess dataAccess;
         private Image logo = null;
+        
         public frmTransaction() 
         {
             InitializeComponent();
@@ -40,6 +41,7 @@ namespace SecretCellar
                 FontName = Properties.Settings.Default.ReceiptFont,
                 FontSize = Properties.Settings.Default.ReceiptFontSize
             };
+          
         }
 
         private void ReloadLogo()
@@ -72,6 +74,7 @@ namespace SecretCellar
             }
 
             dataAccess = new DataAccess(Properties.Settings.Default.URL);
+            lbl_twentyone.Text = "21 AS OF: " + DateTime.Now.AddYears(-21).ToString("MM/dd/yyyy");
         }
 
         private void btnDiscount_Click(object sender, EventArgs e)
@@ -280,6 +283,11 @@ namespace SecretCellar
         private void lbl_BARCODE_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }
