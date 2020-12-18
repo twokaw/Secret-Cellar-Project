@@ -282,11 +282,8 @@ namespace SecretCellar
         }
 
         private void caseDiscount_CheckedChanged(object sender, EventArgs e)
-        {        
-            foreach (Discount d in transaction.GetQualifiedBulkDiscounts())
-            {
-                transaction.EnableBulkDiscount(d, caseDiscount.Checked);
-            }                                     
+        {
+            transaction.EnableBulkDiscount(caseDiscount.Checked);                                                 
         }
 
         private void lbl_BARCODE_Click(object sender, EventArgs e)
