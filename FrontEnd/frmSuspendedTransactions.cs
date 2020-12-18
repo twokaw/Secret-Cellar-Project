@@ -40,11 +40,15 @@ namespace SecretCellar
 		}
 
 		private void selectionListSuspendedTransactions_SelectedIndexChanged(object sender, EventArgs e) {
+			//IF THERE IS AT LEAST ONE TRANSACTION IN THE MAP THEN CONTINUE
 			if (suspendedTransactionsMap.Count > 0) {
 				this.dataGridViewSuspendedTransaction.Rows.Clear();
+
+				//GET THE NAME OF THE ITEM SELECTED AND MATCH IT TO THE TRANSACTION IN THE MAP
 				int index = selectionListSuspendedTransactions.SelectedIndex;
 				currentTransaction = suspendedTransactionsMap.ElementAt(index).Value;
 
+				//ADD EACH ROW IN THE TRANSACTION TO THE ROW IN THE VIEW
 				foreach (Item item in currentTransaction.Items) {
 					int rowIndex = dataGridViewSuspendedTransaction.Rows.Add();
 
@@ -63,29 +67,58 @@ namespace SecretCellar
 
 		private void btnDelete_Click(object sender, EventArgs e)
 		{
-			suspendedTransactionsMap.Remove(selectionListSuspendedTransactions.SelectedItem.ToString());
+			string selectedItem = selectionListSuspendedTransactions.SelectedItem.ToString();
 
-			//TODO fix this. It is mostly working but there are still some issues
-			if (selectionListSuspendedTransactions.SelectedIndex != 0) {
-				selectionListSuspendedTransactions.SelectedIndex = selectionListSuspendedTransactions.SelectedIndex - 1;
-				selectionListSuspendedTransactions.Items.RemoveAt(selectionListSuspendedTransactions.SelectedIndex + 1);
+			//IF THE USER DELETES THE FIRST ITEM IN THE LIST
+			if (selectionListSuspendedTransactions.SelectedIndex == 0 && selectionListSuspendedTransactions.Items.Count > 1) {
+				selectionListSuspendedTransactions.SelectedIndex += 1;
+				selectionListSuspendedTransactions.Items.RemoveAt(selectionListSuspendedTransactions.SelectedIndex-1);
 			}
+
+			//IF THE USER DELETES THE ONLY ITEM IN THE LIST
+			else if (selectionListSuspendedTransactions.SelectedIndex == 0) {
+				//THE ITEM IN THE MAP NEEDS TO BE REMOVED FIRST OTHERWISE IT WILL ERROR
+				suspendedTransactionsMap.Remove(selectedItem);
+				selectionListSuspendedTransactions.Items.RemoveAt(selectionListSuspendedTransactions.SelectedIndex);
+			}
+
+			//IF THE USER DELETES THE LAST ITEM IN THE LIST
+			else if (selectionListSuspendedTransactions.SelectedIndex == selectionListSuspendedTransactions.Items.Count-1 && selectionListSuspendedTransactions.Items.Count > 1) {
+				selectionListSuspendedTransactions.SelectedIndex -= 1;
+				selectionListSuspendedTransactions.Items.RemoveAt(selectionListSuspendedTransactions.SelectedIndex+1);
+			}
+
+			//IF THE USER DELETES AN ITEM IN THE MIDDLE
 			else {
-				selectionListSuspendedTransactions.SelectedIndex = selectionListSuspendedTransactions.SelectedIndex + 1;
-				selectionListSuspendedTransactions.Items.RemoveAt(selectionListSuspendedTransactions.SelectedIndex - 1);
+				selectionListSuspendedTransactions.SelectedIndex -= 1;
+				selectionListSuspendedTransactions.Items.RemoveAt(selectionListSuspendedTransactions.SelectedIndex+1);
+				selectionListSuspendedTransactions.SelectedIndex += 1;
 			}
 			
-			//CLEAR THE DATA GRID IF THERE ARE NO ITEMS LEFT
+			//REMOVE THE TRANSACTION FROM THE MAP (DATABASE)
+			suspendedTransactionsMap.Remove(selectedItem);
+
+			//CLEAR THE DATA GRID AND MAP IF THERE ARE NO ITEMS LEFT
 			if (selectionListSuspendedTransactions.Items.Count == 0) {
 				dataGridViewSuspendedTransaction.Rows.Clear();
+				suspendedTransactionsMap.Clear();
 			}
 		}
 
 		private void btnAdd_Click(object sender, EventArgs e)
 		{
-			//TODO need to add code to delete the suspended transaction
+			//CREATE A NEW TRANSACTION THAT CONTAINS ITEMS IN THE CURRENT TRANSACTION
+			Transaction t = new Transaction();
+			foreach (Item item in currentTransaction.Items) {
+				t.Items.Add(item);
+			}
+
+			//REMOVE THE ITEM THAT IS SELECTED AND CLOSE THE FORM
+			btnDelete_Click(sender, e);
 			this.Close();
-			transactionForm.importSuspendedTransaction(this.currentTransaction);
+
+			//CALL THE IMPORT FUNCTION
+			transactionForm.importSuspendedTransaction(t);
 		}
 
 		

@@ -12,19 +12,19 @@ namespace SecretCellar
 {
 	public partial class frmSuspendedTransactionsNamePopUp : Form
 	{
-		public String nameOfSuspendedTransaction;
+		public string nameOfSuspendedTransaction;
 
 
 		public frmSuspendedTransactionsNamePopUp()
 		{
 			InitializeComponent();
 
-			//TODO add a list of customers on the right
+			//TODO Show all the customers in the listUsers selection box
 		}
 
 		private void textBoxSuspendedTransactionName_TextChanged(object sender, EventArgs e)
 		{
-
+			//TODO Refresh the listUser selection box with names that match the text of this text field
 		}
 
 		private void textBoxSuspendedTransactionName_KeyDown(object sender, KeyEventArgs e)
@@ -43,6 +43,10 @@ namespace SecretCellar
 
 		private void label1_Click(object sender, EventArgs e)
 		{
+
+		}
+
+		private void listUsers_SelectedIndexChanged(object sender, EventArgs e) {
 
 		}
 	}
