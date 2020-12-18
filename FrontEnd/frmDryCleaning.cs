@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 namespace SecretCellar
 {
-    public partial class frmDryCleaning : Form
+    public partial class frmDryCleaning : ManagedForm
     {
         private Transaction dryClean = null;
         public frmDryCleaning(Transaction transaction)
@@ -47,6 +47,11 @@ namespace SecretCellar
         private void txtCharge_TextChanged(object sender, EventArgs e)
         {
             Console.WriteLine(((TextBox)sender).Name);
+        }
+
+        private void frmDryCleaning_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

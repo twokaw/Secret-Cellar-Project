@@ -12,7 +12,7 @@ using Shared;
 
 namespace SecretCellar
 {
-    public partial class frmShipping : Form
+    public partial class frmShipping : ManagedForm
     {
         private Transaction shipping = null;
         public frmShipping(Transaction transaction)
@@ -35,6 +35,11 @@ namespace SecretCellar
         {
             if (double.TryParse(txtCharge.Text, out double d))
                 shipping.Shipping = d;
+        }
+
+        private void frmShipping_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

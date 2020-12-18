@@ -13,7 +13,7 @@ using System.Windows.Forms;
 
 namespace SecretCellar
 {
-    public partial class frmPropane : Form
+    public partial class frmPropane : ManagedForm
     {
         public Transaction transaction = null;
         private const string PROPANEEXCHANGE = "PROPANEEXCHANGE";

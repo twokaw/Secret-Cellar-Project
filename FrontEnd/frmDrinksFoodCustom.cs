@@ -46,5 +46,10 @@ namespace SecretCellarProject
         {
 
         }
+
+        private void frmDrinksFoodCustom_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
