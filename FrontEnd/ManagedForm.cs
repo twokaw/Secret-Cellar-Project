@@ -13,17 +13,19 @@ namespace SecretCellar
 
         public ManagedForm()
         {
+            if(Forms.Count == 0)
+            {
+                CommonBackColor = DefaultColor();
+                CommonFont = Default_Font();
+            }
             Forms.Add(this);
-            Console.WriteLine($"Constructed: {Forms.Count}");
-            base.BackColor = CommonBackColor;
-            base.Font = CommonFont;
-            base.FormClosed += ManagedForm_FormClosed;
-        }
+    }
 
         private void ManagedForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             Forms.Remove(this);
-            Console.WriteLine($"Deconstructed: {Forms.Count}");
+            if(Forms.Count == 0)
+                CommonFont = new Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
         }
 
         private static Color DefaultColor()
@@ -54,6 +56,26 @@ namespace SecretCellar
                 }
                 */
             }
+        }
+
+        private void InitializeComponent()
+        {
+            this.SuspendLayout();
+            // 
+            // ManagedForm
+            // 
+            this.ClientSize = new System.Drawing.Size(278, 244);
+            this.Name = "ManagedForm";
+            this.Load += new System.EventHandler(this.ManagedForm_Load);
+            this.ResumeLayout(false);
+
+        }
+
+        private void ManagedForm_Load(object sender, EventArgs e)
+        {
+            base.BackColor = CommonBackColor;
+            base.Font = CommonFont;
+            base.FormClosed += ManagedForm_FormClosed;
         }
     }
 }

@@ -243,8 +243,7 @@
     <Compile Include="InventoryQty.cs" />
     <Compile Include="Payment.cs" />
     <Compile Include="Tax.cs" />
-    <Compile Include="CustomerModel.cs" />
-    <Compile Include="CustomerUpdateModel.cs" />
+    <Compile Include="Customer.cs" />
     <Compile Include="Discount.cs" />
     <Compile Include="EmployeeModel.cs" />
     <Compile Include="EmployeeUpdateModel.cs" />
