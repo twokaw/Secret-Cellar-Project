@@ -3,9 +3,7 @@ using System.Drawing;
 using System.IO;
 using System.IO.Ports;
 using System.Linq;
-using System.Linq.Expressions;
 using System.Reflection;
-using System.Web.UI;
 using System.Windows.Forms;
 using NCR_Printer;
 using Shared;
@@ -18,12 +16,12 @@ namespace SecretCellar
         private Transaction transaction = new Transaction();
         private DataAccess dataAccess;
         private Image logo = null;
-
-        public frmTransaction()
+        public frmTransaction() 
         {
             InitializeComponent();
+
             txtBarcode.Focus();
-            ReloadLogo();
+            ReloadLogo();  
             this.Size = new System.Drawing.Size(1200, 900);
 
             string path = Properties.Settings.Default.FontPath;
