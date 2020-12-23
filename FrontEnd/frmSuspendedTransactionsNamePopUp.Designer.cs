@@ -100,7 +100,7 @@
 			this.MinimizeBox = false;
 			this.Name = "frmSuspendedTransactionsNamePopUp";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-			this.Text = "Suspend";
+			this.Text = "Name Suspended Transaction";
 			this.ResumeLayout(false);
 			this.PerformLayout();
 

@@ -296,44 +296,65 @@ namespace SecretCellar
 
 		private void btnSuspendTransaction_Click(object sender, EventArgs e)
 		{
-            //CREATE A POP UP MENU FOR THE USER TO ENTER THE NAME OF THE TRANSACTION TO BE SUSPENDED
-            frmSuspendedTransactionsNamePopUp popUp = new frmSuspendedTransactionsNamePopUp();
-            popUp.ShowDialog();
+            string suspendedTransactionName;
+            //CONTINUALLY CREATE A POP UP MENU FOR THE USER TO ENTER THE NAME OF THE TRANSACTION TO BE SUSPENDED
+            //UNTIL A UNIQUE NAME IS CHOSEN
+            while (true) {
+                frmSuspendedTransactionsNamePopUp popUp = new frmSuspendedTransactionsNamePopUp();
+                popUp.ShowDialog();
 
-            String suspendedTransactionName = popUp.nameOfSuspendedTransaction;
-           
-            
-            //TODO add check here to ensure the name is different
+                suspendedTransactionName = popUp.nameOfSuspendedTransaction;
 
+                //IF THE USER CANCELS OUT OF THE FORM, END THE FUNCTION
+                if (suspendedTransactionName == null) {
+                    return;
+                }
+                else {
+                    //ENSURE THE NAME ISN'T EMPTY
+                    if (!suspendedTransactionName.Replace(" ", "").Equals("")) {
+                        bool hasSameName = false;
 
-            if (suspendedTransactionName != null) {
-                //GET ALL THE SELECTED ITEMS INTO A STRING ARRAY TO SEND TO 'frmSuspendedTransactions'
-                if (transaction.Items.Count > 0) {
-                    //CREATE A COPY OF THE TRANSACTION SO IT'S NOT LOST WHEN IT'S MOVED TO THE SUSPENDED TRANSACTIONS
-                    Transaction transactionCopy = new Transaction();
-                    foreach(Item item in transaction.Items) {
-                        transactionCopy.Items.Add(item);
-	                }
+                        //COMPARE ALL OF THE CURRENT NAMES IN THE MAP TO SEE IF THERE'S A COPY
+                        foreach (string key in frmSuspendedTransactions.suspendedTransactionsMap.Keys) {
+                            if (key.Equals(suspendedTransactionName)) {
+                                hasSameName = true;
+                            }
+                        }
 
-                    //ADD THE NAME AND THE TRANSACTION TO THE MAP OF SUSPENDED TRANSACTIONS IN 'frmSuspendedTransactions'
-                    frmSuspendedTransactions.suspendedTransactionsMap.Add(suspendedTransactionName, transactionCopy);
+                        //IF NO COPY WAS FOUND, THEN BREAK OUT OF THE WHILE LOOP
+                        if (!hasSameName) {
+                            break;
+                        }
+                    }
+                }
+			}
+
+            //GET ALL THE SELECTED ITEMS INTO A STRING ARRAY TO SEND TO 'frmSuspendedTransactions'
+            if (transaction.Items.Count > 0) {
+                //CREATE A COPY OF THE TRANSACTION SO IT'S NOT LOST WHEN IT'S MOVED TO THE SUSPENDED TRANSACTIONS
+                Transaction transactionCopy = new Transaction();
+                foreach (Item item in transaction.Items) {
+                    transactionCopy.Items.Add(item);
                 }
 
-                //CLEAR THE CURRENT TRANSACTION AND THE dataGridView1 SINCE THEY'RE NOW SUSPENDED
-                dataGridView1.Rows.Clear();
-                transaction.Items.Clear();
+                //ADD THE NAME AND THE TRANSACTION TO THE MAP OF SUSPENDED TRANSACTIONS IN 'frmSuspendedTransactions'
+                frmSuspendedTransactions.suspendedTransactionsMap.Add(suspendedTransactionName, transactionCopy);
+            }
 
-                //RESET ALL THE TOTALS
-                txt_transSubTotal.Text = "$0.00";
-                txt_transBTLDPT.Text = "$0.00";
-                txt_itemTotal.Text = "$0.00";
-                txt_transTax.Text = "$0.00";
-                txt_transDiscount.Text = "$0.00";
-                txt_TransTotal.Text = "$0.00";
-                txt_Ship.Text = "$0.00";
+            //CLEAR THE CURRENT TRANSACTION AND THE dataGridView1 SINCE THEY'RE NOW SUSPENDED
+            dataGridView1.Rows.Clear();
+            transaction.Items.Clear();
 
-                dataGridView1_RowsRemoved(this, e);
-			}
+            //RESET ALL THE TOTALS
+            txt_transSubTotal.Text = "$0.00";
+            txt_transBTLDPT.Text = "$0.00";
+            txt_itemTotal.Text = "$0.00";
+            txt_transTax.Text = "$0.00";
+            txt_transDiscount.Text = "$0.00";
+            txt_TransTotal.Text = "$0.00";
+            txt_Ship.Text = "$0.00";
+
+            dataGridView1_RowsRemoved(this, e);
         }
 
         public void importSuspendedTransaction(Transaction suspendedTransaction) {

@@ -33,14 +33,14 @@
 			this.btnDelete = new System.Windows.Forms.Button();
 			this.btnAdd = new System.Windows.Forms.Button();
 			this.dataGridViewSuspendedTransaction = new System.Windows.Forms.DataGridView();
-			this.selectionListSuspendedTransactions = new System.Windows.Forms.ListBox();
-			this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.selectionListSuspendedTransactions = new System.Windows.Forms.ListBox();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridViewSuspendedTransaction)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -54,7 +54,7 @@
 			// btnDelete
 			// 
 			this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.btnDelete.Location = new System.Drawing.Point(197, 284);
+			this.btnDelete.Location = new System.Drawing.Point(816, 284);
 			this.btnDelete.Name = "btnDelete";
 			this.btnDelete.Size = new System.Drawing.Size(75, 27);
 			this.btnDelete.TabIndex = 8;
@@ -65,7 +65,7 @@
 			// btnAdd
 			// 
 			this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.btnAdd.Location = new System.Drawing.Point(60, 284);
+			this.btnAdd.Location = new System.Drawing.Point(915, 284);
 			this.btnAdd.Name = "btnAdd";
 			this.btnAdd.Size = new System.Drawing.Size(75, 27);
 			this.btnAdd.TabIndex = 9;
@@ -114,6 +114,67 @@
 			this.dataGridViewSuspendedTransaction.TabStop = false;
 			this.dataGridViewSuspendedTransaction.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewSuspendedTransaction_CellContentClick);
 			// 
+			// dataGridViewTextBoxColumn1
+			// 
+			this.dataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+			this.dataGridViewTextBoxColumn1.FillWeight = 205.876F;
+			this.dataGridViewTextBoxColumn1.HeaderText = "DESCRIPTION";
+			this.dataGridViewTextBoxColumn1.MinimumWidth = 12;
+			this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+			// 
+			// dataGridViewTextBoxColumn2
+			// 
+			this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+			this.dataGridViewTextBoxColumn2.FillWeight = 154.4118F;
+			this.dataGridViewTextBoxColumn2.HeaderText = "QTY";
+			this.dataGridViewTextBoxColumn2.MinimumWidth = 12;
+			this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+			this.dataGridViewTextBoxColumn2.Width = 57;
+			// 
+			// dataGridViewTextBoxColumn3
+			// 
+			this.dataGridViewTextBoxColumn3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+			this.dataGridViewTextBoxColumn3.FillWeight = 18.80306F;
+			this.dataGridViewTextBoxColumn3.HeaderText = "PRICE";
+			this.dataGridViewTextBoxColumn3.MinimumWidth = 12;
+			this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+			this.dataGridViewTextBoxColumn3.Width = 69;
+			// 
+			// dataGridViewTextBoxColumn4
+			// 
+			this.dataGridViewTextBoxColumn4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+			this.dataGridViewTextBoxColumn4.FillWeight = 37.25315F;
+			this.dataGridViewTextBoxColumn4.HeaderText = "DISCOUNT";
+			this.dataGridViewTextBoxColumn4.MinimumWidth = 25;
+			this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+			this.dataGridViewTextBoxColumn4.Width = 96;
+			// 
+			// dataGridViewTextBoxColumn5
+			// 
+			this.dataGridViewTextBoxColumn5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+			this.dataGridViewTextBoxColumn5.FillWeight = 57.0944F;
+			this.dataGridViewTextBoxColumn5.HeaderText = "TAX";
+			this.dataGridViewTextBoxColumn5.MinimumWidth = 12;
+			this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+			this.dataGridViewTextBoxColumn5.Width = 56;
+			// 
+			// dataGridViewTextBoxColumn6
+			// 
+			this.dataGridViewTextBoxColumn6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+			this.dataGridViewTextBoxColumn6.FillWeight = 88.47124F;
+			this.dataGridViewTextBoxColumn6.HeaderText = "BOTTLE DEPOSIT";
+			this.dataGridViewTextBoxColumn6.MinimumWidth = 12;
+			this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+			this.dataGridViewTextBoxColumn6.Width = 126;
+			// 
+			// dataGridViewTextBoxColumn7
+			// 
+			this.dataGridViewTextBoxColumn7.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+			this.dataGridViewTextBoxColumn7.FillWeight = 138.0905F;
+			this.dataGridViewTextBoxColumn7.HeaderText = "TOTAL";
+			this.dataGridViewTextBoxColumn7.MinimumWidth = 12;
+			this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+			// 
 			// selectionListSuspendedTransactions
 			// 
 			this.selectionListSuspendedTransactions.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -125,67 +186,6 @@
 			this.selectionListSuspendedTransactions.Size = new System.Drawing.Size(154, 238);
 			this.selectionListSuspendedTransactions.TabIndex = 11;
 			this.selectionListSuspendedTransactions.SelectedIndexChanged += new System.EventHandler(this.selectionListSuspendedTransactions_SelectedIndexChanged);
-			// 
-			// dataGridViewTextBoxColumn7
-			// 
-			this.dataGridViewTextBoxColumn7.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-			this.dataGridViewTextBoxColumn7.FillWeight = 138.0905F;
-			this.dataGridViewTextBoxColumn7.HeaderText = "TOTAL";
-			this.dataGridViewTextBoxColumn7.MinimumWidth = 12;
-			this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
-			// 
-			// dataGridViewTextBoxColumn6
-			// 
-			this.dataGridViewTextBoxColumn6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-			this.dataGridViewTextBoxColumn6.FillWeight = 88.47124F;
-			this.dataGridViewTextBoxColumn6.HeaderText = "BOTTLE DEPOSIT";
-			this.dataGridViewTextBoxColumn6.MinimumWidth = 12;
-			this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-			this.dataGridViewTextBoxColumn6.Width = 126;
-			// 
-			// dataGridViewTextBoxColumn5
-			// 
-			this.dataGridViewTextBoxColumn5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-			this.dataGridViewTextBoxColumn5.FillWeight = 57.0944F;
-			this.dataGridViewTextBoxColumn5.HeaderText = "TAX";
-			this.dataGridViewTextBoxColumn5.MinimumWidth = 12;
-			this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-			this.dataGridViewTextBoxColumn5.Width = 56;
-			// 
-			// dataGridViewTextBoxColumn4
-			// 
-			this.dataGridViewTextBoxColumn4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-			this.dataGridViewTextBoxColumn4.FillWeight = 37.25315F;
-			this.dataGridViewTextBoxColumn4.HeaderText = "DISCOUNT";
-			this.dataGridViewTextBoxColumn4.MinimumWidth = 25;
-			this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-			this.dataGridViewTextBoxColumn4.Width = 96;
-			// 
-			// dataGridViewTextBoxColumn3
-			// 
-			this.dataGridViewTextBoxColumn3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-			this.dataGridViewTextBoxColumn3.FillWeight = 18.80306F;
-			this.dataGridViewTextBoxColumn3.HeaderText = "PRICE";
-			this.dataGridViewTextBoxColumn3.MinimumWidth = 12;
-			this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-			this.dataGridViewTextBoxColumn3.Width = 69;
-			// 
-			// dataGridViewTextBoxColumn2
-			// 
-			this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-			this.dataGridViewTextBoxColumn2.FillWeight = 154.4118F;
-			this.dataGridViewTextBoxColumn2.HeaderText = "QTY";
-			this.dataGridViewTextBoxColumn2.MinimumWidth = 12;
-			this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-			this.dataGridViewTextBoxColumn2.Width = 57;
-			// 
-			// dataGridViewTextBoxColumn1
-			// 
-			this.dataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-			this.dataGridViewTextBoxColumn1.FillWeight = 205.876F;
-			this.dataGridViewTextBoxColumn1.HeaderText = "DESCRIPTION";
-			this.dataGridViewTextBoxColumn1.MinimumWidth = 12;
-			this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
 			// 
 			// frmSuspendedTransactions
 			// 
