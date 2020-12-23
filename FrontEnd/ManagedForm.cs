@@ -37,6 +37,8 @@ namespace SecretCellar
         private void ManagedForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             Forms.Remove(this);
+            if(Forms.Count == 0 )
+                CommonFont = new Font("Microsoft Sans Serif", 8.1F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             Console.WriteLine($"Deconstructed: {Forms.Count}");
         }
 
