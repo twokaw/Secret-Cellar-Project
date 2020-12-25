@@ -594,6 +594,7 @@
             this.lbl_twentyone.Size = new System.Drawing.Size(102, 29);
             this.lbl_twentyone.TabIndex = 23;
             this.lbl_twentyone.Text = "21 Date";
+            this.lbl_twentyone.Click += new System.EventHandler(this.lbl_twentyone_Click);
             // 
             // frmTransaction
             // 

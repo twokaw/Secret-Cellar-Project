@@ -60,6 +60,7 @@ namespace SecretCellar
             FontDialog fontDlg = new FontDialog();
             fontDlg.ShowDialog();
             CommonFontSetter = fontDlg.Font;
+            
         }
 
         private void btn_panel_color_Click(object sender, EventArgs e)

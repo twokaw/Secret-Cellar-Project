@@ -75,6 +75,7 @@ namespace SecretCellar
 
             dataAccess = new DataAccess(Properties.Settings.Default.URL);
             lbl_twentyone.Text = "21 AS OF: " + DateTime.Now.AddYears(-21).ToString("MM/dd/yyyy");
+            lbl_twentyone.Font = new Font("Microsoft Sans Serif", 18, FontStyle.Bold);
         }
 
         private void btnDiscount_Click(object sender, EventArgs e)
@@ -288,6 +289,11 @@ namespace SecretCellar
         private void label2_Click(object sender, EventArgs e)
         {
             
+        }
+
+        private void lbl_twentyone_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
