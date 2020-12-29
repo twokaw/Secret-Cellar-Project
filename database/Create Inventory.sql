@@ -1,4 +1,4 @@
-discount-- MySQL dump 10.13  Distrib 8.0.21, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.21, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: inventory
 -- ------------------------------------------------------
@@ -6,6 +6,7 @@ discount-- MySQL dump 10.13  Distrib 8.0.21, for Win64 (x86_64)
 
 
 CREATE USER IF NOT EXISTS 'invuser'@'localhost' IDENTIFIED BY 'testinv!';
+GRANT SELECT, INSERT, UPDATE, DELETE ON Inventory.* TO 'invuser'@'localhost' ;
 
 DROP DATABASE IF EXISTS inventory;
 CREATE DATABASE inventory;
