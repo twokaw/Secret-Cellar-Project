@@ -242,7 +242,7 @@ namespace pos_core_api.ORM
                       tax_exempt = @tax_exempt,  
                       discount = @discount, 
                       shipping = @shipping
-                  WHERE InvoiceID = @InvoiceID
+                  WHERE Receiptid = @InvoiceID
                 ";
 
                 MySqlCommand cmd = new MySqlCommand(sql, db.Connection());
@@ -394,11 +394,11 @@ namespace pos_core_api.ORM
                     if(pay.PayId > 0)
                     {
                         cmd = new MySqlCommand(update, db.Connection());
+                        cmd.Parameters.Add(new MySqlParameter("PayID", pay.PayId));
                     }
                     else
                     {
                         cmd = new MySqlCommand(insert, db.Connection());
-                        cmd.Parameters.Add(new MySqlParameter("PayID", pay.PayId));
                     }
                     cmd.Parameters.Add(new MySqlParameter("receiptID", transaction.InvoiceID));
                     cmd.Parameters.Add(new MySqlParameter("Method", pay.Method));
