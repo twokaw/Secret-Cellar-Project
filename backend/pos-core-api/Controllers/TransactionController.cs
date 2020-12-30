@@ -63,12 +63,13 @@ namespace WebApi.Controllers
         [HttpPost]
         public IActionResult Post([FromBody] Transaction transaction)
         {
-            if(transaction.InvoiceID > 0 && DataAccess.Instance.Transaction.GetTransaction(transaction.InvoiceID, false, false) == null)
-                return StatusCode(400, "Transaction already exists");
-            
             try
             {
-                return Ok(DataAccess.Instance.Transaction.InsertTransaction(transaction));
+                // If there is a Invoice ID and the Transaction exists then Update the Transaction else insert it
+                if(transaction.InvoiceID > 0 && DataAccess.Instance.Transaction.GetTransaction(transaction.InvoiceID, false, false) != null)
+                    return Ok(DataAccess.Instance.Transaction.UpdateTransaction(transaction)); 
+                else
+                    return Ok(DataAccess.Instance.Transaction.InsertTransaction(transaction));
             }
             catch (Exception ex)
             {
