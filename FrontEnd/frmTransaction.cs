@@ -24,6 +24,9 @@ namespace SecretCellar
             txtBarcode.Focus();
             ReloadLogo();  
             this.Size = new System.Drawing.Size(1200, 900);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(72, 72);
+
 
             string path = Properties.Settings.Default.FontPath;
             if (path.Length > 0 && path[0] == '.')

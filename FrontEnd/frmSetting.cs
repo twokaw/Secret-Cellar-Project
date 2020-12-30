@@ -18,6 +18,8 @@ namespace SecretCellar
         public FrmSetting()
         {
             InitializeComponent();
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(72, 72);
         }
 
         private void FrmSetting_Load(object sender, EventArgs e)
