@@ -245,6 +245,7 @@ namespace SecretCellar
                 btnSuspendTransaction.Visible = true;
             }
         }
+
         private void dataGridView1_RowsRemoved(object sender, EventArgs e)
         {
             //IF THE COUNT EQUALS 0, MEANING NOTHING IS SELECTED
