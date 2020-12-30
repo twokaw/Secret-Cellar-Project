@@ -10,15 +10,15 @@ namespace pos_core_api.ORM
     {
         readonly DbConn db = new DbConn();
 
-        public List<CustomerModel> Get()
+        public List<Customer> Get()
         {
 
-            List<CustomerModel> output = new List<CustomerModel>();
-            CustomerModel outputItem;
+            List<Customer> output = new List<Customer>();
+            Customer outputItem;
             db.OpenConnection();
 
             string sqlStatement = @"
-              SELECT customerID, customer_discount, first_name, last_name
+              SELECT customerID, customer_discount, first_name, last_name,
                      business_name, email, isWholesale, 
                      addr1, addr2, city, state, zip, phone
               FROM customer
@@ -31,7 +31,7 @@ namespace pos_core_api.ORM
             {
                 while (reader.Read())
                 {
-                    outputItem = new CustomerModel
+                    outputItem = new Customer
                     {
                         CustomerID = reader.IsDBNull("customerID") ? 0 : reader.GetUInt32("customerID"),
                         CustomerDiscount = reader.IsDBNull("customer_discount") ? 0.0 : reader.GetDouble("customer_discount"),
@@ -58,13 +58,13 @@ namespace pos_core_api.ORM
             return output;
         }
 
-        public CustomerModel Get(string customerID)
+        public Customer Get(uint customerID)
         {
-            CustomerModel outputItem = new CustomerModel();
+            Customer outputItem = new Customer();
             db.OpenConnection();
 
             string sqlStatement = @"
-              SELECT customerID, customer_discount, first_name, last_name
+              SELECT customerID, customer_discount, first_name, last_name,
                      business_name, email, isWholesale, 
                      addr1, addr2, city, state, zip, phone
               FROM customer 
@@ -101,14 +101,13 @@ namespace pos_core_api.ORM
             }
         }
 
-        public long Insert(CustomerUpdateModel cust)
+        public long Insert(Customer cust)
         {
             try
             {
                 db.OpenConnection();
 
                 string sqlStatementDesc = @"
-                  SET SQL_MODE = ''
                   INSERT INTO customer 
                   (customer_discount, first_name, last_name, business_name, email, isWholesale, addr1, addr2, city, state, zip, phone)
                   VALUES 
@@ -137,7 +136,7 @@ namespace pos_core_api.ORM
                 db.CloseConnnection();
             }
         }
-        public long Update(CustomerUpdateModel cust)
+        public long Update(Customer cust)
         {
             db.OpenConnection();
 
@@ -145,8 +144,12 @@ namespace pos_core_api.ORM
             {
                 string sqlStatementDesc = @"
                  UPDATE customer 
-                 SET customer_discount = @customerDiscount, first_name = @firstName, last_name = @lastName, business_name = @businessName,
-                     email = @email, isWholesale = @isWholesale, addr1 = @addr1, addr2 = @addr2, city = @city, state = @state, zip = @zip, phone = @phone 
+                 SET customer_discount = @customerDiscount, first_name = @firstName,
+                     last_name = @lastName, business_name = @businessName,
+                     email = @email, isWholesale = @isWholesale,
+                     addr1 = @addr1, addr2 = @addr2, 
+                     city = @city, state = @state, 
+                     zip = @zip, phone = @phone 
                  WHERE customerID = @custID
                 ";
 
@@ -163,10 +166,9 @@ namespace pos_core_api.ORM
                 cmd.Parameters.Add(new MySqlParameter("state", cust.State));
                 cmd.Parameters.Add(new MySqlParameter("zip", cust.ZipCode));
                 cmd.Parameters.Add(new MySqlParameter("phone", cust.PhoneNumber));
-                cmd.Parameters.Add(new MySqlParameter("custID", cust.Id));
+                cmd.Parameters.Add(new MySqlParameter("custID", cust.CustomerID));
 
                 return cmd.ExecuteNonQuery();
-
             }
             finally
             {
@@ -179,7 +181,10 @@ namespace pos_core_api.ORM
             db.OpenConnection();
             try
             {
-                string sqlStatementDesc = "DELETE FROM customer WHERE customerID = @CustID";
+                string sqlStatementDesc = @"
+                  DELETE FROM customer 
+                  WHERE customerID = @CustID
+                ";
 
                 MySqlCommand cmd = new MySqlCommand(sqlStatementDesc, db.Connection());
                 cmd.Parameters.Add(new MySqlParameter("custID", custID));

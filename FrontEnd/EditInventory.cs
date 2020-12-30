@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace SecretCellar
 {
-    public partial class EditInventory : Form
+    public partial class EditInventory : ManagedForm
     {
         public EditInventory()
         {

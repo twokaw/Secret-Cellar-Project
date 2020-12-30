@@ -16,7 +16,7 @@ namespace pos_core_api.ORM
             Tax outputItem;
             db.OpenConnection();
 
-            string sqlStatement = "SELECT * FROM config";
+            string sqlStatement = "SELECT * FROM v_tax";
 
             MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
             MySqlDataReader reader = cmd.ExecuteReader();
@@ -49,7 +49,7 @@ namespace pos_core_api.ORM
             db.OpenConnection();
             uint newId = 0;
             string sqlStatement = @"
-                INSERT INTO config
+                INSERT INTO v_tax
                 (bottle_deposit, sales_tax, local_sales_tax)
                 VALUES
                 (@bottle_deposit, @sales_tax, @local_sales_tax)
@@ -81,7 +81,7 @@ namespace pos_core_api.ORM
             else
             {
                 string sqlStatement = @"
-                    UPDATE config
+                    UPDATE v_tax
                         bottle_deposit = @bottle_deposit, 
                         sales_tax = @sales_tax, 
                         local_sales_tax = @local_sales_tax
@@ -96,7 +96,6 @@ namespace pos_core_api.ORM
                     cmd.Parameters.Add(new MySqlParameter("sales_tax", tax.SalesTax));
                     cmd.Parameters.Add(new MySqlParameter("local_sales_tax", tax.LocalSalesTax));
                     cmd.ExecuteNonQuery();
-                    long newId = cmd.LastInsertedId;
                 }
                 finally
                 {
@@ -115,7 +114,7 @@ namespace pos_core_api.ORM
             else
             {
                 string sqlStatement = @"
-                    DELETE FROM config
+                    DELETE FROM v_tax
                     WHERE idTAX = @idTAX
                 ";
 
@@ -142,7 +141,7 @@ namespace pos_core_api.ORM
 
             MySqlCommand cmd = new MySqlCommand(@"
               SELECT * 
-              FROM config 
+              FROM v_tax 
               WHERE idTax = @ID
             ", db.Connection());
             cmd.Parameters.Add(new MySqlParameter("ID", taxId));

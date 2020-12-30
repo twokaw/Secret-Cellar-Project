@@ -17,16 +17,15 @@ namespace WebApi.Services
     public interface IUserService
     {
         User Authenticate(uint username, uint password);
-        bool isTokenValid(string token);
+        bool IsTokenValid(string token);
         IEnumerable<User> GetAll();
     }
 
     public class UserService : IUserService
     {
-
-        DbConn db = new DbConn();
-        private List<User> _users = new List<User>();
-        private void getCredentials()
+        readonly DbConn db = new DbConn();
+        private readonly List<User> _users = new List<User>();
+        private void GetCredentials()
         {
             User cred;
             db.OpenConnection();
@@ -40,11 +39,12 @@ namespace WebApi.Services
             {
                 while (reader.Read())
                 {
-                    cred = new User();
-                    cred.EmployeeID = reader.IsDBNull("emp_id") ? 0 : reader.GetUInt32("emp_id");
-                    cred.Pin = reader.IsDBNull("pin_number") ? 0 : reader.GetUInt32("pin_number");
-                    cred.IsAdmin = reader.IsDBNull("admin") ? false : (0 != reader.GetUInt16("admin"));
-                    _users.Add(cred);
+                    _users.Add(new User
+                    {
+                        EmployeeID = reader.IsDBNull("emp_id") ? 0 : reader.GetUInt32("emp_id"),
+                        Pin = reader.IsDBNull("pin_number") ? 0 : reader.GetUInt32("pin_number"),
+                        IsAdmin = !reader.IsDBNull("admin") && (0 != reader.GetUInt16("admin"))
+                    });
                 }
             }
             finally
@@ -65,7 +65,7 @@ namespace WebApi.Services
         public User Authenticate(uint username, uint password)
         {
 
-            getCredentials();
+            GetCredentials();
             var user = _users.SingleOrDefault(x => x.EmployeeID == username && x.Pin == password);
 
             // return null if user not found
@@ -92,7 +92,7 @@ namespace WebApi.Services
 
 
         // check to see if token is still valid. If not, will need to re-authenticate
-        public bool isTokenValid(string token)
+        public bool IsTokenValid(string token)
         {
             var key = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(_appSettings.Secret));
             var tokenHandler = new JwtSecurityTokenHandler();

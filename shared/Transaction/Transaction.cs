@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.Serialization;
 
 namespace Shared
@@ -144,6 +145,9 @@ namespace Shared
         }
         public double Discount { get; set; }
         public uint EmployeeID { get; set; }
+
+        // Add the customer name from ID, if customer ID is 0 then the name is not in the database. 
+        public string CustomerName { get; set; }
         public uint CustomerID { get; set; }
         public double Shipping { get; set; }
 
@@ -214,6 +218,50 @@ namespace Shared
             info.AddValue("TaxExempt", TaxExempt);
             info.AddValue("PayMethod", PayMethod);
             info.AddValue("PayNum", PayNum);
+        }
+
+        public List<Discount> GetBulkDiscounts()
+        {
+            List<Discount> d = new List<Discount>();
+
+            // NOTE: get all Discounts!
+            foreach (Item i in Items)
+                foreach (Discount dat in i.Discounts)
+                    if (d.FirstOrDefault(x => x.DiscountID == dat.DiscountID) == null)
+                        d.Add(dat);
+
+            return d;
+        }
+
+        public List<Discount> GetQualifiedBulkDiscounts()
+        {
+            List<Discount> result = new List<Discount>();
+
+            int count = 0;
+            foreach (Discount dis in GetBulkDiscounts())
+            {
+                count = Items.Count(i => i.Discounts.Where(x => x.DiscountID == dis.DiscountID).Count() > 0);
+                if (count >= dis.Min && count <= dis.Max)
+                    result.Add(dis);
+            }
+
+            return result;
+        }
+
+        public void EnableBulkDiscount(Discount discount, bool enabled)
+        {
+            //  Items.ForEach(i => i.Discounts.ForEach(x => { if (x.DiscountID == discount.DiscountID) x.Enabled = enabled; }));
+
+            foreach (Item i in Items)
+                foreach (Discount x in i.Discounts)
+                    if (x.DiscountID == discount.DiscountID)
+                        x.Enabled = enabled;
+        }
+        public void EnableBulkDiscount(bool enabled)
+        {
+            foreach (Item i in Items)
+                foreach (Discount x in i.Discounts)
+                    x.Enabled = enabled;
         }
     }
 }

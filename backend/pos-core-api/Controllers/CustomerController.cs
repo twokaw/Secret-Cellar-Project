@@ -16,7 +16,7 @@ namespace WebApi.Controllers
         {
             try
             {
-                List<CustomerModel> output = DataAccess.Instance.Customer.Get();
+                List<Customer> output = DataAccess.Instance.Customer.Get();
                 return Ok(output);
             }
             catch(Exception ex)
@@ -27,7 +27,7 @@ namespace WebApi.Controllers
 
         // GET: api/Customer/ID
         [HttpGet("{customerID}")]
-        public IActionResult Get(String customerID)
+        public IActionResult Get(uint customerID)
         {
             try
             {
@@ -41,7 +41,7 @@ namespace WebApi.Controllers
 
         // POST: api/Customer
         [HttpPost]
-        public IActionResult Post([FromBody] CustomerUpdateModel cust)
+        public IActionResult Post([FromBody] Customer cust)
         {
             try
             {
@@ -55,7 +55,7 @@ namespace WebApi.Controllers
 
         // PUT: api/Customer/{custID}
         [HttpPut]
-        public IActionResult Put([FromBody] CustomerUpdateModel cust)
+        public IActionResult Put([FromBody] Customer cust)
         {
             try
             {

@@ -1,4 +1,4 @@
-discount-- MySQL dump 10.13  Distrib 8.0.21, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.21, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: inventory
 -- ------------------------------------------------------
@@ -405,7 +405,6 @@ CREATE TABLE `transaction` (
   `register` int(11) DEFAULT NULL,
   `sold_datetime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `empID` int(11) DEFAULT '0',
-  `customer_Name` int(100) DEFAULT '0',
   `customerID` int(11) DEFAULT '0',
   `discount_amount` double NOT NULL DEFAULT '0',
   `discount` double DEFAULT '0',
@@ -726,4 +725,7 @@ HAVING TotalSale > TotalPayment;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
+CREATE VIEW `v_discount` AS
+SELECT DiscountID, DiscountName, minQty, maxQty, Discount
+FROM Discount;
 -- Dump completed on 2020-11-17 23:24:36

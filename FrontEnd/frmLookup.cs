@@ -13,7 +13,7 @@ using System.Windows.Forms;
 
 namespace SecretCellar
 {
-    public partial class frmLookup : Form
+    public partial class frmLookup : ManagedForm
     {
         private Transaction lookUp = null;
         private DataAccess dataAccess = new DataAccess(Properties.Settings.Default.URL);
@@ -364,5 +364,10 @@ namespace SecretCellar
                 refresh();
 			}
 		}
-	}
+
+        private void frmLookup_Load(object sender, EventArgs e)
+        {
+
+        }
+    }
 }

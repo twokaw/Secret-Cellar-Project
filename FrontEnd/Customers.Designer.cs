@@ -35,7 +35,7 @@
             this.btnDeleteTab = new System.Windows.Forms.Button();
             this.btnPayOutTab = new System.Windows.Forms.Button();
             this.dataGridTabs = new System.Windows.Forms.DataGridView();
-            this.CustomerName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PurchasedItems = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TotalPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnExit = new System.Windows.Forms.Button();
@@ -52,20 +52,18 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(447, 60);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(298, 39);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(353, 55);
+            this.label1.Size = new System.Drawing.Size(237, 37);
             this.label1.TabIndex = 0;
             this.label1.Text = "Customer Tabs";
             // 
             // btnNewTab
             // 
             this.btnNewTab.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F);
-            this.btnNewTab.Location = new System.Drawing.Point(152, 157);
-            this.btnNewTab.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnNewTab.Location = new System.Drawing.Point(101, 102);
             this.btnNewTab.Name = "btnNewTab";
-            this.btnNewTab.Size = new System.Drawing.Size(208, 120);
+            this.btnNewTab.Size = new System.Drawing.Size(139, 78);
             this.btnNewTab.TabIndex = 1;
             this.btnNewTab.Text = "New Tab";
             this.btnNewTab.UseVisualStyleBackColor = true;
@@ -74,10 +72,9 @@
             // btnAddToTab
             // 
             this.btnAddToTab.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F);
-            this.btnAddToTab.Location = new System.Drawing.Point(398, 157);
-            this.btnAddToTab.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnAddToTab.Location = new System.Drawing.Point(265, 102);
             this.btnAddToTab.Name = "btnAddToTab";
-            this.btnAddToTab.Size = new System.Drawing.Size(208, 120);
+            this.btnAddToTab.Size = new System.Drawing.Size(139, 78);
             this.btnAddToTab.TabIndex = 2;
             this.btnAddToTab.Text = "Add to Tab";
             this.btnAddToTab.UseVisualStyleBackColor = true;
@@ -86,10 +83,9 @@
             // btnDeleteTab
             // 
             this.btnDeleteTab.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F);
-            this.btnDeleteTab.Location = new System.Drawing.Point(644, 157);
-            this.btnDeleteTab.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnDeleteTab.Location = new System.Drawing.Point(429, 102);
             this.btnDeleteTab.Name = "btnDeleteTab";
-            this.btnDeleteTab.Size = new System.Drawing.Size(208, 120);
+            this.btnDeleteTab.Size = new System.Drawing.Size(139, 78);
             this.btnDeleteTab.TabIndex = 3;
             this.btnDeleteTab.Text = "Delete Tab";
             this.btnDeleteTab.UseVisualStyleBackColor = true;
@@ -98,10 +94,9 @@
             // btnPayOutTab
             // 
             this.btnPayOutTab.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F);
-            this.btnPayOutTab.Location = new System.Drawing.Point(890, 157);
-            this.btnPayOutTab.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnPayOutTab.Location = new System.Drawing.Point(593, 102);
             this.btnPayOutTab.Name = "btnPayOutTab";
-            this.btnPayOutTab.Size = new System.Drawing.Size(208, 120);
+            this.btnPayOutTab.Size = new System.Drawing.Size(139, 78);
             this.btnPayOutTab.TabIndex = 4;
             this.btnPayOutTab.Text = "Pay Out Tab";
             this.btnPayOutTab.UseVisualStyleBackColor = true;
@@ -111,23 +106,22 @@
             // 
             this.dataGridTabs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridTabs.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.CustomerName,
+            this.Name,
             this.PurchasedItems,
             this.TotalPrice});
-            this.dataGridTabs.Location = new System.Drawing.Point(141, 317);
-            this.dataGridTabs.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.dataGridTabs.Location = new System.Drawing.Point(94, 206);
             this.dataGridTabs.Name = "dataGridTabs";
             this.dataGridTabs.RowHeadersWidth = 62;
-            this.dataGridTabs.Size = new System.Drawing.Size(966, 231);
+            this.dataGridTabs.Size = new System.Drawing.Size(644, 150);
             this.dataGridTabs.TabIndex = 5;
             this.dataGridTabs.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridTabs_CellContentClick);
             // 
             // Name
             // 
-            this.CustomerName.HeaderText = "Name";
-            this.CustomerName.MinimumWidth = 8;
-            this.CustomerName.Name = "Name";
-            this.CustomerName.Width = 200;
+            this.Name.HeaderText = "Name";
+            this.Name.MinimumWidth = 8;
+            this.Name.Name = "Name";
+            this.Name.Width = 200;
             // 
             // PurchasedItems
             // 
@@ -147,10 +141,9 @@
             // 
             this.btnExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.25F);
             this.btnExit.ForeColor = System.Drawing.Color.Red;
-            this.btnExit.Location = new System.Drawing.Point(446, 575);
-            this.btnExit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnExit.Location = new System.Drawing.Point(297, 374);
             this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(358, 143);
+            this.btnExit.Size = new System.Drawing.Size(239, 93);
             this.btnExit.TabIndex = 6;
             this.btnExit.Text = "Exit";
             this.btnExit.UseVisualStyleBackColor = true;
@@ -163,11 +156,9 @@
             this.grpBoxAddTab.Controls.Add(this.txtBoxName);
             this.grpBoxAddTab.Controls.Add(this.btnCancel);
             this.grpBoxAddTab.Controls.Add(this.btnAddTab);
-            this.grpBoxAddTab.Location = new System.Drawing.Point(536, 372);
-            this.grpBoxAddTab.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.grpBoxAddTab.Location = new System.Drawing.Point(357, 242);
             this.grpBoxAddTab.Name = "grpBoxAddTab";
-            this.grpBoxAddTab.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.grpBoxAddTab.Size = new System.Drawing.Size(543, 322);
+            this.grpBoxAddTab.Size = new System.Drawing.Size(362, 209);
             this.grpBoxAddTab.TabIndex = 7;
             this.grpBoxAddTab.TabStop = false;
             this.grpBoxAddTab.Text = "Add Tab";
@@ -178,30 +169,27 @@
             // 
             this.lblEnterName.AutoSize = true;
             this.lblEnterName.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.25F);
-            this.lblEnterName.Location = new System.Drawing.Point(162, 72);
-            this.lblEnterName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblEnterName.Location = new System.Drawing.Point(108, 47);
             this.lblEnterName.Name = "lblEnterName";
-            this.lblEnterName.Size = new System.Drawing.Size(187, 35);
+            this.lblEnterName.Size = new System.Drawing.Size(131, 25);
             this.lblEnterName.TabIndex = 3;
             this.lblEnterName.Text = "Enter Name:";
             this.lblEnterName.Visible = false;
             // 
             // txtBoxName
             // 
-            this.txtBoxName.Location = new System.Drawing.Point(153, 117);
-            this.txtBoxName.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtBoxName.Location = new System.Drawing.Point(102, 76);
             this.txtBoxName.Name = "txtBoxName";
-            this.txtBoxName.Size = new System.Drawing.Size(218, 26);
+            this.txtBoxName.Size = new System.Drawing.Size(147, 20);
             this.txtBoxName.TabIndex = 2;
             this.txtBoxName.Visible = false;
             this.txtBoxName.TextChanged += new System.EventHandler(this.txtBoxName_TextChanged);
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(296, 220);
-            this.btnCancel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnCancel.Location = new System.Drawing.Point(197, 143);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(112, 35);
+            this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 1;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
@@ -210,10 +198,9 @@
             // 
             // btnAddTab
             // 
-            this.btnAddTab.Location = new System.Drawing.Point(118, 220);
-            this.btnAddTab.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnAddTab.Location = new System.Drawing.Point(79, 143);
             this.btnAddTab.Name = "btnAddTab";
-            this.btnAddTab.Size = new System.Drawing.Size(112, 35);
+            this.btnAddTab.Size = new System.Drawing.Size(75, 23);
             this.btnAddTab.TabIndex = 0;
             this.btnAddTab.Text = "Add Tab";
             this.btnAddTab.UseVisualStyleBackColor = true;
@@ -222,9 +209,9 @@
             // 
             // Customers
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1248, 751);
+            this.ClientSize = new System.Drawing.Size(832, 488);
             this.Controls.Add(this.grpBoxAddTab);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.dataGridTabs);
@@ -234,10 +221,10 @@
             this.Controls.Add(this.btnNewTab);
             this.Controls.Add(this.label1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.Name = "Customers";
+            this.Text = "Customers";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Event Tabs";
+            this.Load += new System.EventHandler(this.Customers_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridTabs)).EndInit();
             this.grpBoxAddTab.ResumeLayout(false);
             this.grpBoxAddTab.PerformLayout();
@@ -263,5 +250,6 @@
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnAddTab;
         private System.Windows.Forms.DataGridViewTextBoxColumn CustomerName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Name;
     }
 }

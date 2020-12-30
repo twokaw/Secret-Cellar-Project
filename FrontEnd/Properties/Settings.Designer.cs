@@ -12,7 +12,7 @@ namespace SecretCellar.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.7.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.8.1.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -88,7 +88,7 @@ namespace SecretCellar.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("11")]
+        [global::System.Configuration.DefaultSettingValueAttribute("10")]
         public float ReceiptFontSize {
             get {
                 return ((float)(this["ReceiptFontSize"]));
@@ -128,6 +128,81 @@ namespace SecretCellar.Properties {
         public int BarcodeSize {
             get {
                 return ((int)(this["BarcodeSize"]));
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Gray")]
+        public global::System.Drawing.Color BackgroundColor {
+            get {
+                return ((global::System.Drawing.Color)(this["BackgroundColor"]));
+            }
+            set {
+                this["BackgroundColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Silver")]
+        public global::System.Drawing.Color GridColor {
+            get {
+                return ((global::System.Drawing.Color)(this["GridColor"]));
+            }
+            set {
+                this["GridColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Microsoft Sans Serif, 9.75pt, style=Bold")]
+        public global::System.Drawing.Font FontSet {
+            get {
+                return ((global::System.Drawing.Font)(this["FontSet"]));
+            }
+            set {
+                this["FontSet"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1200, 900")]
+        public global::System.Drawing.Size MainFormSize {
+            get {
+                return ((global::System.Drawing.Size)(this["MainFormSize"]));
+            }
+            set {
+                this["MainFormSize"] = value;
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Gray")]
+        public global::System.Drawing.Color DefaultBackgroundColor {
+            get {
+                return ((global::System.Drawing.Color)(this["DefaultBackgroundColor"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Silver")]
+        public global::System.Drawing.Color DefaultGridColor {
+            get {
+                return ((global::System.Drawing.Color)(this["DefaultGridColor"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Microsoft Sans Serif, 8.25pt, style=Bold")]
+        public global::System.Drawing.Font DefaultFont {
+            get {
+                return ((global::System.Drawing.Font)(this["DefaultFont"]));
             }
         }
     }

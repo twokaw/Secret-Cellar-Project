@@ -13,7 +13,7 @@ using System.Windows.Forms;
 
 namespace SecretCellar
 {
-    public partial class frmPropane : Form
+    public partial class frmPropane : ManagedForm
     {
         public Transaction transaction = null;
         private const string PROPANEEXCHANGE = "PROPANEEXCHANGE";
@@ -27,8 +27,6 @@ namespace SecretCellar
             txt_new_Qty.Text = (transaction.Items.FirstOrDefault(x => x.Barcode == PROPANENEW)?.NumSold ?? 0).ToString();
 
         }
-
-       
 
         private void btn_close_Click(object sender, EventArgs e)
         {
