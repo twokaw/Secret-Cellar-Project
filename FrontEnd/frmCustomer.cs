@@ -27,13 +27,19 @@ namespace SecretCellar
             this.AutoScaleDimensions = new System.Drawing.SizeF(72, 72);
             customers = dataAccess.GetCustomer();
 
-            customer_data_grid.DataSource = customer.
-                Select(x => new { Name = x.Name, Id = x.Id }).
-                OrderBy(x = x.Name).
+            customer_data_grid.DataSource = customers.
+                Select(x => new {customerID = x.CustomerID, customerDiscount = x.CustomerDiscount, first_name = x.firstName, last_name = x.LastName, business_name = x.BusinessName,
+                    email = x.Email, isWholesale = x.IsWholesale, addr1 = x.Address1, addr2 = x.Address2, city = x.City, state = x.State, phone = x.PhoneNumber}).
+                OrderBy(x => x.last_name).
                 ToList();
         }
 
         private void frmCustomer_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void customer_data_grid_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
