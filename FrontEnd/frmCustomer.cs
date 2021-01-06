@@ -43,5 +43,15 @@ namespace SecretCellar
         {
 
         }
+
+        private void pnl_change_info_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void chkbox_wholesale_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
