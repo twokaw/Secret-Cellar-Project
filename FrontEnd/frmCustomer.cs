@@ -33,7 +33,11 @@ namespace SecretCellar
                 OrderBy(x => x.last_name).
                 ToList();
 
+            txt_lname = x.last_name;
+            cbo_wholesale.DataSource = isWholesale;
         }
+
+        
         private void frmCustomer_Load(object sender, EventArgs e)
         {
 
@@ -50,6 +54,16 @@ namespace SecretCellar
         }
 
         private void chkbox_wholesale_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_cancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void cbo_wholesale_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

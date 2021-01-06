@@ -207,7 +207,7 @@
             this.cboType.DisplayMember = "TypeName";
             this.cboType.FormattingEnabled = true;
             this.cboType.Location = new System.Drawing.Point(111, 49);
-            this.cboType.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboType.Margin = new System.Windows.Forms.Padding(4);
             this.cboType.Name = "cboType";
             this.cboType.Size = new System.Drawing.Size(242, 24);
             this.cboType.TabIndex = 5;
@@ -228,7 +228,7 @@
             this.txt_qty.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txt_qty.Location = new System.Drawing.Point(111, 114);
-            this.txt_qty.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txt_qty.Margin = new System.Windows.Forms.Padding(4);
             this.txt_qty.Name = "txt_qty";
             this.txt_qty.Size = new System.Drawing.Size(242, 22);
             this.txt_qty.TabIndex = 3;
@@ -249,7 +249,7 @@
             this.txtName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtName.Location = new System.Drawing.Point(111, 17);
-            this.txtName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtName.Margin = new System.Windows.Forms.Padding(4);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(242, 22);
             this.txtName.TabIndex = 1;
@@ -284,7 +284,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.Controls.Add(this.LookupView);
             this.panel1.Location = new System.Drawing.Point(20, 66);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(988, 539);
             this.panel1.TabIndex = 7;
@@ -314,7 +314,7 @@
             this.panel2.Controls.Add(this.txt_qty);
             this.panel2.Controls.Add(this.label4);
             this.panel2.Location = new System.Drawing.Point(1016, 66);
-            this.panel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(363, 480);
             this.panel2.TabIndex = 8;
@@ -334,7 +334,7 @@
             // txtProd_Qty
             // 
             this.txtProd_Qty.Location = new System.Drawing.Point(112, 249);
-            this.txtProd_Qty.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtProd_Qty.Margin = new System.Windows.Forms.Padding(4);
             this.txtProd_Qty.Name = "txtProd_Qty";
             this.txtProd_Qty.Size = new System.Drawing.Size(241, 22);
             this.txtProd_Qty.TabIndex = 16;
@@ -345,7 +345,7 @@
             this.btn_new.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btn_new.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_new.Location = new System.Drawing.Point(30, 426);
-            this.btn_new.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_new.Margin = new System.Windows.Forms.Padding(4);
             this.btn_new.Name = "btn_new";
             this.btn_new.Size = new System.Drawing.Size(129, 37);
             this.btn_new.TabIndex = 15;
@@ -366,7 +366,7 @@
             // txtNetPrice
             // 
             this.txtNetPrice.Location = new System.Drawing.Point(111, 212);
-            this.txtNetPrice.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtNetPrice.Margin = new System.Windows.Forms.Padding(4);
             this.txtNetPrice.Name = "txtNetPrice";
             this.txtNetPrice.Size = new System.Drawing.Size(241, 22);
             this.txtNetPrice.TabIndex = 13;
@@ -385,7 +385,7 @@
             // txtPrice
             // 
             this.txtPrice.Location = new System.Drawing.Point(111, 146);
-            this.txtPrice.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtPrice.Margin = new System.Windows.Forms.Padding(4);
             this.txtPrice.Name = "txtPrice";
             this.txtPrice.Size = new System.Drawing.Size(241, 22);
             this.txtPrice.TabIndex = 11;
@@ -405,7 +405,7 @@
             this.txtBarcode.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBarcode.Location = new System.Drawing.Point(111, 82);
-            this.txtBarcode.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtBarcode.Margin = new System.Windows.Forms.Padding(4);
             this.txtBarcode.Name = "txtBarcode";
             this.txtBarcode.Size = new System.Drawing.Size(242, 22);
             this.txtBarcode.TabIndex = 9;
@@ -418,7 +418,7 @@
             this.cbo_Supplier.DisplayMember = "Name";
             this.cbo_Supplier.FormattingEnabled = true;
             this.cbo_Supplier.Location = new System.Drawing.Point(111, 178);
-            this.cbo_Supplier.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbo_Supplier.Margin = new System.Windows.Forms.Padding(4);
             this.cbo_Supplier.Name = "cbo_Supplier";
             this.cbo_Supplier.Size = new System.Drawing.Size(242, 24);
             this.cbo_Supplier.TabIndex = 8;
@@ -438,7 +438,7 @@
             this.cbxTypeFilter.DisplayMember = "TypeName";
             this.cbxTypeFilter.FormattingEnabled = true;
             this.cbxTypeFilter.Location = new System.Drawing.Point(638, 25);
-            this.cbxTypeFilter.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbxTypeFilter.Margin = new System.Windows.Forms.Padding(4);
             this.cbxTypeFilter.Name = "cbxTypeFilter";
             this.cbxTypeFilter.Size = new System.Drawing.Size(180, 24);
             this.cbxTypeFilter.TabIndex = 9;
@@ -461,7 +461,7 @@
             this.cbxSupplyFilter.DisplayMember = "Name";
             this.cbxSupplyFilter.FormattingEnabled = true;
             this.cbxSupplyFilter.Location = new System.Drawing.Point(1179, 25);
-            this.cbxSupplyFilter.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbxSupplyFilter.Margin = new System.Windows.Forms.Padding(4);
             this.cbxSupplyFilter.Name = "cbxSupplyFilter";
             this.cbxSupplyFilter.Size = new System.Drawing.Size(180, 24);
             this.cbxSupplyFilter.TabIndex = 11;
@@ -482,7 +482,7 @@
             // 
             this.cbxOnlyItemsWithInventory.AutoSize = true;
             this.cbxOnlyItemsWithInventory.Location = new System.Drawing.Point(842, 27);
-            this.cbxOnlyItemsWithInventory.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbxOnlyItemsWithInventory.Margin = new System.Windows.Forms.Padding(4);
             this.cbxOnlyItemsWithInventory.Name = "cbxOnlyItemsWithInventory";
             this.cbxOnlyItemsWithInventory.Size = new System.Drawing.Size(200, 20);
             this.cbxOnlyItemsWithInventory.TabIndex = 13;
