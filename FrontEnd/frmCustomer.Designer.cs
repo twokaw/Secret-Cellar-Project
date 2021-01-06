@@ -31,9 +31,6 @@ namespace SecretCellar
         {
             this.pnl_change_info = new System.Windows.Forms.Panel();
             this.customer_data_grid = new System.Windows.Forms.DataGridView();
-            this.lbl_customer = new System.Windows.Forms.Label();
-            this.txt_box_customer_name = new System.Windows.Forms.TextBox();
-            this.chkbox_wholesale = new System.Windows.Forms.CheckBox();
             this.customerID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.last_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.first_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -47,6 +44,9 @@ namespace SecretCellar
             this.city = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.state = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.zip = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lbl_customer = new System.Windows.Forms.Label();
+            this.txt_box_customer_name = new System.Windows.Forms.TextBox();
+            this.chkbox_wholesale = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.customer_data_grid)).BeginInit();
             this.SuspendLayout();
             // 
@@ -81,35 +81,6 @@ namespace SecretCellar
             this.customer_data_grid.Size = new System.Drawing.Size(788, 540);
             this.customer_data_grid.TabIndex = 1;
             this.customer_data_grid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.customer_data_grid_CellContentClick);
-            // 
-            // lbl_customer
-            // 
-            this.lbl_customer.AutoSize = true;
-            this.lbl_customer.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_customer.Location = new System.Drawing.Point(98, 35);
-            this.lbl_customer.Name = "lbl_customer";
-            this.lbl_customer.Size = new System.Drawing.Size(122, 17);
-            this.lbl_customer.TabIndex = 2;
-            this.lbl_customer.Text = "Customer Name";
-            // 
-            // txt_box_customer_name
-            // 
-            this.txt_box_customer_name.Location = new System.Drawing.Point(243, 35);
-            this.txt_box_customer_name.Name = "txt_box_customer_name";
-            this.txt_box_customer_name.Size = new System.Drawing.Size(248, 20);
-            this.txt_box_customer_name.TabIndex = 3;
-            // 
-            // chkbox_wholesale
-            // 
-            this.chkbox_wholesale.AutoSize = true;
-            this.chkbox_wholesale.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkbox_wholesale.Location = new System.Drawing.Point(659, 36);
-            this.chkbox_wholesale.Name = "chkbox_wholesale";
-            this.chkbox_wholesale.Size = new System.Drawing.Size(213, 21);
-            this.chkbox_wholesale.TabIndex = 4;
-            this.chkbox_wholesale.Text = "Wholesale Customer Only";
-            this.chkbox_wholesale.UseVisualStyleBackColor = true;
-            this.chkbox_wholesale.CheckedChanged += new System.EventHandler(this.chkbox_wholesale_CheckedChanged);
             // 
             // customerID
             // 
@@ -189,6 +160,35 @@ namespace SecretCellar
             this.zip.DataPropertyName = "zip";
             this.zip.HeaderText = "Zip Code";
             this.zip.Name = "zip";
+            // 
+            // lbl_customer
+            // 
+            this.lbl_customer.AutoSize = true;
+            this.lbl_customer.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_customer.Location = new System.Drawing.Point(98, 35);
+            this.lbl_customer.Name = "lbl_customer";
+            this.lbl_customer.Size = new System.Drawing.Size(122, 17);
+            this.lbl_customer.TabIndex = 2;
+            this.lbl_customer.Text = "Customer Name";
+            // 
+            // txt_box_customer_name
+            // 
+            this.txt_box_customer_name.Location = new System.Drawing.Point(243, 35);
+            this.txt_box_customer_name.Name = "txt_box_customer_name";
+            this.txt_box_customer_name.Size = new System.Drawing.Size(248, 20);
+            this.txt_box_customer_name.TabIndex = 3;
+            // 
+            // chkbox_wholesale
+            // 
+            this.chkbox_wholesale.AutoSize = true;
+            this.chkbox_wholesale.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkbox_wholesale.Location = new System.Drawing.Point(659, 36);
+            this.chkbox_wholesale.Name = "chkbox_wholesale";
+            this.chkbox_wholesale.Size = new System.Drawing.Size(213, 21);
+            this.chkbox_wholesale.TabIndex = 4;
+            this.chkbox_wholesale.Text = "Wholesale Customer Only";
+            this.chkbox_wholesale.UseVisualStyleBackColor = true;
+            this.chkbox_wholesale.CheckedChanged += new System.EventHandler(this.chkbox_wholesale_CheckedChanged);
             // 
             // frmCustomer
             // 

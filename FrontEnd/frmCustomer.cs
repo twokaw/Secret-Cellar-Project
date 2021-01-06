@@ -28,12 +28,12 @@ namespace SecretCellar
             customers = dataAccess.GetCustomer();
 
             customer_data_grid.DataSource = customers.
-                Select(x => new {customerID = x.CustomerID, customerDiscount = x.CustomerDiscount, first_name = x.firstName, last_name = x.LastName, business_name = x.BusinessName,
-                    email = x.Email, isWholesale = x.IsWholesale, addr1 = x.Address1, addr2 = x.Address2, city = x.City, state = x.State, phone = x.PhoneNumber}).
+                Select(x => new{customerID = x.CustomerID, last_name = x.LastName, first_name = x.firstName, phone = x.PhoneNumber, email = x.Email, business_name = x.BusinessName,
+                isWholesale = x.IsWholesale, customerDiscount = x.CustomerDiscount, addr1 = x.Address1, addr2 = x.Address2, city = x.City, state = x.State, zip =x.ZipCode}).
                 OrderBy(x => x.last_name).
                 ToList();
-        }
 
+        }
         private void frmCustomer_Load(object sender, EventArgs e)
         {
 
