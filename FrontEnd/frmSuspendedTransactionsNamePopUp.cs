@@ -12,35 +12,33 @@ namespace SecretCellar
 {
 	public partial class frmSuspendedTransactionsNamePopUp : Form
 	{
-		public string nameOfSuspendedTransaction;
-		private List<Shared.Customer> customerList;
+		public Shared.Customer customer;
+
 
 		public frmSuspendedTransactionsNamePopUp()
 		{
 			InitializeComponent();
 
 			//PUT EACH CUSTOMER'S FIRST AND LAST NAME IN THE LIST TO CHOOSE FROM
-			customerList = DataAccess.instance.GetCustomer();
-
-			foreach (Shared.Customer customer in customerList) { 
-				listUsers.Items.Add(customer.FirstName + " " + customer.LastName);
+			foreach (Shared.Customer customer in DataAccess.instance.GetCustomer()) { 
+				listCustomers.Items.Add(customer.FirstName + " " + customer.LastName);
 			}
 		}
 
 		private void textBoxSuspendedTransactionName_TextChanged(object sender, EventArgs e)
 		{
 			//CLEAR THE LIST OF NAMES BEFORE ADDING THEM BACK IN WITH THE FILTER
-			listUsers.Items.Clear();
+			listCustomers.Items.Clear();
 
 			//GET THE CURRENT TYPED STRING
 			string typedName = textBoxSuspendedTransactionName.Text;
 
 			//FOR EACH CUSTOMER IN THE DATABASE, CHECK IF THE CUSTOMER NAME CONTAINS THE TYPED STRING
-			customerList.ForEach(customer => {
+			DataAccess.instance.GetCustomer().ForEach(customer => {
 				string customerName = customer.FirstName + " " + customer.LastName;
 				
 				if (customerName.ToLower().Contains(typedName.ToLower())) {
-					listUsers.Items.Add(customerName);
+					listCustomers.Items.Add(customerName);
 				}
 			});
 
@@ -48,25 +46,28 @@ namespace SecretCellar
 
 		private void textBoxSuspendedTransactionName_KeyDown(object sender, KeyEventArgs e)
 		{
+			//ENSURE THAT A USER IS SELECTED AND SET IT TO 'nameOfSuspendedTransaction'
 			if (e.KeyCode == Keys.Enter) {
-				//TODO add code to grab the selected text in the listUsers
+				if (listCustomers.SelectedItem != null) {
+					customer = findCustomer(listCustomers.SelectedItem.ToString());
+				}
 
-				this.nameOfSuspendedTransaction = textBoxSuspendedTransactionName.Text;
 				this.Close();
 			}
 		}
 
 		private void btnOkay_Click(object sender, EventArgs e)
 		{
-			//TODO add code to grab the selected text in the listUsers
+			//ENSURE THAT A USER IS SELECTED AND SET IT TO 'nameOfSuspendedTransaction'
+			if (listCustomers.SelectedItem != null) {
+				customer = findCustomer(listCustomers.SelectedItem.ToString());
+			}
 
-			this.nameOfSuspendedTransaction = textBoxSuspendedTransactionName.Text;
 			this.Close();
 		}
 
-		private void listUsers_SelectedIndexChanged(object sender, EventArgs e) {
-			//TODO possibly something like this
-			//textBoxSuspendedTransactionName.Text = listUsers.SelectedItem.ToString();
+		private void listCustomers_SelectedIndexChanged(object sender, EventArgs e) {
+
 		}
 
 		private void label1_Click(object sender, EventArgs e)
@@ -74,6 +75,14 @@ namespace SecretCellar
 
 		}
 
-		
+		private Shared.Customer findCustomer(string customerName) {
+			foreach (Shared.Customer customer in DataAccess.instance.GetCustomer()) {
+				if (customerName.Equals(customer.FirstName + " " + customer.LastName)) {
+					return customer;
+				}
+			}
+
+			return null;
+		}
 	}
 }

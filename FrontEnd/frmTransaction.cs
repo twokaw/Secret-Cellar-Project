@@ -298,35 +298,34 @@ namespace SecretCellar
 
         private void btnSuspendTransaction_Click(object sender, EventArgs e)
         {
-            string suspendedTransactionName;
+            Shared.Customer customer;
+            
             //CONTINUALLY CREATE A POP UP MENU FOR THE USER TO ENTER THE NAME OF THE TRANSACTION TO BE SUSPENDED
             //UNTIL A UNIQUE NAME IS CHOSEN
             while (true) {
                 frmSuspendedTransactionsNamePopUp popUp = new frmSuspendedTransactionsNamePopUp();
                 popUp.ShowDialog();
 
-                suspendedTransactionName = popUp.nameOfSuspendedTransaction;
+                customer = popUp.customer;
 
                 //IF THE USER CANCELS OUT OF THE FORM, END THE FUNCTION
-                if (suspendedTransactionName == null) {
+                if (customer == null) {
                     return;
                 }
                 else {
-                    //ENSURE THE NAME ISN'T EMPTY
-                    if (!suspendedTransactionName.Replace(" ", "").Equals("")) {
-                        bool hasSameName = false;
+                    bool hasSameName = false;
 
-                        //COMPARE ALL OF THE CURRENT NAMES IN THE MAP TO SEE IF THERE'S A COPY
-                        foreach (string key in frmSuspendedTransactions.suspendedTransactionsMap.Keys) {
-                            if (key.Equals(suspendedTransactionName)) {
-                                hasSameName = true;
-                            }
+                    //TODO: remove this once suspended transactions are written to the database
+                    //COMPARE ALL OF THE CURRENT NAMES IN THE MAP TO SEE IF THERE'S A COPY
+                    foreach (string key in frmSuspendedTransactions.suspendedTransactionsMap.Keys) {
+                        if (key.Equals(customer.FirstName + " " + customer.LastName)) {
+                            hasSameName = true;
                         }
+                    }
 
-                        //IF NO COPY WAS FOUND, THEN BREAK OUT OF THE WHILE LOOP
-                        if (!hasSameName) {
-                            break;
-                        }
+                    //IF NO COPY WAS FOUND, THEN BREAK OUT OF THE WHILE LOOP
+                    if (!hasSameName) {
+                        break;
                     }
                 }
             }
@@ -339,8 +338,22 @@ namespace SecretCellar
                     transactionCopy.Items.Add(item);
                 }
 
+                //TODO: add transaction information and then process it
+                transactionCopy.CustomerID = customer.CustomerID;
+                transactionCopy.CustomerName = customer.FirstName + " " + customer.LastName;
+                transactionCopy.InvoiceID = 6;
+                
+                /****TESTING***************************************/
+                // DataAccess.instance.ProcessTransaction(transactionCopy);
+                //System.Collections.Generic.List<Transaction> transactions = DataAccess.instance.GetSuspendedTransactions();
+
+                //foreach(Transaction t in transactions) {
+                //   Console.WriteLine(t.CustomerName + ": " + t.Total.ToString());
+			    //}
+                /**************************************************/
+
                 //ADD THE NAME AND THE TRANSACTION TO THE MAP OF SUSPENDED TRANSACTIONS IN 'frmSuspendedTransactions'
-                frmSuspendedTransactions.suspendedTransactionsMap.Add(suspendedTransactionName, transactionCopy);
+                frmSuspendedTransactions.suspendedTransactionsMap.Add(customer.FirstName + " " + customer.LastName, transactionCopy);
             }
 
             //CLEAR THE CURRENT TRANSACTION AND THE dataGridView1 SINCE THEY'RE NOW SUSPENDED

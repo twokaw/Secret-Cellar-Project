@@ -32,7 +32,7 @@
 			this.btnOkay = new System.Windows.Forms.Button();
 			this.label1 = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
-			this.listUsers = new System.Windows.Forms.ListBox();
+			this.listCustomers = new System.Windows.Forms.ListBox();
 			this.SuspendLayout();
 			// 
 			// textBoxSuspendedTransactionName
@@ -71,26 +71,26 @@
 			this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
 			this.label2.Location = new System.Drawing.Point(12, 18);
 			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(96, 17);
+			this.label2.Size = new System.Drawing.Size(128, 17);
 			this.label2.TabIndex = 2;
-			this.label2.Text = "Search users:";
+			this.label2.Text = "Search Customers:";
 			this.label2.Click += new System.EventHandler(this.label1_Click);
 			// 
-			// listUsers
+			// listCustomers
 			// 
-			this.listUsers.FormattingEnabled = true;
-			this.listUsers.Location = new System.Drawing.Point(12, 82);
-			this.listUsers.Name = "listUsers";
-			this.listUsers.Size = new System.Drawing.Size(319, 238);
-			this.listUsers.TabIndex = 3;
-			this.listUsers.SelectedIndexChanged += new System.EventHandler(this.listUsers_SelectedIndexChanged);
+			this.listCustomers.FormattingEnabled = true;
+			this.listCustomers.Location = new System.Drawing.Point(12, 78);
+			this.listCustomers.Name = "listCustomers";
+			this.listCustomers.Size = new System.Drawing.Size(319, 238);
+			this.listCustomers.TabIndex = 4;
+			this.listCustomers.SelectedIndexChanged += new System.EventHandler(this.listCustomers_SelectedIndexChanged);
 			// 
 			// frmSuspendedTransactionsNamePopUp
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(343, 368);
-			this.Controls.Add(this.listUsers);
+			this.Controls.Add(this.listCustomers);
 			this.Controls.Add(this.label2);
 			this.Controls.Add(this.label1);
 			this.Controls.Add(this.btnOkay);
@@ -112,6 +112,6 @@
 		private System.Windows.Forms.Button btnOkay;
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.Label label2;
-		private System.Windows.Forms.ListBox listUsers;
+		private System.Windows.Forms.ListBox listCustomers;
 	}
 }
