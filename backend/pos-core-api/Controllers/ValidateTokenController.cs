@@ -17,7 +17,7 @@ namespace WebApi.Controllers
         [HttpPost]
         public bool IsTokenValid(string token)
         {
-            bool status = _userService.isTokenValid(token);
+            bool status = _userService.IsTokenValid(token);
 
             return status;
         }

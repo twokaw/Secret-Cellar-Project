@@ -145,6 +145,9 @@ namespace Shared
         }
         public double Discount { get; set; }
         public uint EmployeeID { get; set; }
+
+        // Add the customer name from ID, if customer ID is 0 then the name is not in the database. 
+        public string CustomerName { get; set; }
         public uint CustomerID { get; set; }
         public double Shipping { get; set; }
 

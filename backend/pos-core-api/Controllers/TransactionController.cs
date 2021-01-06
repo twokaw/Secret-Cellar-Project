@@ -24,7 +24,7 @@ namespace WebApi.Controllers
                 return StatusCode(500, ex.Message);
             }
         }
-        
+
         // Get call to be used when barcode on receipt is scanned
         //Get: api/Transaction/receiptID
         [HttpGet("{receiptID}")]
@@ -40,6 +40,21 @@ namespace WebApi.Controllers
             };
         }
 
+        // Get call to be used when barcode on receipt is scanned
+        //Get: api/Transaction/Suspended
+        [HttpGet("Suspended/")]
+        public ActionResult GetSuspended()
+        {
+            try
+            {
+                return Ok(DataAccess.Instance.Transaction.GetSuspendedTransactions());
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            };
+        }
+
         /// <summary>
         /// Insert a new transaction 
         /// </summary>
@@ -48,12 +63,13 @@ namespace WebApi.Controllers
         [HttpPost]
         public IActionResult Post([FromBody] Transaction transaction)
         {
-            if(transaction.InvoiceID > 0 && DataAccess.Instance.Transaction.GetTransaction(transaction.InvoiceID, false, false) == null)
-                return StatusCode(400, "Transaction already exists");
-            
             try
             {
-                return Ok(DataAccess.Instance.Transaction.InsertTransaction(transaction));
+                // If there is a Invoice ID and the Transaction exists then Update the Transaction else insert it
+                if(transaction.InvoiceID > 0 && DataAccess.Instance.Transaction.GetTransaction(transaction.InvoiceID, false, false) != null)
+                    return Ok(DataAccess.Instance.Transaction.UpdateTransaction(transaction)); 
+                else
+                    return Ok(DataAccess.Instance.Transaction.InsertTransaction(transaction));
             }
             catch (Exception ex)
             {

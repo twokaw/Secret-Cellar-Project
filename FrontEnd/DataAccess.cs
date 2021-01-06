@@ -169,6 +169,11 @@ namespace SecretCellar
             string result = web.DataGet($"api/Transaction");
             return JsonConvert.DeserializeObject<List<Transaction>>(result);
         }
+        public List<Transaction> GetSuspendedTransactions()
+        {
+            string result = web.DataGet($"api/Transaction/Suspended");
+            return JsonConvert.DeserializeObject<List<Transaction>>(result);
+        }
         public List<Transaction> Get(DateTime start, DateTime end )
         {
             string result = web.DataGet($"api/Transaction?start={start}&end={end}");
@@ -183,6 +188,36 @@ namespace SecretCellar
             return transaction.InvoiceID;
         }
         #endregion
+
+        #region Customer
+        public List<Customer> GetCustomer()
+        {
+            string result = web.DataGet("api/Customer");
+            return JsonConvert.DeserializeObject<List<Customer>>(result);
+        }
+
+        public Customer GetCustomer(uint CustomerID)
+        {
+            string result = web.DataGet($"api/Customer/{CustomerID}");
+            return JsonConvert.DeserializeObject<Customer>(result);
+        }
+
+        public uint UpdateCustomer(Customer Discount)
+        {
+            Response resp = null;
+            string result = web.DataPut($"api/Customer", Discount, resp);
+            if (uint.TryParse(result, out uint id))
+                return id;
+            else
+                return 0;
+        }
+        public void DeleteCustomer(Customer customer)
+        {
+            try { web.DataDelete($"api/Customer/{customer.CustomerID}");  }
+            catch (Exception ex) { LogError(ex, "DeleteCustomer"); }
+        }
+        #endregion
+
         #region Discount
         public List<Discount> GetDiscount()
         {
@@ -222,8 +257,8 @@ namespace SecretCellar
                 Bottles = inv.Bottles,
                 SalesTax = inv.SalesTax,
                 LocalSalesTax = inv.LocalSalesTax, 
-                IdTax = inv.IdTax ,
-                NonTaxableLocal = inv.NonTaxableLocal ,
+                IdTax = inv.IdTax,
+                NonTaxableLocal = inv.NonTaxableLocal,
                 Discounts = inv.Discounts
             }
             ;
@@ -266,9 +301,14 @@ namespace SecretCellar
             return result;
         }
 
+        public void LogError(string message, string source, string notes = "")
+        {
+            Console.WriteLine($"{source} - {message}");
+        }
 
-
-
-
+        public void LogError(Exception error, string source, string notes = "")
+        {
+            LogError(error.Message, source, notes);
+        }
     }
 }

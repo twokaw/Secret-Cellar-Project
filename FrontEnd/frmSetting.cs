@@ -18,6 +18,8 @@ namespace SecretCellar
         public FrmSetting()
         {
             InitializeComponent();
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(72, 72);
         }
 
         private void FrmSetting_Load(object sender, EventArgs e)
@@ -84,6 +86,7 @@ namespace SecretCellar
             FontDialog fontDlg = new FontDialog();
             fontDlg.ShowDialog();
             CommonFontSetter = fontDlg.Font;
+            
         }
 
         private void btn_panel_color_Click(object sender, EventArgs e)
@@ -136,3 +139,4 @@ namespace SecretCellar
         }
     }
 }
+//testing
