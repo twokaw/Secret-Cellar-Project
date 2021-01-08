@@ -59,34 +59,11 @@ namespace SecretCellar
                 MainWindowColor = colorPicker.Color;
         }
 
-        private void btn_panel_color_Click(object sender, EventArgs e)
-        {
-            ColorDialog colorPicker = new ColorDialog
-            {
-                Color = Color.Green
-            };
-
-
-
-            if (colorPicker.ShowDialog() == DialogResult.OK)
-            {
-                Color color = colorPicker.Color;
-                Color dataGridView = color;
-            }
-        }
-
-        private void btn_font_settings_Click(object sender, EventArgs e)
-        {
-            FontDialog fontDlg = new FontDialog();
-            fontDlg.ShowDialog();
-        }
-
         private void btn_font_settings_Click(object sender, EventArgs e)
         {
             FontDialog fontDlg = new FontDialog();
             fontDlg.ShowDialog();
             CommonFontSetter = fontDlg.Font;
-            
         }
 
         private void btn_panel_color_Click(object sender, EventArgs e)
