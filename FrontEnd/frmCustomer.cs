@@ -33,8 +33,8 @@ namespace SecretCellar
                 OrderBy(x => x.last_name).
                 ToList();
 
-            txt_lname = x.last_name;
-            cbo_wholesale.DataSource = isWholesale;
+            //txt_lname = x.last_name;
+            //cbo_wholesale.DataSource = isWholesale;
         }
 
         
