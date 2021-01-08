@@ -289,5 +289,13 @@ namespace SecretCellar
         {
 
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            frmCustomer customer = new frmCustomer(transaction); //instantiates frmCustomer using Lookup
+            customer.ShowDialog(); // opens form associated with Lookup instantiation
+            addRow(transaction);
+
+        }
     }
 }

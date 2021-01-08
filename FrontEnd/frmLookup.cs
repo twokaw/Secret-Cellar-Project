@@ -370,5 +370,10 @@ namespace SecretCellar
         {
 
         }
+
+        private void txtName_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
