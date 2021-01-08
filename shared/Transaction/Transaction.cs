@@ -27,14 +27,11 @@ namespace Shared
             }
         }
 
-
         public double DiscountTotal
         {
             get
             {
                 double sub = 0;
-
-
 
                 // All items discounts + coupons
 
@@ -262,6 +259,78 @@ namespace Shared
             foreach (Item i in Items)
                 foreach (Discount x in i.Discounts)
                     x.Enabled = enabled;
+        }
+
+        public void Add(Item item)
+        {
+            Item i = Items.FirstOrDefault(x => x.Id == item.Id);
+
+            if (i == null)
+                Items.Add(item);
+            else
+                i.NumSold += item.NumSold;
+        }
+
+        public void Add(Inventory inv) { Add(ConvertInvtoItem(inv)); }
+
+        public bool ChangeItemQty(Inventory inv, uint qty) { return ChangeItemQty(ConvertInvtoItem(inv), qty); }
+
+        public bool ChangeItemQty(Item item, uint qty)
+        {
+            bool result = false;
+            Item i = Items.FirstOrDefault(x => x.Barcode == item.Barcode);
+
+            if (qty == 0)
+            {
+                if (i != null)
+                {
+                    Items.Remove(i);
+                    result = true;
+                }
+            }
+            else
+            {
+                if (i != null && i.NumSold != qty)
+                {
+                    i.NumSold = qty;
+                    result = true;
+                }
+                else if (i == null)
+                {
+                    i =item;
+                    if (i != null)
+                    {
+                        i.NumSold = qty;
+                        Items.Add(i);
+                        result = true;
+                    }
+                    else
+                        throw new Exception("Barcode not in the database");
+                }
+            }
+            return result;
+        }
+
+        public static Item ConvertInvtoItem(Inventory inv)
+        {
+            return new Item
+            {
+                Name = inv.Name,
+                Id = inv.Id,
+                Barcode = inv.Barcode,
+                AllQty = inv.AllQty,
+                BottleDeposit = inv.BottleDeposit,
+                NumSold = 1,
+                Price = inv.Price,
+                NonTaxable = inv.NonTaxable,
+                ItemType = inv.ItemType,
+                Bottles = inv.Bottles,
+                SalesTax = inv.SalesTax,
+                LocalSalesTax = inv.LocalSalesTax,
+                IdTax = inv.IdTax,
+                NonTaxableLocal = inv.NonTaxableLocal,
+                Discounts = inv.Discounts
+            };
         }
     }
 }
