@@ -7,6 +7,8 @@ using System.Reflection;
 using System.Windows.Forms;
 using NCR_Printer;
 using Shared;
+using System.Collections.Generic;
+
 
 namespace SecretCellar
 {
@@ -329,22 +331,40 @@ namespace SecretCellar
                     }
                 }
             }
-
-            //GET ALL THE SELECTED ITEMS INTO A STRING ARRAY TO SEND TO 'frmSuspendedTransactions'
+            
+            //TODO: Should be able to delete this portion and just sent transaction to the database instead of creating a copy.
+            //CREATE A COPY OF THE TRANSACTION SO IT'S NOT LOST WHEN IT'S MOVED TO THE SUSPENDED TRANSACTIONS
             if (transaction.Items.Count > 0) {
-                //CREATE A COPY OF THE TRANSACTION SO IT'S NOT LOST WHEN IT'S MOVED TO THE SUSPENDED TRANSACTIONS
-                Transaction transactionCopy = new Transaction();
+                Transaction transactionCopy = new Transaction(6, 0, DateTime.Now, "MyLocation", transaction.Items, 0, false, new List<Payment>(), 000, customer.CustomerID);
+
+                /*
                 foreach (Item item in transaction.Items) {
                     transactionCopy.Items.Add(item);
                 }
 
+
+                /*
+                 * public Transaction(uint InvoiceID,
+                           uint RegisterID,
+                           DateTime TransactionDateTime,
+                           string Location,
+                           List<Item> Items,
+                           double Discount,
+                           bool TaxExempt,
+                           List<Payment> Payments,
+                           uint EmployeeID,
+                           uint CustomerID)
+
+                */
+
+
                 //TODO: add transaction information and then process it
-                transactionCopy.CustomerID = customer.CustomerID;
-                transactionCopy.CustomerName = customer.FirstName + " " + customer.LastName;
-                transactionCopy.InvoiceID = 6;
+                //transactionCopy.CustomerID = customer.CustomerID;
+                //transactionCopy.CustomerName = customer.FirstName + " " + customer.LastName;
+                //transactionCopy.InvoiceID = uint.Parse("6");
                 
                 /****TESTING***************************************/
-                // DataAccess.instance.ProcessTransaction(transactionCopy);
+                DataAccess.instance.ProcessTransaction(transactionCopy);
                 //System.Collections.Generic.List<Transaction> transactions = DataAccess.instance.GetSuspendedTransactions();
 
                 //foreach(Transaction t in transactions) {
