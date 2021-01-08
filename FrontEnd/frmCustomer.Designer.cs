@@ -410,6 +410,7 @@ namespace SecretCellar
             this.customer_data_grid.Location = new System.Drawing.Point(26, 76);
             this.customer_data_grid.Name = "customer_data_grid";
             this.customer_data_grid.RowHeadersVisible = false;
+            this.customer_data_grid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.customer_data_grid.Size = new System.Drawing.Size(903, 540);
             this.customer_data_grid.TabIndex = 1;
             this.customer_data_grid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.customer_data_grid_CellContentClick);
