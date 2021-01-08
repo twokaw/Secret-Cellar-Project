@@ -239,9 +239,14 @@ namespace pos_core_api.ORM
                     State = reader.IsDBNull("state") ? "" : reader.GetString("state"),
                     ZipCode = reader.IsDBNull("zip") ? "" : reader.GetString("zip"),
                     PhoneNumber = reader.IsDBNull("phone") ? "" : reader.GetString("phone"),
-                    BalanceDue = reader.IsDBNull("balancedue") ? 0.0 : reader.GetDouble("balancedue"),
-                    SuspendedTransactions = reader.IsDBNull("suspendendtransactions") ? 0 : reader.GetUInt32("suspendendtransactions")
                 };
+
+                if(withBalance)
+                {
+                    outputItem.BalanceDue = reader.IsDBNull("balancedue") ? 0.0 : reader.GetDouble("balancedue");
+                    outputItem.SuspendedTransactions = reader.IsDBNull("suspendedtransactions") ? 0 : reader.GetUInt32("suspendedtransactions");
+                }
+
                 output.Add(outputItem);
             }
             return output;
