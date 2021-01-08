@@ -33,8 +33,7 @@ namespace pos_core_api.ORM
                         DiscountID = reader.IsDBNull("DiscountID") ? 0 : reader.GetUInt32("DiscountID"),
                         DiscountName = reader.IsDBNull("DiscountName") ? "" : reader.GetString("DiscountName"),
                         Min = reader.IsDBNull("minQty") ? 0 : reader.GetUInt32("minQty"),
-                        Max = reader.IsDBNull("minQty") ? 0 : reader.GetUInt32("minQty"),
-                        Amount = reader.IsDBNull("local_sales_Discount") ? 0.0 : reader.GetDouble("local_sales_Discount")
+                        Max = reader.IsDBNull("maxQty") ? 0 : reader.GetUInt32("maxQty")
                     };
                     output.Add(outputItem);
                 }
@@ -213,8 +212,7 @@ namespace pos_core_api.ORM
                         DiscountID = DiscountId,
                         DiscountName = reader.IsDBNull("DiscountName") ? "" : reader.GetString("DiscountName"),
                         Min = reader.IsDBNull("minQty") ? 0 : reader.GetUInt32("minQty"),
-                        Max = reader.IsDBNull("minQty") ? 0 : reader.GetUInt32("minQty"),
-                        Amount = reader.IsDBNull("local_sales_Discount") ? 0.0 : reader.GetDouble("local_sales_Discount")
+                        Max = reader.IsDBNull("maxQty") ? 0 : reader.GetUInt32("maxQty")
                     };
                 }
             }

@@ -81,7 +81,7 @@ namespace SecretCellar
         {
             frmDiscount discount = new frmDiscount(transaction); //instantiates frmDiscount using discount
             discount.ShowDialog();
-            addRow(transaction);// opens form associated with discount instantiation
+            RefreshDataGrid();// opens form associated with discount instantiation
         }
 
         private void btnTender_Click(object sender, EventArgs e)
@@ -110,7 +110,7 @@ namespace SecretCellar
 
                     //transaction complete, clear the form
                     transaction = new Transaction();
-                    addRow(transaction);
+                    RefreshDataGrid();
                 }
             }
         }
@@ -120,12 +120,12 @@ namespace SecretCellar
             txtBarcode.Focus();
         }
 
-        private void addRow(Transaction trans)
+        private void RefreshDataGrid()
         {
             dataGridView1.Rows.Clear();
 
             double transactionBottleDeposit = 0.0;
-            foreach (Item item in trans.Items)
+            foreach (Item item in transaction.Items)
             {
                 int row = dataGridView1.Rows.Add();
                 using (var r = dataGridView1.Rows[row])
@@ -160,7 +160,7 @@ namespace SecretCellar
                 uint qty = uint.Parse(dataGridView1.SelectedRows[0].Cells["QTY"].Value.ToString());
                 Item i =   transaction.Items.First(x => x.Description == desc  && x.NumSold == qty );
                 transaction.Items.Remove(i);
-                addRow(transaction);
+                RefreshDataGrid();
             }
 
         }
@@ -170,7 +170,7 @@ namespace SecretCellar
             frmDryCleaning dryCleaning = new frmDryCleaning(transaction);
            
             dryCleaning.ShowDialog();
-            addRow(transaction);
+            RefreshDataGrid();
         }
 
         private void txtBarcode_KeyUp(object sender, KeyEventArgs e)
@@ -180,16 +180,8 @@ namespace SecretCellar
                 Inventory i = dataAccess.GetItem(txtBarcode.Text.Trim());
                 if (i != null)
                 {
-                    Item item = transaction.Items.FirstOrDefault(x => x.Id == i.Id);
-                    if (item == null)
-                    {
-                        transaction.Items.Add(DataAccess.ConvertInvtoItem(i));
-                    }
-                    else
-                    {
-                        item.NumSold++;
-                    }
-                    addRow(transaction);
+                    transaction.Add(i);
+                    RefreshDataGrid();
                 }
                 else
                     MessageBox.Show("Barcode not found");
@@ -201,8 +193,7 @@ namespace SecretCellar
         {
             frmLookup lookup = new frmLookup(transaction); //instantiates frmLookup using Lookup
             lookup.ShowDialog(); // opens form associated with Lookup instantiation
-            addRow(transaction);
-
+            RefreshDataGrid();
         }
 
         private void txt_TransTotal_TextChanged(object sender, EventArgs e)
@@ -215,7 +206,7 @@ namespace SecretCellar
             frmEvents events = new frmEvents(transaction);
 
             events.ShowDialog();
-            addRow(transaction);
+            RefreshDataGrid();
         }
 
         private void btnShipping_Click(object sender, EventArgs e)
@@ -223,13 +214,13 @@ namespace SecretCellar
             frmShipping shipping = new frmShipping(transaction);
 
             shipping.ShowDialog();
-            addRow(transaction);
+            RefreshDataGrid();
         }
 
         private void btnVoidTrx_Click(object sender, EventArgs e)
         {
             transaction = new Transaction();
-            addRow(transaction);
+            RefreshDataGrid();
         }
 
         private void dataGridView1_Click(object sender, EventArgs e)
@@ -255,7 +246,7 @@ namespace SecretCellar
             frmPropane propane= new frmPropane(transaction);
 
             propane.ShowDialog();
-            addRow(transaction);
+            RefreshDataGrid();
         }
 
         private void btnCustom_Click(object sender, EventArgs e)
@@ -263,7 +254,7 @@ namespace SecretCellar
             frmCustom customItem = new frmCustom(transaction);
 
             customItem.ShowDialog();
-            addRow(transaction);
+            RefreshDataGrid();
         }
 
         private void pb_settings_Click(object sender, EventArgs e)
