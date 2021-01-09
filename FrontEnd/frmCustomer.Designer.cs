@@ -71,7 +71,7 @@ namespace SecretCellar
             this.state = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.zip = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lbl_customer = new System.Windows.Forms.Label();
-            this.txt_box_customer_name = new System.Windows.Forms.TextBox();
+            this.txt_customer = new System.Windows.Forms.TextBox();
             this.chkbox_wholesale = new System.Windows.Forms.CheckBox();
             this.btn_add = new System.Windows.Forms.Button();
             this.btn_cancel = new System.Windows.Forms.Button();
@@ -208,6 +208,7 @@ namespace SecretCellar
             this.btn_new.TabIndex = 40;
             this.btn_new.Text = "New Customer";
             this.btn_new.UseVisualStyleBackColor = true;
+            this.btn_new.Click += new System.EventHandler(this.btn_new_Click);
             // 
             // btn_update
             // 
@@ -505,13 +506,13 @@ namespace SecretCellar
             this.lbl_customer.TabIndex = 2;
             this.lbl_customer.Text = "Customer Name";
             // 
-            // txt_box_customer_name
+            // txt_customer
             // 
-            this.txt_box_customer_name.Location = new System.Drawing.Point(243, 35);
-            this.txt_box_customer_name.Name = "txt_box_customer_name";
-            this.txt_box_customer_name.Size = new System.Drawing.Size(248, 20);
-            this.txt_box_customer_name.TabIndex = 3;
-            this.txt_box_customer_name.TextChanged += new System.EventHandler(this.txt_box_customer_name_TextChanged);
+            this.txt_customer.Location = new System.Drawing.Point(243, 35);
+            this.txt_customer.Name = "txt_customer";
+            this.txt_customer.Size = new System.Drawing.Size(248, 20);
+            this.txt_customer.TabIndex = 3;
+            this.txt_customer.TextChanged += new System.EventHandler(this.txt_customer_TextChanged);
             // 
             // chkbox_wholesale
             // 
@@ -559,7 +560,7 @@ namespace SecretCellar
             this.Controls.Add(this.btn_add);
             this.Controls.Add(this.btn_cancel);
             this.Controls.Add(this.chkbox_wholesale);
-            this.Controls.Add(this.txt_box_customer_name);
+            this.Controls.Add(this.txt_customer);
             this.Controls.Add(this.lbl_customer);
             this.Controls.Add(this.customer_data_grid);
             this.Controls.Add(this.pnl_change_info);
@@ -580,7 +581,7 @@ namespace SecretCellar
         private System.Windows.Forms.Panel pnl_change_info;
         private System.Windows.Forms.DataGridView customer_data_grid;
         private System.Windows.Forms.Label lbl_customer;
-        private System.Windows.Forms.TextBox txt_box_customer_name;
+        private System.Windows.Forms.TextBox txt_customer;
         private System.Windows.Forms.CheckBox chkbox_wholesale;
         private System.Windows.Forms.DataGridViewTextBoxColumn customerID;
         private System.Windows.Forms.DataGridViewTextBoxColumn last_name;

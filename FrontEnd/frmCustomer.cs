@@ -77,7 +77,32 @@ namespace SecretCellar
 
         private void chkbox_wholesale_CheckedChanged(object sender, EventArgs e)
         {
-
+            if (chkbox_wholesale.Checked)
+            {
+                customer_data_grid.DataSource = customers.Where(x => (x.LastName.IndexOf(txt_customer.Text, StringComparison.OrdinalIgnoreCase) >= 0 || x.FirstName.IndexOf(txt_customer.Text, StringComparison.OrdinalIgnoreCase) >= 0)
+                && chkbox_wholesale.Checked == true).
+                Select(x => new {
+                    customerID = x.CustomerID,
+                    last_name = x.LastName,
+                    first_name = x.FirstName,
+                    phone = x.PhoneNumber,
+                    email = x.Email,
+                    business_name = x.BusinessName,
+                    isWholesale = x.IsWholesale,
+                    customerDiscount = x.CustomerDiscount,
+                    addr1 = x.Address1,
+                    addr2 = x.Address2,
+                    city = x.City,
+                    state = x.State,
+                    zip = x.ZipCode
+                }).
+                    OrderBy(x => x.last_name).
+                    ToList();
+            }
+            else
+            {
+                refresh();
+            }
         }
 
         private void btn_cancel_Click(object sender, EventArgs e)
@@ -90,9 +115,100 @@ namespace SecretCellar
 
         }
 
-        private void txt_box_customer_name_TextChanged(object sender, EventArgs e)
+        private void txt_customer_TextChanged(object sender, EventArgs e)
         {
+            refresh();
+        }
 
+        private void refresh()
+        {
+            customer_data_grid.DataSource = customers.Where(x => (x.LastName.IndexOf(txt_customer.Text, StringComparison.OrdinalIgnoreCase) >= 0 || x.FirstName.IndexOf(txt_customer.Text, StringComparison.OrdinalIgnoreCase) >= 0)).
+            //&& chkbox_wholesale.Checked == false).
+
+              Select(x => new {
+                  customerID = x.CustomerID,
+                  last_name = x.LastName,
+                  first_name = x.FirstName,
+                  phone = x.PhoneNumber,
+                  email = x.Email,
+                  business_name = x.BusinessName,
+                  isWholesale = x.IsWholesale,
+                  customerDiscount = x.CustomerDiscount,
+                  addr1 = x.Address1,
+                  addr2 = x.Address2,
+                  city = x.City,
+                  state = x.State,
+                  zip = x.ZipCode}).
+                OrderBy(x => x.last_name).
+                ToList();
+        }
+
+        private void btn_new_Click(object sender, EventArgs e)
+        {
+            if (customer_data_grid.SelectedRows.Count > 0)
+            {
+                Inventory i = customers.FirstOrDefault(x => x.LastName == last_name);
+
+                if (i == null)
+                    i = new Inventory();
+                else
+                {
+                    txt_customer.Focus();
+                    txt_customer.SelectAll();
+                    MessageBox.Show("Customer Already Exists");
+                    return;
+                }
+
+                i.LastName = last_name;
+                i.FirstName = first_name;
+
+                if (!uint.TryParse(txt_qty.Text, out uint qty))
+                {
+                    txt_qty.Focus();
+                    txt_qty.SelectAll();
+                    MessageBox.Show("Invalid Quantity");
+                    return;
+                }
+
+                if (!double.TryParse(txtNetPrice.Text, out double netprice))
+                {
+                    txtNetPrice.Focus();
+                    txtNetPrice.SelectAll();
+                    MessageBox.Show("Invalid Supply Price");
+                    return;
+                }
+
+                i.AllQty.Add(new InventoryQty
+                {
+                    Qty = qty,
+                    SupplierPrice = netprice,
+                    PurchasedDate = DateTime.Now
+                });
+
+                if (double.TryParse(txtPrice.Text, out double price)) i.Price = price;
+                else
+                {
+                    txtPrice.Focus();
+                    txtPrice.SelectAll();
+                    MessageBox.Show("Invalid Price");
+                    return;
+                }
+                if (uint.TryParse(txtProd_Qty.Text, out uint product)) i.Bottles = product;
+                else
+                {
+                    txtProd_Qty.Focus();
+                    txtProd_Qty.SelectAll();
+                    MessageBox.Show("Invalid Product Quantity");
+                    return;
+                }
+                i.ItemType = cboType.Text;
+                i.TypeID = types.First(x => x.TypeName == cboType.Text).TypeId;
+                i.SupplierID = suppliers.First(x => x.Name == cbo_Supplier.Text).SupplierID;
+
+                i.Id = dataAccess.InsertItem(i);
+                customers.Add(i);
+                refresh();
+            }
         }
     }
 }
