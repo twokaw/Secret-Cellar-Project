@@ -107,7 +107,9 @@ namespace SecretCellar
 
         private void btn_cancel_Click(object sender, EventArgs e)
         {
+            this.DialogResult = DialogResult.Cancel;
             this.Close();
+            
         }
 
         private void cbo_wholesale_SelectedIndexChanged(object sender, EventArgs e)
@@ -122,8 +124,8 @@ namespace SecretCellar
 
         private void refresh()
         {
-            customer_data_grid.DataSource = customers.Where(x => (x.LastName.IndexOf(txt_customer.Text, StringComparison.OrdinalIgnoreCase) >= 0 || x.FirstName.IndexOf(txt_customer.Text, StringComparison.OrdinalIgnoreCase) >= 0)).
-            //&& chkbox_wholesale.Checked == false).
+            customer_data_grid.DataSource = customers.Where(x => (x.LastName.IndexOf(txt_customer.Text, StringComparison.OrdinalIgnoreCase) >= 0 || x.FirstName.IndexOf(txt_customer.Text, StringComparison.OrdinalIgnoreCase) >= 0)
+            && chkbox_wholesale.Checked == false || chkbox_wholesale.Checked == true).
 
               Select(x => new {
                   customerID = x.CustomerID,
@@ -147,10 +149,10 @@ namespace SecretCellar
         {
             if (customer_data_grid.SelectedRows.Count > 0)
             {
-                Inventory i = customers.FirstOrDefault(x => x.LastName == last_name);
+                Customer i = customers.FirstOrDefault(x => x.LastName == txt_lname.Text);
 
                 if (i == null)
-                    i = new Inventory();
+                    i = new Customer();
                 else
                 {
                     txt_customer.Focus();
@@ -159,56 +161,79 @@ namespace SecretCellar
                     return;
                 }
 
-                i.LastName = last_name;
-                i.FirstName = first_name;
+                i.LastName = txt_lname.Text;
+                i.FirstName = txt_fname.Text;
+                i.Email = txt_email.Text;
+                i.BusinessName = txt_company.Text;
+                i.IsWholesale = cbo_wholesale.Enabled;// this line will not work need to figure out how to code
+                i.CustomerDiscount = int.Parse("txt_custDisc");
+                i.Address1 = txt_addr1.Text;
+                i.Address2 = txt_addr2.Text;
+                i.City = txt_city.Text;
+                i.State = txt_state.Text;
+                i.ZipCode = txt_zip.Text;
 
-                if (!uint.TryParse(txt_qty.Text, out uint qty))
-                {
-                    txt_qty.Focus();
-                    txt_qty.SelectAll();
-                    MessageBox.Show("Invalid Quantity");
-                    return;
-                }
 
-                if (!double.TryParse(txtNetPrice.Text, out double netprice))
-                {
-                    txtNetPrice.Focus();
-                    txtNetPrice.SelectAll();
-                    MessageBox.Show("Invalid Supply Price");
-                    return;
-                }
-
-                i.AllQty.Add(new InventoryQty
-                {
-                    Qty = qty,
-                    SupplierPrice = netprice,
-                    PurchasedDate = DateTime.Now
-                });
-
-                if (double.TryParse(txtPrice.Text, out double price)) i.Price = price;
-                else
-                {
-                    txtPrice.Focus();
-                    txtPrice.SelectAll();
-                    MessageBox.Show("Invalid Price");
-                    return;
-                }
-                if (uint.TryParse(txtProd_Qty.Text, out uint product)) i.Bottles = product;
-                else
-                {
-                    txtProd_Qty.Focus();
-                    txtProd_Qty.SelectAll();
-                    MessageBox.Show("Invalid Product Quantity");
-                    return;
-                }
-                i.ItemType = cboType.Text;
-                i.TypeID = types.First(x => x.TypeName == cboType.Text).TypeId;
-                i.SupplierID = suppliers.First(x => x.Name == cbo_Supplier.Text).SupplierID;
-
-                i.Id = dataAccess.InsertItem(i);
+              
+                //Add customer needs to be fixed in data access
+                //i.CustomerID = dataAccess.AddCustomer(i);
                 customers.Add(i);
                 refresh();
             }
         }
+
+        private void btn_update_Click(object sender, EventArgs e)
+        {
+            if (customer_data_grid.SelectedRows.Count > 0)
+            {
+                Customer i = customers.FirstOrDefault(x => x.LastName == txt_lname.Text);
+
+                i.LastName = txt_lname.Text;
+                i.FirstName = txt_fname.Text;
+                i.Email = txt_email.Text;
+                i.BusinessName = txt_company.Text;
+                i.IsWholesale = cbo_wholesale.Enabled;// this line will not work need to figure out how to code
+                i.CustomerDiscount = int.Parse("txt_custDisc");
+                i.Address1 = txt_addr1.Text;
+                i.Address2 = txt_addr2.Text;
+                i.City = txt_city.Text;
+                i.State = txt_state.Text;
+                i.ZipCode = txt_zip.Text;
+
+
+
+
+                i.CustomerID = dataAccess.UpdateCustomer(i);
+                customers.Add(i);
+                dataAccess.UpdateCustomer(i);
+                refresh();
+            }
+        }
+
+        private void btn_add_Click(object sender, EventArgs e)
+        {
+
+            if (addCustomer())
+            {
+                this.DialogResult = DialogResult.OK;
+                this.Close();
+            }
+
+        }
+        private bool addCustomer()
+        {
+            if (customer_data_grid.SelectedRows.Count > 0)
+            {
+                Customer i = customers.FirstOrDefault(x => x.LastName == txt_lname.Text);
+
+               //fix this block
+                /*Customer customer = DataAccess.ConvertInvtoItem(i);
+                customer.Add(); 
+                return true;*/
+            }
+            return false;
+        }
+
+       
     }
 }

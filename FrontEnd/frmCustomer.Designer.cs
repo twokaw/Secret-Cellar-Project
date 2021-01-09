@@ -221,6 +221,7 @@ namespace SecretCellar
             this.btn_update.TabIndex = 39;
             this.btn_update.Text = "Update";
             this.btn_update.UseVisualStyleBackColor = true;
+            this.btn_update.Click += new System.EventHandler(this.btn_update_Click);
             // 
             // txt_addr1
             // 
@@ -537,6 +538,7 @@ namespace SecretCellar
             this.btn_add.TabIndex = 6;
             this.btn_add.Text = "Add";
             this.btn_add.UseVisualStyleBackColor = true;
+            this.btn_add.Click += new System.EventHandler(this.btn_add_Click);
             // 
             // btn_cancel
             // 

@@ -211,6 +211,16 @@ namespace SecretCellar
             else
                 return 0;
         }
+        // need this fixed for customer form
+        /*public uint AddCustomer(Customer Discount)
+        {
+            Response resp = null;
+            string result = web.DataPut($"api/Customer", Discount, resp);
+            if (uint.TryParse(result, out uint id))
+                return id;
+            else
+                return 0;
+        }*/
         public void DeleteCustomer(Customer customer)
         {
             try { web.DataDelete($"api/Customer/{customer.CustomerID}");  }
