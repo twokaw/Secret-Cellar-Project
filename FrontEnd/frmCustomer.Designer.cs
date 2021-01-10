@@ -332,6 +332,9 @@ namespace SecretCellar
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cbo_wholesale.DisplayMember = "TypeName";
             this.cbo_wholesale.FormattingEnabled = true;
+            this.cbo_wholesale.Items.AddRange(new object[] {
+            "True",
+            "False"});
             this.cbo_wholesale.Location = new System.Drawing.Point(137, 168);
             this.cbo_wholesale.Margin = new System.Windows.Forms.Padding(4);
             this.cbo_wholesale.Name = "cbo_wholesale";

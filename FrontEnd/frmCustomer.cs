@@ -165,7 +165,7 @@ namespace SecretCellar
                 i.FirstName = txt_fname.Text;
                 i.Email = txt_email.Text;
                 i.BusinessName = txt_company.Text;
-                i.IsWholesale = cbo_wholesale.Enabled;// this line will not work need to figure out how to code
+                i.IsWholesale = cbo_wholesale.Enabled;
                 i.CustomerDiscount = int.Parse("txt_custDisc");
                 i.Address1 = txt_addr1.Text;
                 i.Address2 = txt_addr2.Text;
@@ -186,21 +186,19 @@ namespace SecretCellar
         {
             if (customer_data_grid.SelectedRows.Count > 0)
             {
-                Customer i = customers.FirstOrDefault(x => x.LastName == txt_lname.Text);
+                Customer i = customers.FirstOrDefault(x => x.CustomerID == uint.Parse(customer_data_grid.SelectedRows[0].Cells["customerID"].Value.ToString()));
 
                 i.LastName = txt_lname.Text;
                 i.FirstName = txt_fname.Text;
                 i.Email = txt_email.Text;
                 i.BusinessName = txt_company.Text;
-                i.IsWholesale = cbo_wholesale.Enabled;// this line will not work need to figure out how to code
-                i.CustomerDiscount = int.Parse("txt_custDisc");
+                i.IsWholesale = cbo_wholesale.Enabled;
+                i.CustomerDiscount = Convert.ToUInt32(txt_custDisc.Text);
                 i.Address1 = txt_addr1.Text;
                 i.Address2 = txt_addr2.Text;
                 i.City = txt_city.Text;
                 i.State = txt_state.Text;
                 i.ZipCode = txt_zip.Text;
-
-
 
 
                 i.CustomerID = dataAccess.UpdateCustomer(i);
@@ -222,16 +220,18 @@ namespace SecretCellar
         }
         private bool addCustomer()
         {
+            /*
             if (customer_data_grid.SelectedRows.Count > 0)
             {
-                Customer i = customers.FirstOrDefault(x => x.LastName == txt_lname.Text);
+                Customer i = customers.FirstOrDefault(x => x.CustomerID == uint.Parse(customer_data_grid.SelectedRows[0].Cells["customerID"].Value.ToString()));
 
-               //fix this block
-                /*Customer customer = DataAccess.ConvertInvtoItem(i);
-                customer.Add(); 
-                return true;*/
+                Customer customer = DataAccess.ConvertInvtoItem(i);
+                customer.Items.Add(customer);
+                return true;
             }
+            */
             return false;
+            
         }
 
        
