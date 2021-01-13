@@ -43,20 +43,25 @@ namespace SecretCellar
             if (customer_data_grid.SelectedRows.Count > 0)
             {
                 Customer i = customers.First(x => x.CustomerID == uint.Parse(customer_data_grid.SelectedRows[0].Cells["customerID"].Value.ToString()));
-                txt_lname.Text = i.LastName;
-                txt_fname.Text = i.FirstName;
-                txt_phone.Text = i.PhoneNumber;
-                txt_email.Text = i.Email;
-                txt_company.Text = i.BusinessName;
-                cbo_wholesale.Text = i.IsWholesale?"True":"False";
-                txt_custDisc.Text = i.CustomerDiscount.ToString();
-                txt_addr1.Text = i.Address1;
-                txt_addr2.Text = i.Address2;
-                txt_city.Text = i.City;
-                txt_state.Text = i.State;
-                txt_zip.Text = i.ZipCode;
+                SelectCustomer(i);
 
             }
+        }
+
+        private void SelectCustomer(Customer cust)
+        {
+            txt_lname.Text = cust.LastName;
+            txt_fname.Text = cust.FirstName;
+            txt_phone.Text = cust.PhoneNumber;
+            txt_email.Text = cust.Email;
+            txt_company.Text = cust.BusinessName;
+            cbo_wholesale.Text = cust.IsWholesale ? "True" : "False";
+            txt_custDisc.Text = cust.CustomerDiscount.ToString();
+            txt_addr1.Text = cust.Address1;
+            txt_addr2.Text = cust.Address2;
+            txt_city.Text = cust.City;
+            txt_state.Text = cust.State;
+            txt_zip.Text = cust.ZipCode;
         }
 
 
@@ -149,29 +154,38 @@ namespace SecretCellar
         {
             if (customer_data_grid.SelectedRows.Count > 0)
             {
-                Customer i = customers.FirstOrDefault(x => x.LastName == txt_lname.Text);
+                Customer i = customers.FirstOrDefault(x => x.LastName == txt_lname.Text.Trim() && x.FirstName == txt_fname.Text.Trim());
 
-                if (i == null)
-                    i = new Customer();
-                else
+                if (i != null)
                 {
-                    txt_customer.Focus();
-                    txt_customer.SelectAll();
-                    MessageBox.Show("Customer Already Exists");
-                    return;
+                    if(MessageBox.Show($@"Customer already exists.  Would you like to edit this customer?
+Last Name: {i.LastName}
+First Name: {i.FirstName}
+E-mail: {i.Email}
+BusinessName: {i.BusinessName}
+Address: 
+  {i.Address1}{(string.IsNullOrWhiteSpace ( i.Address2) ? "": $",{i.Address2}")} 
+  {i.City}, {i.State} {i.ZipCode}","Customer Exists", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    {
+                        SelectCustomer(i);
+                        return;
+                    }
                 }
-
-                i.LastName = txt_lname.Text;
-                i.FirstName = txt_fname.Text;
-                i.Email = txt_email.Text;
-                i.BusinessName = txt_company.Text;
-                i.IsWholesale = cbo_wholesale.Enabled;
-                i.CustomerDiscount = int.Parse(txt_custDisc.Text);
-                i.Address1 = txt_addr1.Text;
-                i.Address2 = txt_addr2.Text;
-                i.City = txt_city.Text;
-                i.State = txt_state.Text;
-                i.ZipCode = txt_zip.Text;
+                i = new Customer
+                {
+                    LastName = txt_lname.Text.Trim(),
+                    FirstName = txt_fname.Text.Trim(),
+                    Email = txt_email.Text.Trim(),
+                    BusinessName = txt_company.Text.Trim(),
+                    IsWholesale = cbo_wholesale.Enabled,
+                    CustomerDiscount = int.Parse(txt_custDisc.Text),
+                    PhoneNumber = txt_phone.Text.Trim(),
+                    Address1 = txt_addr1.Text.Trim(),
+                    Address2 = txt_addr2.Text.Trim(),
+                    City = txt_city.Text.Trim(),
+                    State = txt_state.Text.Trim(),
+                    ZipCode = txt_zip.Text.Trim()
+                };
 
                 i.CustomerID = dataAccess.NewCustomer(i);
                 customers.Add(i);
@@ -198,7 +212,8 @@ namespace SecretCellar
                 {
                     i.CustomerDiscount = Convert.ToUInt32(txt_custDisc.Text);
                 }
-              
+
+                i.PhoneNumber = txt_phone.Text;
                 i.Address1 = txt_addr1.Text;
                 i.Address2 = txt_addr2.Text;
                 i.City = txt_city.Text;
@@ -207,8 +222,8 @@ namespace SecretCellar
 
 
                 i.CustomerID = dataAccess.UpdateCustomer(i);
-                customers.Add(i);
-                dataAccess.UpdateCustomer(i);
+              //  customers.Add(i);
+              //  dataAccess.UpdateCustomer(i);
                 refresh();
             }
         }
@@ -238,7 +253,5 @@ namespace SecretCellar
             return false;
             
         }
-
-       
     }
 }
