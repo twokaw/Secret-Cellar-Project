@@ -173,10 +173,7 @@ namespace SecretCellar
                 i.State = txt_state.Text;
                 i.ZipCode = txt_zip.Text;
 
-
-              
-                //Add customer needs to be fixed in data access
-                //i.CustomerID = dataAccess.AddCustomer(i);
+                i.CustomerID = dataAccess.NewCustomer(i);
                 customers.Add(i);
                 refresh();
             }

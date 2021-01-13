@@ -202,25 +202,25 @@ namespace SecretCellar
             return JsonConvert.DeserializeObject<Customer>(result);
         }
 
-        public uint UpdateCustomer(Customer Discount)
+        public uint UpdateCustomer(Customer customer)
         {
             Response resp = null;
-            string result = web.DataPut($"api/Customer", Discount, resp);
+            string result = web.DataPut($"api/Customer", customer, resp);
             if (uint.TryParse(result, out uint id))
                 return id;
             else
                 return 0;
         }
-        // need this fixed for customer form
-        /*public uint AddCustomer(Customer Discount)
+        
+        public uint NewCustomer(Customer customer)
         {
             Response resp = null;
-            string result = web.DataPut($"api/Customer", Discount, resp);
+            string result = web.DataPost($"api/Customer", customer, resp);
             if (uint.TryParse(result, out uint id))
                 return id;
             else
                 return 0;
-        }*/
+        }
         public void DeleteCustomer(Customer customer)
         {
             try { web.DataDelete($"api/Customer/{customer.CustomerID}");  }
