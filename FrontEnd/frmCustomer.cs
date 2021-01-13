@@ -84,8 +84,8 @@ namespace SecretCellar
         {
             if (chkbox_wholesale.Checked)
             {
-                customer_data_grid.DataSource = customers.Where(x => (x.LastName.IndexOf(txt_customer.Text, StringComparison.OrdinalIgnoreCase) >= 0 || x.FirstName.IndexOf(txt_customer.Text, StringComparison.OrdinalIgnoreCase) >= 0)
-                && chkbox_wholesale.Checked == true).
+                
+                customer_data_grid.DataSource = customers.Where(x => x.IsWholesale).
                 Select(x => new {
                     customerID = x.CustomerID,
                     last_name = x.LastName,
@@ -164,7 +164,7 @@ First Name: {i.FirstName}
 E-mail: {i.Email}
 BusinessName: {i.BusinessName}
 Address: 
-  {i.Address1}{(string.IsNullOrWhiteSpace ( i.Address2) ? "": $",{i.Address2}")} 
+                    {i.Address1}{(string.IsNullOrWhiteSpace ( i.Address2) ? "": $",{i.Address2}")} 
   {i.City}, {i.State} {i.ZipCode}","Customer Exists", MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
                         SelectCustomer(i);
@@ -177,7 +177,7 @@ Address:
                     FirstName = txt_fname.Text.Trim(),
                     Email = txt_email.Text.Trim(),
                     BusinessName = txt_company.Text.Trim(),
-                    IsWholesale = cbo_wholesale.Enabled,
+                    // TODO: get this to work //IsWholesale = (bool)cbo_wholesale.SelectedValue,//(cbo_wholesale?.SelectedItem ?? 0:1),
                     CustomerDiscount = int.Parse(txt_custDisc.Text),
                     PhoneNumber = txt_phone.Text.Trim(),
                     Address1 = txt_addr1.Text.Trim(),
@@ -203,7 +203,16 @@ Address:
                 i.FirstName = txt_fname.Text;
                 i.Email = txt_email.Text;
                 i.BusinessName = txt_company.Text;
-                i.IsWholesale = cbo_wholesale.Enabled;
+               // i.IsWholesale = (bool)cbo_wholesale.SelectedValue; following if statement does work
+                if (cbo_wholesale.SelectedIndex == 0)
+                {
+                    i.IsWholesale = true;
+                }
+                else
+                {
+                    i.IsWholesale = false;
+                }
+
                 if (txt_custDisc.Text == null)
                 {
                     i.CustomerDiscount = 0;
@@ -252,6 +261,22 @@ Address:
             */
             return false;
             
+        }
+
+        private void btn_clear_Click(object sender, EventArgs e)
+        {
+            txt_lname.Text = "";
+            txt_fname.Text = "";
+            txt_phone.Text = "";
+            txt_email.Text = "";
+            txt_company.Text = "";
+            cbo_wholesale.SelectedIndex = 1;
+            txt_custDisc.Text = "";
+            txt_addr1.Text = "";
+            txt_addr2.Text = "";
+            txt_city.Text = "";
+            txt_state.Text = "";
+            txt_zip.Text = "";
         }
     }
 }
