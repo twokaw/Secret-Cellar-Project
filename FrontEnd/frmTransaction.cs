@@ -121,6 +121,8 @@ namespace SecretCellar
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            
+
             txtBarcode.Focus();
         }
 
@@ -288,6 +290,11 @@ namespace SecretCellar
         private void lbl_twentyone_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            if(((DataGridView) sender)e.RowIndex =  )
         }
     }
 }
