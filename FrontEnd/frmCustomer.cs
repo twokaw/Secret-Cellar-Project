@@ -166,7 +166,7 @@ namespace SecretCellar
                 i.Email = txt_email.Text;
                 i.BusinessName = txt_company.Text;
                 i.IsWholesale = cbo_wholesale.Enabled;
-                i.CustomerDiscount = int.Parse("txt_custDisc");
+                i.CustomerDiscount = int.Parse(txt_custDisc.Text);
                 i.Address1 = txt_addr1.Text;
                 i.Address2 = txt_addr2.Text;
                 i.City = txt_city.Text;
