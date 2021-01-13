@@ -30,7 +30,7 @@ namespace SecretCellar
 				selectionListSuspendedTransactions.Items.Add(t.CustomerName);
 			}
 
-			/* can be deleted once everything is working
+			/* TODO: can be deleted once everything is working
 			//POPULATE THE LIST OF SUSPENDED TRANSACTIONS
 			foreach(var transaction in suspendedTransactionsMap) {
 				selectionListSuspendedTransactions.Items.Add(transaction.Key);

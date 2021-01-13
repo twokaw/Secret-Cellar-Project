@@ -300,7 +300,7 @@ namespace SecretCellar
 
         private void btnSuspendTransaction_Click(object sender, EventArgs e)
         {
-            Shared.Customer customer;
+            Customer customer;
             
             //CONTINUALLY CREATE A POP UP MENU FOR THE USER TO ENTER THE NAME OF THE TRANSACTION TO BE SUSPENDED
             //UNTIL A UNIQUE NAME IS CHOSEN
@@ -332,49 +332,20 @@ namespace SecretCellar
                 }
             }
             
-            //TODO: Should be able to delete this portion and just sent transaction to the database instead of creating a copy.
-            //CREATE A COPY OF THE TRANSACTION SO IT'S NOT LOST WHEN IT'S MOVED TO THE SUSPENDED TRANSACTIONS
-            if (transaction.Items.Count > 0) {
-                Transaction transactionCopy = new Transaction(6, 0, DateTime.Now, "MyLocation", transaction.Items, 0, false, new List<Payment>(), 000, customer.CustomerID);
+            uint id = DataAccess.instance.ProcessTransaction(transaction);
 
-                /*
-                foreach (Item item in transaction.Items) {
-                    transactionCopy.Items.Add(item);
-                }
+            Console.WriteLine("id: " + id);
+            //System.Collections.Generic.List<Transaction> transactions = DataAccess.instance.GetSuspendedTransactions();
 
-
-                /*
-                 * public Transaction(uint InvoiceID,
-                           uint RegisterID,
-                           DateTime TransactionDateTime,
-                           string Location,
-                           List<Item> Items,
-                           double Discount,
-                           bool TaxExempt,
-                           List<Payment> Payments,
-                           uint EmployeeID,
-                           uint CustomerID)
-
-                */
+            //foreach(Transaction t in transactions) {
+            //   Console.WriteLine(t.CustomerName + ": " + t.Total.ToString());
+			//}
 
 
-                //TODO: add transaction information and then process it
-                //transactionCopy.CustomerID = customer.CustomerID;
-                //transactionCopy.CustomerName = customer.FirstName + " " + customer.LastName;
-                //transactionCopy.InvoiceID = uint.Parse("6");
-                
-                /****TESTING***************************************/
-                DataAccess.instance.ProcessTransaction(transactionCopy);
-                //System.Collections.Generic.List<Transaction> transactions = DataAccess.instance.GetSuspendedTransactions();
-
-                //foreach(Transaction t in transactions) {
-                //   Console.WriteLine(t.CustomerName + ": " + t.Total.ToString());
-			    //}
-                /**************************************************/
-
-                //ADD THE NAME AND THE TRANSACTION TO THE MAP OF SUSPENDED TRANSACTIONS IN 'frmSuspendedTransactions'
-                frmSuspendedTransactions.suspendedTransactionsMap.Add(customer.FirstName + " " + customer.LastName, transactionCopy);
-            }
+            //TODO: can remove this once everything is working
+            //ADD THE NAME AND THE TRANSACTION TO THE MAP OF SUSPENDED TRANSACTIONS IN 'frmSuspendedTransactions'
+            //frmSuspendedTransactions.suspendedTransactionsMap.Add(customer.FirstName + " " + customer.LastName, transactionCopy);
+            
 
             //CLEAR THE CURRENT TRANSACTION AND THE dataGridView1 SINCE THEY'RE NOW SUSPENDED
             dataGridView1.Rows.Clear();
