@@ -37,23 +37,13 @@ namespace SecretCellar
         {
             if (double.TryParse(txt_charge_am.Text, out double d))
             {
-                Item i = DataAccess.ConvertInvtoItem(DataAccess.instance.GetItem("Custom"));
+                Item i = Transaction.ConvertInvtoItem(DataAccess.instance.GetItem("Custom"));
                 i.Price = d;
-				
-				/*
-                  <<<<<<< HEAD
-                    //  i.Description = txt_descript.Text;
-                  =======
-                i.Name = txt_descript.Text;
-                >>>>>>> master
-                */
 				i.Name = txt_descript.Text;
-
                 i.NumSold = 1;
+
                 customItem.Items.Add(i);
             }
-
-
         }
 
         private void txt_charge_am_TextChanged(object sender, EventArgs e)

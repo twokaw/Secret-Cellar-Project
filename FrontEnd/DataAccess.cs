@@ -251,65 +251,6 @@ namespace SecretCellar
                 return 0;
         }
         #endregion
-        public static Item ConvertInvtoItem(Inventory inv)
-        {
-            return new Item
-            {
-                Name = inv.Name,
-                Id = inv.Id,
-                Barcode = inv.Barcode,
-                AllQty = inv.AllQty,
-                BottleDeposit = inv.BottleDeposit,
-                NumSold = 1,
-                Price = inv.Price,
-                NonTaxable = inv.NonTaxable, 
-                ItemType = inv.ItemType,
-                Bottles = inv.Bottles,
-                SalesTax = inv.SalesTax,
-                LocalSalesTax = inv.LocalSalesTax, 
-                IdTax = inv.IdTax,
-                NonTaxableLocal = inv.NonTaxableLocal,
-                Discounts = inv.Discounts
-            }
-            ;
-
-        }
-
-        public bool ChangeItemQty(Transaction t,  string barcode, uint qty)
-        {
-            bool result = false;
-            Item i = t.Items.FirstOrDefault(x => x.Barcode == barcode);
-
-            if (qty == 0)
-            {
-                if(i != null)
-                {
-                    t.Items.Remove(i);
-                    result = true;
-                }
-            }
-            else
-            {
-                if (i != null && i.NumSold != qty)
-                {
-                    i.NumSold = qty;
-                    result = true;
-                }
-                else if(i == null)
-                {
-                    i = ConvertInvtoItem(GetItem(barcode));
-                    if (i != null)
-                    {
-                        i.NumSold = qty;
-                        t.Items.Add(i);
-                        result = true;
-                    }
-                    else
-                        throw new Exception("Barcode not in the database");
-                }
-            }
-            return result;
-        }
 
         public void LogError(string message, string source, string notes = "")
         {
