@@ -3,6 +3,8 @@ namespace Shared
 {
     public class Customer
     {
+        public readonly object firstName;
+
         public uint CustomerID { get; set; }
         public double CustomerDiscount { get; set; }
         public string FirstName { get; set; }

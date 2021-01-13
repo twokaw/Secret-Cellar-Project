@@ -121,8 +121,6 @@ namespace SecretCellar
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            
-
             txtBarcode.Focus();
         }
 
@@ -292,9 +290,12 @@ namespace SecretCellar
 
         }
 
-        private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
-            if(((DataGridView) sender)e.RowIndex =  )
+            frmCustomer customer = new frmCustomer(transaction); //instantiates frmCustomer using Lookup
+            customer.ShowDialog(); // opens form associated with Lookup instantiation
+            addRow(transaction);
+
         }
     }
 }
