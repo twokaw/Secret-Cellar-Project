@@ -409,7 +409,6 @@ namespace SecretCellar
             frmCustomer customer = new frmCustomer(transaction); //instantiates frmCustomer using Lookup
             customer.ShowDialog(); // opens form associated with Lookup instantiation
             RefreshDataGrid();
-
         }
     }
 }
