@@ -100,14 +100,13 @@
 			this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
 			this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-				this.DESCRIPTION,
-				this.QTY,
-				this.PRICE,
-				this.DISCOUNT,
-				this.TAX,
-				this.BOTTLE_DEPOSIT,
-				this.TOTAL
-			});
+            this.DESCRIPTION,
+            this.QTY,
+            this.PRICE,
+            this.DISCOUNT,
+            this.TAX,
+            this.BOTTLE_DEPOSIT,
+            this.TOTAL});
 			this.dataGridView1.Location = new System.Drawing.Point(15, 68);
 			this.dataGridView1.Margin = new System.Windows.Forms.Padding(1);
 			this.dataGridView1.Name = "dataGridView1";
@@ -121,9 +120,9 @@
 			this.dataGridView1.TabStop = false;
 			this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
 			this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
-			this.dataGridView1.Click += new System.EventHandler(this.dataGridView1_Click);
 			this.dataGridView1.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dataGridView1_RowsAdded);
 			this.dataGridView1.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.dataGridView1_RowsRemoved);
+			this.dataGridView1.Click += new System.EventHandler(this.dataGridView1_Click);
 			// 
 			// DESCRIPTION
 			// 
@@ -488,7 +487,7 @@
 			this.txtBarcode.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.txtBarcode.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.txtBarcode.Location = new System.Drawing.Point(683, 23);
+			this.txtBarcode.Location = new System.Drawing.Point(945, 15);
 			this.txtBarcode.Margin = new System.Windows.Forms.Padding(1);
 			this.txtBarcode.MinimumSize = new System.Drawing.Size(247, 26);
 			this.txtBarcode.Name = "txtBarcode";
@@ -500,7 +499,7 @@
 			// 
 			this.lbl_BARCODE.AutoSize = true;
 			this.lbl_BARCODE.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lbl_BARCODE.Location = new System.Drawing.Point(552, 28);
+			this.lbl_BARCODE.Location = new System.Drawing.Point(859, 21);
 			this.lbl_BARCODE.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
 			this.lbl_BARCODE.Name = "lbl_BARCODE";
 			this.lbl_BARCODE.Size = new System.Drawing.Size(72, 15);
@@ -512,7 +511,7 @@
 			// 
 			this.btnLookup.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.btnLookup.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnLookup.Location = new System.Drawing.Point(981, 20);
+			this.btnLookup.Location = new System.Drawing.Point(1225, 11);
 			this.btnLookup.Margin = new System.Windows.Forms.Padding(1);
 			this.btnLookup.MaximumSize = new System.Drawing.Size(156, 36);
 			this.btnLookup.Name = "btnLookup";
@@ -539,9 +538,8 @@
 			// 
 			// pb_settings
 			// 
-			this.pb_settings.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.pb_settings.Image = global::SecretCellar.Properties.Resources.Gears;
-			this.pb_settings.Location = new System.Drawing.Point(1683, 12);
+			this.pb_settings.Location = new System.Drawing.Point(18, 7);
 			this.pb_settings.Margin = new System.Windows.Forms.Padding(4);
 			this.pb_settings.Name = "pb_settings";
 			this.pb_settings.Size = new System.Drawing.Size(72, 49);
@@ -595,7 +593,7 @@
 			this.lbl_twentyone.AutoSize = true;
 			this.lbl_twentyone.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold);
 			this.lbl_twentyone.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(135)))), ((int)(((byte)(0)))), ((int)(((byte)(1)))));
-			this.lbl_twentyone.Location = new System.Drawing.Point(1265, 25);
+			this.lbl_twentyone.Location = new System.Drawing.Point(1494, 27);
 			this.lbl_twentyone.Name = "lbl_twentyone";
 			this.lbl_twentyone.Size = new System.Drawing.Size(102, 29);
 			this.lbl_twentyone.TabIndex = 23;
@@ -603,9 +601,9 @@
 			// 
 			// button1
 			// 
-			this.button1.Location = new System.Drawing.Point(1550, 32);
+			this.button1.Location = new System.Drawing.Point(97, 15);
 			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(126, 23);
+			this.button1.Size = new System.Drawing.Size(163, 31);
 			this.button1.TabIndex = 24;
 			this.button1.Text = "Customers";
 			this.button1.UseVisualStyleBackColor = true;
@@ -614,7 +612,7 @@
 			// btnSuspendedTransactions
 			// 
 			this.btnSuspendedTransactions.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnSuspendedTransactions.Location = new System.Drawing.Point(18, 20);
+			this.btnSuspendedTransactions.Location = new System.Drawing.Point(370, 10);
 			this.btnSuspendedTransactions.Margin = new System.Windows.Forms.Padding(1);
 			this.btnSuspendedTransactions.Name = "btnSuspendedTransactions";
 			this.btnSuspendedTransactions.Size = new System.Drawing.Size(229, 36);
@@ -627,7 +625,7 @@
 			// btnSuspendTransaction
 			// 
 			this.btnSuspendTransaction.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnSuspendTransaction.Location = new System.Drawing.Point(285, 20);
+			this.btnSuspendTransaction.Location = new System.Drawing.Point(613, 10);
 			this.btnSuspendTransaction.Margin = new System.Windows.Forms.Padding(1);
 			this.btnSuspendTransaction.Name = "btnSuspendTransaction";
 			this.btnSuspendTransaction.Size = new System.Drawing.Size(121, 36);
@@ -680,6 +678,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
+
         }
 
         #endregion
