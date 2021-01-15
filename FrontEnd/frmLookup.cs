@@ -375,5 +375,10 @@ namespace SecretCellar
         {
 
         }
+
+        private void txtPrice_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

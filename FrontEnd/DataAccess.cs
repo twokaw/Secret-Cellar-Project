@@ -201,10 +201,20 @@ namespace SecretCellar
             return JsonConvert.DeserializeObject<Customer>(result);
         }
 
-        public uint UpdateCustomer(Customer Discount)
+        public uint UpdateCustomer(Customer customer)
         {
             Response resp = null;
-            string result = web.DataPut($"api/Customer", Discount, resp);
+            string result = web.DataPut($"api/Customer", customer, resp);
+            if (uint.TryParse(result, out uint id))
+                return id;
+            else
+                return 0;
+        }
+        
+        public uint NewCustomer(Customer customer)
+        {
+            Response resp = null;
+            string result = web.DataPost($"api/Customer", customer, resp);
             if (uint.TryParse(result, out uint id))
                 return id;
             else
