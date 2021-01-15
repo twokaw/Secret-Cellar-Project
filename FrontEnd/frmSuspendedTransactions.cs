@@ -14,7 +14,7 @@ namespace SecretCellar
 {
 	public partial class frmSuspendedTransactions : Form
 	{
-		Transaction currentTransaction = null;
+		Transaction currentTransaction;
 		public static Dictionary<string, Transaction> suspendedTransactionsMap = new Dictionary<string, Transaction>();
 		List<Transaction> suspendedTransactions;
 		private frmTransaction transactionForm;
@@ -27,19 +27,17 @@ namespace SecretCellar
 
 			//POPULATE THE LIST OF SUSPENDED TRANSACTIONS CUSTOMER NAMES
 			foreach (Transaction t in suspendedTransactions) {
-				selectionListSuspendedTransactions.Items.Add(t.CustomerName);
+				if (t.CustomerName != null) {
+					selectionListSuspendedTransactions.Items.Add(t.CustomerName);
+				}
+				else {
+					selectionListSuspendedTransactions.Items.Add(t.InvoiceID);
+				}
 			}
-
-			/* TODO: can be deleted once everything is working
-			//POPULATE THE LIST OF SUSPENDED TRANSACTIONS
-			foreach(var transaction in suspendedTransactionsMap) {
-				selectionListSuspendedTransactions.Items.Add(transaction.Key);
-			}
-			*/
 
 			//DEFAULT SELECTED ITEM IN THE LIST OF SUSPENDED TRANSACTIONS TO 0
-			if (suspendedTransactionsMap.Count > 0) {
-				selectionListSuspendedTransactions.SelectedIndex = 0;
+			if (suspendedTransactions.Count > 0) {
+				//selectionListSuspendedTransactions.SelectedIndex = 0;
 			}
 
 		}
@@ -57,36 +55,28 @@ namespace SecretCellar
 				string suspendedTransactionCustomer = selectionListSuspendedTransactions.SelectedItem.ToString();
 
 				foreach (Transaction t in suspendedTransactions) {
-					if (t.CustomerName.Equals(suspendedTransactionCustomer)) {
-						currentTransaction = t;
+					Console.WriteLine("Transaction invoice id: " + t.InvoiceID);
+					Console.WriteLine("Customer Name: " + t.CustomerID);
+																		  
+					if (t.CustomerName != null) {
+						Console.WriteLine("Customer Name: " + t.CustomerName);
+
+						if (t.CustomerName.Equals(suspendedTransactionCustomer)) {
+							currentTransaction = t;
+						}
+					}
+					else {
+						if (t.InvoiceID.Equals(suspendedTransactionCustomer)) {
+							currentTransaction = t;
+						}
 					}
 				}
 
-				//ADD EACH ROW IN THE TRANSACTION TO THE ROW IN THE VIEW
-				foreach (Item item in currentTransaction.Items) {
-					int rowIndex = dataGridViewSuspendedTransaction.Rows.Add();
-
-					using (var currentRow = dataGridViewSuspendedTransaction.Rows[rowIndex]) {
-						currentRow.Cells[0].Value = item.Description;
-						currentRow.Cells[1].Value = item.NumSold;
-						currentRow.Cells[2].Value = (item.Price * (1 - item.Discount)).ToString("C");
-						currentRow.Cells[3].Value = item.Discount.ToString("P0");
-						currentRow.Cells[4].Value = "";
-						currentRow.Cells[5].Value = (item.NumSold * item.Bottles * .05).ToString("C");
-						currentRow.Cells[6].Value = (item.Price * item.NumSold * (1 - item.Discount)).ToString("C");
-					}
-				}
-			}
-
-
-			/*
-			//IF THERE IS AT LEAST ONE TRANSACTION IN THE MAP THEN CONTINUE
-			if (suspendedTransactionsMap.Count > 0) {
-				this.dataGridViewSuspendedTransaction.Rows.Clear();
-
+				//TODO: It errors here. Need a better way to grab the transaction. Can use a dictionary field that has customer name, transaction invoice id.
 				//GET THE NAME OF THE ITEM SELECTED AND MATCH IT TO THE TRANSACTION IN THE MAP
-				int index = selectionListSuspendedTransactions.SelectedIndex;
-				currentTransaction = suspendedTransactionsMap.ElementAt(index).Value;
+				//int index = selectionListSuspendedTransactions.SelectedIndex;
+				//currentTransaction = suspendedTransactionsMap.ElementAt(index).Value;
+
 
 				//ADD EACH ROW IN THE TRANSACTION TO THE ROW IN THE VIEW
 				foreach (Item item in currentTransaction.Items) {
@@ -103,8 +93,6 @@ namespace SecretCellar
 					}
 				}
 			}
-			*/
-
 		}
 
 		private void btnDelete_Click(object sender, EventArgs e)

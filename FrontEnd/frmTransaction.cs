@@ -332,17 +332,8 @@ namespace SecretCellar
 
             uint id = DataAccess.instance.ProcessTransaction(transaction);
 
-            Console.WriteLine("id: " + id);
-            //System.Collections.Generic.List<Transaction> transactions = DataAccess.instance.GetSuspendedTransactions();
+            //TODO: Write the id and customer name to the frmSuspendedTransaction map
 
-            //foreach(Transaction t in transactions) {
-            //   Console.WriteLine(t.CustomerName + ": " + t.Total.ToString());
-			//}
-
-            //TODO: can remove this once everything is working
-            //ADD THE NAME AND THE TRANSACTION TO THE MAP OF SUSPENDED TRANSACTIONS IN 'frmSuspendedTransactions'
-            //frmSuspendedTransactions.suspendedTransactionsMap.Add(customer.FirstName + " " + customer.LastName, transactionCopy);
-            
 
             //CLEAR THE CURRENT TRANSACTION AND THE dataGridView1 SINCE THEY'RE NOW SUSPENDED
             dataGridView1.Rows.Clear();
