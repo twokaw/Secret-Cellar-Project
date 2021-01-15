@@ -46,9 +46,14 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.btn_commit = new System.Windows.Forms.Button();
+            this.btn_change_image = new System.Windows.Forms.Button();
+            this.btn_header = new System.Windows.Forms.Button();
+            this.btn_foot = new System.Windows.Forms.Button();
+            this.btn_rec_font = new System.Windows.Forms.Button();
             this.tab_receipt.SuspendLayout();
             this.TabTypes.SuspendLayout();
             this.tab_General.SuspendLayout();
+            this.tabPage1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tab_receipt
@@ -146,6 +151,7 @@
             // 
             // tab_General
             // 
+            this.tab_General.Controls.Add(this.btn_change_image);
             this.tab_General.Controls.Add(this.btn_reset);
             this.tab_General.Controls.Add(this.btn_row_color);
             this.tab_General.Controls.Add(this.btn_font_settings);
@@ -165,6 +171,7 @@
             this.btn_reset.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_reset.AutoSize = true;
             this.btn_reset.Location = new System.Drawing.Point(450, 408);
             this.btn_reset.Margin = new System.Windows.Forms.Padding(4);
             this.btn_reset.Name = "btn_reset";
@@ -179,6 +186,7 @@
             this.btn_row_color.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_row_color.AutoSize = true;
             this.btn_row_color.Location = new System.Drawing.Point(450, 318);
             this.btn_row_color.Margin = new System.Windows.Forms.Padding(4);
             this.btn_row_color.Name = "btn_row_color";
@@ -193,6 +201,7 @@
             this.btn_font_settings.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_font_settings.AutoSize = true;
             this.btn_font_settings.Location = new System.Drawing.Point(450, 268);
             this.btn_font_settings.Margin = new System.Windows.Forms.Padding(4);
             this.btn_font_settings.Name = "btn_font_settings";
@@ -207,6 +216,7 @@
             this.btn_panel_color.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_panel_color.AutoSize = true;
             this.btn_panel_color.Location = new System.Drawing.Point(450, 220);
             this.btn_panel_color.Margin = new System.Windows.Forms.Padding(4);
             this.btn_panel_color.Name = "btn_panel_color";
@@ -221,6 +231,7 @@
             this.btn_color.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_color.AutoSize = true;
             this.btn_color.Location = new System.Drawing.Point(450, 171);
             this.btn_color.Margin = new System.Windows.Forms.Padding(4);
             this.btn_color.Name = "btn_color";
@@ -242,6 +253,9 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.btn_rec_font);
+            this.tabPage1.Controls.Add(this.btn_foot);
+            this.tabPage1.Controls.Add(this.btn_header);
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -256,6 +270,7 @@
             this.btn_commit.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_commit.AutoSize = true;
             this.btn_commit.Location = new System.Drawing.Point(472, 555);
             this.btn_commit.Margin = new System.Windows.Forms.Padding(4);
             this.btn_commit.Name = "btn_commit";
@@ -264,6 +279,62 @@
             this.btn_commit.Text = "Commit";
             this.btn_commit.UseVisualStyleBackColor = true;
             this.btn_commit.Click += new System.EventHandler(this.btn_commit_Click);
+            // 
+            // btn_change_image
+            // 
+            this.btn_change_image.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_change_image.AutoSize = true;
+            this.btn_change_image.Location = new System.Drawing.Point(105, 244);
+            this.btn_change_image.Margin = new System.Windows.Forms.Padding(4);
+            this.btn_change_image.Name = "btn_change_image";
+            this.btn_change_image.Size = new System.Drawing.Size(261, 26);
+            this.btn_change_image.TabIndex = 5;
+            this.btn_change_image.Text = "Change Image";
+            this.btn_change_image.UseVisualStyleBackColor = true;
+            // 
+            // btn_header
+            // 
+            this.btn_header.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_header.AutoSize = true;
+            this.btn_header.Location = new System.Drawing.Point(450, 151);
+            this.btn_header.Margin = new System.Windows.Forms.Padding(4);
+            this.btn_header.Name = "btn_header";
+            this.btn_header.Size = new System.Drawing.Size(261, 26);
+            this.btn_header.TabIndex = 6;
+            this.btn_header.Text = "Change Receipt Header";
+            this.btn_header.UseVisualStyleBackColor = true;
+            // 
+            // btn_foot
+            // 
+            this.btn_foot.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_foot.AutoSize = true;
+            this.btn_foot.Location = new System.Drawing.Point(450, 199);
+            this.btn_foot.Margin = new System.Windows.Forms.Padding(4);
+            this.btn_foot.Name = "btn_foot";
+            this.btn_foot.Size = new System.Drawing.Size(261, 26);
+            this.btn_foot.TabIndex = 7;
+            this.btn_foot.Text = "Change Reciept Footer";
+            this.btn_foot.UseVisualStyleBackColor = true;
+            // 
+            // btn_rec_font
+            // 
+            this.btn_rec_font.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_rec_font.AutoSize = true;
+            this.btn_rec_font.Location = new System.Drawing.Point(450, 252);
+            this.btn_rec_font.Margin = new System.Windows.Forms.Padding(4);
+            this.btn_rec_font.Name = "btn_rec_font";
+            this.btn_rec_font.Size = new System.Drawing.Size(261, 26);
+            this.btn_rec_font.TabIndex = 8;
+            this.btn_rec_font.Text = "Change Receipt Font";
+            this.btn_rec_font.UseVisualStyleBackColor = true;
             // 
             // FrmSetting
             // 
@@ -282,7 +353,11 @@
             this.TabTypes.ResumeLayout(false);
             this.TabTypes.PerformLayout();
             this.tab_General.ResumeLayout(false);
+            this.tab_General.PerformLayout();
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -305,5 +380,9 @@
         private System.Windows.Forms.Button btn_commit;
         private System.Windows.Forms.Button btn_reset;
         private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.Button btn_change_image;
+        private System.Windows.Forms.Button btn_rec_font;
+        private System.Windows.Forms.Button btn_foot;
+        private System.Windows.Forms.Button btn_header;
     }
 }
