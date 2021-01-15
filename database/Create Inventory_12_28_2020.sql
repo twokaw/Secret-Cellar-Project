@@ -7,6 +7,8 @@
 
 CREATE USER IF NOT EXISTS 'invuser'@'localhost' IDENTIFIED BY 'testinv!';
 
+GRANT SELECT, INSERT, UPDATE, DELETE ON Inventory.* TO 'invuser'@'localhost' ;
+
 DROP DATABASE IF EXISTS inventory;
 CREATE DATABASE inventory;
 USE Inventory;
