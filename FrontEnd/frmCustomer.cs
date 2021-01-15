@@ -177,7 +177,7 @@ Address:
                     FirstName = txt_fname.Text.Trim(),
                     Email = txt_email.Text.Trim(),
                     BusinessName = txt_company.Text.Trim(),
-                   IsWholesale = cbo_wholesale.DroppedDown,
+                    IsWholesale = cbo_wholesale.DroppedDown,
                     CustomerDiscount = int.Parse(txt_custDisc.Text),
                     PhoneNumber = txt_phone.Text.Trim(),
                     Address1 = txt_addr1.Text.Trim(),
