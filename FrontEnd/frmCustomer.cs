@@ -177,8 +177,8 @@ Address:
                     FirstName = txt_fname.Text.Trim(),
                     Email = txt_email.Text.Trim(),
                     BusinessName = txt_company.Text.Trim(),
-                    IsWholesale = cbo_wholesale.DroppedDown,
-                    CustomerDiscount = int.Parse(txt_custDisc.Text),
+                    IsWholesale = cbo_wholesale.SelectedIndex != 0,
+                    CustomerDiscount = double.TryParse(txt_custDisc.Text,out double disc)?disc:0,
                     PhoneNumber = txt_phone.Text.Trim(),
                     Address1 = txt_addr1.Text.Trim(),
                     Address2 = txt_addr2.Text.Trim(),
@@ -204,7 +204,7 @@ Address:
                 i.Email = txt_email.Text;
                 i.BusinessName = txt_company.Text;
                // i.IsWholesale = (bool)cbo_wholesale.SelectedValue; following if statement does work
-                if (cbo_wholesale.SelectedIndex == 0)
+                if (cbo_wholesale.SelectedIndex == 1)
                 {
                     i.IsWholesale = true;
                 }
@@ -249,16 +249,16 @@ Address:
         }
         private bool addCustomer()
         {
-            /*
+            
             if (customer_data_grid.SelectedRows.Count > 0)
             {
                 Customer i = customers.FirstOrDefault(x => x.CustomerID == uint.Parse(customer_data_grid.SelectedRows[0].Cells["customerID"].Value.ToString()));
 
-                Customer customer = DataAccess.ConvertInvtoItem(i);
-                customer.Items.Add(customer);
+                
+                customer.CustomerID = i.CustomerID;
                 return true;
             }
-            */
+            
             return false;
             
         }
