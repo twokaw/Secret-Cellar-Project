@@ -331,7 +331,10 @@ namespace SecretCellar
                     }
                 }
             }
-            
+
+            transaction.CustomerName = customer.FirstName + " " + customer.LastName;
+            transaction.CustomerID = customer.CustomerID;
+
             uint id = DataAccess.instance.ProcessTransaction(transaction);
 
             Console.WriteLine("id: " + id);
@@ -340,7 +343,6 @@ namespace SecretCellar
             //foreach(Transaction t in transactions) {
             //   Console.WriteLine(t.CustomerName + ": " + t.Total.ToString());
 			//}
-
 
             //TODO: can remove this once everything is working
             //ADD THE NAME AND THE TRANSACTION TO THE MAP OF SUSPENDED TRANSACTIONS IN 'frmSuspendedTransactions'
