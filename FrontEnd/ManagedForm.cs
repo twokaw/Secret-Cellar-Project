@@ -38,7 +38,7 @@ namespace SecretCellar
         {
             Forms.Remove(this);
             if(Forms.Count == 0 )
-                CommonFont = new Font("Microsoft Sans Serif", 8.1F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                CommonFont = new Font("Microsoft Sans Serif", 9, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             Console.WriteLine($"Deconstructed: {Forms.Count}");
         }
 
@@ -134,6 +134,24 @@ namespace SecretCellar
                 MainWindowColor = Properties.Settings.Default.DefaultBackgroundColor;
                 DataGridViewBackColor = Properties.Settings.Default.DefaultGridColor;
                 CommonFontSetter = Properties.Settings.Default.DefaultFont;
+        }
+
+        private void InitializeComponent()
+        {
+            this.SuspendLayout();
+            // 
+            // ManagedForm
+            // 
+            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.Name = "ManagedForm";
+            this.Load += new System.EventHandler(this.ManagedForm_Load);
+            this.ResumeLayout(false);
+
+        }
+
+        private void ManagedForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
