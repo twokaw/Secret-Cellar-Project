@@ -378,7 +378,7 @@ namespace SecretCellar
                 transaction.Items.Add(item);
             }
 
-            addRow(transaction);
+            RefreshDataGrid();
         }
 
         private void caseDiscount_CheckedChanged(object sender, EventArgs e)
@@ -408,7 +408,7 @@ namespace SecretCellar
         {
             frmCustomer customer = new frmCustomer(transaction); //instantiates frmCustomer using Lookup
             customer.ShowDialog(); // opens form associated with Lookup instantiation
-            addRow(transaction);
+            RefreshDataGrid();
 
         }
     }
