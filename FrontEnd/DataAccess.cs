@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Shared;
 using static SecretCellar.WebConnector;
 using System;
-using System.Linq;
 
 namespace SecretCellar
 {
