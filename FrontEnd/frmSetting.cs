@@ -118,6 +118,50 @@ namespace SecretCellar
         {
 
         }
+
+        private void btn_change_image_Click(object sender, EventArgs e)
+        {
+            PictureBox imageControl = new PictureBox();
+            imageControl.Width = 400;
+            imageControl.Height = 400;
+            TextBox open = new TextBox();
+            Controls.Add(imageControl); 
+
+            var fileContent = string.Empty;
+            var filePath = string.Empty;
+            
+
+            // open file dialog   
+            OpenFileDialog image = new OpenFileDialog();
+            // image filters  
+            image.Filter = "Image Files(*.jpg; *.jpeg; *.gif; *.bmp)|*.jpg; *.jpeg; *.gif; *.bmp";
+            image.FilterIndex = 2;
+            image.RestoreDirectory = true;
+            //image.ShowDialog();
+            if(image.ShowDialog() == DialogResult.OK)
+            {
+                imageControl.Image = new Bitmap(image.FileName);
+                
+                filePath = image.FileName;
+
+               // var fileStream = image.OpenFile();
+
+                //using (System.IO.StreamReader reader = new System.IO.StreamReader(fileStream))
+                //{
+                   // fileContent = reader.ReadToEnd();
+               // }
+                // display image in picture box  
+                //imageControl.Image = new Bitmap(open.FileName);
+                // image file path  
+                //open.Text = open.FileName;
+            }
+            //not sure how to display image to verfiy if it is the new 
+            Properties.Settings.Default.Logo = image.FileName;
+            Properties.Settings.Default.Save();
+            MessageBox.Show(fileContent, "File Content at path: " + filePath, MessageBoxButtons.OK);
+        }
     }
+
+ 
 }
 //testing
