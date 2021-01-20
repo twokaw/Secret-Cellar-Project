@@ -133,27 +133,9 @@ namespace SecretCellar
             //Open Image Dialog okay;
             if(image.ShowDialog() == DialogResult.OK)
             {
- 
-               
-               
 
-                
                 pic_logo.Image = dataAccess.ReloadLogo(image.FileName);
 
-                //MessageBox.Show(fileContent, "File Content at path: " + filePath, MessageBoxButtons.OK);
-
-
-
-                // var fileStream = image.OpenFile();
-
-                //using (System.IO.StreamReader reader = new System.IO.StreamReader(fileStream))
-                //{
-                // fileContent = reader.ReadToEnd();
-                // }
-                // display image in picture box  
-                //imageControl.Image = new Bitmap(open.FileName);
-                // image file path  
-                //open.Text = open.FileName;
             }
             
         }

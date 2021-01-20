@@ -273,7 +273,7 @@ namespace SecretCellar
             {
                 string logoPath = $"{Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}\\{Properties.Settings.Default.Logo}";
 
-                if (Directory.Exists(logoPath))
+                if (File.Exists(logoPath))
                     logo = Image.FromFile(logoPath);
             }
 
@@ -295,8 +295,9 @@ namespace SecretCellar
                     if (MessageBox.Show("Image exists do you want to overwrite?","File Already exists",MessageBoxButtons.YesNo) == DialogResult.No)
                     {
                         SaveFileDialog saveFileDialog = new SaveFileDialog();
-                        saveFileDialog.InitialDirectory = $"{Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}\\{ imageFileName}";
-                        if(saveFileDialog.ShowDialog()== DialogResult.Cancel)
+                        saveFileDialog.InitialDirectory = $"{Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}";
+                        saveFileDialog.FileName = $"{Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}\\{ imageFileName}";
+                        if (saveFileDialog.ShowDialog()== DialogResult.Cancel)
                         {
                             return ReloadLogo();
                         }
