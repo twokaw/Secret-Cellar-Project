@@ -413,6 +413,62 @@ namespace pos_core_api.ORM
                 db.CloseConnnection();
             }
         }
+        public bool DeleteTransaction(uint transactionId)
+        {
+            Transaction t = GetTransaction(transactionId);
+
+            return t == null || DeleteTransaction(t);
+        }
+
+        public bool DeleteTransaction(Transaction transaction)
+        {
+            if (transaction.Payments.Count == 0)
+            {
+                MySqlCommand cmd = new MySqlCommand(@"
+                    DELETE FROM Transaction 
+                    WHERE ReceiptID = @ReceiptID
+                ", db.Connection());
+
+                db.OpenConnection();
+                try
+                {
+                    cmd.Parameters.Add(new MySqlParameter("receiptID", transaction.InvoiceID));
+                    cmd.ExecuteNonQuery();
+                }
+                finally
+                {
+                    db.CloseConnnection();
+                }
+                return true;
+            }
+            else
+                return false;
+        }
+
+        public bool DeletePayment(uint payId)
+        {
+            if (payId > 0)
+            {
+                MySqlCommand cmd = new MySqlCommand(@"
+                    DELETE FROM Payment
+                    WHERE payID = @payId
+                ", db.Connection());
+
+                db.OpenConnection();
+                try
+                {
+                    cmd.Parameters.Add(new MySqlParameter("payId", payId));
+                    cmd.ExecuteNonQuery();
+                }
+                finally
+                {
+                    db.CloseConnnection();
+                }
+                return true;
+            }
+            else
+                return false;
+        }
 
         public bool FullyPaid(Transaction transaction)
         {
@@ -421,6 +477,5 @@ namespace pos_core_api.ORM
 
             return transaction.Total <= payments;
         }
-
     }
 }
