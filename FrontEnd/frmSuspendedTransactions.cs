@@ -14,30 +14,39 @@ namespace SecretCellar
 {
 	public partial class frmSuspendedTransactions : Form
 	{
-		Transaction currentTransaction;
-		public static Dictionary<string, Transaction> suspendedTransactionsMap = new Dictionary<string, Transaction>();
-		List<Transaction> suspendedTransactions;
 		private frmTransaction transactionForm;
+		private List<Transaction> suspendedTransactions;
+		private List<uint> suspendedTransactionsIdTracker;
+		private Transaction currentTransaction;
+		
 
 		public frmSuspendedTransactions(frmTransaction formTransaction)
 		{
 			InitializeComponent();
 			transactionForm = formTransaction;
 			suspendedTransactions = DataAccess.instance.GetSuspendedTransactions();
+			suspendedTransactionsIdTracker = new List<uint>();
 
 			//POPULATE THE LIST OF SUSPENDED TRANSACTIONS CUSTOMER NAMES
 			foreach (Transaction t in suspendedTransactions) {
-				if (t.CustomerName != null) {
-					selectionListSuspendedTransactions.Items.Add(t.CustomerName);
+				//GET THE CUSTOMER OF THE SUSPENDED TRANSACTION
+				Customer customer = DataAccess.instance.GetCustomer(t.CustomerID);
+
+				//ADD THE TRANSACTION INVOICE ID TO THE TRACKER
+				suspendedTransactionsIdTracker.Add(t.InvoiceID);
+
+				//POPULATE THE CUSTOMER NAME IN THE LIST
+				if (customer != null) {
+					selectionListSuspendedTransactions.Items.Add(customer.FirstName + " " + customer.LastName);
 				}
 				else {
-					selectionListSuspendedTransactions.Items.Add(t.InvoiceID);
+					selectionListSuspendedTransactions.Items.Add("No Name");
 				}
 			}
 
 			//DEFAULT SELECTED ITEM IN THE LIST OF SUSPENDED TRANSACTIONS TO 0
 			if (suspendedTransactions.Count > 0) {
-				//selectionListSuspendedTransactions.SelectedIndex = 0;
+				selectionListSuspendedTransactions.SelectedIndex = 0;
 			}
 
 		}
@@ -51,32 +60,9 @@ namespace SecretCellar
 			if (suspendedTransactions.Count > 0) {
 				this.dataGridViewSuspendedTransaction.Rows.Clear();
 
-				//GET THE NAME OF THE ITEM SELECTED AND MATCH IT TO THE TRANSACTION IN THE MAP
-				string suspendedTransactionCustomer = selectionListSuspendedTransactions.SelectedItem.ToString();
-
-				foreach (Transaction t in suspendedTransactions) {
-					Console.WriteLine("Transaction invoice id: " + t.InvoiceID);
-					Console.WriteLine("Customer Name: " + t.CustomerID);
-																		  
-					if (t.CustomerName != null) {
-						Console.WriteLine("Customer Name: " + t.CustomerName);
-
-						if (t.CustomerName.Equals(suspendedTransactionCustomer)) {
-							currentTransaction = t;
-						}
-					}
-					else {
-						if (t.InvoiceID.Equals(suspendedTransactionCustomer)) {
-							currentTransaction = t;
-						}
-					}
-				}
-
-				//TODO: It errors here. Need a better way to grab the transaction. Can use a dictionary field that has customer name, transaction invoice id.
-				//GET THE NAME OF THE ITEM SELECTED AND MATCH IT TO THE TRANSACTION IN THE MAP
-				//int index = selectionListSuspendedTransactions.SelectedIndex;
-				//currentTransaction = suspendedTransactionsMap.ElementAt(index).Value;
-
+				//GET THE TRANSACTION OF THE CURRENTLY SELECTED CUSTOMER VIA THE TRACKER
+				uint transactionId = suspendedTransactionsIdTracker.ElementAt(selectionListSuspendedTransactions.SelectedIndex);
+				currentTransaction = DataAccess.instance.Get(transactionId);
 
 				//ADD EACH ROW IN THE TRANSACTION TO THE ROW IN THE VIEW
 				foreach (Item item in currentTransaction.Items) {
@@ -97,6 +83,8 @@ namespace SecretCellar
 
 		private void btnDelete_Click(object sender, EventArgs e)
 		{
+			
+
 			if (selectionListSuspendedTransactions.Items.Count > 0) {
 				string selectedItem = selectionListSuspendedTransactions.SelectedItem.ToString();
 
@@ -109,7 +97,7 @@ namespace SecretCellar
 				//IF THE USER DELETES THE ONLY ITEM IN THE LIST
 				else if (selectionListSuspendedTransactions.SelectedIndex == 0) {
 					//THE ITEM IN THE MAP NEEDS TO BE REMOVED FIRST OTHERWISE IT WILL ERROR
-					suspendedTransactionsMap.Remove(selectedItem);
+					//suspendedTransactionsMap.Remove(selectedItem);
 					selectionListSuspendedTransactions.Items.RemoveAt(selectionListSuspendedTransactions.SelectedIndex);
 				}
 
@@ -128,13 +116,13 @@ namespace SecretCellar
 
 				//TODO: change this to remove from the database
 				//REMOVE THE TRANSACTION FROM THE MAP (DATABASE)
-				suspendedTransactionsMap.Remove(selectedItem);
+				//suspendedTransactionsMap.Remove(selectedItem);
 			}
 			
 			//CLEAR THE DATA GRID AND MAP IF THERE ARE NO ITEMS LEFT
 			if (selectionListSuspendedTransactions.Items.Count == 0) {
 				dataGridViewSuspendedTransaction.Rows.Clear();
-				suspendedTransactionsMap.Clear();
+				//suspendedTransactionsMap.Clear();
 				currentTransaction = null;
 			}
 		}
