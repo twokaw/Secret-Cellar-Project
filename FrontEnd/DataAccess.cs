@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using Shared;
 using static SecretCellar.WebConnector;
 using System;
+using System.Drawing;
+using System.IO;
+using System.Reflection;
+using System.Windows.Forms;
 
 namespace SecretCellar
 {
@@ -10,6 +14,7 @@ namespace SecretCellar
     {      
         private static WebConnector web = null;
         public static DataAccess instance;
+        private Image logo;
         public DataAccess(string connectionString)
         {
             if(web == null)
@@ -260,5 +265,59 @@ namespace SecretCellar
         {
             LogError(error.Message, source, notes);
         }
+
+        public  Image ReloadLogo()
+        {
+
+            if (!string.IsNullOrEmpty(Properties.Settings.Default.Logo))
+            {
+                string logoPath = $"{Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}\\{Properties.Settings.Default.Logo}";
+
+                if (Directory.Exists(logoPath))
+                    logo = Image.FromFile(logoPath);
+            }
+
+            if (logo == null)
+                logo = Properties.Resources.Logo;
+            
+            return logo;
+        }
+
+        public Image ReloadLogo(string path)
+        {
+            
+            if (!string.IsNullOrEmpty(path) && File.Exists(path))
+            {
+                string imageFileName = Path.GetFileName(path);
+                if (File.Exists($"{Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}\\{imageFileName}"))
+                {
+                    
+                    if (MessageBox.Show("Image exists do you want to overwrite?","File Already exists",MessageBoxButtons.YesNo) == DialogResult.No)
+                    {
+                        SaveFileDialog saveFileDialog = new SaveFileDialog();
+                        saveFileDialog.InitialDirectory = $"{Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}\\{ imageFileName}";
+                        if(saveFileDialog.ShowDialog()== DialogResult.Cancel)
+                        {
+                            return ReloadLogo();
+                        }
+                        imageFileName = Path.GetFileName(saveFileDialog.FileName);
+                    }
+
+
+                    
+                }
+
+                File.Copy(path, $"{Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}\\{ imageFileName}");
+                
+                Properties.Settings.Default.Logo = imageFileName;
+                Properties.Settings.Default.Save();
+               
+            }
+
+           
+
+            return ReloadLogo();
+        }
+
     }
 }

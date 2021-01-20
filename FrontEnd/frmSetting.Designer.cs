@@ -50,10 +50,12 @@
             this.btn_foot = new System.Windows.Forms.Button();
             this.btn_header = new System.Windows.Forms.Button();
             this.btn_commit = new System.Windows.Forms.Button();
+            this.pic_logo = new System.Windows.Forms.PictureBox();
             this.tab_receipt.SuspendLayout();
             this.TabTypes.SuspendLayout();
             this.tab_General.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pic_logo)).BeginInit();
             this.SuspendLayout();
             // 
             // tab_receipt
@@ -151,6 +153,7 @@
             // 
             // tab_General
             // 
+            this.tab_General.Controls.Add(this.pic_logo);
             this.tab_General.Controls.Add(this.btn_change_image);
             this.tab_General.Controls.Add(this.btn_reset);
             this.tab_General.Controls.Add(this.btn_row_color);
@@ -337,6 +340,15 @@
             this.btn_commit.UseVisualStyleBackColor = true;
             this.btn_commit.Click += new System.EventHandler(this.btn_commit_Click);
             // 
+            // pic_logo
+            // 
+            this.pic_logo.Location = new System.Drawing.Point(139, 72);
+            this.pic_logo.Name = "pic_logo";
+            this.pic_logo.Size = new System.Drawing.Size(200, 150);
+            this.pic_logo.TabIndex = 6;
+            this.pic_logo.TabStop = false;
+            this.pic_logo.Click += new System.EventHandler(this.pic_logo_Click);
+            // 
             // FrmSetting
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 16F);
@@ -357,6 +369,7 @@
             this.tab_General.PerformLayout();
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pic_logo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -385,5 +398,6 @@
         private System.Windows.Forms.Button btn_rec_font;
         private System.Windows.Forms.Button btn_foot;
         private System.Windows.Forms.Button btn_header;
+        private System.Windows.Forms.PictureBox pic_logo;
     }
 }

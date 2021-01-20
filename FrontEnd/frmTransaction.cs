@@ -22,7 +22,7 @@ namespace SecretCellar
         public frmTransaction()
         {
             InitializeComponent();
-
+            dataAccess = new DataAccess(Properties.Settings.Default.URL);
             txtBarcode.Focus();
             ReloadLogo();
             this.Size = new System.Drawing.Size(1366, 768);
@@ -52,17 +52,7 @@ namespace SecretCellar
         private void ReloadLogo()
         {
 
-            if (!string.IsNullOrEmpty(Properties.Settings.Default.Logo))
-            {
-                string logoPath = $"{Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}\\{Properties.Settings.Default.Logo}";
-
-                if (Directory.Exists(logoPath))
-                    logo = Image.FromFile(logoPath);
-            }
-
-            if (logo == null)
-                logo = Properties.Resources.Logo;
-            pictureBox1.Image = logo;
+            pictureBox1.Image = dataAccess.ReloadLogo();
         }
 
         private void frmTransaction_Load(object sender, EventArgs e)
@@ -78,7 +68,7 @@ namespace SecretCellar
                 this.Dispose();
             }
 
-            dataAccess = new DataAccess(Properties.Settings.Default.URL);
+            
             lbl_twentyone.Text = "21 AS OF: " + DateTime.Now.AddYears(-21).ToString("MM/dd/yyyy");
             lbl_twentyone.Font = new Font("Microsoft Sans Serif", 18, FontStyle.Bold);
         }
