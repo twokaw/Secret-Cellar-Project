@@ -183,7 +183,7 @@ namespace SecretCellar
             string result = web.DataGet($"api/Transaction?start={start}&end={end}");
             return JsonConvert.DeserializeObject<List<Transaction>>(result);
         }
-        public uint ProcessTransaction(Transaction transaction) 
+        public uint ProcessTransaction(Transaction transaction)
         {
             Response resp = null;
             string result = web.DataPost($"api/Transaction", transaction, resp);
@@ -191,6 +191,22 @@ namespace SecretCellar
 
             return transaction.InvoiceID;
         }
+        public bool DeleteTransaction(uint invoiceId)
+        {
+            Response resp = null;
+            web.DataDelete($"api/Transaction/{invoiceId}",  resp);
+
+            return resp.StatusCode != System.Net.HttpStatusCode.InternalServerError;
+        }
+        
+        public bool DeletePayment(uint invoiceId, uint payId)
+        {
+            Response resp = null;
+            web.DataDelete($"api/Transaction/payment/{invoiceId}/{payId}", resp);
+
+            return resp.StatusCode == System.Net.HttpStatusCode.OK;
+        }
+        
         #endregion
 
         #region Customer
