@@ -297,9 +297,14 @@ namespace SecretCellar
                         SaveFileDialog saveFileDialog = new SaveFileDialog();
                         saveFileDialog.InitialDirectory = $"{Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}";
                         saveFileDialog.FileName = $"{Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}\\{ imageFileName}";
-                        if (saveFileDialog.ShowDialog()== DialogResult.Cancel)
+                        if (saveFileDialog.ShowDialog() == DialogResult.Cancel)
                         {
-                            return ReloadLogo();
+                            if (MessageBox.Show("Replace Logo with the New Image", "If no current image will be used", MessageBoxButtons.YesNo) == DialogResult.No)
+                            {
+                                return ReloadLogo();
+                            }
+                            //update file path to default location so that it grabs the original file that hasn't been overwritten otherwise will error on 316
+                           //File.Open($"{Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}\\{ imageFileName}");
                         }
                         imageFileName = Path.GetFileName(saveFileDialog.FileName);
                     }
