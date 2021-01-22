@@ -191,7 +191,7 @@ namespace SecretCellar
             Response resp = null;
             web.DataDelete($"api/Transaction/{invoiceId}",  resp);
 
-            return resp.StatusCode != System.Net.HttpStatusCode.InternalServerError;
+            return resp?.StatusCode != System.Net.HttpStatusCode.InternalServerError;
         }
         
         public bool DeletePayment(uint invoiceId, uint payId)

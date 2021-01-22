@@ -154,6 +154,7 @@ namespace pos_core_api.ORM
                         NonTaxable = !itemReader.IsDBNull("nontaxable") && itemReader.GetBoolean("nontaxable"),
                         NonTaxableLocal = !itemReader.IsDBNull("nontaxable_local") && itemReader.GetBoolean("nontaxable_local")
                     };
+                    item.NumSold = 0;
                     transaction.Items.Add(item);
                 }
 
@@ -425,8 +426,11 @@ namespace pos_core_api.ORM
             if (transaction.Payments.Count == 0)
             {
                 MySqlCommand cmd = new MySqlCommand(@"
+                    DELETE FROM Transaction_items 
+                    WHERE ReceiptID = @ReceiptID;
+
                     DELETE FROM Transaction 
-                    WHERE ReceiptID = @ReceiptID
+                    WHERE ReceiptID = @ReceiptID;
                 ", db.Connection());
 
                 db.OpenConnection();

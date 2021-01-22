@@ -65,7 +65,7 @@ namespace SecretCellar
 				selectedTransaction = DataAccess.instance.Get(transactionId);
 
 				//ADD EACH ROW IN THE TRANSACTION TO THE ROW IN THE VIEW
-				foreach (Item item in selectedTransaction.Items) {
+				foreach (Item item in selectedTransaction?.Items) {
 					int rowIndex = dataGridViewSuspendedTransaction.Rows.Add();
 
 					using (var currentRow = dataGridViewSuspendedTransaction.Rows[rowIndex]) {
@@ -118,7 +118,7 @@ namespace SecretCellar
 				}
 
 				//REMOVE THE TRANSACTION FROM THE DATABASE
-				//DataAccess.instance.DeleteTransaction(selectedTransaction.InvoiceID);
+				DataAccess.instance.DeleteTransaction(selectedTransaction.InvoiceID);
 			}
 			
 			//CLEAR THE DATA GRID AND TRACKER IF THERE ARE NO ITEMS LEFT
