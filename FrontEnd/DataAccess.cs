@@ -7,17 +7,18 @@ using System.Drawing;
 using System.IO;
 using System.Reflection;
 using System.Windows.Forms;
+using System.Linq;
 
 namespace SecretCellar
 {
     public class DataAccess
-    {      
+    {
         private static WebConnector web = null;
         public static DataAccess instance;
         private Image logo;
         public DataAccess(string connectionString)
         {
-            if(web == null)
+            if (web == null)
                 web = new WebConnector(connectionString);
             instance = new DataAccess();
         }
@@ -26,8 +27,8 @@ namespace SecretCellar
         #region Inventory
         public void DeleteItem(Inventory inv)
         {
-            web.DataDelete ($"api/inventory/{inv.Id}");
-        }  
+            web.DataDelete($"api/inventory/{inv.Id}");
+        }
 
         public List<Inventory> GetInventory()
         {
@@ -96,7 +97,7 @@ namespace SecretCellar
 
             if (uint.TryParse(result, out uint id))
                 return id;
-            else 
+            else
                 return 0;
         }
         #endregion
@@ -178,7 +179,7 @@ namespace SecretCellar
             string result = web.DataGet($"api/Transaction/Suspended");
             return JsonConvert.DeserializeObject<List<Transaction>>(result);
         }
-        public List<Transaction> Get(DateTime start, DateTime end )
+        public List<Transaction> Get(DateTime start, DateTime end)
         {
             string result = web.DataGet($"api/Transaction?start={start}&end={end}");
             return JsonConvert.DeserializeObject<List<Transaction>>(result);
@@ -194,11 +195,11 @@ namespace SecretCellar
         public bool DeleteTransaction(uint invoiceId)
         {
             Response resp = null;
-            web.DataDelete($"api/Transaction/{invoiceId}",  resp);
+            web.DataDelete($"api/Transaction/{invoiceId}", resp);
 
             return resp.StatusCode != System.Net.HttpStatusCode.InternalServerError;
         }
-        
+
         public bool DeletePayment(uint invoiceId, uint payId)
         {
             Response resp = null;
@@ -206,7 +207,7 @@ namespace SecretCellar
 
             return resp.StatusCode == System.Net.HttpStatusCode.OK;
         }
-        
+
         #endregion
 
         #region Customer
@@ -231,7 +232,7 @@ namespace SecretCellar
             else
                 return 0;
         }
-        
+
         public uint NewCustomer(Customer customer)
         {
             Response resp = null;
@@ -243,7 +244,7 @@ namespace SecretCellar
         }
         public void DeleteCustomer(Customer customer)
         {
-            try { web.DataDelete($"api/Customer/{customer.CustomerID}");  }
+            try { web.DataDelete($"api/Customer/{customer.CustomerID}"); }
             catch (Exception ex) { LogError(ex, "DeleteCustomer"); }
         }
         #endregion
@@ -282,7 +283,7 @@ namespace SecretCellar
             LogError(error.Message, source, notes);
         }
 
-        public  Image ReloadLogo()
+        public Image ImportLogo()
         {
 
             if (!string.IsNullOrEmpty(Properties.Settings.Default.Logo))
@@ -295,51 +296,85 @@ namespace SecretCellar
 
             if (logo == null)
                 logo = Properties.Resources.Logo;
-            
+
             return logo;
         }
 
-        public Image ReloadLogo(string path)
+        public Image ImportLogo(string path)
         {
-            
+
             if (!string.IsNullOrEmpty(path) && File.Exists(path))
             {
                 string imageFileName = Path.GetFileName(path);
                 if (File.Exists($"{Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}\\{imageFileName}"))
                 {
-                    
-                    if (MessageBox.Show("Image exists do you want to overwrite?","File Already exists",MessageBoxButtons.YesNo) == DialogResult.No)
+
+                    if (MessageBox.Show("Image exists do you want to overwrite?", "File Already exists", MessageBoxButtons.YesNo) == DialogResult.No)
                     {
                         SaveFileDialog saveFileDialog = new SaveFileDialog();
                         saveFileDialog.InitialDirectory = $"{Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}";
                         saveFileDialog.FileName = $"{Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}\\{ imageFileName}";
                         if (saveFileDialog.ShowDialog() == DialogResult.Cancel)
                         {
-                            if (MessageBox.Show("Replace Logo with the New Image", "If no current image will be used", MessageBoxButtons.YesNo) == DialogResult.No)
-                            {
-                                return ReloadLogo();
-                            }
-                            //update file path to default location so that it grabs the original file that hasn't been overwritten otherwise will error on 316
-                           //File.Open($"{Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}\\{ imageFileName}");
+                            return ImportLogo();
                         }
                         imageFileName = Path.GetFileName(saveFileDialog.FileName);
                     }
 
 
-                    
+
                 }
 
                 File.Copy(path, $"{Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}\\{ imageFileName}");
-                
+
                 Properties.Settings.Default.Logo = imageFileName;
                 Properties.Settings.Default.Save();
-               
+
             }
 
-           
 
-            return ReloadLogo();
+
+            return ImportLogo();
+        }
+
+        public List<string> GetImageFiles()
+        {
+            List<string> result = new List<string>();
+            string targetDirectory = $"{Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)} ";
+            string[] extensions = new[] { "jpg", "jpeg", "bmp", "gif", "png" };
+            string[] fileEntries = Directory.GetFiles(targetDirectory).Where(f => extensions.Contains(f.ToLower().Split('.').Last().Trim())).ToArray();
+            foreach (string fileName in fileEntries)
+                result.Add(Path.GetFileName(fileName));
+
+            return result;
+        }
+
+        public Image GetImage(string file)
+        {
+
+            if (!string.IsNullOrEmpty(file))
+            {
+                string logoPath = $"{Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}\\{file}";
+
+                if (File.Exists(logoPath))
+                    logo = Image.FromFile(logoPath);
+            }
+
+            if (logo == null)
+                logo = ImportLogo();
+
+            return logo;
+        }
+
+        public void ChangeLogo(string imageFileName)
+        {
+            Properties.Settings.Default.Logo = imageFileName;
+            Properties.Settings.Default.Save();
         }
 
     }
 }
+
+
+    
+

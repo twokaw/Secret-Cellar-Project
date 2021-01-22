@@ -52,7 +52,7 @@ namespace SecretCellar
         private void ReloadLogo()
         {
 
-            pictureBox1.Image = dataAccess.ReloadLogo();
+            pictureBox1.Image = dataAccess.ImportLogo();
         }
 
         private void frmTransaction_Load(object sender, EventArgs e)
@@ -273,7 +273,7 @@ namespace SecretCellar
 
         private void pb_settings_Click(object sender, EventArgs e)
         {
-            FrmSetting setting = new FrmSetting();
+            listbx_logos setting = new listbx_logos();
             setting.ShowDialog();
         }
 
