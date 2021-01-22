@@ -1,14 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Serialization;
-
 namespace Shared
 {
-    [Serializable]
-    public class Transaction : ISerializable
+    public class Transaction 
     {
-        // Define properties. The way I set them up, we can add accessors later.
         public uint InvoiceID { get; set; }
         public uint RegisterID { get; set; }
         public DateTime TransactionDateTime { get; set; }
@@ -184,37 +180,6 @@ namespace Shared
             this.Payments   = Payments;
             this.EmployeeID = EmployeeID;
             this.CustomerID = CustomerID;
-        }
-
-        // Deserialization constructor
-        public Transaction(SerializationInfo info, StreamingContext ctxt)
-        {
-            InvoiceID = (uint)info.GetValue("InvoiceID", typeof(uint));
-            RegisterID = (uint)info.GetValue("RegisterID", typeof(uint));
-            TransactionDateTime = (DateTime)info.GetValue("TransactionDateTime", typeof(DateTime));
-            Location = (string)info.GetValue("Location", typeof(string));
-            Items = (List<Item>)info.GetValue("Items", typeof(List<Item>));
-            Payments = (List<Payment>)info.GetValue("Payments", typeof(List<Payment>));
-            Discount = (double)info.GetValue("double", typeof(double));
-            TaxExempt = (bool)info.GetValue("TaxExempt", typeof(bool));
-        }
-        
-        // Serialization method
-        public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
-        {
-            info.AddValue("InvoiceID", InvoiceID);
-            info.AddValue("RegisterID", RegisterID);
-            info.AddValue("TransactionDateTime", TransactionDateTime);
-            info.AddValue("Location", Location);
-            info.AddValue("Items", Items);
-            info.AddValue("Discount", Discount);
-            info.AddValue("Subtotal", Subtotal);
-            info.AddValue("Payments", Payments);
-            info.AddValue("Tax", Tax);
-            info.AddValue("Total", Total);
-            info.AddValue("TaxExempt", TaxExempt);
-            info.AddValue("PayMethod", PayMethod);
-            info.AddValue("PayNum", PayNum);
         }
 
         public List<Discount> GetBulkDiscounts()

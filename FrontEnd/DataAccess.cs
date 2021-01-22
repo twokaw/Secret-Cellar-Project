@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Shared;
 using static SecretCellar.WebConnector;
 using System;
-using System.Linq;
 
 namespace SecretCellar
 {
@@ -179,7 +178,7 @@ namespace SecretCellar
             string result = web.DataGet($"api/Transaction?start={start}&end={end}");
             return JsonConvert.DeserializeObject<List<Transaction>>(result);
         }
-        public uint ProcessTransaction(Transaction transaction) 
+        public uint ProcessTransaction(Transaction transaction)
         {
             Response resp = null;
             string result = web.DataPost($"api/Transaction", transaction, resp);
@@ -187,6 +186,22 @@ namespace SecretCellar
 
             return transaction.InvoiceID;
         }
+        public bool DeleteTransaction(uint invoiceId)
+        {
+            Response resp = null;
+            web.DataDelete($"api/Transaction/{invoiceId}",  resp);
+
+            return resp.StatusCode != System.Net.HttpStatusCode.InternalServerError;
+        }
+        
+        public bool DeletePayment(uint invoiceId, uint payId)
+        {
+            Response resp = null;
+            web.DataDelete($"api/Transaction/payment/{invoiceId}/{payId}", resp);
+
+            return resp.StatusCode == System.Net.HttpStatusCode.OK;
+        }
+        
         #endregion
 
         #region Customer
@@ -202,10 +217,20 @@ namespace SecretCellar
             return JsonConvert.DeserializeObject<Customer>(result);
         }
 
-        public uint UpdateCustomer(Customer Discount)
+        public uint UpdateCustomer(Customer customer)
         {
             Response resp = null;
-            string result = web.DataPut($"api/Customer", Discount, resp);
+            string result = web.DataPut($"api/Customer", customer, resp);
+            if (uint.TryParse(result, out uint id))
+                return id;
+            else
+                return 0;
+        }
+        
+        public uint NewCustomer(Customer customer)
+        {
+            Response resp = null;
+            string result = web.DataPost($"api/Customer", customer, resp);
             if (uint.TryParse(result, out uint id))
                 return id;
             else

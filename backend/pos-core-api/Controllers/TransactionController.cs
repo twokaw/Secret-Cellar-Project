@@ -76,13 +76,71 @@ namespace WebApi.Controllers
                 return StatusCode(500, ex.Message);
             };
          }
+        
+
+        /// <summary>
+        /// Delete transaction 
+        /// </summary>
+        /// <param name="transaction"></param>
+        /// <returns></returns>
+        [HttpDelete("{receiptId}")]
+        public IActionResult DeleteTransaction(uint receiptId)
+        {
+            Transaction transaction = DataAccess.Instance.Transaction.GetTransaction(receiptId,false,true);
+
+            if (transaction == null)
+                return StatusCode(400, "Missing Transaction");
+
+            if (transaction.Payments.Count > 0 )
+                return StatusCode(500, "Refund Payments before deleting");
+
+            try
+            {
+                DataAccess.Instance.Transaction.DeleteTransaction(receiptId);
+
+                // Return the refund qty * ((price * Tax * localTax) + bottle deposit * bottles)
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            };
+        }
+
+        
 
         /// <summary>
         /// Insert a new transaction 
         /// </summary>
         /// <param name="transaction"></param>
         /// <returns></returns>
-        [HttpDelete("/item/{receiptId}")]
+        [HttpDelete("payment/{receiptId}/{payId}")]
+        public IActionResult DeleteTransaction(uint receiptId, uint payId)
+        {
+            Transaction transaction = DataAccess.Instance.Transaction.GetTransaction(receiptId, false, true);
+
+            if (transaction == null)
+                return StatusCode(400, "Missing Transaction");
+
+            if (transaction.Payments.FirstOrDefault (x => x.PayId == payId ) == null)
+                return StatusCode(500, "Payment is not part of this transaction");
+
+            try
+            {
+                DataAccess.Instance.Transaction.DeletePayment(payId);
+
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            };
+        }
+        /// <summary>
+        /// Delete Transaction
+        /// </summary>
+        /// <returns></returns>
+        [HttpDelete("item/{receiptId}")]
         public IActionResult DeleteItem(uint receiptId, uint itemid, int qty = -1, bool returnQty = false)
         {
             if (qty == 0)

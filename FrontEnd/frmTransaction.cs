@@ -297,50 +297,21 @@ namespace SecretCellar
         {
             Customer customer;
             
-            //CONTINUALLY CREATE A POP UP MENU FOR THE USER TO ENTER THE NAME OF THE TRANSACTION TO BE SUSPENDED
-            //UNTIL A UNIQUE NAME IS CHOSEN
-            while (true) {
-                frmSuspendedTransactionsNamePopUp popUp = new frmSuspendedTransactionsNamePopUp();
-                popUp.ShowDialog();
+            //CREATE A POP UP MENU FOR THE USER TO SEARCH THROUGH CUSTOMER NAMES
+            frmSuspendedTransactionsNamePopUp popUp = new frmSuspendedTransactionsNamePopUp();
+            popUp.ShowDialog();
 
-                customer = popUp.customer;
+            customer = popUp.customer;
 
-                //IF THE USER CANCELS OUT OF THE FORM, END THE FUNCTION
-                if (customer == null) {
-                    return;
-                }
-                else {
-                    bool hasSameName = false;
-
-                    //TODO: remove this once suspended transactions are written to the database
-                    //COMPARE ALL OF THE CURRENT NAMES IN THE MAP TO SEE IF THERE'S A COPY
-                    foreach (string key in frmSuspendedTransactions.suspendedTransactionsMap.Keys) {
-                        if (key.Equals(customer.FirstName + " " + customer.LastName)) {
-                            hasSameName = true;
-                        }
-                    }
-
-                    //IF NO COPY WAS FOUND, THEN BREAK OUT OF THE WHILE LOOP
-                    if (!hasSameName) {
-                        break;
-                    }
-                }
+            //IF THE USER CANCELS OUT OF THE FORM OR DOESN'T SELECT A NAME, END THE FUNCTION
+            if (customer == null) {
+                return;
             }
-            
-            uint id = DataAccess.instance.ProcessTransaction(transaction);
 
-            Console.WriteLine("id: " + id);
-            //System.Collections.Generic.List<Transaction> transactions = DataAccess.instance.GetSuspendedTransactions();
+            transaction.CustomerName = customer.FirstName + " " + customer.LastName;
+            transaction.CustomerID = customer.CustomerID;
 
-            //foreach(Transaction t in transactions) {
-            //   Console.WriteLine(t.CustomerName + ": " + t.Total.ToString());
-			//}
-
-
-            //TODO: can remove this once everything is working
-            //ADD THE NAME AND THE TRANSACTION TO THE MAP OF SUSPENDED TRANSACTIONS IN 'frmSuspendedTransactions'
-            //frmSuspendedTransactions.suspendedTransactionsMap.Add(customer.FirstName + " " + customer.LastName, transactionCopy);
-            
+            DataAccess.instance.ProcessTransaction(transaction);
 
             //CLEAR THE CURRENT TRANSACTION AND THE dataGridView1 SINCE THEY'RE NOW SUSPENDED
             dataGridView1.Rows.Clear();
@@ -376,7 +347,7 @@ namespace SecretCellar
                 transaction.Items.Add(item);
             }
 
-            addRow(transaction);
+            RefreshDataGrid();
         }
 
         private void caseDiscount_CheckedChanged(object sender, EventArgs e)
@@ -406,8 +377,7 @@ namespace SecretCellar
         {
             frmCustomer customer = new frmCustomer(transaction); //instantiates frmCustomer using Lookup
             customer.ShowDialog(); // opens form associated with Lookup instantiation
-            addRow(transaction);
-
+            RefreshDataGrid();
         }
     }
 }
