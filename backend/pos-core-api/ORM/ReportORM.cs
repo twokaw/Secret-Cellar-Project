@@ -10,31 +10,6 @@ namespace pos_core_api.ORM
     {
         readonly DbConn db = new DbConn();
 
-        public List<Customer> Get()
-        {
-            db.OpenConnection();
-
-            string sqlStatement = @"
-              SELECT customerID, customer_discount, first_name, last_name,
-                     business_name, email, isWholesale, 
-                     addr1, addr2, city, state, zip, phone
-              FROM v_customer
-            ";
-
-            MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
-            MySqlDataReader reader = cmd.ExecuteReader();
-
-            try
-            {
-                return FetchCustomers(reader);
-            }
-            finally
-            {
-                reader.Close();
-                db.CloseConnnection();
-            }
-        }
-
         public long Insert(Customer cust)
         {
             try
