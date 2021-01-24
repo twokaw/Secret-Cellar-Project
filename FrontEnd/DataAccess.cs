@@ -325,10 +325,22 @@ namespace SecretCellar
 
                 }
 
+                //File.Create($"{Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}\\{ imageFileName}"); when this is used it crashes saying it is being used by another process
+
                 File.Copy(path, $"{Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}\\{ imageFileName}");
 
+                //File.Replace(path, $"{Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}\\{ imageFileName}", $"{Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}\\{imageFileName + ".bak"}"); works but moves instead of duplicating file and creates a .bak file in the destination folder
                 Properties.Settings.Default.Logo = imageFileName;
                 Properties.Settings.Default.Save();
+
+                /*public static void ReplaceFile(string fileToMoveAndDelete, string fileToReplace, string backupOfFileToReplace)
+                {
+                    // Create a new FileInfo object.    
+                    FileInfo fInfo = new FileInfo(fileToMoveAndDelete);
+
+                    // replace the file.    
+                    fInfo.Replace(fileToReplace, backupOfFileToReplace, false);
+                }*/
 
             }
 

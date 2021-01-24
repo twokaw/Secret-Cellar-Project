@@ -38,6 +38,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.lstTypes = new System.Windows.Forms.ListBox();
             this.tab_General = new System.Windows.Forms.TabPage();
+            this.btn_change_logo = new System.Windows.Forms.Button();
             this.listbox_logos = new System.Windows.Forms.ListBox();
             this.pic_logo = new System.Windows.Forms.PictureBox();
             this.btn_change_image = new System.Windows.Forms.Button();
@@ -52,7 +53,6 @@
             this.btn_foot = new System.Windows.Forms.Button();
             this.btn_header = new System.Windows.Forms.Button();
             this.btn_commit = new System.Windows.Forms.Button();
-            this.btn_change_logo = new System.Windows.Forms.Button();
             this.tab_receipt.SuspendLayout();
             this.TabTypes.SuspendLayout();
             this.tab_General.SuspendLayout();
@@ -152,6 +152,7 @@
             this.lstTypes.Name = "lstTypes";
             this.lstTypes.Size = new System.Drawing.Size(152, 420);
             this.lstTypes.TabIndex = 0;
+            this.lstTypes.SelectedIndexChanged += new System.EventHandler(this.lstTypes_SelectedIndexChanged);
             // 
             // tab_General
             // 
@@ -172,6 +173,16 @@
             this.tab_General.Text = "General";
             this.tab_General.UseVisualStyleBackColor = true;
             this.tab_General.Click += new System.EventHandler(this.tab_General_Click);
+            // 
+            // btn_change_logo
+            // 
+            this.btn_change_logo.Location = new System.Drawing.Point(483, 241);
+            this.btn_change_logo.Name = "btn_change_logo";
+            this.btn_change_logo.Size = new System.Drawing.Size(210, 29);
+            this.btn_change_logo.TabIndex = 8;
+            this.btn_change_logo.Text = "Change Logo";
+            this.btn_change_logo.UseVisualStyleBackColor = true;
+            this.btn_change_logo.Click += new System.EventHandler(this.btn_change_logo_Click);
             // 
             // listbox_logos
             // 
@@ -365,16 +376,6 @@
             this.btn_commit.Text = "Commit";
             this.btn_commit.UseVisualStyleBackColor = true;
             this.btn_commit.Click += new System.EventHandler(this.btn_commit_Click);
-            // 
-            // btn_change_logo
-            // 
-            this.btn_change_logo.Location = new System.Drawing.Point(483, 241);
-            this.btn_change_logo.Name = "btn_change_logo";
-            this.btn_change_logo.Size = new System.Drawing.Size(210, 29);
-            this.btn_change_logo.TabIndex = 8;
-            this.btn_change_logo.Text = "Change Logo";
-            this.btn_change_logo.UseVisualStyleBackColor = true;
-            this.btn_change_logo.Click += new System.EventHandler(this.btn_change_logo_Click);
             // 
             // listbx_logos
             // 

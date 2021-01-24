@@ -155,6 +155,13 @@ namespace SecretCellar
         private void btn_change_logo_Click(object sender, EventArgs e)
         {
             DataAccess.instance.ChangeLogo(listbox_logos.Text);
+            
+            
+        }
+
+        private void lstTypes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            lstTypes.DataSource = dataAccess.GetInventoryType();
         }
     }
 
