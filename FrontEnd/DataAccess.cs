@@ -16,6 +16,7 @@ namespace SecretCellar
         private static WebConnector web = null;
         public static DataAccess instance;
         private Image logo;
+        private List<PictureBox> pictureBoxes = new List<PictureBox>();
         public DataAccess(string connectionString)
         {
             if (web == null)
@@ -327,7 +328,7 @@ namespace SecretCellar
 
                 //File.Create($"{Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}\\{ imageFileName}"); when this is used it crashes saying it is being used by another process
 
-                File.Copy(path, $"{Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}\\{ imageFileName}");
+                File.Copy(path, $"{Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}\\{ imageFileName}",true);
 
                 //File.Replace(path, $"{Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}\\{ imageFileName}", $"{Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}\\{imageFileName + ".bak"}"); works but moves instead of duplicating file and creates a .bak file in the destination folder
                 Properties.Settings.Default.Logo = imageFileName;
@@ -382,8 +383,25 @@ namespace SecretCellar
         {
             Properties.Settings.Default.Logo = imageFileName;
             Properties.Settings.Default.Save();
+            ImportLogo();
+            RefreshLogos();
         }
 
+        public void AddPictureBox(PictureBox pictureBox)
+        {
+            pictureBoxes.Add(pictureBox);
+            pictureBox.Image = ImportLogo();
+        }
+
+        public void RemovePictureBox(PictureBox pictureBox)
+        {
+            pictureBoxes.Remove(pictureBox);
+        }
+
+        public void RefreshLogos()
+        {
+            pictureBoxes.ForEach(x => x.Image = logo);
+        }
     }
 }
 

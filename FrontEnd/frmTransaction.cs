@@ -16,13 +16,13 @@ namespace SecretCellar
     {
 
         private Transaction transaction = new Transaction();
-        private DataAccess dataAccess;
+        
         private Image logo = null;
 
         public frmTransaction()
         {
             InitializeComponent();
-            dataAccess = new DataAccess(Properties.Settings.Default.URL);
+            DataAccess.instance = new DataAccess(Properties.Settings.Default.URL);
             txtBarcode.Focus();
             ReloadLogo();
             this.Size = new System.Drawing.Size(1366, 768);
@@ -51,8 +51,8 @@ namespace SecretCellar
 
         private void ReloadLogo()
         {
-
-            pictureBox1.Image = dataAccess.ImportLogo();
+            DataAccess.instance.AddPictureBox(pictureBox1);
+            
         }
 
         private void frmTransaction_Load(object sender, EventArgs e)
@@ -173,7 +173,7 @@ namespace SecretCellar
         {
             if (e.KeyData == Keys.Enter && !string.IsNullOrWhiteSpace(txtBarcode.Text))
             {
-                Inventory i = dataAccess.GetItem(txtBarcode.Text.Trim());
+                Inventory i = DataAccess.instance.GetItem(txtBarcode.Text.Trim());
                 if (i != null)
                 {
                     transaction.Add(i);

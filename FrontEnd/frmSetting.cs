@@ -12,7 +12,7 @@ namespace SecretCellar
 {
     public partial class listbx_logos : ManagedForm
     {
-        private readonly DataAccess dataAccess = new DataAccess();
+        
         private ToolTip ProgramTips = new ToolTip();
 
         public listbx_logos()
@@ -20,12 +20,12 @@ namespace SecretCellar
             InitializeComponent();
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScaleDimensions = new System.Drawing.SizeF(72, 72);
-            listbox_logos.DataSource = dataAccess.GetImageFiles();
+            listbox_logos.DataSource = DataAccess.instance.GetImageFiles();
         }
 
         private void FrmSetting_Load(object sender, EventArgs e)
         {
-            lstTypes.DataSource = dataAccess.GetInventoryType();
+            lstTypes.DataSource = DataAccess.instance.GetInventoryType();
             // Set up the delays for the ToolTip.
             ProgramTips.AutoPopDelay = 10000;
             ProgramTips.InitialDelay = 1000;
@@ -135,7 +135,7 @@ namespace SecretCellar
             if(image.ShowDialog() == DialogResult.OK)
             {
 
-                pic_logo.Image = dataAccess.ImportLogo(image.FileName);
+                pic_logo.Image = DataAccess.instance.ImportLogo(image.FileName);
 
             }
             
@@ -148,7 +148,7 @@ namespace SecretCellar
 
         private void listbox_logos_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //listbox_logos.DataSource =  dataAccess.GetImageFiles();
+            //listbox_logos.DataSource =  DataAccess.instance.GetImageFiles();
             pic_logo.Image = DataAccess.instance.GetImage(listbox_logos.Text);
         }
 
@@ -161,7 +161,7 @@ namespace SecretCellar
 
         private void lstTypes_SelectedIndexChanged(object sender, EventArgs e)
         {
-            lstTypes.DataSource = dataAccess.GetInventoryType();
+            lstTypes.DataSource = DataAccess.instance.GetInventoryType();
         }
     }
 
