@@ -10,6 +10,8 @@ namespace pos_core_api.ORM
     {
         readonly DbConn db = new DbConn();
 
+      
+
         public long Insert(Customer cust)
         {
             try
