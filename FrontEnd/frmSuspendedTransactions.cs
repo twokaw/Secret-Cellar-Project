@@ -29,14 +29,14 @@ namespace SecretCellar
 
 			//POPULATE THE LIST OF SUSPENDED TRANSACTIONS CUSTOMER NAMES
 			foreach (Transaction t in suspendedTransactions) {
-				//GET THE CUSTOMER OF THE SUSPENDED TRANSACTION
-				Customer customer = DataAccess.instance.GetCustomer(t.CustomerID);
-
 				//ADD THE TRANSACTION INVOICE ID TO THE TRACKER
 				suspendedTransactionsIdTracker.Add(t.InvoiceID);
 
+				//GET THE CUSTOMER OF THE SUSPENDED TRANSACTION
+				Customer customer = DataAccess.instance.GetCustomer(t.CustomerID);
+
 				//POPULATE THE CUSTOMER NAME IN THE LIST
-				if (customer != null) {
+				if (customer != null && !customer.FirstName.Equals("") && !customer.LastName.Equals("")) {
 					selectionListSuspendedTransactions.Items.Add(customer.FirstName + " " + customer.LastName);
 				}
 				else {
@@ -48,7 +48,6 @@ namespace SecretCellar
 			if (suspendedTransactions.Count > 0) {
 				selectionListSuspendedTransactions.SelectedIndex = 0;
 			}
-
 		}
 
 		private void dataGridViewSuspendedTransaction_CellContentClick(object sender, DataGridViewCellEventArgs e) {
@@ -57,7 +56,7 @@ namespace SecretCellar
 
 		private void selectionListSuspendedTransactions_SelectedIndexChanged(object sender, EventArgs e) {
 			//IF THERE IS AT LEAST ONE SUSPENDED TRANSACTION THEN CONTINUE
-			if (suspendedTransactions.Count > 0) {
+			if (suspendedTransactions.Count > 0 && selectionListSuspendedTransactions.SelectedIndex > 0) {
 				this.dataGridViewSuspendedTransaction.Rows.Clear();
 
 				//GET THE TRANSACTION OF THE CURRENTLY SELECTED CUSTOMER VIA THE TRACKER
@@ -83,7 +82,7 @@ namespace SecretCellar
 
 		private void btnDelete_Click(object sender, EventArgs e)
 		{
-			if (selectionListSuspendedTransactions.Items.Count > 0) {
+			if (selectionListSuspendedTransactions.Items.Count > 0 && selectedTransaction != null) {
 				//ENSURE THAT THE TRANSACTION DOESN'T HAVE PAYMENTS STILL
 				if (selectedTransaction.Payments.Count > 0) {
 					MessageBox.Show("Cannot delete transaction. There are still outstanding payments.", "Error");
@@ -132,6 +131,18 @@ namespace SecretCellar
 		private void btnAdd_Click(object sender, EventArgs e)
 		{
 			if (selectedTransaction != null && selectedTransaction.Items.Count > 0) {
+				//CREATE A COPY OF THE PAYMENT
+				List<Payment> payments = new List<Payment>();
+
+				selectedTransaction.Payments.ForEach((payment) => {
+					payments.Add(payment);
+				});
+
+				//REMOVE THE ITEM THAT IS SELECTED AND CLOSE THE FORM
+				selectedTransaction.Payments.Clear();
+				btnDelete_Click(sender, e);
+				this.Close();
+
 				//CREATE A NEW TRANSACTION FROM THE SELECTED TRANSACTION
 				Transaction t = new Transaction(selectedTransaction.InvoiceID,
 												selectedTransaction.RegisterID,
@@ -140,17 +151,17 @@ namespace SecretCellar
 												selectedTransaction.Items,
 												selectedTransaction.Discount,
 												selectedTransaction.TaxExempt,
-												selectedTransaction.Payments,
+												payments,
 												selectedTransaction.EmployeeID,
 												selectedTransaction.CustomerID);
-				
-				//REMOVE THE ITEM THAT IS SELECTED AND CLOSE THE FORM
-				//btnDelete_Click(sender, e);
-				this.Close();
 
 				//CALL THE IMPORT FUNCTION
 				transactionForm.importSuspendedTransaction(t);
 			}
+		}
+
+		private void btn_CloseWindow_Click(object sender, EventArgs e) {
+			this.Close();
 		}
 	}
 }

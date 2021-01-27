@@ -343,9 +343,7 @@ namespace SecretCellar
             txt_TransTotal.Text = "$0.00";
             txt_Ship.Text = "$0.00";
 
-            foreach (Item item in suspendedTransaction.Items) {
-                transaction.Items.Add(item);
-            }
+            transaction = suspendedTransaction;
 
             RefreshDataGrid();
         }
