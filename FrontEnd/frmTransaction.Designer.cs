@@ -71,6 +71,8 @@
             this.btnTender = new ePOSOne.btnProduct.Button_WOC();
             this.lbl_twentyone = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
+            this.btnSuspendedTransactions = new System.Windows.Forms.Button();
+            this.btnSuspendTransaction = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pb_settings)).BeginInit();
@@ -118,6 +120,8 @@
             this.dataGridView1.TabStop = false;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            this.dataGridView1.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dataGridView1_RowsAdded);
+            this.dataGridView1.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.dataGridView1_RowsRemoved);
             this.dataGridView1.Click += new System.EventHandler(this.dataGridView1_Click);
             // 
             // DESCRIPTION
@@ -483,7 +487,7 @@
             this.txtBarcode.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBarcode.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBarcode.Location = new System.Drawing.Point(683, 23);
+            this.txtBarcode.Location = new System.Drawing.Point(945, 15);
             this.txtBarcode.Margin = new System.Windows.Forms.Padding(1);
             this.txtBarcode.MinimumSize = new System.Drawing.Size(247, 26);
             this.txtBarcode.Name = "txtBarcode";
@@ -495,7 +499,7 @@
             // 
             this.lbl_BARCODE.AutoSize = true;
             this.lbl_BARCODE.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_BARCODE.Location = new System.Drawing.Point(552, 28);
+            this.lbl_BARCODE.Location = new System.Drawing.Point(859, 21);
             this.lbl_BARCODE.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.lbl_BARCODE.Name = "lbl_BARCODE";
             this.lbl_BARCODE.Size = new System.Drawing.Size(72, 15);
@@ -507,7 +511,7 @@
             // 
             this.btnLookup.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnLookup.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLookup.Location = new System.Drawing.Point(981, 20);
+            this.btnLookup.Location = new System.Drawing.Point(1225, 11);
             this.btnLookup.Margin = new System.Windows.Forms.Padding(1);
             this.btnLookup.MaximumSize = new System.Drawing.Size(156, 36);
             this.btnLookup.Name = "btnLookup";
@@ -589,22 +593,47 @@
             this.lbl_twentyone.AutoSize = true;
             this.lbl_twentyone.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold);
             this.lbl_twentyone.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(135)))), ((int)(((byte)(0)))), ((int)(((byte)(1)))));
-            this.lbl_twentyone.Location = new System.Drawing.Point(1265, 25);
+            this.lbl_twentyone.Location = new System.Drawing.Point(1494, 14);
             this.lbl_twentyone.Name = "lbl_twentyone";
             this.lbl_twentyone.Size = new System.Drawing.Size(102, 29);
             this.lbl_twentyone.TabIndex = 23;
             this.lbl_twentyone.Text = "21 Date";
-            this.lbl_twentyone.Click += new System.EventHandler(this.lbl_twentyone_Click);
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(243, 23);
+            this.button1.Location = new System.Drawing.Point(140, 10);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(163, 31);
+            this.button1.Size = new System.Drawing.Size(166, 35);
             this.button1.TabIndex = 24;
             this.button1.Text = "Customers";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // btnSuspendedTransactions
+            // 
+            this.btnSuspendedTransactions.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSuspendedTransactions.Location = new System.Drawing.Point(370, 10);
+            this.btnSuspendedTransactions.Margin = new System.Windows.Forms.Padding(1);
+            this.btnSuspendedTransactions.Name = "btnSuspendedTransactions";
+            this.btnSuspendedTransactions.Size = new System.Drawing.Size(229, 36);
+            this.btnSuspendedTransactions.TabIndex = 23;
+            this.btnSuspendedTransactions.TabStop = false;
+            this.btnSuspendedTransactions.Text = "SUSPENDED TRANSACTIONS";
+            this.btnSuspendedTransactions.UseVisualStyleBackColor = true;
+            this.btnSuspendedTransactions.Click += new System.EventHandler(this.btnSuspendedTransactions_Click);
+            // 
+            // btnSuspendTransaction
+            // 
+            this.btnSuspendTransaction.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSuspendTransaction.Location = new System.Drawing.Point(613, 10);
+            this.btnSuspendTransaction.Margin = new System.Windows.Forms.Padding(1);
+            this.btnSuspendTransaction.Name = "btnSuspendTransaction";
+            this.btnSuspendTransaction.Size = new System.Drawing.Size(121, 36);
+            this.btnSuspendTransaction.TabIndex = 24;
+            this.btnSuspendTransaction.TabStop = false;
+            this.btnSuspendTransaction.Text = "SUSPEND";
+            this.btnSuspendTransaction.UseVisualStyleBackColor = true;
+            this.btnSuspendTransaction.Click += new System.EventHandler(this.btnSuspendTransaction_Click);
             // 
             // frmTransaction
             // 
@@ -615,6 +644,8 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(152)))), ((int)(((byte)(151)))), ((int)(((byte)(152)))));
             this.ClientSize = new System.Drawing.Size(1776, 783);
             this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnSuspendTransaction);
+            this.Controls.Add(this.btnSuspendedTransactions);
             this.Controls.Add(this.lbl_twentyone);
             this.Controls.Add(this.caseDiscount);
             this.Controls.Add(this.pb_settings);
@@ -690,6 +721,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn TAX;
         private System.Windows.Forms.DataGridViewTextBoxColumn BOTTLE_DEPOSIT;
         private System.Windows.Forms.DataGridViewTextBoxColumn TOTAL;
+		private System.Windows.Forms.Button btnSuspendedTransactions;
+		private System.Windows.Forms.Button btnSuspendTransaction;
         private System.Windows.Forms.Label lbl_twentyone;
         private System.Windows.Forms.Button button1;
     }

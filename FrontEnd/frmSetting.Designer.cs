@@ -44,8 +44,8 @@
             this.btn_panel_color = new System.Windows.Forms.Button();
             this.btn_color = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.btn_commit = new System.Windows.Forms.Button();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.btn_commit = new System.Windows.Forms.Button();
             this.tab_receipt.SuspendLayout();
             this.TabTypes.SuspendLayout();
             this.tab_General.SuspendLayout();
@@ -59,7 +59,7 @@
             this.tab_receipt.Controls.Add(this.tabPage2);
             this.tab_receipt.Controls.Add(this.tabPage1);
             this.tab_receipt.Location = new System.Drawing.Point(18, 15);
-            this.tab_receipt.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tab_receipt.Margin = new System.Windows.Forms.Padding(4);
             this.tab_receipt.Name = "tab_receipt";
             this.tab_receipt.SelectedIndex = 0;
             this.tab_receipt.Size = new System.Drawing.Size(1165, 518);
@@ -68,9 +68,9 @@
             // tabHardware
             // 
             this.tabHardware.Location = new System.Drawing.Point(4, 25);
-            this.tabHardware.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabHardware.Margin = new System.Windows.Forms.Padding(4);
             this.tabHardware.Name = "tabHardware";
-            this.tabHardware.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabHardware.Padding = new System.Windows.Forms.Padding(4);
             this.tabHardware.Size = new System.Drawing.Size(1157, 489);
             this.tabHardware.TabIndex = 0;
             this.tabHardware.Text = "Hardware";
@@ -84,9 +84,9 @@
             this.TabTypes.Controls.Add(this.label1);
             this.TabTypes.Controls.Add(this.lstTypes);
             this.TabTypes.Location = new System.Drawing.Point(4, 25);
-            this.TabTypes.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.TabTypes.Margin = new System.Windows.Forms.Padding(4);
             this.TabTypes.Name = "TabTypes";
-            this.TabTypes.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.TabTypes.Padding = new System.Windows.Forms.Padding(4);
             this.TabTypes.Size = new System.Drawing.Size(1157, 489);
             this.TabTypes.TabIndex = 1;
             this.TabTypes.Text = "Types";
@@ -106,7 +106,7 @@
             // 
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Location = new System.Drawing.Point(306, 306);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox1.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(224, 24);
             this.comboBox1.TabIndex = 3;
@@ -139,7 +139,7 @@
             this.lstTypes.FormattingEnabled = true;
             this.lstTypes.ItemHeight = 16;
             this.lstTypes.Location = new System.Drawing.Point(28, 42);
-            this.lstTypes.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.lstTypes.Margin = new System.Windows.Forms.Padding(4);
             this.lstTypes.Name = "lstTypes";
             this.lstTypes.Size = new System.Drawing.Size(152, 420);
             this.lstTypes.TabIndex = 0;
@@ -152,7 +152,7 @@
             this.tab_General.Controls.Add(this.btn_panel_color);
             this.tab_General.Controls.Add(this.btn_color);
             this.tab_General.Location = new System.Drawing.Point(4, 25);
-            this.tab_General.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.tab_General.Margin = new System.Windows.Forms.Padding(1);
             this.tab_General.Name = "tab_General";
             this.tab_General.Size = new System.Drawing.Size(1157, 489);
             this.tab_General.TabIndex = 2;
@@ -166,7 +166,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_reset.Location = new System.Drawing.Point(450, 408);
-            this.btn_reset.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_reset.Margin = new System.Windows.Forms.Padding(4);
             this.btn_reset.Name = "btn_reset";
             this.btn_reset.Size = new System.Drawing.Size(261, 26);
             this.btn_reset.TabIndex = 4;
@@ -180,7 +180,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_row_color.Location = new System.Drawing.Point(450, 318);
-            this.btn_row_color.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_row_color.Margin = new System.Windows.Forms.Padding(4);
             this.btn_row_color.Name = "btn_row_color";
             this.btn_row_color.Size = new System.Drawing.Size(261, 26);
             this.btn_row_color.TabIndex = 3;
@@ -194,7 +194,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_font_settings.Location = new System.Drawing.Point(450, 268);
-            this.btn_font_settings.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_font_settings.Margin = new System.Windows.Forms.Padding(4);
             this.btn_font_settings.Name = "btn_font_settings";
             this.btn_font_settings.Size = new System.Drawing.Size(261, 26);
             this.btn_font_settings.TabIndex = 2;
@@ -208,7 +208,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_panel_color.Location = new System.Drawing.Point(450, 220);
-            this.btn_panel_color.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_panel_color.Margin = new System.Windows.Forms.Padding(4);
             this.btn_panel_color.Name = "btn_panel_color";
             this.btn_panel_color.Size = new System.Drawing.Size(261, 26);
             this.btn_panel_color.TabIndex = 1;
@@ -222,7 +222,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_color.Location = new System.Drawing.Point(450, 171);
-            this.btn_color.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_color.Margin = new System.Windows.Forms.Padding(4);
             this.btn_color.Name = "btn_color";
             this.btn_color.Size = new System.Drawing.Size(261, 26);
             this.btn_color.TabIndex = 0;
@@ -233,26 +233,12 @@
             // tabPage2
             // 
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
-            this.tabPage2.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.tabPage2.Margin = new System.Windows.Forms.Padding(1);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Size = new System.Drawing.Size(1157, 489);
             this.tabPage2.TabIndex = 3;
             this.tabPage2.Text = "Reports";
             this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // btn_commit
-            // 
-            this.btn_commit.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_commit.Location = new System.Drawing.Point(472, 555);
-            this.btn_commit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.btn_commit.Name = "btn_commit";
-            this.btn_commit.Size = new System.Drawing.Size(261, 26);
-            this.btn_commit.TabIndex = 4;
-            this.btn_commit.Text = "Commit";
-            this.btn_commit.UseVisualStyleBackColor = true;
-            this.btn_commit.Click += new System.EventHandler(this.btn_commit_Click);
             // 
             // tabPage1
             // 
@@ -263,6 +249,21 @@
             this.tabPage1.TabIndex = 4;
             this.tabPage1.Text = "Receipt";
             this.tabPage1.UseVisualStyleBackColor = true;
+            this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
+            // 
+            // btn_commit
+            // 
+            this.btn_commit.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_commit.Location = new System.Drawing.Point(472, 555);
+            this.btn_commit.Margin = new System.Windows.Forms.Padding(4);
+            this.btn_commit.Name = "btn_commit";
+            this.btn_commit.Size = new System.Drawing.Size(261, 26);
+            this.btn_commit.TabIndex = 4;
+            this.btn_commit.Text = "Commit";
+            this.btn_commit.UseVisualStyleBackColor = true;
+            this.btn_commit.Click += new System.EventHandler(this.btn_commit_Click);
             // 
             // FrmSetting
             // 
@@ -272,7 +273,7 @@
             this.Controls.Add(this.btn_commit);
             this.Controls.Add(this.tab_receipt);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FrmSetting";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "frmSetting";

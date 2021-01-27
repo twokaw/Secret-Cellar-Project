@@ -113,6 +113,11 @@ namespace SecretCellar
             reset_Default_Properties();
             Properties.Settings.Default.Save();
         }
+
+        private void tabPage1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 //testing
