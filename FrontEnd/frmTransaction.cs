@@ -101,8 +101,10 @@ namespace SecretCellar
                     if (transaction.Payments.FirstOrDefault(x => x.Method == "CASH" || x.Method == "CHECK") != null)
                         openCashDrawer();
 
-                    if (payment.PrintReceipt)
-                        new Receipt(transaction).Print();
+                    if (payment.PrintReceipt) {
+                    Receipt.DefaultLayout.Logo = DataAccess.instance.ImportLogo();
+                    new Receipt(transaction).Print();
+                    }
 
                     //transaction complete, clear the form
                     transaction = new Transaction();
