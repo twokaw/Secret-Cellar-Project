@@ -16,7 +16,7 @@ namespace SecretCellar
         private static WebConnector web = null;
         public static DataAccess instance;
         private Image logo;
-        private List<PictureBox> pictureBoxes = new List<PictureBox>();
+        private static List<PictureBox> pictureBoxes = new List<PictureBox>();
         public DataAccess(string connectionString)
         {
             if (web == null)
@@ -389,8 +389,11 @@ namespace SecretCellar
 
         public void AddPictureBox(PictureBox pictureBox)
         {
-            pictureBoxes.Add(pictureBox);
-            pictureBox.Image = ImportLogo();
+            if (!pictureBoxes.Contains(pictureBox))
+            {
+                pictureBoxes.Add(pictureBox);
+                pictureBox.Image = ImportLogo();
+            }
         }
 
         public void RemovePictureBox(PictureBox pictureBox)
