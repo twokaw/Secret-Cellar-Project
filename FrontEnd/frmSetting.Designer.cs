@@ -48,27 +48,27 @@
             this.btn_panel_color = new System.Windows.Forms.Button();
             this.btn_color = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.btn_Run = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.TxtSalesVendor = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.TxtSalesInvType = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.TxtSalesTotals = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.dtp_end = new System.Windows.Forms.DateTimePicker();
+            this.label4 = new System.Windows.Forms.Label();
+            this.dtp_start = new System.Windows.Forms.DateTimePicker();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.btn_rec_font = new System.Windows.Forms.Button();
             this.btn_foot = new System.Windows.Forms.Button();
             this.btn_header = new System.Windows.Forms.Button();
             this.btn_commit = new System.Windows.Forms.Button();
-            this.dtp_start = new System.Windows.Forms.DateTimePicker();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.dtp_end = new System.Windows.Forms.DateTimePicker();
-            this.label8 = new System.Windows.Forms.Label();
-            this.TxtSalesTotals = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.TxtSalesInvType = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.TxtSalesVendor = new System.Windows.Forms.TextBox();
-            this.btn_Run = new System.Windows.Forms.Button();
             this.tab_receipt.SuspendLayout();
             this.TabTypes.SuspendLayout();
             this.tab_General.SuspendLayout();
-            this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pic_logo)).BeginInit();
+            this.tabPage2.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -80,7 +80,7 @@
             this.tab_receipt.Controls.Add(this.tabPage2);
             this.tab_receipt.Controls.Add(this.tabPage1);
             this.tab_receipt.Location = new System.Drawing.Point(26, 23);
-            this.tab_receipt.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.tab_receipt.Margin = new System.Windows.Forms.Padding(6);
             this.tab_receipt.Name = "tab_receipt";
             this.tab_receipt.SelectedIndex = 0;
             this.tab_receipt.Size = new System.Drawing.Size(1166, 518);
@@ -89,10 +89,10 @@
             // tabHardware
             // 
             this.tabHardware.Location = new System.Drawing.Point(4, 34);
-            this.tabHardware.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.tabHardware.Margin = new System.Windows.Forms.Padding(6);
             this.tabHardware.Name = "tabHardware";
             this.tabHardware.Padding = new System.Windows.Forms.Padding(4);
-            this.tabHardware.Size = new System.Drawing.Size(1158, 489);
+            this.tabHardware.Size = new System.Drawing.Size(1158, 480);
             this.tabHardware.TabIndex = 0;
             this.tabHardware.Text = "Hardware";
             this.tabHardware.UseVisualStyleBackColor = true;
@@ -105,10 +105,10 @@
             this.TabTypes.Controls.Add(this.label1);
             this.TabTypes.Controls.Add(this.lstTypes);
             this.TabTypes.Location = new System.Drawing.Point(4, 34);
-            this.TabTypes.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.TabTypes.Margin = new System.Windows.Forms.Padding(6);
             this.TabTypes.Name = "TabTypes";
             this.TabTypes.Padding = new System.Windows.Forms.Padding(4);
-            this.TabTypes.Size = new System.Drawing.Size(1158, 489);
+            this.TabTypes.Size = new System.Drawing.Size(1158, 480);
             this.TabTypes.TabIndex = 1;
             this.TabTypes.Text = "Types";
             this.TabTypes.UseVisualStyleBackColor = true;
@@ -116,7 +116,7 @@
             // label3
             // 
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(448, 434);
+            this.label3.Location = new System.Drawing.Point(403, 235);
             this.label3.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(221, 28);
@@ -126,8 +126,8 @@
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(442, 478);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.comboBox1.Location = new System.Drawing.Point(407, 269);
+            this.comboBox1.Margin = new System.Windows.Forms.Padding(6);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(322, 33);
             this.comboBox1.TabIndex = 3;
@@ -160,9 +160,9 @@
             this.lstTypes.FormattingEnabled = true;
             this.lstTypes.ItemHeight = 25;
             this.lstTypes.Location = new System.Drawing.Point(40, 66);
-            this.lstTypes.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.lstTypes.Margin = new System.Windows.Forms.Padding(6);
             this.lstTypes.Name = "lstTypes";
-            this.lstTypes.Size = new System.Drawing.Size(218, 654);
+            this.lstTypes.Size = new System.Drawing.Size(218, 379);
             this.lstTypes.TabIndex = 0;
             this.lstTypes.SelectedIndexChanged += new System.EventHandler(this.lstTypes_SelectedIndexChanged);
             // 
@@ -177,10 +177,10 @@
             this.tab_General.Controls.Add(this.btn_font_settings);
             this.tab_General.Controls.Add(this.btn_panel_color);
             this.tab_General.Controls.Add(this.btn_color);
-            this.tab_General.Location = new System.Drawing.Point(4, 25);
+            this.tab_General.Location = new System.Drawing.Point(4, 34);
             this.tab_General.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.tab_General.Name = "tab_General";
-            this.tab_General.Size = new System.Drawing.Size(1158, 489);
+            this.tab_General.Size = new System.Drawing.Size(1158, 480);
             this.tab_General.TabIndex = 2;
             this.tab_General.Text = "General";
             this.tab_General.UseVisualStyleBackColor = true;
@@ -199,10 +199,10 @@
             // listbox_logos
             // 
             this.listbox_logos.FormattingEnabled = true;
-            this.listbox_logos.ItemHeight = 16;
+            this.listbox_logos.ItemHeight = 25;
             this.listbox_logos.Location = new System.Drawing.Point(459, 139);
             this.listbox_logos.Name = "listbox_logos";
-            this.listbox_logos.Size = new System.Drawing.Size(261, 84);
+            this.listbox_logos.Size = new System.Drawing.Size(261, 79);
             this.listbox_logos.TabIndex = 7;
             this.listbox_logos.SelectedIndexChanged += new System.EventHandler(this.listbox_logos_SelectedIndexChanged);
             // 
@@ -226,7 +226,7 @@
             this.btn_change_image.Location = new System.Drawing.Point(114, 352);
             this.btn_change_image.Margin = new System.Windows.Forms.Padding(4);
             this.btn_change_image.Name = "btn_change_image";
-            this.btn_change_image.Size = new System.Drawing.Size(261, 28);
+            this.btn_change_image.Size = new System.Drawing.Size(261, 35);
             this.btn_change_image.TabIndex = 5;
             this.btn_change_image.Text = "Import Image";
             this.btn_change_image.UseVisualStyleBackColor = true;
@@ -241,7 +241,7 @@
             this.btn_reset.Location = new System.Drawing.Point(766, 356);
             this.btn_reset.Margin = new System.Windows.Forms.Padding(4);
             this.btn_reset.Name = "btn_reset";
-            this.btn_reset.Size = new System.Drawing.Size(261, 28);
+            this.btn_reset.Size = new System.Drawing.Size(261, 35);
             this.btn_reset.TabIndex = 4;
             this.btn_reset.Text = "Default Settings";
             this.btn_reset.UseVisualStyleBackColor = true;
@@ -256,7 +256,7 @@
             this.btn_row_color.Location = new System.Drawing.Point(766, 265);
             this.btn_row_color.Margin = new System.Windows.Forms.Padding(4);
             this.btn_row_color.Name = "btn_row_color";
-            this.btn_row_color.Size = new System.Drawing.Size(261, 28);
+            this.btn_row_color.Size = new System.Drawing.Size(261, 35);
             this.btn_row_color.TabIndex = 3;
             this.btn_row_color.Text = "Row Color Settings";
             this.btn_row_color.UseVisualStyleBackColor = true;
@@ -271,7 +271,7 @@
             this.btn_font_settings.Location = new System.Drawing.Point(766, 215);
             this.btn_font_settings.Margin = new System.Windows.Forms.Padding(4);
             this.btn_font_settings.Name = "btn_font_settings";
-            this.btn_font_settings.Size = new System.Drawing.Size(261, 28);
+            this.btn_font_settings.Size = new System.Drawing.Size(261, 35);
             this.btn_font_settings.TabIndex = 2;
             this.btn_font_settings.Text = "Font Settings";
             this.btn_font_settings.UseVisualStyleBackColor = true;
@@ -286,7 +286,7 @@
             this.btn_panel_color.Location = new System.Drawing.Point(766, 167);
             this.btn_panel_color.Margin = new System.Windows.Forms.Padding(4);
             this.btn_panel_color.Name = "btn_panel_color";
-            this.btn_panel_color.Size = new System.Drawing.Size(261, 28);
+            this.btn_panel_color.Size = new System.Drawing.Size(261, 35);
             this.btn_panel_color.TabIndex = 1;
             this.btn_panel_color.Text = "Panel Color Settings";
             this.btn_panel_color.UseVisualStyleBackColor = true;
@@ -301,7 +301,7 @@
             this.btn_color.Location = new System.Drawing.Point(766, 118);
             this.btn_color.Margin = new System.Windows.Forms.Padding(4);
             this.btn_color.Name = "btn_color";
-            this.btn_color.Size = new System.Drawing.Size(261, 28);
+            this.btn_color.Size = new System.Drawing.Size(261, 35);
             this.btn_color.TabIndex = 0;
             this.btn_color.Text = "Color Settings";
             this.btn_color.UseVisualStyleBackColor = true;
@@ -323,102 +323,74 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 34);
             this.tabPage2.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Size = new System.Drawing.Size(1675, 771);
+            this.tabPage2.Size = new System.Drawing.Size(1158, 480);
             this.tabPage2.TabIndex = 3;
             this.tabPage2.Text = "Reports";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // tabPage1
+            // btn_Run
             // 
-            this.tabPage1.Controls.Add(this.btn_rec_font);
-            this.tabPage1.Controls.Add(this.btn_foot);
-            this.tabPage1.Controls.Add(this.btn_header);
-            this.tabPage1.Location = new System.Drawing.Point(4, 25);
-            this.tabPage1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tabPage1.Size = new System.Drawing.Size(1158, 489);
-            this.tabPage1.Text = "Receipt";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.btn_Run.Location = new System.Drawing.Point(24, 23);
+            this.btn_Run.Name = "btn_Run";
+            this.btn_Run.Size = new System.Drawing.Size(116, 35);
+            this.btn_Run.TabIndex = 15;
+            this.btn_Run.Text = "Run";
+            this.btn_Run.UseVisualStyleBackColor = true;
+            this.btn_Run.Click += new System.EventHandler(this.btn_Run_Click);
             // 
-            // btn_rec_font
+            // label7
             // 
-            this.btn_rec_font.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_rec_font.AutoSize = true;
-            this.btn_rec_font.Location = new System.Drawing.Point(450, 252);
-            this.btn_rec_font.Margin = new System.Windows.Forms.Padding(4);
-            this.btn_rec_font.Name = "btn_rec_font";
-            this.btn_rec_font.Size = new System.Drawing.Size(261, 28);
-            this.btn_rec_font.TabIndex = 8;
-            this.btn_rec_font.Text = "Change Receipt Font";
-            this.btn_rec_font.UseVisualStyleBackColor = true;
+            this.label7.Location = new System.Drawing.Point(862, 135);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(276, 34);
+            this.label7.TabIndex = 14;
+            this.label7.Text = "Vendor";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // btn_foot
+            // TxtSalesVendor
             // 
-            this.btn_foot.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_foot.AutoSize = true;
-            this.btn_foot.Location = new System.Drawing.Point(450, 199);
-            this.btn_foot.Margin = new System.Windows.Forms.Padding(4);
-            this.btn_foot.Name = "btn_foot";
-            this.btn_foot.Size = new System.Drawing.Size(261, 28);
-            this.btn_foot.TabIndex = 7;
-            this.btn_foot.Text = "Change Reciept Footer";
-            this.btn_foot.UseVisualStyleBackColor = true;
+            this.TxtSalesVendor.Location = new System.Drawing.Point(862, 172);
+            this.TxtSalesVendor.Multiline = true;
+            this.TxtSalesVendor.Name = "TxtSalesVendor";
+            this.TxtSalesVendor.ReadOnly = true;
+            this.TxtSalesVendor.Size = new System.Drawing.Size(276, 285);
+            this.TxtSalesVendor.TabIndex = 13;
             // 
-            // btn_header
+            // label6
             // 
-            this.btn_header.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_header.AutoSize = true;
-            this.btn_header.Location = new System.Drawing.Point(450, 151);
-            this.btn_header.Margin = new System.Windows.Forms.Padding(4);
-            this.btn_header.Name = "btn_header";
-            this.btn_header.Size = new System.Drawing.Size(261, 28);
-            this.btn_header.TabIndex = 6;
-            this.btn_header.Text = "Change Receipt Header";
-            this.btn_header.UseVisualStyleBackColor = true;
+            this.label6.Location = new System.Drawing.Point(559, 135);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(276, 34);
+            this.label6.TabIndex = 12;
+            this.label6.Text = "Inventory Type";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // btn_commit
+            // TxtSalesInvType
             // 
-            this.btn_commit.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_commit.AutoSize = true;
-            this.btn_commit.Location = new System.Drawing.Point(472, 555);
-            this.btn_commit.Margin = new System.Windows.Forms.Padding(4);
-            this.btn_commit.Name = "btn_commit";
-            this.btn_commit.Size = new System.Drawing.Size(261, 28);
-            this.btn_commit.TabIndex = 4;
-            this.btn_commit.Text = "Commit";
-            this.btn_commit.UseVisualStyleBackColor = true;
-            this.btn_commit.Click += new System.EventHandler(this.btn_commit_Click);
+            this.TxtSalesInvType.Location = new System.Drawing.Point(559, 172);
+            this.TxtSalesInvType.Multiline = true;
+            this.TxtSalesInvType.Name = "TxtSalesInvType";
+            this.TxtSalesInvType.ReadOnly = true;
+            this.TxtSalesInvType.Size = new System.Drawing.Size(276, 285);
+            this.TxtSalesInvType.TabIndex = 11;
             // 
-            // FrmSettings
-            //
-			
-			//
-            // dtp_start
+            // label8
             // 
-            this.dtp_start.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtp_start.Location = new System.Drawing.Point(108, 85);
-            this.dtp_start.MinDate = new System.DateTime(2020, 1, 1, 0, 0, 0, 0);
-            this.dtp_start.Name = "dtp_start";
-            this.dtp_start.Size = new System.Drawing.Size(175, 30);
-            this.dtp_start.TabIndex = 1;
+            this.label8.Location = new System.Drawing.Point(255, 135);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(276, 34);
+            this.label8.TabIndex = 10;
+            this.label8.Text = "Total";
+            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label4
+            // TxtSalesTotals
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(37, 85);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(65, 25);
-            this.label4.TabIndex = 2;
-            this.label4.Text = "Start:";
+            this.TxtSalesTotals.Location = new System.Drawing.Point(255, 172);
+            this.TxtSalesTotals.Multiline = true;
+            this.TxtSalesTotals.Name = "TxtSalesTotals";
+            this.TxtSalesTotals.ReadOnly = true;
+            this.TxtSalesTotals.Size = new System.Drawing.Size(276, 285);
+            this.TxtSalesTotals.TabIndex = 9;
             // 
             // label5
             // 
@@ -438,75 +410,99 @@
             this.dtp_end.Size = new System.Drawing.Size(175, 30);
             this.dtp_end.TabIndex = 3;
             // 
-            // label8
+            // label4
             // 
-            this.label8.Location = new System.Drawing.Point(589, 216);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(276, 34);
-            this.label8.TabIndex = 10;
-            this.label8.Text = "Total";
-            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(37, 85);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(65, 25);
+            this.label4.TabIndex = 2;
+            this.label4.Text = "Start:";
             // 
-            // TxtSalesTotals
+            // dtp_start
             // 
-            this.TxtSalesTotals.Location = new System.Drawing.Point(589, 253);
-            this.TxtSalesTotals.Multiline = true;
-            this.TxtSalesTotals.Name = "TxtSalesTotals";
-            this.TxtSalesTotals.ReadOnly = true;
-            this.TxtSalesTotals.Size = new System.Drawing.Size(276, 403);
-            this.TxtSalesTotals.TabIndex = 9;
+            this.dtp_start.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtp_start.Location = new System.Drawing.Point(108, 85);
+            this.dtp_start.MinDate = new System.DateTime(2020, 1, 1, 0, 0, 0, 0);
+            this.dtp_start.Name = "dtp_start";
+            this.dtp_start.Size = new System.Drawing.Size(175, 30);
+            this.dtp_start.TabIndex = 1;
             // 
-            // label6
+            // tabPage1
             // 
-            this.label6.Location = new System.Drawing.Point(893, 216);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(276, 34);
-            this.label6.TabIndex = 12;
-            this.label6.Text = "Inventory Type";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.tabPage1.Controls.Add(this.btn_rec_font);
+            this.tabPage1.Controls.Add(this.btn_foot);
+            this.tabPage1.Controls.Add(this.btn_header);
+            this.tabPage1.Location = new System.Drawing.Point(4, 34);
+            this.tabPage1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tabPage1.Size = new System.Drawing.Size(1158, 480);
+            this.tabPage1.TabIndex = 4;
+            this.tabPage1.Text = "Receipt";
+            this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // TxtSalesInvType
+            // btn_rec_font
             // 
-            this.TxtSalesInvType.Location = new System.Drawing.Point(893, 253);
-            this.TxtSalesInvType.Multiline = true;
-            this.TxtSalesInvType.Name = "TxtSalesInvType";
-            this.TxtSalesInvType.ReadOnly = true;
-            this.TxtSalesInvType.Size = new System.Drawing.Size(276, 403);
-            this.TxtSalesInvType.TabIndex = 11;
+            this.btn_rec_font.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_rec_font.AutoSize = true;
+            this.btn_rec_font.Location = new System.Drawing.Point(450, 252);
+            this.btn_rec_font.Margin = new System.Windows.Forms.Padding(4);
+            this.btn_rec_font.Name = "btn_rec_font";
+            this.btn_rec_font.Size = new System.Drawing.Size(261, 35);
+            this.btn_rec_font.TabIndex = 8;
+            this.btn_rec_font.Text = "Change Receipt Font";
+            this.btn_rec_font.UseVisualStyleBackColor = true;
             // 
-            // label7
+            // btn_foot
             // 
-            this.label7.Location = new System.Drawing.Point(1196, 216);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(276, 34);
-            this.label7.TabIndex = 14;
-            this.label7.Text = "Vendor";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btn_foot.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_foot.AutoSize = true;
+            this.btn_foot.Location = new System.Drawing.Point(450, 199);
+            this.btn_foot.Margin = new System.Windows.Forms.Padding(4);
+            this.btn_foot.Name = "btn_foot";
+            this.btn_foot.Size = new System.Drawing.Size(261, 35);
+            this.btn_foot.TabIndex = 7;
+            this.btn_foot.Text = "Change Reciept Footer";
+            this.btn_foot.UseVisualStyleBackColor = true;
             // 
-            // TxtSalesVendor
+            // btn_header
             // 
-            this.TxtSalesVendor.Location = new System.Drawing.Point(1196, 253);
-            this.TxtSalesVendor.Multiline = true;
-            this.TxtSalesVendor.Name = "TxtSalesVendor";
-            this.TxtSalesVendor.ReadOnly = true;
-            this.TxtSalesVendor.Size = new System.Drawing.Size(276, 403);
-            this.TxtSalesVendor.TabIndex = 13;
+            this.btn_header.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_header.AutoSize = true;
+            this.btn_header.Location = new System.Drawing.Point(450, 151);
+            this.btn_header.Margin = new System.Windows.Forms.Padding(4);
+            this.btn_header.Name = "btn_header";
+            this.btn_header.Size = new System.Drawing.Size(261, 35);
+            this.btn_header.TabIndex = 6;
+            this.btn_header.Text = "Change Receipt Header";
+            this.btn_header.UseVisualStyleBackColor = true;
             // 
-            // btn_Run
+            // btn_commit
             // 
-            this.btn_Run.Location = new System.Drawing.Point(24, 23);
-            this.btn_Run.Name = "btn_Run";
-            this.btn_Run.Size = new System.Drawing.Size(116, 35);
-            this.btn_Run.TabIndex = 15;
-            this.btn_Run.Text = "Run";
-            this.btn_Run.UseVisualStyleBackColor = true;
-            this.btn_Run.Click += new System.EventHandler(this.btn_Run_Click);
+            this.btn_commit.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_commit.AutoSize = true;
+            this.btn_commit.Location = new System.Drawing.Point(472, 555);
+            this.btn_commit.Margin = new System.Windows.Forms.Padding(4);
+            this.btn_commit.Name = "btn_commit";
+            this.btn_commit.Size = new System.Drawing.Size(261, 35);
+            this.btn_commit.TabIndex = 4;
+            this.btn_commit.Text = "Commit";
+            this.btn_commit.UseVisualStyleBackColor = true;
+            this.btn_commit.Click += new System.EventHandler(this.btn_commit_Click);
             // 
-            // FrmSetting
+            // FrmSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-
             this.ClientSize = new System.Drawing.Size(1292, 628);
             this.Controls.Add(this.btn_commit);
             this.Controls.Add(this.tab_receipt);
@@ -520,10 +516,10 @@
             this.TabTypes.ResumeLayout(false);
             this.TabTypes.PerformLayout();
             this.tab_General.ResumeLayout(false);
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
             this.tab_General.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pic_logo)).EndInit();
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             this.ResumeLayout(false);
