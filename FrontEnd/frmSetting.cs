@@ -24,6 +24,11 @@ namespace SecretCellar
             this.AutoScaleDimensions = new System.Drawing.SizeF(72, 72);
             listbox_logos.DataSource = DataAccess.instance.GetImageFiles();
             lstTypes.DataSource = DataAccess.instance.GetInventoryType();
+            InventoryType invType = DataAccess.instance.GetInventoryType(lstTypes.Text);
+            cbx_tax.DataSource = DataAccess.instance.GetTax();
+            lstTypes.DisplayMember = "TypeName";
+            cbx_tax.DisplayMember = "TaxName";
+            
         }
 
         private void FrmSetting_Load(object sender, EventArgs e)
@@ -198,7 +203,16 @@ namespace SecretCellar
 
         private void lstTypes_SelectedIndexChanged(object sender, EventArgs e)
         {
-            InventoryType invType = DataAccess.instance.GetInventoryType(lstTypes.Text);
+
+            txt_bottleDep.Text = ((InventoryType)lstTypes.SelectedItem).BottleDeposit.ToString();
+            txt_salesTax.Text = ((InventoryType)lstTypes.SelectedItem).SalesTax.ToString();
+            txt_localTax.Text = ((InventoryType)lstTypes.SelectedItem).LocalSalesTax.ToString();
+
+        }
+
+        private void TabTypes_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
