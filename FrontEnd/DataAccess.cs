@@ -165,12 +165,12 @@ namespace SecretCellar
         #endregion
 
         #region Transaction
-        public Transaction Get(uint transactionID)
+        public Transaction GetTransactions(uint transactionID)
         {
             string result = web.DataGet($"api/Transaction/{transactionID}");
             return JsonConvert.DeserializeObject<Transaction>(result);
         }
-        public List<Transaction> Get()
+        public List<Transaction> GetTransactions()
         {
             string result = web.DataGet($"api/Transaction");
             return JsonConvert.DeserializeObject<List<Transaction>>(result);
@@ -180,7 +180,7 @@ namespace SecretCellar
             string result = web.DataGet($"api/Transaction/Suspended");
             return JsonConvert.DeserializeObject<List<Transaction>>(result);
         }
-        public List<Transaction> Get(DateTime start, DateTime end)
+        public List<Transaction> GetTransactions(DateTime start, DateTime end )
         {
             string result = web.DataGet($"api/Transaction?start={start}&end={end}");
             return JsonConvert.DeserializeObject<List<Transaction>>(result);

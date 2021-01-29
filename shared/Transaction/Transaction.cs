@@ -17,7 +17,7 @@ namespace Shared
             {
                 double sub = 0;
                 // All items with price * qty
-                Items.ForEach(x => sub += (x.Price > 0) ?  x.Price * x.NumSold : 0);
+                Items.ForEach(x => sub += x.SubTotal );
 
                 return sub;
             }
@@ -36,7 +36,7 @@ namespace Shared
                 // 
                 //   Coupons are negative, to get the discount they will need to be negated to make them po
 
-                Items.ForEach(x => sub += (x.Price > 0) ? x.Price * x.NumSold * ( x.Discount + (1 - x.Discount) * Discount) : -x.Price);
+                Items.ForEach(x => sub += x.DiscountTotal );
 
                 return sub;
             }
@@ -68,7 +68,7 @@ namespace Shared
         private double GetItemPrice(Item i)
         {
             // Get item 
-            return i.Price * i.NumSold * ((i.Price > 0) ? (1 - i.Discount) * (1 - Discount) : 1);
+            return i.AdjustedTotal * ((i.AdjustedTotal > 0) ? (1 - Discount) : 1);
         }
 
         public double Subtotal
