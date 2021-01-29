@@ -83,41 +83,37 @@ namespace SecretCellar
 		private void btnDelete_Click(object sender, EventArgs e)
 		{
 			if (selectionListSuspendedTransactions.Items.Count > 0 && selectedTransaction != null) {
+				int selectedIndex = selectionListSuspendedTransactions.SelectedIndex;
+				uint transactionId = suspendedTransactionsIdTracker.ElementAt(selectedIndex);
+				Transaction transactionToDelete = DataAccess.instance.Get(transactionId);
+				
 				//ENSURE THAT THE TRANSACTION DOESN'T HAVE PAYMENTS STILL
 				if (selectedTransaction.Payments.Count > 0) {
 					MessageBox.Show("Cannot delete transaction. There are still outstanding payments.", "Error");
 					return;
 				}
-
+				
+				//DELETE THE TRANSACTION FROM THE DATABASE
+				DataAccess.instance.DeleteTransaction(selectedTransaction.InvoiceID);
+				
 				//IF THE USER DELETES THE FIRST ITEM IN THE LIST
-				if (selectionListSuspendedTransactions.SelectedIndex == 0 && selectionListSuspendedTransactions.Items.Count > 1) {
+				if (selectedIndex == 0 && selectionListSuspendedTransactions.Items.Count > 1) {
 					selectionListSuspendedTransactions.SelectedIndex += 1;
-					suspendedTransactionsIdTracker.RemoveAt(selectionListSuspendedTransactions.SelectedIndex-1);
-					selectionListSuspendedTransactions.Items.RemoveAt(selectionListSuspendedTransactions.SelectedIndex-1);
-				}
-
-				//IF THE USER DELETES THE ONLY ITEM IN THE LIST
-				else if (selectionListSuspendedTransactions.SelectedIndex == 0) {
-					selectionListSuspendedTransactions.Items.RemoveAt(selectionListSuspendedTransactions.SelectedIndex);
 				}
 
 				//IF THE USER DELETES THE LAST ITEM IN THE LIST
-				else if (selectionListSuspendedTransactions.SelectedIndex == selectionListSuspendedTransactions.Items.Count-1 && selectionListSuspendedTransactions.Items.Count > 1) {
+				else if (selectedIndex == selectionListSuspendedTransactions.Items.Count-1 && selectionListSuspendedTransactions.Items.Count > 1) {
 					selectionListSuspendedTransactions.SelectedIndex -= 1;
-					suspendedTransactionsIdTracker.RemoveAt(selectionListSuspendedTransactions.SelectedIndex+1);
-					selectionListSuspendedTransactions.Items.RemoveAt(selectionListSuspendedTransactions.SelectedIndex+1);
 				}
 
 				//IF THE USER DELETES AN ITEM IN THE MIDDLE
-				else {
+				else if (selectedIndex > 0 && selectedIndex < selectionListSuspendedTransactions.Items.Count-1) {
 					selectionListSuspendedTransactions.SelectedIndex -= 1;
-					suspendedTransactionsIdTracker.RemoveAt(selectionListSuspendedTransactions.SelectedIndex+1);
-					selectionListSuspendedTransactions.Items.RemoveAt(selectionListSuspendedTransactions.SelectedIndex+1);
-					selectionListSuspendedTransactions.SelectedIndex += 1;
 				}
 
-				//REMOVE THE TRANSACTION FROM THE DATABASE
-				DataAccess.instance.DeleteTransaction(selectedTransaction.InvoiceID);
+				//REMOVE THE TRANSACTION FROM THE TRACKER AND FROM THE LIST
+				suspendedTransactionsIdTracker.RemoveAt(selectedIndex);
+				selectionListSuspendedTransactions.Items.RemoveAt(selectedIndex);
 			}
 			
 			//CLEAR THE DATA GRID AND TRACKER IF THERE ARE NO ITEMS LEFT
@@ -138,13 +134,11 @@ namespace SecretCellar
 					payments.Add(payment);
 				});
 
-				//REMOVE THE ITEM THAT IS SELECTED AND CLOSE THE FORM
+				//REMOVE THE PAYMENT SO THAT IT CAN BE REMOVED FROM THE SUSPENDED TRANSACTIONS
 				selectedTransaction.Payments.Clear();
-				btnDelete_Click(sender, e);
-				this.Close();
 
 				//CREATE A NEW TRANSACTION FROM THE SELECTED TRANSACTION
-				Transaction t = new Transaction(selectedTransaction.InvoiceID,
+				Transaction newTransaction = new Transaction(selectedTransaction.InvoiceID,
 												selectedTransaction.RegisterID,
 												selectedTransaction.TransactionDateTime,
 												selectedTransaction.Location,
@@ -154,9 +148,13 @@ namespace SecretCellar
 												payments,
 												selectedTransaction.EmployeeID,
 												selectedTransaction.CustomerID);
+				
+				//REMOVE THE TRANSACTION THAT IS SELECTED AND CLOSE THE FORM
+				btnDelete_Click(sender, e);
+				this.Close();
 
 				//CALL THE IMPORT FUNCTION
-				transactionForm.importSuspendedTransaction(t);
+				transactionForm.importSuspendedTransaction(newTransaction);
 			}
 		}
 

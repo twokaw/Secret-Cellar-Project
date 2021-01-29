@@ -315,7 +315,7 @@ namespace SecretCellar
 
             //CLEAR THE CURRENT TRANSACTION AND THE dataGridView1 SINCE THEY'RE NOW SUSPENDED
             dataGridView1.Rows.Clear();
-            transaction.Items.Clear();
+            transaction = new Transaction();
 
             //RESET ALL THE TOTALS
             txt_transSubTotal.Text = "$0.00";
