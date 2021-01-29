@@ -16,16 +16,16 @@ namespace SecretCellar
     {
 
         private Transaction transaction = new Transaction();
-        private DataAccess dataAccess;
+        
         private Image logo = null;
 
         public frmTransaction()
         {
             InitializeComponent();
-
+            DataAccess.instance = new DataAccess(Properties.Settings.Default.URL);
             txtBarcode.Focus();
             ReloadLogo();
-            this.Size = new System.Drawing.Size(1200, 900);
+            this.Size = new System.Drawing.Size(1366, 768);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScaleDimensions = new System.Drawing.SizeF(72, 72);
 
@@ -51,18 +51,8 @@ namespace SecretCellar
 
         private void ReloadLogo()
         {
-
-            if (!string.IsNullOrEmpty(Properties.Settings.Default.Logo))
-            {
-                string logoPath = $"{Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}\\{Properties.Settings.Default.Logo}";
-
-                if (Directory.Exists(logoPath))
-                    logo = Image.FromFile(logoPath);
-            }
-
-            if (logo == null)
-                logo = Properties.Resources.Logo;
-            pictureBox1.Image = logo;
+            DataAccess.instance.AddPictureBox(pictureBox1);
+            
         }
 
         private void frmTransaction_Load(object sender, EventArgs e)
@@ -78,7 +68,7 @@ namespace SecretCellar
                 this.Dispose();
             }
 
-            dataAccess = new DataAccess(Properties.Settings.Default.URL);
+            
             lbl_twentyone.Text = "21 AS OF: " + DateTime.Now.AddYears(-21).ToString("MM/dd/yyyy");
             lbl_twentyone.Font = new Font("Microsoft Sans Serif", 18, FontStyle.Bold);
         }
@@ -111,8 +101,10 @@ namespace SecretCellar
                     if (transaction.Payments.FirstOrDefault(x => x.Method == "CASH" || x.Method == "CHECK") != null)
                         openCashDrawer();
 
-                    if (payment.PrintReceipt)
-                        new Receipt(transaction).Print();
+                    if (payment.PrintReceipt) {
+                    Receipt.DefaultLayout.Logo = DataAccess.instance.ImportLogo();
+                    new Receipt(transaction).Print();
+                    }
 
                     //transaction complete, clear the form
                     transaction = new Transaction();
@@ -183,7 +175,7 @@ namespace SecretCellar
         {
             if (e.KeyData == Keys.Enter && !string.IsNullOrWhiteSpace(txtBarcode.Text))
             {
-                Inventory i = dataAccess.GetItem(txtBarcode.Text.Trim());
+                Inventory i = DataAccess.instance.GetItem(txtBarcode.Text.Trim());
                 if (i != null)
                 {
                     transaction.Add(i);
@@ -283,7 +275,7 @@ namespace SecretCellar
 
         private void pb_settings_Click(object sender, EventArgs e)
         {
-            FrmSetting setting = new FrmSetting();
+            listbx_logos setting = new listbx_logos();
             setting.ShowDialog();
         }
 

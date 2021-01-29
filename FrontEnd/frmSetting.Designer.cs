@@ -1,6 +1,6 @@
 ﻿namespace SecretCellar
 {
-    partial class FrmSetting
+    partial class listbx_logos
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmSetting));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(listbx_logos));
             this.tab_receipt = new System.Windows.Forms.TabControl();
             this.tabHardware = new System.Windows.Forms.TabPage();
             this.TabTypes = new System.Windows.Forms.TabPage();
@@ -38,6 +38,10 @@
             this.label1 = new System.Windows.Forms.Label();
             this.lstTypes = new System.Windows.Forms.ListBox();
             this.tab_General = new System.Windows.Forms.TabPage();
+            this.btn_change_logo = new System.Windows.Forms.Button();
+            this.listbox_logos = new System.Windows.Forms.ListBox();
+            this.pic_logo = new System.Windows.Forms.PictureBox();
+            this.btn_change_image = new System.Windows.Forms.Button();
             this.btn_reset = new System.Windows.Forms.Button();
             this.btn_row_color = new System.Windows.Forms.Button();
             this.btn_font_settings = new System.Windows.Forms.Button();
@@ -45,6 +49,9 @@
             this.btn_color = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.btn_rec_font = new System.Windows.Forms.Button();
+            this.btn_foot = new System.Windows.Forms.Button();
+            this.btn_header = new System.Windows.Forms.Button();
             this.btn_commit = new System.Windows.Forms.Button();
             this.dtp_start = new System.Windows.Forms.DateTimePicker();
             this.label4 = new System.Windows.Forms.Label();
@@ -61,6 +68,8 @@
             this.TabTypes.SuspendLayout();
             this.tab_General.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pic_logo)).BeginInit();
+            this.tabPage1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tab_receipt
@@ -74,7 +83,7 @@
             this.tab_receipt.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.tab_receipt.Name = "tab_receipt";
             this.tab_receipt.SelectedIndex = 0;
-            this.tab_receipt.Size = new System.Drawing.Size(1683, 809);
+            this.tab_receipt.Size = new System.Drawing.Size(1166, 518);
             this.tab_receipt.TabIndex = 0;
             // 
             // tabHardware
@@ -82,8 +91,8 @@
             this.tabHardware.Location = new System.Drawing.Point(4, 34);
             this.tabHardware.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.tabHardware.Name = "tabHardware";
-            this.tabHardware.Padding = new System.Windows.Forms.Padding(6, 6, 6, 6);
-            this.tabHardware.Size = new System.Drawing.Size(1675, 771);
+            this.tabHardware.Padding = new System.Windows.Forms.Padding(4);
+            this.tabHardware.Size = new System.Drawing.Size(1158, 489);
             this.tabHardware.TabIndex = 0;
             this.tabHardware.Text = "Hardware";
             this.tabHardware.UseVisualStyleBackColor = true;
@@ -98,8 +107,8 @@
             this.TabTypes.Location = new System.Drawing.Point(4, 34);
             this.TabTypes.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.TabTypes.Name = "TabTypes";
-            this.TabTypes.Padding = new System.Windows.Forms.Padding(6, 6, 6, 6);
-            this.TabTypes.Size = new System.Drawing.Size(1675, 771);
+            this.TabTypes.Padding = new System.Windows.Forms.Padding(4);
+            this.TabTypes.Size = new System.Drawing.Size(1158, 489);
             this.TabTypes.TabIndex = 1;
             this.TabTypes.Text = "Types";
             this.TabTypes.UseVisualStyleBackColor = true;
@@ -137,8 +146,8 @@
             // label1
             // 
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(45, 27);
-            this.label1.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label1.Location = new System.Drawing.Point(32, 17);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(221, 25);
             this.label1.TabIndex = 1;
@@ -155,32 +164,84 @@
             this.lstTypes.Name = "lstTypes";
             this.lstTypes.Size = new System.Drawing.Size(218, 654);
             this.lstTypes.TabIndex = 0;
+            this.lstTypes.SelectedIndexChanged += new System.EventHandler(this.lstTypes_SelectedIndexChanged);
             // 
             // tab_General
             // 
+            this.tab_General.Controls.Add(this.btn_change_logo);
+            this.tab_General.Controls.Add(this.listbox_logos);
+            this.tab_General.Controls.Add(this.pic_logo);
+            this.tab_General.Controls.Add(this.btn_change_image);
             this.tab_General.Controls.Add(this.btn_reset);
             this.tab_General.Controls.Add(this.btn_row_color);
             this.tab_General.Controls.Add(this.btn_font_settings);
             this.tab_General.Controls.Add(this.btn_panel_color);
             this.tab_General.Controls.Add(this.btn_color);
-            this.tab_General.Location = new System.Drawing.Point(4, 34);
-            this.tab_General.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
+            this.tab_General.Location = new System.Drawing.Point(4, 25);
+            this.tab_General.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.tab_General.Name = "tab_General";
-            this.tab_General.Size = new System.Drawing.Size(1675, 771);
+            this.tab_General.Size = new System.Drawing.Size(1158, 489);
             this.tab_General.TabIndex = 2;
             this.tab_General.Text = "General";
             this.tab_General.UseVisualStyleBackColor = true;
             this.tab_General.Click += new System.EventHandler(this.tab_General_Click);
+            // 
+            // btn_change_logo
+            // 
+            this.btn_change_logo.Location = new System.Drawing.Point(483, 241);
+            this.btn_change_logo.Name = "btn_change_logo";
+            this.btn_change_logo.Size = new System.Drawing.Size(210, 29);
+            this.btn_change_logo.TabIndex = 8;
+            this.btn_change_logo.Text = "Change Logo";
+            this.btn_change_logo.UseVisualStyleBackColor = true;
+            this.btn_change_logo.Click += new System.EventHandler(this.btn_change_logo_Click);
+            // 
+            // listbox_logos
+            // 
+            this.listbox_logos.FormattingEnabled = true;
+            this.listbox_logos.ItemHeight = 16;
+            this.listbox_logos.Location = new System.Drawing.Point(459, 139);
+            this.listbox_logos.Name = "listbox_logos";
+            this.listbox_logos.Size = new System.Drawing.Size(261, 84);
+            this.listbox_logos.TabIndex = 7;
+            this.listbox_logos.SelectedIndexChanged += new System.EventHandler(this.listbox_logos_SelectedIndexChanged);
+            // 
+            // pic_logo
+            // 
+            this.pic_logo.Location = new System.Drawing.Point(12, 139);
+            this.pic_logo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pic_logo.Name = "pic_logo";
+            this.pic_logo.Size = new System.Drawing.Size(440, 185);
+            this.pic_logo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pic_logo.TabIndex = 6;
+            this.pic_logo.TabStop = false;
+            this.pic_logo.Click += new System.EventHandler(this.pic_logo_Click);
+            // 
+            // btn_change_image
+            // 
+            this.btn_change_image.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_change_image.AutoSize = true;
+            this.btn_change_image.Location = new System.Drawing.Point(114, 352);
+            this.btn_change_image.Margin = new System.Windows.Forms.Padding(4);
+            this.btn_change_image.Name = "btn_change_image";
+            this.btn_change_image.Size = new System.Drawing.Size(261, 28);
+            this.btn_change_image.TabIndex = 5;
+            this.btn_change_image.Text = "Import Image";
+            this.btn_change_image.UseVisualStyleBackColor = true;
+            this.btn_change_image.Click += new System.EventHandler(this.btn_change_image_Click);
             // 
             // btn_reset
             // 
             this.btn_reset.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_reset.Location = new System.Drawing.Point(650, 638);
-            this.btn_reset.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.btn_reset.AutoSize = true;
+            this.btn_reset.Location = new System.Drawing.Point(766, 356);
+            this.btn_reset.Margin = new System.Windows.Forms.Padding(4);
             this.btn_reset.Name = "btn_reset";
-            this.btn_reset.Size = new System.Drawing.Size(377, 41);
+            this.btn_reset.Size = new System.Drawing.Size(261, 28);
             this.btn_reset.TabIndex = 4;
             this.btn_reset.Text = "Default Settings";
             this.btn_reset.UseVisualStyleBackColor = true;
@@ -191,10 +252,11 @@
             this.btn_row_color.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_row_color.Location = new System.Drawing.Point(650, 497);
-            this.btn_row_color.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.btn_row_color.AutoSize = true;
+            this.btn_row_color.Location = new System.Drawing.Point(766, 265);
+            this.btn_row_color.Margin = new System.Windows.Forms.Padding(4);
             this.btn_row_color.Name = "btn_row_color";
-            this.btn_row_color.Size = new System.Drawing.Size(377, 41);
+            this.btn_row_color.Size = new System.Drawing.Size(261, 28);
             this.btn_row_color.TabIndex = 3;
             this.btn_row_color.Text = "Row Color Settings";
             this.btn_row_color.UseVisualStyleBackColor = true;
@@ -205,10 +267,11 @@
             this.btn_font_settings.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_font_settings.Location = new System.Drawing.Point(650, 419);
-            this.btn_font_settings.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.btn_font_settings.AutoSize = true;
+            this.btn_font_settings.Location = new System.Drawing.Point(766, 215);
+            this.btn_font_settings.Margin = new System.Windows.Forms.Padding(4);
             this.btn_font_settings.Name = "btn_font_settings";
-            this.btn_font_settings.Size = new System.Drawing.Size(377, 41);
+            this.btn_font_settings.Size = new System.Drawing.Size(261, 28);
             this.btn_font_settings.TabIndex = 2;
             this.btn_font_settings.Text = "Font Settings";
             this.btn_font_settings.UseVisualStyleBackColor = true;
@@ -219,10 +282,11 @@
             this.btn_panel_color.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_panel_color.Location = new System.Drawing.Point(650, 344);
-            this.btn_panel_color.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.btn_panel_color.AutoSize = true;
+            this.btn_panel_color.Location = new System.Drawing.Point(766, 167);
+            this.btn_panel_color.Margin = new System.Windows.Forms.Padding(4);
             this.btn_panel_color.Name = "btn_panel_color";
-            this.btn_panel_color.Size = new System.Drawing.Size(377, 41);
+            this.btn_panel_color.Size = new System.Drawing.Size(261, 28);
             this.btn_panel_color.TabIndex = 1;
             this.btn_panel_color.Text = "Panel Color Settings";
             this.btn_panel_color.UseVisualStyleBackColor = true;
@@ -233,10 +297,11 @@
             this.btn_color.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_color.Location = new System.Drawing.Point(650, 267);
-            this.btn_color.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.btn_color.AutoSize = true;
+            this.btn_color.Location = new System.Drawing.Point(766, 118);
+            this.btn_color.Margin = new System.Windows.Forms.Padding(4);
             this.btn_color.Name = "btn_color";
-            this.btn_color.Size = new System.Drawing.Size(377, 41);
+            this.btn_color.Size = new System.Drawing.Size(261, 28);
             this.btn_color.TabIndex = 0;
             this.btn_color.Text = "Color Settings";
             this.btn_color.UseVisualStyleBackColor = true;
@@ -265,24 +330,69 @@
             // 
             // tabPage1
             // 
-            this.tabPage1.Location = new System.Drawing.Point(4, 34);
-            this.tabPage1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tabPage1.Controls.Add(this.btn_rec_font);
+            this.tabPage1.Controls.Add(this.btn_foot);
+            this.tabPage1.Controls.Add(this.btn_header);
+            this.tabPage1.Location = new System.Drawing.Point(4, 25);
+            this.tabPage1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tabPage1.Size = new System.Drawing.Size(1675, 771);
-            this.tabPage1.TabIndex = 4;
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tabPage1.Size = new System.Drawing.Size(1158, 489);
             this.tabPage1.Text = "Receipt";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // btn_rec_font
+            // 
+            this.btn_rec_font.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_rec_font.AutoSize = true;
+            this.btn_rec_font.Location = new System.Drawing.Point(450, 252);
+            this.btn_rec_font.Margin = new System.Windows.Forms.Padding(4);
+            this.btn_rec_font.Name = "btn_rec_font";
+            this.btn_rec_font.Size = new System.Drawing.Size(261, 28);
+            this.btn_rec_font.TabIndex = 8;
+            this.btn_rec_font.Text = "Change Receipt Font";
+            this.btn_rec_font.UseVisualStyleBackColor = true;
+            // 
+            // btn_foot
+            // 
+            this.btn_foot.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_foot.AutoSize = true;
+            this.btn_foot.Location = new System.Drawing.Point(450, 199);
+            this.btn_foot.Margin = new System.Windows.Forms.Padding(4);
+            this.btn_foot.Name = "btn_foot";
+            this.btn_foot.Size = new System.Drawing.Size(261, 28);
+            this.btn_foot.TabIndex = 7;
+            this.btn_foot.Text = "Change Reciept Footer";
+            this.btn_foot.UseVisualStyleBackColor = true;
+            // 
+            // btn_header
+            // 
+            this.btn_header.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_header.AutoSize = true;
+            this.btn_header.Location = new System.Drawing.Point(450, 151);
+            this.btn_header.Margin = new System.Windows.Forms.Padding(4);
+            this.btn_header.Name = "btn_header";
+            this.btn_header.Size = new System.Drawing.Size(261, 28);
+            this.btn_header.TabIndex = 6;
+            this.btn_header.Text = "Change Receipt Header";
+            this.btn_header.UseVisualStyleBackColor = true;
             // 
             // btn_commit
             // 
             this.btn_commit.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_commit.Location = new System.Drawing.Point(682, 867);
-            this.btn_commit.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.btn_commit.AutoSize = true;
+            this.btn_commit.Location = new System.Drawing.Point(472, 555);
+            this.btn_commit.Margin = new System.Windows.Forms.Padding(4);
             this.btn_commit.Name = "btn_commit";
-            this.btn_commit.Size = new System.Drawing.Size(377, 41);
+            this.btn_commit.Size = new System.Drawing.Size(261, 28);
             this.btn_commit.TabIndex = 4;
             this.btn_commit.Text = "Commit";
             this.btn_commit.UseVisualStyleBackColor = true;
@@ -392,11 +502,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1865, 981);
+
+            this.ClientSize = new System.Drawing.Size(1292, 628);
             this.Controls.Add(this.btn_commit);
             this.Controls.Add(this.tab_receipt);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FrmSetting";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "frmSetting";
@@ -407,7 +518,12 @@
             this.tab_General.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            this.tab_General.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pic_logo)).EndInit();
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -441,5 +557,12 @@
         private System.Windows.Forms.TextBox TxtSalesInvType;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox TxtSalesTotals;
+        private System.Windows.Forms.Button btn_change_image;
+        private System.Windows.Forms.Button btn_rec_font;
+        private System.Windows.Forms.Button btn_foot;
+        private System.Windows.Forms.Button btn_header;
+        private System.Windows.Forms.PictureBox pic_logo;
+        private System.Windows.Forms.ListBox listbox_logos;
+        private System.Windows.Forms.Button btn_change_logo;
     }
 }

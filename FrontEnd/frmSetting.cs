@@ -11,21 +11,22 @@ using System.Windows.Forms;
 
 namespace SecretCellar
 {
-    public partial class FrmSetting : ManagedForm
+    public partial class listbx_logos : ManagedForm
     {
-        private readonly DataAccess dataAccess = new DataAccess();
+        
         private ToolTip ProgramTips = new ToolTip();
 
-        public FrmSetting()
+        public listbx_logos()
         {
             InitializeComponent();
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScaleDimensions = new System.Drawing.SizeF(72, 72);
+            listbox_logos.DataSource = DataAccess.instance.GetImageFiles();
         }
 
         private void FrmSetting_Load(object sender, EventArgs e)
         {
-            lstTypes.DataSource = dataAccess.GetInventoryType();
+            lstTypes.DataSource = DataAccess.instance.GetInventoryType();
             // Set up the delays for the ToolTip.
             ProgramTips.AutoPopDelay = 10000;
             ProgramTips.InitialDelay = 1000;
@@ -152,5 +153,49 @@ namespace SecretCellar
 
         }
         #endregion 
+
+        private void btn_change_image_Click(object sender, EventArgs e)
+        {
+           
+
+           
+            // open file dialog   
+            OpenFileDialog image = new OpenFileDialog();
+            // image filters  
+            image.Filter = "Image Files(*.jpg; *.jpeg; *.gif; *.bmp,;*.png)|*.jpg; *.jpeg; *.gif; *.bmp; *.png;";
+            image.FilterIndex = 2;
+            image.RestoreDirectory = true;
+            //Open Image Dialog okay;
+            if(image.ShowDialog() == DialogResult.OK)
+            {
+
+                pic_logo.Image = DataAccess.instance.ImportLogo(image.FileName);
+
+            }
+            
+        }
+
+        private void pic_logo_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listbox_logos_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //listbox_logos.DataSource =  DataAccess.instance.GetImageFiles();
+            pic_logo.Image = DataAccess.instance.GetImage(listbox_logos.Text);
+        }
+
+        private void btn_change_logo_Click(object sender, EventArgs e)
+        {
+            DataAccess.instance.ChangeLogo(listbox_logos.Text);
+            
+            
+        }
+
+        private void lstTypes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            lstTypes.DataSource = DataAccess.instance.GetInventoryType();
+        }
     }
 }
