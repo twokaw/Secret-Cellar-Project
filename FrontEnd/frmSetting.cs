@@ -40,8 +40,9 @@ namespace SecretCellar
 
         private void cbx_tax_type_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Tax tax = DataAccess.instance.GetTax(taxID);
-            
+          // Tax tax = DataAccess.instance.GetTax(taxID);
+           
+
         }
 
         private void btn_color_Click(object sender, EventArgs e)
