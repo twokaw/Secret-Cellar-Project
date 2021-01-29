@@ -131,7 +131,7 @@ namespace SecretCellar
             double tax = 0.0;
             double localtax = 0.0;
 
-
+            /*
             foreach (Transaction t in transactions)
             {
                 totalSales += t.Total;
@@ -142,7 +142,6 @@ namespace SecretCellar
                 }
             }
 
-
              transaction.Subtotal.ToString("C");
             txt_transBTLDPT.Text = transactionBottleDeposit.ToString("C");
             txt_itemTotal.Text = transaction.Subtotal.ToString("C");
@@ -151,6 +150,7 @@ namespace SecretCellar
             txt_TransTotal.Text = transaction.Total.ToString("C");
             txt_Ship.Text = transaction.Shipping.ToString("C");
 
+            */
         }
         #endregion 
 
