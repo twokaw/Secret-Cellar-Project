@@ -72,6 +72,8 @@
             this.btn_foot = new System.Windows.Forms.Button();
             this.btn_header = new System.Windows.Forms.Button();
             this.btn_commit = new System.Windows.Forms.Button();
+            this.btn_new_type = new System.Windows.Forms.Button();
+            this.btn_update_type = new System.Windows.Forms.Button();
             this.tab_receipt.SuspendLayout();
             this.tab_Types.SuspendLayout();
             this.tab_Appearance.SuspendLayout();
@@ -107,6 +109,8 @@
             // 
             // tab_Types
             // 
+            this.tab_Types.Controls.Add(this.btn_update_type);
+            this.tab_Types.Controls.Add(this.btn_new_type);
             this.tab_Types.Controls.Add(this.lbl_localTax);
             this.tab_Types.Controls.Add(this.txt_localTax);
             this.tab_Types.Controls.Add(this.label11);
@@ -586,6 +590,24 @@
             this.btn_commit.UseVisualStyleBackColor = true;
             this.btn_commit.Click += new System.EventHandler(this.btn_commit_Click);
             // 
+            // btn_new_type
+            // 
+            this.btn_new_type.Location = new System.Drawing.Point(624, 64);
+            this.btn_new_type.Name = "btn_new_type";
+            this.btn_new_type.Size = new System.Drawing.Size(113, 23);
+            this.btn_new_type.TabIndex = 13;
+            this.btn_new_type.Text = "New Type";
+            this.btn_new_type.UseVisualStyleBackColor = true;
+            // 
+            // btn_update_type
+            // 
+            this.btn_update_type.Location = new System.Drawing.Point(624, 126);
+            this.btn_update_type.Name = "btn_update_type";
+            this.btn_update_type.Size = new System.Drawing.Size(113, 23);
+            this.btn_update_type.TabIndex = 14;
+            this.btn_update_type.Text = "Update Type";
+            this.btn_update_type.UseVisualStyleBackColor = true;
+            // 
             // FrmSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 16F);
@@ -658,5 +680,7 @@
         private System.Windows.Forms.Label lbl_localTax;
         private System.Windows.Forms.TextBox txt_localTax;
         private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Button btn_update_type;
+        private System.Windows.Forms.Button btn_new_type;
     }
 }
