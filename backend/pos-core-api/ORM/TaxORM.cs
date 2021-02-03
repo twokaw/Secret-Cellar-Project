@@ -29,6 +29,7 @@ namespace pos_core_api.ORM
                     {
                         IdTax = reader.IsDBNull("idTAX") ? 0 : reader.GetUInt32("idTAX"),
                         BottleDeposit = reader.IsDBNull("bottle_deposit") ? 0.0 : reader.GetDouble("bottle_deposit"),
+                        TaxName = reader.IsDBNull("Tax_name") ? "" : reader.GetString("tax_name"),
                         SalesTax = reader.IsDBNull("sales_tax") ? 0.0 : reader.GetDouble("sales_tax"),
                         LocalSalesTax = reader.IsDBNull("local_sales_tax") ? 0.0 : reader.GetDouble("local_sales_tax")
                     };
