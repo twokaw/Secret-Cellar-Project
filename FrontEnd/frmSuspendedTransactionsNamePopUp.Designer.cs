@@ -33,6 +33,7 @@
 			this.label1 = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
 			this.listCustomers = new System.Windows.Forms.ListBox();
+			this.btn_CloseWindow = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// textBoxSuspendedTransactionName
@@ -46,11 +47,12 @@
 			// 
 			// btnOkay
 			// 
-			this.btnOkay.Location = new System.Drawing.Point(256, 333);
+			this.btnOkay.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btnOkay.Location = new System.Drawing.Point(192, 322);
 			this.btnOkay.Name = "btnOkay";
-			this.btnOkay.Size = new System.Drawing.Size(75, 23);
+			this.btnOkay.Size = new System.Drawing.Size(139, 53);
 			this.btnOkay.TabIndex = 1;
-			this.btnOkay.Text = "Okay";
+			this.btnOkay.Text = "SELECT CUSTOMER";
 			this.btnOkay.UseVisualStyleBackColor = true;
 			this.btnOkay.Click += new System.EventHandler(this.btnOkay_Click);
 			// 
@@ -81,15 +83,27 @@
 			this.listCustomers.FormattingEnabled = true;
 			this.listCustomers.Location = new System.Drawing.Point(12, 78);
 			this.listCustomers.Name = "listCustomers";
-			this.listCustomers.Size = new System.Drawing.Size(319, 238);
+			this.listCustomers.Size = new System.Drawing.Size(319, 225);
 			this.listCustomers.TabIndex = 4;
 			this.listCustomers.SelectedIndexChanged += new System.EventHandler(this.listCustomers_SelectedIndexChanged);
+			// 
+			// btn_CloseWindow
+			// 
+			this.btn_CloseWindow.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btn_CloseWindow.Location = new System.Drawing.Point(17, 322);
+			this.btn_CloseWindow.Name = "btn_CloseWindow";
+			this.btn_CloseWindow.Size = new System.Drawing.Size(123, 53);
+			this.btn_CloseWindow.TabIndex = 5;
+			this.btn_CloseWindow.Text = "CLOSE WINDOW";
+			this.btn_CloseWindow.UseVisualStyleBackColor = true;
+			this.btn_CloseWindow.Click += new System.EventHandler(this.btn_CloseWindow_Click);
 			// 
 			// frmSuspendedTransactionsNamePopUp
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(343, 368);
+			this.ClientSize = new System.Drawing.Size(343, 387);
+			this.Controls.Add(this.btn_CloseWindow);
 			this.Controls.Add(this.listCustomers);
 			this.Controls.Add(this.label2);
 			this.Controls.Add(this.label1);
@@ -113,5 +127,6 @@
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.ListBox listCustomers;
+		private System.Windows.Forms.Button btn_CloseWindow;
 	}
 }

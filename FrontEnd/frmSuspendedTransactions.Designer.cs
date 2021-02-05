@@ -28,7 +28,7 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.mySqlCommand1 = new MySql.Data.MySqlClient.MySqlCommand();
 			this.btnDelete = new System.Windows.Forms.Button();
 			this.btnAdd = new System.Windows.Forms.Button();
@@ -41,6 +41,7 @@
 			this.TAX = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.BOTTLE_DEPOSIT = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.TOTAL = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.btn_CloseWindow = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridViewSuspendedTransaction)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -54,22 +55,24 @@
 			// btnDelete
 			// 
 			this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.btnDelete.Location = new System.Drawing.Point(816, 284);
+			this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btnDelete.Location = new System.Drawing.Point(589, 270);
 			this.btnDelete.Name = "btnDelete";
-			this.btnDelete.Size = new System.Drawing.Size(75, 27);
+			this.btnDelete.Size = new System.Drawing.Size(180, 55);
 			this.btnDelete.TabIndex = 8;
-			this.btnDelete.Text = "DELETE";
+			this.btnDelete.Text = "DELETE TRANSACTION";
 			this.btnDelete.UseVisualStyleBackColor = true;
 			this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
 			// 
 			// btnAdd
 			// 
 			this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.btnAdd.Location = new System.Drawing.Point(915, 284);
+			this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btnAdd.Location = new System.Drawing.Point(810, 270);
 			this.btnAdd.Name = "btnAdd";
-			this.btnAdd.Size = new System.Drawing.Size(75, 27);
+			this.btnAdd.Size = new System.Drawing.Size(180, 55);
 			this.btnAdd.TabIndex = 9;
-			this.btnAdd.Text = "ADD";
+			this.btnAdd.Text = "ADD TRANSACTION";
 			this.btnAdd.UseVisualStyleBackColor = true;
 			this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
 			// 
@@ -96,14 +99,14 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.dataGridViewSuspendedTransaction.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
 			this.dataGridViewSuspendedTransaction.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-			dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-			dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-			dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
-			dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-			dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-			dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-			dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-			this.dataGridViewSuspendedTransaction.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+			dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+			dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+			dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
+			dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+			dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+			dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+			this.dataGridViewSuspendedTransaction.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
 			this.dataGridViewSuspendedTransaction.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.dataGridViewSuspendedTransaction.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.DESCRIPTION,
@@ -185,11 +188,24 @@
 			this.TOTAL.MinimumWidth = 12;
 			this.TOTAL.Name = "TOTAL";
 			// 
+			// btn_CloseWindow
+			// 
+			this.btn_CloseWindow.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.btn_CloseWindow.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btn_CloseWindow.Location = new System.Drawing.Point(12, 270);
+			this.btn_CloseWindow.Name = "btn_CloseWindow";
+			this.btn_CloseWindow.Size = new System.Drawing.Size(180, 55);
+			this.btn_CloseWindow.TabIndex = 14;
+			this.btn_CloseWindow.Text = "CLOSE WINDOW";
+			this.btn_CloseWindow.UseVisualStyleBackColor = true;
+			this.btn_CloseWindow.Click += new System.EventHandler(this.btn_CloseWindow_Click);
+			// 
 			// frmSuspendedTransactions
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(1002, 343);
+			this.Controls.Add(this.btn_CloseWindow);
 			this.Controls.Add(this.dataGridViewSuspendedTransaction);
 			this.Controls.Add(this.selectionListSuspendedTransactions);
 			this.Controls.Add(this.btnAdd);
@@ -218,5 +234,6 @@
 		private System.Windows.Forms.DataGridViewTextBoxColumn TAX;
 		private System.Windows.Forms.DataGridViewTextBoxColumn BOTTLE_DEPOSIT;
 		private System.Windows.Forms.DataGridViewTextBoxColumn TOTAL;
+		private System.Windows.Forms.Button btn_CloseWindow;
 	}
 }
