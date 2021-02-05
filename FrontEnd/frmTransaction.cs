@@ -289,7 +289,7 @@ namespace SecretCellar
 
         private void btnSuspendedTransactions_Click(object sender, EventArgs e)
         {
-            frmSuspendedTransactions suspendedTransactions = new frmSuspendedTransactions(this);
+            frmSuspendedTransactions suspendedTransactions = new frmSuspendedTransactions(this, transaction);
             suspendedTransactions.ShowDialog();
         }
 

@@ -20,7 +20,7 @@ namespace SecretCellar
 		private Transaction selectedTransaction;
 		
 
-		public frmSuspendedTransactions(frmTransaction formTransaction)
+		public frmSuspendedTransactions(frmTransaction formTransaction, Transaction transactionFromFormTransaction)
 		{
 			InitializeComponent();
 			transactionForm = formTransaction;
@@ -29,18 +29,20 @@ namespace SecretCellar
 
 			//POPULATE THE LIST OF SUSPENDED TRANSACTIONS CUSTOMER NAMES
 			foreach (Transaction t in suspendedTransactions) {
-				//ADD THE TRANSACTION INVOICE ID TO THE TRACKER
-				suspendedTransactionsIdTracker.Add(t.InvoiceID);
+				if (t.InvoiceID != transactionFromFormTransaction.InvoiceID) {
+					//ADD THE TRANSACTION INVOICE ID TO THE TRACKER
+					suspendedTransactionsIdTracker.Add(t.InvoiceID);
 
-				//GET THE CUSTOMER OF THE SUSPENDED TRANSACTION
-				Customer customer = DataAccess.instance.GetCustomer(t.CustomerID);
+					//GET THE CUSTOMER OF THE SUSPENDED TRANSACTION
+					Customer customer = DataAccess.instance.GetCustomer(t.CustomerID);
 
-				//POPULATE THE CUSTOMER NAME IN THE LIST
-				if (customer != null && !customer.FirstName.Equals("") && !customer.LastName.Equals("")) {
-					selectionListSuspendedTransactions.Items.Add(customer.FirstName + " " + customer.LastName);
-				}
-				else {
-					selectionListSuspendedTransactions.Items.Add("No Name");
+					//POPULATE THE CUSTOMER NAME IN THE LIST
+					if (customer != null && !customer.FirstName.Equals("") && !customer.LastName.Equals("")) {
+						selectionListSuspendedTransactions.Items.Add(customer.FirstName + " " + customer.LastName);
+					}
+					else {
+						selectionListSuspendedTransactions.Items.Add("No Name");
+					}
 				}
 			}
 
@@ -82,55 +84,8 @@ namespace SecretCellar
 
 		private void btnDelete_Click(object sender, EventArgs e)
 		{
-			deleteTransaction(false);
-		}
-
-		private void btnAdd_Click(object sender, EventArgs e)
-		{
-			if (selectedTransaction != null && selectedTransaction.Items.Count > 0) {
-				//CREATE A COPY OF THE PAYMENT
-				List<Payment> payments = new List<Payment>();
-
-				selectedTransaction.Payments.ForEach((payment) => {
-					payments.Add(payment);
-				});
-
-				//CREATE A NEW TRANSACTION FROM THE SELECTED TRANSACTION
-				Transaction newTransaction = new Transaction(selectedTransaction.InvoiceID,
-												selectedTransaction.RegisterID,
-												selectedTransaction.TransactionDateTime,
-												selectedTransaction.Location,
-												selectedTransaction.Items,
-												selectedTransaction.Discount,
-												selectedTransaction.TaxExempt,
-												payments,
-												selectedTransaction.EmployeeID,
-												selectedTransaction.CustomerID);
-
-				//REMOVE THE PAYMENT SO THAT IT CAN BE REMOVED FROM THE SUSPENDED TRANSACTIONS
-				selectedTransaction.Payments.Clear();
-
-				//REMOVE THE TRANSACTION THAT IS SELECTED AND CLOSE THE FORM
-				deleteTransaction(true);
-				this.Close();
-
-				//CALL THE IMPORT FUNCTION
-				transactionForm.importSuspendedTransaction(newTransaction);
-			}
-		}
-
-		private void btn_CloseWindow_Click(object sender, EventArgs e) {
-			this.Close();
-		}
-
-		private void deleteTransaction(bool hasClickedAddButton) {
 			if (selectionListSuspendedTransactions.Items.Count > 0 && selectedTransaction != null) {
 				int selectedIndex = selectionListSuspendedTransactions.SelectedIndex;
-
-				//CLEAR THE PAYMENTS IF THE USER ACCESSED THIS METHOD FROM CLICKING THE ADD BUTTON
-				if (hasClickedAddButton) {
-					selectedTransaction.Payments.Clear();
-				}
 
 				//ENSURE THAT THE TRANSACTION DOESN'T HAVE PAYMENTS STILL
 				if (selectedTransaction.Payments.Count > 0) {
@@ -168,5 +123,31 @@ namespace SecretCellar
 				selectedTransaction = null;
 			}
 		}
+
+		private void btnAdd_Click(object sender, EventArgs e)
+		{
+			if (selectedTransaction != null && selectedTransaction.Items.Count > 0) {
+				//CREATE A NEW TRANSACTION FROM THE SELECTED TRANSACTION
+				Transaction newTransaction = new Transaction(selectedTransaction.InvoiceID,
+												selectedTransaction.RegisterID,
+												selectedTransaction.TransactionDateTime,
+												selectedTransaction.Location,
+												selectedTransaction.Items,
+												selectedTransaction.Discount,
+												selectedTransaction.TaxExempt,
+												selectedTransaction.Payments,
+												selectedTransaction.EmployeeID,
+												selectedTransaction.CustomerID);
+
+				//CLOSE THE WINDOW AND CALL THE IMPORT FUNCTION
+				this.Close();
+				transactionForm.importSuspendedTransaction(newTransaction);
+			}
+		}
+
+		private void btn_CloseWindow_Click(object sender, EventArgs e) {
+			this.Close();
+		}
+
 	}
 }
