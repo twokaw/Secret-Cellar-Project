@@ -24,7 +24,7 @@ namespace SecretCellar
             this.AutoScaleDimensions = new System.Drawing.SizeF(72, 72);
             listbox_logos.DataSource = DataAccess.instance.GetImageFiles();
             lstTypes.DataSource = DataAccess.instance.GetInventoryType();
-            InventoryType invType = DataAccess.instance.GetInventoryType(lstTypes.Text);
+            //InventoryType invType = DataAccess.instance.GetInventoryType(lstTypes.Text);
             cbx_tax.DataSource = DataAccess.instance.GetTax();
             lstTypes.DisplayMember = "TypeName";
             cbx_tax.DisplayMember = "TaxName";

@@ -78,12 +78,23 @@
             this.btn_foot = new System.Windows.Forms.Button();
             this.btn_header = new System.Windows.Forms.Button();
             this.btn_commit = new System.Windows.Forms.Button();
+            this.tab_tax = new System.Windows.Forms.TabPage();
+            this.txt_sales_tax = new System.Windows.Forms.TextBox();
+            this.txt_local_tax = new System.Windows.Forms.TextBox();
+            this.txt_bottle_dep = new System.Windows.Forms.TextBox();
+            this.lbl_sales_tax = new System.Windows.Forms.Label();
+            this.lbl_local_tax = new System.Windows.Forms.Label();
+            this.lbl_btl_deposit = new System.Windows.Forms.Label();
+            this.lst_tax_list = new System.Windows.Forms.ListBox();
+            this.txt_tax_list = new System.Windows.Forms.Label();
+            this.btn_update_tax = new System.Windows.Forms.Button();
             this.tab_receipt.SuspendLayout();
             this.tab_Types.SuspendLayout();
             this.tab_Appearance.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pic_logo)).BeginInit();
             this.tab_Reports.SuspendLayout();
             this.tab_Reciept.SuspendLayout();
+            this.tab_tax.SuspendLayout();
             this.SuspendLayout();
             // 
             // tab_receipt
@@ -93,6 +104,7 @@
             this.tab_receipt.Controls.Add(this.tab_Appearance);
             this.tab_receipt.Controls.Add(this.tab_Reports);
             this.tab_receipt.Controls.Add(this.tab_Reciept);
+            this.tab_receipt.Controls.Add(this.tab_tax);
             this.tab_receipt.Location = new System.Drawing.Point(71, 15);
             this.tab_receipt.Margin = new System.Windows.Forms.Padding(4);
             this.tab_receipt.Name = "tab_receipt";
@@ -651,6 +663,100 @@
             this.btn_commit.UseVisualStyleBackColor = true;
             this.btn_commit.Click += new System.EventHandler(this.btn_commit_Click);
             // 
+            // tab_tax
+            // 
+            this.tab_tax.Controls.Add(this.btn_update_tax);
+            this.tab_tax.Controls.Add(this.txt_tax_list);
+            this.tab_tax.Controls.Add(this.lst_tax_list);
+            this.tab_tax.Controls.Add(this.lbl_btl_deposit);
+            this.tab_tax.Controls.Add(this.lbl_local_tax);
+            this.tab_tax.Controls.Add(this.lbl_sales_tax);
+            this.tab_tax.Controls.Add(this.txt_bottle_dep);
+            this.tab_tax.Controls.Add(this.txt_local_tax);
+            this.tab_tax.Controls.Add(this.txt_sales_tax);
+            this.tab_tax.Location = new System.Drawing.Point(4, 25);
+            this.tab_tax.Name = "tab_tax";
+            this.tab_tax.Padding = new System.Windows.Forms.Padding(3);
+            this.tab_tax.Size = new System.Drawing.Size(840, 303);
+            this.tab_tax.TabIndex = 5;
+            this.tab_tax.Text = "Tax";
+            this.tab_tax.UseVisualStyleBackColor = true;
+            // 
+            // txt_sales_tax
+            // 
+            this.txt_sales_tax.Location = new System.Drawing.Point(455, 110);
+            this.txt_sales_tax.Name = "txt_sales_tax";
+            this.txt_sales_tax.Size = new System.Drawing.Size(100, 22);
+            this.txt_sales_tax.TabIndex = 0;
+            // 
+            // txt_local_tax
+            // 
+            this.txt_local_tax.Location = new System.Drawing.Point(455, 138);
+            this.txt_local_tax.Name = "txt_local_tax";
+            this.txt_local_tax.Size = new System.Drawing.Size(100, 22);
+            this.txt_local_tax.TabIndex = 1;
+            // 
+            // txt_bottle_dep
+            // 
+            this.txt_bottle_dep.Location = new System.Drawing.Point(455, 166);
+            this.txt_bottle_dep.Name = "txt_bottle_dep";
+            this.txt_bottle_dep.Size = new System.Drawing.Size(100, 22);
+            this.txt_bottle_dep.TabIndex = 2;
+            // 
+            // lbl_sales_tax
+            // 
+            this.lbl_sales_tax.AutoSize = true;
+            this.lbl_sales_tax.Location = new System.Drawing.Point(356, 114);
+            this.lbl_sales_tax.Name = "lbl_sales_tax";
+            this.lbl_sales_tax.Size = new System.Drawing.Size(82, 16);
+            this.lbl_sales_tax.TabIndex = 3;
+            this.lbl_sales_tax.Text = "Sales Tax:";
+            // 
+            // lbl_local_tax
+            // 
+            this.lbl_local_tax.AutoSize = true;
+            this.lbl_local_tax.Location = new System.Drawing.Point(356, 143);
+            this.lbl_local_tax.Name = "lbl_local_tax";
+            this.lbl_local_tax.Size = new System.Drawing.Size(80, 16);
+            this.lbl_local_tax.TabIndex = 4;
+            this.lbl_local_tax.Text = "Local Tax:";
+            // 
+            // lbl_btl_deposit
+            // 
+            this.lbl_btl_deposit.AutoSize = true;
+            this.lbl_btl_deposit.Location = new System.Drawing.Point(326, 169);
+            this.lbl_btl_deposit.Name = "lbl_btl_deposit";
+            this.lbl_btl_deposit.Size = new System.Drawing.Size(110, 16);
+            this.lbl_btl_deposit.TabIndex = 5;
+            this.lbl_btl_deposit.Text = "Bottle Deposit:";
+            // 
+            // lst_tax_list
+            // 
+            this.lst_tax_list.FormattingEnabled = true;
+            this.lst_tax_list.ItemHeight = 16;
+            this.lst_tax_list.Location = new System.Drawing.Point(109, 93);
+            this.lst_tax_list.Name = "lst_tax_list";
+            this.lst_tax_list.Size = new System.Drawing.Size(160, 100);
+            this.lst_tax_list.TabIndex = 6;
+            // 
+            // txt_tax_list
+            // 
+            this.txt_tax_list.AutoSize = true;
+            this.txt_tax_list.Location = new System.Drawing.Point(106, 62);
+            this.txt_tax_list.Name = "txt_tax_list";
+            this.txt_tax_list.Size = new System.Drawing.Size(86, 16);
+            this.txt_tax_list.TabIndex = 7;
+            this.txt_tax_list.Text = "Tax Types:";
+            // 
+            // btn_update_tax
+            // 
+            this.btn_update_tax.Location = new System.Drawing.Point(657, 138);
+            this.btn_update_tax.Name = "btn_update_tax";
+            this.btn_update_tax.Size = new System.Drawing.Size(130, 23);
+            this.btn_update_tax.TabIndex = 8;
+            this.btn_update_tax.Text = "Update";
+            this.btn_update_tax.UseVisualStyleBackColor = true;
+            // 
             // FrmSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 16F);
@@ -673,6 +779,8 @@
             this.tab_Reports.PerformLayout();
             this.tab_Reciept.ResumeLayout(false);
             this.tab_Reciept.PerformLayout();
+            this.tab_tax.ResumeLayout(false);
+            this.tab_tax.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -729,5 +837,15 @@
         private System.Windows.Forms.Button btn_type_clear;
         private System.Windows.Forms.Label lbl_discount;
         private System.Windows.Forms.CheckedListBox chk_lst_discount;
+        private System.Windows.Forms.TabPage tab_tax;
+        private System.Windows.Forms.TextBox txt_sales_tax;
+        private System.Windows.Forms.Button btn_update_tax;
+        private System.Windows.Forms.Label txt_tax_list;
+        private System.Windows.Forms.ListBox lst_tax_list;
+        private System.Windows.Forms.Label lbl_btl_deposit;
+        private System.Windows.Forms.Label lbl_local_tax;
+        private System.Windows.Forms.Label lbl_sales_tax;
+        private System.Windows.Forms.TextBox txt_bottle_dep;
+        private System.Windows.Forms.TextBox txt_local_tax;
     }
 }
