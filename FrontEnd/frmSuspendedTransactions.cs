@@ -14,32 +14,42 @@ namespace SecretCellar
 {
 	public partial class frmSuspendedTransactions : Form
 	{
-		Transaction currentTransaction;
-		public static Dictionary<string, Transaction> suspendedTransactionsMap = new Dictionary<string, Transaction>();
-		List<Transaction> suspendedTransactions;
 		private frmTransaction transactionForm;
+		private List<Transaction> suspendedTransactions;
+		private List<uint> suspendedTransactionsIdTracker;
+		private Transaction selectedTransaction;
+		
 
-		public frmSuspendedTransactions(frmTransaction formTransaction)
+		public frmSuspendedTransactions(frmTransaction formTransaction, Transaction transactionFromFormTransaction)
 		{
 			InitializeComponent();
 			transactionForm = formTransaction;
 			suspendedTransactions = DataAccess.instance.GetSuspendedTransactions();
+			suspendedTransactionsIdTracker = new List<uint>();
 
 			//POPULATE THE LIST OF SUSPENDED TRANSACTIONS CUSTOMER NAMES
 			foreach (Transaction t in suspendedTransactions) {
-				if (t.CustomerName != null) {
-					selectionListSuspendedTransactions.Items.Add(t.CustomerName);
-				}
-				else {
-					selectionListSuspendedTransactions.Items.Add(t.InvoiceID);
+				if (t.InvoiceID != transactionFromFormTransaction.InvoiceID) {
+					//ADD THE TRANSACTION INVOICE ID TO THE TRACKER
+					suspendedTransactionsIdTracker.Add(t.InvoiceID);
+
+					//GET THE CUSTOMER OF THE SUSPENDED TRANSACTION
+					Customer customer = DataAccess.instance.GetCustomer(t.CustomerID);
+
+					//POPULATE THE CUSTOMER NAME IN THE LIST
+					if (customer != null && !customer.FirstName.Equals("") && !customer.LastName.Equals("")) {
+						selectionListSuspendedTransactions.Items.Add(customer.FirstName + " " + customer.LastName);
+					}
+					else {
+						selectionListSuspendedTransactions.Items.Add("No Name");
+					}
 				}
 			}
 
 			//DEFAULT SELECTED ITEM IN THE LIST OF SUSPENDED TRANSACTIONS TO 0
 			if (suspendedTransactions.Count > 0) {
-				//selectionListSuspendedTransactions.SelectedIndex = 0;
+				selectionListSuspendedTransactions.SelectedIndex = 0;
 			}
-
 		}
 
 		private void dataGridViewSuspendedTransaction_CellContentClick(object sender, DataGridViewCellEventArgs e) {
@@ -48,38 +58,15 @@ namespace SecretCellar
 
 		private void selectionListSuspendedTransactions_SelectedIndexChanged(object sender, EventArgs e) {
 			//IF THERE IS AT LEAST ONE SUSPENDED TRANSACTION THEN CONTINUE
-			if (suspendedTransactions.Count > 0) {
+			if (suspendedTransactions.Count > 0 && selectionListSuspendedTransactions.SelectedIndex > 0) {
 				this.dataGridViewSuspendedTransaction.Rows.Clear();
 
-				//GET THE NAME OF THE ITEM SELECTED AND MATCH IT TO THE TRANSACTION IN THE MAP
-				string suspendedTransactionCustomer = selectionListSuspendedTransactions.SelectedItem.ToString();
-
-				foreach (Transaction t in suspendedTransactions) {
-					Console.WriteLine("Transaction invoice id: " + t.InvoiceID);
-					Console.WriteLine("Customer Name: " + t.CustomerID);
-																		  
-					if (t.CustomerName != null) {
-						Console.WriteLine("Customer Name: " + t.CustomerName);
-
-						if (t.CustomerName.Equals(suspendedTransactionCustomer)) {
-							currentTransaction = t;
-						}
-					}
-					else {
-						if (t.InvoiceID.Equals(suspendedTransactionCustomer)) {
-							currentTransaction = t;
-						}
-					}
-				}
-
-				//TODO: It errors here. Need a better way to grab the transaction. Can use a dictionary field that has customer name, transaction invoice id.
-				//GET THE NAME OF THE ITEM SELECTED AND MATCH IT TO THE TRANSACTION IN THE MAP
-				//int index = selectionListSuspendedTransactions.SelectedIndex;
-				//currentTransaction = suspendedTransactionsMap.ElementAt(index).Value;
-
+				//GET THE TRANSACTION OF THE CURRENTLY SELECTED CUSTOMER VIA THE TRACKER
+				uint transactionId = suspendedTransactionsIdTracker.ElementAt(selectionListSuspendedTransactions.SelectedIndex);
+				selectedTransaction = DataAccess.instance.GetTransactions(transactionId);
 
 				//ADD EACH ROW IN THE TRANSACTION TO THE ROW IN THE VIEW
-				foreach (Item item in currentTransaction.Items) {
+				foreach (Item item in selectedTransaction.Items) {
 					int rowIndex = dataGridViewSuspendedTransaction.Rows.Add();
 
 					using (var currentRow = dataGridViewSuspendedTransaction.Rows[rowIndex]) {
@@ -97,64 +84,70 @@ namespace SecretCellar
 
 		private void btnDelete_Click(object sender, EventArgs e)
 		{
-			if (selectionListSuspendedTransactions.Items.Count > 0) {
-				string selectedItem = selectionListSuspendedTransactions.SelectedItem.ToString();
+			if (selectionListSuspendedTransactions.Items.Count > 0 && selectedTransaction != null) {
+				int selectedIndex = selectionListSuspendedTransactions.SelectedIndex;
 
-				//IF THE USER DELETES THE FIRST ITEM IN THE LIST
-				if (selectionListSuspendedTransactions.SelectedIndex == 0 && selectionListSuspendedTransactions.Items.Count > 1) {
-					selectionListSuspendedTransactions.SelectedIndex += 1;
-					selectionListSuspendedTransactions.Items.RemoveAt(selectionListSuspendedTransactions.SelectedIndex-1);
+				//ENSURE THAT THE TRANSACTION DOESN'T HAVE PAYMENTS STILL
+				if (selectedTransaction.Payments.Count > 0) {
+					MessageBox.Show("Cannot delete transaction. There are still outstanding payments.", "Error");
+					return;
 				}
 
-				//IF THE USER DELETES THE ONLY ITEM IN THE LIST
-				else if (selectionListSuspendedTransactions.SelectedIndex == 0) {
-					//THE ITEM IN THE MAP NEEDS TO BE REMOVED FIRST OTHERWISE IT WILL ERROR
-					suspendedTransactionsMap.Remove(selectedItem);
-					selectionListSuspendedTransactions.Items.RemoveAt(selectionListSuspendedTransactions.SelectedIndex);
+				//DELETE THE TRANSACTION FROM THE DATABASE
+				DataAccess.instance.DeleteTransaction(selectedTransaction.InvoiceID);
+
+				//IF THE USER DELETES THE FIRST ITEM IN THE LIST
+				if (selectedIndex == 0 && selectionListSuspendedTransactions.Items.Count > 1) {
+					selectionListSuspendedTransactions.SelectedIndex += 1;
 				}
 
 				//IF THE USER DELETES THE LAST ITEM IN THE LIST
-				else if (selectionListSuspendedTransactions.SelectedIndex == selectionListSuspendedTransactions.Items.Count-1 && selectionListSuspendedTransactions.Items.Count > 1) {
+				else if (selectedIndex == selectionListSuspendedTransactions.Items.Count - 1 && selectionListSuspendedTransactions.Items.Count > 1) {
 					selectionListSuspendedTransactions.SelectedIndex -= 1;
-					selectionListSuspendedTransactions.Items.RemoveAt(selectionListSuspendedTransactions.SelectedIndex+1);
 				}
 
 				//IF THE USER DELETES AN ITEM IN THE MIDDLE
-				else {
+				else if (selectedIndex > 0 && selectedIndex < selectionListSuspendedTransactions.Items.Count - 1) {
 					selectionListSuspendedTransactions.SelectedIndex -= 1;
-					selectionListSuspendedTransactions.Items.RemoveAt(selectionListSuspendedTransactions.SelectedIndex+1);
-					selectionListSuspendedTransactions.SelectedIndex += 1;
 				}
 
-				//TODO: change this to remove from the database
-				//REMOVE THE TRANSACTION FROM THE MAP (DATABASE)
-				suspendedTransactionsMap.Remove(selectedItem);
+				//REMOVE THE TRANSACTION FROM THE TRACKER AND FROM THE LIST
+				suspendedTransactionsIdTracker.RemoveAt(selectedIndex);
+				selectionListSuspendedTransactions.Items.RemoveAt(selectedIndex);
 			}
-			
-			//CLEAR THE DATA GRID AND MAP IF THERE ARE NO ITEMS LEFT
+
+			//CLEAR THE DATA GRID AND TRACKER IF THERE ARE NO ITEMS LEFT
 			if (selectionListSuspendedTransactions.Items.Count == 0) {
 				dataGridViewSuspendedTransaction.Rows.Clear();
-				suspendedTransactionsMap.Clear();
-				currentTransaction = null;
+				suspendedTransactionsIdTracker.Clear();
+				selectedTransaction = null;
 			}
 		}
 
 		private void btnAdd_Click(object sender, EventArgs e)
 		{
-			if (currentTransaction != null && currentTransaction.Items.Count > 0) {
-				//CREATE A NEW TRANSACTION THAT CONTAINS ITEMS IN THE CURRENT TRANSACTION
-				Transaction t = new Transaction();
-				foreach (Item item in currentTransaction.Items) {
-					t.Items.Add(item);
-				}
+			if (selectedTransaction != null && selectedTransaction.Items.Count > 0) {
+				//CREATE A NEW TRANSACTION FROM THE SELECTED TRANSACTION
+				Transaction newTransaction = new Transaction(selectedTransaction.InvoiceID,
+												selectedTransaction.RegisterID,
+												selectedTransaction.TransactionDateTime,
+												selectedTransaction.Location,
+												selectedTransaction.Items,
+												selectedTransaction.Discount,
+												selectedTransaction.TaxExempt,
+												selectedTransaction.Payments,
+												selectedTransaction.EmployeeID,
+												selectedTransaction.CustomerID);
 
-				//REMOVE THE ITEM THAT IS SELECTED AND CLOSE THE FORM
-				btnDelete_Click(sender, e);
+				//CLOSE THE WINDOW AND CALL THE IMPORT FUNCTION
 				this.Close();
-
-				//CALL THE IMPORT FUNCTION
-				transactionForm.importSuspendedTransaction(t);
+				transactionForm.importSuspendedTransaction(newTransaction);
 			}
 		}
+
+		private void btn_CloseWindow_Click(object sender, EventArgs e) {
+			this.Close();
+		}
+
 	}
 }
