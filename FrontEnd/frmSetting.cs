@@ -8,25 +8,31 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Shared;
 
 namespace SecretCellar
 {
-    public partial class listbx_logos : ManagedForm
+    public partial class FrmSettings : ManagedForm
     {
         
         private ToolTip ProgramTips = new ToolTip();
 
-        public listbx_logos()
+        public FrmSettings()
         {
             InitializeComponent();
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScaleDimensions = new System.Drawing.SizeF(72, 72);
             listbox_logos.DataSource = DataAccess.instance.GetImageFiles();
+            lstTypes.DataSource = DataAccess.instance.GetInventoryType();
+            InventoryType invType = DataAccess.instance.GetInventoryType(lstTypes.Text);
+            cbx_tax.DataSource = DataAccess.instance.GetTax();
+            lstTypes.DisplayMember = "TypeName";
+            cbx_tax.DisplayMember = "TaxName";
+            
         }
 
         private void FrmSetting_Load(object sender, EventArgs e)
         {
-            lstTypes.DataSource = DataAccess.instance.GetInventoryType();
             // Set up the delays for the ToolTip.
             ProgramTips.AutoPopDelay = 10000;
             ProgramTips.InitialDelay = 1000;
@@ -39,8 +45,10 @@ namespace SecretCellar
 
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void cbx_tax_type_SelectedIndexChanged(object sender, EventArgs e)
         {
+          // Tax tax = DataAccess.instance.GetTax(taxID);
+           
 
         }
 
@@ -211,7 +219,16 @@ namespace SecretCellar
 
         private void lstTypes_SelectedIndexChanged(object sender, EventArgs e)
         {
-            lstTypes.DataSource = DataAccess.instance.GetInventoryType();
+
+            txt_bottleDep.Text = ((InventoryType)lstTypes.SelectedItem).BottleDeposit.ToString();
+            txt_salesTax.Text = ((InventoryType)lstTypes.SelectedItem).SalesTax.ToString();
+            txt_localTax.Text = ((InventoryType)lstTypes.SelectedItem).LocalSalesTax.ToString();
+
+        }
+
+        private void TabTypes_Click(object sender, EventArgs e)
+        {
+
         }
 
         private void TxtSalesInvType_TextChanged(object sender, EventArgs e)

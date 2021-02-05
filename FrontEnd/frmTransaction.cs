@@ -275,7 +275,7 @@ namespace SecretCellar
 
         private void pb_settings_Click(object sender, EventArgs e)
         {
-            listbx_logos setting = new listbx_logos();
+            FrmSettings setting = new FrmSettings();
             setting.ShowDialog();
         }
 
