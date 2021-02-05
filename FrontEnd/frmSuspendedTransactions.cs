@@ -63,7 +63,7 @@ namespace SecretCellar
 
 				//GET THE TRANSACTION OF THE CURRENTLY SELECTED CUSTOMER VIA THE TRACKER
 				uint transactionId = suspendedTransactionsIdTracker.ElementAt(selectionListSuspendedTransactions.SelectedIndex);
-				selectedTransaction = DataAccess.instance.Get(transactionId);
+				selectedTransaction = DataAccess.instance.GetTransactions(transactionId);
 
 				//ADD EACH ROW IN THE TRANSACTION TO THE ROW IN THE VIEW
 				foreach (Item item in selectedTransaction.Items) {

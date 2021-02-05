@@ -316,7 +316,6 @@ namespace pos_core_api.ORM
 
 
             MySqlCommand cmd;
-            string sql;
             db.OpenConnection();
 
             try
@@ -461,16 +460,8 @@ namespace pos_core_api.ORM
         { 
             InsertPayments(transaction);
 
-            db.OpenConnection();
-            try
-            {
-                foreach (Payment pay in transaction.Payments.Where(x => transaction.Payments.FirstOrDefault(y => y.PayId == x.PayId) == null))
-                    DeletePayment(pay.PayId);
-            }
-            finally
-            {
-                db.CloseConnnection();
-            }
+            foreach (Payment pay in previousTransaction.Payments.Where(x => transaction.Payments.FirstOrDefault(y => y.PayId == x.PayId) == null))
+                DeletePayment(pay.PayId);
         }
 
         public bool DeleteTransaction(uint transactionId)
@@ -513,7 +504,7 @@ namespace pos_core_api.ORM
             if (payId > 0)
             {
                 MySqlCommand cmd = new MySqlCommand(@"
-                    DELETE FROM Payment
+                    DELETE FROM Payments
                     WHERE payID = @payId
                 ", db.Connection());
 
