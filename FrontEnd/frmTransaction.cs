@@ -287,21 +287,24 @@ namespace SecretCellar
 
         private void btnSuspendTransaction_Click(object sender, EventArgs e)
         {
-            Customer customer;
-            
-            //CREATE A POP UP MENU FOR THE USER TO SEARCH THROUGH CUSTOMER NAMES
-            frmSuspendedTransactionsNamePopUp popUp = new frmSuspendedTransactionsNamePopUp();
-            popUp.ShowDialog();
+            //IF A CUSTOMER DOESN'T EXIST FOR THE TRANSACTION, POP UP THE MENU TO ASK, OTHERWISE USE THE CURRENT CUSTOMER
+            if (transaction.CustomerName == null || transaction.CustomerName.Equals("")) {
+                Customer customer;
 
-            customer = popUp.customer;
+                //CREATE A POP UP MENU FOR THE USER TO SEARCH THROUGH CUSTOMER NAMES
+                frmSuspendedTransactionsNamePopUp popUp = new frmSuspendedTransactionsNamePopUp();
+                popUp.ShowDialog();
 
-            //IF THE USER CANCELS OUT OF THE FORM OR DOESN'T SELECT A NAME, END THE FUNCTION
-            if (customer == null) {
-                return;
-            }
+                customer = popUp.customer;
 
-            transaction.CustomerName = customer.FirstName + " " + customer.LastName;
-            transaction.CustomerID = customer.CustomerID;
+                //IF THE USER CANCELS OUT OF THE FORM OR DOESN'T SELECT A NAME, END THE FUNCTION
+                if (customer == null) {
+                    return;
+                }
+
+                transaction.CustomerName = customer.FirstName + " " + customer.LastName;
+                transaction.CustomerID = customer.CustomerID;
+			}
 
             DataAccess.instance.ProcessTransaction(transaction);
 
