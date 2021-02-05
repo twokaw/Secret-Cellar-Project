@@ -84,5 +84,9 @@ namespace SecretCellar
 
 			return null;
 		}
+
+		private void btn_CloseWindow_Click(object sender, EventArgs e) {
+			this.Close();
+		}
 	}
 }
