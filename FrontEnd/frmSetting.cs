@@ -8,7 +8,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Shared;
 
 namespace SecretCellar
 {
@@ -28,7 +27,6 @@ namespace SecretCellar
             cbx_tax.DataSource = DataAccess.instance.GetTax();
             lstTypes.DisplayMember = "TypeName";
             cbx_tax.DisplayMember = "TaxName";
-            
         }
 
         private void FrmSetting_Load(object sender, EventArgs e)
@@ -157,14 +155,16 @@ namespace SecretCellar
                 }
             }
 
+            /*
             txt_SalesTotal.Text = totalSales.ToString("C");
             txt_SalesNet.Text =netSales.ToString("C");
             txt_SalesTax.Text = tax.ToString("C");
-            txt_SalesLocalTax .Text = localtax .ToString("C");
+            txt_SalesLocalTax.Text = localtax .ToString("C");
             txt_SalesCost.Text = costSales.ToString("C");
             txt_SalesBottleDeposit.Text = bottleDeposit.ToString("C");
             txt_SalesTotal.Text = totalSales.ToString("C");
-                                  
+            */
+            
             /*
              transaction.Subtotal.ToString("C");
             txt_transBTLDPT.Text = transactionBottleDeposit.ToString("C");

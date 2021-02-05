@@ -65,9 +65,10 @@ namespace WebApi.Controllers
         {
             try
             {
+                Transaction previousTransaction = DataAccess.Instance.Transaction.GetTransaction(transaction.InvoiceID, true, true);
                 // If there is a Invoice ID and the Transaction exists then Update the Transaction else insert it
-                if(transaction.InvoiceID > 0 && DataAccess.Instance.Transaction.GetTransaction(transaction.InvoiceID, false, false) != null)
-                    return Ok(DataAccess.Instance.Transaction.UpdateTransaction(transaction)); 
+                if (transaction.InvoiceID > 0 && previousTransaction != null)
+                    return Ok(DataAccess.Instance.Transaction.UpdateTransaction(transaction, previousTransaction)); 
                 else
                     return Ok(DataAccess.Instance.Transaction.InsertTransaction(transaction));
             }

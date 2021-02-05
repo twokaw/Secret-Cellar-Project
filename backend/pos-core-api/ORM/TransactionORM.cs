@@ -227,7 +227,7 @@ namespace pos_core_api.ORM
             return transaction.InvoiceID;
         }
 
-        public uint UpdateTransaction(Transaction transaction)
+        public uint UpdateTransaction(Transaction transaction, Transaction previousTransaction)
         {
             db.OpenConnection();
             try
@@ -262,8 +262,8 @@ namespace pos_core_api.ORM
             {
                 db.CloseConnnection();
             }
-            InsertItems(transaction, FullyPaid(transaction));
-            InsertPayments(transaction);
+            InsertItems(transaction, FullyPaid(transaction), previousTransaction);
+            InsertPayments(transaction, previousTransaction);
 
             return transaction.InvoiceID;
         }
@@ -273,6 +273,8 @@ namespace pos_core_api.ORM
             MySqlCommand cmd;
             string sql;
             db.OpenConnection();
+
+            // TODO: remove items that have been removed
             try
             {
                 foreach (Item item in transaction.Items)
@@ -304,6 +306,44 @@ namespace pos_core_api.ORM
                 db.CloseConnnection();
             }
         }
+
+
+
+        public void InsertItems(Transaction transaction, bool updateDecrementInvQty, Transaction previousTransaction )
+        {
+            InsertItems(transaction, updateDecrementInvQty);
+
+
+            MySqlCommand cmd;
+            string sql;
+            db.OpenConnection();
+
+            try
+            {
+                foreach (Item item in previousTransaction.Items.Where(x=>transaction.Items.FirstOrDefault(y => y.Id == x.Id) == null))
+                {
+                    cmd = new MySqlCommand(@"
+                       DELETE FROM transaction_items
+                       WHERE receiptID = @receiptID
+                       AND   inventoryID =  @inventoryID
+                    ", db.Connection());
+                    cmd.Parameters.Add(new MySqlParameter("receiptID", transaction.InvoiceID));
+                    cmd.Parameters.Add(new MySqlParameter("inventoryID", item.Id));
+
+                    cmd.ExecuteNonQuery();
+
+                    // if (updateDecrementInvQty)
+                    //    DecrementInventoryQty(item); // TODO: add increment qty
+
+                    cmd.Dispose();
+                }
+            }
+            finally
+            {
+                db.CloseConnnection();
+            }
+        }
+
 
         public void UpdateItemQty(uint receiptId, uint itemId, int qty)
         {
@@ -367,7 +407,7 @@ namespace pos_core_api.ORM
             }
         }
 
-        public void InsertPayments(Transaction transaction)
+        private void InsertPayments(Transaction transaction)
         {
             MySqlCommand cmd;
             string insert = @"
@@ -385,6 +425,8 @@ namespace pos_core_api.ORM
                      Amount = @Amount
                 WHERE PayID = @PayID
             ";
+
+            //  TODO: Remove playments that are removed
 
             db.OpenConnection();
             try
@@ -413,6 +455,23 @@ namespace pos_core_api.ORM
                 db.CloseConnnection();
             }
         }
+
+        private void InsertPayments(Transaction transaction, Transaction previousTransaction)
+        { 
+            InsertPayments(transaction);
+
+            db.OpenConnection();
+            try
+            {
+                foreach (Payment pay in transaction.Payments.Where(x => transaction.Payments.FirstOrDefault(y => y.PayId == x.PayId) == null))
+                    DeletePayment(pay.PayId);
+            }
+            finally
+            {
+                db.CloseConnnection();
+            }
+        }
+
         public bool DeleteTransaction(uint transactionId)
         {
             Transaction t = GetTransaction(transactionId);
