@@ -49,7 +49,7 @@ namespace Shared
                 double tax = 0;
 
                 if (!TaxExempt)
-                    Items.ForEach(x => tax += (!x.NonTaxableLocal ) ? GetItemPrice(x) * x.LocalSalesTax : 0);
+                    Items.ForEach(x => tax += (!x.NonTaxableLocal ) ? ItemPrice(x) * x.LocalSalesTax : 0);
                 return tax;
             }
         }
@@ -65,7 +65,7 @@ namespace Shared
             }
         }
 
-        private double GetItemPrice(Item i)
+        public double ItemPrice(Item i)
         {
             // Get item 
             return i.AdjustedTotal * ((i.AdjustedTotal > 0) ? (1 - Discount) : 1);
@@ -78,7 +78,7 @@ namespace Shared
                 double value = 0;
 
                 if (!TaxExempt)
-                    Items.ForEach(x => value += GetItemPrice(x));
+                    Items.ForEach(x => value += ItemPrice(x));
 
                 return value;
             }
@@ -91,11 +91,33 @@ namespace Shared
                 double tax = 0;
 
                 if (!TaxExempt)
-                    Items.ForEach(x => tax += (!x.NonTaxable) ? GetItemPrice(x) * x.SalesTax : 0);
+                    Items.ForEach(x => tax += ItemTax(x));
 
                 return tax;
             }
         }
+        public double ItemTax(Item i)
+        {
+            if (!TaxExempt)
+                return (!i.NonTaxable) ? ItemPrice(i) * i.SalesTax : 0;
+            else
+                return 0;
+        }
+
+        public double ItemLocalTax(Item i)
+        {
+            if (!TaxExempt)
+                return (!i.NonTaxable) ? ItemPrice(i) * i.SalesTax : 0;
+            else
+                return 0;
+        }
+
+
+        public double ItemPriceTotal(Item i)
+        {
+            return ItemTax(i) + ItemLocalTax(i) + ItemPrice(i) + i.BottleDeposit;
+        }
+
         public double Total
         {
             get

@@ -8,7 +8,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Shared;
 
 namespace SecretCellar
 {
@@ -28,7 +27,6 @@ namespace SecretCellar
             cbx_tax.DataSource = DataAccess.instance.GetTax();
             lstTypes.DisplayMember = "TypeName";
             cbx_tax.DisplayMember = "TaxName";
-            
         }
 
         private void FrmSetting_Load(object sender, EventArgs e)
@@ -42,6 +40,7 @@ namespace SecretCellar
             // Set up the ToolTip text for the Button and Checkbox.
             ProgramTips.SetToolTip(this.btn_commit, "Click commit to make changes permanent otherwise will reset on program close");
             //ProgramTips.SetToolTip(this.checkBox1, "My checkBox1");
+
         }
 
         private void cbx_tax_type_SelectedIndexChanged(object sender, EventArgs e)
@@ -128,28 +127,45 @@ namespace SecretCellar
         #region Reports
 
         private void btn_Run_Click(object sender, EventArgs e)
-        {
+        {   
             List<Transaction> transactions = DataAccess.instance.GetTransactions(dtp_start.Value, dtp_end.Value);
 
-            Dictionary<string, double> vendorSales = new Dictionary<string, double>();
+            // Dictionary<string, double> vendorSales = new Dictionary<string, double>();
             Dictionary<string, double> typeSales = new Dictionary<string, double>();
-            double totalSales = 0.0;
+            double totalSales = 0.0; 
+            double costSales = 0.0;
             double bottleDeposit = 0.0;
             double netSales = 0.0;
             double tax = 0.0;
             double localtax = 0.0;
 
-            /*
             foreach (Transaction t in transactions)
             {
                 totalSales += t.Total;
-                totalSales 
                 foreach (Item i in t.Items)
                 {
-                    totalSales += i.SupplierPrice 
+                    totalSales += t.ItemPriceTotal(i);
+                    bottleDeposit += t.Bottle_deposit ;
+                    netSales += t.ItemPrice(i) - i.SupplierPrice;
+                    tax += t.ItemTax(i);
+                    localtax += t.ItemLocalTax(i);
+                    costSales += i.SupplierPrice;
+
+                    typeSales[i.ItemType] += t.ItemPriceTotal(i);
                 }
             }
 
+            /*
+            txt_SalesTotal.Text = totalSales.ToString("C");
+            txt_SalesNet.Text =netSales.ToString("C");
+            txt_SalesTax.Text = tax.ToString("C");
+            txt_SalesLocalTax.Text = localtax .ToString("C");
+            txt_SalesCost.Text = costSales.ToString("C");
+            txt_SalesBottleDeposit.Text = bottleDeposit.ToString("C");
+            txt_SalesTotal.Text = totalSales.ToString("C");
+            */
+            
+            /*
              transaction.Subtotal.ToString("C");
             txt_transBTLDPT.Text = transactionBottleDeposit.ToString("C");
             txt_itemTotal.Text = transaction.Subtotal.ToString("C");
@@ -211,6 +227,11 @@ namespace SecretCellar
         }
 
         private void TabTypes_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TxtSalesInvType_TextChanged(object sender, EventArgs e)
         {
 
         }
