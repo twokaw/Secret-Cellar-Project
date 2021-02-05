@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SecretCellar
@@ -16,6 +13,7 @@ namespace SecretCellar
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            DataAccess.instance = new DataAccess(Properties.Settings.Default.URL);
             Application.Run(new frmTransaction());
         }
     }

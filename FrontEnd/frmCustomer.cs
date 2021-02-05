@@ -23,6 +23,7 @@ namespace SecretCellar
         {
             customer = transaction;
             InitializeComponent();
+            this.Size = new System.Drawing.Size(1366, 768);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScaleDimensions = new System.Drawing.SizeF(72, 72);
             customers = dataAccess.GetCustomer();
