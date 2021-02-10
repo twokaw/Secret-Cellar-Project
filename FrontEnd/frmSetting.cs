@@ -30,7 +30,9 @@ namespace SecretCellar
             cbx_tax.DisplayMember = "TaxName";
             List<Discount> all_Discounts = DataAccess.instance.GetDiscount();
             all_Discounts.ForEach(x => chk_lst_discount.Items.Add(x.DiscountName));
-            
+            txt_receipt_header.Text = Properties.Settings.Default.Header;
+
+
         }
 
         private void FrmSetting_Load(object sender, EventArgs e)

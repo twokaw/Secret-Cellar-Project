@@ -77,17 +77,21 @@
             this.btn_rec_font = new System.Windows.Forms.Button();
             this.btn_foot = new System.Windows.Forms.Button();
             this.btn_header = new System.Windows.Forms.Button();
-            this.btn_commit = new System.Windows.Forms.Button();
             this.tab_tax = new System.Windows.Forms.TabPage();
-            this.txt_sales_tax = new System.Windows.Forms.TextBox();
-            this.txt_local_tax = new System.Windows.Forms.TextBox();
-            this.txt_bottle_dep = new System.Windows.Forms.TextBox();
-            this.lbl_sales_tax = new System.Windows.Forms.Label();
-            this.lbl_local_tax = new System.Windows.Forms.Label();
-            this.lbl_btl_deposit = new System.Windows.Forms.Label();
-            this.lst_tax_list = new System.Windows.Forms.ListBox();
-            this.txt_tax_list = new System.Windows.Forms.Label();
             this.btn_update_tax = new System.Windows.Forms.Button();
+            this.txt_tax_list = new System.Windows.Forms.Label();
+            this.lst_tax_list = new System.Windows.Forms.ListBox();
+            this.lbl_btl_deposit = new System.Windows.Forms.Label();
+            this.lbl_local_tax = new System.Windows.Forms.Label();
+            this.lbl_sales_tax = new System.Windows.Forms.Label();
+            this.txt_bottle_dep = new System.Windows.Forms.TextBox();
+            this.txt_local_tax = new System.Windows.Forms.TextBox();
+            this.txt_sales_tax = new System.Windows.Forms.TextBox();
+            this.btn_commit = new System.Windows.Forms.Button();
+            this.txt_receipt_header = new System.Windows.Forms.TextBox();
+            this.lbl_header = new System.Windows.Forms.Label();
+            this.lbl_receipt_footer = new System.Windows.Forms.Label();
+            this.txt_receipt_footer = new System.Windows.Forms.TextBox();
             this.tab_receipt.SuspendLayout();
             this.tab_Types.SuspendLayout();
             this.tab_Appearance.SuspendLayout();
@@ -598,6 +602,10 @@
             // 
             // tab_Reciept
             // 
+            this.tab_Reciept.Controls.Add(this.lbl_receipt_footer);
+            this.tab_Reciept.Controls.Add(this.txt_receipt_footer);
+            this.tab_Reciept.Controls.Add(this.lbl_header);
+            this.tab_Reciept.Controls.Add(this.txt_receipt_header);
             this.tab_Reciept.Controls.Add(this.btn_rec_font);
             this.tab_Reciept.Controls.Add(this.btn_foot);
             this.tab_Reciept.Controls.Add(this.btn_header);
@@ -616,7 +624,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_rec_font.AutoSize = true;
-            this.btn_rec_font.Location = new System.Drawing.Point(312, 161);
+            this.btn_rec_font.Location = new System.Drawing.Point(312, 169);
             this.btn_rec_font.Name = "btn_rec_font";
             this.btn_rec_font.Size = new System.Drawing.Size(181, 26);
             this.btn_rec_font.TabIndex = 8;
@@ -629,7 +637,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_foot.AutoSize = true;
-            this.btn_foot.Location = new System.Drawing.Point(312, 127);
+            this.btn_foot.Location = new System.Drawing.Point(565, 69);
             this.btn_foot.Name = "btn_foot";
             this.btn_foot.Size = new System.Drawing.Size(181, 26);
             this.btn_foot.TabIndex = 7;
@@ -642,26 +650,12 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_header.AutoSize = true;
-            this.btn_header.Location = new System.Drawing.Point(312, 97);
+            this.btn_header.Location = new System.Drawing.Point(58, 69);
             this.btn_header.Name = "btn_header";
             this.btn_header.Size = new System.Drawing.Size(185, 26);
             this.btn_header.TabIndex = 6;
             this.btn_header.Text = "Change Receipt Header";
             this.btn_header.UseVisualStyleBackColor = true;
-            // 
-            // btn_commit
-            // 
-            this.btn_commit.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_commit.AutoSize = true;
-            this.btn_commit.Location = new System.Drawing.Point(380, 355);
-            this.btn_commit.Name = "btn_commit";
-            this.btn_commit.Size = new System.Drawing.Size(295, 26);
-            this.btn_commit.TabIndex = 4;
-            this.btn_commit.Text = "Commit";
-            this.btn_commit.UseVisualStyleBackColor = true;
-            this.btn_commit.Click += new System.EventHandler(this.btn_commit_Click);
             // 
             // tab_tax
             // 
@@ -682,62 +676,14 @@
             this.tab_tax.Text = "Tax";
             this.tab_tax.UseVisualStyleBackColor = true;
             // 
-            // txt_sales_tax
+            // btn_update_tax
             // 
-            this.txt_sales_tax.Location = new System.Drawing.Point(455, 110);
-            this.txt_sales_tax.Name = "txt_sales_tax";
-            this.txt_sales_tax.Size = new System.Drawing.Size(100, 22);
-            this.txt_sales_tax.TabIndex = 0;
-            // 
-            // txt_local_tax
-            // 
-            this.txt_local_tax.Location = new System.Drawing.Point(455, 138);
-            this.txt_local_tax.Name = "txt_local_tax";
-            this.txt_local_tax.Size = new System.Drawing.Size(100, 22);
-            this.txt_local_tax.TabIndex = 1;
-            // 
-            // txt_bottle_dep
-            // 
-            this.txt_bottle_dep.Location = new System.Drawing.Point(455, 166);
-            this.txt_bottle_dep.Name = "txt_bottle_dep";
-            this.txt_bottle_dep.Size = new System.Drawing.Size(100, 22);
-            this.txt_bottle_dep.TabIndex = 2;
-            // 
-            // lbl_sales_tax
-            // 
-            this.lbl_sales_tax.AutoSize = true;
-            this.lbl_sales_tax.Location = new System.Drawing.Point(356, 114);
-            this.lbl_sales_tax.Name = "lbl_sales_tax";
-            this.lbl_sales_tax.Size = new System.Drawing.Size(82, 16);
-            this.lbl_sales_tax.TabIndex = 3;
-            this.lbl_sales_tax.Text = "Sales Tax:";
-            // 
-            // lbl_local_tax
-            // 
-            this.lbl_local_tax.AutoSize = true;
-            this.lbl_local_tax.Location = new System.Drawing.Point(356, 143);
-            this.lbl_local_tax.Name = "lbl_local_tax";
-            this.lbl_local_tax.Size = new System.Drawing.Size(80, 16);
-            this.lbl_local_tax.TabIndex = 4;
-            this.lbl_local_tax.Text = "Local Tax:";
-            // 
-            // lbl_btl_deposit
-            // 
-            this.lbl_btl_deposit.AutoSize = true;
-            this.lbl_btl_deposit.Location = new System.Drawing.Point(326, 169);
-            this.lbl_btl_deposit.Name = "lbl_btl_deposit";
-            this.lbl_btl_deposit.Size = new System.Drawing.Size(110, 16);
-            this.lbl_btl_deposit.TabIndex = 5;
-            this.lbl_btl_deposit.Text = "Bottle Deposit:";
-            // 
-            // lst_tax_list
-            // 
-            this.lst_tax_list.FormattingEnabled = true;
-            this.lst_tax_list.ItemHeight = 16;
-            this.lst_tax_list.Location = new System.Drawing.Point(109, 93);
-            this.lst_tax_list.Name = "lst_tax_list";
-            this.lst_tax_list.Size = new System.Drawing.Size(160, 100);
-            this.lst_tax_list.TabIndex = 6;
+            this.btn_update_tax.Location = new System.Drawing.Point(657, 138);
+            this.btn_update_tax.Name = "btn_update_tax";
+            this.btn_update_tax.Size = new System.Drawing.Size(130, 23);
+            this.btn_update_tax.TabIndex = 8;
+            this.btn_update_tax.Text = "Update";
+            this.btn_update_tax.UseVisualStyleBackColor = true;
             // 
             // txt_tax_list
             // 
@@ -748,14 +694,108 @@
             this.txt_tax_list.TabIndex = 7;
             this.txt_tax_list.Text = "Tax Types:";
             // 
-            // btn_update_tax
+            // lst_tax_list
             // 
-            this.btn_update_tax.Location = new System.Drawing.Point(657, 138);
-            this.btn_update_tax.Name = "btn_update_tax";
-            this.btn_update_tax.Size = new System.Drawing.Size(130, 23);
-            this.btn_update_tax.TabIndex = 8;
-            this.btn_update_tax.Text = "Update";
-            this.btn_update_tax.UseVisualStyleBackColor = true;
+            this.lst_tax_list.FormattingEnabled = true;
+            this.lst_tax_list.ItemHeight = 16;
+            this.lst_tax_list.Location = new System.Drawing.Point(109, 93);
+            this.lst_tax_list.Name = "lst_tax_list";
+            this.lst_tax_list.Size = new System.Drawing.Size(160, 100);
+            this.lst_tax_list.TabIndex = 6;
+            // 
+            // lbl_btl_deposit
+            // 
+            this.lbl_btl_deposit.AutoSize = true;
+            this.lbl_btl_deposit.Location = new System.Drawing.Point(326, 169);
+            this.lbl_btl_deposit.Name = "lbl_btl_deposit";
+            this.lbl_btl_deposit.Size = new System.Drawing.Size(110, 16);
+            this.lbl_btl_deposit.TabIndex = 5;
+            this.lbl_btl_deposit.Text = "Bottle Deposit:";
+            // 
+            // lbl_local_tax
+            // 
+            this.lbl_local_tax.AutoSize = true;
+            this.lbl_local_tax.Location = new System.Drawing.Point(356, 143);
+            this.lbl_local_tax.Name = "lbl_local_tax";
+            this.lbl_local_tax.Size = new System.Drawing.Size(80, 16);
+            this.lbl_local_tax.TabIndex = 4;
+            this.lbl_local_tax.Text = "Local Tax:";
+            // 
+            // lbl_sales_tax
+            // 
+            this.lbl_sales_tax.AutoSize = true;
+            this.lbl_sales_tax.Location = new System.Drawing.Point(356, 114);
+            this.lbl_sales_tax.Name = "lbl_sales_tax";
+            this.lbl_sales_tax.Size = new System.Drawing.Size(82, 16);
+            this.lbl_sales_tax.TabIndex = 3;
+            this.lbl_sales_tax.Text = "Sales Tax:";
+            // 
+            // txt_bottle_dep
+            // 
+            this.txt_bottle_dep.Location = new System.Drawing.Point(455, 166);
+            this.txt_bottle_dep.Name = "txt_bottle_dep";
+            this.txt_bottle_dep.Size = new System.Drawing.Size(100, 22);
+            this.txt_bottle_dep.TabIndex = 2;
+            // 
+            // txt_local_tax
+            // 
+            this.txt_local_tax.Location = new System.Drawing.Point(455, 138);
+            this.txt_local_tax.Name = "txt_local_tax";
+            this.txt_local_tax.Size = new System.Drawing.Size(100, 22);
+            this.txt_local_tax.TabIndex = 1;
+            // 
+            // txt_sales_tax
+            // 
+            this.txt_sales_tax.Location = new System.Drawing.Point(455, 110);
+            this.txt_sales_tax.Name = "txt_sales_tax";
+            this.txt_sales_tax.Size = new System.Drawing.Size(100, 22);
+            this.txt_sales_tax.TabIndex = 0;
+            // 
+            // btn_commit
+            // 
+            this.btn_commit.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_commit.AutoSize = true;
+            this.btn_commit.Location = new System.Drawing.Point(380, 355);
+            this.btn_commit.Name = "btn_commit";
+            this.btn_commit.Size = new System.Drawing.Size(295, 26);
+            this.btn_commit.TabIndex = 4;
+            this.btn_commit.Text = "Commit";
+            this.btn_commit.UseVisualStyleBackColor = true;
+            this.btn_commit.Click += new System.EventHandler(this.btn_commit_Click);
+            // 
+            // txt_receipt_header
+            // 
+            this.txt_receipt_header.Location = new System.Drawing.Point(58, 163);
+            this.txt_receipt_header.Name = "txt_receipt_header";
+            this.txt_receipt_header.Size = new System.Drawing.Size(192, 22);
+            this.txt_receipt_header.TabIndex = 9;
+            // 
+            // lbl_header
+            // 
+            this.lbl_header.AutoSize = true;
+            this.lbl_header.Location = new System.Drawing.Point(55, 135);
+            this.lbl_header.Name = "lbl_header";
+            this.lbl_header.Size = new System.Drawing.Size(118, 16);
+            this.lbl_header.TabIndex = 10;
+            this.lbl_header.Text = "Reciept Header";
+            // 
+            // lbl_receipt_footer
+            // 
+            this.lbl_receipt_footer.AutoSize = true;
+            this.lbl_receipt_footer.Location = new System.Drawing.Point(562, 135);
+            this.lbl_receipt_footer.Name = "lbl_receipt_footer";
+            this.lbl_receipt_footer.Size = new System.Drawing.Size(111, 16);
+            this.lbl_receipt_footer.TabIndex = 12;
+            this.lbl_receipt_footer.Text = "Receipt Footer";
+            // 
+            // txt_receipt_footer
+            // 
+            this.txt_receipt_footer.Location = new System.Drawing.Point(565, 163);
+            this.txt_receipt_footer.Name = "txt_receipt_footer";
+            this.txt_receipt_footer.Size = new System.Drawing.Size(192, 22);
+            this.txt_receipt_footer.TabIndex = 11;
             // 
             // FrmSettings
             // 
@@ -847,5 +887,9 @@
         private System.Windows.Forms.Label lbl_sales_tax;
         private System.Windows.Forms.TextBox txt_bottle_dep;
         private System.Windows.Forms.TextBox txt_local_tax;
+        private System.Windows.Forms.Label lbl_receipt_footer;
+        private System.Windows.Forms.TextBox txt_receipt_footer;
+        private System.Windows.Forms.Label lbl_header;
+        private System.Windows.Forms.TextBox txt_receipt_header;
     }
 }
