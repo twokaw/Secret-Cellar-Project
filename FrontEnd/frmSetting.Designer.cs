@@ -74,6 +74,10 @@
             this.label4 = new System.Windows.Forms.Label();
             this.dtp_start = new System.Windows.Forms.DateTimePicker();
             this.tab_Reciept = new System.Windows.Forms.TabPage();
+            this.lbl_receipt_footer = new System.Windows.Forms.Label();
+            this.txt_receipt_footer = new System.Windows.Forms.TextBox();
+            this.lbl_header = new System.Windows.Forms.Label();
+            this.txt_receipt_header = new System.Windows.Forms.TextBox();
             this.btn_rec_font = new System.Windows.Forms.Button();
             this.btn_foot = new System.Windows.Forms.Button();
             this.btn_header = new System.Windows.Forms.Button();
@@ -88,10 +92,6 @@
             this.txt_local_tax = new System.Windows.Forms.TextBox();
             this.txt_sales_tax = new System.Windows.Forms.TextBox();
             this.btn_commit = new System.Windows.Forms.Button();
-            this.txt_receipt_header = new System.Windows.Forms.TextBox();
-            this.lbl_header = new System.Windows.Forms.Label();
-            this.lbl_receipt_footer = new System.Windows.Forms.Label();
-            this.txt_receipt_footer = new System.Windows.Forms.TextBox();
             this.tab_receipt.SuspendLayout();
             this.tab_Types.SuspendLayout();
             this.tab_Appearance.SuspendLayout();
@@ -618,6 +618,40 @@
             this.tab_Reciept.Text = "Receipt";
             this.tab_Reciept.UseVisualStyleBackColor = true;
             // 
+            // lbl_receipt_footer
+            // 
+            this.lbl_receipt_footer.AutoSize = true;
+            this.lbl_receipt_footer.Location = new System.Drawing.Point(562, 135);
+            this.lbl_receipt_footer.Name = "lbl_receipt_footer";
+            this.lbl_receipt_footer.Size = new System.Drawing.Size(111, 16);
+            this.lbl_receipt_footer.TabIndex = 12;
+            this.lbl_receipt_footer.Text = "Receipt Footer";
+            // 
+            // txt_receipt_footer
+            // 
+            this.txt_receipt_footer.Location = new System.Drawing.Point(565, 163);
+            this.txt_receipt_footer.Multiline = true;
+            this.txt_receipt_footer.Name = "txt_receipt_footer";
+            this.txt_receipt_footer.Size = new System.Drawing.Size(200, 64);
+            this.txt_receipt_footer.TabIndex = 11;
+            // 
+            // lbl_header
+            // 
+            this.lbl_header.AutoSize = true;
+            this.lbl_header.Location = new System.Drawing.Point(55, 135);
+            this.lbl_header.Name = "lbl_header";
+            this.lbl_header.Size = new System.Drawing.Size(118, 16);
+            this.lbl_header.TabIndex = 10;
+            this.lbl_header.Text = "Reciept Header";
+            // 
+            // txt_receipt_header
+            // 
+            this.txt_receipt_header.Location = new System.Drawing.Point(58, 163);
+            this.txt_receipt_header.Multiline = true;
+            this.txt_receipt_header.Name = "txt_receipt_header";
+            this.txt_receipt_header.Size = new System.Drawing.Size(200, 66);
+            this.txt_receipt_header.TabIndex = 9;
+            // 
             // btn_rec_font
             // 
             this.btn_rec_font.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -764,38 +798,6 @@
             this.btn_commit.Text = "Commit";
             this.btn_commit.UseVisualStyleBackColor = true;
             this.btn_commit.Click += new System.EventHandler(this.btn_commit_Click);
-            // 
-            // txt_receipt_header
-            // 
-            this.txt_receipt_header.Location = new System.Drawing.Point(58, 163);
-            this.txt_receipt_header.Name = "txt_receipt_header";
-            this.txt_receipt_header.Size = new System.Drawing.Size(192, 22);
-            this.txt_receipt_header.TabIndex = 9;
-            // 
-            // lbl_header
-            // 
-            this.lbl_header.AutoSize = true;
-            this.lbl_header.Location = new System.Drawing.Point(55, 135);
-            this.lbl_header.Name = "lbl_header";
-            this.lbl_header.Size = new System.Drawing.Size(118, 16);
-            this.lbl_header.TabIndex = 10;
-            this.lbl_header.Text = "Reciept Header";
-            // 
-            // lbl_receipt_footer
-            // 
-            this.lbl_receipt_footer.AutoSize = true;
-            this.lbl_receipt_footer.Location = new System.Drawing.Point(562, 135);
-            this.lbl_receipt_footer.Name = "lbl_receipt_footer";
-            this.lbl_receipt_footer.Size = new System.Drawing.Size(111, 16);
-            this.lbl_receipt_footer.TabIndex = 12;
-            this.lbl_receipt_footer.Text = "Receipt Footer";
-            // 
-            // txt_receipt_footer
-            // 
-            this.txt_receipt_footer.Location = new System.Drawing.Point(565, 163);
-            this.txt_receipt_footer.Name = "txt_receipt_footer";
-            this.txt_receipt_footer.Size = new System.Drawing.Size(192, 22);
-            this.txt_receipt_footer.TabIndex = 11;
             // 
             // FrmSettings
             // 
