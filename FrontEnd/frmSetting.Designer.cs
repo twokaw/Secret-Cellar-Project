@@ -52,6 +52,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.lstTypes = new System.Windows.Forms.ListBox();
             this.tab_Appearance = new System.Windows.Forms.TabPage();
+            this.btn_commit = new System.Windows.Forms.Button();
             this.btn_change_logo = new System.Windows.Forms.Button();
             this.listbox_logos = new System.Windows.Forms.ListBox();
             this.btn_change_image = new System.Windows.Forms.Button();
@@ -91,7 +92,7 @@
             this.txt_bottle_dep = new System.Windows.Forms.TextBox();
             this.txt_local_tax = new System.Windows.Forms.TextBox();
             this.txt_sales_tax = new System.Windows.Forms.TextBox();
-            this.btn_commit = new System.Windows.Forms.Button();
+            this.btn_receipt_font_reset = new System.Windows.Forms.Button();
             this.tab_receipt.SuspendLayout();
             this.tab_Types.SuspendLayout();
             this.tab_Appearance.SuspendLayout();
@@ -333,6 +334,7 @@
             // 
             // tab_Appearance
             // 
+            this.tab_Appearance.Controls.Add(this.btn_commit);
             this.tab_Appearance.Controls.Add(this.btn_change_logo);
             this.tab_Appearance.Controls.Add(this.listbox_logos);
             this.tab_Appearance.Controls.Add(this.btn_change_image);
@@ -350,6 +352,20 @@
             this.tab_Appearance.Text = "Appearance";
             this.tab_Appearance.UseVisualStyleBackColor = true;
             this.tab_Appearance.Click += new System.EventHandler(this.tab_General_Click);
+            // 
+            // btn_commit
+            // 
+            this.btn_commit.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_commit.AutoSize = true;
+            this.btn_commit.Location = new System.Drawing.Point(468, 261);
+            this.btn_commit.Name = "btn_commit";
+            this.btn_commit.Size = new System.Drawing.Size(295, 26);
+            this.btn_commit.TabIndex = 4;
+            this.btn_commit.Text = "Commit Color Settings";
+            this.btn_commit.UseVisualStyleBackColor = true;
+            this.btn_commit.Click += new System.EventHandler(this.btn_commit_Click);
             // 
             // btn_change_logo
             // 
@@ -393,7 +409,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_reset.AutoSize = true;
-            this.btn_reset.Location = new System.Drawing.Point(530, 228);
+            this.btn_reset.Location = new System.Drawing.Point(530, 220);
             this.btn_reset.Name = "btn_reset";
             this.btn_reset.Size = new System.Drawing.Size(181, 26);
             this.btn_reset.TabIndex = 4;
@@ -407,7 +423,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_row_color.AutoSize = true;
-            this.btn_row_color.Location = new System.Drawing.Point(530, 170);
+            this.btn_row_color.Location = new System.Drawing.Point(530, 166);
             this.btn_row_color.Name = "btn_row_color";
             this.btn_row_color.Size = new System.Drawing.Size(181, 26);
             this.btn_row_color.TabIndex = 3;
@@ -421,7 +437,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_font_settings.AutoSize = true;
-            this.btn_font_settings.Location = new System.Drawing.Point(530, 138);
+            this.btn_font_settings.Location = new System.Drawing.Point(530, 134);
             this.btn_font_settings.Name = "btn_font_settings";
             this.btn_font_settings.Size = new System.Drawing.Size(181, 26);
             this.btn_font_settings.TabIndex = 2;
@@ -435,7 +451,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_panel_color.AutoSize = true;
-            this.btn_panel_color.Location = new System.Drawing.Point(530, 107);
+            this.btn_panel_color.Location = new System.Drawing.Point(530, 103);
             this.btn_panel_color.Name = "btn_panel_color";
             this.btn_panel_color.Size = new System.Drawing.Size(181, 26);
             this.btn_panel_color.TabIndex = 1;
@@ -449,7 +465,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_color.AutoSize = true;
-            this.btn_color.Location = new System.Drawing.Point(530, 76);
+            this.btn_color.Location = new System.Drawing.Point(530, 72);
             this.btn_color.Name = "btn_color";
             this.btn_color.Size = new System.Drawing.Size(181, 26);
             this.btn_color.TabIndex = 0;
@@ -602,6 +618,7 @@
             // 
             // tab_Reciept
             // 
+            this.tab_Reciept.Controls.Add(this.btn_receipt_font_reset);
             this.tab_Reciept.Controls.Add(this.lbl_receipt_footer);
             this.tab_Reciept.Controls.Add(this.txt_receipt_footer);
             this.tab_Reciept.Controls.Add(this.lbl_header);
@@ -658,12 +675,13 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_rec_font.AutoSize = true;
-            this.btn_rec_font.Location = new System.Drawing.Point(312, 169);
+            this.btn_rec_font.Location = new System.Drawing.Point(324, 125);
             this.btn_rec_font.Name = "btn_rec_font";
             this.btn_rec_font.Size = new System.Drawing.Size(181, 26);
             this.btn_rec_font.TabIndex = 8;
             this.btn_rec_font.Text = "Change Receipt Font";
             this.btn_rec_font.UseVisualStyleBackColor = true;
+            this.btn_rec_font.Click += new System.EventHandler(this.btn_rec_font_Click);
             // 
             // btn_foot
             // 
@@ -677,6 +695,7 @@
             this.btn_foot.TabIndex = 7;
             this.btn_foot.Text = "Change Reciept Footer";
             this.btn_foot.UseVisualStyleBackColor = true;
+            this.btn_foot.Click += new System.EventHandler(this.btn_foot_Click);
             // 
             // btn_header
             // 
@@ -690,6 +709,7 @@
             this.btn_header.TabIndex = 6;
             this.btn_header.Text = "Change Receipt Header";
             this.btn_header.UseVisualStyleBackColor = true;
+            this.btn_header.Click += new System.EventHandler(this.btn_header_Click);
             // 
             // tab_tax
             // 
@@ -785,26 +805,25 @@
             this.txt_sales_tax.Size = new System.Drawing.Size(100, 22);
             this.txt_sales_tax.TabIndex = 0;
             // 
-            // btn_commit
+            // btn_receipt_font_reset
             // 
-            this.btn_commit.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.btn_receipt_font_reset.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_commit.AutoSize = true;
-            this.btn_commit.Location = new System.Drawing.Point(380, 355);
-            this.btn_commit.Name = "btn_commit";
-            this.btn_commit.Size = new System.Drawing.Size(295, 26);
-            this.btn_commit.TabIndex = 4;
-            this.btn_commit.Text = "Commit";
-            this.btn_commit.UseVisualStyleBackColor = true;
-            this.btn_commit.Click += new System.EventHandler(this.btn_commit_Click);
+            this.btn_receipt_font_reset.AutoSize = true;
+            this.btn_receipt_font_reset.Location = new System.Drawing.Point(324, 173);
+            this.btn_receipt_font_reset.Name = "btn_receipt_font_reset";
+            this.btn_receipt_font_reset.Size = new System.Drawing.Size(181, 26);
+            this.btn_receipt_font_reset.TabIndex = 13;
+            this.btn_receipt_font_reset.Text = "Reset Receipt Font";
+            this.btn_receipt_font_reset.UseVisualStyleBackColor = true;
+            this.btn_receipt_font_reset.Click += new System.EventHandler(this.btn_receipt_font_reset_Click);
             // 
             // FrmSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1008, 402);
-            this.Controls.Add(this.btn_commit);
             this.Controls.Add(this.tab_receipt);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmSettings";
@@ -824,7 +843,6 @@
             this.tab_tax.ResumeLayout(false);
             this.tab_tax.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -893,5 +911,6 @@
         private System.Windows.Forms.TextBox txt_receipt_footer;
         private System.Windows.Forms.Label lbl_header;
         private System.Windows.Forms.TextBox txt_receipt_header;
+        private System.Windows.Forms.Button btn_receipt_font_reset;
     }
 }

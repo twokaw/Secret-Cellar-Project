@@ -44,12 +44,15 @@ namespace SecretCellar.Properties {
             }
         }
         
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("1205 Curtis Bridge Road NE\r\nShueyville, IA 52338\r\n 319-841-2172")]
         public string Header {
             get {
                 return ((string)(this["Header"]));
+            }
+            set {
+                this["Header"] = value;
             }
         }
         
@@ -83,21 +86,27 @@ namespace SecretCellar.Properties {
             }
         }
         
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("Arial")]
         public string ReceiptFont {
             get {
                 return ((string)(this["ReceiptFont"]));
             }
+            set {
+                this["ReceiptFont"] = value;
+            }
         }
         
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("9")]
         public float ReceiptFontSize {
             get {
                 return ((float)(this["ReceiptFontSize"]));
+            }
+            set {
+                this["ReceiptFontSize"] = value;
             }
         }
         
@@ -110,12 +119,15 @@ namespace SecretCellar.Properties {
             }
         }
         
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("Thank You Come Again!\r\n\r\n*****************************")]
         public string Footer {
             get {
                 return ((string)(this["Footer"]));
+            }
+            set {
+                this["Footer"] = value;
             }
         }
         

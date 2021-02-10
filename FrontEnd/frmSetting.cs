@@ -8,7 +8,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Shared;
 
 namespace SecretCellar
 {
@@ -31,6 +30,7 @@ namespace SecretCellar
             List<Discount> all_Discounts = DataAccess.instance.GetDiscount();
             all_Discounts.ForEach(x => chk_lst_discount.Items.Add(x.DiscountName));
             txt_receipt_header.Text = Properties.Settings.Default.Header;
+            txt_receipt_footer.Text = Properties.Settings.Default.Footer;
 
 
         }
@@ -250,6 +250,36 @@ namespace SecretCellar
         private void chk_lst_discount_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void btn_header_Click(object sender, EventArgs e)
+        {
+             Properties.Settings.Default.Header =txt_receipt_header.Text;
+        }
+
+        private void btn_foot_Click(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.Footer = txt_receipt_footer.Text;
+        }
+
+        private void btn_rec_font_Click(object sender, EventArgs e)
+        {
+            FontDialog fontDlg = new FontDialog();
+            fontDlg.MaxSize = 14;
+            fontDlg.MinSize = 8;
+
+            fontDlg.ShowDialog();
+            Properties.Settings.Default.ReceiptFont = fontDlg.Font.Name;
+            Properties.Settings.Default.ReceiptFontSize = fontDlg.Font.Size;
+            Properties.Settings.Default.Save();
+
+        }
+
+        private void btn_receipt_font_reset_Click(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.ReceiptFont = "Arial";
+            Properties.Settings.Default.ReceiptFontSize = 9;
+            Properties.Settings.Default.Save();
         }
     }
 }
