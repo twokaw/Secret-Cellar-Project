@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Shared;
 
 namespace SecretCellar
 {
@@ -23,10 +24,15 @@ namespace SecretCellar
             this.AutoScaleDimensions = new System.Drawing.SizeF(72, 72);
             listbox_logos.DataSource = DataAccess.instance.GetImageFiles();
             lstTypes.DataSource = DataAccess.instance.GetInventoryType();
-            InventoryType invType = DataAccess.instance.GetInventoryType(lstTypes.Text);
+            //InventoryType invType = DataAccess.instance.GetInventoryType(lstTypes.Text);
             cbx_tax.DataSource = DataAccess.instance.GetTax();
             lstTypes.DisplayMember = "TypeName";
             cbx_tax.DisplayMember = "TaxName";
+            List<Discount> all_Discounts = DataAccess.instance.GetDiscount();
+            all_Discounts.ForEach(x => chk_lst_discount.Items.Add(x.DiscountName));
+            txt_receipt_header.Text = Properties.Settings.Default.Header;
+
+
         }
 
         private void FrmSetting_Load(object sender, EventArgs e)
@@ -40,7 +46,6 @@ namespace SecretCellar
             // Set up the ToolTip text for the Button and Checkbox.
             ProgramTips.SetToolTip(this.btn_commit, "Click commit to make changes permanent otherwise will reset on program close");
             //ProgramTips.SetToolTip(this.checkBox1, "My checkBox1");
-
         }
 
         private void cbx_tax_type_SelectedIndexChanged(object sender, EventArgs e)
@@ -127,45 +132,28 @@ namespace SecretCellar
         #region Reports
 
         private void btn_Run_Click(object sender, EventArgs e)
-        {   
+        {
             List<Transaction> transactions = DataAccess.instance.GetTransactions(dtp_start.Value, dtp_end.Value);
 
-            // Dictionary<string, double> vendorSales = new Dictionary<string, double>();
+            Dictionary<string, double> vendorSales = new Dictionary<string, double>();
             Dictionary<string, double> typeSales = new Dictionary<string, double>();
-            double totalSales = 0.0; 
-            double costSales = 0.0;
+            double totalSales = 0.0;
             double bottleDeposit = 0.0;
             double netSales = 0.0;
             double tax = 0.0;
             double localtax = 0.0;
 
+            /*
             foreach (Transaction t in transactions)
             {
                 totalSales += t.Total;
+                totalSales 
                 foreach (Item i in t.Items)
                 {
-                    totalSales += t.ItemPriceTotal(i);
-                    bottleDeposit += t.Bottle_deposit ;
-                    netSales += t.ItemPrice(i) - i.SupplierPrice;
-                    tax += t.ItemTax(i);
-                    localtax += t.ItemLocalTax(i);
-                    costSales += i.SupplierPrice;
-
-                    typeSales[i.ItemType] += t.ItemPriceTotal(i);
+                    totalSales += i.SupplierPrice 
                 }
             }
 
-            /*
-            txt_SalesTotal.Text = totalSales.ToString("C");
-            txt_SalesNet.Text =netSales.ToString("C");
-            txt_SalesTax.Text = tax.ToString("C");
-            txt_SalesLocalTax.Text = localtax .ToString("C");
-            txt_SalesCost.Text = costSales.ToString("C");
-            txt_SalesBottleDeposit.Text = bottleDeposit.ToString("C");
-            txt_SalesTotal.Text = totalSales.ToString("C");
-            */
-            
-            /*
              transaction.Subtotal.ToString("C");
             txt_transBTLDPT.Text = transactionBottleDeposit.ToString("C");
             txt_itemTotal.Text = transaction.Subtotal.ToString("C");
@@ -223,7 +211,13 @@ namespace SecretCellar
             txt_bottleDep.Text = ((InventoryType)lstTypes.SelectedItem).BottleDeposit.ToString();
             txt_salesTax.Text = ((InventoryType)lstTypes.SelectedItem).SalesTax.ToString();
             txt_localTax.Text = ((InventoryType)lstTypes.SelectedItem).LocalSalesTax.ToString();
+            txt_typename.Text = ((InventoryType)lstTypes.SelectedItem).TypeName;
+            for (int i = 0; i < chk_lst_discount.Items.Count; i++)
+            {
 
+                chk_lst_discount.SetItemChecked(i, ((InventoryType)lstTypes.SelectedItem).Discount.FirstOrDefault(x => x.DiscountName == chk_lst_discount.Items[i].ToString()) != null);
+
+            }
         }
 
         private void TabTypes_Click(object sender, EventArgs e)
@@ -231,7 +225,29 @@ namespace SecretCellar
 
         }
 
-        private void TxtSalesInvType_TextChanged(object sender, EventArgs e)
+        private void btn_new_type_Click(object sender, EventArgs e)
+        {
+            if (DataAccess.instance.GetInventoryType(lbl_typename.Text) == null)
+            {
+                InventoryType i = new InventoryType();
+                i.TypeName = lbl_typename.Text.Trim();
+                i.IdTax = ((Tax)cbx_tax.SelectedItem).IdTax;
+                //i.BottleDeposit = Convert.ToDouble(txt_bottleDep.Text);
+                //i.SalesTax = Convert.ToDouble(txt_salesTax.Text);
+                //i.LocalSalesTax = Convert.ToDouble(txt_localTax.Text);
+                DataAccess.instance.UpdateInventoryType(i);
+            }
+        }
+
+        private void btn_update_type_Click(object sender, EventArgs e)
+        {
+            InventoryType i = (InventoryType)lstTypes.SelectedItem;
+            i.TypeName = lbl_typename.Text.Trim();
+            i.IdTax = ((Tax)cbx_tax.SelectedItem).IdTax;
+            DataAccess.instance.UpdateInventoryType(i);
+        }
+
+        private void chk_lst_discount_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

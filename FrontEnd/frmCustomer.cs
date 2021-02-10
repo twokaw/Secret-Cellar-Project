@@ -244,6 +244,7 @@ Address:
             if (addCustomer())
             {
                 this.DialogResult = DialogResult.OK;
+                //transaction.txt_current_cust.Text = customer.CustomerID;
                 this.Close();
             }
 

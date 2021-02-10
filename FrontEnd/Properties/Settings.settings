@@ -13,7 +13,7 @@
 Shueyville, IA 52338
  319-841-2172</Value>
     </Setting>
-    <Setting Name="CashDrawerPort" Type="System.String" Scope="Application">
+    <Setting Name="CashDrawerPort" Type="System.String" Scope="User">
       <Value Profile="(Default)">COM3</Value>
     </Setting>
     <Setting Name="PrintReceipt" Type="System.Boolean" Scope="Application">
