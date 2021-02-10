@@ -75,6 +75,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.dtp_start = new System.Windows.Forms.DateTimePicker();
             this.tab_Reciept = new System.Windows.Forms.TabPage();
+            this.btn_receipt_font_reset = new System.Windows.Forms.Button();
             this.lbl_receipt_footer = new System.Windows.Forms.Label();
             this.txt_receipt_footer = new System.Windows.Forms.TextBox();
             this.lbl_header = new System.Windows.Forms.Label();
@@ -92,7 +93,6 @@
             this.txt_bottle_dep = new System.Windows.Forms.TextBox();
             this.txt_local_tax = new System.Windows.Forms.TextBox();
             this.txt_sales_tax = new System.Windows.Forms.TextBox();
-            this.btn_receipt_font_reset = new System.Windows.Forms.Button();
             this.tab_receipt.SuspendLayout();
             this.tab_Types.SuspendLayout();
             this.tab_Appearance.SuspendLayout();
@@ -635,6 +635,20 @@
             this.tab_Reciept.Text = "Receipt";
             this.tab_Reciept.UseVisualStyleBackColor = true;
             // 
+            // btn_receipt_font_reset
+            // 
+            this.btn_receipt_font_reset.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_receipt_font_reset.AutoSize = true;
+            this.btn_receipt_font_reset.Location = new System.Drawing.Point(324, 173);
+            this.btn_receipt_font_reset.Name = "btn_receipt_font_reset";
+            this.btn_receipt_font_reset.Size = new System.Drawing.Size(181, 26);
+            this.btn_receipt_font_reset.TabIndex = 13;
+            this.btn_receipt_font_reset.Text = "Reset Receipt Font";
+            this.btn_receipt_font_reset.UseVisualStyleBackColor = true;
+            this.btn_receipt_font_reset.Click += new System.EventHandler(this.btn_receipt_font_reset_Click);
+            // 
             // lbl_receipt_footer
             // 
             this.lbl_receipt_footer.AutoSize = true;
@@ -738,6 +752,7 @@
             this.btn_update_tax.TabIndex = 8;
             this.btn_update_tax.Text = "Update";
             this.btn_update_tax.UseVisualStyleBackColor = true;
+            this.btn_update_tax.Click += new System.EventHandler(this.btn_update_tax_Click);
             // 
             // txt_tax_list
             // 
@@ -804,20 +819,6 @@
             this.txt_sales_tax.Name = "txt_sales_tax";
             this.txt_sales_tax.Size = new System.Drawing.Size(100, 22);
             this.txt_sales_tax.TabIndex = 0;
-            // 
-            // btn_receipt_font_reset
-            // 
-            this.btn_receipt_font_reset.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_receipt_font_reset.AutoSize = true;
-            this.btn_receipt_font_reset.Location = new System.Drawing.Point(324, 173);
-            this.btn_receipt_font_reset.Name = "btn_receipt_font_reset";
-            this.btn_receipt_font_reset.Size = new System.Drawing.Size(181, 26);
-            this.btn_receipt_font_reset.TabIndex = 13;
-            this.btn_receipt_font_reset.Text = "Reset Receipt Font";
-            this.btn_receipt_font_reset.UseVisualStyleBackColor = true;
-            this.btn_receipt_font_reset.Click += new System.EventHandler(this.btn_receipt_font_reset_Click);
             // 
             // FrmSettings
             // 

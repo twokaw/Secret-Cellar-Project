@@ -23,8 +23,10 @@ namespace SecretCellar
             this.AutoScaleDimensions = new System.Drawing.SizeF(72, 72);
             listbox_logos.DataSource = DataAccess.instance.GetImageFiles();
             lstTypes.DataSource = DataAccess.instance.GetInventoryType();
+            lst_tax_list.DataSource = DataAccess.instance.GetTax();
             //InventoryType invType = DataAccess.instance.GetInventoryType(lstTypes.Text);
             cbx_tax.DataSource = DataAccess.instance.GetTax();
+            lst_tax_list.DisplayMember = "TaxName";
             lstTypes.DisplayMember = "TypeName";
             cbx_tax.DisplayMember = "TaxName";
             List<Discount> all_Discounts = DataAccess.instance.GetDiscount();
@@ -280,6 +282,21 @@ namespace SecretCellar
             Properties.Settings.Default.ReceiptFont = "Arial";
             Properties.Settings.Default.ReceiptFontSize = 9;
             Properties.Settings.Default.Save();
+        }
+
+        private void lst_tax_list_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            //txt_bottle_dep.Text = DataAccess.instance.;
+            //txt_sales_tax.Text = lst_tax_list.SelectedItem.SalesTax.ToString();
+            //txt_local_tax.Text = ((Tax)lst_tax_list.SelectedItem).LocalSalesTax.ToString();
+            
+            
+        }
+
+        private void btn_update_tax_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
