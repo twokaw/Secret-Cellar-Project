@@ -138,6 +138,10 @@ namespace SecretCellar
 												selectedTransaction.Payments,
 												selectedTransaction.EmployeeID,
 												selectedTransaction.CustomerID);
+				
+				//UPDATE THE CUSTOMER INFORMATION
+				Customer customer = DataAccess.instance.GetCustomer(newTransaction.CustomerID);
+				newTransaction.CustomerName = customer.FirstName + " " + customer.LastName;
 
 				//CLOSE THE WINDOW AND CALL THE IMPORT FUNCTION
 				this.Close();
