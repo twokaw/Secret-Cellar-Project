@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmTransaction));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.DESCRIPTION = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -73,6 +73,8 @@
             this.button1 = new System.Windows.Forms.Button();
             this.btnSuspendedTransactions = new System.Windows.Forms.Button();
             this.btnSuspendTransaction = new System.Windows.Forms.Button();
+            this.txt_current_cust = new System.Windows.Forms.TextBox();
+            this.lbl_current_cust = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pb_settings)).BeginInit();
@@ -90,14 +92,14 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.DESCRIPTION,
@@ -487,7 +489,7 @@
             this.txtBarcode.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBarcode.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBarcode.Location = new System.Drawing.Point(945, 15);
+            this.txtBarcode.Location = new System.Drawing.Point(1015, 15);
             this.txtBarcode.Margin = new System.Windows.Forms.Padding(1);
             this.txtBarcode.MinimumSize = new System.Drawing.Size(247, 26);
             this.txtBarcode.Name = "txtBarcode";
@@ -501,7 +503,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lbl_BARCODE.AutoSize = true;
             this.lbl_BARCODE.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_BARCODE.Location = new System.Drawing.Point(849, 21);
+            this.lbl_BARCODE.Location = new System.Drawing.Point(919, 21);
             this.lbl_BARCODE.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.lbl_BARCODE.Name = "lbl_BARCODE";
             this.lbl_BARCODE.Size = new System.Drawing.Size(76, 15);
@@ -513,7 +515,7 @@
             // 
             this.btnLookup.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnLookup.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLookup.Location = new System.Drawing.Point(1225, 11);
+            this.btnLookup.Location = new System.Drawing.Point(1295, 11);
             this.btnLookup.Margin = new System.Windows.Forms.Padding(1);
             this.btnLookup.MaximumSize = new System.Drawing.Size(156, 36);
             this.btnLookup.Name = "btnLookup";
@@ -603,7 +605,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(140, 10);
+            this.button1.Location = new System.Drawing.Point(135, 10);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(166, 35);
             this.button1.TabIndex = 24;
@@ -614,7 +616,7 @@
             // btnSuspendedTransactions
             // 
             this.btnSuspendedTransactions.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSuspendedTransactions.Location = new System.Drawing.Point(370, 10);
+            this.btnSuspendedTransactions.Location = new System.Drawing.Point(512, 11);
             this.btnSuspendedTransactions.Margin = new System.Windows.Forms.Padding(1);
             this.btnSuspendedTransactions.Name = "btnSuspendedTransactions";
             this.btnSuspendedTransactions.Size = new System.Drawing.Size(229, 36);
@@ -627,7 +629,7 @@
             // btnSuspendTransaction
             // 
             this.btnSuspendTransaction.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSuspendTransaction.Location = new System.Drawing.Point(613, 10);
+            this.btnSuspendTransaction.Location = new System.Drawing.Point(759, 11);
             this.btnSuspendTransaction.Margin = new System.Windows.Forms.Padding(1);
             this.btnSuspendTransaction.Name = "btnSuspendTransaction";
             this.btnSuspendTransaction.Size = new System.Drawing.Size(121, 36);
@@ -637,6 +639,22 @@
             this.btnSuspendTransaction.UseVisualStyleBackColor = true;
             this.btnSuspendTransaction.Click += new System.EventHandler(this.btnSuspendTransaction_Click);
             // 
+            // txt_current_cust
+            // 
+            this.txt_current_cust.Location = new System.Drawing.Point(313, 22);
+            this.txt_current_cust.Name = "txt_current_cust";
+            this.txt_current_cust.Size = new System.Drawing.Size(177, 22);
+            this.txt_current_cust.TabIndex = 25;
+            // 
+            // lbl_current_cust
+            // 
+            this.lbl_current_cust.AutoSize = true;
+            this.lbl_current_cust.Location = new System.Drawing.Point(342, 4);
+            this.lbl_current_cust.Name = "lbl_current_cust";
+            this.lbl_current_cust.Size = new System.Drawing.Size(126, 16);
+            this.lbl_current_cust.TabIndex = 26;
+            this.lbl_current_cust.Text = "Current Customer";
+            // 
             // frmTransaction
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 16F);
@@ -645,6 +663,8 @@
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(152)))), ((int)(((byte)(151)))), ((int)(((byte)(152)))));
             this.ClientSize = new System.Drawing.Size(1776, 783);
+            this.Controls.Add(this.lbl_current_cust);
+            this.Controls.Add(this.txt_current_cust);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnSuspendTransaction);
             this.Controls.Add(this.btnSuspendedTransactions);
@@ -727,5 +747,7 @@
 		private System.Windows.Forms.Button btnSuspendTransaction;
         private System.Windows.Forms.Label lbl_twentyone;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox txt_current_cust;
+        private System.Windows.Forms.Label lbl_current_cust;
     }
 }

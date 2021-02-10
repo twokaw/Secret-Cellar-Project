@@ -28,6 +28,7 @@ namespace SecretCellar
             this.Size = new System.Drawing.Size(1366, 768);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScaleDimensions = new System.Drawing.SizeF(72, 72);
+            txt_current_cust.Text = "Generic";
 
 
             string path = Properties.Settings.Default.FontPath;
@@ -148,6 +149,12 @@ namespace SecretCellar
             txt_transDiscount.Text = transaction.DiscountTotal.ToString("C");
             txt_TransTotal.Text = transaction.Total.ToString("C");
             txt_Ship.Text = transaction.Shipping.ToString("C");
+
+            if (transaction.CustomerID > 0)
+            {
+                Customer currentCustomer = DataAccess.instance.GetCustomer(transaction.CustomerID);
+                txt_current_cust.Text = $"{currentCustomer.LastName}, {currentCustomer.FirstName}";
+            }
         }
 
         private void btnDeleteItem_Click(object sender, EventArgs e)
@@ -368,6 +375,7 @@ namespace SecretCellar
             frmCustomer customer = new frmCustomer(transaction); //instantiates frmCustomer using Lookup
             customer.ShowDialog(); // opens form associated with Lookup instantiation
             RefreshDataGrid();
+         
         }
     }
 }
