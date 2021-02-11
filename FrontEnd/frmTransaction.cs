@@ -235,8 +235,7 @@ namespace SecretCellar
 
         private void dataGridView1_RowsAdded(object sender, EventArgs e)
         {
-            //IF THE COUNT IS BIGGER THAN 0, MEANING AT LEAST
-            //ONE ITEM IS SELECTED, THEN SHOW THE SUSPEND TRANSACTION BUTTON
+            //IF THE COUNT IS BIGGER THAN 0 SHOW THE SUSPEND TRANSACTION BUTTON
             if (transaction.Items.Count > 0) {
                 btnSuspendTransaction.Visible = true;
             }
@@ -244,8 +243,7 @@ namespace SecretCellar
 
         private void dataGridView1_RowsRemoved(object sender, EventArgs e)
         {
-            //IF THE COUNT EQUALS 0, MEANING NOTHING IS SELECTED
-            //THEN HIDE THE SUSPEND TRANSACTION BUTTON
+            //IF THE COUNT EQUALS 0 HIDE THE SUSPEND TRANSACTION BUTTON
             if (transaction.Items.Count == 0) {
                 btnSuspendTransaction.Visible = false;
             }
@@ -294,22 +292,7 @@ namespace SecretCellar
 
         private void btnSuspendTransaction_Click(object sender, EventArgs e)
         {
-            Customer customer;
-            
-            //CREATE A POP UP MENU FOR THE USER TO SEARCH THROUGH CUSTOMER NAMES
-            frmSuspendedTransactionsNamePopUp popUp = new frmSuspendedTransactionsNamePopUp();
-            popUp.ShowDialog();
-
-            customer = popUp.customer;
-
-            //IF THE USER CANCELS OUT OF THE FORM OR DOESN'T SELECT A NAME, END THE FUNCTION
-            if (customer == null) {
-                return;
-            }
-
-            transaction.CustomerName = customer.FirstName + " " + customer.LastName;
-            transaction.CustomerID = customer.CustomerID;
-
+            //PROCESS THE TRANSACTION TO SUSPEND IT
             DataAccess.instance.ProcessTransaction(transaction);
 
             //CLEAR THE CURRENT TRANSACTION AND THE dataGridView1 SINCE THEY'RE NOW SUSPENDED
@@ -325,7 +308,12 @@ namespace SecretCellar
             txt_TransTotal.Text = "$0.00";
             txt_Ship.Text = "$0.00";
 
+            //HIDE THE SUSPEND TRANSACTION BUTTON
             dataGridView1_RowsRemoved(this, e);
+
+            //CLEAR THE CURRENT CUSTOMER
+            txt_current_cust.Text = "";
+            RefreshDataGrid();
         }
 
         public void importSuspendedTransaction(Transaction suspendedTransaction) {
