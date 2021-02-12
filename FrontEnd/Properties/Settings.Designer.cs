@@ -215,21 +215,33 @@ namespace SecretCellar.Properties {
             }
         }
         
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Microsoft Sans Serif, 9pt, style=Bold")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Microsoft Sans Serif, 8.25pt")]
         public global::System.Drawing.Font DefaultFont {
             get {
                 return ((global::System.Drawing.Font)(this["DefaultFont"]));
+            }
+            set {
+                this["DefaultFont"] = value;
             }
         }
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Microsoft Sans Serif, 9pt")]
-        public global::System.Drawing.Font DefaultFontSize {
+        [global::System.Configuration.DefaultSettingValueAttribute("9")]
+        public float DefaultFontSize {
             get {
-                return ((global::System.Drawing.Font)(this["DefaultFontSize"]));
+                return ((float)(this["DefaultFontSize"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Bold")]
+        public string DefualtFontStyle {
+            get {
+                return ((string)(this["DefualtFontStyle"]));
             }
         }
     }

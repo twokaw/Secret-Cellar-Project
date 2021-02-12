@@ -75,7 +75,12 @@ namespace SecretCellar
 
         private void btn_font_settings_Click(object sender, EventArgs e)
         {
-            FontDialog fontDlg = new FontDialog();
+            
+
+            FontDialog fontDlg = new FontDialog()
+            {
+                Font = Properties.Settings.Default.FontSet
+            };
             fontDlg.ShowDialog();
             CommonFontSetter = fontDlg.Font;
             
@@ -265,10 +270,14 @@ namespace SecretCellar
         }
 
         private void btn_rec_font_Click(object sender, EventArgs e)
+           
         {
+
+            Font currentFont = new Font(Properties.Settings.Default.ReceiptFont,Properties.Settings.Default.ReceiptFontSize);
             FontDialog fontDlg = new FontDialog();
             fontDlg.MaxSize = 14;
             fontDlg.MinSize = 8;
+            fontDlg.Font = currentFont;
 
             fontDlg.ShowDialog();
             Properties.Settings.Default.ReceiptFont = fontDlg.Font.Name;
