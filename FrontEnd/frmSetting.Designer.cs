@@ -84,6 +84,8 @@
             this.btn_foot = new System.Windows.Forms.Button();
             this.btn_header = new System.Windows.Forms.Button();
             this.tab_tax = new System.Windows.Forms.TabPage();
+            this.lbl_taxtype_name = new System.Windows.Forms.Label();
+            this.txt_tax_type_name = new System.Windows.Forms.TextBox();
             this.btn_update_tax = new System.Windows.Forms.Button();
             this.txt_tax_list = new System.Windows.Forms.Label();
             this.lst_tax_list = new System.Windows.Forms.ListBox();
@@ -93,6 +95,8 @@
             this.txt_bottle_dep = new System.Windows.Forms.TextBox();
             this.txt_local_tax = new System.Windows.Forms.TextBox();
             this.txt_sales_tax = new System.Windows.Forms.TextBox();
+            this.btn_new_tax = new System.Windows.Forms.Button();
+            this.btn_clear_tax_info = new System.Windows.Forms.Button();
             this.tab_receipt.SuspendLayout();
             this.tab_Types.SuspendLayout();
             this.tab_Appearance.SuspendLayout();
@@ -727,6 +731,10 @@
             // 
             // tab_tax
             // 
+            this.tab_tax.Controls.Add(this.btn_clear_tax_info);
+            this.tab_tax.Controls.Add(this.btn_new_tax);
+            this.tab_tax.Controls.Add(this.lbl_taxtype_name);
+            this.tab_tax.Controls.Add(this.txt_tax_type_name);
             this.tab_tax.Controls.Add(this.btn_update_tax);
             this.tab_tax.Controls.Add(this.txt_tax_list);
             this.tab_tax.Controls.Add(this.lst_tax_list);
@@ -744,9 +752,25 @@
             this.tab_tax.Text = "Tax";
             this.tab_tax.UseVisualStyleBackColor = true;
             // 
+            // lbl_taxtype_name
+            // 
+            this.lbl_taxtype_name.AutoSize = true;
+            this.lbl_taxtype_name.Location = new System.Drawing.Point(356, 86);
+            this.lbl_taxtype_name.Name = "lbl_taxtype_name";
+            this.lbl_taxtype_name.Size = new System.Drawing.Size(83, 16);
+            this.lbl_taxtype_name.TabIndex = 10;
+            this.lbl_taxtype_name.Text = "Tax Name:";
+            // 
+            // txt_tax_type_name
+            // 
+            this.txt_tax_type_name.Location = new System.Drawing.Point(455, 82);
+            this.txt_tax_type_name.Name = "txt_tax_type_name";
+            this.txt_tax_type_name.Size = new System.Drawing.Size(100, 22);
+            this.txt_tax_type_name.TabIndex = 9;
+            // 
             // btn_update_tax
             // 
-            this.btn_update_tax.Location = new System.Drawing.Point(657, 138);
+            this.btn_update_tax.Location = new System.Drawing.Point(657, 86);
             this.btn_update_tax.Name = "btn_update_tax";
             this.btn_update_tax.Size = new System.Drawing.Size(130, 23);
             this.btn_update_tax.TabIndex = 8;
@@ -771,6 +795,7 @@
             this.lst_tax_list.Name = "lst_tax_list";
             this.lst_tax_list.Size = new System.Drawing.Size(160, 100);
             this.lst_tax_list.TabIndex = 6;
+            this.lst_tax_list.SelectedIndexChanged += new System.EventHandler(this.lst_tax_list_SelectedIndexChanged);
             // 
             // lbl_btl_deposit
             // 
@@ -819,6 +844,26 @@
             this.txt_sales_tax.Name = "txt_sales_tax";
             this.txt_sales_tax.Size = new System.Drawing.Size(100, 22);
             this.txt_sales_tax.TabIndex = 0;
+            // 
+            // btn_new_tax
+            // 
+            this.btn_new_tax.Location = new System.Drawing.Point(657, 162);
+            this.btn_new_tax.Name = "btn_new_tax";
+            this.btn_new_tax.Size = new System.Drawing.Size(130, 23);
+            this.btn_new_tax.TabIndex = 11;
+            this.btn_new_tax.Text = "New";
+            this.btn_new_tax.UseVisualStyleBackColor = true;
+            this.btn_new_tax.Click += new System.EventHandler(this.btn_new_tax_Click);
+            // 
+            // btn_clear_tax_info
+            // 
+            this.btn_clear_tax_info.Location = new System.Drawing.Point(425, 214);
+            this.btn_clear_tax_info.Name = "btn_clear_tax_info";
+            this.btn_clear_tax_info.Size = new System.Drawing.Size(130, 23);
+            this.btn_clear_tax_info.TabIndex = 12;
+            this.btn_clear_tax_info.Text = "Clear Info";
+            this.btn_clear_tax_info.UseVisualStyleBackColor = true;
+            this.btn_clear_tax_info.Click += new System.EventHandler(this.btn_clear_tax_info_Click);
             // 
             // FrmSettings
             // 
@@ -913,5 +958,9 @@
         private System.Windows.Forms.Label lbl_header;
         private System.Windows.Forms.TextBox txt_receipt_header;
         private System.Windows.Forms.Button btn_receipt_font_reset;
+        private System.Windows.Forms.Label lbl_taxtype_name;
+        private System.Windows.Forms.TextBox txt_tax_type_name;
+        private System.Windows.Forms.Button btn_clear_tax_info;
+        private System.Windows.Forms.Button btn_new_tax;
     }
 }
