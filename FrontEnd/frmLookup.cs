@@ -114,6 +114,26 @@ namespace SecretCellar
                 cbo_Supplier.Text = suppliers.First(x => x.SupplierID == i.SupplierID).Name;
                 txtNetPrice.Text = i.SupplierPrice.ToString();
                 txtProd_Qty.Text = i.Bottles.ToString();
+
+                //TODO: Get discount checkbox to be true if the item is a certain type
+                List<InventoryType> inventoryTypes = DataAccess.instance.GetInventoryType();
+
+                foreach (InventoryType inventoryType in inventoryTypes) {
+                    if (inventoryType.TypeName.Equals(i.ItemType)) {
+                        List<Discount> discounts = inventoryType.Discount;
+
+                        foreach (Discount discount in discounts) {
+                            if (discount.DiscountName.Equals("Case Discount") || discount.DiscountName.Equals("Half Case Discount")) {
+                                checkBox_CaseDiscount.Checked = true;
+                            }
+                        }
+
+                        //TODO: Get discount checkbox to disable if it doesn't have case discount
+                        if (discounts == null) {
+                            checkBox_CaseDiscount.Checked = false;
+						}
+					}
+				}
             }
         }
 

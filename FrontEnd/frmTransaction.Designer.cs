@@ -542,6 +542,7 @@
 			// 
 			// pb_settings
 			// 
+			this.pb_settings.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.pb_settings.Image = global::SecretCellar.Properties.Resources.Gears;
 			this.pb_settings.Location = new System.Drawing.Point(18, 7);
 			this.pb_settings.Margin = new System.Windows.Forms.Padding(4);
