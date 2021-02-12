@@ -70,8 +70,7 @@ namespace SecretCellar
             {
                 Inventory i = inventory.First(x => x.Id == uint.Parse(LookupView.SelectedRows[0].Cells["id"].Value.ToString()));
 
-                Item item = DataAccess.ConvertInvtoItem(i);
-                lookUp.Items.Add(item);
+                lookUp.Add(i);
                 return true;
             }
             return false;
@@ -368,6 +367,16 @@ namespace SecretCellar
 		}
 
         private void frmLookup_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtName_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtPrice_TextChanged(object sender, EventArgs e)
         {
 
         }

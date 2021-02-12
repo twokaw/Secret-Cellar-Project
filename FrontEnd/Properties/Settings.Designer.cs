@@ -32,12 +32,15 @@ namespace SecretCellar.Properties {
             }
         }
         
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("logo.png")]
         public string Logo {
             get {
                 return ((string)(this["Logo"]));
+            }
+            set {
+                this["Logo"] = value;
             }
         }
         
@@ -50,12 +53,15 @@ namespace SecretCellar.Properties {
             }
         }
         
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("COM3")]
         public string CashDrawerPort {
             get {
                 return ((string)(this["CashDrawerPort"]));
+            }
+            set {
+                this["CashDrawerPort"] = value;
             }
         }
         
@@ -88,7 +94,7 @@ namespace SecretCellar.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("10")]
+        [global::System.Configuration.DefaultSettingValueAttribute("9")]
         public float ReceiptFontSize {
             get {
                 return ((float)(this["ReceiptFontSize"]));

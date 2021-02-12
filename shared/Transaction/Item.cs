@@ -22,6 +22,30 @@ namespace Shared
             }
         }
 
+        public double DiscountTotal
+        {
+            get
+            {
+                return (Price > 0) ? Price * NumSold * (Discount + (1 - Discount) * Discount) : -Price;
+            }
+        }
+
+        public double SubTotal
+        {
+            get
+            {
+                return (Price > 0) ? Price * NumSold : 0;
+            }
+        }
+         
+        public double AdjustedTotal
+        {
+            get
+            {
+                return Price * NumSold * ((Price > 0) ? (1 - Discount)  : 1);
+            }
+        }
+
         public uint NumSold { get; set; } 
         public double Discount { get; set; }
         public double Coupon { get; set; }

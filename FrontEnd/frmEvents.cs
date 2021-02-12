@@ -35,12 +35,10 @@ namespace SecretCellar
         {
             if (double.TryParse(txtCharge.Text, out double d))
             {
-                Item i = DataAccess.ConvertInvtoItem(DataAccess.instance.GetItem("EVENT"));
+                Item i = Transaction.ConvertInvtoItem(DataAccess.instance.GetItem("EVENT"));
                 i.Price = d;
                 events.Items.Add(i);
             }
-
-
         }
 
         private void event_dataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)

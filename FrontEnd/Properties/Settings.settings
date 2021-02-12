@@ -5,7 +5,7 @@
     <Setting Name="URL" Type="System.String" Scope="Application">
       <Value Profile="(Default)">http://localhost:5000</Value>
     </Setting>
-    <Setting Name="Logo" Type="System.String" Scope="Application">
+    <Setting Name="Logo" Type="System.String" Scope="User">
       <Value Profile="(Default)">logo.png</Value>
     </Setting>
     <Setting Name="Header" Type="System.String" Scope="Application">
@@ -13,7 +13,7 @@
 Shueyville, IA 52338
  319-841-2172</Value>
     </Setting>
-    <Setting Name="CashDrawerPort" Type="System.String" Scope="Application">
+    <Setting Name="CashDrawerPort" Type="System.String" Scope="User">
       <Value Profile="(Default)">COM3</Value>
     </Setting>
     <Setting Name="PrintReceipt" Type="System.Boolean" Scope="Application">
@@ -26,7 +26,7 @@ Shueyville, IA 52338
       <Value Profile="(Default)">Arial</Value>
     </Setting>
     <Setting Name="ReceiptFontSize" Type="System.Single" Scope="Application">
-      <Value Profile="(Default)">10</Value>
+      <Value Profile="(Default)">9</Value>
     </Setting>
     <Setting Name="ReceiptWidth" Type="System.Int32" Scope="Application">
       <Value Profile="(Default)">0</Value>

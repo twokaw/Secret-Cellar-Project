@@ -3,17 +3,23 @@ using System.Collections.Generic;
 using Shared;
 using static SecretCellar.WebConnector;
 using System;
+using System.Drawing;
+using System.IO;
+using System.Reflection;
+using System.Windows.Forms;
 using System.Linq;
 
 namespace SecretCellar
 {
     public class DataAccess
-    {      
+    {
         private static WebConnector web = null;
         public static DataAccess instance;
+        private Image logo;
+        private static List<PictureBox> pictureBoxes = new List<PictureBox>();
         public DataAccess(string connectionString)
         {
-            if(web == null)
+            if (web == null)
                 web = new WebConnector(connectionString);
             instance = new DataAccess();
         }
@@ -22,8 +28,8 @@ namespace SecretCellar
         #region Inventory
         public void DeleteItem(Inventory inv)
         {
-            web.DataDelete ($"api/inventory/{inv.Id}");
-        }  
+            web.DataDelete($"api/inventory/{inv.Id}");
+        }
 
         public List<Inventory> GetInventory()
         {
@@ -92,7 +98,7 @@ namespace SecretCellar
 
             if (uint.TryParse(result, out uint id))
                 return id;
-            else 
+            else
                 return 0;
         }
         #endregion
@@ -159,12 +165,12 @@ namespace SecretCellar
         #endregion
 
         #region Transaction
-        public Transaction Get(uint transactionID)
+        public Transaction GetTransactions(uint transactionID)
         {
             string result = web.DataGet($"api/Transaction/{transactionID}");
             return JsonConvert.DeserializeObject<Transaction>(result);
         }
-        public List<Transaction> Get()
+        public List<Transaction> GetTransactions()
         {
             string result = web.DataGet($"api/Transaction");
             return JsonConvert.DeserializeObject<List<Transaction>>(result);
@@ -174,12 +180,12 @@ namespace SecretCellar
             string result = web.DataGet($"api/Transaction/Suspended");
             return JsonConvert.DeserializeObject<List<Transaction>>(result);
         }
-        public List<Transaction> Get(DateTime start, DateTime end )
+        public List<Transaction> GetTransactions(DateTime start, DateTime end )
         {
             string result = web.DataGet($"api/Transaction?start={start}&end={end}");
             return JsonConvert.DeserializeObject<List<Transaction>>(result);
         }
-        public uint ProcessTransaction(Transaction transaction) 
+        public uint ProcessTransaction(Transaction transaction)
         {
             Response resp = null;
             string result = web.DataPost($"api/Transaction", transaction, resp);
@@ -187,6 +193,22 @@ namespace SecretCellar
 
             return transaction.InvoiceID;
         }
+        public bool DeleteTransaction(uint invoiceId)
+        {
+            Response resp = null;
+            web.DataDelete($"api/Transaction/{invoiceId}", resp);
+
+            return resp?.StatusCode != System.Net.HttpStatusCode.InternalServerError;
+        }
+
+        public bool DeletePayment(uint invoiceId, uint payId)
+        {
+            Response resp = null;
+            web.DataDelete($"api/Transaction/payment/{invoiceId}/{payId}", resp);
+
+            return resp.StatusCode == System.Net.HttpStatusCode.OK;
+        }
+
         #endregion
 
         #region Customer
@@ -202,10 +224,20 @@ namespace SecretCellar
             return JsonConvert.DeserializeObject<Customer>(result);
         }
 
-        public uint UpdateCustomer(Customer Discount)
+        public uint UpdateCustomer(Customer customer)
         {
             Response resp = null;
-            string result = web.DataPut($"api/Customer", Discount, resp);
+            string result = web.DataPut($"api/Customer", customer, resp);
+            if (uint.TryParse(result, out uint id))
+                return id;
+            else
+                return 0;
+        }
+
+        public uint NewCustomer(Customer customer)
+        {
+            Response resp = null;
+            string result = web.DataPost($"api/Customer", customer, resp);
             if (uint.TryParse(result, out uint id))
                 return id;
             else
@@ -213,7 +245,7 @@ namespace SecretCellar
         }
         public void DeleteCustomer(Customer customer)
         {
-            try { web.DataDelete($"api/Customer/{customer.CustomerID}");  }
+            try { web.DataDelete($"api/Customer/{customer.CustomerID}"); }
             catch (Exception ex) { LogError(ex, "DeleteCustomer"); }
         }
         #endregion
@@ -241,65 +273,6 @@ namespace SecretCellar
                 return 0;
         }
         #endregion
-        public static Item ConvertInvtoItem(Inventory inv)
-        {
-            return new Item
-            {
-                Name = inv.Name,
-                Id = inv.Id,
-                Barcode = inv.Barcode,
-                AllQty = inv.AllQty,
-                BottleDeposit = inv.BottleDeposit,
-                NumSold = 1,
-                Price = inv.Price,
-                NonTaxable = inv.NonTaxable, 
-                ItemType = inv.ItemType,
-                Bottles = inv.Bottles,
-                SalesTax = inv.SalesTax,
-                LocalSalesTax = inv.LocalSalesTax, 
-                IdTax = inv.IdTax,
-                NonTaxableLocal = inv.NonTaxableLocal,
-                Discounts = inv.Discounts
-            }
-            ;
-
-        }
-
-        public bool ChangeItemQty(Transaction t,  string barcode, uint qty)
-        {
-            bool result = false;
-            Item i = t.Items.FirstOrDefault(x => x.Barcode == barcode);
-
-            if (qty == 0)
-            {
-                if(i != null)
-                {
-                    t.Items.Remove(i);
-                    result = true;
-                }
-            }
-            else
-            {
-                if (i != null && i.NumSold != qty)
-                {
-                    i.NumSold = qty;
-                    result = true;
-                }
-                else if(i == null)
-                {
-                    i = ConvertInvtoItem(GetItem(barcode));
-                    if (i != null)
-                    {
-                        i.NumSold = qty;
-                        t.Items.Add(i);
-                        result = true;
-                    }
-                    else
-                        throw new Exception("Barcode not in the database");
-                }
-            }
-            return result;
-        }
 
         public void LogError(string message, string source, string notes = "")
         {
@@ -310,5 +283,131 @@ namespace SecretCellar
         {
             LogError(error.Message, source, notes);
         }
+
+        public Image ImportLogo()
+        {
+
+            if (!string.IsNullOrEmpty(Properties.Settings.Default.Logo))
+            {
+                string logoPath = $"{Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}\\{Properties.Settings.Default.Logo}";
+
+                if (File.Exists(logoPath))
+                    logo = Image.FromFile(logoPath);
+            }
+
+            if (logo == null)
+                logo = Properties.Resources.Logo;
+
+            return logo;
+        }
+
+        public Image ImportLogo(string path)
+        {
+
+            if (!string.IsNullOrEmpty(path) && File.Exists(path))
+            {
+                string imageFileName = Path.GetFileName(path);
+                if (File.Exists($"{Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}\\{imageFileName}"))
+                {
+
+                    if (MessageBox.Show("Image exists do you want to overwrite?", "File Already exists", MessageBoxButtons.YesNo) == DialogResult.No)
+                    {
+                        SaveFileDialog saveFileDialog = new SaveFileDialog();
+                        saveFileDialog.InitialDirectory = $"{Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}";
+                        saveFileDialog.FileName = $"{Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}\\{ imageFileName}";
+                        if (saveFileDialog.ShowDialog() == DialogResult.Cancel)
+                        {
+                            return ImportLogo();
+                        }
+                        imageFileName = Path.GetFileName(saveFileDialog.FileName);
+                    }
+
+
+
+                }
+
+                //File.Create($"{Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}\\{ imageFileName}"); when this is used it crashes saying it is being used by another process
+
+                File.Copy(path, $"{Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}\\{ imageFileName}",true);
+
+                //File.Replace(path, $"{Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}\\{ imageFileName}", $"{Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}\\{imageFileName + ".bak"}"); works but moves instead of duplicating file and creates a .bak file in the destination folder
+                Properties.Settings.Default.Logo = imageFileName;
+                Properties.Settings.Default.Save();
+
+                /*public static void ReplaceFile(string fileToMoveAndDelete, string fileToReplace, string backupOfFileToReplace)
+                {
+                    // Create a new FileInfo object.    
+                    FileInfo fInfo = new FileInfo(fileToMoveAndDelete);
+
+                    // replace the file.    
+                    fInfo.Replace(fileToReplace, backupOfFileToReplace, false);
+                }*/
+
+            }
+
+
+
+            return ImportLogo();
+        }
+
+        public List<string> GetImageFiles()
+        {
+            List<string> result = new List<string>();
+            string targetDirectory = $"{Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)} ";
+            string[] extensions = new[] { "jpg", "jpeg", "bmp", "gif", "png" };
+            string[] fileEntries = Directory.GetFiles(targetDirectory).Where(f => extensions.Contains(f.ToLower().Split('.').Last().Trim())).ToArray();
+            foreach (string fileName in fileEntries)
+                result.Add(Path.GetFileName(fileName));
+
+            return result;
+        }
+
+        public Image GetImage(string file)
+        {
+
+            if (!string.IsNullOrEmpty(file))
+            {
+                string logoPath = $"{Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}\\{file}";
+
+                if (File.Exists(logoPath))
+                    logo = Image.FromFile(logoPath);
+            }
+
+            if (logo == null)
+                logo = ImportLogo();
+
+            return logo;
+        }
+
+        public void ChangeLogo(string imageFileName)
+        {
+            Properties.Settings.Default.Logo = imageFileName;
+            Properties.Settings.Default.Save();
+            ImportLogo();
+            RefreshLogos();
+        }
+
+        public void AddPictureBox(PictureBox pictureBox)
+        {
+            if (!pictureBoxes.Contains(pictureBox))
+            {
+                pictureBoxes.Add(pictureBox);
+                pictureBox.Image = ImportLogo();
+            }
+        }
+
+        public void RemovePictureBox(PictureBox pictureBox)
+        {
+            pictureBoxes.Remove(pictureBox);
+        }
+
+        public void RefreshLogos()
+        {
+            pictureBoxes.ForEach(x => x.Image = logo);
+        }
     }
 }
+
+
+    
+

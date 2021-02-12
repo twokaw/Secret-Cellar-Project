@@ -65,9 +65,10 @@ namespace WebApi.Controllers
         {
             try
             {
+                Transaction previousTransaction = DataAccess.Instance.Transaction.GetTransaction(transaction.InvoiceID, true, true);
                 // If there is a Invoice ID and the Transaction exists then Update the Transaction else insert it
-                if(transaction.InvoiceID > 0 && DataAccess.Instance.Transaction.GetTransaction(transaction.InvoiceID, false, false) != null)
-                    return Ok(DataAccess.Instance.Transaction.UpdateTransaction(transaction)); 
+                if (transaction.InvoiceID > 0 && previousTransaction != null)
+                    return Ok(DataAccess.Instance.Transaction.UpdateTransaction(transaction, previousTransaction)); 
                 else
                     return Ok(DataAccess.Instance.Transaction.InsertTransaction(transaction));
             }
@@ -76,13 +77,71 @@ namespace WebApi.Controllers
                 return StatusCode(500, ex.Message);
             };
          }
+        
+
+        /// <summary>
+        /// Delete transaction 
+        /// </summary>
+        /// <param name="transaction"></param>
+        /// <returns></returns>
+        [HttpDelete("{receiptId}")]
+        public IActionResult DeleteTransaction(uint receiptId)
+        {
+            Transaction transaction = DataAccess.Instance.Transaction.GetTransaction(receiptId,false,true);
+
+            if (transaction == null)
+                return StatusCode(400, "Missing Transaction");
+
+            if (transaction.Payments.Count > 0 )
+                return StatusCode(500, "Refund Payments before deleting");
+
+            try
+            {
+                DataAccess.Instance.Transaction.DeleteTransaction(receiptId);
+
+                // Return the refund qty * ((price * Tax * localTax) + bottle deposit * bottles)
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            };
+        }
+
+        
 
         /// <summary>
         /// Insert a new transaction 
         /// </summary>
         /// <param name="transaction"></param>
         /// <returns></returns>
-        [HttpDelete("/item/{receiptId}")]
+        [HttpDelete("payment/{receiptId}/{payId}")]
+        public IActionResult DeleteTransaction(uint receiptId, uint payId)
+        {
+            Transaction transaction = DataAccess.Instance.Transaction.GetTransaction(receiptId, false, true);
+
+            if (transaction == null)
+                return StatusCode(400, "Missing Transaction");
+
+            if (transaction.Payments.FirstOrDefault (x => x.PayId == payId ) == null)
+                return StatusCode(500, "Payment is not part of this transaction");
+
+            try
+            {
+                DataAccess.Instance.Transaction.DeletePayment(payId);
+
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            };
+        }
+        /// <summary>
+        /// Delete Transaction
+        /// </summary>
+        /// <returns></returns>
+        [HttpDelete("item/{receiptId}")]
         public IActionResult DeleteItem(uint receiptId, uint itemid, int qty = -1, bool returnQty = false)
         {
             if (qty == 0)

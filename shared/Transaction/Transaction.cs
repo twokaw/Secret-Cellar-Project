@@ -1,14 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Serialization;
-
 namespace Shared
 {
-    [Serializable]
-    public class Transaction : ISerializable
+    public class Transaction 
     {
-        // Define properties. The way I set them up, we can add accessors later.
         public uint InvoiceID { get; set; }
         public uint RegisterID { get; set; }
         public DateTime TransactionDateTime { get; set; }
@@ -21,20 +17,17 @@ namespace Shared
             {
                 double sub = 0;
                 // All items with price * qty
-                Items.ForEach(x => sub += (x.Price > 0) ?  x.Price * x.NumSold : 0);
+                Items.ForEach(x => sub += x.SubTotal );
 
                 return sub;
             }
         }
-
 
         public double DiscountTotal
         {
             get
             {
                 double sub = 0;
-
-
 
                 // All items discounts + coupons
 
@@ -43,7 +36,7 @@ namespace Shared
                 // 
                 //   Coupons are negative, to get the discount they will need to be negated to make them po
 
-                Items.ForEach(x => sub += (x.Price > 0) ? x.Price * x.NumSold * ( x.Discount + (1 - x.Discount) * Discount) : -x.Price);
+                Items.ForEach(x => sub += x.DiscountTotal );
 
                 return sub;
             }
@@ -56,7 +49,7 @@ namespace Shared
                 double tax = 0;
 
                 if (!TaxExempt)
-                    Items.ForEach(x => tax += (!x.NonTaxableLocal ) ? GetItemPrice(x) * x.LocalSalesTax : 0);
+                    Items.ForEach(x => tax += (!x.NonTaxableLocal ) ? ItemPrice(x) * x.LocalSalesTax : 0);
                 return tax;
             }
         }
@@ -72,10 +65,10 @@ namespace Shared
             }
         }
 
-        private double GetItemPrice(Item i)
+        public double ItemPrice(Item i)
         {
             // Get item 
-            return i.Price * i.NumSold * ((i.Price > 0) ? (1 - i.Discount) * (1 - Discount) : 1);
+            return i.AdjustedTotal * ((i.AdjustedTotal > 0) ? (1 - Discount) : 1);
         }
 
         public double Subtotal
@@ -85,7 +78,7 @@ namespace Shared
                 double value = 0;
 
                 if (!TaxExempt)
-                    Items.ForEach(x => value += GetItemPrice(x));
+                    Items.ForEach(x => value += ItemPrice(x));
 
                 return value;
             }
@@ -98,11 +91,33 @@ namespace Shared
                 double tax = 0;
 
                 if (!TaxExempt)
-                    Items.ForEach(x => tax += (!x.NonTaxable) ? GetItemPrice(x) * x.SalesTax : 0);
+                    Items.ForEach(x => tax += ItemTax(x));
 
                 return tax;
             }
         }
+        public double ItemTax(Item i)
+        {
+            if (!TaxExempt)
+                return (!i.NonTaxable) ? ItemPrice(i) * i.SalesTax : 0;
+            else
+                return 0;
+        }
+
+        public double ItemLocalTax(Item i)
+        {
+            if (!TaxExempt)
+                return (!i.NonTaxable) ? ItemPrice(i) * i.SalesTax : 0;
+            else
+                return 0;
+        }
+
+
+        public double ItemPriceTotal(Item i)
+        {
+            return ItemTax(i) + ItemLocalTax(i) + ItemPrice(i) + i.BottleDeposit;
+        }
+
         public double Total
         {
             get
@@ -189,37 +204,6 @@ namespace Shared
             this.CustomerID = CustomerID;
         }
 
-        // Deserialization constructor
-        public Transaction(SerializationInfo info, StreamingContext ctxt)
-        {
-            InvoiceID = (uint)info.GetValue("InvoiceID", typeof(uint));
-            RegisterID = (uint)info.GetValue("RegisterID", typeof(uint));
-            TransactionDateTime = (DateTime)info.GetValue("TransactionDateTime", typeof(DateTime));
-            Location = (string)info.GetValue("Location", typeof(string));
-            Items = (List<Item>)info.GetValue("Items", typeof(List<Item>));
-            Payments = (List<Payment>)info.GetValue("Payments", typeof(List<Payment>));
-            Discount = (double)info.GetValue("double", typeof(double));
-            TaxExempt = (bool)info.GetValue("TaxExempt", typeof(bool));
-        }
-        
-        // Serialization method
-        public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
-        {
-            info.AddValue("InvoiceID", InvoiceID);
-            info.AddValue("RegisterID", RegisterID);
-            info.AddValue("TransactionDateTime", TransactionDateTime);
-            info.AddValue("Location", Location);
-            info.AddValue("Items", Items);
-            info.AddValue("Discount", Discount);
-            info.AddValue("Subtotal", Subtotal);
-            info.AddValue("Payments", Payments);
-            info.AddValue("Tax", Tax);
-            info.AddValue("Total", Total);
-            info.AddValue("TaxExempt", TaxExempt);
-            info.AddValue("PayMethod", PayMethod);
-            info.AddValue("PayNum", PayNum);
-        }
-
         public List<Discount> GetBulkDiscounts()
         {
             List<Discount> d = new List<Discount>();
@@ -262,6 +246,78 @@ namespace Shared
             foreach (Item i in Items)
                 foreach (Discount x in i.Discounts)
                     x.Enabled = enabled;
+        }
+
+        public void Add(Item item)
+        {
+            Item i = Items.FirstOrDefault(x => x.Id == item.Id);
+
+            if (i == null)
+                Items.Add(item);
+            else
+                i.NumSold += item.NumSold;
+        }
+
+        public void Add(Inventory inv) { Add(ConvertInvtoItem(inv)); }
+
+        public bool ChangeItemQty(Inventory inv, uint qty) { return ChangeItemQty(ConvertInvtoItem(inv), qty); }
+
+        public bool ChangeItemQty(Item item, uint qty)
+        {
+            bool result = false;
+            Item i = Items.FirstOrDefault(x => x.Barcode == item.Barcode);
+
+            if (qty == 0)
+            {
+                if (i != null)
+                {
+                    Items.Remove(i);
+                    result = true;
+                }
+            }
+            else
+            {
+                if (i != null && i.NumSold != qty)
+                {
+                    i.NumSold = qty;
+                    result = true;
+                }
+                else if (i == null)
+                {
+                    i =item;
+                    if (i != null)
+                    {
+                        i.NumSold = qty;
+                        Items.Add(i);
+                        result = true;
+                    }
+                    else
+                        throw new Exception("Barcode not in the database");
+                }
+            }
+            return result;
+        }
+
+        public static Item ConvertInvtoItem(Inventory inv)
+        {
+            return new Item
+            {
+                Name = inv.Name,
+                Id = inv.Id,
+                Barcode = inv.Barcode,
+                AllQty = inv.AllQty,
+                BottleDeposit = inv.BottleDeposit,
+                NumSold = 1,
+                Price = inv.Price,
+                NonTaxable = inv.NonTaxable,
+                ItemType = inv.ItemType,
+                Bottles = inv.Bottles,
+                SalesTax = inv.SalesTax,
+                LocalSalesTax = inv.LocalSalesTax,
+                IdTax = inv.IdTax,
+                NonTaxableLocal = inv.NonTaxableLocal,
+                Discounts = inv.Discounts
+            };
         }
     }
 }

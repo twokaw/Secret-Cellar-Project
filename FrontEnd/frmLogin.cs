@@ -33,7 +33,7 @@ namespace SecretCellar
 
         private void frmLogin_Load(object sender, EventArgs e)
         {
-            pictureBox1.Image = logo;
+            DataAccess.instance.AddPictureBox(pictureBox1);
         }
 
         private void btnLogin_Click(object sender, EventArgs e)

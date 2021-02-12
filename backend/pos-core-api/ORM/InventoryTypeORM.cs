@@ -155,7 +155,7 @@ namespace pos_core_api.ORM
                     {
                         TypeId = reader.GetUInt32("TypeId"),
                         TypeName = reader.GetString("inventory_type_name"),
-
+                        TaxName = reader.IsDBNull("Tax_name") ? "" : reader.GetString("tax_name"),
                         IdTax = reader.IsDBNull("IdTax") ? 0 : reader.GetUInt32("idTAX"),
                         BottleDeposit = reader.IsDBNull("bottle_deposit") ? 0.00 : reader.GetDouble("bottle_deposit"),
                         SalesTax = reader.IsDBNull("sales_tax") ? 0.00 : reader.GetDouble("sales_tax"),

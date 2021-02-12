@@ -29,6 +29,7 @@ namespace pos_core_api.ORM
                     {
                         IdTax = reader.IsDBNull("idTAX") ? 0 : reader.GetUInt32("idTAX"),
                         BottleDeposit = reader.IsDBNull("bottle_deposit") ? 0.0 : reader.GetDouble("bottle_deposit"),
+                        TaxName = reader.IsDBNull("Tax_name") ? "" : reader.GetString("tax_name"),
                         SalesTax = reader.IsDBNull("sales_tax") ? 0.0 : reader.GetDouble("sales_tax"),
                         LocalSalesTax = reader.IsDBNull("local_sales_tax") ? 0.0 : reader.GetDouble("local_sales_tax")
                     };
@@ -50,9 +51,9 @@ namespace pos_core_api.ORM
             uint newId = 0;
             string sqlStatement = @"
                 INSERT INTO v_tax
-                (bottle_deposit, sales_tax, local_sales_tax)
+                (bottle_deposit, sales_tax, local_sales_tax, Tax_name
                 VALUES
-                (@bottle_deposit, @sales_tax, @local_sales_tax)
+                (@bottle_deposit, @sales_tax, @local_sales_tax, @Tax_name)
             ";
 
             try
@@ -60,6 +61,7 @@ namespace pos_core_api.ORM
                 MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
                 cmd.Parameters.Add(new MySqlParameter("idTAX", tax.IdTax));
                 cmd.Parameters.Add(new MySqlParameter("bottle_deposit", tax.BottleDeposit));
+                cmd.Parameters.Add(new MySqlParameter("Tax_name", tax.TaxName));
                 cmd.Parameters.Add(new MySqlParameter("sales_tax", tax.SalesTax));
                 cmd.Parameters.Add(new MySqlParameter("local_sales_tax", tax.LocalSalesTax));
                 cmd.ExecuteNonQuery();
@@ -84,7 +86,8 @@ namespace pos_core_api.ORM
                     UPDATE v_tax
                         bottle_deposit = @bottle_deposit, 
                         sales_tax = @sales_tax, 
-                        local_sales_tax = @local_sales_tax
+                        local_sales_tax = @local_sales_tax, 
+                        tax_name = @Tax_name
                     WHERE idTAX = @idTAX
                 ";
 
@@ -93,6 +96,7 @@ namespace pos_core_api.ORM
                     MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
                     cmd.Parameters.Add(new MySqlParameter("idTAX", tax.IdTax));
                     cmd.Parameters.Add(new MySqlParameter("bottle_deposit", tax.BottleDeposit));
+                    cmd.Parameters.Add(new MySqlParameter("Tax_name", tax.TaxName));
                     cmd.Parameters.Add(new MySqlParameter("sales_tax", tax.SalesTax));
                     cmd.Parameters.Add(new MySqlParameter("local_sales_tax", tax.LocalSalesTax));
                     cmd.ExecuteNonQuery();
@@ -155,6 +159,7 @@ namespace pos_core_api.ORM
                     {
                         IdTax = reader.IsDBNull("idTAX") ? 0 : reader.GetUInt32("idTAX"),
                         BottleDeposit = reader.IsDBNull("bottle_deposit") ? 0.0 : reader.GetDouble("bottle_deposit"),
+                        TaxName = reader.IsDBNull("Tax_name") ? "" : reader.GetString("tax_name"),
                         SalesTax = reader.IsDBNull("sales_tax") ? 0.0 : reader.GetDouble("sales_tax"),
                         LocalSalesTax = reader.IsDBNull("local_sales_tax") ? 0.0 : reader.GetDouble("local_sales_tax")
                     };
