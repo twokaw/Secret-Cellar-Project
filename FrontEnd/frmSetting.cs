@@ -13,20 +13,18 @@ namespace SecretCellar
 {
     public partial class FrmSettings : ManagedForm
     {
-        
+
         private ToolTip ProgramTips = new ToolTip();
 
         public FrmSettings()
         {
             InitializeComponent();
+
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScaleDimensions = new System.Drawing.SizeF(72, 72);
             listbox_logos.DataSource = DataAccess.instance.GetImageFiles();
-            lstTypes.DataSource = DataAccess.instance.GetInventoryType();
             InventoryType invType = DataAccess.instance.GetInventoryType(lstTypes.Text);
-            cbx_tax.DataSource = DataAccess.instance.GetTax();
-            lstTypes.DisplayMember = "TypeName";
-            cbx_tax.DisplayMember = "TaxName";
+
         }
 
         private void FrmSetting_Load(object sender, EventArgs e)
@@ -45,8 +43,8 @@ namespace SecretCellar
 
         private void cbx_tax_type_SelectedIndexChanged(object sender, EventArgs e)
         {
-          // Tax tax = DataAccess.instance.GetTax(taxID);
-           
+            // Tax tax = DataAccess.instance.GetTax(taxID);
+
 
         }
 
@@ -71,7 +69,7 @@ namespace SecretCellar
             FontDialog fontDlg = new FontDialog();
             fontDlg.ShowDialog();
             CommonFontSetter = fontDlg.Font;
-            
+
         }
 
         private void btn_panel_color_Click(object sender, EventArgs e)
@@ -99,7 +97,7 @@ namespace SecretCellar
             {
 
                 cs.BackColor = gridcolor.Color;
-                cs.SelectionBackColor = Color.FromArgb(cs.BackColor.A, Math.Max(cs.BackColor.R - 25,0), Math.Max(cs.BackColor.G - 25,0), Math.Max(cs.BackColor.B - 25,0));
+                cs.SelectionBackColor = Color.FromArgb(cs.BackColor.A, Math.Max(cs.BackColor.R - 25, 0), Math.Max(cs.BackColor.G - 25, 0), Math.Max(cs.BackColor.B - 25, 0));
                 SetDefaultCellStyle(cs);
 
             }
@@ -124,65 +122,12 @@ namespace SecretCellar
         }
 
 
-        #region Reports
-
-        private void btn_Run_Click(object sender, EventArgs e)
-        {   
-            List<Transaction> transactions = DataAccess.instance.GetTransactions(dtp_start.Value, dtp_end.Value);
-
-            // Dictionary<string, double> vendorSales = new Dictionary<string, double>();
-            Dictionary<string, double> typeSales = new Dictionary<string, double>();
-            double totalSales = 0.0; 
-            double costSales = 0.0;
-            double bottleDeposit = 0.0;
-            double netSales = 0.0;
-            double tax = 0.0;
-            double localtax = 0.0;
-
-            foreach (Transaction t in transactions)
-            {
-                totalSales += t.Total;
-                foreach (Item i in t.Items)
-                {
-                    totalSales += t.ItemPriceTotal(i);
-                    bottleDeposit += t.Bottle_deposit ;
-                    netSales += t.ItemPrice(i) - i.SupplierPrice;
-                    tax += t.ItemTax(i);
-                    localtax += t.ItemLocalTax(i);
-                    costSales += i.SupplierPrice;
-
-                    typeSales[i.ItemType] += t.ItemPriceTotal(i);
-                }
-            }
-
-            /*
-            txt_SalesTotal.Text = totalSales.ToString("C");
-            txt_SalesNet.Text =netSales.ToString("C");
-            txt_SalesTax.Text = tax.ToString("C");
-            txt_SalesLocalTax.Text = localtax .ToString("C");
-            txt_SalesCost.Text = costSales.ToString("C");
-            txt_SalesBottleDeposit.Text = bottleDeposit.ToString("C");
-            txt_SalesTotal.Text = totalSales.ToString("C");
-            */
-            
-            /*
-             transaction.Subtotal.ToString("C");
-            txt_transBTLDPT.Text = transactionBottleDeposit.ToString("C");
-            txt_itemTotal.Text = transaction.Subtotal.ToString("C");
-            txt_transTax.Text = (transaction.Tax + transaction.LocalTax).ToString("C");
-            txt_transDiscount.Text = transaction.DiscountTotal.ToString("C");
-            txt_TransTotal.Text = transaction.Total.ToString("C");
-            txt_Ship.Text = transaction.Shipping.ToString("C");
-
-            */
-        }
-        #endregion 
 
         private void btn_change_image_Click(object sender, EventArgs e)
         {
-           
 
-           
+
+
             // open file dialog   
             OpenFileDialog image = new OpenFileDialog();
             // image filters  
@@ -190,13 +135,13 @@ namespace SecretCellar
             image.FilterIndex = 2;
             image.RestoreDirectory = true;
             //Open Image Dialog okay;
-            if(image.ShowDialog() == DialogResult.OK)
+            if (image.ShowDialog() == DialogResult.OK)
             {
 
                 pic_logo.Image = DataAccess.instance.ImportLogo(image.FileName);
 
             }
-            
+
         }
 
         private void pic_logo_Click(object sender, EventArgs e)
@@ -213,18 +158,10 @@ namespace SecretCellar
         private void btn_change_logo_Click(object sender, EventArgs e)
         {
             DataAccess.instance.ChangeLogo(listbox_logos.Text);
-            
-            
-        }
 
-        private void lstTypes_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-            txt_bottleDep.Text = ((InventoryType)lstTypes.SelectedItem).BottleDeposit.ToString();
-            txt_salesTax.Text = ((InventoryType)lstTypes.SelectedItem).SalesTax.ToString();
-            txt_localTax.Text = ((InventoryType)lstTypes.SelectedItem).LocalSalesTax.ToString();
 
         }
+
 
         private void TabTypes_Click(object sender, EventArgs e)
         {
