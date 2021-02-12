@@ -53,12 +53,15 @@ namespace SecretCellar.Properties {
             }
         }
         
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("COM3")]
         public string CashDrawerPort {
             get {
                 return ((string)(this["CashDrawerPort"]));
+            }
+            set {
+                this["CashDrawerPort"] = value;
             }
         }
         
