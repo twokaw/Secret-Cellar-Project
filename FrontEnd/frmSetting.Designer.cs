@@ -39,18 +39,10 @@
             this.tab_Reports = new System.Windows.Forms.TabPage();
             this.panReports1 = new SecretCellar.Settings_Panels.PanReports();
             this.tab_Reciept = new System.Windows.Forms.TabPage();
-            this.tab_tax = new System.Windows.Forms.TabPage();
-            this.btn_update_tax = new System.Windows.Forms.Button();
-            this.txt_tax_list = new System.Windows.Forms.Label();
-            this.lst_tax_list = new System.Windows.Forms.ListBox();
-            this.lbl_btl_deposit = new System.Windows.Forms.Label();
-            this.lbl_local_tax = new System.Windows.Forms.Label();
-            this.lbl_sales_tax = new System.Windows.Forms.Label();
-            this.txt_bottle_dep = new System.Windows.Forms.TextBox();
-            this.txt_local_tax = new System.Windows.Forms.TextBox();
-            this.txt_sales_tax = new System.Windows.Forms.TextBox();
-            this.btn_commit = new System.Windows.Forms.Button();
             this.panReceipt1 = new SecretCellar.Settings_Panels.PanReceipt();
+            this.tab_tax = new System.Windows.Forms.TabPage();
+            this.btn_commit = new System.Windows.Forms.Button();
+            this.panTax1 = new SecretCellar.Settings_Panels.PanTax();
             this.tab_receipt.SuspendLayout();
             this.tab_Hardware.SuspendLayout();
             this.tab_Types.SuspendLayout();
@@ -173,17 +165,18 @@
             this.tab_Reciept.Text = "Receipt";
             this.tab_Reciept.UseVisualStyleBackColor = true;
             // 
+            // panReceipt1
+            // 
+            this.panReceipt1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panReceipt1.Location = new System.Drawing.Point(3, 2);
+            this.panReceipt1.Margin = new System.Windows.Forms.Padding(4);
+            this.panReceipt1.Name = "panReceipt1";
+            this.panReceipt1.Size = new System.Drawing.Size(1305, 498);
+            this.panReceipt1.TabIndex = 0;
+            // 
             // tab_tax
             // 
-            this.tab_tax.Controls.Add(this.btn_update_tax);
-            this.tab_tax.Controls.Add(this.txt_tax_list);
-            this.tab_tax.Controls.Add(this.lst_tax_list);
-            this.tab_tax.Controls.Add(this.lbl_btl_deposit);
-            this.tab_tax.Controls.Add(this.lbl_local_tax);
-            this.tab_tax.Controls.Add(this.lbl_sales_tax);
-            this.tab_tax.Controls.Add(this.txt_bottle_dep);
-            this.tab_tax.Controls.Add(this.txt_local_tax);
-            this.tab_tax.Controls.Add(this.txt_sales_tax);
+            this.tab_tax.Controls.Add(this.panTax1);
             this.tab_tax.Location = new System.Drawing.Point(4, 34);
             this.tab_tax.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tab_tax.Name = "tab_tax";
@@ -192,91 +185,6 @@
             this.tab_tax.TabIndex = 5;
             this.tab_tax.Text = "Tax";
             this.tab_tax.UseVisualStyleBackColor = true;
-            // 
-            // btn_update_tax
-            // 
-            this.btn_update_tax.Location = new System.Drawing.Point(949, 216);
-            this.btn_update_tax.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btn_update_tax.Name = "btn_update_tax";
-            this.btn_update_tax.Size = new System.Drawing.Size(188, 36);
-            this.btn_update_tax.TabIndex = 8;
-            this.btn_update_tax.Text = "Update";
-            this.btn_update_tax.UseVisualStyleBackColor = true;
-            this.btn_update_tax.Click += new System.EventHandler(this.btn_update_tax_Click);
-            // 
-            // txt_tax_list
-            // 
-            this.txt_tax_list.AutoSize = true;
-            this.txt_tax_list.Location = new System.Drawing.Point(153, 97);
-            this.txt_tax_list.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.txt_tax_list.Name = "txt_tax_list";
-            this.txt_tax_list.Size = new System.Drawing.Size(122, 25);
-            this.txt_tax_list.TabIndex = 7;
-            this.txt_tax_list.Text = "Tax Types:";
-            // 
-            // lst_tax_list
-            // 
-            this.lst_tax_list.FormattingEnabled = true;
-            this.lst_tax_list.ItemHeight = 25;
-            this.lst_tax_list.Location = new System.Drawing.Point(157, 145);
-            this.lst_tax_list.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.lst_tax_list.Name = "lst_tax_list";
-            this.lst_tax_list.Size = new System.Drawing.Size(229, 154);
-            this.lst_tax_list.TabIndex = 6;
-            // 
-            // lbl_btl_deposit
-            // 
-            this.lbl_btl_deposit.AutoSize = true;
-            this.lbl_btl_deposit.Location = new System.Drawing.Point(471, 264);
-            this.lbl_btl_deposit.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lbl_btl_deposit.Name = "lbl_btl_deposit";
-            this.lbl_btl_deposit.Size = new System.Drawing.Size(153, 25);
-            this.lbl_btl_deposit.TabIndex = 5;
-            this.lbl_btl_deposit.Text = "Bottle Deposit:";
-            // 
-            // lbl_local_tax
-            // 
-            this.lbl_local_tax.AutoSize = true;
-            this.lbl_local_tax.Location = new System.Drawing.Point(514, 223);
-            this.lbl_local_tax.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lbl_local_tax.Name = "lbl_local_tax";
-            this.lbl_local_tax.Size = new System.Drawing.Size(114, 25);
-            this.lbl_local_tax.TabIndex = 4;
-            this.lbl_local_tax.Text = "Local Tax:";
-            // 
-            // lbl_sales_tax
-            // 
-            this.lbl_sales_tax.AutoSize = true;
-            this.lbl_sales_tax.Location = new System.Drawing.Point(514, 178);
-            this.lbl_sales_tax.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lbl_sales_tax.Name = "lbl_sales_tax";
-            this.lbl_sales_tax.Size = new System.Drawing.Size(117, 25);
-            this.lbl_sales_tax.TabIndex = 3;
-            this.lbl_sales_tax.Text = "Sales Tax:";
-            // 
-            // txt_bottle_dep
-            // 
-            this.txt_bottle_dep.Location = new System.Drawing.Point(657, 259);
-            this.txt_bottle_dep.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txt_bottle_dep.Name = "txt_bottle_dep";
-            this.txt_bottle_dep.Size = new System.Drawing.Size(143, 30);
-            this.txt_bottle_dep.TabIndex = 2;
-            // 
-            // txt_local_tax
-            // 
-            this.txt_local_tax.Location = new System.Drawing.Point(657, 216);
-            this.txt_local_tax.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txt_local_tax.Name = "txt_local_tax";
-            this.txt_local_tax.Size = new System.Drawing.Size(143, 30);
-            this.txt_local_tax.TabIndex = 1;
-            // 
-            // txt_sales_tax
-            // 
-            this.txt_sales_tax.Location = new System.Drawing.Point(657, 172);
-            this.txt_sales_tax.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txt_sales_tax.Name = "txt_sales_tax";
-            this.txt_sales_tax.Size = new System.Drawing.Size(143, 30);
-            this.txt_sales_tax.TabIndex = 0;
             // 
             // btn_commit
             // 
@@ -291,14 +199,14 @@
             this.btn_commit.UseVisualStyleBackColor = true;
             this.btn_commit.Click += new System.EventHandler(this.btn_commit_Click);
             // 
-            // panReceipt1
+            // panTax1
             // 
-            this.panReceipt1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panReceipt1.Location = new System.Drawing.Point(3, 2);
-            this.panReceipt1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.panReceipt1.Name = "panReceipt1";
-            this.panReceipt1.Size = new System.Drawing.Size(1305, 498);
-            this.panReceipt1.TabIndex = 0;
+            this.panTax1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panTax1.Location = new System.Drawing.Point(4, 5);
+            this.panTax1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panTax1.Name = "panTax1";
+            this.panTax1.Size = new System.Drawing.Size(1303, 492);
+            this.panTax1.TabIndex = 0;
             // 
             // FrmSettings
             // 
@@ -320,7 +228,6 @@
             this.tab_Reports.ResumeLayout(false);
             this.tab_Reciept.ResumeLayout(false);
             this.tab_tax.ResumeLayout(false);
-            this.tab_tax.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -336,19 +243,11 @@
         private System.Windows.Forms.Button btn_commit;
         private System.Windows.Forms.TabPage tab_Reciept;
         private System.Windows.Forms.TabPage tab_tax;
-        private System.Windows.Forms.TextBox txt_sales_tax;
-        private System.Windows.Forms.Button btn_update_tax;
-        private System.Windows.Forms.Label txt_tax_list;
-        private System.Windows.Forms.ListBox lst_tax_list;
-        private System.Windows.Forms.Label lbl_btl_deposit;
-        private System.Windows.Forms.Label lbl_local_tax;
-        private System.Windows.Forms.Label lbl_sales_tax;
-        private System.Windows.Forms.TextBox txt_bottle_dep;
-        private System.Windows.Forms.TextBox txt_local_tax;
         private Settings_Panels.PanHardware panHardware1;
         private Settings_Panels.PanReports panReports1;
         private Settings_Panels.PanTypes panTypes1;
         private Settings_Panels.PanAppearance panAppearance1;
         private Settings_Panels.PanReceipt panReceipt1;
+        private Settings_Panels.PanTax panTax1;
     }
 }

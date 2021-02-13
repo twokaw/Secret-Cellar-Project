@@ -37,11 +37,13 @@ namespace SecretCellar.Settings_Panels
             this.btn_rec_font = new System.Windows.Forms.Button();
             this.btn_foot = new System.Windows.Forms.Button();
             this.btn_header = new System.Windows.Forms.Button();
+            this.btn_receipt_font_reset = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.btn_receipt_font_reset);
             this.panel1.Controls.Add(this.lbl_receipt_footer);
             this.panel1.Controls.Add(this.txt_receipt_footer);
             this.panel1.Controls.Add(this.lbl_header);
@@ -54,6 +56,7 @@ namespace SecretCellar.Settings_Panels
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(928, 264);
             this.panel1.TabIndex = 0;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // lbl_receipt_footer
             // 
@@ -104,11 +107,10 @@ namespace SecretCellar.Settings_Panels
             // 
             // btn_rec_font
             // 
-            this.btn_rec_font.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_rec_font.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btn_rec_font.AutoSize = true;
             this.btn_rec_font.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
-            this.btn_rec_font.Location = new System.Drawing.Point(336, 164);
+            this.btn_rec_font.Location = new System.Drawing.Point(329, 191);
             this.btn_rec_font.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btn_rec_font.Name = "btn_rec_font";
             this.btn_rec_font.Size = new System.Drawing.Size(231, 47);
@@ -129,6 +131,7 @@ namespace SecretCellar.Settings_Panels
             this.btn_foot.TabIndex = 14;
             this.btn_foot.Text = "Change Reciept Footer";
             this.btn_foot.UseVisualStyleBackColor = true;
+            this.btn_foot.Click += new System.EventHandler(this.btn_foot_Click);
             // 
             // btn_header
             // 
@@ -141,6 +144,21 @@ namespace SecretCellar.Settings_Panels
             this.btn_header.TabIndex = 13;
             this.btn_header.Text = "Change Receipt Header";
             this.btn_header.UseVisualStyleBackColor = true;
+            this.btn_header.Click += new System.EventHandler(this.btn_header_Click);
+            // 
+            // btn_receipt_font_reset
+            // 
+            this.btn_receipt_font_reset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btn_receipt_font_reset.AutoSize = true;
+            this.btn_receipt_font_reset.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
+            this.btn_receipt_font_reset.Location = new System.Drawing.Point(329, 134);
+            this.btn_receipt_font_reset.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btn_receipt_font_reset.Name = "btn_receipt_font_reset";
+            this.btn_receipt_font_reset.Size = new System.Drawing.Size(231, 47);
+            this.btn_receipt_font_reset.TabIndex = 20;
+            this.btn_receipt_font_reset.Text = "Reset Receipt Font";
+            this.btn_receipt_font_reset.UseVisualStyleBackColor = true;
+            this.btn_receipt_font_reset.Click += new System.EventHandler(this.btn_receipt_font_reset_Click);
             // 
             // PanReceipt
             // 
@@ -166,5 +184,6 @@ namespace SecretCellar.Settings_Panels
         private System.Windows.Forms.Button btn_rec_font;
         private System.Windows.Forms.Button btn_foot;
         private System.Windows.Forms.Button btn_header;
+        private System.Windows.Forms.Button btn_receipt_font_reset;
     }
 }
