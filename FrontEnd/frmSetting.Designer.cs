@@ -491,43 +491,7 @@
             this.TxtSalesVendor.ReadOnly = true;
             this.TxtSalesVendor.Size = new System.Drawing.Size(276, 403);
             this.TxtSalesVendor.TabIndex = 13;
-            // 
-            // btn_Run
-            // 
-            this.btn_Run.Location = new System.Drawing.Point(24, 23);
-            this.btn_Run.Name = "btn_Run";
-            this.btn_Run.Size = new System.Drawing.Size(116, 35);
-            this.btn_Run.TabIndex = 15;
-            this.btn_Run.Text = "Run";
-            this.btn_Run.UseVisualStyleBackColor = true;
-            this.btn_Run.Click += new System.EventHandler(this.btn_Run_Click);
-            // 
-            // FrmSetting
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 25F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 
-            this.ClientSize = new System.Drawing.Size(1292, 628);
-            this.Controls.Add(this.btn_commit);
-            this.Controls.Add(this.tab_receipt);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4);
-            this.Name = "FrmSettings";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "frmSetting";
-            this.Load += new System.EventHandler(this.FrmSetting_Load);
-            this.tab_receipt.ResumeLayout(false);
-            this.TabTypes.ResumeLayout(false);
-            this.TabTypes.PerformLayout();
-            this.tab_General.ResumeLayout(false);
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
-            this.tab_General.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pic_logo)).EndInit();
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
-            this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 

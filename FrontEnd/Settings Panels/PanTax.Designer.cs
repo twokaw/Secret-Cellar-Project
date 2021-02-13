@@ -39,6 +39,10 @@ namespace SecretCellar.Settings_Panels
             this.txt_local_tax = new System.Windows.Forms.TextBox();
             this.txt_sales_tax = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.txt_tax_type_name = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.btn_clear = new System.Windows.Forms.Button();
+            this.btn_new = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -46,13 +50,14 @@ namespace SecretCellar.Settings_Panels
             // 
             this.btn_update_tax.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_update_tax.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
-            this.btn_update_tax.Location = new System.Drawing.Point(515, 166);
+            this.btn_update_tax.Location = new System.Drawing.Point(541, 166);
             this.btn_update_tax.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btn_update_tax.Name = "btn_update_tax";
-            this.btn_update_tax.Size = new System.Drawing.Size(119, 36);
+            this.btn_update_tax.Size = new System.Drawing.Size(93, 36);
             this.btn_update_tax.TabIndex = 17;
             this.btn_update_tax.Text = "Update";
             this.btn_update_tax.UseVisualStyleBackColor = true;
+            this.btn_update_tax.Click += new System.EventHandler(this.btn_update_tax_Click);
             // 
             // txt_tax_list
             // 
@@ -77,11 +82,12 @@ namespace SecretCellar.Settings_Panels
             this.lst_tax_list.Name = "lst_tax_list";
             this.lst_tax_list.Size = new System.Drawing.Size(178, 129);
             this.lst_tax_list.TabIndex = 15;
+            this.lst_tax_list.SelectedIndexChanged += new System.EventHandler(this.lst_tax_list_SelectedIndexChanged);
             // 
             // lbl_btl_deposit
             // 
             this.lbl_btl_deposit.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
-            this.lbl_btl_deposit.Location = new System.Drawing.Point(200, 134);
+            this.lbl_btl_deposit.Location = new System.Drawing.Point(203, 169);
             this.lbl_btl_deposit.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_btl_deposit.Name = "lbl_btl_deposit";
             this.lbl_btl_deposit.Size = new System.Drawing.Size(153, 25);
@@ -92,7 +98,7 @@ namespace SecretCellar.Settings_Panels
             // lbl_local_tax
             // 
             this.lbl_local_tax.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
-            this.lbl_local_tax.Location = new System.Drawing.Point(205, 94);
+            this.lbl_local_tax.Location = new System.Drawing.Point(208, 129);
             this.lbl_local_tax.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_local_tax.Name = "lbl_local_tax";
             this.lbl_local_tax.Size = new System.Drawing.Size(148, 27);
@@ -103,7 +109,7 @@ namespace SecretCellar.Settings_Panels
             // lbl_sales_tax
             // 
             this.lbl_sales_tax.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
-            this.lbl_sales_tax.Location = new System.Drawing.Point(210, 53);
+            this.lbl_sales_tax.Location = new System.Drawing.Point(213, 88);
             this.lbl_sales_tax.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_sales_tax.Name = "lbl_sales_tax";
             this.lbl_sales_tax.Size = new System.Drawing.Size(143, 24);
@@ -114,7 +120,7 @@ namespace SecretCellar.Settings_Panels
             // txt_bottle_dep
             // 
             this.txt_bottle_dep.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
-            this.txt_bottle_dep.Location = new System.Drawing.Point(361, 134);
+            this.txt_bottle_dep.Location = new System.Drawing.Point(364, 169);
             this.txt_bottle_dep.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txt_bottle_dep.Name = "txt_bottle_dep";
             this.txt_bottle_dep.Size = new System.Drawing.Size(143, 30);
@@ -123,7 +129,7 @@ namespace SecretCellar.Settings_Panels
             // txt_local_tax
             // 
             this.txt_local_tax.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
-            this.txt_local_tax.Location = new System.Drawing.Point(361, 91);
+            this.txt_local_tax.Location = new System.Drawing.Point(364, 126);
             this.txt_local_tax.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txt_local_tax.Name = "txt_local_tax";
             this.txt_local_tax.Size = new System.Drawing.Size(143, 30);
@@ -132,7 +138,7 @@ namespace SecretCellar.Settings_Panels
             // txt_sales_tax
             // 
             this.txt_sales_tax.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
-            this.txt_sales_tax.Location = new System.Drawing.Point(361, 47);
+            this.txt_sales_tax.Location = new System.Drawing.Point(364, 82);
             this.txt_sales_tax.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txt_sales_tax.Name = "txt_sales_tax";
             this.txt_sales_tax.Size = new System.Drawing.Size(143, 30);
@@ -140,6 +146,10 @@ namespace SecretCellar.Settings_Panels
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.btn_new);
+            this.panel1.Controls.Add(this.btn_clear);
+            this.panel1.Controls.Add(this.txt_tax_type_name);
+            this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.lst_tax_list);
             this.panel1.Controls.Add(this.btn_update_tax);
             this.panel1.Controls.Add(this.txt_sales_tax);
@@ -154,6 +164,52 @@ namespace SecretCellar.Settings_Panels
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(651, 216);
             this.panel1.TabIndex = 18;
+            // 
+            // txt_tax_type_name
+            // 
+            this.txt_tax_type_name.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
+            this.txt_tax_type_name.Location = new System.Drawing.Point(364, 40);
+            this.txt_tax_type_name.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txt_tax_type_name.Name = "txt_tax_type_name";
+            this.txt_tax_type_name.Size = new System.Drawing.Size(143, 30);
+            this.txt_tax_type_name.TabIndex = 18;
+            // 
+            // label1
+            // 
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
+            this.label1.Location = new System.Drawing.Point(213, 46);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(143, 24);
+            this.label1.TabIndex = 19;
+            this.label1.Text = "Tax Name:";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // btn_clear
+            // 
+            this.btn_clear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_clear.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
+            this.btn_clear.Location = new System.Drawing.Point(541, 16);
+            this.btn_clear.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btn_clear.Name = "btn_clear";
+            this.btn_clear.Size = new System.Drawing.Size(93, 36);
+            this.btn_clear.TabIndex = 20;
+            this.btn_clear.Text = "Clear";
+            this.btn_clear.UseVisualStyleBackColor = true;
+            this.btn_clear.Click += new System.EventHandler(this.btn_clear_Click);
+            // 
+            // btn_new
+            // 
+            this.btn_new.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_new.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
+            this.btn_new.Location = new System.Drawing.Point(541, 120);
+            this.btn_new.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btn_new.Name = "btn_new";
+            this.btn_new.Size = new System.Drawing.Size(93, 36);
+            this.btn_new.TabIndex = 21;
+            this.btn_new.Text = "New";
+            this.btn_new.UseVisualStyleBackColor = true;
+            this.btn_new.Click += new System.EventHandler(this.btn_new_Click);
             // 
             // PanTax
             // 
@@ -180,5 +236,9 @@ namespace SecretCellar.Settings_Panels
         private System.Windows.Forms.TextBox txt_local_tax;
         private System.Windows.Forms.TextBox txt_sales_tax;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.TextBox txt_tax_type_name;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btn_clear;
+        private System.Windows.Forms.Button btn_new;
     }
 }
