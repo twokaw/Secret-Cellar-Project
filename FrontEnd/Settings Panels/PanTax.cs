@@ -16,7 +16,7 @@ namespace SecretCellar.Settings_Panels
         public PanTax()
         {
             InitializeComponent();
-            lst_tax_list.DataSource = DataAccess.instance.GetTax();
+            lst_tax_list.DataSource = DataAccess.instance?.GetTax();
             lst_tax_list.DisplayMember = "TaxName";
 
         }
@@ -61,6 +61,11 @@ namespace SecretCellar.Settings_Panels
 
                 DataAccess.instance.UpdateTax(i);
             }
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

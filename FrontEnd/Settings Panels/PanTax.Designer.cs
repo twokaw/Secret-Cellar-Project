@@ -39,10 +39,10 @@ namespace SecretCellar.Settings_Panels
             this.txt_local_tax = new System.Windows.Forms.TextBox();
             this.txt_sales_tax = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btn_new = new System.Windows.Forms.Button();
+            this.btn_clear = new System.Windows.Forms.Button();
             this.txt_tax_type_name = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.btn_clear = new System.Windows.Forms.Button();
-            this.btn_new = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -164,6 +164,33 @@ namespace SecretCellar.Settings_Panels
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(651, 216);
             this.panel1.TabIndex = 18;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            // 
+            // btn_new
+            // 
+            this.btn_new.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_new.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
+            this.btn_new.Location = new System.Drawing.Point(541, 120);
+            this.btn_new.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btn_new.Name = "btn_new";
+            this.btn_new.Size = new System.Drawing.Size(93, 36);
+            this.btn_new.TabIndex = 21;
+            this.btn_new.Text = "New";
+            this.btn_new.UseVisualStyleBackColor = true;
+            this.btn_new.Click += new System.EventHandler(this.btn_new_Click);
+            // 
+            // btn_clear
+            // 
+            this.btn_clear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_clear.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
+            this.btn_clear.Location = new System.Drawing.Point(541, 16);
+            this.btn_clear.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btn_clear.Name = "btn_clear";
+            this.btn_clear.Size = new System.Drawing.Size(93, 36);
+            this.btn_clear.TabIndex = 20;
+            this.btn_clear.Text = "Clear";
+            this.btn_clear.UseVisualStyleBackColor = true;
+            this.btn_clear.Click += new System.EventHandler(this.btn_clear_Click);
             // 
             // txt_tax_type_name
             // 
@@ -184,32 +211,6 @@ namespace SecretCellar.Settings_Panels
             this.label1.TabIndex = 19;
             this.label1.Text = "Tax Name:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // btn_clear
-            // 
-            this.btn_clear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_clear.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
-            this.btn_clear.Location = new System.Drawing.Point(541, 16);
-            this.btn_clear.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btn_clear.Name = "btn_clear";
-            this.btn_clear.Size = new System.Drawing.Size(93, 36);
-            this.btn_clear.TabIndex = 20;
-            this.btn_clear.Text = "Clear";
-            this.btn_clear.UseVisualStyleBackColor = true;
-            this.btn_clear.Click += new System.EventHandler(this.btn_clear_Click);
-            // 
-            // btn_new
-            // 
-            this.btn_new.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_new.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
-            this.btn_new.Location = new System.Drawing.Point(541, 120);
-            this.btn_new.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btn_new.Name = "btn_new";
-            this.btn_new.Size = new System.Drawing.Size(93, 36);
-            this.btn_new.TabIndex = 21;
-            this.btn_new.Text = "New";
-            this.btn_new.UseVisualStyleBackColor = true;
-            this.btn_new.Click += new System.EventHandler(this.btn_new_Click);
             // 
             // PanTax
             // 
