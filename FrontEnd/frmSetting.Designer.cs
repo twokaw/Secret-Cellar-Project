@@ -35,6 +35,7 @@
             this.tab_Types = new System.Windows.Forms.TabPage();
             this.panTypes1 = new SecretCellar.Settings_Panels.PanTypes();
             this.tab_Appearance = new System.Windows.Forms.TabPage();
+            this.panAppearance1 = new SecretCellar.Settings_Panels.PanAppearance();
             this.tab_Reports = new System.Windows.Forms.TabPage();
             this.panReports1 = new SecretCellar.Settings_Panels.PanReports();
             this.tab_Reciept = new System.Windows.Forms.TabPage();
@@ -49,12 +50,13 @@
             this.txt_local_tax = new System.Windows.Forms.TextBox();
             this.txt_sales_tax = new System.Windows.Forms.TextBox();
             this.btn_commit = new System.Windows.Forms.Button();
-            this.panAppearance1 = new SecretCellar.Settings_Panels.PanAppearance();
+            this.panReceipt1 = new SecretCellar.Settings_Panels.PanReceipt();
             this.tab_receipt.SuspendLayout();
             this.tab_Hardware.SuspendLayout();
             this.tab_Types.SuspendLayout();
             this.tab_Appearance.SuspendLayout();
             this.tab_Reports.SuspendLayout();
+            this.tab_Reciept.SuspendLayout();
             this.tab_tax.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -130,6 +132,15 @@
             this.tab_Appearance.Text = "Appearance";
             this.tab_Appearance.UseVisualStyleBackColor = true;
             // 
+            // panAppearance1
+            // 
+            this.panAppearance1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panAppearance1.Location = new System.Drawing.Point(0, 0);
+            this.panAppearance1.Margin = new System.Windows.Forms.Padding(4);
+            this.panAppearance1.Name = "panAppearance1";
+            this.panAppearance1.Size = new System.Drawing.Size(1311, 502);
+            this.panAppearance1.TabIndex = 0;
+            // 
             // tab_Reports
             // 
             this.tab_Reports.Controls.Add(this.panReports1);
@@ -152,6 +163,7 @@
             // 
             // tab_Reciept
             // 
+            this.tab_Reciept.Controls.Add(this.panReceipt1);
             this.tab_Reciept.Location = new System.Drawing.Point(4, 34);
             this.tab_Reciept.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tab_Reciept.Name = "tab_Reciept";
@@ -190,6 +202,7 @@
             this.btn_update_tax.TabIndex = 8;
             this.btn_update_tax.Text = "Update";
             this.btn_update_tax.UseVisualStyleBackColor = true;
+            this.btn_update_tax.Click += new System.EventHandler(this.btn_update_tax_Click);
             // 
             // txt_tax_list
             // 
@@ -278,14 +291,14 @@
             this.btn_commit.UseVisualStyleBackColor = true;
             this.btn_commit.Click += new System.EventHandler(this.btn_commit_Click);
             // 
-            // panAppearance1
+            // panReceipt1
             // 
-            this.panAppearance1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panAppearance1.Location = new System.Drawing.Point(0, 0);
-            this.panAppearance1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.panAppearance1.Name = "panAppearance1";
-            this.panAppearance1.Size = new System.Drawing.Size(1311, 502);
-            this.panAppearance1.TabIndex = 0;
+            this.panReceipt1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panReceipt1.Location = new System.Drawing.Point(3, 2);
+            this.panReceipt1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panReceipt1.Name = "panReceipt1";
+            this.panReceipt1.Size = new System.Drawing.Size(1305, 498);
+            this.panReceipt1.TabIndex = 0;
             // 
             // FrmSettings
             // 
@@ -305,6 +318,7 @@
             this.tab_Types.ResumeLayout(false);
             this.tab_Appearance.ResumeLayout(false);
             this.tab_Reports.ResumeLayout(false);
+            this.tab_Reciept.ResumeLayout(false);
             this.tab_tax.ResumeLayout(false);
             this.tab_tax.PerformLayout();
             this.ResumeLayout(false);
@@ -335,5 +349,6 @@
         private Settings_Panels.PanReports panReports1;
         private Settings_Panels.PanTypes panTypes1;
         private Settings_Panels.PanAppearance panAppearance1;
+        private Settings_Panels.PanReceipt panReceipt1;
     }
 }

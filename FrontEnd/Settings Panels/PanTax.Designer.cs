@@ -29,10 +29,156 @@ namespace SecretCellar.Settings_Panels
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
+            this.btn_update_tax = new System.Windows.Forms.Button();
+            this.txt_tax_list = new System.Windows.Forms.Label();
+            this.lst_tax_list = new System.Windows.Forms.ListBox();
+            this.lbl_btl_deposit = new System.Windows.Forms.Label();
+            this.lbl_local_tax = new System.Windows.Forms.Label();
+            this.lbl_sales_tax = new System.Windows.Forms.Label();
+            this.txt_bottle_dep = new System.Windows.Forms.TextBox();
+            this.txt_local_tax = new System.Windows.Forms.TextBox();
+            this.txt_sales_tax = new System.Windows.Forms.TextBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel1.SuspendLayout();
+            this.SuspendLayout();
+            // 
+            // btn_update_tax
+            // 
+            this.btn_update_tax.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_update_tax.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
+            this.btn_update_tax.Location = new System.Drawing.Point(515, 166);
+            this.btn_update_tax.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btn_update_tax.Name = "btn_update_tax";
+            this.btn_update_tax.Size = new System.Drawing.Size(119, 36);
+            this.btn_update_tax.TabIndex = 17;
+            this.btn_update_tax.Text = "Update";
+            this.btn_update_tax.UseVisualStyleBackColor = true;
+            // 
+            // txt_tax_list
+            // 
+            this.txt_tax_list.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
+            this.txt_tax_list.Location = new System.Drawing.Point(14, 16);
+            this.txt_tax_list.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.txt_tax_list.Name = "txt_tax_list";
+            this.txt_tax_list.Size = new System.Drawing.Size(173, 26);
+            this.txt_tax_list.TabIndex = 16;
+            this.txt_tax_list.Text = "Tax Types";
+            this.txt_tax_list.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lst_tax_list
+            // 
+            this.lst_tax_list.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.lst_tax_list.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
+            this.lst_tax_list.FormattingEnabled = true;
+            this.lst_tax_list.ItemHeight = 25;
+            this.lst_tax_list.Location = new System.Drawing.Point(14, 47);
+            this.lst_tax_list.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.lst_tax_list.Name = "lst_tax_list";
+            this.lst_tax_list.Size = new System.Drawing.Size(178, 129);
+            this.lst_tax_list.TabIndex = 15;
+            // 
+            // lbl_btl_deposit
+            // 
+            this.lbl_btl_deposit.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
+            this.lbl_btl_deposit.Location = new System.Drawing.Point(200, 134);
+            this.lbl_btl_deposit.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_btl_deposit.Name = "lbl_btl_deposit";
+            this.lbl_btl_deposit.Size = new System.Drawing.Size(153, 25);
+            this.lbl_btl_deposit.TabIndex = 14;
+            this.lbl_btl_deposit.Text = "Bottle Deposit:";
+            this.lbl_btl_deposit.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lbl_local_tax
+            // 
+            this.lbl_local_tax.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
+            this.lbl_local_tax.Location = new System.Drawing.Point(205, 94);
+            this.lbl_local_tax.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_local_tax.Name = "lbl_local_tax";
+            this.lbl_local_tax.Size = new System.Drawing.Size(148, 27);
+            this.lbl_local_tax.TabIndex = 13;
+            this.lbl_local_tax.Text = "Local Tax:";
+            this.lbl_local_tax.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lbl_sales_tax
+            // 
+            this.lbl_sales_tax.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
+            this.lbl_sales_tax.Location = new System.Drawing.Point(210, 53);
+            this.lbl_sales_tax.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_sales_tax.Name = "lbl_sales_tax";
+            this.lbl_sales_tax.Size = new System.Drawing.Size(143, 24);
+            this.lbl_sales_tax.TabIndex = 12;
+            this.lbl_sales_tax.Text = "Sales Tax:";
+            this.lbl_sales_tax.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // txt_bottle_dep
+            // 
+            this.txt_bottle_dep.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
+            this.txt_bottle_dep.Location = new System.Drawing.Point(361, 134);
+            this.txt_bottle_dep.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txt_bottle_dep.Name = "txt_bottle_dep";
+            this.txt_bottle_dep.Size = new System.Drawing.Size(143, 30);
+            this.txt_bottle_dep.TabIndex = 11;
+            // 
+            // txt_local_tax
+            // 
+            this.txt_local_tax.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
+            this.txt_local_tax.Location = new System.Drawing.Point(361, 91);
+            this.txt_local_tax.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txt_local_tax.Name = "txt_local_tax";
+            this.txt_local_tax.Size = new System.Drawing.Size(143, 30);
+            this.txt_local_tax.TabIndex = 10;
+            // 
+            // txt_sales_tax
+            // 
+            this.txt_sales_tax.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
+            this.txt_sales_tax.Location = new System.Drawing.Point(361, 47);
+            this.txt_sales_tax.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txt_sales_tax.Name = "txt_sales_tax";
+            this.txt_sales_tax.Size = new System.Drawing.Size(143, 30);
+            this.txt_sales_tax.TabIndex = 9;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.lst_tax_list);
+            this.panel1.Controls.Add(this.btn_update_tax);
+            this.panel1.Controls.Add(this.txt_sales_tax);
+            this.panel1.Controls.Add(this.txt_tax_list);
+            this.panel1.Controls.Add(this.txt_local_tax);
+            this.panel1.Controls.Add(this.txt_bottle_dep);
+            this.panel1.Controls.Add(this.lbl_btl_deposit);
+            this.panel1.Controls.Add(this.lbl_sales_tax);
+            this.panel1.Controls.Add(this.lbl_local_tax);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(651, 216);
+            this.panel1.TabIndex = 18;
+            // 
+            // PanTax
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.panel1);
+            this.Name = "PanTax";
+            this.Size = new System.Drawing.Size(651, 216);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+
+        private System.Windows.Forms.Button btn_update_tax;
+        private System.Windows.Forms.Label txt_tax_list;
+        private System.Windows.Forms.ListBox lst_tax_list;
+        private System.Windows.Forms.Label lbl_btl_deposit;
+        private System.Windows.Forms.Label lbl_local_tax;
+        private System.Windows.Forms.Label lbl_sales_tax;
+        private System.Windows.Forms.TextBox txt_bottle_dep;
+        private System.Windows.Forms.TextBox txt_local_tax;
+        private System.Windows.Forms.TextBox txt_sales_tax;
+        private System.Windows.Forms.Panel panel1;
     }
 }
