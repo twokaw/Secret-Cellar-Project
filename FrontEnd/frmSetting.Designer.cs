@@ -41,8 +41,8 @@
             this.tab_Reciept = new System.Windows.Forms.TabPage();
             this.panReceipt1 = new SecretCellar.Settings_Panels.PanReceipt();
             this.tab_tax = new System.Windows.Forms.TabPage();
-            this.btn_commit = new System.Windows.Forms.Button();
             this.panTax1 = new SecretCellar.Settings_Panels.PanTax();
+            this.btn_commit = new System.Windows.Forms.Button();
             this.tab_receipt.SuspendLayout();
             this.tab_Hardware.SuspendLayout();
             this.tab_Types.SuspendLayout();
@@ -63,21 +63,21 @@
             this.tab_receipt.Controls.Add(this.tab_Reports);
             this.tab_receipt.Controls.Add(this.tab_Reciept);
             this.tab_receipt.Controls.Add(this.tab_tax);
-            this.tab_receipt.Location = new System.Drawing.Point(9, 23);
-            this.tab_receipt.Margin = new System.Windows.Forms.Padding(6);
+            this.tab_receipt.Location = new System.Drawing.Point(6, 15);
+            this.tab_receipt.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tab_receipt.Name = "tab_receipt";
             this.tab_receipt.SelectedIndex = 0;
-            this.tab_receipt.Size = new System.Drawing.Size(1319, 540);
+            this.tab_receipt.Size = new System.Drawing.Size(976, 415);
             this.tab_receipt.TabIndex = 0;
             // 
             // tab_Hardware
             // 
             this.tab_Hardware.Controls.Add(this.panHardware1);
-            this.tab_Hardware.Location = new System.Drawing.Point(4, 34);
-            this.tab_Hardware.Margin = new System.Windows.Forms.Padding(6);
+            this.tab_Hardware.Location = new System.Drawing.Point(4, 25);
+            this.tab_Hardware.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tab_Hardware.Name = "tab_Hardware";
-            this.tab_Hardware.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tab_Hardware.Size = new System.Drawing.Size(1311, 502);
+            this.tab_Hardware.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tab_Hardware.Size = new System.Drawing.Size(968, 386);
             this.tab_Hardware.TabIndex = 0;
             this.tab_Hardware.Text = "Hardware";
             this.tab_Hardware.UseVisualStyleBackColor = true;
@@ -85,20 +85,19 @@
             // panHardware1
             // 
             this.panHardware1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panHardware1.Location = new System.Drawing.Point(4, 5);
-            this.panHardware1.Margin = new System.Windows.Forms.Padding(4);
+            this.panHardware1.Location = new System.Drawing.Point(3, 3);
             this.panHardware1.Name = "panHardware1";
-            this.panHardware1.Size = new System.Drawing.Size(1303, 492);
+            this.panHardware1.Size = new System.Drawing.Size(962, 380);
             this.panHardware1.TabIndex = 0;
             // 
             // tab_Types
             // 
             this.tab_Types.Controls.Add(this.panTypes1);
-            this.tab_Types.Location = new System.Drawing.Point(4, 34);
-            this.tab_Types.Margin = new System.Windows.Forms.Padding(6);
+            this.tab_Types.Location = new System.Drawing.Point(4, 25);
+            this.tab_Types.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tab_Types.Name = "tab_Types";
-            this.tab_Types.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tab_Types.Size = new System.Drawing.Size(1311, 502);
+            this.tab_Types.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tab_Types.Size = new System.Drawing.Size(868, 386);
             this.tab_Types.TabIndex = 1;
             this.tab_Types.Text = "Types";
             this.tab_Types.UseVisualStyleBackColor = true;
@@ -107,19 +106,18 @@
             // 
             this.panTypes1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panTypes1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
-            this.panTypes1.Location = new System.Drawing.Point(4, 5);
-            this.panTypes1.Margin = new System.Windows.Forms.Padding(4);
+            this.panTypes1.Location = new System.Drawing.Point(3, 3);
             this.panTypes1.Name = "panTypes1";
-            this.panTypes1.Size = new System.Drawing.Size(1303, 492);
+            this.panTypes1.Size = new System.Drawing.Size(862, 380);
             this.panTypes1.TabIndex = 0;
             // 
             // tab_Appearance
             // 
             this.tab_Appearance.Controls.Add(this.panAppearance1);
-            this.tab_Appearance.Location = new System.Drawing.Point(4, 34);
-            this.tab_Appearance.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
+            this.tab_Appearance.Location = new System.Drawing.Point(4, 25);
+            this.tab_Appearance.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.tab_Appearance.Name = "tab_Appearance";
-            this.tab_Appearance.Size = new System.Drawing.Size(1311, 502);
+            this.tab_Appearance.Size = new System.Drawing.Size(868, 386);
             this.tab_Appearance.TabIndex = 2;
             this.tab_Appearance.Text = "Appearance";
             this.tab_Appearance.UseVisualStyleBackColor = true;
@@ -128,18 +126,17 @@
             // 
             this.panAppearance1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panAppearance1.Location = new System.Drawing.Point(0, 0);
-            this.panAppearance1.Margin = new System.Windows.Forms.Padding(4);
             this.panAppearance1.Name = "panAppearance1";
-            this.panAppearance1.Size = new System.Drawing.Size(1311, 502);
+            this.panAppearance1.Size = new System.Drawing.Size(868, 386);
             this.panAppearance1.TabIndex = 0;
             // 
             // tab_Reports
             // 
             this.tab_Reports.Controls.Add(this.panReports1);
-            this.tab_Reports.Location = new System.Drawing.Point(4, 34);
-            this.tab_Reports.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
+            this.tab_Reports.Location = new System.Drawing.Point(4, 25);
+            this.tab_Reports.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.tab_Reports.Name = "tab_Reports";
-            this.tab_Reports.Size = new System.Drawing.Size(1311, 502);
+            this.tab_Reports.Size = new System.Drawing.Size(868, 386);
             this.tab_Reports.TabIndex = 3;
             this.tab_Reports.Text = "Reports";
             this.tab_Reports.UseVisualStyleBackColor = true;
@@ -148,19 +145,18 @@
             // 
             this.panReports1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panReports1.Location = new System.Drawing.Point(0, 0);
-            this.panReports1.Margin = new System.Windows.Forms.Padding(4);
             this.panReports1.Name = "panReports1";
-            this.panReports1.Size = new System.Drawing.Size(1311, 502);
+            this.panReports1.Size = new System.Drawing.Size(868, 386);
             this.panReports1.TabIndex = 0;
             // 
             // tab_Reciept
             // 
             this.tab_Reciept.Controls.Add(this.panReceipt1);
-            this.tab_Reciept.Location = new System.Drawing.Point(4, 34);
-            this.tab_Reciept.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tab_Reciept.Location = new System.Drawing.Point(4, 25);
+            this.tab_Reciept.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.tab_Reciept.Name = "tab_Reciept";
-            this.tab_Reciept.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tab_Reciept.Size = new System.Drawing.Size(1311, 502);
+            this.tab_Reciept.Padding = new System.Windows.Forms.Padding(2, 1, 2, 1);
+            this.tab_Reciept.Size = new System.Drawing.Size(868, 386);
             this.tab_Reciept.TabIndex = 4;
             this.tab_Reciept.Text = "Receipt";
             this.tab_Reciept.UseVisualStyleBackColor = true;
@@ -168,55 +164,50 @@
             // panReceipt1
             // 
             this.panReceipt1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panReceipt1.Location = new System.Drawing.Point(3, 2);
-            this.panReceipt1.Margin = new System.Windows.Forms.Padding(4);
+            this.panReceipt1.Location = new System.Drawing.Point(2, 1);
             this.panReceipt1.Name = "panReceipt1";
-            this.panReceipt1.Size = new System.Drawing.Size(1305, 498);
+            this.panReceipt1.Size = new System.Drawing.Size(864, 384);
             this.panReceipt1.TabIndex = 0;
             // 
             // tab_tax
             // 
             this.tab_tax.Controls.Add(this.panTax1);
-            this.tab_tax.Location = new System.Drawing.Point(4, 34);
-            this.tab_tax.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tab_tax.Location = new System.Drawing.Point(4, 25);
             this.tab_tax.Name = "tab_tax";
-            this.tab_tax.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tab_tax.Size = new System.Drawing.Size(1311, 502);
+            this.tab_tax.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tab_tax.Size = new System.Drawing.Size(868, 386);
             this.tab_tax.TabIndex = 5;
             this.tab_tax.Text = "Tax";
             this.tab_tax.UseVisualStyleBackColor = true;
+            // 
+            // panTax1
+            // 
+            this.panTax1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panTax1.Location = new System.Drawing.Point(3, 3);
+            this.panTax1.Name = "panTax1";
+            this.panTax1.Size = new System.Drawing.Size(862, 380);
+            this.panTax1.TabIndex = 0;
             // 
             // btn_commit
             // 
             this.btn_commit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_commit.AutoSize = true;
-            this.btn_commit.Location = new System.Drawing.Point(1185, 574);
-            this.btn_commit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btn_commit.Location = new System.Drawing.Point(883, 436);
             this.btn_commit.Name = "btn_commit";
-            this.btn_commit.Size = new System.Drawing.Size(143, 41);
+            this.btn_commit.Size = new System.Drawing.Size(99, 26);
             this.btn_commit.TabIndex = 4;
             this.btn_commit.Text = "Commit";
             this.btn_commit.UseVisualStyleBackColor = true;
             this.btn_commit.Click += new System.EventHandler(this.btn_commit_Click);
             // 
-            // panTax1
-            // 
-            this.panTax1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panTax1.Location = new System.Drawing.Point(4, 5);
-            this.panTax1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.panTax1.Name = "panTax1";
-            this.panTax1.Size = new System.Drawing.Size(1303, 492);
-            this.panTax1.TabIndex = 0;
-            // 
             // FrmSettings
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1345, 628);
+            this.ClientSize = new System.Drawing.Size(994, 471);
             this.Controls.Add(this.btn_commit);
             this.Controls.Add(this.tab_receipt);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "FrmSettings";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "frmSetting";

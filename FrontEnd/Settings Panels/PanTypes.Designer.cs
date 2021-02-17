@@ -55,11 +55,11 @@ namespace SecretCellar.Settings_Panels
             this.lstTypes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.lstTypes.FormattingEnabled = true;
-            this.lstTypes.ItemHeight = 25;
+            this.lstTypes.ItemHeight = 16;
             this.lstTypes.Location = new System.Drawing.Point(32, 61);
             this.lstTypes.Margin = new System.Windows.Forms.Padding(9, 8, 9, 8);
             this.lstTypes.Name = "lstTypes";
-            this.lstTypes.Size = new System.Drawing.Size(313, 304);
+            this.lstTypes.Size = new System.Drawing.Size(313, 292);
             this.lstTypes.TabIndex = 0;
             this.lstTypes.SelectedIndexChanged += new System.EventHandler(this.lstTypes_SelectedIndexChanged);
             // 
@@ -80,7 +80,7 @@ namespace SecretCellar.Settings_Panels
             this.chk_lst_discount.Location = new System.Drawing.Point(626, 50);
             this.chk_lst_discount.Margin = new System.Windows.Forms.Padding(6);
             this.chk_lst_discount.Name = "chk_lst_discount";
-            this.chk_lst_discount.Size = new System.Drawing.Size(246, 139);
+            this.chk_lst_discount.Size = new System.Drawing.Size(246, 123);
             this.chk_lst_discount.TabIndex = 38;
             // 
             // lbl_discount
@@ -111,7 +111,7 @@ namespace SecretCellar.Settings_Panels
             this.lbl_typename.Location = new System.Drawing.Point(374, 18);
             this.lbl_typename.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lbl_typename.Name = "lbl_typename";
-            this.lbl_typename.Size = new System.Drawing.Size(123, 25);
+            this.lbl_typename.Size = new System.Drawing.Size(89, 16);
             this.lbl_typename.TabIndex = 35;
             this.lbl_typename.Text = "Type Name";
             // 
@@ -120,7 +120,7 @@ namespace SecretCellar.Settings_Panels
             this.txt_typename.Location = new System.Drawing.Point(380, 50);
             this.txt_typename.Margin = new System.Windows.Forms.Padding(6);
             this.txt_typename.Name = "txt_typename";
-            this.txt_typename.Size = new System.Drawing.Size(205, 30);
+            this.txt_typename.Size = new System.Drawing.Size(205, 22);
             this.txt_typename.TabIndex = 34;
             // 
             // btn_update_type
@@ -153,7 +153,7 @@ namespace SecretCellar.Settings_Panels
             this.lbl_localTax.Location = new System.Drawing.Point(373, 294);
             this.lbl_localTax.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lbl_localTax.Name = "lbl_localTax";
-            this.lbl_localTax.Size = new System.Drawing.Size(107, 25);
+            this.lbl_localTax.Size = new System.Drawing.Size(76, 16);
             this.lbl_localTax.TabIndex = 30;
             this.lbl_localTax.Text = "Local Tax";
             // 
@@ -162,7 +162,7 @@ namespace SecretCellar.Settings_Panels
             this.txt_localTax.Location = new System.Drawing.Point(379, 325);
             this.txt_localTax.Margin = new System.Windows.Forms.Padding(6);
             this.txt_localTax.Name = "txt_localTax";
-            this.txt_localTax.Size = new System.Drawing.Size(205, 30);
+            this.txt_localTax.Size = new System.Drawing.Size(205, 22);
             this.txt_localTax.TabIndex = 29;
             // 
             // lbl_salesTax
@@ -171,7 +171,7 @@ namespace SecretCellar.Settings_Panels
             this.lbl_salesTax.Location = new System.Drawing.Point(374, 227);
             this.lbl_salesTax.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lbl_salesTax.Name = "lbl_salesTax";
-            this.lbl_salesTax.Size = new System.Drawing.Size(110, 25);
+            this.lbl_salesTax.Size = new System.Drawing.Size(78, 16);
             this.lbl_salesTax.TabIndex = 28;
             this.lbl_salesTax.Text = "Sales Tax";
             // 
@@ -180,7 +180,7 @@ namespace SecretCellar.Settings_Panels
             this.txt_salesTax.Location = new System.Drawing.Point(380, 258);
             this.txt_salesTax.Margin = new System.Windows.Forms.Padding(6);
             this.txt_salesTax.Name = "txt_salesTax";
-            this.txt_salesTax.Size = new System.Drawing.Size(205, 30);
+            this.txt_salesTax.Size = new System.Drawing.Size(205, 22);
             this.txt_salesTax.TabIndex = 27;
             // 
             // lbl_bottleDep
@@ -189,7 +189,7 @@ namespace SecretCellar.Settings_Panels
             this.lbl_bottleDep.Location = new System.Drawing.Point(373, 160);
             this.lbl_bottleDep.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lbl_bottleDep.Name = "lbl_bottleDep";
-            this.lbl_bottleDep.Size = new System.Drawing.Size(146, 25);
+            this.lbl_bottleDep.Size = new System.Drawing.Size(106, 16);
             this.lbl_bottleDep.TabIndex = 26;
             this.lbl_bottleDep.Text = "Bottle Deposit";
             // 
@@ -198,7 +198,7 @@ namespace SecretCellar.Settings_Panels
             this.txt_bottleDep.Location = new System.Drawing.Point(379, 191);
             this.txt_bottleDep.Margin = new System.Windows.Forms.Padding(6);
             this.txt_bottleDep.Name = "txt_bottleDep";
-            this.txt_bottleDep.Size = new System.Drawing.Size(205, 30);
+            this.txt_bottleDep.Size = new System.Drawing.Size(205, 22);
             this.txt_bottleDep.TabIndex = 25;
             // 
             // label3
@@ -208,7 +208,7 @@ namespace SecretCellar.Settings_Panels
             this.label3.Location = new System.Drawing.Point(374, 86);
             this.label3.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(104, 25);
+            this.label3.Size = new System.Drawing.Size(74, 16);
             this.label3.TabIndex = 24;
             this.label3.Text = "Tax Type";
             // 
@@ -218,7 +218,7 @@ namespace SecretCellar.Settings_Panels
             this.cbx_tax.Location = new System.Drawing.Point(380, 119);
             this.cbx_tax.Margin = new System.Windows.Forms.Padding(9, 8, 9, 8);
             this.cbx_tax.Name = "cbx_tax";
-            this.cbx_tax.Size = new System.Drawing.Size(205, 33);
+            this.cbx_tax.Size = new System.Drawing.Size(205, 24);
             this.cbx_tax.TabIndex = 23;
             // 
             // panel1
@@ -249,7 +249,7 @@ namespace SecretCellar.Settings_Panels
             // 
             // PanTypes
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
