@@ -13,7 +13,7 @@ using System.Windows.Forms;
 
 namespace SecretCellar
 {
-    public partial class frmPropane : Form
+    public partial class frmPropane : ManagedForm
     {
         public Transaction transaction = null;
         private const string PROPANEEXCHANGE = "PROPANEEXCHANGE";
@@ -30,8 +30,8 @@ namespace SecretCellar
 
         private void btn_close_Click(object sender, EventArgs e)
         {
-            DataAccess.instance.ChangeItemQty(transaction, PROPANENEW, uint.Parse(txt_new_Qty.Text));
-            DataAccess.instance.ChangeItemQty(transaction, PROPANEEXCHANGE, uint.Parse(txt_ex_Qty.Text));
+            transaction.ChangeItemQty(DataAccess.instance.GetItem(PROPANENEW), uint.Parse(txt_new_Qty.Text));
+            transaction.ChangeItemQty(DataAccess.instance.GetItem(PROPANEEXCHANGE), uint.Parse(txt_ex_Qty.Text));
             this.Close();
         }
 

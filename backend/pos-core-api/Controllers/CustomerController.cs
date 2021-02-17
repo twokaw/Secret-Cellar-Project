@@ -16,7 +16,7 @@ namespace WebApi.Controllers
         {
             try
             {
-                List<CustomerModel> output = DataAccess.Instance.Customer.Get();
+                List<Customer> output = DataAccess.Instance.Customer.Get();
                 return Ok(output);
             }
             catch(Exception ex)
@@ -24,10 +24,23 @@ namespace WebApi.Controllers
                 return StatusCode(500, ex.Message);
             }
         }
-
+        // Get: api/Customer
+        [HttpGet("WithBalance")]
+        public IActionResult GetWithBalance()
+        {
+            try
+            {
+                List<Customer> output = DataAccess.Instance.Customer.GetWithBalance();
+                return Ok(output);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
         // GET: api/Customer/ID
         [HttpGet("{customerID}")]
-        public IActionResult Get(String customerID)
+        public IActionResult Get(uint customerID)
         {
             try
             {
@@ -38,10 +51,23 @@ namespace WebApi.Controllers
                 return StatusCode(500, e.Message);
             }
         }
+        // GET: api/Customer/WithBalance/ID
+        [HttpGet("WithBalance/{customerID}")]
+        public IActionResult GetWithBalance(uint customerID)
+        {
+            try
+            {
+                return Ok(DataAccess.Instance.Customer.GetWithBalance(customerID));
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e.Message);
+            }
+        }
 
         // POST: api/Customer
         [HttpPost]
-        public IActionResult Post([FromBody] CustomerUpdateModel cust)
+        public IActionResult Post([FromBody] Customer cust)
         {
             try
             {
@@ -55,7 +81,7 @@ namespace WebApi.Controllers
 
         // PUT: api/Customer/{custID}
         [HttpPut]
-        public IActionResult Put([FromBody] CustomerUpdateModel cust)
+        public IActionResult Put([FromBody] Customer cust)
         {
             try
             {

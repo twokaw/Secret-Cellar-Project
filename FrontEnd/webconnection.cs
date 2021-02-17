@@ -31,10 +31,9 @@ namespace SecretCellar
         }
 
         private bool _loggedin = false;
-        private string _password = "";
         private string _url = "";
 
-        private AuthenticateModel _cred = new AuthenticateModel() { EmployeeID = 1, Pin = 123 };
+        private readonly AuthenticateModel _cred = new AuthenticateModel() { EmployeeID = 1, Pin = 123 };
 
         public bool AutoRelogin = true;
         public CookieCollection Cookies;
@@ -98,7 +97,7 @@ namespace SecretCellar
         {
             try
             {
-                _password = password;
+               // _password = password;
                 Login();
             }
             catch 
@@ -183,10 +182,10 @@ namespace SecretCellar
 
         public bool Login()
         {
-            return _Login( _cred );
+            return Login( _cred );
         }
 
-        private bool _Login(AuthenticateModel cred)
+        private bool Login(AuthenticateModel cred)
         {
             if (string.IsNullOrWhiteSpace(_url))
                 return false;
@@ -303,9 +302,11 @@ namespace SecretCellar
             {
                 if (response == null)
                 {
-                    response = new Response();
-                    response.Result = ex.Message;
-                    response.StatusCode = HttpStatusCode.Unused;
+                    response = new Response
+                    {
+                        Result = ex.Message,
+                        StatusCode = HttpStatusCode.Unused
+                    };
                 }
                 LastResponse = response;
                 LastResponse.Url = url;

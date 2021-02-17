@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace SecretCellar
 {
-    public partial class frmDiscount : Form
+    public partial class frmDiscount : ManagedForm
     {
         public Transaction transaction = null;
 

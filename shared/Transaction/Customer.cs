@@ -1,14 +1,9 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
-
-
+﻿
 namespace Shared
 {
-    public class CustomerUpdateModel
+    public class Customer
     {
-        public uint Id { get; set; }
+        public uint CustomerID { get; set; }
         public double CustomerDiscount { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -21,5 +16,7 @@ namespace Shared
         public string State { get; set; }
         public string ZipCode { get; set; }
         public string PhoneNumber { get; set; }
+        public double BalanceDue { get; set; }
+        public uint SuspendedTransactions { get; set; }
     }
 }

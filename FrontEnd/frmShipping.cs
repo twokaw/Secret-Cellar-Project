@@ -12,12 +12,14 @@ using Shared;
 
 namespace SecretCellar
 {
-    public partial class frmShipping : Form
+    public partial class frmShipping : ManagedForm
     {
         private Transaction shipping = null;
         public frmShipping(Transaction transaction)
         {
             InitializeComponent();
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(72, 72);
             shipping = transaction; 
         }
 
@@ -35,6 +37,16 @@ namespace SecretCellar
         {
             if (double.TryParse(txtCharge.Text, out double d))
                 shipping.Shipping = d;
+        }
+
+        private void frmShipping_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblTitle_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

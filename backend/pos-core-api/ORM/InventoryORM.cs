@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Threading.Tasks;
 using WebApi.Helpers;
 
 namespace pos_core_api.ORM
@@ -60,7 +59,7 @@ namespace pos_core_api.ORM
                 using MySqlDataReader reader = cmd.ExecuteReader();
                 output = fetchInventory(reader);
             }
-            finally
+            finally 
             {
                 db.CloseConnnection();
             }
@@ -148,6 +147,7 @@ namespace pos_core_api.ORM
                         ItemType = reader.IsDBNull("inventory_type_name") ? "" : reader.GetString("inventory_type_name"),
                         BottleDeposit = reader.IsDBNull("bottle_deposit") ? 0 : reader.GetDouble("bottle_deposit"),
                         IdTax = reader.IsDBNull("idTax") ? 0 : reader.GetUInt32("idTax"),
+                        Hidden = reader.IsDBNull("hidden") ? false : reader.GetBoolean("hidden"),
                         SalesTax = reader.IsDBNull("sales_tax") ? 0 : reader.GetDouble("sales_tax"),
                         LocalSalesTax = reader.IsDBNull("local_sales_tax") ? 0 : reader.GetDouble("local_sales_tax")
                     };

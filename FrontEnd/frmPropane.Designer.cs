@@ -191,6 +191,7 @@
             this.Controls.Add(this.btn_close);
             this.Controls.Add(this.lblPropane);
             this.Name = "frmPropane";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Propane";
             this.Load += new System.EventHandler(this.frmPropane_Load);
             this.ResumeLayout(false);

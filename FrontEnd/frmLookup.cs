@@ -13,7 +13,7 @@ using System.Windows.Forms;
 
 namespace SecretCellar
 {
-    public partial class frmLookup : Form
+    public partial class frmLookup : ManagedForm
     {
         private Transaction lookUp = null;
         private DataAccess dataAccess = new DataAccess(Properties.Settings.Default.URL);
@@ -24,6 +24,8 @@ namespace SecretCellar
         {
             lookUp = transaction;
             InitializeComponent();
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(72, 72);
             inventory = dataAccess.GetInventory();
             suppliers = dataAccess.GetSuppliers();
             types = dataAccess.GetInventoryType();
@@ -68,8 +70,7 @@ namespace SecretCellar
             {
                 Inventory i = inventory.First(x => x.Id == uint.Parse(LookupView.SelectedRows[0].Cells["id"].Value.ToString()));
 
-                Item item = DataAccess.ConvertInvtoItem(i);
-                lookUp.Items.Add(item);
+                lookUp.Add(i);
                 return true;
             }
             return false;
@@ -364,5 +365,20 @@ namespace SecretCellar
                 refresh();
 			}
 		}
-	}
+
+        private void frmLookup_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtName_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtPrice_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+    }
 }
