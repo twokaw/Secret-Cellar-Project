@@ -66,7 +66,7 @@
 			this.txtProd_Qty = new System.Windows.Forms.TextBox();
 			this.Btl_Dep_Lb = new System.Windows.Forms.Label();
 			this.panel2 = new System.Windows.Forms.Panel();
-			this.checkBox_CaseDiscount = new System.Windows.Forms.CheckBox();
+			this.checkListBox_Discounts = new System.Windows.Forms.CheckedListBox();
 			this.label_CaseDiscount = new System.Windows.Forms.Label();
 			((System.ComponentModel.ISupportInitialize)(this.LookupView)).BeginInit();
 			this.panel1.SuspendLayout();
@@ -273,10 +273,10 @@
 			// 
 			// label4
 			// 
-			this.label4.Location = new System.Drawing.Point(39, 48);
+			this.label4.Location = new System.Drawing.Point(25, 48);
 			this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(82, 25);
+			this.label4.Size = new System.Drawing.Size(96, 25);
 			this.label4.TabIndex = 4;
 			this.label4.Text = "Type:";
 			this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -294,20 +294,20 @@
 			// 
 			// label3
 			// 
-			this.label3.Location = new System.Drawing.Point(39, 113);
+			this.label3.Location = new System.Drawing.Point(25, 113);
 			this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(82, 25);
+			this.label3.Size = new System.Drawing.Size(96, 25);
 			this.label3.TabIndex = 2;
 			this.label3.Text = "Qty:";
 			this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
 			// label2
 			// 
-			this.label2.Location = new System.Drawing.Point(39, 16);
+			this.label2.Location = new System.Drawing.Point(25, 16);
 			this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(82, 25);
+			this.label2.Size = new System.Drawing.Size(96, 25);
 			this.label2.TabIndex = 0;
 			this.label2.Text = "Name:";
 			this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -351,10 +351,10 @@
 			// 
 			// label5
 			// 
-			this.label5.Location = new System.Drawing.Point(34, 177);
+			this.label5.Location = new System.Drawing.Point(25, 177);
 			this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.label5.Name = "label5";
-			this.label5.Size = new System.Drawing.Size(87, 25);
+			this.label5.Size = new System.Drawing.Size(96, 25);
 			this.label5.TabIndex = 7;
 			this.label5.Text = "Supplier:";
 			this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -384,13 +384,13 @@
 			// 
 			// barcode_label
 			// 
-			this.barcode_label.AutoSize = true;
-			this.barcode_label.Location = new System.Drawing.Point(50, 85);
+			this.barcode_label.Location = new System.Drawing.Point(25, 81);
 			this.barcode_label.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.barcode_label.Name = "barcode_label";
-			this.barcode_label.Size = new System.Drawing.Size(71, 16);
+			this.barcode_label.Size = new System.Drawing.Size(96, 25);
 			this.barcode_label.TabIndex = 10;
 			this.barcode_label.Text = "Barcode:";
+			this.barcode_label.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
 			// txtPrice
 			// 
@@ -403,13 +403,13 @@
 			// 
 			// Price_txt
 			// 
-			this.Price_txt.AutoSize = true;
-			this.Price_txt.Location = new System.Drawing.Point(73, 149);
+			this.Price_txt.Location = new System.Drawing.Point(25, 145);
 			this.Price_txt.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.Price_txt.Name = "Price_txt";
-			this.Price_txt.Size = new System.Drawing.Size(48, 16);
+			this.Price_txt.Size = new System.Drawing.Size(96, 25);
 			this.Price_txt.TabIndex = 12;
 			this.Price_txt.Text = "Price:";
+			this.Price_txt.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
 			// txtNetPrice
 			// 
@@ -422,13 +422,13 @@
 			// 
 			// lbl_netPrice
 			// 
-			this.lbl_netPrice.AutoSize = true;
-			this.lbl_netPrice.Location = new System.Drawing.Point(49, 215);
+			this.lbl_netPrice.Location = new System.Drawing.Point(25, 211);
 			this.lbl_netPrice.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.lbl_netPrice.Name = "lbl_netPrice";
-			this.lbl_netPrice.Size = new System.Drawing.Size(72, 16);
+			this.lbl_netPrice.Size = new System.Drawing.Size(96, 25);
 			this.lbl_netPrice.TabIndex = 14;
 			this.lbl_netPrice.Text = "My Price:";
+			this.lbl_netPrice.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
 			// btn_new
 			// 
@@ -454,22 +454,21 @@
 			// 
 			// Btl_Dep_Lb
 			// 
-			this.Btl_Dep_Lb.AutoSize = true;
-			this.Btl_Dep_Lb.Location = new System.Drawing.Point(42, 247);
+			this.Btl_Dep_Lb.Location = new System.Drawing.Point(25, 243);
 			this.Btl_Dep_Lb.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.Btl_Dep_Lb.Name = "Btl_Dep_Lb";
-			this.Btl_Dep_Lb.Size = new System.Drawing.Size(79, 16);
+			this.Btl_Dep_Lb.Size = new System.Drawing.Size(96, 25);
 			this.Btl_Dep_Lb.TabIndex = 17;
 			this.Btl_Dep_Lb.Text = "Bottle Qty:";
+			this.Btl_Dep_Lb.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.Btl_Dep_Lb.Click += new System.EventHandler(this.Btl_Dep_Lb_Click);
 			// 
 			// panel2
 			// 
 			this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.panel2.AutoSize = true;
 			this.panel2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-			this.panel2.Controls.Add(this.checkBox_CaseDiscount);
+			this.panel2.Controls.Add(this.checkListBox_Discounts);
 			this.panel2.Controls.Add(this.label_CaseDiscount);
 			this.panel2.Controls.Add(this.Btl_Dep_Lb);
 			this.panel2.Controls.Add(this.txtProd_Qty);
@@ -496,24 +495,27 @@
 			this.panel2.TabIndex = 8;
 			this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
 			// 
-			// checkBox_CaseDiscount
+			// checkListBox_Discounts
 			// 
-			this.checkBox_CaseDiscount.AutoCheck = false;
-			this.checkBox_CaseDiscount.AutoSize = true;
-			this.checkBox_CaseDiscount.Location = new System.Drawing.Point(129, 277);
-			this.checkBox_CaseDiscount.Name = "checkBox_CaseDiscount";
-			this.checkBox_CaseDiscount.Size = new System.Drawing.Size(15, 14);
-			this.checkBox_CaseDiscount.TabIndex = 19;
-			this.checkBox_CaseDiscount.UseVisualStyleBackColor = true;
+			this.checkListBox_Discounts.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+			this.checkListBox_Discounts.Enabled = false;
+			this.checkListBox_Discounts.FormattingEnabled = true;
+			this.checkListBox_Discounts.Location = new System.Drawing.Point(129, 275);
+			this.checkListBox_Discounts.MaximumSize = new System.Drawing.Size(250, 350);
+			this.checkListBox_Discounts.Name = "checkListBox_Discounts";
+			this.checkListBox_Discounts.Size = new System.Drawing.Size(224, 140);
+			this.checkListBox_Discounts.TabIndex = 20;
 			// 
 			// label_CaseDiscount
 			// 
-			this.label_CaseDiscount.AutoSize = true;
-			this.label_CaseDiscount.Location = new System.Drawing.Point(9, 275);
+			this.label_CaseDiscount.Location = new System.Drawing.Point(22, 275);
+			this.label_CaseDiscount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.label_CaseDiscount.Name = "label_CaseDiscount";
-			this.label_CaseDiscount.Size = new System.Drawing.Size(112, 16);
+			this.label_CaseDiscount.Size = new System.Drawing.Size(99, 25);
 			this.label_CaseDiscount.TabIndex = 18;
-			this.label_CaseDiscount.Text = "Case Discount:";
+			this.label_CaseDiscount.Text = "Discounts:";
+			this.label_CaseDiscount.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
 			// frmLookup
 			// 
@@ -588,7 +590,7 @@
 		private System.Windows.Forms.TextBox txtProd_Qty;
 		private System.Windows.Forms.Label Btl_Dep_Lb;
 		private System.Windows.Forms.Panel panel2;
-		private System.Windows.Forms.CheckBox checkBox_CaseDiscount;
 		private System.Windows.Forms.Label label_CaseDiscount;
+		private System.Windows.Forms.CheckedListBox checkListBox_Discounts;
 	}
 }
