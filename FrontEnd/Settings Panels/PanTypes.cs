@@ -20,6 +20,7 @@ namespace SecretCellar.Settings_Panels
             cbx_tax.DataSource = DataAccess.instance?.GetTax();
             lstTypes.DisplayMember = "TypeName";
             cbx_tax.DisplayMember = "TaxName";
+            DataAccess.instance?.GetDiscount()?.ForEach(x => chk_lst_discount.Items.Add(x.DiscountName));
         }
 
         private void lstTypes_SelectedIndexChanged(object sender, EventArgs e)
@@ -36,7 +37,9 @@ namespace SecretCellar.Settings_Panels
 
         private void btn_type_clear_Click(object sender, EventArgs e)
         {
-
+            txt_typename.Text = "";
+            cbx_tax.SelectedItem = 0;
+            txt_typename.Focus();
         }
 
         private void btn_new_type_Click(object sender, EventArgs e)
@@ -56,8 +59,11 @@ namespace SecretCellar.Settings_Panels
         private void btn_update_type_Click(object sender, EventArgs e)
         {
             InventoryType i = (InventoryType)lstTypes.SelectedItem;
-            i.TypeName = lbl_typename.Text.Trim();
+            i.TypeName = txt_typename.Text.Trim();
             i.IdTax = ((Tax)cbx_tax.SelectedItem).IdTax;
+            
+
+            // TODO: Update Discount
             DataAccess.instance.UpdateInventoryType(i);
         }
     }

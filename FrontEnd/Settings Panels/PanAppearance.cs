@@ -16,7 +16,9 @@ namespace SecretCellar.Settings_Panels
         public PanAppearance()
         {
             InitializeComponent();
-          //  listbox_logos.DataSource = DataAccess.instance?.GetImageFiles();
+            listbox_logos.DataSource = DataAccess.instance?.GetImageFiles();
+
+            listbox_logos.SelectedItem = listbox_logos.Items.IndexOf(DataAccess.instance.LogoName());
 
             // Set up the delays for the ToolTip.
             ProgramTips.AutoPopDelay = 10000;
@@ -27,6 +29,7 @@ namespace SecretCellar.Settings_Panels
             // Set up the ToolTip text for the Button and Checkbox.
             ProgramTips.SetToolTip(this.btn_commit, "Click commit to make changes permanent otherwise will reset on program close");
             //ProgramTips.SetToolTip(this.checkBox1, "My checkBox1");
+            //pic_logo.Image = DataAccess.instance.GetImage();
 
         }
 
