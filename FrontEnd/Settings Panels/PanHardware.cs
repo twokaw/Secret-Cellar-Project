@@ -34,5 +34,12 @@ namespace SecretCellar.Settings_Panels
         {
 
         }
+
+        private void btn_new_print_Click(object sender, EventArgs e)
+        {
+            frmAddPrinter addPrinter = new frmAddPrinter();
+
+            addPrinter.ShowDialog();
+        }
     }
 }
