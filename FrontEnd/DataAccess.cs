@@ -300,6 +300,10 @@ namespace SecretCellar
 
             return logo;
         }
+        public string LogoName()
+        {
+            return Properties.Settings.Default.Logo;
+        }
 
         public Image ImportLogo(string path)
         {
@@ -356,10 +360,16 @@ namespace SecretCellar
             string targetDirectory = $"{Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)} ";
             string[] extensions = new[] { "jpg", "jpeg", "bmp", "gif", "png" };
             string[] fileEntries = Directory.GetFiles(targetDirectory).Where(f => extensions.Contains(f.ToLower().Split('.').Last().Trim())).ToArray();
+            result.Add("");
             foreach (string fileName in fileEntries)
                 result.Add(Path.GetFileName(fileName));
 
             return result;
+        }
+
+        public Image GetImage()
+        {
+            return ImportLogo();
         }
 
         public Image GetImage(string file)

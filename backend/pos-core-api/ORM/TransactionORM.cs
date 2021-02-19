@@ -30,7 +30,7 @@ namespace pos_core_api.ORM
                 if (start > DateTime.MinValue)
                 {
                     cmd.Parameters.Add(new MySqlParameter("start", start));
-                    cmd.CommandText += " AND sold_datetime >= @start";
+                    cmd.CommandText += " WHERE sold_datetime >= @start";
 
                     if (end >= start)
                     {
