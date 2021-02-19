@@ -224,7 +224,20 @@ namespace SecretCellar
 
         private void btnVoidTrx_Click(object sender, EventArgs e)
         {
+            //ENSURE THAT THE TRANSACTION DOESN'T HAVE PAYMENTS STILL
+            if (transaction.Payments.Count > 0) {
+                MessageBox.Show("Cannot void transaction. There are still outstanding payments.", "Error");
+                return;
+            }
+
+            //PROCESS THE TRANSACTION IN CASE THE USER DELETED ANY PAYMENTS
+            uint transactionId = DataAccess.instance.ProcessTransaction(transaction);
+
+            //DELETE THE TRANSACTION FROM THE DATABASE
+            DataAccess.instance.DeleteTransaction(transactionId);
+
             transaction = new Transaction();
+            txt_current_cust.Text = "Generic";
             RefreshDataGrid();
         }
 
