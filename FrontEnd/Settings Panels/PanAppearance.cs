@@ -18,7 +18,8 @@ namespace SecretCellar.Settings_Panels
             InitializeComponent();
             listbox_logos.DataSource = DataAccess.instance?.GetImageFiles();
 
-            listbox_logos.SelectedItem = listbox_logos.Items.IndexOf(DataAccess.instance?.LogoName());
+            if (listbox_logos?.Items?.Count > 0)
+                listbox_logos.SelectedItem = listbox_logos.Items.IndexOf(DataAccess.instance?.LogoName());
 
             // Set up the delays for the ToolTip.
             ProgramTips.AutoPopDelay = 10000;
