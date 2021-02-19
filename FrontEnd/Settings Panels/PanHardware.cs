@@ -15,7 +15,7 @@ namespace SecretCellar.Settings_Panels
         public PanHardware()
         {
             InitializeComponent();
-            cbx_com_port.Text = Properties.Settings.Default.CashDrawerPort;
+            cbx_com_port.DataSource = System.IO.Ports.SerialPort.GetPortNames();
         }
 
         private void btn_set_comm_Click(object sender, EventArgs e)
@@ -28,6 +28,11 @@ namespace SecretCellar.Settings_Panels
         {
             Properties.Settings.Default.CashDrawerPort = "COM3";
             Properties.Settings.Default.Save();
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
