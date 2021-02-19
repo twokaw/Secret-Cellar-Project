@@ -151,6 +151,7 @@
             this.Controls.Add(this.lbl_custom);
             this.Name = "frmCustom";
             this.Text = "frmCustom";
+            this.Load += new System.EventHandler(this.frmCustom_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

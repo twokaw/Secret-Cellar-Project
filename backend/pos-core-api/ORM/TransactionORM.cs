@@ -30,7 +30,7 @@ namespace pos_core_api.ORM
                 if (start > DateTime.MinValue)
                 {
                     cmd.Parameters.Add(new MySqlParameter("start", start));
-                    cmd.CommandText += " AND sold_datetime >= @start";
+                    cmd.CommandText += " WHERE sold_datetime >= @start";
 
                     if (end >= start)
                     {
@@ -60,6 +60,29 @@ namespace pos_core_api.ORM
                 List<Transaction> transaction = GetTransactions(cmd, includeItems, includePayments);
 
                 return (transaction.Count > 0) ? transaction[0] : null;
+            }
+            finally
+            {
+                db.CloseConnnection();
+            }
+        }
+
+        public List<Transaction> GetSuspendedTransactions(bool includeItems = true, bool includePayments = true)
+        {
+            db.OpenConnection();
+            try
+            {
+                string sqlStatement = @$"
+                 SELECT receiptID, register, sold_datetime, customerID, empID, location, tax_exempt, discount, shipping
+                 FROM Transaction 
+                 JOIN v_suspendedtransaction
+                 USING(ReceiptID);
+                ";
+
+                using MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
+                List<Transaction> transaction = GetTransactions(cmd, includeItems, includePayments);
+
+                return transaction;
             }
             finally
             {
@@ -131,6 +154,7 @@ namespace pos_core_api.ORM
                         NonTaxable = !itemReader.IsDBNull("nontaxable") && itemReader.GetBoolean("nontaxable"),
                         NonTaxableLocal = !itemReader.IsDBNull("nontaxable_local") && itemReader.GetBoolean("nontaxable_local")
                     };
+                    item.NumSold = 0;
                     transaction.Items.Add(item);
                 }
 
@@ -198,22 +222,66 @@ namespace pos_core_api.ORM
             {
                 db.CloseConnnection();
             }
-            InsertItems(transaction);
+            InsertItems(transaction, FullyPaid(transaction));
             InsertPayments(transaction);
 
             return transaction.InvoiceID;
         }
-        public void InsertItems(Transaction transaction)
+
+        public uint UpdateTransaction(Transaction transaction, Transaction previousTransaction)
+        {
+            db.OpenConnection();
+            try
+            {
+                string sql = @"
+                  UPDATE transaction
+                  SET register = @register,  
+                      sold_datetime = @sold_datetime,  
+                      customerID = @customerID,   
+                      empID = @empID,  
+                      location = @location,  
+                      tax_exempt = @tax_exempt,  
+                      discount = @discount, 
+                      shipping = @shipping
+                  WHERE Receiptid = @InvoiceID
+                ";
+
+                MySqlCommand cmd = new MySqlCommand(sql, db.Connection());
+                cmd.Parameters.Add(new MySqlParameter("register", transaction.RegisterID));
+                cmd.Parameters.Add(new MySqlParameter("sold_datetime", transaction.TransactionDateTime));
+                cmd.Parameters.Add(new MySqlParameter("customerID", transaction.CustomerID));
+                cmd.Parameters.Add(new MySqlParameter("empID", transaction.EmployeeID));
+                cmd.Parameters.Add(new MySqlParameter("location", transaction.Location));
+                cmd.Parameters.Add(new MySqlParameter("tax_exempt", transaction.TaxExempt));
+                cmd.Parameters.Add(new MySqlParameter("discount", transaction.Discount));
+                cmd.Parameters.Add(new MySqlParameter("shipping", transaction.Shipping));
+                cmd.Parameters.Add(new MySqlParameter("InvoiceID", transaction.InvoiceID));
+
+                cmd.ExecuteNonQuery();
+            }
+            finally
+            {
+                db.CloseConnnection();
+            }
+            InsertItems(transaction, FullyPaid(transaction), previousTransaction);
+            InsertPayments(transaction, previousTransaction);
+
+            return transaction.InvoiceID;
+        }
+
+        public void InsertItems(Transaction transaction, bool updateDecrementInvQty)
         {
             MySqlCommand cmd;
             string sql;
             db.OpenConnection();
+
+            // TODO: remove items that have been removed
             try
             {
                 foreach (Item item in transaction.Items)
                 {
                     sql = @"
-                     INSERT INTO transaction_items
+                     REPLACE INTO transaction_items
                      ( receiptID,  inventoryID,  sold_price,  supplier_price,  sold_qty)
                      VALUES
                      (@receiptID, @inventoryID, @sold_price, @supplier_price, @sold_qty)
@@ -227,7 +295,46 @@ namespace pos_core_api.ORM
                     cmd.Parameters.Add(new MySqlParameter("sold_qty", item.NumSold));
 
                     cmd.ExecuteNonQuery();
-                    DecrementInventoryQty(item);
+
+                    if(updateDecrementInvQty)
+                        DecrementInventoryQty(item);
+
+                    cmd.Dispose();
+                }
+            }
+            finally
+            {
+                db.CloseConnnection();
+            }
+        }
+
+
+
+        public void InsertItems(Transaction transaction, bool updateDecrementInvQty, Transaction previousTransaction )
+        {
+            InsertItems(transaction, updateDecrementInvQty);
+
+
+            MySqlCommand cmd;
+            db.OpenConnection();
+
+            try
+            {
+                foreach (Item item in previousTransaction.Items.Where(x=>transaction.Items.FirstOrDefault(y => y.Id == x.Id) == null))
+                {
+                    cmd = new MySqlCommand(@"
+                       DELETE FROM transaction_items
+                       WHERE receiptID = @receiptID
+                       AND   inventoryID =  @inventoryID
+                    ", db.Connection());
+                    cmd.Parameters.Add(new MySqlParameter("receiptID", transaction.InvoiceID));
+                    cmd.Parameters.Add(new MySqlParameter("inventoryID", item.Id));
+
+                    cmd.ExecuteNonQuery();
+
+                    // if (updateDecrementInvQty)
+                    //    DecrementInventoryQty(item); // TODO: add increment qty
+
                     cmd.Dispose();
                 }
             }
@@ -261,7 +368,6 @@ namespace pos_core_api.ORM
                 db.CloseConnnection();
             }
         }
-
 
         public void DecrementInventoryQty(Item item)
         {
@@ -301,22 +407,41 @@ namespace pos_core_api.ORM
             }
         }
 
-        public void InsertPayments(Transaction transaction)
+        private void InsertPayments(Transaction transaction)
         {
             MySqlCommand cmd;
-            string sql = @"
+            string insert = @"
                 INSERT INTO Payments
                 ( ReceiptID,  Method,  Number,  Amount)
                 VALUES
                 (@ReceiptID, @Method, @Number, @Amount)
             ";
 
+            string update = @"
+                UPDATE Payments
+                SET  ReceiptID = @ReceiptID,
+                     Method = @Method,
+                     Number = @Number,
+                     Amount = @Amount
+                WHERE PayID = @PayID
+            ";
+
+            //  TODO: Remove playments that are removed
+
             db.OpenConnection();
             try
             {
                 foreach (Payment pay in transaction.Payments)
                 {
-                    cmd = new MySqlCommand(sql, db.Connection());
+                    if(pay.PayId > 0)
+                    {
+                        cmd = new MySqlCommand(update, db.Connection());
+                        cmd.Parameters.Add(new MySqlParameter("PayID", pay.PayId));
+                    }
+                    else
+                    {
+                        cmd = new MySqlCommand(insert, db.Connection());
+                    }
                     cmd.Parameters.Add(new MySqlParameter("receiptID", transaction.InvoiceID));
                     cmd.Parameters.Add(new MySqlParameter("Method", pay.Method));
                     cmd.Parameters.Add(new MySqlParameter("Number", pay.Number));
@@ -329,6 +454,82 @@ namespace pos_core_api.ORM
             {
                 db.CloseConnnection();
             }
+        }
+
+        private void InsertPayments(Transaction transaction, Transaction previousTransaction)
+        { 
+            InsertPayments(transaction);
+
+            foreach (Payment pay in previousTransaction.Payments.Where(x => transaction.Payments.FirstOrDefault(y => y.PayId == x.PayId) == null))
+                DeletePayment(pay.PayId);
+        }
+
+        public bool DeleteTransaction(uint transactionId)
+        {
+            Transaction t = GetTransaction(transactionId);
+
+            return t == null || DeleteTransaction(t);
+        }
+
+        public bool DeleteTransaction(Transaction transaction)
+        {
+            if (transaction.Payments.Count == 0)
+            {
+                MySqlCommand cmd = new MySqlCommand(@"
+                    DELETE FROM Transaction_items 
+                    WHERE ReceiptID = @ReceiptID;
+
+                    DELETE FROM Transaction 
+                    WHERE ReceiptID = @ReceiptID;
+                ", db.Connection());
+
+                db.OpenConnection();
+                try
+                {
+                    cmd.Parameters.Add(new MySqlParameter("receiptID", transaction.InvoiceID));
+                    cmd.ExecuteNonQuery();
+                }
+                finally
+                {
+                    db.CloseConnnection();
+                }
+                return true;
+            }
+            else
+                return false;
+        }
+
+        public bool DeletePayment(uint payId)
+        {
+            if (payId > 0)
+            {
+                MySqlCommand cmd = new MySqlCommand(@"
+                    DELETE FROM Payments
+                    WHERE payID = @payId
+                ", db.Connection());
+
+                db.OpenConnection();
+                try
+                {
+                    cmd.Parameters.Add(new MySqlParameter("payId", payId));
+                    cmd.ExecuteNonQuery();
+                }
+                finally
+                {
+                    db.CloseConnnection();
+                }
+                return true;
+            }
+            else
+                return false;
+        }
+
+        public bool FullyPaid(Transaction transaction)
+        {
+            double payments = 0;
+            transaction.Payments.ForEach(x => payments += x.Amount);
+
+            return transaction.Total <= payments;
         }
     }
 }

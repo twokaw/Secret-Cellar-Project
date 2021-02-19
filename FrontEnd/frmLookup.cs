@@ -13,7 +13,7 @@ using System.Windows.Forms;
 
 namespace SecretCellar
 {
-    public partial class frmLookup : Form
+    public partial class frmLookup : ManagedForm
     {
         private Transaction lookUp = null;
         private DataAccess dataAccess = new DataAccess(Properties.Settings.Default.URL);
@@ -24,6 +24,8 @@ namespace SecretCellar
         {
             lookUp = transaction;
             InitializeComponent();
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(72, 72);
             inventory = dataAccess.GetInventory();
             suppliers = dataAccess.GetSuppliers();
             types = dataAccess.GetInventoryType();
@@ -68,8 +70,7 @@ namespace SecretCellar
             {
                 Inventory i = inventory.First(x => x.Id == uint.Parse(LookupView.SelectedRows[0].Cells["id"].Value.ToString()));
 
-                Item item = DataAccess.ConvertInvtoItem(i);
-                lookUp.Items.Add(item);
+                lookUp.Add(i);
                 return true;
             }
             return false;
@@ -100,8 +101,6 @@ namespace SecretCellar
 
         private void LookupView_SelectionChanged(object sender, EventArgs e)
         {
-
-
             if (LookupView.SelectedRows.Count > 0)
             {
                 Inventory i = inventory.First(x => x.Id == uint.Parse(LookupView.SelectedRows[0].Cells["id"].Value.ToString()));
@@ -113,6 +112,22 @@ namespace SecretCellar
                 cbo_Supplier.Text = suppliers.First(x => x.SupplierID == i.SupplierID).Name;
                 txtNetPrice.Text = i.SupplierPrice.ToString();
                 txtProd_Qty.Text = i.Bottles.ToString();
+                
+                //CLEAR ALL THE DISCOUNTS THAT ARE IN THE DISCOUNTS LIST ALREADY
+                checkListBox_Discounts.Items.Clear();
+                
+                //LOOP THROUGH ALL OF THE INVENTORY TYPES TO MATCH THE CURRENTLY SELECTED ONE
+                foreach (InventoryType inventoryType in types) {
+                    if (inventoryType.TypeName.Equals(i.ItemType)) {
+                        List<Discount> discounts = inventoryType.Discount;
+
+                        //ADD EACH DISCOUNT OF THE MATCHED INVENTORY TYPE TO THE CHECK BOX LIST AND SET IT TO TRUE
+                        foreach (Discount discount in discounts) {
+                            checkListBox_Discounts.Items.Add(discount.DiscountName);
+                            checkListBox_Discounts.SetItemChecked(checkListBox_Discounts.Items.Count - 1, true);
+                        }
+					}
+				}
             }
         }
 
@@ -364,5 +379,20 @@ namespace SecretCellar
                 refresh();
 			}
 		}
-	}
+
+        private void frmLookup_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtName_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtPrice_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+    }
 }

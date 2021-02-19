@@ -96,6 +96,7 @@
             this.Name = "frmDryCleaning";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Dry Cleaning";
+            this.Load += new System.EventHandler(this.frmDryCleaning_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
