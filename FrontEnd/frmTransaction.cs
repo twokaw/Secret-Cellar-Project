@@ -12,14 +12,14 @@ using System.Collections.Generic;
 
 namespace SecretCellar
 {
-    public partial class frmTransaction : ManagedForm
+    public partial class frmTransaction : Form
     {
 
         private Transaction transaction = new Transaction();
         
         private Image logo = null;
 
-        public frmTransaction():base()
+        public frmTransaction()
         {
             InitializeComponent();
             DataAccess.instance = new DataAccess(Properties.Settings.Default.URL);
