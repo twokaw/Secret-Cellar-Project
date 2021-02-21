@@ -1,23 +1,72 @@
 ﻿using System;
 using System.IO.Ports;
+using System.Linq;
 
 namespace NCR_Printer
 {
     public class CashDrawer : SerialPort
     {
 
-        readonly Byte[] OPEN = { 0x1B, 0x70, 0x0, 0x10, 0xFA };
+        public Byte[] OPEN = { 0x1B, 0x70, 0x0, 0x10, 0xFA };
 
         public CashDrawer() : base("COM3", 9600, Parity.None, 8, StopBits.One) {}
         public CashDrawer(string portName) : base(portName, 9600, Parity.None, 8, StopBits.One) {}
 
         public CashDrawer(string portName, int baudRate, Parity parity, int dataBits, StopBits stopBits) 
             : base(portName, baudRate, parity, dataBits, stopBits) {}
-        
+
+        public Byte[] OpenCode
+        {
+            get
+            {
+                return OPEN;
+            }
+           set
+            {
+                OPEN = value;
+            }
+        }
+
+        public string OpenCodeHexString
+        {
+            get
+            {
+                string result = "";
+
+                for (int i = 0; i < OPEN.Length; i++)
+                    result += OPEN[i].ToString();
+
+                return result;
+            }
+            set
+            {
+                value.Replace(" ", "");
+                OPEN = Enumerable.Range(0, value.Length)
+                                 .Where(x => x % 2 == 0)
+                                 .Select(x => Convert.ToByte(value.Substring(x, 2), 16))
+                                 .ToArray();
+            }
+        }
+
+        public int[] OpenCodeIntArray
+        {
+            get
+            {
+                int[] result = new int[OPEN.Length]; 
+                for (int i = 0; i < OPEN.Length; i++)
+                    result[i] = OPEN[i];
+
+                return result;
+            }
+            set
+            {
+                OPEN = new byte[value.Length * sizeof(int)];
+                Buffer.BlockCopy(value, 0, OPEN, 0, OPEN.Length);
+            }
+        }
 
         public void OpenDrawer()
         {
-
             try
             {
                 Open();
