@@ -89,8 +89,24 @@ namespace SecretCellar
 
 				//ENSURE THAT THE TRANSACTION DOESN'T HAVE PAYMENTS STILL
 				if (selectedTransaction.Payments.Count > 0) {
-					MessageBox.Show("Cannot delete transaction. There are still outstanding payments.", "Error");
-					return;
+					DialogResult result = MessageBox.Show("Cannot delete transaction. There are still outstanding payments. Would you like to remove the payments?", "Error", MessageBoxButtons.YesNo);
+
+					if (result == DialogResult.No) {
+						return;
+					}
+					else if (result == DialogResult.Yes) {
+						double paymentsTotal = 0;
+						
+						//GET THE PAYMENTS TOTAL
+						foreach (Payment payment in selectedTransaction.Payments) {
+							paymentsTotal += payment.Amount;
+						}
+
+						//SHOW THE FORM TO DISPLAY THE PAYMENTS AMOUNT AND SELECT THE PAYMENT RETURN METHOD
+						frmSuspendedTransactionsSelectReturnPaymentMethod selectReturnPaymentMethod = new frmSuspendedTransactionsSelectReturnPaymentMethod(paymentsTotal);
+						selectReturnPaymentMethod.ShowDialog();
+
+					}
 				}
 
 				//DELETE THE TRANSACTION FROM THE DATABASE
