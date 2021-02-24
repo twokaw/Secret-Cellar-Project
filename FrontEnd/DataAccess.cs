@@ -274,6 +274,42 @@ namespace SecretCellar
         }
         #endregion
 
+        #region Event
+        public List<Event> GetEvent()
+        {
+            string result = web.DataGet("api/Event");
+            return JsonConvert.DeserializeObject<List<Event>>(result);
+        }
+
+        public Event GetEvent(uint id)
+        {
+            string result = web.DataGet($"api/Event/id/{id}");
+            return JsonConvert.DeserializeObject<Event>(result);
+        }
+        public Event GetEvent(string barcode)
+        {
+            string result = web.DataGet($"api/Event/{barcode}");
+            return JsonConvert.DeserializeObject<Event>(result);
+        }
+
+        public uint UpdateEvent(Event updatedEvent)
+        {
+            Response resp = null;
+            string result = web.DataPut($"api/Event/", updatedEvent, resp);
+
+            return uint.TryParse(result, out uint id) ? 0 : id;
+        }
+
+        public uint CreateEvent(Event newEvent)
+        {
+            Response resp = null;
+            string result = web.DataPost($"api/Event/", newEvent, resp);
+
+            return uint.TryParse(result, out uint id) ? 0 : id;
+        }
+
+        #endregion
+
         public void LogError(string message, string source, string notes = "")
         {
             Console.WriteLine($"{source} - {message}");
