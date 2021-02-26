@@ -14,8 +14,24 @@ namespace SecretCellar {
 			InitializeComponent();
 
 			label_Result.Text = "Payment Total: " + paymentsTotal;
+		}
 
+		private void button_Credit_Click(object sender, EventArgs e) {
+			//TODO: Add applying credit code
+			MessageBox.Show("Apply credit");
 
+			this.Close();
+		}
+
+		private void button_ReturnPayment_Click(object sender, EventArgs e) {
+			//TODO: Add return payment code
+			MessageBox.Show("Return payment");
+
+			this.Close();
+		}
+
+		private void button_CloseWindow_Click(object sender, EventArgs e) {
+			this.Close();
 		}
 	}
 }

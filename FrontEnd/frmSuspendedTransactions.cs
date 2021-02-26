@@ -104,8 +104,11 @@ namespace SecretCellar
 
 						//SHOW THE FORM TO DISPLAY THE PAYMENTS AMOUNT AND SELECT THE PAYMENT RETURN METHOD
 						frmSuspendedTransactionsSelectReturnPaymentMethod selectReturnPaymentMethod = new frmSuspendedTransactionsSelectReturnPaymentMethod(paymentsTotal);
-						selectReturnPaymentMethod.ShowDialog();
+						DialogResult returnPaymentResult = selectReturnPaymentMethod.ShowDialog();
 
+						if (returnPaymentResult == DialogResult.Abort) {
+							return;
+						}
 					}
 				}
 
