@@ -82,6 +82,7 @@ namespace SecretCellar.Settings_Panels
             this.lst_print_model.Name = "lst_print_model";
             this.lst_print_model.Size = new System.Drawing.Size(149, 121);
             this.lst_print_model.TabIndex = 55;
+            this.lst_print_model.SelectedIndexChanged += new System.EventHandler(this.lst_print_model_SelectedIndexChanged);
             // 
             // lbl_print_codes
             // 
