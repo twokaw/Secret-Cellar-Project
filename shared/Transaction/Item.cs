@@ -26,7 +26,7 @@ namespace Shared
         {
             get
             {
-                return (Price > 0) ? Price * NumSold * (Discount + (1 - Discount) * Discount) : -Price;
+                return (Price > 0) ? Price * NumSold * Discount : -Price;
             }
         }
 
