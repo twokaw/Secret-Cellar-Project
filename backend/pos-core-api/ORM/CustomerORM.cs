@@ -17,7 +17,7 @@ namespace pos_core_api.ORM
             string sqlStatement = @"
               SELECT customerID, customer_discount, first_name, last_name,
                      business_name, email, isWholesale, 
-                     addr1, addr2, city, state, zip, phone
+                     addr1, addr2, city, state, zip, phone, credit
               FROM v_customer
             ";
 
@@ -41,7 +41,7 @@ namespace pos_core_api.ORM
             string sqlStatement = @"
               SELECT customerID, customer_discount, first_name, last_name,
                      business_name, email, isWholesale, 
-                     addr1, addr2, city, state, zip, phone, balancedue, suspendedtransactions       
+                     addr1, addr2, city, state, zip, phone, credit, balancedue, suspendedtransactions       
               FROM v_customerwithbalance
             ";
 
@@ -65,7 +65,7 @@ namespace pos_core_api.ORM
             string sqlStatement = @"
               SELECT customerID, customer_discount, first_name, last_name,
                      business_name, email, isWholesale, 
-                     addr1, addr2, city, state, zip, phone, balancedue, suspendedtransactions       
+                     addr1, addr2, city, state, zip, phone, credit, balancedue, suspendedtransactions       
               FROM v_customerwithbalance
               WHERE customerID = @custID
             ";
@@ -98,7 +98,7 @@ namespace pos_core_api.ORM
             string sqlStatement = @"
               SELECT customerID, customer_discount, first_name, last_name,
                      business_name, email, isWholesale, 
-                     addr1, addr2, city, state, zip, phone
+                     addr1, addr2, city, state, zip, phone, credit
               FROM v_customer 
               WHERE customerID = @custID
             ";
@@ -131,9 +131,9 @@ namespace pos_core_api.ORM
 
                 string sqlStatementDesc = @"
                   INSERT INTO customer 
-                  (customer_discount, first_name, last_name, business_name, email, isWholesale, addr1, addr2, city, state, zip, phone)
+                  (customer_discount, first_name, last_name, business_name, email, isWholesale, addr1, addr2, city, state, zip, phone, credit)
                   VALUES 
-                  (@customerDiscount, @firstName, @lastName, @businessName, @email, @isWholesale, @addr1, @addr2, @city, @state, @zip, @phone)
+                  (@customerDiscount, @firstName, @lastName, @businessName, @email, @isWholesale, @addr1, @addr2, @city, @state, @zip, @phone, @credit)
                 ";
                 MySqlCommand cmd = new MySqlCommand(sqlStatementDesc, db.Connection());
                 cmd.Parameters.Add(new MySqlParameter("customerDiscount", cust.CustomerDiscount));
@@ -148,6 +148,7 @@ namespace pos_core_api.ORM
                 cmd.Parameters.Add(new MySqlParameter("state", cust.State));
                 cmd.Parameters.Add(new MySqlParameter("zip", cust.ZipCode));
                 cmd.Parameters.Add(new MySqlParameter("phone", cust.PhoneNumber));
+                cmd.Parameters.Add(new MySqlParameter("credit", cust.Credit));
 
                 cmd.ExecuteNonQuery();
 
@@ -171,7 +172,8 @@ namespace pos_core_api.ORM
                      email = @email, isWholesale = @isWholesale,
                      addr1 = @addr1, addr2 = @addr2, 
                      city = @city, state = @state, 
-                     zip = @zip, phone = @phone 
+                     zip = @zip, phone = @phone,
+                     credit = @credit
                  WHERE customerID = @custID
                 ";
 
@@ -188,6 +190,7 @@ namespace pos_core_api.ORM
                 cmd.Parameters.Add(new MySqlParameter("state", cust.State));
                 cmd.Parameters.Add(new MySqlParameter("zip", cust.ZipCode));
                 cmd.Parameters.Add(new MySqlParameter("phone", cust.PhoneNumber));
+                cmd.Parameters.Add(new MySqlParameter("credit", cust.Credit));
                 cmd.Parameters.Add(new MySqlParameter("custID", cust.CustomerID));
 
                 return cmd.ExecuteNonQuery();
@@ -224,8 +227,7 @@ namespace pos_core_api.ORM
             Customer outputItem;
             while (reader.Read())
             {
-                outputItem = new Customer
-                {
+                outputItem = new Customer {
                     CustomerID = reader.IsDBNull("customerID") ? 0 : reader.GetUInt32("customerID"),
                     CustomerDiscount = reader.IsDBNull("customer_discount") ? 0.0 : reader.GetDouble("customer_discount"),
                     FirstName = reader.IsDBNull("first_name") ? "" : reader.GetString("first_name"),
@@ -239,6 +241,7 @@ namespace pos_core_api.ORM
                     State = reader.IsDBNull("state") ? "" : reader.GetString("state"),
                     ZipCode = reader.IsDBNull("zip") ? "" : reader.GetString("zip"),
                     PhoneNumber = reader.IsDBNull("phone") ? "" : reader.GetString("phone"),
+                    Credit = reader.IsDBNull("credit") ? 0.0 : reader.GetDouble("credit"),
                 };
 
                 if(withBalance)
