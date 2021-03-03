@@ -95,15 +95,8 @@ namespace SecretCellar
 						return;
 					}
 					else if (result == DialogResult.Yes) {
-						double paymentsTotal = 0;
-						
-						//GET THE PAYMENTS TOTAL
-						foreach (Payment payment in selectedTransaction.Payments) {
-							paymentsTotal += payment.Amount;
-						}
-
 						//SHOW THE FORM TO DISPLAY THE PAYMENTS AMOUNT AND SELECT THE PAYMENT RETURN METHOD
-						frmSuspendedTransactionsSelectReturnPaymentMethod selectReturnPaymentMethod = new frmSuspendedTransactionsSelectReturnPaymentMethod(paymentsTotal);
+						frmSuspendedTransactionsSelectReturnPaymentMethod selectReturnPaymentMethod = new frmSuspendedTransactionsSelectReturnPaymentMethod(selectedTransaction);
 						DialogResult returnPaymentResult = selectReturnPaymentMethod.ShowDialog();
 
 						if (returnPaymentResult == DialogResult.Abort) {

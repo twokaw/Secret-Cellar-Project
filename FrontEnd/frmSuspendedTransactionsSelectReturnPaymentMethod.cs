@@ -10,10 +10,19 @@ using System.Windows.Forms;
 
 namespace SecretCellar {
 	public partial class frmSuspendedTransactionsSelectReturnPaymentMethod : Form {
-		public frmSuspendedTransactionsSelectReturnPaymentMethod(double paymentsTotal) {
-			InitializeComponent();
+		Shared.Transaction transaction = null;
 
-			label_Result.Text = "Payment Total: " + paymentsTotal;
+		public frmSuspendedTransactionsSelectReturnPaymentMethod(Shared.Transaction transactionFromSuspendedTransactions) {
+			InitializeComponent();
+			transaction = transactionFromSuspendedTransactions;
+			double paymentsTotal = 0;
+
+			//GET THE PAYMENTS TOTAL
+			foreach (Shared.Payment payment in transaction.Payments) {
+				paymentsTotal += payment.Amount;
+			}
+
+			label_Result.Text = "Payment Total: $" + paymentsTotal;
 		}
 
 		private void button_Credit_Click(object sender, EventArgs e) {
