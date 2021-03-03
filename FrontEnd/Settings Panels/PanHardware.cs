@@ -16,6 +16,7 @@ namespace SecretCellar.Settings_Panels
         {
             InitializeComponent();
             cbx_com_port.DataSource = System.IO.Ports.SerialPort.GetPortNames();
+            //cbx_manufact.DataSource = 
         }
 
         private void btn_set_comm_Click(object sender, EventArgs e)
@@ -33,6 +34,13 @@ namespace SecretCellar.Settings_Panels
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void btn_new_print_Click(object sender, EventArgs e)
+        {
+            frmAddPrinter addPrinter = new frmAddPrinter();
+
+            addPrinter.ShowDialog();
         }
     }
 }
