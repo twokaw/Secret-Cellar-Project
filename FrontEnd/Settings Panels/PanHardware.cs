@@ -16,6 +16,7 @@ namespace SecretCellar.Settings_Panels
         {
             InitializeComponent();
             cbx_com_port.DataSource = System.IO.Ports.SerialPort.GetPortNames();
+            //cbx_manufact.DataSource = 
         }
 
         private void btn_set_comm_Click(object sender, EventArgs e)
