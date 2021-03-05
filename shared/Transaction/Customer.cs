@@ -17,6 +17,7 @@ namespace Shared
         public string ZipCode { get; set; }
         public string PhoneNumber { get; set; }
         public double BalanceDue { get; set; }
+        public double Credit { get; set; }
         public uint SuspendedTransactions { get; set; }
     }
 }
