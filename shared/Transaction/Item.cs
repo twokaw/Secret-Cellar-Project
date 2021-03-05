@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace Shared
 {
-    public class Item : BaseItem
+    public class Item: BaseItem
     {
 
         public string Description
@@ -27,7 +27,6 @@ namespace Shared
             get
             {
                 return (Price > 0) ? Price * NumSold * Discount : -Price;
-                //return (Price > 0) ? Price * NumSold * (Discount + (1 - Discount) * Discount) : -Price;
             }
         }
 
@@ -38,20 +37,20 @@ namespace Shared
                 return (Price > 0) ? Price * NumSold : 0;
             }
         }
-
+         
         public double AdjustedTotal
         {
             get
             {
-                return Price * NumSold * ((Price > 0) ? (1 - Discount) : 1);
+                return Price * NumSold * ((Price > 0) ? (1 - Discount)  : 1);
             }
         }
 
-        public uint NumSold { get; set; }
+        public uint NumSold { get; set; } 
         public double Discount { get; set; }
         public double Coupon { get; set; }
 
-        public Item() : base() { NumSold = 1; }
+        public Item():base() { NumSold = 1; }
 
         public Item(string Name,
                     uint Id,
