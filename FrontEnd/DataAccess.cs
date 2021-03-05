@@ -8,6 +8,8 @@ using System.IO;
 using System.Reflection;
 using System.Windows.Forms;
 using System.Linq;
+using System.IO.Ports;
+using NCR_Printer;
 
 namespace SecretCellar
 {
@@ -450,6 +452,15 @@ namespace SecretCellar
         public void RefreshLogos()
         {
             pictureBoxes.ForEach(x => x.Image = logo);
+        }
+
+        public void openCashDrawer() {
+            try {
+                if (SerialPort.GetPortNames().Contains(Properties.Settings.Default.CashDrawerPort))
+                    new CashDrawer(Properties.Settings.Default.CashDrawerPort).OpenDrawer();
+            } catch (Exception ex) {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

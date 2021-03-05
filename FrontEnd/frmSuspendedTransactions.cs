@@ -91,17 +91,18 @@ namespace SecretCellar
 				if (selectedTransaction.Payments.Count > 0) {
 					DialogResult result = MessageBox.Show("Cannot delete transaction. There are still outstanding payments. Would you like to remove the payments?", "Error", MessageBoxButtons.YesNo);
 
-					if (result == DialogResult.No) {
-						return;
-					}
-					else if (result == DialogResult.Yes) {
+					if (result == DialogResult.Yes) {
 						//SHOW THE FORM TO DISPLAY THE PAYMENTS AMOUNT AND SELECT THE PAYMENT RETURN METHOD
 						frmSuspendedTransactionsSelectReturnPaymentMethod selectReturnPaymentMethod = new frmSuspendedTransactionsSelectReturnPaymentMethod(selectedTransaction);
 						DialogResult returnPaymentResult = selectReturnPaymentMethod.ShowDialog();
 
-						if (returnPaymentResult == DialogResult.Abort) {
+						//IF THE USER DIDN'T CLICK CASH OR CREDIT
+						if (returnPaymentResult != DialogResult.Yes && returnPaymentResult != DialogResult.No) {
 							return;
 						}
+					}
+					else {
+						return;
 					}
 				}
 

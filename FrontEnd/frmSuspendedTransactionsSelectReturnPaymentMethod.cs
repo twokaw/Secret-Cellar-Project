@@ -11,11 +11,12 @@ using System.Windows.Forms;
 namespace SecretCellar {
 	public partial class frmSuspendedTransactionsSelectReturnPaymentMethod : Form {
 		Shared.Transaction transaction = null;
-
-		public frmSuspendedTransactionsSelectReturnPaymentMethod(Shared.Transaction transactionFromSuspendedTransactions) {
+		double paymentsTotal = 0;
+		
+		
+		public frmSuspendedTransactionsSelectReturnPaymentMethod(Shared.Transaction selectedSuspendedTransaction) {
 			InitializeComponent();
-			transaction = transactionFromSuspendedTransactions;
-			double paymentsTotal = 0;
+			transaction = selectedSuspendedTransaction;
 
 			//GET THE PAYMENTS TOTAL
 			foreach (Shared.Payment payment in transaction.Payments) {
@@ -26,21 +27,38 @@ namespace SecretCellar {
 		}
 
 		private void button_Credit_Click(object sender, EventArgs e) {
-			//TODO: Add applying credit code
-			MessageBox.Show("Apply credit");
+			//REMOVE ALL THE PAYMENTS FROM THE TRANSACTION
+			transaction.Payments.Clear();
+			DataAccess.instance.ProcessTransaction(transaction);
+			
+			//GET THE CUSTOMER AND UPDATE THE CREDIT
+			Shared.Customer customer = DataAccess.instance.GetCustomer(transaction.CustomerID);
+			customer.Credit += paymentsTotal;
+			DataAccess.instance.UpdateCustomer(customer);
 
 			this.Close();
 		}
+		
+		private void button_Cash_Click(object sender, EventArgs e) {
+			//REMOVE ALL THE PAYMENTS FROM THE TRANSACTION
+			transaction.Payments.Clear();
+			DataAccess.instance.ProcessTransaction(transaction);
 
-		private void button_ReturnPayment_Click(object sender, EventArgs e) {
-			//TODO: Add return payment code
-			MessageBox.Show("Return payment");
+			//OPEN THE DRAWER
+			DataAccess.instance.openCashDrawer();
 
+			//HIDE AND CLOSE THE SELECTION FORM
+			this.Visible = false;
 			this.Close();
-		}
 
+			//SHOW A MESSAGE BOX WITH THE TOTAL AMOUNT SO IT'S ON SCREEN AFTER THE DRAWER OPENS
+			MessageBox.Show("$" + paymentsTotal, "Total");
+		}
+		
 		private void button_CloseWindow_Click(object sender, EventArgs e) {
 			this.Close();
 		}
+
+		
 	}
 }

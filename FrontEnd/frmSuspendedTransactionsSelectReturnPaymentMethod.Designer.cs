@@ -26,8 +26,8 @@ namespace SecretCellar {
 		private void InitializeComponent() {
 			this.label_Result = new System.Windows.Forms.Label();
 			this.button_Credit = new System.Windows.Forms.Button();
-			this.button_ReturnPayment = new System.Windows.Forms.Button();
 			this.button_CloseWindow = new System.Windows.Forms.Button();
+			this.button_Cash = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// label_Result
@@ -44,6 +44,7 @@ namespace SecretCellar {
 			// button_Credit
 			// 
 			this.button_Credit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.button_Credit.DialogResult = System.Windows.Forms.DialogResult.Yes;
 			this.button_Credit.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.button_Credit.Location = new System.Drawing.Point(12, 60);
 			this.button_Credit.Name = "button_Credit";
@@ -53,22 +54,9 @@ namespace SecretCellar {
 			this.button_Credit.UseVisualStyleBackColor = true;
 			this.button_Credit.Click += new System.EventHandler(this.button_Credit_Click);
 			// 
-			// button_ReturnPayment
-			// 
-			this.button_ReturnPayment.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.button_ReturnPayment.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.button_ReturnPayment.Location = new System.Drawing.Point(214, 60);
-			this.button_ReturnPayment.Name = "button_ReturnPayment";
-			this.button_ReturnPayment.Size = new System.Drawing.Size(180, 55);
-			this.button_ReturnPayment.TabIndex = 10;
-			this.button_ReturnPayment.Text = "RETURN PAYMENT";
-			this.button_ReturnPayment.UseVisualStyleBackColor = true;
-			this.button_ReturnPayment.Click += new System.EventHandler(this.button_ReturnPayment_Click);
-			// 
 			// button_CloseWindow
 			// 
 			this.button_CloseWindow.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.button_CloseWindow.DialogResult = System.Windows.Forms.DialogResult.Abort;
 			this.button_CloseWindow.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.button_CloseWindow.Location = new System.Drawing.Point(12, 144);
 			this.button_CloseWindow.Name = "button_CloseWindow";
@@ -78,13 +66,26 @@ namespace SecretCellar {
 			this.button_CloseWindow.UseVisualStyleBackColor = true;
 			this.button_CloseWindow.Click += new System.EventHandler(this.button_CloseWindow_Click);
 			// 
+			// button_Cash
+			// 
+			this.button_Cash.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.button_Cash.DialogResult = System.Windows.Forms.DialogResult.No;
+			this.button_Cash.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.button_Cash.Location = new System.Drawing.Point(214, 60);
+			this.button_Cash.Name = "button_Cash";
+			this.button_Cash.Size = new System.Drawing.Size(180, 55);
+			this.button_Cash.TabIndex = 12;
+			this.button_Cash.Text = "CASH";
+			this.button_Cash.UseVisualStyleBackColor = true;
+			this.button_Cash.Click += new System.EventHandler(this.button_Cash_Click);
+			// 
 			// frmSuspendedTransactionsSelectReturnPaymentMethod
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(406, 211);
+			this.Controls.Add(this.button_Cash);
 			this.Controls.Add(this.button_CloseWindow);
-			this.Controls.Add(this.button_ReturnPayment);
 			this.Controls.Add(this.button_Credit);
 			this.Controls.Add(this.label_Result);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -102,7 +103,7 @@ namespace SecretCellar {
 
 		private System.Windows.Forms.Label label_Result;
 		private System.Windows.Forms.Button button_Credit;
-		private System.Windows.Forms.Button button_ReturnPayment;
 		private System.Windows.Forms.Button button_CloseWindow;
+		private System.Windows.Forms.Button button_Cash;
 	}
 }
