@@ -278,6 +278,7 @@
     <Compile Include="Event.cs" />
     <Compile Include="InventoryQty.cs" />
     <Compile Include="Payment.cs" />
+    <Compile Include="Printer.cs" />
     <Compile Include="Report.cs" />
     <Compile Include="Tax.cs" />
     <Compile Include="Customer.cs" />

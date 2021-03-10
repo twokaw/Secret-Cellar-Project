@@ -88,6 +88,19 @@ namespace pos_core_api.ORM
             }
         }
 
+        private static PrinterORM printerORM = null;
+        public PrinterORM Printer
+        {
+            get
+            {
+                if (printerORM == null)
+                    printerORM = new PrinterORM();
+
+                return printerORM;
+            }
+        }
+
+
         private static TaxORM taxORM = null;
         public TaxORM Tax
         {

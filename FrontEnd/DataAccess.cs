@@ -276,6 +276,57 @@ namespace SecretCellar
         }
         #endregion
 
+        #region Printer
+        public List<Printer> GetPrinter()
+        {
+            string result = web.DataGet("api/Printer");
+            return JsonConvert.DeserializeObject<List<Printer>>(result);
+        }
+
+        public Printer GetPrinter(uint PrinterId)
+        {
+            string result = web.DataGet($"api/Printer/{PrinterId}");
+            return JsonConvert.DeserializeObject<Printer>(result);
+        }
+
+        public string GetPrinterMake(uint makeId)
+        {
+            string result = web.DataGet($"api/Printer/Make/{makeId}");
+            return result;
+        }
+
+        public List<string> GetPrinterMake()
+        {
+            string result = web.DataGet($"api/Printer/Make");
+            return JsonConvert.DeserializeObject<List<string>>(result);
+        }
+
+        public uint UpdatePrinter(Printer  printer)
+        {
+            Response resp = null;
+            string result = web.DataPut($"api/Printer", printer , resp);
+            if (uint.TryParse(result, out uint id))
+                return id;
+            else
+                return 0;
+        }
+
+        public uint NewPrinter(Printer printer)
+        {
+            Response resp = null;
+            string result = web.DataPost($"api/Printer", printer, resp);
+            if (uint.TryParse(result, out uint id))
+                return id;
+            else
+                return 0;
+        }
+        public void DeletePrinter(Printer printer)
+        {
+            try { web.DataDelete($"api/printer/{printer.ModelId}"); }
+            catch (Exception ex) { LogError(ex, "DeletePrinter"); }
+        }
+        #endregion
+
         #region Event
         public List<Event> GetEvent()
         {
@@ -312,6 +363,7 @@ namespace SecretCellar
 
         #endregion
 
+        #region Error logging
         public void LogError(string message, string source, string notes = "")
         {
             Console.WriteLine($"{source} - {message}");
@@ -321,7 +373,9 @@ namespace SecretCellar
         {
             LogError(error.Message, source, notes);
         }
+        #endregion
 
+        #region Logo
         public Image ImportLogo()
         {
 
@@ -453,6 +507,7 @@ namespace SecretCellar
         {
             pictureBoxes.ForEach(x => x.Image = logo);
         }
+#endregion
 
         public void openCashDrawer() {
             try {
