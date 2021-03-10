@@ -7,17 +7,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Shared;
 
 namespace SecretCellar.Settings_Panels
 {
     public partial class PanHardware : UserControl
     {
+        private List<Printer> printerNames;
         public PanHardware()
         {
+            printerNames = DataAccess.instance.GetPrinter();
             InitializeComponent();
             cbx_com_port.DataSource = System.IO.Ports.SerialPort.GetPortNames();
-            //cbx_manufact.DataSource = DataAccess.instance.GetMake();
-            //lbl_print_model.DataSource =  DataAccess.instance?.GetModels();
+            cbx_manufact.DataSource = DataAccess.instance.GetPrinterMake();
+            
+            lst_print_model.DataSource = printerNames;
+            lst_print_model.DisplayMember = "Model";
+            
+            
         }
 
         private void btn_set_comm_Click(object sender, EventArgs e)
@@ -46,7 +53,11 @@ namespace SecretCellar.Settings_Panels
 
         private void lst_print_model_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //= DataAccess.instance.GetModel
+           string makeId  = cbx_manufact.Text;
+
+            lst_print_model.DataSource = printerNames.Where(x => x.Make == makeId).ToList();
+
+             
         }
     }
 }

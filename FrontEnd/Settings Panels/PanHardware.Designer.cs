@@ -131,6 +131,7 @@ namespace SecretCellar.Settings_Panels
             this.cbx_manufact.Name = "cbx_manufact";
             this.cbx_manufact.Size = new System.Drawing.Size(121, 21);
             this.cbx_manufact.TabIndex = 42;
+            this.cbx_manufact.SelectedIndexChanged += new System.EventHandler(this.lst_print_model_SelectedIndexChanged);
             // 
             // btn_set_printer
             // 
