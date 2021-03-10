@@ -244,5 +244,29 @@ namespace SecretCellar.Properties {
                 return ((string)(this["DefualtFontStyle"]));
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int PrinterModelId {
+            get {
+                return ((int)(this["PrinterModelId"]));
+            }
+            set {
+                this["PrinterModelId"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int PrintCodeId {
+            get {
+                return ((int)(this["PrintCodeId"]));
+            }
+            set {
+                this["PrintCodeId"] = value;
+            }
+        }
     }
 }

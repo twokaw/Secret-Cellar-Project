@@ -41,6 +41,9 @@ namespace SecretCellar.Settings_Panels
             this.btn_set_comm = new System.Windows.Forms.Button();
             this.lbl_com_port = new System.Windows.Forms.Label();
             this.cbx_com_port = new System.Windows.Forms.ComboBox();
+            this.DrawerCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CutCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CodeId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grid_print_codes)).BeginInit();
             this.SuspendLayout();
@@ -82,6 +85,7 @@ namespace SecretCellar.Settings_Panels
             this.lst_print_model.Name = "lst_print_model";
             this.lst_print_model.Size = new System.Drawing.Size(149, 121);
             this.lst_print_model.TabIndex = 55;
+            this.lst_print_model.SelectedIndexChanged += new System.EventHandler(this.lst_print_model_SelectedIndexChanged);
             // 
             // lbl_print_codes
             // 
@@ -95,10 +99,19 @@ namespace SecretCellar.Settings_Panels
             // 
             // grid_print_codes
             // 
+            this.grid_print_codes.AllowUserToAddRows = false;
+            this.grid_print_codes.AllowUserToDeleteRows = false;
             this.grid_print_codes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grid_print_codes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.DrawerCode,
+            this.CutCode,
+            this.CodeId});
             this.grid_print_codes.Location = new System.Drawing.Point(217, 122);
             this.grid_print_codes.Name = "grid_print_codes";
-            this.grid_print_codes.Size = new System.Drawing.Size(251, 150);
+            this.grid_print_codes.ReadOnly = true;
+            this.grid_print_codes.RowHeadersVisible = false;
+            this.grid_print_codes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.grid_print_codes.Size = new System.Drawing.Size(270, 150);
             this.grid_print_codes.TabIndex = 53;
             // 
             // btn_new_print
@@ -130,6 +143,7 @@ namespace SecretCellar.Settings_Panels
             this.cbx_manufact.Name = "cbx_manufact";
             this.cbx_manufact.Size = new System.Drawing.Size(121, 21);
             this.cbx_manufact.TabIndex = 42;
+            this.cbx_manufact.SelectedIndexChanged += new System.EventHandler(this.cbx_manufact_SelectedIndexChanged);
             // 
             // btn_set_printer
             // 
@@ -141,6 +155,7 @@ namespace SecretCellar.Settings_Panels
             this.btn_set_printer.TabIndex = 41;
             this.btn_set_printer.Text = "Set Printer";
             this.btn_set_printer.UseVisualStyleBackColor = true;
+            this.btn_set_printer.Click += new System.EventHandler(this.btn_set_printer_Click);
             // 
             // btn_set_comm
             // 
@@ -172,6 +187,32 @@ namespace SecretCellar.Settings_Panels
             this.cbx_com_port.Size = new System.Drawing.Size(121, 21);
             this.cbx_com_port.TabIndex = 1;
             // 
+            // DrawerCode
+            // 
+            this.DrawerCode.DataPropertyName = "Drawer";
+            this.DrawerCode.HeaderText = "Drawer Code";
+            this.DrawerCode.Name = "DrawerCode";
+            this.DrawerCode.ReadOnly = true;
+            this.DrawerCode.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.DrawerCode.Width = 150;
+            // 
+            // CutCode
+            // 
+            this.CutCode.DataPropertyName = "Cutter";
+            this.CutCode.HeaderText = "Cut Code";
+            this.CutCode.Name = "CutCode";
+            this.CutCode.ReadOnly = true;
+            this.CutCode.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.CutCode.Width = 120;
+            // 
+            // CodeId
+            // 
+            this.CodeId.DataPropertyName = "CodeId";
+            this.CodeId.HeaderText = "CodeId";
+            this.CodeId.Name = "CodeId";
+            this.CodeId.ReadOnly = true;
+            this.CodeId.Visible = false;
+            // 
             // PanHardware
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -201,5 +242,8 @@ namespace SecretCellar.Settings_Panels
         private System.Windows.Forms.ListBox lst_print_model;
         private System.Windows.Forms.Label lbl_print_codes;
         private System.Windows.Forms.DataGridView grid_print_codes;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DrawerCode;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CutCode;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CodeId;
     }
 }
