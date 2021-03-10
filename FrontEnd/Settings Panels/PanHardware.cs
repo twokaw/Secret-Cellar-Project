@@ -16,13 +16,19 @@ namespace SecretCellar.Settings_Panels
         private List<Printer> printerNames;
         public PanHardware()
         {
+            Printer currentPrinter = DataAccess.instance.GetPrinter((uint)Properties.Settings.Default.PrinterModelId);
             printerNames = DataAccess.instance.GetPrinter();
             InitializeComponent();
             cbx_com_port.DataSource = System.IO.Ports.SerialPort.GetPortNames();
             cbx_manufact.DataSource = DataAccess.instance.GetPrinterMake();
-            
-            lst_print_model.DataSource = printerNames;
+            cbx_manufact.SelectedItem = currentPrinter?.Make;
+            lst_print_model.DataSource = printerNames.Where(x => x.Make == currentPrinter?.Make).ToList();
+            //lst_print_model.DataSource = printerNames;
             lst_print_model.DisplayMember = "Model";
+            lst_print_model.SetSelected(lst_print_model.FindString(currentPrinter.Model),true);
+            
+            //lst_print_model.SelectedItem = currentPrinter;
+            populate();
             
             
         }
@@ -53,11 +59,30 @@ namespace SecretCellar.Settings_Panels
 
         private void lst_print_model_SelectedIndexChanged(object sender, EventArgs e)
         {
-           string makeId  = cbx_manufact.Text;
+           
+            populate();
+
+
+        }
+
+        private void populate()
+        {
+            grid_print_codes.AutoGenerateColumns = false;
+            grid_print_codes.DataSource = ((Printer)lst_print_model?.SelectedItem)?.Codes;
+        }
+
+        private void cbx_manufact_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string makeId = cbx_manufact.Text;
 
             lst_print_model.DataSource = printerNames.Where(x => x.Make == makeId).ToList();
+        }
 
-             
+        private void btn_set_printer_Click(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.PrinterModelId =(int)((Printer)lst_print_model.SelectedItem).ModelId;
+            Properties.Settings.Default.PrintCodeId = int.Parse(grid_print_codes.SelectedRows[0].Cells["CodeId"].Value.ToString());
+            Properties.Settings.Default.Save();
         }
     }
 }
