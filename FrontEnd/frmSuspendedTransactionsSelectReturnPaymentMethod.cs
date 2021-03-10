@@ -10,8 +10,8 @@ using System.Windows.Forms;
 
 namespace SecretCellar {
 	public partial class frmSuspendedTransactionsSelectReturnPaymentMethod : Form {
-		Shared.Transaction transaction = null;
-		double paymentsTotal = 0;
+		private Shared.Transaction transaction = null;
+		private double paymentsTotal = 0;
 		
 		
 		public frmSuspendedTransactionsSelectReturnPaymentMethod(Shared.Transaction selectedSuspendedTransaction) {
