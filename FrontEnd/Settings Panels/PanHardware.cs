@@ -55,6 +55,8 @@ namespace SecretCellar.Settings_Panels
             frmAddPrinter addPrinter = new frmAddPrinter();
 
             addPrinter.ShowDialog();
+            populate();
+            
         }
 
         private void lst_print_model_SelectedIndexChanged(object sender, EventArgs e)
