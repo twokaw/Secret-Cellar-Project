@@ -17,18 +17,23 @@ namespace SecretCellar.Settings_Panels
         public PanHardware()
         {
             Printer currentPrinter = DataAccess.instance.GetPrinter((uint)Properties.Settings.Default.PrinterModelId);
-            printerNames = DataAccess.instance.GetPrinter();
+           // printerNames = DataAccess.instance.GetPrinter();
             InitializeComponent();
             cbx_com_port.DataSource = System.IO.Ports.SerialPort.GetPortNames();
-            cbx_manufact.DataSource = DataAccess.instance.GetPrinterMake();
-            cbx_manufact.SelectedItem = currentPrinter?.Make;
-            lst_print_model.DataSource = printerNames.Where(x => x.Make == currentPrinter?.Make).ToList();
-            //lst_print_model.DataSource = printerNames;
             lst_print_model.DisplayMember = "Model";
-            lst_print_model.SetSelected(lst_print_model.FindString(currentPrinter.Model),true);
-            
+            Refresh(currentPrinter?.Make, currentPrinter?.Model);
+            // cbx_manufact.DataSource = DataAccess.instance.GetPrinterMake();
+            //cbx_manufact.SelectedItem = currentPrinter?.Make ?? cbx_manufact.Items[0];
+            //lst_print_model.DataSource = printerNames.Where(x => x.Make == cbx_manufact.SelectedItem.ToString()).ToList();
+            //lst_print_model.DataSource = printerNames;
+
+            //if (lst_print_model.Items.Count > 0)
+            //{
+            //    int index = lst_print_model.FindString(currentPrinter?.Model);
+            //    lst_print_model.SetSelected((index >= 0) ? index : 0, true);
+            //}
             //lst_print_model.SelectedItem = currentPrinter;
-            populate();
+           // populate();
             
             
         }
@@ -54,17 +59,13 @@ namespace SecretCellar.Settings_Panels
         {
             frmAddPrinter addPrinter = new frmAddPrinter();
 
-            addPrinter.ShowDialog();
-            populate();
-            
+            if(addPrinter.ShowDialog() == DialogResult.OK)
+                Refresh(addPrinter?.newPrinter?.Make, addPrinter?.newPrinter?.Model);
         }
 
         private void lst_print_model_SelectedIndexChanged(object sender, EventArgs e)
         {
-           
             populate();
-
-
         }
 
         private void populate()
@@ -85,6 +86,21 @@ namespace SecretCellar.Settings_Panels
             Properties.Settings.Default.PrinterModelId =(int)((Printer)lst_print_model.SelectedItem).ModelId;
             Properties.Settings.Default.PrintCodeId = int.Parse(grid_print_codes.SelectedRows[0].Cells["CodeId"].Value.ToString());
             Properties.Settings.Default.Save();
+        }
+
+        private void Refresh(string make, string model)
+        {
+            printerNames = DataAccess.instance.GetPrinter();
+            cbx_manufact.DataSource = DataAccess.instance.GetPrinterMake();
+            cbx_manufact.SelectedItem = make ?? cbx_manufact.Items[0];
+            lst_print_model.DataSource = printerNames.Where(x => x.Make == cbx_manufact.SelectedItem.ToString()).ToList();
+            
+            if (lst_print_model.Items.Count > 0)
+            {
+                int index = lst_print_model.FindString(model);
+                lst_print_model.SetSelected((index >= 0) ? index : 0, true);
+            }
+            populate();
         }
     }
 }

@@ -221,9 +221,9 @@ namespace pos_core_api.ORM
                 {
                     cmd = new MySqlCommand(sqlStatement, db.Connection());
                     cmd.Parameters.Add(new MySqlParameter("ModelID", printer.ModelId));
-                    cmd.Parameters.Add(new MySqlParameter("Drawer", pc.Drawer));
-                    cmd.Parameters.Add(new MySqlParameter("Cutter", pc.Cutter));
-                    cmd.Parameters.Add(new MySqlParameter("PartialCutter", pc.PartialCutter));
+                    cmd.Parameters.Add(new MySqlParameter("Drawer", $"{pc.Drawer}"));
+                    cmd.Parameters.Add(new MySqlParameter("Cutter", $"{pc.Cutter}"));
+                    cmd.Parameters.Add(new MySqlParameter("PartialCutter", $"{pc.PartialCutter}"));
                    
                     MySqlDataReader reader = cmd.ExecuteReader();
 
@@ -251,37 +251,42 @@ namespace pos_core_api.ORM
 
         public uint Update( Printer printer)
         {
-            try
+            if (printer.ModelId == 0 || Get(printer.ModelId) == null)
+                Insert(printer);
+            else
             {
-                db.OpenConnection();
-                MySqlCommand cmd = new MySqlCommand(@"
-                -- Add the printer Make, if it doesn't exist
-                INSERT IGNORE INTO printerMake
-                (printerMakeName) 
-                VALUES
-                (@Make);                
+                try
+                {
+                    db.OpenConnection();
+                    MySqlCommand cmd = new MySqlCommand(@"
+                    -- Add the printer Make, if it doesn't exist
+                    INSERT IGNORE INTO printerMake
+                    (printerMakeName) 
+                    VALUES
+                    (@Make);                
 
-                -- Add the printer Model, if it doesn't exist
-                UPDATE printerModel
-                SET  printerModelName = @Model,
-                        printerMakeID  = ( 
-                        SELECT printerMakeID 
-                        FROM   printerMake 
-                        WHERE  printerMakeName = @Make
-                        )
-                WHERE printerModelID = @ModelId;
-                ", db.Connection());
-                cmd.Parameters.Add(new MySqlParameter("Make", printer.Make));
-                cmd.Parameters.Add(new MySqlParameter("ModelID", printer.ModelId));
-                cmd.Parameters.Add(new MySqlParameter("Model", printer.Model));
-                cmd.ExecuteNonQuery();
-            }
-            finally
-            {
-                db.CloseConnnection();
-            }
+                    -- Add the printer Model, if it doesn't exist
+                    UPDATE printerModel
+                    SET  printerModelName = @Model,
+                            printerMakeID  = ( 
+                            SELECT printerMakeID 
+                            FROM   printerMake 
+                            WHERE  printerMakeName = @Make
+                            )
+                    WHERE printerModelID = @ModelId;
+                    ", db.Connection());
+                    cmd.Parameters.Add(new MySqlParameter("Make", printer.Make));
+                    cmd.Parameters.Add(new MySqlParameter("ModelID", printer.ModelId));
+                    cmd.Parameters.Add(new MySqlParameter("Model", printer.Model));
+                    cmd.ExecuteNonQuery();
+                }
+                finally
+                {
+                    db.CloseConnnection();
+                }
 
-            UpdateCodes(printer);
+                UpdateCodes(printer);
+            }
             return printer.ModelId;
         }
 

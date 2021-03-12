@@ -13,6 +13,7 @@ namespace SecretCellar.Settings_Panels
 {
     public partial class frmAddPrinter : Form
     {
+        public Printer newPrinter = null;
         public frmAddPrinter()
         {
             InitializeComponent();
@@ -23,13 +24,14 @@ namespace SecretCellar.Settings_Panels
 
         private void btn_add_print_Click(object sender, EventArgs e)
         {
-            Printer newPrinter = new Printer
+            newPrinter = new Printer
             {
                 Make = cbx_manufact.Text,
                 Model = txt_print_model.Text
             };
             newPrinter.Codes.Add(new PrinterCode { Cutter = txt_new_cut_code.Text, Drawer = txt_drawer_code.Text });
-            DataAccess.instance.UpdatePrinter(newPrinter); 
+            DataAccess.instance.UpdatePrinter(newPrinter);
+            this.DialogResult = DialogResult.OK;
             this.Close();
         }
     }
