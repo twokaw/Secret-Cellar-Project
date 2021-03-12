@@ -84,7 +84,7 @@ namespace SecretCellar
         private void btnTender_Click(object sender, EventArgs e)
         {
             if (transaction.Items.Count == 0)
-                openCashDrawer();
+                DataAccess.instance.openCashDrawer();
             else
             {
                 frmPayment payment = new frmPayment(transaction);
@@ -100,7 +100,7 @@ namespace SecretCellar
                     }
 
                     if (transaction.Payments.FirstOrDefault(x => x.Method == "CASH" || x.Method == "CHECK") != null)
-                        openCashDrawer();
+                        DataAccess.instance.openCashDrawer();
 
                     if (payment.PrintReceipt) {
                     Receipt.DefaultLayout.Logo = DataAccess.instance.ImportLogo();
@@ -259,19 +259,6 @@ namespace SecretCellar
             //IF THE COUNT EQUALS 0 HIDE THE SUSPEND TRANSACTION BUTTON
             if (transaction.Items.Count == 0) {
                 btnSuspendTransaction.Visible = false;
-            }
-        }
-
-        private void openCashDrawer()
-        {
-            try
-            {
-                if (SerialPort.GetPortNames().Contains(Properties.Settings.Default.CashDrawerPort))
-                    new CashDrawer(Properties.Settings.Default.CashDrawerPort).OpenDrawer();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
             }
         }
 
