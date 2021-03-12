@@ -28,7 +28,7 @@ namespace SecretCellar
             this.Size = new System.Drawing.Size(1366, 768);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScaleDimensions = new System.Drawing.SizeF(72, 72);
-            txt_current_cust.Text = "Generic";
+            txt_current_cust.Text = "";
 
 
             string path = Properties.Settings.Default.FontPath;
