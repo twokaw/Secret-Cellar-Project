@@ -31,8 +31,30 @@ namespace SecretCellar.Settings_Panels
             };
             newPrinter.Codes.Add(new PrinterCode { Cutter = txt_new_cut_code.Text, Drawer = txt_drawer_code.Text });
             DataAccess.instance.UpdatePrinter(newPrinter);
+            //this.DialogResult = DialogResult.OK;
+            
+        }
+
+        private void btn_close_Click(object sender, EventArgs e)
+        {
             this.DialogResult = DialogResult.OK;
-            this.Close();
+        }
+
+        private void btn_add_codes_Click(object sender, EventArgs e)
+        {
+            txt_drawer_code.Text = "";
+            txt_new_cut_code.Text = "";
+
+            newPrinter = new Printer
+            {
+                Make = cbx_manufact.Text,
+                Model = txt_print_model.Text
+            };
+            newPrinter.Codes.Add(new PrinterCode { Cutter = txt_new_cut_code.Text, Drawer = txt_drawer_code.Text });
+            DataAccess.instance.UpdatePrinter(newPrinter);
+            
+
+            //this.DialogResult = DialogResult.OK;
         }
     }
 }
