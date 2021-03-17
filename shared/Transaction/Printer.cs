@@ -27,21 +27,30 @@ namespace Shared
             get 
             {
 
-                return Codes?.FirstOrDefault(x => x.CodeId == CodeId)?.Drawer?? Codes[0].Drawer;
+                if (Codes == null || Codes.Count == 0)
+                    return "";
+                else
+                    return Codes.FirstOrDefault(x => x.CodeId == CodeId)?.Drawer ?? Codes[0].Drawer;
             }
         }
         public string Cutter
         {
             get
             {
-                return Codes?.FirstOrDefault(x => x.CodeId == CodeId)?.Cutter ?? Codes[0].Cutter;
+                if (Codes == null || Codes.Count == 0)
+                    return "";
+                else
+                    return Codes.FirstOrDefault(x => x.CodeId == CodeId)?.Cutter ?? Codes[0].Cutter;
             }
         }
         public string PartialCutter
         {
             get
             {
-                return Codes?.FirstOrDefault(x => x.CodeId == CodeId)?.PartialCutter ?? Codes[0].PartialCutter;
+                if (Codes == null || Codes.Count == 0)
+                    return "";
+                else
+                    return Codes.FirstOrDefault(x => x.CodeId == CodeId)?.PartialCutter ?? Codes[0].PartialCutter;
             }
         }
         public Printer() { Codes = new List<PrinterCode>(); }
