@@ -30,10 +30,14 @@ namespace SecretCellar.Settings_Panels
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btn_add_code = new System.Windows.Forms.Button();
             this.lbl_print_model = new System.Windows.Forms.Label();
             this.lst_print_model = new System.Windows.Forms.ListBox();
             this.lbl_print_codes = new System.Windows.Forms.Label();
             this.grid_print_codes = new System.Windows.Forms.DataGridView();
+            this.DrawerCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CutCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CodeId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btn_new_print = new System.Windows.Forms.Button();
             this.lbl_manufact = new System.Windows.Forms.Label();
             this.cbx_manufact = new System.Windows.Forms.ComboBox();
@@ -41,15 +45,13 @@ namespace SecretCellar.Settings_Panels
             this.btn_set_comm = new System.Windows.Forms.Button();
             this.lbl_com_port = new System.Windows.Forms.Label();
             this.cbx_com_port = new System.Windows.Forms.ComboBox();
-            this.DrawerCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CutCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CodeId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grid_print_codes)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.btn_add_code);
             this.panel1.Controls.Add(this.lbl_print_model);
             this.panel1.Controls.Add(this.lst_print_model);
             this.panel1.Controls.Add(this.lbl_print_codes);
@@ -68,11 +70,24 @@ namespace SecretCellar.Settings_Panels
             this.panel1.Size = new System.Drawing.Size(700, 320);
             this.panel1.TabIndex = 0;
             // 
+            // btn_add_code
+            // 
+            this.btn_add_code.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_add_code.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_add_code.Location = new System.Drawing.Point(530, 193);
+            this.btn_add_code.Margin = new System.Windows.Forms.Padding(6);
+            this.btn_add_code.Name = "btn_add_code";
+            this.btn_add_code.Size = new System.Drawing.Size(151, 25);
+            this.btn_add_code.TabIndex = 57;
+            this.btn_add_code.Text = "Add Print Code";
+            this.btn_add_code.UseVisualStyleBackColor = true;
+            this.btn_add_code.Click += new System.EventHandler(this.btn_add_code_Click);
+            // 
             // lbl_print_model
             // 
             this.lbl_print_model.AutoSize = true;
             this.lbl_print_model.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_print_model.Location = new System.Drawing.Point(23, 131);
+            this.lbl_print_model.Location = new System.Drawing.Point(20, 131);
             this.lbl_print_model.Name = "lbl_print_model";
             this.lbl_print_model.Size = new System.Drawing.Size(105, 17);
             this.lbl_print_model.TabIndex = 56;
@@ -81,7 +96,7 @@ namespace SecretCellar.Settings_Panels
             // lst_print_model
             // 
             this.lst_print_model.FormattingEnabled = true;
-            this.lst_print_model.Location = new System.Drawing.Point(26, 151);
+            this.lst_print_model.Location = new System.Drawing.Point(23, 151);
             this.lst_print_model.Name = "lst_print_model";
             this.lst_print_model.Size = new System.Drawing.Size(149, 121);
             this.lst_print_model.TabIndex = 55;
@@ -91,7 +106,7 @@ namespace SecretCellar.Settings_Panels
             // 
             this.lbl_print_codes.AutoSize = true;
             this.lbl_print_codes.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_print_codes.Location = new System.Drawing.Point(214, 92);
+            this.lbl_print_codes.Location = new System.Drawing.Point(196, 92);
             this.lbl_print_codes.Name = "lbl_print_codes";
             this.lbl_print_codes.Size = new System.Drawing.Size(107, 17);
             this.lbl_print_codes.TabIndex = 54;
@@ -101,23 +116,52 @@ namespace SecretCellar.Settings_Panels
             // 
             this.grid_print_codes.AllowUserToAddRows = false;
             this.grid_print_codes.AllowUserToDeleteRows = false;
+            this.grid_print_codes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.grid_print_codes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grid_print_codes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.DrawerCode,
             this.CutCode,
             this.CodeId});
-            this.grid_print_codes.Location = new System.Drawing.Point(217, 122);
+            this.grid_print_codes.Location = new System.Drawing.Point(194, 122);
             this.grid_print_codes.Name = "grid_print_codes";
             this.grid_print_codes.ReadOnly = true;
             this.grid_print_codes.RowHeadersVisible = false;
             this.grid_print_codes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grid_print_codes.Size = new System.Drawing.Size(270, 150);
+            this.grid_print_codes.Size = new System.Drawing.Size(318, 150);
             this.grid_print_codes.TabIndex = 53;
+            // 
+            // DrawerCode
+            // 
+            this.DrawerCode.DataPropertyName = "Drawer";
+            this.DrawerCode.HeaderText = "Drawer Code";
+            this.DrawerCode.Name = "DrawerCode";
+            this.DrawerCode.ReadOnly = true;
+            this.DrawerCode.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.DrawerCode.Width = 150;
+            // 
+            // CutCode
+            // 
+            this.CutCode.DataPropertyName = "Cutter";
+            this.CutCode.HeaderText = "Cut Code";
+            this.CutCode.Name = "CutCode";
+            this.CutCode.ReadOnly = true;
+            this.CutCode.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.CutCode.Width = 120;
+            // 
+            // CodeId
+            // 
+            this.CodeId.DataPropertyName = "CodeId";
+            this.CodeId.HeaderText = "CodeId";
+            this.CodeId.Name = "CodeId";
+            this.CodeId.ReadOnly = true;
+            this.CodeId.Visible = false;
             // 
             // btn_new_print
             // 
+            this.btn_new_print.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_new_print.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_new_print.Location = new System.Drawing.Point(504, 123);
+            this.btn_new_print.Location = new System.Drawing.Point(530, 123);
             this.btn_new_print.Margin = new System.Windows.Forms.Padding(6);
             this.btn_new_print.Name = "btn_new_print";
             this.btn_new_print.Size = new System.Drawing.Size(151, 25);
@@ -130,7 +174,7 @@ namespace SecretCellar.Settings_Panels
             // 
             this.lbl_manufact.AutoSize = true;
             this.lbl_manufact.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_manufact.Location = new System.Drawing.Point(23, 78);
+            this.lbl_manufact.Location = new System.Drawing.Point(20, 78);
             this.lbl_manufact.Name = "lbl_manufact";
             this.lbl_manufact.Size = new System.Drawing.Size(100, 17);
             this.lbl_manufact.TabIndex = 43;
@@ -139,7 +183,7 @@ namespace SecretCellar.Settings_Panels
             // cbx_manufact
             // 
             this.cbx_manufact.FormattingEnabled = true;
-            this.cbx_manufact.Location = new System.Drawing.Point(26, 98);
+            this.cbx_manufact.Location = new System.Drawing.Point(23, 98);
             this.cbx_manufact.Name = "cbx_manufact";
             this.cbx_manufact.Size = new System.Drawing.Size(121, 21);
             this.cbx_manufact.TabIndex = 42;
@@ -148,7 +192,7 @@ namespace SecretCellar.Settings_Panels
             // btn_set_printer
             // 
             this.btn_set_printer.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_set_printer.Location = new System.Drawing.Point(260, 281);
+            this.btn_set_printer.Location = new System.Drawing.Point(257, 281);
             this.btn_set_printer.Margin = new System.Windows.Forms.Padding(6);
             this.btn_set_printer.Name = "btn_set_printer";
             this.btn_set_printer.Size = new System.Drawing.Size(151, 25);
@@ -187,32 +231,6 @@ namespace SecretCellar.Settings_Panels
             this.cbx_com_port.Size = new System.Drawing.Size(121, 21);
             this.cbx_com_port.TabIndex = 1;
             // 
-            // DrawerCode
-            // 
-            this.DrawerCode.DataPropertyName = "Drawer";
-            this.DrawerCode.HeaderText = "Drawer Code";
-            this.DrawerCode.Name = "DrawerCode";
-            this.DrawerCode.ReadOnly = true;
-            this.DrawerCode.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.DrawerCode.Width = 150;
-            // 
-            // CutCode
-            // 
-            this.CutCode.DataPropertyName = "Cutter";
-            this.CutCode.HeaderText = "Cut Code";
-            this.CutCode.Name = "CutCode";
-            this.CutCode.ReadOnly = true;
-            this.CutCode.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.CutCode.Width = 120;
-            // 
-            // CodeId
-            // 
-            this.CodeId.DataPropertyName = "CodeId";
-            this.CodeId.HeaderText = "CodeId";
-            this.CodeId.Name = "CodeId";
-            this.CodeId.ReadOnly = true;
-            this.CodeId.Visible = false;
-            // 
             // PanHardware
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -245,5 +263,6 @@ namespace SecretCellar.Settings_Panels
         private System.Windows.Forms.DataGridViewTextBoxColumn DrawerCode;
         private System.Windows.Forms.DataGridViewTextBoxColumn CutCode;
         private System.Windows.Forms.DataGridViewTextBoxColumn CodeId;
+        private System.Windows.Forms.Button btn_add_code;
     }
 }
