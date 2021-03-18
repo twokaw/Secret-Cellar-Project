@@ -273,7 +273,7 @@ namespace pos_core_api.ORM
         public uint Update( Printer printer)
         {
             // return 0 if the printer is null
-            if (printer != null)
+            if (printer == null)
                 return 0;
 
             // if the printer model id is missing try to find it
