@@ -30,6 +30,7 @@ namespace SecretCellar.Settings_Panels
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btn_add_code = new System.Windows.Forms.Button();
             this.lbl_print_model = new System.Windows.Forms.Label();
             this.lst_print_model = new System.Windows.Forms.ListBox();
             this.lbl_print_codes = new System.Windows.Forms.Label();
@@ -44,7 +45,6 @@ namespace SecretCellar.Settings_Panels
             this.btn_set_comm = new System.Windows.Forms.Button();
             this.lbl_com_port = new System.Windows.Forms.Label();
             this.cbx_com_port = new System.Windows.Forms.ComboBox();
-            this.btn_add_code = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grid_print_codes)).BeginInit();
             this.SuspendLayout();
@@ -70,6 +70,19 @@ namespace SecretCellar.Settings_Panels
             this.panel1.Size = new System.Drawing.Size(700, 320);
             this.panel1.TabIndex = 0;
             // 
+            // btn_add_code
+            // 
+            this.btn_add_code.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_add_code.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_add_code.Location = new System.Drawing.Point(530, 193);
+            this.btn_add_code.Margin = new System.Windows.Forms.Padding(6);
+            this.btn_add_code.Name = "btn_add_code";
+            this.btn_add_code.Size = new System.Drawing.Size(151, 25);
+            this.btn_add_code.TabIndex = 57;
+            this.btn_add_code.Text = "Add Print Code";
+            this.btn_add_code.UseVisualStyleBackColor = true;
+            this.btn_add_code.Click += new System.EventHandler(this.btn_add_code_Click);
+            // 
             // lbl_print_model
             // 
             this.lbl_print_model.AutoSize = true;
@@ -93,7 +106,7 @@ namespace SecretCellar.Settings_Panels
             // 
             this.lbl_print_codes.AutoSize = true;
             this.lbl_print_codes.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_print_codes.Location = new System.Drawing.Point(211, 92);
+            this.lbl_print_codes.Location = new System.Drawing.Point(196, 92);
             this.lbl_print_codes.Name = "lbl_print_codes";
             this.lbl_print_codes.Size = new System.Drawing.Size(107, 17);
             this.lbl_print_codes.TabIndex = 54;
@@ -103,17 +116,19 @@ namespace SecretCellar.Settings_Panels
             // 
             this.grid_print_codes.AllowUserToAddRows = false;
             this.grid_print_codes.AllowUserToDeleteRows = false;
+            this.grid_print_codes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.grid_print_codes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grid_print_codes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.DrawerCode,
             this.CutCode,
             this.CodeId});
-            this.grid_print_codes.Location = new System.Drawing.Point(214, 122);
+            this.grid_print_codes.Location = new System.Drawing.Point(194, 122);
             this.grid_print_codes.Name = "grid_print_codes";
             this.grid_print_codes.ReadOnly = true;
             this.grid_print_codes.RowHeadersVisible = false;
             this.grid_print_codes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grid_print_codes.Size = new System.Drawing.Size(270, 150);
+            this.grid_print_codes.Size = new System.Drawing.Size(318, 150);
             this.grid_print_codes.TabIndex = 53;
             // 
             // DrawerCode
@@ -144,8 +159,9 @@ namespace SecretCellar.Settings_Panels
             // 
             // btn_new_print
             // 
+            this.btn_new_print.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_new_print.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_new_print.Location = new System.Drawing.Point(501, 123);
+            this.btn_new_print.Location = new System.Drawing.Point(530, 123);
             this.btn_new_print.Margin = new System.Windows.Forms.Padding(6);
             this.btn_new_print.Name = "btn_new_print";
             this.btn_new_print.Size = new System.Drawing.Size(151, 25);
@@ -214,18 +230,6 @@ namespace SecretCellar.Settings_Panels
             this.cbx_com_port.Name = "cbx_com_port";
             this.cbx_com_port.Size = new System.Drawing.Size(121, 21);
             this.cbx_com_port.TabIndex = 1;
-            // 
-            // btn_add_code
-            // 
-            this.btn_add_code.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_add_code.Location = new System.Drawing.Point(501, 193);
-            this.btn_add_code.Margin = new System.Windows.Forms.Padding(6);
-            this.btn_add_code.Name = "btn_add_code";
-            this.btn_add_code.Size = new System.Drawing.Size(151, 25);
-            this.btn_add_code.TabIndex = 57;
-            this.btn_add_code.Text = "Add Print Code";
-            this.btn_add_code.UseVisualStyleBackColor = true;
-            this.btn_add_code.Click += new System.EventHandler(this.btn_add_code_Click);
             // 
             // PanHardware
             // 

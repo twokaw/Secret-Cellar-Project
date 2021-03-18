@@ -73,6 +73,7 @@ namespace SecretCellar.Settings_Panels
             {
                 MessageBox.Show("Must add new printer before adding codes");
             }
+
             populate();
             //this.DialogResult = DialogResult.OK;
         }
@@ -84,6 +85,7 @@ namespace SecretCellar.Settings_Panels
 
         private void populate()
         {
+            newPrinter = DataAccess.instance.GetPrinter(newPrinter.ModelId);
             grid_print_codes.AutoGenerateColumns = false;
             grid_print_codes.DataSource = newPrinter.Codes;
         }
