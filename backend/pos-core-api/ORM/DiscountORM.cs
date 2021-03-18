@@ -13,38 +13,65 @@ namespace pos_core_api.ORM
         public List<Discount> Get()
         {
             List<Discount> output = new List<Discount>();
-            Discount outputItem;
             db.OpenConnection();
 
-            string sqlStatement = @"
+            MySqlCommand cmd = new MySqlCommand(@"
               SELECT DiscountID, DiscountName, minQty, maxQty, Discount
               FROM V_Discount
-            ";
+            ", db.Connection());
 
-            MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
-            MySqlDataReader reader = cmd.ExecuteReader();
-
-            try
+            using (MySqlDataReader reader = cmd.ExecuteReader())
             {
-                while (reader.Read())
+                try
                 {
-                    outputItem = new Discount
-                    {
-                        DiscountID = reader.IsDBNull("DiscountID") ? 0 : reader.GetUInt32("DiscountID"),
-                        DiscountName = reader.IsDBNull("DiscountName") ? "" : reader.GetString("DiscountName"),
-                        Min = reader.IsDBNull("minQty") ? 0 : reader.GetUInt32("minQty"),
-                        Max = reader.IsDBNull("maxQty") ? 0 : reader.GetUInt32("maxQty")
-                    };
-                    output.Add(outputItem);
+                    while (reader.Read())
+                        output.Add(FetchDiscount(reader));
                 }
-            }
-            finally
-            {
-                reader.Close();
+                finally
+                {
+                    reader.Close();
+                }
             }
 
             db.CloseConnnection();
             return output;
+        }
+
+        public Discount Get(uint DiscountId)
+        {
+            Discount outputItem = null;
+            db.OpenConnection();
+
+            MySqlCommand cmd = new MySqlCommand(@"
+              SELECT DiscountID, DiscountName, minQty, maxQty, Discount 
+              FROM v_Discount 
+              WHERE DiscountID = @ID
+            ", db.Connection());
+            cmd.Parameters.Add(new MySqlParameter("ID", DiscountId));
+            MySqlDataReader reader = cmd.ExecuteReader();
+
+            try
+            {
+                if (reader.Read())
+                    outputItem = FetchDiscount(reader);
+            }
+            finally
+            {
+                reader.Close();
+                db.CloseConnnection();
+            }
+            return outputItem;
+        }
+        private Discount FetchDiscount(MySqlDataReader reader)
+        {
+           return new Discount
+            {
+                DiscountID = reader.IsDBNull("DiscountID") ? 0 : reader.GetUInt32("DiscountID"),
+                DiscountName = reader.IsDBNull("DiscountName") ? "" : reader.GetString("DiscountName"),
+                Min = reader.IsDBNull("minQty") ? 0 : reader.GetUInt32("minQty"),
+                Max = reader.IsDBNull("maxQty") ? 0 : reader.GetUInt32("maxQty"),
+                Amount = reader.IsDBNull("Discount") ? 0 : reader.GetDouble("Discount")
+            };
         }
 
         public uint Insert(Discount Discount)
@@ -143,15 +170,13 @@ namespace pos_core_api.ORM
         {
             db.OpenConnection();
 
-            string sqlStatement = @"
-                DELETE FROM discount_type
-                WHERE discountId = @discountId
-                AND   typeId = @typeId
-            ";
-
             try
             {
-                MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
+                MySqlCommand cmd = new MySqlCommand(@"
+                    DELETE FROM discount_type
+                    WHERE discountId = @discountId
+                    AND   typeId = @typeId
+                ", db.Connection());
                 cmd.Parameters.Add(new MySqlParameter("discountId", discountId));
                 cmd.Parameters.Add(new MySqlParameter("typeId", typeId));
                 cmd.ExecuteNonQuery();
@@ -169,14 +194,12 @@ namespace pos_core_api.ORM
                 return false;
             else
             {
-                string sqlStatement = @"
-                    DELETE FROM v_Discount
-                    WHERE DiscountID = @idDiscount
-                ";
-
                 try
                 {
-                    MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
+                    MySqlCommand cmd = new MySqlCommand(@"
+                        DELETE FROM v_Discount
+                        WHERE DiscountID = @idDiscount
+                    ", db.Connection());
                     cmd.Parameters.Add(new MySqlParameter("idDiscount", DiscountId));
                     cmd.ExecuteNonQuery();
                 }
@@ -189,39 +212,5 @@ namespace pos_core_api.ORM
             return true;
         }
 
-        // Get: api/Discount
-        public Discount Get(uint DiscountId)
-        {
-            Discount outputItem = null;
-            db.OpenConnection();
-
-            MySqlCommand cmd = new MySqlCommand(@"
-              SELECT DiscountName, minQty, maxQty, Discount 
-              FROM v_Discount 
-              WHERE DiscountID = @ID
-            ", db.Connection());
-            cmd.Parameters.Add(new MySqlParameter("ID", DiscountId));
-            MySqlDataReader reader = cmd.ExecuteReader();
-
-            try
-            {
-                if (reader.Read())
-                {
-                    outputItem = new Discount
-                    {
-                        DiscountID = DiscountId,
-                        DiscountName = reader.IsDBNull("DiscountName") ? "" : reader.GetString("DiscountName"),
-                        Min = reader.IsDBNull("minQty") ? 0 : reader.GetUInt32("minQty"),
-                        Max = reader.IsDBNull("maxQty") ? 0 : reader.GetUInt32("maxQty")
-                    };
-                }
-            }
-            finally
-            {
-                reader.Close();
-                db.CloseConnnection();
-            }
-            return outputItem;
-        }
     }
 }
