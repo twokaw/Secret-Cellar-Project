@@ -30,6 +30,7 @@ namespace SecretCellar
         private void InitializeComponent()
         {
 			this.pnl_change_info = new System.Windows.Forms.Panel();
+			this.button_UpdateCredit = new System.Windows.Forms.Button();
 			this.txt_zip = new System.Windows.Forms.TextBox();
 			this.lbl_zip = new System.Windows.Forms.Label();
 			this.txt_state = new System.Windows.Forms.TextBox();
@@ -76,7 +77,6 @@ namespace SecretCellar
 			this.btn_add = new System.Windows.Forms.Button();
 			this.btn_cancel = new System.Windows.Forms.Button();
 			this.btn_clear = new System.Windows.Forms.Button();
-			this.button_UpdateCredit = new System.Windows.Forms.Button();
 			this.pnl_change_info.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.customer_data_grid)).BeginInit();
 			this.SuspendLayout();
@@ -115,6 +115,19 @@ namespace SecretCellar
 			this.pnl_change_info.Size = new System.Drawing.Size(448, 480);
 			this.pnl_change_info.TabIndex = 0;
 			this.pnl_change_info.Paint += new System.Windows.Forms.PaintEventHandler(this.pnl_change_info_Paint);
+			// 
+			// button_UpdateCredit
+			// 
+			this.button_UpdateCredit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.button_UpdateCredit.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.button_UpdateCredit.Location = new System.Drawing.Point(-4, 422);
+			this.button_UpdateCredit.Margin = new System.Windows.Forms.Padding(4);
+			this.button_UpdateCredit.Name = "button_UpdateCredit";
+			this.button_UpdateCredit.Size = new System.Drawing.Size(124, 37);
+			this.button_UpdateCredit.TabIndex = 48;
+			this.button_UpdateCredit.Text = "Update Credit";
+			this.button_UpdateCredit.UseVisualStyleBackColor = true;
+			this.button_UpdateCredit.Click += new System.EventHandler(this.button_UpdateCredit_Click);
 			// 
 			// txt_zip
 			// 
@@ -571,19 +584,6 @@ namespace SecretCellar
 			this.btn_clear.UseVisualStyleBackColor = true;
 			this.btn_clear.Click += new System.EventHandler(this.btn_clear_Click);
 			// 
-			// button_UpdateCredit
-			// 
-			this.button_UpdateCredit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.button_UpdateCredit.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.button_UpdateCredit.Location = new System.Drawing.Point(-4, 422);
-			this.button_UpdateCredit.Margin = new System.Windows.Forms.Padding(4);
-			this.button_UpdateCredit.Name = "button_UpdateCredit";
-			this.button_UpdateCredit.Size = new System.Drawing.Size(124, 37);
-			this.button_UpdateCredit.TabIndex = 48;
-			this.button_UpdateCredit.Text = "Update Credit";
-			this.button_UpdateCredit.UseVisualStyleBackColor = true;
-			this.button_UpdateCredit.Click += new System.EventHandler(this.button_UpdateCredit_Click);
-			// 
 			// frmCustomer
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -600,7 +600,7 @@ namespace SecretCellar
 			this.Controls.Add(this.pnl_change_info);
 			this.Name = "frmCustomer";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-			this.Text = "frmCustomer";
+			this.Text = "Customers";
 			this.Load += new System.EventHandler(this.frmCustomer_Load);
 			this.pnl_change_info.ResumeLayout(false);
 			this.pnl_change_info.PerformLayout();

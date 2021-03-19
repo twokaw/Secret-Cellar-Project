@@ -44,7 +44,7 @@ namespace SecretCellar {
 			this.button_AddCredit.Name = "button_AddCredit";
 			this.button_AddCredit.Size = new System.Drawing.Size(134, 37);
 			this.button_AddCredit.TabIndex = 49;
-			this.button_AddCredit.Text = "Add Credit";
+			this.button_AddCredit.Text = "Add Value";
 			this.button_AddCredit.UseVisualStyleBackColor = true;
 			this.button_AddCredit.Click += new System.EventHandler(this.button_AddCredit_Click);
 			// 
@@ -57,7 +57,7 @@ namespace SecretCellar {
 			this.button_SubtractCredit.Name = "button_SubtractCredit";
 			this.button_SubtractCredit.Size = new System.Drawing.Size(134, 37);
 			this.button_SubtractCredit.TabIndex = 50;
-			this.button_SubtractCredit.Text = "Subtract Credit";
+			this.button_SubtractCredit.Text = "Subtract Value";
 			this.button_SubtractCredit.UseVisualStyleBackColor = true;
 			this.button_SubtractCredit.Click += new System.EventHandler(this.button_SubtractCredit_Click);
 			// 
@@ -83,7 +83,7 @@ namespace SecretCellar {
 			this.button_ResetCredit.Name = "button_ResetCredit";
 			this.button_ResetCredit.Size = new System.Drawing.Size(134, 37);
 			this.button_ResetCredit.TabIndex = 52;
-			this.button_ResetCredit.Text = "Reset Credit";
+			this.button_ResetCredit.Text = "Reset To 0";
 			this.button_ResetCredit.UseVisualStyleBackColor = true;
 			this.button_ResetCredit.Click += new System.EventHandler(this.button_ResetCredit_Click);
 			// 
@@ -93,7 +93,7 @@ namespace SecretCellar {
 			this.label_CustomersCredit.Location = new System.Drawing.Point(4, 21);
 			this.label_CustomersCredit.Name = "label_CustomersCredit";
 			this.label_CustomersCredit.RightToLeft = System.Windows.Forms.RightToLeft.No;
-			this.label_CustomersCredit.Size = new System.Drawing.Size(142, 23);
+			this.label_CustomersCredit.Size = new System.Drawing.Size(143, 23);
 			this.label_CustomersCredit.TabIndex = 53;
 			this.label_CustomersCredit.Text = "Customer\'s Credit:";
 			this.label_CustomersCredit.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -112,11 +112,11 @@ namespace SecretCellar {
 			this.label_NewCreditAmount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.label_NewCreditAmount.AutoSize = true;
 			this.label_NewCreditAmount.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label_NewCreditAmount.Location = new System.Drawing.Point(12, 75);
+			this.label_NewCreditAmount.Location = new System.Drawing.Point(46, 75);
 			this.label_NewCreditAmount.Name = "label_NewCreditAmount";
-			this.label_NewCreditAmount.Size = new System.Drawing.Size(134, 20);
+			this.label_NewCreditAmount.Size = new System.Drawing.Size(100, 20);
 			this.label_NewCreditAmount.TabIndex = 55;
-			this.label_NewCreditAmount.Text = "Credit To Update:";
+			this.label_NewCreditAmount.Text = "Credit Value:";
 			// 
 			// button_ForceChange
 			// 
@@ -127,7 +127,7 @@ namespace SecretCellar {
 			this.button_ForceChange.Name = "button_ForceChange";
 			this.button_ForceChange.Size = new System.Drawing.Size(134, 37);
 			this.button_ForceChange.TabIndex = 56;
-			this.button_ForceChange.Text = "Force Change";
+			this.button_ForceChange.Text = "Force Value";
 			this.button_ForceChange.UseVisualStyleBackColor = true;
 			this.button_ForceChange.Click += new System.EventHandler(this.button_ForceChange_Click);
 			// 
@@ -135,7 +135,7 @@ namespace SecretCellar {
 			// 
 			this.label_CustomersCreditValue.AutoSize = true;
 			this.label_CustomersCreditValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label_CustomersCreditValue.Location = new System.Drawing.Point(157, 22);
+			this.label_CustomersCreditValue.Location = new System.Drawing.Point(153, 21);
 			this.label_CustomersCreditValue.Name = "label_CustomersCreditValue";
 			this.label_CustomersCreditValue.Size = new System.Drawing.Size(96, 20);
 			this.label_CustomersCreditValue.TabIndex = 57;
@@ -161,7 +161,7 @@ namespace SecretCellar {
 			this.MinimizeBox = false;
 			this.Name = "frmCustomerCredit";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-			this.Text = "frmCustomerCredit";
+			this.Text = "Update Credit";
 			this.ResumeLayout(false);
 			this.PerformLayout();
 

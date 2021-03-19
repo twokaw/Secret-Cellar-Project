@@ -146,7 +146,8 @@ namespace SecretCellar
                   addr2 = x.Address2,
                   city = x.City,
                   state = x.State,
-                  zip = x.ZipCode}).
+                  zip = x.ZipCode,
+                  Credit = x.Credit}).
                 OrderBy(x => x.last_name).
                 ToList();
         }
@@ -286,6 +287,7 @@ Address:
 
             frmCustomerCredit frmCustomerCredit = new frmCustomerCredit(customer);
             frmCustomerCredit.ShowDialog();
+            refresh();
         }
 	}
 }
