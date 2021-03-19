@@ -56,7 +56,28 @@ namespace pos_core_api.ORM
             return output;
         }
 
-        public Printer Get(uint PrinterId)
+        private uint Get(string make, string model)
+        {
+            uint result = 0;
+            db.OpenConnection();
+
+            MySqlCommand cmd = new MySqlCommand(@"
+              SELECT modelId 
+              FROM v_printer 
+              WHERE UPPER(makeName) = UPPER(@make)
+              AND  UPPER(modelName) = UPPER(@Model)
+            ", db.Connection());
+            cmd.Parameters.Add(new MySqlParameter("make", make));
+            cmd.Parameters.Add(new MySqlParameter("Model", model));
+
+            using (MySqlDataReader reader = cmd.ExecuteReader())
+                if (reader.Read())
+                    result = uint.Parse(reader["ModelID"].ToString());
+
+            return result;
+        }
+
+            public Printer Get(uint PrinterId)
         {
             Printer outputItem = null;
             db.OpenConnection();
@@ -251,6 +272,14 @@ namespace pos_core_api.ORM
 
         public uint Update( Printer printer)
         {
+            // return 0 if the printer is null
+            if (printer == null)
+                return 0;
+
+            // if the printer model id is missing try to find it
+            if (printer.ModelId == 0)
+                printer.ModelId = Get(printer.Make, printer.Model);
+
             if (printer.ModelId == 0 || Get(printer.ModelId) == null)
                 Insert(printer);
             else

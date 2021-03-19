@@ -56,17 +56,17 @@ namespace SecretCellar.Settings_Panels
 
 
             TxtSalesTotals.Text = $@"Total Sales: {totalSales:C}
-            Net Sales: {netSales:C}
-            Sales Tax: {tax:C}
-            Local Sales Tax: {localtax:C}
-            Cost: {costSales:C}
+            Net Sales:  {netSales:C}
+            Sales Tax:  {tax:C}
+            Local Sales Tax:    {localtax:C}
+            Cost:   {costSales:C}
             Bottle Deposit: {bottleDeposit:C}";
 
             TxtSalesInvType.Text = "";
             foreach (KeyValuePair<string, double> kv in typeSales)
                 TxtSalesInvType.Text += $"{kv.Key}: {kv.Value }\r\n";
             /*
-             transaction.Subtotal.ToString("C");
+            transaction.Subtotal.ToString("C");
             txt_transBTLDPT.Text = transactionBottleDeposit.ToString("C");
             txt_itemTotal.Text = transaction.Subtotal.ToString("C");
             txt_transTax.Text = (transaction.Tax + transaction.LocalTax).ToString("C");
@@ -77,6 +77,40 @@ namespace SecretCellar.Settings_Panels
             */
         }
 
+        public List<Inventory> Inv = null;
+        private string GetInv()
+        {
+            /*
+            Dictionary<string, double> typeSales = new Dictionary<string, double>();
+            double qty = 0.0;
+            double cost = 0.0;
+            double bottleDeposit = 0.0;
+            double Sales = 0.0;
 
+            string result = "";
+            if (Inv == null)
+            {
+                Inv = DataAccess.instance.GetInventory();
+               
+            }
+
+            foreach (Inventory i in Inv)
+            {
+                qty += i.AllQty;
+                bottleDeposit += t.Bottle_deposit;
+                netSales += t.ItemPrice(i) - i.SupplierPrice;
+                tax += t.ItemTax(i);
+                localtax += t.ItemLocalTax(i);
+                cost += i.SupplierPrice;
+
+                if (!typeSales.ContainsKey(i.ItemType))
+                    typeSales.Add(i.ItemType, t.ItemPriceTotal(i));
+                else
+                    typeSales[i.ItemType] += t.ItemPriceTotal(i);
+            }
+            */
+            return "";
+            
+        }
     }
 }

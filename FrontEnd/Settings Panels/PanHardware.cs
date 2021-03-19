@@ -14,6 +14,7 @@ namespace SecretCellar.Settings_Panels
     public partial class PanHardware : UserControl
     {
         private List<Printer> printerNames;
+        private bool modelrefresh = false;
         public PanHardware()
         {
             Printer currentPrinter = DataAccess.instance.GetPrinter((uint)Properties.Settings.Default.PrinterModelId);
@@ -33,7 +34,7 @@ namespace SecretCellar.Settings_Panels
             //    lst_print_model.SetSelected((index >= 0) ? index : 0, true);
             //}
             //lst_print_model.SelectedItem = currentPrinter;
-           // populate();
+            populate();
             
             
         }
@@ -70,8 +71,11 @@ namespace SecretCellar.Settings_Panels
 
         private void populate()
         {
-            grid_print_codes.AutoGenerateColumns = false;
-            grid_print_codes.DataSource = ((Printer)lst_print_model?.SelectedItem)?.Codes;
+            if (!modelrefresh)
+            {
+                grid_print_codes.AutoGenerateColumns = false;
+                grid_print_codes.DataSource = ((Printer)lst_print_model?.SelectedItem)?.Codes;
+            }
         }
 
         private void cbx_manufact_SelectedIndexChanged(object sender, EventArgs e)
@@ -90,9 +94,11 @@ namespace SecretCellar.Settings_Panels
 
         private void Refresh(string make, string model)
         {
+            
             printerNames = DataAccess.instance.GetPrinter();
             cbx_manufact.DataSource = DataAccess.instance.GetPrinterMake();
             cbx_manufact.SelectedItem = make ?? cbx_manufact.Items[0];
+            modelrefresh = true;
             lst_print_model.DataSource = printerNames.Where(x => x.Make == cbx_manufact.SelectedItem.ToString()).ToList();
             
             if (lst_print_model.Items.Count > 0)
@@ -100,7 +106,19 @@ namespace SecretCellar.Settings_Panels
                 int index = lst_print_model.FindString(model);
                 lst_print_model.SetSelected((index >= 0) ? index : 0, true);
             }
+            modelrefresh = false;
             populate();
+            
+        }
+
+        private void btn_add_code_Click(object sender, EventArgs e)
+        {
+             frmAddPrinter printercodes =new frmAddPrinter(((Printer)lst_print_model?.SelectedItem));
+
+            if (printercodes.ShowDialog() == DialogResult.OK)
+                Refresh(printercodes?.newPrinter?.Make, printercodes?.newPrinter?.Model);
+
+            // set to read only
         }
     }
 }
