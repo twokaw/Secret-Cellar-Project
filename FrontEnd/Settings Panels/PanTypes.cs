@@ -13,6 +13,7 @@ namespace SecretCellar.Settings_Panels
 {
     public partial class PanTypes : UserControl
     {
+        private List<Discount> discounts = DataAccess.instance.GetDiscount();
         public PanTypes()
         {
             InitializeComponent();
@@ -20,7 +21,8 @@ namespace SecretCellar.Settings_Panels
             cbx_tax.DataSource = DataAccess.instance?.GetTax();
             lstTypes.DisplayMember = "TypeName";
             cbx_tax.DisplayMember = "TaxName";
-            DataAccess.instance?.GetDiscount()?.ForEach(x => chk_lst_discount.Items.Add(x.DiscountName));
+            discounts?.ForEach(x => chk_lst_discount.Items.Add(x.DiscountName));
+            
         }
 
         private void lstTypes_SelectedIndexChanged(object sender, EventArgs e)
@@ -65,6 +67,35 @@ namespace SecretCellar.Settings_Panels
 
             // TODO: Update Discount
             DataAccess.instance.UpdateInventoryType(i);
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void chk_lst_discount_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Discount selected = discounts.FirstOrDefault(x => x.DiscountName == chk_lst_discount.SelectedItem.ToString());
+            txt_dis_name.Text = selected.DiscountName;
+            txt_dis_min.Text = selected.Min.ToString();
+            txt_dis_max.Text = selected.Max.ToString();
+            txt_discount.Text = selected.Amount.ToString();
+        }
+
+        private void btn_new_discount_Click(object sender, EventArgs e)
+        {
+            Discount newDiscount = new Discount
+            {
+                DiscountName = txt_dis_name.Text
+               
+
+            };
+            //newDiscount.(new Discount { DiscountName = txt_dis_name.Text, Min = uint.Parse(txt_dis_min.Text), Max = uint.Parse(txt_dis_min.Text), Amount = Convert.ToDouble(txt_discount.Text)});
+            newDiscount.DiscountID = DataAccess.instance.UpdateDiscount(newDiscount);
+           
+
+           
         }
     }
 }

@@ -105,20 +105,20 @@ namespace pos_core_api.ORM
 
         public uint Update(Discount Discount)
         {
-            db.OpenConnection();
+            
             if (Get(Discount.DiscountID) == null)
                 return Insert(Discount);
             else
             {
                 string sqlStatement = @"
                     UPDATE v_Discount
-                        DiscountName = @DiscountName, 
+                    set DiscountName = @DiscountName, 
                         minQty = @minQty, 
                         maxQty = @maxQty, 
                         Discount = @Discount
-                    WHERE idDiscount = @idDiscount
+                    WHERE DiscountID = @idDiscount
                 ";
-
+                db.OpenConnection();
                 try
                 {
                     MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
