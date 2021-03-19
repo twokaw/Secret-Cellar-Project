@@ -57,19 +57,22 @@ namespace SecretCellar.Settings_Panels
             // 
             // label7
             // 
+            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
             this.label7.Location = new System.Drawing.Point(558, 67);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(251, 34);
             this.label7.TabIndex = 25;
-            this.label7.Text = "Vendor";
+            this.label7.Text = "Inventory";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // TxtSalesVendor
             // 
             this.TxtSalesVendor.AcceptsReturn = true;
-            this.TxtSalesVendor.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
+            this.TxtSalesVendor.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.TxtSalesVendor.Location = new System.Drawing.Point(558, 104);
             this.TxtSalesVendor.Multiline = true;
             this.TxtSalesVendor.Name = "TxtSalesVendor";
