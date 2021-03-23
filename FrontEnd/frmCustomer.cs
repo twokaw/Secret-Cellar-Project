@@ -146,7 +146,8 @@ namespace SecretCellar
                   addr2 = x.Address2,
                   city = x.City,
                   state = x.State,
-                  zip = x.ZipCode}).
+                  zip = x.ZipCode,
+                  Credit = x.Credit}).
                 OrderBy(x => x.last_name).
                 ToList();
         }
@@ -280,5 +281,13 @@ Address:
             txt_state.Text = "";
             txt_zip.Text = "";
         }
-    }
+
+		private void button_UpdateCredit_Click(object sender, EventArgs e) {
+            Customer customer = customers.First(x => x.CustomerID == uint.Parse(customer_data_grid.SelectedRows[0].Cells["customerID"].Value.ToString()));
+
+            frmCustomerCredit frmCustomerCredit = new frmCustomerCredit(customer);
+            frmCustomerCredit.ShowDialog();
+            refresh();
+        }
+	}
 }
