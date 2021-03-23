@@ -12,13 +12,16 @@ using Shared;
 namespace SecretCellar {
 	public partial class frmCustomerCredit : Form {
 		Customer customer = null;
+		double newCredit = 0;
 
 		public frmCustomerCredit(Customer c) {
 			InitializeComponent();
 
 			customer = c;
+			newCredit = customer.Credit;
+
 			this.label_CustomersCredit.Text = customer.FirstName + "'s Credit:";
-			this.label_CustomersCreditValue.Text = "$" + customer.Credit;
+			this.label_CustomersCreditValue.Text = "$" + newCredit;
 		}
 
 		private void button_SubtractCredit_Click(object sender, EventArgs e) {
@@ -41,29 +44,33 @@ namespace SecretCellar {
 			this.Close();
 		}
 
+		private void button_Confirm_Click(object sender, EventArgs e) {
+			customer.Credit = newCredit;
+			DataAccess.instance.UpdateCustomer(customer);
+			this.Close();
+		}
+
 		private void updateCredit(string method) {
 			double value;
 
 			if (method.Equals("reset")) {
-				customer.Credit = 0;
-				DataAccess.instance.UpdateCustomer(customer);
-				this.label_CustomersCreditValue.Text = "$" + customer.Credit;
+				newCredit = 0;
+				this.label_CustomersCreditValue.Text = "$" + newCredit;
 			}
 			else if (double.TryParse(textBox_NewCreditAmount.Text, out value)) {
 				switch(method) {
 					case "add":
-						customer.Credit += value;
+						newCredit += value;
 						break;
 					case "subtract":
-						customer.Credit -= value;
+						newCredit -= value;
 						break;
 					case "force":
-						customer.Credit = value;
+						newCredit = value;
 						break;
 				}
 
-				DataAccess.instance.UpdateCustomer(customer);
-				this.label_CustomersCreditValue.Text = "$" + customer.Credit;
+				this.label_CustomersCreditValue.Text = "$" + newCredit;
 			}
 			else {
 				if (textBox_NewCreditAmount.Text.Replace(" ", "").Equals("")) {
@@ -74,7 +81,6 @@ namespace SecretCellar {
 				}
 			}
 		}
-
-
+		
 	}
 }

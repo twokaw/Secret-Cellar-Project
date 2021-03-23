@@ -33,6 +33,7 @@ namespace SecretCellar {
 			this.label_NewCreditAmount = new System.Windows.Forms.Label();
 			this.button_ForceChange = new System.Windows.Forms.Button();
 			this.label_CustomersCreditValue = new System.Windows.Forms.Label();
+			this.button_Confirm = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// button_AddCredit
@@ -142,11 +143,26 @@ namespace SecretCellar {
 			this.label_CustomersCreditValue.Text = "Credit Value";
 			this.label_CustomersCreditValue.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
+			// button_Confirm
+			// 
+			this.button_Confirm.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.button_Confirm.DialogResult = System.Windows.Forms.DialogResult.OK;
+			this.button_Confirm.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.button_Confirm.Location = new System.Drawing.Point(155, 221);
+			this.button_Confirm.Margin = new System.Windows.Forms.Padding(4);
+			this.button_Confirm.Name = "button_Confirm";
+			this.button_Confirm.Size = new System.Drawing.Size(134, 37);
+			this.button_Confirm.TabIndex = 58;
+			this.button_Confirm.Text = "Confirm";
+			this.button_Confirm.UseVisualStyleBackColor = true;
+			this.button_Confirm.Click += new System.EventHandler(this.button_Confirm_Click);
+			// 
 			// frmCustomerCredit
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(308, 271);
+			this.Controls.Add(this.button_Confirm);
 			this.Controls.Add(this.label_CustomersCreditValue);
 			this.Controls.Add(this.button_ForceChange);
 			this.Controls.Add(this.label_NewCreditAmount);
@@ -178,5 +194,6 @@ namespace SecretCellar {
 		private System.Windows.Forms.Label label_NewCreditAmount;
 		private System.Windows.Forms.Button button_ForceChange;
 		private System.Windows.Forms.Label label_CustomersCreditValue;
+		private System.Windows.Forms.Button button_Confirm;
 	}
 }
