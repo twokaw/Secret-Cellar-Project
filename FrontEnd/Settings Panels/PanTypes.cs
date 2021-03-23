@@ -14,6 +14,7 @@ namespace SecretCellar.Settings_Panels
     public partial class PanTypes : UserControl
     {
         private List<Discount> discounts = DataAccess.instance.GetDiscount();
+        public Discount newDiscount = null;
         public PanTypes()
         {
             InitializeComponent();
@@ -21,6 +22,7 @@ namespace SecretCellar.Settings_Panels
             cbx_tax.DataSource = DataAccess.instance?.GetTax();
             lstTypes.DisplayMember = "TypeName";
             cbx_tax.DisplayMember = "TaxName";
+            
             discounts?.ForEach(x => chk_lst_discount.Items.Add(x.DiscountName));
             
         }
@@ -85,17 +87,62 @@ namespace SecretCellar.Settings_Panels
 
         private void btn_new_discount_Click(object sender, EventArgs e)
         {
-            Discount newDiscount = new Discount
+            newDiscount = new Discount
             {
-                DiscountName = txt_dis_name.Text
-               
+                DiscountName = txt_dis_name.Text.Trim(),
+                Min = uint.Parse(txt_dis_min.Text),
+                Max = uint.Parse(txt_dis_min.Text),
+                Amount = Convert.ToDouble(txt_discount.Text)
 
             };
             //newDiscount.(new Discount { DiscountName = txt_dis_name.Text, Min = uint.Parse(txt_dis_min.Text), Max = uint.Parse(txt_dis_min.Text), Amount = Convert.ToDouble(txt_discount.Text)});
             newDiscount.DiscountID = DataAccess.instance.UpdateDiscount(newDiscount);
-           
+            populate();
 
            
+        }
+
+        private void btn_update_discount_Click(object sender, EventArgs e)
+        {
+
+            Discount d = discounts.First(x => x.DiscountName == chk_lst_discount.SelectedItem.ToString());
+            d.DiscountName = txt_dis_name.Text.Trim();
+            d.Min = uint.Parse(txt_dis_min.Text.Trim());
+            d.Max = uint.Parse(txt_dis_max.Text.Trim());
+            d.Amount = Convert.ToDouble(txt_discount.Text);
+
+            /* if (newDiscount != null && newDiscount.DiscountID > 0)
+             {
+                 newDiscount.Min = uint.Parse(txt_dis_min.Text),
+                 newDiscount.Max = uint.Parse(txt_dis_min.Text),
+                 newDiscount.Amount = Convert.ToDouble(txt_discount.Text)
+             };*/
+            DataAccess.instance.UpdateDiscount(d);
+            populate();
+        }
+
+        private void btn_delete_discount_Click(object sender, EventArgs e)
+        {
+            Discount dis = (Discount)chk_lst_discount.SelectedItem;
+            DataAccess.instance.UpdateDiscount(dis);
+            populate();
+        }
+
+        private void populate()
+        {
+            chk_lst_discount.Items.Clear();
+            discounts.Clear();
+            discounts = DataAccess.instance.GetDiscount();
+            discounts?.ForEach(x => chk_lst_discount.Items.Add(x.DiscountName));
+        }
+
+        private void btn_clear_discount_Click(object sender, EventArgs e)
+        {
+            txt_dis_name.Text = "";
+            txt_dis_min.Text = "";
+            txt_dis_max.Text = "";
+            txt_discount.Text = "";
+            txt_dis_name.Focus();
         }
     }
 }
