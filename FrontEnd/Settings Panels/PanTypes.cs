@@ -125,6 +125,11 @@ namespace SecretCellar.Settings_Panels
         {
             Discount dis = discounts.First(x => x.DiscountName == chk_lst_discount.SelectedItem.ToString());
             DataAccess.instance.DeleteDiscount(dis);
+            txt_dis_name.Text = "";
+            txt_dis_min.Text = "";
+            txt_dis_max.Text = "";
+            txt_discount.Text = "";
+            txt_dis_name.Focus();
             populate();
         }
 
