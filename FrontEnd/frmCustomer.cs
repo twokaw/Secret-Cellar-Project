@@ -286,8 +286,11 @@ Address:
             Customer customer = customers.First(x => x.CustomerID == uint.Parse(customer_data_grid.SelectedRows[0].Cells["customerID"].Value.ToString()));
 
             frmCustomerCredit frmCustomerCredit = new frmCustomerCredit(customer);
-            frmCustomerCredit.ShowDialog();
-            refresh();
+            DialogResult result = frmCustomerCredit.ShowDialog();
+
+            if (result.Equals(DialogResult.OK)) {
+                refresh();
+			}
         }
 	}
 }
