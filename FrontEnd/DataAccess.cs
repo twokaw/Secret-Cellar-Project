@@ -274,6 +274,11 @@ namespace SecretCellar
             else
                 return 0;
         }
+        public void DeleteDiscount(Discount discount)
+        {
+            try { web.DataDelete($"api/Discount/{discount.DiscountID}"); }
+            catch (Exception ex) { LogError(ex, "DeleteDiscount"); }
+        }
         #endregion
 
         #region Printer
