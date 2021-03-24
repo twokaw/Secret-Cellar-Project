@@ -97,6 +97,7 @@ namespace SecretCellar
                     catch (Exception ex)
                     {
                         MessageBox.Show($"Error writing to the database\n Error: \n {ex.Message}");
+                        DataAccess.instance.LogError(ex, "btnTender_Click", "Error writing to the database");
                     }
 
                     if (transaction.Payments.FirstOrDefault(x => x.Method == "CASH" || x.Method == "CHECK") != null)

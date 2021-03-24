@@ -24,6 +24,7 @@ namespace SecretCellar
             if (web == null)
                 web = new WebConnector(connectionString);
             instance = new DataAccess();
+            Shared.ErrorLogging.Path = Application.StartupPath;
         }
         public DataAccess() { }
 
@@ -372,12 +373,15 @@ namespace SecretCellar
         public void LogError(string message, string source, string notes = "")
         {
             Console.WriteLine($"{source} - {message}");
+            Shared.ErrorLogging.WriteToErrorLog(message, source, notes);
         }
 
         public void LogError(Exception error, string source, string notes = "")
         {
             LogError(error.Message, source, notes);
         }
+
+       
         #endregion
 
         #region Logo
