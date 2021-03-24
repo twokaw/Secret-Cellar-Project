@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Shared
 {
-    class ErrorLogging
+    public class ErrorLogging
     {
         public static string Path{get;set;}
         public static void WriteToErrorLog(string msg, string stkTrace, string title)
