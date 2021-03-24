@@ -47,6 +47,18 @@ namespace SecretCellar.Settings_Panels
             this.label3 = new System.Windows.Forms.Label();
             this.cbx_tax = new System.Windows.Forms.ComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btn_delete_discount = new System.Windows.Forms.Button();
+            this.btn_update_discount = new System.Windows.Forms.Button();
+            this.btn_new_discount = new System.Windows.Forms.Button();
+            this.lbl_disc = new System.Windows.Forms.Label();
+            this.txt_discount = new System.Windows.Forms.TextBox();
+            this.lbl_dis_max = new System.Windows.Forms.Label();
+            this.txt_dis_max = new System.Windows.Forms.TextBox();
+            this.lbl_dis_min = new System.Windows.Forms.Label();
+            this.txt_dis_min = new System.Windows.Forms.TextBox();
+            this.lbl_dis_name = new System.Windows.Forms.Label();
+            this.txt_dis_name = new System.Windows.Forms.TextBox();
+            this.btn_clear_discount = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -79,11 +91,12 @@ namespace SecretCellar.Settings_Panels
             this.chk_lst_discount.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.chk_lst_discount.FormattingEnabled = true;
-            this.chk_lst_discount.Location = new System.Drawing.Point(626, 50);
+            this.chk_lst_discount.Location = new System.Drawing.Point(626, 51);
             this.chk_lst_discount.Margin = new System.Windows.Forms.Padding(6);
             this.chk_lst_discount.Name = "chk_lst_discount";
             this.chk_lst_discount.Size = new System.Drawing.Size(246, 123);
             this.chk_lst_discount.TabIndex = 38;
+            this.chk_lst_discount.SelectedIndexChanged += new System.EventHandler(this.chk_lst_discount_SelectedIndexChanged);
             // 
             // lbl_discount
             // 
@@ -99,7 +112,7 @@ namespace SecretCellar.Settings_Panels
             // btn_type_clear
             // 
             this.btn_type_clear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_type_clear.Location = new System.Drawing.Point(728, 206);
+            this.btn_type_clear.Location = new System.Drawing.Point(421, 45);
             this.btn_type_clear.Margin = new System.Windows.Forms.Padding(6);
             this.btn_type_clear.Name = "btn_type_clear";
             this.btn_type_clear.Size = new System.Drawing.Size(146, 45);
@@ -111,7 +124,7 @@ namespace SecretCellar.Settings_Panels
             // lbl_typename
             // 
             this.lbl_typename.AutoSize = true;
-            this.lbl_typename.Location = new System.Drawing.Point(236, 13);
+            this.lbl_typename.Location = new System.Drawing.Point(236, 18);
             this.lbl_typename.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lbl_typename.Name = "lbl_typename";
             this.lbl_typename.Size = new System.Drawing.Size(89, 16);
@@ -120,7 +133,7 @@ namespace SecretCellar.Settings_Panels
             // 
             // txt_typename
             // 
-            this.txt_typename.Location = new System.Drawing.Point(242, 45);
+            this.txt_typename.Location = new System.Drawing.Point(240, 45);
             this.txt_typename.Margin = new System.Windows.Forms.Padding(6);
             this.txt_typename.Name = "txt_typename";
             this.txt_typename.Size = new System.Drawing.Size(155, 22);
@@ -129,7 +142,7 @@ namespace SecretCellar.Settings_Panels
             // btn_update_type
             // 
             this.btn_update_type.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_update_type.Location = new System.Drawing.Point(728, 320);
+            this.btn_update_type.Location = new System.Drawing.Point(421, 159);
             this.btn_update_type.Margin = new System.Windows.Forms.Padding(6);
             this.btn_update_type.Name = "btn_update_type";
             this.btn_update_type.Size = new System.Drawing.Size(146, 45);
@@ -141,7 +154,7 @@ namespace SecretCellar.Settings_Panels
             // btn_new_type
             // 
             this.btn_new_type.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_new_type.Location = new System.Drawing.Point(728, 263);
+            this.btn_new_type.Location = new System.Drawing.Point(421, 102);
             this.btn_new_type.Margin = new System.Windows.Forms.Padding(6);
             this.btn_new_type.Name = "btn_new_type";
             this.btn_new_type.Size = new System.Drawing.Size(146, 45);
@@ -153,7 +166,7 @@ namespace SecretCellar.Settings_Panels
             // lbl_localTax
             // 
             this.lbl_localTax.AutoSize = true;
-            this.lbl_localTax.Location = new System.Drawing.Point(235, 289);
+            this.lbl_localTax.Location = new System.Drawing.Point(235, 275);
             this.lbl_localTax.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lbl_localTax.Name = "lbl_localTax";
             this.lbl_localTax.Size = new System.Drawing.Size(76, 16);
@@ -162,7 +175,7 @@ namespace SecretCellar.Settings_Panels
             // 
             // txt_localTax
             // 
-            this.txt_localTax.Location = new System.Drawing.Point(241, 320);
+            this.txt_localTax.Location = new System.Drawing.Point(241, 301);
             this.txt_localTax.Margin = new System.Windows.Forms.Padding(6);
             this.txt_localTax.Name = "txt_localTax";
             this.txt_localTax.ReadOnly = true;
@@ -172,7 +185,7 @@ namespace SecretCellar.Settings_Panels
             // lbl_salesTax
             // 
             this.lbl_salesTax.AutoSize = true;
-            this.lbl_salesTax.Location = new System.Drawing.Point(236, 222);
+            this.lbl_salesTax.Location = new System.Drawing.Point(236, 210);
             this.lbl_salesTax.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lbl_salesTax.Name = "lbl_salesTax";
             this.lbl_salesTax.Size = new System.Drawing.Size(78, 16);
@@ -181,7 +194,7 @@ namespace SecretCellar.Settings_Panels
             // 
             // txt_salesTax
             // 
-            this.txt_salesTax.Location = new System.Drawing.Point(242, 253);
+            this.txt_salesTax.Location = new System.Drawing.Point(242, 236);
             this.txt_salesTax.Margin = new System.Windows.Forms.Padding(6);
             this.txt_salesTax.Name = "txt_salesTax";
             this.txt_salesTax.ReadOnly = true;
@@ -191,7 +204,7 @@ namespace SecretCellar.Settings_Panels
             // lbl_bottleDep
             // 
             this.lbl_bottleDep.AutoSize = true;
-            this.lbl_bottleDep.Location = new System.Drawing.Point(235, 155);
+            this.lbl_bottleDep.Location = new System.Drawing.Point(235, 145);
             this.lbl_bottleDep.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lbl_bottleDep.Name = "lbl_bottleDep";
             this.lbl_bottleDep.Size = new System.Drawing.Size(106, 16);
@@ -200,7 +213,7 @@ namespace SecretCellar.Settings_Panels
             // 
             // txt_bottleDep
             // 
-            this.txt_bottleDep.Location = new System.Drawing.Point(241, 186);
+            this.txt_bottleDep.Location = new System.Drawing.Point(239, 176);
             this.txt_bottleDep.Margin = new System.Windows.Forms.Padding(6);
             this.txt_bottleDep.Name = "txt_bottleDep";
             this.txt_bottleDep.ReadOnly = true;
@@ -221,7 +234,7 @@ namespace SecretCellar.Settings_Panels
             // cbx_tax
             // 
             this.cbx_tax.FormattingEnabled = true;
-            this.cbx_tax.Location = new System.Drawing.Point(242, 114);
+            this.cbx_tax.Location = new System.Drawing.Point(240, 109);
             this.cbx_tax.Margin = new System.Windows.Forms.Padding(9, 8, 9, 8);
             this.cbx_tax.Name = "cbx_tax";
             this.cbx_tax.Size = new System.Drawing.Size(155, 24);
@@ -229,6 +242,18 @@ namespace SecretCellar.Settings_Panels
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.btn_clear_discount);
+            this.panel1.Controls.Add(this.btn_delete_discount);
+            this.panel1.Controls.Add(this.btn_update_discount);
+            this.panel1.Controls.Add(this.btn_new_discount);
+            this.panel1.Controls.Add(this.lbl_disc);
+            this.panel1.Controls.Add(this.txt_discount);
+            this.panel1.Controls.Add(this.lbl_dis_max);
+            this.panel1.Controls.Add(this.txt_dis_max);
+            this.panel1.Controls.Add(this.lbl_dis_min);
+            this.panel1.Controls.Add(this.txt_dis_min);
+            this.panel1.Controls.Add(this.lbl_dis_name);
+            this.panel1.Controls.Add(this.txt_dis_name);
             this.panel1.Controls.Add(this.lstTypes);
             this.panel1.Controls.Add(this.chk_lst_discount);
             this.panel1.Controls.Add(this.label1);
@@ -252,6 +277,133 @@ namespace SecretCellar.Settings_Panels
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(890, 387);
             this.panel1.TabIndex = 39;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            // 
+            // btn_delete_discount
+            // 
+            this.btn_delete_discount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_delete_discount.ForeColor = System.Drawing.Color.Red;
+            this.btn_delete_discount.Location = new System.Drawing.Point(665, 352);
+            this.btn_delete_discount.Name = "btn_delete_discount";
+            this.btn_delete_discount.Size = new System.Drawing.Size(133, 23);
+            this.btn_delete_discount.TabIndex = 49;
+            this.btn_delete_discount.Text = "Delete Discount";
+            this.btn_delete_discount.UseVisualStyleBackColor = true;
+            this.btn_delete_discount.Click += new System.EventHandler(this.btn_delete_discount_Click);
+            // 
+            // btn_update_discount
+            // 
+            this.btn_update_discount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_update_discount.Location = new System.Drawing.Point(739, 312);
+            this.btn_update_discount.Name = "btn_update_discount";
+            this.btn_update_discount.Size = new System.Drawing.Size(133, 23);
+            this.btn_update_discount.TabIndex = 48;
+            this.btn_update_discount.Text = "Update Discount";
+            this.btn_update_discount.UseVisualStyleBackColor = true;
+            this.btn_update_discount.Click += new System.EventHandler(this.btn_update_discount_Click);
+            // 
+            // btn_new_discount
+            // 
+            this.btn_new_discount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_new_discount.Location = new System.Drawing.Point(588, 312);
+            this.btn_new_discount.Name = "btn_new_discount";
+            this.btn_new_discount.Size = new System.Drawing.Size(133, 23);
+            this.btn_new_discount.TabIndex = 47;
+            this.btn_new_discount.Text = "New Discount";
+            this.btn_new_discount.UseVisualStyleBackColor = true;
+            this.btn_new_discount.Click += new System.EventHandler(this.btn_new_discount_Click);
+            // 
+            // lbl_disc
+            // 
+            this.lbl_disc.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lbl_disc.AutoSize = true;
+            this.lbl_disc.Location = new System.Drawing.Point(753, 184);
+            this.lbl_disc.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.lbl_disc.Name = "lbl_disc";
+            this.lbl_disc.Size = new System.Drawing.Size(68, 16);
+            this.lbl_disc.TabIndex = 46;
+            this.lbl_disc.Text = "Discount";
+            // 
+            // txt_discount
+            // 
+            this.txt_discount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.txt_discount.Location = new System.Drawing.Point(755, 210);
+            this.txt_discount.Margin = new System.Windows.Forms.Padding(6);
+            this.txt_discount.Name = "txt_discount";
+            this.txt_discount.Size = new System.Drawing.Size(120, 22);
+            this.txt_discount.TabIndex = 45;
+            // 
+            // lbl_dis_max
+            // 
+            this.lbl_dis_max.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lbl_dis_max.AutoSize = true;
+            this.lbl_dis_max.Location = new System.Drawing.Point(752, 238);
+            this.lbl_dis_max.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.lbl_dis_max.Name = "lbl_dis_max";
+            this.lbl_dis_max.Size = new System.Drawing.Size(127, 16);
+            this.lbl_dis_max.TabIndex = 44;
+            this.lbl_dis_max.Text = "Discount Max Qty";
+            // 
+            // txt_dis_max
+            // 
+            this.txt_dis_max.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.txt_dis_max.Location = new System.Drawing.Point(755, 263);
+            this.txt_dis_max.Margin = new System.Windows.Forms.Padding(6);
+            this.txt_dis_max.Name = "txt_dis_max";
+            this.txt_dis_max.Size = new System.Drawing.Size(120, 22);
+            this.txt_dis_max.TabIndex = 43;
+            // 
+            // lbl_dis_min
+            // 
+            this.lbl_dis_min.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lbl_dis_min.AutoSize = true;
+            this.lbl_dis_min.Location = new System.Drawing.Point(585, 238);
+            this.lbl_dis_min.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.lbl_dis_min.Name = "lbl_dis_min";
+            this.lbl_dis_min.Size = new System.Drawing.Size(123, 16);
+            this.lbl_dis_min.TabIndex = 42;
+            this.lbl_dis_min.Text = "Discount Min Qty";
+            // 
+            // txt_dis_min
+            // 
+            this.txt_dis_min.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.txt_dis_min.Location = new System.Drawing.Point(588, 263);
+            this.txt_dis_min.Margin = new System.Windows.Forms.Padding(6);
+            this.txt_dis_min.Name = "txt_dis_min";
+            this.txt_dis_min.Size = new System.Drawing.Size(120, 22);
+            this.txt_dis_min.TabIndex = 41;
+            // 
+            // lbl_dis_name
+            // 
+            this.lbl_dis_name.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lbl_dis_name.AutoSize = true;
+            this.lbl_dis_name.Location = new System.Drawing.Point(585, 185);
+            this.lbl_dis_name.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.lbl_dis_name.Name = "lbl_dis_name";
+            this.lbl_dis_name.Size = new System.Drawing.Size(113, 16);
+            this.lbl_dis_name.TabIndex = 40;
+            this.lbl_dis_name.Text = "Discount Name";
+            // 
+            // txt_dis_name
+            // 
+            this.txt_dis_name.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.txt_dis_name.Location = new System.Drawing.Point(588, 210);
+            this.txt_dis_name.Margin = new System.Windows.Forms.Padding(6);
+            this.txt_dis_name.Name = "txt_dis_name";
+            this.txt_dis_name.Size = new System.Drawing.Size(155, 22);
+            this.txt_dis_name.TabIndex = 39;
+            // 
+            // btn_clear_discount
+            // 
+            this.btn_clear_discount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_clear_discount.Location = new System.Drawing.Point(436, 312);
+            this.btn_clear_discount.Margin = new System.Windows.Forms.Padding(6);
+            this.btn_clear_discount.Name = "btn_clear_discount";
+            this.btn_clear_discount.Size = new System.Drawing.Size(143, 26);
+            this.btn_clear_discount.TabIndex = 50;
+            this.btn_clear_discount.Text = "Clear Discount ";
+            this.btn_clear_discount.UseVisualStyleBackColor = true;
+            this.btn_clear_discount.Click += new System.EventHandler(this.btn_clear_discount_Click);
             // 
             // PanTypes
             // 
@@ -288,5 +440,17 @@ namespace SecretCellar.Settings_Panels
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox cbx_tax;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label lbl_dis_max;
+        private System.Windows.Forms.TextBox txt_dis_max;
+        private System.Windows.Forms.Label lbl_dis_min;
+        private System.Windows.Forms.TextBox txt_dis_min;
+        private System.Windows.Forms.Label lbl_dis_name;
+        private System.Windows.Forms.TextBox txt_dis_name;
+        private System.Windows.Forms.Button btn_delete_discount;
+        private System.Windows.Forms.Button btn_update_discount;
+        private System.Windows.Forms.Button btn_new_discount;
+        private System.Windows.Forms.Label lbl_disc;
+        private System.Windows.Forms.TextBox txt_discount;
+        private System.Windows.Forms.Button btn_clear_discount;
     }
 }
