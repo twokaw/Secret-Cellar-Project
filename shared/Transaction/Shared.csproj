@@ -275,9 +275,11 @@
   <ItemGroup>
     <Compile Include="AuthenticateModel.cs" />
     <Compile Include="BaseItem.cs" />
+    <Compile Include="ErrorLogging.cs" />
     <Compile Include="Event.cs" />
     <Compile Include="InventoryQty.cs" />
     <Compile Include="Payment.cs" />
+    <Compile Include="Printer.cs" />
     <Compile Include="Report.cs" />
     <Compile Include="Tax.cs" />
     <Compile Include="Customer.cs" />

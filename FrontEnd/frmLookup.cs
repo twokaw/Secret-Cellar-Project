@@ -101,8 +101,6 @@ namespace SecretCellar
 
         private void LookupView_SelectionChanged(object sender, EventArgs e)
         {
-
-
             if (LookupView.SelectedRows.Count > 0)
             {
                 Inventory i = inventory.First(x => x.Id == uint.Parse(LookupView.SelectedRows[0].Cells["id"].Value.ToString()));
@@ -114,6 +112,22 @@ namespace SecretCellar
                 cbo_Supplier.Text = suppliers.First(x => x.SupplierID == i.SupplierID).Name;
                 txtNetPrice.Text = i.SupplierPrice.ToString();
                 txtProd_Qty.Text = i.Bottles.ToString();
+                
+                //CLEAR ALL THE DISCOUNTS THAT ARE IN THE DISCOUNTS LIST ALREADY
+                checkListBox_Discounts.Items.Clear();
+                
+                //LOOP THROUGH ALL OF THE INVENTORY TYPES TO MATCH THE CURRENTLY SELECTED ONE
+                foreach (InventoryType inventoryType in types) {
+                    if (inventoryType.TypeName.Equals(i.ItemType)) {
+                        List<Discount> discounts = inventoryType.Discount;
+
+                        //ADD EACH DISCOUNT OF THE MATCHED INVENTORY TYPE TO THE CHECK BOX LIST AND SET IT TO TRUE
+                        foreach (Discount discount in discounts) {
+                            checkListBox_Discounts.Items.Add(discount.DiscountName);
+                            checkListBox_Discounts.SetItemChecked(checkListBox_Discounts.Items.Count - 1, true);
+                        }
+					}
+				}
             }
         }
 

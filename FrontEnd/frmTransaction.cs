@@ -28,7 +28,7 @@ namespace SecretCellar
             this.Size = new System.Drawing.Size(1366, 768);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScaleDimensions = new System.Drawing.SizeF(72, 72);
-            txt_current_cust.Text = "Generic";
+            txt_current_cust.Text = "";
 
 
             string path = Properties.Settings.Default.FontPath;
@@ -84,7 +84,7 @@ namespace SecretCellar
         private void btnTender_Click(object sender, EventArgs e)
         {
             if (transaction.Items.Count == 0)
-                openCashDrawer();
+                DataAccess.instance.openCashDrawer();
             else
             {
                 frmPayment payment = new frmPayment(transaction);
@@ -97,10 +97,11 @@ namespace SecretCellar
                     catch (Exception ex)
                     {
                         MessageBox.Show($"Error writing to the database\n Error: \n {ex.Message}");
+                        DataAccess.instance.LogError(ex, "btnTender_Click", "Error writing to the database");
                     }
 
                     if (transaction.Payments.FirstOrDefault(x => x.Method == "CASH" || x.Method == "CHECK") != null)
-                        openCashDrawer();
+                        DataAccess.instance.openCashDrawer();
 
                     if (payment.PrintReceipt) {
                     Receipt.DefaultLayout.Logo = DataAccess.instance.ImportLogo();
@@ -224,7 +225,20 @@ namespace SecretCellar
 
         private void btnVoidTrx_Click(object sender, EventArgs e)
         {
+            //ENSURE THAT THE TRANSACTION DOESN'T HAVE PAYMENTS STILL
+            if (transaction.Payments.Count > 0) {
+                MessageBox.Show("Cannot void transaction. There are still outstanding payments.", "Error");
+                return;
+            }
+
+            //PROCESS THE TRANSACTION IN CASE THE USER DELETED ANY PAYMENTS
+            uint transactionId = DataAccess.instance.ProcessTransaction(transaction);
+
+            //DELETE THE TRANSACTION FROM THE DATABASE
+            DataAccess.instance.DeleteTransaction(transactionId);
+
             transaction = new Transaction();
+            txt_current_cust.Text = "Generic";
             RefreshDataGrid();
         }
 
@@ -246,19 +260,6 @@ namespace SecretCellar
             //IF THE COUNT EQUALS 0 HIDE THE SUSPEND TRANSACTION BUTTON
             if (transaction.Items.Count == 0) {
                 btnSuspendTransaction.Visible = false;
-            }
-        }
-
-        private void openCashDrawer()
-        {
-            try
-            {
-                if (SerialPort.GetPortNames().Contains(Properties.Settings.Default.CashDrawerPort))
-                    new CashDrawer(Properties.Settings.Default.CashDrawerPort).OpenDrawer();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
             }
         }
 

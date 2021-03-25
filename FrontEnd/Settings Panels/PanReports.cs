@@ -1,6 +1,7 @@
 ﻿using Shared;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace SecretCellar.Settings_Panels
@@ -44,39 +45,76 @@ namespace SecretCellar.Settings_Panels
                 }
             }
 
-            /*
-            txt_SalesTotal.Text = totalSales.ToString("C");
-            txt_SalesNet.Text =netSales.ToString("C");
-            txt_SalesTax.Text = tax.ToString("C");
-            txt_SalesLocalTax.Text = localtax .ToString("C");
-            txt_SalesCost.Text = costSales.ToString("C");
-            txt_SalesBottleDeposit.Text = bottleDeposit.ToString("C");
-            txt_SalesTotal.Text = totalSales.ToString("C");
-            */
-
-
-            TxtSalesTotals.Text = $@"Total Sales: {totalSales:C}
-            Net Sales: {netSales:C}
-            Sales Tax: {tax:C}
-            Local Sales Tax: {localtax:C}
-            Cost: {costSales:C}
-            Bottle Deposit: {bottleDeposit:C}";
+            TxtSalesTotals.Text = $@"Total Sales:{"\t"}{totalSales:C}
+Net Sales:   {"\t"}{netSales:C}
+Sales Tax:   {"\t"}{tax:C}
+Local Tax:   {"\t"}{localtax:C}
+Gross Cost:  {"\t"}{costSales:C}
+Bottle Deposit:{"\t"}{bottleDeposit:C}";
 
             TxtSalesInvType.Text = "";
             foreach (KeyValuePair<string, double> kv in typeSales)
-                TxtSalesInvType.Text += $"{kv.Key}: {kv.Value }\r\n";
-            /*
-             transaction.Subtotal.ToString("C");
-            txt_transBTLDPT.Text = transactionBottleDeposit.ToString("C");
-            txt_itemTotal.Text = transaction.Subtotal.ToString("C");
-            txt_transTax.Text = (transaction.Tax + transaction.LocalTax).ToString("C");
-            txt_transDiscount.Text = transaction.DiscountTotal.ToString("C");
-            txt_TransTotal.Text = transaction.Total.ToString("C");
-            txt_Ship.Text = transaction.Shipping.ToString("C");
-
-            */
+                TxtSalesInvType.Text += $"{$"{kv.Key}:",-7}\t{kv.Value:C}\r\n";
+            
+            TxtSalesVendor.Text = GetInv();
         }
 
+        public List<Inventory> Inv = null;
 
+        private class TypeSummary
+        {
+            public string Name = "";
+            public double Qty = 0.0;
+            public double Cost = 0.0;
+            public double Price = 0.0;
+            public override string ToString()
+            {
+                return $"{Name,-13}\t{Qty}\t{Cost:C}\t{Price:C}";
+            }
+            public static string Header
+            {
+                get { return "Name        \tQty\tCost\tPrice"; }
+            }
+        }
+        private string GetInv()
+        {
+            List<TypeSummary> typeSum = new List< TypeSummary> ();
+            TypeSummary totalSum = new TypeSummary { Name = "TOTAL" }; 
+            
+            if (Inv == null)
+            {
+                Inv = DataAccess.instance.GetInventory();
+            }
+            TypeSummary v;
+            foreach (Inventory i in Inv)
+            {
+                v = typeSum.FirstOrDefault(x => x.Name == i.ItemType);
+
+                if (v == null) 
+                    typeSum.Add(new TypeSummary
+                    {
+                        Name = i.ItemType,
+                        Qty = i.Qty,
+                        Cost = i.SupplierPrice * i.Qty,
+                        Price = i.Price * i.Qty
+                    });
+                else
+                {
+                    v.Qty += i.Qty;
+                    v.Cost = i.SupplierPrice * i.Qty;
+                    v.Price = i.Price * i.Qty;
+                }
+                totalSum.Qty += i.Qty;
+                totalSum.Cost += i.SupplierPrice * i.Qty;
+                totalSum.Price = i.Price * i.Qty;
+            }
+
+            string result = TypeSummary.Header;
+            typeSum.ForEach(x => result += $"\r\n{x}");
+            result += $"\r\n{totalSum}";
+
+            return result;
+            
+        }
     }
 }
