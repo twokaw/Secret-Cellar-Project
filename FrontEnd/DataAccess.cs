@@ -21,10 +21,11 @@ namespace SecretCellar
         private static List<PictureBox> pictureBoxes = new List<PictureBox>();
         public DataAccess(string connectionString)
         {
-            if (web == null)
-                web = new WebConnector(connectionString);
             instance = new DataAccess();
             Shared.ErrorLogging.Path = Application.StartupPath;
+            if (web == null)
+                web = new WebConnector(connectionString);
+            
         }
         public DataAccess() { }
 
