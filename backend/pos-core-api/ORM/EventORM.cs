@@ -12,10 +12,12 @@ namespace pos_core_api.ORM
     {
         private readonly InventoryORM Inv;
         private readonly TaxORM Tax;
-        public EventORM(InventoryORM invORM, TaxORM taxORM)
+        private readonly InventoryTypeORM InvType;
+        public EventORM(InventoryORM invORM, TaxORM taxORM, InventoryTypeORM invTypeORM)
         {
             Inv = invORM;
             Tax = taxORM;
+            InvType = invTypeORM ;
         }
 
         readonly DbConn db = new DbConn();
@@ -139,12 +141,24 @@ namespace pos_core_api.ORM
             if (DoesBarcodeExist(evnt.Barcode))
                 throw new Exception("Barcode already exist.");
 
+            if (evnt.TypeID == 0)
+            {
+                InventoryType it = InvType.Get("EVENT");
+                evnt.TypeID = it.TypeId;
+
+                if (evnt.IdTax == 0)
+                    evnt.IdTax = it.IdTax;
+            }
+
+            if (evnt.IdTax == 0)
+                evnt.IdTax = Tax.Get("Event")?.IdTax ?? 1;
+
             try
             {
                 db.OpenConnection();
 
                 //Inserting into inventory_description
-                string sql = @"
+                 string sql = @"
                     INSERT INTO inventory_description 
                     (name, barcode, retail_price, typeID, nontaxable, nontaxable_local) 
                     VALUES 
@@ -176,6 +190,11 @@ namespace pos_core_api.ORM
                     (InventoryID, Inventory_Qty, Supplier_price) 
                     VALUES 
                     (@id, @qty, @supplier_price);
+
+                    INSERT INTO events 
+                    ( inventoryID,  eventDate,  Duration,  preorder,  atDoor) 
+                    VALUES 
+                    (@inventoryID, @eventDate, @Duration, @preorder, @atDoor);
                 ";
 
                 cmd = new MySqlCommand(sql, db.Connection());
@@ -183,23 +202,13 @@ namespace pos_core_api.ORM
                 cmd.Parameters.Add(new MySqlParameter("id", evnt.Id));
                 cmd.Parameters.Add(new MySqlParameter("Qty", evnt.Qty));
                 cmd.Parameters.Add(new MySqlParameter("Supplier_price", evnt.SupplierPrice));
-                cmd.ExecuteNonQuery();
-
-                //Inserting into events
-                cmd = new MySqlCommand(@"
-                    INSERT INTO events 
-                    ( inventoryID,  eventDate,  Duration,  preorder,  atDoor) 
-                    VALUES 
-                    (@inventoryID, @eventDate, @Duration, @preorder, @atDoor);
-                ");
-
-                //cmd.Parameters.Add(new MySqlParameter("id", inv.Id));
                 cmd.Parameters.Add(new MySqlParameter("inventoryID", evnt.Id));
                 cmd.Parameters.Add(new MySqlParameter("eventDate", evnt.EventDate));
                 cmd.Parameters.Add(new MySqlParameter("Duration", evnt.Duration));
                 cmd.Parameters.Add(new MySqlParameter("preorder", evnt.PreOrder));
                 cmd.Parameters.Add(new MySqlParameter("atDoor", evnt.AtDoor));
                 cmd.ExecuteNonQuery();
+                cmd.Dispose();
             }
             finally
             {
@@ -212,6 +221,18 @@ namespace pos_core_api.ORM
 
         public long Update(Event evnt)
         {
+            if (evnt.TypeID == 0)
+            {
+                InventoryType it = InvType.Get("EVENT");
+                evnt.TypeID = it.TypeId;
+
+                if (evnt.IdTax == 0)
+                    evnt.IdTax = it.IdTax;
+            }
+
+            if (evnt.IdTax == 0)
+                evnt.IdTax = Tax.Get("Event")?.IdTax ?? 1;
+
             try
             {
                 db.OpenConnection();
@@ -292,6 +313,14 @@ namespace pos_core_api.ORM
 
         public Inventory EventToInv(Event evnt)
         {
+            if (evnt.TypeID == 0)
+            { 
+                InventoryType it = InvType.Get("EVENT");
+                evnt.TypeID = it.TypeId;
+
+                if (evnt.IdTax == 0)
+                    evnt.IdTax = it.IdTax;
+            }
 
             if (evnt.IdTax == 0)
                 evnt.IdTax = Tax.Get("Event")?.IdTax ?? 1;
@@ -310,6 +339,8 @@ namespace pos_core_api.ORM
                 LocalSalesTax = evnt.LocalSalesTax
             };
         }
+
+
         private List<Event> FetchEvent(MySqlDataReader reader)
         {
             List<Event> output = new List<Event>();
@@ -323,16 +354,15 @@ namespace pos_core_api.ORM
                 {
                     outputItem = new Event
                     {
-                        Id = reader.IsDBNull("InvetoryId") ? 0 : reader.GetUInt32("InvetoryId"),
+                        Id = reader.IsDBNull("InventoryId") ? 0 : reader.GetUInt32("InventoryId"),
                         Name = reader.IsDBNull("name") ? "" : reader.GetString("name"),
                         Barcode = reader.IsDBNull("barcode") ? "" : reader.GetString("barcode"),
                         Price = reader.IsDBNull("retail_price") ? 0.00 : reader.GetDouble("retail_price"),
-                        Bottles = reader.IsDBNull("bottles") ? 0 : reader.GetUInt32("bottles"),
                         NonTaxable = !reader.IsDBNull("nontaxable") && (0 != reader.GetInt16("nontaxable")),
                         NonTaxableLocal = !reader.IsDBNull("nontaxable_local") && (0 != reader.GetInt16("nontaxable_local")),
-                        ItemType = reader.IsDBNull("Event_type_name") ? "" : reader.GetString("Event_type_name"),
-                        BottleDeposit = reader.IsDBNull("bottle_deposit") ? 0 : reader.GetDouble("bottle_deposit"),
+                        ItemType = reader.IsDBNull("inventory_type_name") ? "" : reader.GetString("inventory_type_name"),
                         IdTax = reader.IsDBNull("idTax") ? 0 : reader.GetUInt32("idTax"),
+                        TaxName  = reader.IsDBNull("Tax_Name") ? "" : reader.GetString("Tax_Name"),
                         SalesTax = reader.IsDBNull("sales_tax") ? 0 : reader.GetDouble("sales_tax"),
                         LocalSalesTax = reader.IsDBNull("local_sales_tax") ? 0 : reader.GetDouble("local_sales_tax"),
                         AtDoor = reader.IsDBNull("atdoor") ? 0 : reader.GetDouble("atdoor"),
@@ -348,7 +378,7 @@ namespace pos_core_api.ORM
                 {
                     PurchasedDate = reader.GetDateTime("purchased_date"),
                     SupplierPrice = reader.GetDouble("Supplier_price"),
-                    Qty = reader.IsDBNull("Inventory_Qty") ? 0 : reader.GetUInt32("Event_Qty")
+                    Qty = reader.IsDBNull("Inventory_Qty") ? 0 : reader.GetUInt32("Inventory_Qty")
                 });
             }
             return output;
