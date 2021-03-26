@@ -110,8 +110,11 @@ namespace SecretCellar
                 txtBarcode.Text = i.Barcode;
                 txtPrice.Text = i.Price.ToString();
                 cbo_Supplier.Text = suppliers.First(x => x.SupplierID == i.SupplierID).Name;
-                txtNetPrice.Text = i.SupplierPrice.ToString();
+                txt_net_price.Text = i.SupplierPrice.ToString();
                 txtProd_Qty.Text = i.Bottles.ToString();
+                txt_markup.Text = ((i.Price - i.SupplierPrice) / i.SupplierPrice).ToString("P");
+                
+
                 
                 //CLEAR ALL THE DISCOUNTS THAT ARE IN THE DISCOUNTS LIST ALREADY
                 checkListBox_Discounts.Items.Clear();
@@ -149,10 +152,10 @@ namespace SecretCellar
                     return;
                 }
 
-                if (!double.TryParse(txtNetPrice.Text, out double netprice))
+                if (!double.TryParse(txt_net_price.Text, out double netprice))
                 {
-                    txtNetPrice.Focus();
-                    txtNetPrice.SelectAll();
+                    txt_net_price.Focus();
+                    txt_net_price.SelectAll();
                     MessageBox.Show("Invalid Supply Price");
                     return;
                 }
@@ -275,10 +278,10 @@ namespace SecretCellar
                     return;
                 }
 
-                if (!double.TryParse(txtNetPrice.Text, out double netprice))
+                if (!double.TryParse(txt_net_price.Text, out double netprice))
                 {
-                    txtNetPrice.Focus();
-                    txtNetPrice.SelectAll();
+                    txt_net_price.Focus();
+                    txt_net_price.SelectAll();
                     MessageBox.Show("Invalid Supply Price");
                     return;
                 }
@@ -391,6 +394,11 @@ namespace SecretCellar
         }
 
         private void txtPrice_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lbl_netPrice_Click(object sender, EventArgs e)
         {
 
         }
