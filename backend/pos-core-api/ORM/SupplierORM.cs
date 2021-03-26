@@ -74,10 +74,6 @@ namespace pos_core_api.ORM
 
                 return Convert.ToUInt32(cmd.LastInsertedId);
             }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
             finally
             {
                 db.CloseConnnection();
@@ -107,10 +103,6 @@ namespace pos_core_api.ORM
 
                 cmd.ExecuteNonQuery();
                 return supplier.SupplierID;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
             }
             finally
             {

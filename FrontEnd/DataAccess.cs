@@ -18,7 +18,7 @@ namespace SecretCellar
         private static WebConnector web = null;
         public static DataAccess instance;
         private Image logo;
-        private static List<PictureBox> pictureBoxes = new List<PictureBox>();
+        private static readonly List<PictureBox> pictureBoxes = new List<PictureBox>();
         public DataAccess(string connectionString)
         {
             instance = new DataAccess();
@@ -418,9 +418,11 @@ namespace SecretCellar
 
                     if (MessageBox.Show("Image exists do you want to overwrite?", "File Already exists", MessageBoxButtons.YesNo) == DialogResult.No)
                     {
-                        SaveFileDialog saveFileDialog = new SaveFileDialog();
-                        saveFileDialog.InitialDirectory = $"{Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}";
-                        saveFileDialog.FileName = $"{Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}\\{ imageFileName}";
+                        SaveFileDialog saveFileDialog = new SaveFileDialog
+                        {
+                            InitialDirectory = $"{Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}",
+                            FileName = $"{Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}\\{ imageFileName}"
+                        };
                         if (saveFileDialog.ShowDialog() == DialogResult.Cancel)
                         {
                             return ImportLogo();

@@ -27,7 +27,6 @@ namespace WebApi.Services
         private readonly List<User> _users = new List<User>();
         private void GetCredentials()
         {
-            User cred;
             db.OpenConnection();
 
             string sqlStatement = "SELECT emp_id, pin_number, admin FROM employee";
@@ -53,7 +52,6 @@ namespace WebApi.Services
             }
             db.CloseConnnection();
         }
-
 
         private readonly AppSettings _appSettings;
 
