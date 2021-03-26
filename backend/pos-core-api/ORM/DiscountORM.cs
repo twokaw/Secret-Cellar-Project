@@ -37,7 +37,7 @@ namespace pos_core_api.ORM
             return output;
         }
 
-        public Discount Get(uint DiscountId)
+        public Discount Get(uint discountId)
         {
             Discount outputItem = null;
             db.OpenConnection();
@@ -47,7 +47,7 @@ namespace pos_core_api.ORM
               FROM v_Discount 
               WHERE DiscountID = @ID
             ", db.Connection());
-            cmd.Parameters.Add(new MySqlParameter("ID", DiscountId));
+            cmd.Parameters.Add(new MySqlParameter("ID", discountId));
             MySqlDataReader reader = cmd.ExecuteReader();
 
             try
@@ -62,7 +62,34 @@ namespace pos_core_api.ORM
             }
             return outputItem;
         }
-        private Discount FetchDiscount(MySqlDataReader reader)
+
+        public Discount Get(string discountName)
+        {
+            Discount outputItem = null;
+            db.OpenConnection();
+
+            MySqlCommand cmd = new MySqlCommand(@"
+              SELECT DiscountID, DiscountName, minQty, maxQty, Discount 
+              FROM v_Discount 
+              WHERE DiscountName = @Name
+            ", db.Connection());
+            cmd.Parameters.Add(new MySqlParameter("Name", discountName));
+            MySqlDataReader reader = cmd.ExecuteReader();
+
+            try
+            {
+                if (reader.Read())
+                    outputItem = FetchDiscount(reader);
+            }
+            finally
+            {
+                reader.Close();
+                db.CloseConnnection();
+            }
+            return outputItem;
+        }
+
+        private static Discount FetchDiscount(MySqlDataReader reader)
         {
            return new Discount
             {
@@ -74,10 +101,59 @@ namespace pos_core_api.ORM
             };
         }
 
-        public uint Insert(Discount Discount)
+        public uint Insert(Discount discount)
+        {
+            Discount d = Get(discount.DiscountName);
+         
+            if (d != null)
+            {
+                discount.DiscountID = d.DiscountID;
+                return DoUpdate(discount);
+            }
+            else
+                return DoInsert(discount);
+        }
+
+        public uint Update(Discount discount)
+        {
+            if (discount.DiscountID == 0 || Get(discount.DiscountID) == null)
+                return Insert(discount);
+            else
+                return DoUpdate(discount);
+        }
+        private uint DoUpdate(Discount discount)
         {
             db.OpenConnection();
-            uint newId = 0;
+            string sqlStatement = @"
+                UPDATE v_Discount
+                SET DiscountName = @DiscountName, 
+                    minQty = @minQty, 
+                    maxQty = @maxQty, 
+                    Discount = @Discount
+                WHERE Discountid = @idDiscount
+            ";
+
+            try
+            {
+                using MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
+                cmd.Parameters.Add(new MySqlParameter("idDiscount", discount.DiscountID));
+                cmd.Parameters.Add(new MySqlParameter("DiscountName", discount.DiscountName));
+                cmd.Parameters.Add(new MySqlParameter("minQty", discount.Min));
+                cmd.Parameters.Add(new MySqlParameter("maxQty", discount.Max));
+                cmd.Parameters.Add(new MySqlParameter("Discount", discount.Amount));
+                cmd.ExecuteNonQuery();
+            }
+            finally
+            {
+                db.CloseConnnection();
+            }
+            
+            return discount.DiscountID;
+        }
+
+        private uint DoInsert(Discount discount)
+        {
+            db.OpenConnection();
             string sqlStatement = @"
                 INSERT INTO v_Discount
                 (DiscountName, minQty, maxQty, Discount)
@@ -87,73 +163,37 @@ namespace pos_core_api.ORM
 
             try
             {
-                MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
-                cmd.Parameters.Add(new MySqlParameter("DiscountName", Discount.DiscountName));
-                cmd.Parameters.Add(new MySqlParameter("minQty", Discount.Min));
-                cmd.Parameters.Add(new MySqlParameter("maxQty", Discount.Max));
-                cmd.Parameters.Add(new MySqlParameter("Discount", Discount.Amount));
+                using MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
+                cmd.Parameters.Add(new MySqlParameter("DiscountName", discount.DiscountName));
+                cmd.Parameters.Add(new MySqlParameter("minQty", discount.Min));
+                cmd.Parameters.Add(new MySqlParameter("maxQty", discount.Max));
+                cmd.Parameters.Add(new MySqlParameter("Discount", discount.Amount));
                 cmd.ExecuteNonQuery();
-                newId = (uint)cmd.LastInsertedId;
+                return (uint)cmd.LastInsertedId;
+
             }
             finally
             {
                 db.CloseConnnection();
-            }
-
-            return newId;
+            }         
         }
 
-        public uint Update(Discount Discount)
-        {
-            db.OpenConnection();
-            if (Get(Discount.DiscountID) == null)
-                return Insert(Discount);
-            else
-            {
-                string sqlStatement = @"
-                    UPDATE v_Discount
-                        DiscountName = @DiscountName, 
-                        minQty = @minQty, 
-                        maxQty = @maxQty, 
-                        Discount = @Discount
-                    WHERE idDiscount = @idDiscount
-                ";
-
-                try
-                {
-                    MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
-                    cmd.Parameters.Add(new MySqlParameter("idDiscount", Discount.DiscountID));
-                    cmd.Parameters.Add(new MySqlParameter("DiscountName", Discount.DiscountName));
-                    cmd.Parameters.Add(new MySqlParameter("minQty", Discount.Min));
-                    cmd.Parameters.Add(new MySqlParameter("maxQty", Discount.Max));
-                    cmd.Parameters.Add(new MySqlParameter("Discount", Discount.Amount));
-                    cmd.ExecuteNonQuery();
-                }
-                finally
-                {
-                    db.CloseConnnection();
-                }
-            }
-
-            return Discount.DiscountID;
-        }
         public bool Update(uint discountId, int typeId)
         {
-            db.OpenConnection();
             if (Get(discountId) == null || DataAccess.Instance.InventoryType.Get(typeId) == null)
                 return false;
             else
             {
-                string sqlStatement = @"
-                    REPLACE INTO discount_type
-                    (discountId, typeId) 
-                    VALUES
-                    (@discountId, @typeId)
-                ";
+                db.OpenConnection();
 
                 try
                 {
-                    MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
+                    MySqlCommand cmd = new MySqlCommand(@"
+                        REPLACE INTO discount_type
+                        (discountId, typeId) 
+                        VALUES
+                        (@discountId, @typeId)
+                    ", db.Connection());
                     cmd.Parameters.Add(new MySqlParameter("discountId", discountId));
                     cmd.Parameters.Add(new MySqlParameter("typeId", typeId));
                     cmd.ExecuteNonQuery();
@@ -189,13 +229,13 @@ namespace pos_core_api.ORM
 
         public bool Delete(uint DiscountId)
         {
-            db.OpenConnection();
             if (Get(DiscountId) == null)
                 return false;
             else
             {
+                db.OpenConnection();
                 try
-                {
+                {         
                     MySqlCommand cmd = new MySqlCommand(@"
                         DELETE FROM v_Discount
                         WHERE DiscountID = @idDiscount

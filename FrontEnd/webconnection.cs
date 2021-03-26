@@ -213,16 +213,17 @@ namespace SecretCellar
                 StreamReader reader = new StreamReader(datastream);
                 string responsefromserver = reader.ReadToEnd();
 
-                if (Convert.ToBoolean(responsefromserver))
+                if (!string.IsNullOrWhiteSpace((responsefromserver)))
                 {
                     _loggedin = true;
                     Cookies = ((HttpWebResponse)response).Cookies;
                     return true;
                 }
             }
-            catch
+            catch(Exception ex)
             {
                 _loggedin = false;
+                DataAccess.instance.LogError(ex, "Login", "Login error");
             }
             return false;
         }
@@ -250,6 +251,7 @@ namespace SecretCellar
             {
                 responsefromserver.StatusCode = HttpStatusCode.InternalServerError;
                 responsefromserver.Result = ex.Message;
+                DataAccess.instance.LogError(ex, "PostSetupRequest", request.Address.ToString());
             }
 
             return responsefromserver;
@@ -310,6 +312,7 @@ namespace SecretCellar
                 }
                 LastResponse = response;
                 LastResponse.Url = url;
+                DataAccess.instance.LogError(ex, "SendRequest", apiurl);
             }
 
             return "";
@@ -331,6 +334,7 @@ namespace SecretCellar
             catch (Exception ex)
             {
                 Console.WriteLine($"SetupRequest Error {ex.Message}");
+                DataAccess.instance.LogError(ex, "SetupRequest", url);
             }
 
             return request;
@@ -359,6 +363,7 @@ namespace SecretCellar
             catch (Exception ex)
             {
                 Console.WriteLine($"SetupRequest Error {ex.Message}");
+                DataAccess.instance.LogError(ex, "SetupRequest", $"{url} : {postjsondata}");
             }
 
             return request;

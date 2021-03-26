@@ -44,7 +44,6 @@
             this.txtPin.Name = "txtPin";
             this.txtPin.Size = new System.Drawing.Size(146, 36);
             this.txtPin.TabIndex = 0;
-            this.txtPin.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             this.txtPin.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtPin_KeyUp);
             // 
             // label1
@@ -57,7 +56,6 @@
             this.label1.Size = new System.Drawing.Size(108, 20);
             this.label1.TabIndex = 1;
             this.label1.Text = "Employee ID";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // btnLogin
             // 

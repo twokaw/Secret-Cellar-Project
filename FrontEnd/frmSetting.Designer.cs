@@ -1,4 +1,6 @@
-﻿namespace SecretCellar
+﻿using System.Windows.Forms;
+
+namespace SecretCellar
 {
     partial class FrmSettings
     {
@@ -31,9 +33,9 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmSettings));
             this.tab_receipt = new System.Windows.Forms.TabControl();
             this.tab_Hardware = new System.Windows.Forms.TabPage();
-            this.panHardware1 = new SecretCellar.Settings_Panels.PanHardware();
+            this.panHardware = new SecretCellar.Settings_Panels.PanHardware();
             this.tab_Types = new System.Windows.Forms.TabPage();
-            this.panTypes1 = new SecretCellar.Settings_Panels.PanTypes();
+            this.panTypes = new SecretCellar.Settings_Panels.PanTypes();
             this.tab_Appearance = new System.Windows.Forms.TabPage();
             this.panAppearance1 = new SecretCellar.Settings_Panels.PanAppearance();
             this.tab_Reports = new System.Windows.Forms.TabPage();
@@ -72,7 +74,7 @@
             // 
             // tab_Hardware
             // 
-            this.tab_Hardware.Controls.Add(this.panHardware1);
+            this.tab_Hardware.Controls.Add(this.panHardware);
             this.tab_Hardware.Location = new System.Drawing.Point(4, 25);
             this.tab_Hardware.Margin = new System.Windows.Forms.Padding(4);
             this.tab_Hardware.Name = "tab_Hardware";
@@ -82,18 +84,18 @@
             this.tab_Hardware.Text = "Hardware";
             this.tab_Hardware.UseVisualStyleBackColor = true;
             // 
-            // panHardware1
+            // panHardware
             // 
-            this.panHardware1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panHardware1.Location = new System.Drawing.Point(3, 3);
-            this.panHardware1.Margin = new System.Windows.Forms.Padding(2);
-            this.panHardware1.Name = "panHardware1";
-            this.panHardware1.Size = new System.Drawing.Size(962, 380);
-            this.panHardware1.TabIndex = 0;
+            this.panHardware.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panHardware.Location = new System.Drawing.Point(3, 3);
+            this.panHardware.Margin = new System.Windows.Forms.Padding(2);
+            this.panHardware.Name = "panHardware";
+            this.panHardware.Size = new System.Drawing.Size(962, 380);
+            this.panHardware.TabIndex = 0;
             // 
             // tab_Types
             // 
-            this.tab_Types.Controls.Add(this.panTypes1);
+            this.tab_Types.Controls.Add(this.panTypes);
             this.tab_Types.Location = new System.Drawing.Point(4, 25);
             this.tab_Types.Margin = new System.Windows.Forms.Padding(4);
             this.tab_Types.Name = "tab_Types";
@@ -103,15 +105,15 @@
             this.tab_Types.Text = "Types";
             this.tab_Types.UseVisualStyleBackColor = true;
             // 
-            // panTypes1
+            // panTypes
             // 
-            this.panTypes1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panTypes1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
-            this.panTypes1.Location = new System.Drawing.Point(3, 3);
-            this.panTypes1.Margin = new System.Windows.Forms.Padding(4);
-            this.panTypes1.Name = "panTypes1";
-            this.panTypes1.Size = new System.Drawing.Size(962, 380);
-            this.panTypes1.TabIndex = 0;
+            this.panTypes.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panTypes.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
+            this.panTypes.Location = new System.Drawing.Point(3, 3);
+            this.panTypes.Margin = new System.Windows.Forms.Padding(4);
+            this.panTypes.Name = "panTypes";
+            this.panTypes.Size = new System.Drawing.Size(962, 380);
+            this.panTypes.TabIndex = 0;
             // 
             // tab_Appearance
             // 
@@ -240,11 +242,12 @@
         private System.Windows.Forms.Button btn_commit;
         private System.Windows.Forms.TabPage tab_Reciept;
         private System.Windows.Forms.TabPage tab_tax;
-        private Settings_Panels.PanHardware panHardware1;
+        private Settings_Panels.PanHardware panHardware;
         private Settings_Panels.PanReports panReports1;
-        private Settings_Panels.PanTypes panTypes1;
+        private Settings_Panels.PanTypes panTypes;
         private Settings_Panels.PanAppearance panAppearance1;
         private Settings_Panels.PanReceipt panReceipt1;
         private Settings_Panels.PanTax panTax1;
+    //    private Control panTypes;
     }
 }

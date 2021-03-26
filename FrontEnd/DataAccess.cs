@@ -21,9 +21,11 @@ namespace SecretCellar
         private static List<PictureBox> pictureBoxes = new List<PictureBox>();
         public DataAccess(string connectionString)
         {
+            instance = new DataAccess();
+            ErrorLogging.Path = Application.StartupPath;
+
             if (web == null)
                 web = new WebConnector(connectionString);
-            instance = new DataAccess();
         }
         public DataAccess() { }
 
@@ -274,6 +276,11 @@ namespace SecretCellar
             else
                 return 0;
         }
+        public void DeleteDiscount(Discount discount)
+        {
+            try { web.DataDelete($"api/Discount/{discount.DiscountID}"); }
+            catch (Exception ex) { LogError(ex, "DeleteDiscount"); }
+        }
         #endregion
 
         #region Printer
@@ -367,12 +374,15 @@ namespace SecretCellar
         public void LogError(string message, string source, string notes = "")
         {
             Console.WriteLine($"{source} - {message}");
+            Shared.ErrorLogging.WriteToErrorLog(message, source, notes);
         }
 
         public void LogError(Exception error, string source, string notes = "")
         {
             LogError(error.Message, source, notes);
         }
+
+       
         #endregion
 
         #region Logo
