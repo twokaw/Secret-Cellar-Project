@@ -3,7 +3,6 @@ using Shared;
 using System.Data;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using WebApi.Helpers;
 using System;
 
@@ -11,10 +10,12 @@ namespace pos_core_api.ORM
 {
     public class EventORM
     {
-        private readonly InventoryORM invORM;
-        public EventORM(InventoryORM invORM)
+        private readonly InventoryORM Inv;
+        private readonly TaxORM Tax;
+        public EventORM(InventoryORM invORM, TaxORM taxORM)
         {
-            this.invORM = invORM;
+            Inv = invORM;
+            Tax = taxORM;
         }
 
         readonly DbConn db = new DbConn();
@@ -291,6 +292,10 @@ namespace pos_core_api.ORM
 
         public Inventory EventToInv(Event evnt)
         {
+
+            if (evnt.IdTax == 0)
+                evnt.IdTax = Tax.Get("Event")?.IdTax ?? 1;
+
             return new Inventory
             {
                 Barcode = evnt.Barcode,

@@ -13,18 +13,24 @@ namespace SecretCellar.Settings_Panels
 {
     public partial class PanTypes : UserControl
     {
-        private List<Discount> discounts = DataAccess.instance.GetDiscount();
+        private List<Discount> discounts = null;
         public Discount newDiscount = null;
         public PanTypes()
         {
             InitializeComponent();
-            lstTypes.DataSource = DataAccess.instance?.GetInventoryType();
-            cbx_tax.DataSource = DataAccess.instance?.GetTax();
-            lstTypes.DisplayMember = "TypeName";
-            cbx_tax.DisplayMember = "TaxName";
+        }
+        private void PanTypes_Load(object sender, EventArgs e)
+        {
+            if(DataAccess.instance != null)
+            {
+                discounts = DataAccess.instance.GetDiscount();
+                lstTypes.DataSource = DataAccess.instance?.GetInventoryType();
+                cbx_tax.DataSource = DataAccess.instance?.GetTax();
+                lstTypes.DisplayMember = "TypeName";
+                cbx_tax.DisplayMember = "TaxName";
             
-            discounts?.ForEach(x => chk_lst_discount.Items.Add(x.DiscountName));
-            
+                discounts?.ForEach(x => chk_lst_discount.Items.Add(x.DiscountName));
+            }
         }
 
         private void lstTypes_SelectedIndexChanged(object sender, EventArgs e)
@@ -148,5 +154,6 @@ namespace SecretCellar.Settings_Panels
             txt_discount.Text = "";
             txt_dis_name.Focus();
         }
+
     }
 }

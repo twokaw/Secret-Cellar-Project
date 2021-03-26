@@ -22,10 +22,10 @@ namespace SecretCellar
         public DataAccess(string connectionString)
         {
             instance = new DataAccess();
-            Shared.ErrorLogging.Path = Application.StartupPath;
+            ErrorLogging.Path = Application.StartupPath;
+
             if (web == null)
                 web = new WebConnector(connectionString);
-            
         }
         public DataAccess() { }
 
