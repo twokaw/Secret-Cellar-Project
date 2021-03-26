@@ -13,7 +13,7 @@ namespace SecretCellar
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            DataAccess.instance = new DataAccess(Properties.Settings.Default.URL);
+            new DataAccess(Properties.Settings.Default.URL);
             Application.Run(new frmTransaction());
         }
     }

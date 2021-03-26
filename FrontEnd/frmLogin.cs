@@ -9,26 +9,9 @@ namespace SecretCellar
 {
     public partial class frmLogin : Form
     {
-        private DataAccess _dataAccess;
-        private Image logo = null;
         public frmLogin(Image logo = null)
         {
-            if (logo == null)
-                this.logo = Properties.Resources.Logo;
-
-            _dataAccess = new DataAccess(Properties.Settings.Default.URL);
-
             InitializeComponent();
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void frmLogin_Load(object sender, EventArgs e)
@@ -54,18 +37,17 @@ namespace SecretCellar
             EmployeeModel user = null;
             if (text == "")
             {
-                user = _dataAccess.GetEmployee(0);
+                user = DataAccess.instance.GetEmployee(0);
             }
             else if (int.TryParse(text, out int pin))
             {
-                user = _dataAccess.GetEmployee(pin);
+                user = DataAccess.instance.GetEmployee(pin);
             }
 
             if (user == null)
                 MessageBox.Show("Invalid Pin");
             else
             {
-              //  MessageBox.Show($"   Welcome {user.FirstName}");
                 this.DialogResult = DialogResult.OK;
                 this.Dispose();
             }

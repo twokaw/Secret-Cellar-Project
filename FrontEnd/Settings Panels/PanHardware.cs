@@ -17,26 +17,21 @@ namespace SecretCellar.Settings_Panels
         private bool modelrefresh = false;
         public PanHardware()
         {
-            Printer currentPrinter = DataAccess.instance.GetPrinter((uint)Properties.Settings.Default.PrinterModelId);
-           // printerNames = DataAccess.instance.GetPrinter();
             InitializeComponent();
-            cbx_com_port.DataSource = System.IO.Ports.SerialPort.GetPortNames();
-            lst_print_model.DisplayMember = "Model";
-            Refresh(currentPrinter?.Make, currentPrinter?.Model);
-            // cbx_manufact.DataSource = DataAccess.instance.GetPrinterMake();
-            //cbx_manufact.SelectedItem = currentPrinter?.Make ?? cbx_manufact.Items[0];
-            //lst_print_model.DataSource = printerNames.Where(x => x.Make == cbx_manufact.SelectedItem.ToString()).ToList();
-            //lst_print_model.DataSource = printerNames;
+        }
 
-            //if (lst_print_model.Items.Count > 0)
-            //{
-            //    int index = lst_print_model.FindString(currentPrinter?.Model);
-            //    lst_print_model.SetSelected((index >= 0) ? index : 0, true);
-            //}
-            //lst_print_model.SelectedItem = currentPrinter;
-            populate();
-            
-            
+        private void PanHardware_Load(object sender, EventArgs e)
+        {
+            if(DataAccess.instance != null)
+            {
+                Printer currentPrinter = DataAccess.instance.GetPrinter((uint)Properties.Settings.Default.PrinterModelId);
+                // printerNames = DataAccess.instance.GetPrinter();
+                cbx_com_port.DataSource = System.IO.Ports.SerialPort.GetPortNames();
+                lst_print_model.DisplayMember = "Model";
+                Refresh(currentPrinter?.Make, currentPrinter?.Model);
+
+                populate();
+            }
         }
 
         private void btn_set_comm_Click(object sender, EventArgs e)
@@ -94,21 +89,23 @@ namespace SecretCellar.Settings_Panels
 
         private void Refresh(string make, string model)
         {
-            
-            printerNames = DataAccess.instance.GetPrinter();
-            cbx_manufact.DataSource = DataAccess.instance.GetPrinterMake();
-            cbx_manufact.SelectedItem = make ?? cbx_manufact.Items[0];
-            modelrefresh = true;
-            lst_print_model.DataSource = printerNames.Where(x => x.Make == cbx_manufact.SelectedItem.ToString()).ToList();
-            
-            if (lst_print_model.Items.Count > 0)
+            if(make != null && model != null)
             {
-                int index = lst_print_model.FindString(model);
-                lst_print_model.SetSelected((index >= 0) ? index : 0, true);
-            }
-            modelrefresh = false;
-            populate();
+
+                printerNames = DataAccess.instance.GetPrinter();
+                cbx_manufact.DataSource = DataAccess.instance.GetPrinterMake();
+                cbx_manufact.SelectedItem = make ?? cbx_manufact.Items[0];
+                modelrefresh = true;
+                lst_print_model.DataSource = printerNames.Where(x => x.Make == cbx_manufact.SelectedItem.ToString()).ToList();
             
+                if (lst_print_model.Items.Count > 0)
+                {
+                    int index = lst_print_model.FindString(model);
+                    lst_print_model.SetSelected((index >= 0) ? index : 0, true);
+                }
+                modelrefresh = false;
+                populate();
+            }
         }
 
         private void btn_add_code_Click(object sender, EventArgs e)
@@ -119,6 +116,11 @@ namespace SecretCellar.Settings_Panels
                 Refresh(printercodes?.newPrinter?.Make, printercodes?.newPrinter?.Model);
 
             // set to read only
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
