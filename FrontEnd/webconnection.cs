@@ -213,7 +213,7 @@ namespace SecretCellar
                 StreamReader reader = new StreamReader(datastream);
                 string responsefromserver = reader.ReadToEnd();
 
-                if (Convert.ToBoolean(responsefromserver))
+                if (!string.IsNullOrWhiteSpace((responsefromserver)))
                 {
                     _loggedin = true;
                     Cookies = ((HttpWebResponse)response).Cookies;

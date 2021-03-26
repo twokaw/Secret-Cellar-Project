@@ -13,7 +13,6 @@ namespace pos_core_api.ORM
         public List<Tax> Get()
         {
             List<Tax> output = new List<Tax>();
-            Tax outputItem;
             db.OpenConnection();
 
             string sqlStatement = "SELECT * FROM v_tax";
@@ -24,17 +23,7 @@ namespace pos_core_api.ORM
             try
             {
                 while (reader.Read())
-                {
-                    outputItem = new Tax
-                    {
-                        IdTax = reader.IsDBNull("idTAX") ? 0 : reader.GetUInt32("idTAX"),
-                        BottleDeposit = reader.IsDBNull("bottle_deposit") ? 0.0 : reader.GetDouble("bottle_deposit"),
-                        TaxName = reader.IsDBNull("Tax_name") ? "" : reader.GetString("tax_name"),
-                        SalesTax = reader.IsDBNull("sales_tax") ? 0.0 : reader.GetDouble("sales_tax"),
-                        LocalSalesTax = reader.IsDBNull("local_sales_tax") ? 0.0 : reader.GetDouble("local_sales_tax")
-                    };
-                    output.Add(outputItem);
-                }
+                    output.Add(FetchTax(reader));
             }
             finally
             {
@@ -138,6 +127,33 @@ namespace pos_core_api.ORM
         }
 
         // Get: api/Tax
+        public Tax Get(string name)
+        {
+            Tax outputItem = null;
+            db.OpenConnection();
+
+            MySqlCommand cmd = new MySqlCommand(@"
+              SELECT * 
+              FROM v_tax 
+              WHERE UPPER(Tax_name) = @name
+            ", db.Connection());
+            cmd.Parameters.Add(new MySqlParameter("name", name.ToUpper()));
+            MySqlDataReader reader = cmd.ExecuteReader();
+
+            try
+            {
+                if (reader.Read())
+                    outputItem = FetchTax(reader); 
+            }
+            finally
+            {
+                reader.Close();
+                db.CloseConnnection();
+            }
+            return outputItem;
+        }
+
+        // Get: api/Tax
         public Tax Get(uint taxId)
         {
             Tax outputItem = null;
@@ -154,16 +170,7 @@ namespace pos_core_api.ORM
             try
             {
                 if (reader.Read())
-                {
-                    outputItem = new Tax
-                    {
-                        IdTax = reader.IsDBNull("idTAX") ? 0 : reader.GetUInt32("idTAX"),
-                        BottleDeposit = reader.IsDBNull("bottle_deposit") ? 0.0 : reader.GetDouble("bottle_deposit"),
-                        TaxName = reader.IsDBNull("Tax_name") ? "" : reader.GetString("tax_name"),
-                        SalesTax = reader.IsDBNull("sales_tax") ? 0.0 : reader.GetDouble("sales_tax"),
-                        LocalSalesTax = reader.IsDBNull("local_sales_tax") ? 0.0 : reader.GetDouble("local_sales_tax")
-                    };
-                }
+                    outputItem = FetchTax(reader);
             }
             finally
             {
@@ -171,6 +178,18 @@ namespace pos_core_api.ORM
                 db.CloseConnnection();
             }
             return outputItem;
+        }
+
+        private Tax FetchTax(MySqlDataReader reader)
+        {
+            return new Tax
+            {
+                IdTax = reader.IsDBNull("idTAX") ? 0 : reader.GetUInt32("idTAX"),
+                BottleDeposit = reader.IsDBNull("bottle_deposit") ? 0.0 : reader.GetDouble("bottle_deposit"),
+                TaxName = reader.IsDBNull("Tax_name") ? "" : reader.GetString("tax_name"),
+                SalesTax = reader.IsDBNull("sales_tax") ? 0.0 : reader.GetDouble("sales_tax"),
+                LocalSalesTax = reader.IsDBNull("local_sales_tax") ? 0.0 : reader.GetDouble("local_sales_tax")
+            };
         }
     }
 }

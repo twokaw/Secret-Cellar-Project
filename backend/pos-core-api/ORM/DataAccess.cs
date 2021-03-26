@@ -46,7 +46,7 @@ namespace pos_core_api.ORM
             get
             {
                 if (eventORM == null)
-                    eventORM = new EventORM(Inventory);
+                    eventORM = new EventORM(Inventory, Tax);
 
                 return eventORM;
             }
