@@ -485,7 +485,8 @@
             // 
             // lbl_BARCODE
             // 
-            this.lbl_BARCODE.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
+            this.lbl_BARCODE.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lbl_BARCODE.AutoSize = true;
             this.lbl_BARCODE.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_BARCODE.Location = new System.Drawing.Point(919, 21);
@@ -526,7 +527,7 @@
             this.caseDiscount.CheckedChanged += new System.EventHandler(this.caseDiscount_CheckedChanged);
             // 
             // pb_settings
-            //
+            // 
             this.pb_settings.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pb_settings.Image = global::SecretCellar.Properties.Resources.Gears;
             this.pb_settings.Location = new System.Drawing.Point(18, 7);
@@ -540,7 +541,8 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(648, 507);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(1);
