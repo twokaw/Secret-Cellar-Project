@@ -142,6 +142,7 @@ namespace SecretCellar
                     }
                 }
                 transaction.Discount = discount_total;
+                //transaction.Discount = discount_total + transaction.Discount;
                 txt_discountTotal.Text = discount_total.ToString("c");
             }
         }
@@ -178,6 +179,7 @@ namespace SecretCellar
                 }
             }
             transaction.Discount = discount_total;
+            //transaction.Discount = discount_total + transaction.Discount;
             txt_discountTotal.Text = discount_total.ToString("c");
         }
         public void coupons_discount()
