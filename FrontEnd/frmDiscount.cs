@@ -142,8 +142,8 @@ namespace SecretCellar
                         discount_total = discount_total + Convert.ToDouble(row.Cells["RegularPrice"].Value.ToString().Replace("$", "").Replace("(", "").Replace(")", "")) - Convert.ToDouble(row.Cells["Price"].Value.ToString().Replace("$", "").Replace("(", "").Replace(")", "")); ;
                     }
                 }
-                transaction.Discount = discount_total;
-                //transaction.Discount = discount_total + transaction.Discount;
+                //transaction.Discount = discount_total;
+                transaction.Discount = discount_total + currentdis;
                 txt_discountTotal.Text = discount_total.ToString("c");
             }
         }
