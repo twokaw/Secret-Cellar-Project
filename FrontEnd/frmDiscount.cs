@@ -121,6 +121,7 @@ namespace SecretCellar
 
         public void selectItemDiscount()
         {
+            double currentdis = transaction.Discount;
             // dataGridSelectItems.SelectedRows for selected items
             if (txtPercentLineItem.Text != "")
             {
@@ -178,8 +179,8 @@ namespace SecretCellar
                     discount_total = discount_total + Convert.ToDouble(row.Cells["RegularPrice"].Value.ToString().Replace("$", "").Replace("(", "").Replace(")", "")) - Convert.ToDouble(row.Cells["Price"].Value.ToString().Replace("$", "").Replace("(", "").Replace(")", "")); ;
                 }
             }
-            transaction.Discount = discount_total;
-            //transaction.Discount = discount_total + transaction.Discount;
+            //transaction.Discount = discount_total;
+            transaction.Discount = discount_total + curdis;
             txt_discountTotal.Text = discount_total.ToString("c");
         }
         public void coupons_discount()
