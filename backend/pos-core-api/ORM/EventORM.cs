@@ -269,21 +269,24 @@ namespace pos_core_api.ORM
                 evnt.Id = Convert.ToUInt32(cmd.LastInsertedId);
                 cmd.Dispose();
 
-                //Inserting into inventory_description
+                //Inserting into inventory_description Changed to insert or update
                 sql = @"
                     UPDATE inventory_price 
-                    SET , 
-                        Inventory_Qty = @qty, 
+                    SET Inventory_Qty = @qty, 
                         Supplier_price = @supplier_price
                     WHERE inventoryID = @id;
                 ";
+                foreach (var i in evnt.AllQty)
+                {
+                    cmd = new MySqlCommand(sql, db.Connection());
+                    //cmd.Parameters.Add(new MySqlParameter("id", inv.Id));
+                    cmd.Parameters.Add(new MySqlParameter("id", evnt.Id));
+                    cmd.Parameters.Add(new MySqlParameter("Qty", i.Qty));
+                    cmd.Parameters.Add(new MySqlParameter("Supplier_price", evnt.SupplierPrice));
+                    cmd.ExecuteNonQuery();
+                    cmd.Dispose();
+                }
 
-                cmd = new MySqlCommand(sql, db.Connection());
-                //cmd.Parameters.Add(new MySqlParameter("id", inv.Id));
-                cmd.Parameters.Add(new MySqlParameter("id", evnt.Id));
-                cmd.Parameters.Add(new MySqlParameter("Qty", evnt.Qty));
-                cmd.Parameters.Add(new MySqlParameter("Supplier_price", evnt.SupplierPrice));
-                cmd.ExecuteNonQuery();
 
                 //Inserting into events
                 cmd = new MySqlCommand(@"
@@ -293,10 +296,10 @@ namespace pos_core_api.ORM
                         preorder = @preorder,  
                         atDoor = @atDoor
                     WHERE inventoryID = @id;
-                ");
+                ", db.Connection());
 
                 //cmd.Parameters.Add(new MySqlParameter("id", inv.Id));
-                cmd.Parameters.Add(new MySqlParameter("inventoryID", evnt.Id));
+                cmd.Parameters.Add(new MySqlParameter("ID", evnt.Id));
                 cmd.Parameters.Add(new MySqlParameter("eventDate", evnt.EventDate));
                 cmd.Parameters.Add(new MySqlParameter("Duration", evnt.Duration));
                 cmd.Parameters.Add(new MySqlParameter("preorder", evnt.PreOrder));

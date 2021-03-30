@@ -70,8 +70,8 @@ namespace SecretCellar
             }
 
             
-            lbl_twentyone.Text = "21 AS OF: " + DateTime.Now.AddYears(-21).ToString("MM/dd/yyyy");
-            lbl_twentyone.Font = new Font("Microsoft Sans Serif", 18, FontStyle.Bold);
+            lbl_twentyone.Text = "21 AS OF: " + DateTime.Now.AddYears(-21).ToString("MM/dd/yy");
+            lbl_twentyone.Font = new Font("Microsoft Sans Serif", 16, FontStyle.Bold);
         }
 
         private void btnDiscount_Click(object sender, EventArgs e)
