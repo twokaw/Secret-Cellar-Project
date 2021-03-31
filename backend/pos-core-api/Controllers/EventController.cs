@@ -95,5 +95,19 @@ namespace pos_core_api.Controllers
                 return StatusCode(500, ex.Message);
             }
         }
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(uint id)
+        {
+            try
+            {
+                DataAccess.Instance.Event.Delete(id);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
     }
 }
