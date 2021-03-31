@@ -92,7 +92,7 @@ namespace pos_core_api.ORM
                 string sqlStatement = @"
                     SELECT *
                     FROM v_event 
-                    WHERE Inventorid = @id
+                    WHERE Inventoryid = @id
                 ";
 
                 using MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
@@ -269,21 +269,24 @@ namespace pos_core_api.ORM
                 evnt.Id = Convert.ToUInt32(cmd.LastInsertedId);
                 cmd.Dispose();
 
-                //Inserting into inventory_description
+                //Inserting into inventory_description Changed to insert or update
                 sql = @"
                     UPDATE inventory_price 
-                    SET , 
-                        Inventory_Qty = @qty, 
+                    SET Inventory_Qty = @qty, 
                         Supplier_price = @supplier_price
                     WHERE inventoryID = @id;
                 ";
+                foreach (var i in evnt.AllQty)
+                {
+                    cmd = new MySqlCommand(sql, db.Connection());
+                    //cmd.Parameters.Add(new MySqlParameter("id", inv.Id));
+                    cmd.Parameters.Add(new MySqlParameter("id", evnt.Id));
+                    cmd.Parameters.Add(new MySqlParameter("Qty", i.Qty));
+                    cmd.Parameters.Add(new MySqlParameter("Supplier_price", evnt.SupplierPrice));
+                    cmd.ExecuteNonQuery();
+                    cmd.Dispose();
+                }
 
-                cmd = new MySqlCommand(sql, db.Connection());
-                //cmd.Parameters.Add(new MySqlParameter("id", inv.Id));
-                cmd.Parameters.Add(new MySqlParameter("id", evnt.Id));
-                cmd.Parameters.Add(new MySqlParameter("Qty", evnt.Qty));
-                cmd.Parameters.Add(new MySqlParameter("Supplier_price", evnt.SupplierPrice));
-                cmd.ExecuteNonQuery();
 
                 //Inserting into events
                 cmd = new MySqlCommand(@"
@@ -293,10 +296,10 @@ namespace pos_core_api.ORM
                         preorder = @preorder,  
                         atDoor = @atDoor
                     WHERE inventoryID = @id;
-                ");
+                ", db.Connection());
 
                 //cmd.Parameters.Add(new MySqlParameter("id", inv.Id));
-                cmd.Parameters.Add(new MySqlParameter("inventoryID", evnt.Id));
+                cmd.Parameters.Add(new MySqlParameter("ID", evnt.Id));
                 cmd.Parameters.Add(new MySqlParameter("eventDate", evnt.EventDate));
                 cmd.Parameters.Add(new MySqlParameter("Duration", evnt.Duration));
                 cmd.Parameters.Add(new MySqlParameter("preorder", evnt.PreOrder));
@@ -348,13 +351,14 @@ namespace pos_core_api.ORM
             Event outputItem = null;
             while (reader.Read())
             {
-                outputItem = output.FirstOrDefault(x => x.Id == reader.GetUInt32("InvetoryId"));
+                uint id = reader.GetUInt32("InventoryId");
+                outputItem = output.FirstOrDefault(x => x.Id == id);
 
                 if (outputItem == null)
                 {
                     outputItem = new Event
                     {
-                        Id = reader.IsDBNull("InventoryId") ? 0 : reader.GetUInt32("InventoryId"),
+                        Id = id,
                         Name = reader.IsDBNull("name") ? "" : reader.GetString("name"),
                         Barcode = reader.IsDBNull("barcode") ? "" : reader.GetString("barcode"),
                         Price = reader.IsDBNull("retail_price") ? 0.00 : reader.GetDouble("retail_price"),
@@ -382,6 +386,11 @@ namespace pos_core_api.ORM
                 });
             }
             return output;
+        }
+
+        public void Delete(uint invId)
+        {
+            Inv.Delete(invId);
         }
     }
 }

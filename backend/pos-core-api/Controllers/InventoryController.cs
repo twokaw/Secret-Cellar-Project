@@ -142,7 +142,7 @@ namespace WebApi.Controllers
 
         // DELETE: api/[controller]/id
         [HttpDelete("{Invid}")]
-        public IActionResult Delete(int Invid)
+        public IActionResult Delete(uint Invid)
         {
             try
             {
