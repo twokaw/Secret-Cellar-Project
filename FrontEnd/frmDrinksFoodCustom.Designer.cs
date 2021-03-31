@@ -214,6 +214,7 @@
             this.Controls.Add(this.dataGridNonBarcodedInventory);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmDrinksFoodCustom";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Drinks/Food/Custom";
             this.Load += new System.EventHandler(this.frmDrinksFoodCustom_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridNonBarcodedInventory)).EndInit();

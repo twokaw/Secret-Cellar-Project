@@ -240,6 +240,7 @@ namespace SecretCellar.Settings_Panels
             this.Controls.Add(this.txt_print_model);
             this.Controls.Add(this.lbl_new_print_mdl);
             this.Name = "frmAddPrinter";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "frmAddPrinter";
             ((System.ComponentModel.ISupportInitialize)(this.grid_print_codes)).EndInit();
             this.ResumeLayout(false);
