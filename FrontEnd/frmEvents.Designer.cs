@@ -36,7 +36,7 @@
 			this.Event = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.Qty = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.textQty = new System.Windows.Forms.TextBox();
+			this.txtQty = new System.Windows.Forms.TextBox();
 			this.lblQty = new System.Windows.Forms.Label();
 			this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
 			this.button_AddCharge = new System.Windows.Forms.Button();
@@ -109,14 +109,14 @@
 			this.Qty.MinimumWidth = 8;
 			this.Qty.Name = "Qty";
 			// 
-			// textQty
+			// txtQty
 			// 
-			this.textQty.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F);
-			this.textQty.Location = new System.Drawing.Point(699, 422);
-			this.textQty.Margin = new System.Windows.Forms.Padding(4);
-			this.textQty.Name = "textQty";
-			this.textQty.Size = new System.Drawing.Size(157, 38);
-			this.textQty.TabIndex = 10;
+			this.txtQty.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F);
+			this.txtQty.Location = new System.Drawing.Point(699, 422);
+			this.txtQty.Margin = new System.Windows.Forms.Padding(4);
+			this.txtQty.Name = "txtQty";
+			this.txtQty.Size = new System.Drawing.Size(157, 38);
+			this.txtQty.TabIndex = 10;
 			// 
 			// lblQty
 			// 
@@ -180,7 +180,7 @@
 			this.Controls.Add(this.button_AddCharge);
 			this.Controls.Add(this.dateTimePicker1);
 			this.Controls.Add(this.lblQty);
-			this.Controls.Add(this.textQty);
+			this.Controls.Add(this.txtQty);
 			this.Controls.Add(this.event_dataGridView);
 			this.Controls.Add(this.txtCharge);
 			this.Controls.Add(this.lblTitle);
@@ -203,7 +203,7 @@
         private System.Windows.Forms.TextBox txtCharge;
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.DataGridView event_dataGridView;
-        private System.Windows.Forms.TextBox textQty;
+        private System.Windows.Forms.TextBox txtQty;
         private System.Windows.Forms.Label lblQty;
         private System.Windows.Forms.DataGridViewTextBoxColumn Date;
         private System.Windows.Forms.DataGridViewTextBoxColumn Event;

@@ -14,11 +14,13 @@ namespace SecretCellar
 {
     public partial class frmEvents : ManagedForm
     {
-        private Transaction events = null;
-        public frmEvents(Transaction transaction)
+        private Transaction transaction;
+
+
+        public frmEvents(Transaction transactionFromFrmTransaction)
         {
             InitializeComponent();
-            events = transaction;
+            transaction = transactionFromFrmTransaction;
         }
 
         private void event_dataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e) {
@@ -30,10 +32,10 @@ namespace SecretCellar
         }
 
 		private void button_AddCharge_Click(object sender, EventArgs e) {
-            if (double.TryParse(txtCharge.Text, out double d)) {
-                Item i = Transaction.ConvertInvtoItem(DataAccess.instance.GetItem("EVENT"));
-                i.Price = d;
-                events.Items.Add(i);
+            if (double.TryParse(txtCharge.Text, out double price)) {
+                Item item = Transaction.ConvertInvtoItem(DataAccess.instance.GetItem("EVENT"));
+                item.Price = price;
+                transaction.Items.Add(item);
             }
 
             this.Close();
