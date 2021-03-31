@@ -31,13 +31,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmTransaction));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.DESCRIPTION = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.QTY = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PRICE = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DISCOUNT = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TAX = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BOTTLE_DEPOSIT = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TOTAL = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnPropane = new System.Windows.Forms.Button();
             this.btnCustom = new System.Windows.Forms.Button();
             this.btnShipping = new System.Windows.Forms.Button();
@@ -74,6 +67,14 @@
             this.btnSuspendTransaction = new System.Windows.Forms.Button();
             this.txt_current_cust = new System.Windows.Forms.TextBox();
             this.lbl_current_cust = new System.Windows.Forms.Label();
+            this.DESCRIPTION = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.QTY = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LIST_PRICE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SALE_PRICE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DISCOUNT = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TAX = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BOTTLE_DEPOSIT = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TOTAL = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pb_settings)).BeginInit();
@@ -103,7 +104,8 @@
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.DESCRIPTION,
             this.QTY,
-            this.PRICE,
+            this.LIST_PRICE,
+            this.SALE_PRICE,
             this.DISCOUNT,
             this.TAX,
             this.BOTTLE_DEPOSIT,
@@ -124,68 +126,6 @@
             this.dataGridView1.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dataGridView1_RowsAdded);
             this.dataGridView1.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.dataGridView1_RowsRemoved);
             this.dataGridView1.Click += new System.EventHandler(this.dataGridView1_Click);
-            // 
-            // DESCRIPTION
-            // 
-            this.DESCRIPTION.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.DESCRIPTION.FillWeight = 205.876F;
-            this.DESCRIPTION.HeaderText = "DESCRIPTION";
-            this.DESCRIPTION.MinimumWidth = 12;
-            this.DESCRIPTION.Name = "DESCRIPTION";
-            // 
-            // QTY
-            // 
-            this.QTY.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.QTY.FillWeight = 154.4118F;
-            this.QTY.HeaderText = "QTY";
-            this.QTY.MinimumWidth = 12;
-            this.QTY.Name = "QTY";
-            this.QTY.Width = 150;
-            // 
-            // PRICE
-            // 
-            this.PRICE.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.PRICE.FillWeight = 18.80306F;
-            this.PRICE.HeaderText = "PRICE";
-            this.PRICE.MinimumWidth = 12;
-            this.PRICE.Name = "PRICE";
-            this.PRICE.Width = 120;
-            // 
-            // DISCOUNT
-            // 
-            this.DISCOUNT.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.DISCOUNT.FillWeight = 37.25315F;
-            this.DISCOUNT.HeaderText = "DISCOUNT";
-            this.DISCOUNT.MinimumWidth = 25;
-            this.DISCOUNT.Name = "DISCOUNT";
-            this.DISCOUNT.Width = 120;
-            // 
-            // TAX
-            // 
-            this.TAX.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.TAX.FillWeight = 57.0944F;
-            this.TAX.HeaderText = "TAX";
-            this.TAX.MinimumWidth = 12;
-            this.TAX.Name = "TAX";
-            this.TAX.Width = 150;
-            // 
-            // BOTTLE_DEPOSIT
-            // 
-            this.BOTTLE_DEPOSIT.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.BOTTLE_DEPOSIT.FillWeight = 88.47124F;
-            this.BOTTLE_DEPOSIT.HeaderText = "BOTTLE DEPOSIT";
-            this.BOTTLE_DEPOSIT.MinimumWidth = 12;
-            this.BOTTLE_DEPOSIT.Name = "BOTTLE_DEPOSIT";
-            this.BOTTLE_DEPOSIT.Width = 180;
-            // 
-            // TOTAL
-            // 
-            this.TOTAL.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.TOTAL.FillWeight = 138.0905F;
-            this.TOTAL.HeaderText = "TOTAL";
-            this.TOTAL.MinimumWidth = 12;
-            this.TOTAL.Name = "TOTAL";
-            this.TOTAL.Width = 180;
             // 
             // btnPropane
             // 
@@ -648,6 +588,78 @@
             this.lbl_current_cust.TabIndex = 26;
             this.lbl_current_cust.Text = "Current Customer";
             // 
+            // DESCRIPTION
+            // 
+            this.DESCRIPTION.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.DESCRIPTION.FillWeight = 205.876F;
+            this.DESCRIPTION.HeaderText = "DESCRIPTION";
+            this.DESCRIPTION.MinimumWidth = 12;
+            this.DESCRIPTION.Name = "DESCRIPTION";
+            // 
+            // QTY
+            // 
+            this.QTY.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.QTY.FillWeight = 154.4118F;
+            this.QTY.HeaderText = "QTY";
+            this.QTY.MinimumWidth = 12;
+            this.QTY.Name = "QTY";
+            this.QTY.Width = 150;
+            // 
+            // LIST_PRICE
+            // 
+            this.LIST_PRICE.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.LIST_PRICE.FillWeight = 20F;
+            this.LIST_PRICE.HeaderText = "LIST PRICE";
+            this.LIST_PRICE.MinimumWidth = 12;
+            this.LIST_PRICE.Name = "LIST_PRICE";
+            this.LIST_PRICE.ReadOnly = true;
+            this.LIST_PRICE.Width = 140;
+            // 
+            // SALE_PRICE
+            // 
+            this.SALE_PRICE.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.SALE_PRICE.FillWeight = 18.80306F;
+            this.SALE_PRICE.HeaderText = "SALE PRICE";
+            this.SALE_PRICE.MinimumWidth = 12;
+            this.SALE_PRICE.Name = "SALE_PRICE";
+            this.SALE_PRICE.Width = 120;
+            // 
+            // DISCOUNT
+            // 
+            this.DISCOUNT.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.DISCOUNT.FillWeight = 37.25315F;
+            this.DISCOUNT.HeaderText = "DISCOUNT";
+            this.DISCOUNT.MinimumWidth = 25;
+            this.DISCOUNT.Name = "DISCOUNT";
+            this.DISCOUNT.Width = 120;
+            // 
+            // TAX
+            // 
+            this.TAX.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.TAX.FillWeight = 57.0944F;
+            this.TAX.HeaderText = "TAX";
+            this.TAX.MinimumWidth = 12;
+            this.TAX.Name = "TAX";
+            this.TAX.Width = 150;
+            // 
+            // BOTTLE_DEPOSIT
+            // 
+            this.BOTTLE_DEPOSIT.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.BOTTLE_DEPOSIT.FillWeight = 88.47124F;
+            this.BOTTLE_DEPOSIT.HeaderText = "BOTTLE DEPOSIT";
+            this.BOTTLE_DEPOSIT.MinimumWidth = 12;
+            this.BOTTLE_DEPOSIT.Name = "BOTTLE_DEPOSIT";
+            this.BOTTLE_DEPOSIT.Width = 180;
+            // 
+            // TOTAL
+            // 
+            this.TOTAL.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.TOTAL.FillWeight = 138.0905F;
+            this.TOTAL.HeaderText = "TOTAL";
+            this.TOTAL.MinimumWidth = 12;
+            this.TOTAL.Name = "TOTAL";
+            this.TOTAL.Width = 180;
+            // 
             // frmTransaction
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 16F);
@@ -727,18 +739,19 @@
         private System.Windows.Forms.TextBox txt_itemTotal;
         private System.Windows.Forms.PictureBox pb_settings;
         private System.Windows.Forms.CheckBox caseDiscount;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DESCRIPTION;
-        private System.Windows.Forms.DataGridViewTextBoxColumn QTY;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PRICE;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DISCOUNT;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TAX;
-        private System.Windows.Forms.DataGridViewTextBoxColumn BOTTLE_DEPOSIT;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TOTAL;
 		private System.Windows.Forms.Button btnSuspendedTransactions;
 		private System.Windows.Forms.Button btnSuspendTransaction;
         private System.Windows.Forms.Label lbl_twentyone;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox txt_current_cust;
         private System.Windows.Forms.Label lbl_current_cust;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DESCRIPTION;
+        private System.Windows.Forms.DataGridViewTextBoxColumn QTY;
+        private System.Windows.Forms.DataGridViewTextBoxColumn LIST_PRICE;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SALE_PRICE;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DISCOUNT;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TAX;
+        private System.Windows.Forms.DataGridViewTextBoxColumn BOTTLE_DEPOSIT;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TOTAL;
     }
 }

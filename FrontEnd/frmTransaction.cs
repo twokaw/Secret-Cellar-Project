@@ -133,7 +133,8 @@ namespace SecretCellar
                     // Populate tranaction datagrid row
                     r.Cells["Description"].Value = item.Description;
                     r.Cells["Discount"].Value = item.Discount.ToString("P0");
-                    r.Cells["Price"].Value = (item.Price * (1 - item.Discount)).ToString("C");
+                    r.Cells["List_Price"].Value = item.Price.ToString("C");
+                    r.Cells["Sale_Price"].Value = (item.Price * (1 - item.Discount)).ToString("C");
                     r.Cells["Qty"].Value = item.NumSold;
                     r.Cells["Total"].Value = (item.Price * item.NumSold * (1 - item.Discount)).ToString("C");
                     r.Cells["BOTTLE_DEPOSIT"].Value = (item.NumSold * item.Bottles * .05).ToString("C");
