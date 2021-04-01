@@ -239,7 +239,7 @@ namespace SecretCellar
             DataAccess.instance.DeleteTransaction(transactionId);
 
             transaction = new Transaction();
-            txt_current_cust.Text = "Generic";
+            txt_current_cust.Text = "";
             RefreshDataGrid();
         }
 
