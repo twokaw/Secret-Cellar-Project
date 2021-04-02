@@ -119,8 +119,8 @@ namespace WebApi.Controllers
         /// <param name="barcode"></param>
         /// <param name="inv"></param>
         /// <returns></returns>
-        // PUT: api/Inventory/barcode
-        [HttpPut("{barcode}", Name = "PutDescription")]
+        // PUT: api/Inventory
+        [HttpPut]
         public IActionResult Put([FromBody] Inventory inv)
         {
             long lastID = -1;
