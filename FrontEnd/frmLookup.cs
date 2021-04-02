@@ -31,7 +31,14 @@ namespace SecretCellar
             types = dataAccess.GetInventoryType();
 
             LookupView.DataSource = inventory.
-                Select(x => new { Name = x.Name, Id = x.Id, ItemType = x.ItemType, Qty = x.Qty, Barcode = x.Barcode, Price = x.Price }).
+                Select(x => new { Name = x.Name,
+                    Id = x.Id, ItemType = x.ItemType,
+                    Qty = x.Qty,
+                    Barcode = x.Barcode,
+                    Price = x.Price,
+                    minqty = x.InvMin,
+                    maxqty = x.InvMax,
+                    orderqty = x.OrderQty}).
                 OrderBy(x => x.Name).
                 ToList();
 
@@ -236,7 +243,15 @@ namespace SecretCellar
             LookupView.DataSource = inventory.Where(x =>( x.Name.IndexOf(txtlookup.Text, StringComparison.OrdinalIgnoreCase) >= 0 || x.Barcode.IndexOf(txtlookup.Text, StringComparison.OrdinalIgnoreCase) >=0)
             && (cbxTypeFilter.Text == "" || cbxTypeFilter.Text == x.ItemType) 
             && (cbxSupplyFilter.Text == "" || suppliers.First (s => s.Name ==cbxSupplyFilter.Text).SupplierID == x.SupplierID)).
-               Select(x => new { Name = x.Name, Id = x.Id, ItemType = x.ItemType, Qty = x.Qty, Barcode = x.Barcode, Price = x.Price }).
+               Select(x => new { 
+                   Name = x.Name,
+                   Id = x.Id,
+                   ItemType = x.ItemType,
+                   Qty = x.Qty, Barcode = x.Barcode,
+                   Price = x.Price,
+                   minqty = x.InvMin,
+                   maxqty= x.InvMax,
+                   orderqty = x.OrderQty}).
                OrderBy(x => x.Name).
                ToList();
         }
@@ -371,7 +386,12 @@ namespace SecretCellar
                 LookupView.DataSource = inventory.Where(x => (x.Name.IndexOf(txtlookup.Text, StringComparison.OrdinalIgnoreCase) >= 0 || x.Barcode.IndexOf(txtlookup.Text, StringComparison.OrdinalIgnoreCase) >= 0)
                 && (cbxTypeFilter.Text == "" || cbxTypeFilter.Text == x.ItemType)
                 && (cbxSupplyFilter.Text == "" || suppliers.First(s => s.Name == cbxSupplyFilter.Text).SupplierID == x.SupplierID)).
-                    Select(x => new { Name = x.Name, Id = x.Id, ItemType = x.ItemType, Qty = x.Qty, Barcode = x.Barcode, Price = x.Price }).
+                    Select(x => new { Name = x.Name,
+                        Id = x.Id,
+                        ItemType = x.ItemType,
+                        Qty = x.Qty,
+                        Barcode = x.Barcode,
+                        Price = x.Price }).
                     Where(x => x.Qty != 0).
                     OrderBy(x => x.Name).
                     ToList();
