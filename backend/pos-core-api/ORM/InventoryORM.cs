@@ -309,7 +309,7 @@ namespace pos_core_api.ORM
             return inv.Id;
         }
 
-        public void Delete(int Invid)
+        public void Delete(uint invId)
         {
             try
             {
@@ -317,7 +317,7 @@ namespace pos_core_api.ORM
 
                 string sqlStatementType = "DELETE FROM inventory_description WHERE InventoryID = @id";
                 MySqlCommand cmd = new MySqlCommand(sqlStatementType, db.Connection());
-                cmd.Parameters.Add(new MySqlParameter("id", Invid));
+                cmd.Parameters.Add(new MySqlParameter("id", invId));
                 cmd.ExecuteNonQuery();
             }
             finally

@@ -92,7 +92,7 @@ namespace pos_core_api.ORM
                 string sqlStatement = @"
                     SELECT *
                     FROM v_event 
-                    WHERE Inventorid = @id
+                    WHERE Inventoryid = @id
                 ";
 
                 using MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
@@ -351,13 +351,14 @@ namespace pos_core_api.ORM
             Event outputItem = null;
             while (reader.Read())
             {
-                outputItem = output.FirstOrDefault(x => x.Id == reader.GetUInt32("InvetoryId"));
+                uint id = reader.GetUInt32("InventoryId");
+                outputItem = output.FirstOrDefault(x => x.Id == id);
 
                 if (outputItem == null)
                 {
                     outputItem = new Event
                     {
-                        Id = reader.IsDBNull("InventoryId") ? 0 : reader.GetUInt32("InventoryId"),
+                        Id = id,
                         Name = reader.IsDBNull("name") ? "" : reader.GetString("name"),
                         Barcode = reader.IsDBNull("barcode") ? "" : reader.GetString("barcode"),
                         Price = reader.IsDBNull("retail_price") ? 0.00 : reader.GetDouble("retail_price"),
@@ -385,6 +386,11 @@ namespace pos_core_api.ORM
                 });
             }
             return output;
+        }
+
+        public void Delete(uint invId)
+        {
+            Inv.Delete(invId);
         }
     }
 }
