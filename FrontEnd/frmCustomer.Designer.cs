@@ -57,6 +57,13 @@ namespace SecretCellar
             this.txt_email = new System.Windows.Forms.TextBox();
             this.lbl_wholesale = new System.Windows.Forms.Label();
             this.customer_data_grid = new System.Windows.Forms.DataGridView();
+            this.lbl_customer = new System.Windows.Forms.Label();
+            this.txt_customer = new System.Windows.Forms.TextBox();
+            this.chkbox_wholesale = new System.Windows.Forms.CheckBox();
+            this.btn_add = new System.Windows.Forms.Button();
+            this.btn_cancel = new System.Windows.Forms.Button();
+            this.btn_clear = new System.Windows.Forms.Button();
+            this.txt_phone = new System.Windows.Forms.MaskedTextBox();
             this.customerID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.last_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.first_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -65,24 +72,19 @@ namespace SecretCellar
             this.business_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.isWholesale = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.customer_discount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Credit = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.addr1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.addr2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.city = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.state = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.zip = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lbl_customer = new System.Windows.Forms.Label();
-            this.txt_customer = new System.Windows.Forms.TextBox();
-            this.chkbox_wholesale = new System.Windows.Forms.CheckBox();
-            this.btn_add = new System.Windows.Forms.Button();
-            this.btn_cancel = new System.Windows.Forms.Button();
-            this.btn_clear = new System.Windows.Forms.Button();
-            this.txt_phone = new System.Windows.Forms.MaskedTextBox();
             this.pnl_change_info.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.customer_data_grid)).BeginInit();
             this.SuspendLayout();
             // 
             // pnl_change_info
             // 
+            this.pnl_change_info.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pnl_change_info.Controls.Add(this.txt_phone);
             this.pnl_change_info.Controls.Add(this.button_UpdateCredit);
             this.pnl_change_info.Controls.Add(this.txt_zip);
@@ -110,7 +112,7 @@ namespace SecretCellar
             this.pnl_change_info.Controls.Add(this.lbl_email);
             this.pnl_change_info.Controls.Add(this.txt_email);
             this.pnl_change_info.Controls.Add(this.lbl_wholesale);
-            this.pnl_change_info.Location = new System.Drawing.Point(890, 76);
+            this.pnl_change_info.Location = new System.Drawing.Point(1149, 76);
             this.pnl_change_info.Name = "pnl_change_info";
             this.pnl_change_info.Size = new System.Drawing.Size(448, 480);
             this.pnl_change_info.TabIndex = 0;
@@ -412,19 +414,97 @@ namespace SecretCellar
             this.business_name,
             this.isWholesale,
             this.customer_discount,
+            this.Credit,
             this.addr1,
             this.addr2,
             this.city,
             this.state,
             this.zip});
-            this.customer_data_grid.Location = new System.Drawing.Point(26, 76);
+            this.customer_data_grid.Location = new System.Drawing.Point(14, 76);
             this.customer_data_grid.Name = "customer_data_grid";
             this.customer_data_grid.RowHeadersVisible = false;
             this.customer_data_grid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.customer_data_grid.Size = new System.Drawing.Size(802, 540);
+            this.customer_data_grid.Size = new System.Drawing.Size(1103, 540);
             this.customer_data_grid.TabIndex = 1;
             this.customer_data_grid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.customer_data_grid_CellContentClick);
             this.customer_data_grid.SelectionChanged += new System.EventHandler(this.customergrid_SelectionChanged);
+            // 
+            // lbl_customer
+            // 
+            this.lbl_customer.AutoSize = true;
+            this.lbl_customer.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_customer.Location = new System.Drawing.Point(98, 35);
+            this.lbl_customer.Name = "lbl_customer";
+            this.lbl_customer.Size = new System.Drawing.Size(122, 17);
+            this.lbl_customer.TabIndex = 2;
+            this.lbl_customer.Text = "Customer Name";
+            // 
+            // txt_customer
+            // 
+            this.txt_customer.Location = new System.Drawing.Point(243, 35);
+            this.txt_customer.Name = "txt_customer";
+            this.txt_customer.Size = new System.Drawing.Size(248, 20);
+            this.txt_customer.TabIndex = 1;
+            this.txt_customer.TextChanged += new System.EventHandler(this.txt_customer_TextChanged);
+            // 
+            // chkbox_wholesale
+            // 
+            this.chkbox_wholesale.AutoSize = true;
+            this.chkbox_wholesale.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkbox_wholesale.Location = new System.Drawing.Point(659, 36);
+            this.chkbox_wholesale.Name = "chkbox_wholesale";
+            this.chkbox_wholesale.Size = new System.Drawing.Size(213, 21);
+            this.chkbox_wholesale.TabIndex = 4;
+            this.chkbox_wholesale.Text = "Wholesale Customer Only";
+            this.chkbox_wholesale.UseVisualStyleBackColor = true;
+            this.chkbox_wholesale.CheckedChanged += new System.EventHandler(this.chkbox_wholesale_CheckedChanged);
+            // 
+            // btn_add
+            // 
+            this.btn_add.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_add.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_add.Location = new System.Drawing.Point(1278, 592);
+            this.btn_add.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btn_add.Name = "btn_add";
+            this.btn_add.Size = new System.Drawing.Size(217, 37);
+            this.btn_add.TabIndex = 16;
+            this.btn_add.Text = "Set Transaction Customer";
+            this.btn_add.UseVisualStyleBackColor = true;
+            this.btn_add.Click += new System.EventHandler(this.btn_add_Click);
+            // 
+            // btn_cancel
+            // 
+            this.btn_cancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_cancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_cancel.Location = new System.Drawing.Point(1547, 592);
+            this.btn_cancel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btn_cancel.Name = "btn_cancel";
+            this.btn_cancel.Size = new System.Drawing.Size(111, 37);
+            this.btn_cancel.TabIndex = 17;
+            this.btn_cancel.Text = "Cancel";
+            this.btn_cancel.UseVisualStyleBackColor = true;
+            this.btn_cancel.Click += new System.EventHandler(this.btn_cancel_Click);
+            // 
+            // btn_clear
+            // 
+            this.btn_clear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_clear.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_clear.Location = new System.Drawing.Point(1271, 27);
+            this.btn_clear.Margin = new System.Windows.Forms.Padding(4);
+            this.btn_clear.Name = "btn_clear";
+            this.btn_clear.Size = new System.Drawing.Size(320, 37);
+            this.btn_clear.TabIndex = 48;
+            this.btn_clear.Text = "Clear Customer Info";
+            this.btn_clear.UseVisualStyleBackColor = true;
+            this.btn_clear.Click += new System.EventHandler(this.btn_clear_Click);
+            // 
+            // txt_phone
+            // 
+            this.txt_phone.Location = new System.Drawing.Point(140, 86);
+            this.txt_phone.Mask = "000-000-0000";
+            this.txt_phone.Name = "txt_phone";
+            this.txt_phone.Size = new System.Drawing.Size(302, 20);
+            this.txt_phone.TabIndex = 49;
             // 
             // customerID
             // 
@@ -475,6 +555,13 @@ namespace SecretCellar
             this.customer_discount.HeaderText = "Customer Discount";
             this.customer_discount.Name = "customer_discount";
             // 
+            // Credit
+            // 
+            this.Credit.DataPropertyName = "credit";
+            this.Credit.HeaderText = "Credit Amount";
+            this.Credit.Name = "Credit";
+            this.Credit.ReadOnly = true;
+            // 
             // addr1
             // 
             this.addr1.DataPropertyName = "addr1";
@@ -505,89 +592,12 @@ namespace SecretCellar
             this.zip.HeaderText = "Zip Code";
             this.zip.Name = "zip";
             // 
-            // lbl_customer
-            // 
-            this.lbl_customer.AutoSize = true;
-            this.lbl_customer.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_customer.Location = new System.Drawing.Point(98, 35);
-            this.lbl_customer.Name = "lbl_customer";
-            this.lbl_customer.Size = new System.Drawing.Size(122, 17);
-            this.lbl_customer.TabIndex = 2;
-            this.lbl_customer.Text = "Customer Name";
-            // 
-            // txt_customer
-            // 
-            this.txt_customer.Location = new System.Drawing.Point(243, 35);
-            this.txt_customer.Name = "txt_customer";
-            this.txt_customer.Size = new System.Drawing.Size(248, 20);
-            this.txt_customer.TabIndex = 1;
-            this.txt_customer.TextChanged += new System.EventHandler(this.txt_customer_TextChanged);
-            // 
-            // chkbox_wholesale
-            // 
-            this.chkbox_wholesale.AutoSize = true;
-            this.chkbox_wholesale.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkbox_wholesale.Location = new System.Drawing.Point(659, 36);
-            this.chkbox_wholesale.Name = "chkbox_wholesale";
-            this.chkbox_wholesale.Size = new System.Drawing.Size(213, 21);
-            this.chkbox_wholesale.TabIndex = 4;
-            this.chkbox_wholesale.Text = "Wholesale Customer Only";
-            this.chkbox_wholesale.UseVisualStyleBackColor = true;
-            this.chkbox_wholesale.CheckedChanged += new System.EventHandler(this.chkbox_wholesale_CheckedChanged);
-            // 
-            // btn_add
-            // 
-            this.btn_add.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_add.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_add.Location = new System.Drawing.Point(944, 592);
-            this.btn_add.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btn_add.Name = "btn_add";
-            this.btn_add.Size = new System.Drawing.Size(217, 37);
-            this.btn_add.TabIndex = 16;
-            this.btn_add.Text = "Set Transaction Customer";
-            this.btn_add.UseVisualStyleBackColor = true;
-            this.btn_add.Click += new System.EventHandler(this.btn_add_Click);
-            // 
-            // btn_cancel
-            // 
-            this.btn_cancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_cancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_cancel.Location = new System.Drawing.Point(1213, 592);
-            this.btn_cancel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btn_cancel.Name = "btn_cancel";
-            this.btn_cancel.Size = new System.Drawing.Size(111, 37);
-            this.btn_cancel.TabIndex = 17;
-            this.btn_cancel.Text = "Cancel";
-            this.btn_cancel.UseVisualStyleBackColor = true;
-            this.btn_cancel.Click += new System.EventHandler(this.btn_cancel_Click);
-            // 
-            // btn_clear
-            // 
-            this.btn_clear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btn_clear.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_clear.Location = new System.Drawing.Point(1037, 27);
-            this.btn_clear.Margin = new System.Windows.Forms.Padding(4);
-            this.btn_clear.Name = "btn_clear";
-            this.btn_clear.Size = new System.Drawing.Size(166, 37);
-            this.btn_clear.TabIndex = 48;
-            this.btn_clear.Text = "Clear Customer Info";
-            this.btn_clear.UseVisualStyleBackColor = true;
-            this.btn_clear.Click += new System.EventHandler(this.btn_clear_Click);
-            // 
-            // txt_phone
-            // 
-            this.txt_phone.Location = new System.Drawing.Point(140, 86);
-            this.txt_phone.Mask = "000-000-0000";
-            this.txt_phone.Name = "txt_phone";
-            this.txt_phone.Size = new System.Drawing.Size(302, 20);
-            this.txt_phone.TabIndex = 49;
-            // 
             // frmCustomer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.ClientSize = new System.Drawing.Size(1350, 729);
+            this.ClientSize = new System.Drawing.Size(1684, 729);
             this.Controls.Add(this.btn_clear);
             this.Controls.Add(this.btn_add);
             this.Controls.Add(this.btn_cancel);
@@ -615,19 +625,6 @@ namespace SecretCellar
         private System.Windows.Forms.Label lbl_customer;
         private System.Windows.Forms.TextBox txt_customer;
         private System.Windows.Forms.CheckBox chkbox_wholesale;
-        private System.Windows.Forms.DataGridViewTextBoxColumn customerID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn last_name;
-        private System.Windows.Forms.DataGridViewTextBoxColumn first_name;
-        private System.Windows.Forms.DataGridViewTextBoxColumn phone;
-        private System.Windows.Forms.DataGridViewTextBoxColumn email;
-        private System.Windows.Forms.DataGridViewTextBoxColumn business_name;
-        private System.Windows.Forms.DataGridViewTextBoxColumn isWholesale;
-        private System.Windows.Forms.DataGridViewTextBoxColumn customer_discount;
-        private System.Windows.Forms.DataGridViewTextBoxColumn addr1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn addr2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn city;
-        private System.Windows.Forms.DataGridViewTextBoxColumn state;
-        private System.Windows.Forms.DataGridViewTextBoxColumn zip;
         private System.Windows.Forms.TextBox txt_addr1;
         private System.Windows.Forms.Label lbl_addr1;
         private System.Windows.Forms.TextBox txt_company;
@@ -658,5 +655,19 @@ namespace SecretCellar
         private System.Windows.Forms.Button btn_clear;
 		private System.Windows.Forms.Button button_UpdateCredit;
         private System.Windows.Forms.MaskedTextBox txt_phone;
+        private System.Windows.Forms.DataGridViewTextBoxColumn customerID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn last_name;
+        private System.Windows.Forms.DataGridViewTextBoxColumn first_name;
+        private System.Windows.Forms.DataGridViewTextBoxColumn phone;
+        private System.Windows.Forms.DataGridViewTextBoxColumn email;
+        private System.Windows.Forms.DataGridViewTextBoxColumn business_name;
+        private System.Windows.Forms.DataGridViewTextBoxColumn isWholesale;
+        private System.Windows.Forms.DataGridViewTextBoxColumn customer_discount;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Credit;
+        private System.Windows.Forms.DataGridViewTextBoxColumn addr1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn addr2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn city;
+        private System.Windows.Forms.DataGridViewTextBoxColumn state;
+        private System.Windows.Forms.DataGridViewTextBoxColumn zip;
     }
 }
