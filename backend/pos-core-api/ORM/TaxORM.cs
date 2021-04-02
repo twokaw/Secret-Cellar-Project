@@ -73,7 +73,7 @@ namespace pos_core_api.ORM
             {
                 string sqlStatement = @"
                     UPDATE v_tax
-                        bottle_deposit = @bottle_deposit, 
+                    SET bottle_deposit = @bottle_deposit, 
                         sales_tax = @sales_tax, 
                         local_sales_tax = @local_sales_tax, 
                         tax_name = @Tax_name
