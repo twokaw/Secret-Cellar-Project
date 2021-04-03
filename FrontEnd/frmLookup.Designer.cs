@@ -33,6 +33,15 @@
             this.txtlookup = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.LookupView = new System.Windows.Forms.DataGridView();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Class = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Barcode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Qty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.minqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.orderqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.maxqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btn_cancel = new System.Windows.Forms.Button();
             this.btn_add = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -64,15 +73,12 @@
             this.txt_markup = new System.Windows.Forms.TextBox();
             this.checkListBox_Discounts = new System.Windows.Forms.CheckedListBox();
             this.label_CaseDiscount = new System.Windows.Forms.Label();
-            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Class = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Barcode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Qty = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.minqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.orderqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.maxqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lbl_min = new System.Windows.Forms.Label();
+            this.txt_min_qty = new System.Windows.Forms.TextBox();
+            this.lbl_order_qty = new System.Windows.Forms.Label();
+            this.txt_order_qty = new System.Windows.Forms.TextBox();
+            this.lbl_max_qty = new System.Windows.Forms.Label();
+            this.txt_max_qty = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.LookupView)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -127,6 +133,92 @@
             this.LookupView.TabIndex = 2;
             this.LookupView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.LookupView_CellContentClick);
             this.LookupView.SelectionChanged += new System.EventHandler(this.LookupView_SelectionChanged);
+            // 
+            // Id
+            // 
+            this.Id.DataPropertyName = "Id";
+            this.Id.HeaderText = "ItemId";
+            this.Id.MinimumWidth = 8;
+            this.Id.Name = "Id";
+            this.Id.Visible = false;
+            // 
+            // Description
+            // 
+            this.Description.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Description.DataPropertyName = "Name";
+            this.Description.HeaderText = "Name";
+            this.Description.MinimumWidth = 8;
+            this.Description.Name = "Description";
+            this.Description.Width = 74;
+            // 
+            // Class
+            // 
+            this.Class.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Class.DataPropertyName = "ItemType";
+            this.Class.HeaderText = "Class";
+            this.Class.MinimumWidth = 8;
+            this.Class.Name = "Class";
+            this.Class.Width = 72;
+            // 
+            // Barcode
+            // 
+            this.Barcode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Barcode.DataPropertyName = "Barcode";
+            this.Barcode.HeaderText = "Barcode";
+            this.Barcode.MinimumWidth = 8;
+            this.Barcode.Name = "Barcode";
+            this.Barcode.Width = 92;
+            // 
+            // Qty
+            // 
+            this.Qty.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Qty.DataPropertyName = "Qty";
+            this.Qty.HeaderText = "Qty";
+            this.Qty.MinimumWidth = 8;
+            this.Qty.Name = "Qty";
+            this.Qty.Width = 56;
+            // 
+            // Price
+            // 
+            this.Price.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Price.DataPropertyName = "Price";
+            dataGridViewCellStyle1.Format = "C2";
+            dataGridViewCellStyle1.NullValue = null;
+            this.Price.DefaultCellStyle = dataGridViewCellStyle1;
+            this.Price.HeaderText = "Price";
+            this.Price.MinimumWidth = 8;
+            this.Price.Name = "Price";
+            this.Price.Width = 69;
+            // 
+            // minqty
+            // 
+            this.minqty.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.minqty.DataPropertyName = "minqty";
+            this.minqty.HeaderText = "Min Qty";
+            this.minqty.MinimumWidth = 8;
+            this.minqty.Name = "minqty";
+            this.minqty.ReadOnly = true;
+            this.minqty.Width = 84;
+            // 
+            // orderqty
+            // 
+            this.orderqty.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.orderqty.DataPropertyName = "orderqty";
+            this.orderqty.HeaderText = "Order Qty";
+            this.orderqty.MinimumWidth = 8;
+            this.orderqty.Name = "orderqty";
+            this.orderqty.ReadOnly = true;
+            this.orderqty.Width = 99;
+            // 
+            // maxqty
+            // 
+            this.maxqty.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.maxqty.DataPropertyName = "maxqty";
+            this.maxqty.HeaderText = "Max Qty";
+            this.maxqty.MinimumWidth = 8;
+            this.maxqty.Name = "maxqty";
+            this.maxqty.ReadOnly = true;
+            this.maxqty.Width = 88;
             // 
             // btn_cancel
             // 
@@ -279,7 +371,7 @@
             // 
             this.btn_update.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_update.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_update.Location = new System.Drawing.Point(241, 401);
+            this.btn_update.Location = new System.Drawing.Point(242, 482);
             this.btn_update.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_update.Name = "btn_update";
             this.btn_update.Size = new System.Drawing.Size(110, 37);
@@ -387,7 +479,7 @@
             // 
             this.btn_new.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btn_new.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_new.Location = new System.Drawing.Point(25, 401);
+            this.btn_new.Location = new System.Drawing.Point(25, 482);
             this.btn_new.Margin = new System.Windows.Forms.Padding(4);
             this.btn_new.Name = "btn_new";
             this.btn_new.Size = new System.Drawing.Size(129, 37);
@@ -421,6 +513,12 @@
             this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.panel2.Controls.Add(this.lbl_max_qty);
+            this.panel2.Controls.Add(this.lbl_order_qty);
+            this.panel2.Controls.Add(this.txt_max_qty);
+            this.panel2.Controls.Add(this.txt_order_qty);
+            this.panel2.Controls.Add(this.lbl_min);
+            this.panel2.Controls.Add(this.txt_min_qty);
             this.panel2.Controls.Add(this.lbl_markup);
             this.panel2.Controls.Add(this.txt_markup);
             this.panel2.Controls.Add(this.checkListBox_Discounts);
@@ -446,7 +544,7 @@
             this.panel2.Location = new System.Drawing.Point(1016, 66);
             this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(363, 467);
+            this.panel2.Size = new System.Drawing.Size(363, 540);
             this.panel2.TabIndex = 8;
             this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
@@ -474,15 +572,15 @@
             | System.Windows.Forms.AnchorStyles.Left)));
             this.checkListBox_Discounts.Enabled = false;
             this.checkListBox_Discounts.FormattingEnabled = true;
-            this.checkListBox_Discounts.Location = new System.Drawing.Point(128, 292);
+            this.checkListBox_Discounts.Location = new System.Drawing.Point(128, 382);
             this.checkListBox_Discounts.MaximumSize = new System.Drawing.Size(250, 350);
             this.checkListBox_Discounts.Name = "checkListBox_Discounts";
-            this.checkListBox_Discounts.Size = new System.Drawing.Size(224, 72);
+            this.checkListBox_Discounts.Size = new System.Drawing.Size(224, 89);
             this.checkListBox_Discounts.TabIndex = 20;
             // 
             // label_CaseDiscount
             // 
-            this.label_CaseDiscount.Location = new System.Drawing.Point(22, 292);
+            this.label_CaseDiscount.Location = new System.Drawing.Point(19, 378);
             this.label_CaseDiscount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_CaseDiscount.Name = "label_CaseDiscount";
             this.label_CaseDiscount.Size = new System.Drawing.Size(99, 25);
@@ -490,91 +588,59 @@
             this.label_CaseDiscount.Text = "Discounts:";
             this.label_CaseDiscount.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // Id
+            // lbl_min
             // 
-            this.Id.DataPropertyName = "Id";
-            this.Id.HeaderText = "ItemId";
-            this.Id.MinimumWidth = 8;
-            this.Id.Name = "Id";
-            this.Id.Visible = false;
+            this.lbl_min.Location = new System.Drawing.Point(22, 293);
+            this.lbl_min.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_min.Name = "lbl_min";
+            this.lbl_min.Size = new System.Drawing.Size(96, 25);
+            this.lbl_min.TabIndex = 24;
+            this.lbl_min.Text = "Min Qty:";
+            this.lbl_min.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // Description
+            // txt_min_qty
             // 
-            this.Description.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Description.DataPropertyName = "Name";
-            this.Description.HeaderText = "Name";
-            this.Description.MinimumWidth = 8;
-            this.Description.Name = "Description";
-            this.Description.Width = 74;
+            this.txt_min_qty.Location = new System.Drawing.Point(126, 293);
+            this.txt_min_qty.Margin = new System.Windows.Forms.Padding(4);
+            this.txt_min_qty.Name = "txt_min_qty";
+            this.txt_min_qty.Size = new System.Drawing.Size(224, 22);
+            this.txt_min_qty.TabIndex = 23;
             // 
-            // Class
+            // lbl_order_qty
             // 
-            this.Class.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Class.DataPropertyName = "ItemType";
-            this.Class.HeaderText = "Class";
-            this.Class.MinimumWidth = 8;
-            this.Class.Name = "Class";
-            this.Class.Width = 72;
+            this.lbl_order_qty.Location = new System.Drawing.Point(22, 323);
+            this.lbl_order_qty.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_order_qty.Name = "lbl_order_qty";
+            this.lbl_order_qty.Size = new System.Drawing.Size(96, 25);
+            this.lbl_order_qty.TabIndex = 26;
+            this.lbl_order_qty.Text = "Order Qty:";
+            this.lbl_order_qty.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // Barcode
+            // txt_order_qty
             // 
-            this.Barcode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Barcode.DataPropertyName = "Barcode";
-            this.Barcode.HeaderText = "Barcode";
-            this.Barcode.MinimumWidth = 8;
-            this.Barcode.Name = "Barcode";
-            this.Barcode.Width = 92;
+            this.txt_order_qty.Location = new System.Drawing.Point(126, 323);
+            this.txt_order_qty.Margin = new System.Windows.Forms.Padding(4);
+            this.txt_order_qty.Name = "txt_order_qty";
+            this.txt_order_qty.Size = new System.Drawing.Size(224, 22);
+            this.txt_order_qty.TabIndex = 25;
             // 
-            // Qty
+            // lbl_max_qty
             // 
-            this.Qty.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Qty.DataPropertyName = "Qty";
-            this.Qty.HeaderText = "Qty";
-            this.Qty.MinimumWidth = 8;
-            this.Qty.Name = "Qty";
-            this.Qty.Width = 56;
+            this.lbl_max_qty.Location = new System.Drawing.Point(22, 353);
+            this.lbl_max_qty.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_max_qty.Name = "lbl_max_qty";
+            this.lbl_max_qty.Size = new System.Drawing.Size(96, 25);
+            this.lbl_max_qty.TabIndex = 26;
+            this.lbl_max_qty.Text = "Max Qty:";
+            this.lbl_max_qty.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // Price
+            // txt_max_qty
             // 
-            this.Price.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Price.DataPropertyName = "Price";
-            dataGridViewCellStyle1.Format = "C2";
-            dataGridViewCellStyle1.NullValue = null;
-            this.Price.DefaultCellStyle = dataGridViewCellStyle1;
-            this.Price.HeaderText = "Price";
-            this.Price.MinimumWidth = 8;
-            this.Price.Name = "Price";
-            this.Price.Width = 69;
-            // 
-            // minqty
-            // 
-            this.minqty.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.minqty.DataPropertyName = "minqty";
-            this.minqty.HeaderText = "Min Qty";
-            this.minqty.MinimumWidth = 8;
-            this.minqty.Name = "minqty";
-            this.minqty.ReadOnly = true;
-            this.minqty.Width = 84;
-            // 
-            // orderqty
-            // 
-            this.orderqty.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.orderqty.DataPropertyName = "orderqty";
-            this.orderqty.HeaderText = "Order Qty";
-            this.orderqty.MinimumWidth = 8;
-            this.orderqty.Name = "orderqty";
-            this.orderqty.ReadOnly = true;
-            this.orderqty.Width = 99;
-            // 
-            // maxqty
-            // 
-            this.maxqty.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.maxqty.DataPropertyName = "maxqty";
-            this.maxqty.HeaderText = "Max Qty";
-            this.maxqty.MinimumWidth = 8;
-            this.maxqty.Name = "maxqty";
-            this.maxqty.ReadOnly = true;
-            this.maxqty.Width = 88;
+            this.txt_max_qty.Location = new System.Drawing.Point(126, 353);
+            this.txt_max_qty.Margin = new System.Windows.Forms.Padding(4);
+            this.txt_max_qty.Name = "txt_max_qty";
+            this.txt_max_qty.Size = new System.Drawing.Size(224, 22);
+            this.txt_max_qty.TabIndex = 25;
             // 
             // frmLookup
             // 
@@ -656,5 +722,11 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn minqty;
         private System.Windows.Forms.DataGridViewTextBoxColumn orderqty;
         private System.Windows.Forms.DataGridViewTextBoxColumn maxqty;
+        private System.Windows.Forms.Label lbl_max_qty;
+        private System.Windows.Forms.Label lbl_order_qty;
+        private System.Windows.Forms.TextBox txt_max_qty;
+        private System.Windows.Forms.TextBox txt_order_qty;
+        private System.Windows.Forms.Label lbl_min;
+        private System.Windows.Forms.TextBox txt_min_qty;
     }
 }
