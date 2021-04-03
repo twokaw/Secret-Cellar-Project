@@ -31,7 +31,14 @@ namespace SecretCellar
             types = dataAccess.GetInventoryType();
 
             LookupView.DataSource = inventory.
-                Select(x => new { Name = x.Name, Id = x.Id, ItemType = x.ItemType, Qty = x.Qty, Barcode = x.Barcode, Price = x.Price }).
+                Select(x => new { Name = x.Name,
+                    Id = x.Id, ItemType = x.ItemType,
+                    Qty = x.Qty,
+                    Barcode = x.Barcode,
+                    Price = x.Price,
+                    minqty = x.InvMin,
+                    maxqty = x.InvMax,
+                    orderqty = x.OrderQty}).
                 OrderBy(x => x.Name).
                 ToList();
 
@@ -113,6 +120,9 @@ namespace SecretCellar
                 txt_net_price.Text = i.SupplierPrice.ToString();
                 txtProd_Qty.Text = i.Bottles.ToString();
                 txt_markup.Text = ((i.Price - i.SupplierPrice) / i.SupplierPrice).ToString("P");
+                txt_min_qty.Text = i.InvMin.ToString();
+                txt_max_qty.Text = i.InvMax.ToString();
+                txt_order_qty.Text = i.OrderQty.ToString();
                 
 
                 
@@ -140,8 +150,8 @@ namespace SecretCellar
             {
                 Inventory i = inventory.First(x => x.Id == uint.Parse(LookupView.SelectedRows[0].Cells["id"].Value.ToString()));
 
-                i.Name = txtName.Text;
-                i.Barcode = txtBarcode.Text;
+                i.Name = txtName.Text.Trim();
+                i.Barcode = txtBarcode.Text.Trim();
 
 
                 if (!uint.TryParse(txt_qty.Text, out uint qty))
@@ -223,6 +233,36 @@ namespace SecretCellar
                     return;
                 }
 
+                if (uint.TryParse(txtPrice.Text.Trim(), out uint min)) i.InvMin = min;
+                else
+                {
+                    txt_min_qty.Focus();
+                    txtPrice.SelectAll();
+                    MessageBox.Show("Invalid Minimum Quantity");
+                    return;
+                }
+
+                if (uint.TryParse(txtPrice.Text.Trim(), out uint max)) i.InvMax = max;
+                else
+                {
+                    txt_max_qty.Focus();
+                    txtPrice.SelectAll();
+                    MessageBox.Show("Invalid Maximum Quantity");
+                    return;
+                }
+
+                if (uint.TryParse(txtPrice.Text.Trim(), out uint order)) i.OrderQty = order;
+                else
+                {
+                    txt_min_qty.Focus();
+                    txtPrice.SelectAll();
+                    MessageBox.Show("Invalid Order Quantity");
+                    return;
+                }
+                //i.InvMin = uint.Parse(txt_min_qty.Text.Trim());
+                //i.InvMax = uint.Parse(txt_max_qty.Text.Trim());
+                //i.OrderQty = uint.Parse(txt_order_qty.Text.Trim());
+
                 i.ItemType = cboType.Text;
                 i.TypeID = types.First(x => x.TypeName == cboType.Text).TypeId;
                 i.SupplierID = suppliers.First(x => x.Name == cbo_Supplier.Text).SupplierID;
@@ -236,7 +276,15 @@ namespace SecretCellar
             LookupView.DataSource = inventory.Where(x =>( x.Name.IndexOf(txtlookup.Text, StringComparison.OrdinalIgnoreCase) >= 0 || x.Barcode.IndexOf(txtlookup.Text, StringComparison.OrdinalIgnoreCase) >=0)
             && (cbxTypeFilter.Text == "" || cbxTypeFilter.Text == x.ItemType) 
             && (cbxSupplyFilter.Text == "" || suppliers.First (s => s.Name ==cbxSupplyFilter.Text).SupplierID == x.SupplierID)).
-               Select(x => new { Name = x.Name, Id = x.Id, ItemType = x.ItemType, Qty = x.Qty, Barcode = x.Barcode, Price = x.Price }).
+               Select(x => new { 
+                   Name = x.Name,
+                   Id = x.Id,
+                   ItemType = x.ItemType,
+                   Qty = x.Qty, Barcode = x.Barcode,
+                   Price = x.Price,
+                   minqty = x.InvMin,
+                   maxqty= x.InvMax,
+                   orderqty = x.OrderQty}).
                OrderBy(x => x.Name).
                ToList();
         }
@@ -267,8 +315,8 @@ namespace SecretCellar
                     return;
                 }
 
-                i.Name = txtName.Text;
-                i.Barcode = txtBarcode.Text;
+                i.Name = txtName.Text.Trim();
+                i.Barcode = txtBarcode.Text.Trim();
 
                 if (!uint.TryParse(txt_qty.Text, out uint qty))
                 {
@@ -312,6 +360,9 @@ namespace SecretCellar
                 i.ItemType = cboType.Text;
                 i.TypeID = types.First(x => x.TypeName == cboType.Text).TypeId;
                 i.SupplierID = suppliers.First(x => x.Name == cbo_Supplier.Text).SupplierID;
+                i.InvMin = uint.Parse(txt_min_qty.Text.Trim()); 
+                i.InvMax = uint.Parse(txt_max_qty.Text.Trim());
+                i.OrderQty = uint.Parse(txt_order_qty.Text.Trim());
 
                 i.Id = dataAccess.InsertItem(i);
                 inventory.Add(i);
@@ -371,7 +422,12 @@ namespace SecretCellar
                 LookupView.DataSource = inventory.Where(x => (x.Name.IndexOf(txtlookup.Text, StringComparison.OrdinalIgnoreCase) >= 0 || x.Barcode.IndexOf(txtlookup.Text, StringComparison.OrdinalIgnoreCase) >= 0)
                 && (cbxTypeFilter.Text == "" || cbxTypeFilter.Text == x.ItemType)
                 && (cbxSupplyFilter.Text == "" || suppliers.First(s => s.Name == cbxSupplyFilter.Text).SupplierID == x.SupplierID)).
-                    Select(x => new { Name = x.Name, Id = x.Id, ItemType = x.ItemType, Qty = x.Qty, Barcode = x.Barcode, Price = x.Price }).
+                    Select(x => new { Name = x.Name,
+                        Id = x.Id,
+                        ItemType = x.ItemType,
+                        Qty = x.Qty,
+                        Barcode = x.Barcode,
+                        Price = x.Price }).
                     Where(x => x.Qty != 0).
                     OrderBy(x => x.Name).
                     ToList();
