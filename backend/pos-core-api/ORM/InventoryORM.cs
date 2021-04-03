@@ -149,7 +149,10 @@ namespace pos_core_api.ORM
                         IdTax = reader.IsDBNull("idTax") ? 0 : reader.GetUInt32("idTax"),
                         Hidden = reader.IsDBNull("hidden") ? false : reader.GetBoolean("hidden"),
                         SalesTax = reader.IsDBNull("sales_tax") ? 0 : reader.GetDouble("sales_tax"),
-                        LocalSalesTax = reader.IsDBNull("local_sales_tax") ? 0 : reader.GetDouble("local_sales_tax")
+                        LocalSalesTax = reader.IsDBNull("local_sales_tax") ? 0 : reader.GetDouble("local_sales_tax"),
+                        InvMax = reader.IsDBNull("InvMax") ? 0 : reader.GetUInt32("InvMax"),
+                        InvMin = reader.IsDBNull("InvMin") ? 0 : reader.GetUInt32("InvMin"),
+                        OrderQty = reader.IsDBNull("OrderQty") ? 0 : reader.GetUInt32("OrderQty")
                     };
                     output.Add(outputItem);
                 }
@@ -192,9 +195,9 @@ namespace pos_core_api.ORM
                 //Inserting into inventory_description
                 string sql = @"
                     INSERT INTO inventory_description 
-                    (name, supplierID, barcode, retail_price, typeID, bottle_deposit_qty, nontaxable, nontaxable_local) 
+                    (name, supplierID, barcode, retail_price, typeID, bottle_deposit_qty, nontaxable, nontaxable_local, InvMax, InvMin, OrderQty) 
                     VALUES 
-                    (@name, @supplierID, @barcode, @Price, @typeID, @bottles, @nonTaxable, @nonTaxableLocal);
+                    (@name, @supplierID, @barcode, @Price, @typeID, @bottles, @nonTaxable, @nonTaxableLocal, @InvMax, OrderQty);
                 ";
 
                 if (string.IsNullOrWhiteSpace(inv.Barcode))
@@ -213,7 +216,11 @@ namespace pos_core_api.ORM
                 cmd.Parameters.Add(new MySqlParameter("bottles", inv.Bottles));
                 cmd.Parameters.Add(new MySqlParameter("nonTaxable", inv.NonTaxable));
                 cmd.Parameters.Add(new MySqlParameter("nonTaxableLocal", inv.NonTaxableLocal));
+                cmd.Parameters.Add(new MySqlParameter("InvMax", inv.InvMax));
+                cmd.Parameters.Add(new MySqlParameter("InvMin", inv.InvMin));
+                cmd.Parameters.Add(new MySqlParameter("OrderQty", inv.OrderQty));
                 cmd.ExecuteNonQuery();
+
 
                 inv.Id = Convert.ToUInt32(cmd.LastInsertedId);
                 cmd.Dispose();
@@ -268,7 +275,10 @@ namespace pos_core_api.ORM
                         typeID = @typeID, 
                         bottle_deposit_qty = @bottleDepositQty,
                         nontaxable = @nonTaxable, 
-                        nontaxable_local = @nonTaxableLocal 
+                        nontaxable_local = @nonTaxableLocal,
+                        InvMax = @InvMax, 
+                        InvMin = @InvMin, 
+                        OrderQty = @OrderQty
                     WHERE InventoryId = @id;
                 ", db.Connection());
 
@@ -281,16 +291,17 @@ namespace pos_core_api.ORM
                 cmd.Parameters.Add(new MySqlParameter("bottleDepositQty", inv.Bottles));
                 cmd.Parameters.Add(new MySqlParameter("nonTaxable", inv.NonTaxable));
                 cmd.Parameters.Add(new MySqlParameter("nonTaxableLocal", inv.NonTaxableLocal));
+                cmd.Parameters.Add(new MySqlParameter("InvMax", inv.InvMax));
+                cmd.Parameters.Add(new MySqlParameter("InvMin", inv.InvMin));
+                cmd.Parameters.Add(new MySqlParameter("OrderQty", inv.OrderQty));
                 cmd.ExecuteNonQuery();
 
-                //Inserting into inventory_description
-                cmd.ExecuteNonQuery();
                 cmd.Dispose();
 
                 cmd = new MySqlCommand(@"
                    UPDATE inventory_price 
-                      Inventory_Qty  = @qty, 
-                      Supplier_price = @supplier_price
+                   SET    Inventory_Qty  = @qty, 
+                          Supplier_price = @supplier_price
                    WHERE InventoryId = @id;
                 ", db.Connection());
 
