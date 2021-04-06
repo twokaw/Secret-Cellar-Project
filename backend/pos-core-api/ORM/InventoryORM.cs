@@ -23,7 +23,11 @@ namespace pos_core_api.ORM
             {
                 db.OpenConnection();
 
-                string sqlStatement = "SELECT barcode FROM inventory_description WHERE barcode = @barcode";
+                string sqlStatement = @"
+                 SELECT barcode 
+                 FROM inventory_description 
+                 WHERE barcode = @barcode
+                ";
 
                 MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
                 cmd.Parameters.Add(new MySqlParameter("barcode", barcode));
@@ -52,9 +56,9 @@ namespace pos_core_api.ORM
             try
             {
                 string sqlStatement = @"
-                        SELECT *
-                        FROM v_inventory 
-                   ";
+                 SELECT *
+                 FROM v_inventory 
+                ";
                 using MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
                 using MySqlDataReader reader = cmd.ExecuteReader();
                 output = fetchInventory(reader);
@@ -76,9 +80,9 @@ namespace pos_core_api.ORM
                 db.OpenConnection();
 
                 string sqlStatement = @"
-                    SELECT *
-                    FROM v_inventory 
-                    WHERE Inventoryid = @id
+                  SELECT *
+                  FROM v_inventory 
+                  WHERE Inventoryid = @id
                 ";
 
                 using MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
@@ -103,9 +107,9 @@ namespace pos_core_api.ORM
                 db.OpenConnection();
 
                 string sqlStatement = @"
-                    SELECT *
-                    FROM v_inventory 
-                    WHERE barcode = @bar
+                 SELECT *
+                 FROM v_inventory 
+                 WHERE barcode = @bar
                 ";
 
                 using MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
@@ -195,9 +199,9 @@ namespace pos_core_api.ORM
                 //Inserting into inventory_description
                 string sql = @"
                     INSERT INTO inventory_description 
-                    (name, supplierID, barcode, retail_price, typeID, bottle_deposit_qty, nontaxable, nontaxable_local, InvMax, InvMin, OrderQty) 
+                    (name, supplierID, barcode, retail_price, typeID, bottle_deposit_qty, nontaxable, nontaxable_local, InvMax, InvMin, OrderQty, Hidden) 
                     VALUES 
-                    (@name, @supplierID, @barcode, @Price, @typeID, @bottles, @nonTaxable, @nonTaxableLocal, @InvMax, OrderQty);
+                    (@name, @supplierID, @barcode, @Price, @typeID, @bottles, @nonTaxable, @nonTaxableLocal, @InvMax, OrderQty, @hidden);
                 ";
 
                 if (string.IsNullOrWhiteSpace(inv.Barcode))
@@ -219,12 +223,11 @@ namespace pos_core_api.ORM
                 cmd.Parameters.Add(new MySqlParameter("InvMax", inv.InvMax));
                 cmd.Parameters.Add(new MySqlParameter("InvMin", inv.InvMin));
                 cmd.Parameters.Add(new MySqlParameter("OrderQty", inv.OrderQty));
+                cmd.Parameters.Add(new MySqlParameter("Hidden", inv.Hidden));
                 cmd.ExecuteNonQuery();
-
 
                 inv.Id = Convert.ToUInt32(cmd.LastInsertedId);
                 cmd.Dispose();
-
 
                 //Inserting into inventory_description
                 sql = @"
@@ -278,7 +281,8 @@ namespace pos_core_api.ORM
                         nontaxable_local = @nonTaxableLocal,
                         InvMax = @InvMax, 
                         InvMin = @InvMin, 
-                        OrderQty = @OrderQty
+                        OrderQty = @OrderQty, 
+                        Hidden = @Hidden
                     WHERE InventoryId = @id;
                 ", db.Connection());
 
@@ -294,6 +298,7 @@ namespace pos_core_api.ORM
                 cmd.Parameters.Add(new MySqlParameter("InvMax", inv.InvMax));
                 cmd.Parameters.Add(new MySqlParameter("InvMin", inv.InvMin));
                 cmd.Parameters.Add(new MySqlParameter("OrderQty", inv.OrderQty));
+                cmd.Parameters.Add(new MySqlParameter("Hidden", inv.Hidden));
                 cmd.ExecuteNonQuery();
 
                 cmd.Dispose();
@@ -326,7 +331,11 @@ namespace pos_core_api.ORM
             {
                 db.OpenConnection();
 
-                string sqlStatementType = "DELETE FROM inventory_description WHERE InventoryID = @id";
+                string sqlStatementType = @"
+                 DELETE FROM inventory_description 
+                 WHERE InventoryID = @id
+                ";
+
                 MySqlCommand cmd = new MySqlCommand(sqlStatementType, db.Connection());
                 cmd.Parameters.Add(new MySqlParameter("id", invId));
                 cmd.ExecuteNonQuery();
@@ -341,7 +350,8 @@ namespace pos_core_api.ORM
         {
             //Inserting into inventory_description
             string sql = @"                   
-                DELETE FROM Discount_Inventory WHERE InventoryID = @InventoryID;
+                DELETE FROM Discount_Inventory 
+                WHERE InventoryID = @InventoryID;
             ";
 
             inv.Discounts.ForEach(x => sql += @$"                   
