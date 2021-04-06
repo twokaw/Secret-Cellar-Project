@@ -487,5 +487,22 @@ namespace SecretCellar
                 refresh();
             }
         }
+
+        private void btn_clear_info_Click(object sender, EventArgs e)
+        {
+            txtName.Text = "";
+            cboType.SelectedIndex = 1;
+            txtBarcode.Text = "";
+            cbo_Supplier.SelectedIndex = 1;
+            txt_qty.Text = "";
+            txtPrice.Text = "";
+            txt_net_price.Text = "";
+            txtProd_Qty.Text = "";
+            txt_min_qty.Text = "";
+            txt_order_qty.Text = "";
+            txt_max_qty.Text = "";
+            chk_hide_item.Checked = false;
+            txtName.Focus();
+        }
     }
 }

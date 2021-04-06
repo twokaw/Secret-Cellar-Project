@@ -288,7 +288,7 @@
             this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDelete.Location = new System.Drawing.Point(720, 169);
-            this.btnDelete.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(4);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(135, 70);
             this.btnDelete.TabIndex = 35;
@@ -329,6 +329,7 @@
             this.txt_credit_amount.Location = new System.Drawing.Point(544, 58);
             this.txt_credit_amount.Margin = new System.Windows.Forms.Padding(2);
             this.txt_credit_amount.Name = "txt_credit_amount";
+            this.txt_credit_amount.ReadOnly = true;
             this.txt_credit_amount.Size = new System.Drawing.Size(120, 29);
             this.txt_credit_amount.TabIndex = 37;
             // 
