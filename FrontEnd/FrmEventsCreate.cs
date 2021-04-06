@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Shared;
+
 
 namespace SecretCellar {
 	public partial class FrmEventsCreate : Form {
@@ -24,6 +26,15 @@ namespace SecretCellar {
                 cmd.Parameters.Add(new MySqlParameter("preorder", evnt.PreOrder));
                 cmd.Parameters.Add(new MySqlParameter("atDoor", evnt.AtDoor));
 			 */
+		}
+
+		private void button_CloseWindow_Click(object sender, EventArgs e) {
+			this.Close();
+		}
+
+		private void button_CreateEvent_Click(object sender, EventArgs e) {
+			Event newEvent = new Event();
+			
 		}
 	}
 }

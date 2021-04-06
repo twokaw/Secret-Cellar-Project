@@ -193,7 +193,7 @@
 			this.button_CreateEvent.Size = new System.Drawing.Size(180, 55);
 			this.button_CreateEvent.TabIndex = 17;
 			this.button_CreateEvent.TabStop = false;
-			this.button_CreateEvent.Text = "CREATE EVENT";
+			this.button_CreateEvent.Text = "CREATE NEW EVENT";
 			this.button_CreateEvent.UseVisualStyleBackColor = true;
 			this.button_CreateEvent.Click += new System.EventHandler(this.button_CreateEvent_Click);
 			// 
