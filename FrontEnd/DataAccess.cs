@@ -54,7 +54,7 @@ namespace SecretCellar
         public uint UpdateItem(Inventory item)
         {
             Response resp = null;
-            string result = web.DataPut($"api/Inventory/{item.Id}", item, resp);
+            string result = web.DataPut($"api/Inventory", item, resp);
 
             if (uint.TryParse(result, out uint id))
                 return id;
