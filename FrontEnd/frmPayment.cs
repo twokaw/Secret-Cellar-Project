@@ -16,6 +16,12 @@ namespace SecretCellar
 
             this.transaction = transaction;
             txt_TenderTransTotal.Text = transaction.Total.ToString("C");
+            if (transaction.CustomerID > 0)
+            {
+                Customer currentCustomer = DataAccess.instance.GetCustomer(transaction.CustomerID);
+                txt_customer.Text = $"{currentCustomer.LastName}, {currentCustomer.FirstName}";
+                txt_credit_amount.Text = $"{currentCustomer.Credit}";
+            }
             RefreshGrid();
         }
 

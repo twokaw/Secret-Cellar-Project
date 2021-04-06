@@ -69,6 +69,7 @@
             this.txtProd_Qty = new System.Windows.Forms.TextBox();
             this.Btl_Dep_Lb = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.chk_hide_item = new System.Windows.Forms.CheckBox();
             this.lbl_max_qty = new System.Windows.Forms.Label();
             this.lbl_order_qty = new System.Windows.Forms.Label();
             this.txt_max_qty = new System.Windows.Forms.TextBox();
@@ -80,7 +81,7 @@
             this.checkListBox_Discounts = new System.Windows.Forms.CheckedListBox();
             this.label_CaseDiscount = new System.Windows.Forms.Label();
             this.chk_box_show_hidden = new System.Windows.Forms.CheckBox();
-            this.chk_hide_item = new System.Windows.Forms.CheckBox();
+            this.btn_clear_info = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.LookupView)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -515,6 +516,7 @@
             this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.panel2.Controls.Add(this.btn_clear_info);
             this.panel2.Controls.Add(this.chk_hide_item);
             this.panel2.Controls.Add(this.lbl_max_qty);
             this.panel2.Controls.Add(this.lbl_order_qty);
@@ -550,6 +552,17 @@
             this.panel2.Size = new System.Drawing.Size(363, 540);
             this.panel2.TabIndex = 8;
             this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
+            // 
+            // chk_hide_item
+            // 
+            this.chk_hide_item.AutoSize = true;
+            this.chk_hide_item.Location = new System.Drawing.Point(33, 382);
+            this.chk_hide_item.Margin = new System.Windows.Forms.Padding(4);
+            this.chk_hide_item.Name = "chk_hide_item";
+            this.chk_hide_item.Size = new System.Drawing.Size(93, 20);
+            this.chk_hide_item.TabIndex = 15;
+            this.chk_hide_item.Text = "Hide Item";
+            this.chk_hide_item.UseVisualStyleBackColor = true;
             // 
             // lbl_max_qty
             // 
@@ -657,16 +670,18 @@
             this.chk_box_show_hidden.UseVisualStyleBackColor = true;
             this.chk_box_show_hidden.CheckedChanged += new System.EventHandler(this.chk_box_show_hidden_CheckedChanged);
             // 
-            // chk_hide_item
+            // btn_clear_info
             // 
-            this.chk_hide_item.AutoSize = true;
-            this.chk_hide_item.Location = new System.Drawing.Point(33, 382);
-            this.chk_hide_item.Margin = new System.Windows.Forms.Padding(4);
-            this.chk_hide_item.Name = "chk_hide_item";
-            this.chk_hide_item.Size = new System.Drawing.Size(93, 20);
-            this.chk_hide_item.TabIndex = 15;
-            this.chk_hide_item.Text = "Hide Item";
-            this.chk_hide_item.UseVisualStyleBackColor = true;
+            this.btn_clear_info.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btn_clear_info.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_clear_info.Location = new System.Drawing.Point(15, 431);
+            this.btn_clear_info.Margin = new System.Windows.Forms.Padding(4);
+            this.btn_clear_info.Name = "btn_clear_info";
+            this.btn_clear_info.Size = new System.Drawing.Size(106, 37);
+            this.btn_clear_info.TabIndex = 27;
+            this.btn_clear_info.Text = "Clear";
+            this.btn_clear_info.UseVisualStyleBackColor = true;
+            this.btn_clear_info.Click += new System.EventHandler(this.btn_clear_info_Click);
             // 
             // frmLookup
             // 
@@ -757,5 +772,6 @@
         private System.Windows.Forms.TextBox txt_min_qty;
         private System.Windows.Forms.CheckBox chk_box_show_hidden;
         private System.Windows.Forms.CheckBox chk_hide_item;
+        private System.Windows.Forms.Button btn_clear_info;
     }
 }
