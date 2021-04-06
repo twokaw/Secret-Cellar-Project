@@ -365,6 +365,7 @@
             this.btn_cust_credit.TabIndex = 41;
             this.btn_cust_credit.Text = "Customer Credit";
             this.btn_cust_credit.UseVisualStyleBackColor = true;
+            this.btn_cust_credit.Click += new System.EventHandler(this.btn_cust_credit_Click);
             // 
             // frmPayment
             // 

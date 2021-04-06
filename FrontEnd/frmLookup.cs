@@ -262,13 +262,14 @@ namespace SecretCellar
                 //i.InvMin = uint.Parse(txt_min_qty.Text.Trim());
                 //i.InvMax = uint.Parse(txt_max_qty.Text.Trim());
                 //i.OrderQty = uint.Parse(txt_order_qty.Text.Trim());
-                if (chk_hide_item.Checked? i.Hidden == true : i.Hidden == false)
+                i.Hidden = chk_hide_item.Checked; 
 
                 i.ItemType = cboType.Text;
                 i.TypeID = types.First(x => x.TypeName == cboType.Text).TypeId;
                 i.SupplierID = suppliers.First(x => x.Name == cbo_Supplier.Text).SupplierID;
                 dataAccess.UpdateItem(i);
                 refresh();
+                chk_box_show_hidden.Checked = false;
             }
 
         }

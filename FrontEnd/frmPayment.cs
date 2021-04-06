@@ -9,6 +9,7 @@ namespace SecretCellar
     {
         public bool PrintReceipt { get; set; }
         private Transaction transaction = null;
+        private Customer currentCustomer = null;
 
         public frmPayment(Transaction transaction)
         {
@@ -18,7 +19,7 @@ namespace SecretCellar
             txt_TenderTransTotal.Text = transaction.Total.ToString("C");
             if (transaction.CustomerID > 0)
             {
-                Customer currentCustomer = DataAccess.instance.GetCustomer(transaction.CustomerID);
+                currentCustomer = DataAccess.instance.GetCustomer(transaction.CustomerID);
                 txt_customer.Text = $"{currentCustomer.LastName}, {currentCustomer.FirstName}";
                 txt_credit_amount.Text = $"{currentCustomer.Credit}";
             }
@@ -122,6 +123,15 @@ namespace SecretCellar
         private void chk_printReceipt_CheckedChanged(object sender, EventArgs e)
         {
             PrintReceipt = chk_printReceipt.Checked;
+        }
+
+        private void btn_cust_credit_Click(object sender, EventArgs e)
+        {
+            /*double credit = currentCustomer.Credit;
+            
+            UpdatePayment("CUSTOMER CREDIT", txt_credit_amount.Text.Trim()); 
+            
+            if( )*/
         }
     }
 }
