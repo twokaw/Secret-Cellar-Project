@@ -121,7 +121,8 @@ namespace SecretCellar
                 double amt = double.Parse(paymentType.SelectedRows[0].Cells["AMOUNT"].Value.ToString().Substring(1));
                 Payment p = transaction.Payments.First(x => x.Method == TYPE && x.Amount == amt);
                 transaction.Payments.Remove(p);
-                txt_credit_amount.Text = $"{currentCustomer.Credit}";
+                txt_credit_amount.Text = (Convert.ToDouble(txt_credit_amount.Text) + amt).ToString();
+
 
                 RefreshGrid();
             }
