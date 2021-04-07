@@ -12,11 +12,18 @@ namespace pos_core_api.ORM
     public class TransactionORM
     {
         readonly DbConn db = new DbConn();
-
+        CustomerORM CustORM;
         private const string SQLGET = @"
             SELECT receiptID, register, sold_datetime, customerID, empID, location, tax_exempt, discount, shipping
             FROM transaction
         ";
+
+
+        public TransactionORM(CustomerORM customerORM)
+        {
+            CustORM = customerORM;
+        }
+
 
         public List<Transaction> GetTransactions(DateTime start, DateTime end, bool includeItems = true, bool includePayments = true)
         {
@@ -185,11 +192,44 @@ namespace pos_core_api.ORM
             {
                 transaction.Payments.Add(new Payment
                 {
+                    ReciptId = transaction.InvoiceID,
                     Method = itemReader.IsDBNull("method") ? "" : itemReader.GetString("method"),
                     PayId = itemReader.IsDBNull("payid") ? 0 : itemReader.GetUInt32("payid"),
                     Number = itemReader.IsDBNull("Number") ? "" : itemReader.GetString("Number"),
                     Amount = itemReader.IsDBNull("Amount") ? 0 : itemReader.GetUInt32("Amount")
                 });
+            }
+        }
+        public Payment GetPayment(uint payId)
+        {
+            db.OpenConnection();
+            try
+            {
+                using MySqlCommand cmd = new MySqlCommand(@"
+                    SELECT receiptID, PayId, Method, Number, Amount
+                    FROM payments
+                    WHERE payID = @payId
+                ", db.Connection());
+                cmd.Parameters.Add(new MySqlParameter("payId", payId));
+
+                using MySqlDataReader itemReader = cmd.ExecuteReader();
+                if (itemReader.Read())
+                {
+                    return new Payment
+                    {
+                        ReciptId = itemReader.IsDBNull("receiptID") ? 0 : itemReader.GetUInt32("receiptID"),
+                        Method = itemReader.IsDBNull("method") ? "" : itemReader.GetString("method"),
+                        PayId = itemReader.IsDBNull("payid") ? 0 : itemReader.GetUInt32("payid"),
+                        Number = itemReader.IsDBNull("Number") ? "" : itemReader.GetString("Number"),
+                        Amount = itemReader.IsDBNull("Amount") ? 0 : itemReader.GetUInt32("Amount")
+                    };
+                }
+                else
+                    return null;
+            }
+            finally
+            {
+                db.CloseConnnection();
             }
         }
 
@@ -441,6 +481,9 @@ namespace pos_core_api.ORM
                     else
                     {
                         cmd = new MySqlCommand(insert, db.Connection());
+
+                        if (pay.Method == "CUSTOMER CREDIT")
+                            CustORM.AddCredit(transaction.CustomerID, pay.Amount * -1);
                     }
                     cmd.Parameters.Add(new MySqlParameter("receiptID", transaction.InvoiceID));
                     cmd.Parameters.Add(new MySqlParameter("Method", pay.Method));
@@ -501,7 +544,13 @@ namespace pos_core_api.ORM
 
         public bool DeletePayment(uint payId)
         {
-            if (payId > 0)
+            return DeletePayment(GetPayment(payId));
+        }
+
+
+        public bool DeletePayment(Payment pay)
+        {
+            if (pay.PayId > 0)
             {
                 MySqlCommand cmd = new MySqlCommand(@"
                     DELETE FROM Payments
@@ -511,7 +560,14 @@ namespace pos_core_api.ORM
                 db.OpenConnection();
                 try
                 {
-                    cmd.Parameters.Add(new MySqlParameter("payId", payId));
+                    if (pay.Method == "CUSTOMER CREDIT")
+                    {
+                        uint customerId = GetTransactionCustomerId(pay.ReciptId);
+                        if(customerId > 0)
+                            CustORM.AddCredit(customerId, pay.Amount);
+                    }
+
+                    cmd.Parameters.Add(new MySqlParameter("payId", pay.PayId));
                     cmd.ExecuteNonQuery();
                 }
                 finally
@@ -523,6 +579,12 @@ namespace pos_core_api.ORM
             else
                 return false;
         }
+
+        public  uint GetTransactionCustomerId(uint invoiceId)
+        {
+            return GetTransaction(invoiceId, false, false)?.CustomerID ?? 0;
+        }
+
 
         public bool FullyPaid(Transaction transaction)
         {
