@@ -71,8 +71,41 @@ namespace SecretCellar
 
         private void UpdatePayment(string method, string number = null)
         {
-            if (double.TryParse(txtCashAmt.Text, out double amount))
-                transaction.AddPayment(new Payment { Method = method, Amount = amount, Number = number });
+           
+            //DataGridViewCellEventArgs e;
+            int RowIndex = 0;
+
+            if (paymentType.DataSource == null || method == "CHECK" || method == "CREDIT")
+            {
+                if (double.TryParse(txtCashAmt.Text, out double amount))
+                    transaction.AddPayment(new Payment { Method = method, Amount = amount, Number = number });
+            }
+
+            else
+            {
+                bool found = false;
+
+                foreach (DataGridViewRow row in paymentType.Rows)
+                {
+                    if ((string)row.Cells[0].Value == "CASH" || (string)row.Cells[0].Value == "CREDIT")
+                    {
+                        found = true;
+
+                        if (found == true)
+                        {
+                            if (double.TryParse(txtCashAmt.Text.Trim(), out double amount))
+                            {
+                                paymentType.Rows[RowIndex].Cells["AMOUNT"].Value = Convert.ToDouble(paymentType.Rows[RowIndex].Cells["AMOUNT"].Value) + amount;
+                            }
+                               
+                        }
+
+                    }
+
+                    RowIndex++;
+
+                }
+            }
 
             RefreshGrid();
         }
