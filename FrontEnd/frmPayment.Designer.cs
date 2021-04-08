@@ -133,7 +133,7 @@
             this.LB_Due.AutoSize = true;
             this.LB_Due.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LB_Due.ForeColor = System.Drawing.Color.Crimson;
-            this.LB_Due.Location = new System.Drawing.Point(185, 450);
+            this.LB_Due.Location = new System.Drawing.Point(227, 455);
             this.LB_Due.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.LB_Due.Name = "LB_Due";
             this.LB_Due.Size = new System.Drawing.Size(155, 26);
@@ -145,7 +145,7 @@
             this.LB_Total.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.LB_Total.AutoSize = true;
             this.LB_Total.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LB_Total.Location = new System.Drawing.Point(311, 406);
+            this.LB_Total.Location = new System.Drawing.Point(311, 419);
             this.LB_Total.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.LB_Total.Name = "LB_Total";
             this.LB_Total.Size = new System.Drawing.Size(71, 26);
@@ -157,7 +157,7 @@
             this.LB_ChangeDue.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.LB_ChangeDue.AutoSize = true;
             this.LB_ChangeDue.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LB_ChangeDue.Location = new System.Drawing.Point(190, 494);
+            this.LB_ChangeDue.Location = new System.Drawing.Point(227, 492);
             this.LB_ChangeDue.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.LB_ChangeDue.Name = "LB_ChangeDue";
             this.LB_ChangeDue.Size = new System.Drawing.Size(151, 26);
@@ -182,7 +182,7 @@
             // 
             this.txt_TenderTransTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txt_TenderTransTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_TenderTransTotal.Location = new System.Drawing.Point(419, 410);
+            this.txt_TenderTransTotal.Location = new System.Drawing.Point(386, 419);
             this.txt_TenderTransTotal.Margin = new System.Windows.Forms.Padding(2);
             this.txt_TenderTransTotal.Name = "txt_TenderTransTotal";
             this.txt_TenderTransTotal.ReadOnly = true;
@@ -195,7 +195,7 @@
             // 
             this.txtDue.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtDue.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDue.Location = new System.Drawing.Point(419, 456);
+            this.txtDue.Location = new System.Drawing.Point(386, 455);
             this.txtDue.Margin = new System.Windows.Forms.Padding(2);
             this.txtDue.Name = "txtDue";
             this.txtDue.ReadOnly = true;
@@ -255,7 +255,7 @@
             // 
             this.txtChange.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtChange.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtChange.Location = new System.Drawing.Point(419, 498);
+            this.txtChange.Location = new System.Drawing.Point(386, 492);
             this.txtChange.Margin = new System.Windows.Forms.Padding(2);
             this.txtChange.Name = "txtChange";
             this.txtChange.ReadOnly = true;
@@ -315,18 +315,19 @@
             this.lbl_credit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lbl_credit.AutoSize = true;
             this.lbl_credit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_credit.Location = new System.Drawing.Point(540, 19);
+            this.lbl_credit.Location = new System.Drawing.Point(617, 64);
             this.lbl_credit.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbl_credit.Name = "lbl_credit";
-            this.lbl_credit.Size = new System.Drawing.Size(139, 20);
+            this.lbl_credit.Size = new System.Drawing.Size(57, 20);
             this.lbl_credit.TabIndex = 38;
-            this.lbl_credit.Text = "Customer Credit";
+            this.lbl_credit.Text = "Credit";
             // 
             // txt_credit_amount
             // 
             this.txt_credit_amount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txt_credit_amount.BackColor = System.Drawing.SystemColors.Control;
             this.txt_credit_amount.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_credit_amount.Location = new System.Drawing.Point(544, 58);
+            this.txt_credit_amount.Location = new System.Drawing.Point(691, 58);
             this.txt_credit_amount.Margin = new System.Windows.Forms.Padding(2);
             this.txt_credit_amount.Name = "txt_credit_amount";
             this.txt_credit_amount.ReadOnly = true;
@@ -338,7 +339,7 @@
             this.lbl_customer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lbl_customer.AutoSize = true;
             this.lbl_customer.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_customer.Location = new System.Drawing.Point(703, 19);
+            this.lbl_customer.Location = new System.Drawing.Point(601, 31);
             this.lbl_customer.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbl_customer.Name = "lbl_customer";
             this.lbl_customer.Size = new System.Drawing.Size(86, 20);
@@ -348,8 +349,9 @@
             // txt_customer
             // 
             this.txt_customer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txt_customer.BackColor = System.Drawing.SystemColors.Control;
             this.txt_customer.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_customer.Location = new System.Drawing.Point(691, 58);
+            this.txt_customer.Location = new System.Drawing.Point(691, 25);
             this.txt_customer.Margin = new System.Windows.Forms.Padding(2);
             this.txt_customer.Name = "txt_customer";
             this.txt_customer.Size = new System.Drawing.Size(164, 29);
@@ -365,6 +367,7 @@
             this.btn_cust_credit.TabIndex = 41;
             this.btn_cust_credit.Text = "Customer Credit";
             this.btn_cust_credit.UseVisualStyleBackColor = true;
+            this.btn_cust_credit.Click += new System.EventHandler(this.btn_cust_credit_Click);
             // 
             // frmPayment
             // 

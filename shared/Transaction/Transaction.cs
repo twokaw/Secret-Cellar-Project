@@ -147,7 +147,14 @@ namespace Shared
                 return "CASH";
             }
         }
-
+        public double AddPayment(Payment pay)
+        {
+            
+            Payments.Add(pay);
+            double TotalPayment = 0;
+            Payments.ForEach(x => TotalPayment += x.Amount);
+            return TotalPayment;
+        }
         public string PayNum
         {
             get
