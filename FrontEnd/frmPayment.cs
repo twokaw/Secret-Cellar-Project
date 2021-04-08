@@ -121,6 +121,7 @@ namespace SecretCellar
                 double amt = double.Parse(paymentType.SelectedRows[0].Cells["AMOUNT"].Value.ToString().Substring(1));
                 Payment p = transaction.Payments.First(x => x.Method == TYPE && x.Amount == amt);
                 transaction.Payments.Remove(p);
+
                 
                 //checks to see if the deletion is customer credit so that it doesn't add too much back to customer credit
 
