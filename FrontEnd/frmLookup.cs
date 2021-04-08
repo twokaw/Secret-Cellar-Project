@@ -29,6 +29,7 @@ namespace SecretCellar
             inventory = dataAccess.GetInventory();
             suppliers = dataAccess.GetSuppliers();
             types = dataAccess.GetInventoryType();
+            txtlookup.Focus();
 
             LookupView.DataSource = inventory.
                 Select(x => new { Name = x.Name,

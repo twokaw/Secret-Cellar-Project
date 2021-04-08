@@ -22,7 +22,11 @@ namespace SecretCellar
                 currentCustomer = DataAccess.instance.GetCustomer(transaction.CustomerID);
                 txt_customer.Text = $"{currentCustomer.LastName}, {currentCustomer.FirstName}";
                 txt_credit_amount.Text = $"{currentCustomer.Credit}";
+                btn_cust_credit.Enabled = true;
             }
+            else
+                btn_cust_credit.Enabled = false;
+
             RefreshGrid();
         }
 
@@ -34,6 +38,7 @@ namespace SecretCellar
 
         private void btnCompleteSale_Click(object sender, EventArgs e)
         {
+            
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
@@ -67,7 +72,7 @@ namespace SecretCellar
         private void UpdatePayment(string method, string number = null)
         {
             if (double.TryParse(txtCashAmt.Text, out double amount))
-                transaction.Payments.Add(new Payment { Method = method, Amount = amount, Number = number });
+                transaction.AddPayment(new Payment { Method = method, Amount = amount, Number = number });
 
             RefreshGrid();
         }
@@ -116,6 +121,12 @@ namespace SecretCellar
                 double amt = double.Parse(paymentType.SelectedRows[0].Cells["AMOUNT"].Value.ToString().Substring(1));
                 Payment p = transaction.Payments.First(x => x.Method == TYPE && x.Amount == amt);
                 transaction.Payments.Remove(p);
+                
+                //checks to see if the deletion is customer credit so that it doesn't add too much back to customer credit
+
+                if (TYPE == "CUSTOMER CREDIT") txt_credit_amount.Text = (Convert.ToDouble(txt_credit_amount.Text) + amt).ToString();
+
+
                 RefreshGrid();
             }
         }
@@ -127,11 +138,31 @@ namespace SecretCellar
 
         private void btn_cust_credit_Click(object sender, EventArgs e)
         {
-            /*double credit = currentCustomer.Credit;
-            
-            UpdatePayment("CUSTOMER CREDIT", txt_credit_amount.Text.Trim()); 
-            
-            if( )*/
+            double creditAmount = (Convert.ToDouble(txt_credit_amount.Text));
+            double due = (Convert.ToDouble(txtDue.Text.Replace("$","")));
+
+            if (txtCashAmt.Text == "")
+            {
+                if (creditAmount <= 0) {
+                    if (MessageBox.Show("Do you want to Create a Negative Credit?", "Create Balance", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
+                        creditAmount = due;
+                    else
+                        return;
+                }
+                else
+                    creditAmount = Math.Min(creditAmount, due);
+            }
+            else
+            {
+                creditAmount = Math.Min(due, Convert.ToDouble(txtCashAmt.Text.Trim()));
+            }
+            txtCashAmt.Text = creditAmount.ToString();
+            UpdatePayment("CUSTOMER CREDIT");
+
+            txt_credit_amount.Text =  (Convert.ToDouble(txt_credit_amount.Text.Trim())- creditAmount).ToString();
+           
+                    
+        
         }
     }
 }
