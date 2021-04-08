@@ -58,7 +58,7 @@ namespace pos_core_api.ORM
             get
             {
                 if (transactionORM == null)
-                    transactionORM = new TransactionORM();
+                    transactionORM = new TransactionORM(Customer);
 
                 return transactionORM;
             }

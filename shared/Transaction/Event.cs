@@ -1,16 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Shared
 {
     public class Event: BaseItem
     {
-        public Double PreOrder { get; set; }
-        public Double AtDoor { get; set; }
+        public Event() : this(9999, 0.0) { }
+
+        public Event(uint qty) : this(qty, 0.0) { }
+
+        public Event(uint qty, double supplierPrice) {
+            base.AllQty.Add(new InventoryQty() {Qty = qty, SupplierPrice = supplierPrice});
+        }
+
+        public double PreOrder { get; set; }
+        public double AtDoor { get; set; }
         public DateTime Duration { get; set; }
         public DateTime EventDate { get; set; }
     }

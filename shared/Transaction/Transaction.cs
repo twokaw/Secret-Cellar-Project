@@ -9,7 +9,7 @@ namespace Shared
         public uint RegisterID { get; set; }
         public DateTime TransactionDateTime { get; set; }
         public string Location { get; set; }
-        public List<Item> Items { get; set; }
+        public List<Item> Items { get; }
         public double ItemTotal
         {
             get
@@ -140,6 +140,9 @@ namespace Shared
 
                     else if (Payments.Exists(x => x.Method.ToUpper() == "GIFT"))
                         return "GIFT";
+
+                    else if (Payments.Exists(x => x.Method.ToUpper() == "CUSTOMER CREDIT"))
+                        return "CUSTOMER CREDIT";
                 }
                 return "CASH";
             }
@@ -232,7 +235,11 @@ namespace Shared
             {
                 count = Items.Count(i => i.Discounts.Where(x => x.DiscountID == dis.DiscountID && dis.Enabled ).Count() > 0 && i.Discount == 0.0);
                 if (count >= dis.Min && count <= dis.Max)
+                {
                     result.Add(dis);
+                 // TODO: talk to lauren about how discounts should stack
+                 //   Items.ForEach(i => i.Discounts.Where(x => x.)
+                }
             }
 
             return result;

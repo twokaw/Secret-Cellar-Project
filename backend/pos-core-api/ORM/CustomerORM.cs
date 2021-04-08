@@ -170,7 +170,7 @@ namespace pos_core_api.ORM
             }
         }
 
-        public void Delete (uint custID)
+        public void Delete(uint custID)
         {
             db.OpenConnection();
             try
@@ -182,6 +182,27 @@ namespace pos_core_api.ORM
 
                 MySqlCommand cmd = new MySqlCommand(sqlStatementDesc, db.Connection());
                 cmd.Parameters.Add(new MySqlParameter("custID", custID));
+                cmd.ExecuteNonQuery();
+            }
+            finally
+            {
+                db.CloseConnnection();
+            }
+        }
+        public void AddCredit(uint custID, double amount)
+        {
+            db.OpenConnection();
+            try
+            {
+                string sqlStatementDesc = @"
+                  UPDATE customer 
+                  SET Credit = IFNULL(Credit, 0) - @amount
+                  WHERE customerID = @CustID
+                ";
+
+                MySqlCommand cmd = new MySqlCommand(sqlStatementDesc, db.Connection());
+                cmd.Parameters.Add(new MySqlParameter("custID", custID));
+                cmd.Parameters.Add(new MySqlParameter("amount", amount));
                 cmd.ExecuteNonQuery();
             }
             finally
