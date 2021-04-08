@@ -237,7 +237,8 @@ namespace Shared
                 if (count >= dis.Min && count <= dis.Max)
                 {
                     result.Add(dis);
-                    Items.ForEach(i => i.Discounts.Where(x => x.)
+                 // TODO: talk to lauren about how discounts should stack
+                 //   Items.ForEach(i => i.Discounts.Where(x => x.)
                 }
             }
 

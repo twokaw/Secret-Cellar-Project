@@ -11,8 +11,9 @@ namespace pos_core_api.ORM
 {
     public class TransactionORM
     {
-        readonly DbConn db = new DbConn();
-        CustomerORM CustORM;
+        private readonly DbConn db = new DbConn();
+        private readonly CustomerORM CustORM;
+
         private const string SQLGET = @"
             SELECT receiptID, register, sold_datetime, customerID, empID, location, tax_exempt, discount, shipping
             FROM transaction
