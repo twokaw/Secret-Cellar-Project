@@ -40,7 +40,8 @@
             this.lblTitle.AutoSize = true;
             this.lblTitle.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.25F);
-            this.lblTitle.Location = new System.Drawing.Point(145, 149);
+            this.lblTitle.Location = new System.Drawing.Point(218, 183);
+            this.lblTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(345, 39);
             this.lblTitle.TabIndex = 0;
@@ -49,10 +50,11 @@
             // txtCharge
             // 
             this.txtCharge.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F);
-            this.txtCharge.Location = new System.Drawing.Point(496, 152);
+            this.txtCharge.Location = new System.Drawing.Point(744, 187);
+            this.txtCharge.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtCharge.Name = "txtCharge";
-            this.txtCharge.Size = new System.Drawing.Size(160, 38);
-            this.txtCharge.TabIndex = 1;
+            this.txtCharge.Size = new System.Drawing.Size(238, 38);
+            this.txtCharge.TabIndex = 0;
             this.txtCharge.TextChanged += new System.EventHandler(this.txtCharge_TextChanged);
             // 
             // btnAddCharge
@@ -60,10 +62,11 @@
             this.btnAddCharge.BackColor = System.Drawing.SystemColors.Desktop;
             this.btnAddCharge.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.25F);
             this.btnAddCharge.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnAddCharge.Location = new System.Drawing.Point(139, 268);
+            this.btnAddCharge.Location = new System.Drawing.Point(208, 330);
+            this.btnAddCharge.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnAddCharge.Name = "btnAddCharge";
-            this.btnAddCharge.Size = new System.Drawing.Size(178, 125);
-            this.btnAddCharge.TabIndex = 2;
+            this.btnAddCharge.Size = new System.Drawing.Size(267, 154);
+            this.btnAddCharge.TabIndex = 1;
             this.btnAddCharge.Text = "Add Charge";
             this.btnAddCharge.UseVisualStyleBackColor = false;
             this.btnAddCharge.Click += new System.EventHandler(this.btnAddCharge_Click);
@@ -73,26 +76,28 @@
             this.btnCancel.BackColor = System.Drawing.SystemColors.Desktop;
             this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.25F);
             this.btnCancel.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnCancel.Location = new System.Drawing.Point(484, 268);
+            this.btnCancel.Location = new System.Drawing.Point(726, 330);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(178, 125);
-            this.btnCancel.TabIndex = 3;
+            this.btnCancel.Size = new System.Drawing.Size(267, 154);
+            this.btnCancel.TabIndex = 2;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = false;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // frmDryCleaning
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1200, 554);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnAddCharge);
             this.Controls.Add(this.txtCharge);
             this.Controls.Add(this.lblTitle);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "frmDryCleaning";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Dry Cleaning";

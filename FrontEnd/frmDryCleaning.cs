@@ -19,6 +19,7 @@ namespace SecretCellar
         {
             InitializeComponent();
             dryClean = transaction;
+            txtCharge.Focus();
         }
 
         private void btnAddCharge_Click(object sender, EventArgs e)

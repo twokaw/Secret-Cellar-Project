@@ -31,6 +31,14 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmTransaction));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.DESCRIPTION = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.QTY = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LIST_PRICE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SALE_PRICE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DISCOUNT = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TAX = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BOTTLE_DEPOSIT = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TOTAL = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnPropane = new System.Windows.Forms.Button();
             this.btnCustom = new System.Windows.Forms.Button();
             this.btnShipping = new System.Windows.Forms.Button();
@@ -67,14 +75,6 @@
             this.btnSuspendTransaction = new System.Windows.Forms.Button();
             this.txt_current_cust = new System.Windows.Forms.TextBox();
             this.lbl_current_cust = new System.Windows.Forms.Label();
-            this.DESCRIPTION = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.QTY = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LIST_PRICE = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SALE_PRICE = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DISCOUNT = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TAX = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BOTTLE_DEPOSIT = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TOTAL = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pb_settings)).BeginInit();
@@ -120,12 +120,83 @@
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(1740, 437);
             this.dataGridView1.TabIndex = 2;
-            this.dataGridView1.TabStop = false;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             this.dataGridView1.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dataGridView1_RowsAdded);
             this.dataGridView1.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.dataGridView1_RowsRemoved);
             this.dataGridView1.Click += new System.EventHandler(this.dataGridView1_Click);
+            // 
+            // DESCRIPTION
+            // 
+            this.DESCRIPTION.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.DESCRIPTION.FillWeight = 205.876F;
+            this.DESCRIPTION.HeaderText = "DESCRIPTION";
+            this.DESCRIPTION.MinimumWidth = 12;
+            this.DESCRIPTION.Name = "DESCRIPTION";
+            // 
+            // QTY
+            // 
+            this.QTY.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.QTY.FillWeight = 154.4118F;
+            this.QTY.HeaderText = "QTY";
+            this.QTY.MinimumWidth = 12;
+            this.QTY.Name = "QTY";
+            this.QTY.Width = 150;
+            // 
+            // LIST_PRICE
+            // 
+            this.LIST_PRICE.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.LIST_PRICE.FillWeight = 20F;
+            this.LIST_PRICE.HeaderText = "LIST PRICE";
+            this.LIST_PRICE.MinimumWidth = 12;
+            this.LIST_PRICE.Name = "LIST_PRICE";
+            this.LIST_PRICE.ReadOnly = true;
+            this.LIST_PRICE.Width = 140;
+            // 
+            // SALE_PRICE
+            // 
+            this.SALE_PRICE.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.SALE_PRICE.FillWeight = 18.80306F;
+            this.SALE_PRICE.HeaderText = "SALE PRICE";
+            this.SALE_PRICE.MinimumWidth = 12;
+            this.SALE_PRICE.Name = "SALE_PRICE";
+            this.SALE_PRICE.Width = 120;
+            // 
+            // DISCOUNT
+            // 
+            this.DISCOUNT.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.DISCOUNT.FillWeight = 37.25315F;
+            this.DISCOUNT.HeaderText = "DISCOUNT";
+            this.DISCOUNT.MinimumWidth = 25;
+            this.DISCOUNT.Name = "DISCOUNT";
+            this.DISCOUNT.Width = 120;
+            // 
+            // TAX
+            // 
+            this.TAX.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.TAX.FillWeight = 57.0944F;
+            this.TAX.HeaderText = "TAX";
+            this.TAX.MinimumWidth = 12;
+            this.TAX.Name = "TAX";
+            this.TAX.Width = 150;
+            // 
+            // BOTTLE_DEPOSIT
+            // 
+            this.BOTTLE_DEPOSIT.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.BOTTLE_DEPOSIT.FillWeight = 88.47124F;
+            this.BOTTLE_DEPOSIT.HeaderText = "BOTTLE DEPOSIT";
+            this.BOTTLE_DEPOSIT.MinimumWidth = 12;
+            this.BOTTLE_DEPOSIT.Name = "BOTTLE_DEPOSIT";
+            this.BOTTLE_DEPOSIT.Width = 180;
+            // 
+            // TOTAL
+            // 
+            this.TOTAL.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.TOTAL.FillWeight = 138.0905F;
+            this.TOTAL.HeaderText = "TOTAL";
+            this.TOTAL.MinimumWidth = 12;
+            this.TOTAL.Name = "TOTAL";
+            this.TOTAL.Width = 180;
             // 
             // btnPropane
             // 
@@ -135,8 +206,7 @@
             this.btnPropane.Margin = new System.Windows.Forms.Padding(1);
             this.btnPropane.Name = "btnPropane";
             this.btnPropane.Size = new System.Drawing.Size(180, 55);
-            this.btnPropane.TabIndex = 3;
-            this.btnPropane.TabStop = false;
+            this.btnPropane.TabIndex = 6;
             this.btnPropane.Text = "PROPANE";
             this.btnPropane.UseVisualStyleBackColor = true;
             this.btnPropane.Click += new System.EventHandler(this.btnPropane_Click);
@@ -149,8 +219,7 @@
             this.btnCustom.Margin = new System.Windows.Forms.Padding(1);
             this.btnCustom.Name = "btnCustom";
             this.btnCustom.Size = new System.Drawing.Size(180, 55);
-            this.btnCustom.TabIndex = 5;
-            this.btnCustom.TabStop = false;
+            this.btnCustom.TabIndex = 7;
             this.btnCustom.Text = "CUSTOM";
             this.btnCustom.UseVisualStyleBackColor = true;
             this.btnCustom.Click += new System.EventHandler(this.btnCustom_Click);
@@ -164,7 +233,6 @@
             this.btnShipping.Name = "btnShipping";
             this.btnShipping.Size = new System.Drawing.Size(180, 55);
             this.btnShipping.TabIndex = 8;
-            this.btnShipping.TabStop = false;
             this.btnShipping.Text = "SHIPPING";
             this.btnShipping.UseVisualStyleBackColor = true;
             this.btnShipping.Click += new System.EventHandler(this.btnShipping_Click);
@@ -191,8 +259,7 @@
             this.btnDryClean.Margin = new System.Windows.Forms.Padding(1);
             this.btnDryClean.Name = "btnDryClean";
             this.btnDryClean.Size = new System.Drawing.Size(180, 55);
-            this.btnDryClean.TabIndex = 6;
-            this.btnDryClean.TabStop = false;
+            this.btnDryClean.TabIndex = 4;
             this.btnDryClean.Text = "DRY CLEANING";
             this.btnDryClean.UseVisualStyleBackColor = true;
             this.btnDryClean.Click += new System.EventHandler(this.btnDryClean_Click);
@@ -205,8 +272,7 @@
             this.btnDiscount.Margin = new System.Windows.Forms.Padding(1);
             this.btnDiscount.Name = "btnDiscount";
             this.btnDiscount.Size = new System.Drawing.Size(180, 55);
-            this.btnDiscount.TabIndex = 11;
-            this.btnDiscount.TabStop = false;
+            this.btnDiscount.TabIndex = 9;
             this.btnDiscount.Text = "DISCOUNT";
             this.btnDiscount.UseVisualStyleBackColor = true;
             this.btnDiscount.Click += new System.EventHandler(this.btnDiscount_Click);
@@ -233,8 +299,7 @@
             this.btnDeleteItem.Margin = new System.Windows.Forms.Padding(1);
             this.btnDeleteItem.Name = "btnDeleteItem";
             this.btnDeleteItem.Size = new System.Drawing.Size(180, 55);
-            this.btnDeleteItem.TabIndex = 9;
-            this.btnDeleteItem.TabStop = false;
+            this.btnDeleteItem.TabIndex = 5;
             this.btnDeleteItem.Text = "DELETE ITEM";
             this.btnDeleteItem.UseVisualStyleBackColor = true;
             this.btnDeleteItem.Click += new System.EventHandler(this.btnDeleteItem_Click);
@@ -422,7 +487,7 @@
             this.txtBarcode.MinimumSize = new System.Drawing.Size(247, 26);
             this.txtBarcode.Name = "txtBarcode";
             this.txtBarcode.Size = new System.Drawing.Size(247, 26);
-            this.txtBarcode.TabIndex = 15;
+            this.txtBarcode.TabIndex = 0;
             this.txtBarcode.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtBarcode_KeyUp);
             // 
             // lbl_BARCODE
@@ -447,8 +512,7 @@
             this.btnLookup.MaximumSize = new System.Drawing.Size(156, 36);
             this.btnLookup.Name = "btnLookup";
             this.btnLookup.Size = new System.Drawing.Size(117, 36);
-            this.btnLookup.TabIndex = 19;
-            this.btnLookup.TabStop = false;
+            this.btnLookup.TabIndex = 1;
             this.btnLookup.Text = "LOOKUP";
             this.btnLookup.UseVisualStyleBackColor = true;
             this.btnLookup.Click += new System.EventHandler(this.btnLookup_Click);
@@ -462,7 +526,7 @@
             this.caseDiscount.Margin = new System.Windows.Forms.Padding(1);
             this.caseDiscount.Name = "caseDiscount";
             this.caseDiscount.Size = new System.Drawing.Size(143, 17);
-            this.caseDiscount.TabIndex = 21;
+            this.caseDiscount.TabIndex = 12;
             this.caseDiscount.Text = "Apply Case Discount";
             this.caseDiscount.UseVisualStyleBackColor = true;
             this.caseDiscount.CheckedChanged += new System.EventHandler(this.caseDiscount_CheckedChanged);
@@ -512,7 +576,7 @@
             this.btnTender.OnHoverButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(24)))), ((int)(((byte)(24)))));
             this.btnTender.OnHoverTextColor = System.Drawing.Color.Black;
             this.btnTender.Size = new System.Drawing.Size(216, 99);
-            this.btnTender.TabIndex = 14;
+            this.btnTender.TabIndex = 13;
             this.btnTender.TabStop = false;
             this.btnTender.Text = "TENDER";
             this.btnTender.TextColor = System.Drawing.Color.Black;
@@ -541,7 +605,7 @@
             this.button1.Location = new System.Drawing.Point(18, 525);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(180, 54);
-            this.button1.TabIndex = 24;
+            this.button1.TabIndex = 3;
             this.button1.Text = "CUSTOMERS";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
@@ -553,8 +617,7 @@
             this.btnSuspendedTransactions.Margin = new System.Windows.Forms.Padding(1);
             this.btnSuspendedTransactions.Name = "btnSuspendedTransactions";
             this.btnSuspendedTransactions.Size = new System.Drawing.Size(240, 36);
-            this.btnSuspendedTransactions.TabIndex = 23;
-            this.btnSuspendedTransactions.TabStop = false;
+            this.btnSuspendedTransactions.TabIndex = 10;
             this.btnSuspendedTransactions.Text = "SUSPENDED TRANSACTIONS";
             this.btnSuspendedTransactions.UseVisualStyleBackColor = true;
             this.btnSuspendedTransactions.Click += new System.EventHandler(this.btnSuspendedTransactions_Click);
@@ -566,8 +629,7 @@
             this.btnSuspendTransaction.Margin = new System.Windows.Forms.Padding(1);
             this.btnSuspendTransaction.Name = "btnSuspendTransaction";
             this.btnSuspendTransaction.Size = new System.Drawing.Size(121, 36);
-            this.btnSuspendTransaction.TabIndex = 24;
-            this.btnSuspendTransaction.TabStop = false;
+            this.btnSuspendTransaction.TabIndex = 11;
             this.btnSuspendTransaction.Text = "SUSPEND";
             this.btnSuspendTransaction.UseVisualStyleBackColor = true;
             this.btnSuspendTransaction.Click += new System.EventHandler(this.btnSuspendTransaction_Click);
@@ -587,78 +649,6 @@
             this.lbl_current_cust.Size = new System.Drawing.Size(126, 16);
             this.lbl_current_cust.TabIndex = 26;
             this.lbl_current_cust.Text = "Current Customer";
-            // 
-            // DESCRIPTION
-            // 
-            this.DESCRIPTION.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.DESCRIPTION.FillWeight = 205.876F;
-            this.DESCRIPTION.HeaderText = "DESCRIPTION";
-            this.DESCRIPTION.MinimumWidth = 12;
-            this.DESCRIPTION.Name = "DESCRIPTION";
-            // 
-            // QTY
-            // 
-            this.QTY.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.QTY.FillWeight = 154.4118F;
-            this.QTY.HeaderText = "QTY";
-            this.QTY.MinimumWidth = 12;
-            this.QTY.Name = "QTY";
-            this.QTY.Width = 150;
-            // 
-            // LIST_PRICE
-            // 
-            this.LIST_PRICE.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.LIST_PRICE.FillWeight = 20F;
-            this.LIST_PRICE.HeaderText = "LIST PRICE";
-            this.LIST_PRICE.MinimumWidth = 12;
-            this.LIST_PRICE.Name = "LIST_PRICE";
-            this.LIST_PRICE.ReadOnly = true;
-            this.LIST_PRICE.Width = 140;
-            // 
-            // SALE_PRICE
-            // 
-            this.SALE_PRICE.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.SALE_PRICE.FillWeight = 18.80306F;
-            this.SALE_PRICE.HeaderText = "SALE PRICE";
-            this.SALE_PRICE.MinimumWidth = 12;
-            this.SALE_PRICE.Name = "SALE_PRICE";
-            this.SALE_PRICE.Width = 120;
-            // 
-            // DISCOUNT
-            // 
-            this.DISCOUNT.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.DISCOUNT.FillWeight = 37.25315F;
-            this.DISCOUNT.HeaderText = "DISCOUNT";
-            this.DISCOUNT.MinimumWidth = 25;
-            this.DISCOUNT.Name = "DISCOUNT";
-            this.DISCOUNT.Width = 120;
-            // 
-            // TAX
-            // 
-            this.TAX.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.TAX.FillWeight = 57.0944F;
-            this.TAX.HeaderText = "TAX";
-            this.TAX.MinimumWidth = 12;
-            this.TAX.Name = "TAX";
-            this.TAX.Width = 150;
-            // 
-            // BOTTLE_DEPOSIT
-            // 
-            this.BOTTLE_DEPOSIT.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.BOTTLE_DEPOSIT.FillWeight = 88.47124F;
-            this.BOTTLE_DEPOSIT.HeaderText = "BOTTLE DEPOSIT";
-            this.BOTTLE_DEPOSIT.MinimumWidth = 12;
-            this.BOTTLE_DEPOSIT.Name = "BOTTLE_DEPOSIT";
-            this.BOTTLE_DEPOSIT.Width = 180;
-            // 
-            // TOTAL
-            // 
-            this.TOTAL.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.TOTAL.FillWeight = 138.0905F;
-            this.TOTAL.HeaderText = "TOTAL";
-            this.TOTAL.MinimumWidth = 12;
-            this.TOTAL.Name = "TOTAL";
-            this.TOTAL.Width = 180;
             // 
             // frmTransaction
             // 

@@ -61,10 +61,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_close.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_close.Location = new System.Drawing.Point(344, 462);
-            this.btn_close.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_close.Margin = new System.Windows.Forms.Padding(4);
             this.btn_close.Name = "btn_close";
             this.btn_close.Size = new System.Drawing.Size(360, 60);
-            this.btn_close.TabIndex = 4;
+            this.btn_close.TabIndex = 3;
             this.btn_close.Text = "Add and Close";
             this.btn_close.UseVisualStyleBackColor = true;
             this.btn_close.Click += new System.EventHandler(this.btn_close_Click);
@@ -76,10 +76,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txt_ex_Qty.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_ex_Qty.Location = new System.Drawing.Point(738, 170);
-            this.txt_ex_Qty.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txt_ex_Qty.Margin = new System.Windows.Forms.Padding(4);
             this.txt_ex_Qty.Name = "txt_ex_Qty";
             this.txt_ex_Qty.Size = new System.Drawing.Size(73, 44);
-            this.txt_ex_Qty.TabIndex = 5;
+            this.txt_ex_Qty.TabIndex = 0;
             this.txt_ex_Qty.TextChanged += new System.EventHandler(this.txt_ex_Qty_TextChanged);
             // 
             // btn_minus_ex
@@ -89,10 +89,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_minus_ex.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_minus_ex.Location = new System.Drawing.Point(640, 170);
-            this.btn_minus_ex.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_minus_ex.Margin = new System.Windows.Forms.Padding(4);
             this.btn_minus_ex.Name = "btn_minus_ex";
             this.btn_minus_ex.Size = new System.Drawing.Size(75, 54);
-            this.btn_minus_ex.TabIndex = 7;
+            this.btn_minus_ex.TabIndex = 4;
             this.btn_minus_ex.Text = "-";
             this.btn_minus_ex.UseVisualStyleBackColor = true;
             this.btn_minus_ex.Click += new System.EventHandler(this.btn_minus_ex_Click);
@@ -104,10 +104,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_plus_ex.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_plus_ex.Location = new System.Drawing.Point(838, 170);
-            this.btn_plus_ex.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_plus_ex.Margin = new System.Windows.Forms.Padding(4);
             this.btn_plus_ex.Name = "btn_plus_ex";
             this.btn_plus_ex.Size = new System.Drawing.Size(75, 54);
-            this.btn_plus_ex.TabIndex = 8;
+            this.btn_plus_ex.TabIndex = 5;
             this.btn_plus_ex.Text = "+";
             this.btn_plus_ex.UseVisualStyleBackColor = true;
             this.btn_plus_ex.Click += new System.EventHandler(this.btn_plus_ex_Click);
@@ -119,10 +119,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_plus_new.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_plus_new.Location = new System.Drawing.Point(838, 289);
-            this.btn_plus_new.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_plus_new.Margin = new System.Windows.Forms.Padding(4);
             this.btn_plus_new.Name = "btn_plus_new";
             this.btn_plus_new.Size = new System.Drawing.Size(75, 54);
-            this.btn_plus_new.TabIndex = 11;
+            this.btn_plus_new.TabIndex = 7;
             this.btn_plus_new.Text = "+";
             this.btn_plus_new.UseVisualStyleBackColor = true;
             this.btn_plus_new.Click += new System.EventHandler(this.btn_plus_new_Click);
@@ -134,10 +134,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_minus_new.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_minus_new.Location = new System.Drawing.Point(640, 289);
-            this.btn_minus_new.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_minus_new.Margin = new System.Windows.Forms.Padding(4);
             this.btn_minus_new.Name = "btn_minus_new";
             this.btn_minus_new.Size = new System.Drawing.Size(75, 54);
-            this.btn_minus_new.TabIndex = 10;
+            this.btn_minus_new.TabIndex = 6;
             this.btn_minus_new.Text = "-";
             this.btn_minus_new.UseVisualStyleBackColor = true;
             this.btn_minus_new.Click += new System.EventHandler(this.btn_minus_new_Click);
@@ -149,10 +149,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txt_new_Qty.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_new_Qty.Location = new System.Drawing.Point(738, 289);
-            this.txt_new_Qty.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txt_new_Qty.Margin = new System.Windows.Forms.Padding(4);
             this.txt_new_Qty.Name = "txt_new_Qty";
             this.txt_new_Qty.Size = new System.Drawing.Size(73, 44);
-            this.txt_new_Qty.TabIndex = 9;
+            this.txt_new_Qty.TabIndex = 1;
             this.txt_new_Qty.TextChanged += new System.EventHandler(this.txt_new_Qty_TextChanged);
             // 
             // lbl_prop_ex
@@ -200,7 +200,7 @@
             this.Controls.Add(this.txt_ex_Qty);
             this.Controls.Add(this.btn_close);
             this.Controls.Add(this.lblPropane);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmPropane";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Propane";
