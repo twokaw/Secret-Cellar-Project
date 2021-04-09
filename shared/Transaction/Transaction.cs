@@ -146,8 +146,11 @@ namespace Shared
         }
         public double AddPayment(Payment pay)
         {
-            
-            Payments.Add(pay);
+            if (pay.Method != "CASH" && pay.Method != "CUSTOMER CREDIT" || Payments.FirstOrDefault(x => x.Method == pay.Method) == null)
+                Payments.Add(pay);
+            else
+                Payments.First(x => x.Method == pay.Method).Amount += pay.Amount;
+
             double TotalPayment = 0;
             Payments.ForEach(x => TotalPayment += x.Amount);
             return TotalPayment;

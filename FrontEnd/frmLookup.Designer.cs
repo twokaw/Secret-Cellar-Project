@@ -69,6 +69,7 @@
             this.txtProd_Qty = new System.Windows.Forms.TextBox();
             this.Btl_Dep_Lb = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btn_clear_info = new System.Windows.Forms.Button();
             this.chk_hide_item = new System.Windows.Forms.CheckBox();
             this.lbl_max_qty = new System.Windows.Forms.Label();
             this.lbl_order_qty = new System.Windows.Forms.Label();
@@ -81,7 +82,6 @@
             this.checkListBox_Discounts = new System.Windows.Forms.CheckedListBox();
             this.label_CaseDiscount = new System.Windows.Forms.Label();
             this.chk_box_show_hidden = new System.Windows.Forms.CheckBox();
-            this.btn_clear_info = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.LookupView)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -89,7 +89,7 @@
             // 
             // txtlookup
             // 
-            this.txtlookup.Location = new System.Drawing.Point(204, 23);
+            this.txtlookup.Location = new System.Drawing.Point(206, 23);
             this.txtlookup.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtlookup.Name = "txtlookup";
             this.txtlookup.Size = new System.Drawing.Size(270, 22);
@@ -553,6 +553,19 @@
             this.panel2.TabIndex = 8;
             this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
+            // btn_clear_info
+            // 
+            this.btn_clear_info.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btn_clear_info.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_clear_info.Location = new System.Drawing.Point(15, 431);
+            this.btn_clear_info.Margin = new System.Windows.Forms.Padding(4);
+            this.btn_clear_info.Name = "btn_clear_info";
+            this.btn_clear_info.Size = new System.Drawing.Size(106, 37);
+            this.btn_clear_info.TabIndex = 27;
+            this.btn_clear_info.Text = "Clear";
+            this.btn_clear_info.UseVisualStyleBackColor = true;
+            this.btn_clear_info.Click += new System.EventHandler(this.btn_clear_info_Click);
+            // 
             // chk_hide_item
             // 
             this.chk_hide_item.AutoSize = true;
@@ -669,19 +682,6 @@
             this.chk_box_show_hidden.Text = "Hidden Items";
             this.chk_box_show_hidden.UseVisualStyleBackColor = true;
             this.chk_box_show_hidden.CheckedChanged += new System.EventHandler(this.chk_box_show_hidden_CheckedChanged);
-            // 
-            // btn_clear_info
-            // 
-            this.btn_clear_info.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btn_clear_info.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_clear_info.Location = new System.Drawing.Point(15, 431);
-            this.btn_clear_info.Margin = new System.Windows.Forms.Padding(4);
-            this.btn_clear_info.Name = "btn_clear_info";
-            this.btn_clear_info.Size = new System.Drawing.Size(106, 37);
-            this.btn_clear_info.TabIndex = 27;
-            this.btn_clear_info.Text = "Clear";
-            this.btn_clear_info.UseVisualStyleBackColor = true;
-            this.btn_clear_info.Click += new System.EventHandler(this.btn_clear_info_Click);
             // 
             // frmLookup
             // 
