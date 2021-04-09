@@ -14,18 +14,6 @@ namespace SecretCellar {
 	public partial class FrmEventsCreate : Form {
 		public FrmEventsCreate() {
 			InitializeComponent();
-
-
-			/*
-			  cmd.Parameters.Add(new MySqlParameter("id", evnt.Id));
-                cmd.Parameters.Add(new MySqlParameter("Qty", evnt.Qty));
-                cmd.Parameters.Add(new MySqlParameter("Supplier_price", evnt.SupplierPrice));
-                cmd.Parameters.Add(new MySqlParameter("inventoryID", evnt.Id));
-                cmd.Parameters.Add(new MySqlParameter("eventDate", evnt.EventDate));
-                cmd.Parameters.Add(new MySqlParameter("Duration", evnt.Duration));
-                cmd.Parameters.Add(new MySqlParameter("preorder", evnt.PreOrder));
-                cmd.Parameters.Add(new MySqlParameter("atDoor", evnt.AtDoor));
-			 */
 		}
 
 		private void button_CloseWindow_Click(object sender, EventArgs e) {
@@ -33,8 +21,27 @@ namespace SecretCellar {
 		}
 
 		private void button_CreateEvent_Click(object sender, EventArgs e) {
-			Event newEvent = new Event();
 			
+			//newEvent.Qty = uint.Parse(textBox_Quantity.Text); --READ ONLY CAN'T SET
+
+			//CREATE A NEW EVENT
+			Event newEvent = new Event() {
+				Name = textBox_Name.Text,
+				EventDate = dateTimePicker_Date.Value,
+				Duration = dateTimePicker_Duration.Value,
+				Barcode = textBox_Barcode.Text,
+				Price = double.Parse(textBox_Price.Text),
+				//SupplierPrice = uint.Parse(textBox_TypeId.Text), --READ ONLY
+				PreOrder = double.Parse(textBox_Preorder.Text),
+				AtDoor = double.Parse(textBox_AtDoor.Text),
+				TypeID = uint.Parse(textBox_TypeId.Text),
+				NonTaxable = checkBox_NonTaxable.Checked,
+				NonTaxableLocal = checkBox_NonTaxableLocal.Checked
+			};
+
+			//CREATE THE EVENT IN THE DATABASE
+			DataAccess.instance.CreateEvent(newEvent);
 		}
+
 	}
 }
