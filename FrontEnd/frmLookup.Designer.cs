@@ -133,7 +133,7 @@
             this.LookupView.RowTemplate.Height = 24;
             this.LookupView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.LookupView.Size = new System.Drawing.Size(988, 539);
-            this.LookupView.TabIndex = 2;
+            this.LookupView.TabIndex = 4;
             this.LookupView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.LookupView_CellContentClick);
             this.LookupView.SelectionChanged += new System.EventHandler(this.LookupView_SelectionChanged);
             // 
@@ -231,7 +231,7 @@
             this.btn_cancel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_cancel.Name = "btn_cancel";
             this.btn_cancel.Size = new System.Drawing.Size(111, 37);
-            this.btn_cancel.TabIndex = 3;
+            this.btn_cancel.TabIndex = 21;
             this.btn_cancel.Text = "Cancel";
             this.btn_cancel.UseVisualStyleBackColor = true;
             this.btn_cancel.Click += new System.EventHandler(this.btn_Cancel_Click);
@@ -244,7 +244,7 @@
             this.btn_add.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_add.Name = "btn_add";
             this.btn_add.Size = new System.Drawing.Size(110, 37);
-            this.btn_add.TabIndex = 4;
+            this.btn_add.TabIndex = 20;
             this.btn_add.Text = "Add";
             this.btn_add.UseVisualStyleBackColor = true;
             this.btn_add.Click += new System.EventHandler(this.btn_add_Click);
@@ -269,7 +269,7 @@
             this.cbxTypeFilter.Margin = new System.Windows.Forms.Padding(4);
             this.cbxTypeFilter.Name = "cbxTypeFilter";
             this.cbxTypeFilter.Size = new System.Drawing.Size(180, 24);
-            this.cbxTypeFilter.TabIndex = 9;
+            this.cbxTypeFilter.TabIndex = 1;
             this.cbxTypeFilter.SelectedIndexChanged += new System.EventHandler(this.cbxTypeFilter_SelectedIndexChanged);
             // 
             // label6
@@ -292,7 +292,7 @@
             this.cbxSupplyFilter.Margin = new System.Windows.Forms.Padding(4);
             this.cbxSupplyFilter.Name = "cbxSupplyFilter";
             this.cbxSupplyFilter.Size = new System.Drawing.Size(180, 24);
-            this.cbxSupplyFilter.TabIndex = 11;
+            this.cbxSupplyFilter.TabIndex = 3;
             this.cbxSupplyFilter.SelectedIndexChanged += new System.EventHandler(this.cbxSupplyFilter_SelectedIndexChanged);
             // 
             // lblSupplyFilter
@@ -313,7 +313,7 @@
             this.cbxOnlyItemsWithInventory.Margin = new System.Windows.Forms.Padding(4);
             this.cbxOnlyItemsWithInventory.Name = "cbxOnlyItemsWithInventory";
             this.cbxOnlyItemsWithInventory.Size = new System.Drawing.Size(200, 20);
-            this.cbxOnlyItemsWithInventory.TabIndex = 13;
+            this.cbxOnlyItemsWithInventory.TabIndex = 2;
             this.cbxOnlyItemsWithInventory.Text = "Only Items WIth Inventory";
             this.cbxOnlyItemsWithInventory.UseVisualStyleBackColor = true;
             this.cbxOnlyItemsWithInventory.CheckedChanged += new System.EventHandler(this.cbxOnlyItemsWithInventory_CheckedChanged);
@@ -336,7 +336,7 @@
             this.txt_qty.Margin = new System.Windows.Forms.Padding(4);
             this.txt_qty.Name = "txt_qty";
             this.txt_qty.Size = new System.Drawing.Size(224, 22);
-            this.txt_qty.TabIndex = 3;
+            this.txt_qty.TabIndex = 9;
             this.txt_qty.TextChanged += new System.EventHandler(this.txt_qty_TextChanged);
             // 
             // label3
@@ -367,7 +367,7 @@
             this.txtName.Margin = new System.Windows.Forms.Padding(4);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(224, 22);
-            this.txtName.TabIndex = 1;
+            this.txtName.TabIndex = 5;
             this.txtName.TextChanged += new System.EventHandler(this.txtName_TextChanged);
             // 
             // btn_update
@@ -378,7 +378,7 @@
             this.btn_update.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_update.Name = "btn_update";
             this.btn_update.Size = new System.Drawing.Size(110, 37);
-            this.btn_update.TabIndex = 6;
+            this.btn_update.TabIndex = 19;
             this.btn_update.Text = "Update";
             this.btn_update.UseVisualStyleBackColor = true;
             this.btn_update.Click += new System.EventHandler(this.btn_update_Click);
@@ -393,7 +393,7 @@
             this.cboType.Margin = new System.Windows.Forms.Padding(4);
             this.cboType.Name = "cboType";
             this.cboType.Size = new System.Drawing.Size(224, 24);
-            this.cboType.TabIndex = 5;
+            this.cboType.TabIndex = 6;
             this.cboType.SelectedIndexChanged += new System.EventHandler(this.cboType_SelectedIndexChanged);
             // 
             // label5
@@ -426,7 +426,7 @@
             this.txtBarcode.Margin = new System.Windows.Forms.Padding(4);
             this.txtBarcode.Name = "txtBarcode";
             this.txtBarcode.Size = new System.Drawing.Size(224, 22);
-            this.txtBarcode.TabIndex = 9;
+            this.txtBarcode.TabIndex = 7;
             this.txtBarcode.TextChanged += new System.EventHandler(this.txtBarcode_TextChanged);
             // 
             // barcode_label
@@ -445,7 +445,7 @@
             this.txtPrice.Margin = new System.Windows.Forms.Padding(4);
             this.txtPrice.Name = "txtPrice";
             this.txtPrice.Size = new System.Drawing.Size(224, 22);
-            this.txtPrice.TabIndex = 11;
+            this.txtPrice.TabIndex = 10;
             this.txtPrice.TextChanged += new System.EventHandler(this.txtPrice_TextChanged);
             // 
             // Price_txt
@@ -464,7 +464,7 @@
             this.txt_net_price.Margin = new System.Windows.Forms.Padding(4);
             this.txt_net_price.Name = "txt_net_price";
             this.txt_net_price.Size = new System.Drawing.Size(224, 22);
-            this.txt_net_price.TabIndex = 13;
+            this.txt_net_price.TabIndex = 11;
             this.txt_net_price.TextChanged += new System.EventHandler(this.txtNetPrice_TextChanged);
             // 
             // lbl_netPrice
@@ -486,7 +486,7 @@
             this.btn_new.Margin = new System.Windows.Forms.Padding(4);
             this.btn_new.Name = "btn_new";
             this.btn_new.Size = new System.Drawing.Size(129, 37);
-            this.btn_new.TabIndex = 15;
+            this.btn_new.TabIndex = 18;
             this.btn_new.Text = "New Item";
             this.btn_new.UseVisualStyleBackColor = true;
             this.btn_new.Click += new System.EventHandler(this.btn_new_Click);
@@ -497,7 +497,7 @@
             this.txtProd_Qty.Margin = new System.Windows.Forms.Padding(4);
             this.txtProd_Qty.Name = "txtProd_Qty";
             this.txtProd_Qty.Size = new System.Drawing.Size(224, 22);
-            this.txtProd_Qty.TabIndex = 16;
+            this.txtProd_Qty.TabIndex = 12;
             this.txtProd_Qty.TextChanged += new System.EventHandler(this.txtBtl_Deposit_TextChanged);
             // 
             // Btl_Dep_Lb
@@ -561,7 +561,7 @@
             this.btn_clear_info.Margin = new System.Windows.Forms.Padding(4);
             this.btn_clear_info.Name = "btn_clear_info";
             this.btn_clear_info.Size = new System.Drawing.Size(106, 37);
-            this.btn_clear_info.TabIndex = 27;
+            this.btn_clear_info.TabIndex = 17;
             this.btn_clear_info.Text = "Clear";
             this.btn_clear_info.UseVisualStyleBackColor = true;
             this.btn_clear_info.Click += new System.EventHandler(this.btn_clear_info_Click);
@@ -573,7 +573,7 @@
             this.chk_hide_item.Margin = new System.Windows.Forms.Padding(4);
             this.chk_hide_item.Name = "chk_hide_item";
             this.chk_hide_item.Size = new System.Drawing.Size(93, 20);
-            this.chk_hide_item.TabIndex = 15;
+            this.chk_hide_item.TabIndex = 16;
             this.chk_hide_item.Text = "Hide Item";
             this.chk_hide_item.UseVisualStyleBackColor = true;
             // 
@@ -603,7 +603,7 @@
             this.txt_max_qty.Margin = new System.Windows.Forms.Padding(4);
             this.txt_max_qty.Name = "txt_max_qty";
             this.txt_max_qty.Size = new System.Drawing.Size(224, 22);
-            this.txt_max_qty.TabIndex = 25;
+            this.txt_max_qty.TabIndex = 15;
             // 
             // txt_order_qty
             // 
@@ -611,7 +611,7 @@
             this.txt_order_qty.Margin = new System.Windows.Forms.Padding(4);
             this.txt_order_qty.Name = "txt_order_qty";
             this.txt_order_qty.Size = new System.Drawing.Size(224, 22);
-            this.txt_order_qty.TabIndex = 25;
+            this.txt_order_qty.TabIndex = 14;
             // 
             // lbl_min
             // 
@@ -629,7 +629,7 @@
             this.txt_min_qty.Margin = new System.Windows.Forms.Padding(4);
             this.txt_min_qty.Name = "txt_min_qty";
             this.txt_min_qty.Size = new System.Drawing.Size(224, 22);
-            this.txt_min_qty.TabIndex = 23;
+            this.txt_min_qty.TabIndex = 13;
             // 
             // lbl_markup
             // 
@@ -648,6 +648,7 @@
             this.txt_markup.Name = "txt_markup";
             this.txt_markup.Size = new System.Drawing.Size(224, 22);
             this.txt_markup.TabIndex = 21;
+            this.txt_markup.TabStop = false;
             // 
             // checkListBox_Discounts
             // 
@@ -678,7 +679,7 @@
             this.chk_box_show_hidden.Margin = new System.Windows.Forms.Padding(4);
             this.chk_box_show_hidden.Name = "chk_box_show_hidden";
             this.chk_box_show_hidden.Size = new System.Drawing.Size(118, 20);
-            this.chk_box_show_hidden.TabIndex = 14;
+            this.chk_box_show_hidden.TabIndex = 22;
             this.chk_box_show_hidden.Text = "Hidden Items";
             this.chk_box_show_hidden.UseVisualStyleBackColor = true;
             this.chk_box_show_hidden.CheckedChanged += new System.EventHandler(this.chk_box_show_hidden_CheckedChanged);
