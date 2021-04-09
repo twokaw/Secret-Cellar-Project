@@ -76,7 +76,7 @@
             this.txtCashAmt.Margin = new System.Windows.Forms.Padding(2);
             this.txtCashAmt.Name = "txtCashAmt";
             this.txtCashAmt.Size = new System.Drawing.Size(140, 29);
-            this.txtCashAmt.TabIndex = 7;
+            this.txtCashAmt.TabIndex = 1;
             this.txtCashAmt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumberOnly);
             // 
             // btnMainMenu
@@ -86,7 +86,7 @@
             this.btnMainMenu.Margin = new System.Windows.Forms.Padding(2);
             this.btnMainMenu.Name = "btnMainMenu";
             this.btnMainMenu.Size = new System.Drawing.Size(116, 92);
-            this.btnMainMenu.TabIndex = 6;
+            this.btnMainMenu.TabIndex = 10;
             this.btnMainMenu.Text = "Main Menu";
             this.btnMainMenu.UseVisualStyleBackColor = true;
             this.btnMainMenu.Click += new System.EventHandler(this.btnMainMenu_Click);
@@ -109,7 +109,7 @@
             this.paymentType.RowTemplate.Height = 28;
             this.paymentType.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.paymentType.Size = new System.Drawing.Size(672, 203);
-            this.paymentType.TabIndex = 9;
+            this.paymentType.TabIndex = 8;
             // 
             // TYPE
             // 
@@ -173,7 +173,7 @@
             this.btnCompleteSale.Margin = new System.Windows.Forms.Padding(2);
             this.btnCompleteSale.Name = "btnCompleteSale";
             this.btnCompleteSale.Size = new System.Drawing.Size(266, 54);
-            this.btnCompleteSale.TabIndex = 7;
+            this.btnCompleteSale.TabIndex = 12;
             this.btnCompleteSale.Text = "Complete Sale";
             this.btnCompleteSale.UseVisualStyleBackColor = true;
             this.btnCompleteSale.Click += new System.EventHandler(this.btnCompleteSale_Click);
@@ -210,7 +210,7 @@
             this.btn_Cash.Margin = new System.Windows.Forms.Padding(2);
             this.btn_Cash.Name = "btn_Cash";
             this.btn_Cash.Size = new System.Drawing.Size(130, 36);
-            this.btn_Cash.TabIndex = 28;
+            this.btn_Cash.TabIndex = 3;
             this.btn_Cash.Text = "CASH";
             this.btn_Cash.UseVisualStyleBackColor = true;
             this.btn_Cash.Click += new System.EventHandler(this.btn_Cash_Click);
@@ -222,7 +222,7 @@
             this.btn_Check.Margin = new System.Windows.Forms.Padding(2);
             this.btn_Check.Name = "btn_Check";
             this.btn_Check.Size = new System.Drawing.Size(130, 36);
-            this.btn_Check.TabIndex = 29;
+            this.btn_Check.TabIndex = 4;
             this.btn_Check.Text = "CHECK";
             this.btn_Check.UseVisualStyleBackColor = true;
             this.btn_Check.Click += new System.EventHandler(this.btn_Check_Click);
@@ -234,7 +234,7 @@
             this.btn_Credit.Margin = new System.Windows.Forms.Padding(2);
             this.btn_Credit.Name = "btn_Credit";
             this.btn_Credit.Size = new System.Drawing.Size(164, 36);
-            this.btn_Credit.TabIndex = 30;
+            this.btn_Credit.TabIndex = 5;
             this.btn_Credit.Text = "CREDIT CARD";
             this.btn_Credit.UseVisualStyleBackColor = true;
             this.btn_Credit.Click += new System.EventHandler(this.btn_Credit_Click);
@@ -246,7 +246,7 @@
             this.btn_GiftCard.Margin = new System.Windows.Forms.Padding(2);
             this.btn_GiftCard.Name = "btn_GiftCard";
             this.btn_GiftCard.Size = new System.Drawing.Size(130, 36);
-            this.btn_GiftCard.TabIndex = 31;
+            this.btn_GiftCard.TabIndex = 6;
             this.btn_GiftCard.Text = "GIFT CARD";
             this.btn_GiftCard.UseVisualStyleBackColor = true;
             this.btn_GiftCard.Click += new System.EventHandler(this.btn_GiftCard_Click);
@@ -270,7 +270,7 @@
             this.txtNumber.Margin = new System.Windows.Forms.Padding(2);
             this.txtNumber.Name = "txtNumber";
             this.txtNumber.Size = new System.Drawing.Size(120, 29);
-            this.txtNumber.TabIndex = 33;
+            this.txtNumber.TabIndex = 2;
             // 
             // label2
             // 
@@ -291,7 +291,7 @@
             this.btnDelete.Margin = new System.Windows.Forms.Padding(4);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(135, 70);
-            this.btnDelete.TabIndex = 35;
+            this.btnDelete.TabIndex = 9;
             this.btnDelete.Text = "Delete Item";
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
@@ -305,7 +305,7 @@
             this.chk_printReceipt.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.chk_printReceipt.Name = "chk_printReceipt";
             this.chk_printReceipt.Size = new System.Drawing.Size(136, 28);
-            this.chk_printReceipt.TabIndex = 36;
+            this.chk_printReceipt.TabIndex = 11;
             this.chk_printReceipt.Text = "Print Recipt";
             this.chk_printReceipt.UseVisualStyleBackColor = true;
             this.chk_printReceipt.CheckedChanged += new System.EventHandler(this.chk_printReceipt_CheckedChanged);
@@ -333,6 +333,7 @@
             this.txt_credit_amount.ReadOnly = true;
             this.txt_credit_amount.Size = new System.Drawing.Size(120, 29);
             this.txt_credit_amount.TabIndex = 37;
+            this.txt_credit_amount.TabStop = false;
             // 
             // lbl_customer
             // 
@@ -356,6 +357,7 @@
             this.txt_customer.Name = "txt_customer";
             this.txt_customer.Size = new System.Drawing.Size(164, 29);
             this.txt_customer.TabIndex = 39;
+            this.txt_customer.TabStop = false;
             // 
             // btn_cust_credit
             // 
@@ -364,7 +366,7 @@
             this.btn_cust_credit.Margin = new System.Windows.Forms.Padding(2);
             this.btn_cust_credit.Name = "btn_cust_credit";
             this.btn_cust_credit.Size = new System.Drawing.Size(164, 36);
-            this.btn_cust_credit.TabIndex = 41;
+            this.btn_cust_credit.TabIndex = 7;
             this.btn_cust_credit.Text = "Customer Credit";
             this.btn_cust_credit.UseVisualStyleBackColor = true;
             this.btn_cust_credit.Click += new System.EventHandler(this.btn_cust_credit_Click);

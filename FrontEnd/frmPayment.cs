@@ -17,6 +17,8 @@ namespace SecretCellar
 
             this.transaction = transaction;
             txt_TenderTransTotal.Text = transaction.Total.ToString("C");
+            txtCashAmt.Focus();
+
             if (transaction.CustomerID > 0)
             {
                 currentCustomer = DataAccess.instance.GetCustomer(transaction.CustomerID);
@@ -71,8 +73,10 @@ namespace SecretCellar
 
         private void UpdatePayment(string method, string number = null)
         {
-            if (double.TryParse(txtCashAmt.Text, out double amount))
+           
+           if (double.TryParse(txtCashAmt.Text, out double amount))
                 transaction.AddPayment(new Payment { Method = method, Amount = amount, Number = number });
+                
 
             RefreshGrid();
         }
