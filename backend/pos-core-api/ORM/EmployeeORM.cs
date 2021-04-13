@@ -145,7 +145,14 @@ namespace pos_core_api.ORM
 
             try
             {
-                string sqlStatementDesc = "UPDATE employee SET pin_number = @pinNumber, admin = @admin, first_name = @firstName, last_name = @lastName, email = @email, addr1 = @addr1, addr2 = @addr2, city = @city, state = @state, zip = @zip, phone = @phone WHERE emp_id = @empID";
+                string sqlStatementDesc = @"
+                  UPDATE employee 
+                  SET pin_number = @pinNumber, admin = @admin, 
+                      first_name = @firstName, last_name = @lastName, 
+                      email = @email, addr1 = @addr1, addr2 = @addr2, 
+                      city = @city, state = @state, zip = @zip, phone = @phone 
+                  WHERE emp_id = @empID
+                ";
 
                 MySqlCommand cmd = new MySqlCommand(sqlStatementDesc, db.Connection());
                 cmd.Parameters.Add(new MySqlParameter("pinNumber", emp.PinNumber));

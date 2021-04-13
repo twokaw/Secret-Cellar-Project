@@ -23,7 +23,7 @@ namespace SecretCellar
         {
             customer = transaction;
             InitializeComponent();
-            this.Size = new System.Drawing.Size(1366, 768);
+            this.Size = new System.Drawing.Size(1600, 768);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScaleDimensions = new System.Drawing.SizeF(72, 72);
             customers = dataAccess.GetCustomer();
@@ -130,7 +130,7 @@ namespace SecretCellar
 
         private void refresh()
         {
-            customer_data_grid.DataSource = customers.Where(x => (x.LastName.IndexOf(txt_customer.Text, StringComparison.OrdinalIgnoreCase) >= 0 || x.FirstName.IndexOf(txt_customer.Text, StringComparison.OrdinalIgnoreCase) >= 0)
+            customer_data_grid.DataSource = customers.Where(x => (x.LastName.IndexOf(txt_customer.Text, StringComparison.OrdinalIgnoreCase) >= 0 || x.FirstName.IndexOf(txt_customer.Text, StringComparison.OrdinalIgnoreCase) >= 0 || x.PhoneNumber.IndexOf(txt_customer.Text,StringComparison.OrdinalIgnoreCase) >= 0)
             && chkbox_wholesale.Checked == false || chkbox_wholesale.Checked == true).
 
               Select(x => new {
@@ -173,6 +173,7 @@ Address:
                         return;
                     }
                 }
+                
                 i = new Customer
                 {
                     LastName = txt_lname.Text.Trim(),
@@ -181,7 +182,7 @@ Address:
                     BusinessName = txt_company.Text.Trim(),
                     IsWholesale = cbo_wholesale.SelectedIndex != 0,
                     CustomerDiscount = double.TryParse(txt_custDisc.Text,out double disc)?disc:0,
-                    PhoneNumber = txt_phone.Text.Trim(),
+                    PhoneNumber = txt_phone.Text,
                     Address1 = txt_addr1.Text.Trim(),
                     Address2 = txt_addr2.Text.Trim(),
                     City = txt_city.Text.Trim(),

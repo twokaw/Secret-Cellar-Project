@@ -54,7 +54,7 @@ namespace SecretCellar
         public uint UpdateItem(Inventory item)
         {
             Response resp = null;
-            string result = web.DataPut($"api/Inventory/{item.Id}", item, resp);
+            string result = web.DataPut($"api/Inventory", item, resp);
 
             if (uint.TryParse(result, out uint id))
                 return id;
@@ -222,9 +222,15 @@ namespace SecretCellar
             return JsonConvert.DeserializeObject<List<Customer>>(result);
         }
 
-        public Customer GetCustomer(uint CustomerID)
+        public Customer GetCustomer(uint customerID)
         {
-            string result = web.DataGet($"api/Customer/{CustomerID}");
+            string result = web.DataGet($"api/Customer/{customerID}");
+            return JsonConvert.DeserializeObject<Customer>(result);
+        }
+
+        public Customer GetCustomer(string phone)
+        {
+            string result = web.DataGet($"api/Customer/phone/{phone}");
             return JsonConvert.DeserializeObject<Customer>(result);
         }
 

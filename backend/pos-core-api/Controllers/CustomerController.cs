@@ -24,20 +24,7 @@ namespace WebApi.Controllers
                 return StatusCode(500, ex.Message);
             }
         }
-        // Get: api/Customer
-        [HttpGet("WithBalance")]
-        public IActionResult GetWithBalance()
-        {
-            try
-            {
-                List<Customer> output = DataAccess.Instance.Customer.GetWithBalance();
-                return Ok(output);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, ex.Message);
-            }
-        }
+
         // GET: api/Customer/ID
         [HttpGet("{customerID}")]
         public IActionResult Get(uint customerID)
@@ -51,13 +38,14 @@ namespace WebApi.Controllers
                 return StatusCode(500, e.Message);
             }
         }
-        // GET: api/Customer/WithBalance/ID
-        [HttpGet("WithBalance/{customerID}")]
-        public IActionResult GetWithBalance(uint customerID)
+
+        // GET: api/Customer/Phone/{phone}
+        [HttpGet("Phone/{phone}")]
+        public IActionResult Get(string phone)
         {
             try
             {
-                return Ok(DataAccess.Instance.Customer.GetWithBalance(customerID));
+                return Ok(DataAccess.Instance.Customer.Get(phone));
             }
             catch (Exception e)
             {

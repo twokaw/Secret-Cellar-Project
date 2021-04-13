@@ -10,18 +10,19 @@ namespace pos_core_api.ORM
     {
         readonly DbConn db = new DbConn();
 
+        const string CUSTOMERSQL = @"
+              SELECT customerID, customer_discount, first_name, last_name,
+                     business_name, email, isWholesale, 
+                     addr1, addr2, city, state, zip, phone, credit, balancedue, suspendedtransactions       
+              FROM v_customerwithbalance
+            ";
+
         public List<Customer> Get()
         {
             db.OpenConnection();
 
-            string sqlStatement = @"
-              SELECT customerID, customer_discount, first_name, last_name,
-                     business_name, email, isWholesale, 
-                     addr1, addr2, city, state, zip, phone, credit
-              FROM v_customer
-            ";
 
-            MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
+            MySqlCommand cmd = new MySqlCommand(CUSTOMERSQL, db.Connection());
             MySqlDataReader reader = cmd.ExecuteReader();
 
             try
@@ -34,50 +35,22 @@ namespace pos_core_api.ORM
                 db.CloseConnnection();
             }
         }
-        public List<Customer> GetWithBalance()
+
+        public Customer Get(uint customerID)
         {
             db.OpenConnection();
 
-            string sqlStatement = @"
-              SELECT customerID, customer_discount, first_name, last_name,
-                     business_name, email, isWholesale, 
-                     addr1, addr2, city, state, zip, phone, credit, balancedue, suspendedtransactions       
-              FROM v_customerwithbalance
-            ";
-
-            MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
-            MySqlDataReader reader = cmd.ExecuteReader();
-
-            try
-            {
-                return FetchCustomers(reader, true);
-            }
-            finally
-            {
-                reader.Close();
-                db.CloseConnnection();
-            }
-        }
-        public Customer GetWithBalance(uint customerID)
-        {
-            db.OpenConnection();
-
-            string sqlStatement = @"
-              SELECT customerID, customer_discount, first_name, last_name,
-                     business_name, email, isWholesale, 
-                     addr1, addr2, city, state, zip, phone, credit, balancedue, suspendedtransactions       
-              FROM v_customerwithbalance
+            string sqlStatement = @$"{CUSTOMERSQL}
               WHERE customerID = @custID
             ";
 
             MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
             cmd.Parameters.Add(new MySqlParameter("custID", customerID));
-
             MySqlDataReader reader = cmd.ExecuteReader();
-
             try
             {
-                List<Customer> output = FetchCustomers(reader, true);
+
+                List<Customer> output = FetchCustomers(reader);
 
                 if (output.Count > 0)
                     return output[0];
@@ -91,23 +64,19 @@ namespace pos_core_api.ORM
             }
         }
 
-        public Customer Get(uint customerID)
+        public Customer Get(string phone)
         {
             db.OpenConnection();
 
-            string sqlStatement = @"
-              SELECT customerID, customer_discount, first_name, last_name,
-                     business_name, email, isWholesale, 
-                     addr1, addr2, city, state, zip, phone, credit
-              FROM v_customer 
-              WHERE customerID = @custID
+            string sqlStatement = @$"{CUSTOMERSQL}
+              WHERE phone = @phone
             ";
 
             MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
-            cmd.Parameters.Add(new MySqlParameter("custID", customerID));
+            cmd.Parameters.Add(new MySqlParameter("phone", phone));
             MySqlDataReader reader = cmd.ExecuteReader();
             try
-            {           
+            {
 
                 List<Customer> output = FetchCustomers(reader);
 
@@ -201,7 +170,7 @@ namespace pos_core_api.ORM
             }
         }
 
-        public void Delete (uint custID)
+        public void Delete(uint custID)
         {
             db.OpenConnection();
             try
@@ -220,14 +189,36 @@ namespace pos_core_api.ORM
                 db.CloseConnnection();
             }
         }
+        public void AddCredit(uint custID, double amount)
+        {
+            db.OpenConnection();
+            try
+            {
+                string sqlStatementDesc = @"
+                  UPDATE customer 
+                  SET Credit = IFNULL(Credit, 0) - @amount
+                  WHERE customerID = @CustID
+                ";
 
-        private List<Customer> FetchCustomers(MySqlDataReader reader, bool withBalance = false)
+                MySqlCommand cmd = new MySqlCommand(sqlStatementDesc, db.Connection());
+                cmd.Parameters.Add(new MySqlParameter("custID", custID));
+                cmd.Parameters.Add(new MySqlParameter("amount", amount));
+                cmd.ExecuteNonQuery();
+            }
+            finally
+            {
+                db.CloseConnnection();
+            }
+        }
+
+        private List<Customer> FetchCustomers(MySqlDataReader reader)
         {
             List<Customer> output = new List<Customer>();
-            Customer outputItem;
+
             while (reader.Read())
             {
-                outputItem = new Customer {
+                output.Add(new Customer
+                {
                     CustomerID = reader.IsDBNull("customerID") ? 0 : reader.GetUInt32("customerID"),
                     CustomerDiscount = reader.IsDBNull("customer_discount") ? 0.0 : reader.GetDouble("customer_discount"),
                     FirstName = reader.IsDBNull("first_name") ? "" : reader.GetString("first_name"),
@@ -242,15 +233,9 @@ namespace pos_core_api.ORM
                     ZipCode = reader.IsDBNull("zip") ? "" : reader.GetString("zip"),
                     PhoneNumber = reader.IsDBNull("phone") ? "" : reader.GetString("phone"),
                     Credit = reader.IsDBNull("credit") ? 0.0 : reader.GetDouble("credit"),
-                };
-
-                if(withBalance)
-                {
-                    outputItem.BalanceDue = reader.IsDBNull("balancedue") ? 0.0 : reader.GetDouble("balancedue");
-                    outputItem.SuspendedTransactions = reader.IsDBNull("suspendedtransactions") ? 0 : reader.GetUInt32("suspendedtransactions");
-                }
-
-                output.Add(outputItem);
+                    BalanceDue = reader.IsDBNull("balancedue") ? 0.0 : reader.GetDouble("balancedue"),
+                    SuspendedTransactions = reader.IsDBNull("suspendedtransactions") ? 0 : reader.GetUInt32("suspendedtransactions")
+                });
             }
             return output;
         }

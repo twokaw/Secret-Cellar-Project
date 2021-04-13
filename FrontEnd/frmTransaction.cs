@@ -110,6 +110,7 @@ namespace SecretCellar
 
                     //transaction complete, clear the form
                     transaction = new Transaction();
+                    txt_current_cust.Text = "";
                     RefreshDataGrid();
                 }
             }
@@ -239,7 +240,7 @@ namespace SecretCellar
             DataAccess.instance.DeleteTransaction(transactionId);
 
             transaction = new Transaction();
-            txt_current_cust.Text = "Generic";
+            txt_current_cust.Text = "";
             RefreshDataGrid();
         }
 

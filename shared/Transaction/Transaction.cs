@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 namespace Shared
 {
-    public class Transaction 
+    public class Transaction
     {
         public uint InvoiceID { get; set; }
         public uint RegisterID { get; set; }
         public DateTime TransactionDateTime { get; set; }
         public string Location { get; set; }
-        public List<Item> Items { get; set; }
-
+        public List<Item> Items { get; }
         public double ItemTotal
         {
             get
@@ -141,11 +140,24 @@ namespace Shared
 
                     else if (Payments.Exists(x => x.Method.ToUpper() == "GIFT"))
                         return "GIFT";
+
+                    else if (Payments.Exists(x => x.Method.ToUpper() == "CUSTOMER CREDIT"))
+                        return "CUSTOMER CREDIT";
                 }
                 return "CASH";
             }
         }
+        public double AddPayment(Payment pay)
+        {
+            if (pay.Method != "CASH" && pay.Method != "CUSTOMER CREDIT" || Payments.FirstOrDefault(x => x.Method == pay.Method) == null)
+                Payments.Add(pay);
+            else
+                Payments.First(x => x.Method == pay.Method).Amount += pay.Amount;
 
+            double TotalPayment = 0;
+            Payments.ForEach(x => TotalPayment += x.Amount);
+            return TotalPayment;
+        }
         public string PayNum
         {
             get
@@ -224,9 +236,13 @@ namespace Shared
             int count = 0;
             foreach (Discount dis in GetBulkDiscounts())
             {
-                count = Items.Count(i => i.Discounts.Where(x => x.DiscountID == dis.DiscountID).Count() > 0);
+                count = Items.Count(i => i.Discounts.Where(x => x.DiscountID == dis.DiscountID && dis.Enabled ).Count() > 0 && i.Discount == 0.0);
                 if (count >= dis.Min && count <= dis.Max)
+                {
                     result.Add(dis);
+                 // TODO: talk to lauren about how discounts should stack
+                 //   Items.ForEach(i => i.Discounts.Where(x => x.)
+                }
             }
 
             return result;
@@ -248,6 +264,12 @@ namespace Shared
                     x.Enabled = enabled;
         }
 
+
+        public void UpdateBulkDiscount()
+        {
+            List<Discount> d = GetQualifiedBulkDiscounts();
+
+        }
         public void Add(Item item)
         {
             Item i = Items.FirstOrDefault(x => x.Id == item.Id);
@@ -256,6 +278,8 @@ namespace Shared
                 Items.Add(item);
             else
                 i.NumSold += item.NumSold;
+
+            UpdateBulkDiscount();
         }
 
         public void Add(Inventory inv) { Add(ConvertInvtoItem(inv)); }
