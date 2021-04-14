@@ -71,6 +71,7 @@ namespace SecretCellar
             frmDiscount discount = new frmDiscount(transaction); //instantiates frmDiscount using discount
             discount.ShowDialog();
             RefreshDataGrid();// opens form associated with discount instantiation
+            txtBarcode.Focus();
         }
 
         private void btnTender_Click(object sender, EventArgs e)
@@ -105,6 +106,7 @@ namespace SecretCellar
                     transaction = new Transaction();
                     txt_current_cust.Text = "";
                     RefreshDataGrid();
+                    txtBarcode.Focus();
                 }
             }
         }
@@ -180,6 +182,7 @@ namespace SecretCellar
                 Item i = transaction.Items.First(x => x.Description == desc && x.NumSold == qty);
                 transaction.Items.Remove(i);
                 RefreshDataGrid();
+                txtBarcode.Focus();
             }
         }
 
@@ -189,6 +192,7 @@ namespace SecretCellar
 
             dryCleaning.ShowDialog();
             RefreshDataGrid();
+            txtBarcode.Focus();
         }
 
         private void txtBarcode_KeyUp(object sender, KeyEventArgs e)
@@ -224,6 +228,7 @@ namespace SecretCellar
 
             events.ShowDialog();
             RefreshDataGrid();
+            txtBarcode.Focus();
         }
 
         private void btnShipping_Click(object sender, EventArgs e)
@@ -232,6 +237,7 @@ namespace SecretCellar
 
             shipping.ShowDialog();
             RefreshDataGrid();
+            txtBarcode.Focus();
         }
 
         private void btnVoidTrx_Click(object sender, EventArgs e)
@@ -252,6 +258,7 @@ namespace SecretCellar
             transaction = new Transaction();
             txt_current_cust.Text = "";
             RefreshDataGrid();
+            txtBarcode.Focus();
         }
 
         private void dataGridView1_Click(object sender, EventArgs e)
@@ -283,6 +290,7 @@ namespace SecretCellar
 
             propane.ShowDialog();
             RefreshDataGrid();
+            txtBarcode.Focus();
         }
 
         private void btnCustom_Click(object sender, EventArgs e)
@@ -291,6 +299,7 @@ namespace SecretCellar
 
             customItem.ShowDialog();
             RefreshDataGrid();
+            txtBarcode.Focus();
         }
 
         private void pb_settings_Click(object sender, EventArgs e)
@@ -370,6 +379,7 @@ namespace SecretCellar
             frmCustomer customer = new frmCustomer(transaction); //instantiates frmCustomer using Lookup
             customer.ShowDialog(); // opens form associated with Lookup instantiation
             RefreshDataGrid();
+            txtBarcode.Focus();
         }
     }
 }
