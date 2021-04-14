@@ -374,6 +374,11 @@ namespace SecretCellar
             return uint.TryParse(result, out uint id) ? 0 : id;
         }
 
+        public void DeleteEvent(uint eventId) {
+            try { web.DataDelete($"api/Event/{eventId}"); }
+            catch (Exception e) { LogError(e, "DeleteEvent"); }
+        }
+
         #endregion
 
         #region Error logging

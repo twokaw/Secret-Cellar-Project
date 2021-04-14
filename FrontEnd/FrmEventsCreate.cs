@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Shared;
 
@@ -21,27 +14,50 @@ namespace SecretCellar {
 		}
 
 		private void button_CreateEvent_Click(object sender, EventArgs e) {
-			
-			//newEvent.Qty = uint.Parse(textBox_Quantity.Text); --READ ONLY CAN'T SET
+			Event newEvent;
+			uint quantity = 9999;
+			double supplierPrice = 0.0;
 
-			//CREATE A NEW EVENT
-			Event newEvent = new Event() {
-				Name = textBox_Name.Text,
-				EventDate = dateTimePicker_Date.Value,
-				Duration = dateTimePicker_Duration.Value,
-				Barcode = textBox_Barcode.Text,
-				Price = double.Parse(textBox_Price.Text),
-				//SupplierPrice = uint.Parse(textBox_TypeId.Text), --READ ONLY
-				PreOrder = double.Parse(textBox_Preorder.Text),
-				AtDoor = double.Parse(textBox_AtDoor.Text),
-				TypeID = uint.Parse(textBox_TypeId.Text),
-				NonTaxable = checkBox_NonTaxable.Checked,
-				NonTaxableLocal = checkBox_NonTaxableLocal.Checked
-			};
+			//CHECK IF QUANTITY IS FILLED
+			if (textBox_Quantity.Text.Replace(" ", "") != "" && IsOnlyNumbers(textBox_Quantity.Text)) {
+				quantity = uint.Parse(textBox_Quantity.Text);
+			}
+
+			//CHECK IF SUPPLIER PRICE IS FILLED
+			if (textBox_SupplierPrice.Text.Replace(" ", "") != "" && IsOnlyNumbers(textBox_SupplierPrice.Text)) {
+				supplierPrice = double.Parse(textBox_Quantity.Text);
+			}
+
+			//CREATE THE EVENT
+			newEvent = new Event(quantity, supplierPrice);
+
+			newEvent.Name = textBox_Name.Text;
+			newEvent.EventDate = dateTimePicker_Date.Value;
+			newEvent.Duration = dateTimePicker_Duration.Value;
+			newEvent.Barcode = textBox_Barcode.Text;
+			newEvent.Price = double.Parse(textBox_Price.Text);
+			newEvent.PreOrder = double.Parse(textBox_Preorder.Text);
+			newEvent.AtDoor = double.Parse(textBox_AtDoor.Text);
+			newEvent.TypeID = uint.Parse(textBox_TypeId.Text);
+			newEvent.NonTaxable = checkBox_NonTaxable.Checked;
+			newEvent.NonTaxableLocal = checkBox_NonTaxableLocal.Checked;
 
 			//CREATE THE EVENT IN THE DATABASE
 			DataAccess.instance.CreateEvent(newEvent);
+
+			//CLOSE THE WINDOW
+			this.Close();
 		}
 
+
+		private bool IsOnlyNumbers(string word) {
+			foreach (char c in word) {
+				if (c < '0' || c > '9') {
+					return false;
+				}
+			}
+
+			return true;
+		}
 	}
 }

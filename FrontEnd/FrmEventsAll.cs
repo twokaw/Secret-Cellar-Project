@@ -15,6 +15,35 @@ namespace SecretCellar {
 		public FrmEventsAll() {
 			InitializeComponent();
 
+            UpdateEventGrid();
+        }
+
+		private void button_CloseWindow_Click(object sender, EventArgs e) {
+            this.Close();
+		}
+
+		private void button_DeleteEvent_Click(object sender, EventArgs e) {
+            //GET ALL THE EVENTS
+            List<Event> listOfEvents = DataAccess.instance.GetEvent();
+            DataGridViewSelectedRowCollection selectedRows = dataGridView_Events.SelectedRows;
+
+            //LOOP THROUGH ALL OF THE SELECTED ROWS
+            foreach (DataGridViewRow row in selectedRows) {
+
+                //LOOP THROUGH ALL OF THE EVENTS
+                foreach (Event currentEvent in listOfEvents) {
+
+                    //IF THE ID OF THE SELECTED EVENT MATCHES AN EVENT, THEN DELETE THE EVENT
+                    if (uint.Parse(row.Cells["Id"].Value.ToString()) == currentEvent.Id) {
+                        DataAccess.instance.DeleteEvent(currentEvent.Id);
+
+                        UpdateEventGrid();
+                    }
+                }
+            }
+        }
+
+        private void UpdateEventGrid() {
             //GET ALL THE EVENTS
             List<Event> listOfEvents = DataAccess.instance.GetEvent();
 
@@ -23,13 +52,8 @@ namespace SecretCellar {
 
             //ADD ALL THE EVENTS
             foreach (Event currentEvent in listOfEvents) {
-                Console.WriteLine("I'm matched");
                 dataGridView_Events.Rows.Add(currentEvent.EventDate, currentEvent.Name, currentEvent.Price, currentEvent.Qty);
             }
         }
-
-		private void button_CloseWindow_Click(object sender, EventArgs e) {
-            this.Close();
-		}
 	}
 }
