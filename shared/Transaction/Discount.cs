@@ -8,10 +8,11 @@ namespace Shared
         public uint Min { get; set; }
         public uint Max { get; set; }
         public double Amount { get; set; }
-        public bool Enabled { get; set; }
-        public Discount()
-        {
-            Enabled = false;
-        }
+
+        // Determines if the transaction allows this dicount
+        public bool Enabled { get; set; } = false;
+
+        // Determines if it is currently active.  
+        public bool Active { get; set; } = false;
     }
 }
