@@ -5,34 +5,51 @@ namespace SecretCellar
 {
     public class CurrencyBox: TextBox
     {
+        private int CursorPosition = 0;
         public CurrencyBox() : base(){
             this.TextAlign = HorizontalAlignment.Right;
 
             this.Text = "0.00";
         }
-        protected override void OnKeyUp(KeyEventArgs e)
+        protected override void OnKeyDown(KeyEventArgs e)
         {
-            base.OnKeyUp(e);
-            if (e.KeyCode == Keys.Delete || e.KeyCode == Keys.Back)
-                DeleteChar();
+            base.OnKeyDown(e);
+            if (e.KeyCode == Keys.Right)
+            {
+                CursorPosition = Math.Min(this.TextLength,  ++CursorPosition);
+                Console.WriteLine($"CursorPosition on Right : {CursorPosition}");
+            }
 
-            e.Handled = true;
+            if (e.KeyCode == Keys.Left)
+            {
+                CursorPosition = Math.Max(0, --CursorPosition);
+                Console.WriteLine($"CursorPosition on Left : {CursorPosition}");
+            }
+                
+
+            if (e.KeyCode == Keys.Delete || e.KeyCode == Keys.Back)
+            {
+                DeleteChar();
+                e.Handled = true;
+            }
         }
 
         protected override void OnClick(EventArgs e)
         {
             base.OnClick(e);
-            this.SelectionStart = 0;
             this.SelectAll();
+            CursorPosition = this.TextLength;
+            Console.WriteLine($"CursorPosition on click : {CursorPosition}");
         }
 
         protected override void OnTextChanged(EventArgs e)
         {
             base.OnTextChanged(e);
-            
-            this.Text = "0.00";
-            //this.SelectionStart = 0;
 
+            this.Text = FormatText(this.Text);
+
+            
+            //CursorPosition = TextLength;
         }
 
         protected override void OnKeyPress(KeyPressEventArgs e)
@@ -41,23 +58,25 @@ namespace SecretCellar
 
             // between 0 and 9
             if (e.KeyChar >= '0' && e.KeyChar <= '9')
-                insertChar(e.KeyChar);
+                InsertChar(e.KeyChar);
+
             e.Handled = true;
         }
 
-        private void insertChar(char character)
+        private void InsertChar(char character)
         {
-            int start = this.SelectionStart;
             if (this.TextLength == this.SelectionLength)
                 this.Clear();
 
             string value = this.Text;
-
-            value = value.Insert(start, $"{character}");
+            
+            value = value.Insert(CursorPosition, $"{character}");
+            CursorPosition++;
 
             this.Text = FormatText(value);
 
-            this.SelectionStart = start + 1;
+            Console.WriteLine($"CursorPosition INSERT : {CursorPosition}");
+            this.SelectionStart = CursorPosition;
             this.SelectionLength = 0;
         }
 
@@ -67,16 +86,22 @@ namespace SecretCellar
                 this.Clear();
             else
             {
-                int start = this.SelectionStart;
+                Console.WriteLine($"CursorPosition: {CursorPosition}");
+
                 string value = this.Text;
 
-                if (start > 0 && value.Substring(start - 1, 1) == ".")
-                    start++;
+                if (CursorPosition > 0 && value.Substring(CursorPosition - 1, 1) == ".")
+                    CursorPosition++;
 
-                value = value.Remove(start - 1, 1);
+                Console.WriteLine($"CursorPosition period check : {CursorPosition}");
+
+                if (CursorPosition > 0 && this.TextLength > 4) CursorPosition--;
+                Console.WriteLine($"CursorPosition negative check : {CursorPosition}");
+                value = value.Remove(Math.Min(CursorPosition, value.Length -1), 1);
                 this.Text = FormatText(value);
 
-                this.SelectionStart = start + 1;
+                Console.WriteLine($"CursorPosition selection set : {CursorPosition}");
+                this.SelectionStart = CursorPosition ;
                 this.SelectionLength = 0;
             }
         }
@@ -86,6 +111,9 @@ namespace SecretCellar
             value = value.Replace(".", "").TrimStart('0');
             value = value.PadLeft(3, '0');
             value = value.Insert(value.Length - 2, ".");
+            Console.WriteLine($"CursorPosition preFormat : {CursorPosition}");
+            CursorPosition = Math.Min(value.Length, CursorPosition);
+            Console.WriteLine($"CursorPosition Format : {CursorPosition}");
             return value;
         }
     }
