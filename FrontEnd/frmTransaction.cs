@@ -381,5 +381,11 @@ namespace SecretCellar
             RefreshDataGrid();
             txtBarcode.Focus();
         }
+
+        private void btn_order_Click(object sender, EventArgs e)
+        {
+            frmOrders order = new frmOrders(transaction);
+            order.ShowDialog();
+        }
     }
 }
