@@ -100,6 +100,16 @@ namespace SecretCellar
 
                 dataAccess.UpdateItem(i);
             }
+            refresh();
+        }
+
+        private void supp_dataGrid_SelectionChanged(object sender, EventArgs e)
+        {
+            if (supp_dataGrid.SelectedRows.Count > 0)
+            {
+                Inventory i = inventory.First(x => x.Id == uint.Parse(supp_dataGrid.SelectedRows[0].Cells["id"].Value.ToString()));
+                txt_update_qty.Text = i.OrderQty.ToString();
+            }
         }
     }
 }

@@ -41,6 +41,15 @@ namespace SecretCellar
             this.lbl_supplier = new System.Windows.Forms.Label();
             this.cbx_supplier = new System.Windows.Forms.ComboBox();
             this.supp_dataGrid = new System.Windows.Forms.DataGridView();
+            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.barcode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ItemType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.qty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.price = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.minqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.maxqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.orderqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cust_request = new System.Windows.Forms.TabPage();
             this.btn_prod_delete = new System.Windows.Forms.Button();
             this.btn_prod_add = new System.Windows.Forms.Button();
@@ -53,15 +62,6 @@ namespace SecretCellar
             this.prod_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.btn_close = new System.Windows.Forms.Button();
-            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.barcode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ItemType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.qty = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.price = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.minqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.maxqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.orderqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.supp_order.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.supp_dataGrid)).BeginInit();
             this.cust_request.SuspendLayout();
@@ -113,11 +113,11 @@ namespace SecretCellar
             // lbl_qty
             // 
             this.lbl_qty.AutoSize = true;
-            this.lbl_qty.Location = new System.Drawing.Point(1290, 186);
+            this.lbl_qty.Location = new System.Drawing.Point(1240, 186);
             this.lbl_qty.Name = "lbl_qty";
-            this.lbl_qty.Size = new System.Drawing.Size(76, 20);
+            this.lbl_qty.Size = new System.Drawing.Size(126, 20);
             this.lbl_qty.TabIndex = 11;
-            this.lbl_qty.Text = "Quantity";
+            this.lbl_qty.Text = "Order Quantity";
             // 
             // lbl_order_date
             // 
@@ -198,8 +198,73 @@ namespace SecretCellar
             this.orderqty});
             this.supp_dataGrid.Location = new System.Drawing.Point(25, 107);
             this.supp_dataGrid.Name = "supp_dataGrid";
+            this.supp_dataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.supp_dataGrid.Size = new System.Drawing.Size(1177, 300);
             this.supp_dataGrid.TabIndex = 0;
+            this.supp_dataGrid.SelectionChanged += new System.EventHandler(this.supp_dataGrid_SelectionChanged);
+            // 
+            // id
+            // 
+            this.id.DataPropertyName = "Id";
+            this.id.HeaderText = "Id";
+            this.id.Name = "id";
+            this.id.Visible = false;
+            // 
+            // barcode
+            // 
+            this.barcode.DataPropertyName = "Barcode";
+            this.barcode.HeaderText = "Barcode";
+            this.barcode.Name = "barcode";
+            this.barcode.Width = 200;
+            // 
+            // name
+            // 
+            this.name.DataPropertyName = "Name";
+            this.name.HeaderText = "Name";
+            this.name.Name = "name";
+            this.name.Width = 400;
+            // 
+            // ItemType
+            // 
+            this.ItemType.DataPropertyName = "ItemType";
+            this.ItemType.HeaderText = "Type";
+            this.ItemType.Name = "ItemType";
+            this.ItemType.Visible = false;
+            // 
+            // qty
+            // 
+            this.qty.DataPropertyName = "Qty";
+            this.qty.HeaderText = "Qty";
+            this.qty.Name = "qty";
+            this.qty.Width = 80;
+            // 
+            // price
+            // 
+            this.price.DataPropertyName = "Price";
+            this.price.HeaderText = "Price";
+            this.price.Name = "price";
+            this.price.Width = 90;
+            // 
+            // minqty
+            // 
+            this.minqty.DataPropertyName = "minqty";
+            this.minqty.HeaderText = "Min Qty";
+            this.minqty.Name = "minqty";
+            this.minqty.Width = 90;
+            // 
+            // maxqty
+            // 
+            this.maxqty.DataPropertyName = "maxqty";
+            this.maxqty.HeaderText = "Max Qty";
+            this.maxqty.Name = "maxqty";
+            this.maxqty.Width = 90;
+            // 
+            // orderqty
+            // 
+            this.orderqty.DataPropertyName = "orderqty";
+            this.orderqty.HeaderText = "Order Qty";
+            this.orderqty.Name = "orderqty";
+            this.orderqty.Width = 90;
             // 
             // cust_request
             // 
@@ -278,6 +343,7 @@ namespace SecretCellar
             this.prod_name});
             this.request_dataGrid.Location = new System.Drawing.Point(564, 91);
             this.request_dataGrid.Name = "request_dataGrid";
+            this.request_dataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.request_dataGrid.Size = new System.Drawing.Size(542, 300);
             this.request_dataGrid.TabIndex = 0;
             // 
@@ -316,69 +382,6 @@ namespace SecretCellar
             this.btn_close.Text = "Close";
             this.btn_close.UseVisualStyleBackColor = true;
             this.btn_close.Click += new System.EventHandler(this.btn_close_Click);
-            // 
-            // id
-            // 
-            this.id.DataPropertyName = "Id";
-            this.id.HeaderText = "Id";
-            this.id.Name = "id";
-            this.id.Visible = false;
-            // 
-            // barcode
-            // 
-            this.barcode.DataPropertyName = "Barcode";
-            this.barcode.HeaderText = "Barcode";
-            this.barcode.Name = "barcode";
-            this.barcode.Width = 200;
-            // 
-            // name
-            // 
-            this.name.DataPropertyName = "Name";
-            this.name.HeaderText = "Name";
-            this.name.Name = "name";
-            this.name.Width = 400;
-            // 
-            // ItemType
-            // 
-            this.ItemType.DataPropertyName = "ItemType";
-            this.ItemType.HeaderText = "Type";
-            this.ItemType.Name = "ItemType";
-            this.ItemType.Visible = false;
-            // 
-            // qty
-            // 
-            this.qty.DataPropertyName = "Qty";
-            this.qty.HeaderText = "Qty";
-            this.qty.Name = "qty";
-            this.qty.Width = 80;
-            // 
-            // price
-            // 
-            this.price.DataPropertyName = "Price";
-            this.price.HeaderText = "Price";
-            this.price.Name = "price";
-            this.price.Width = 90;
-            // 
-            // minqty
-            // 
-            this.minqty.DataPropertyName = "minqty";
-            this.minqty.HeaderText = "Min Qty";
-            this.minqty.Name = "minqty";
-            this.minqty.Width = 90;
-            // 
-            // maxqty
-            // 
-            this.maxqty.DataPropertyName = "maxqty";
-            this.maxqty.HeaderText = "Max Qty";
-            this.maxqty.Name = "maxqty";
-            this.maxqty.Width = 90;
-            // 
-            // orderqty
-            // 
-            this.orderqty.DataPropertyName = "orderqty";
-            this.orderqty.HeaderText = "Order Qty";
-            this.orderqty.Name = "orderqty";
-            this.orderqty.Width = 90;
             // 
             // frmOrders
             // 
