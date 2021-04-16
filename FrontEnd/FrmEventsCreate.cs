@@ -18,46 +18,142 @@ namespace SecretCellar {
 			uint quantity = 9999;
 			double supplierPrice = 0.0;
 
-			//CHECK IF QUANTITY IS FILLED
-			if (textBox_Quantity.Text.Replace(" ", "") != "" && IsOnlyNumbers(textBox_Quantity.Text)) {
-				quantity = uint.Parse(textBox_Quantity.Text);
+			if (HasNoErrors()) {
+				//CHECK IF QUANTITY IS FILLED
+				if (uint.TryParse(textBox_Quantity.Text, out uint uintValue)) {
+					quantity = uintValue;
+					Console.WriteLine("quantity: " + quantity);
+				}
+
+				//CHECK IF SUPPLIER PRICE IS FILLED
+				if (double.TryParse(textBox_SupplierPrice.Text, out double doubleValue)) {
+					supplierPrice = doubleValue;
+					Console.WriteLine("supp price: " + supplierPrice);
+				}
+
+				//CREATE THE EVENT
+				newEvent = new Event(quantity, supplierPrice);
+
+				newEvent.Name = textBox_Name.Text;
+				newEvent.EventDate = dateTimePicker_EventDate.Value;
+				newEvent.Duration = dateTimePicker_Duration.Value;
+				newEvent.PreOrder = double.Parse(textBox_Preorder.Text);
+				newEvent.AtDoor = double.Parse(textBox_AtDoor.Text);
+				newEvent.Price = double.Parse(textBox_Price.Text);
+				newEvent.Barcode = textBox_Barcode.Text;
+				newEvent.TypeID = uint.Parse(textBox_TypeId.Text);
+				newEvent.NonTaxable = checkBox_NonTaxable.Checked;
+				newEvent.NonTaxableLocal = checkBox_NonTaxableLocal.Checked;
+
+				//CREATE THE EVENT IN THE DATABASE
+				DataAccess.instance.CreateEvent(newEvent);
+
+				//CLOSE THE WINDOW
+				this.Close();
 			}
-
-			//CHECK IF SUPPLIER PRICE IS FILLED
-			if (textBox_SupplierPrice.Text.Replace(" ", "") != "" && IsOnlyNumbers(textBox_SupplierPrice.Text)) {
-				supplierPrice = double.Parse(textBox_Quantity.Text);
-			}
-
-			//CREATE THE EVENT
-			newEvent = new Event(quantity, supplierPrice);
-
-			newEvent.Name = textBox_Name.Text;
-			newEvent.EventDate = dateTimePicker_Date.Value;
-			newEvent.Duration = dateTimePicker_Duration.Value;
-			newEvent.Barcode = textBox_Barcode.Text;
-			newEvent.Price = double.Parse(textBox_Price.Text);
-			newEvent.PreOrder = double.Parse(textBox_Preorder.Text);
-			newEvent.AtDoor = double.Parse(textBox_AtDoor.Text);
-			newEvent.TypeID = uint.Parse(textBox_TypeId.Text);
-			newEvent.NonTaxable = checkBox_NonTaxable.Checked;
-			newEvent.NonTaxableLocal = checkBox_NonTaxableLocal.Checked;
-
-			//CREATE THE EVENT IN THE DATABASE
-			DataAccess.instance.CreateEvent(newEvent);
-
-			//CLOSE THE WINDOW
-			this.Close();
 		}
 
 
-		private bool IsOnlyNumbers(string word) {
-			foreach (char c in word) {
-				if (c < '0' || c > '9') {
-					return false;
-				}
+		private bool IsEmpty(string word) {
+			return word.Replace(" ", "") == "" ? true : false;
+		}
+
+		private bool HasNoErrors() {
+			bool hasNoErrors = true;
+			string result = "";
+
+			//CHECK NAME
+			if (IsEmpty(textBox_Name.Text)) {
+				hasNoErrors = false;
+				result += "Name field is not filled.\n";
 			}
 
-			return true;
+			//CHECK TO MAKE SURE DURATION IS AFTER EVENT DATE
+			int eventYear = dateTimePicker_EventDate.Value.Year;
+			int eventMonth = dateTimePicker_EventDate.Value.Month;
+			int eventDay = dateTimePicker_EventDate.Value.Day;
+			int eventHour = dateTimePicker_EventDate.Value.Hour;
+			int eventMinute = dateTimePicker_EventDate.Value.Minute;
+			int eventSecond = dateTimePicker_EventDate.Value.Second;
+
+			int durationYear = dateTimePicker_Duration.Value.Year;
+			int durationMonth = dateTimePicker_Duration.Value.Month;
+			int durationDay = dateTimePicker_Duration.Value.Day;
+			int durationHour = dateTimePicker_Duration.Value.Hour;
+			int durationMinute = dateTimePicker_Duration.Value.Minute;
+			int durationSecond = dateTimePicker_Duration.Value.Second;
+			
+			if (durationYear < eventYear) {
+				hasNoErrors = false;
+				result += "Duration year cannot be before the Event Date year.\n";
+			}
+			else if (durationMonth < eventMonth) {
+				hasNoErrors = false;
+				result += "Duration month cannot be before the Event Date month.\n";
+			}
+			else if (durationDay < eventDay) {
+				hasNoErrors = false;
+				result += "Duration day cannot be before the Event Date day.\n";
+			}
+			else if (durationHour < eventHour) {
+				hasNoErrors = false;
+				result += "Duration hour cannot be before the Event Date hour.\n";
+			}
+			else if (durationMinute < eventMinute) {
+				hasNoErrors = false;
+				result += "Duration minute cannot be before the Event Date minute.\n";
+			}
+			else if (durationSecond < eventSecond) {
+				hasNoErrors = false;
+				result += "Duration second cannot be before the Event Date second.\n";
+			}
+
+			//CHECK PRE ORDER
+			if (!IsEmpty(textBox_Preorder.Text) && !double.TryParse(textBox_Preorder.Text, out _)) {
+				hasNoErrors = false;
+				result += "Preorder field needs to be filled in like: 0.0.\n";
+			}
+			else if (IsEmpty(textBox_Preorder.Text)) {
+				hasNoErrors = false;
+				result += "Preorder field is not filled.\n";
+			}
+
+			//CHECK AT DOOR
+			if (!IsEmpty(textBox_AtDoor.Text) && !double.TryParse(textBox_AtDoor.Text, out _)) {
+				hasNoErrors = false;
+				result += "At Door field needs to be filled in like: 0.0.\n";
+			}
+			else if (IsEmpty(textBox_AtDoor.Text)) {
+				hasNoErrors = false;
+				result += "At Door field is not filled.\n";
+			}
+
+			//CHECK PRICE
+			if (!IsEmpty(textBox_Price.Text) && !double.TryParse(textBox_Price.Text, out _)) {
+				hasNoErrors = false;
+				result += "Price field needs to be filled in like: 0.0.\n";
+			}
+			else if (IsEmpty(textBox_Price.Text)) {
+				hasNoErrors = false;
+				result += "Price field is not filled.\n";
+			}
+
+			//CHECK TYPE ID
+			if (!IsEmpty(textBox_TypeId.Text) && !uint.TryParse(textBox_TypeId.Text, out _)) {
+				hasNoErrors = false;
+				result += "Type Id field needs to be only numbers.\n";
+			}
+			else if (IsEmpty(textBox_TypeId.Text)) {
+				hasNoErrors = false;
+				result += "Type Id field is not filled.\n";
+			}
+
+			//DISPLAY THE ERRORS IF ANY
+			if (result != "") {
+				MessageBox.Show(result, "Error");
+			}
+
+			return hasNoErrors;
 		}
 	}
 }
