@@ -286,7 +286,7 @@
             // 
             this.btnApplyToItem.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.btnApplyToItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnApplyToItem.Location = new System.Drawing.Point(438, 55);
+            this.btnApplyToItem.Location = new System.Drawing.Point(529, 55);
             this.btnApplyToItem.Margin = new System.Windows.Forms.Padding(6);
             this.btnApplyToItem.Name = "btnApplyToItem";
             this.btnApplyToItem.Size = new System.Drawing.Size(259, 102);
@@ -297,27 +297,26 @@
             // 
             // txt_discountTotal
             // 
-            this.txt_discountTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.txt_discountTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_discountTotal.Location = new System.Drawing.Point(1232, 777);
+            this.txt_discountTotal.Location = new System.Drawing.Point(1255, 754);
             this.txt_discountTotal.Margin = new System.Windows.Forms.Padding(6);
             this.txt_discountTotal.Name = "txt_discountTotal";
+            this.txt_discountTotal.ReadOnly = true;
             this.txt_discountTotal.Size = new System.Drawing.Size(342, 53);
             this.txt_discountTotal.TabIndex = 20;
             this.txt_discountTotal.TabStop = false;
             // 
             // total_lbl
             // 
-            this.total_lbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.total_lbl.AutoSize = true;
             this.total_lbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.total_lbl.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.total_lbl.Location = new System.Drawing.Point(894, 780);
+            this.total_lbl.Location = new System.Drawing.Point(719, 754);
             this.total_lbl.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.total_lbl.Name = "total_lbl";
-            this.total_lbl.Size = new System.Drawing.Size(326, 46);
+            this.total_lbl.Size = new System.Drawing.Size(502, 72);
             this.total_lbl.TabIndex = 21;
             this.total_lbl.Text = "Total Discount $";
+            this.total_lbl.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // frmDiscount
             // 
