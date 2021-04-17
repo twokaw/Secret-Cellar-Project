@@ -95,6 +95,7 @@ namespace SecretCellar
                     txt_update_qty.Focus();
                     txt_update_qty.SelectAll();
                     MessageBox.Show("Invalid Order Quantity");
+
                     return;
                 }
 
