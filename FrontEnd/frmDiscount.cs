@@ -1,24 +1,14 @@
 ﻿using Shared;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Text.RegularExpressions;
 
 namespace SecretCellar
 {
     public partial class frmDiscount : ManagedForm
     {
         public Transaction transaction = null;
-        
-
-        
-        
  
         public frmDiscount(Transaction items)
         {
@@ -29,36 +19,8 @@ namespace SecretCellar
             populate();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lblFixedDiscount_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtFixedDiscount_TextChanged(object sender, EventArgs e)
-        {
-           
-        }
-
-
-        private void lblPercentTotalSale_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtPercentLineItem_TextChanged(object sender, EventArgs e)
-        {
-            
-        }
-
-
         private void btnSelectItems_Click(object sender, EventArgs e)
         {
-            
             this.Show();
         }
 
@@ -75,12 +37,8 @@ namespace SecretCellar
 
         private void btnApplyDiscount_Click(object sender, EventArgs e)
         {
-            transaction.Discount = Convert.ToDouble(txtPercentTotalSale.Text)/100;
-            //percent_discount();
+            transaction.Discount = Convert.ToDouble(txtPercentTotalSale.Text) / 100;
             populate();
-
-     
-
         }
 
         private List<int> selectedRows = new List<int>();
@@ -90,8 +48,6 @@ namespace SecretCellar
                 selectedRows.Remove(e.RowIndex);
             else
                 selectedRows.Add(e.RowIndex);
-
-
 
             foreach (DataGridViewRow r in ((DataGridView)sender).Rows)
                 if (r.Selected != selectedRows.Contains(r.Index))
@@ -190,31 +146,21 @@ namespace SecretCellar
         }
         public void coupons_discount()
         {
-         
             if (double.TryParse(txtFixedDiscount.Text, out double d))
-            {
                 transaction.Items.Add(new Item() { Price = -d, Name = "Coupon", NumSold = 1});
-            }
-            
         }
 
         public void resetselectItemDiscount()
         {
             // dataGrid all rows
-
             foreach (DataGridViewRow row in dataGridSelectItems.Rows)
-                {
+            {
                 Item i = transaction.Items.First((x) => x.Id == int.Parse(row.Cells["ItemNumber"].Value.ToString()));// && (x.Price * (1 - x.Discount)).ToString("c") == row.Cells["Price"].Value.ToString());
-                    i.Discount = 0;
-                    
-                }
+                i.Discount = 0;
+            }
             populate();
-            
         }
-
-
-
-            private void txtPercentTotalSale_KeyPress(object sender, KeyPressEventArgs e)
+        private void txtPercentTotalSale_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsDigit(e.KeyChar))
                 e.Handled = true;
@@ -238,40 +184,16 @@ namespace SecretCellar
                 e.Handled = true;
         }
 
-        private void txt_discountTotal_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void coupon_btn_Click(object sender, EventArgs e)
         {
             coupons_discount();
             txtFixedDiscount.Clear();
             populate();
-         
-        }
-        private void update_Discount_Total()
-        {
-
-            double sum = 0.0;
-
-            foreach (int i in dataGridSelectItems.Rows)
-            {
-                sum += i;
-            }
-
-            sum = sum + transaction.Discount;
-            
         }
 
         private void txtPercentTotalSale_Click(object sender, EventArgs e)
         {
             txtPercentTotalSale.SelectAll();
-        }
-
-        private void txtPercentTotalSale_TextChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

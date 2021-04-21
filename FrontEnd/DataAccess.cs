@@ -184,10 +184,20 @@ namespace SecretCellar
             string result = web.DataGet($"api/Transaction/Suspended");
             return JsonConvert.DeserializeObject<List<Transaction>>(result);
         }
-        public List<Transaction> GetTransactions(DateTime start, DateTime end )
+        public List<Transaction> GetTransactions(DateTime start, DateTime end)
         {
             string result = web.DataGet($"api/Transaction?start={start}&end={end}");
             return JsonConvert.DeserializeObject<List<Transaction>>(result);
+        }
+        public List<Transaction> GetCustomerTransactions(uint customerID, bool includeItems = true, bool includePayments = true)
+        {
+            string result = web.DataGet($"api/Transaction/Customer/{customerID}?includeItems={includeItems}&includePayments={includePayments}");
+            return JsonConvert.DeserializeObject<List<Transaction>>(result);
+        }
+        public List<Transaction> GetCustomerTransactions(uint customerID, DateTime start, DateTime end, bool includeItems = true, bool includePayments = true)
+        {
+            string result = web.DataGet($"api/Transaction/Customer/{customerID}?start={start}&end={end}&includeItems={includeItems}&includePayments={includePayments}");
+            return JsonConvert.DeserializeObject<List<Transaction>>(result); //yyyy-MM-dd%20HH%3Amm%3As
         }
         public uint ProcessTransaction(Transaction transaction)
         {

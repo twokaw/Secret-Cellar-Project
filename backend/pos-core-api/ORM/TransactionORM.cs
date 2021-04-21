@@ -58,12 +58,10 @@ namespace pos_core_api.ORM
             db.OpenConnection();
             try
             {
-                string sqlStatement = @$"
+                using MySqlCommand cmd = new MySqlCommand(@$"
                  {SQLGET}
                  WHERE receiptID = @invoiceID;
-                ";
-
-                using MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
+                ", db.Connection());
                 cmd.Parameters.Add(new MySqlParameter("invoiceID", invoiceID));
                 List<Transaction> transaction = GetTransactions(cmd, includeItems, includePayments);
 
@@ -88,6 +86,42 @@ namespace pos_core_api.ORM
                 ";
 
                 using MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
+                List<Transaction> transaction = GetTransactions(cmd, includeItems, includePayments);
+
+                return transaction;
+            }
+            finally
+            {
+                db.CloseConnnection();
+            }
+        }
+        public List<Transaction> GetCustomerTransactions(uint customerID, bool includeItems = true, bool includePayments = true)
+        {
+            return GetCustomerTransactions(customerID, DateTime.MinValue, DateTime.MinValue, includeItems, includePayments);
+        }
+        public List<Transaction> GetCustomerTransactions(uint customerID, DateTime start, DateTime end, bool includeItems = true, bool includePayments = true)
+        {
+            db.OpenConnection();
+            try
+            {
+                using MySqlCommand cmd = new MySqlCommand(@$"
+                 {SQLGET}
+                 WHERE customerID = @customerID
+                ", db.Connection());
+
+                if (start > DateTime.MinValue)
+                {
+                    cmd.Parameters.Add(new MySqlParameter("start", start));
+                    cmd.CommandText += " AND sold_datetime >= @start";
+
+                    if (end >= start)
+                    {
+                        cmd.CommandText += " AND sold_datetime <= @end";
+                        cmd.Parameters.Add(new MySqlParameter("end", end));
+                    }
+                }
+
+                cmd.Parameters.Add(new MySqlParameter("customerID", customerID));
                 List<Transaction> transaction = GetTransactions(cmd, includeItems, includePayments);
 
                 return transaction;
