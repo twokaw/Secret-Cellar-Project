@@ -15,6 +15,10 @@ namespace SecretCellar {
 		public FrmEventsAll() {
 			InitializeComponent();
 
+            //SET THE ID COLUMN TO HIDDEN SO THAT THE ID IS STILL
+            //ACCESSIBLE WHEN DELETING EVENTS
+            dataGridView_Events.Columns["Id"].Visible = false;
+
             UpdateEventGrid();
         }
 
@@ -25,16 +29,14 @@ namespace SecretCellar {
 		private void button_DeleteEvent_Click(object sender, EventArgs e) {
             //GET ALL THE EVENTS
             List<Event> listOfEvents = DataAccess.instance.GetEvent();
-            DataGridViewSelectedRowCollection selectedRows = dataGridView_Events.SelectedRows;
 
             //LOOP THROUGH ALL OF THE SELECTED ROWS
-            foreach (DataGridViewRow row in selectedRows) {
+            foreach (DataGridViewRow selectedRow in dataGridView_Events.SelectedRows) {
 
                 //LOOP THROUGH ALL OF THE EVENTS
                 foreach (Event currentEvent in listOfEvents) {
-
                     //IF THE ID OF THE SELECTED EVENT MATCHES AN EVENT, THEN DELETE THE EVENT
-                    if (uint.Parse(row.Cells["Id"].Value.ToString()) == currentEvent.Id) {
+                    if (uint.Parse(selectedRow.Cells[Id.Index].Value.ToString()) == currentEvent.Id) {
                         DataAccess.instance.DeleteEvent(currentEvent.Id);
 
                         UpdateEventGrid();
@@ -52,7 +54,7 @@ namespace SecretCellar {
 
             //ADD ALL THE EVENTS
             foreach (Event currentEvent in listOfEvents) {
-                dataGridView_Events.Rows.Add(currentEvent.EventDate, currentEvent.Name, currentEvent.Price, currentEvent.Qty);
+                dataGridView_Events.Rows.Add(currentEvent.Id, currentEvent.EventDate, currentEvent.Name, currentEvent.Price, currentEvent.Qty);
             }
         }
 	}

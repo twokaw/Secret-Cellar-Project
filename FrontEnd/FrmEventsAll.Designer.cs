@@ -86,7 +86,6 @@ namespace SecretCellar {
 			// 
 			this.Id.HeaderText = "Event Id";
 			this.Id.Name = "Id";
-			this.Id.Visible = false;
 			// 
 			// Date
 			// 

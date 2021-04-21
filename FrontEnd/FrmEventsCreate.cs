@@ -14,25 +14,22 @@ namespace SecretCellar {
 		}
 
 		private void button_CreateEvent_Click(object sender, EventArgs e) {
-			Event newEvent;
-			uint quantity = 9999;
-			double supplierPrice = 0.0;
-
 			if (HasNoErrors()) {
+				uint quantity = 9999;
+				double supplierPrice = 0.0;
+
 				//CHECK IF QUANTITY IS FILLED
 				if (uint.TryParse(textBox_Quantity.Text, out uint uintValue)) {
 					quantity = uintValue;
-					Console.WriteLine("quantity: " + quantity);
 				}
 
 				//CHECK IF SUPPLIER PRICE IS FILLED
 				if (double.TryParse(textBox_SupplierPrice.Text, out double doubleValue)) {
 					supplierPrice = doubleValue;
-					Console.WriteLine("supp price: " + supplierPrice);
 				}
 
 				//CREATE THE EVENT
-				newEvent = new Event(quantity, supplierPrice);
+				Event newEvent = new Event(quantity, supplierPrice);
 
 				newEvent.Name = textBox_Name.Text;
 				newEvent.EventDate = dateTimePicker_EventDate.Value;
@@ -40,10 +37,10 @@ namespace SecretCellar {
 				newEvent.PreOrder = double.Parse(textBox_Preorder.Text);
 				newEvent.AtDoor = double.Parse(textBox_AtDoor.Text);
 				newEvent.Price = double.Parse(textBox_Price.Text);
-				newEvent.Barcode = textBox_Barcode.Text;
-				newEvent.TypeID = uint.Parse(textBox_TypeId.Text);
 				newEvent.NonTaxable = checkBox_NonTaxable.Checked;
 				newEvent.NonTaxableLocal = checkBox_NonTaxableLocal.Checked;
+				newEvent.TypeID = 26;
+				newEvent.IdTax = 4;
 
 				//CREATE THE EVENT IN THE DATABASE
 				DataAccess.instance.CreateEvent(newEvent);
@@ -69,6 +66,7 @@ namespace SecretCellar {
 			}
 
 			//CHECK TO MAKE SURE DURATION IS AFTER EVENT DATE
+			#region DATE COMPARISON
 			int eventYear = dateTimePicker_EventDate.Value.Year;
 			int eventMonth = dateTimePicker_EventDate.Value.Month;
 			int eventDay = dateTimePicker_EventDate.Value.Day;
@@ -107,6 +105,7 @@ namespace SecretCellar {
 				hasNoErrors = false;
 				result += "Duration second cannot be before the Event Date second.\n";
 			}
+			#endregion
 
 			//CHECK PRE ORDER
 			if (!IsEmpty(textBox_Preorder.Text) && !double.TryParse(textBox_Preorder.Text, out _)) {
@@ -136,16 +135,6 @@ namespace SecretCellar {
 			else if (IsEmpty(textBox_Price.Text)) {
 				hasNoErrors = false;
 				result += "Price field is not filled.\n";
-			}
-
-			//CHECK TYPE ID
-			if (!IsEmpty(textBox_TypeId.Text) && !uint.TryParse(textBox_TypeId.Text, out _)) {
-				hasNoErrors = false;
-				result += "Type Id field needs to be only numbers.\n";
-			}
-			else if (IsEmpty(textBox_TypeId.Text)) {
-				hasNoErrors = false;
-				result += "Type Id field is not filled.\n";
 			}
 
 			//DISPLAY THE ERRORS IF ANY

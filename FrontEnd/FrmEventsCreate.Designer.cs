@@ -24,14 +24,10 @@ namespace SecretCellar {
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent() {
-			this.label_Barcode = new System.Windows.Forms.Label();
-			this.textBox_Barcode = new System.Windows.Forms.TextBox();
 			this.textBox_Quantity = new System.Windows.Forms.TextBox();
 			this.label_Qty = new System.Windows.Forms.Label();
 			this.textBox_Price = new System.Windows.Forms.TextBox();
 			this.label_Price = new System.Windows.Forms.Label();
-			this.textBox_TypeId = new System.Windows.Forms.TextBox();
-			this.label_TypeId = new System.Windows.Forms.Label();
 			this.label_Date = new System.Windows.Forms.Label();
 			this.label_Duration = new System.Windows.Forms.Label();
 			this.textBox_Preorder = new System.Windows.Forms.TextBox();
@@ -55,30 +51,6 @@ namespace SecretCellar {
 			this.label3 = new System.Windows.Forms.Label();
 			this.label4 = new System.Windows.Forms.Label();
 			this.SuspendLayout();
-			// 
-			// label_Barcode
-			// 
-			this.label_Barcode.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.label_Barcode.AutoSize = true;
-			this.label_Barcode.Cursor = System.Windows.Forms.Cursors.IBeam;
-			this.label_Barcode.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.25F);
-			this.label_Barcode.Location = new System.Drawing.Point(169, 386);
-			this.label_Barcode.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-			this.label_Barcode.Name = "label_Barcode";
-			this.label_Barcode.Size = new System.Drawing.Size(153, 39);
-			this.label_Barcode.TabIndex = 5;
-			this.label_Barcode.Text = "Barcode:";
-			// 
-			// textBox_Barcode
-			// 
-			this.textBox_Barcode.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F);
-			this.textBox_Barcode.Location = new System.Drawing.Point(363, 389);
-			this.textBox_Barcode.Margin = new System.Windows.Forms.Padding(4);
-			this.textBox_Barcode.Name = "textBox_Barcode";
-			this.textBox_Barcode.Size = new System.Drawing.Size(259, 38);
-			this.textBox_Barcode.TabIndex = 8;
 			// 
 			// textBox_Quantity
 			// 
@@ -127,30 +99,6 @@ namespace SecretCellar {
 			this.label_Price.Size = new System.Drawing.Size(104, 39);
 			this.label_Price.TabIndex = 9;
 			this.label_Price.Text = "Price:";
-			// 
-			// textBox_TypeId
-			// 
-			this.textBox_TypeId.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F);
-			this.textBox_TypeId.Location = new System.Drawing.Point(363, 435);
-			this.textBox_TypeId.Margin = new System.Windows.Forms.Padding(4);
-			this.textBox_TypeId.Name = "textBox_TypeId";
-			this.textBox_TypeId.Size = new System.Drawing.Size(259, 38);
-			this.textBox_TypeId.TabIndex = 9;
-			// 
-			// label_TypeId
-			// 
-			this.label_TypeId.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.label_TypeId.AutoSize = true;
-			this.label_TypeId.Cursor = System.Windows.Forms.Cursors.IBeam;
-			this.label_TypeId.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.25F);
-			this.label_TypeId.Location = new System.Drawing.Point(183, 432);
-			this.label_TypeId.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-			this.label_TypeId.Name = "label_TypeId";
-			this.label_TypeId.Size = new System.Drawing.Size(140, 39);
-			this.label_TypeId.TabIndex = 11;
-			this.label_TypeId.Text = "Type Id:";
 			// 
 			// label_Date
 			// 
@@ -234,7 +182,7 @@ namespace SecretCellar {
 			// 
 			this.button_CreateEvent.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.button_CreateEvent.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.button_CreateEvent.Location = new System.Drawing.Point(443, 591);
+			this.button_CreateEvent.Location = new System.Drawing.Point(443, 493);
 			this.button_CreateEvent.Margin = new System.Windows.Forms.Padding(1);
 			this.button_CreateEvent.Name = "button_CreateEvent";
 			this.button_CreateEvent.Size = new System.Drawing.Size(180, 55);
@@ -248,7 +196,7 @@ namespace SecretCellar {
 			// 
 			this.button_CloseWindow.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.button_CloseWindow.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.button_CloseWindow.Location = new System.Drawing.Point(10, 591);
+			this.button_CloseWindow.Location = new System.Drawing.Point(10, 493);
 			this.button_CloseWindow.Margin = new System.Windows.Forms.Padding(1);
 			this.button_CloseWindow.Name = "button_CloseWindow";
 			this.button_CloseWindow.Size = new System.Drawing.Size(180, 55);
@@ -306,7 +254,7 @@ namespace SecretCellar {
 			this.label_NonTaxable.AutoSize = true;
 			this.label_NonTaxable.Cursor = System.Windows.Forms.Cursors.IBeam;
 			this.label_NonTaxable.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.25F);
-			this.label_NonTaxable.Location = new System.Drawing.Point(104, 478);
+			this.label_NonTaxable.Location = new System.Drawing.Point(102, 385);
 			this.label_NonTaxable.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.label_NonTaxable.Name = "label_NonTaxable";
 			this.label_NonTaxable.Size = new System.Drawing.Size(220, 39);
@@ -321,7 +269,7 @@ namespace SecretCellar {
 			this.label_NonTaxableLocal.AutoSize = true;
 			this.label_NonTaxableLocal.Cursor = System.Windows.Forms.Cursors.IBeam;
 			this.label_NonTaxableLocal.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.25F);
-			this.label_NonTaxableLocal.Location = new System.Drawing.Point(13, 523);
+			this.label_NonTaxableLocal.Location = new System.Drawing.Point(11, 430);
 			this.label_NonTaxableLocal.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.label_NonTaxableLocal.Name = "label_NonTaxableLocal";
 			this.label_NonTaxableLocal.Size = new System.Drawing.Size(311, 39);
@@ -355,19 +303,19 @@ namespace SecretCellar {
 			// checkBox_NonTaxable
 			// 
 			this.checkBox_NonTaxable.AutoSize = true;
-			this.checkBox_NonTaxable.Location = new System.Drawing.Point(363, 493);
+			this.checkBox_NonTaxable.Location = new System.Drawing.Point(363, 401);
 			this.checkBox_NonTaxable.Name = "checkBox_NonTaxable";
 			this.checkBox_NonTaxable.Size = new System.Drawing.Size(15, 14);
-			this.checkBox_NonTaxable.TabIndex = 10;
+			this.checkBox_NonTaxable.TabIndex = 8;
 			this.checkBox_NonTaxable.UseVisualStyleBackColor = true;
 			// 
 			// checkBox_NonTaxableLocal
 			// 
 			this.checkBox_NonTaxableLocal.AutoSize = true;
-			this.checkBox_NonTaxableLocal.Location = new System.Drawing.Point(363, 538);
+			this.checkBox_NonTaxableLocal.Location = new System.Drawing.Point(363, 446);
 			this.checkBox_NonTaxableLocal.Name = "checkBox_NonTaxableLocal";
 			this.checkBox_NonTaxableLocal.Size = new System.Drawing.Size(15, 14);
-			this.checkBox_NonTaxableLocal.TabIndex = 11;
+			this.checkBox_NonTaxableLocal.TabIndex = 9;
 			this.checkBox_NonTaxableLocal.UseVisualStyleBackColor = true;
 			// 
 			// label1
@@ -435,7 +383,7 @@ namespace SecretCellar {
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.SystemColors.ControlDark;
-			this.ClientSize = new System.Drawing.Size(633, 656);
+			this.ClientSize = new System.Drawing.Size(633, 558);
 			this.Controls.Add(this.label4);
 			this.Controls.Add(this.label3);
 			this.Controls.Add(this.label2);
@@ -458,14 +406,10 @@ namespace SecretCellar {
 			this.Controls.Add(this.label_Preorder);
 			this.Controls.Add(this.label_Duration);
 			this.Controls.Add(this.label_Date);
-			this.Controls.Add(this.textBox_TypeId);
-			this.Controls.Add(this.label_TypeId);
 			this.Controls.Add(this.textBox_Price);
 			this.Controls.Add(this.label_Price);
 			this.Controls.Add(this.textBox_Quantity);
 			this.Controls.Add(this.label_Qty);
-			this.Controls.Add(this.textBox_Barcode);
-			this.Controls.Add(this.label_Barcode);
 			this.Name = "FrmEventsCreate";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Create Event";
@@ -475,14 +419,10 @@ namespace SecretCellar {
 		}
 
 		#endregion
-		private System.Windows.Forms.Label label_Barcode;
-		private System.Windows.Forms.TextBox textBox_Barcode;
 		private System.Windows.Forms.TextBox textBox_Quantity;
 		private System.Windows.Forms.Label label_Qty;
 		private System.Windows.Forms.TextBox textBox_Price;
 		private System.Windows.Forms.Label label_Price;
-		private System.Windows.Forms.TextBox textBox_TypeId;
-		private System.Windows.Forms.Label label_TypeId;
 		private System.Windows.Forms.Label label_Date;
 		private System.Windows.Forms.Label label_Duration;
 		private System.Windows.Forms.TextBox textBox_Preorder;
