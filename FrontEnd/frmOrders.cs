@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.UI.WebControls;
 using System.Windows.Forms;
+using NCR_Printer;
 
 namespace SecretCellar
 {
@@ -18,14 +19,26 @@ namespace SecretCellar
         private DataAccess dataAccess = new DataAccess(Properties.Settings.Default.URL);
         private List<Supplier> suppliers = null;
         private List<Inventory> inventory = null;
+        private List<Transaction> transaction_history = null;
+        Transaction SelectTransaction = null;
+        //private List<Customer> cust = null;
 
         public frmOrders(Transaction transaction)
         {
             InitializeComponent();
             inventory = dataAccess.GetInventory();
             suppliers = dataAccess.GetSuppliers();
+            transaction_history = dataAccess.GetTransactions();
+            //cust = dataAccess.GetCustomer();
             cbx_supplier.DataSource = suppliers;
             cbx_supplier.DisplayMember = "Name";
+            lstbox_customer.DataSource = DataAccess.instance?.GetCustomer();
+            lstbox_customer.DisplayMember = "FullName";
+
+
+
+
+
 
 
             supp_dataGrid.DataSource = inventory.
@@ -42,7 +55,18 @@ namespace SecretCellar
                 }).
                 OrderBy(x => x.Name).
                 ToList();
+
+            transaction_dataGrid.DataSource = transaction_history.
+               Select(x => new {
+                  trans_id = x.InvoiceID,
+                   trans_date = x.TransactionDateTime.ToString("MM/dd/yyyy"),
+                   trans_total = x.Total.ToString("C"),
+               }).
+               OrderBy(x => x.trans_id).
+               ToList();
         }
+           
+        
 
         private void cust_request_Click(object sender, EventArgs e)
         {
@@ -75,6 +99,18 @@ namespace SecretCellar
                }).
                OrderBy(x => x.Name).
                ToList();
+        }
+
+        private void populate()
+        {
+            transaction_dataGrid.DataSource = transaction_history.
+              Select(x => new {
+                 trans_id = x.InvoiceID,
+                  trans_date = x.TransactionDateTime.ToString("MM/dd/yyyy"),
+                  trans_total = x.Total.ToString("C"),
+              }).
+              OrderBy(x => x.trans_id).
+              ToList();
         }
 
         private void cbx_supplier_SelectedIndexChanged(object sender, EventArgs e)
@@ -111,6 +147,70 @@ namespace SecretCellar
                 Inventory i = inventory.First(x => x.Id == uint.Parse(supp_dataGrid.SelectedRows[0].Cells["id"].Value.ToString()));
                 txt_update_qty.Text = i.OrderQty.ToString();
             }
+        }
+
+        private void tranaction_dataGrid_SelectionChanged(object sender, EventArgs e)
+        {
+            if (transaction_dataGrid.SelectedRows.Count > 0)
+            {
+                Transaction t = transaction_history.First(x => x.InvoiceID == uint.Parse(transaction_dataGrid.SelectedRows[0].Cells["trans_id"].Value.ToString()));
+                SelectTransaction = t;
+            }
+        }
+        private void btn_print_Click(object sender, EventArgs e)
+        {
+           
+                Receipt.DefaultLayout.Logo = DataAccess.instance.ImportLogo();
+                new Receipt(SelectTransaction).Print();
+            
+        }
+
+        private void btn_set_cust_Click(object sender, EventArgs e)
+        {
+            transaction_dataGrid.DataSource = transaction_history.Where(x => ((Customer)lstbox_customer.SelectedItem).CustomerID == x.CustomerID).
+              Select(x => new {
+                  trans_id = x.InvoiceID,
+                  trans_date = x.TransactionDateTime.ToString("MM/dd/yyyy"),
+                  trans_total = x.Total.ToString("C"),
+                  
+              }).
+              OrderBy(x => x.trans_id).
+              ToList();
+            
+        }
+
+
+    
+
+        private void btn_setCust_Click(object sender, EventArgs e)
+        {
+            transaction_dataGrid.DataSource = transaction_history.Where(x => ((Customer)lstbox_customer.SelectedItem).CustomerID == x.CustomerID).
+              Select(x => new {
+                  trans_id = x.InvoiceID,
+                  trans_date = x.TransactionDateTime.ToString("MM/dd/yyyy"),
+                  trans_total = x.Total.ToString("C"),
+
+              }).
+              OrderBy(x => x.trans_id).
+              ToList();
+        }
+
+        private void btn_setDate_Click(object sender, EventArgs e)
+        {
+            transaction_dataGrid.DataSource = transaction_history.Where(x => x.TransactionDateTime > start_dateTime.Value && x.TransactionDateTime < end_dateTime.Value).
+             Select(x => new {
+                 trans_id = x.InvoiceID,
+                 trans_date = x.TransactionDateTime.ToString("MM/dd/yyyy"),
+                 trans_total = x.Total.ToString("C"),
+
+             }).
+             OrderBy(x => x.trans_id).
+             ToList();
+        }
+
+        private void btn_reset_Click(object sender, EventArgs e)
+        {
+            populate();
         }
     }
 }
