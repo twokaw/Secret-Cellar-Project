@@ -55,6 +55,21 @@ namespace WebApi.Controllers
             };
         }
 
+        // Get transaction 
+        //Get: api/Transaction/Suspended
+        [HttpGet("Customer/{customerID}")]
+        public ActionResult GetCustomer(uint customerID, DateTime start, DateTime end, bool includeItems, bool includePayments)
+        {
+            try
+            {
+                return Ok(DataAccess.Instance.Transaction.GetCustomerTransactions(customerID, start, end, includeItems, includePayments));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            };
+        }
+
         /// <summary>
         /// Insert a new transaction 
         /// </summary>
