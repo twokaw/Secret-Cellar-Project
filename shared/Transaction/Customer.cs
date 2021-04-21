@@ -19,5 +19,7 @@ namespace Shared
         public double BalanceDue { get; set; }
         public double Credit { get; set; }
         public uint SuspendedTransactions { get; set; }
+
+        public string FullName { get { return $"{LastName}, {FirstName}";}}
     }
 }
