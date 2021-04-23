@@ -38,6 +38,18 @@ namespace pos_core_api.ORM
                 return customerORM;
             }
         }
+        private static CustomerNoteORM customerNoteORM = null;
+
+        public CustomerNoteORM CustomerNote
+        {
+            get
+            {
+                if (customerNoteORM == null)
+                    customerNoteORM = new CustomerNoteORM();
+
+                return customerNoteORM;
+            }
+        }
 
         private static EventORM eventORM = null;
 
