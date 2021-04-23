@@ -11,6 +11,8 @@ using System.Threading.Tasks;
 using System.Web.UI.WebControls;
 using System.Windows.Forms;
 using NCR_Printer;
+using System.Drawing.Printing;
+using System.IO;
 
 namespace SecretCellar
 {
@@ -23,6 +25,15 @@ namespace SecretCellar
         Transaction SelectTransaction = null;
         //private List<Customer> cust = null;
 
+        private PrintPreviewDialog printPreviewDialog1 = new PrintPreviewDialog();
+        private PrintDocument printDocument1 = new PrintDocument();
+
+        // Declare a string to hold the entire document contents.
+        private string documentContents;
+
+        // Declare a variable to hold the portion of the document that
+        // is not printed.
+        private string stringToPrint;
         public frmOrders(Transaction transaction)
         {
             InitializeComponent();
@@ -159,10 +170,16 @@ namespace SecretCellar
         }
         private void btn_print_Click(object sender, EventArgs e)
         {
-           
-                Receipt.DefaultLayout.Logo = DataAccess.instance.ImportLogo();
-                new Receipt(SelectTransaction).Print();
-            
+            PrintPreviewDialog pripredlg = new PrintPreviewDialog();
+            Receipt.DefaultLayout.Logo = DataAccess.instance.ImportLogo();
+               Receipt rct = new Receipt(SelectTransaction);
+               
+               pripredlg.Document = rct.GetPrintDocument();
+               pripredlg.ShowDialog();
+
+            /*Receipt.DefaultLayout.Logo = DataAccess.instance.ImportLogo();
+            new Receipt(SelectTransaction).Print();*/
+
         }
 
         private void btn_set_cust_Click(object sender, EventArgs e)
@@ -212,5 +229,7 @@ namespace SecretCellar
         {
             populate();
         }
+
+      
     }
 }
