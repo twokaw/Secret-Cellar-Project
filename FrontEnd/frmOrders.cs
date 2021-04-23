@@ -172,10 +172,10 @@ namespace SecretCellar
         {
             PrintPreviewDialog pripredlg = new PrintPreviewDialog();
             Receipt.DefaultLayout.Logo = DataAccess.instance.ImportLogo();
-               Receipt rct = new Receipt(SelectTransaction);
-               
-               pripredlg.Document = rct.GetPrintDocument();
-               pripredlg.ShowDialog();
+            Receipt rct = new Receipt(SelectTransaction);
+
+            pripredlg.Document = rct.GetPrintDocument();
+            pripredlg.ShowDialog();
 
             /*Receipt.DefaultLayout.Logo = DataAccess.instance.ImportLogo();
             new Receipt(SelectTransaction).Print();*/
