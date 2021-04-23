@@ -29,6 +29,7 @@ namespace SecretCellar
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.supp_order = new System.Windows.Forms.TabPage();
             this.btn_update = new System.Windows.Forms.Button();
             this.txt_update_qty = new System.Windows.Forms.TextBox();
@@ -62,6 +63,13 @@ namespace SecretCellar
             this.prod_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.btn_setDate = new System.Windows.Forms.Button();
+            this.btn_setCust = new System.Windows.Forms.Button();
+            this.lbl_orders = new System.Windows.Forms.Label();
+            this.lbl_name = new System.Windows.Forms.Label();
+            this.txt_name = new System.Windows.Forms.TextBox();
+            this.btn_reset = new System.Windows.Forms.Button();
+            this.btn_print = new System.Windows.Forms.Button();
             this.lstbox_customer = new System.Windows.Forms.ListBox();
             this.transaction_dataGrid = new System.Windows.Forms.DataGridView();
             this.lbl_end = new System.Windows.Forms.Label();
@@ -69,11 +77,9 @@ namespace SecretCellar
             this.lbl_start = new System.Windows.Forms.Label();
             this.start_dateTime = new System.Windows.Forms.DateTimePicker();
             this.btn_close = new System.Windows.Forms.Button();
-            this.btn_print = new System.Windows.Forms.Button();
-            this.btn_reset = new System.Windows.Forms.Button();
-            this.txt_name = new System.Windows.Forms.TextBox();
-            this.lbl_name = new System.Windows.Forms.Label();
-            this.lbl_orders = new System.Windows.Forms.Label();
+            this.trans_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.trans_date = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.trans_total = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.supp_order.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.supp_dataGrid)).BeginInit();
             this.cust_request.SuspendLayout();
@@ -387,6 +393,8 @@ namespace SecretCellar
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.btn_setDate);
+            this.tabPage1.Controls.Add(this.btn_setCust);
             this.tabPage1.Controls.Add(this.lbl_orders);
             this.tabPage1.Controls.Add(this.lbl_name);
             this.tabPage1.Controls.Add(this.txt_name);
@@ -406,11 +414,76 @@ namespace SecretCellar
             this.tabPage1.Text = "History";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // btn_setDate
+            // 
+            this.btn_setDate.Location = new System.Drawing.Point(642, 201);
+            this.btn_setDate.Name = "btn_setDate";
+            this.btn_setDate.Size = new System.Drawing.Size(179, 48);
+            this.btn_setDate.TabIndex = 12;
+            this.btn_setDate.Text = "Set Date Range";
+            this.btn_setDate.UseVisualStyleBackColor = true;
+            this.btn_setDate.Click += new System.EventHandler(this.btn_setDate_Click);
+            // 
+            // btn_setCust
+            // 
+            this.btn_setCust.Location = new System.Drawing.Point(135, 342);
+            this.btn_setCust.Name = "btn_setCust";
+            this.btn_setCust.Size = new System.Drawing.Size(179, 48);
+            this.btn_setCust.TabIndex = 11;
+            this.btn_setCust.Text = "Set Customer";
+            this.btn_setCust.UseVisualStyleBackColor = true;
+            this.btn_setCust.Click += new System.EventHandler(this.btn_setCust_Click);
+            // 
+            // lbl_orders
+            // 
+            this.lbl_orders.AutoSize = true;
+            this.lbl_orders.Location = new System.Drawing.Point(955, 71);
+            this.lbl_orders.Name = "lbl_orders";
+            this.lbl_orders.Size = new System.Drawing.Size(104, 20);
+            this.lbl_orders.TabIndex = 10;
+            this.lbl_orders.Text = "Past Orders";
+            // 
+            // lbl_name
+            // 
+            this.lbl_name.AutoSize = true;
+            this.lbl_name.Location = new System.Drawing.Point(66, 99);
+            this.lbl_name.Name = "lbl_name";
+            this.lbl_name.Size = new System.Drawing.Size(137, 20);
+            this.lbl_name.TabIndex = 9;
+            this.lbl_name.Text = "Customer Name";
+            // 
+            // txt_name
+            // 
+            this.txt_name.Location = new System.Drawing.Point(209, 96);
+            this.txt_name.Name = "txt_name";
+            this.txt_name.Size = new System.Drawing.Size(204, 26);
+            this.txt_name.TabIndex = 8;
+            // 
+            // btn_reset
+            // 
+            this.btn_reset.Location = new System.Drawing.Point(642, 381);
+            this.btn_reset.Name = "btn_reset";
+            this.btn_reset.Size = new System.Drawing.Size(179, 48);
+            this.btn_reset.TabIndex = 7;
+            this.btn_reset.Text = "Reset";
+            this.btn_reset.UseVisualStyleBackColor = true;
+            this.btn_reset.Click += new System.EventHandler(this.btn_reset_Click);
+            // 
+            // btn_print
+            // 
+            this.btn_print.Location = new System.Drawing.Point(642, 315);
+            this.btn_print.Name = "btn_print";
+            this.btn_print.Size = new System.Drawing.Size(179, 48);
+            this.btn_print.TabIndex = 6;
+            this.btn_print.Text = "View/Print";
+            this.btn_print.UseVisualStyleBackColor = true;
+            this.btn_print.Click += new System.EventHandler(this.btn_print_Click);
+            // 
             // lstbox_customer
             // 
             this.lstbox_customer.FormattingEnabled = true;
             this.lstbox_customer.ItemHeight = 20;
-            this.lstbox_customer.Location = new System.Drawing.Point(70, 190);
+            this.lstbox_customer.Location = new System.Drawing.Point(70, 150);
             this.lstbox_customer.Name = "lstbox_customer";
             this.lstbox_customer.Size = new System.Drawing.Size(343, 164);
             this.lstbox_customer.TabIndex = 5;
@@ -418,15 +491,21 @@ namespace SecretCellar
             // transaction_dataGrid
             // 
             this.transaction_dataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.transaction_dataGrid.Location = new System.Drawing.Point(959, 147);
+            this.transaction_dataGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.trans_id,
+            this.trans_date,
+            this.trans_total});
+            this.transaction_dataGrid.Location = new System.Drawing.Point(959, 107);
             this.transaction_dataGrid.Name = "transaction_dataGrid";
+            this.transaction_dataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.transaction_dataGrid.Size = new System.Drawing.Size(533, 270);
             this.transaction_dataGrid.TabIndex = 4;
+            this.transaction_dataGrid.SelectionChanged += new System.EventHandler(this.tranaction_dataGrid_SelectionChanged);
             // 
             // lbl_end
             // 
             this.lbl_end.AutoSize = true;
-            this.lbl_end.Location = new System.Drawing.Point(546, 194);
+            this.lbl_end.Location = new System.Drawing.Point(546, 154);
             this.lbl_end.Name = "lbl_end";
             this.lbl_end.Size = new System.Drawing.Size(41, 20);
             this.lbl_end.TabIndex = 3;
@@ -434,7 +513,7 @@ namespace SecretCellar
             // 
             // end_dateTime
             // 
-            this.end_dateTime.Location = new System.Drawing.Point(601, 190);
+            this.end_dateTime.Location = new System.Drawing.Point(601, 150);
             this.end_dateTime.Name = "end_dateTime";
             this.end_dateTime.Size = new System.Drawing.Size(284, 26);
             this.end_dateTime.TabIndex = 2;
@@ -442,7 +521,7 @@ namespace SecretCellar
             // lbl_start
             // 
             this.lbl_start.AutoSize = true;
-            this.lbl_start.Location = new System.Drawing.Point(546, 151);
+            this.lbl_start.Location = new System.Drawing.Point(546, 111);
             this.lbl_start.Name = "lbl_start";
             this.lbl_start.Size = new System.Drawing.Size(49, 20);
             this.lbl_start.TabIndex = 1;
@@ -450,7 +529,7 @@ namespace SecretCellar
             // 
             // start_dateTime
             // 
-            this.start_dateTime.Location = new System.Drawing.Point(601, 147);
+            this.start_dateTime.Location = new System.Drawing.Point(601, 107);
             this.start_dateTime.Name = "start_dateTime";
             this.start_dateTime.Size = new System.Drawing.Size(284, 26);
             this.start_dateTime.TabIndex = 0;
@@ -468,48 +547,25 @@ namespace SecretCellar
             this.btn_close.UseVisualStyleBackColor = true;
             this.btn_close.Click += new System.EventHandler(this.btn_close_Click);
             // 
-            // btn_print
+            // trans_id
             // 
-            this.btn_print.Location = new System.Drawing.Point(642, 306);
-            this.btn_print.Name = "btn_print";
-            this.btn_print.Size = new System.Drawing.Size(179, 48);
-            this.btn_print.TabIndex = 6;
-            this.btn_print.Text = "View/Print";
-            this.btn_print.UseVisualStyleBackColor = true;
+            this.trans_id.DataPropertyName = "trans_id";
+            this.trans_id.HeaderText = "Id";
+            this.trans_id.Name = "trans_id";
             // 
-            // btn_reset
+            // trans_date
             // 
-            this.btn_reset.Location = new System.Drawing.Point(642, 369);
-            this.btn_reset.Name = "btn_reset";
-            this.btn_reset.Size = new System.Drawing.Size(179, 48);
-            this.btn_reset.TabIndex = 7;
-            this.btn_reset.Text = "Reset";
-            this.btn_reset.UseVisualStyleBackColor = true;
+            this.trans_date.DataPropertyName = "trans_date";
+            this.trans_date.HeaderText = "Date";
+            this.trans_date.Name = "trans_date";
             // 
-            // txt_name
+            // trans_total
             // 
-            this.txt_name.Location = new System.Drawing.Point(209, 136);
-            this.txt_name.Name = "txt_name";
-            this.txt_name.Size = new System.Drawing.Size(204, 26);
-            this.txt_name.TabIndex = 8;
-            // 
-            // lbl_name
-            // 
-            this.lbl_name.AutoSize = true;
-            this.lbl_name.Location = new System.Drawing.Point(66, 139);
-            this.lbl_name.Name = "lbl_name";
-            this.lbl_name.Size = new System.Drawing.Size(137, 20);
-            this.lbl_name.TabIndex = 9;
-            this.lbl_name.Text = "Customer Name";
-            // 
-            // lbl_orders
-            // 
-            this.lbl_orders.AutoSize = true;
-            this.lbl_orders.Location = new System.Drawing.Point(955, 111);
-            this.lbl_orders.Name = "lbl_orders";
-            this.lbl_orders.Size = new System.Drawing.Size(104, 20);
-            this.lbl_orders.TabIndex = 10;
-            this.lbl_orders.Text = "Past Orders";
+            this.trans_total.DataPropertyName = "trans_total";
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.trans_total.DefaultCellStyle = dataGridViewCellStyle1;
+            this.trans_total.HeaderText = "Total";
+            this.trans_total.Name = "trans_total";
             // 
             // frmOrders
             // 
@@ -583,5 +639,10 @@ namespace SecretCellar
         private System.Windows.Forms.Label lbl_name;
         private System.Windows.Forms.TextBox txt_name;
         private System.Windows.Forms.Label lbl_orders;
+        private System.Windows.Forms.Button btn_setCust;
+        private System.Windows.Forms.Button btn_setDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn trans_id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn trans_date;
+        private System.Windows.Forms.DataGridViewTextBoxColumn trans_total;
     }
 }
