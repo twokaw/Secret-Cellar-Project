@@ -107,7 +107,7 @@ namespace SecretCellar {
 			// 
 			// Qty
 			// 
-			this.Qty.HeaderText = "Qty on Hand";
+			this.Qty.HeaderText = "Quantity";
 			this.Qty.MinimumWidth = 8;
 			this.Qty.Name = "Qty";
 			// 

@@ -39,6 +39,7 @@ namespace SecretCellar {
 				newEvent.Price = double.Parse(textBox_Price.Text);
 				newEvent.NonTaxable = checkBox_NonTaxable.Checked;
 				newEvent.NonTaxableLocal = checkBox_NonTaxableLocal.Checked;
+
 				newEvent.TypeID = 26;
 				newEvent.IdTax = 4;
 

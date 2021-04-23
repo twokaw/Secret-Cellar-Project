@@ -343,5 +343,25 @@ namespace Shared
                 Discounts = inv.Discounts
             };
         }
+
+        public static Item ConvertInvtoItem(Inventory inv, uint numSold) {
+            return new Item {
+                Name = inv.Name,
+                Id = inv.Id,
+                Barcode = inv.Barcode,
+                AllQty = inv.AllQty,
+                BottleDeposit = inv.BottleDeposit,
+                NumSold = numSold,
+                Price = inv.Price,
+                NonTaxable = inv.NonTaxable,
+                ItemType = inv.ItemType,
+                Bottles = inv.Bottles,
+                SalesTax = inv.SalesTax,
+                LocalSalesTax = inv.LocalSalesTax,
+                IdTax = inv.IdTax,
+                NonTaxableLocal = inv.NonTaxableLocal,
+                Discounts = inv.Discounts
+            };
+        }
     }
 }
