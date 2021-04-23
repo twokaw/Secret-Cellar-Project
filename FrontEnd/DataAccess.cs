@@ -270,6 +270,79 @@ namespace SecretCellar
         }
         #endregion
 
+        #region CustomerNote
+        public List<CustomerNote> GetCustomerNotes(uint typeId = 0)
+        {
+            string result = web.DataGet($"api/CustomerNote?typeID={typeId}");
+            return JsonConvert.DeserializeObject<List<CustomerNote>>(result);
+        }
+
+        public List<CustomerNote> GetCustomerNotes(uint customerID, uint typeId = 0)
+        {
+            string result = web.DataGet($"api/CustomerNote/{customerID}?typeID={typeId}");
+            return JsonConvert.DeserializeObject<List<CustomerNote>>(result);
+        }
+
+
+        public uint UpdateCustomerNote(CustomerNote customerNote)
+        {
+            Response resp = null;
+            string result = web.DataPut($"api/CustomerNote", customerNote, resp);
+            if (uint.TryParse(result, out uint id))
+                return id;
+            else
+                return 0;
+        }
+
+        public uint NewCustomerNote(CustomerNote customerNote)
+        {
+            Response resp = null;
+            string result = web.DataPost($"api/CustomerNote", customerNote, resp);
+            if (uint.TryParse(result, out uint id))
+                return id;
+            else
+                return 0;
+        }
+        public void DeleteCustomerNote(CustomerNote customerNote)
+        {
+            try { web.DataDelete($"api/Customer/{customerNote.IdNote}"); }
+            catch (Exception ex) { LogError(ex, "DeleteCustomerNote"); }
+        }
+        #endregion
+
+        #region NoteType
+        public List<NoteType> GetNotesTypes()
+        {
+            string result = web.DataGet($"api/CustomerNote/NoteType");
+            return JsonConvert.DeserializeObject<List<NoteType>>(result);
+        }
+
+
+        public uint UpdateNoteType(NoteType noteType)
+        {
+            Response resp = null;
+            string result = web.DataPut($"api/CustomerNote/NoteType", noteType, resp);
+            if (uint.TryParse(result, out uint id))
+                return id;
+            else
+                return 0;
+        }
+
+        public uint NewNoteType(NoteType noteType)
+        {
+            Response resp = null;
+            string result = web.DataPost($"api/CustomerNote/NoteType", noteType, resp);
+            if (uint.TryParse(result, out uint id))
+                return id;
+            else
+                return 0;
+        }
+        public void DeleteNoteType(NoteType noteType)
+        {
+            try { web.DataDelete($"api/CustomerNote/NoteType/{noteType.IdNoteType}"); }
+            catch (Exception ex) { LogError(ex, "DeleteCustomerNoteType"); }
+        }
+        #endregion
         #region Discount
         public List<Discount> GetDiscount()
         {
