@@ -1,6 +1,6 @@
 ﻿
 namespace SecretCellar {
-	partial class FrmEventsCreate {
+	partial class frmEventsCreate {
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>

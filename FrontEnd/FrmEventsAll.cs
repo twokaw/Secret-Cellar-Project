@@ -11,8 +11,11 @@ using Shared;
 
 
 namespace SecretCellar {
-	public partial class FrmEventsAll : Form {
-		public FrmEventsAll() {
+	public partial class frmEventsAll : Form {
+        public DateTime selectedDate = new DateTime(0001, 1, 1);
+
+
+		public frmEventsAll() {
 			InitializeComponent();
 
             //SET THE ID COLUMN TO HIDDEN SO THAT THE ID IS STILL
@@ -22,7 +25,14 @@ namespace SecretCellar {
             UpdateEventGrid();
         }
 
-		private void button_CloseWindow_Click(object sender, EventArgs e) {
+        private void dataGridView_Events_CellDoubleClick(object sender, DataGridViewCellEventArgs e) {
+            //UPDATE THE SELECTED DATE FIELD WITH THE DATE THAT THE USER DOUBLE CLICKED ON
+            selectedDate = DateTime.Parse(dataGridView_Events.SelectedRows[0].Cells[Date.Index].Value.ToString());
+
+            this.Close();
+        }
+
+        private void button_CloseWindow_Click(object sender, EventArgs e) {
             this.Close();
 		}
 
@@ -57,5 +67,6 @@ namespace SecretCellar {
                 dataGridView_Events.Rows.Add(currentEvent.Id, currentEvent.EventDate, currentEvent.Name, currentEvent.Price, currentEvent.Qty);
             }
         }
+
 	}
 }

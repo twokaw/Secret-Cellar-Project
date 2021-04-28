@@ -4,8 +4,8 @@ using Shared;
 
 
 namespace SecretCellar {
-	public partial class FrmEventsCreate : Form {
-		public FrmEventsCreate() {
+	public partial class frmEventsCreate : Form {
+		public frmEventsCreate() {
 			InitializeComponent();
 		}
 

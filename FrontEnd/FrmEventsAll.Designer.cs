@@ -1,6 +1,6 @@
 ﻿
 namespace SecretCellar {
-	partial class FrmEventsAll {
+	partial class frmEventsAll {
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
@@ -25,13 +25,13 @@ namespace SecretCellar {
 		/// </summary>
 		private void InitializeComponent() {
 			this.dataGridView_Events = new System.Windows.Forms.DataGridView();
-			this.button_CloseWindow = new System.Windows.Forms.Button();
-			this.button_DeleteEvent = new System.Windows.Forms.Button();
 			this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.Event = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.Qty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.button_CloseWindow = new System.Windows.Forms.Button();
+			this.button_DeleteEvent = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView_Events)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -50,11 +50,47 @@ namespace SecretCellar {
 			this.dataGridView_Events.Location = new System.Drawing.Point(13, 13);
 			this.dataGridView_Events.Margin = new System.Windows.Forms.Padding(4);
 			this.dataGridView_Events.Name = "dataGridView_Events";
+			this.dataGridView_Events.ReadOnly = true;
 			this.dataGridView_Events.RowHeadersVisible = false;
 			this.dataGridView_Events.RowHeadersWidth = 62;
 			this.dataGridView_Events.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
 			this.dataGridView_Events.Size = new System.Drawing.Size(547, 302);
 			this.dataGridView_Events.TabIndex = 10;
+			this.dataGridView_Events.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_Events_CellDoubleClick);
+			// 
+			// Id
+			// 
+			this.Id.HeaderText = "Event Id";
+			this.Id.Name = "Id";
+			this.Id.ReadOnly = true;
+			// 
+			// Date
+			// 
+			this.Date.HeaderText = "Event Date";
+			this.Date.MinimumWidth = 8;
+			this.Date.Name = "Date";
+			this.Date.ReadOnly = true;
+			// 
+			// Event
+			// 
+			this.Event.HeaderText = "Event Name";
+			this.Event.MinimumWidth = 8;
+			this.Event.Name = "Event";
+			this.Event.ReadOnly = true;
+			// 
+			// Price
+			// 
+			this.Price.HeaderText = "Event Price";
+			this.Price.MinimumWidth = 8;
+			this.Price.Name = "Price";
+			this.Price.ReadOnly = true;
+			// 
+			// Qty
+			// 
+			this.Qty.HeaderText = "Quantity";
+			this.Qty.MinimumWidth = 8;
+			this.Qty.Name = "Qty";
+			this.Qty.ReadOnly = true;
 			// 
 			// button_CloseWindow
 			// 
@@ -82,36 +118,7 @@ namespace SecretCellar {
 			this.button_DeleteEvent.UseVisualStyleBackColor = true;
 			this.button_DeleteEvent.Click += new System.EventHandler(this.button_DeleteEvent_Click);
 			// 
-			// Id
-			// 
-			this.Id.HeaderText = "Event Id";
-			this.Id.Name = "Id";
-			// 
-			// Date
-			// 
-			this.Date.HeaderText = "Event Date";
-			this.Date.MinimumWidth = 8;
-			this.Date.Name = "Date";
-			// 
-			// Event
-			// 
-			this.Event.HeaderText = "Event Name";
-			this.Event.MinimumWidth = 8;
-			this.Event.Name = "Event";
-			// 
-			// Price
-			// 
-			this.Price.HeaderText = "Event Price";
-			this.Price.MinimumWidth = 8;
-			this.Price.Name = "Price";
-			// 
-			// Qty
-			// 
-			this.Qty.HeaderText = "Quantity";
-			this.Qty.MinimumWidth = 8;
-			this.Qty.Name = "Qty";
-			// 
-			// FrmEventsAll
+			// frmEventsAll
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -122,7 +129,7 @@ namespace SecretCellar {
 			this.Controls.Add(this.dataGridView_Events);
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
-			this.Name = "FrmEventsAll";
+			this.Name = "frmEventsAll";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "All Events";
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView_Events)).EndInit();

@@ -25,11 +25,11 @@ namespace SecretCellar
         }
 
         private void dataGridView_Events_SelectionChanged(object sender, EventArgs e) {
-            UpdateEventCharge();
+            UpdateTotal();
         }
 
         private void textBox_Quantity_TextChanged(object sender, EventArgs e) {
-            UpdateEventCharge();
+            UpdateTotal();
         }
 
         private void frmEvents_Load(object sender, EventArgs e) {
@@ -41,17 +41,37 @@ namespace SecretCellar
         }
 
         private void button_AllEvents_Click(object sender, EventArgs e) {
-            FrmEventsAll allEvents = new FrmEventsAll();
+            frmEventsAll allEvents = new frmEventsAll();
             allEvents.ShowDialog();
 
-            //RESET THE SELECTED ROW TO THE FIRST ROW
-            dataGridView_Events.Rows[0].Selected = true;
+            //IF THE SELECTED DATE FIELD IN THE ALL EVENTS FORM IS NOT THE DEFAULT
+            //THAT MEANS THE USER DOUBLE CLICKED ON IT TO GO TO IT SO SET THE
+            //DATE TIME PICKER ON THIS FORM TO THAT DATE
+            if (allEvents.selectedDate != new DateTime(0001, 1, 1)) {
+                dateTimePicker_Date.Value = allEvents.selectedDate;
+                UpdateEventGrid();
 
-            UpdateEventGrid();
+                //SELECT THE SPECIFIC EVENT THAT THE USER CLICKED ON
+                foreach (DataGridViewRow row in dataGridView_Events.Rows) {
+                    if (row.Cells[Date.Index].Value.ToString() == dateTimePicker_Date.Value.ToString()) {
+                        dataGridView_Events.CurrentCell = row.Cells[Date.Index];
+					}
+				}
+			}
+
+            //OTHERWISE JUST REFRESH THE DATA GRID VIEW WITH THE CURRENT DATE
+            else {
+                if (dataGridView_Events.Rows.Count > 0) {
+                    //RESET THE SELECTED ROW TO THE FIRST ROW
+                    dataGridView_Events.CurrentCell = dataGridView_Events.Rows[0].Cells[Date.Index];
+                }
+
+                UpdateEventGrid();
+            }
         }
 
         private void button_CreateEvent_Click(object sender, EventArgs e) {
-            FrmEventsCreate createEvent = new FrmEventsCreate();
+            frmEventsCreate createEvent = new frmEventsCreate();
             createEvent.ShowDialog();
 
             UpdateEventGrid();
@@ -127,7 +147,7 @@ namespace SecretCellar
             }
         }
 
-        private void UpdateEventCharge() {
+        private void UpdateTotal() {
             if (uint.TryParse(textBox_Quantity.Text, out uint quantity)) {
                 double price = double.Parse(dataGridView_Events.SelectedRows[0].Cells[Price.Index].Value.ToString());
 
@@ -137,5 +157,49 @@ namespace SecretCellar
                 textBox_Total.Text = "$0";
             }
         }
+
+		private void dataGridView_Events_CellEndEdit(object sender, DataGridViewCellEventArgs e) {
+            //GET THE ID OF THE EVENT THAT WAS UPDATED
+            uint id = uint.Parse(dataGridView_Events.Rows[e.RowIndex].Cells[Id.Index].Value.ToString());
+
+            //CREATE A VARIABLE FOR THE EVENT THAT IS BEING UPDATED
+            Event updatedEvent = DataAccess.instance.GetEvent(id);
+
+            switch (e.ColumnIndex) {
+				case 2:
+                    if (DateTime.TryParse(dataGridView_Events.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString(), out DateTime dateResult)) {
+                        updatedEvent.EventDate = dateResult;
+					}
+                    else {
+                        MessageBox.Show("Unable to update date.", "Error");
+                    }
+
+                    break;
+                case 3:
+                    updatedEvent.Name = dataGridView_Events.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
+
+                    break;
+                case 4:
+                    if (double.TryParse(dataGridView_Events.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString(), out double priceResult)) {
+                        updatedEvent.Price = priceResult;
+                    }
+                    else {
+                        MessageBox.Show("Unable to update price.", "Error");
+                    }
+
+                    break;
+                case 5:
+                    MessageBox.Show("Unable to update quantity.", "Error");
+                    //if (uint.TryParse(dataGridView_Events.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString(), out uint quantityResult)) {
+                    //    updatedEvent.qty = quantityResult;
+                    //}
+
+                    break;
+			}
+
+            
+            //UPDATE THE EVENT
+            DataAccess.instance.UpdateEvent(updatedEvent);
+		}
 	}
 }
