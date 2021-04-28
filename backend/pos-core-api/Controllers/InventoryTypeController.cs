@@ -27,10 +27,7 @@ namespace WebApi.Controllers
             {
                 return Ok(DataAccess.Instance.InventoryType.Get());
             }
-            catch (Exception ex)
-            {
-                return StatusCode(500, ex.Message);
-            }
+            catch (Exception ex) { ErrorLogging.WriteToErrorLog(ex); return StatusCode(500, ex.Message); }
         }
 
         /// <summary>
@@ -50,10 +47,7 @@ namespace WebApi.Controllers
                 else
                     return NotFound($"{typeId} not found");
             }
-            catch (Exception ex)
-            {
-                return StatusCode(500, ex.Message);
-            }
+            catch (Exception ex) { ErrorLogging.WriteToErrorLog(ex); return StatusCode(500, ex.Message); }
         }
 
         /// <summary>
@@ -73,10 +67,7 @@ namespace WebApi.Controllers
                 else
                     return NotFound($"{typeName} not found");
             }
-            catch (Exception ex)
-            {
-                return StatusCode(500, ex.Message);
-            }
+            catch (Exception ex) { ErrorLogging.WriteToErrorLog(ex); return StatusCode(500, ex.Message); }
         }
 
         /// <summary>
@@ -88,60 +79,55 @@ namespace WebApi.Controllers
         [HttpPost]
         public IActionResult Post([FromBody] InventoryType invType)
         {
-            if (DataAccess.Instance.InventoryType.GetTypeQty(-1, invType.TypeName) > -1) 
-                return StatusCode(400, "Type already exist.");
-
-            uint newId;
             try
             {
-                newId = DataAccess.Instance.InventoryType.Insert(invType);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, ex.Message); 
-            }
+                if (DataAccess.Instance.InventoryType.GetTypeQty(-1, invType.TypeName) > -1) 
+                    return StatusCode(400, "Type already exist.");
 
-            return StatusCode(201, newId);
+                return StatusCode(201, DataAccess.Instance.InventoryType.Insert(invType));
+            }
+            catch (Exception ex) { ErrorLogging.WriteToErrorLog(ex); return StatusCode(500, ex.Message); }
         }
 
         // PUT: api/InventoryType
         [HttpPut()]
         public IActionResult Put([FromBody] InventoryType invType)
         {
-            uint newId;
-
-            // if id and name doesn't exist then call the post
-            if (DataAccess.Instance.InventoryType.GetTypeQty(Convert.ToInt32(invType.TypeId), invType.TypeName) == -1)
-                newId = DataAccess.Instance.InventoryType.Insert(invType);
-            else
+            try
             {
-                DataAccess.Instance.InventoryType.Update(invType);
-                newId = invType.TypeId;
-            }
+                uint newId;
 
-            return Ok($"{newId}");
+                // if id and name doesn't exist then call the post
+                if (DataAccess.Instance.InventoryType.GetTypeQty(Convert.ToInt32(invType.TypeId), invType.TypeName) == -1)
+                    newId = DataAccess.Instance.InventoryType.Insert(invType);
+                else
+                {
+                    DataAccess.Instance.InventoryType.Update(invType);
+                    newId = invType.TypeId;
+                }
+
+                return Ok($"{newId}");
+            }
+            catch (Exception ex) { ErrorLogging.WriteToErrorLog(ex); return StatusCode(500, ex.Message); }
         }
 
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            int qty = DataAccess.Instance.InventoryType.GetTypeQty(id, "");
-
-            if(qty == -1)
-                return StatusCode(400, $"No type with the id '{id}'.");
-            else if (qty > 0)
-                return StatusCode(400, $"Can't delete Type id '{id}'.  It has {qty} inventory items assigned to it");
-
             try
             {
+                int qty = DataAccess.Instance.InventoryType.GetTypeQty(id, "");
+
+                if(qty == -1)
+                    return StatusCode(400, $"No type with the id '{id}'.");
+                else if (qty > 0)
+                    return StatusCode(400, $"Can't delete Type id '{id}'.  It has {qty} inventory items assigned to it");
+
                 DataAccess.Instance.InventoryType.Delete(id);
                 return Ok("Type succesfully Deleted");
             }
-            catch (Exception ex)
-            {
-                return StatusCode(500, ex.Message);
-            }
+            catch (Exception ex) { ErrorLogging.WriteToErrorLog(ex); return StatusCode(500, ex.Message); }
         }
     }
 }
