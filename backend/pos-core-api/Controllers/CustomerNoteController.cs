@@ -24,6 +24,7 @@ namespace WebApi.Controllers
             }
             catch(Exception ex)
             {
+                ErrorLogging.WriteToErrorLog(ex);
                 return StatusCode(500, ex.Message);
             }
         }
@@ -39,9 +40,10 @@ namespace WebApi.Controllers
                 else
                     return Ok(DataAccess.Instance.CustomerNote.Get(CustomerID));
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                return StatusCode(500, e.Message);
+                ErrorLogging.WriteToErrorLog(ex);
+                return StatusCode(500, ex.Message);
             }
         }
 
@@ -53,9 +55,10 @@ namespace WebApi.Controllers
             {
                 return Ok(DataAccess.Instance.CustomerNote.GetNoteTypes());
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                return StatusCode(500, e.Message);
+                ErrorLogging.WriteToErrorLog(ex);
+                return StatusCode(500, ex.Message);
             }
         }
 
@@ -69,6 +72,7 @@ namespace WebApi.Controllers
             }
             catch (Exception ex)
             {
+                ErrorLogging.WriteToErrorLog(ex);
                 return StatusCode(500, ex.Message);
             }
         }
@@ -86,6 +90,7 @@ namespace WebApi.Controllers
             }
             catch (Exception ex)
             {
+                ErrorLogging.WriteToErrorLog(ex);
                 return StatusCode(500, ex.Message);
             }
         }
@@ -101,6 +106,7 @@ namespace WebApi.Controllers
             }
             catch (Exception ex)
             {
+                ErrorLogging.WriteToErrorLog(ex);
                 return StatusCode(500, ex.Message);
             }
         }
@@ -115,6 +121,7 @@ namespace WebApi.Controllers
             }
             catch (Exception ex)
             {
+                ErrorLogging.WriteToErrorLog(ex);
                 return StatusCode(500, ex.Message);
             }
         }
@@ -132,6 +139,7 @@ namespace WebApi.Controllers
             }
             catch (Exception ex)
             {
+                ErrorLogging.WriteToErrorLog(ex);
                 return StatusCode(500, ex.Message);
             }
         }
@@ -147,6 +155,7 @@ namespace WebApi.Controllers
             }
             catch (Exception ex)
             {
+                ErrorLogging.WriteToErrorLog(ex);
                 return StatusCode(500, ex.Message);
             }
         }

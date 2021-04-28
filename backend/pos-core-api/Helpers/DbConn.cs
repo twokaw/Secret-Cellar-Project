@@ -1,4 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
+using Shared;
+using System;
 using System.Collections;
 using System.Resources;
 
@@ -17,15 +19,19 @@ namespace WebApi.Helpers
 
         public void SetConnectionString(string conString)
         {
-            using IResourceWriter writer = new ResourceWriter("myResources.resources");
+            try
+            {
+                using IResourceWriter writer = new ResourceWriter("myResources.resources");
 
-            // TODO: Encrypt connection string
-            // Adds resources to the resource writer.
-            writer.AddResource("ConnectionString", conString);
+                // TODO: Encrypt connection string
+                // Adds resources to the resource writer.
+                writer.AddResource("ConnectionString", conString);
 
-            // Writes the resources to the file or stream, and closes it.
-            writer.Close();
-            connString = conString;
+                // Writes the resources to the file or stream, and closes it.
+                writer.Close();
+                connString = conString;
+            }
+            catch (Exception ex) { ErrorLogging.WriteToErrorLog(ex); }
         }
 
         public string GetConnectionString()
@@ -46,8 +52,10 @@ namespace WebApi.Helpers
                             break;
                         }
                 }
-                catch
+                catch (Exception ex)
                 {
+                    ErrorLogging.WriteToErrorLog(ex);
+
                     // if reading the file fails, then create a new file
                     SetConnectionString(defaultConnectionString);
                 }
@@ -62,7 +70,14 @@ namespace WebApi.Helpers
 
         public void OpenConnection()
         {
-            conn.Open();
+            try
+            {
+                conn.Open();
+            }
+            catch (Exception ex)
+            {
+                ErrorLogging.WriteToErrorLog(ex);
+            }
         }
 
         public void CloseConnnection()

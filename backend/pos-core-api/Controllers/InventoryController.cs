@@ -24,10 +24,7 @@ namespace WebApi.Controllers
             {
                 return Ok(DataAccess.Instance.Inventory.GetInv());
             }
-            catch (Exception ex)
-            {
-                return StatusCode(500, ex.Message);
-            }
+            catch (Exception ex) { ErrorLogging.WriteToErrorLog(ex); return StatusCode(500, ex.Message); }
         }
 
         /// <summary>
@@ -41,20 +38,16 @@ namespace WebApi.Controllers
         [HttpGet("id/{id}", Name = "GetInventory")]
         public IActionResult Get(uint id)
         {
-            Inventory output;
             try
             {
-                output = DataAccess.Instance.Inventory.GetInv(id);
+                Inventory output = DataAccess.Instance.Inventory.GetInv(id);
+                if (output == null)
+                    return StatusCode(400, $"The item with the id '{id}' does not exist.");
+                else
+                    return Ok(output);
             }
-            catch (Exception ex)
-            {
-                return StatusCode(500, ex.Message);
-            }
+            catch (Exception ex) { ErrorLogging.WriteToErrorLog(ex); return StatusCode(500, ex.Message); }
 
-            if (output == null)
-                return StatusCode(400, $"The item with the id '{id}' does not exist.");
-            else
-                return Ok(output);
         }
 
         /// <summary>
@@ -68,21 +61,16 @@ namespace WebApi.Controllers
         [HttpGet("{barcode}", Name = "GetInventoryBarcode")]
         public IActionResult Get(string barcode)
         {
-            Inventory output;
-
             try
             {
-                output = DataAccess.Instance.Inventory.GetInv(barcode);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, ex.Message);
-            }
+                Inventory output = DataAccess.Instance.Inventory.GetInv(barcode);
 
-            if (output == null) 
-                return StatusCode(400, $"That item with the barcode '{barcode}' does not exist.");
-            else
-                return Ok(output);
+                if (output == null) 
+                    return StatusCode(400, $"That item with the barcode '{barcode}' does not exist.");
+                else
+                    return Ok(output);
+            }
+            catch (Exception ex) { ErrorLogging.WriteToErrorLog(ex); return StatusCode(500, ex.Message); }
         }
 
         /// <summary>
@@ -94,21 +82,17 @@ namespace WebApi.Controllers
         [HttpPost]
         public IActionResult Post([FromBody] Inventory inv)
         {
-            long lastID = -1;
-
-            if (DataAccess.Instance.Inventory.DoesBarcodeExist(inv.Barcode))
-                return StatusCode(400, "Barcode already exist.");
-
             try
             {
-                DataAccess.Instance.Inventory.Insert(inv);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, ex.Message);
-            }
+                long lastID = -1;
 
-            return StatusCode(201, lastID);
+                if (DataAccess.Instance.Inventory.DoesBarcodeExist(inv.Barcode))
+                    return StatusCode(400, "Barcode already exist.");
+
+                DataAccess.Instance.Inventory.Insert(inv);
+                return StatusCode(201, lastID);
+            }
+            catch (Exception ex) { ErrorLogging.WriteToErrorLog(ex); return StatusCode(500, ex.Message); }
         }
 
 
@@ -123,21 +107,14 @@ namespace WebApi.Controllers
         [HttpPut]
         public IActionResult Put([FromBody] Inventory inv)
         {
-            long lastID = -1;
-
-            if (!DataAccess.Instance.Inventory.DoesBarcodeExist(inv.Barcode))
-                return Post(inv);
-
             try
             {
-                DataAccess.Instance.Inventory.Update(inv);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, ex.Message);
-            }
+                if (!DataAccess.Instance.Inventory.DoesBarcodeExist(inv.Barcode))
+                    return Post(inv);
 
-            return Ok(lastID);
+                return Ok(DataAccess.Instance.Inventory.Update(inv));
+            }
+            catch (Exception ex) { ErrorLogging.WriteToErrorLog(ex); return StatusCode(500, ex.Message); }
         }
 
         // DELETE: api/[controller]/id
@@ -147,13 +124,9 @@ namespace WebApi.Controllers
             try
             {
                 DataAccess.Instance.Inventory.Delete(Invid);
+                return Ok("Item succesfully Deleted.");
             }
-            catch (Exception ex)
-            {
-                return StatusCode(500, ex.Message);
-            }
-
-            return Ok("Item succesfully Deleted.");
+            catch (Exception ex) { ErrorLogging.WriteToErrorLog(ex); return StatusCode(500, ex.Message); }
         }
     }
 }
