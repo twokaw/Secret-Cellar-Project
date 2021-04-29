@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Shared
 {
     public class ErrorLogging
     {
-        public static string Path{get;set;}
+        public static string Path{get;set; }
         public static void WriteToErrorLog(string msg, string stkTrace, string title)
         {
             if (!(System.IO.Directory.Exists(Path + "\\Errors\\")))
@@ -23,13 +19,21 @@ namespace Shared
             FileStream fs1 = new FileStream(Path + "\\Errors\\errlog.txt", FileMode.Append, FileAccess.Write);
             StreamWriter s1 = new StreamWriter(fs1);
 
-            s1.Write("Title: " + title + "\r\n");
-            s1.Write("Message: " + msg + "\r\n");
-            s1.Write("StackTrace: " + stkTrace + "\r\n");
-            s1.Write("Date/Time: " + DateTime.Now.ToString() + "\r\n");
-            s1.Write("===========================================================================================" + "\r\n");
+            s1.WriteLine($"Title: {title}");
+            s1.WriteLine($"Message: {msg}");
+            s1.WriteLine($"StackTrace: {stkTrace}");
+            s1.WriteLine($"Date/Time: {DateTime.Now}");
+            s1.WriteLine("===========================================================================================");
             s1.Close();
             fs1.Close();
+        }
+        public static void WriteToErrorLog(Exception ex, string title)
+        {
+            WriteToErrorLog(ex.Message, ex.StackTrace, title);
+        }
+        public static void WriteToErrorLog(Exception ex)
+        {
+            WriteToErrorLog(ex.Message, ex.StackTrace, ex.Source);
         }
     }
 }

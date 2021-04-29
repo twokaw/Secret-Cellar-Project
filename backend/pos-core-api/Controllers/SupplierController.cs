@@ -20,7 +20,11 @@ namespace WebApi.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(DataAccess.Instance.Supplier.Get());
+            try
+            {
+                return Ok(DataAccess.Instance.Supplier.Get());
+            }
+            catch (Exception ex) { ErrorLogging.WriteToErrorLog(ex); return StatusCode(500, ex.Message); }
         }
 
         /// <summary>
@@ -37,10 +41,7 @@ namespace WebApi.Controllers
             {
                 return Ok(DataAccess.Instance.Supplier.Get(name));
             }
-            catch (Exception ex)
-            {
-                return StatusCode(500, ex);
-            }
+            catch (Exception ex) { ErrorLogging.WriteToErrorLog(ex); return StatusCode(500, ex.Message); }
         }
 
         /// <summary>
@@ -53,12 +54,16 @@ namespace WebApi.Controllers
         [HttpGet("id/{id}", Name = "Get Supplier by ID")]
         public IActionResult GetSupplier(uint id)
         {
-            Supplier output = DataAccess.Instance.Supplier.Get(id);
+            try
+            {
+                Supplier output = DataAccess.Instance.Supplier.Get(id);
 
-            if (output == null)
-                return StatusCode(400, $"The '{id}' does not exist. ");
-            else
-                return Ok(output);
+                if (output == null)
+                    return StatusCode(400, $"The '{id}' does not exist. ");
+                else
+                    return Ok(output);
+            }
+            catch (Exception ex) { ErrorLogging.WriteToErrorLog(ex); return StatusCode(500, ex.Message); }
         }
 
         /// <summary>
@@ -74,10 +79,7 @@ namespace WebApi.Controllers
             {
                 return Ok(DataAccess.Instance.Supplier.Update(supplier));
             }
-            catch (Exception ex)
-            {
-                return StatusCode(500, ex);
-            }
+            catch (Exception ex) { ErrorLogging.WriteToErrorLog(ex); return StatusCode(500, ex.Message); }
         }
 
         [HttpPost]
@@ -87,10 +89,7 @@ namespace WebApi.Controllers
             {
                 return Ok(DataAccess.Instance.Supplier.Insert(supplier));
             }
-            catch (Exception ex)
-            {
-                return StatusCode(500, ex);
-            }
+            catch (Exception ex) { ErrorLogging.WriteToErrorLog(ex); return StatusCode(500, ex.Message); }
         }
     }
 }

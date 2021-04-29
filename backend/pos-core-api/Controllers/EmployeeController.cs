@@ -32,10 +32,7 @@ namespace WebApi.Controllers
             {
                 return Ok(DataAccess.Instance.Employee.Get(employeeID));
             }
-            catch (Exception ex)
-            {
-                return StatusCode(500, ex.Message);
-            }
+            catch (Exception ex) { ErrorLogging.WriteToErrorLog(ex); return StatusCode(500, ex.Message); }
         }
 
         // POST: api/Employee
@@ -46,10 +43,7 @@ namespace WebApi.Controllers
             {
                 return Ok(DataAccess.Instance.Employee.Insert(emp));
             }
-            catch (Exception ex)
-            {
-                return StatusCode(500, ex.Message);
-            }
+            catch (Exception ex) { ErrorLogging.WriteToErrorLog(ex); return StatusCode(500, ex.Message); }
         }
 
         // PUT: api/Employee/{EmpID}
@@ -61,10 +55,7 @@ namespace WebApi.Controllers
                 DataAccess.Instance.Employee.Update(emp);
                 return Ok();
             }
-            catch (Exception ex)
-            {
-                return StatusCode(500, ex.Message);
-            }
+            catch (Exception ex) { ErrorLogging.WriteToErrorLog(ex); return StatusCode(500, ex.Message); }
         }
 
         // Delete: api/Employee/{EmpID}
@@ -76,10 +67,7 @@ namespace WebApi.Controllers
                 DataAccess.Instance.Employee.Delete(empID);
                 return Ok();
             }
-            catch (Exception ex)
-            {
-                return StatusCode(500, ex.Message);
-            }
+            catch (Exception ex) { ErrorLogging.WriteToErrorLog(ex); return StatusCode(500, ex.Message); }
         }
     }
 }

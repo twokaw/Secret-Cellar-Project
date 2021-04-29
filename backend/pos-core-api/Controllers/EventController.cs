@@ -16,30 +16,23 @@ namespace pos_core_api.Controllers
             {
                 return Ok(DataAccess.Instance.Event.Get());
             }
-            catch (Exception ex)
-            {
-                return StatusCode(500, ex.Message);
-            }
+            catch (Exception ex) { ErrorLogging.WriteToErrorLog(ex); return StatusCode(500, ex.Message); }
         }
 
         [HttpGet("id/{id}", Name = "GetEventId")]
         public IActionResult Get(uint id)
         {
-            Event output;
-
             try
             {
-                output = DataAccess.Instance.Event.Get(id);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, ex.Message);
-            }
+                Event output = DataAccess.Instance.Event.Get(id);
 
-            if (output == null)
-                return StatusCode(400, $"The event id '{id}' does not exist.");
-            else
-                return Ok(output);
+                if (output == null)
+                    return StatusCode(400, $"The event id '{id}' does not exist.");
+                else
+                    return Ok(output);
+            }
+            catch (Exception ex) { ErrorLogging.WriteToErrorLog(ex); return StatusCode(500, ex.Message); }
+
         }
 
         /// <summary>
@@ -59,10 +52,7 @@ namespace pos_core_api.Controllers
             {
                 output = DataAccess.Instance.Event.Get(barcode);
             }
-            catch (Exception ex)
-            {
-                return StatusCode(500, ex.Message);
-            }
+            catch (Exception ex) { ErrorLogging.WriteToErrorLog(ex); return StatusCode(500, ex.Message); }
 
             if (output == null)
                 return StatusCode(400, $"That item with the barcode '{barcode}' does not exist.");
@@ -77,10 +67,7 @@ namespace pos_core_api.Controllers
             {
                 return Ok(DataAccess.Instance.Event.Insert(evt));
             }
-            catch (Exception ex)
-            {
-                return StatusCode(500, ex.Message);
-            }
+            catch (Exception ex) { ErrorLogging.WriteToErrorLog(ex); return StatusCode(500, ex.Message); }
         }
 
         [HttpPut]
@@ -90,10 +77,7 @@ namespace pos_core_api.Controllers
             {
                 return Ok(DataAccess.Instance.Event.Update(evt));
             }
-            catch (Exception ex)
-            {
-                return StatusCode(500, ex.Message);
-            }
+            catch (Exception ex) { ErrorLogging.WriteToErrorLog(ex); return StatusCode(500, ex.Message); }
         }
 
         [HttpDelete("{id}")]
@@ -104,10 +88,7 @@ namespace pos_core_api.Controllers
                 DataAccess.Instance.Event.Delete(id);
                 return Ok();
             }
-            catch (Exception ex)
-            {
-                return StatusCode(500, ex.Message);
-            }
+            catch (Exception ex) { ErrorLogging.WriteToErrorLog(ex); return StatusCode(500, ex.Message); }
         }
     }
 }
