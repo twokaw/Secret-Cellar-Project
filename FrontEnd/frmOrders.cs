@@ -91,7 +91,12 @@ namespace SecretCellar
 
         private void btn_prod_add_Click(object sender, EventArgs e)
         {
-            //request_dataGrid.Rows.Add(["Customer Name"] == txt_cust_name.Text, ["Product Name"] == txt_prod_name.Text);
+           /* 
+            * CustomerNote note = new CustomerNote();
+            note.Customer = txt_cust_name.Text;
+            note.Note = txt_prod_name.Text;
+            DataAccess.NewCustomerNote(note);
+           */
         }
 
         private void refresh()
@@ -171,9 +176,9 @@ namespace SecretCellar
         private void btn_print_Click(object sender, EventArgs e)
         {
             PrintPreviewDialog pripredlg = new PrintPreviewDialog();
-            //Receipt.DefaultLayout.Logo = DataAccess.instance.ImportLogo();
+            Receipt.DefaultLayout.Logo = DataAccess.instance.ImportLogo();
             Receipt rct = new Receipt(SelectTransaction);
-
+            rct.PrintImage(DataAccess.instance.ImportLogo());
             pripredlg.Document = rct.GetPrintDocument();
             pripredlg.ShowDialog();
 
