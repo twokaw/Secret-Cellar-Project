@@ -33,12 +33,10 @@ namespace WebApi
            
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
             
-            /*
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebApi Docs", Version = "v1" });
             });
-            */
 
             // configure strongly typed settings objects
             var appSettingsSection = Configuration.GetSection("AppSettings");
@@ -82,14 +80,12 @@ namespace WebApi
             app.UseRouting();
             app.UseCors();
             
-            /*
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "API V1");
                 c.RoutePrefix = string.Empty;
             });
-            */
 
             app.UseAuthentication();
             app.UseAuthorization();
