@@ -9,12 +9,18 @@ namespace SecretCellar
     public partial class frmEvents : ManagedForm
     {
         private Transaction transaction;
-
+        private Event _selectedEvent;
+        
 
         public frmEvents(Transaction transactionFromFrmTransaction)
         {
             InitializeComponent();
             transaction = transactionFromFrmTransaction;
+
+            //UPDATE THE SELECTED EVENT FIELD IF THE DATA GRID HAS ROWS
+            if (dataGridView_Events.SelectedRows.Count > 0) {
+                _selectedEvent = GetSelectedEvent();
+			}
 
             //SET THE ID COLUMN TO HIDDEN SO THAT THE ID IS STILL
             //ACCESSIBLE WHEN DELETING EVENTS
@@ -25,6 +31,11 @@ namespace SecretCellar
         }
 
         private void dataGridView_Events_SelectionChanged(object sender, EventArgs e) {
+            //UPDATE THE SELECTED EVENT FIELD
+            if (dataGridView_Events.SelectedRows.Count > 0) {
+                _selectedEvent = GetSelectedEvent();
+            }
+            
             UpdateTotal();
         }
 
@@ -78,51 +89,50 @@ namespace SecretCellar
         }
 
         private void button_AddCharge_Click(object sender, EventArgs e) {
-            //GET THE FIRST SELECTED ROW
-            DataGridViewCellCollection selectedRow = dataGridView_Events.SelectedRows[0].Cells;
+            if (dataGridView_Events.SelectedRows.Count > 0) {
+                //GET THE FIRST SELECTED ROW
+                DataGridViewCellCollection selectedRow = dataGridView_Events.SelectedRows[0].Cells;
 
-            //TRY TO PARSE THE TEXT IN THE QUANTITY FIELD AS A UINT
-            if (uint.TryParse(textBox_Quantity.Text, out uint quantity)) {
+                //TRY TO PARSE THE TEXT IN THE QUANTITY FIELD AS A UINT
+                if (uint.TryParse(textBox_Quantity.Text, out uint quantity)) {
 
-                //IF THE QUANTITY TO ADD IS MORE THAN WHAT IS AVAILABLE, SHOW AN ERROR
-                if (quantity > uint.Parse(selectedRow[Qty.Index].Value.ToString())) {
-                    MessageBox.Show("Quantity to add is more than what is available.", "Error");
-                    return;
+                    //IF THE QUANTITY TO ADD IS MORE THAN WHAT IS AVAILABLE, SHOW AN ERROR
+                    if (quantity > uint.Parse(selectedRow[Qty.Index].Value.ToString())) {
+                        MessageBox.Show("Quantity to add is more than what is available.", "Error");
+                        return;
+                    }
+
+                    //GET THE SELECTED ROW'S BARCODE AND CONVERT IT TO AN ITEM
+                    Item item = Transaction.ConvertInvtoItem(DataAccess.instance.GetItem(selectedRow[Barcode.Index].Value.ToString()), quantity);
+
+                    //UPDATE THE PRICE OF THE ITEM WITH THE SELECTED ROW'S PRICE
+                    item.Price = double.Parse(selectedRow[Price.Index].Value.ToString());
+
+                    //ADD THE ITEM TO THE TRANSACTION
+                    transaction.Items.Add(item);
+
+                    this.Close();
                 }
-
-                //GET THE SELECTED ROW'S BARCODE AND CONVERT IT TO AN ITEM
-                Item item = Transaction.ConvertInvtoItem(DataAccess.instance.GetItem(selectedRow[Barcode.Index].Value.ToString()), quantity);
-
-                //UPDATE THE PRICE OF THE ITEM WITH THE SELECTED ROW'S PRICE
-                item.Price = double.Parse(selectedRow[Price.Index].Value.ToString());
-
-                //ADD THE ITEM TO THE TRANSACTION
-                transaction.Items.Add(item);
-
-                this.Close();
-            }
-            else {
-                MessageBox.Show("Quantity is not a valid number.", "Error");
+                else {
+                    MessageBox.Show("Quantity is not a valid number.", "Error");
+                }
 			}
         }
 
         private void button_DeleteEvent_Click(object sender, EventArgs e) {
-            //GET ALL THE EVENTS
-            List<Event> listOfEvents = DataAccess.instance.GetEvent();
-
-            //LOOP THROUGH ALL OF THE SELECTED ROWS
-            foreach (DataGridViewRow selectedRow in dataGridView_Events.SelectedRows) {
-
-                //LOOP THROUGH ALL OF THE EVENTS
-                foreach (Event currentEvent in listOfEvents) {
-                    //IF THE ID OF THE SELECTED EVENT MATCHES AN EVENT, THEN DELETE THE EVENT
-                    if (uint.Parse(selectedRow.Cells[Id.Index].Value.ToString()) == currentEvent.Id) {
-                        DataAccess.instance.DeleteEvent(currentEvent.Id);
-
-                        UpdateEventGrid();
-                    }
-                }
+            if (dataGridView_Events.SelectedRows.Count > 0) { 
+                DataAccess.instance.DeleteEvent(_selectedEvent.Id);
+                UpdateEventGrid();
             }
+        }
+
+        private void button_EditEvent_Click(object sender, EventArgs e) {
+            if (dataGridView_Events.SelectedRows.Count > 0) {
+                frmEventsEdit eventsEdit = new frmEventsEdit(_selectedEvent);
+                eventsEdit.ShowDialog();
+
+                UpdateEventGrid();
+			}
         }
 
         private void button_CloseWindow_Click(object sender, EventArgs e) {
@@ -148,7 +158,7 @@ namespace SecretCellar
         }
 
         private void UpdateTotal() {
-            if (uint.TryParse(textBox_Quantity.Text, out uint quantity)) {
+            if (uint.TryParse(textBox_Quantity.Text, out uint quantity) && dataGridView_Events.SelectedRows.Count > 0) {
                 double price = double.Parse(dataGridView_Events.SelectedRows[0].Cells[Price.Index].Value.ToString());
 
                 textBox_Total.Text = "$" + quantity * price;
@@ -158,48 +168,20 @@ namespace SecretCellar
             }
         }
 
-		private void dataGridView_Events_CellEndEdit(object sender, DataGridViewCellEventArgs e) {
-            //GET THE ID OF THE EVENT THAT WAS UPDATED
-            uint id = uint.Parse(dataGridView_Events.Rows[e.RowIndex].Cells[Id.Index].Value.ToString());
+        private Event GetSelectedEvent() {
+            //GET ALL THE EVENTS
+            List<Event> listOfEvents = DataAccess.instance.GetEvent();
 
-            //CREATE A VARIABLE FOR THE EVENT THAT IS BEING UPDATED
-            Event updatedEvent = DataAccess.instance.GetEvent(id);
+            //LOOP THROUGH ALL OF THE EVENTS
+            foreach (Event currentEvent in listOfEvents) {
+                //IF THE ID OF THE SELECTED EVENT MATCHES AN EVENT, RETURN IT
+                if (uint.Parse(dataGridView_Events.SelectedRows[0].Cells[Id.Index].Value.ToString()) == currentEvent.Id) {
+                    return currentEvent;
+                }
+            }
 
-            switch (e.ColumnIndex) {
-				case 2:
-                    if (DateTime.TryParse(dataGridView_Events.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString(), out DateTime dateResult)) {
-                        updatedEvent.EventDate = dateResult;
-					}
-                    else {
-                        MessageBox.Show("Unable to update date.", "Error");
-                    }
-
-                    break;
-                case 3:
-                    updatedEvent.Name = dataGridView_Events.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
-
-                    break;
-                case 4:
-                    if (double.TryParse(dataGridView_Events.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString(), out double priceResult)) {
-                        updatedEvent.Price = priceResult;
-                    }
-                    else {
-                        MessageBox.Show("Unable to update price.", "Error");
-                    }
-
-                    break;
-                case 5:
-                    MessageBox.Show("Unable to update quantity.", "Error");
-                    //if (uint.TryParse(dataGridView_Events.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString(), out uint quantityResult)) {
-                    //    updatedEvent.qty = quantityResult;
-                    //}
-
-                    break;
-			}
-
-            
-            //UPDATE THE EVENT
-            DataAccess.instance.UpdateEvent(updatedEvent);
-		}
+            return null;
+        }
+		
 	}
 }

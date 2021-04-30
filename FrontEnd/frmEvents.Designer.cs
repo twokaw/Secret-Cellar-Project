@@ -46,6 +46,7 @@
 			this.label_Total = new System.Windows.Forms.Label();
 			this.textBox_Quantity = new System.Windows.Forms.TextBox();
 			this.textBox_Total = new System.Windows.Forms.TextBox();
+			this.button_EditEvent = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView_Events)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -64,47 +65,53 @@
             this.Qty});
 			this.dataGridView_Events.Location = new System.Drawing.Point(13, 87);
 			this.dataGridView_Events.Name = "dataGridView_Events";
+			this.dataGridView_Events.ReadOnly = true;
 			this.dataGridView_Events.RowHeadersVisible = false;
 			this.dataGridView_Events.RowHeadersWidth = 62;
 			this.dataGridView_Events.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
 			this.dataGridView_Events.Size = new System.Drawing.Size(843, 302);
 			this.dataGridView_Events.TabIndex = 9;
-			this.dataGridView_Events.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_Events_CellEndEdit);
 			this.dataGridView_Events.SelectionChanged += new System.EventHandler(this.dataGridView_Events_SelectionChanged);
 			// 
 			// Id
 			// 
 			this.Id.HeaderText = "Event Id";
 			this.Id.Name = "Id";
+			this.Id.ReadOnly = true;
 			// 
 			// Barcode
 			// 
 			this.Barcode.HeaderText = "Event Barcode";
 			this.Barcode.Name = "Barcode";
+			this.Barcode.ReadOnly = true;
 			// 
 			// Date
 			// 
 			this.Date.HeaderText = "Event Date";
 			this.Date.MinimumWidth = 8;
 			this.Date.Name = "Date";
+			this.Date.ReadOnly = true;
 			// 
 			// Event
 			// 
 			this.Event.HeaderText = "Event Name";
 			this.Event.MinimumWidth = 8;
 			this.Event.Name = "Event";
+			this.Event.ReadOnly = true;
 			// 
 			// Price
 			// 
 			this.Price.HeaderText = "Event Price";
 			this.Price.MinimumWidth = 8;
 			this.Price.Name = "Price";
+			this.Price.ReadOnly = true;
 			// 
 			// Qty
 			// 
 			this.Qty.HeaderText = "Quantity";
 			this.Qty.MinimumWidth = 8;
 			this.Qty.Name = "Qty";
+			this.Qty.ReadOnly = true;
 			// 
 			// dateTimePicker_Date
 			// 
@@ -118,7 +125,7 @@
 			// button_AddCharge
 			// 
 			this.button_AddCharge.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.button_AddCharge.Location = new System.Drawing.Point(676, 484);
+			this.button_AddCharge.Location = new System.Drawing.Point(676, 566);
 			this.button_AddCharge.Name = "button_AddCharge";
 			this.button_AddCharge.Size = new System.Drawing.Size(180, 55);
 			this.button_AddCharge.TabIndex = 13;
@@ -130,7 +137,7 @@
 			// button_CloseWindow
 			// 
 			this.button_CloseWindow.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.button_CloseWindow.Location = new System.Drawing.Point(13, 484);
+			this.button_CloseWindow.Location = new System.Drawing.Point(13, 566);
 			this.button_CloseWindow.Name = "button_CloseWindow";
 			this.button_CloseWindow.Size = new System.Drawing.Size(180, 55);
 			this.button_CloseWindow.TabIndex = 15;
@@ -154,7 +161,7 @@
 			// button_CreateEvent
 			// 
 			this.button_CreateEvent.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.button_CreateEvent.Location = new System.Drawing.Point(455, 484);
+			this.button_CreateEvent.Location = new System.Drawing.Point(13, 484);
 			this.button_CreateEvent.Name = "button_CreateEvent";
 			this.button_CreateEvent.Size = new System.Drawing.Size(180, 55);
 			this.button_CreateEvent.TabIndex = 17;
@@ -166,7 +173,7 @@
 			// button_DeleteEvent
 			// 
 			this.button_DeleteEvent.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.button_DeleteEvent.Location = new System.Drawing.Point(239, 484);
+			this.button_DeleteEvent.Location = new System.Drawing.Point(233, 484);
 			this.button_DeleteEvent.Name = "button_DeleteEvent";
 			this.button_DeleteEvent.Size = new System.Drawing.Size(180, 55);
 			this.button_DeleteEvent.TabIndex = 18;
@@ -212,6 +219,19 @@
 			this.textBox_Total.Name = "textBox_Total";
 			this.textBox_Total.Size = new System.Drawing.Size(158, 38);
 			this.textBox_Total.TabIndex = 22;
+			this.textBox_Total.Text = "$0";
+			// 
+			// button_EditEvent
+			// 
+			this.button_EditEvent.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.button_EditEvent.Location = new System.Drawing.Point(453, 484);
+			this.button_EditEvent.Name = "button_EditEvent";
+			this.button_EditEvent.Size = new System.Drawing.Size(180, 55);
+			this.button_EditEvent.TabIndex = 23;
+			this.button_EditEvent.TabStop = false;
+			this.button_EditEvent.Text = "EDIT EVENT";
+			this.button_EditEvent.UseVisualStyleBackColor = true;
+			this.button_EditEvent.Click += new System.EventHandler(this.button_EditEvent_Click);
 			// 
 			// frmEvents
 			// 
@@ -219,7 +239,8 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
 			this.BackColor = System.Drawing.SystemColors.ControlDark;
-			this.ClientSize = new System.Drawing.Size(869, 555);
+			this.ClientSize = new System.Drawing.Size(869, 636);
+			this.Controls.Add(this.button_EditEvent);
 			this.Controls.Add(this.textBox_Total);
 			this.Controls.Add(this.textBox_Quantity);
 			this.Controls.Add(this.label_Total);
@@ -264,5 +285,6 @@
 		private System.Windows.Forms.Label label_Total;
 		private System.Windows.Forms.TextBox textBox_Quantity;
 		private System.Windows.Forms.TextBox textBox_Total;
+		private System.Windows.Forms.Button button_EditEvent;
 	}
 }
