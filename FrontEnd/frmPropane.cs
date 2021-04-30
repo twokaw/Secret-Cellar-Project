@@ -22,7 +22,7 @@ namespace SecretCellar
         {
             InitializeComponent();
             transaction = items;
-            
+            txt_ex_Qty.Focus();
             txt_ex_Qty.Text = ((transaction.Items.FirstOrDefault(x => x.Barcode == PROPANEEXCHANGE)?.NumSold) ?? 0).ToString();
             txt_new_Qty.Text = (transaction.Items.FirstOrDefault(x => x.Barcode == PROPANENEW)?.NumSold ?? 0).ToString();
 

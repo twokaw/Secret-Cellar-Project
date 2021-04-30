@@ -1,22 +1,18 @@
-﻿using System;
+﻿using NCR_Printer;
+using Shared;
+using System;
 using System.Drawing;
 using System.IO;
-using System.IO.Ports;
 using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
-using NCR_Printer;
-using Shared;
-using System.Collections.Generic;
-
 
 namespace SecretCellar
 {
     public partial class frmTransaction : ManagedForm
     {
-
         private Transaction transaction = new Transaction();
-        
+
         private Image logo = null;
 
         public frmTransaction()
@@ -30,11 +26,9 @@ namespace SecretCellar
             this.AutoScaleDimensions = new System.Drawing.SizeF(72, 72);
             txt_current_cust.Text = "";
 
-
             string path = Properties.Settings.Default.FontPath;
             if (path.Length > 0 && path[0] == '.')
                 path = $"{Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}{path.Substring(1)}";
-
 
             Receipt.DefaultLayout = new PrintLayout()
             {
@@ -53,7 +47,6 @@ namespace SecretCellar
         private void ReloadLogo()
         {
             DataAccess.instance.AddPictureBox(pictureBox1);
-            
         }
 
         private void frmTransaction_Load(object sender, EventArgs e)
@@ -69,7 +62,6 @@ namespace SecretCellar
                 this.Dispose();
             }
 
-            
             lbl_twentyone.Text = "21 AS OF: " + DateTime.Now.AddYears(-21).ToString("MM/dd/yy");
             lbl_twentyone.Font = new Font("Microsoft Sans Serif", 16, FontStyle.Bold);
         }
@@ -79,6 +71,7 @@ namespace SecretCellar
             frmDiscount discount = new frmDiscount(transaction); //instantiates frmDiscount using discount
             discount.ShowDialog();
             RefreshDataGrid();// opens form associated with discount instantiation
+            txtBarcode.Focus();
         }
 
         private void btnTender_Click(object sender, EventArgs e)
@@ -103,23 +96,42 @@ namespace SecretCellar
                     if (transaction.Payments.FirstOrDefault(x => x.Method == "CASH" || x.Method == "CHECK") != null)
                         DataAccess.instance.openCashDrawer();
 
-                    if (payment.PrintReceipt) {
-                    Receipt.DefaultLayout.Logo = DataAccess.instance.ImportLogo();
-                    new Receipt(transaction).Print();
+                    if (payment.PrintReceipt)
+                    {
+                        Receipt.DefaultLayout.Logo = DataAccess.instance.ImportLogo();
+                        new Receipt(transaction).Print();
                     }
 
                     //transaction complete, clear the form
                     transaction = new Transaction();
                     txt_current_cust.Text = "";
                     RefreshDataGrid();
+                    txtBarcode.Focus();
                 }
             }
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            txtBarcode.Focus();
+            if (e.ColumnIndex == 1)
+            {
+                QuantityChange qtychange = new QuantityChange(int.Parse(dataGridView1.Rows[e.RowIndex].Cells["QTY"].Value.ToString()));
+
+                if (qtychange.ShowDialog() == DialogResult.OK)
+                {
+                    Item i = transaction.Items.FirstOrDefault(x => x.Id == uint.Parse(dataGridView1.Rows[e.RowIndex].Cells["ItemID"].Value.ToString()));
+                    i.NumSold = (uint)qtychange.UpdatedQty;
+                }  
+                
+                RefreshDataGrid();
+            }
+            else
+            {
+                txtBarcode.Focus();
+            }
         }
+
+     
 
         private void RefreshDataGrid()
         {
@@ -139,6 +151,7 @@ namespace SecretCellar
                     r.Cells["Qty"].Value = item.NumSold;
                     r.Cells["Total"].Value = (item.Price * item.NumSold * (1 - item.Discount)).ToString("C");
                     r.Cells["BOTTLE_DEPOSIT"].Value = (item.NumSold * item.Bottles * .05).ToString("C");
+                    r.Cells["ItemID"].Value = item.Id;
 
                     transactionBottleDeposit += item.NumSold * item.Bottles * .05;
                 }
@@ -169,8 +182,8 @@ namespace SecretCellar
                 Item i = transaction.Items.First(x => x.Description == desc && x.NumSold == qty);
                 transaction.Items.Remove(i);
                 RefreshDataGrid();
+                txtBarcode.Focus();
             }
-
         }
 
         private void btnDryClean_Click(object sender, EventArgs e)
@@ -179,6 +192,7 @@ namespace SecretCellar
 
             dryCleaning.ShowDialog();
             RefreshDataGrid();
+            txtBarcode.Focus();
         }
 
         private void txtBarcode_KeyUp(object sender, KeyEventArgs e)
@@ -206,7 +220,6 @@ namespace SecretCellar
 
         private void txt_TransTotal_TextChanged(object sender, EventArgs e)
         {
-
         }
 
         private void btnEvents_Click(object sender, EventArgs e)
@@ -215,6 +228,7 @@ namespace SecretCellar
 
             events.ShowDialog();
             RefreshDataGrid();
+            txtBarcode.Focus();
         }
 
         private void btnShipping_Click(object sender, EventArgs e)
@@ -223,12 +237,14 @@ namespace SecretCellar
 
             shipping.ShowDialog();
             RefreshDataGrid();
+            txtBarcode.Focus();
         }
 
         private void btnVoidTrx_Click(object sender, EventArgs e)
         {
             //ENSURE THAT THE TRANSACTION DOESN'T HAVE PAYMENTS STILL
-            if (transaction.Payments.Count > 0) {
+            if (transaction.Payments.Count > 0)
+            {
                 MessageBox.Show("Cannot void transaction. There are still outstanding payments.", "Error");
                 return;
             }
@@ -242,6 +258,7 @@ namespace SecretCellar
             transaction = new Transaction();
             txt_current_cust.Text = "";
             RefreshDataGrid();
+            txtBarcode.Focus();
         }
 
         private void dataGridView1_Click(object sender, EventArgs e)
@@ -252,7 +269,8 @@ namespace SecretCellar
         private void dataGridView1_RowsAdded(object sender, EventArgs e)
         {
             //IF THE COUNT IS BIGGER THAN 0 SHOW THE SUSPEND TRANSACTION BUTTON
-            if (transaction.Items.Count > 0) {
+            if (transaction.Items.Count > 0)
+            {
                 btnSuspendTransaction.Visible = true;
             }
         }
@@ -260,7 +278,8 @@ namespace SecretCellar
         private void dataGridView1_RowsRemoved(object sender, EventArgs e)
         {
             //IF THE COUNT EQUALS 0 HIDE THE SUSPEND TRANSACTION BUTTON
-            if (transaction.Items.Count == 0) {
+            if (transaction.Items.Count == 0)
+            {
                 btnSuspendTransaction.Visible = false;
             }
         }
@@ -271,6 +290,7 @@ namespace SecretCellar
 
             propane.ShowDialog();
             RefreshDataGrid();
+            txtBarcode.Focus();
         }
 
         private void btnCustom_Click(object sender, EventArgs e)
@@ -279,6 +299,7 @@ namespace SecretCellar
 
             customItem.ShowDialog();
             RefreshDataGrid();
+            txtBarcode.Focus();
         }
 
         private void pb_settings_Click(object sender, EventArgs e)
@@ -319,7 +340,8 @@ namespace SecretCellar
             RefreshDataGrid();
         }
 
-        public void importSuspendedTransaction(Transaction suspendedTransaction) {
+        public void importSuspendedTransaction(Transaction suspendedTransaction)
+        {
             //CLEAR WHATEVER WAS IN THE TRANSACTION ALREADY
             dataGridView1.Rows.Clear();
             transaction.Items.Clear();
@@ -348,25 +370,22 @@ namespace SecretCellar
 
         private void lbl_BARCODE_Click(object sender, EventArgs e)
         {
-
         }
 
-        private void label2_Click(object sender, EventArgs e)
-        {
 
-        }
-
-        private void lbl_twentyone_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void button1_Click(object sender, EventArgs e)
         {
             frmCustomer customer = new frmCustomer(transaction); //instantiates frmCustomer using Lookup
             customer.ShowDialog(); // opens form associated with Lookup instantiation
             RefreshDataGrid();
-         
+            txtBarcode.Focus();
+        }
+
+        private void btn_order_Click(object sender, EventArgs e)
+        {
+            frmOrders order = new frmOrders(transaction);
+            order.ShowDialog();
         }
     }
 }

@@ -19,6 +19,7 @@ namespace SecretCellar
         {
             InitializeComponent();
             customItem = transaction;
+            txt_descript.Focus();
 
         }
 

@@ -46,10 +46,10 @@
             this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.25F);
             this.btnCancel.ForeColor = System.Drawing.SystemColors.Control;
             this.btnCancel.Location = new System.Drawing.Point(726, 369);
-            this.btnCancel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(4);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(267, 154);
-            this.btnCancel.TabIndex = 7;
+            this.btnCancel.TabIndex = 3;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = false;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
@@ -63,10 +63,10 @@
             this.btnAddCharge.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.25F);
             this.btnAddCharge.ForeColor = System.Drawing.SystemColors.Control;
             this.btnAddCharge.Location = new System.Drawing.Point(208, 369);
-            this.btnAddCharge.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAddCharge.Margin = new System.Windows.Forms.Padding(4);
             this.btnAddCharge.Name = "btnAddCharge";
             this.btnAddCharge.Size = new System.Drawing.Size(267, 154);
-            this.btnAddCharge.TabIndex = 6;
+            this.btnAddCharge.TabIndex = 2;
             this.btnAddCharge.Text = "Add Charge";
             this.btnAddCharge.UseVisualStyleBackColor = false;
             this.btnAddCharge.Click += new System.EventHandler(this.btnAddCharge_Click);
@@ -78,10 +78,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txt_charge_am.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F);
             this.txt_charge_am.Location = new System.Drawing.Point(696, 262);
-            this.txt_charge_am.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txt_charge_am.Margin = new System.Windows.Forms.Padding(4);
             this.txt_charge_am.Name = "txt_charge_am";
             this.txt_charge_am.Size = new System.Drawing.Size(238, 38);
-            this.txt_charge_am.TabIndex = 5;
+            this.txt_charge_am.TabIndex = 1;
             this.txt_charge_am.TextChanged += new System.EventHandler(this.txt_charge_am_TextChanged);
             // 
             // lbl_custom
@@ -106,10 +106,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txt_descript.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F);
             this.txt_descript.Location = new System.Drawing.Point(718, 176);
-            this.txt_descript.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txt_descript.Margin = new System.Windows.Forms.Padding(4);
             this.txt_descript.Name = "txt_descript";
             this.txt_descript.Size = new System.Drawing.Size(336, 38);
-            this.txt_descript.TabIndex = 9;
+            this.txt_descript.TabIndex = 0;
             this.txt_descript.TextChanged += new System.EventHandler(this.txt_descript_TextChanged);
             // 
             // lbl_Descript
@@ -156,7 +156,7 @@
             this.Controls.Add(this.btnAddCharge);
             this.Controls.Add(this.txt_charge_am);
             this.Controls.Add(this.lbl_custom);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmCustom";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "frmCustom";

@@ -10,6 +10,7 @@ using System.Text;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.OpenApi.Models;
+using System.IO;
 
 namespace WebApi
 {
@@ -26,14 +27,18 @@ namespace WebApi
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            Shared.ErrorLogging.Path = Directory.GetCurrentDirectory();
             services.AddCors();
             services.AddControllers();
-
+           
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
+            
+            /*
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebApi Docs", Version = "v1" });
             });
+            */
 
             // configure strongly typed settings objects
             var appSettingsSection = Configuration.GetSection("AppSettings");
@@ -76,13 +81,15 @@ namespace WebApi
 
             app.UseRouting();
             app.UseCors();
-
+            
+            /*
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "API V1");
                 c.RoutePrefix = string.Empty;
             });
+            */
 
             app.UseAuthentication();
             app.UseAuthorization();

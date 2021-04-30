@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Shared;
 using pos_core_api.ORM;
+using System;
 
 namespace WebApi.Controllers
 {
@@ -12,59 +13,87 @@ namespace WebApi.Controllers
         [HttpGet]
         public IActionResult GetPrinter()
         {
-            return Ok(DataAccess.Instance.Printer.Get());
+            try
+            {
+                return Ok(DataAccess.Instance.Printer.Get());
+            }
+            catch (Exception ex) { ErrorLogging.WriteToErrorLog(ex); return StatusCode(500, ex.Message); }
         }
 
         // Get: api/Printer/make
         [HttpGet("Make")]
         public IActionResult GetPrinterMake()
         {
-            return Ok(DataAccess.Instance.Printer.GetMake());
+            try
+            {
+                return Ok(DataAccess.Instance.Printer.GetMake());
+            }
+            catch (Exception ex) { ErrorLogging.WriteToErrorLog(ex); return StatusCode(500, ex.Message); }
         }
 
         // Get: api/Printer/make
         [HttpGet("Make/{makeId}")]
         public IActionResult GetPrinterMake(uint makeId)
         {
-            return Ok(DataAccess.Instance.Printer.GetMake(makeId));
+            try
+            {
+                return Ok(DataAccess.Instance.Printer.GetMake(makeId));
+            }
+            catch (Exception ex) { ErrorLogging.WriteToErrorLog(ex); return StatusCode(500, ex.Message); }
         }
 
         // Get: api/Printer
         [HttpGet("{PrinterId}")]
         public IActionResult GetPrinterby(uint PrinterId)
         {
-            Printer outputItem = DataAccess.Instance.Printer.Get(PrinterId);
-            if (outputItem == null)
-                return StatusCode(500, "PrinterId is not in database");
-            else
-                return Ok(outputItem);
+            try
+            {
+                Printer outputItem = DataAccess.Instance.Printer.Get(PrinterId);
+
+                if (outputItem == null)
+                    return StatusCode(500, "PrinterId is not in database");
+                else
+                    return Ok(outputItem); 
+            }
+            catch (Exception ex) { ErrorLogging.WriteToErrorLog(ex); return StatusCode(500, ex.Message); }
         }
         
         //Post: api/Printer
         [HttpPost()]
         public IActionResult Post([FromBody] Printer Printer)
         {
-            return Ok(DataAccess.Instance.Printer.Insert(Printer));
+            try
+            {
+                return Ok(DataAccess.Instance.Printer.Insert(Printer));
+            }
+            catch (Exception ex) { ErrorLogging.WriteToErrorLog(ex); return StatusCode(500, ex.Message); }
         }
 
         //Put: api/Printer
         [HttpPut()]
         public IActionResult Put([FromBody] Printer Printer)
         {
-            return Ok(DataAccess.Instance.Printer.Update(Printer));
+            try
+            {
+                return Ok(DataAccess.Instance.Printer.Update(Printer));
+            }
+            catch (Exception ex) { ErrorLogging.WriteToErrorLog(ex); return StatusCode(500, ex.Message); }
         }
 
         //Put: api/Printer
         [HttpDelete("{PrinterId}")]
         public IActionResult Delete(uint PrinterId)
         {
-            if (DataAccess.Instance.Printer.Get(PrinterId) == null)
-                return Ok("Printer info does not exist in database");
-            else
-                DataAccess.Instance.Printer.Delete(PrinterId);
+            try
+            {
+                if (DataAccess.Instance.Printer.Get(PrinterId) == null)
+                    return Ok("Printer info does not exist in database");
+                else
+                    DataAccess.Instance.Printer.Delete(PrinterId);
 
-            return Ok("Printer Id deleted");
+                return Ok("Printer Id deleted");
+            }
+            catch (Exception ex) { ErrorLogging.WriteToErrorLog(ex); return StatusCode(500, ex.Message); }
         }
-
     }
 }

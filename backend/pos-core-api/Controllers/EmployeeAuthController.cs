@@ -22,13 +22,17 @@ namespace WebApi.Controllers
         [AllowAnonymous]
         [HttpPost("authenticate")]
         public IActionResult Authenticate([FromBody]AuthenticateModel model)
-        {            
-            var user = _userService.Authenticate(model.EmployeeID, model.Pin);
+        {
+            try
+            {
+                var user = _userService.Authenticate(model.EmployeeID, model.Pin);
 
-            if (user == null)
-                return BadRequest(new { message = "Username or password is incorrect" });
+                if (user == null)
+                    return BadRequest(new { message = "Username or password is incorrect" });
 
-            return Ok(user);
+                return Ok(user);
+            }
+            catch (Exception ex) { ErrorLogging.WriteToErrorLog(ex); return StatusCode(500, ex.Message); }
         }
     }
 }

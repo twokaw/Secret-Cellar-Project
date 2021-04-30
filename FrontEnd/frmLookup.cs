@@ -33,7 +33,8 @@ namespace SecretCellar
 
             LookupView.DataSource = inventory.
                 Select(x => new { Name = x.Name,
-                    Id = x.Id, ItemType = x.ItemType,
+                    Id = x.Id,
+                    ItemType = x.ItemType,
                     Qty = x.Qty,
                     Barcode = x.Barcode,
                     Price = x.Price,
