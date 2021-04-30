@@ -22,9 +22,10 @@ namespace SecretCellar
         private List<Supplier> suppliers = null;
         private List<Inventory> inventory = null;
         private List<Transaction> transaction_history = null;
+        private List<Customer> customers = DataAccess.instance.GetCustomer();
         Transaction SelectTransaction = null;
         //private List<Customer> cust = null;
-
+        
         private PrintPreviewDialog printPreviewDialog1 = new PrintPreviewDialog();
         private PrintDocument printDocument1 = new PrintDocument();
 
@@ -91,12 +92,25 @@ namespace SecretCellar
 
         private void btn_prod_add_Click(object sender, EventArgs e)
         {
-           /* 
-            * CustomerNote note = new CustomerNote();
-            note.Customer = txt_cust_name.Text;
+           
+           CustomerNote note = new CustomerNote();
+            note.IdCustomer = uint.Parse(txt_cust_name.Text);
             note.Note = txt_prod_name.Text;
-            DataAccess.NewCustomerNote(note);
-           */
+            dataAccess.NewCustomerNote(note);
+        
+        }
+
+        private void cust_refresh()
+        {
+            request_dataGrid.DataSource = customers.Where(x => (x.LastName.IndexOf(txt_cust_name.Text, StringComparison.OrdinalIgnoreCase) >= 0) || x.FirstName.IndexOf(txt_cust_name.Text, StringComparison.OrdinalIgnoreCase) >= 0).
+
+              Select(x => new {
+                  customerID = x.CustomerID,
+                  last_name = x.LastName,
+                  first_name = x.FirstName,
+              }).
+                OrderBy(x => x.last_name).
+                ToList();
         }
 
         private void refresh()
