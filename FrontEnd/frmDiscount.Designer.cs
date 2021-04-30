@@ -62,10 +62,10 @@
             this.btnExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExit.ForeColor = System.Drawing.Color.Red;
-            this.btnExit.Location = new System.Drawing.Point(1978, 757);
-            this.btnExit.Margin = new System.Windows.Forms.Padding(6);
+            this.btnExit.Location = new System.Drawing.Point(1554, 581);
+            this.btnExit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(259, 93);
+            this.btnExit.Size = new System.Drawing.Size(179, 60);
             this.btnExit.TabIndex = 7;
             this.btnExit.Text = "Close";
             this.btnExit.UseVisualStyleBackColor = true;
@@ -75,10 +75,10 @@
             // 
             this.btnClear.CausesValidation = false;
             this.btnClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClear.Location = new System.Drawing.Point(24, 31);
-            this.btnClear.Margin = new System.Windows.Forms.Padding(6);
+            this.btnClear.Location = new System.Drawing.Point(17, 20);
+            this.btnClear.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(205, 86);
+            this.btnClear.Size = new System.Drawing.Size(142, 55);
             this.btnClear.TabIndex = 6;
             this.btnClear.Text = "Reset";
             this.btnClear.UseVisualStyleBackColor = true;
@@ -87,10 +87,10 @@
             // btnApplyDiscount
             // 
             this.btnApplyDiscount.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnApplyDiscount.Location = new System.Drawing.Point(515, 42);
-            this.btnApplyDiscount.Margin = new System.Windows.Forms.Padding(6);
+            this.btnApplyDiscount.Location = new System.Drawing.Point(357, 27);
+            this.btnApplyDiscount.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnApplyDiscount.Name = "btnApplyDiscount";
-            this.btnApplyDiscount.Size = new System.Drawing.Size(259, 93);
+            this.btnApplyDiscount.Size = new System.Drawing.Size(179, 60);
             this.btnApplyDiscount.TabIndex = 5;
             this.btnApplyDiscount.Text = "Apply ";
             this.btnApplyDiscount.UseVisualStyleBackColor = true;
@@ -99,10 +99,10 @@
             // txtPercentLineItem
             // 
             this.txtPercentLineItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPercentLineItem.Location = new System.Drawing.Point(40, 118);
-            this.txtPercentLineItem.Margin = new System.Windows.Forms.Padding(6);
+            this.txtPercentLineItem.Location = new System.Drawing.Point(28, 76);
+            this.txtPercentLineItem.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtPercentLineItem.Name = "txtPercentLineItem";
-            this.txtPercentLineItem.Size = new System.Drawing.Size(336, 39);
+            this.txtPercentLineItem.Size = new System.Drawing.Size(234, 29);
             this.txtPercentLineItem.TabIndex = 0;
             this.txtPercentLineItem.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.digit_only);
             // 
@@ -110,10 +110,10 @@
             // 
             this.lblPercentLineItem.AutoSize = true;
             this.lblPercentLineItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F);
-            this.lblPercentLineItem.Location = new System.Drawing.Point(32, 55);
-            this.lblPercentLineItem.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.lblPercentLineItem.Location = new System.Drawing.Point(22, 35);
+            this.lblPercentLineItem.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPercentLineItem.Name = "lblPercentLineItem";
-            this.lblPercentLineItem.Size = new System.Drawing.Size(355, 47);
+            this.lblPercentLineItem.Size = new System.Drawing.Size(235, 31);
             this.lblPercentLineItem.TabIndex = 10;
             this.lblPercentLineItem.Text = "Enter Discount(%)";
             // 
@@ -121,20 +121,20 @@
             // 
             this.lblPercentTotalSale.AutoSize = true;
             this.lblPercentTotalSale.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F);
-            this.lblPercentTotalSale.Location = new System.Drawing.Point(36, 29);
-            this.lblPercentTotalSale.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.lblPercentTotalSale.Location = new System.Drawing.Point(25, 19);
+            this.lblPercentTotalSale.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPercentTotalSale.Name = "lblPercentTotalSale";
-            this.lblPercentTotalSale.Size = new System.Drawing.Size(349, 47);
+            this.lblPercentTotalSale.Size = new System.Drawing.Size(231, 31);
             this.lblPercentTotalSale.TabIndex = 12;
             this.lblPercentTotalSale.Text = "Total Discount(%)";
             // 
             // txtPercentTotalSale
             // 
             this.txtPercentTotalSale.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPercentTotalSale.Location = new System.Drawing.Point(44, 96);
-            this.txtPercentTotalSale.Margin = new System.Windows.Forms.Padding(6);
+            this.txtPercentTotalSale.Location = new System.Drawing.Point(30, 61);
+            this.txtPercentTotalSale.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtPercentTotalSale.Name = "txtPercentTotalSale";
-            this.txtPercentTotalSale.Size = new System.Drawing.Size(429, 39);
+            this.txtPercentTotalSale.Size = new System.Drawing.Size(298, 29);
             this.txtPercentTotalSale.TabIndex = 4;
             this.txtPercentTotalSale.Click += new System.EventHandler(this.txtPercentTotalSale_Click);
             this.txtPercentTotalSale.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.digit_only);
@@ -143,10 +143,10 @@
             // 
             this.lblFixedDiscount.AutoSize = true;
             this.lblFixedDiscount.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F);
-            this.lblFixedDiscount.Location = new System.Drawing.Point(36, 31);
-            this.lblFixedDiscount.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.lblFixedDiscount.Location = new System.Drawing.Point(25, 20);
+            this.lblFixedDiscount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblFixedDiscount.Name = "lblFixedDiscount";
-            this.lblFixedDiscount.Size = new System.Drawing.Size(336, 47);
+            this.lblFixedDiscount.Size = new System.Drawing.Size(222, 31);
             this.lblFixedDiscount.TabIndex = 14;
             this.lblFixedDiscount.Text = "Total Discount($)";
             // 
@@ -166,13 +166,13 @@
             this.RegularPrice,
             this.Price,
             this.Discount});
-            this.dataGridSelectItems.Location = new System.Drawing.Point(40, 183);
-            this.dataGridSelectItems.Margin = new System.Windows.Forms.Padding(6);
+            this.dataGridSelectItems.Location = new System.Drawing.Point(28, 113);
+            this.dataGridSelectItems.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dataGridSelectItems.Name = "dataGridSelectItems";
             this.dataGridSelectItems.RowHeadersVisible = false;
             this.dataGridSelectItems.RowHeadersWidth = 62;
             this.dataGridSelectItems.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridSelectItems.Size = new System.Drawing.Size(1306, 475);
+            this.dataGridSelectItems.Size = new System.Drawing.Size(859, 450);
             this.dataGridSelectItems.TabIndex = 16;
             this.dataGridSelectItems.TabStop = false;
             this.dataGridSelectItems.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridSelectItems_CellContentClick);
@@ -224,18 +224,19 @@
             this.panel1.Controls.Add(this.txtFixedDiscount);
             this.panel1.Controls.Add(this.coupon_btn);
             this.panel1.Controls.Add(this.lblFixedDiscount);
-            this.panel1.Location = new System.Drawing.Point(24, 161);
-            this.panel1.Margin = new System.Windows.Forms.Padding(6);
+            this.panel1.Location = new System.Drawing.Point(17, 103);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(813, 165);
+            this.panel1.Size = new System.Drawing.Size(563, 106);
             this.panel1.TabIndex = 17;
             // 
             // txtFixedDiscount
             // 
             this.txtFixedDiscount.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFixedDiscount.Location = new System.Drawing.Point(44, 97);
+            this.txtFixedDiscount.Location = new System.Drawing.Point(30, 62);
+            this.txtFixedDiscount.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtFixedDiscount.Name = "txtFixedDiscount";
-            this.txtFixedDiscount.Size = new System.Drawing.Size(429, 39);
+            this.txtFixedDiscount.Size = new System.Drawing.Size(298, 29);
             this.txtFixedDiscount.TabIndex = 15;
             this.txtFixedDiscount.Text = "0.00";
             this.txtFixedDiscount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -243,10 +244,10 @@
             // coupon_btn
             // 
             this.coupon_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.coupon_btn.Location = new System.Drawing.Point(515, 43);
-            this.coupon_btn.Margin = new System.Windows.Forms.Padding(6);
+            this.coupon_btn.Location = new System.Drawing.Point(357, 28);
+            this.coupon_btn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.coupon_btn.Name = "coupon_btn";
-            this.coupon_btn.Size = new System.Drawing.Size(259, 93);
+            this.coupon_btn.Size = new System.Drawing.Size(179, 60);
             this.coupon_btn.TabIndex = 3;
             this.coupon_btn.Text = "Apply";
             this.coupon_btn.UseVisualStyleBackColor = true;
@@ -259,10 +260,10 @@
             this.panel2.Controls.Add(this.lblPercentTotalSale);
             this.panel2.Controls.Add(this.txtPercentTotalSale);
             this.panel2.Controls.Add(this.btnApplyDiscount);
-            this.panel2.Location = new System.Drawing.Point(24, 381);
-            this.panel2.Margin = new System.Windows.Forms.Padding(6);
+            this.panel2.Location = new System.Drawing.Point(17, 244);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(813, 165);
+            this.panel2.Size = new System.Drawing.Size(563, 106);
             this.panel2.TabIndex = 18;
             // 
             // panel3
@@ -276,20 +277,20 @@
             this.panel3.Controls.Add(this.dataGridSelectItems);
             this.panel3.Controls.Add(this.lblPercentLineItem);
             this.panel3.Controls.Add(this.txtPercentLineItem);
-            this.panel3.Location = new System.Drawing.Point(862, 31);
-            this.panel3.Margin = new System.Windows.Forms.Padding(6);
+            this.panel3.Location = new System.Drawing.Point(597, 20);
+            this.panel3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1375, 695);
+            this.panel3.Size = new System.Drawing.Size(907, 568);
             this.panel3.TabIndex = 19;
             // 
             // btnApplyToItem
             // 
             this.btnApplyToItem.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.btnApplyToItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnApplyToItem.Location = new System.Drawing.Point(529, 55);
-            this.btnApplyToItem.Margin = new System.Windows.Forms.Padding(6);
+            this.btnApplyToItem.Location = new System.Drawing.Point(366, 35);
+            this.btnApplyToItem.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnApplyToItem.Name = "btnApplyToItem";
-            this.btnApplyToItem.Size = new System.Drawing.Size(259, 102);
+            this.btnApplyToItem.Size = new System.Drawing.Size(179, 65);
             this.btnApplyToItem.TabIndex = 1;
             this.btnApplyToItem.Text = "Apply";
             this.btnApplyToItem.UseVisualStyleBackColor = false;
@@ -298,11 +299,11 @@
             // txt_discountTotal
             // 
             this.txt_discountTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_discountTotal.Location = new System.Drawing.Point(1255, 754);
-            this.txt_discountTotal.Margin = new System.Windows.Forms.Padding(6);
+            this.txt_discountTotal.Location = new System.Drawing.Point(882, 606);
+            this.txt_discountTotal.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txt_discountTotal.Name = "txt_discountTotal";
             this.txt_discountTotal.ReadOnly = true;
-            this.txt_discountTotal.Size = new System.Drawing.Size(342, 53);
+            this.txt_discountTotal.Size = new System.Drawing.Size(238, 38);
             this.txt_discountTotal.TabIndex = 20;
             this.txt_discountTotal.TabStop = false;
             // 
@@ -310,21 +311,21 @@
             // 
             this.total_lbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.total_lbl.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.total_lbl.Location = new System.Drawing.Point(719, 754);
-            this.total_lbl.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.total_lbl.Location = new System.Drawing.Point(511, 606);
+            this.total_lbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.total_lbl.Name = "total_lbl";
-            this.total_lbl.Size = new System.Drawing.Size(502, 72);
+            this.total_lbl.Size = new System.Drawing.Size(348, 46);
             this.total_lbl.TabIndex = 21;
             this.total_lbl.Text = "Total Discount $";
             this.total_lbl.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // frmDiscount
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(2267, 882);
+            this.ClientSize = new System.Drawing.Size(1517, 661);
             this.Controls.Add(this.total_lbl);
             this.Controls.Add(this.txt_discountTotal);
             this.Controls.Add(this.panel3);
@@ -333,7 +334,7 @@
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.btnExit);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(6);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "frmDiscount";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Discount";
