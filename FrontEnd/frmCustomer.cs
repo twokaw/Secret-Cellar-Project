@@ -188,7 +188,7 @@ Address:
                     ZipCode = txt_zip.Text.Trim()
                 };
 
-                i.CustomerID = dataAccess.NewCustomer(i);
+                i.CustomerID = DataAccess.instance.NewCustomer(i);
                 customers.Add(i);
                 refresh();
             }
@@ -231,7 +231,7 @@ Address:
                 i.ZipCode = txt_zip.Text;
 
 
-                i.CustomerID = dataAccess.UpdateCustomer(i);
+                i.CustomerID = DataAccess.instance.UpdateCustomer(i);
               //  customers.Add(i);
               //  dataAccess.UpdateCustomer(i);
                 refresh();
