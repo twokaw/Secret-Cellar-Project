@@ -46,12 +46,7 @@ namespace SecretCellar
             cbx_supplier.DisplayMember = "Name";
             lstbox_customer.DataSource = DataAccess.instance?.GetCustomer();
             lstbox_customer.DisplayMember = "FullName";
-
-
-
-
-
-
+            printDocument1.PrintPage += new PrintPageEventHandler(btn_print_Click);
 
             supp_dataGrid.DataSource = inventory.
                 Select(x => new {
@@ -76,6 +71,14 @@ namespace SecretCellar
                }).
                OrderBy(x => x.trans_id).
                ToList();
+
+            request_dataGrid.DataSource = customers.
+                Select(x => new {
+                    customerID = x.CustomerID,
+                    cust_name = $"{x.LastName}, {x.FirstName}"
+                }).
+                OrderBy(x => x.cust_name).
+                ToList();
         }
            
         
@@ -106,10 +109,9 @@ namespace SecretCellar
 
               Select(x => new {
                   customerID = x.CustomerID,
-                  last_name = x.LastName,
-                  first_name = x.FirstName,
+                  cust_name = $"{x.LastName}, {x.FirstName}"
               }).
-                OrderBy(x => x.last_name).
+                OrderBy(x => x.cust_name).
                 ToList();
         }
 
@@ -192,7 +194,7 @@ namespace SecretCellar
             PrintPreviewDialog pripredlg = new PrintPreviewDialog();
             Receipt.DefaultLayout.Logo = DataAccess.instance.ImportLogo();
             Receipt rct = new Receipt(SelectTransaction);
-            rct.PrintImage(DataAccess.instance.ImportLogo());
+            //rct.PrintImage(DataAccess.instance.ImportLogo());
             pripredlg.Document = rct.GetPrintDocument();
             pripredlg.ShowDialog();
 
