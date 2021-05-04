@@ -378,7 +378,7 @@ namespace SecretCellar {
 			this.label4.TabIndex = 35;
 			this.label4.Text = "$";
 			// 
-			// FrmEventsCreate
+			// frmEventsCreate
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -410,7 +410,9 @@ namespace SecretCellar {
 			this.Controls.Add(this.label_Price);
 			this.Controls.Add(this.textBox_Quantity);
 			this.Controls.Add(this.label_Qty);
-			this.Name = "FrmEventsCreate";
+			this.MaximizeBox = false;
+			this.MinimizeBox = false;
+			this.Name = "frmEventsCreate";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Create Event";
 			this.ResumeLayout(false);
