@@ -39,10 +39,17 @@ namespace NCR_Printer
         public void Print()
         {
             // Print receipt
-            rcpt = new PrintDocument();
+            GetPrintDocument().Print();
+            
+        }
+
+        public PrintDocument GetPrintDocument()
+        {
+            // Preview receipt
+            PrintDocument rcpt = new PrintDocument();
             rcpt.DefaultPageSettings.PaperSize = new PaperSize(Layout.PageType, Layout.Width, 0);
             rcpt.PrintPage += new PrintPageEventHandler(PrintPage);
-            rcpt.Print();
+            return rcpt;
         }
 
         public void SetupPage(PrintPageEventArgs e)

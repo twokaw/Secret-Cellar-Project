@@ -16,8 +16,7 @@ namespace SecretCellar
     public partial class frmCustomer : Form
     {
         private Transaction customer = null;
-        private DataAccess dataAccess = new DataAccess(Properties.Settings.Default.URL);
-        private List<Customer> customers = null;
+        private List<Customer> customers = DataAccess.instance.GetCustomer();
 
         public frmCustomer(Transaction transaction)
         {
@@ -26,7 +25,6 @@ namespace SecretCellar
             this.Size = new System.Drawing.Size(1600, 768);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScaleDimensions = new System.Drawing.SizeF(72, 72);
-            customers = dataAccess.GetCustomer();
 
             customer_data_grid.DataSource = customers.
                 Select(x => new{customerID = x.CustomerID, last_name = x.LastName, first_name = x.FirstName, phone = x.PhoneNumber, email = x.Email, business_name = x.BusinessName,
@@ -190,7 +188,7 @@ Address:
                     ZipCode = txt_zip.Text.Trim()
                 };
 
-                i.CustomerID = dataAccess.NewCustomer(i);
+                i.CustomerID = DataAccess.instance.NewCustomer(i);
                 customers.Add(i);
                 refresh();
             }
@@ -233,7 +231,7 @@ Address:
                 i.ZipCode = txt_zip.Text;
 
 
-                i.CustomerID = dataAccess.UpdateCustomer(i);
+                i.CustomerID = DataAccess.instance.UpdateCustomer(i);
               //  customers.Add(i);
               //  dataAccess.UpdateCustomer(i);
                 refresh();
