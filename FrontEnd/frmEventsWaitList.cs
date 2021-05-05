@@ -16,6 +16,7 @@ namespace SecretCellar {
 		private Customer _transactionCustomer;
 		private Event _selectedEvent;
 
+
 		public frmEventsWaitList(Event selectedEvent, Transaction transactionFromForm) {
 			InitializeComponent();
 
@@ -55,7 +56,7 @@ namespace SecretCellar {
 		private void button_Add_Click(object sender, EventArgs e) {
 			//TODO: Call the method to add the transactionCustomer to the waitlist database.
 
-			//METHOD(selectedEvent.Id)
+			//METHOD(selectedEvent.Id, _transactionCustomer.FirstName + " " + _transactionCustomer.LastName, Date.Now())
 		}
 
 		private void button_Close_Click(object sender, EventArgs e) {
