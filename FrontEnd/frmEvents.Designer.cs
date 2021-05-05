@@ -47,6 +47,7 @@
 			this.textBox_Quantity = new System.Windows.Forms.TextBox();
 			this.textBox_Total = new System.Windows.Forms.TextBox();
 			this.button_EditEvent = new System.Windows.Forms.Button();
+			this.button_WaitList = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView_Events)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -233,6 +234,18 @@
 			this.button_EditEvent.UseVisualStyleBackColor = true;
 			this.button_EditEvent.Click += new System.EventHandler(this.button_EditEvent_Click);
 			// 
+			// button_WaitList
+			// 
+			this.button_WaitList.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.button_WaitList.Location = new System.Drawing.Point(676, 484);
+			this.button_WaitList.Name = "button_WaitList";
+			this.button_WaitList.Size = new System.Drawing.Size(180, 55);
+			this.button_WaitList.TabIndex = 24;
+			this.button_WaitList.TabStop = false;
+			this.button_WaitList.Text = "EVENT WAITLIST";
+			this.button_WaitList.UseVisualStyleBackColor = true;
+			this.button_WaitList.Click += new System.EventHandler(this.button_WaitList_Click);
+			// 
 			// frmEvents
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 16F);
@@ -240,6 +253,7 @@
 			this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
 			this.BackColor = System.Drawing.SystemColors.ControlDark;
 			this.ClientSize = new System.Drawing.Size(869, 636);
+			this.Controls.Add(this.button_WaitList);
 			this.Controls.Add(this.button_EditEvent);
 			this.Controls.Add(this.textBox_Total);
 			this.Controls.Add(this.textBox_Quantity);
@@ -286,5 +300,6 @@
 		private System.Windows.Forms.TextBox textBox_Quantity;
 		private System.Windows.Forms.TextBox textBox_Total;
 		private System.Windows.Forms.Button button_EditEvent;
+		private System.Windows.Forms.Button button_WaitList;
 	}
 }

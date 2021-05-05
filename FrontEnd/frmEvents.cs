@@ -135,6 +135,11 @@ namespace SecretCellar
 			}
         }
 
+        private void button_WaitList_Click(object sender, EventArgs e) {
+            frmEventsWaitList eventsWaitList = new frmEventsWaitList(_selectedEvent, transaction);
+            eventsWaitList.ShowDialog();
+        }
+
         private void button_CloseWindow_Click(object sender, EventArgs e) {
             this.Close();
 		}
@@ -182,6 +187,6 @@ namespace SecretCellar
 
             return null;
         }
-		
+
 	}
 }
