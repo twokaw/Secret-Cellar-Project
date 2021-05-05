@@ -266,7 +266,6 @@ namespace pos_core_api.ORM
                 cmd.Parameters.Add(new MySqlParameter("nonTaxableLocal", evnt.NonTaxableLocal));
                 cmd.ExecuteNonQuery();
 
-                evnt.Id = Convert.ToUInt32(cmd.LastInsertedId);
                 cmd.Dispose();
 
                 //Inserting into inventory_description Changed to insert or update
@@ -276,6 +275,7 @@ namespace pos_core_api.ORM
                         Supplier_price = @supplier_price
                     WHERE inventoryID = @id;
                 ";
+                /*
                 foreach (var i in evnt.AllQty)
                 {
                     cmd = new MySqlCommand(sql, db.Connection());
@@ -286,7 +286,15 @@ namespace pos_core_api.ORM
                     cmd.ExecuteNonQuery();
                     cmd.Dispose();
                 }
-
+                */
+                    cmd = new MySqlCommand(sql, db.Connection());
+                    //cmd.Parameters.Add(new MySqlParameter("id", inv.Id));
+                    cmd.Parameters.Add(new MySqlParameter("id", evnt.Id));
+                    cmd.Parameters.Add(new MySqlParameter("Qty", evnt.AllQty.Sum(x=>x.Qty)));
+                    cmd.Parameters.Add(new MySqlParameter("Supplier_price", evnt.AllQty.Max(x => x.SupplierPrice)));
+                    cmd.ExecuteNonQuery();
+                    cmd.Dispose();
+                
 
                 //Inserting into events
                 cmd = new MySqlCommand(@"
