@@ -46,7 +46,7 @@ namespace SecretCellar
             cbx_supplier.DisplayMember = "Name";
             lstbox_customer.DataSource = DataAccess.instance?.GetCustomer();
             lstbox_customer.DisplayMember = "FullName";
-            printDocument1.PrintPage += new PrintPageEventHandler(btn_print_Click);
+            
 
             supp_dataGrid.DataSource = inventory.
                 Select(x => new {
