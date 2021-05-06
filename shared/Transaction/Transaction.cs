@@ -9,7 +9,7 @@ namespace Shared
         public uint RegisterID { get; set; }
         public DateTime TransactionDateTime { get; set; }
         public string Location { get; set; }
-        public List<Item> Items { get; }
+        public List<Item> Items { get; set; }
         public double ItemTotal
         {
             get

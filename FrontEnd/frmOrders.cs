@@ -195,7 +195,7 @@ namespace SecretCellar
             Receipt.DefaultLayout.Logo = DataAccess.instance.ImportLogo();
             Receipt rct = new Receipt(SelectTransaction);
             //rct.PrintImage(DataAccess.instance.ImportLogo());
-            pripredlg.Document = rct.GetPrintDocument();
+            pripredlg.Document = rct.GetPrintPreviewDocument();
             pripredlg.ShowDialog();
 
             /*Receipt.DefaultLayout.Logo = DataAccess.instance.ImportLogo();
