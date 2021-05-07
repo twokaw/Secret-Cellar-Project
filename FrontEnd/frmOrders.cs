@@ -40,10 +40,16 @@ namespace SecretCellar
             InitializeComponent();
             inventory = dataAccess.GetInventory();
             suppliers = dataAccess.GetSuppliers();
+            suppliers.Insert(0, new Supplier()
+            {
+                Name = "All",
+                SupplierID = 0
+            });
             transaction_history = dataAccess.GetTransactions();
             //cust = dataAccess.GetCustomer();
             cbx_supplier.DataSource = suppliers;
             cbx_supplier.DisplayMember = "Name";
+            
             lstbox_customer.DataSource = DataAccess.instance?.GetCustomer();
             lstbox_customer.DisplayMember = "FullName";
             
@@ -115,7 +121,8 @@ namespace SecretCellar
 
         private void refresh()
         {
-            supp_dataGrid.DataSource = inventory.Where(x => ((Supplier)cbx_supplier.SelectedItem).SupplierID == x.SupplierID).
+            uint id = ((Supplier)cbx_supplier.SelectedItem).SupplierID;
+            supp_dataGrid.DataSource = inventory.Where(x => id == x.SupplierID || id == 0).
                Select(x => new {
                    Name = x.Name,
                    Id = x.Id,
