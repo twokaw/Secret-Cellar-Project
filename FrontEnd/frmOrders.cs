@@ -22,7 +22,7 @@ namespace SecretCellar
         private List<Supplier> suppliers = null;
         private List<Inventory> inventory = null;
         private List<Transaction> transaction_history = null;
-        private List<Customer> customers = DataAccess.instance.GetCustomer();
+        //private List<Customer> customers = DataAccess.instance.GetCustomer();
         Transaction SelectTransaction = null;
         //private List<Customer> cust = null;
         
@@ -46,12 +46,7 @@ namespace SecretCellar
             cbx_supplier.DisplayMember = "Name";
             lstbox_customer.DataSource = DataAccess.instance?.GetCustomer();
             lstbox_customer.DisplayMember = "FullName";
-
-
-
-
-
-
+            
 
             supp_dataGrid.DataSource = inventory.
                 Select(x => new {
@@ -76,6 +71,14 @@ namespace SecretCellar
                }).
                OrderBy(x => x.trans_id).
                ToList();
+
+            request_dataGrid.DataSource = DataAccess.instance.GetCustomer().
+                Select(x => new {
+                    customerID = x.CustomerID,
+                    cust_name = $"{x.LastName}, {x.FirstName}"
+                }).
+                OrderBy(x => x.cust_name).
+                ToList();
         }
            
         
@@ -102,14 +105,11 @@ namespace SecretCellar
 
         private void cust_refresh()
         {
-            request_dataGrid.DataSource = customers.Where(x => (x.LastName.IndexOf(txt_cust_name.Text, StringComparison.OrdinalIgnoreCase) >= 0) || x.FirstName.IndexOf(txt_cust_name.Text, StringComparison.OrdinalIgnoreCase) >= 0).
-
+            request_dataGrid.DataSource = DataAccess.instance.GetCustomer(txt_cust_name.Text).
               Select(x => new {
                   customerID = x.CustomerID,
-                  last_name = x.LastName,
-                  first_name = x.FirstName,
+                  cust_name = $"{x.LastName}, {x.FirstName}"
               }).
-                OrderBy(x => x.last_name).
                 ToList();
         }
 
@@ -192,8 +192,8 @@ namespace SecretCellar
             PrintPreviewDialog pripredlg = new PrintPreviewDialog();
             Receipt.DefaultLayout.Logo = DataAccess.instance.ImportLogo();
             Receipt rct = new Receipt(SelectTransaction);
-            rct.PrintImage(DataAccess.instance.ImportLogo());
-            pripredlg.Document = rct.GetPrintDocument();
+            //rct.PrintImage(DataAccess.instance.ImportLogo());
+            pripredlg.Document = rct.GetPrintPreviewDocument();
             pripredlg.ShowDialog();
 
             /*Receipt.DefaultLayout.Logo = DataAccess.instance.ImportLogo();
