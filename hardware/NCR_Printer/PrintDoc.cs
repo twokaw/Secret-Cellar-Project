@@ -13,7 +13,7 @@ namespace NCR_Printer
         private static readonly StringFormat leftAlign = new StringFormat() { Alignment = StringAlignment.Near };
         private static readonly StringFormat centerAlign = new StringFormat() { Alignment = StringAlignment.Center };
         private static readonly StringFormat rightAlign = new StringFormat() { Alignment = StringAlignment.Far };
-        private static readonly float lSpacing = 5F;
+        public static float LineSpacing { get; set; } = 5F;
 
         private readonly Brush brush = Brushes.Black;
         private readonly Pen pen;
@@ -79,7 +79,7 @@ namespace NCR_Printer
 
             if(g != null)
                 g.DrawImage(img, m); // .Width / 2 - img.Width / 2, m.Top);
-            cursor.Y += m.Height + lSpacing;
+            cursor.Y += m.Height + LineSpacing;
         }
 
         // Print the text with the given alignment at the cursor and return an advanced cursor based on newLine
@@ -91,7 +91,7 @@ namespace NCR_Printer
         // Print the text with the given alignment at the cursor and return an advanced cursor based on newLine
         public void PrintText(string text, Font font, bool newLine = true, TextAlignment align = TextAlignment.Left)
         {
-            PrintText(text, newLine, g, font, brush, GetAlign(align), lSpacing);
+            PrintText(text, newLine, g, font, brush, GetAlign(align), LineSpacing);
         }
 
         // Print the text with the given alignment at the cursor and return an advanced cursor based on newLine
@@ -105,7 +105,7 @@ namespace NCR_Printer
         // Print a horizontal line at the cursor and return an advanced cursor
         public void PrintHorizontalLine()
         {
-            PrintHorizontalLine(g, Layout.TextFont, pen, lSpacing);
+            PrintHorizontalLine(g, Layout.TextFont, pen, LineSpacing);
         }
 
         // Print a horizontal line at the cursor and return an advanced cursor
@@ -121,7 +121,7 @@ namespace NCR_Printer
         // This handles newline characters and wrapping of arbitrary length lines.
         public void PrintHeaderFooter(string text, TextAlignment align = TextAlignment.Center )
         {
-            PrintHeaderFooter(text, g, Layout.TextFont, brush, GetAlign(align), lSpacing);
+            PrintHeaderFooter(text, g, Layout.TextFont, brush, GetAlign(align), LineSpacing);
         }
 
         // Print the header/footer text with the given alignment at the cursor and return an advanced cursor.
@@ -138,7 +138,6 @@ namespace NCR_Printer
                 {
                     Height = (font.Height + lSpacing) * (text.Split('\n').Length + 2)
                 };
-
             }
 
             wrappedSize.Width = cursor.Width; // We just wanted height from MeasureString
@@ -152,7 +151,7 @@ namespace NCR_Printer
         // Event handler for printing receipt
         public abstract void PrintPage(object sender, PrintPageEventArgs e);
 
-        private StringFormat GetAlign(TextAlignment align)
+        public static StringFormat GetAlign(TextAlignment align)
         {
             StringFormat alignment;
             switch (align)

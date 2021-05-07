@@ -29,8 +29,10 @@ namespace NCR_Printer
             PrintImage(Layout.Logo);
 
             // Print InvoiceID Barcode
-            if (Layout.BarcodeFont != null)
+            if (Layout.BarcodeFont != null && Layout.Is3of9)
                 PrintText($"*{transaction.InvoiceID}*", Layout.BarcodeFont, true, TextAlignment.Center);
+            else
+                PrintText($"{transaction.InvoiceID}", Layout.BarcodeFont, true, TextAlignment.Center);
 
             // Print Header
             PrintHeaderFooter(Layout.Header);

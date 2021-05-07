@@ -22,7 +22,7 @@ namespace SecretCellar
         private List<Supplier> suppliers = null;
         private List<Inventory> inventory = null;
         private List<Transaction> transaction_history = null;
-        private List<Customer> customers = DataAccess.instance.GetCustomer();
+        //private List<Customer> customers = DataAccess.instance.GetCustomer();
         Transaction SelectTransaction = null;
         //private List<Customer> cust = null;
         
@@ -72,7 +72,7 @@ namespace SecretCellar
                OrderBy(x => x.trans_id).
                ToList();
 
-            request_dataGrid.DataSource = customers.
+            request_dataGrid.DataSource = DataAccess.instance.GetCustomer().
                 Select(x => new {
                     customerID = x.CustomerID,
                     cust_name = $"{x.LastName}, {x.FirstName}"
@@ -105,13 +105,11 @@ namespace SecretCellar
 
         private void cust_refresh()
         {
-            request_dataGrid.DataSource = customers.Where(x => (x.LastName.IndexOf(txt_cust_name.Text, StringComparison.OrdinalIgnoreCase) >= 0) || x.FirstName.IndexOf(txt_cust_name.Text, StringComparison.OrdinalIgnoreCase) >= 0).
-
+            request_dataGrid.DataSource = DataAccess.instance.GetCustomer(txt_cust_name.Text).
               Select(x => new {
                   customerID = x.CustomerID,
                   cust_name = $"{x.LastName}, {x.FirstName}"
               }).
-                OrderBy(x => x.cust_name).
                 ToList();
         }
 

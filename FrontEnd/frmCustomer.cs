@@ -16,7 +16,6 @@ namespace SecretCellar
     public partial class frmCustomer : Form
     {
         private Transaction customer = null;
-        private List<Customer> customers = DataAccess.instance.GetCustomer();
 
         public frmCustomer(Transaction transaction)
         {
@@ -26,13 +25,11 @@ namespace SecretCellar
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScaleDimensions = new System.Drawing.SizeF(72, 72);
 
-            customer_data_grid.DataSource = customers.
+            customer_data_grid.DataSource = DataAccess.instance.GetCustomer().
                 Select(x => new{customerID = x.CustomerID, last_name = x.LastName, first_name = x.FirstName, phone = x.PhoneNumber, email = x.Email, business_name = x.BusinessName,
                 isWholesale = x.IsWholesale, customerDiscount = x.CustomerDiscount, addr1 = x.Address1, addr2 = x.Address2, city = x.City, state = x.State, zip =x.ZipCode, Credit = x.Credit}).
                 OrderBy(x => x.last_name).
                 ToList();
-
-            
         }
 
         private void customergrid_SelectionChanged(object sender, EventArgs e)
@@ -41,9 +38,8 @@ namespace SecretCellar
 
             if (customer_data_grid.SelectedRows.Count > 0)
             {
-                Customer i = customers.First(x => x.CustomerID == uint.Parse(customer_data_grid.SelectedRows[0].Cells["customerID"].Value.ToString()));
+                Customer i = DataAccess.instance.GetCustomer(uint.Parse(customer_data_grid.SelectedRows[0].Cells["customerID"].Value.ToString()));
                 SelectCustomer(i);
-
             }
         }
 
@@ -84,7 +80,8 @@ namespace SecretCellar
             if (chkbox_wholesale.Checked)
             {
                 
-                customer_data_grid.DataSource = customers.Where(x => x.IsWholesale).
+                customer_data_grid.DataSource = DataAccess.instance.GetCustomer().
+                Where(x => x.IsWholesale).
                 Select(x => new {
                     customerID = x.CustomerID,
                     last_name = x.LastName,
@@ -128,9 +125,7 @@ namespace SecretCellar
 
         private void refresh()
         {
-            customer_data_grid.DataSource = customers.Where(x => (x.LastName.IndexOf(txt_customer.Text, StringComparison.OrdinalIgnoreCase) >= 0 || x.FirstName.IndexOf(txt_customer.Text, StringComparison.OrdinalIgnoreCase) >= 0 || x.PhoneNumber.IndexOf(txt_customer.Text,StringComparison.OrdinalIgnoreCase) >= 0)
-            && chkbox_wholesale.Checked == false || chkbox_wholesale.Checked == true).
-
+            customer_data_grid.DataSource = DataAccess.instance.GetCustomer(txt_customer.Text).
               Select(x => new {
                   customerID = x.CustomerID,
                   last_name = x.LastName,
@@ -154,7 +149,7 @@ namespace SecretCellar
         {
             if (customer_data_grid.SelectedRows.Count > 0)
             {
-                Customer i = customers.FirstOrDefault(x => x.LastName == txt_lname.Text.Trim() && x.FirstName == txt_fname.Text.Trim());
+                Customer i = DataAccess.instance.GetCustomer(true).FirstOrDefault(x => x.LastName == txt_lname.Text.Trim() && x.FirstName == txt_fname.Text.Trim());
 
                 if (i != null)
                 {
@@ -189,7 +184,6 @@ Address:
                 };
 
                 i.CustomerID = DataAccess.instance.NewCustomer(i);
-                customers.Add(i);
                 refresh();
             }
         }
@@ -198,7 +192,7 @@ Address:
         {
             if (customer_data_grid.SelectedRows.Count > 0)
             {
-                Customer i = customers.FirstOrDefault(x => x.CustomerID == uint.Parse(customer_data_grid.SelectedRows[0].Cells["customerID"].Value.ToString()));
+                Customer i = DataAccess.instance.GetCustomer(uint.Parse(customer_data_grid.SelectedRows[0].Cells["customerID"].Value.ToString()), true);
 
                 i.LastName = txt_lname.Text;
                 i.FirstName = txt_fname.Text;
@@ -251,18 +245,15 @@ Address:
         }
         private bool addCustomer()
         {
-            
             if (customer_data_grid.SelectedRows.Count > 0)
             {
-                Customer i = customers.FirstOrDefault(x => x.CustomerID == uint.Parse(customer_data_grid.SelectedRows[0].Cells["customerID"].Value.ToString()));
+                Customer i = DataAccess.instance.GetCustomer(uint.Parse(customer_data_grid.SelectedRows[0].Cells["customerID"].Value.ToString()), true);
 
-                
                 customer.CustomerID = i.CustomerID;
                 return true;
             }
             
             return false;
-            
         }
 
         private void btn_clear_Click(object sender, EventArgs e)
@@ -282,7 +273,7 @@ Address:
         }
 
 		private void button_UpdateCredit_Click(object sender, EventArgs e) {
-            Customer customer = customers.First(x => x.CustomerID == uint.Parse(customer_data_grid.SelectedRows[0].Cells["customerID"].Value.ToString()));
+            Customer customer = DataAccess.instance.GetCustomer(uint.Parse(customer_data_grid.SelectedRows[0].Cells["customerID"].Value.ToString()), true);
 
             frmCustomerCredit frmCustomerCredit = new frmCustomerCredit(customer);
             DialogResult result = frmCustomerCredit.ShowDialog();
