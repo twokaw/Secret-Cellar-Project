@@ -75,14 +75,33 @@ namespace SecretCellar
                OrderBy(x => x.trans_id).
                ToList();
 
-            request_dataGrid.DataSource = DataAccess.instance.GetCustomer().
-                Select(x => new {
-                    customer_id = x.CustomerID,
-                    customer_names = $"{x.LastName}, {x.FirstName}",
-                    prod_name = x.CustomerNote
-                }).
+            List<Customer> customers = DataAccess.instance.GetCustomer();
+
+            List<CustomerNote> customerNotes = DataAccess.instance.GetCustomerNotes(2);
+
+            if (customers != null && customerNotes != null)
+            {
+                // Old Linq way
+                //request_dataGrid.DataSource = from c in customers
+                //             join n in customerNotes
+                //             on c.CustomerID equals n.IdCustomer
+                //             orderby c.FullName
+                //             select new
+                //              {
+                //                customer_id = c.CustomerID,
+                //                customer_names = c.FullName ,
+                //                prod_name = n.Note
+                //              };
+
+                // Cool Kid way
+                request_dataGrid.DataSource = customers.
+                Join(customerNotes,
+                     c => c.CustomerID,
+                     n => n.IdCustomer,
+                     (c, n) => new { customer_id = c.CustomerID, customer_names = c.FullName, prod_name = n.Note }).
                 OrderBy(x => x.customer_names).
                 ToList();
+            }
         }
            
         
@@ -99,10 +118,13 @@ namespace SecretCellar
 
         private void btn_prod_add_Click(object sender, EventArgs e)
         {
-           
-           CustomerNote note = new CustomerNote();
-            note.IdCustomer = uint.Parse(txt_cust_name.Text);
-            note.Note = txt_prod_name.Text;
+
+            CustomerNote note = new CustomerNote
+            {
+                IdCustomer = ((Customer)lst_customer.SelectedItem)?.CustomerID ?? 0,
+                Note = txt_prod_name.Text,
+                IdNoteType = 2
+            };
             dataAccess.NewCustomerNote(note);
         
         }

@@ -68,7 +68,7 @@ namespace pos_core_api.ORM
             db.OpenConnection();
 
             MySqlCommand cmd = new MySqlCommand(@$"{CUSTOMERNOTESSQL}
-              WHERE customerTypeID = @customerTypeID
+              WHERE NoteTypeID = @customerTypeID
             ", db.Connection());
 
             cmd.Parameters.Add(new MySqlParameter("customerTypeID", customerTypeID));
