@@ -136,7 +136,7 @@ namespace SecretCellar
         }
 
         private void button_WaitList_Click(object sender, EventArgs e) {
-            frmEventsWaitList eventsWaitList = new frmEventsWaitList(_selectedEvent, transaction);
+            frmEventsWaitlist eventsWaitList = new frmEventsWaitlist(_selectedEvent, transaction);
             eventsWaitList.ShowDialog();
         }
 

@@ -400,5 +400,40 @@ namespace pos_core_api.ORM
         {
             Inv.Delete(invId);
         }
+
+        public List<EventWaitlistItem> GetEventsWaitlists() {
+            List<EventWaitlistItem> output = new List<EventWaitlistItem>();
+
+            try {
+                db.OpenConnection();
+
+                string sqlStatement = @"
+                    SELECT *
+                    FROM event_waitlist
+                ";
+
+                using MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
+                using MySqlDataReader reader = cmd.ExecuteReader();
+                EventWaitlistItem outputItem = null;
+                
+                while (reader.Read()) {
+                    int id = reader.GetInt32("eventId");
+
+                    outputItem = new EventWaitlistItem {
+                        EventId = id,
+                        CustomerId = reader.IsDBNull("customerId") ? -1 : reader.GetInt32("customerId"),
+                        CustomerName = reader.IsDBNull("customerName") ? "" : reader.GetString("customerName"),
+                        DateAdded = reader.IsDBNull("dateAdded") ? DateTime.MinValue : reader.GetDateTime("dateAdded")
+                    };
+
+                    output.Add(outputItem);
+
+                }
+            } finally {
+                db.CloseConnnection();
+            }
+
+            return output;
+        }
     }
 }

@@ -11,14 +11,18 @@ using Shared;
 
 
 namespace SecretCellar {
-	public partial class frmEventsWaitList : Form {
+	public partial class frmEventsWaitlist : Form {
 		private Transaction _transaction;
 		private Customer _transactionCustomer;
 		private Event _selectedEvent;
 
 
-		public frmEventsWaitList(Event selectedEvent, Transaction transactionFromForm) {
+		public frmEventsWaitlist(Event selectedEvent, Transaction transactionFromForm) {
 			InitializeComponent();
+			
+			//SET THE ID COLUMNS TO HIDDEN SO THAT THEY ARE STILL ACCESSIBLE
+			dataGridView_Customers.Columns[EventId.Index].Visible = false;
+			dataGridView_Customers.Columns[CustomerId.Index].Visible = false;
 
 			//UPDATE THE PRIVATE FIELDS WITH THE INCOMING PARAMETERS
 			_transaction = transactionFromForm;
@@ -46,7 +50,7 @@ namespace SecretCellar {
 
 		private void button_Remove_Click(object sender, EventArgs e) {
 			if (dataGridView_Customers.SelectedRows.Count > 0) {
-				int selectedCustomerId = int.Parse(dataGridView_Customers.SelectedRows[0].Cells[Id.Index].Value.ToString());
+				int selectedCustomerId = int.Parse(dataGridView_Customers.SelectedRows[0].Cells[CustomerId.Index].Value.ToString());
 
 				//TODO: Call the method to remove the customer by id from the waitlist database.
 
@@ -65,17 +69,19 @@ namespace SecretCellar {
 
 
 		private void UpdateWaitListGrid(Event selectedEvent) {
-			//TODO: Call method to get the customers on the waitlist for an event by id
-			//Customer customers = METHOD(selectedEvent.Id)
+			if (selectedEvent != null) {
+				List<EventWaitlistItem> waitListItems = DataAccess.instance.GetEventsWaitlists();
+				
+				//CLEAR THE CUSTOMER GRID
+				dataGridView_Customers.Rows.Clear();
 
-			//CLEAR THE CUSTOMER GRID
-			dataGridView_Customers.Rows.Clear();
-
-			//ADD ALL THE CUSTOMERS
-			//foreach (Customer customer in customers) {
-			//	dataGridView_Customers.Rows.Add(customer.CustomerID, customer.FirstName + " " + customer.LastName, customer.date);
-			//}
-			//}
+				//ADD ALL THE CUSTOMERS THAT MATCH THE SELECTED EVENT
+				foreach (EventWaitlistItem waitlistItem in waitListItems) {
+					if (selectedEvent.Id == waitlistItem.EventId) {
+						dataGridView_Customers.Rows.Add(waitlistItem.EventId, waitlistItem.CustomerId, waitlistItem.CustomerName, waitlistItem.DateAdded);
+					}
+				}
+			}
 		}
 	}
 }

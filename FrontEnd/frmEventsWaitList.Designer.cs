@@ -1,6 +1,6 @@
 ﻿
 namespace SecretCellar {
-	partial class frmEventsWaitList {
+	partial class frmEventsWaitlist {
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
@@ -31,8 +31,9 @@ namespace SecretCellar {
 			this.button_CustomerList = new System.Windows.Forms.Button();
 			this.textBox_Customer = new System.Windows.Forms.TextBox();
 			this.label_Customer = new System.Windows.Forms.Label();
-			this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Customer = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.EventId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.CustomerId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.CustomerName = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView_Customers)).BeginInit();
 			this.SuspendLayout();
@@ -44,8 +45,9 @@ namespace SecretCellar {
 			this.dataGridView_Customers.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
 			this.dataGridView_Customers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.dataGridView_Customers.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Id,
-            this.Customer,
+            this.EventId,
+            this.CustomerId,
+            this.CustomerName,
             this.Date});
 			this.dataGridView_Customers.Location = new System.Drawing.Point(12, 12);
 			this.dataGridView_Customers.Name = "dataGridView_Customers";
@@ -123,17 +125,23 @@ namespace SecretCellar {
 			this.label_Customer.TabIndex = 29;
 			this.label_Customer.Text = "Current Customer:";
 			// 
-			// Id
+			// EventId
 			// 
-			this.Id.HeaderText = "Customer Id";
-			this.Id.Name = "Id";
-			this.Id.ReadOnly = true;
+			this.EventId.HeaderText = "Event Id";
+			this.EventId.Name = "EventId";
+			this.EventId.ReadOnly = true;
 			// 
-			// Customer
+			// CustomerId
 			// 
-			this.Customer.HeaderText = "Customer Name";
-			this.Customer.Name = "Customer";
-			this.Customer.ReadOnly = true;
+			this.CustomerId.HeaderText = "Customer Id";
+			this.CustomerId.Name = "CustomerId";
+			this.CustomerId.ReadOnly = true;
+			// 
+			// CustomerName
+			// 
+			this.CustomerName.HeaderText = "Customer Name";
+			this.CustomerName.Name = "CustomerName";
+			this.CustomerName.ReadOnly = true;
 			// 
 			// Date
 			// 
@@ -174,8 +182,9 @@ namespace SecretCellar {
 		private System.Windows.Forms.Button button_CustomerList;
 		private System.Windows.Forms.TextBox textBox_Customer;
 		private System.Windows.Forms.Label label_Customer;
-		private System.Windows.Forms.DataGridViewTextBoxColumn Id;
-		private System.Windows.Forms.DataGridViewTextBoxColumn Customer;
+		private System.Windows.Forms.DataGridViewTextBoxColumn EventId;
+		private System.Windows.Forms.DataGridViewTextBoxColumn CustomerId;
+		private System.Windows.Forms.DataGridViewTextBoxColumn CustomerName;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Date;
 	}
 }

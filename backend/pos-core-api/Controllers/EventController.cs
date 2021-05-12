@@ -90,5 +90,12 @@ namespace pos_core_api.Controllers
             }
             catch (Exception ex) { ErrorLogging.WriteToErrorLog(ex); return StatusCode(500, ex.Message); }
         }
+
+        [HttpGet("Waitlists")]
+        public IActionResult GetWaitlists() {
+            try {
+                return Ok(DataAccess.Instance.Event.GetEventsWaitlists());
+            } catch (Exception ex) { ErrorLogging.WriteToErrorLog(ex); return StatusCode(500, ex.Message); }
+        }
     }
 }
