@@ -29,12 +29,7 @@ namespace SecretCellar
         private PrintPreviewDialog printPreviewDialog1 = new PrintPreviewDialog();
         private PrintDocument printDocument1 = new PrintDocument();
 
-        // Declare a string to hold the entire document contents.
-        private string documentContents;
-
-        // Declare a variable to hold the portion of the document that
-        // is not printed.
-        private string stringToPrint;
+        
         public frmOrders(Transaction transaction)
         {
             InitializeComponent();
