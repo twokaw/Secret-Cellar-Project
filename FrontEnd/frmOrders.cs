@@ -49,7 +49,9 @@ namespace SecretCellar
             //cust = dataAccess.GetCustomer();
             cbx_supplier.DataSource = suppliers;
             cbx_supplier.DisplayMember = "Name";
-            
+            lst_customer.DataSource = DataAccess.instance?.GetCustomer();
+            lst_customer.DisplayMember = "FullName";
+
             lstbox_customer.DataSource = DataAccess.instance?.GetCustomer();
             lstbox_customer.DisplayMember = "FullName";
             
@@ -80,10 +82,11 @@ namespace SecretCellar
 
             request_dataGrid.DataSource = DataAccess.instance.GetCustomer().
                 Select(x => new {
-                    customerID = x.CustomerID,
-                    cust_name = $"{x.LastName}, {x.FirstName}"
+                    customer_id = x.CustomerID,
+                    customer_names = $"{x.LastName}, {x.FirstName}",
+                    prod_name = x.CustomerNote
                 }).
-                OrderBy(x => x.cust_name).
+                OrderBy(x => x.customer_names).
                 ToList();
         }
            
@@ -111,12 +114,12 @@ namespace SecretCellar
 
         private void cust_refresh()
         {
-            request_dataGrid.DataSource = DataAccess.instance.GetCustomer(txt_cust_name.Text).
-              Select(x => new {
+            lstbox_customer.DataSource = DataAccess.instance.GetCustomer(txt_name.Text, true);
+              /*Select(x => new {
                   customerID = x.CustomerID,
                   cust_name = $"{x.LastName}, {x.FirstName}"
               }).
-                ToList();
+                ToList();*/
         }
 
         private void refresh()
@@ -256,6 +259,24 @@ namespace SecretCellar
             populate();
         }
 
-      
+        private void txt_name_TextChanged(object sender, EventArgs e)
+        {
+            cust_refresh();
+        }
+
+        private void txt_cust_name_TextChanged(object sender, EventArgs e)
+        {
+            customer_refresh();
+        }
+
+        private void customer_refresh()
+        {
+            lst_customer.DataSource = DataAccess.instance.GetCustomer(txt_cust_name.Text, true);
+            /*Select(x => new {
+                customerID = x.CustomerID,
+                cust_name = $"{x.LastName}, {x.FirstName}"
+            }).
+              ToList();*/
+        }
     }
 }

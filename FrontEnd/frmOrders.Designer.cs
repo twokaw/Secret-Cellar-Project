@@ -29,7 +29,7 @@ namespace SecretCellar
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             this.supp_order = new System.Windows.Forms.TabPage();
             this.btn_update = new System.Windows.Forms.Button();
             this.txt_update_qty = new System.Windows.Forms.TextBox();
@@ -59,8 +59,6 @@ namespace SecretCellar
             this.txt_cust_name = new System.Windows.Forms.TextBox();
             this.lbl_cust_name = new System.Windows.Forms.Label();
             this.request_dataGrid = new System.Windows.Forms.DataGridView();
-            this.cust_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.prod_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.btn_setDate = new System.Windows.Forms.Button();
@@ -72,14 +70,18 @@ namespace SecretCellar
             this.btn_print = new System.Windows.Forms.Button();
             this.lstbox_customer = new System.Windows.Forms.ListBox();
             this.transaction_dataGrid = new System.Windows.Forms.DataGridView();
+            this.trans_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.trans_date = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.trans_total = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lbl_end = new System.Windows.Forms.Label();
             this.end_dateTime = new System.Windows.Forms.DateTimePicker();
             this.lbl_start = new System.Windows.Forms.Label();
             this.start_dateTime = new System.Windows.Forms.DateTimePicker();
             this.btn_close = new System.Windows.Forms.Button();
-            this.trans_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.trans_date = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.trans_total = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lst_customer = new System.Windows.Forms.ListBox();
+            this.customer_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.customer_names = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.prod_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.supp_order.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.supp_dataGrid)).BeginInit();
             this.cust_request.SuspendLayout();
@@ -288,6 +290,7 @@ namespace SecretCellar
             // 
             // cust_request
             // 
+            this.cust_request.Controls.Add(this.lst_customer);
             this.cust_request.Controls.Add(this.btn_prod_delete);
             this.cust_request.Controls.Add(this.btn_prod_add);
             this.cust_request.Controls.Add(this.txt_prod_name);
@@ -305,7 +308,7 @@ namespace SecretCellar
             // 
             // btn_prod_delete
             // 
-            this.btn_prod_delete.Location = new System.Drawing.Point(184, 342);
+            this.btn_prod_delete.Location = new System.Drawing.Point(717, 301);
             this.btn_prod_delete.Name = "btn_prod_delete";
             this.btn_prod_delete.Size = new System.Drawing.Size(154, 36);
             this.btn_prod_delete.TabIndex = 6;
@@ -314,7 +317,7 @@ namespace SecretCellar
             // 
             // btn_prod_add
             // 
-            this.btn_prod_add.Location = new System.Drawing.Point(184, 277);
+            this.btn_prod_add.Location = new System.Drawing.Point(717, 236);
             this.btn_prod_add.Name = "btn_prod_add";
             this.btn_prod_add.Size = new System.Drawing.Size(154, 36);
             this.btn_prod_add.TabIndex = 5;
@@ -324,7 +327,7 @@ namespace SecretCellar
             // 
             // txt_prod_name
             // 
-            this.txt_prod_name.Location = new System.Drawing.Point(184, 160);
+            this.txt_prod_name.Location = new System.Drawing.Point(571, 176);
             this.txt_prod_name.Name = "txt_prod_name";
             this.txt_prod_name.Size = new System.Drawing.Size(300, 26);
             this.txt_prod_name.TabIndex = 4;
@@ -332,7 +335,7 @@ namespace SecretCellar
             // lbl_prod_name
             // 
             this.lbl_prod_name.AutoSize = true;
-            this.lbl_prod_name.Location = new System.Drawing.Point(41, 163);
+            this.lbl_prod_name.Location = new System.Drawing.Point(428, 179);
             this.lbl_prod_name.Name = "lbl_prod_name";
             this.lbl_prod_name.Size = new System.Drawing.Size(122, 20);
             this.lbl_prod_name.TabIndex = 3;
@@ -344,6 +347,7 @@ namespace SecretCellar
             this.txt_cust_name.Name = "txt_cust_name";
             this.txt_cust_name.Size = new System.Drawing.Size(200, 26);
             this.txt_cust_name.TabIndex = 2;
+            this.txt_cust_name.TextChanged += new System.EventHandler(this.txt_cust_name_TextChanged);
             // 
             // lbl_cust_name
             // 
@@ -359,25 +363,15 @@ namespace SecretCellar
             this.request_dataGrid.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.request_dataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.request_dataGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.cust_name,
+            this.customer_id,
+            this.customer_names,
             this.prod_name});
-            this.request_dataGrid.Location = new System.Drawing.Point(564, 91);
+            this.request_dataGrid.Location = new System.Drawing.Point(962, 117);
             this.request_dataGrid.Name = "request_dataGrid";
+            this.request_dataGrid.RowHeadersVisible = false;
             this.request_dataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.request_dataGrid.Size = new System.Drawing.Size(542, 300);
             this.request_dataGrid.TabIndex = 0;
-            // 
-            // cust_name
-            // 
-            this.cust_name.HeaderText = "Customer Name";
-            this.cust_name.Name = "cust_name";
-            this.cust_name.Width = 200;
-            // 
-            // prod_name
-            // 
-            this.prod_name.HeaderText = "Product Name";
-            this.prod_name.Name = "prod_name";
-            this.prod_name.Width = 300;
             // 
             // tabControl1
             // 
@@ -458,6 +452,7 @@ namespace SecretCellar
             this.txt_name.Name = "txt_name";
             this.txt_name.Size = new System.Drawing.Size(204, 26);
             this.txt_name.TabIndex = 8;
+            this.txt_name.TextChanged += new System.EventHandler(this.txt_name_TextChanged);
             // 
             // btn_reset
             // 
@@ -497,10 +492,31 @@ namespace SecretCellar
             this.trans_total});
             this.transaction_dataGrid.Location = new System.Drawing.Point(959, 107);
             this.transaction_dataGrid.Name = "transaction_dataGrid";
+            this.transaction_dataGrid.RowHeadersVisible = false;
             this.transaction_dataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.transaction_dataGrid.Size = new System.Drawing.Size(533, 270);
             this.transaction_dataGrid.TabIndex = 4;
             this.transaction_dataGrid.SelectionChanged += new System.EventHandler(this.tranaction_dataGrid_SelectionChanged);
+            // 
+            // trans_id
+            // 
+            this.trans_id.DataPropertyName = "trans_id";
+            this.trans_id.HeaderText = "Id";
+            this.trans_id.Name = "trans_id";
+            // 
+            // trans_date
+            // 
+            this.trans_date.DataPropertyName = "trans_date";
+            this.trans_date.HeaderText = "Date";
+            this.trans_date.Name = "trans_date";
+            // 
+            // trans_total
+            // 
+            this.trans_total.DataPropertyName = "trans_total";
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.trans_total.DefaultCellStyle = dataGridViewCellStyle10;
+            this.trans_total.HeaderText = "Total";
+            this.trans_total.Name = "trans_total";
             // 
             // lbl_end
             // 
@@ -547,25 +563,35 @@ namespace SecretCellar
             this.btn_close.UseVisualStyleBackColor = true;
             this.btn_close.Click += new System.EventHandler(this.btn_close_Click);
             // 
-            // trans_id
+            // lst_customer
             // 
-            this.trans_id.DataPropertyName = "trans_id";
-            this.trans_id.HeaderText = "Id";
-            this.trans_id.Name = "trans_id";
+            this.lst_customer.FormattingEnabled = true;
+            this.lst_customer.ItemHeight = 20;
+            this.lst_customer.Location = new System.Drawing.Point(41, 179);
+            this.lst_customer.Name = "lst_customer";
+            this.lst_customer.Size = new System.Drawing.Size(343, 164);
+            this.lst_customer.TabIndex = 7;
             // 
-            // trans_date
+            // customer_id
             // 
-            this.trans_date.DataPropertyName = "trans_date";
-            this.trans_date.HeaderText = "Date";
-            this.trans_date.Name = "trans_date";
+            this.customer_id.DataPropertyName = "customer_id";
+            this.customer_id.HeaderText = "CustomerID";
+            this.customer_id.Name = "customer_id";
+            this.customer_id.Visible = false;
             // 
-            // trans_total
+            // customer_names
             // 
-            this.trans_total.DataPropertyName = "trans_total";
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.trans_total.DefaultCellStyle = dataGridViewCellStyle1;
-            this.trans_total.HeaderText = "Total";
-            this.trans_total.Name = "trans_total";
+            this.customer_names.DataPropertyName = "customer_names";
+            this.customer_names.HeaderText = "Customer Name";
+            this.customer_names.Name = "customer_names";
+            this.customer_names.Width = 200;
+            // 
+            // prod_name
+            // 
+            this.prod_name.DataPropertyName = "prod_name";
+            this.prod_name.HeaderText = "Product Name";
+            this.prod_name.Name = "prod_name";
+            this.prod_name.Width = 300;
             // 
             // frmOrders
             // 
@@ -608,8 +634,6 @@ namespace SecretCellar
         private System.Windows.Forms.Label lbl_prod_name;
         private System.Windows.Forms.TextBox txt_cust_name;
         private System.Windows.Forms.Label lbl_cust_name;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cust_name;
-        private System.Windows.Forms.DataGridViewTextBoxColumn prod_name;
         private System.Windows.Forms.Button btn_close;
         private System.Windows.Forms.Button btn_update;
         private System.Windows.Forms.TextBox txt_update_qty;
@@ -644,5 +668,9 @@ namespace SecretCellar
         private System.Windows.Forms.DataGridViewTextBoxColumn trans_id;
         private System.Windows.Forms.DataGridViewTextBoxColumn trans_date;
         private System.Windows.Forms.DataGridViewTextBoxColumn trans_total;
+        private System.Windows.Forms.ListBox lst_customer;
+        private System.Windows.Forms.DataGridViewTextBoxColumn customer_id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn customer_names;
+        private System.Windows.Forms.DataGridViewTextBoxColumn prod_name;
     }
 }
