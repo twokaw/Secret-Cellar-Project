@@ -183,7 +183,7 @@ namespace pos_core_api.ORM
             {
                 string sqlStatementDesc = @"
                   DELETE FROM CustomerNote
-                  WHERE CustomerNoteID = @CustID
+                  WHERE CustomerNoteID = @custID
                 ";
 
                 MySqlCommand cmd = new MySqlCommand(sqlStatementDesc, db.Connection());

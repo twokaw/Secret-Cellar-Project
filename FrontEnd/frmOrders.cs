@@ -28,8 +28,9 @@ namespace SecretCellar
         
         private PrintPreviewDialog printPreviewDialog1 = new PrintPreviewDialog();
         private PrintDocument printDocument1 = new PrintDocument();
-
         
+
+
         public frmOrders(Transaction transaction)
         {
             InitializeComponent();
@@ -75,6 +76,14 @@ namespace SecretCellar
                OrderBy(x => x.trans_id).
                ToList();
 
+            cust_notes_refresh();
+
+           
+        }
+
+        private void cust_notes_refresh()
+        {
+            //request_dataGrid.Rows.Clear();
             List<Customer> customers = DataAccess.instance.GetCustomer();
 
             List<CustomerNote> customerNotes = DataAccess.instance.GetCustomerNotes(2);
@@ -98,7 +107,7 @@ namespace SecretCellar
                 Join(customerNotes,
                      c => c.CustomerID,
                      n => n.IdCustomer,
-                     (c, n) => new { customer_id = c.CustomerID, customer_names = c.FullName, prod_name = n.Note }).
+                     (c, n) => new { customer_id = c.CustomerID, note_id = n.IdNote, note_date = n.NoteDate, customer_names = c.FullName, prod_name = n.Note }).
                 OrderBy(x => x.customer_names).
                 ToList();
             }
@@ -126,7 +135,12 @@ namespace SecretCellar
                 IdNoteType = 2
             };
             dataAccess.NewCustomerNote(note);
-        
+            
+            cust_notes_refresh();
+            txt_prod_name.Text = "";
+            txt_cust_name.Focus();
+
+
         }
 
         private void cust_refresh()
@@ -294,6 +308,36 @@ namespace SecretCellar
                 cust_name = $"{x.LastName}, {x.FirstName}"
             }).
               ToList();*/
+        }
+
+        private void btn_prod_delete_Click(object sender, EventArgs e)
+        {
+            if (request_dataGrid.SelectedRows.Count > 0)
+            {
+
+                
+                CustomerNote currentNote = new CustomerNote();
+                currentNote.IdCustomer = uint.Parse(request_dataGrid.SelectedRows[0].Cells["customer_id"].Value.ToString());
+                currentNote.IdNote = uint.Parse(request_dataGrid.SelectedRows[0].Cells["note_id"].Value.ToString());
+                currentNote.IdNoteType = 2;
+                currentNote.Note_Type = "Request";
+                currentNote.NoteDate = DateTime.Parse(request_dataGrid.SelectedRows[0].Cells["note_date"].Value.ToString());
+                currentNote.Note = request_dataGrid.SelectedRows[0].Cells["prod_name"].Value.ToString();
+                /*List<CustomerNote> currentNotes = DataAccess.instance.GetCustomerNotes(selectedCustomer.CustomerID,2);
+
+                foreach (CustomerNote note in currentNotes)
+                {
+                    if (note.IdNote == (uint.Parse(request_dataGrid.SelectedRows[0].Cells["note_id"].Value.ToString())))
+                    {
+                        currentNote = note;
+                    }
+                }
+                */
+
+                DataAccess.instance.DeleteCustomerNote(currentNote);
+                cust_notes_refresh();
+                txt_cust_name.Focus();
+            }
         }
     }
 }
