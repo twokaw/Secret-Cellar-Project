@@ -33,7 +33,7 @@ namespace SecretCellar {
 			textBox_Customer.Text = _transactionCustomer.FirstName + " " + _transactionCustomer.LastName;
 
 			//UPDATE THE DATA GRID VIEW WITH THE CUSTOMERS CURRENTLY ON THE WAITLIST FOR THE SELECTED EVENT
-			UpdateWaitListGrid(_selectedEvent);
+			UpdateWaitListGrid();
 		}
 
 		private void button_CustomerList_Click(object sender, EventArgs e) {
@@ -49,18 +49,34 @@ namespace SecretCellar {
 		}
 
 		private void button_Remove_Click(object sender, EventArgs e) {
-			if (dataGridView_Customers.SelectedRows.Count > 0) {
-				int selectedCustomerId = int.Parse(dataGridView_Customers.SelectedRows[0].Cells[CustomerId.Index].Value.ToString());
+			if (_selectedEvent != null && dataGridView_Customers.SelectedRows.Count > 0) {
+				uint selectedCustomerId = uint.Parse(dataGridView_Customers.SelectedRows[0].Cells[CustomerId.Index].Value.ToString());
 
-				//TODO: Call the method to remove the customer by id from the waitlist database.
-
+				DataAccess.instance.DeleteEventWaitlistItem(_selectedEvent.Id, selectedCustomerId);
+				UpdateWaitListGrid();
 			}
 		}
 
 		private void button_Add_Click(object sender, EventArgs e) {
-			//TODO: Call the method to add the transactionCustomer to the waitlist database.
+			if (_selectedEvent != null) {
+				List<EventWaitlistItem> waitListItems = DataAccess.instance.GetEventsWaitlists();
+				bool isInWaitlist = false;
 
-			//METHOD(selectedEvent.Id, _transactionCustomer.FirstName + " " + _transactionCustomer.LastName, Date.Now())
+				//CHECK IF THE CUSTOMER IS IN THE WAITLIST ALREADY
+				foreach (EventWaitlistItem waitlistItem in waitListItems) {
+					if (_selectedEvent.Id == waitlistItem.EventId && _transactionCustomer.CustomerID == waitlistItem.CustomerId) {
+						isInWaitlist = true;
+					}
+				}
+
+				if (isInWaitlist) {
+					MessageBox.Show("Customer is already in this waitlist", "Error");
+				}
+				else {
+					DataAccess.instance.AddEventWaitlistItem(new EventWaitlistItem(_selectedEvent.Id, _transactionCustomer.CustomerID, _transactionCustomer.FirstName + " " + _transactionCustomer.LastName, DateTime.Now));
+					UpdateWaitListGrid();
+				}
+			}
 		}
 
 		private void button_Close_Click(object sender, EventArgs e) {
@@ -68,8 +84,8 @@ namespace SecretCellar {
 		}
 
 
-		private void UpdateWaitListGrid(Event selectedEvent) {
-			if (selectedEvent != null) {
+		private void UpdateWaitListGrid() {
+			if (_selectedEvent != null) {
 				List<EventWaitlistItem> waitListItems = DataAccess.instance.GetEventsWaitlists();
 				
 				//CLEAR THE CUSTOMER GRID
@@ -77,7 +93,7 @@ namespace SecretCellar {
 
 				//ADD ALL THE CUSTOMERS THAT MATCH THE SELECTED EVENT
 				foreach (EventWaitlistItem waitlistItem in waitListItems) {
-					if (selectedEvent.Id == waitlistItem.EventId) {
+					if (_selectedEvent.Id == waitlistItem.EventId) {
 						dataGridView_Customers.Rows.Add(waitlistItem.EventId, waitlistItem.CustomerId, waitlistItem.CustomerName, waitlistItem.DateAdded);
 					}
 				}

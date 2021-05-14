@@ -417,11 +417,9 @@ namespace pos_core_api.ORM
                 EventWaitlistItem outputItem = null;
                 
                 while (reader.Read()) {
-                    int id = reader.GetInt32("eventId");
-
                     outputItem = new EventWaitlistItem {
-                        EventId = id,
-                        CustomerId = reader.IsDBNull("customerId") ? -1 : reader.GetInt32("customerId"),
+                        EventId = reader.IsDBNull("eventId") ? 0 : reader.GetUInt32("eventId"),
+                        CustomerId = reader.IsDBNull("customerId") ? 0 : reader.GetUInt32("customerId"),
                         CustomerName = reader.IsDBNull("customerName") ? "" : reader.GetString("customerName"),
                         DateAdded = reader.IsDBNull("dateAdded") ? DateTime.MinValue : reader.GetDateTime("dateAdded")
                     };
@@ -434,6 +432,57 @@ namespace pos_core_api.ORM
             }
 
             return output;
+        }
+
+        public uint AddEventWaitlistItem(EventWaitlistItem eventWaitlistItem) {
+            uint returnedId = 0;
+
+            try {
+                db.OpenConnection();
+
+                string sqlStatement = @"
+                    INSERT INTO event_waitlist
+                    (eventId, customerId, customerName, dateAdded)
+                    VALUES
+                    (@eventId, @customerId, @customerName, @dateAdded);
+                ";
+
+                using MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
+                
+                cmd.Parameters.Add(new MySqlParameter("eventId", eventWaitlistItem.EventId));
+                cmd.Parameters.Add(new MySqlParameter("customerId", eventWaitlistItem.CustomerId));
+                cmd.Parameters.Add(new MySqlParameter("customerName", eventWaitlistItem.CustomerName));
+                cmd.Parameters.Add(new MySqlParameter("dateAdded", eventWaitlistItem.DateAdded));
+
+                cmd.ExecuteNonQuery();
+
+                returnedId = Convert.ToUInt32(cmd.LastInsertedId);
+
+                cmd.Dispose();
+            } finally {
+                db.CloseConnnection();
+            }
+
+            return returnedId;
+        }
+        
+        public void DeleteEventWaitlistItem(uint eventId, uint customerId) {
+            try {
+                db.OpenConnection();
+
+                string sqlStatement = @"
+                    DELETE FROM event_waitlist
+                    WHERE eventId = @eventId
+                    AND customerId = @customerId
+                ";
+
+                using MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
+                cmd.Parameters.Add(new MySqlParameter("eventId", eventId));
+                cmd.Parameters.Add(new MySqlParameter("customerId", customerId));
+                cmd.ExecuteNonQuery();
+            } finally {
+                db.CloseConnnection();
+            }
         }
     }
 }

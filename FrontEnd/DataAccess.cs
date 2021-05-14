@@ -474,8 +474,8 @@ namespace SecretCellar
             return uint.TryParse(result, out uint id) ? 0 : id;
         }
         
-        public void DeleteEventWaitlistItem(int eventId, int customerId) {
-            try { web.DataDelete($"api/Event/Waitlist/eventId={eventId}&customerId={customerId}"); }
+        public void DeleteEventWaitlistItem(uint eventId, uint customerId) {
+            try { web.DataDelete($"api/Event/Waitlists/Delete/eventId={eventId}&customerId={customerId}"); }
             catch (Exception e) { LogError(e, "DeleteEvent"); }
         }
 
