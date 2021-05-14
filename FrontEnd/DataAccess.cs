@@ -228,7 +228,7 @@ namespace SecretCellar
         #region Customer
         private List<Customer> customers = null;
         private DateTime customerLastUpdate = DateTime.MinValue;
-
+        
         public List<Customer> GetCustomer(bool force = false)
         {
             if(force || customers == null || customerLastUpdate.AddMinutes(15) < DateTime.Now )

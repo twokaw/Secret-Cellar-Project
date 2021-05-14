@@ -29,7 +29,7 @@ namespace SecretCellar
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.supp_order = new System.Windows.Forms.TabPage();
             this.btn_update = new System.Windows.Forms.Button();
             this.txt_update_qty = new System.Windows.Forms.TextBox();
@@ -52,6 +52,7 @@ namespace SecretCellar
             this.maxqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.orderqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cust_request = new System.Windows.Forms.TabPage();
+            this.lst_customer = new System.Windows.Forms.ListBox();
             this.btn_prod_delete = new System.Windows.Forms.Button();
             this.btn_prod_add = new System.Windows.Forms.Button();
             this.txt_prod_name = new System.Windows.Forms.TextBox();
@@ -59,8 +60,6 @@ namespace SecretCellar
             this.txt_cust_name = new System.Windows.Forms.TextBox();
             this.lbl_cust_name = new System.Windows.Forms.Label();
             this.request_dataGrid = new System.Windows.Forms.DataGridView();
-            this.cust_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.prod_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.btn_setDate = new System.Windows.Forms.Button();
@@ -72,14 +71,19 @@ namespace SecretCellar
             this.btn_print = new System.Windows.Forms.Button();
             this.lstbox_customer = new System.Windows.Forms.ListBox();
             this.transaction_dataGrid = new System.Windows.Forms.DataGridView();
+            this.trans_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.trans_date = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.trans_total = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lbl_end = new System.Windows.Forms.Label();
             this.end_dateTime = new System.Windows.Forms.DateTimePicker();
             this.lbl_start = new System.Windows.Forms.Label();
             this.start_dateTime = new System.Windows.Forms.DateTimePicker();
             this.btn_close = new System.Windows.Forms.Button();
-            this.trans_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.trans_date = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.trans_total = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.customer_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.note_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.note_date = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.customer_names = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.prod_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.supp_order.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.supp_dataGrid)).BeginInit();
             this.cust_request.SuspendLayout();
@@ -218,6 +222,7 @@ namespace SecretCellar
             this.orderqty});
             this.supp_dataGrid.Location = new System.Drawing.Point(25, 107);
             this.supp_dataGrid.Name = "supp_dataGrid";
+            this.supp_dataGrid.RowHeadersWidth = 62;
             this.supp_dataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.supp_dataGrid.Size = new System.Drawing.Size(1177, 300);
             this.supp_dataGrid.TabIndex = 0;
@@ -227,13 +232,16 @@ namespace SecretCellar
             // 
             this.id.DataPropertyName = "Id";
             this.id.HeaderText = "Id";
+            this.id.MinimumWidth = 8;
             this.id.Name = "id";
             this.id.Visible = false;
+            this.id.Width = 150;
             // 
             // barcode
             // 
             this.barcode.DataPropertyName = "Barcode";
             this.barcode.HeaderText = "Barcode";
+            this.barcode.MinimumWidth = 8;
             this.barcode.Name = "barcode";
             this.barcode.Width = 200;
             // 
@@ -241,6 +249,7 @@ namespace SecretCellar
             // 
             this.name.DataPropertyName = "Name";
             this.name.HeaderText = "Name";
+            this.name.MinimumWidth = 8;
             this.name.Name = "name";
             this.name.Width = 400;
             // 
@@ -248,13 +257,16 @@ namespace SecretCellar
             // 
             this.ItemType.DataPropertyName = "ItemType";
             this.ItemType.HeaderText = "Type";
+            this.ItemType.MinimumWidth = 8;
             this.ItemType.Name = "ItemType";
             this.ItemType.Visible = false;
+            this.ItemType.Width = 150;
             // 
             // qty
             // 
             this.qty.DataPropertyName = "Qty";
             this.qty.HeaderText = "Qty";
+            this.qty.MinimumWidth = 8;
             this.qty.Name = "qty";
             this.qty.Width = 80;
             // 
@@ -262,6 +274,7 @@ namespace SecretCellar
             // 
             this.price.DataPropertyName = "Price";
             this.price.HeaderText = "Price";
+            this.price.MinimumWidth = 8;
             this.price.Name = "price";
             this.price.Width = 90;
             // 
@@ -269,6 +282,7 @@ namespace SecretCellar
             // 
             this.minqty.DataPropertyName = "minqty";
             this.minqty.HeaderText = "Min Qty";
+            this.minqty.MinimumWidth = 8;
             this.minqty.Name = "minqty";
             this.minqty.Width = 90;
             // 
@@ -276,6 +290,7 @@ namespace SecretCellar
             // 
             this.maxqty.DataPropertyName = "maxqty";
             this.maxqty.HeaderText = "Max Qty";
+            this.maxqty.MinimumWidth = 8;
             this.maxqty.Name = "maxqty";
             this.maxqty.Width = 90;
             // 
@@ -283,11 +298,13 @@ namespace SecretCellar
             // 
             this.orderqty.DataPropertyName = "orderqty";
             this.orderqty.HeaderText = "Order Qty";
+            this.orderqty.MinimumWidth = 8;
             this.orderqty.Name = "orderqty";
             this.orderqty.Width = 90;
             // 
             // cust_request
             // 
+            this.cust_request.Controls.Add(this.lst_customer);
             this.cust_request.Controls.Add(this.btn_prod_delete);
             this.cust_request.Controls.Add(this.btn_prod_add);
             this.cust_request.Controls.Add(this.txt_prod_name);
@@ -303,18 +320,28 @@ namespace SecretCellar
             this.cust_request.Text = "Customer Request";
             this.cust_request.UseVisualStyleBackColor = true;
             // 
+            // lst_customer
+            // 
+            this.lst_customer.FormattingEnabled = true;
+            this.lst_customer.ItemHeight = 20;
+            this.lst_customer.Location = new System.Drawing.Point(41, 179);
+            this.lst_customer.Name = "lst_customer";
+            this.lst_customer.Size = new System.Drawing.Size(343, 144);
+            this.lst_customer.TabIndex = 7;
+            // 
             // btn_prod_delete
             // 
-            this.btn_prod_delete.Location = new System.Drawing.Point(184, 342);
+            this.btn_prod_delete.Location = new System.Drawing.Point(717, 301);
             this.btn_prod_delete.Name = "btn_prod_delete";
             this.btn_prod_delete.Size = new System.Drawing.Size(154, 36);
             this.btn_prod_delete.TabIndex = 6;
             this.btn_prod_delete.Text = "Remove";
             this.btn_prod_delete.UseVisualStyleBackColor = true;
+            this.btn_prod_delete.Click += new System.EventHandler(this.btn_prod_delete_Click);
             // 
             // btn_prod_add
             // 
-            this.btn_prod_add.Location = new System.Drawing.Point(184, 277);
+            this.btn_prod_add.Location = new System.Drawing.Point(717, 236);
             this.btn_prod_add.Name = "btn_prod_add";
             this.btn_prod_add.Size = new System.Drawing.Size(154, 36);
             this.btn_prod_add.TabIndex = 5;
@@ -324,7 +351,7 @@ namespace SecretCellar
             // 
             // txt_prod_name
             // 
-            this.txt_prod_name.Location = new System.Drawing.Point(184, 160);
+            this.txt_prod_name.Location = new System.Drawing.Point(571, 176);
             this.txt_prod_name.Name = "txt_prod_name";
             this.txt_prod_name.Size = new System.Drawing.Size(300, 26);
             this.txt_prod_name.TabIndex = 4;
@@ -332,7 +359,7 @@ namespace SecretCellar
             // lbl_prod_name
             // 
             this.lbl_prod_name.AutoSize = true;
-            this.lbl_prod_name.Location = new System.Drawing.Point(41, 163);
+            this.lbl_prod_name.Location = new System.Drawing.Point(428, 179);
             this.lbl_prod_name.Name = "lbl_prod_name";
             this.lbl_prod_name.Size = new System.Drawing.Size(122, 20);
             this.lbl_prod_name.TabIndex = 3;
@@ -344,6 +371,7 @@ namespace SecretCellar
             this.txt_cust_name.Name = "txt_cust_name";
             this.txt_cust_name.Size = new System.Drawing.Size(200, 26);
             this.txt_cust_name.TabIndex = 2;
+            this.txt_cust_name.TextChanged += new System.EventHandler(this.txt_cust_name_TextChanged);
             // 
             // lbl_cust_name
             // 
@@ -356,28 +384,24 @@ namespace SecretCellar
             // 
             // request_dataGrid
             // 
+            this.request_dataGrid.AllowUserToAddRows = false;
+            this.request_dataGrid.AllowUserToDeleteRows = false;
             this.request_dataGrid.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.request_dataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.request_dataGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.cust_name,
+            this.customer_id,
+            this.note_id,
+            this.note_date,
+            this.customer_names,
             this.prod_name});
-            this.request_dataGrid.Location = new System.Drawing.Point(564, 91);
+            this.request_dataGrid.Location = new System.Drawing.Point(962, 117);
             this.request_dataGrid.Name = "request_dataGrid";
+            this.request_dataGrid.ReadOnly = true;
+            this.request_dataGrid.RowHeadersVisible = false;
+            this.request_dataGrid.RowHeadersWidth = 62;
             this.request_dataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.request_dataGrid.Size = new System.Drawing.Size(542, 300);
             this.request_dataGrid.TabIndex = 0;
-            // 
-            // cust_name
-            // 
-            this.cust_name.HeaderText = "Customer Name";
-            this.cust_name.Name = "cust_name";
-            this.cust_name.Width = 200;
-            // 
-            // prod_name
-            // 
-            this.prod_name.HeaderText = "Product Name";
-            this.prod_name.Name = "prod_name";
-            this.prod_name.Width = 300;
             // 
             // tabControl1
             // 
@@ -458,6 +482,7 @@ namespace SecretCellar
             this.txt_name.Name = "txt_name";
             this.txt_name.Size = new System.Drawing.Size(204, 26);
             this.txt_name.TabIndex = 8;
+            this.txt_name.TextChanged += new System.EventHandler(this.txt_name_TextChanged);
             // 
             // btn_reset
             // 
@@ -485,7 +510,7 @@ namespace SecretCellar
             this.lstbox_customer.ItemHeight = 20;
             this.lstbox_customer.Location = new System.Drawing.Point(70, 150);
             this.lstbox_customer.Name = "lstbox_customer";
-            this.lstbox_customer.Size = new System.Drawing.Size(343, 164);
+            this.lstbox_customer.Size = new System.Drawing.Size(343, 144);
             this.lstbox_customer.TabIndex = 5;
             // 
             // transaction_dataGrid
@@ -497,10 +522,38 @@ namespace SecretCellar
             this.trans_total});
             this.transaction_dataGrid.Location = new System.Drawing.Point(959, 107);
             this.transaction_dataGrid.Name = "transaction_dataGrid";
+            this.transaction_dataGrid.RowHeadersVisible = false;
+            this.transaction_dataGrid.RowHeadersWidth = 62;
             this.transaction_dataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.transaction_dataGrid.Size = new System.Drawing.Size(533, 270);
             this.transaction_dataGrid.TabIndex = 4;
             this.transaction_dataGrid.SelectionChanged += new System.EventHandler(this.tranaction_dataGrid_SelectionChanged);
+            // 
+            // trans_id
+            // 
+            this.trans_id.DataPropertyName = "trans_id";
+            this.trans_id.HeaderText = "Id";
+            this.trans_id.MinimumWidth = 8;
+            this.trans_id.Name = "trans_id";
+            this.trans_id.Width = 150;
+            // 
+            // trans_date
+            // 
+            this.trans_date.DataPropertyName = "trans_date";
+            this.trans_date.HeaderText = "Date";
+            this.trans_date.MinimumWidth = 8;
+            this.trans_date.Name = "trans_date";
+            this.trans_date.Width = 150;
+            // 
+            // trans_total
+            // 
+            this.trans_total.DataPropertyName = "trans_total";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.trans_total.DefaultCellStyle = dataGridViewCellStyle2;
+            this.trans_total.HeaderText = "Total";
+            this.trans_total.MinimumWidth = 8;
+            this.trans_total.Name = "trans_total";
+            this.trans_total.Width = 150;
             // 
             // lbl_end
             // 
@@ -541,38 +594,62 @@ namespace SecretCellar
             this.btn_close.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_close.Location = new System.Drawing.Point(543, 514);
             this.btn_close.Name = "btn_close";
-            this.btn_close.Size = new System.Drawing.Size(604, 36);
+            this.btn_close.Size = new System.Drawing.Size(418, 36);
             this.btn_close.TabIndex = 7;
             this.btn_close.Text = "Close";
             this.btn_close.UseVisualStyleBackColor = true;
             this.btn_close.Click += new System.EventHandler(this.btn_close_Click);
             // 
-            // trans_id
+            // customer_id
             // 
-            this.trans_id.DataPropertyName = "trans_id";
-            this.trans_id.HeaderText = "Id";
-            this.trans_id.Name = "trans_id";
+            this.customer_id.DataPropertyName = "customer_id";
+            this.customer_id.HeaderText = "CustomerID";
+            this.customer_id.MinimumWidth = 8;
+            this.customer_id.Name = "customer_id";
+            this.customer_id.ReadOnly = true;
+            this.customer_id.Visible = false;
+            this.customer_id.Width = 150;
             // 
-            // trans_date
+            // note_id
             // 
-            this.trans_date.DataPropertyName = "trans_date";
-            this.trans_date.HeaderText = "Date";
-            this.trans_date.Name = "trans_date";
+            this.note_id.DataPropertyName = "note_id";
+            this.note_id.HeaderText = "NoteID";
+            this.note_id.Name = "note_id";
+            this.note_id.ReadOnly = true;
+            this.note_id.Visible = false;
             // 
-            // trans_total
+            // note_date
             // 
-            this.trans_total.DataPropertyName = "trans_total";
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.trans_total.DefaultCellStyle = dataGridViewCellStyle1;
-            this.trans_total.HeaderText = "Total";
-            this.trans_total.Name = "trans_total";
+            this.note_date.DataPropertyName = "note_date";
+            this.note_date.HeaderText = "NoteDate";
+            this.note_date.Name = "note_date";
+            this.note_date.ReadOnly = true;
+            this.note_date.Visible = false;
+            // 
+            // customer_names
+            // 
+            this.customer_names.DataPropertyName = "customer_names";
+            this.customer_names.HeaderText = "Customer Name";
+            this.customer_names.MinimumWidth = 8;
+            this.customer_names.Name = "customer_names";
+            this.customer_names.ReadOnly = true;
+            this.customer_names.Width = 200;
+            // 
+            // prod_name
+            // 
+            this.prod_name.DataPropertyName = "prod_name";
+            this.prod_name.HeaderText = "Product Name";
+            this.prod_name.MinimumWidth = 8;
+            this.prod_name.Name = "prod_name";
+            this.prod_name.ReadOnly = true;
+            this.prod_name.Width = 300;
             // 
             // frmOrders
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.ClientSize = new System.Drawing.Size(1634, 561);
+            this.ClientSize = new System.Drawing.Size(1684, 561);
             this.Controls.Add(this.btn_close);
             this.Controls.Add(this.tabControl1);
             this.Name = "frmOrders";
@@ -608,8 +685,6 @@ namespace SecretCellar
         private System.Windows.Forms.Label lbl_prod_name;
         private System.Windows.Forms.TextBox txt_cust_name;
         private System.Windows.Forms.Label lbl_cust_name;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cust_name;
-        private System.Windows.Forms.DataGridViewTextBoxColumn prod_name;
         private System.Windows.Forms.Button btn_close;
         private System.Windows.Forms.Button btn_update;
         private System.Windows.Forms.TextBox txt_update_qty;
@@ -644,5 +719,11 @@ namespace SecretCellar
         private System.Windows.Forms.DataGridViewTextBoxColumn trans_id;
         private System.Windows.Forms.DataGridViewTextBoxColumn trans_date;
         private System.Windows.Forms.DataGridViewTextBoxColumn trans_total;
+        private System.Windows.Forms.ListBox lst_customer;
+        private System.Windows.Forms.DataGridViewTextBoxColumn customer_id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn note_id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn note_date;
+        private System.Windows.Forms.DataGridViewTextBoxColumn customer_names;
+        private System.Windows.Forms.DataGridViewTextBoxColumn prod_name;
     }
 }

@@ -28,22 +28,26 @@ namespace SecretCellar
         
         private PrintPreviewDialog printPreviewDialog1 = new PrintPreviewDialog();
         private PrintDocument printDocument1 = new PrintDocument();
+        
 
-        // Declare a string to hold the entire document contents.
-        private string documentContents;
 
-        // Declare a variable to hold the portion of the document that
-        // is not printed.
-        private string stringToPrint;
         public frmOrders(Transaction transaction)
         {
             InitializeComponent();
             inventory = dataAccess.GetInventory();
             suppliers = dataAccess.GetSuppliers();
+            suppliers.Insert(0, new Supplier()
+            {
+                Name = "All",
+                SupplierID = 0
+            });
             transaction_history = dataAccess.GetTransactions();
             //cust = dataAccess.GetCustomer();
             cbx_supplier.DataSource = suppliers;
             cbx_supplier.DisplayMember = "Name";
+            lst_customer.DataSource = DataAccess.instance?.GetCustomer();
+            lst_customer.DisplayMember = "FullName";
+
             lstbox_customer.DataSource = DataAccess.instance?.GetCustomer();
             lstbox_customer.DisplayMember = "FullName";
             
@@ -72,13 +76,41 @@ namespace SecretCellar
                OrderBy(x => x.trans_id).
                ToList();
 
-            request_dataGrid.DataSource = DataAccess.instance.GetCustomer().
-                Select(x => new {
-                    customerID = x.CustomerID,
-                    cust_name = $"{x.LastName}, {x.FirstName}"
-                }).
-                OrderBy(x => x.cust_name).
+            cust_notes_refresh();
+
+           
+        }
+
+        private void cust_notes_refresh()
+        {
+            //request_dataGrid.Rows.Clear();
+            List<Customer> customers = DataAccess.instance.GetCustomer();
+
+            List<CustomerNote> customerNotes = DataAccess.instance.GetCustomerNotes(2);
+
+            if (customers != null && customerNotes != null)
+            {
+                // Old Linq way
+                //request_dataGrid.DataSource = from c in customers
+                //             join n in customerNotes
+                //             on c.CustomerID equals n.IdCustomer
+                //             orderby c.FullName
+                //             select new
+                //              {
+                //                customer_id = c.CustomerID,
+                //                customer_names = c.FullName ,
+                //                prod_name = n.Note
+                //              };
+
+                // Cool Kid way
+                request_dataGrid.DataSource = customers.
+                Join(customerNotes,
+                     c => c.CustomerID,
+                     n => n.IdCustomer,
+                     (c, n) => new { customer_id = c.CustomerID, note_id = n.IdNote, note_date = n.NoteDate, customer_names = c.FullName, prod_name = n.Note }).
+                OrderBy(x => x.customer_names).
                 ToList();
+            }
         }
            
         
@@ -95,27 +127,36 @@ namespace SecretCellar
 
         private void btn_prod_add_Click(object sender, EventArgs e)
         {
-           
-           CustomerNote note = new CustomerNote();
-            note.IdCustomer = uint.Parse(txt_cust_name.Text);
-            note.Note = txt_prod_name.Text;
+
+            CustomerNote note = new CustomerNote
+            {
+                IdCustomer = ((Customer)lst_customer.SelectedItem)?.CustomerID ?? 0,
+                Note = txt_prod_name.Text,
+                IdNoteType = 2
+            };
             dataAccess.NewCustomerNote(note);
-        
+            
+            cust_notes_refresh();
+            txt_prod_name.Text = "";
+            txt_cust_name.Focus();
+
+
         }
 
         private void cust_refresh()
         {
-            request_dataGrid.DataSource = DataAccess.instance.GetCustomer(txt_cust_name.Text).
-              Select(x => new {
+            lstbox_customer.DataSource = DataAccess.instance.GetCustomer(txt_name.Text, true);
+              /*Select(x => new {
                   customerID = x.CustomerID,
                   cust_name = $"{x.LastName}, {x.FirstName}"
               }).
-                ToList();
+                ToList();*/
         }
 
         private void refresh()
         {
-            supp_dataGrid.DataSource = inventory.Where(x => ((Supplier)cbx_supplier.SelectedItem).SupplierID == x.SupplierID).
+            uint id = ((Supplier)cbx_supplier.SelectedItem).SupplierID;
+            supp_dataGrid.DataSource = inventory.Where(x => id == x.SupplierID || id == 0).
                Select(x => new {
                    Name = x.Name,
                    Id = x.Id,
@@ -249,6 +290,54 @@ namespace SecretCellar
             populate();
         }
 
-      
+        private void txt_name_TextChanged(object sender, EventArgs e)
+        {
+            cust_refresh();
+        }
+
+        private void txt_cust_name_TextChanged(object sender, EventArgs e)
+        {
+            customer_refresh();
+        }
+
+        private void customer_refresh()
+        {
+            lst_customer.DataSource = DataAccess.instance.GetCustomer(txt_cust_name.Text, true);
+            /*Select(x => new {
+                customerID = x.CustomerID,
+                cust_name = $"{x.LastName}, {x.FirstName}"
+            }).
+              ToList();*/
+        }
+
+        private void btn_prod_delete_Click(object sender, EventArgs e)
+        {
+            if (request_dataGrid.SelectedRows.Count > 0)
+            {
+
+                
+                CustomerNote currentNote = new CustomerNote();
+                currentNote.IdCustomer = uint.Parse(request_dataGrid.SelectedRows[0].Cells["customer_id"].Value.ToString());
+                currentNote.IdNote = uint.Parse(request_dataGrid.SelectedRows[0].Cells["note_id"].Value.ToString());
+                currentNote.IdNoteType = 2;
+                currentNote.Note_Type = "Request";
+                currentNote.NoteDate = DateTime.Parse(request_dataGrid.SelectedRows[0].Cells["note_date"].Value.ToString());
+                currentNote.Note = request_dataGrid.SelectedRows[0].Cells["prod_name"].Value.ToString();
+                /*List<CustomerNote> currentNotes = DataAccess.instance.GetCustomerNotes(selectedCustomer.CustomerID,2);
+
+                foreach (CustomerNote note in currentNotes)
+                {
+                    if (note.IdNote == (uint.Parse(request_dataGrid.SelectedRows[0].Cells["note_id"].Value.ToString())))
+                    {
+                        currentNote = note;
+                    }
+                }
+                */
+
+                DataAccess.instance.DeleteCustomerNote(currentNote);
+                cust_notes_refresh();
+                txt_cust_name.Focus();
+            }
+        }
     }
 }

@@ -18,7 +18,7 @@ namespace WebApi.Controllers
             try
             {
                 if (typeID > 0)
-                    return Ok(DataAccess.Instance.CustomerNote.Get(typeID));
+                    return Ok(DataAccess.Instance.CustomerNote.GetbyType(typeID));
                 else
                     return Ok(DataAccess.Instance.CustomerNote.Get());
             }
