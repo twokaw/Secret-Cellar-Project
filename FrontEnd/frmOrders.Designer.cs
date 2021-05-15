@@ -29,7 +29,7 @@ namespace SecretCellar
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.supp_order = new System.Windows.Forms.TabPage();
             this.btn_update = new System.Windows.Forms.Button();
             this.txt_update_qty = new System.Windows.Forms.TextBox();
@@ -60,6 +60,11 @@ namespace SecretCellar
             this.txt_cust_name = new System.Windows.Forms.TextBox();
             this.lbl_cust_name = new System.Windows.Forms.Label();
             this.request_dataGrid = new System.Windows.Forms.DataGridView();
+            this.customer_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.note_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.note_date = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.customer_names = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.prod_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.btn_setDate = new System.Windows.Forms.Button();
@@ -79,11 +84,6 @@ namespace SecretCellar
             this.lbl_start = new System.Windows.Forms.Label();
             this.start_dateTime = new System.Windows.Forms.DateTimePicker();
             this.btn_close = new System.Windows.Forms.Button();
-            this.customer_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.note_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.note_date = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.customer_names = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.prod_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.supp_order.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.supp_dataGrid)).BeginInit();
             this.cust_request.SuspendLayout();
@@ -222,6 +222,7 @@ namespace SecretCellar
             this.orderqty});
             this.supp_dataGrid.Location = new System.Drawing.Point(25, 107);
             this.supp_dataGrid.Name = "supp_dataGrid";
+            this.supp_dataGrid.RowHeadersVisible = false;
             this.supp_dataGrid.RowHeadersWidth = 62;
             this.supp_dataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.supp_dataGrid.Size = new System.Drawing.Size(1177, 300);
@@ -403,6 +404,50 @@ namespace SecretCellar
             this.request_dataGrid.Size = new System.Drawing.Size(542, 300);
             this.request_dataGrid.TabIndex = 0;
             // 
+            // customer_id
+            // 
+            this.customer_id.DataPropertyName = "customer_id";
+            this.customer_id.HeaderText = "CustomerID";
+            this.customer_id.MinimumWidth = 8;
+            this.customer_id.Name = "customer_id";
+            this.customer_id.ReadOnly = true;
+            this.customer_id.Visible = false;
+            this.customer_id.Width = 150;
+            // 
+            // note_id
+            // 
+            this.note_id.DataPropertyName = "note_id";
+            this.note_id.HeaderText = "NoteID";
+            this.note_id.Name = "note_id";
+            this.note_id.ReadOnly = true;
+            this.note_id.Visible = false;
+            // 
+            // note_date
+            // 
+            this.note_date.DataPropertyName = "note_date";
+            this.note_date.HeaderText = "NoteDate";
+            this.note_date.Name = "note_date";
+            this.note_date.ReadOnly = true;
+            this.note_date.Visible = false;
+            // 
+            // customer_names
+            // 
+            this.customer_names.DataPropertyName = "customer_names";
+            this.customer_names.HeaderText = "Customer Name";
+            this.customer_names.MinimumWidth = 8;
+            this.customer_names.Name = "customer_names";
+            this.customer_names.ReadOnly = true;
+            this.customer_names.Width = 200;
+            // 
+            // prod_name
+            // 
+            this.prod_name.DataPropertyName = "prod_name";
+            this.prod_name.HeaderText = "Product Name";
+            this.prod_name.MinimumWidth = 8;
+            this.prod_name.Name = "prod_name";
+            this.prod_name.ReadOnly = true;
+            this.prod_name.Width = 300;
+            // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.cust_request);
@@ -548,8 +593,8 @@ namespace SecretCellar
             // trans_total
             // 
             this.trans_total.DataPropertyName = "trans_total";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.trans_total.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.trans_total.DefaultCellStyle = dataGridViewCellStyle1;
             this.trans_total.HeaderText = "Total";
             this.trans_total.MinimumWidth = 8;
             this.trans_total.Name = "trans_total";
@@ -599,50 +644,6 @@ namespace SecretCellar
             this.btn_close.Text = "Close";
             this.btn_close.UseVisualStyleBackColor = true;
             this.btn_close.Click += new System.EventHandler(this.btn_close_Click);
-            // 
-            // customer_id
-            // 
-            this.customer_id.DataPropertyName = "customer_id";
-            this.customer_id.HeaderText = "CustomerID";
-            this.customer_id.MinimumWidth = 8;
-            this.customer_id.Name = "customer_id";
-            this.customer_id.ReadOnly = true;
-            this.customer_id.Visible = false;
-            this.customer_id.Width = 150;
-            // 
-            // note_id
-            // 
-            this.note_id.DataPropertyName = "note_id";
-            this.note_id.HeaderText = "NoteID";
-            this.note_id.Name = "note_id";
-            this.note_id.ReadOnly = true;
-            this.note_id.Visible = false;
-            // 
-            // note_date
-            // 
-            this.note_date.DataPropertyName = "note_date";
-            this.note_date.HeaderText = "NoteDate";
-            this.note_date.Name = "note_date";
-            this.note_date.ReadOnly = true;
-            this.note_date.Visible = false;
-            // 
-            // customer_names
-            // 
-            this.customer_names.DataPropertyName = "customer_names";
-            this.customer_names.HeaderText = "Customer Name";
-            this.customer_names.MinimumWidth = 8;
-            this.customer_names.Name = "customer_names";
-            this.customer_names.ReadOnly = true;
-            this.customer_names.Width = 200;
-            // 
-            // prod_name
-            // 
-            this.prod_name.DataPropertyName = "prod_name";
-            this.prod_name.HeaderText = "Product Name";
-            this.prod_name.MinimumWidth = 8;
-            this.prod_name.Name = "prod_name";
-            this.prod_name.ReadOnly = true;
-            this.prod_name.Width = 300;
             // 
             // frmOrders
             // 

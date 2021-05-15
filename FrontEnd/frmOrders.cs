@@ -25,6 +25,7 @@ namespace SecretCellar
         //private List<Customer> customers = DataAccess.instance.GetCustomer();
         Transaction SelectTransaction = null;
         //private List<Customer> cust = null;
+        Transaction items = new Transaction();
         
         private PrintPreviewDialog printPreviewDialog1 = new PrintPreviewDialog();
         private PrintDocument printDocument1 = new PrintDocument();
@@ -50,7 +51,10 @@ namespace SecretCellar
 
             lstbox_customer.DataSource = DataAccess.instance?.GetCustomer();
             lstbox_customer.DisplayMember = "FullName";
-            
+            supp_dataGrid.Columns[4].DefaultCellStyle.Format = "c"; // works when cell 3 selected but not working when correct cell 4 is used
+            //txt_supp_total.Text = orderTotal().ToString("C");  orderTotal is giving index out of range
+
+
 
             supp_dataGrid.DataSource = inventory.
                 Select(x => new {
@@ -337,6 +341,23 @@ namespace SecretCellar
                 DataAccess.instance.DeleteCustomerNote(currentNote);
                 cust_notes_refresh();
                 txt_cust_name.Focus();
+            }
+        }
+
+        public double orderTotal()
+        {
+            {
+                double total = 0;
+                // All items with price * qty
+                
+                    foreach (DataGridViewRow row in supp_dataGrid.Rows)
+                    {
+                        if ((supp_dataGrid.SelectedRows[0].Cells["orderqty"].Value.ToString()) != null && uint.Parse(supp_dataGrid.SelectedRows[0].Cells["orderqty"].Value.ToString()) > 0)
+                        {
+                            total = total + (uint.Parse(supp_dataGrid.SelectedRows[0].Cells["orderqty"].Value.ToString()) * (Convert.ToDouble(supp_dataGrid.SelectedRows[0].Cells["Price"].Value.ToString())));
+                        }
+                    }
+                return total;
             }
         }
     }
