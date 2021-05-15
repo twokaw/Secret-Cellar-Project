@@ -51,6 +51,7 @@ namespace SecretCellar
 
             lstbox_customer.DataSource = DataAccess.instance?.GetCustomer();
             lstbox_customer.DisplayMember = "FullName";
+            supp_dataGrid.Columns[4].DefaultCellStyle.Format = "c";
             //txt_supp_total.Text = orderTotal().ToString("C");
 
 
