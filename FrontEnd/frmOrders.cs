@@ -51,8 +51,8 @@ namespace SecretCellar
 
             lstbox_customer.DataSource = DataAccess.instance?.GetCustomer();
             lstbox_customer.DisplayMember = "FullName";
-            supp_dataGrid.Columns[4].DefaultCellStyle.Format = "c";
-            //txt_supp_total.Text = orderTotal().ToString("C");
+            supp_dataGrid.Columns[4].DefaultCellStyle.Format = "c"; // works when cell 3 selected but not working when correct cell 4 is used
+            //txt_supp_total.Text = orderTotal().ToString("C");  orderTotal is giving index out of range
 
 
 
