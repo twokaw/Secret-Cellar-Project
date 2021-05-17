@@ -44,6 +44,7 @@ namespace SecretCellar
             });
             transaction_history = dataAccess.GetTransactions();
             //cust = dataAccess.GetCustomer();
+            txt_update_qty.Focus();
             cbx_supplier.DataSource = suppliers;
             cbx_supplier.DisplayMember = "Name";
             lst_customer.DataSource = DataAccess.instance?.GetCustomer();
@@ -51,8 +52,8 @@ namespace SecretCellar
 
             lstbox_customer.DataSource = DataAccess.instance?.GetCustomer();
             lstbox_customer.DisplayMember = "FullName";
-            supp_dataGrid.Columns[4].DefaultCellStyle.Format = "c"; // works when cell 3 selected but not working when correct cell 4 is used
-            //txt_supp_total.Text = orderTotal().ToString("C");  orderTotal is giving index out of range
+            supp_dataGrid.Columns[4].DefaultCellStyle.Format = "C"; // works when cell 3 selected but not working when correct cell 4 is used
+            orderTotal();
 
 
 
@@ -174,6 +175,7 @@ namespace SecretCellar
                }).
                OrderBy(x => x.Name).
                ToList();
+            orderTotal();
         }
 
         private void populate()
@@ -213,6 +215,7 @@ namespace SecretCellar
                 dataAccess.UpdateItem(i);
             }
             refresh();
+            //orderTotal();
         }
 
         private void supp_dataGrid_SelectionChanged(object sender, EventArgs e)
@@ -344,7 +347,7 @@ namespace SecretCellar
             }
         }
 
-        public double orderTotal()
+        public void orderTotal()
         {
             {
                 double total = 0;
@@ -352,12 +355,13 @@ namespace SecretCellar
                 
                     foreach (DataGridViewRow row in supp_dataGrid.Rows)
                     {
-                        if ((supp_dataGrid.SelectedRows[0].Cells["orderqty"].Value.ToString()) != null && uint.Parse(supp_dataGrid.SelectedRows[0].Cells["orderqty"].Value.ToString()) > 0)
+                        if (row.Cells["orderqty"].Value.ToString() != null || uint.Parse(row.Cells["orderqty"].Value.ToString()) > 0)
                         {
-                            total = total + (uint.Parse(supp_dataGrid.SelectedRows[0].Cells["orderqty"].Value.ToString()) * (Convert.ToDouble(supp_dataGrid.SelectedRows[0].Cells["Price"].Value.ToString())));
+                            total = total + Convert.ToDouble((uint.Parse(row.Cells["orderqty"].Value.ToString()) * (Convert.ToDouble(row.Cells["Price"].Value.ToString()))));
                         }
                     }
-                return total;
+                txt_supp_total.Text = total.ToString("C");
+                txt_update_qty.Focus();
             }
         }
     }
