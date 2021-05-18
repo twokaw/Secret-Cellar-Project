@@ -29,7 +29,7 @@ namespace SecretCellar
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.supp_order = new System.Windows.Forms.TabPage();
             this.btn_update = new System.Windows.Forms.Button();
             this.txt_update_qty = new System.Windows.Forms.TextBox();
@@ -84,6 +84,7 @@ namespace SecretCellar
             this.lbl_start = new System.Windows.Forms.Label();
             this.start_dateTime = new System.Windows.Forms.DateTimePicker();
             this.btn_close = new System.Windows.Forms.Button();
+            this.btn_recived = new System.Windows.Forms.Button();
             this.supp_order.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.supp_dataGrid)).BeginInit();
             this.cust_request.SuspendLayout();
@@ -95,6 +96,7 @@ namespace SecretCellar
             // 
             // supp_order
             // 
+            this.supp_order.Controls.Add(this.btn_recived);
             this.supp_order.Controls.Add(this.btn_update);
             this.supp_order.Controls.Add(this.txt_update_qty);
             this.supp_order.Controls.Add(this.lbl_qty);
@@ -118,7 +120,7 @@ namespace SecretCellar
             // 
             this.btn_update.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_update.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_update.Location = new System.Drawing.Point(1370, 228);
+            this.btn_update.Location = new System.Drawing.Point(1281, 234);
             this.btn_update.Name = "btn_update";
             this.btn_update.Size = new System.Drawing.Size(154, 36);
             this.btn_update.TabIndex = 13;
@@ -129,7 +131,7 @@ namespace SecretCellar
             // txt_update_qty
             // 
             this.txt_update_qty.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.txt_update_qty.Location = new System.Drawing.Point(1389, 183);
+            this.txt_update_qty.Location = new System.Drawing.Point(1300, 189);
             this.txt_update_qty.Name = "txt_update_qty";
             this.txt_update_qty.Size = new System.Drawing.Size(135, 26);
             this.txt_update_qty.TabIndex = 12;
@@ -137,7 +139,7 @@ namespace SecretCellar
             // lbl_qty
             // 
             this.lbl_qty.AutoSize = true;
-            this.lbl_qty.Location = new System.Drawing.Point(1240, 186);
+            this.lbl_qty.Location = new System.Drawing.Point(1151, 192);
             this.lbl_qty.Name = "lbl_qty";
             this.lbl_qty.Size = new System.Drawing.Size(126, 20);
             this.lbl_qty.TabIndex = 11;
@@ -147,7 +149,7 @@ namespace SecretCellar
             // 
             this.lbl_order_date.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lbl_order_date.AutoSize = true;
-            this.lbl_order_date.Location = new System.Drawing.Point(1233, 101);
+            this.lbl_order_date.Location = new System.Drawing.Point(1144, 107);
             this.lbl_order_date.Name = "lbl_order_date";
             this.lbl_order_date.Size = new System.Drawing.Size(98, 20);
             this.lbl_order_date.TabIndex = 10;
@@ -156,7 +158,7 @@ namespace SecretCellar
             // dateTimePicker1
             // 
             this.dateTimePicker1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.dateTimePicker1.Location = new System.Drawing.Point(1337, 96);
+            this.dateTimePicker1.Location = new System.Drawing.Point(1248, 102);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(200, 26);
             this.dateTimePicker1.TabIndex = 9;
@@ -165,7 +167,7 @@ namespace SecretCellar
             // 
             this.btn_print_supp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_print_supp.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_print_supp.Location = new System.Drawing.Point(1370, 371);
+            this.btn_print_supp.Location = new System.Drawing.Point(1281, 377);
             this.btn_print_supp.Name = "btn_print_supp";
             this.btn_print_supp.Size = new System.Drawing.Size(154, 36);
             this.btn_print_supp.TabIndex = 8;
@@ -175,7 +177,7 @@ namespace SecretCellar
             // txt_supp_total
             // 
             this.txt_supp_total.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.txt_supp_total.Location = new System.Drawing.Point(1389, 297);
+            this.txt_supp_total.Location = new System.Drawing.Point(1300, 303);
             this.txt_supp_total.Name = "txt_supp_total";
             this.txt_supp_total.Size = new System.Drawing.Size(135, 26);
             this.txt_supp_total.TabIndex = 4;
@@ -183,7 +185,7 @@ namespace SecretCellar
             // lbl_supp_total
             // 
             this.lbl_supp_total.AutoSize = true;
-            this.lbl_supp_total.Location = new System.Drawing.Point(1317, 303);
+            this.lbl_supp_total.Location = new System.Drawing.Point(1228, 309);
             this.lbl_supp_total.Name = "lbl_supp_total";
             this.lbl_supp_total.Size = new System.Drawing.Size(49, 20);
             this.lbl_supp_total.TabIndex = 3;
@@ -225,7 +227,7 @@ namespace SecretCellar
             this.supp_dataGrid.RowHeadersVisible = false;
             this.supp_dataGrid.RowHeadersWidth = 62;
             this.supp_dataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.supp_dataGrid.Size = new System.Drawing.Size(1177, 300);
+            this.supp_dataGrid.Size = new System.Drawing.Size(1041, 300);
             this.supp_dataGrid.TabIndex = 0;
             this.supp_dataGrid.SelectionChanged += new System.EventHandler(this.supp_dataGrid_SelectionChanged);
             // 
@@ -593,8 +595,8 @@ namespace SecretCellar
             // trans_total
             // 
             this.trans_total.DataPropertyName = "trans_total";
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.trans_total.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.trans_total.DefaultCellStyle = dataGridViewCellStyle3;
             this.trans_total.HeaderText = "Total";
             this.trans_total.MinimumWidth = 8;
             this.trans_total.Name = "trans_total";
@@ -644,6 +646,18 @@ namespace SecretCellar
             this.btn_close.Text = "Close";
             this.btn_close.UseVisualStyleBackColor = true;
             this.btn_close.Click += new System.EventHandler(this.btn_close_Click);
+            // 
+            // btn_recived
+            // 
+            this.btn_recived.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_recived.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_recived.Location = new System.Drawing.Point(712, 47);
+            this.btn_recived.Name = "btn_recived";
+            this.btn_recived.Size = new System.Drawing.Size(233, 36);
+            this.btn_recived.TabIndex = 14;
+            this.btn_recived.Text = "Enter Received";
+            this.btn_recived.UseVisualStyleBackColor = true;
+            this.btn_recived.Click += new System.EventHandler(this.btn_recived_Click);
             // 
             // frmOrders
             // 
@@ -726,5 +740,6 @@ namespace SecretCellar
         private System.Windows.Forms.DataGridViewTextBoxColumn note_date;
         private System.Windows.Forms.DataGridViewTextBoxColumn customer_names;
         private System.Windows.Forms.DataGridViewTextBoxColumn prod_name;
+        private System.Windows.Forms.Button btn_recived;
     }
 }

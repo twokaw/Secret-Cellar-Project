@@ -18,6 +18,7 @@ namespace SecretCellar
 {
     public partial class frmOrders : Form
     {
+        
         private DataAccess dataAccess = new DataAccess(Properties.Settings.Default.URL);
         private List<Supplier> suppliers = null;
         private List<Inventory> inventory = null;
@@ -363,6 +364,14 @@ namespace SecretCellar
                 txt_supp_total.Text = total.ToString("C");
                 txt_update_qty.Focus();
             }
+        }
+
+        private void btn_recived_Click(object sender, EventArgs e)
+        {
+            frmReceivedOrders receivedOrders = new frmReceivedOrders();
+
+            receivedOrders.ShowDialog();
+            
         }
     }
 }
