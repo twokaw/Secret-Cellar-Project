@@ -38,6 +38,8 @@ namespace SecretCellar
             this.btn_update = new System.Windows.Forms.Button();
             this.txt_received_qty = new System.Windows.Forms.TextBox();
             this.lbl_qty = new System.Windows.Forms.Label();
+            this.btn_all_received = new System.Windows.Forms.Button();
+            this.btn_close = new System.Windows.Forms.Button();
             this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.barcode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -47,7 +49,6 @@ namespace SecretCellar
             this.minqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.maxqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.orderqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btn_all_received = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.received_dataGrid)).BeginInit();
             this.SuspendLayout();
             // 
@@ -79,7 +80,7 @@ namespace SecretCellar
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.received_dataGrid.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.received_dataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.received_dataGrid.Size = new System.Drawing.Size(785, 300);
+            this.received_dataGrid.Size = new System.Drawing.Size(862, 300);
             this.received_dataGrid.TabIndex = 1;
             // 
             // lbl_supplier
@@ -100,6 +101,7 @@ namespace SecretCellar
             this.cbx_supplier.Name = "cbx_supplier";
             this.cbx_supplier.Size = new System.Drawing.Size(260, 28);
             this.cbx_supplier.TabIndex = 3;
+            this.cbx_supplier.SelectedIndexChanged += new System.EventHandler(this.cbx_supplier_SelectedIndexChanged);
             // 
             // btn_update
             // 
@@ -130,6 +132,30 @@ namespace SecretCellar
             this.lbl_qty.Size = new System.Drawing.Size(126, 20);
             this.lbl_qty.TabIndex = 14;
             this.lbl_qty.Text = "Order Quantity";
+            // 
+            // btn_all_received
+            // 
+            this.btn_all_received.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_all_received.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_all_received.Location = new System.Drawing.Point(985, 437);
+            this.btn_all_received.Name = "btn_all_received";
+            this.btn_all_received.Size = new System.Drawing.Size(238, 36);
+            this.btn_all_received.TabIndex = 17;
+            this.btn_all_received.Text = "Received Whole Order";
+            this.btn_all_received.UseVisualStyleBackColor = true;
+            // 
+            // btn_close
+            // 
+            this.btn_close.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_close.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_close.Location = new System.Drawing.Point(419, 513);
+            this.btn_close.Name = "btn_close";
+            this.btn_close.Size = new System.Drawing.Size(418, 36);
+            this.btn_close.TabIndex = 18;
+            this.btn_close.Text = "Close";
+            this.btn_close.UseVisualStyleBackColor = true;
+            this.btn_close.Click += new System.EventHandler(this.btn_close_Click);
             // 
             // id
             // 
@@ -171,7 +197,6 @@ namespace SecretCellar
             this.qty.HeaderText = "Qty";
             this.qty.MinimumWidth = 8;
             this.qty.Name = "qty";
-            this.qty.Visible = false;
             this.qty.Width = 80;
             // 
             // price
@@ -208,23 +233,13 @@ namespace SecretCellar
             this.orderqty.Name = "orderqty";
             this.orderqty.Width = 90;
             // 
-            // btn_all_received
-            // 
-            this.btn_all_received.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_all_received.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_all_received.Location = new System.Drawing.Point(985, 437);
-            this.btn_all_received.Name = "btn_all_received";
-            this.btn_all_received.Size = new System.Drawing.Size(238, 36);
-            this.btn_all_received.TabIndex = 17;
-            this.btn_all_received.Text = "Received Whole Order";
-            this.btn_all_received.UseVisualStyleBackColor = true;
-            // 
             // frmReceivedOrders
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonShadow;
             this.ClientSize = new System.Drawing.Size(1269, 561);
+            this.Controls.Add(this.btn_close);
             this.Controls.Add(this.btn_all_received);
             this.Controls.Add(this.btn_update);
             this.Controls.Add(this.txt_received_qty);
@@ -250,6 +265,8 @@ namespace SecretCellar
         private System.Windows.Forms.Button btn_update;
         private System.Windows.Forms.TextBox txt_received_qty;
         private System.Windows.Forms.Label lbl_qty;
+        private System.Windows.Forms.Button btn_all_received;
+        private System.Windows.Forms.Button btn_close;
         private System.Windows.Forms.DataGridViewTextBoxColumn id;
         private System.Windows.Forms.DataGridViewTextBoxColumn barcode;
         private System.Windows.Forms.DataGridViewTextBoxColumn name;
@@ -259,6 +276,5 @@ namespace SecretCellar
         private System.Windows.Forms.DataGridViewTextBoxColumn minqty;
         private System.Windows.Forms.DataGridViewTextBoxColumn maxqty;
         private System.Windows.Forms.DataGridViewTextBoxColumn orderqty;
-        private System.Windows.Forms.Button btn_all_received;
     }
 }

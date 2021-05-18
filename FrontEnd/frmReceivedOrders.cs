@@ -31,7 +31,7 @@ namespace SecretCellar
             });
 
             txt_received_qty.Focus();
-            received_dataGrid.Columns[4].DefaultCellStyle.Format = "C";
+            received_dataGrid.Columns[5].DefaultCellStyle.Format = "C";
             cbx_supplier.DataSource = suppliers;
             cbx_supplier.DisplayMember = "Name";
 
@@ -49,6 +49,36 @@ namespace SecretCellar
                }).
                OrderBy(x => x.Name).
                ToList();
+        }
+
+        private void cbx_supplier_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            refresh();
+        }
+
+        private void refresh()
+        {
+            uint id = ((Supplier)cbx_supplier.SelectedItem).SupplierID;
+            received_dataGrid.DataSource = inventory.Where(x => (id == x.SupplierID || id == 0) && x.OrderQty > 0).
+               Select(x => new {
+                   Name = x.Name,
+                   Id = x.Id,
+                   ItemType = x.ItemType,
+                   Qty = x.Qty,
+                   Barcode = x.Barcode,
+                   Price = x.SupplierPrice,
+                   minqty = x.InvMin,
+                   maxqty = x.InvMax,
+                   orderqty = x.OrderQty
+               }).
+               OrderBy(x => x.Name).
+               ToList();
+            
+        }
+
+        private void btn_close_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

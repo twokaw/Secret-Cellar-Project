@@ -29,7 +29,7 @@ namespace SecretCellar
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.supp_order = new System.Windows.Forms.TabPage();
             this.btn_update = new System.Windows.Forms.Button();
             this.txt_update_qty = new System.Windows.Forms.TextBox();
@@ -595,8 +595,8 @@ namespace SecretCellar
             // trans_total
             // 
             this.trans_total.DataPropertyName = "trans_total";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.trans_total.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.trans_total.DefaultCellStyle = dataGridViewCellStyle4;
             this.trans_total.HeaderText = "Total";
             this.trans_total.MinimumWidth = 8;
             this.trans_total.Name = "trans_total";
@@ -668,6 +668,7 @@ namespace SecretCellar
             this.Controls.Add(this.btn_close);
             this.Controls.Add(this.tabControl1);
             this.Name = "frmOrders";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmOrders";
             this.supp_order.ResumeLayout(false);
             this.supp_order.PerformLayout();
