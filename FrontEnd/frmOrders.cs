@@ -53,7 +53,7 @@ namespace SecretCellar
 
             lstbox_customer.DataSource = DataAccess.instance?.GetCustomer();
             lstbox_customer.DisplayMember = "FullName";
-            supp_dataGrid.Columns[4].DefaultCellStyle.Format = "C"; // works when cell 3 selected but not working when correct cell 4 is used
+            supp_dataGrid.Columns[5].DefaultCellStyle.Format = "C"; // works when cell 3 selected but not working when correct cell 4 is used
             orderTotal();
 
 
