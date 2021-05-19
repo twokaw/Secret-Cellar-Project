@@ -18,7 +18,7 @@ namespace SecretCellar
 {
     public partial class frmOrders : Form
     {
-        
+
         private DataAccess dataAccess = new DataAccess(Properties.Settings.Default.URL);
         private List<Supplier> suppliers = null;
         private List<Inventory> inventory = null;
@@ -27,10 +27,10 @@ namespace SecretCellar
         Transaction SelectTransaction = null;
         //private List<Customer> cust = null;
         Transaction items = new Transaction();
-        
+
         private PrintPreviewDialog printPreviewDialog1 = new PrintPreviewDialog();
         private PrintDocument printDocument1 = new PrintDocument();
-        
+
 
 
         public frmOrders(Transaction transaction)
@@ -56,26 +56,28 @@ namespace SecretCellar
             supp_dataGrid.Columns[5].DefaultCellStyle.Format = "C"; // works when cell 3 selected but not working when correct cell 4 is used
             orderTotal();
 
-
-
             supp_dataGrid.DataSource = inventory.
-                Select(x => new {
-                    Name = x.Name,
-                    Id = x.Id,
-                    ItemType = x.ItemType,
-                    Qty = x.Qty,
-                    Barcode = x.Barcode,
-                    Price = x.SupplierPrice,
-                    minqty = x.InvMin,
-                    maxqty = x.InvMax,
-                    orderqty = x.OrderQty
-                }).
-                OrderBy(x => x.Name).
-                ToList();
+               Select(x => new
+               {
+                   Name = x.Name,
+                   Id = x.Id,
+                   ItemType = x.ItemType,
+                   Qty = x.Qty,
+                   Barcode = x.Barcode,
+                   Price = x.SupplierPrice,
+                   minqty = x.InvMin,
+                   maxqty = x.InvMax,
+                   orderqty = x.OrderQty
+               }).
+               OrderBy(x => x.Name).
+               ToList();
+
+
 
             transaction_dataGrid.DataSource = transaction_history.
-               Select(x => new {
-                  trans_id = x.InvoiceID,
+               Select(x => new
+               {
+                   trans_id = x.InvoiceID,
                    trans_date = x.TransactionDateTime.ToString("MM/dd/yyyy"),
                    trans_total = x.Total.ToString("C"),
                }).
@@ -84,7 +86,7 @@ namespace SecretCellar
 
             cust_notes_refresh();
 
-           
+
         }
 
         private void cust_notes_refresh()
@@ -118,8 +120,8 @@ namespace SecretCellar
                 ToList();
             }
         }
-           
-        
+
+
 
         private void cust_request_Click(object sender, EventArgs e)
         {
@@ -141,7 +143,7 @@ namespace SecretCellar
                 IdNoteType = 2
             };
             dataAccess.NewCustomerNote(note);
-            
+
             cust_notes_refresh();
             txt_prod_name.Text = "";
             txt_cust_name.Focus();
@@ -152,18 +154,20 @@ namespace SecretCellar
         private void cust_refresh()
         {
             lstbox_customer.DataSource = DataAccess.instance.GetCustomer(txt_name.Text, true);
-              /*Select(x => new {
-                  customerID = x.CustomerID,
-                  cust_name = $"{x.LastName}, {x.FirstName}"
-              }).
-                ToList();*/
+            /*Select(x => new {
+                customerID = x.CustomerID,
+                cust_name = $"{x.LastName}, {x.FirstName}"
+            }).
+              ToList();*/
         }
 
         private void refresh()
         {
+            inventory = dataAccess.GetInventory();
             uint id = ((Supplier)cbx_supplier.SelectedItem).SupplierID;
             supp_dataGrid.DataSource = inventory.Where(x => id == x.SupplierID || id == 0).
-               Select(x => new {
+               Select(x => new
+               {
                    Name = x.Name,
                    Id = x.Id,
                    ItemType = x.ItemType,
@@ -177,13 +181,15 @@ namespace SecretCellar
                OrderBy(x => x.Name).
                ToList();
             orderTotal();
+            
         }
 
         private void populate()
         {
             transaction_dataGrid.DataSource = transaction_history.
-              Select(x => new {
-                 trans_id = x.InvoiceID,
+              Select(x => new
+              {
+                  trans_id = x.InvoiceID,
                   trans_date = x.TransactionDateTime.ToString("MM/dd/yyyy"),
                   trans_total = x.Total.ToString("C"),
               }).
@@ -202,7 +208,7 @@ namespace SecretCellar
             {
                 Inventory i = inventory.First(x => x.Id == uint.Parse(supp_dataGrid.SelectedRows[0].Cells["id"].Value.ToString()));
 
-               
+
                 if (uint.TryParse(txt_update_qty.Text.Trim(), out uint order)) i.OrderQty = order;
                 else
                 {
@@ -215,6 +221,7 @@ namespace SecretCellar
 
                 dataAccess.UpdateItem(i);
             }
+            txt_update_qty.Text = "";
             refresh();
             //orderTotal();
         }
@@ -253,24 +260,26 @@ namespace SecretCellar
         private void btn_set_cust_Click(object sender, EventArgs e)
         {
             transaction_dataGrid.DataSource = transaction_history.Where(x => ((Customer)lstbox_customer.SelectedItem).CustomerID == x.CustomerID).
-              Select(x => new {
+              Select(x => new
+              {
                   trans_id = x.InvoiceID,
                   trans_date = x.TransactionDateTime.ToString("MM/dd/yyyy"),
                   trans_total = x.Total.ToString("C"),
-                  
+
               }).
               OrderBy(x => x.trans_id).
               ToList();
-            
+
         }
 
 
-    
+
 
         private void btn_setCust_Click(object sender, EventArgs e)
         {
             transaction_dataGrid.DataSource = transaction_history.Where(x => ((Customer)lstbox_customer.SelectedItem).CustomerID == x.CustomerID).
-              Select(x => new {
+              Select(x => new
+              {
                   trans_id = x.InvoiceID,
                   trans_date = x.TransactionDateTime.ToString("MM/dd/yyyy"),
                   trans_total = x.Total.ToString("C"),
@@ -283,7 +292,8 @@ namespace SecretCellar
         private void btn_setDate_Click(object sender, EventArgs e)
         {
             transaction_dataGrid.DataSource = transaction_history.Where(x => x.TransactionDateTime > start_dateTime.Value && x.TransactionDateTime < end_dateTime.Value).
-             Select(x => new {
+             Select(x => new
+             {
                  trans_id = x.InvoiceID,
                  trans_date = x.TransactionDateTime.ToString("MM/dd/yyyy"),
                  trans_total = x.Total.ToString("C"),
@@ -323,7 +333,7 @@ namespace SecretCellar
             if (request_dataGrid.SelectedRows.Count > 0)
             {
 
-                
+
                 CustomerNote currentNote = new CustomerNote();
                 currentNote.IdCustomer = uint.Parse(request_dataGrid.SelectedRows[0].Cells["customer_id"].Value.ToString());
                 currentNote.IdNote = uint.Parse(request_dataGrid.SelectedRows[0].Cells["note_id"].Value.ToString());
@@ -353,14 +363,14 @@ namespace SecretCellar
             {
                 double total = 0;
                 // All items with price * qty
-                
-                    foreach (DataGridViewRow row in supp_dataGrid.Rows)
+
+                foreach (DataGridViewRow row in supp_dataGrid.Rows)
+                {
+                    if (row.Cells["orderqty"].Value.ToString() != null || uint.Parse(row.Cells["orderqty"].Value.ToString()) > 0)
                     {
-                        if (row.Cells["orderqty"].Value.ToString() != null || uint.Parse(row.Cells["orderqty"].Value.ToString()) > 0)
-                        {
-                            total = total + Convert.ToDouble((uint.Parse(row.Cells["orderqty"].Value.ToString()) * (Convert.ToDouble(row.Cells["Price"].Value.ToString()))));
-                        }
+                        total = total + Convert.ToDouble((uint.Parse(row.Cells["orderqty"].Value.ToString()) * (Convert.ToDouble(row.Cells["Price"].Value.ToString()))));
                     }
+                }
                 txt_supp_total.Text = total.ToString("C");
                 txt_update_qty.Focus();
             }
@@ -371,7 +381,12 @@ namespace SecretCellar
             frmReceivedOrders receivedOrders = new frmReceivedOrders();
 
             receivedOrders.ShowDialog();
-            
+
+            refresh();
+            txt_update_qty.Focus();
+
         }
+
+
     }
 }
