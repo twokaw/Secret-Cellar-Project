@@ -56,6 +56,46 @@ namespace SecretCellar
             refresh();
         }
 
+        private void btn_update_Click(object sender, EventArgs e)
+        {
+
+            if (received_dataGrid.SelectedRows.Count > 0)
+            {
+                
+                Inventory i = inventory.First(x => x.Id == uint.Parse(received_dataGrid.SelectedRows[0].Cells["id"].Value.ToString()));
+                
+
+                if (uint.TryParse(txt_received_qty.Text.Trim(), out uint order)) 
+                {
+
+                    if (i.OrderQty <= order)
+                    {
+                        i.OrderQty = order - i.OrderQty;
+                    }
+                    else
+                    {
+                        i.OrderQty = 0;
+                    }
+                    
+                    uint qtyupdate = i.Qty + order;
+                    //i.Qty = i.Qty + qtyupdate;  //giving me i.Qty is read only
+                }
+                else
+                {
+                    txt_received_qty.Focus();
+                    txt_received_qty.SelectAll();
+                    MessageBox.Show("Invalid Received Quantity");
+
+                    return;
+                }
+
+                dataAccess.UpdateItem(i);
+            }
+            refresh();
+
+
+        }
+
         private void refresh()
         {
             uint id = ((Supplier)cbx_supplier.SelectedItem).SupplierID;
@@ -78,7 +118,10 @@ namespace SecretCellar
 
         private void btn_close_Click(object sender, EventArgs e)
         {
+            
             this.Close();
         }
+
+       
     }
 }

@@ -113,6 +113,7 @@ namespace SecretCellar
             this.btn_update.TabIndex = 16;
             this.btn_update.Text = "Received Qty";
             this.btn_update.UseVisualStyleBackColor = true;
+            this.btn_update.Click += new System.EventHandler(this.btn_update_Click);
             // 
             // txt_received_qty
             // 
