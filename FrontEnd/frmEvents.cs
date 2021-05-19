@@ -8,14 +8,14 @@ namespace SecretCellar
 {
     public partial class frmEvents : ManagedForm
     {
-        private Transaction transaction;
+        private Transaction _transaction;
         private Event _selectedEvent;
         
 
         public frmEvents(Transaction transactionFromFrmTransaction)
         {
             InitializeComponent();
-            transaction = transactionFromFrmTransaction;
+            _transaction = transactionFromFrmTransaction;
 
             //UPDATE THE SELECTED EVENT FIELD IF THE DATA GRID HAS ROWS
             if (dataGridView_Events.SelectedRows.Count > 0) {
@@ -109,7 +109,7 @@ namespace SecretCellar
                     item.Price = double.Parse(selectedRow[Price.Index].Value.ToString());
 
                     //ADD THE ITEM TO THE TRANSACTION
-                    transaction.Items.Add(item);
+                    _transaction.Items.Add(item);
 
                     this.Close();
                 }
@@ -136,7 +136,7 @@ namespace SecretCellar
         }
 
         private void button_WaitList_Click(object sender, EventArgs e) {
-            frmEventsWaitlist eventsWaitList = new frmEventsWaitlist(_selectedEvent, transaction);
+            frmEventsWaitlist eventsWaitList = new frmEventsWaitlist(_selectedEvent);
             eventsWaitList.ShowDialog();
         }
 
@@ -160,6 +160,11 @@ namespace SecretCellar
                     dataGridView_Events.Rows.Add(currentEvent.Id, currentEvent.Barcode, currentEvent.EventDate, currentEvent.Name, currentEvent.Price, currentEvent.Qty);
                 }
             }
+            
+            //CLEAR OUT THE SELECTED EVENT IF THERE ARE NO ROWS
+            if (dataGridView_Events.Rows.Count == 0) {
+                _selectedEvent = null;
+			}
         }
 
         private void UpdateTotal() {

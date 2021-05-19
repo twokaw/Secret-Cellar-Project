@@ -410,6 +410,7 @@ namespace SecretCellar {
 			this.Controls.Add(this.label_Price);
 			this.Controls.Add(this.textBox_Quantity);
 			this.Controls.Add(this.label_Qty);
+			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
 			this.Name = "frmEventsCreate";
