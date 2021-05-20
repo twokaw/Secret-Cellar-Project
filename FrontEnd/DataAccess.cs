@@ -226,28 +226,68 @@ namespace SecretCellar
         #endregion
 
         #region Customer
-        public List<Customer> GetCustomer()
+        private List<Customer> customers = null;
+        private DateTime customerLastUpdate = DateTime.MinValue;
+        
+        public List<Customer> GetCustomer(bool force = false)
         {
-            string result = web.DataGet("api/Customer");
-            return JsonConvert.DeserializeObject<List<Customer>>(result);
+            if(force || customers == null || customerLastUpdate.AddMinutes(15) < DateTime.Now )
+            {
+                string result = web.DataGet("api/Customer");
+                customers =  JsonConvert.DeserializeObject<List<Customer>>(result);
+                customerLastUpdate = DateTime.Now;
+            }
+            return customers;
         }
 
-        public Customer GetCustomer(uint customerID)
+        public   Customer GetCustomer(uint customerID, bool force = false)
         {
-            string result = web.DataGet($"api/Customer/{customerID}");
-            return JsonConvert.DeserializeObject<Customer>(result);
+            Customer c = null;
+            if (force)
+            {
+                string result = web.DataGet($"api/Customer/{customerID}");
+                c = JsonConvert.DeserializeObject<Customer>(result);
+            }
+            else
+            {
+               c =  GetCustomer().FirstOrDefault(x => x.CustomerID == customerID);
+            }
+
+            return c;
         }
 
-        public Customer GetCustomer(string phone)
+        public List<Customer> GetCustomer(string cust_name, bool force = false)
         {
-            string result = web.DataGet($"api/Customer/phone/{phone}");
-            return JsonConvert.DeserializeObject<Customer>(result);
+            return GetCustomer(force)
+                .Where(x => (x.LastName.IndexOf(cust_name, StringComparison.OrdinalIgnoreCase) >= 0) || 
+                             x.FirstName.IndexOf(cust_name, StringComparison.OrdinalIgnoreCase) >= 0 ||
+                             x.PhoneNumber.IndexOf(cust_name, StringComparison.OrdinalIgnoreCase) >= 0)
+                .OrderBy(x => x.LastName)
+                .ToList();
+        }
+
+        public Customer GetCustomerByPhone(string phone, bool force = false)
+        {
+            Customer c = null;
+            if (force)
+            {
+                string result = web.DataGet($"api/Customer/phone/{phone}");
+                c = JsonConvert.DeserializeObject<Customer>(result);
+            }
+            else
+            {
+                c = GetCustomer().FirstOrDefault(x => x.PhoneNumber == phone);
+            }
+
+            return c;
         }
 
         public uint UpdateCustomer(Customer customer)
         {
             Response resp = null;
             string result = web.DataPut($"api/Customer", customer, resp);
+            GetCustomer(true);
+
             if (uint.TryParse(result, out uint id))
                 return id;
             else
@@ -258,6 +298,7 @@ namespace SecretCellar
         {
             Response resp = null;
             string result = web.DataPost($"api/Customer", customer, resp);
+            GetCustomer(true);
             if (uint.TryParse(result, out uint id))
                 return id;
             else
@@ -265,7 +306,10 @@ namespace SecretCellar
         }
         public void DeleteCustomer(Customer customer)
         {
-            try { web.DataDelete($"api/Customer/{customer.CustomerID}"); }
+            try { 
+                web.DataDelete($"api/Customer/{customer.CustomerID}");
+                GetCustomer(true);
+            }
             catch (Exception ex) { LogError(ex, "DeleteCustomer"); }
         }
         #endregion

@@ -49,8 +49,6 @@ namespace NCR_Printer
             }
         }
 
-
-
         public Font TextFont { get; set; }
         public string TextFontName
         {
@@ -59,15 +57,6 @@ namespace NCR_Printer
         }
 
         private float _TextFontSize { get; set; } = 36;
-        public float TestFontSize
-        {
-            get { return _TextFontSize; }
-            set
-            {
-                _TextFontSize = value;
-                BarcodeFont = FetchFont(BarcodeName, _TextFontSize);
-            }
-        }
 
         private Font FetchFont(string fontname, float size)
         {

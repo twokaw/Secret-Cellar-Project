@@ -20,6 +20,16 @@ namespace Shared
         public double Credit { get; set; }
         public uint SuspendedTransactions { get; set; }
 
-        public string FullName { get { return $"{LastName}, {FirstName}";}}
+        public string FullName { 
+            get 
+            {
+                if (string.IsNullOrWhiteSpace(LastName))
+                    return FirstName;
+                else if(string.IsNullOrWhiteSpace(FirstName))
+                    return LastName;
+                else
+                    return $"{LastName}, {FirstName}";
+            }
+        }
     }
 }
