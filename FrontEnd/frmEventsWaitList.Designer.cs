@@ -114,7 +114,7 @@ namespace SecretCellar {
 			this.button_Add.Size = new System.Drawing.Size(180, 55);
 			this.button_Add.TabIndex = 27;
 			this.button_Add.TabStop = false;
-			this.button_Add.Text = "ADD TO WAITLIST";
+			this.button_Add.Text = "ADD TO WAITLIST...";
 			this.button_Add.UseVisualStyleBackColor = true;
 			this.button_Add.Click += new System.EventHandler(this.button_Add_Click);
 			// 
