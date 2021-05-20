@@ -10,28 +10,30 @@ using System.Windows.Forms;
 using Shared;
 
 
+
 namespace SecretCellar {
 	public partial class frmEventsEdit : Form {
 		private Event _eventToEdit;
+		private uint _id = 0;
 
 
 		public frmEventsEdit(Event eventFromForm) {
 			InitializeComponent();
-			
-			//SET THE EVENT FROM THE FORM TO THE LOCAL EVENT FIELD
-			_eventToEdit = eventFromForm;
+
+			//GET THE ID OF THE EVENT THAT'S BEING EDITED
+			_id = eventFromForm.Id;
 
 			//POPULATE THE FIELDS WITH THE EVENT'S INFO
-			textBox_Name.Text = _eventToEdit.Name;
-			dateTimePicker_EventDate.Value = _eventToEdit.EventDate;
-			dateTimePicker_Duration.Value = _eventToEdit.Duration;
-			textBox_Quantity.Text = _eventToEdit.Qty + "";
-			textBox_AtDoor.Text = _eventToEdit.AtDoor + "";
-			textBox_Preorder.Text = _eventToEdit.PreOrder + "";
-			textBox_Price.Text = _eventToEdit.Price + "";
-			textBox_SupplierPrice.Text = _eventToEdit.SupplierPrice + "";
-			checkBox_NonTaxable.Checked = _eventToEdit.NonTaxable;
-			checkBox_NonTaxableLocal.Checked = _eventToEdit.NonTaxableLocal;
+			textBox_Name.Text = eventFromForm.Name;
+			dateTimePicker_EventDate.Value = eventFromForm.EventDate;
+			dateTimePicker_Duration.Value = eventFromForm.Duration;
+			textBox_Quantity.Text = eventFromForm.Qty + "";
+			textBox_AtDoor.Text = eventFromForm.AtDoor + "";
+			textBox_Preorder.Text = eventFromForm.PreOrder + "";
+			textBox_Price.Text = eventFromForm.Price + "";
+			textBox_SupplierPrice.Text = eventFromForm.SupplierPrice + "";
+			checkBox_NonTaxable.Checked = eventFromForm.NonTaxable;
+			checkBox_NonTaxableLocal.Checked = eventFromForm.NonTaxableLocal;
 		}
 
 
@@ -50,15 +52,24 @@ namespace SecretCellar {
 					supplierPrice = doubleValue;
 				}
 
+				//CREATE A NEW EVENT WITH THE QUANTITY AND SUPPLIER PRICE UPDATED
+				_eventToEdit = new Event(quantity, supplierPrice);
+
+				//SET THE ID OF THE NEW EVENT TO THE EVENT THAT'S BEING EDITED
+				_eventToEdit.Id = _id;
+
+				//UPDATE THE VALUES OF THE NEW EVENT
 				_eventToEdit.Name = textBox_Name.Text;
 				_eventToEdit.EventDate = dateTimePicker_EventDate.Value;
 				_eventToEdit.Duration = dateTimePicker_Duration.Value;
 				_eventToEdit.PreOrder = double.Parse(textBox_Preorder.Text);
 				_eventToEdit.AtDoor = double.Parse(textBox_AtDoor.Text);
 				_eventToEdit.Price = double.Parse(textBox_Price.Text);
-				//_eventToEdit.SupplierPrice = double.Parse(textBox_SupplierPrice.Text);
 				_eventToEdit.NonTaxable = checkBox_NonTaxable.Checked;
 				_eventToEdit.NonTaxableLocal = checkBox_NonTaxableLocal.Checked;
+
+				_eventToEdit.TypeID = 26;
+				_eventToEdit.IdTax = 4;
 
 				//CREATE THE EVENT IN THE DATABASE
 				DataAccess.instance.UpdateEvent(_eventToEdit);
