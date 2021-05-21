@@ -92,6 +92,8 @@ namespace SecretCellar {
 						dataGridView_Customers.Rows.Add(waitlistItem.EventId, waitlistItem.CustomerId, waitlistItem.CustomerName, waitlistItem.DateAdded);
 					}
 				}
+
+				dataGridView_Customers.Sort(dataGridView_Customers.Columns[Date.Index], System.ComponentModel.ListSortDirection.Ascending);
 			}
 		}
 	}
