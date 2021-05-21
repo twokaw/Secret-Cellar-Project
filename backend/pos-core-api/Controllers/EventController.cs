@@ -90,5 +90,27 @@ namespace pos_core_api.Controllers
             }
             catch (Exception ex) { ErrorLogging.WriteToErrorLog(ex); return StatusCode(500, ex.Message); }
         }
+
+        [HttpGet("Waitlists")]
+        public IActionResult GetWaitlists() {
+            try {
+                return Ok(DataAccess.Instance.Event.GetEventsWaitlists());
+            } catch (Exception ex) { ErrorLogging.WriteToErrorLog(ex); return StatusCode(500, ex.Message); }
+        }
+
+        [HttpPost("Waitlists")]
+        public IActionResult Post([FromBody] EventWaitlistItem eventWaitlistItem) {
+            try {
+                return Ok(DataAccess.Instance.Event.AddEventWaitlistItem(eventWaitlistItem));
+            } catch (Exception ex) { ErrorLogging.WriteToErrorLog(ex); return StatusCode(500, ex.Message); }
+        }
+
+        [HttpDelete("Waitlists/Delete/eventId={eventId}&customerId={customerId}")]
+        public IActionResult DeleteWaitlistItem(uint eventId, uint customerId) {
+            try {
+                DataAccess.Instance.Event.DeleteEventWaitlistItem(eventId, customerId);
+                return Ok();
+            } catch (Exception ex) { ErrorLogging.WriteToErrorLog(ex); return StatusCode(500, ex.Message); }
+        }
     }
 }
