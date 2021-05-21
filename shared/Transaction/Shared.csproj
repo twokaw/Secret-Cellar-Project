@@ -280,6 +280,7 @@
     <Compile Include="BaseItem.cs" />
     <Compile Include="CustomerNote.cs" />
     <Compile Include="ErrorLogging.cs" />
+    <Compile Include="EventWaitlistItem.cs" />
     <Compile Include="Event.cs" />
     <Compile Include="InventoryQty.cs" />
     <Compile Include="NoteType.cs" />
