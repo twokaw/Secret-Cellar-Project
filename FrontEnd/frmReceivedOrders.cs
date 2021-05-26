@@ -68,17 +68,24 @@ namespace SecretCellar
                 if (uint.TryParse(txt_received_qty.Text.Trim(), out uint order)) 
                 {
 
-                    if (i.OrderQty <= order)
+                    if (i.OrderQty >= order)
                     {
-                        i.OrderQty = order - i.OrderQty;
+                        i.OrderQty -= order;
                     }
                     else
                     {
                         i.OrderQty = 0;
                     }
                     
-                    uint qtyupdate = i.Qty + order;
-                    //i.Qty = i.Qty + qtyupdate;  //giving me i.Qty is read only
+                   
+                    if (i.AllQty.Count == 0)
+                    {
+                        i.AllQty.Add(new InventoryQty { Qty = order, PurchasedDate = DateTime.Now, SupplierPrice = 0 });
+                    }
+                    else
+                    {
+                        i.AllQty[0].Qty += order;
+                    }
                 }
                 else
                 {
@@ -90,6 +97,8 @@ namespace SecretCellar
                 }
 
                 dataAccess.UpdateItem(i);
+                
+                
             }
             refresh();
 
@@ -98,6 +107,7 @@ namespace SecretCellar
 
         private void refresh()
         {
+            int selectedrow = (received_dataGrid.SelectedRows.Count > 0)? received_dataGrid.SelectedRows[0].Index : 0;
             uint id = ((Supplier)cbx_supplier.SelectedItem).SupplierID;
             received_dataGrid.DataSource = inventory.Where(x => (id == x.SupplierID || id == 0) && x.OrderQty > 0).
                Select(x => new {
@@ -113,6 +123,12 @@ namespace SecretCellar
                }).
                OrderBy(x => x.Name).
                ToList();
+
+            if (received_dataGrid.SelectedRows.Count > 0 )
+            {
+                received_dataGrid.Rows[Math.Min(received_dataGrid.Rows.Count-1,selectedrow)].Selected = true;
+            }
+            
             
         }
 
@@ -122,6 +138,19 @@ namespace SecretCellar
             this.Close();
         }
 
-       
+        private void btn_all_received_Click(object sender, EventArgs e)
+        {
+            
+            foreach (DataGridViewRow row in received_dataGrid.Rows)
+            {
+                Inventory i = inventory.First(x => x.Id == uint.Parse(row.Cells["id"].Value.ToString()));
+                i.AllQty[0].Qty += uint.Parse(row.Cells["OrderQty"].Value.ToString());
+                i.OrderQty = 0;
+                dataAccess.UpdateItem(i);
+               
+            }
+
+            refresh();
+        }
     }
 }

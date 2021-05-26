@@ -29,8 +29,9 @@ namespace SecretCellar
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.supp_order = new System.Windows.Forms.TabPage();
+            this.btn_recived = new System.Windows.Forms.Button();
             this.btn_update = new System.Windows.Forms.Button();
             this.txt_update_qty = new System.Windows.Forms.TextBox();
             this.lbl_qty = new System.Windows.Forms.Label();
@@ -84,7 +85,6 @@ namespace SecretCellar
             this.lbl_start = new System.Windows.Forms.Label();
             this.start_dateTime = new System.Windows.Forms.DateTimePicker();
             this.btn_close = new System.Windows.Forms.Button();
-            this.btn_recived = new System.Windows.Forms.Button();
             this.supp_order.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.supp_dataGrid)).BeginInit();
             this.cust_request.SuspendLayout();
@@ -115,6 +115,18 @@ namespace SecretCellar
             this.supp_order.TabIndex = 2;
             this.supp_order.Text = "Supplier Order";
             this.supp_order.UseVisualStyleBackColor = true;
+            // 
+            // btn_recived
+            // 
+            this.btn_recived.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_recived.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_recived.Location = new System.Drawing.Point(712, 47);
+            this.btn_recived.Name = "btn_recived";
+            this.btn_recived.Size = new System.Drawing.Size(233, 36);
+            this.btn_recived.TabIndex = 14;
+            this.btn_recived.Text = "Enter Received";
+            this.btn_recived.UseVisualStyleBackColor = true;
+            this.btn_recived.Click += new System.EventHandler(this.btn_recived_Click);
             // 
             // btn_update
             // 
@@ -173,6 +185,7 @@ namespace SecretCellar
             this.btn_print_supp.TabIndex = 8;
             this.btn_print_supp.Text = "Print Form";
             this.btn_print_supp.UseVisualStyleBackColor = true;
+            this.btn_print_supp.Click += new System.EventHandler(this.btn_print_supp_Click);
             // 
             // txt_supp_total
             // 
@@ -595,8 +608,8 @@ namespace SecretCellar
             // trans_total
             // 
             this.trans_total.DataPropertyName = "trans_total";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.trans_total.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.trans_total.DefaultCellStyle = dataGridViewCellStyle1;
             this.trans_total.HeaderText = "Total";
             this.trans_total.MinimumWidth = 8;
             this.trans_total.Name = "trans_total";
@@ -646,18 +659,6 @@ namespace SecretCellar
             this.btn_close.Text = "Close";
             this.btn_close.UseVisualStyleBackColor = true;
             this.btn_close.Click += new System.EventHandler(this.btn_close_Click);
-            // 
-            // btn_recived
-            // 
-            this.btn_recived.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_recived.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_recived.Location = new System.Drawing.Point(712, 47);
-            this.btn_recived.Name = "btn_recived";
-            this.btn_recived.Size = new System.Drawing.Size(233, 36);
-            this.btn_recived.TabIndex = 14;
-            this.btn_recived.Text = "Enter Received";
-            this.btn_recived.UseVisualStyleBackColor = true;
-            this.btn_recived.Click += new System.EventHandler(this.btn_recived_Click);
             // 
             // frmOrders
             // 

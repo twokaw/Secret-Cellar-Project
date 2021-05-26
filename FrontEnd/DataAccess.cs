@@ -349,7 +349,7 @@ namespace SecretCellar
         }
         public void DeleteCustomerNote(CustomerNote customerNote)
         {
-            try { web.DataDelete($"api/Customer/{customerNote.IdNote}"); }
+            try { web.DataDelete($"api/CustomerNote/{customerNote.IdNote}"); }
             catch (Exception ex) { LogError(ex, "DeleteCustomerNote"); }
         }
         #endregion
