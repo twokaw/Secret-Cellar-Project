@@ -45,7 +45,7 @@ namespace NCR_Printer
         {
             // Preview receipt
             PrintDocument rcpt = new PrintDocument();
-            rcpt.DefaultPageSettings.PaperSize = new PaperSize(Layout.PageType, Layout.Width, 0);
+            rcpt.DefaultPageSettings.PaperSize = new PaperSize(Layout.PageType, Layout.Width, Layout.Height);
             rcpt.PrintPage += new PrintPageEventHandler(PrintPage);
             return rcpt;
         }
@@ -55,7 +55,7 @@ namespace NCR_Printer
 
             // Preview receipt
             PrintDocument rcpt = new PrintDocument();
-            rcpt.DefaultPageSettings.PaperSize = new PaperSize(Layout.PageType, Layout.Width, (int) Math.Ceiling( cursor.Location.Y) );
+            rcpt.DefaultPageSettings.PaperSize = new PaperSize(Layout.PageType, Layout.Width, (Layout.Height == 0)?(int) Math.Ceiling( cursor.Location.Y):Layout.Height );
             rcpt.PrintPage += new PrintPageEventHandler(PrintPage);
             return rcpt;
         }
