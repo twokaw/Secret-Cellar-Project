@@ -53,13 +53,13 @@ namespace NCR_Printer
 
             PrintText($"Date: {DateTime.Now:M/dd/yy}", true, TextAlignment.Right);
 
-            PrintText($"\t Barcode  \t Name  \t Price  \t Order Qty  \t Qty Received");
+            PrintText($"\t\t\t\t\t Barcode  \t\t\t\t\t Name  \t\t\t\t\t Price  \t\t\t\t\t Order Qty  \t\t\t\t\t Qty Received");
             double total = 0;
 
             foreach (Inventory item in inventory)
             {
                 
-                PrintText($"\t{item.Barcode}, \t{item.Name},\t{item.Price},\t{item.OrderQty}", false);
+                PrintText($"\t\t\t\t\t{item.Barcode}  \t\t\t\t\t{item.Name}  \t\t\t\t\t{item.Price}  \t\t\t\t\t{item.OrderQty}", false);
                 total += item.OrderQty * item.Price;
                 PrintText($"{item.Price:C}", true, TextAlignment.Right);
             }
