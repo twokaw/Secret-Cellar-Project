@@ -29,5 +29,10 @@ namespace SecretCellar
         {
             this.Close();
         }
+
+        private void panReports1_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

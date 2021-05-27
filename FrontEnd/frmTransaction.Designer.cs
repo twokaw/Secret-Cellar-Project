@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmTransaction));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
@@ -77,6 +78,8 @@
             this.pb_settings = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btn_order = new System.Windows.Forms.Button();
+            this.btnTender2 = new System.Windows.Forms.Button();
+            this.ImgLstTenderButton = new System.Windows.Forms.ImageList(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pb_settings)).BeginInit();
@@ -204,6 +207,7 @@
             // ItemID
             // 
             this.ItemID.HeaderText = "ItemID";
+            this.ItemID.MinimumWidth = 8;
             this.ItemID.Name = "ItemID";
             this.ItemID.ReadOnly = true;
             this.ItemID.Visible = false;
@@ -533,7 +537,7 @@
             this.caseDiscount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.caseDiscount.AutoSize = true;
             this.caseDiscount.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.1F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.caseDiscount.Location = new System.Drawing.Point(1261, 535);
+            this.caseDiscount.Location = new System.Drawing.Point(1255, 751);
             this.caseDiscount.Margin = new System.Windows.Forms.Padding(1);
             this.caseDiscount.Name = "caseDiscount";
             this.caseDiscount.Size = new System.Drawing.Size(143, 17);
@@ -554,7 +558,7 @@
             this.btnTender.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnTender.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTender.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTender.Location = new System.Drawing.Point(1188, 593);
+            this.btnTender.Location = new System.Drawing.Point(1217, 594);
             this.btnTender.Margin = new System.Windows.Forms.Padding(1);
             this.btnTender.Name = "btnTender";
             this.btnTender.OnHoverBorderColor = System.Drawing.Color.Transparent;
@@ -566,6 +570,7 @@
             this.btnTender.Text = "TENDER";
             this.btnTender.TextColor = System.Drawing.Color.Black;
             this.btnTender.UseVisualStyleBackColor = false;
+            this.btnTender.Visible = false;
             this.btnTender.Click += new System.EventHandler(this.btnTender_Click);
             // 
             // lbl_twentyone
@@ -675,6 +680,33 @@
             this.btn_order.UseVisualStyleBackColor = true;
             this.btn_order.Click += new System.EventHandler(this.btn_order_Click);
             // 
+            // btnTender2
+            // 
+            this.btnTender2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnTender2.BackColor = System.Drawing.Color.Transparent;
+            this.btnTender2.FlatAppearance.BorderSize = 0;
+            this.btnTender2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnTender2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnTender2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTender2.ImageIndex = 0;
+            this.btnTender2.ImageList = this.ImgLstTenderButton;
+            this.btnTender2.Location = new System.Drawing.Point(1189, 590);
+            this.btnTender2.Margin = new System.Windows.Forms.Padding(0);
+            this.btnTender2.Name = "btnTender2";
+            this.btnTender2.Size = new System.Drawing.Size(244, 120);
+            this.btnTender2.TabIndex = 28;
+            this.btnTender2.UseVisualStyleBackColor = false;
+            this.btnTender2.Click += new System.EventHandler(this.btnTender2_Click);
+            this.btnTender2.MouseLeave += new System.EventHandler(this.btnTender2_MouseLeave);
+            this.btnTender2.MouseHover += new System.EventHandler(this.btnTender2_MouseHover);
+            // 
+            // ImgLstTenderButton
+            // 
+            this.ImgLstTenderButton.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("ImgLstTenderButton.ImageStream")));
+            this.ImgLstTenderButton.TransparentColor = System.Drawing.Color.Transparent;
+            this.ImgLstTenderButton.Images.SetKeyName(0, "Tender Button.png");
+            this.ImgLstTenderButton.Images.SetKeyName(1, "Tender Button hover.png");
+            // 
             // frmTransaction
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 16F);
@@ -683,6 +715,7 @@
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(152)))), ((int)(((byte)(151)))), ((int)(((byte)(152)))));
             this.ClientSize = new System.Drawing.Size(1776, 783);
+            this.Controls.Add(this.btnTender2);
             this.Controls.Add(this.btn_order);
             this.Controls.Add(this.lbl_current_cust);
             this.Controls.Add(this.txt_current_cust);
@@ -771,5 +804,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn TOTAL;
         private System.Windows.Forms.DataGridViewTextBoxColumn ItemID;
         private System.Windows.Forms.Button btn_order;
+        private System.Windows.Forms.Button btnTender2;
+        private System.Windows.Forms.ImageList ImgLstTenderButton;
     }
 }
