@@ -91,8 +91,7 @@ namespace SecretCellar
             RefreshDataGrid();// opens form associated with discount instantiation
             txtBarcode.Focus();
         }
-
-        private void btnTender_Click(object sender, EventArgs e)
+        private void Tender()
         {
             if (transaction.Items.Count == 0)
                 DataAccess.instance.openCashDrawer();
@@ -127,6 +126,16 @@ namespace SecretCellar
                     txtBarcode.Focus();
                 }
             }
+        }
+
+        private void btnTender_Click(object sender, EventArgs e)
+        {
+            Tender();
+        }
+
+        private void btnTender2_Click(object sender, EventArgs e)
+        {
+            Tender();
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -405,5 +414,16 @@ namespace SecretCellar
             frmOrders order = new frmOrders(transaction);
             order.ShowDialog();
         }
+
+        private void btnTender2_MouseHover(object sender, EventArgs e)
+        {
+            btnTender2.ImageIndex = 1;
+        }
+
+        private void btnTender2_MouseLeave(object sender, EventArgs e)
+        {
+            btnTender2.ImageIndex = 0;
+        }
+
     }
 }

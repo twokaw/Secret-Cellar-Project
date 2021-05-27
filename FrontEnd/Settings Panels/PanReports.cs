@@ -13,10 +13,17 @@ namespace SecretCellar.Settings_Panels
             InitializeComponent();
         }
 
+        private class Sold {
+            public static int maxlength = 0 ;
+            public string name;
+            public uint Qty; 
+            public double Price;
+            public override string ToString() { return $"{name.PadRight(maxlength)}\t{Qty}\t{Price:C}"; }
+        }
         private void btn_Run_Click(object sender, EventArgs e)
         {
             List<Transaction> transactions = DataAccess.instance.GetTransactions(dtp_start.Value, dtp_end.Value);
-
+            Dictionary<string, Sold> items = new Dictionary<string, Sold >();
             // Dictionary<string, double> vendorSales = new Dictionary<string, double>();
             Dictionary<string, double> typeSales = new Dictionary<string, double>();
             double totalSales = 0.0;
@@ -25,6 +32,7 @@ namespace SecretCellar.Settings_Panels
             double netSales = 0.0;
             double tax = 0.0;
             double localtax = 0.0;
+            Sold.maxlength = 0;
 
             foreach (Transaction t in transactions)
             {
@@ -42,21 +50,37 @@ namespace SecretCellar.Settings_Panels
                         typeSales.Add(i.ItemType, t.ItemPriceTotal(i));
                     else
                         typeSales[i.ItemType] += t.ItemPriceTotal(i);
+
+                    if (items.Keys.Contains(i.Barcode))
+                    {
+                        items[i.Barcode].Price += i.AdjustedTotal;
+                        items[i.Barcode].Qty += i.NumSold;
+                    }
+                    else
+                    {
+                        Sold.maxlength  = Math.Max(Sold.maxlength, i.Name.Length);
+                        items.Add(i.Barcode, new Sold
+                        {
+                            name = i.Name,
+                            Price = i.AdjustedTotal,
+                            Qty = i.NumSold
+                        });
+                    }
                 }
+
+                TxtSalesTotals.Text = $@"Total Sales:   {totalSales:C}
+Net Sales:     {netSales:C}
+Sales Tax:     {tax:C}
+Local Tax:     {localtax:C}
+Gross Cost:    {costSales:C}
+Bottle Deposit:{bottleDeposit:C}";
+
+                TxtSalesTotals.Text += "\r\n\r\nTypes\r\n-----\r\n";
+                foreach (KeyValuePair<string, double> kv in typeSales)
+                    TxtSalesTotals.Text  += $"{$"{kv.Key}:",-7}\t{kv.Value:C}\r\n";
+
+                TxtSalesVendor.Text = string.Join("\r\n", items.Values);
             }
-
-            TxtSalesTotals.Text = $@"Total Sales:{"\t"}{totalSales:C}
-Net Sales:   {"\t"}{netSales:C}
-Sales Tax:   {"\t"}{tax:C}
-Local Tax:   {"\t"}{localtax:C}
-Gross Cost:  {"\t"}{costSales:C}
-Bottle Deposit:{"\t"}{bottleDeposit:C}";
-
-            TxtSalesInvType.Text = "";
-            foreach (KeyValuePair<string, double> kv in typeSales)
-                TxtSalesInvType.Text += $"{$"{kv.Key}:",-7}\t{kv.Value:C}\r\n";
-            
-            TxtSalesVendor.Text = GetInv();
         }
 
         public List<Inventory> Inv = null;
