@@ -15,7 +15,7 @@ namespace SecretCellar
         private Transaction transaction = new Transaction();
 
         private Image logo = null;
-        Margins margins = new Margins(100, 100, 100, 100);
+        private Margins margins = new Margins(100, 100, 100, 100);
 
         public frmTransaction()
         {
@@ -57,6 +57,7 @@ namespace SecretCellar
                 FontName = Properties.Settings.Default.ReceiptFont,
                 FontSize = Properties.Settings.Default.ReceiptFontSize
             };
+       
             Receipt.DefaultLayout = receiptLayout;
             PurchaseOrder.LetterLayout = letterLayout;
             btnSuspendTransaction.Visible = false;

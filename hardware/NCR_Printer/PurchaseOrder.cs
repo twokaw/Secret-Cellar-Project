@@ -14,22 +14,19 @@ namespace NCR_Printer
         private Supplier supplier;
         private List<Inventory> inventory;
         string total;
-        Margins margins = new Margins(100, 100, 100, 100);
-        public PurchaseOrder(Supplier supplier, List<Inventory> inventories , PrintLayout letter) : base(letter)
+        //Margins margins = new Margins(100, 100, 100, 100);
+        public PurchaseOrder(Supplier supplier, List<Inventory> inventories , PrintLayout letter,Margins margins) : base(letter)
         {
             
 
             if (LetterLayout == null || letter != null)
                 LetterLayout = letter;
-            this.supplier = supplier;
-            this.inventory = inventories;
+                this.supplier = supplier;
+                this.inventory = inventories;
+                this.margins = new Margins(100, 100, 100, 100);
         }
 
-        public PurchaseOrder(Supplier supplier, List<Inventory> inventories) : this(supplier, inventories, LetterLayout)
-        {
-
-
-        }
+        public PurchaseOrder(Supplier supplier, List<Inventory> inventories) : this(supplier, inventories, LetterLayout,new Margins (100,100,100,100)){}
 
 
         public override void PrintPage(object sender, PrintPageEventArgs e)
@@ -37,34 +34,65 @@ namespace NCR_Printer
             // Initialize printing stuff
             
             SetupPage(e);
-            margins.Top = 100;
-            margins.Left = 50;
-            margins.Right = 50;
-            margins.Bottom = 100;
-
-            PrintImage(Layout.Logo);
+            float y = cursor.Y;
+            PrintImage(Layout.Logo, (float)0.4,TextAlignment.Left);
+            this.cursor.Y = (cursor.Y - y)/2;
             // Print Header
             PrintHeaderFooter(Layout.Header);
 
-            PrintText($"{supplier.Name}", true,TextAlignment.Center);
-            PrintText($"{supplier.Phone}", true, TextAlignment.Center);
+            string bcode = "Barcode";
+            string name = "Name";
+            string price = "Price";
+            string oqty = "Order Qty";
+            string qtyrec = "Received Qty";
 
+            PrintText("", true);
+            
+
+            PrintText($"{supplier.Name}", true,TextAlignment.Center);
+            if(!string.IsNullOrWhiteSpace (supplier.Phone))
+                PrintText($"{supplier.Phone}", true, TextAlignment.Center);
+
+
+            
             // Date and time
 
             PrintText($"Date: {DateTime.Now:M/dd/yy}", true, TextAlignment.Right);
+   
+            PrintHorizontalLine();
 
-            PrintText($"\t\t\t\t\t Barcode  \t\t\t\t\t Name  \t\t\t\t\t Price  \t\t\t\t\t Order Qty  \t\t\t\t\t Qty Received");
+            //PrintText($"{bcode,6} {name,35} {price,40}{oqty,25}{qtyrec,40}");
+            
+            PrintText(bcode,5);
+           
+            PrintText(name,200);
+            
+            PrintText(price,550);
+           
+            PrintText(oqty,650);
+            
+            PrintText(qtyrec,750,true);
+            //PrintText($"\t\t\t\t\t Barcode  \t\t\t\t\t Name  \t\t\t\t\t Price  \t\t\t\t\t Order Qty  \t\t\t\t\t Qty Received",true);
             double total = 0;
+            cursor.X = 0;
+            PrintHorizontalLine();
 
             foreach (Inventory item in inventory)
             {
+
                 
-                PrintText($"\t\t\t\t\t{item.Barcode}  \t\t\t\t\t{item.Name}  \t\t\t\t\t{item.Price}  \t\t\t\t\t{item.OrderQty}", false);
+                PrintText(item.Barcode, 5);
+                PrintText(item.Name, 200);
+                PrintText(item.Price.ToString(), 550);
+                PrintText(item.OrderQty.ToString(),680,true);
+                PrintText($"*{item.Barcode}*", Layout.BarcodeFont, 5, true);
                 total += item.OrderQty * item.Price;
-                PrintText($"{item.Price:C}", true, TextAlignment.Right);
+                //PrintText($"{item.Price:C}", true, TextAlignment.Right);
             }
 
-            
+            cursor.X = 0;
+            PrintHorizontalLine();
+            cursor.X = 0;
             PrintText($"Total: {total:C}", true, TextAlignment.Right);
         }
     }

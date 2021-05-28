@@ -33,6 +33,7 @@ namespace NCR_Printer
 
         public Graphics g;
         public RectangleF cursor;
+        public Margins margins = new Margins();
 
         public void Print()
         {
@@ -57,6 +58,7 @@ namespace NCR_Printer
             PrintDocument rcpt = new PrintDocument();
             rcpt.DefaultPageSettings.PaperSize = new PaperSize(Layout.PageType, Layout.Width, (Layout.Height == 0)?(int) Math.Ceiling( cursor.Location.Y):Layout.Height );
             rcpt.PrintPage += new PrintPageEventHandler(PrintPage);
+            rcpt.DefaultPageSettings.Margins = margins;
             return rcpt;
         }
 
@@ -82,6 +84,20 @@ namespace NCR_Printer
             cursor.Y += m.Height + LineSpacing;
         }
 
+        public void PrintImage(Image img, float percent,TextAlignment align = TextAlignment.Center)
+        {
+            float x = 0;
+            if (align == TextAlignment.Center)
+                x = (cursor.Width - cursor.Width * percent) / 2;
+            else if (align == TextAlignment.Right)
+                x = (cursor.Width - cursor.Width * percent);
+            RectangleF m = new RectangleF(x, cursor.Y, cursor.Width * percent, (float)img.Height / (float)img.Width * cursor.Width * percent);
+
+            if (g != null)
+                g.DrawImage(img, m); // .Width / 2 - img.Width / 2, m.Top);
+            cursor.Y += m.Height + LineSpacing;
+        }
+
         // Print the text with the given alignment at the cursor and return an advanced cursor based on newLine
         public void PrintText(string text, bool newLine = true, TextAlignment align = TextAlignment.Left)
         {
@@ -91,6 +107,18 @@ namespace NCR_Printer
         // Print the text with the given alignment at the cursor and return an advanced cursor based on newLine
         public void PrintText(string text, Font font, bool newLine = true, TextAlignment align = TextAlignment.Left)
         {
+            PrintText(text, newLine, g, font, brush, GetAlign(align), LineSpacing);
+        }
+
+        public void PrintText(string text, float x, bool newLine = false, TextAlignment align = TextAlignment.Left)
+        {
+            cursor.X = x;
+            PrintText(text, newLine, g, Layout.TextFont, brush, GetAlign(align), LineSpacing);
+        }
+
+        public void PrintText(string text, Font font, float x, bool newLine = false, TextAlignment align = TextAlignment.Left)
+        {
+            cursor.X = x;
             PrintText(text, newLine, g, font, brush, GetAlign(align), LineSpacing);
         }
 

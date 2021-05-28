@@ -32,6 +32,8 @@ namespace SecretCellar
 
         private PrintPreviewDialog printPreviewDialog1 = new PrintPreviewDialog();
         private PrintDocument printDocument1 = new PrintDocument();
+        Margins margins = new Margins(100, 100, 100, 100);
+        
 
 
 
