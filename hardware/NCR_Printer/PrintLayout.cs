@@ -11,6 +11,9 @@ namespace NCR_Printer
 
         public string PageType { get; set; } = "receipt";
         public int Width { get; set; } = 280;
+
+        public int Height { get; set; } = 0;
+
         public Image Logo { get; set; }
         public string Footer { get; set; }
         public string Header { get; set; }

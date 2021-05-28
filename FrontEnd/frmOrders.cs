@@ -23,6 +23,8 @@ namespace SecretCellar
         private List<Supplier> suppliers = null;
         private List<Inventory> inventory = null;
         private List<Transaction> transaction_history = null;
+        List<Inventory> withQty = null;
+        public string printTotal;
         //private List<Customer> customers = DataAccess.instance.GetCustomer();
         Transaction SelectTransaction = null;
         //private List<Customer> cust = null;
@@ -387,6 +389,41 @@ namespace SecretCellar
 
         }
 
+        public void PrintTotal()
+        {
+            {
+                double total = 0;
+                // All items with price * qty
 
+                foreach (DataGridViewRow row in supp_dataGrid.Rows)
+                {
+                    if (row.Cells["orderqty"].Value.ToString() != null || uint.Parse(row.Cells["orderqty"].Value.ToString()) > 0)
+                    {
+                        total = total + Convert.ToDouble((uint.Parse(row.Cells["orderqty"].Value.ToString()) * (Convert.ToDouble(row.Cells["Price"].Value.ToString()))));
+                    }
+                }
+                printTotal = total.ToString();
+            }
+        }
+
+        public List<Inventory> listItems(Supplier orderSupplier)
+        {
+            
+            inventory = dataAccess.GetInventory();
+            withQty = inventory.Where(x => (orderSupplier.SupplierID == x.SupplierID || orderSupplier.SupplierID == 0) && x.OrderQty > 0).
+             OrderBy(x => x.Name)
+             .ToList();
+            
+
+            return withQty;
+        }
+
+        private void btn_print_supp_Click(object sender, EventArgs e)
+        {
+            Supplier orderSupplier = (Supplier)cbx_supplier.SelectedItem;
+            withQty = listItems(orderSupplier);
+            new PurchaseOrder(orderSupplier,withQty).Print();
+
+        }
     }
 }

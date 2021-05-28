@@ -2,6 +2,7 @@
 using Shared;
 using System;
 using System.Drawing;
+using System.Drawing.Printing;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -14,6 +15,7 @@ namespace SecretCellar
         private Transaction transaction = new Transaction();
 
         private Image logo = null;
+        Margins margins = new Margins(100, 100, 100, 100);
 
         public frmTransaction()
         {
@@ -29,8 +31,8 @@ namespace SecretCellar
             string path = Properties.Settings.Default.FontPath;
             if (path.Length > 0 && path[0] == '.')
                 path = $"{Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}{path.Substring(1)}";
-
-            Receipt.DefaultLayout = new PrintLayout()
+            logo = DataAccess.instance.ImportLogo();
+            PrintLayout receiptLayout = new PrintLayout()
             {
                 Header = Properties.Settings.Default.Header,
                 Footer = Properties.Settings.Default.Footer,
@@ -41,6 +43,22 @@ namespace SecretCellar
                 FontName = Properties.Settings.Default.ReceiptFont,
                 FontSize = Properties.Settings.Default.ReceiptFontSize
             };
+
+            PrintLayout letterLayout = new PrintLayout()
+            {
+                Width = 850,
+                Height = 1100,
+                Header = Properties.Settings.Default.Header,
+                Footer = Properties.Settings.Default.Footer,
+                Logo = logo,
+                FontDirectory = path,
+                BarcodeName = Properties.Settings.Default.BarcodeFont,
+                BarcodeFontSize = Properties.Settings.Default.BarcodeSize,
+                FontName = Properties.Settings.Default.ReceiptFont,
+                FontSize = Properties.Settings.Default.ReceiptFontSize
+            };
+            Receipt.DefaultLayout = receiptLayout;
+            PurchaseOrder.LetterLayout = letterLayout;
             btnSuspendTransaction.Visible = false;
         }
 

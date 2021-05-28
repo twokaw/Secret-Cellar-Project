@@ -33,13 +33,6 @@ namespace SecretCellar
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmReceivedOrders));
             this.received_dataGrid = new System.Windows.Forms.DataGridView();
-            this.lbl_supplier = new System.Windows.Forms.Label();
-            this.cbx_supplier = new System.Windows.Forms.ComboBox();
-            this.btn_update = new System.Windows.Forms.Button();
-            this.txt_received_qty = new System.Windows.Forms.TextBox();
-            this.lbl_qty = new System.Windows.Forms.Label();
-            this.btn_all_received = new System.Windows.Forms.Button();
-            this.btn_close = new System.Windows.Forms.Button();
             this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.barcode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -49,6 +42,13 @@ namespace SecretCellar
             this.minqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.maxqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.orderqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lbl_supplier = new System.Windows.Forms.Label();
+            this.cbx_supplier = new System.Windows.Forms.ComboBox();
+            this.btn_update = new System.Windows.Forms.Button();
+            this.txt_received_qty = new System.Windows.Forms.TextBox();
+            this.lbl_qty = new System.Windows.Forms.Label();
+            this.btn_all_received = new System.Windows.Forms.Button();
+            this.btn_close = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.received_dataGrid)).BeginInit();
             this.SuspendLayout();
             // 
@@ -74,6 +74,7 @@ namespace SecretCellar
             this.maxqty,
             this.orderqty});
             this.received_dataGrid.Location = new System.Drawing.Point(52, 173);
+            this.received_dataGrid.MultiSelect = false;
             this.received_dataGrid.Name = "received_dataGrid";
             this.received_dataGrid.RowHeadersVisible = false;
             this.received_dataGrid.RowHeadersWidth = 62;
@@ -82,81 +83,6 @@ namespace SecretCellar
             this.received_dataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.received_dataGrid.Size = new System.Drawing.Size(862, 300);
             this.received_dataGrid.TabIndex = 1;
-            // 
-            // lbl_supplier
-            // 
-            this.lbl_supplier.AutoSize = true;
-            this.lbl_supplier.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_supplier.Location = new System.Drawing.Point(89, 113);
-            this.lbl_supplier.Name = "lbl_supplier";
-            this.lbl_supplier.Size = new System.Drawing.Size(75, 20);
-            this.lbl_supplier.TabIndex = 4;
-            this.lbl_supplier.Text = "Supplier";
-            // 
-            // cbx_supplier
-            // 
-            this.cbx_supplier.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbx_supplier.FormattingEnabled = true;
-            this.cbx_supplier.Location = new System.Drawing.Point(183, 110);
-            this.cbx_supplier.Name = "cbx_supplier";
-            this.cbx_supplier.Size = new System.Drawing.Size(260, 28);
-            this.cbx_supplier.TabIndex = 3;
-            this.cbx_supplier.SelectedIndexChanged += new System.EventHandler(this.cbx_supplier_SelectedIndexChanged);
-            // 
-            // btn_update
-            // 
-            this.btn_update.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_update.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_update.Location = new System.Drawing.Point(1069, 251);
-            this.btn_update.Name = "btn_update";
-            this.btn_update.Size = new System.Drawing.Size(154, 36);
-            this.btn_update.TabIndex = 16;
-            this.btn_update.Text = "Received Qty";
-            this.btn_update.UseVisualStyleBackColor = true;
-            this.btn_update.Click += new System.EventHandler(this.btn_update_Click);
-            // 
-            // txt_received_qty
-            // 
-            this.txt_received_qty.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.txt_received_qty.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_received_qty.Location = new System.Drawing.Point(1088, 178);
-            this.txt_received_qty.Name = "txt_received_qty";
-            this.txt_received_qty.Size = new System.Drawing.Size(135, 26);
-            this.txt_received_qty.TabIndex = 15;
-            // 
-            // lbl_qty
-            // 
-            this.lbl_qty.AutoSize = true;
-            this.lbl_qty.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_qty.Location = new System.Drawing.Point(950, 181);
-            this.lbl_qty.Name = "lbl_qty";
-            this.lbl_qty.Size = new System.Drawing.Size(126, 20);
-            this.lbl_qty.TabIndex = 14;
-            this.lbl_qty.Text = "Order Quantity";
-            // 
-            // btn_all_received
-            // 
-            this.btn_all_received.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_all_received.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_all_received.Location = new System.Drawing.Point(985, 437);
-            this.btn_all_received.Name = "btn_all_received";
-            this.btn_all_received.Size = new System.Drawing.Size(238, 36);
-            this.btn_all_received.TabIndex = 17;
-            this.btn_all_received.Text = "Received Whole Order";
-            this.btn_all_received.UseVisualStyleBackColor = true;
-            // 
-            // btn_close
-            // 
-            this.btn_close.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_close.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_close.Location = new System.Drawing.Point(419, 513);
-            this.btn_close.Name = "btn_close";
-            this.btn_close.Size = new System.Drawing.Size(418, 36);
-            this.btn_close.TabIndex = 18;
-            this.btn_close.Text = "Close";
-            this.btn_close.UseVisualStyleBackColor = true;
-            this.btn_close.Click += new System.EventHandler(this.btn_close_Click);
             // 
             // id
             // 
@@ -233,6 +159,82 @@ namespace SecretCellar
             this.orderqty.MinimumWidth = 8;
             this.orderqty.Name = "orderqty";
             this.orderqty.Width = 90;
+            // 
+            // lbl_supplier
+            // 
+            this.lbl_supplier.AutoSize = true;
+            this.lbl_supplier.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_supplier.Location = new System.Drawing.Point(89, 113);
+            this.lbl_supplier.Name = "lbl_supplier";
+            this.lbl_supplier.Size = new System.Drawing.Size(75, 20);
+            this.lbl_supplier.TabIndex = 4;
+            this.lbl_supplier.Text = "Supplier";
+            // 
+            // cbx_supplier
+            // 
+            this.cbx_supplier.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbx_supplier.FormattingEnabled = true;
+            this.cbx_supplier.Location = new System.Drawing.Point(183, 110);
+            this.cbx_supplier.Name = "cbx_supplier";
+            this.cbx_supplier.Size = new System.Drawing.Size(260, 28);
+            this.cbx_supplier.TabIndex = 3;
+            this.cbx_supplier.SelectedIndexChanged += new System.EventHandler(this.cbx_supplier_SelectedIndexChanged);
+            // 
+            // btn_update
+            // 
+            this.btn_update.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_update.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_update.Location = new System.Drawing.Point(1069, 251);
+            this.btn_update.Name = "btn_update";
+            this.btn_update.Size = new System.Drawing.Size(154, 36);
+            this.btn_update.TabIndex = 16;
+            this.btn_update.Text = "Received Qty";
+            this.btn_update.UseVisualStyleBackColor = true;
+            this.btn_update.Click += new System.EventHandler(this.btn_update_Click);
+            // 
+            // txt_received_qty
+            // 
+            this.txt_received_qty.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.txt_received_qty.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_received_qty.Location = new System.Drawing.Point(1088, 178);
+            this.txt_received_qty.Name = "txt_received_qty";
+            this.txt_received_qty.Size = new System.Drawing.Size(135, 26);
+            this.txt_received_qty.TabIndex = 15;
+            // 
+            // lbl_qty
+            // 
+            this.lbl_qty.AutoSize = true;
+            this.lbl_qty.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_qty.Location = new System.Drawing.Point(950, 181);
+            this.lbl_qty.Name = "lbl_qty";
+            this.lbl_qty.Size = new System.Drawing.Size(126, 20);
+            this.lbl_qty.TabIndex = 14;
+            this.lbl_qty.Text = "Order Quantity";
+            // 
+            // btn_all_received
+            // 
+            this.btn_all_received.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_all_received.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_all_received.Location = new System.Drawing.Point(985, 437);
+            this.btn_all_received.Name = "btn_all_received";
+            this.btn_all_received.Size = new System.Drawing.Size(238, 36);
+            this.btn_all_received.TabIndex = 17;
+            this.btn_all_received.Text = "Received Whole Order";
+            this.btn_all_received.UseVisualStyleBackColor = true;
+            this.btn_all_received.Click += new System.EventHandler(this.btn_all_received_Click);
+            // 
+            // btn_close
+            // 
+            this.btn_close.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_close.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_close.Location = new System.Drawing.Point(419, 513);
+            this.btn_close.Name = "btn_close";
+            this.btn_close.Size = new System.Drawing.Size(418, 36);
+            this.btn_close.TabIndex = 18;
+            this.btn_close.Text = "Close";
+            this.btn_close.UseVisualStyleBackColor = true;
+            this.btn_close.Click += new System.EventHandler(this.btn_close_Click);
             // 
             // frmReceivedOrders
             // 

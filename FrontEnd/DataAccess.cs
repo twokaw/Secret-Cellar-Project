@@ -349,7 +349,7 @@ namespace SecretCellar
         }
         public void DeleteCustomerNote(CustomerNote customerNote)
         {
-            try { web.DataDelete($"api/Customer/{customerNote.IdNote}"); }
+            try { web.DataDelete($"api/CustomerNote/{customerNote.IdNote}"); }
             catch (Exception ex) { LogError(ex, "DeleteCustomerNote"); }
         }
         #endregion
@@ -500,6 +500,30 @@ namespace SecretCellar
 
             return uint.TryParse(result, out uint id) ? 0 : id;
         }
+
+        public void DeleteEvent(uint eventId) {
+            try { web.DataDelete($"api/Event/{eventId}"); }
+            catch (Exception e) { LogError(e, "DeleteEvent"); }
+        }
+
+        public List<EventWaitlistItem> GetEventsWaitlists() {
+            string result = web.DataGet("api/Event/Waitlists");
+            return JsonConvert.DeserializeObject<List<EventWaitlistItem>>(result);
+        }
+
+        public uint AddEventWaitlistItem(EventWaitlistItem newEventWaitlistItem) {
+            Response resp = null;
+            string result = web.DataPost($"api/Event/Waitlists", newEventWaitlistItem, resp);
+
+            return uint.TryParse(result, out uint id) ? 0 : id;
+        }
+        
+        public void DeleteEventWaitlistItem(uint eventId, uint customerId) {
+            try { web.DataDelete($"api/Event/Waitlists/Delete/eventId={eventId}&customerId={customerId}"); }
+            catch (Exception e) { LogError(e, "DeleteEvent"); }
+        }
+
+
 
         #endregion
 
