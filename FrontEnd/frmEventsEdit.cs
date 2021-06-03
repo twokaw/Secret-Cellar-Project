@@ -113,29 +113,55 @@ namespace SecretCellar {
 			int durationMinute = dateTimePicker_Duration.Value.Minute;
 			int durationSecond = dateTimePicker_Duration.Value.Second;
 
+			//IF THE DURATION YEAR IS LESS THAN THE EVENT YEAR THEN ERROR
 			if (durationYear < eventYear) {
 				hasNoErrors = false;
 				result += "Duration year cannot be before the Event Date year.\n";
 			}
-			else if (durationMonth < eventMonth) {
-				hasNoErrors = false;
-				result += "Duration month cannot be before the Event Date month.\n";
-			}
-			else if (durationDay < eventDay) {
-				hasNoErrors = false;
-				result += "Duration day cannot be before the Event Date day.\n";
-			}
-			else if (durationHour < eventHour) {
-				hasNoErrors = false;
-				result += "Duration hour cannot be before the Event Date hour.\n";
-			}
-			else if (durationMinute < eventMinute) {
-				hasNoErrors = false;
-				result += "Duration minute cannot be before the Event Date minute.\n";
-			}
-			else if (durationSecond < eventSecond) {
-				hasNoErrors = false;
-				result += "Duration second cannot be before the Event Date second.\n";
+
+			//ELSE IF THE YEARS ARE THE SAME
+			else if (durationYear == eventYear) {
+				//IF THE DURATION MONTH IS LESS THAN THE EVENT MONTH THEN ERROR
+				if (durationMonth < eventMonth) {
+					hasNoErrors = false;
+					result += "Duration month cannot be before the Event Date month.\n";
+				}
+
+				//ELSE IF THE MONTHS ARE THE SAME
+				else if (durationMonth == eventMonth) {
+					//IF THE DURATION DAY IS LESS THAN THE EVENT DAY THEN ERROR
+					if (durationDay < eventDay) {
+						hasNoErrors = false;
+						result += "Duration day cannot be before the Event Date day.\n";
+					}
+
+					//ELSE IF THE DAYS ARE THE SAME
+					else if (durationDay == eventDay) {
+						//IF THE DURATION HOUR IS LESS THAN THE EVENT HOUR THEN ERROR
+						if (durationHour < eventHour) {
+							hasNoErrors = false;
+							result += "Duration hour cannot be before the Event Date hour.\n";
+						}
+
+						//ELSE IF THE HOURS ARE THE SAME
+						else if (durationHour == eventHour) {
+							//IF THE DURATION MINUTE IS LESS THAN THE EVENT MINUTE THEN ERROR
+							if (durationMinute < eventMinute) {
+								hasNoErrors = false;
+								result += "Duration minute cannot be before the Event Date minute.\n";
+							}
+
+							//ELSE IF THE MINUTES ARE THE SAME
+							else if (durationMinute == eventMinute) {
+								//IF THE DURATION SECOND IS LESS THAN THE EVENT SECOND THEN ERROR
+								if (durationSecond < eventSecond) {
+									hasNoErrors = false;
+									result += "Duration second cannot be before the Event Date second.\n";
+								}
+							}
+						}
+					}
+				}
 			}
 			#endregion
 
