@@ -205,11 +205,11 @@ namespace SecretCellar
             // 
             this.lbl_qty.AutoSize = true;
             this.lbl_qty.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_qty.Location = new System.Drawing.Point(950, 181);
+            this.lbl_qty.Location = new System.Drawing.Point(932, 181);
             this.lbl_qty.Name = "lbl_qty";
-            this.lbl_qty.Size = new System.Drawing.Size(126, 20);
+            this.lbl_qty.Size = new System.Drawing.Size(155, 20);
             this.lbl_qty.TabIndex = 14;
-            this.lbl_qty.Text = "Order Quantity";
+            this.lbl_qty.Text = "Received Quantity";
             // 
             // btn_all_received
             // 

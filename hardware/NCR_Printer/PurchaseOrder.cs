@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Drawing.Printing;
 using System.Linq;
 using System.Text;
@@ -35,8 +36,11 @@ namespace NCR_Printer
             
             SetupPage(e);
             float y = cursor.Y;
+            Font potitle = new System.Drawing.Font("Arial", 12, FontStyle.Bold);
             PrintImage(Layout.Logo, (float)0.4,TextAlignment.Left);
             this.cursor.Y = (cursor.Y - y)/2;
+            PrintText($"Purchase Order", potitle, true, TextAlignment.Center);
+            PrintText("", true);
             // Print Header
             PrintHeaderFooter(Layout.Header);
 
@@ -47,7 +51,7 @@ namespace NCR_Printer
             string qtyrec = "Received Qty";
 
             PrintText("", true);
-            
+            PrintText("", true);
 
             PrintText($"{supplier.Name}", true,TextAlignment.Center);
             if(!string.IsNullOrWhiteSpace (supplier.Phone))

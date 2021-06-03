@@ -101,6 +101,8 @@ namespace SecretCellar
                 
             }
             refresh();
+            txt_received_qty.Text = "";
+            txt_received_qty.Focus();
 
 
         }
