@@ -60,9 +60,9 @@ namespace SecretCellar.Settings_Panels
             this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
-            this.label7.Location = new System.Drawing.Point(558, 67);
+            this.label7.Location = new System.Drawing.Point(478, 68);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(251, 34);
+            this.label7.Size = new System.Drawing.Size(342, 34);
             this.label7.TabIndex = 25;
             this.label7.Text = "Inventory";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -73,19 +73,20 @@ namespace SecretCellar.Settings_Panels
             this.TxtSalesVendor.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.TxtSalesVendor.Location = new System.Drawing.Point(558, 104);
+            this.TxtSalesVendor.Font = new System.Drawing.Font("Consolas", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtSalesVendor.Location = new System.Drawing.Point(478, 105);
             this.TxtSalesVendor.Multiline = true;
             this.TxtSalesVendor.Name = "TxtSalesVendor";
             this.TxtSalesVendor.ReadOnly = true;
-            this.TxtSalesVendor.Size = new System.Drawing.Size(251, 229);
+            this.TxtSalesVendor.Size = new System.Drawing.Size(342, 229);
             this.TxtSalesVendor.TabIndex = 24;
             // 
             // label6
             // 
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
-            this.label6.Location = new System.Drawing.Point(286, 67);
+            this.label6.Location = new System.Drawing.Point(277, 68);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(251, 34);
+            this.label6.Size = new System.Drawing.Size(184, 34);
             this.label6.TabIndex = 23;
             this.label6.Text = "Inventory Type";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -95,11 +96,12 @@ namespace SecretCellar.Settings_Panels
             this.TxtSalesInvType.AcceptsReturn = true;
             this.TxtSalesInvType.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.TxtSalesInvType.Location = new System.Drawing.Point(286, 104);
+            this.TxtSalesInvType.Font = new System.Drawing.Font("Consolas", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtSalesInvType.Location = new System.Drawing.Point(274, 105);
             this.TxtSalesInvType.Multiline = true;
             this.TxtSalesInvType.Name = "TxtSalesInvType";
             this.TxtSalesInvType.ReadOnly = true;
-            this.TxtSalesInvType.Size = new System.Drawing.Size(251, 229);
+            this.TxtSalesInvType.Size = new System.Drawing.Size(187, 229);
             this.TxtSalesInvType.TabIndex = 22;
             // 
             // label8
@@ -107,7 +109,7 @@ namespace SecretCellar.Settings_Panels
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
             this.label8.Location = new System.Drawing.Point(12, 67);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(251, 34);
+            this.label8.Size = new System.Drawing.Size(243, 34);
             this.label8.TabIndex = 21;
             this.label8.Text = "Total";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -117,11 +119,12 @@ namespace SecretCellar.Settings_Panels
             this.TxtSalesTotals.AcceptsReturn = true;
             this.TxtSalesTotals.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.TxtSalesTotals.Font = new System.Drawing.Font("Consolas", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtSalesTotals.Location = new System.Drawing.Point(12, 104);
             this.TxtSalesTotals.Multiline = true;
             this.TxtSalesTotals.Name = "TxtSalesTotals";
             this.TxtSalesTotals.ReadOnly = true;
-            this.TxtSalesTotals.Size = new System.Drawing.Size(251, 229);
+            this.TxtSalesTotals.Size = new System.Drawing.Size(243, 229);
             this.TxtSalesTotals.TabIndex = 20;
             // 
             // label5
