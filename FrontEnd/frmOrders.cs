@@ -427,5 +427,8 @@ namespace SecretCellar
             new PurchaseOrder(orderSupplier,withQty).Print();
 
         }
+
+        //wholesale tab
+
     }
 }
