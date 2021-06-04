@@ -118,7 +118,7 @@ namespace SecretCellar {
 			this.checkBox_NonTaxableLocal.Location = new System.Drawing.Point(363, 446);
 			this.checkBox_NonTaxableLocal.Name = "checkBox_NonTaxableLocal";
 			this.checkBox_NonTaxableLocal.Size = new System.Drawing.Size(15, 14);
-			this.checkBox_NonTaxableLocal.TabIndex = 45;
+			this.checkBox_NonTaxableLocal.TabIndex = 10;
 			this.checkBox_NonTaxableLocal.UseVisualStyleBackColor = true;
 			// 
 			// checkBox_NonTaxable
@@ -127,7 +127,7 @@ namespace SecretCellar {
 			this.checkBox_NonTaxable.Location = new System.Drawing.Point(363, 401);
 			this.checkBox_NonTaxable.Name = "checkBox_NonTaxable";
 			this.checkBox_NonTaxable.Size = new System.Drawing.Size(15, 14);
-			this.checkBox_NonTaxable.TabIndex = 43;
+			this.checkBox_NonTaxable.TabIndex = 9;
 			this.checkBox_NonTaxable.UseVisualStyleBackColor = true;
 			// 
 			// textBox_SupplierPrice
@@ -137,7 +137,7 @@ namespace SecretCellar {
 			this.textBox_SupplierPrice.Margin = new System.Windows.Forms.Padding(4);
 			this.textBox_SupplierPrice.Name = "textBox_SupplierPrice";
 			this.textBox_SupplierPrice.Size = new System.Drawing.Size(259, 38);
-			this.textBox_SupplierPrice.TabIndex = 42;
+			this.textBox_SupplierPrice.TabIndex = 8;
 			// 
 			// label_SupplierPrice
 			// 
@@ -191,7 +191,7 @@ namespace SecretCellar {
 			this.textBox_Name.Margin = new System.Windows.Forms.Padding(4);
 			this.textBox_Name.Name = "textBox_Name";
 			this.textBox_Name.Size = new System.Drawing.Size(259, 38);
-			this.textBox_Name.TabIndex = 36;
+			this.textBox_Name.TabIndex = 1;
 			// 
 			// label_Name
 			// 
@@ -214,7 +214,7 @@ namespace SecretCellar {
 			this.dateTimePicker_Duration.Location = new System.Drawing.Point(363, 122);
 			this.dateTimePicker_Duration.Name = "dateTimePicker_Duration";
 			this.dateTimePicker_Duration.Size = new System.Drawing.Size(259, 26);
-			this.dateTimePicker_Duration.TabIndex = 38;
+			this.dateTimePicker_Duration.TabIndex = 3;
 			// 
 			// dateTimePicker_EventDate
 			// 
@@ -222,7 +222,7 @@ namespace SecretCellar {
 			this.dateTimePicker_EventDate.Location = new System.Drawing.Point(364, 72);
 			this.dateTimePicker_EventDate.Name = "dateTimePicker_EventDate";
 			this.dateTimePicker_EventDate.Size = new System.Drawing.Size(259, 26);
-			this.dateTimePicker_EventDate.TabIndex = 37;
+			this.dateTimePicker_EventDate.TabIndex = 2;
 			// 
 			// button_CloseWindow
 			// 
@@ -232,7 +232,7 @@ namespace SecretCellar {
 			this.button_CloseWindow.Margin = new System.Windows.Forms.Padding(1);
 			this.button_CloseWindow.Name = "button_CloseWindow";
 			this.button_CloseWindow.Size = new System.Drawing.Size(180, 55);
-			this.button_CloseWindow.TabIndex = 46;
+			this.button_CloseWindow.TabIndex = 11;
 			this.button_CloseWindow.TabStop = false;
 			this.button_CloseWindow.Text = "CLOSE WINDOW";
 			this.button_CloseWindow.UseVisualStyleBackColor = true;
@@ -246,8 +246,7 @@ namespace SecretCellar {
 			this.button_UpdateEvent.Margin = new System.Windows.Forms.Padding(1);
 			this.button_UpdateEvent.Name = "button_UpdateEvent";
 			this.button_UpdateEvent.Size = new System.Drawing.Size(180, 55);
-			this.button_UpdateEvent.TabIndex = 48;
-			this.button_UpdateEvent.TabStop = false;
+			this.button_UpdateEvent.TabIndex = 12;
 			this.button_UpdateEvent.Text = "UPDATE EVENT";
 			this.button_UpdateEvent.UseVisualStyleBackColor = true;
 			this.button_UpdateEvent.Click += new System.EventHandler(this.button_UpdateEvent_Click);
@@ -259,7 +258,7 @@ namespace SecretCellar {
 			this.textBox_AtDoor.Margin = new System.Windows.Forms.Padding(4);
 			this.textBox_AtDoor.Name = "textBox_AtDoor";
 			this.textBox_AtDoor.Size = new System.Drawing.Size(259, 38);
-			this.textBox_AtDoor.TabIndex = 40;
+			this.textBox_AtDoor.TabIndex = 6;
 			// 
 			// label_AtDoor
 			// 
@@ -283,7 +282,7 @@ namespace SecretCellar {
 			this.textBox_Preorder.Margin = new System.Windows.Forms.Padding(4);
 			this.textBox_Preorder.Name = "textBox_Preorder";
 			this.textBox_Preorder.Size = new System.Drawing.Size(259, 38);
-			this.textBox_Preorder.TabIndex = 39;
+			this.textBox_Preorder.TabIndex = 5;
 			// 
 			// label_Preorder
 			// 
@@ -337,7 +336,7 @@ namespace SecretCellar {
 			this.textBox_Price.Margin = new System.Windows.Forms.Padding(4);
 			this.textBox_Price.Name = "textBox_Price";
 			this.textBox_Price.Size = new System.Drawing.Size(259, 38);
-			this.textBox_Price.TabIndex = 41;
+			this.textBox_Price.TabIndex = 7;
 			// 
 			// label_Price
 			// 
@@ -361,7 +360,7 @@ namespace SecretCellar {
 			this.textBox_Quantity.Margin = new System.Windows.Forms.Padding(4);
 			this.textBox_Quantity.Name = "textBox_Quantity";
 			this.textBox_Quantity.Size = new System.Drawing.Size(259, 38);
-			this.textBox_Quantity.TabIndex = 60;
+			this.textBox_Quantity.TabIndex = 4;
 			// 
 			// label_Qty
 			// 
