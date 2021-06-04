@@ -187,7 +187,6 @@ namespace SecretCellar {
 			this.button_CreateEvent.Name = "button_CreateEvent";
 			this.button_CreateEvent.Size = new System.Drawing.Size(180, 55);
 			this.button_CreateEvent.TabIndex = 13;
-			this.button_CreateEvent.TabStop = false;
 			this.button_CreateEvent.Text = "CREATE EVENT";
 			this.button_CreateEvent.UseVisualStyleBackColor = true;
 			this.button_CreateEvent.Click += new System.EventHandler(this.button_CreateEvent_Click);
@@ -201,7 +200,6 @@ namespace SecretCellar {
 			this.button_CloseWindow.Name = "button_CloseWindow";
 			this.button_CloseWindow.Size = new System.Drawing.Size(180, 55);
 			this.button_CloseWindow.TabIndex = 12;
-			this.button_CloseWindow.TabStop = false;
 			this.button_CloseWindow.Text = "CLOSE WINDOW";
 			this.button_CloseWindow.UseVisualStyleBackColor = true;
 			this.button_CloseWindow.Click += new System.EventHandler(this.button_CloseWindow_Click);

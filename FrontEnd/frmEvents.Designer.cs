@@ -71,7 +71,8 @@
 			this.dataGridView_Events.RowHeadersWidth = 62;
 			this.dataGridView_Events.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
 			this.dataGridView_Events.Size = new System.Drawing.Size(843, 302);
-			this.dataGridView_Events.TabIndex = 9;
+			this.dataGridView_Events.TabIndex = 2;
+			this.dataGridView_Events.TabStop = false;
 			this.dataGridView_Events.SelectionChanged += new System.EventHandler(this.dataGridView_Events_SelectionChanged);
 			// 
 			// Id
@@ -120,7 +121,7 @@
 			this.dateTimePicker_Date.Location = new System.Drawing.Point(13, 18);
 			this.dateTimePicker_Date.Name = "dateTimePicker_Date";
 			this.dateTimePicker_Date.Size = new System.Drawing.Size(594, 44);
-			this.dateTimePicker_Date.TabIndex = 12;
+			this.dateTimePicker_Date.TabIndex = 0;
 			this.dateTimePicker_Date.ValueChanged += new System.EventHandler(this.dateTimePicker_Date_ValueChanged);
 			// 
 			// button_AddCharge
@@ -129,8 +130,7 @@
 			this.button_AddCharge.Location = new System.Drawing.Point(676, 566);
 			this.button_AddCharge.Name = "button_AddCharge";
 			this.button_AddCharge.Size = new System.Drawing.Size(180, 55);
-			this.button_AddCharge.TabIndex = 13;
-			this.button_AddCharge.TabStop = false;
+			this.button_AddCharge.TabIndex = 9;
 			this.button_AddCharge.Text = "ADD CHARGE";
 			this.button_AddCharge.UseVisualStyleBackColor = true;
 			this.button_AddCharge.Click += new System.EventHandler(this.button_AddCharge_Click);
@@ -141,8 +141,7 @@
 			this.button_CloseWindow.Location = new System.Drawing.Point(13, 566);
 			this.button_CloseWindow.Name = "button_CloseWindow";
 			this.button_CloseWindow.Size = new System.Drawing.Size(180, 55);
-			this.button_CloseWindow.TabIndex = 15;
-			this.button_CloseWindow.TabStop = false;
+			this.button_CloseWindow.TabIndex = 8;
 			this.button_CloseWindow.Text = "CLOSE WINDOW";
 			this.button_CloseWindow.UseVisualStyleBackColor = true;
 			this.button_CloseWindow.Click += new System.EventHandler(this.button_CloseWindow_Click);
@@ -153,8 +152,7 @@
 			this.button_AllEvents.Location = new System.Drawing.Point(676, 13);
 			this.button_AllEvents.Name = "button_AllEvents";
 			this.button_AllEvents.Size = new System.Drawing.Size(180, 55);
-			this.button_AllEvents.TabIndex = 16;
-			this.button_AllEvents.TabStop = false;
+			this.button_AllEvents.TabIndex = 1;
 			this.button_AllEvents.Text = "ALL EVENTS";
 			this.button_AllEvents.UseVisualStyleBackColor = true;
 			this.button_AllEvents.Click += new System.EventHandler(this.button_AllEvents_Click);
@@ -165,8 +163,7 @@
 			this.button_CreateEvent.Location = new System.Drawing.Point(13, 484);
 			this.button_CreateEvent.Name = "button_CreateEvent";
 			this.button_CreateEvent.Size = new System.Drawing.Size(180, 55);
-			this.button_CreateEvent.TabIndex = 17;
-			this.button_CreateEvent.TabStop = false;
+			this.button_CreateEvent.TabIndex = 4;
 			this.button_CreateEvent.Text = "CREATE NEW EVENT";
 			this.button_CreateEvent.UseVisualStyleBackColor = true;
 			this.button_CreateEvent.Click += new System.EventHandler(this.button_CreateEvent_Click);
@@ -177,8 +174,7 @@
 			this.button_DeleteEvent.Location = new System.Drawing.Point(233, 484);
 			this.button_DeleteEvent.Name = "button_DeleteEvent";
 			this.button_DeleteEvent.Size = new System.Drawing.Size(180, 55);
-			this.button_DeleteEvent.TabIndex = 18;
-			this.button_DeleteEvent.TabStop = false;
+			this.button_DeleteEvent.TabIndex = 5;
 			this.button_DeleteEvent.Text = "DELETE EVENT";
 			this.button_DeleteEvent.UseVisualStyleBackColor = true;
 			this.button_DeleteEvent.Click += new System.EventHandler(this.button_DeleteEvent_Click);
@@ -209,7 +205,7 @@
 			this.textBox_Quantity.Location = new System.Drawing.Point(326, 416);
 			this.textBox_Quantity.Name = "textBox_Quantity";
 			this.textBox_Quantity.Size = new System.Drawing.Size(158, 38);
-			this.textBox_Quantity.TabIndex = 21;
+			this.textBox_Quantity.TabIndex = 3;
 			this.textBox_Quantity.TextChanged += new System.EventHandler(this.textBox_Quantity_TextChanged);
 			// 
 			// textBox_Total
@@ -228,8 +224,7 @@
 			this.button_EditEvent.Location = new System.Drawing.Point(453, 484);
 			this.button_EditEvent.Name = "button_EditEvent";
 			this.button_EditEvent.Size = new System.Drawing.Size(180, 55);
-			this.button_EditEvent.TabIndex = 23;
-			this.button_EditEvent.TabStop = false;
+			this.button_EditEvent.TabIndex = 6;
 			this.button_EditEvent.Text = "EDIT EVENT";
 			this.button_EditEvent.UseVisualStyleBackColor = true;
 			this.button_EditEvent.Click += new System.EventHandler(this.button_EditEvent_Click);
@@ -240,8 +235,7 @@
 			this.button_WaitList.Location = new System.Drawing.Point(676, 484);
 			this.button_WaitList.Name = "button_WaitList";
 			this.button_WaitList.Size = new System.Drawing.Size(180, 55);
-			this.button_WaitList.TabIndex = 24;
-			this.button_WaitList.TabStop = false;
+			this.button_WaitList.TabIndex = 7;
 			this.button_WaitList.Text = "EVENT WAITLIST";
 			this.button_WaitList.UseVisualStyleBackColor = true;
 			this.button_WaitList.Click += new System.EventHandler(this.button_WaitList_Click);

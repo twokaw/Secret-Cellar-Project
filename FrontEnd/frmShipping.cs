@@ -1,52 +1,38 @@
-﻿using SecretCellar;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System;
 using Shared;
+
+
 
 namespace SecretCellar
 {
     public partial class frmShipping : ManagedForm
     {
-        private Transaction shipping = null;
-        public frmShipping(Transaction transaction)
+        private Transaction transaction = null;
+        public frmShipping(Transaction t)
         {
             InitializeComponent();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(72, 72);
-            shipping = transaction; 
+            this.transaction = t; 
         }
 
-        private void btnAddCharge_Click(object sender, EventArgs e)
-        {
-            addCharge();
+
+
+        /////////////////////////
+        //ADD THE SHIPPING CHARGE
+        /////////////////////////
+        private void button_AddCharge_Click(object sender, EventArgs e) {
+            if (double.TryParse(txtCharge.Text, out double d)) {
+                transaction.Shipping = d;
+            }
+
             this.Close();
         }
 
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
+
+        //////////////////
+        //CLOSE THE WINDOW
+        //////////////////
+        private void button_Cancel_Click(object sender, EventArgs e) {
             this.Close();
         }
-        private void addCharge()
-        {
-            if (double.TryParse(txtCharge.Text, out double d))
-                shipping.Shipping = d;
-        }
-
-        private void frmShipping_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lblTitle_Click(object sender, EventArgs e)
-        {
-
-        }
-    }
+	}
 }
