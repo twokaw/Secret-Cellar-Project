@@ -55,7 +55,8 @@ namespace SecretCellar {
 			this.dataGridView_Events.RowHeadersWidth = 62;
 			this.dataGridView_Events.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
 			this.dataGridView_Events.Size = new System.Drawing.Size(547, 302);
-			this.dataGridView_Events.TabIndex = 10;
+			this.dataGridView_Events.TabIndex = 0;
+			this.dataGridView_Events.TabStop = false;
 			this.dataGridView_Events.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_Events_CellDoubleClick);
 			// 
 			// Id
@@ -99,8 +100,7 @@ namespace SecretCellar {
 			this.button_CloseWindow.Margin = new System.Windows.Forms.Padding(1);
 			this.button_CloseWindow.Name = "button_CloseWindow";
 			this.button_CloseWindow.Size = new System.Drawing.Size(180, 55);
-			this.button_CloseWindow.TabIndex = 16;
-			this.button_CloseWindow.TabStop = false;
+			this.button_CloseWindow.TabIndex = 1;
 			this.button_CloseWindow.Text = "CLOSE WINDOW";
 			this.button_CloseWindow.UseVisualStyleBackColor = true;
 			this.button_CloseWindow.Click += new System.EventHandler(this.button_CloseWindow_Click);
@@ -112,8 +112,7 @@ namespace SecretCellar {
 			this.button_DeleteEvent.Margin = new System.Windows.Forms.Padding(1);
 			this.button_DeleteEvent.Name = "button_DeleteEvent";
 			this.button_DeleteEvent.Size = new System.Drawing.Size(180, 55);
-			this.button_DeleteEvent.TabIndex = 17;
-			this.button_DeleteEvent.TabStop = false;
+			this.button_DeleteEvent.TabIndex = 2;
 			this.button_DeleteEvent.Text = "DELETE EVENT";
 			this.button_DeleteEvent.UseVisualStyleBackColor = true;
 			this.button_DeleteEvent.Click += new System.EventHandler(this.button_DeleteEvent_Click);

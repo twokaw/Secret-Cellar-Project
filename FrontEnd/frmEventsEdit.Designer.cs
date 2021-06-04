@@ -233,7 +233,6 @@ namespace SecretCellar {
 			this.button_CloseWindow.Name = "button_CloseWindow";
 			this.button_CloseWindow.Size = new System.Drawing.Size(180, 55);
 			this.button_CloseWindow.TabIndex = 11;
-			this.button_CloseWindow.TabStop = false;
 			this.button_CloseWindow.Text = "CLOSE WINDOW";
 			this.button_CloseWindow.UseVisualStyleBackColor = true;
 			this.button_CloseWindow.Click += new System.EventHandler(this.button_CloseWindow_Click);

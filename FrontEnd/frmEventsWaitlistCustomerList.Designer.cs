@@ -48,7 +48,8 @@ namespace SecretCellar {
 			this.dataGridView_CustomerList.RowHeadersVisible = false;
 			this.dataGridView_CustomerList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
 			this.dataGridView_CustomerList.Size = new System.Drawing.Size(373, 200);
-			this.dataGridView_CustomerList.TabIndex = 0;
+			this.dataGridView_CustomerList.TabIndex = 2;
+			this.dataGridView_CustomerList.TabStop = false;
 			this.dataGridView_CustomerList.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CustomerList_CellDoubleClick);
 			// 
 			// Customer_Id
@@ -82,8 +83,7 @@ namespace SecretCellar {
 			this.button_CloseWindow.Margin = new System.Windows.Forms.Padding(1);
 			this.button_CloseWindow.Name = "button_CloseWindow";
 			this.button_CloseWindow.Size = new System.Drawing.Size(180, 55);
-			this.button_CloseWindow.TabIndex = 14;
-			this.button_CloseWindow.TabStop = false;
+			this.button_CloseWindow.TabIndex = 3;
 			this.button_CloseWindow.Text = "CLOSE WINDOW";
 			this.button_CloseWindow.UseVisualStyleBackColor = true;
 			this.button_CloseWindow.Click += new System.EventHandler(this.button_CloseWindow_Click);
@@ -96,8 +96,7 @@ namespace SecretCellar {
 			this.button_SelectCustomer.Margin = new System.Windows.Forms.Padding(1);
 			this.button_SelectCustomer.Name = "button_SelectCustomer";
 			this.button_SelectCustomer.Size = new System.Drawing.Size(180, 55);
-			this.button_SelectCustomer.TabIndex = 15;
-			this.button_SelectCustomer.TabStop = false;
+			this.button_SelectCustomer.TabIndex = 4;
 			this.button_SelectCustomer.Text = "SELECT CUSTOMER";
 			this.button_SelectCustomer.UseVisualStyleBackColor = true;
 			this.button_SelectCustomer.Click += new System.EventHandler(this.button_SelectCustomer_Click);
