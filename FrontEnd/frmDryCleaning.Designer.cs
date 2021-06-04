@@ -54,7 +54,7 @@
 			this.txtCharge.Location = new System.Drawing.Point(187, 12);
 			this.txtCharge.Margin = new System.Windows.Forms.Padding(4);
 			this.txtCharge.Name = "txtCharge";
-			this.txtCharge.Size = new System.Drawing.Size(167, 38);
+			this.txtCharge.Size = new System.Drawing.Size(233, 38);
 			this.txtCharge.TabIndex = 0;
 			// 
 			// button_AddCharge
