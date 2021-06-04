@@ -43,7 +43,7 @@
 			this.txtCharge.Margin = new System.Windows.Forms.Padding(4);
 			this.txtCharge.Name = "txtCharge";
 			this.txtCharge.Size = new System.Drawing.Size(231, 38);
-			this.txtCharge.TabIndex = 5;
+			this.txtCharge.TabIndex = 0;
 			// 
 			// lblTitle
 			// 
@@ -64,7 +64,7 @@
 			this.button_AddCharge.Margin = new System.Windows.Forms.Padding(1);
 			this.button_AddCharge.Name = "button_AddCharge";
 			this.button_AddCharge.Size = new System.Drawing.Size(180, 55);
-			this.button_AddCharge.TabIndex = 13;
+			this.button_AddCharge.TabIndex = 2;
 			this.button_AddCharge.Text = "ADD CHARGE";
 			this.button_AddCharge.UseVisualStyleBackColor = true;
 			this.button_AddCharge.Click += new System.EventHandler(this.button_AddCharge_Click);
@@ -76,7 +76,7 @@
 			this.button_Cancel.Margin = new System.Windows.Forms.Padding(1);
 			this.button_Cancel.Name = "button_Cancel";
 			this.button_Cancel.Size = new System.Drawing.Size(180, 55);
-			this.button_Cancel.TabIndex = 14;
+			this.button_Cancel.TabIndex = 1;
 			this.button_Cancel.Text = "CANCEL";
 			this.button_Cancel.UseVisualStyleBackColor = true;
 			this.button_Cancel.Click += new System.EventHandler(this.button_Cancel_Click);
