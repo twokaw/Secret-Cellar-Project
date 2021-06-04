@@ -71,7 +71,7 @@
 			this.txt_descript.Location = new System.Drawing.Point(244, 21);
 			this.txt_descript.Margin = new System.Windows.Forms.Padding(4);
 			this.txt_descript.Name = "txt_descript";
-			this.txt_descript.Size = new System.Drawing.Size(300, 38);
+			this.txt_descript.Size = new System.Drawing.Size(315, 38);
 			this.txt_descript.TabIndex = 0;
 			// 
 			// lbl_Descript
