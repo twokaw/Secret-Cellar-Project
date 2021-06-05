@@ -22,6 +22,7 @@ namespace WebApi
         }
 
         public IConfiguration Configuration { get; }
+        public bool UseSwagger = false;
 
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
@@ -33,10 +34,11 @@ namespace WebApi
            
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
             
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebApi Docs", Version = "v1" });
-            });
+            if(UseSwagger )
+                services.AddSwaggerGen(c =>
+                {
+                    c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebApi Docs", Version = "v1" });
+                });
 
             // configure strongly typed settings objects
             var appSettingsSection = Configuration.GetSection("AppSettings");
@@ -79,13 +81,16 @@ namespace WebApi
 
             app.UseRouting();
             app.UseCors();
-            
-            app.UseSwagger();
-            app.UseSwaggerUI(c =>
+
+            if (UseSwagger)
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "API V1");
-                c.RoutePrefix = string.Empty;
-            });
+                app.UseSwagger();
+                app.UseSwaggerUI(c =>
+                {
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "API V1");
+                    c.RoutePrefix = string.Empty;
+                });
+            }
 
             app.UseAuthentication();
             app.UseAuthorization();
