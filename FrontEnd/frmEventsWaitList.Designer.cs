@@ -53,7 +53,8 @@ namespace SecretCellar {
 			this.dataGridView_Customers.RowHeadersWidth = 62;
 			this.dataGridView_Customers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
 			this.dataGridView_Customers.Size = new System.Drawing.Size(406, 200);
-			this.dataGridView_Customers.TabIndex = 10;
+			this.dataGridView_Customers.TabIndex = 0;
+			this.dataGridView_Customers.TabStop = false;
 			// 
 			// EventId
 			// 
@@ -86,8 +87,7 @@ namespace SecretCellar {
 			this.button_Remove.Location = new System.Drawing.Point(12, 223);
 			this.button_Remove.Name = "button_Remove";
 			this.button_Remove.Size = new System.Drawing.Size(180, 55);
-			this.button_Remove.TabIndex = 25;
-			this.button_Remove.TabStop = false;
+			this.button_Remove.TabIndex = 1;
 			this.button_Remove.Text = "REMOVE FROM WAITLIST";
 			this.button_Remove.UseVisualStyleBackColor = true;
 			this.button_Remove.Click += new System.EventHandler(this.button_Remove_Click);
@@ -99,8 +99,7 @@ namespace SecretCellar {
 			this.button_Close.Location = new System.Drawing.Point(12, 284);
 			this.button_Close.Name = "button_Close";
 			this.button_Close.Size = new System.Drawing.Size(180, 55);
-			this.button_Close.TabIndex = 26;
-			this.button_Close.TabStop = false;
+			this.button_Close.TabIndex = 3;
 			this.button_Close.Text = "CLOSE WINDOW";
 			this.button_Close.UseVisualStyleBackColor = true;
 			this.button_Close.Click += new System.EventHandler(this.button_Close_Click);
@@ -112,8 +111,7 @@ namespace SecretCellar {
 			this.button_Add.Location = new System.Drawing.Point(238, 223);
 			this.button_Add.Name = "button_Add";
 			this.button_Add.Size = new System.Drawing.Size(180, 55);
-			this.button_Add.TabIndex = 27;
-			this.button_Add.TabStop = false;
+			this.button_Add.TabIndex = 2;
 			this.button_Add.Text = "ADD TO WAITLIST...";
 			this.button_Add.UseVisualStyleBackColor = true;
 			this.button_Add.Click += new System.EventHandler(this.button_Add_Click);

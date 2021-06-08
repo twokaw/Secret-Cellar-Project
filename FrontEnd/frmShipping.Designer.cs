@@ -28,91 +28,105 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmShipping));
-            this.btnCancel = new System.Windows.Forms.Button();
-            this.btnAddCharge = new System.Windows.Forms.Button();
-            this.txtCharge = new System.Windows.Forms.TextBox();
-            this.lblTitle = new System.Windows.Forms.Label();
-            this.SuspendLayout();
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.BackColor = System.Drawing.SystemColors.Desktop;
-            this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.25F);
-            this.btnCancel.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnCancel.Location = new System.Drawing.Point(404, 286);
-            this.btnCancel.Margin = new System.Windows.Forms.Padding(4);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(267, 154);
-            this.btnCancel.TabIndex = 7;
-            this.btnCancel.Text = "Cancel";
-            this.btnCancel.UseVisualStyleBackColor = false;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
-            // btnAddCharge
-            // 
-            this.btnAddCharge.BackColor = System.Drawing.SystemColors.Desktop;
-            this.btnAddCharge.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.25F);
-            this.btnAddCharge.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnAddCharge.Location = new System.Drawing.Point(83, 286);
-            this.btnAddCharge.Margin = new System.Windows.Forms.Padding(4);
-            this.btnAddCharge.Name = "btnAddCharge";
-            this.btnAddCharge.Size = new System.Drawing.Size(267, 154);
-            this.btnAddCharge.TabIndex = 6;
-            this.btnAddCharge.Text = "Add Charge";
-            this.btnAddCharge.UseVisualStyleBackColor = false;
-            this.btnAddCharge.Click += new System.EventHandler(this.btnAddCharge_Click);
-            // 
-            // txtCharge
-            // 
-            this.txtCharge.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F);
-            this.txtCharge.Location = new System.Drawing.Point(404, 148);
-            this.txtCharge.Margin = new System.Windows.Forms.Padding(4);
-            this.txtCharge.Name = "txtCharge";
-            this.txtCharge.Size = new System.Drawing.Size(238, 38);
-            this.txtCharge.TabIndex = 5;
-            // 
-            // lblTitle
-            // 
-            this.lblTitle.AutoSize = true;
-            this.lblTitle.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.25F);
-            this.lblTitle.Location = new System.Drawing.Point(76, 145);
-            this.lblTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(281, 39);
-            this.lblTitle.TabIndex = 4;
-            this.lblTitle.Text = "Shipping Charge:";
-            this.lblTitle.Click += new System.EventHandler(this.lblTitle_Click);
-            // 
-            // frmShipping
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoSize = true;
-            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.ClientSize = new System.Drawing.Size(784, 561);
-            this.Controls.Add(this.btnCancel);
-            this.Controls.Add(this.btnAddCharge);
-            this.Controls.Add(this.txtCharge);
-            this.Controls.Add(this.lblTitle);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4);
-            this.Name = "frmShipping";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "frmShipping";
-            this.Load += new System.EventHandler(this.frmShipping_Load);
-            this.ResumeLayout(false);
-            this.PerformLayout();
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmShipping));
+			this.txtCharge = new System.Windows.Forms.TextBox();
+			this.lblTitle = new System.Windows.Forms.Label();
+			this.button_AddCharge = new System.Windows.Forms.Button();
+			this.button_Cancel = new System.Windows.Forms.Button();
+			this.label4 = new System.Windows.Forms.Label();
+			this.SuspendLayout();
+			// 
+			// txtCharge
+			// 
+			this.txtCharge.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F);
+			this.txtCharge.Location = new System.Drawing.Point(188, 12);
+			this.txtCharge.Margin = new System.Windows.Forms.Padding(4);
+			this.txtCharge.Name = "txtCharge";
+			this.txtCharge.Size = new System.Drawing.Size(231, 38);
+			this.txtCharge.TabIndex = 0;
+			// 
+			// lblTitle
+			// 
+			this.lblTitle.AutoSize = true;
+			this.lblTitle.Cursor = System.Windows.Forms.Cursors.IBeam;
+			this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.25F);
+			this.lblTitle.Location = new System.Drawing.Point(13, 9);
+			this.lblTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+			this.lblTitle.Name = "lblTitle";
+			this.lblTitle.Size = new System.Drawing.Size(138, 39);
+			this.lblTitle.TabIndex = 4;
+			this.lblTitle.Text = "Charge:";
+			// 
+			// button_AddCharge
+			// 
+			this.button_AddCharge.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.button_AddCharge.Location = new System.Drawing.Point(242, 86);
+			this.button_AddCharge.Margin = new System.Windows.Forms.Padding(1);
+			this.button_AddCharge.Name = "button_AddCharge";
+			this.button_AddCharge.Size = new System.Drawing.Size(180, 55);
+			this.button_AddCharge.TabIndex = 2;
+			this.button_AddCharge.Text = "ADD CHARGE";
+			this.button_AddCharge.UseVisualStyleBackColor = true;
+			this.button_AddCharge.Click += new System.EventHandler(this.button_AddCharge_Click);
+			// 
+			// button_Cancel
+			// 
+			this.button_Cancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.button_Cancel.Location = new System.Drawing.Point(10, 86);
+			this.button_Cancel.Margin = new System.Windows.Forms.Padding(1);
+			this.button_Cancel.Name = "button_Cancel";
+			this.button_Cancel.Size = new System.Drawing.Size(180, 55);
+			this.button_Cancel.TabIndex = 1;
+			this.button_Cancel.Text = "CANCEL";
+			this.button_Cancel.UseVisualStyleBackColor = true;
+			this.button_Cancel.Click += new System.EventHandler(this.button_Cancel_Click);
+			// 
+			// label4
+			// 
+			this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.label4.AutoSize = true;
+			this.label4.Cursor = System.Windows.Forms.Cursors.Default;
+			this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label4.Location = new System.Drawing.Point(159, 18);
+			this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+			this.label4.Name = "label4";
+			this.label4.Size = new System.Drawing.Size(26, 29);
+			this.label4.TabIndex = 60;
+			this.label4.Text = "$";
+			// 
+			// frmShipping
+			// 
+			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 16F);
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.AutoSize = true;
+			this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+			this.BackColor = System.Drawing.SystemColors.ControlDark;
+			this.ClientSize = new System.Drawing.Size(432, 151);
+			this.Controls.Add(this.label4);
+			this.Controls.Add(this.button_Cancel);
+			this.Controls.Add(this.button_AddCharge);
+			this.Controls.Add(this.txtCharge);
+			this.Controls.Add(this.lblTitle);
+			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+			this.Margin = new System.Windows.Forms.Padding(4);
+			this.MaximizeBox = false;
+			this.MinimizeBox = false;
+			this.Name = "frmShipping";
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+			this.Text = "Add Shipping Charge";
+			this.ResumeLayout(false);
+			this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Button btnCancel;
-        private System.Windows.Forms.Button btnAddCharge;
         private System.Windows.Forms.TextBox txtCharge;
         private System.Windows.Forms.Label lblTitle;
-    }
+		private System.Windows.Forms.Button button_AddCharge;
+		private System.Windows.Forms.Button button_Cancel;
+		private System.Windows.Forms.Label label4;
+	}
 }

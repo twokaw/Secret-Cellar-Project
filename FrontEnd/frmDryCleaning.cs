@@ -1,56 +1,40 @@
-﻿using SecretCellar;
-using Shared;
+﻿using Shared;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+
+
 
 namespace SecretCellar
 {
     public partial class frmDryCleaning : ManagedForm
     {
-        private Transaction dryClean = null;
-        public frmDryCleaning(Transaction transaction)
+        private Transaction transaction = null;
+        public frmDryCleaning(Transaction t)
         {
             InitializeComponent();
-            dryClean = transaction;
+            this.transaction = t;
             txtCharge.Focus();
         }
 
-        private void btnAddCharge_Click(object sender, EventArgs e)
-        {
-            addCharge();
-            this.Close();
-        }
 
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        private void addCharge()
-        {
-            if (double.TryParse(txtCharge.Text, out double d))
-            {
+        ////////////////////////////////
+        //ADD THE WINDOW CLEANING CHARGE
+        ////////////////////////////////
+        private void button_AddCharge_Click(object sender, EventArgs e) {
+            if (double.TryParse(txtCharge.Text, out double d)) {
                 Item i = Transaction.ConvertInvtoItem(DataAccess.instance.GetItem("DRY CLEANING"));
                 i.Price = d;
-                dryClean.Items.Add(i);
+                transaction.Items.Add(i);
             }
+
+            this.Close();
         }
 
-        private void txtCharge_TextChanged(object sender, EventArgs e)
-        {
-            Console.WriteLine(((TextBox)sender).Name);
-        }
 
-        private void frmDryCleaning_Load(object sender, EventArgs e)
-        {
-
+        //////////////////
+        //CLOSE THE WINDOW
+        //////////////////
+        private void button_Cancel_Click(object sender, EventArgs e) {
+            this.Close();
         }
-    }
+	}
 }

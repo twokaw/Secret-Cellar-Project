@@ -1,13 +1,7 @@
 ﻿using System;
 using Shared;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+
+
 
 namespace SecretCellar
 {
@@ -23,43 +17,29 @@ namespace SecretCellar
 
         }
 
-        private void btnAddCharge_Click(object sender, EventArgs e)
-        {
-            addCharge();
-            this.Close();
-        }
 
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        private void addCharge()
-        {
-            if (double.TryParse(txt_charge_am.Text, out double d))
-            {
+        ///////////////////////////////////
+        //ADD THE CHARGE TO THE TRANSACTION
+        ///////////////////////////////////
+        private void button_AddCharge_Click(object sender, EventArgs e) {
+            if (double.TryParse(txt_charge_am.Text, out double d)) {
                 Item i = Transaction.ConvertInvtoItem(DataAccess.instance.GetItem("Custom"));
                 i.Price = d;
-				i.Name = txt_descript.Text;
+                i.Name = txt_descript.Text;
                 i.NumSold = 1;
 
                 customItem.Items.Add(i);
             }
+
+            this.Close();
         }
 
-        private void txt_charge_am_TextChanged(object sender, EventArgs e)
-        {
 
-        }
-
-        private void txt_descript_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void frmCustom_Load(object sender, EventArgs e)
-        {
-
-        }
-    }
+        //////////////////
+        //CLOSE THE WINDOW
+        //////////////////
+        private void button_Cancel_Click(object sender, EventArgs e) {
+            this.Close();
+		}
+	}
 }
