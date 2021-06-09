@@ -21,9 +21,6 @@ namespace SecretCellar
         {
             customer = transaction;
             InitializeComponent();
-            this.Size = new System.Drawing.Size(1600, 768);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(72, 72);
 
             customer_data_grid.DataSource = DataAccess.instance.GetCustomer().
                 Select(x => new{customerID = x.CustomerID, last_name = x.LastName, first_name = x.FirstName, phone = x.PhoneNumber, email = x.Email, business_name = x.BusinessName,

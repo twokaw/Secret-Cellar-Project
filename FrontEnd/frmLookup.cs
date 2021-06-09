@@ -24,8 +24,6 @@ namespace SecretCellar
         {
             lookUp = transaction;
             InitializeComponent();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(72, 72);
             inventory = dataAccess.GetInventory();
             suppliers = dataAccess.GetSuppliers();
             types = dataAccess.GetInventoryType();

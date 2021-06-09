@@ -28,7 +28,7 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.mySqlCommand1 = new MySql.Data.MySqlClient.MySqlCommand();
 			this.btnDelete = new System.Windows.Forms.Button();
 			this.btnAdd = new System.Windows.Forms.Button();
@@ -59,7 +59,7 @@
 			this.btnDelete.Location = new System.Drawing.Point(624, 270);
 			this.btnDelete.Name = "btnDelete";
 			this.btnDelete.Size = new System.Drawing.Size(180, 55);
-			this.btnDelete.TabIndex = 8;
+			this.btnDelete.TabIndex = 2;
 			this.btnDelete.Text = "DELETE TRANSACTION";
 			this.btnDelete.UseVisualStyleBackColor = true;
 			this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
@@ -71,7 +71,7 @@
 			this.btnAdd.Location = new System.Drawing.Point(810, 270);
 			this.btnAdd.Name = "btnAdd";
 			this.btnAdd.Size = new System.Drawing.Size(180, 55);
-			this.btnAdd.TabIndex = 9;
+			this.btnAdd.TabIndex = 3;
 			this.btnAdd.Text = "ADD TRANSACTION";
 			this.btnAdd.UseVisualStyleBackColor = true;
 			this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
@@ -85,7 +85,7 @@
 			this.selectionListSuspendedTransactions.Location = new System.Drawing.Point(12, 10);
 			this.selectionListSuspendedTransactions.Name = "selectionListSuspendedTransactions";
 			this.selectionListSuspendedTransactions.Size = new System.Drawing.Size(154, 238);
-			this.selectionListSuspendedTransactions.TabIndex = 11;
+			this.selectionListSuspendedTransactions.TabIndex = 0;
 			this.selectionListSuspendedTransactions.SelectedIndexChanged += new System.EventHandler(this.selectionListSuspendedTransactions_SelectedIndexChanged);
 			// 
 			// dataGridViewSuspendedTransaction
@@ -99,14 +99,14 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.dataGridViewSuspendedTransaction.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
 			this.dataGridViewSuspendedTransaction.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-			dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-			dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-			dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
-			dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-			dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-			dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-			dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-			this.dataGridViewSuspendedTransaction.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+			dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+			dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+			dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
+			dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+			dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+			dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+			this.dataGridViewSuspendedTransaction.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
 			this.dataGridViewSuspendedTransaction.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.dataGridViewSuspendedTransaction.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.DESCRIPTION,
@@ -195,7 +195,7 @@
 			this.btn_CloseWindow.Location = new System.Drawing.Point(12, 270);
 			this.btn_CloseWindow.Name = "btn_CloseWindow";
 			this.btn_CloseWindow.Size = new System.Drawing.Size(180, 55);
-			this.btn_CloseWindow.TabIndex = 14;
+			this.btn_CloseWindow.TabIndex = 1;
 			this.btn_CloseWindow.Text = "CLOSE WINDOW";
 			this.btn_CloseWindow.UseVisualStyleBackColor = true;
 			this.btn_CloseWindow.Click += new System.EventHandler(this.btn_CloseWindow_Click);
@@ -204,7 +204,7 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.BackColor = System.Drawing.SystemColors.ControlDark;
+			this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
 			this.ClientSize = new System.Drawing.Size(1002, 343);
 			this.Controls.Add(this.btn_CloseWindow);
 			this.Controls.Add(this.dataGridViewSuspendedTransaction);
