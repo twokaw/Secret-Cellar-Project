@@ -62,6 +62,10 @@ namespace SecretCellar
             cbx_supplier.DisplayMember = "Name";
             lst_customer.DataSource = DataAccess.instance?.GetCustomer();
             lst_customer.DisplayMember = "FullName";
+            cbx_wholsale_supp.DataSource = suppliers;
+            cbx_wholsale_supp.DisplayMember = "Name";
+            cbx_whole_cust.DataSource = wholeCust;
+            cbx_whole_cust.DisplayMember = "FullName";
 
             lstbox_customer.DataSource = DataAccess.instance?.GetCustomer();
             lstbox_customer.DisplayMember = "FullName";
