@@ -429,7 +429,10 @@ namespace SecretCellar
                         ItemType = x.ItemType,
                         Qty = x.Qty,
                         Barcode = x.Barcode,
-                        Price = x.Price }).
+                        Price = x.Price,
+                        minqty = x.InvMin,
+                        maxqty = x.InvMax,
+                        orderqty = x.OrderQty}).
                     Where(x => x.Qty != 0).
                     OrderBy(x => x.Name).
                     ToList();
@@ -475,7 +478,10 @@ namespace SecretCellar
                         ItemType = x.ItemType,
                         Qty = x.Qty,
                         Barcode = x.Barcode,
-                        Price = x.Price
+                        Price = x.Price,
+                        minqty = x.InvMin,
+                        maxqty = x.InvMax,
+                        orderqty = x.OrderQty
                     }).
 
                     OrderBy(x => x.Name).
