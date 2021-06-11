@@ -131,7 +131,7 @@
 			this.LookupView.RowHeadersWidth = 62;
 			this.LookupView.RowTemplate.Height = 24;
 			this.LookupView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-			this.LookupView.Size = new System.Drawing.Size(1031, 674);
+			this.LookupView.Size = new System.Drawing.Size(773, 674);
 			this.LookupView.TabIndex = 4;
 			this.LookupView.SelectionChanged += new System.EventHandler(this.LookupView_SelectionChanged);
 			// 
@@ -217,7 +217,7 @@
 			// 
 			this.btn_cancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.btn_cancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btn_cancel.Location = new System.Drawing.Point(1058, 702);
+			this.btn_cancel.Location = new System.Drawing.Point(801, 702);
 			this.btn_cancel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.btn_cancel.Name = "btn_cancel";
 			this.btn_cancel.Size = new System.Drawing.Size(141, 37);
@@ -230,12 +230,12 @@
 			// 
 			this.btn_add.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.btn_add.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btn_add.Location = new System.Drawing.Point(1349, 702);
+			this.btn_add.Location = new System.Drawing.Point(1091, 702);
 			this.btn_add.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.btn_add.Name = "btn_add";
 			this.btn_add.Size = new System.Drawing.Size(142, 37);
 			this.btn_add.TabIndex = 20;
-			this.btn_add.Text = "ADD";
+			this.btn_add.Text = "ADD ITEM";
 			this.btn_add.UseVisualStyleBackColor = true;
 			this.btn_add.Click += new System.EventHandler(this.btn_add_Click);
 			// 
@@ -248,7 +248,7 @@
 			this.panel1.Location = new System.Drawing.Point(20, 66);
 			this.panel1.Margin = new System.Windows.Forms.Padding(4);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(1031, 673);
+			this.panel1.Size = new System.Drawing.Size(773, 673);
 			this.panel1.TabIndex = 7;
 			// 
 			// cbxTypeFilter
@@ -298,7 +298,7 @@
 			// cbxOnlyItemsWithInventory
 			// 
 			this.cbxOnlyItemsWithInventory.AutoSize = true;
-			this.cbxOnlyItemsWithInventory.Location = new System.Drawing.Point(1046, 25);
+			this.cbxOnlyItemsWithInventory.Location = new System.Drawing.Point(1047, 15);
 			this.cbxOnlyItemsWithInventory.Margin = new System.Windows.Forms.Padding(4);
 			this.cbxOnlyItemsWithInventory.Name = "cbxOnlyItemsWithInventory";
 			this.cbxOnlyItemsWithInventory.Size = new System.Drawing.Size(200, 20);
@@ -497,8 +497,7 @@
 			// 
 			// panel2
 			// 
-			this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+			this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
 			this.panel2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
 			this.panel2.Controls.Add(this.btn_clear_info);
 			this.panel2.Controls.Add(this.chk_hide_item);
@@ -530,7 +529,7 @@
 			this.panel2.Controls.Add(this.label3);
 			this.panel2.Controls.Add(this.txt_qty);
 			this.panel2.Controls.Add(this.label4);
-			this.panel2.Location = new System.Drawing.Point(1059, 66);
+			this.panel2.Location = new System.Drawing.Point(802, 66);
 			this.panel2.Margin = new System.Windows.Forms.Padding(4);
 			this.panel2.Name = "panel2";
 			this.panel2.Size = new System.Drawing.Size(431, 602);
@@ -665,7 +664,7 @@
 			// chk_box_show_hidden
 			// 
 			this.chk_box_show_hidden.AutoSize = true;
-			this.chk_box_show_hidden.Location = new System.Drawing.Point(1274, 25);
+			this.chk_box_show_hidden.Location = new System.Drawing.Point(1047, 37);
 			this.chk_box_show_hidden.Margin = new System.Windows.Forms.Padding(4);
 			this.chk_box_show_hidden.Name = "chk_box_show_hidden";
 			this.chk_box_show_hidden.Size = new System.Drawing.Size(118, 20);
@@ -681,7 +680,7 @@
 			this.AutoSize = true;
 			this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
 			this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-			this.ClientSize = new System.Drawing.Size(1503, 756);
+			this.ClientSize = new System.Drawing.Size(1246, 756);
 			this.Controls.Add(this.chk_box_show_hidden);
 			this.Controls.Add(this.cbxOnlyItemsWithInventory);
 			this.Controls.Add(this.lblSupplyFilter);

@@ -126,11 +126,6 @@ namespace SecretCellar
             }
         }
 
-        private void btnTender_Click(object sender, EventArgs e)
-        {
-            Tender();
-        }
-
         private void btnTender2_Click(object sender, EventArgs e)
         {
             Tender();

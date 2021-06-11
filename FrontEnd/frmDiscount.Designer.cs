@@ -63,7 +63,7 @@
 			this.btnExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.btnExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.btnExit.ForeColor = System.Drawing.Color.Red;
-			this.btnExit.Location = new System.Drawing.Point(1340, 434);
+			this.btnExit.Location = new System.Drawing.Point(1255, 434);
 			this.btnExit.Margin = new System.Windows.Forms.Padding(4);
 			this.btnExit.Name = "btnExit";
 			this.btnExit.Size = new System.Drawing.Size(179, 60);
@@ -75,10 +75,10 @@
 			// txtPercentLineItem
 			// 
 			this.txtPercentLineItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.txtPercentLineItem.Location = new System.Drawing.Point(362, 46);
+			this.txtPercentLineItem.Location = new System.Drawing.Point(18, 54);
 			this.txtPercentLineItem.Margin = new System.Windows.Forms.Padding(4);
 			this.txtPercentLineItem.Name = "txtPercentLineItem";
-			this.txtPercentLineItem.Size = new System.Drawing.Size(138, 29);
+			this.txtPercentLineItem.Size = new System.Drawing.Size(142, 29);
 			this.txtPercentLineItem.TabIndex = 5;
 			this.txtPercentLineItem.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.digit_only);
 			// 
@@ -86,7 +86,7 @@
 			// 
 			this.lblPercentLineItem.AutoSize = true;
 			this.lblPercentLineItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F);
-			this.lblPercentLineItem.Location = new System.Drawing.Point(22, 42);
+			this.lblPercentLineItem.Location = new System.Drawing.Point(12, 7);
 			this.lblPercentLineItem.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.lblPercentLineItem.Name = "lblPercentLineItem";
 			this.lblPercentLineItem.Size = new System.Drawing.Size(295, 31);
@@ -132,9 +132,8 @@
 			this.dataGridSelectItems.AllowUserToDeleteRows = false;
 			this.dataGridSelectItems.AllowUserToResizeColumns = false;
 			this.dataGridSelectItems.AllowUserToResizeRows = false;
-			this.dataGridSelectItems.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+			this.dataGridSelectItems.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
 			this.dataGridSelectItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.dataGridSelectItems.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ItemNumber,
@@ -148,7 +147,7 @@
 			this.dataGridSelectItems.RowHeadersVisible = false;
 			this.dataGridSelectItems.RowHeadersWidth = 62;
 			this.dataGridSelectItems.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-			this.dataGridSelectItems.Size = new System.Drawing.Size(737, 349);
+			this.dataGridSelectItems.Size = new System.Drawing.Size(480, 349);
 			this.dataGridSelectItems.TabIndex = 7;
 			this.dataGridSelectItems.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridSelectItems_CellContentClick);
 			// 
@@ -268,14 +267,14 @@
 			this.panel3.Location = new System.Drawing.Point(517, 20);
 			this.panel3.Margin = new System.Windows.Forms.Padding(4);
 			this.panel3.Name = "panel3";
-			this.panel3.Size = new System.Drawing.Size(773, 471);
+			this.panel3.Size = new System.Drawing.Size(506, 471);
 			this.panel3.TabIndex = 19;
 			// 
 			// button_ApplyToItem
 			// 
 			this.button_ApplyToItem.BackColor = System.Drawing.SystemColors.ControlDark;
 			this.button_ApplyToItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.button_ApplyToItem.Location = new System.Drawing.Point(575, 35);
+			this.button_ApplyToItem.Location = new System.Drawing.Point(318, 43);
 			this.button_ApplyToItem.Margin = new System.Windows.Forms.Padding(1);
 			this.button_ApplyToItem.Name = "button_ApplyToItem";
 			this.button_ApplyToItem.Size = new System.Drawing.Size(180, 55);
@@ -340,7 +339,7 @@
 			this.AutoSize = true;
 			this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
 			this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-			this.ClientSize = new System.Drawing.Size(1303, 514);
+			this.ClientSize = new System.Drawing.Size(1028, 514);
 			this.Controls.Add(this.button_Close);
 			this.Controls.Add(this.button_Clear);
 			this.Controls.Add(this.total_lbl);
