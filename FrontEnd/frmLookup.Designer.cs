@@ -106,7 +106,6 @@
 			this.lbl_Description_Bar.Size = new System.Drawing.Size(172, 16);
 			this.lbl_Description_Bar.TabIndex = 1;
 			this.lbl_Description_Bar.Text = "Description or Barcode:";
-			this.lbl_Description_Bar.Click += new System.EventHandler(this.label1_Click);
 			// 
 			// LookupView
 			// 
@@ -134,7 +133,6 @@
 			this.LookupView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
 			this.LookupView.Size = new System.Drawing.Size(1031, 674);
 			this.LookupView.TabIndex = 4;
-			this.LookupView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.LookupView_CellContentClick);
 			this.LookupView.SelectionChanged += new System.EventHandler(this.LookupView_SelectionChanged);
 			// 
 			// Id
@@ -274,7 +272,6 @@
 			this.label6.Size = new System.Drawing.Size(54, 17);
 			this.label6.TabIndex = 10;
 			this.label6.Text = "Type: ";
-			this.label6.Click += new System.EventHandler(this.label6_Click);
 			// 
 			// cbxSupplyFilter
 			// 
@@ -329,7 +326,6 @@
 			this.txt_qty.Name = "txt_qty";
 			this.txt_qty.Size = new System.Drawing.Size(292, 22);
 			this.txt_qty.TabIndex = 9;
-			this.txt_qty.TextChanged += new System.EventHandler(this.txt_qty_TextChanged);
 			// 
 			// label3
 			// 
@@ -360,7 +356,6 @@
 			this.txtName.Name = "txtName";
 			this.txtName.Size = new System.Drawing.Size(292, 22);
 			this.txtName.TabIndex = 5;
-			this.txtName.TextChanged += new System.EventHandler(this.txtName_TextChanged);
 			// 
 			// btn_update
 			// 
@@ -385,7 +380,6 @@
 			this.cboType.Name = "cboType";
 			this.cboType.Size = new System.Drawing.Size(292, 24);
 			this.cboType.TabIndex = 6;
-			this.cboType.SelectedIndexChanged += new System.EventHandler(this.cboType_SelectedIndexChanged);
 			// 
 			// label5
 			// 
@@ -418,7 +412,6 @@
 			this.txtBarcode.Name = "txtBarcode";
 			this.txtBarcode.Size = new System.Drawing.Size(292, 22);
 			this.txtBarcode.TabIndex = 7;
-			this.txtBarcode.TextChanged += new System.EventHandler(this.txtBarcode_TextChanged);
 			// 
 			// barcode_label
 			// 
@@ -439,7 +432,6 @@
 			this.txtPrice.Name = "txtPrice";
 			this.txtPrice.Size = new System.Drawing.Size(292, 22);
 			this.txtPrice.TabIndex = 10;
-			this.txtPrice.TextChanged += new System.EventHandler(this.txtPrice_TextChanged);
 			// 
 			// Price_txt
 			// 
@@ -460,7 +452,6 @@
 			this.txt_net_price.Name = "txt_net_price";
 			this.txt_net_price.Size = new System.Drawing.Size(292, 22);
 			this.txt_net_price.TabIndex = 11;
-			this.txt_net_price.TextChanged += new System.EventHandler(this.txtNetPrice_TextChanged);
 			// 
 			// lbl_netPrice
 			// 
@@ -471,7 +462,6 @@
 			this.lbl_netPrice.TabIndex = 14;
 			this.lbl_netPrice.Text = "My Price:";
 			this.lbl_netPrice.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-			this.lbl_netPrice.Click += new System.EventHandler(this.lbl_netPrice_Click);
 			// 
 			// btn_new
 			// 
@@ -494,7 +484,6 @@
 			this.txtProd_Qty.Name = "txtProd_Qty";
 			this.txtProd_Qty.Size = new System.Drawing.Size(292, 22);
 			this.txtProd_Qty.TabIndex = 12;
-			this.txtProd_Qty.TextChanged += new System.EventHandler(this.txtBtl_Deposit_TextChanged);
 			// 
 			// Btl_Dep_Lb
 			// 
@@ -505,7 +494,6 @@
 			this.Btl_Dep_Lb.TabIndex = 17;
 			this.Btl_Dep_Lb.Text = "Bottle Qty:";
 			this.Btl_Dep_Lb.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-			this.Btl_Dep_Lb.Click += new System.EventHandler(this.Btl_Dep_Lb_Click);
 			// 
 			// panel2
 			// 
@@ -547,7 +535,6 @@
 			this.panel2.Name = "panel2";
 			this.panel2.Size = new System.Drawing.Size(431, 602);
 			this.panel2.TabIndex = 8;
-			this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
 			// 
 			// btn_clear_info
 			// 
@@ -571,6 +558,7 @@
 			this.chk_hide_item.TabIndex = 16;
 			this.chk_hide_item.Text = "Hide Item";
 			this.chk_hide_item.UseVisualStyleBackColor = true;
+			this.chk_hide_item.CheckedChanged += new System.EventHandler(this.chk_hide_item_CheckedChanged);
 			// 
 			// lbl_max_qty
 			// 
@@ -714,7 +702,6 @@
 			this.Name = "frmLookup";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Item lookup";
-			this.Load += new System.EventHandler(this.frmLookup_Load);
 			((System.ComponentModel.ISupportInitialize)(this.LookupView)).EndInit();
 			this.panel1.ResumeLayout(false);
 			this.panel2.ResumeLayout(false);

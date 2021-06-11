@@ -51,11 +51,6 @@ namespace SecretCellar
             
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void btn_add_Click(object sender, EventArgs e)
         {
             if (addCharge())
@@ -81,17 +76,6 @@ namespace SecretCellar
                 return true;
             }
             return false;
-        }
-        private void txtCharge_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void populate()
-        {
-
-
-
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -273,6 +257,7 @@ namespace SecretCellar
             }
 
         }
+
         private void refresh()
         {
             LookupView.DataSource = inventory.Where(x =>( x.Name.IndexOf(txtlookup.Text, StringComparison.OrdinalIgnoreCase) >= 0 || x.Barcode.IndexOf(txtlookup.Text, StringComparison.OrdinalIgnoreCase) >=0)
@@ -289,16 +274,6 @@ namespace SecretCellar
                    orderqty = x.OrderQty}).
                OrderBy(x => x.Name).
                ToList();
-        }
-
-        private void panel2_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void txtBarcode_TextChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void btn_new_Click(object sender, EventArgs e)
@@ -372,44 +347,9 @@ namespace SecretCellar
             }
         }
 
-        private void txtBtl_Deposit_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Btl_Dep_Lb_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtNetPrice_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txt_qty_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void LookupView_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void label6_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void cbxTypeFilter_SelectedIndexChanged(object sender, EventArgs e)
         {
             refresh();
-        }
-
-        private void cboType_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            
         }
 
         private void cbxSupplyFilter_SelectedIndexChanged(object sender, EventArgs e)
@@ -443,26 +383,6 @@ namespace SecretCellar
                 refresh();
 			}
 		}
-
-        private void frmLookup_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtName_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtPrice_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lbl_netPrice_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void chk_box_show_hidden_CheckedChanged(object sender, EventArgs e)
         {
@@ -511,5 +431,9 @@ namespace SecretCellar
             chk_hide_item.Checked = false;
             txtName.Focus();
         }
-    }
+
+		private void chk_hide_item_CheckedChanged(object sender, EventArgs e) {
+
+		}
+	}
 }
