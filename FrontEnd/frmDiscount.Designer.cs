@@ -148,7 +148,7 @@
 			this.dataGridSelectItems.RowHeadersVisible = false;
 			this.dataGridSelectItems.RowHeadersWidth = 62;
 			this.dataGridSelectItems.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-			this.dataGridSelectItems.Size = new System.Drawing.Size(480, 349);
+			this.dataGridSelectItems.Size = new System.Drawing.Size(480, 284);
 			this.dataGridSelectItems.TabIndex = 7;
 			this.dataGridSelectItems.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridSelectItems_CellContentClick);
 			// 
@@ -264,7 +264,7 @@
 			this.panel3.Location = new System.Drawing.Point(517, 20);
 			this.panel3.Margin = new System.Windows.Forms.Padding(4);
 			this.panel3.Name = "panel3";
-			this.panel3.Size = new System.Drawing.Size(506, 471);
+			this.panel3.Size = new System.Drawing.Size(506, 406);
 			this.panel3.TabIndex = 19;
 			// 
 			// button_ApplyToItem
