@@ -63,7 +63,7 @@
 			this.btnExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.btnExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.btnExit.ForeColor = System.Drawing.Color.Red;
-			this.btnExit.Location = new System.Drawing.Point(1255, 434);
+			this.btnExit.Location = new System.Drawing.Point(1263, 434);
 			this.btnExit.Margin = new System.Windows.Forms.Padding(4);
 			this.btnExit.Name = "btnExit";
 			this.btnExit.Size = new System.Drawing.Size(179, 60);
@@ -134,6 +134,7 @@
 			this.dataGridSelectItems.AllowUserToResizeRows = false;
 			this.dataGridSelectItems.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+			this.dataGridSelectItems.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
 			this.dataGridSelectItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.dataGridSelectItems.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ItemNumber,
@@ -158,7 +159,6 @@
 			this.ItemNumber.Name = "ItemNumber";
 			this.ItemNumber.ReadOnly = true;
 			this.ItemNumber.Visible = false;
-			this.ItemNumber.Width = 200;
 			// 
 			// ItemDescription
 			// 
@@ -173,7 +173,6 @@
 			this.RegularPrice.HeaderText = "Regular Price";
 			this.RegularPrice.MinimumWidth = 8;
 			this.RegularPrice.Name = "RegularPrice";
-			this.RegularPrice.Width = 150;
 			// 
 			// Price
 			// 
@@ -181,7 +180,6 @@
 			this.Price.MinimumWidth = 8;
 			this.Price.Name = "Price";
 			this.Price.ReadOnly = true;
-			this.Price.Width = 150;
 			// 
 			// Discount
 			// 
@@ -189,7 +187,6 @@
 			this.Discount.MinimumWidth = 8;
 			this.Discount.Name = "Discount";
 			this.Discount.ReadOnly = true;
-			this.Discount.Width = 150;
 			// 
 			// panel1
 			// 
@@ -339,7 +336,7 @@
 			this.AutoSize = true;
 			this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
 			this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-			this.ClientSize = new System.Drawing.Size(1028, 514);
+			this.ClientSize = new System.Drawing.Size(1036, 514);
 			this.Controls.Add(this.button_Close);
 			this.Controls.Add(this.button_Clear);
 			this.Controls.Add(this.total_lbl);

@@ -599,6 +599,7 @@
 			// 
 			// DESCRIPTION
 			// 
+			this.DESCRIPTION.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
 			this.DESCRIPTION.FillWeight = 275F;
 			this.DESCRIPTION.HeaderText = "DESCRIPTION";
 			this.DESCRIPTION.MinimumWidth = 12;
