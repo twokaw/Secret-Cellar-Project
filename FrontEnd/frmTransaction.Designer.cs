@@ -599,13 +599,14 @@
 			// 
 			// DESCRIPTION
 			// 
-			this.DESCRIPTION.FillWeight = 200F;
+			this.DESCRIPTION.FillWeight = 275F;
 			this.DESCRIPTION.HeaderText = "DESCRIPTION";
 			this.DESCRIPTION.MinimumWidth = 12;
 			this.DESCRIPTION.Name = "DESCRIPTION";
 			// 
 			// QTY
 			// 
+			this.QTY.FillWeight = 80F;
 			this.QTY.HeaderText = "QTY";
 			this.QTY.MinimumWidth = 12;
 			this.QTY.Name = "QTY";
@@ -633,13 +634,14 @@
 			// 
 			// TAX
 			// 
+			this.TAX.FillWeight = 70F;
 			this.TAX.HeaderText = "TAX";
 			this.TAX.MinimumWidth = 12;
 			this.TAX.Name = "TAX";
 			// 
 			// BOTTLE_DEPOSIT
 			// 
-			this.BOTTLE_DEPOSIT.FillWeight = 200F;
+			this.BOTTLE_DEPOSIT.FillWeight = 170F;
 			this.BOTTLE_DEPOSIT.HeaderText = "BOTTLE DEPOSIT";
 			this.BOTTLE_DEPOSIT.MinimumWidth = 12;
 			this.BOTTLE_DEPOSIT.Name = "BOTTLE_DEPOSIT";
