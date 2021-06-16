@@ -1,15 +1,11 @@
-﻿using SecretCellar;
-using Shared;
+﻿using Shared;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web.UI.WebControls;
 using System.Windows.Forms;
+
+
 
 namespace SecretCellar
 {
@@ -20,6 +16,9 @@ namespace SecretCellar
         private List<Inventory> inventory = null;
         private List<Supplier> suppliers = null;
         private List<InventoryType> types = null;
+        private string descriptionAndBarcodeSearchText = "Enter Description/Barcode";
+
+
         public frmLookup(Transaction transaction)
         {
             lookUp = transaction;
@@ -80,13 +79,6 @@ namespace SecretCellar
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            //BindingSource dv = ((DataTable)LookupView.DataSource).DefaultView;
-            //dv.RowFilter = $"Description like '%{txtlookup.Text}%'";
-
-
-            //LookupView.DataSource = inventory.Where(x => x.Name.Contains(txtlookup.Text) || x.Barcode.Contains(txtlookup.Text)).
-            //    Select(x => new { Name = x.Name, Id = x.Id, ItemType = x.ItemType, Qty = x.Qty, Barcode = x.Barcode, Price = x.Price }).ToList();
-
             refresh();
         }
 
@@ -258,24 +250,6 @@ namespace SecretCellar
 
         }
 
-        private void refresh()
-        {
-            LookupView.DataSource = inventory.Where(x =>( x.Name.IndexOf(txtlookup.Text, StringComparison.OrdinalIgnoreCase) >= 0 || x.Barcode.IndexOf(txtlookup.Text, StringComparison.OrdinalIgnoreCase) >=0)
-            && (cbxTypeFilter.Text == "" || cbxTypeFilter.Text == x.ItemType) 
-            && (cbxSupplyFilter.Text == "" || suppliers.First (s => s.Name ==cbxSupplyFilter.Text).SupplierID == x.SupplierID) && x.Hidden == false).
-               Select(x => new { 
-                   Name = x.Name,
-                   Id = x.Id,
-                   ItemType = x.ItemType,
-                   Qty = x.Qty, Barcode = x.Barcode,
-                   Price = x.Price,
-                   minqty = x.InvMin,
-                   maxqty= x.InvMax,
-                   orderqty = x.OrderQty}).
-               OrderBy(x => x.Name).
-               ToList();
-        }
-
         private void btn_new_Click(object sender, EventArgs e)
         {
             if (LookupView.SelectedRows.Count > 0)
@@ -361,7 +335,10 @@ namespace SecretCellar
         {
             //WHEN THE CHECKBOX IS CHECKED CALL THE REFRESH CODE BUT ADD 'WHERE QTY DOES NOT EQUAL 0'
             if (cbxOnlyItemsWithInventory.Checked) {
-                LookupView.DataSource = inventory.Where(x => (x.Name.IndexOf(txtlookup.Text, StringComparison.OrdinalIgnoreCase) >= 0 || x.Barcode.IndexOf(txtlookup.Text, StringComparison.OrdinalIgnoreCase) >= 0)
+                LookupView.DataSource = inventory.Where(x => (x.Name.IndexOf(txtlookup.Text, StringComparison.OrdinalIgnoreCase) >= 0
+                                                        || x.Barcode.IndexOf(txtlookup.Text, StringComparison.OrdinalIgnoreCase) >= 0
+                                                        || txtlookup.Text == descriptionAndBarcodeSearchText
+                                                        || txtlookup.Text == "")
                 && (cbxTypeFilter.Text == "" || cbxTypeFilter.Text == x.ItemType)
                 && (cbxSupplyFilter.Text == "" || suppliers.First(s => s.Name == cbxSupplyFilter.Text).SupplierID == x.SupplierID)).
                     Select(x => new { Name = x.Name,
@@ -389,9 +366,12 @@ namespace SecretCellar
             //WHEN THE CHECKBOX IS CHECKED CALL THE REFRESH CODE BUT ADD 'WHERE QTY DOES NOT EQUAL 0'
             if (chk_box_show_hidden.Checked)
             {
-                LookupView.DataSource = inventory.Where(x => (x.Name.IndexOf(txtlookup.Text, StringComparison.OrdinalIgnoreCase) >= 0 || x.Barcode.IndexOf(txtlookup.Text, StringComparison.OrdinalIgnoreCase) >= 0)
+                LookupView.DataSource = inventory.Where(x => (x.Name.IndexOf(txtlookup.Text, StringComparison.OrdinalIgnoreCase) >= 0
+                                                        || x.Barcode.IndexOf(txtlookup.Text, StringComparison.OrdinalIgnoreCase) >= 0
+                                                        || txtlookup.Text == descriptionAndBarcodeSearchText)
                 && (cbxTypeFilter.Text == "" || cbxTypeFilter.Text == x.ItemType)
-                && (cbxSupplyFilter.Text == "" || suppliers.First(s => s.Name == cbxSupplyFilter.Text).SupplierID == x.SupplierID) && x.Hidden == true).
+                && (cbxSupplyFilter.Text == "" || suppliers.First(s => s.Name == cbxSupplyFilter.Text).SupplierID == x.SupplierID)
+                && x.Hidden == true).
                     Select(x => new {
                         Name = x.Name,
                         Id = x.Id,
@@ -433,7 +413,45 @@ namespace SecretCellar
         }
 
 		private void chk_hide_item_CheckedChanged(object sender, EventArgs e) {
-
+            if (chk_hide_item.Checked) {
+                //TODO need to search through the inventory to find the selected item and then set its hidden field to true
+            }
+            else {
+                //TODO Set the field to false
+			}
 		}
-	}
+
+		private void txtlookup_Enter(object sender, EventArgs e) {
+            if (txtlookup.Text == descriptionAndBarcodeSearchText) {
+                txtlookup.Text = "";
+            }
+        }
+
+		private void txtlookup_Leave(object sender, EventArgs e) {
+            if (string.IsNullOrEmpty(txtlookup.Text)) {
+                txtlookup.Text = descriptionAndBarcodeSearchText;
+            }
+        }
+
+        private void refresh() {
+            LookupView.DataSource = inventory.Where(x => (x.Name.IndexOf(txtlookup.Text, StringComparison.OrdinalIgnoreCase) >= 0
+                                                    || x.Barcode.IndexOf(txtlookup.Text, StringComparison.OrdinalIgnoreCase) >= 0
+                                                    || txtlookup.Text == descriptionAndBarcodeSearchText)
+            && (cbxTypeFilter.Text == "" || cbxTypeFilter.Text == x.ItemType)
+            && (cbxSupplyFilter.Text == "" || suppliers.First(s => s.Name == cbxSupplyFilter.Text).SupplierID == x.SupplierID)
+            && x.Hidden == false).
+               Select(x => new {
+                   Name = x.Name,
+                   Id = x.Id,
+                   ItemType = x.ItemType,
+                   Qty = x.Qty, Barcode = x.Barcode,
+                   Price = x.Price,
+                   minqty = x.InvMin,
+                   maxqty = x.InvMax,
+                   orderqty = x.OrderQty
+               }).
+               OrderBy(x => x.Name).
+               ToList();
+        }
+    }
 }
