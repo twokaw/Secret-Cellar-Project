@@ -37,6 +37,8 @@ namespace SecretCellar {
 			// 
 			this.dataGridView_CustomerList.AllowUserToAddRows = false;
 			this.dataGridView_CustomerList.AllowUserToDeleteRows = false;
+			this.dataGridView_CustomerList.AllowUserToResizeColumns = false;
+			this.dataGridView_CustomerList.AllowUserToResizeRows = false;
 			this.dataGridView_CustomerList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
 			this.dataGridView_CustomerList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.dataGridView_CustomerList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
