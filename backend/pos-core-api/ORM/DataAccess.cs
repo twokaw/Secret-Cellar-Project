@@ -51,6 +51,19 @@ namespace pos_core_api.ORM
             }
         }
 
+        private static CustomerOrderORM customerOrderORM = null;
+
+        public CustomerOrderORM CustomerOrder
+        {
+            get
+            {
+                if (customerOrderORM == null)
+                    customerOrderORM = new CustomerOrderORM();
+
+                return customerOrderORM;
+            }
+        }
+
         private static EventORM eventORM = null;
 
         public EventORM Event

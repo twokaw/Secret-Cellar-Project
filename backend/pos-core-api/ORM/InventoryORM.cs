@@ -156,6 +156,7 @@ namespace pos_core_api.ORM
                         LocalSalesTax = reader.IsDBNull("local_sales_tax") ? 0 : reader.GetDouble("local_sales_tax"),
                         InvMax = reader.IsDBNull("InvMax") ? 0 : reader.GetUInt32("InvMax"),
                         InvMin = reader.IsDBNull("InvMin") ? 0 : reader.GetUInt32("InvMin"),
+                        OrderIncrement = reader.GetUInt32("OrderIncrement"),
                         OrderQty = reader.IsDBNull("OrderQty") ? 0 : reader.GetUInt32("OrderQty")
                     };
                     output.Add(outputItem);

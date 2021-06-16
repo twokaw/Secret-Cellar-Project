@@ -1,33 +1,51 @@
 ﻿using MySql.Data.MySqlClient;
 using Shared;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using WebApi.Helpers;
 
 namespace pos_core_api.ORM
 {
-    public class CustomerORM
+    public class CustomerOrderORM
     {
         readonly DbConn db = new DbConn();
 
-        const string CUSTOMERSQL = @"
-              SELECT customerID, customer_discount, first_name, last_name,
-                     business_name, email, isWholesale, 
-                     addr1, addr2, city, state, zip, phone, credit, balancedue, suspendedtransactions       
-              FROM v_customerwithbalance
-            ";
+        const string CUSTOMERORDERSQL = @"
+        SELECT CustomerOrderItemID, 
+           CustomerOrderID,   
+	       Customer_Discount,
+           InventoryID, 
+	       name, 
+           OrderQTY, 
+           PaidAmount,  
+           Inventory_qty,
+           DeliverQTY,  
+           CustomerID,
+           RequestDate, 
+           DeliverDate, 
+           itemDeliverDate, 
+           First_name, 
+	       inventory_type_name,
+	       Last_name, 
+	       Business_name,
+	       isWholesale, 
+           OrderNote,
+           Bottle_Deposit
+        FROM  v_CustomerOrder
+        ";
 
-        public List<Customer> Get()
+        public List<CustomerOrder> Get()
         {
             db.OpenConnection();
 
 
-            MySqlCommand cmd = new MySqlCommand(CUSTOMERSQL, db.Connection());
+            MySqlCommand cmd = new MySqlCommand(CUSTOMERORDERSQL, db.Connection());
             MySqlDataReader reader = cmd.ExecuteReader();
 
             try
             {
-                return FetchCustomers(reader);
+                return FetchOrderCustomers(reader);
             }
             finally
             {
@@ -36,11 +54,11 @@ namespace pos_core_api.ORM
             }
         }
 
-        public Customer Get(uint customerID)
+        public CustomerOrder Get(uint customerID)
         {
             db.OpenConnection();
 
-            string sqlStatement = @$"{CUSTOMERSQL}
+            string sqlStatement = @$"{CUSTOMERORDERSQL}
               WHERE customerID = @custID
             ";
 
@@ -50,12 +68,12 @@ namespace pos_core_api.ORM
             try
             {
 
-                List<Customer> output = FetchCustomers(reader);
+                List<CustomerOrder> output = FetchOrderCustomers(reader);
 
                 if (output.Count > 0)
                     return output[0];
                 else
-                    return new Customer();
+                    return new CustomerOrder();
             }
             finally
             {
@@ -64,26 +82,26 @@ namespace pos_core_api.ORM
             }
         }
 
-        public Customer Get(string phone)
+        public CustomerOrder GetOrder(uint orderId)
         {
             db.OpenConnection();
 
-            string sqlStatement = @$"{CUSTOMERSQL}
-              WHERE phone = @phone
+            string sqlStatement = @$"{CUSTOMERORDERSQL}
+              WHERE CustomerOrderid = @orderId
             ";
 
             MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
-            cmd.Parameters.Add(new MySqlParameter("phone", phone));
+            cmd.Parameters.Add(new MySqlParameter("orderId", orderId));
             MySqlDataReader reader = cmd.ExecuteReader();
             try
             {
 
-                List<Customer> output = FetchCustomers(reader);
+                List<CustomerOrder> output = FetchOrderCustomers(reader);
 
                 if (output.Count > 0)
                     return output[0];
                 else
-                    return new Customer();
+                    return new CustomerOrder();
             }
             finally
             {
@@ -92,7 +110,7 @@ namespace pos_core_api.ORM
             }
         }
 
-        public long Insert(Customer cust)
+        public long Insert(CustomerOrder cust)
         {
             try
             {
@@ -211,30 +229,46 @@ namespace pos_core_api.ORM
             }
         }
 
-        private List<Customer> FetchCustomers(MySqlDataReader reader)
+        private List<CustomerOrder> FetchOrderCustomers(MySqlDataReader reader)
         {
-            List<Customer> output = new List<Customer>();
-
+            List<CustomerOrder> output = new List<CustomerOrder>();
+            CustomerOrder temp = null;
             while (reader.Read())
             {
-                output.Add(new Customer
+                if(temp == null || temp.CustomerOrderID != reader.GetUInt32("CustomerOrderID"))
                 {
-                    CustomerID = reader.IsDBNull("customerID") ? 0 : reader.GetUInt32("customerID"),
-                    CustomerDiscount = reader.IsDBNull("customer_discount") ? 0.0 : reader.GetDouble("customer_discount"),
-                    FirstName = reader.IsDBNull("first_name") ? "" : reader.GetString("first_name"),
-                    LastName = reader.IsDBNull("last_name") ? "" : reader.GetString("last_name"),
-                    BusinessName = reader.IsDBNull("business_name") ? "" : reader.GetString("business_name"),
-                    Email = reader.IsDBNull("email") ? "" : reader.GetString("email"),
-                    IsWholesale = !reader.IsDBNull("isWholesale") && reader.GetBoolean("isWholesale"),
-                    Address1 = reader.IsDBNull("addr1") ? "" : reader.GetString("addr1"),
-                    Address2 = reader.IsDBNull("addr2") ? "" : reader.GetString("addr2"),
-                    City = reader.IsDBNull("city") ? "" : reader.GetString("city"),
-                    State = reader.IsDBNull("state") ? "" : reader.GetString("state"),
-                    ZipCode = reader.IsDBNull("zip") ? "" : reader.GetString("zip"),
-                    PhoneNumber = reader.IsDBNull("phone") ? "" : reader.GetString("phone"),
-                    Credit = reader.IsDBNull("credit") ? 0.0 : reader.GetDouble("credit"),
-                    BalanceDue = reader.IsDBNull("balancedue") ? 0.0 : reader.GetDouble("balancedue"),
-                    SuspendedTransactions = reader.IsDBNull("suspendedtransactions") ? 0 : reader.GetUInt32("suspendedtransactions")
+                    temp = new CustomerOrder
+                    {
+                        CustomerID = reader.IsDBNull("customerID") ? 0 : reader.GetUInt32("customerID"),
+                        CustomerDiscount = reader.IsDBNull("customer_discount") ? 0.0 : reader.GetDouble("customer_discount"),
+                        FirstName = reader.IsDBNull("first_name") ? "" : reader.GetString("first_name"),
+                        LastName = reader.IsDBNull("last_name") ? "" : reader.GetString("last_name"),
+                        BusinessName = reader.IsDBNull("business_name") ? "" : reader.GetString("business_name"),
+                        IsWholesale = !reader.IsDBNull("isWholesale") && reader.GetBoolean("isWholesale"),
+                        CustomerOrderID = reader.IsDBNull("CustomerOrderID") ? 0 : reader.GetUInt32("CustomerOrderID"),
+                        DeliveryDate  = reader.IsDBNull("DeliverDate") ? DateTime.MinValue : reader.GetDateTime("DeliverDate"),
+                        OrderNote = reader.IsDBNull("OrderNote") ? "" : reader.GetString("OrderNote"),
+                        RequestDate = reader.IsDBNull("RequestDate") ? DateTime.MinValue : reader.GetDateTime("RequestDate"), 
+                        PaidAmount = reader.IsDBNull("PaidAmount") ? 0 : reader.GetDouble("PaidAmount")
+                    };
+
+                    output.Add(temp);
+                }
+
+                temp.Items.Add(new CustomerOrderItems
+                {
+                    DeliverDate = reader.IsDBNull("itemDeliverDate") ? DateTime.MinValue : reader.GetDateTime("itemDeliverDate"),
+                    DeliverQty = reader.IsDBNull("DeliverQty") ? 0 : reader.GetUInt32("DeliverQty"),
+                    BottleDeposit = reader.IsDBNull("Bottle_Deposit") ? 0 : reader.GetUInt32("Bottle_Deposit"),
+                    Name = reader.IsDBNull("name") ? "" : reader.GetString("name"),
+                    OrderQty = reader.IsDBNull("OrderQty") ? 0 : reader.GetUInt32("OrderQty"),
+                    Price = reader.IsDBNull("price") ? 0 : reader.GetDouble("price"),
+                    ItemType = reader.IsDBNull("inventory_type_name") ? "" : reader.GetString("inventory_type_name"),
+                    AllQty = new List<InventoryQty>
+                      { new InventoryQty 
+                        {
+                          Qty = reader.IsDBNull("Inventory_qty") ? 0 : reader.GetUInt32("Inventory_qty")
+                      } }
                 });
             }
             return output;

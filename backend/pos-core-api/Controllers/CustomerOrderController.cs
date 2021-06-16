@@ -8,15 +8,14 @@ namespace WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CustomerController : ControllerBase
+    public class CustomerOrderController : ControllerBase
     {
-        // Get: api/Customer
         [HttpGet]
         public IActionResult Get()
         {
             try
             {
-                List<Customer> output = DataAccess.Instance.Customer.Get();
+                List<Customer> output = DataAccess.Instance.CustomerOrder.Get();
                 return Ok(output);
             }
             catch(Exception ex)
@@ -32,7 +31,7 @@ namespace WebApi.Controllers
         {
             try
             {
-                return Ok(DataAccess.Instance.Customer.Get(customerID));
+                return Ok(DataAccess.Instance.CustomerOrder.Get(customerID));
             }
             catch (Exception ex)
             {
@@ -42,12 +41,12 @@ namespace WebApi.Controllers
         }
 
         // GET: api/Customer/Phone/{phone}
-        [HttpGet("Phone/{phone}")]
-        public IActionResult Get(string phone)
+        [HttpGet("Order/{order}")]
+        public IActionResult GetOrder(uint order)
         {
             try
             {
-                return Ok(DataAccess.Instance.Customer.Get(phone));
+                return Ok(DataAccess.Instance.CustomerOrder.Get(order));
             }
             catch (Exception ex)
             {
@@ -58,11 +57,11 @@ namespace WebApi.Controllers
 
         // POST: api/Customer
         [HttpPost]
-        public IActionResult Post([FromBody] Customer cust)
+        public IActionResult Post([FromBody] CustomerOrder cust)
         {
             try
             {
-               return Ok( DataAccess.Instance.Customer.Insert(cust));
+               return Ok( DataAccess.Instance.CustomerOrder.Insert(cust));
             }
             catch (Exception ex)
             {
@@ -73,11 +72,11 @@ namespace WebApi.Controllers
 
         // PUT: api/Customer/{custID}
         [HttpPut]
-        public IActionResult Put([FromBody] Customer cust)
+        public IActionResult Put([FromBody] CustomerOrder cust)
         {
             try
             {
-                if (DataAccess.Instance.Customer.Update(cust) > 0)
+                if (DataAccess.Instance.CustomerOrder.Update(cust) > 0)
                     return Ok();
                 else
                     return StatusCode(404);
@@ -95,7 +94,7 @@ namespace WebApi.Controllers
         {
             try
             {
-                DataAccess.Instance.Customer.Delete(custID);
+                DataAccess.Instance.CustomerOrder.Delete(custID);
                 return Ok();
             }
             catch (Exception ex)
