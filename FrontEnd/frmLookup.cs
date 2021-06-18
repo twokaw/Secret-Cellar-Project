@@ -28,18 +28,7 @@ namespace SecretCellar
             types = dataAccess.GetInventoryType();
             txtlookup.Focus();
 
-            LookupView.DataSource = inventory.
-                Select(x => new { Name = x.Name,
-                    Id = x.Id,
-                    ItemType = x.ItemType,
-                    Qty = x.Qty,
-                    Barcode = x.Barcode,
-                    Price = x.Price,
-                    minqty = x.InvMin,
-                    maxqty = x.InvMax,
-                    orderqty = x.OrderQty}).
-                OrderBy(x => x.Name).
-                ToList();
+            refresh();
 
             cbo_Supplier.DataSource = suppliers;
             cboType.DataSource = types;
@@ -333,66 +322,12 @@ namespace SecretCellar
 
         private void cbxOnlyItemsWithInventory_CheckedChanged(object sender, EventArgs e)
         {
-            //WHEN THE CHECKBOX IS CHECKED CALL THE REFRESH CODE BUT ADD 'WHERE QTY DOES NOT EQUAL 0'
-            if (cbxOnlyItemsWithInventory.Checked) {
-                LookupView.DataSource = inventory.Where(x => (x.Name.IndexOf(txtlookup.Text, StringComparison.OrdinalIgnoreCase) >= 0
-                                                        || x.Barcode.IndexOf(txtlookup.Text, StringComparison.OrdinalIgnoreCase) >= 0
-                                                        || txtlookup.Text == descriptionAndBarcodeSearchText
-                                                        || txtlookup.Text == "")
-                && (cbxTypeFilter.Text == "" || cbxTypeFilter.Text == x.ItemType)
-                && (cbxSupplyFilter.Text == "" || suppliers.First(s => s.Name == cbxSupplyFilter.Text).SupplierID == x.SupplierID)).
-                    Select(x => new { Name = x.Name,
-                        Id = x.Id,
-                        ItemType = x.ItemType,
-                        Qty = x.Qty,
-                        Barcode = x.Barcode,
-                        Price = x.Price,
-                        minqty = x.InvMin,
-                        maxqty = x.InvMax,
-                        orderqty = x.OrderQty}).
-                    Where(x => x.Qty != 0).
-                    OrderBy(x => x.Name).
-                    ToList();
-            }
-
-            //OTHERWISE JUST REFRESH LIKE NORMAL TO BRING ALL THE ITEMS IN
-            else {
-                refresh();
-			}
+            refresh();
 		}
 
         private void chk_box_show_hidden_CheckedChanged(object sender, EventArgs e)
         {
-            //WHEN THE CHECKBOX IS CHECKED CALL THE REFRESH CODE BUT ADD 'WHERE QTY DOES NOT EQUAL 0'
-            if (chk_box_show_hidden.Checked)
-            {
-                LookupView.DataSource = inventory.Where(x => (x.Name.IndexOf(txtlookup.Text, StringComparison.OrdinalIgnoreCase) >= 0
-                                                        || x.Barcode.IndexOf(txtlookup.Text, StringComparison.OrdinalIgnoreCase) >= 0
-                                                        || txtlookup.Text == descriptionAndBarcodeSearchText)
-                && (cbxTypeFilter.Text == "" || cbxTypeFilter.Text == x.ItemType)
-                && (cbxSupplyFilter.Text == "" || suppliers.First(s => s.Name == cbxSupplyFilter.Text).SupplierID == x.SupplierID)
-                && x.Hidden == true).
-                    Select(x => new {
-                        Name = x.Name,
-                        Id = x.Id,
-                        ItemType = x.ItemType,
-                        Qty = x.Qty,
-                        Barcode = x.Barcode,
-                        Price = x.Price,
-                        minqty = x.InvMin,
-                        maxqty = x.InvMax,
-                        orderqty = x.OrderQty
-                    }).
-
-                    OrderBy(x => x.Name).
-                    ToList();
-            }
-
-            //OTHERWISE JUST REFRESH LIKE NORMAL TO BRING ALL THE ITEMS IN
-            else
-            {
-                refresh();
-            }
+            refresh();
         }
 
         private void btn_clear_info_Click(object sender, EventArgs e)
@@ -434,17 +369,46 @@ namespace SecretCellar
         }
 
         private void refresh() {
-            LookupView.DataSource = inventory.Where(x => (x.Name.IndexOf(txtlookup.Text, StringComparison.OrdinalIgnoreCase) >= 0
-                                                    || x.Barcode.IndexOf(txtlookup.Text, StringComparison.OrdinalIgnoreCase) >= 0
-                                                    || txtlookup.Text == descriptionAndBarcodeSearchText)
+            //SEARCH FOR ITEMS WITH AN INVENTORY
+            if (cbxOnlyItemsWithInventory.Checked) {
+                LookupView.DataSource = inventory.Where(x => (x.Name.IndexOf(txtlookup.Text, StringComparison.OrdinalIgnoreCase) >= 0
+                                                        || x.Barcode.IndexOf(txtlookup.Text, StringComparison.OrdinalIgnoreCase) >= 0
+                                                        || txtlookup.Text == descriptionAndBarcodeSearchText
+                                                        || txtlookup.Text == "")
             && (cbxTypeFilter.Text == "" || cbxTypeFilter.Text == x.ItemType)
             && (cbxSupplyFilter.Text == "" || suppliers.First(s => s.Name == cbxSupplyFilter.Text).SupplierID == x.SupplierID)
-            && x.Hidden == false).
+            && x.Hidden == chk_box_show_hidden.Checked).
                Select(x => new {
                    Name = x.Name,
                    Id = x.Id,
                    ItemType = x.ItemType,
-                   Qty = x.Qty, Barcode = x.Barcode,
+                   Qty = x.Qty,
+                   Barcode = x.Barcode,
+                   Price = x.Price,
+                   minqty = x.InvMin,
+                   maxqty = x.InvMax,
+                   orderqty = x.OrderQty
+               }).
+               Where(x => x.Qty != 0).
+               OrderBy(x => x.Name).
+               ToList();
+            }
+
+            //ELSE SEARCH FOR ITEMS NORMALLY
+            else {
+                LookupView.DataSource = inventory.Where(x => (x.Name.IndexOf(txtlookup.Text, StringComparison.OrdinalIgnoreCase) >= 0
+                                                        || x.Barcode.IndexOf(txtlookup.Text, StringComparison.OrdinalIgnoreCase) >= 0
+                                                        || txtlookup.Text == descriptionAndBarcodeSearchText
+                                                        || txtlookup.Text == "")
+            && (cbxTypeFilter.Text == "" || cbxTypeFilter.Text == x.ItemType)
+            && (cbxSupplyFilter.Text == "" || suppliers.First(s => s.Name == cbxSupplyFilter.Text).SupplierID == x.SupplierID)
+            && x.Hidden == chk_box_show_hidden.Checked).
+               Select(x => new {
+                   Name = x.Name,
+                   Id = x.Id,
+                   ItemType = x.ItemType,
+                   Qty = x.Qty,
+                   Barcode = x.Barcode,
                    Price = x.Price,
                    minqty = x.InvMin,
                    maxqty = x.InvMax,
@@ -452,6 +416,7 @@ namespace SecretCellar
                }).
                OrderBy(x => x.Name).
                ToList();
+            }
         }
     }
 }
