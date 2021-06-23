@@ -27,7 +27,8 @@ namespace SecretCellar
         public string printTotal;
         //private List<Customer> customers = DataAccess.instance.GetCustomer();
         Transaction SelectTransaction = null;
-        //private List<Customer> cust = null;
+        private List<Customer> cust = null;
+        private List<Customer> wholeCust = null;
         Transaction items = new Transaction();
 
         private PrintPreviewDialog printPreviewDialog1 = new PrintPreviewDialog();
@@ -48,16 +49,27 @@ namespace SecretCellar
                 SupplierID = 0
             });
             transaction_history = dataAccess.GetTransactions();
-            //cust = dataAccess.GetCustomer();
+
+            //get wholesale customer list
+            cust = dataAccess.GetCustomer();
+            wholeCust = cust.Where(x => x.IsWholesale == true).
+                OrderBy(x => x.LastName).
+                ToList();
+            // wholesale customer list end
+
             txt_update_qty.Focus();
             cbx_supplier.DataSource = suppliers;
             cbx_supplier.DisplayMember = "Name";
             lst_customer.DataSource = DataAccess.instance?.GetCustomer();
             lst_customer.DisplayMember = "FullName";
+            cbx_wholsale_supp.DataSource = suppliers;
+            cbx_wholsale_supp.DisplayMember = "Name";
+            cbx_whole_cust.DataSource = wholeCust;
+            cbx_whole_cust.DisplayMember = "FullName";
 
             lstbox_customer.DataSource = DataAccess.instance?.GetCustomer();
             lstbox_customer.DisplayMember = "FullName";
-            supp_dataGrid.Columns[5].DefaultCellStyle.Format = "C"; // works when cell 3 selected but not working when correct cell 4 is used
+            supp_dataGrid.Columns[5].DefaultCellStyle.Format = "C";
             orderTotal();
 
             supp_dataGrid.DataSource = inventory.
@@ -429,6 +441,8 @@ namespace SecretCellar
         }
 
         //wholesale tab
+
+
 
     }
 }
