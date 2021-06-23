@@ -63,7 +63,7 @@ namespace pos_core_api.Controllers
         [HttpPost]
         public IActionResult Post([FromBody] Event evt)
         {
-            try
+            try 
             {
                 return Ok(DataAccess.Instance.Event.Insert(evt));
             }

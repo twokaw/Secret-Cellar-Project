@@ -279,6 +279,7 @@
     <Compile Include="AuthenticateModel.cs" />
     <Compile Include="BaseItem.cs" />
     <Compile Include="CustomerNote.cs" />
+    <Compile Include="CustomerOrder.cs" />
     <Compile Include="ErrorLogging.cs" />
     <Compile Include="EventWaitlistItem.cs" />
     <Compile Include="Event.cs" />

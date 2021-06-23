@@ -354,6 +354,45 @@ namespace SecretCellar
         }
         #endregion
 
+        #region CustomerOrder
+        public List<CustomerOrder> GetCustomerOrder(uint typeId = 0)
+        {
+            string result = web.DataGet($"api/CustomerOrder?typeID={typeId}");
+            return JsonConvert.DeserializeObject<List<CustomerOrder>>(result);
+        }
+
+        public List<CustomerOrder> GetCustomerOrder(uint customerID, uint typeId = 0)
+        {
+            string result = web.DataGet($"api/CustomerOrder/{customerID}?typeID={typeId}");
+            return JsonConvert.DeserializeObject<List<CustomerOrder>>(result);
+        }
+
+        public uint UpdateCustomerOrder(CustomerOrder customerOrder)
+        {
+            Response resp = null;
+            string result = web.DataPut($"api/CustomerOrder", customerOrder, resp);
+            if (uint.TryParse(result, out uint id))
+                return id;
+            else
+                return 0;
+        }
+
+        public uint NewCustomerOrder(CustomerOrder customerOrder)
+        {
+            Response resp = null;
+            string result = web.DataPost($"api/CustomerOrder", customerOrder, resp);
+            if (uint.TryParse(result, out uint id))
+                return id;
+            else
+                return 0;
+        }
+        public void DeleteCustomerOrder(CustomerOrder customerOrder)
+        {
+            try { web.DataDelete($"api/CustomerOrdere/{customerOrder.CustomerOrderID}"); }
+            catch (Exception ex) { LogError(ex, "DeleteCustomerOrder"); }
+        }
+
+        #endregion
         #region NoteType
         public List<NoteType> GetNotesTypes()
         {
@@ -678,7 +717,7 @@ namespace SecretCellar
         }
 #endregion
 
-        public void openCashDrawer() {
+        public void OpenCashDrawer() {
             try {
                 if (SerialPort.GetPortNames().Contains(Properties.Settings.Default.CashDrawerPort))
                     new CashDrawer(Properties.Settings.Default.CashDrawerPort).OpenDrawer();
