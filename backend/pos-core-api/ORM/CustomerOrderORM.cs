@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using WebApi.Helpers;
+using System.Linq;
 
 namespace pos_core_api.ORM
 {
@@ -192,7 +193,18 @@ namespace pos_core_api.ORM
                     cmd.Parameters.Add(new MySqlParameter("DeliverQTY", i.DeliverQty));
                     cmd.Parameters.Add(new MySqlParameter("Deliverdate", i.DeliverDate));
                     cmd.Parameters.Add(new MySqlParameter("OrderItemID", i.CustomerOrderItemID ));
+                    cmd.ExecuteNonQuery();
                 }
+
+                cmd = new MySqlCommand(@$"
+                     DELETE FROM  customerorderitem
+                     WHERE CustomerOrderID = @CustomerOrderID
+                     AND NOT InventoryID IN ('{ string.Join("','",cust.Items.Select(x=> x.Id).ToArray())}')
+                    ", db.Connection());
+
+                cmd.Parameters.Add(new MySqlParameter("CustomerOrderID", cust.CustomerOrderID));
+                cmd.ExecuteNonQuery();
+
                 return cust.CustomerOrderID;
             }
             finally
@@ -201,39 +213,18 @@ namespace pos_core_api.ORM
             }
         }
 
-        public void Delete(uint custID)
+        public void Delete(uint custOrdID)
         {
             db.OpenConnection();
             try
             {
                 string sqlStatementDesc = @"
-                  DELETE FROM customer 
-                  WHERE customerID = @CustID
+                  DELETE FROM customerOrder 
+                  WHERE CustomerOrderID = @CustID
                 ";
 
                 MySqlCommand cmd = new MySqlCommand(sqlStatementDesc, db.Connection());
-                cmd.Parameters.Add(new MySqlParameter("custID", custID));
-                cmd.ExecuteNonQuery();
-            }
-            finally
-            {
-                db.CloseConnnection();
-            }
-        }
-        public void AddCredit(uint custID, double amount)
-        {
-            db.OpenConnection();
-            try
-            {
-                string sqlStatementDesc = @"
-                  UPDATE customer 
-                  SET Credit = IFNULL(Credit, 0) - @amount
-                  WHERE customerID = @CustID
-                ";
-
-                MySqlCommand cmd = new MySqlCommand(sqlStatementDesc, db.Connection());
-                cmd.Parameters.Add(new MySqlParameter("custID", custID));
-                cmd.Parameters.Add(new MySqlParameter("amount", amount));
+                cmd.Parameters.Add(new MySqlParameter("custID", custOrdID));
                 cmd.ExecuteNonQuery();
             }
             finally
@@ -275,7 +266,8 @@ namespace pos_core_api.ORM
                     BottleDeposit = reader.IsDBNull("Bottle_Deposit") ? 0 : reader.GetUInt32("Bottle_Deposit"),
                     Name = reader.IsDBNull("name") ? "" : reader.GetString("name"),
                     OrderQty = reader.IsDBNull("OrderQty") ? 0 : reader.GetUInt32("OrderQty"),
-                  //  Price = reader.IsDBNull("price") ? 0 : reader.GetDouble("price"),
+                    Id = reader.IsDBNull("InventoryID") ? 0 : reader.GetUInt32("InventoryID"),
+                    Price = reader.IsDBNull("retail_price") ? 0 : reader.GetDouble("retail_price"),
                     ItemType = reader.IsDBNull("inventory_type_name") ? "" : reader.GetString("inventory_type_name"),
                     AllQty = new List<InventoryQty>
                       { new InventoryQty 
