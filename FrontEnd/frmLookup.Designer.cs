@@ -475,7 +475,6 @@
 			this.chk_hide_item.TabIndex = 6;
 			this.chk_hide_item.Text = "Hide Item";
 			this.chk_hide_item.UseVisualStyleBackColor = true;
-			this.chk_hide_item.CheckedChanged += new System.EventHandler(this.chk_hide_item_CheckedChanged);
 			// 
 			// lbl_max_qty
 			// 
@@ -598,6 +597,7 @@
 			this.Id.MinimumWidth = 8;
 			this.Id.Name = "Id";
 			this.Id.ReadOnly = true;
+			this.Id.Visible = false;
 			// 
 			// Description
 			// 

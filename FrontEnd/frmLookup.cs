@@ -16,7 +16,6 @@ namespace SecretCellar
         private List<Inventory> inventory = null;
         private List<Supplier> suppliers = null;
         private List<InventoryType> types = null;
-        private Inventory selectedInventoryItem = null;
         private string descriptionAndBarcodeSearchText = "Enter Description/Barcode";
 
 
@@ -29,8 +28,6 @@ namespace SecretCellar
             types = dataAccess.GetInventoryType();
             txtlookup.Focus();
 
-            LookupView.Columns["Id"].Visible = false;
-
             refresh();
 
             cbo_Supplier.DataSource = suppliers;
@@ -39,7 +36,6 @@ namespace SecretCellar
             cbxSupplyFilter.Items.AddRange((string[])suppliers.Select(x => x.Name).ToArray());
             cbxTypeFilter.Items.Add("");
             cbxTypeFilter.Items.AddRange((string[])types.Select(x => x.TypeName).ToArray());
-            
         }
 
         private void btn_add_Click(object sender, EventArgs e)
@@ -92,8 +88,6 @@ namespace SecretCellar
                 txt_max_qty.Text = i.InvMax.ToString();
                 txt_order_qty.Text = i.OrderQty.ToString();
                 chk_hide_item.Checked = i.Hidden;
-
-                selectedInventoryItem = i;
 
                 //CLEAR ALL THE DISCOUNTS THAT ARE IN THE DISCOUNTS LIST ALREADY
                 checkListBox_Discounts.Items.Clear();
@@ -237,8 +231,8 @@ namespace SecretCellar
                 i.TypeID = types.First(x => x.TypeName == cboType.Text).TypeId;
                 i.SupplierID = suppliers.First(x => x.Name == cbo_Supplier.Text).SupplierID;
                 dataAccess.UpdateItem(i);
+
                 refresh();
-                chk_box_show_hidden.Checked = false;
             }
 
         }
@@ -350,21 +344,6 @@ namespace SecretCellar
             chk_hide_item.Checked = false;
             txtName.Focus();
         }
-
-		private void chk_hide_item_CheckedChanged(object sender, EventArgs e) {
-            if (LookupView.SelectedRows.Count > 0) {
-                if (chk_hide_item.Checked) {
-                    selectedInventoryItem.Hidden = true;
-                }
-                else {
-                    selectedInventoryItem.Hidden = false;
-                }
-
-                DataAccess.instance.UpdateItem(selectedInventoryItem);
-
-                refresh();
-            }
-		}
 
 		private void txtlookup_Enter(object sender, EventArgs e) {
             if (txtlookup.Text == descriptionAndBarcodeSearchText) {
