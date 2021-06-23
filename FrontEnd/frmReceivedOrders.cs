@@ -85,6 +85,7 @@ namespace SecretCellar
                     else
                     {
                         i.AllQty[0].Qty += order;
+                        i.AllQty[0].PurchasedDate = DateTime.Now;
                     }
                 }
                 else
@@ -148,6 +149,7 @@ namespace SecretCellar
                 Inventory i = inventory.First(x => x.Id == uint.Parse(row.Cells["id"].Value.ToString()));
                 i.AllQty[0].Qty += uint.Parse(row.Cells["OrderQty"].Value.ToString());
                 i.OrderQty = 0;
+                i.AllQty[0].PurchasedDate = DateTime.Now;
                 dataAccess.UpdateItem(i);
                
             }
