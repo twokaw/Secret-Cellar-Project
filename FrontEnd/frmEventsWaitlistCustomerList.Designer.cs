@@ -37,6 +37,8 @@ namespace SecretCellar {
 			// 
 			this.dataGridView_CustomerList.AllowUserToAddRows = false;
 			this.dataGridView_CustomerList.AllowUserToDeleteRows = false;
+			this.dataGridView_CustomerList.AllowUserToResizeColumns = false;
+			this.dataGridView_CustomerList.AllowUserToResizeRows = false;
 			this.dataGridView_CustomerList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
 			this.dataGridView_CustomerList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.dataGridView_CustomerList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -69,7 +71,7 @@ namespace SecretCellar {
 			this.textBox_CustomerName.Location = new System.Drawing.Point(12, 12);
 			this.textBox_CustomerName.Name = "textBox_CustomerName";
 			this.textBox_CustomerName.Size = new System.Drawing.Size(373, 20);
-			this.textBox_CustomerName.TabIndex = 1;
+			this.textBox_CustomerName.TabIndex = 2;
 			this.textBox_CustomerName.Text = "Search for customer";
 			this.textBox_CustomerName.TextChanged += new System.EventHandler(this.textBox_CustomerName_TextChanged);
 			this.textBox_CustomerName.Enter += new System.EventHandler(this.textBox_CustomerName_Enter);
@@ -83,7 +85,7 @@ namespace SecretCellar {
 			this.button_CloseWindow.Margin = new System.Windows.Forms.Padding(1);
 			this.button_CloseWindow.Name = "button_CloseWindow";
 			this.button_CloseWindow.Size = new System.Drawing.Size(180, 55);
-			this.button_CloseWindow.TabIndex = 3;
+			this.button_CloseWindow.TabIndex = 1;
 			this.button_CloseWindow.Text = "CLOSE WINDOW";
 			this.button_CloseWindow.UseVisualStyleBackColor = true;
 			this.button_CloseWindow.Click += new System.EventHandler(this.button_CloseWindow_Click);
@@ -96,7 +98,7 @@ namespace SecretCellar {
 			this.button_SelectCustomer.Margin = new System.Windows.Forms.Padding(1);
 			this.button_SelectCustomer.Name = "button_SelectCustomer";
 			this.button_SelectCustomer.Size = new System.Drawing.Size(180, 55);
-			this.button_SelectCustomer.TabIndex = 4;
+			this.button_SelectCustomer.TabIndex = 3;
 			this.button_SelectCustomer.Text = "SELECT CUSTOMER";
 			this.button_SelectCustomer.UseVisualStyleBackColor = true;
 			this.button_SelectCustomer.Click += new System.EventHandler(this.button_SelectCustomer_Click);
@@ -105,7 +107,7 @@ namespace SecretCellar {
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.BackColor = System.Drawing.SystemColors.ControlDark;
+			this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
 			this.ClientSize = new System.Drawing.Size(397, 320);
 			this.Controls.Add(this.button_CloseWindow);
 			this.Controls.Add(this.button_SelectCustomer);

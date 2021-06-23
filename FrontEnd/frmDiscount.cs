@@ -9,7 +9,10 @@ namespace SecretCellar
     public partial class frmDiscount : ManagedForm
     {
         public Transaction transaction = null;
- 
+        private List<int> selectedRows = new List<int>();
+
+
+
         public frmDiscount(Transaction items)
         {
             InitializeComponent();
@@ -23,25 +26,7 @@ namespace SecretCellar
         {
             this.Show();
         }
-
-        private void btnReset_Click(object sender, EventArgs e)
-        {
-            txtFixedDiscount.Text = "0";
-            txtPercentLineItem.Text = "0";
-            txtPercentTotalSale.Text = (transaction.Discount*100).ToString();
-            resetselectItemDiscount();
-            //percent_discount();
-            txtFixedDiscount.Text = "";
-            populate();
-        }
-
-        private void btnApplyDiscount_Click(object sender, EventArgs e)
-        {
-            transaction.Discount = Convert.ToDouble(txtPercentTotalSale.Text) / 100;
-            populate();
-        }
-
-        private List<int> selectedRows = new List<int>();
+        
         private void dataGridSelectItems_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (selectedRows.Contains(e.RowIndex))
@@ -74,11 +59,6 @@ namespace SecretCellar
             }
         }
 
-        private void btnApplyToItem_Click(object sender, EventArgs e)
-        {
-            selectItemDiscount();
-        }
-
         public void selectItemDiscount()
         {
             //double currentdis = transaction.Discount;
@@ -108,6 +88,7 @@ namespace SecretCellar
                 //txt_discountTotal.Text = transaction.DiscountTotal.ToString("c");
             }
         }
+
         public void percent_discount()
         {
             //double curdis = transaction.Discount;
@@ -144,6 +125,7 @@ namespace SecretCellar
             //transaction.Discount = discount_total + curdis;
             txt_discountTotal.Text = discount_total.ToString("c");
         }
+
         public void coupons_discount()
         {
             if (double.TryParse(txtFixedDiscount.Text, out double d))
@@ -160,6 +142,7 @@ namespace SecretCellar
             }
             populate();
         }
+
         private void txtPercentTotalSale_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsDigit(e.KeyChar))
@@ -184,16 +167,38 @@ namespace SecretCellar
                 e.Handled = true;
         }
 
-        private void coupon_btn_Click(object sender, EventArgs e)
+        private void txtPercentTotalSale_Click(object sender, EventArgs e)
         {
+            txtPercentTotalSale.SelectAll();
+        }
+
+		private void btn_ApplyDiscount_Click(object sender, EventArgs e) {
+            transaction.Discount = Convert.ToDouble(txtPercentTotalSale.Text) / 100;
+            populate();
+        }
+
+		private void button_Coupon_Click(object sender, EventArgs e) {
             coupons_discount();
             txtFixedDiscount.Clear();
             populate();
         }
 
-        private void txtPercentTotalSale_Click(object sender, EventArgs e)
-        {
-            txtPercentTotalSale.SelectAll();
+		private void button_Clear_Click(object sender, EventArgs e) {
+            txtFixedDiscount.Text = "0";
+            txtPercentLineItem.Text = "0";
+            txtPercentTotalSale.Text = (transaction.Discount * 100).ToString();
+            resetselectItemDiscount();
+            //percent_discount();
+            txtFixedDiscount.Text = "";
+            populate();
         }
-    }
+
+		private void button_ApplyToItem_Click(object sender, EventArgs e) {
+            selectItemDiscount();
+        }
+
+		private void button_Close_Click(object sender, EventArgs e) {
+            this.Close();
+		}
+	}
 }

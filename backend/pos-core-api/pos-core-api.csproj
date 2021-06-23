@@ -18,7 +18,7 @@
   <ItemGroup>
     <PackageReference Include="DocumentFormat.OpenXml" Version="2.13.0" />
     <PackageReference Include="IPrint" Version="1.0.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.6" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.7" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
     <PackageReference Include="MySql.Data" Version="8.0.25" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />

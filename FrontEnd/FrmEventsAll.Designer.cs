@@ -39,6 +39,8 @@ namespace SecretCellar {
 			// 
 			this.dataGridView_Events.AllowUserToAddRows = false;
 			this.dataGridView_Events.AllowUserToDeleteRows = false;
+			this.dataGridView_Events.AllowUserToResizeColumns = false;
+			this.dataGridView_Events.AllowUserToResizeRows = false;
 			this.dataGridView_Events.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
 			this.dataGridView_Events.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.dataGridView_Events.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -121,7 +123,7 @@ namespace SecretCellar {
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.BackColor = System.Drawing.SystemColors.ControlDark;
+			this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
 			this.ClientSize = new System.Drawing.Size(573, 393);
 			this.Controls.Add(this.button_DeleteEvent);
 			this.Controls.Add(this.button_CloseWindow);

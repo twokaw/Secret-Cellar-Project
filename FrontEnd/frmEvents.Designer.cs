@@ -55,6 +55,8 @@
 			// 
 			this.dataGridView_Events.AllowUserToAddRows = false;
 			this.dataGridView_Events.AllowUserToDeleteRows = false;
+			this.dataGridView_Events.AllowUserToResizeColumns = false;
+			this.dataGridView_Events.AllowUserToResizeRows = false;
 			this.dataGridView_Events.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
 			this.dataGridView_Events.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.dataGridView_Events.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -245,7 +247,7 @@
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-			this.BackColor = System.Drawing.SystemColors.ControlDark;
+			this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
 			this.ClientSize = new System.Drawing.Size(869, 636);
 			this.Controls.Add(this.button_WaitList);
 			this.Controls.Add(this.button_EditEvent);
