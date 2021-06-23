@@ -60,7 +60,6 @@
 			// 
 			// LB_EnterAmt
 			// 
-			this.LB_EnterAmt.AutoSize = true;
 			this.LB_EnterAmt.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.LB_EnterAmt.Location = new System.Drawing.Point(17, 19);
 			this.LB_EnterAmt.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
