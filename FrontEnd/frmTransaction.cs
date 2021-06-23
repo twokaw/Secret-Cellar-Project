@@ -95,7 +95,7 @@ namespace SecretCellar
         private void Tender()
         {
             if (transaction.Items.Count == 0)
-                DataAccess.instance.openCashDrawer();
+                DataAccess.instance.OpenCashDrawer();
             else
             {
                 frmPayment payment = new frmPayment(transaction);
@@ -112,7 +112,7 @@ namespace SecretCellar
                     }
 
                     if (transaction.Payments.FirstOrDefault(x => x.Method == "CASH" || x.Method == "CHECK") != null)
-                        DataAccess.instance.openCashDrawer();
+                        DataAccess.instance.OpenCashDrawer();
 
                     if (payment.PrintReceipt)
                     {

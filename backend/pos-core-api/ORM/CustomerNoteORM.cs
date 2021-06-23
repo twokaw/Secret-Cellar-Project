@@ -5,10 +5,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebApi.Helpers;
+using pos_core_api.IORM;
 
 namespace pos_core_api.ORM
 {
-    public class CustomerNoteORM
+    public class CustomerNoteORM: ICustomerNoteORM
     {
         readonly DbConn db = new DbConn();
 

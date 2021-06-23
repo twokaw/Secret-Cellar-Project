@@ -45,7 +45,7 @@ namespace SecretCellar {
 			DataAccess.instance.ProcessTransaction(transaction);
 
 			//OPEN THE DRAWER
-			DataAccess.instance.openCashDrawer();
+			DataAccess.instance.OpenCashDrawer();
 
 			//HIDE AND CLOSE THE SELECTION FORM
 			this.Visible = false;

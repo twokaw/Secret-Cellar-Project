@@ -15,7 +15,7 @@ namespace WebApi.Controllers
         {
             try
             {
-                List<Customer> output = DataAccess.Instance.CustomerOrder.Get();
+                List<CustomerOrder> output = DataAccess.Instance.CustomerOrder.Get();
                 return Ok(output);
             }
             catch(Exception ex)
@@ -25,7 +25,6 @@ namespace WebApi.Controllers
             }
         }
 
-        // GET: api/Customer/ID
         [HttpGet("{customerID}")]
         public IActionResult Get(uint customerID)
         {
@@ -40,7 +39,6 @@ namespace WebApi.Controllers
             }
         }
 
-        // GET: api/Customer/Phone/{phone}
         [HttpGet("Order/{order}")]
         public IActionResult GetOrder(uint order)
         {
@@ -55,7 +53,6 @@ namespace WebApi.Controllers
             }
         }
 
-        // POST: api/Customer
         [HttpPost]
         public IActionResult Post([FromBody] CustomerOrder cust)
         {
@@ -70,7 +67,6 @@ namespace WebApi.Controllers
             }
         }
 
-        // PUT: api/Customer/{custID}
         [HttpPut]
         public IActionResult Put([FromBody] CustomerOrder cust)
         {

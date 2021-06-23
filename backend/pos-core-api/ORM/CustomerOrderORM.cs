@@ -12,26 +12,7 @@ namespace pos_core_api.ORM
         readonly DbConn db = new DbConn();
 
         const string CUSTOMERORDERSQL = @"
-        SELECT CustomerOrderItemID, 
-           CustomerOrderID,   
-	       Customer_Discount,
-           InventoryID, 
-	       name, 
-           OrderQTY, 
-           PaidAmount,  
-           Inventory_qty,
-           DeliverQTY,  
-           CustomerID,
-           RequestDate, 
-           DeliverDate, 
-           itemDeliverDate, 
-           First_name, 
-	       inventory_type_name,
-	       Last_name, 
-	       Business_name,
-	       isWholesale, 
-           OrderNote,
-           Bottle_Deposit
+        SELECT *
         FROM  v_CustomerOrder
         ";
 
@@ -112,75 +93,107 @@ namespace pos_core_api.ORM
 
         public long Insert(CustomerOrder cust)
         {
+            long CustomerOrderID = 0;
+
             try
             {
                 db.OpenConnection();
 
-                string sqlStatementDesc = @"
-                  INSERT INTO customer 
-                  (customer_discount, first_name, last_name, business_name, email, isWholesale, addr1, addr2, city, state, zip, phone, credit)
-                  VALUES 
-                  (@customerDiscount, @firstName, @lastName, @businessName, @email, @isWholesale, @addr1, @addr2, @city, @state, @zip, @phone, @credit)
-                ";
-                MySqlCommand cmd = new MySqlCommand(sqlStatementDesc, db.Connection());
-                cmd.Parameters.Add(new MySqlParameter("customerDiscount", cust.CustomerDiscount));
-                cmd.Parameters.Add(new MySqlParameter("firstName", cust.FirstName));
-                cmd.Parameters.Add(new MySqlParameter("lastName", cust.LastName));
-                cmd.Parameters.Add(new MySqlParameter("businessName", cust.BusinessName));
-                cmd.Parameters.Add(new MySqlParameter("email", cust.Email));
-                cmd.Parameters.Add(new MySqlParameter("isWholesale", cust.IsWholesale));
-                cmd.Parameters.Add(new MySqlParameter("addr1", cust.Address1));
-                cmd.Parameters.Add(new MySqlParameter("addr2", cust.Address2));
-                cmd.Parameters.Add(new MySqlParameter("city", cust.City));
-                cmd.Parameters.Add(new MySqlParameter("state", cust.State));
-                cmd.Parameters.Add(new MySqlParameter("zip", cust.ZipCode));
-                cmd.Parameters.Add(new MySqlParameter("phone", cust.PhoneNumber));
-                cmd.Parameters.Add(new MySqlParameter("credit", cust.Credit));
+                 MySqlCommand cmd = new MySqlCommand(@"
+                  INSERT INTO customerorder
+                  (CustomerID, InvoiceAmount, PaidAmount, RequestDate, DeliverDate, OrderNote)
+                  VALUES
+                  (@CustomerID, @InvoiceAmount, @PaidAmount, @RequestDate, @DeliverDate, @OrderNote)
+                ", db.Connection());
+                cmd.Parameters.Add(new MySqlParameter("CustomerID", cust.CustomerID));
+                cmd.Parameters.Add(new MySqlParameter("InvoiceAmount", cust.InvoiceAmount));
+                cmd.Parameters.Add(new MySqlParameter("PaidAmount", cust.PaidAmount));
+                cmd.Parameters.Add(new MySqlParameter("RequestDate", cust.RequestDate));
+                cmd.Parameters.Add(new MySqlParameter("DeliverDate", cust.DeliveryDate ));
+                cmd.Parameters.Add(new MySqlParameter("OrderNote", cust.OrderNote));
 
                 cmd.ExecuteNonQuery();
 
-                return cmd.LastInsertedId;
+                CustomerOrderID = cmd.LastInsertedId;
+
+                foreach(CustomerOrderItem i in cust.Items)
+                {
+                    cmd = new MySqlCommand(@"
+                     INSERT INTO customerorderitem
+                      (CustomerOrderID, InventoryID, OrderQTY, DeliverQTY, Deliverdate)
+                     VALUES
+                      (@CustomerOrderID, @InventoryID, @OrderQTY, @DeliverQTY, @Deliverdate)
+                    ", db.Connection());
+
+                    cmd.Parameters.Add(new MySqlParameter("CustomerOrderID", CustomerOrderID));
+                    cmd.Parameters.Add(new MySqlParameter("InventoryID", i.Id));
+                    cmd.Parameters.Add(new MySqlParameter("OrderQTY", i.OrderQty));
+                    cmd.Parameters.Add(new MySqlParameter("DeliverQTY", i.DeliverQty));
+                    cmd.Parameters.Add(new MySqlParameter("Deliverdate", i.DeliverDate));
+
+                    cmd.ExecuteNonQuery();
+                }
+                return CustomerOrderID;
             }
             finally
             {
                 db.CloseConnnection();
             }
         }
-        public long Update(Customer cust)
+        public long Update(CustomerOrder cust)
         {
+           
             db.OpenConnection();
-
             try
             {
                 string sqlStatementDesc = @"
-                 UPDATE customer 
-                 SET customer_discount = @customerDiscount, first_name = @firstName,
-                     last_name = @lastName, business_name = @businessName,
-                     email = @email, isWholesale = @isWholesale,
-                     addr1 = @addr1, addr2 = @addr2, 
-                     city = @city, state = @state, 
-                     zip = @zip, phone = @phone,
-                     credit = @credit
-                 WHERE customerID = @custID
+                  INSERT INTO customerorder
+                  (CustomerOrderID, CustomerID, InvoiceAmount, PaidAmount, RequestDate, DeliverDate, OrderNote)
+                  VALUES
+                  (@CustomerOrderID, @CustomerID, @InvoiceAmount, @PaidAmount, @RequestDate, @DeliverDate, @OrderNote)
+                  ON DUPLICATE KEY UPDATE
+                      CustomerID    = @CustomerID, 
+                      InvoiceAmount = @InvoiceAmount, 
+                      PaidAmount    = @PaidAmount, 
+                      RequestDate   = @RequestDate, 
+                      DeliverDate   = @DeliverDate, 
+                      OrderNote     = @OrderNote
                 ";
 
                 MySqlCommand cmd = new MySqlCommand(sqlStatementDesc, db.Connection());
-                cmd.Parameters.Add(new MySqlParameter("customerDiscount", cust.CustomerDiscount));
-                cmd.Parameters.Add(new MySqlParameter("firstName", cust.FirstName));
-                cmd.Parameters.Add(new MySqlParameter("lastName", cust.LastName));
-                cmd.Parameters.Add(new MySqlParameter("businessName", cust.BusinessName));
-                cmd.Parameters.Add(new MySqlParameter("email", cust.Email));
-                cmd.Parameters.Add(new MySqlParameter("isWholesale", cust.IsWholesale));
-                cmd.Parameters.Add(new MySqlParameter("addr1", cust.Address1));
-                cmd.Parameters.Add(new MySqlParameter("addr2", cust.Address2));
-                cmd.Parameters.Add(new MySqlParameter("city", cust.City));
-                cmd.Parameters.Add(new MySqlParameter("state", cust.State));
-                cmd.Parameters.Add(new MySqlParameter("zip", cust.ZipCode));
-                cmd.Parameters.Add(new MySqlParameter("phone", cust.PhoneNumber));
-                cmd.Parameters.Add(new MySqlParameter("credit", cust.Credit));
-                cmd.Parameters.Add(new MySqlParameter("custID", cust.CustomerID));
+                cmd.Parameters.Add(new MySqlParameter("CustomerID", cust.CustomerID));
+                cmd.Parameters.Add(new MySqlParameter("InvoiceAmount", cust.InvoiceAmount));
+                cmd.Parameters.Add(new MySqlParameter("PaidAmount", cust.PaidAmount));
+                cmd.Parameters.Add(new MySqlParameter("RequestDate", cust.RequestDate));
+                cmd.Parameters.Add(new MySqlParameter("DeliverDate", cust.DeliveryDate));
+                cmd.Parameters.Add(new MySqlParameter("OrderNote", cust.OrderNote));
+                cmd.Parameters.Add(new MySqlParameter("CustomerOrderID", cust.CustomerOrderID));
 
-                return cmd.ExecuteNonQuery();
+                cmd.ExecuteNonQuery();
+
+                foreach (CustomerOrderItem i in cust.Items)
+                {
+                    cmd = new MySqlCommand(@"
+                     INSERT INTO customerorderitem
+                      (CustomerOrderItemID, CustomerOrderID, InventoryID, OrderQTY, DeliverQTY, Deliverdate)
+                     VALUES
+                      (@OrderItemID, @CustomerOrderID, @InventoryID, @OrderQTY, @DeliverQTY, @Deliverdate)
+                     ON DUPLICATE KEY UPDATE
+                         CustomerOrderID = @CustomerOrderID, 
+                         InventoryID     = @InventoryID, 
+                         OrderQTY        = @OrderQTY, 
+                         DeliverQTY      = @DeliverQTY, 
+                         Deliverdate     = @Deliverdate
+                    ", db.Connection());
+
+                    cmd.Parameters.Add(new MySqlParameter("CustomerOrderID", cust.CustomerOrderID));
+                    cmd.Parameters.Add(new MySqlParameter("InventoryID", i.Id));
+                    cmd.Parameters.Add(new MySqlParameter("OrderQTY", i.OrderQty));
+                    cmd.Parameters.Add(new MySqlParameter("DeliverQTY", i.DeliverQty));
+                    cmd.Parameters.Add(new MySqlParameter("Deliverdate", i.DeliverDate));
+                    cmd.Parameters.Add(new MySqlParameter("OrderItemID", i.CustomerOrderItemID ));
+                }
+                return cust.CustomerOrderID;
             }
             finally
             {
@@ -255,14 +268,14 @@ namespace pos_core_api.ORM
                     output.Add(temp);
                 }
 
-                temp.Items.Add(new CustomerOrderItems
+                temp.Items.Add(new CustomerOrderItem
                 {
                     DeliverDate = reader.IsDBNull("itemDeliverDate") ? DateTime.MinValue : reader.GetDateTime("itemDeliverDate"),
                     DeliverQty = reader.IsDBNull("DeliverQty") ? 0 : reader.GetUInt32("DeliverQty"),
                     BottleDeposit = reader.IsDBNull("Bottle_Deposit") ? 0 : reader.GetUInt32("Bottle_Deposit"),
                     Name = reader.IsDBNull("name") ? "" : reader.GetString("name"),
                     OrderQty = reader.IsDBNull("OrderQty") ? 0 : reader.GetUInt32("OrderQty"),
-                    Price = reader.IsDBNull("price") ? 0 : reader.GetDouble("price"),
+                  //  Price = reader.IsDBNull("price") ? 0 : reader.GetDouble("price"),
                     ItemType = reader.IsDBNull("inventory_type_name") ? "" : reader.GetString("inventory_type_name"),
                     AllQty = new List<InventoryQty>
                       { new InventoryQty 

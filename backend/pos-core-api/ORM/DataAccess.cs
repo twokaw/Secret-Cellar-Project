@@ -1,15 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Metadata.Ecma335;
-using System.Threading.Tasks;
+﻿using pos_core_api.IORM;
+using pos_core_api.ORM.Test;
 
 namespace pos_core_api.ORM
 {
     public class DataAccess
     {
 
-        public static DataAccess Instance = new DataAccess();
+        public static readonly DataAccess Instance = new DataAccess();
+
+        /*
+        public static DataAccess Instance 
+        {
+            get
+            {
+                return instance;
+            }
+        }
+        */
 
         public DataAccess() { }
 
@@ -38,14 +45,26 @@ namespace pos_core_api.ORM
                 return customerORM;
             }
         }
-        private static CustomerNoteORM customerNoteORM = null;
+        private static ICustomerNoteORM customerNoteORM = null;
 
-        public CustomerNoteORM CustomerNote
+
+        public bool Test = false;
+        public bool Dev = false;
+        public ICustomerNoteORM CustomerNote
         {
             get
             {
+
                 if (customerNoteORM == null)
-                    customerNoteORM = new CustomerNoteORM();
+                { 
+                    if (Test)
+                        customerNoteORM = new CustomerNoteTestORM();
+                    else if(Dev)
+                        customerNoteORM = new CustomerNoteORM();
+                    else
+                        customerNoteORM = new CustomerNoteORM();
+                }
+
 
                 return customerNoteORM;
             }

@@ -11,6 +11,8 @@ namespace WebApi.Controllers
     [ApiController]
     public class CustomerNoteController : ControllerBase
     {
+
+        private DataAccess da = new DataAccess();
         // Get: api/CustomerNote
         [HttpGet]
         public IActionResult Get(uint typeID)
@@ -18,7 +20,7 @@ namespace WebApi.Controllers
             try
             {
                 if (typeID > 0)
-                    return Ok(DataAccess.Instance.CustomerNote.GetbyType(typeID));
+                    return Ok(da.CustomerNote.GetbyType(typeID));
                 else
                     return Ok(DataAccess.Instance.CustomerNote.Get());
             }
@@ -29,7 +31,6 @@ namespace WebApi.Controllers
             }
         }
 
-        // GET: api/CustomerNote/ID
         [HttpGet("{CustomerID}")]
         public IActionResult Get(uint CustomerID, uint typeID)
         {
