@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Shared;
+
+
 
 namespace SecretCellar {
 	public partial class frmCustomerCredit : Form {
@@ -20,7 +15,7 @@ namespace SecretCellar {
 			customer = c;
 			newCredit = customer.Credit;
 
-			this.label_CustomersCredit.Text = customer.FirstName + "'s Credit:";
+			this.label_CustomersCredit.Text = "Current Credit:";
 			this.label_CustomersCreditValue.Text = "$" + newCredit;
 		}
 

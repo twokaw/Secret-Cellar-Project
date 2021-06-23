@@ -4,11 +4,12 @@ using System.Windows.Forms;
 using Shared;
 
 
+
 namespace SecretCellar {
 	public partial class frmEventsWaitlistCustomerList : Form {
 		public Customer selectedCustomer;
 		private List<Customer> customers;
-
+		private string searchForCustomerText = "Search for customer";
 
 
 		public frmEventsWaitlistCustomerList() {
@@ -33,7 +34,7 @@ namespace SecretCellar {
 
 		//REMOVE THE PLACEHOLDER TEXT WHEN CLICKING INTO THE TEXT BOX
 		private void textBox_CustomerName_Enter(object sender, EventArgs e) {
-			if (textBox_CustomerName.Text == "Search for customer") {
+			if (textBox_CustomerName.Text == searchForCustomerText) {
 				textBox_CustomerName.Text = "";
 			}
 		}
@@ -42,7 +43,7 @@ namespace SecretCellar {
 		//RESET THE PLACEHOLDER TEXT IF THE TEXT BOX IS EMPTY
 		private void textBox_CustomerName_Leave(object sender, EventArgs e) {
 			if (string.IsNullOrEmpty(textBox_CustomerName.Text)) {
-				textBox_CustomerName.Text = "Search for customer";
+				textBox_CustomerName.Text = searchForCustomerText;
 			}
 		}
 
@@ -70,7 +71,7 @@ namespace SecretCellar {
 			dataGridView_CustomerList.Rows.Clear();
 
 			foreach (Customer customer in customers) {
-				if (textBox_CustomerName.Text == "Search for customer" || (customer.FirstName + " " + customer.LastName).ToLower().Contains(textBox_CustomerName.Text.ToLower())) {
+				if (textBox_CustomerName.Text == searchForCustomerText || (customer.FirstName + " " + customer.LastName).ToLower().Contains(textBox_CustomerName.Text.ToLower())) {
 					dataGridView_CustomerList.Rows.Add(customer.CustomerID, customer.FirstName + " " + customer.LastName);
 				}
 			}

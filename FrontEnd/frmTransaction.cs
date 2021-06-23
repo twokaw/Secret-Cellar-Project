@@ -15,7 +15,6 @@ namespace SecretCellar
         private Transaction transaction = new Transaction();
 
         private Image logo = null;
-        private Margins margins = new Margins(100, 100, 100, 100);
 
         public frmTransaction()
         {
@@ -23,9 +22,7 @@ namespace SecretCellar
             DataAccess.instance = new DataAccess(Properties.Settings.Default.URL);
             txtBarcode.Focus();
             ReloadLogo();
-            this.Size = new System.Drawing.Size(1366, 768);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(72, 72);
+            //this.Size = new System.Drawing.Size(1366, 768);
             txt_current_cust.Text = "";
 
             string path = Properties.Settings.Default.FontPath;
@@ -127,11 +124,6 @@ namespace SecretCellar
                     txtBarcode.Focus();
                 }
             }
-        }
-
-        private void btnTender_Click(object sender, EventArgs e)
-        {
-            Tender();
         }
 
         private void btnTender2_Click(object sender, EventArgs e)
