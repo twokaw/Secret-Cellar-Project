@@ -16,8 +16,6 @@ namespace SecretCellar
         public FrmSettings()
         {
             InitializeComponent();
-            this.AutoScaleMode = AutoScaleMode.Dpi;
-            this.AutoScaleDimensions = new SizeF(72, 72);
         }
 
         private void FrmSetting_Load(object sender, EventArgs e)
