@@ -71,7 +71,7 @@ namespace SecretCellar.Settings_Panels
 			this.lstTypes.Location = new System.Drawing.Point(6, 46);
 			this.lstTypes.Margin = new System.Windows.Forms.Padding(9, 8, 9, 8);
 			this.lstTypes.Name = "lstTypes";
-			this.lstTypes.Size = new System.Drawing.Size(182, 260);
+			this.lstTypes.Size = new System.Drawing.Size(182, 276);
 			this.lstTypes.TabIndex = 0;
 			this.lstTypes.SelectedIndexChanged += new System.EventHandler(this.lstTypes_SelectedIndexChanged);
 			// 
@@ -110,10 +110,10 @@ namespace SecretCellar.Settings_Panels
 			// 
 			// btn_type_clear
 			// 
-			this.btn_type_clear.Location = new System.Drawing.Point(199, 210);
+			this.btn_type_clear.Location = new System.Drawing.Point(199, 195);
 			this.btn_type_clear.Margin = new System.Windows.Forms.Padding(6);
 			this.btn_type_clear.Name = "btn_type_clear";
-			this.btn_type_clear.Size = new System.Drawing.Size(143, 26);
+			this.btn_type_clear.Size = new System.Drawing.Size(133, 35);
 			this.btn_type_clear.TabIndex = 36;
 			this.btn_type_clear.Text = "Clear";
 			this.btn_type_clear.UseVisualStyleBackColor = true;
@@ -138,10 +138,10 @@ namespace SecretCellar.Settings_Panels
 			// 
 			// btn_update_type
 			// 
-			this.btn_update_type.Location = new System.Drawing.Point(199, 280);
+			this.btn_update_type.Location = new System.Drawing.Point(199, 287);
 			this.btn_update_type.Margin = new System.Windows.Forms.Padding(6);
 			this.btn_update_type.Name = "btn_update_type";
-			this.btn_update_type.Size = new System.Drawing.Size(143, 26);
+			this.btn_update_type.Size = new System.Drawing.Size(133, 35);
 			this.btn_update_type.TabIndex = 32;
 			this.btn_update_type.Text = "Update Type";
 			this.btn_update_type.UseVisualStyleBackColor = true;
@@ -149,10 +149,10 @@ namespace SecretCellar.Settings_Panels
 			// 
 			// btn_new_type
 			// 
-			this.btn_new_type.Location = new System.Drawing.Point(199, 246);
+			this.btn_new_type.Location = new System.Drawing.Point(199, 241);
 			this.btn_new_type.Margin = new System.Windows.Forms.Padding(6);
 			this.btn_new_type.Name = "btn_new_type";
-			this.btn_new_type.Size = new System.Drawing.Size(143, 26);
+			this.btn_new_type.Size = new System.Drawing.Size(133, 35);
 			this.btn_new_type.TabIndex = 31;
 			this.btn_new_type.Text = "New Type";
 			this.btn_new_type.UseVisualStyleBackColor = true;
@@ -265,16 +265,16 @@ namespace SecretCellar.Settings_Panels
 			this.panel1.Location = new System.Drawing.Point(0, 0);
 			this.panel1.Margin = new System.Windows.Forms.Padding(4);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(760, 349);
+			this.panel1.Size = new System.Drawing.Size(760, 359);
 			this.panel1.TabIndex = 39;
 			this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
 			// 
 			// btn_clear_discount
 			// 
-			this.btn_clear_discount.Location = new System.Drawing.Point(464, 277);
+			this.btn_clear_discount.Location = new System.Drawing.Point(464, 273);
 			this.btn_clear_discount.Margin = new System.Windows.Forms.Padding(0);
 			this.btn_clear_discount.Name = "btn_clear_discount";
-			this.btn_clear_discount.Size = new System.Drawing.Size(133, 26);
+			this.btn_clear_discount.Size = new System.Drawing.Size(133, 35);
 			this.btn_clear_discount.TabIndex = 50;
 			this.btn_clear_discount.Text = "Clear Discount ";
 			this.btn_clear_discount.UseVisualStyleBackColor = true;
@@ -283,10 +283,10 @@ namespace SecretCellar.Settings_Panels
 			// btn_delete_discount
 			// 
 			this.btn_delete_discount.ForeColor = System.Drawing.Color.Red;
-			this.btn_delete_discount.Location = new System.Drawing.Point(605, 309);
+			this.btn_delete_discount.Location = new System.Drawing.Point(605, 316);
 			this.btn_delete_discount.Margin = new System.Windows.Forms.Padding(0);
 			this.btn_delete_discount.Name = "btn_delete_discount";
-			this.btn_delete_discount.Size = new System.Drawing.Size(133, 26);
+			this.btn_delete_discount.Size = new System.Drawing.Size(133, 35);
 			this.btn_delete_discount.TabIndex = 49;
 			this.btn_delete_discount.Text = "Delete Discount";
 			this.btn_delete_discount.UseVisualStyleBackColor = true;
@@ -294,10 +294,10 @@ namespace SecretCellar.Settings_Panels
 			// 
 			// btn_update_discount
 			// 
-			this.btn_update_discount.Location = new System.Drawing.Point(605, 277);
+			this.btn_update_discount.Location = new System.Drawing.Point(605, 273);
 			this.btn_update_discount.Margin = new System.Windows.Forms.Padding(0);
 			this.btn_update_discount.Name = "btn_update_discount";
-			this.btn_update_discount.Size = new System.Drawing.Size(133, 26);
+			this.btn_update_discount.Size = new System.Drawing.Size(133, 35);
 			this.btn_update_discount.TabIndex = 48;
 			this.btn_update_discount.Text = "Update Discount";
 			this.btn_update_discount.UseVisualStyleBackColor = true;
@@ -305,10 +305,10 @@ namespace SecretCellar.Settings_Panels
 			// 
 			// btn_new_discount
 			// 
-			this.btn_new_discount.Location = new System.Drawing.Point(464, 309);
+			this.btn_new_discount.Location = new System.Drawing.Point(464, 316);
 			this.btn_new_discount.Margin = new System.Windows.Forms.Padding(0);
 			this.btn_new_discount.Name = "btn_new_discount";
-			this.btn_new_discount.Size = new System.Drawing.Size(133, 26);
+			this.btn_new_discount.Size = new System.Drawing.Size(133, 35);
 			this.btn_new_discount.TabIndex = 47;
 			this.btn_new_discount.Text = "New Discount";
 			this.btn_new_discount.UseVisualStyleBackColor = true;
@@ -390,7 +390,7 @@ namespace SecretCellar.Settings_Panels
 			this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
 			this.Margin = new System.Windows.Forms.Padding(4);
 			this.Name = "PanTypes";
-			this.Size = new System.Drawing.Size(760, 349);
+			this.Size = new System.Drawing.Size(760, 359);
 			this.Load += new System.EventHandler(this.PanTypes_Load);
 			this.panel1.ResumeLayout(false);
 			this.panel1.PerformLayout();
