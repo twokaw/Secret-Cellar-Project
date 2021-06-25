@@ -73,10 +73,9 @@ namespace SecretCellar.Settings_Panels
 			// 
 			// lbl_receipt_footer
 			// 
-			this.lbl_receipt_footer.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+			this.lbl_receipt_footer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.lbl_receipt_footer.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
-			this.lbl_receipt_footer.Location = new System.Drawing.Point(411, 70);
+			this.lbl_receipt_footer.Location = new System.Drawing.Point(405, 70);
 			this.lbl_receipt_footer.Name = "lbl_receipt_footer";
 			this.lbl_receipt_footer.Size = new System.Drawing.Size(177, 18);
 			this.lbl_receipt_footer.TabIndex = 19;
@@ -102,7 +101,7 @@ namespace SecretCellar.Settings_Panels
 			this.lbl_header.Name = "lbl_header";
 			this.lbl_header.Size = new System.Drawing.Size(191, 16);
 			this.lbl_header.TabIndex = 17;
-			this.lbl_header.Text = "Reciept Header";
+			this.lbl_header.Text = "Receipt Header";
 			this.lbl_header.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			// 
 			// txt_receipt_header
@@ -132,18 +131,18 @@ namespace SecretCellar.Settings_Panels
 			// 
 			this.btn_foot.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.btn_foot.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
-			this.btn_foot.Location = new System.Drawing.Point(412, 14);
+			this.btn_foot.Location = new System.Drawing.Point(400, 14);
 			this.btn_foot.Name = "btn_foot";
-			this.btn_foot.Size = new System.Drawing.Size(178, 31);
+			this.btn_foot.Size = new System.Drawing.Size(185, 31);
 			this.btn_foot.TabIndex = 14;
-			this.btn_foot.Text = "Change Reciept Footer";
+			this.btn_foot.Text = "Change Receipt Footer";
 			this.btn_foot.UseVisualStyleBackColor = true;
 			this.btn_foot.Click += new System.EventHandler(this.btn_foot_Click);
 			// 
 			// btn_header
 			// 
 			this.btn_header.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
-			this.btn_header.Location = new System.Drawing.Point(15, 14);
+			this.btn_header.Location = new System.Drawing.Point(20, 14);
 			this.btn_header.Name = "btn_header";
 			this.btn_header.Size = new System.Drawing.Size(185, 31);
 			this.btn_header.TabIndex = 13;
