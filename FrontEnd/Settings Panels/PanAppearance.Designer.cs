@@ -107,7 +107,7 @@ namespace SecretCellar.Settings_Panels
 			this.btn_reset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.btn_reset.AutoSize = true;
 			this.btn_reset.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
-			this.btn_reset.Location = new System.Drawing.Point(512, 162);
+			this.btn_reset.Location = new System.Drawing.Point(512, 196);
 			this.btn_reset.Name = "btn_reset";
 			this.btn_reset.Size = new System.Drawing.Size(174, 31);
 			this.btn_reset.TabIndex = 13;
