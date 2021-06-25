@@ -265,7 +265,7 @@ namespace SecretCellar.Settings_Panels
 			this.panel1.Location = new System.Drawing.Point(0, 0);
 			this.panel1.Margin = new System.Windows.Forms.Padding(4);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(760, 359);
+			this.panel1.Size = new System.Drawing.Size(760, 360);
 			this.panel1.TabIndex = 39;
 			this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
 			// 
@@ -390,7 +390,7 @@ namespace SecretCellar.Settings_Panels
 			this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
 			this.Margin = new System.Windows.Forms.Padding(4);
 			this.Name = "PanTypes";
-			this.Size = new System.Drawing.Size(760, 359);
+			this.Size = new System.Drawing.Size(760, 360);
 			this.Load += new System.EventHandler(this.PanTypes_Load);
 			this.panel1.ResumeLayout(false);
 			this.panel1.PerformLayout();

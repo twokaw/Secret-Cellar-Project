@@ -118,6 +118,7 @@ namespace SecretCellar.Settings_Panels
 			this.grid_print_codes.AllowUserToDeleteRows = false;
 			this.grid_print_codes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.grid_print_codes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
 			this.grid_print_codes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.grid_print_codes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.DrawerCode,
@@ -129,7 +130,7 @@ namespace SecretCellar.Settings_Panels
 			this.grid_print_codes.RowHeadersVisible = false;
 			this.grid_print_codes.RowHeadersWidth = 62;
 			this.grid_print_codes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-			this.grid_print_codes.Size = new System.Drawing.Size(223, 164);
+			this.grid_print_codes.Size = new System.Drawing.Size(319, 164);
 			this.grid_print_codes.TabIndex = 53;
 			// 
 			// DrawerCode
@@ -140,7 +141,6 @@ namespace SecretCellar.Settings_Panels
 			this.DrawerCode.Name = "DrawerCode";
 			this.DrawerCode.ReadOnly = true;
 			this.DrawerCode.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-			this.DrawerCode.Width = 150;
 			// 
 			// CutCode
 			// 
@@ -150,7 +150,6 @@ namespace SecretCellar.Settings_Panels
 			this.CutCode.Name = "CutCode";
 			this.CutCode.ReadOnly = true;
 			this.CutCode.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-			this.CutCode.Width = 120;
 			// 
 			// CodeId
 			// 
@@ -160,7 +159,6 @@ namespace SecretCellar.Settings_Panels
 			this.CodeId.Name = "CodeId";
 			this.CodeId.ReadOnly = true;
 			this.CodeId.Visible = false;
-			this.CodeId.Width = 150;
 			// 
 			// btn_new_print
 			// 
