@@ -43,6 +43,7 @@ namespace SecretCellar
                    Qty = x.Qty,
                    Barcode = x.Barcode,
                    Price = x.SupplierPrice,
+                   //OnHand = x.,
                    minqty = x.InvMin,
                    maxqty = x.InvMax,
                    orderqty = x.OrderQty
