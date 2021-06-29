@@ -95,7 +95,7 @@ namespace SecretCellar.Settings_Panels
 			this.chk_lst_discount.Margin = new System.Windows.Forms.Padding(6);
 			this.chk_lst_discount.Name = "chk_lst_discount";
 			this.chk_lst_discount.Size = new System.Drawing.Size(200, 106);
-			this.chk_lst_discount.TabIndex = 38;
+			this.chk_lst_discount.TabIndex = 9;
 			this.chk_lst_discount.SelectedIndexChanged += new System.EventHandler(this.chk_lst_discount_SelectedIndexChanged);
 			// 
 			// lbl_discount
@@ -114,7 +114,7 @@ namespace SecretCellar.Settings_Panels
 			this.btn_type_clear.Margin = new System.Windows.Forms.Padding(6);
 			this.btn_type_clear.Name = "btn_type_clear";
 			this.btn_type_clear.Size = new System.Drawing.Size(133, 35);
-			this.btn_type_clear.TabIndex = 36;
+			this.btn_type_clear.TabIndex = 6;
 			this.btn_type_clear.Text = "Clear";
 			this.btn_type_clear.UseVisualStyleBackColor = true;
 			this.btn_type_clear.Click += new System.EventHandler(this.btn_type_clear_Click);
@@ -134,7 +134,7 @@ namespace SecretCellar.Settings_Panels
 			this.txt_typename.Margin = new System.Windows.Forms.Padding(6);
 			this.txt_typename.Name = "txt_typename";
 			this.txt_typename.Size = new System.Drawing.Size(112, 22);
-			this.txt_typename.TabIndex = 34;
+			this.txt_typename.TabIndex = 1;
 			// 
 			// btn_update_type
 			// 
@@ -142,7 +142,7 @@ namespace SecretCellar.Settings_Panels
 			this.btn_update_type.Margin = new System.Windows.Forms.Padding(6);
 			this.btn_update_type.Name = "btn_update_type";
 			this.btn_update_type.Size = new System.Drawing.Size(133, 35);
-			this.btn_update_type.TabIndex = 32;
+			this.btn_update_type.TabIndex = 8;
 			this.btn_update_type.Text = "Update Type";
 			this.btn_update_type.UseVisualStyleBackColor = true;
 			this.btn_update_type.Click += new System.EventHandler(this.btn_update_type_Click);
@@ -153,7 +153,7 @@ namespace SecretCellar.Settings_Panels
 			this.btn_new_type.Margin = new System.Windows.Forms.Padding(6);
 			this.btn_new_type.Name = "btn_new_type";
 			this.btn_new_type.Size = new System.Drawing.Size(133, 35);
-			this.btn_new_type.TabIndex = 31;
+			this.btn_new_type.TabIndex = 7;
 			this.btn_new_type.Text = "New Type";
 			this.btn_new_type.UseVisualStyleBackColor = true;
 			this.btn_new_type.Click += new System.EventHandler(this.btn_new_type_Click);
@@ -174,7 +174,8 @@ namespace SecretCellar.Settings_Panels
 			this.txt_localTax.Name = "txt_localTax";
 			this.txt_localTax.ReadOnly = true;
 			this.txt_localTax.Size = new System.Drawing.Size(112, 22);
-			this.txt_localTax.TabIndex = 29;
+			this.txt_localTax.TabIndex = 5;
+			this.txt_localTax.TabStop = false;
 			// 
 			// lbl_salesTax
 			// 
@@ -192,7 +193,8 @@ namespace SecretCellar.Settings_Panels
 			this.txt_salesTax.Name = "txt_salesTax";
 			this.txt_salesTax.ReadOnly = true;
 			this.txt_salesTax.Size = new System.Drawing.Size(112, 22);
-			this.txt_salesTax.TabIndex = 27;
+			this.txt_salesTax.TabIndex = 4;
+			this.txt_salesTax.TabStop = false;
 			// 
 			// lbl_bottleDep
 			// 
@@ -210,7 +212,8 @@ namespace SecretCellar.Settings_Panels
 			this.txt_bottleDep.Name = "txt_bottleDep";
 			this.txt_bottleDep.ReadOnly = true;
 			this.txt_bottleDep.Size = new System.Drawing.Size(112, 22);
-			this.txt_bottleDep.TabIndex = 25;
+			this.txt_bottleDep.TabIndex = 3;
+			this.txt_bottleDep.TabStop = false;
 			// 
 			// label3
 			// 
@@ -229,7 +232,7 @@ namespace SecretCellar.Settings_Panels
 			this.cbx_tax.Margin = new System.Windows.Forms.Padding(9, 8, 9, 8);
 			this.cbx_tax.Name = "cbx_tax";
 			this.cbx_tax.Size = new System.Drawing.Size(112, 24);
-			this.cbx_tax.TabIndex = 23;
+			this.cbx_tax.TabIndex = 2;
 			// 
 			// panel1
 			// 
@@ -275,7 +278,7 @@ namespace SecretCellar.Settings_Panels
 			this.btn_clear_discount.Margin = new System.Windows.Forms.Padding(0);
 			this.btn_clear_discount.Name = "btn_clear_discount";
 			this.btn_clear_discount.Size = new System.Drawing.Size(133, 35);
-			this.btn_clear_discount.TabIndex = 50;
+			this.btn_clear_discount.TabIndex = 14;
 			this.btn_clear_discount.Text = "Clear Discount ";
 			this.btn_clear_discount.UseVisualStyleBackColor = true;
 			this.btn_clear_discount.Click += new System.EventHandler(this.btn_clear_discount_Click);
@@ -287,7 +290,7 @@ namespace SecretCellar.Settings_Panels
 			this.btn_delete_discount.Margin = new System.Windows.Forms.Padding(0);
 			this.btn_delete_discount.Name = "btn_delete_discount";
 			this.btn_delete_discount.Size = new System.Drawing.Size(133, 35);
-			this.btn_delete_discount.TabIndex = 49;
+			this.btn_delete_discount.TabIndex = 17;
 			this.btn_delete_discount.Text = "Delete Discount";
 			this.btn_delete_discount.UseVisualStyleBackColor = true;
 			this.btn_delete_discount.Click += new System.EventHandler(this.btn_delete_discount_Click);
@@ -298,7 +301,7 @@ namespace SecretCellar.Settings_Panels
 			this.btn_update_discount.Margin = new System.Windows.Forms.Padding(0);
 			this.btn_update_discount.Name = "btn_update_discount";
 			this.btn_update_discount.Size = new System.Drawing.Size(133, 35);
-			this.btn_update_discount.TabIndex = 48;
+			this.btn_update_discount.TabIndex = 15;
 			this.btn_update_discount.Text = "Update Discount";
 			this.btn_update_discount.UseVisualStyleBackColor = true;
 			this.btn_update_discount.Click += new System.EventHandler(this.btn_update_discount_Click);
@@ -309,7 +312,7 @@ namespace SecretCellar.Settings_Panels
 			this.btn_new_discount.Margin = new System.Windows.Forms.Padding(0);
 			this.btn_new_discount.Name = "btn_new_discount";
 			this.btn_new_discount.Size = new System.Drawing.Size(133, 35);
-			this.btn_new_discount.TabIndex = 47;
+			this.btn_new_discount.TabIndex = 16;
 			this.btn_new_discount.Text = "New Discount";
 			this.btn_new_discount.UseVisualStyleBackColor = true;
 			this.btn_new_discount.Click += new System.EventHandler(this.btn_new_discount_Click);
@@ -329,7 +332,7 @@ namespace SecretCellar.Settings_Panels
 			this.txt_discount.Margin = new System.Windows.Forms.Padding(6);
 			this.txt_discount.Name = "txt_discount";
 			this.txt_discount.Size = new System.Drawing.Size(120, 22);
-			this.txt_discount.TabIndex = 45;
+			this.txt_discount.TabIndex = 11;
 			// 
 			// lbl_dis_max
 			// 
@@ -346,7 +349,7 @@ namespace SecretCellar.Settings_Panels
 			this.txt_dis_max.Margin = new System.Windows.Forms.Padding(6);
 			this.txt_dis_max.Name = "txt_dis_max";
 			this.txt_dis_max.Size = new System.Drawing.Size(120, 22);
-			this.txt_dis_max.TabIndex = 43;
+			this.txt_dis_max.TabIndex = 13;
 			// 
 			// lbl_dis_min
 			// 
@@ -363,7 +366,7 @@ namespace SecretCellar.Settings_Panels
 			this.txt_dis_min.Margin = new System.Windows.Forms.Padding(6);
 			this.txt_dis_min.Name = "txt_dis_min";
 			this.txt_dis_min.Size = new System.Drawing.Size(120, 22);
-			this.txt_dis_min.TabIndex = 41;
+			this.txt_dis_min.TabIndex = 12;
 			// 
 			// lbl_dis_name
 			// 
@@ -380,7 +383,7 @@ namespace SecretCellar.Settings_Panels
 			this.txt_dis_name.Margin = new System.Windows.Forms.Padding(6);
 			this.txt_dis_name.Name = "txt_dis_name";
 			this.txt_dis_name.Size = new System.Drawing.Size(120, 22);
-			this.txt_dis_name.TabIndex = 39;
+			this.txt_dis_name.TabIndex = 10;
 			// 
 			// PanTypes
 			// 

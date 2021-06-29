@@ -66,7 +66,7 @@ namespace SecretCellar.Settings_Panels
 			this.btn_receipt_font_reset.Location = new System.Drawing.Point(219, 235);
 			this.btn_receipt_font_reset.Name = "btn_receipt_font_reset";
 			this.btn_receipt_font_reset.Size = new System.Drawing.Size(124, 31);
-			this.btn_receipt_font_reset.TabIndex = 20;
+			this.btn_receipt_font_reset.TabIndex = 5;
 			this.btn_receipt_font_reset.Text = "Reset Receipt Font";
 			this.btn_receipt_font_reset.UseVisualStyleBackColor = true;
 			this.btn_receipt_font_reset.Click += new System.EventHandler(this.btn_receipt_font_reset_Click);
@@ -92,7 +92,7 @@ namespace SecretCellar.Settings_Panels
 			this.txt_receipt_footer.Multiline = true;
 			this.txt_receipt_footer.Name = "txt_receipt_footer";
 			this.txt_receipt_footer.Size = new System.Drawing.Size(193, 215);
-			this.txt_receipt_footer.TabIndex = 18;
+			this.txt_receipt_footer.TabIndex = 4;
 			// 
 			// lbl_header
 			// 
@@ -113,7 +113,7 @@ namespace SecretCellar.Settings_Panels
 			this.txt_receipt_header.Multiline = true;
 			this.txt_receipt_header.Name = "txt_receipt_header";
 			this.txt_receipt_header.Size = new System.Drawing.Size(193, 215);
-			this.txt_receipt_header.TabIndex = 16;
+			this.txt_receipt_header.TabIndex = 2;
 			// 
 			// btn_rec_font
 			// 
@@ -122,7 +122,7 @@ namespace SecretCellar.Settings_Panels
 			this.btn_rec_font.Location = new System.Drawing.Point(219, 272);
 			this.btn_rec_font.Name = "btn_rec_font";
 			this.btn_rec_font.Size = new System.Drawing.Size(124, 31);
-			this.btn_rec_font.TabIndex = 15;
+			this.btn_rec_font.TabIndex = 6;
 			this.btn_rec_font.Text = "Change Receipt Font";
 			this.btn_rec_font.UseVisualStyleBackColor = true;
 			this.btn_rec_font.Click += new System.EventHandler(this.btn_rec_font_Click);
@@ -134,7 +134,7 @@ namespace SecretCellar.Settings_Panels
 			this.btn_foot.Location = new System.Drawing.Point(400, 14);
 			this.btn_foot.Name = "btn_foot";
 			this.btn_foot.Size = new System.Drawing.Size(185, 31);
-			this.btn_foot.TabIndex = 14;
+			this.btn_foot.TabIndex = 3;
 			this.btn_foot.Text = "Change Receipt Footer";
 			this.btn_foot.UseVisualStyleBackColor = true;
 			this.btn_foot.Click += new System.EventHandler(this.btn_foot_Click);
@@ -145,7 +145,7 @@ namespace SecretCellar.Settings_Panels
 			this.btn_header.Location = new System.Drawing.Point(20, 14);
 			this.btn_header.Name = "btn_header";
 			this.btn_header.Size = new System.Drawing.Size(185, 31);
-			this.btn_header.TabIndex = 13;
+			this.btn_header.TabIndex = 1;
 			this.btn_header.Text = "Change Receipt Header";
 			this.btn_header.UseVisualStyleBackColor = true;
 			this.btn_header.Click += new System.EventHandler(this.btn_header_Click);

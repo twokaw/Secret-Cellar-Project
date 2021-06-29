@@ -79,7 +79,7 @@ namespace SecretCellar.Settings_Panels
 			this.btn_add_code.Margin = new System.Windows.Forms.Padding(6);
 			this.btn_add_code.Name = "btn_add_code";
 			this.btn_add_code.Size = new System.Drawing.Size(151, 25);
-			this.btn_add_code.TabIndex = 57;
+			this.btn_add_code.TabIndex = 7;
 			this.btn_add_code.Text = "Add Print Code";
 			this.btn_add_code.UseVisualStyleBackColor = true;
 			this.btn_add_code.Click += new System.EventHandler(this.btn_add_code_Click);
@@ -100,7 +100,7 @@ namespace SecretCellar.Settings_Panels
 			this.lst_print_model.Location = new System.Drawing.Point(6, 123);
 			this.lst_print_model.Name = "lst_print_model";
 			this.lst_print_model.Size = new System.Drawing.Size(203, 121);
-			this.lst_print_model.TabIndex = 55;
+			this.lst_print_model.TabIndex = 4;
 			this.lst_print_model.SelectedIndexChanged += new System.EventHandler(this.lst_print_model_SelectedIndexChanged);
 			// 
 			// lbl_print_codes
@@ -134,7 +134,7 @@ namespace SecretCellar.Settings_Panels
 			this.grid_print_codes.RowHeadersWidth = 62;
 			this.grid_print_codes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
 			this.grid_print_codes.Size = new System.Drawing.Size(349, 174);
-			this.grid_print_codes.TabIndex = 53;
+			this.grid_print_codes.TabIndex = 5;
 			// 
 			// DrawerCode
 			// 
@@ -171,7 +171,7 @@ namespace SecretCellar.Settings_Panels
 			this.btn_new_print.Margin = new System.Windows.Forms.Padding(6);
 			this.btn_new_print.Name = "btn_new_print";
 			this.btn_new_print.Size = new System.Drawing.Size(151, 25);
-			this.btn_new_print.TabIndex = 47;
+			this.btn_new_print.TabIndex = 6;
 			this.btn_new_print.Text = "Add New Printer";
 			this.btn_new_print.UseVisualStyleBackColor = true;
 			this.btn_new_print.Click += new System.EventHandler(this.btn_new_print_Click);
@@ -192,7 +192,7 @@ namespace SecretCellar.Settings_Panels
 			this.cbx_manufact.Location = new System.Drawing.Point(6, 70);
 			this.cbx_manufact.Name = "cbx_manufact";
 			this.cbx_manufact.Size = new System.Drawing.Size(203, 21);
-			this.cbx_manufact.TabIndex = 42;
+			this.cbx_manufact.TabIndex = 3;
 			this.cbx_manufact.SelectedIndexChanged += new System.EventHandler(this.cbx_manufact_SelectedIndexChanged);
 			// 
 			// btn_set_printer
@@ -203,7 +203,7 @@ namespace SecretCellar.Settings_Panels
 			this.btn_set_printer.Margin = new System.Windows.Forms.Padding(6);
 			this.btn_set_printer.Name = "btn_set_printer";
 			this.btn_set_printer.Size = new System.Drawing.Size(151, 25);
-			this.btn_set_printer.TabIndex = 41;
+			this.btn_set_printer.TabIndex = 8;
 			this.btn_set_printer.Text = "Set Printer";
 			this.btn_set_printer.UseVisualStyleBackColor = true;
 			this.btn_set_printer.Click += new System.EventHandler(this.btn_set_printer_Click);
@@ -215,7 +215,7 @@ namespace SecretCellar.Settings_Panels
 			this.btn_set_comm.Margin = new System.Windows.Forms.Padding(6);
 			this.btn_set_comm.Name = "btn_set_comm";
 			this.btn_set_comm.Size = new System.Drawing.Size(151, 25);
-			this.btn_set_comm.TabIndex = 37;
+			this.btn_set_comm.TabIndex = 2;
 			this.btn_set_comm.Text = "Set Comm Port";
 			this.btn_set_comm.UseVisualStyleBackColor = true;
 			this.btn_set_comm.Click += new System.EventHandler(this.btn_set_comm_Click);
