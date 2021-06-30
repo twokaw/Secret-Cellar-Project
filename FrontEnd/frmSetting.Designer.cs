@@ -213,6 +213,7 @@ namespace SecretCellar
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
 			this.ClientSize = new System.Drawing.Size(876, 471);
 			this.Controls.Add(this.btn_commit);
 			this.Controls.Add(this.tab_receipt);
