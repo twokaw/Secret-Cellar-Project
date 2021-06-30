@@ -19,7 +19,7 @@ namespace WebApi.Controllers
         // GET: api/Inventory
         [HttpGet]
         public IActionResult Get()
-        {
+        { 
             try
             {
                 return Ok(DataAccess.Instance.Inventory.GetInv());

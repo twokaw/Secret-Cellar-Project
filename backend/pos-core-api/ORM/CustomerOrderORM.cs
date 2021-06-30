@@ -143,22 +143,23 @@ namespace pos_core_api.ORM
         }
         public long Update(CustomerOrder cust)
         {
-           
+            CustomerOrder co = GetOrder(cust.CustomerOrderID);
+
+            if (co is null)
+                return Insert(cust);
+
             db.OpenConnection();
             try
             {
                 string sqlStatementDesc = @"
-                  INSERT INTO customerorder
-                  (CustomerOrderID, CustomerID, InvoiceAmount, PaidAmount, RequestDate, DeliverDate, OrderNote)
-                  VALUES
-                  (@CustomerOrderID, @CustomerID, @InvoiceAmount, @PaidAmount, @RequestDate, @DeliverDate, @OrderNote)
-                  ON DUPLICATE KEY UPDATE
-                      CustomerID    = @CustomerID, 
+                  UPDATE customerorder
+                  SET CustomerID    = @CustomerID, 
                       InvoiceAmount = @InvoiceAmount, 
                       PaidAmount    = @PaidAmount, 
                       RequestDate   = @RequestDate, 
                       DeliverDate   = @DeliverDate, 
                       OrderNote     = @OrderNote
+                  WHERE CustomerOrderID = @CustomerOrderID
                 ";
 
                 MySqlCommand cmd = new MySqlCommand(sqlStatementDesc, db.Connection());
