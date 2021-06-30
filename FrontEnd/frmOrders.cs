@@ -62,14 +62,15 @@ namespace SecretCellar
             cbx_supplier.DisplayMember = "Name";
             lst_customer.DataSource = DataAccess.instance?.GetCustomer();
             lst_customer.DisplayMember = "FullName";
-            cbx_wholsale_supp.DataSource = suppliers;
-            cbx_wholsale_supp.DisplayMember = "Name";
-            cbx_whole_cust.DataSource = wholeCust;
-            cbx_whole_cust.DisplayMember = "FullName";
+            cbx_fullfill_supp.DataSource = suppliers;
+            cbx_fullfill_supp.DisplayMember = "Name";
+            cbx_fullfill_cust.DataSource = cust;
+            cbx_fullfill_cust.DisplayMember = "FullName";
 
             lstbox_customer.DataSource = DataAccess.instance?.GetCustomer();
             lstbox_customer.DisplayMember = "FullName";
             supp_dataGrid.Columns[5].DefaultCellStyle.Format = "C";
+            fullfill_datagrid.Columns[5].DefaultCellStyle.Format = "C";
             orderTotal();
 
             supp_dataGrid.DataSource = inventory.
@@ -86,6 +87,22 @@ namespace SecretCellar
                    orderqty = x.OrderQty
                }).
                OrderBy(x => x.Name).
+               ToList();
+
+            fullfill_datagrid.DataSource = inventory.
+               Select(x => new
+               {
+                   fname = x.Name,
+                   fid = x.Id,
+                   ftype = x.ItemType,
+                   fqty = x.Qty,
+                   fbarcode = x.Barcode,
+                   fprice = x.SupplierPrice,
+                   fmin = x.InvMin,
+                   fmax = x.InvMax,
+                   forderqty = x.OrderQty
+               }).
+               OrderBy(x => x.fname).
                ToList();
 
 
@@ -198,6 +215,27 @@ namespace SecretCellar
                ToList();
             orderTotal();
             
+        }
+
+        private void frefresh()
+        {
+            inventory = dataAccess.GetInventory();
+            uint id = ((Supplier)cbx_fullfill_supp.SelectedItem).SupplierID;
+            fullfill_datagrid.DataSource = inventory.Where(x => id == x.SupplierID || id == 0).
+            Select(x => new
+            {
+                fname = x.Name,
+                fid = x.Id,
+                ftype = x.ItemType,
+                fqty = x.Qty,
+                fbarcode = x.Barcode,
+                fprice = x.SupplierPrice,
+                fmin = x.InvMin,
+                fmax = x.InvMax,
+                forderqty = x.OrderQty
+            }).
+              OrderBy(x => x.fname).
+              ToList();
         }
 
         private void populate()
@@ -438,6 +476,11 @@ namespace SecretCellar
             withQty = listItems(orderSupplier);
             new PurchaseOrder(orderSupplier,withQty).Print();
 
+        }
+
+        private void cbx_fullfill_supp_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            frefresh();
         }
 
         //wholesale tab
