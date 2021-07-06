@@ -62,8 +62,8 @@ namespace SecretCellar
             cbx_supplier.DisplayMember = "Name";
             lst_customer.DataSource = DataAccess.instance?.GetCustomer();
             lst_customer.DisplayMember = "FullName";
-            cbx_fullfill_supp.DataSource = suppliers;
-            cbx_fullfill_supp.DisplayMember = "Name";
+            //cbx_fullfill_supp.DataSource = suppliers;
+            //cbx_fullfill_supp.DisplayMember = "Name";
             cbx_fullfill_cust.DataSource = cust;
             cbx_fullfill_cust.DisplayMember = "FullName";
 
@@ -220,7 +220,7 @@ namespace SecretCellar
         private void frefresh()
         {
             inventory = dataAccess.GetInventory();
-            uint id = ((Supplier)cbx_fullfill_supp.SelectedItem).SupplierID;
+            uint id = ((Supplier)cbx_fullfill_cust.SelectedItem).SupplierID;
             fullfill_datagrid.DataSource = inventory.Where(x => id == x.SupplierID || id == 0).
             Select(x => new
             {
