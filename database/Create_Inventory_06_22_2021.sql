@@ -3,6 +3,10 @@
 -- Host: 127.0.0.1    Database: inventory
 -- ------------------------------------------------------
 -- Server version	8.0.17
+CREATE DATABASE Inventory;
+Use Inventory;
+CREATE USER invuser identified by 'testinv!';
+GRANT SELECT, INSERT, UPDATE, DELETE ON inventory.* TO invuser;
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
