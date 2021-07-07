@@ -16,13 +16,23 @@ namespace pos_core_api.ORM
         SELECT *
         FROM  v_CustomerOrder
         ";
+        const string OUTSTANDINGCUSTOMERORDERSQL = @"
+        SELECT *
+        FROM  v_CustomerOrder
+        WHERE DeliverQty < OrderQty
+        ";
 
-        public List<CustomerOrder> Get()
+        public List<CustomerOrder> Get(bool includehistory)
         {
             db.OpenConnection();
 
+            MySqlCommand cmd ;
+            
+            if (includehistory)
+                cmd = new MySqlCommand( CUSTOMERORDERSQL, db.Connection());
+            else
+                cmd = new MySqlCommand(OUTSTANDINGCUSTOMERORDERSQL, db.Connection()); 
 
-            MySqlCommand cmd = new MySqlCommand(CUSTOMERORDERSQL, db.Connection());
             MySqlDataReader reader = cmd.ExecuteReader();
 
             try
@@ -36,12 +46,12 @@ namespace pos_core_api.ORM
             }
         }
 
-        public CustomerOrder Get(uint customerID)
+        public CustomerOrder Get(uint customerID, bool includehistory)
         {
             db.OpenConnection();
 
-            string sqlStatement = @$"{CUSTOMERORDERSQL}
-              WHERE customerID = @custID
+            string sqlStatement = @$"{(includehistory ? $"{CUSTOMERORDERSQL} WHERE " : $"{OUTSTANDINGCUSTOMERORDERSQL} AND ")}
+              customerID = @custID
             ";
 
             MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
@@ -64,12 +74,12 @@ namespace pos_core_api.ORM
             }
         }
 
-        public CustomerOrder GetOrder(uint orderId)
+        public CustomerOrder GetOrder(uint orderId, bool includehistory)
         {
             db.OpenConnection();
 
-            string sqlStatement = @$"{CUSTOMERORDERSQL}
-              WHERE CustomerOrderid = @orderId
+            string sqlStatement = @$"{(includehistory ? $"{CUSTOMERORDERSQL} WHERE " : $"{OUTSTANDINGCUSTOMERORDERSQL} AND ")}
+              CustomerOrderid = @orderId
             ";
 
             MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
