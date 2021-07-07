@@ -355,16 +355,21 @@ namespace SecretCellar
         #endregion
 
         #region CustomerOrder
-        public List<CustomerOrder> GetCustomerOrder(uint typeId = 0)
+        public List<CustomerOrder> GetCustomerOrder(bool includeHistory = false)
         {
-            string result = web.DataGet($"api/CustomerOrder?typeID={typeId}");
+            string result = web.DataGet($"api/CustomerOrder?includeHistory={includeHistory }");
             return JsonConvert.DeserializeObject<List<CustomerOrder>>(result);
         }
 
-        public List<CustomerOrder> GetCustomerOrder(uint customerID, uint typeId = 0)
+        public List<CustomerOrder> GetCustomerOrderforCustomer(uint customerID, bool includeHistory = false)
         {
-            string result = web.DataGet($"api/CustomerOrder/{customerID}?typeID={typeId}");
+            string result = web.DataGet($"api/CustomerOrder/{customerID}?includeHistory={includeHistory }");
             return JsonConvert.DeserializeObject<List<CustomerOrder>>(result);
+        }
+        public CustomerOrder GetCustomerOrder(uint customerOrderID, bool includeHistory = false)
+        {
+            string result = web.DataGet($"api/CustomerOrder/order/{customerOrderID}?includeHistory={includeHistory }");
+            return JsonConvert.DeserializeObject<CustomerOrder>(result);
         }
 
         public uint UpdateCustomerOrder(CustomerOrder customerOrder)
