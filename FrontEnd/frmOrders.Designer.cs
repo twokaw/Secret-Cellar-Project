@@ -73,7 +73,7 @@ namespace SecretCellar
             this.cbx_supp_custorder = new System.Windows.Forms.ComboBox();
             this.lbl_qty_custorder = new System.Windows.Forms.Label();
             this.txt_orderqty_custorder = new System.Windows.Forms.TextBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.custOrder_datagrid = new System.Windows.Forms.DataGridView();
             this.lbl_cust_custorder = new System.Windows.Forms.Label();
             this.cbx_cust_custorder = new System.Windows.Forms.ComboBox();
             this.Fullfillment = new System.Windows.Forms.TabPage();
@@ -120,7 +120,7 @@ namespace SecretCellar
             ((System.ComponentModel.ISupportInitialize)(this.request_dataGrid)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.cust_order.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.custOrder_datagrid)).BeginInit();
             this.Fullfillment.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fullfill_datagrid)).BeginInit();
             this.History.SuspendLayout();
@@ -517,7 +517,7 @@ namespace SecretCellar
             this.cust_order.Controls.Add(this.cbx_supp_custorder);
             this.cust_order.Controls.Add(this.lbl_qty_custorder);
             this.cust_order.Controls.Add(this.txt_orderqty_custorder);
-            this.cust_order.Controls.Add(this.dataGridView1);
+            this.cust_order.Controls.Add(this.custOrder_datagrid);
             this.cust_order.Controls.Add(this.lbl_cust_custorder);
             this.cust_order.Controls.Add(this.cbx_cust_custorder);
             this.cust_order.Location = new System.Drawing.Point(4, 29);
@@ -570,13 +570,13 @@ namespace SecretCellar
             this.txt_orderqty_custorder.Size = new System.Drawing.Size(178, 26);
             this.txt_orderqty_custorder.TabIndex = 3;
             // 
-            // dataGridView1
+            // custOrder_datagrid
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(30, 129);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(722, 270);
-            this.dataGridView1.TabIndex = 2;
+            this.custOrder_datagrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.custOrder_datagrid.Location = new System.Drawing.Point(30, 129);
+            this.custOrder_datagrid.Name = "custOrder_datagrid";
+            this.custOrder_datagrid.Size = new System.Drawing.Size(722, 270);
+            this.custOrder_datagrid.TabIndex = 2;
             // 
             // lbl_cust_custorder
             // 
@@ -977,7 +977,7 @@ namespace SecretCellar
             this.tabControl1.ResumeLayout(false);
             this.cust_order.ResumeLayout(false);
             this.cust_order.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.custOrder_datagrid)).EndInit();
             this.Fullfillment.ResumeLayout(false);
             this.Fullfillment.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fullfill_datagrid)).EndInit();
@@ -1072,7 +1072,7 @@ namespace SecretCellar
         private System.Windows.Forms.ComboBox cbx_supp_custorder;
         private System.Windows.Forms.Label lbl_qty_custorder;
         private System.Windows.Forms.TextBox txt_orderqty_custorder;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView custOrder_datagrid;
         private System.Windows.Forms.Label lbl_cust_custorder;
         private System.Windows.Forms.ComboBox cbx_cust_custorder;
     }

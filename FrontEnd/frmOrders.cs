@@ -66,6 +66,8 @@ namespace SecretCellar
             //cbx_fullfill_supp.DisplayMember = "Name";
             cbx_fullfill_cust.DataSource = cust;
             cbx_fullfill_cust.DisplayMember = "FullName";
+            cbx_cust_custorder.DataSource = cust;
+            cbx_supp_custorder.DataSource = suppliers;
 
             lstbox_customer.DataSource = DataAccess.instance?.GetCustomer();
             lstbox_customer.DisplayMember = "FullName";
@@ -119,6 +121,23 @@ namespace SecretCellar
 
             cust_notes_refresh();
 
+            //customer order tab
+
+            custOrder_datagrid.DataSource = inventory.
+              Select(x => new
+              {
+                  Name = x.Name,
+                  Id = x.Id,
+                  ItemType = x.ItemType,
+                  Qty = x.Qty,
+                  Barcode = x.Barcode,
+                  Price = x.SupplierPrice,
+                  minqty = x.InvMin,
+                  maxqty = x.InvMax,
+                  orderqty = x.OrderQty
+              }).
+               OrderBy(x => x.Name).
+               ToList();
 
         }
 
@@ -483,9 +502,10 @@ namespace SecretCellar
             frefresh();
         }
 
-        //wholesale tab
+        //cust order tab
+
+        
 
 
-
-    }
+}
 }
