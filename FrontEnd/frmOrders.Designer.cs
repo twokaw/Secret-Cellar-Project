@@ -165,7 +165,7 @@ namespace SecretCellar
             // 
             this.btn_update.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_update.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_update.Location = new System.Drawing.Point(1281, 234);
+            this.btn_update.Location = new System.Drawing.Point(1089, 189);
             this.btn_update.Name = "btn_update";
             this.btn_update.Size = new System.Drawing.Size(154, 36);
             this.btn_update.TabIndex = 13;
@@ -176,7 +176,7 @@ namespace SecretCellar
             // txt_update_qty
             // 
             this.txt_update_qty.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.txt_update_qty.Location = new System.Drawing.Point(1300, 189);
+            this.txt_update_qty.Location = new System.Drawing.Point(1089, 145);
             this.txt_update_qty.Name = "txt_update_qty";
             this.txt_update_qty.Size = new System.Drawing.Size(135, 26);
             this.txt_update_qty.TabIndex = 12;
@@ -184,7 +184,7 @@ namespace SecretCellar
             // lbl_qty
             // 
             this.lbl_qty.AutoSize = true;
-            this.lbl_qty.Location = new System.Drawing.Point(1151, 192);
+            this.lbl_qty.Location = new System.Drawing.Point(1085, 107);
             this.lbl_qty.Name = "lbl_qty";
             this.lbl_qty.Size = new System.Drawing.Size(126, 20);
             this.lbl_qty.TabIndex = 11;
@@ -194,7 +194,7 @@ namespace SecretCellar
             // 
             this.lbl_order_date.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lbl_order_date.AutoSize = true;
-            this.lbl_order_date.Location = new System.Drawing.Point(1144, 52);
+            this.lbl_order_date.Location = new System.Drawing.Point(1085, 35);
             this.lbl_order_date.Name = "lbl_order_date";
             this.lbl_order_date.Size = new System.Drawing.Size(98, 20);
             this.lbl_order_date.TabIndex = 10;
@@ -203,7 +203,7 @@ namespace SecretCellar
             // dateTimePicker1
             // 
             this.dateTimePicker1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.dateTimePicker1.Location = new System.Drawing.Point(1248, 47);
+            this.dateTimePicker1.Location = new System.Drawing.Point(1089, 58);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(200, 26);
             this.dateTimePicker1.TabIndex = 9;
@@ -212,7 +212,7 @@ namespace SecretCellar
             // 
             this.btn_print_supp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_print_supp.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_print_supp.Location = new System.Drawing.Point(1281, 377);
+            this.btn_print_supp.Location = new System.Drawing.Point(1089, 326);
             this.btn_print_supp.Name = "btn_print_supp";
             this.btn_print_supp.Size = new System.Drawing.Size(154, 36);
             this.btn_print_supp.TabIndex = 8;
@@ -223,7 +223,7 @@ namespace SecretCellar
             // txt_supp_total
             // 
             this.txt_supp_total.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.txt_supp_total.Location = new System.Drawing.Point(1300, 303);
+            this.txt_supp_total.Location = new System.Drawing.Point(1089, 282);
             this.txt_supp_total.Name = "txt_supp_total";
             this.txt_supp_total.Size = new System.Drawing.Size(135, 26);
             this.txt_supp_total.TabIndex = 4;
@@ -231,7 +231,7 @@ namespace SecretCellar
             // lbl_supp_total
             // 
             this.lbl_supp_total.AutoSize = true;
-            this.lbl_supp_total.Location = new System.Drawing.Point(1228, 309);
+            this.lbl_supp_total.Location = new System.Drawing.Point(1085, 243);
             this.lbl_supp_total.Name = "lbl_supp_total";
             this.lbl_supp_total.Size = new System.Drawing.Size(49, 20);
             this.lbl_supp_total.TabIndex = 3;
@@ -373,14 +373,14 @@ namespace SecretCellar
             // 
             this.lst_customer.FormattingEnabled = true;
             this.lst_customer.ItemHeight = 20;
-            this.lst_customer.Location = new System.Drawing.Point(41, 179);
+            this.lst_customer.Location = new System.Drawing.Point(24, 82);
             this.lst_customer.Name = "lst_customer";
             this.lst_customer.Size = new System.Drawing.Size(343, 144);
             this.lst_customer.TabIndex = 7;
             // 
             // btn_prod_delete
             // 
-            this.btn_prod_delete.Location = new System.Drawing.Point(717, 301);
+            this.btn_prod_delete.Location = new System.Drawing.Point(620, 95);
             this.btn_prod_delete.Name = "btn_prod_delete";
             this.btn_prod_delete.Size = new System.Drawing.Size(154, 36);
             this.btn_prod_delete.TabIndex = 6;
@@ -390,7 +390,7 @@ namespace SecretCellar
             // 
             // btn_prod_add
             // 
-            this.btn_prod_add.Location = new System.Drawing.Point(717, 236);
+            this.btn_prod_add.Location = new System.Drawing.Point(411, 95);
             this.btn_prod_add.Name = "btn_prod_add";
             this.btn_prod_add.Size = new System.Drawing.Size(154, 36);
             this.btn_prod_add.TabIndex = 5;
@@ -400,7 +400,7 @@ namespace SecretCellar
             // 
             // txt_prod_name
             // 
-            this.txt_prod_name.Location = new System.Drawing.Point(571, 176);
+            this.txt_prod_name.Location = new System.Drawing.Point(550, 36);
             this.txt_prod_name.Name = "txt_prod_name";
             this.txt_prod_name.Size = new System.Drawing.Size(300, 26);
             this.txt_prod_name.TabIndex = 4;
@@ -408,7 +408,7 @@ namespace SecretCellar
             // lbl_prod_name
             // 
             this.lbl_prod_name.AutoSize = true;
-            this.lbl_prod_name.Location = new System.Drawing.Point(428, 179);
+            this.lbl_prod_name.Location = new System.Drawing.Point(407, 39);
             this.lbl_prod_name.Name = "lbl_prod_name";
             this.lbl_prod_name.Size = new System.Drawing.Size(122, 20);
             this.lbl_prod_name.TabIndex = 3;
@@ -416,7 +416,7 @@ namespace SecretCellar
             // 
             // txt_cust_name
             // 
-            this.txt_cust_name.Location = new System.Drawing.Point(184, 114);
+            this.txt_cust_name.Location = new System.Drawing.Point(163, 33);
             this.txt_cust_name.Name = "txt_cust_name";
             this.txt_cust_name.Size = new System.Drawing.Size(200, 26);
             this.txt_cust_name.TabIndex = 2;
@@ -425,7 +425,7 @@ namespace SecretCellar
             // lbl_cust_name
             // 
             this.lbl_cust_name.AutoSize = true;
-            this.lbl_cust_name.Location = new System.Drawing.Point(41, 117);
+            this.lbl_cust_name.Location = new System.Drawing.Point(20, 36);
             this.lbl_cust_name.Name = "lbl_cust_name";
             this.lbl_cust_name.Size = new System.Drawing.Size(137, 20);
             this.lbl_cust_name.TabIndex = 1;
@@ -443,13 +443,13 @@ namespace SecretCellar
             this.note_date,
             this.customer_names,
             this.prod_name});
-            this.request_dataGrid.Location = new System.Drawing.Point(962, 117);
+            this.request_dataGrid.Location = new System.Drawing.Point(392, 159);
             this.request_dataGrid.Name = "request_dataGrid";
             this.request_dataGrid.ReadOnly = true;
             this.request_dataGrid.RowHeadersVisible = false;
             this.request_dataGrid.RowHeadersWidth = 62;
             this.request_dataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.request_dataGrid.Size = new System.Drawing.Size(542, 300);
+            this.request_dataGrid.Size = new System.Drawing.Size(504, 192);
             this.request_dataGrid.TabIndex = 0;
             // 
             // customer_id
@@ -617,7 +617,7 @@ namespace SecretCellar
             // 
             // btn_whole_assign_update
             // 
-            this.btn_whole_assign_update.Location = new System.Drawing.Point(1265, 356);
+            this.btn_whole_assign_update.Location = new System.Drawing.Point(895, 313);
             this.btn_whole_assign_update.Name = "btn_whole_assign_update";
             this.btn_whole_assign_update.Size = new System.Drawing.Size(170, 36);
             this.btn_whole_assign_update.TabIndex = 11;
@@ -626,7 +626,7 @@ namespace SecretCellar
             // 
             // btn_whole_order_update
             // 
-            this.btn_whole_order_update.Location = new System.Drawing.Point(1265, 233);
+            this.btn_whole_order_update.Location = new System.Drawing.Point(895, 190);
             this.btn_whole_order_update.Name = "btn_whole_order_update";
             this.btn_whole_order_update.Size = new System.Drawing.Size(170, 36);
             this.btn_whole_order_update.TabIndex = 10;
@@ -635,7 +635,7 @@ namespace SecretCellar
             // 
             // dateTimePicker2
             // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(1235, 107);
+            this.dateTimePicker2.Location = new System.Drawing.Point(865, 64);
             this.dateTimePicker2.Name = "dateTimePicker2";
             this.dateTimePicker2.Size = new System.Drawing.Size(200, 26);
             this.dateTimePicker2.TabIndex = 9;
@@ -643,7 +643,7 @@ namespace SecretCellar
             // lbl_assignqty
             // 
             this.lbl_assignqty.AutoSize = true;
-            this.lbl_assignqty.Location = new System.Drawing.Point(1174, 313);
+            this.lbl_assignqty.Location = new System.Drawing.Point(804, 270);
             this.lbl_assignqty.Name = "lbl_assignqty";
             this.lbl_assignqty.Size = new System.Drawing.Size(121, 20);
             this.lbl_assignqty.TabIndex = 8;
@@ -651,7 +651,7 @@ namespace SecretCellar
             // 
             // txt_receivqty
             // 
-            this.txt_receivqty.Location = new System.Drawing.Point(1300, 310);
+            this.txt_receivqty.Location = new System.Drawing.Point(930, 267);
             this.txt_receivqty.Name = "txt_receivqty";
             this.txt_receivqty.Size = new System.Drawing.Size(135, 26);
             this.txt_receivqty.TabIndex = 7;
@@ -659,7 +659,7 @@ namespace SecretCellar
             // lbl_whole_orderqty
             // 
             this.lbl_whole_orderqty.AutoSize = true;
-            this.lbl_whole_orderqty.Location = new System.Drawing.Point(1203, 192);
+            this.lbl_whole_orderqty.Location = new System.Drawing.Point(833, 149);
             this.lbl_whole_orderqty.Name = "lbl_whole_orderqty";
             this.lbl_whole_orderqty.Size = new System.Drawing.Size(91, 20);
             this.lbl_whole_orderqty.TabIndex = 6;
@@ -667,7 +667,7 @@ namespace SecretCellar
             // 
             // txt_whole_orderqty
             // 
-            this.txt_whole_orderqty.Location = new System.Drawing.Point(1300, 189);
+            this.txt_whole_orderqty.Location = new System.Drawing.Point(930, 146);
             this.txt_whole_orderqty.Name = "txt_whole_orderqty";
             this.txt_whole_orderqty.Size = new System.Drawing.Size(135, 26);
             this.txt_whole_orderqty.TabIndex = 5;
@@ -705,7 +705,7 @@ namespace SecretCellar
             this.fullfill_datagrid.Location = new System.Drawing.Point(25, 107);
             this.fullfill_datagrid.Name = "fullfill_datagrid";
             this.fullfill_datagrid.RowHeadersVisible = false;
-            this.fullfill_datagrid.Size = new System.Drawing.Size(1041, 300);
+            this.fullfill_datagrid.Size = new System.Drawing.Size(772, 300);
             this.fullfill_datagrid.TabIndex = 0;
             // 
             // fid
@@ -797,7 +797,7 @@ namespace SecretCellar
             // 
             // btn_setDate
             // 
-            this.btn_setDate.Location = new System.Drawing.Point(642, 201);
+            this.btn_setDate.Location = new System.Drawing.Point(498, 152);
             this.btn_setDate.Name = "btn_setDate";
             this.btn_setDate.Size = new System.Drawing.Size(179, 48);
             this.btn_setDate.TabIndex = 12;
@@ -807,7 +807,7 @@ namespace SecretCellar
             // 
             // btn_setCust
             // 
-            this.btn_setCust.Location = new System.Drawing.Point(135, 342);
+            this.btn_setCust.Location = new System.Drawing.Point(99, 303);
             this.btn_setCust.Name = "btn_setCust";
             this.btn_setCust.Size = new System.Drawing.Size(179, 48);
             this.btn_setCust.TabIndex = 11;
@@ -818,7 +818,7 @@ namespace SecretCellar
             // lbl_orders
             // 
             this.lbl_orders.AutoSize = true;
-            this.lbl_orders.Location = new System.Drawing.Point(955, 71);
+            this.lbl_orders.Location = new System.Drawing.Point(753, 65);
             this.lbl_orders.Name = "lbl_orders";
             this.lbl_orders.Size = new System.Drawing.Size(104, 20);
             this.lbl_orders.TabIndex = 10;
@@ -827,7 +827,7 @@ namespace SecretCellar
             // lbl_name
             // 
             this.lbl_name.AutoSize = true;
-            this.lbl_name.Location = new System.Drawing.Point(66, 99);
+            this.lbl_name.Location = new System.Drawing.Point(30, 60);
             this.lbl_name.Name = "lbl_name";
             this.lbl_name.Size = new System.Drawing.Size(137, 20);
             this.lbl_name.TabIndex = 9;
@@ -835,7 +835,7 @@ namespace SecretCellar
             // 
             // txt_name
             // 
-            this.txt_name.Location = new System.Drawing.Point(209, 96);
+            this.txt_name.Location = new System.Drawing.Point(173, 57);
             this.txt_name.Name = "txt_name";
             this.txt_name.Size = new System.Drawing.Size(204, 26);
             this.txt_name.TabIndex = 8;
@@ -843,7 +843,7 @@ namespace SecretCellar
             // 
             // btn_reset
             // 
-            this.btn_reset.Location = new System.Drawing.Point(642, 381);
+            this.btn_reset.Location = new System.Drawing.Point(498, 291);
             this.btn_reset.Name = "btn_reset";
             this.btn_reset.Size = new System.Drawing.Size(179, 48);
             this.btn_reset.TabIndex = 7;
@@ -853,7 +853,7 @@ namespace SecretCellar
             // 
             // btn_print
             // 
-            this.btn_print.Location = new System.Drawing.Point(642, 315);
+            this.btn_print.Location = new System.Drawing.Point(498, 225);
             this.btn_print.Name = "btn_print";
             this.btn_print.Size = new System.Drawing.Size(179, 48);
             this.btn_print.TabIndex = 6;
@@ -865,7 +865,7 @@ namespace SecretCellar
             // 
             this.lstbox_customer.FormattingEnabled = true;
             this.lstbox_customer.ItemHeight = 20;
-            this.lstbox_customer.Location = new System.Drawing.Point(70, 150);
+            this.lstbox_customer.Location = new System.Drawing.Point(34, 111);
             this.lstbox_customer.Name = "lstbox_customer";
             this.lstbox_customer.Size = new System.Drawing.Size(343, 144);
             this.lstbox_customer.TabIndex = 5;
@@ -877,12 +877,12 @@ namespace SecretCellar
             this.trans_id,
             this.trans_date,
             this.trans_total});
-            this.transaction_dataGrid.Location = new System.Drawing.Point(959, 107);
+            this.transaction_dataGrid.Location = new System.Drawing.Point(757, 101);
             this.transaction_dataGrid.Name = "transaction_dataGrid";
             this.transaction_dataGrid.RowHeadersVisible = false;
             this.transaction_dataGrid.RowHeadersWidth = 62;
             this.transaction_dataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.transaction_dataGrid.Size = new System.Drawing.Size(533, 270);
+            this.transaction_dataGrid.Size = new System.Drawing.Size(452, 270);
             this.transaction_dataGrid.TabIndex = 4;
             this.transaction_dataGrid.SelectionChanged += new System.EventHandler(this.tranaction_dataGrid_SelectionChanged);
             // 
@@ -915,7 +915,7 @@ namespace SecretCellar
             // lbl_end
             // 
             this.lbl_end.AutoSize = true;
-            this.lbl_end.Location = new System.Drawing.Point(546, 154);
+            this.lbl_end.Location = new System.Drawing.Point(402, 105);
             this.lbl_end.Name = "lbl_end";
             this.lbl_end.Size = new System.Drawing.Size(41, 20);
             this.lbl_end.TabIndex = 3;
@@ -923,7 +923,7 @@ namespace SecretCellar
             // 
             // end_dateTime
             // 
-            this.end_dateTime.Location = new System.Drawing.Point(601, 150);
+            this.end_dateTime.Location = new System.Drawing.Point(457, 101);
             this.end_dateTime.Name = "end_dateTime";
             this.end_dateTime.Size = new System.Drawing.Size(284, 26);
             this.end_dateTime.TabIndex = 2;
@@ -931,7 +931,7 @@ namespace SecretCellar
             // lbl_start
             // 
             this.lbl_start.AutoSize = true;
-            this.lbl_start.Location = new System.Drawing.Point(546, 111);
+            this.lbl_start.Location = new System.Drawing.Point(402, 62);
             this.lbl_start.Name = "lbl_start";
             this.lbl_start.Size = new System.Drawing.Size(49, 20);
             this.lbl_start.TabIndex = 1;
@@ -939,7 +939,7 @@ namespace SecretCellar
             // 
             // start_dateTime
             // 
-            this.start_dateTime.Location = new System.Drawing.Point(601, 107);
+            this.start_dateTime.Location = new System.Drawing.Point(457, 58);
             this.start_dateTime.Name = "start_dateTime";
             this.start_dateTime.Size = new System.Drawing.Size(284, 26);
             this.start_dateTime.TabIndex = 0;
