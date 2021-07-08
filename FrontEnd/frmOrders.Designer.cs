@@ -67,6 +67,35 @@ namespace SecretCellar
             this.customer_names = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.prod_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.cust_order = new System.Windows.Forms.TabPage();
+            this.btn_update_custorder = new System.Windows.Forms.Button();
+            this.lbl_supp_custorder = new System.Windows.Forms.Label();
+            this.cbx_supp_custorder = new System.Windows.Forms.ComboBox();
+            this.lbl_qty_custorder = new System.Windows.Forms.Label();
+            this.txt_orderqty_custorder = new System.Windows.Forms.TextBox();
+            this.custOrder_datagrid = new System.Windows.Forms.DataGridView();
+            this.lbl_cust_custorder = new System.Windows.Forms.Label();
+            this.cbx_cust_custorder = new System.Windows.Forms.ComboBox();
+            this.Fullfillment = new System.Windows.Forms.TabPage();
+            this.btn_whole_assign_update = new System.Windows.Forms.Button();
+            this.btn_whole_order_update = new System.Windows.Forms.Button();
+            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.lbl_assignqty = new System.Windows.Forms.Label();
+            this.txt_receivqty = new System.Windows.Forms.TextBox();
+            this.lbl_whole_orderqty = new System.Windows.Forms.Label();
+            this.txt_whole_orderqty = new System.Windows.Forms.TextBox();
+            this.lbl_whole_cust = new System.Windows.Forms.Label();
+            this.cbx_fullfill_cust = new System.Windows.Forms.ComboBox();
+            this.fullfill_datagrid = new System.Windows.Forms.DataGridView();
+            this.fid = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fbarcode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fname = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ftype = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fprice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fmin = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fmax = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.forderqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.History = new System.Windows.Forms.TabPage();
             this.btn_setDate = new System.Windows.Forms.Button();
             this.btn_setCust = new System.Windows.Forms.Button();
@@ -84,47 +113,18 @@ namespace SecretCellar
             this.end_dateTime = new System.Windows.Forms.DateTimePicker();
             this.lbl_start = new System.Windows.Forms.Label();
             this.start_dateTime = new System.Windows.Forms.DateTimePicker();
-            this.Fullfillment = new System.Windows.Forms.TabPage();
-            this.btn_whole_assign_update = new System.Windows.Forms.Button();
-            this.btn_whole_order_update = new System.Windows.Forms.Button();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
-            this.lbl_assignqty = new System.Windows.Forms.Label();
-            this.txt_receivqty = new System.Windows.Forms.TextBox();
-            this.lbl_whole_orderqty = new System.Windows.Forms.Label();
-            this.txt_whole_orderqty = new System.Windows.Forms.TextBox();
-            this.lbl_whole_cust = new System.Windows.Forms.Label();
-            this.cbx_fullfill_cust = new System.Windows.Forms.ComboBox();
-            this.fullfill_datagrid = new System.Windows.Forms.DataGridView();
             this.btn_close = new System.Windows.Forms.Button();
-            this.fid = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fbarcode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ftype = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fprice = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fmin = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fmax = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.forderqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cust_order = new System.Windows.Forms.TabPage();
-            this.cbx_cust_custorder = new System.Windows.Forms.ComboBox();
-            this.lbl_cust_custorder = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.txt_orderqty_custorder = new System.Windows.Forms.TextBox();
-            this.lbl_qty_custorder = new System.Windows.Forms.Label();
-            this.cbx_supp_custorder = new System.Windows.Forms.ComboBox();
-            this.lbl_supp_custorder = new System.Windows.Forms.Label();
-            this.btn_update_custorder = new System.Windows.Forms.Button();
             this.supp_order.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.supp_dataGrid)).BeginInit();
             this.cust_request.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.request_dataGrid)).BeginInit();
             this.tabControl1.SuspendLayout();
-            this.History.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.transaction_dataGrid)).BeginInit();
+            this.cust_order.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.custOrder_datagrid)).BeginInit();
             this.Fullfillment.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fullfill_datagrid)).BeginInit();
-            this.cust_order.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.History.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.transaction_dataGrid)).BeginInit();
             this.SuspendLayout();
             // 
             // supp_order
@@ -165,7 +165,7 @@ namespace SecretCellar
             // 
             this.btn_update.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_update.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_update.Location = new System.Drawing.Point(1281, 234);
+            this.btn_update.Location = new System.Drawing.Point(1089, 189);
             this.btn_update.Name = "btn_update";
             this.btn_update.Size = new System.Drawing.Size(154, 36);
             this.btn_update.TabIndex = 13;
@@ -176,7 +176,7 @@ namespace SecretCellar
             // txt_update_qty
             // 
             this.txt_update_qty.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.txt_update_qty.Location = new System.Drawing.Point(1300, 189);
+            this.txt_update_qty.Location = new System.Drawing.Point(1089, 145);
             this.txt_update_qty.Name = "txt_update_qty";
             this.txt_update_qty.Size = new System.Drawing.Size(135, 26);
             this.txt_update_qty.TabIndex = 12;
@@ -184,7 +184,7 @@ namespace SecretCellar
             // lbl_qty
             // 
             this.lbl_qty.AutoSize = true;
-            this.lbl_qty.Location = new System.Drawing.Point(1151, 192);
+            this.lbl_qty.Location = new System.Drawing.Point(1085, 107);
             this.lbl_qty.Name = "lbl_qty";
             this.lbl_qty.Size = new System.Drawing.Size(126, 20);
             this.lbl_qty.TabIndex = 11;
@@ -194,7 +194,7 @@ namespace SecretCellar
             // 
             this.lbl_order_date.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lbl_order_date.AutoSize = true;
-            this.lbl_order_date.Location = new System.Drawing.Point(1144, 52);
+            this.lbl_order_date.Location = new System.Drawing.Point(1085, 35);
             this.lbl_order_date.Name = "lbl_order_date";
             this.lbl_order_date.Size = new System.Drawing.Size(98, 20);
             this.lbl_order_date.TabIndex = 10;
@@ -203,7 +203,7 @@ namespace SecretCellar
             // dateTimePicker1
             // 
             this.dateTimePicker1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.dateTimePicker1.Location = new System.Drawing.Point(1248, 47);
+            this.dateTimePicker1.Location = new System.Drawing.Point(1089, 58);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(200, 26);
             this.dateTimePicker1.TabIndex = 9;
@@ -212,7 +212,7 @@ namespace SecretCellar
             // 
             this.btn_print_supp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_print_supp.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_print_supp.Location = new System.Drawing.Point(1281, 377);
+            this.btn_print_supp.Location = new System.Drawing.Point(1089, 326);
             this.btn_print_supp.Name = "btn_print_supp";
             this.btn_print_supp.Size = new System.Drawing.Size(154, 36);
             this.btn_print_supp.TabIndex = 8;
@@ -223,7 +223,7 @@ namespace SecretCellar
             // txt_supp_total
             // 
             this.txt_supp_total.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.txt_supp_total.Location = new System.Drawing.Point(1300, 303);
+            this.txt_supp_total.Location = new System.Drawing.Point(1089, 282);
             this.txt_supp_total.Name = "txt_supp_total";
             this.txt_supp_total.Size = new System.Drawing.Size(135, 26);
             this.txt_supp_total.TabIndex = 4;
@@ -231,7 +231,7 @@ namespace SecretCellar
             // lbl_supp_total
             // 
             this.lbl_supp_total.AutoSize = true;
-            this.lbl_supp_total.Location = new System.Drawing.Point(1228, 309);
+            this.lbl_supp_total.Location = new System.Drawing.Point(1085, 243);
             this.lbl_supp_total.Name = "lbl_supp_total";
             this.lbl_supp_total.Size = new System.Drawing.Size(49, 20);
             this.lbl_supp_total.TabIndex = 3;
@@ -373,14 +373,14 @@ namespace SecretCellar
             // 
             this.lst_customer.FormattingEnabled = true;
             this.lst_customer.ItemHeight = 20;
-            this.lst_customer.Location = new System.Drawing.Point(41, 179);
+            this.lst_customer.Location = new System.Drawing.Point(24, 82);
             this.lst_customer.Name = "lst_customer";
             this.lst_customer.Size = new System.Drawing.Size(343, 144);
             this.lst_customer.TabIndex = 7;
             // 
             // btn_prod_delete
             // 
-            this.btn_prod_delete.Location = new System.Drawing.Point(717, 301);
+            this.btn_prod_delete.Location = new System.Drawing.Point(620, 95);
             this.btn_prod_delete.Name = "btn_prod_delete";
             this.btn_prod_delete.Size = new System.Drawing.Size(154, 36);
             this.btn_prod_delete.TabIndex = 6;
@@ -390,7 +390,7 @@ namespace SecretCellar
             // 
             // btn_prod_add
             // 
-            this.btn_prod_add.Location = new System.Drawing.Point(717, 236);
+            this.btn_prod_add.Location = new System.Drawing.Point(411, 95);
             this.btn_prod_add.Name = "btn_prod_add";
             this.btn_prod_add.Size = new System.Drawing.Size(154, 36);
             this.btn_prod_add.TabIndex = 5;
@@ -400,7 +400,7 @@ namespace SecretCellar
             // 
             // txt_prod_name
             // 
-            this.txt_prod_name.Location = new System.Drawing.Point(571, 176);
+            this.txt_prod_name.Location = new System.Drawing.Point(550, 36);
             this.txt_prod_name.Name = "txt_prod_name";
             this.txt_prod_name.Size = new System.Drawing.Size(300, 26);
             this.txt_prod_name.TabIndex = 4;
@@ -408,7 +408,7 @@ namespace SecretCellar
             // lbl_prod_name
             // 
             this.lbl_prod_name.AutoSize = true;
-            this.lbl_prod_name.Location = new System.Drawing.Point(428, 179);
+            this.lbl_prod_name.Location = new System.Drawing.Point(407, 39);
             this.lbl_prod_name.Name = "lbl_prod_name";
             this.lbl_prod_name.Size = new System.Drawing.Size(122, 20);
             this.lbl_prod_name.TabIndex = 3;
@@ -416,7 +416,7 @@ namespace SecretCellar
             // 
             // txt_cust_name
             // 
-            this.txt_cust_name.Location = new System.Drawing.Point(184, 114);
+            this.txt_cust_name.Location = new System.Drawing.Point(163, 33);
             this.txt_cust_name.Name = "txt_cust_name";
             this.txt_cust_name.Size = new System.Drawing.Size(200, 26);
             this.txt_cust_name.TabIndex = 2;
@@ -425,7 +425,7 @@ namespace SecretCellar
             // lbl_cust_name
             // 
             this.lbl_cust_name.AutoSize = true;
-            this.lbl_cust_name.Location = new System.Drawing.Point(41, 117);
+            this.lbl_cust_name.Location = new System.Drawing.Point(20, 36);
             this.lbl_cust_name.Name = "lbl_cust_name";
             this.lbl_cust_name.Size = new System.Drawing.Size(137, 20);
             this.lbl_cust_name.TabIndex = 1;
@@ -443,13 +443,13 @@ namespace SecretCellar
             this.note_date,
             this.customer_names,
             this.prod_name});
-            this.request_dataGrid.Location = new System.Drawing.Point(962, 117);
+            this.request_dataGrid.Location = new System.Drawing.Point(392, 159);
             this.request_dataGrid.Name = "request_dataGrid";
             this.request_dataGrid.ReadOnly = true;
             this.request_dataGrid.RowHeadersVisible = false;
             this.request_dataGrid.RowHeadersWidth = 62;
             this.request_dataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.request_dataGrid.Size = new System.Drawing.Size(542, 300);
+            this.request_dataGrid.Size = new System.Drawing.Size(504, 192);
             this.request_dataGrid.TabIndex = 0;
             // 
             // customer_id
@@ -510,177 +510,90 @@ namespace SecretCellar
             this.tabControl1.Size = new System.Drawing.Size(1548, 496);
             this.tabControl1.TabIndex = 0;
             // 
-            // History
+            // cust_order
             // 
-            this.History.Controls.Add(this.btn_setDate);
-            this.History.Controls.Add(this.btn_setCust);
-            this.History.Controls.Add(this.lbl_orders);
-            this.History.Controls.Add(this.lbl_name);
-            this.History.Controls.Add(this.txt_name);
-            this.History.Controls.Add(this.btn_reset);
-            this.History.Controls.Add(this.btn_print);
-            this.History.Controls.Add(this.lstbox_customer);
-            this.History.Controls.Add(this.transaction_dataGrid);
-            this.History.Controls.Add(this.lbl_end);
-            this.History.Controls.Add(this.end_dateTime);
-            this.History.Controls.Add(this.lbl_start);
-            this.History.Controls.Add(this.start_dateTime);
-            this.History.Location = new System.Drawing.Point(4, 29);
-            this.History.Name = "History";
-            this.History.Padding = new System.Windows.Forms.Padding(3);
-            this.History.Size = new System.Drawing.Size(1540, 463);
-            this.History.TabIndex = 3;
-            this.History.Text = "History";
-            this.History.UseVisualStyleBackColor = true;
+            this.cust_order.Controls.Add(this.btn_update_custorder);
+            this.cust_order.Controls.Add(this.lbl_supp_custorder);
+            this.cust_order.Controls.Add(this.cbx_supp_custorder);
+            this.cust_order.Controls.Add(this.lbl_qty_custorder);
+            this.cust_order.Controls.Add(this.txt_orderqty_custorder);
+            this.cust_order.Controls.Add(this.custOrder_datagrid);
+            this.cust_order.Controls.Add(this.lbl_cust_custorder);
+            this.cust_order.Controls.Add(this.cbx_cust_custorder);
+            this.cust_order.Location = new System.Drawing.Point(4, 29);
+            this.cust_order.Name = "cust_order";
+            this.cust_order.Padding = new System.Windows.Forms.Padding(3);
+            this.cust_order.Size = new System.Drawing.Size(1540, 463);
+            this.cust_order.TabIndex = 5;
+            this.cust_order.Text = "Customer Order";
+            this.cust_order.UseVisualStyleBackColor = true;
             // 
-            // btn_setDate
+            // btn_update_custorder
             // 
-            this.btn_setDate.Location = new System.Drawing.Point(642, 201);
-            this.btn_setDate.Name = "btn_setDate";
-            this.btn_setDate.Size = new System.Drawing.Size(179, 48);
-            this.btn_setDate.TabIndex = 12;
-            this.btn_setDate.Text = "Set Date Range";
-            this.btn_setDate.UseVisualStyleBackColor = true;
-            this.btn_setDate.Click += new System.EventHandler(this.btn_setDate_Click);
+            this.btn_update_custorder.Location = new System.Drawing.Point(859, 263);
+            this.btn_update_custorder.Name = "btn_update_custorder";
+            this.btn_update_custorder.Size = new System.Drawing.Size(178, 40);
+            this.btn_update_custorder.TabIndex = 7;
+            this.btn_update_custorder.Text = "Update Qty";
+            this.btn_update_custorder.UseVisualStyleBackColor = true;
             // 
-            // btn_setCust
+            // lbl_supp_custorder
             // 
-            this.btn_setCust.Location = new System.Drawing.Point(135, 342);
-            this.btn_setCust.Name = "btn_setCust";
-            this.btn_setCust.Size = new System.Drawing.Size(179, 48);
-            this.btn_setCust.TabIndex = 11;
-            this.btn_setCust.Text = "Set Customer";
-            this.btn_setCust.UseVisualStyleBackColor = true;
-            this.btn_setCust.Click += new System.EventHandler(this.btn_setCust_Click);
+            this.lbl_supp_custorder.AutoSize = true;
+            this.lbl_supp_custorder.Location = new System.Drawing.Point(441, 73);
+            this.lbl_supp_custorder.Name = "lbl_supp_custorder";
+            this.lbl_supp_custorder.Size = new System.Drawing.Size(80, 20);
+            this.lbl_supp_custorder.TabIndex = 6;
+            this.lbl_supp_custorder.Text = "Supplier:";
             // 
-            // lbl_orders
+            // cbx_supp_custorder
             // 
-            this.lbl_orders.AutoSize = true;
-            this.lbl_orders.Location = new System.Drawing.Point(955, 71);
-            this.lbl_orders.Name = "lbl_orders";
-            this.lbl_orders.Size = new System.Drawing.Size(104, 20);
-            this.lbl_orders.TabIndex = 10;
-            this.lbl_orders.Text = "Past Orders";
+            this.cbx_supp_custorder.FormattingEnabled = true;
+            this.cbx_supp_custorder.Location = new System.Drawing.Point(527, 70);
+            this.cbx_supp_custorder.Name = "cbx_supp_custorder";
+            this.cbx_supp_custorder.Size = new System.Drawing.Size(248, 28);
+            this.cbx_supp_custorder.TabIndex = 5;
             // 
-            // lbl_name
+            // lbl_qty_custorder
             // 
-            this.lbl_name.AutoSize = true;
-            this.lbl_name.Location = new System.Drawing.Point(66, 99);
-            this.lbl_name.Name = "lbl_name";
-            this.lbl_name.Size = new System.Drawing.Size(137, 20);
-            this.lbl_name.TabIndex = 9;
-            this.lbl_name.Text = "Customer Name";
+            this.lbl_qty_custorder.AutoSize = true;
+            this.lbl_qty_custorder.Location = new System.Drawing.Point(762, 207);
+            this.lbl_qty_custorder.Name = "lbl_qty_custorder";
+            this.lbl_qty_custorder.Size = new System.Drawing.Size(91, 20);
+            this.lbl_qty_custorder.TabIndex = 4;
+            this.lbl_qty_custorder.Text = "Order Qty:";
             // 
-            // txt_name
+            // txt_orderqty_custorder
             // 
-            this.txt_name.Location = new System.Drawing.Point(209, 96);
-            this.txt_name.Name = "txt_name";
-            this.txt_name.Size = new System.Drawing.Size(204, 26);
-            this.txt_name.TabIndex = 8;
-            this.txt_name.TextChanged += new System.EventHandler(this.txt_name_TextChanged);
+            this.txt_orderqty_custorder.Location = new System.Drawing.Point(859, 204);
+            this.txt_orderqty_custorder.Name = "txt_orderqty_custorder";
+            this.txt_orderqty_custorder.Size = new System.Drawing.Size(178, 26);
+            this.txt_orderqty_custorder.TabIndex = 3;
             // 
-            // btn_reset
+            // custOrder_datagrid
             // 
-            this.btn_reset.Location = new System.Drawing.Point(642, 381);
-            this.btn_reset.Name = "btn_reset";
-            this.btn_reset.Size = new System.Drawing.Size(179, 48);
-            this.btn_reset.TabIndex = 7;
-            this.btn_reset.Text = "Reset";
-            this.btn_reset.UseVisualStyleBackColor = true;
-            this.btn_reset.Click += new System.EventHandler(this.btn_reset_Click);
+            this.custOrder_datagrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.custOrder_datagrid.Location = new System.Drawing.Point(30, 129);
+            this.custOrder_datagrid.Name = "custOrder_datagrid";
+            this.custOrder_datagrid.Size = new System.Drawing.Size(722, 270);
+            this.custOrder_datagrid.TabIndex = 2;
             // 
-            // btn_print
+            // lbl_cust_custorder
             // 
-            this.btn_print.Location = new System.Drawing.Point(642, 315);
-            this.btn_print.Name = "btn_print";
-            this.btn_print.Size = new System.Drawing.Size(179, 48);
-            this.btn_print.TabIndex = 6;
-            this.btn_print.Text = "View/Print";
-            this.btn_print.UseVisualStyleBackColor = true;
-            this.btn_print.Click += new System.EventHandler(this.btn_print_Click);
+            this.lbl_cust_custorder.AutoSize = true;
+            this.lbl_cust_custorder.Location = new System.Drawing.Point(34, 73);
+            this.lbl_cust_custorder.Name = "lbl_cust_custorder";
+            this.lbl_cust_custorder.Size = new System.Drawing.Size(96, 20);
+            this.lbl_cust_custorder.TabIndex = 1;
+            this.lbl_cust_custorder.Text = "Customer: ";
             // 
-            // lstbox_customer
+            // cbx_cust_custorder
             // 
-            this.lstbox_customer.FormattingEnabled = true;
-            this.lstbox_customer.ItemHeight = 20;
-            this.lstbox_customer.Location = new System.Drawing.Point(70, 150);
-            this.lstbox_customer.Name = "lstbox_customer";
-            this.lstbox_customer.Size = new System.Drawing.Size(343, 144);
-            this.lstbox_customer.TabIndex = 5;
-            // 
-            // transaction_dataGrid
-            // 
-            this.transaction_dataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.transaction_dataGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.trans_id,
-            this.trans_date,
-            this.trans_total});
-            this.transaction_dataGrid.Location = new System.Drawing.Point(959, 107);
-            this.transaction_dataGrid.Name = "transaction_dataGrid";
-            this.transaction_dataGrid.RowHeadersVisible = false;
-            this.transaction_dataGrid.RowHeadersWidth = 62;
-            this.transaction_dataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.transaction_dataGrid.Size = new System.Drawing.Size(533, 270);
-            this.transaction_dataGrid.TabIndex = 4;
-            this.transaction_dataGrid.SelectionChanged += new System.EventHandler(this.tranaction_dataGrid_SelectionChanged);
-            // 
-            // trans_id
-            // 
-            this.trans_id.DataPropertyName = "trans_id";
-            this.trans_id.HeaderText = "Id";
-            this.trans_id.MinimumWidth = 8;
-            this.trans_id.Name = "trans_id";
-            this.trans_id.Width = 150;
-            // 
-            // trans_date
-            // 
-            this.trans_date.DataPropertyName = "trans_date";
-            this.trans_date.HeaderText = "Date";
-            this.trans_date.MinimumWidth = 8;
-            this.trans_date.Name = "trans_date";
-            this.trans_date.Width = 150;
-            // 
-            // trans_total
-            // 
-            this.trans_total.DataPropertyName = "trans_total";
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.trans_total.DefaultCellStyle = dataGridViewCellStyle1;
-            this.trans_total.HeaderText = "Total";
-            this.trans_total.MinimumWidth = 8;
-            this.trans_total.Name = "trans_total";
-            this.trans_total.Width = 150;
-            // 
-            // lbl_end
-            // 
-            this.lbl_end.AutoSize = true;
-            this.lbl_end.Location = new System.Drawing.Point(546, 154);
-            this.lbl_end.Name = "lbl_end";
-            this.lbl_end.Size = new System.Drawing.Size(41, 20);
-            this.lbl_end.TabIndex = 3;
-            this.lbl_end.Text = "End";
-            // 
-            // end_dateTime
-            // 
-            this.end_dateTime.Location = new System.Drawing.Point(601, 150);
-            this.end_dateTime.Name = "end_dateTime";
-            this.end_dateTime.Size = new System.Drawing.Size(284, 26);
-            this.end_dateTime.TabIndex = 2;
-            // 
-            // lbl_start
-            // 
-            this.lbl_start.AutoSize = true;
-            this.lbl_start.Location = new System.Drawing.Point(546, 111);
-            this.lbl_start.Name = "lbl_start";
-            this.lbl_start.Size = new System.Drawing.Size(49, 20);
-            this.lbl_start.TabIndex = 1;
-            this.lbl_start.Text = "Start";
-            // 
-            // start_dateTime
-            // 
-            this.start_dateTime.Location = new System.Drawing.Point(601, 107);
-            this.start_dateTime.Name = "start_dateTime";
-            this.start_dateTime.Size = new System.Drawing.Size(284, 26);
-            this.start_dateTime.TabIndex = 0;
+            this.cbx_cust_custorder.FormattingEnabled = true;
+            this.cbx_cust_custorder.Location = new System.Drawing.Point(136, 70);
+            this.cbx_cust_custorder.Name = "cbx_cust_custorder";
+            this.cbx_cust_custorder.Size = new System.Drawing.Size(248, 28);
+            this.cbx_cust_custorder.TabIndex = 0;
             // 
             // Fullfillment
             // 
@@ -704,7 +617,7 @@ namespace SecretCellar
             // 
             // btn_whole_assign_update
             // 
-            this.btn_whole_assign_update.Location = new System.Drawing.Point(1265, 356);
+            this.btn_whole_assign_update.Location = new System.Drawing.Point(895, 313);
             this.btn_whole_assign_update.Name = "btn_whole_assign_update";
             this.btn_whole_assign_update.Size = new System.Drawing.Size(170, 36);
             this.btn_whole_assign_update.TabIndex = 11;
@@ -713,7 +626,7 @@ namespace SecretCellar
             // 
             // btn_whole_order_update
             // 
-            this.btn_whole_order_update.Location = new System.Drawing.Point(1265, 233);
+            this.btn_whole_order_update.Location = new System.Drawing.Point(895, 190);
             this.btn_whole_order_update.Name = "btn_whole_order_update";
             this.btn_whole_order_update.Size = new System.Drawing.Size(170, 36);
             this.btn_whole_order_update.TabIndex = 10;
@@ -722,7 +635,7 @@ namespace SecretCellar
             // 
             // dateTimePicker2
             // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(1235, 107);
+            this.dateTimePicker2.Location = new System.Drawing.Point(865, 64);
             this.dateTimePicker2.Name = "dateTimePicker2";
             this.dateTimePicker2.Size = new System.Drawing.Size(200, 26);
             this.dateTimePicker2.TabIndex = 9;
@@ -730,7 +643,7 @@ namespace SecretCellar
             // lbl_assignqty
             // 
             this.lbl_assignqty.AutoSize = true;
-            this.lbl_assignqty.Location = new System.Drawing.Point(1174, 313);
+            this.lbl_assignqty.Location = new System.Drawing.Point(804, 270);
             this.lbl_assignqty.Name = "lbl_assignqty";
             this.lbl_assignqty.Size = new System.Drawing.Size(121, 20);
             this.lbl_assignqty.TabIndex = 8;
@@ -738,7 +651,7 @@ namespace SecretCellar
             // 
             // txt_receivqty
             // 
-            this.txt_receivqty.Location = new System.Drawing.Point(1300, 310);
+            this.txt_receivqty.Location = new System.Drawing.Point(930, 267);
             this.txt_receivqty.Name = "txt_receivqty";
             this.txt_receivqty.Size = new System.Drawing.Size(135, 26);
             this.txt_receivqty.TabIndex = 7;
@@ -746,7 +659,7 @@ namespace SecretCellar
             // lbl_whole_orderqty
             // 
             this.lbl_whole_orderqty.AutoSize = true;
-            this.lbl_whole_orderqty.Location = new System.Drawing.Point(1203, 192);
+            this.lbl_whole_orderqty.Location = new System.Drawing.Point(833, 149);
             this.lbl_whole_orderqty.Name = "lbl_whole_orderqty";
             this.lbl_whole_orderqty.Size = new System.Drawing.Size(91, 20);
             this.lbl_whole_orderqty.TabIndex = 6;
@@ -754,7 +667,7 @@ namespace SecretCellar
             // 
             // txt_whole_orderqty
             // 
-            this.txt_whole_orderqty.Location = new System.Drawing.Point(1300, 189);
+            this.txt_whole_orderqty.Location = new System.Drawing.Point(930, 146);
             this.txt_whole_orderqty.Name = "txt_whole_orderqty";
             this.txt_whole_orderqty.Size = new System.Drawing.Size(135, 26);
             this.txt_whole_orderqty.TabIndex = 5;
@@ -792,21 +705,8 @@ namespace SecretCellar
             this.fullfill_datagrid.Location = new System.Drawing.Point(25, 107);
             this.fullfill_datagrid.Name = "fullfill_datagrid";
             this.fullfill_datagrid.RowHeadersVisible = false;
-            this.fullfill_datagrid.Size = new System.Drawing.Size(1041, 300);
+            this.fullfill_datagrid.Size = new System.Drawing.Size(772, 300);
             this.fullfill_datagrid.TabIndex = 0;
-            // 
-            // btn_close
-            // 
-            this.btn_close.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_close.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_close.Location = new System.Drawing.Point(543, 514);
-            this.btn_close.Name = "btn_close";
-            this.btn_close.Size = new System.Drawing.Size(418, 36);
-            this.btn_close.TabIndex = 7;
-            this.btn_close.Text = "Close";
-            this.btn_close.UseVisualStyleBackColor = true;
-            this.btn_close.Click += new System.EventHandler(this.btn_close_Click);
             // 
             // fid
             // 
@@ -872,97 +772,197 @@ namespace SecretCellar
             this.forderqty.Visible = false;
             this.forderqty.Width = 80;
             // 
-            // cust_order
+            // History
             // 
-            this.cust_order.Controls.Add(this.btn_update_custorder);
-            this.cust_order.Controls.Add(this.lbl_supp_custorder);
-            this.cust_order.Controls.Add(this.cbx_supp_custorder);
-            this.cust_order.Controls.Add(this.lbl_qty_custorder);
-            this.cust_order.Controls.Add(this.txt_orderqty_custorder);
-            this.cust_order.Controls.Add(this.dataGridView1);
-            this.cust_order.Controls.Add(this.lbl_cust_custorder);
-            this.cust_order.Controls.Add(this.cbx_cust_custorder);
-            this.cust_order.Location = new System.Drawing.Point(4, 29);
-            this.cust_order.Name = "cust_order";
-            this.cust_order.Padding = new System.Windows.Forms.Padding(3);
-            this.cust_order.Size = new System.Drawing.Size(1540, 463);
-            this.cust_order.TabIndex = 5;
-            this.cust_order.Text = "Customer Order";
-            this.cust_order.UseVisualStyleBackColor = true;
+            this.History.Controls.Add(this.btn_setDate);
+            this.History.Controls.Add(this.btn_setCust);
+            this.History.Controls.Add(this.lbl_orders);
+            this.History.Controls.Add(this.lbl_name);
+            this.History.Controls.Add(this.txt_name);
+            this.History.Controls.Add(this.btn_reset);
+            this.History.Controls.Add(this.btn_print);
+            this.History.Controls.Add(this.lstbox_customer);
+            this.History.Controls.Add(this.transaction_dataGrid);
+            this.History.Controls.Add(this.lbl_end);
+            this.History.Controls.Add(this.end_dateTime);
+            this.History.Controls.Add(this.lbl_start);
+            this.History.Controls.Add(this.start_dateTime);
+            this.History.Location = new System.Drawing.Point(4, 29);
+            this.History.Name = "History";
+            this.History.Padding = new System.Windows.Forms.Padding(3);
+            this.History.Size = new System.Drawing.Size(1540, 463);
+            this.History.TabIndex = 3;
+            this.History.Text = "History";
+            this.History.UseVisualStyleBackColor = true;
             // 
-            // cbx_cust_custorder
+            // btn_setDate
             // 
-            this.cbx_cust_custorder.FormattingEnabled = true;
-            this.cbx_cust_custorder.Location = new System.Drawing.Point(136, 70);
-            this.cbx_cust_custorder.Name = "cbx_cust_custorder";
-            this.cbx_cust_custorder.Size = new System.Drawing.Size(248, 28);
-            this.cbx_cust_custorder.TabIndex = 0;
+            this.btn_setDate.Location = new System.Drawing.Point(498, 152);
+            this.btn_setDate.Name = "btn_setDate";
+            this.btn_setDate.Size = new System.Drawing.Size(179, 48);
+            this.btn_setDate.TabIndex = 12;
+            this.btn_setDate.Text = "Set Date Range";
+            this.btn_setDate.UseVisualStyleBackColor = true;
+            this.btn_setDate.Click += new System.EventHandler(this.btn_setDate_Click);
             // 
-            // lbl_cust_custorder
+            // btn_setCust
             // 
-            this.lbl_cust_custorder.AutoSize = true;
-            this.lbl_cust_custorder.Location = new System.Drawing.Point(34, 73);
-            this.lbl_cust_custorder.Name = "lbl_cust_custorder";
-            this.lbl_cust_custorder.Size = new System.Drawing.Size(96, 20);
-            this.lbl_cust_custorder.TabIndex = 1;
-            this.lbl_cust_custorder.Text = "Customer: ";
+            this.btn_setCust.Location = new System.Drawing.Point(99, 303);
+            this.btn_setCust.Name = "btn_setCust";
+            this.btn_setCust.Size = new System.Drawing.Size(179, 48);
+            this.btn_setCust.TabIndex = 11;
+            this.btn_setCust.Text = "Set Customer";
+            this.btn_setCust.UseVisualStyleBackColor = true;
+            this.btn_setCust.Click += new System.EventHandler(this.btn_setCust_Click);
             // 
-            // dataGridView1
+            // lbl_orders
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(30, 129);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(722, 270);
-            this.dataGridView1.TabIndex = 2;
+            this.lbl_orders.AutoSize = true;
+            this.lbl_orders.Location = new System.Drawing.Point(753, 65);
+            this.lbl_orders.Name = "lbl_orders";
+            this.lbl_orders.Size = new System.Drawing.Size(104, 20);
+            this.lbl_orders.TabIndex = 10;
+            this.lbl_orders.Text = "Past Orders";
             // 
-            // txt_orderqty_custorder
+            // lbl_name
             // 
-            this.txt_orderqty_custorder.Location = new System.Drawing.Point(859, 204);
-            this.txt_orderqty_custorder.Name = "txt_orderqty_custorder";
-            this.txt_orderqty_custorder.Size = new System.Drawing.Size(178, 26);
-            this.txt_orderqty_custorder.TabIndex = 3;
+            this.lbl_name.AutoSize = true;
+            this.lbl_name.Location = new System.Drawing.Point(30, 60);
+            this.lbl_name.Name = "lbl_name";
+            this.lbl_name.Size = new System.Drawing.Size(137, 20);
+            this.lbl_name.TabIndex = 9;
+            this.lbl_name.Text = "Customer Name";
             // 
-            // lbl_qty_custorder
+            // txt_name
             // 
-            this.lbl_qty_custorder.AutoSize = true;
-            this.lbl_qty_custorder.Location = new System.Drawing.Point(762, 207);
-            this.lbl_qty_custorder.Name = "lbl_qty_custorder";
-            this.lbl_qty_custorder.Size = new System.Drawing.Size(91, 20);
-            this.lbl_qty_custorder.TabIndex = 4;
-            this.lbl_qty_custorder.Text = "Order Qty:";
+            this.txt_name.Location = new System.Drawing.Point(173, 57);
+            this.txt_name.Name = "txt_name";
+            this.txt_name.Size = new System.Drawing.Size(204, 26);
+            this.txt_name.TabIndex = 8;
+            this.txt_name.TextChanged += new System.EventHandler(this.txt_name_TextChanged);
             // 
-            // cbx_supp_custorder
+            // btn_reset
             // 
-            this.cbx_supp_custorder.FormattingEnabled = true;
-            this.cbx_supp_custorder.Location = new System.Drawing.Point(527, 70);
-            this.cbx_supp_custorder.Name = "cbx_supp_custorder";
-            this.cbx_supp_custorder.Size = new System.Drawing.Size(248, 28);
-            this.cbx_supp_custorder.TabIndex = 5;
+            this.btn_reset.Location = new System.Drawing.Point(498, 291);
+            this.btn_reset.Name = "btn_reset";
+            this.btn_reset.Size = new System.Drawing.Size(179, 48);
+            this.btn_reset.TabIndex = 7;
+            this.btn_reset.Text = "Reset";
+            this.btn_reset.UseVisualStyleBackColor = true;
+            this.btn_reset.Click += new System.EventHandler(this.btn_reset_Click);
             // 
-            // lbl_supp_custorder
+            // btn_print
             // 
-            this.lbl_supp_custorder.AutoSize = true;
-            this.lbl_supp_custorder.Location = new System.Drawing.Point(441, 73);
-            this.lbl_supp_custorder.Name = "lbl_supp_custorder";
-            this.lbl_supp_custorder.Size = new System.Drawing.Size(80, 20);
-            this.lbl_supp_custorder.TabIndex = 6;
-            this.lbl_supp_custorder.Text = "Supplier:";
+            this.btn_print.Location = new System.Drawing.Point(498, 225);
+            this.btn_print.Name = "btn_print";
+            this.btn_print.Size = new System.Drawing.Size(179, 48);
+            this.btn_print.TabIndex = 6;
+            this.btn_print.Text = "View/Print";
+            this.btn_print.UseVisualStyleBackColor = true;
+            this.btn_print.Click += new System.EventHandler(this.btn_print_Click);
             // 
-            // btn_update_custorder
+            // lstbox_customer
             // 
-            this.btn_update_custorder.Location = new System.Drawing.Point(859, 263);
-            this.btn_update_custorder.Name = "btn_update_custorder";
-            this.btn_update_custorder.Size = new System.Drawing.Size(178, 40);
-            this.btn_update_custorder.TabIndex = 7;
-            this.btn_update_custorder.Text = "Update Qty";
-            this.btn_update_custorder.UseVisualStyleBackColor = true;
+            this.lstbox_customer.FormattingEnabled = true;
+            this.lstbox_customer.ItemHeight = 20;
+            this.lstbox_customer.Location = new System.Drawing.Point(34, 111);
+            this.lstbox_customer.Name = "lstbox_customer";
+            this.lstbox_customer.Size = new System.Drawing.Size(343, 144);
+            this.lstbox_customer.TabIndex = 5;
+            // 
+            // transaction_dataGrid
+            // 
+            this.transaction_dataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.transaction_dataGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.trans_id,
+            this.trans_date,
+            this.trans_total});
+            this.transaction_dataGrid.Location = new System.Drawing.Point(757, 101);
+            this.transaction_dataGrid.Name = "transaction_dataGrid";
+            this.transaction_dataGrid.RowHeadersVisible = false;
+            this.transaction_dataGrid.RowHeadersWidth = 62;
+            this.transaction_dataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.transaction_dataGrid.Size = new System.Drawing.Size(452, 270);
+            this.transaction_dataGrid.TabIndex = 4;
+            this.transaction_dataGrid.SelectionChanged += new System.EventHandler(this.tranaction_dataGrid_SelectionChanged);
+            // 
+            // trans_id
+            // 
+            this.trans_id.DataPropertyName = "trans_id";
+            this.trans_id.HeaderText = "Id";
+            this.trans_id.MinimumWidth = 8;
+            this.trans_id.Name = "trans_id";
+            this.trans_id.Width = 150;
+            // 
+            // trans_date
+            // 
+            this.trans_date.DataPropertyName = "trans_date";
+            this.trans_date.HeaderText = "Date";
+            this.trans_date.MinimumWidth = 8;
+            this.trans_date.Name = "trans_date";
+            this.trans_date.Width = 150;
+            // 
+            // trans_total
+            // 
+            this.trans_total.DataPropertyName = "trans_total";
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.trans_total.DefaultCellStyle = dataGridViewCellStyle1;
+            this.trans_total.HeaderText = "Total";
+            this.trans_total.MinimumWidth = 8;
+            this.trans_total.Name = "trans_total";
+            this.trans_total.Width = 150;
+            // 
+            // lbl_end
+            // 
+            this.lbl_end.AutoSize = true;
+            this.lbl_end.Location = new System.Drawing.Point(402, 105);
+            this.lbl_end.Name = "lbl_end";
+            this.lbl_end.Size = new System.Drawing.Size(41, 20);
+            this.lbl_end.TabIndex = 3;
+            this.lbl_end.Text = "End";
+            // 
+            // end_dateTime
+            // 
+            this.end_dateTime.Location = new System.Drawing.Point(457, 101);
+            this.end_dateTime.Name = "end_dateTime";
+            this.end_dateTime.Size = new System.Drawing.Size(284, 26);
+            this.end_dateTime.TabIndex = 2;
+            // 
+            // lbl_start
+            // 
+            this.lbl_start.AutoSize = true;
+            this.lbl_start.Location = new System.Drawing.Point(402, 62);
+            this.lbl_start.Name = "lbl_start";
+            this.lbl_start.Size = new System.Drawing.Size(49, 20);
+            this.lbl_start.TabIndex = 1;
+            this.lbl_start.Text = "Start";
+            // 
+            // start_dateTime
+            // 
+            this.start_dateTime.Location = new System.Drawing.Point(457, 58);
+            this.start_dateTime.Name = "start_dateTime";
+            this.start_dateTime.Size = new System.Drawing.Size(284, 26);
+            this.start_dateTime.TabIndex = 0;
+            // 
+            // btn_close
+            // 
+            this.btn_close.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_close.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_close.Location = new System.Drawing.Point(543, 514);
+            this.btn_close.Name = "btn_close";
+            this.btn_close.Size = new System.Drawing.Size(104, 36);
+            this.btn_close.TabIndex = 7;
+            this.btn_close.Text = "Close";
+            this.btn_close.UseVisualStyleBackColor = true;
+            this.btn_close.Click += new System.EventHandler(this.btn_close_Click);
             // 
             // frmOrders
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.ClientSize = new System.Drawing.Size(1684, 561);
+            this.ClientSize = new System.Drawing.Size(1370, 561);
             this.Controls.Add(this.btn_close);
             this.Controls.Add(this.tabControl1);
             this.Name = "frmOrders";
@@ -975,15 +975,15 @@ namespace SecretCellar
             this.cust_request.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.request_dataGrid)).EndInit();
             this.tabControl1.ResumeLayout(false);
-            this.History.ResumeLayout(false);
-            this.History.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.transaction_dataGrid)).EndInit();
+            this.cust_order.ResumeLayout(false);
+            this.cust_order.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.custOrder_datagrid)).EndInit();
             this.Fullfillment.ResumeLayout(false);
             this.Fullfillment.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fullfill_datagrid)).EndInit();
-            this.cust_order.ResumeLayout(false);
-            this.cust_order.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.History.ResumeLayout(false);
+            this.History.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.transaction_dataGrid)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1072,7 +1072,7 @@ namespace SecretCellar
         private System.Windows.Forms.ComboBox cbx_supp_custorder;
         private System.Windows.Forms.Label lbl_qty_custorder;
         private System.Windows.Forms.TextBox txt_orderqty_custorder;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView custOrder_datagrid;
         private System.Windows.Forms.Label lbl_cust_custorder;
         private System.Windows.Forms.ComboBox cbx_cust_custorder;
     }

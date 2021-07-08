@@ -3,6 +3,7 @@
 -- Host: 127.0.0.1    Database: inventory
 -- ------------------------------------------------------
 -- Server version	8.0.17
+drop database inventory;
 CREATE DATABASE Inventory;
 Use Inventory;
 CREATE USER invuser identified by 'testinv!';
@@ -22,7 +23,7 @@ GRANT SELECT, INSERT, UPDATE, DELETE ON inventory.* TO invuser;
 --
 -- Table structure for table `customer`
 --
-
+use inventory;
 DROP TABLE IF EXISTS `customer`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
