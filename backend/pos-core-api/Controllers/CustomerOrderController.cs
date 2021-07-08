@@ -11,11 +11,11 @@ namespace WebApi.Controllers
     public class CustomerOrderController : ControllerBase
     {
         [HttpGet]
-        public IActionResult Get()
+        public IActionResult Get(bool includeHistory = false)
         {
             try
             {
-                List<CustomerOrder> output = DataAccess.Instance.CustomerOrder.Get();
+                List<CustomerOrder> output = DataAccess.Instance.CustomerOrder.Get(includeHistory);
                 return Ok(output);
             }
             catch(Exception ex)
@@ -26,11 +26,11 @@ namespace WebApi.Controllers
         }
 
         [HttpGet("{customerID}")]
-        public IActionResult Get(uint customerID)
+        public IActionResult Get(uint customerID, bool includeHistory = false)
         {
             try
             {
-                return Ok(DataAccess.Instance.CustomerOrder.Get(customerID));
+                return Ok(DataAccess.Instance.CustomerOrder.Get(customerID, includeHistory));
             }
             catch (Exception ex)
             {
@@ -40,11 +40,11 @@ namespace WebApi.Controllers
         }
 
         [HttpGet("Order/{order}")]
-        public IActionResult GetOrder(uint order)
+        public IActionResult GetOrder(uint order, bool includeHistory = false)
         {
             try
             {
-                return Ok(DataAccess.Instance.CustomerOrder.Get(order));
+                return Ok(DataAccess.Instance.CustomerOrder.Get(order, includeHistory));
             }
             catch (Exception ex)
             {
