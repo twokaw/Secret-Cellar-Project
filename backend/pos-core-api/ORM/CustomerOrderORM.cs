@@ -153,7 +153,7 @@ namespace pos_core_api.ORM
         }
         public long Update(CustomerOrder cust)
         {
-            CustomerOrder co = GetOrder(cust.CustomerOrderID);
+            CustomerOrder co = GetOrder(cust.CustomerOrderID, true);
 
             if (co is null)
                 return Insert(cust);

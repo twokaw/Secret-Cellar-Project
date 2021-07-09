@@ -1,5 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using Shared;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using WebApi.Helpers;
@@ -91,7 +92,110 @@ namespace pos_core_api.ORM
                 db.CloseConnnection();
             }
         }
+        public List<CustomerFavorites> GetCustomerFavorites()
+        {
+            db.OpenConnection();
 
+            string sqlStatement = @"
+              SELECT InventoryID,
+                     CustomerID,
+                     LastRequestDate
+              FROM v_customerfavorite
+            ";
+
+            MySqlCommand cmd = new  MySqlCommand(sqlStatement, db.Connection());
+            MySqlDataReader reader = cmd.ExecuteReader();
+            try
+            {
+                return FetchCustomersFavorite(reader);
+            }
+            finally
+            {
+                reader.Close();
+                db.CloseConnnection();
+            }
+        }
+
+        public CustomerFavorites GetCustomerFavorites(uint customerID)
+        {
+            db.OpenConnection();
+
+            string sqlStatement = @"
+              SELECT InventoryID,
+                     CustomerID,
+                     LastRequestDate
+              FROM v_customerfavorite
+              WHERE CustomerID = @custId
+            ";
+
+            MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
+            cmd.Parameters.Add(new MySqlParameter("custID", customerID));
+            MySqlDataReader reader = cmd.ExecuteReader();
+
+            try
+            {
+                List<CustomerFavorites> cf = FetchCustomersFavorite(reader);
+                if (cf.Count > 0)
+                    return cf[0];
+                else
+                    return new CustomerFavorites();
+            }
+            finally
+            {
+                reader.Close();
+                db.CloseConnnection();
+            }
+        }
+
+
+        public void AddCustomerFavorite(uint CustomerID, uint InventoryID)
+        {
+            db.OpenConnection();
+
+            string sqlStatement = @"
+              INSERT INTO customerfavorite
+              ( InventoryID, CustomerID)
+              VALUES
+              (@InventoryID, @customerID)
+            ";
+
+            MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
+            cmd.Parameters.Add(new MySqlParameter("customerID", CustomerID));
+            cmd.Parameters.Add(new MySqlParameter("InventoryID", InventoryID));
+
+            try
+            {
+                cmd.ExecuteNonQuery();
+            }
+            finally
+            {
+                db.CloseConnnection();
+            }
+        }
+
+        public void RemoveCustomerFavorite(uint CustomerID, uint InventoryID)
+        {
+            db.OpenConnection();
+
+            string sqlStatement = @"
+              DELETE FROM customerfavorite
+              WHERE InventoryID = @InventoryID
+              AND   CustomerID  = @customerID
+            ";
+
+            MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
+            cmd.Parameters.Add(new MySqlParameter("customerID", CustomerID));
+            cmd.Parameters.Add(new MySqlParameter("InventoryID", InventoryID));
+
+            try
+            {
+                cmd.ExecuteNonQuery();
+            }
+            finally
+            {
+                db.CloseConnnection();
+            }
+        }
         public long Insert(Customer cust)
         {
             try
@@ -210,7 +314,6 @@ namespace pos_core_api.ORM
                 db.CloseConnnection();
             }
         }
-
         private List<Customer> FetchCustomers(MySqlDataReader reader)
         {
             List<Customer> output = new List<Customer>();
@@ -236,6 +339,34 @@ namespace pos_core_api.ORM
                     BalanceDue = reader.IsDBNull("balancedue") ? 0.0 : reader.GetDouble("balancedue"),
                     SuspendedTransactions = reader.IsDBNull("suspendedtransactions") ? 0 : reader.GetUInt32("suspendedtransactions")
                 });
+            }
+            return output;
+        }
+
+        private List<CustomerFavorites> FetchCustomersFavorite(MySqlDataReader reader)
+        {
+            List<CustomerFavorites> output = new List<CustomerFavorites>();
+            CustomerFavorites lastcustomer = null;
+            uint tempLastid;
+            while (reader.Read())
+            {
+                tempLastid = reader.GetUInt32("customerID");
+
+                if (lastcustomer?.CustomerID != tempLastid)
+                {     
+                    lastcustomer = new CustomerFavorites
+                    {
+                        CustomerID = tempLastid
+                    };
+                    output.Add(lastcustomer);
+                }
+
+                if(!reader.IsDBNull("InventoryID"))
+                    lastcustomer.Favorites.Add( new CustomerFavorite
+                    {
+                        InventoryID = reader.GetUInt32("InventoryID"),
+                        Lastused = reader.IsDBNull("LastRequestDate") ? DateTime.MinValue : reader.GetDateTime("LastRequestDate")
+                    });
             }
             return output;
         }

@@ -354,6 +354,30 @@ namespace SecretCellar
         }
         #endregion
 
+        #region CustomerFavorite
+        public List<CustomerFavorites> GetCustomerFavorites()
+        {
+            string result = web.DataGet($"api/Customer/Favorite");
+            return JsonConvert.DeserializeObject<List<CustomerFavorites>>(result);
+        }
+
+        public CustomerFavorites GetCustomerFavorite(uint customerID)
+        {
+            string result = web.DataGet($"api/Customer/Favorite/{customerID}");
+            return JsonConvert.DeserializeObject<CustomerFavorites>(result);
+        }
+
+        public void AddCustomerFavorite(uint customerID, uint InventoryID)
+        {
+            web.DataPut($"api/Customer/Favorite/{customerID}/{InventoryID}");
+        }
+
+        public void DeleteCustomerFavorite(uint customerID, uint InventoryID)
+        {
+            web.DataDelete($"api/Customer/Favorite/{customerID}/{InventoryID}");
+        }
+
+        #endregion
         #region CustomerOrder
         public List<CustomerOrder> GetCustomerOrder(bool includeHistory = false)
         {

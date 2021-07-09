@@ -278,6 +278,7 @@
   <ItemGroup>
     <Compile Include="AuthenticateModel.cs" />
     <Compile Include="BaseItem.cs" />
+    <Compile Include="CustomerFavorite.cs" />
     <Compile Include="CustomerNote.cs" />
     <Compile Include="CustomerOrder.cs" />
     <Compile Include="ErrorLogging.cs" />
