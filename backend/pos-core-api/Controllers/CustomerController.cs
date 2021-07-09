@@ -56,6 +56,67 @@ namespace WebApi.Controllers
             }
         }
 
+        // GET: api/Customer/Favorite/
+        [HttpGet("Favorite/")]
+        public IActionResult GetFavorites()
+        {
+            try
+            {
+                return Ok(DataAccess.Instance.Customer.GetCustomerFavorites());
+            }
+            catch (Exception ex)
+            {
+                ErrorLogging.WriteToErrorLog(ex);
+                return StatusCode(500, ex.Message);
+            }
+        }
+
+        // GET: api/Customer/Favorite/
+        [HttpGet("Favorite/{CustomerID}")]
+        public IActionResult GetFavorite(uint CustomerID)
+        {
+            try
+            {
+                return Ok(DataAccess.Instance.Customer.GetCustomerFavorites(CustomerID));
+            }
+            catch (Exception ex)
+            {
+                ErrorLogging.WriteToErrorLog(ex);
+                return StatusCode(500, ex.Message);
+            }
+        }
+
+        //  DELETE: api/Customer/Favorite/
+        [HttpDelete("Favorite/{CustomerID}/{InventoryID}")]
+        public IActionResult DeleteFavorite(uint CustomerID, uint InventoryID)
+        {
+            try
+            {
+                DataAccess.Instance.Customer.RemoveCustomerFavorite(CustomerID, InventoryID);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                ErrorLogging.WriteToErrorLog(ex);
+                return StatusCode(500, ex.Message);
+            }
+        }
+        // Insert: api/Customer/Favorite/
+        [HttpPut("Favorite/{CustomerID}/{InventoryID}")]
+        public IActionResult PutFavorite(uint CustomerID, uint InventoryID)
+        {
+            try
+            {
+                DataAccess.Instance.Customer.AddCustomerFavorite(CustomerID, InventoryID);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                ErrorLogging.WriteToErrorLog(ex);
+                return StatusCode(500, ex.Message);
+            }
+        }
+
         // POST: api/Customer
         [HttpPost]
         public IActionResult Post([FromBody] Customer cust)
