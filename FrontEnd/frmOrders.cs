@@ -30,11 +30,10 @@ namespace SecretCellar
         private List<Customer> cust = null;
         private List<Customer> wholeCust = null;
         Transaction items = new Transaction();
-
         private PrintPreviewDialog printPreviewDialog1 = new PrintPreviewDialog();
         private PrintDocument printDocument1 = new PrintDocument();
         Margins margins = new Margins(100, 100, 100, 100);
-        
+        private string searchForCustomerText = "Search for customer";
 
 
 
@@ -173,13 +172,6 @@ namespace SecretCellar
             }
         }
 
-
-
-        private void cust_request_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void btn_close_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -198,19 +190,6 @@ namespace SecretCellar
 
             cust_notes_refresh();
             txt_prod_name.Text = "";
-            txt_cust_name.Focus();
-
-
-        }
-
-        private void cust_refresh()
-        {
-            lstbox_customer.DataSource = DataAccess.instance.GetCustomer(txt_name.Text, true);
-            /*Select(x => new {
-                customerID = x.CustomerID,
-                cust_name = $"{x.LastName}, {x.FirstName}"
-            }).
-              ToList();*/
         }
 
         private void refresh()
@@ -330,24 +309,6 @@ namespace SecretCellar
 
         }
 
-        private void btn_set_cust_Click(object sender, EventArgs e)
-        {
-            transaction_dataGrid.DataSource = transaction_history.Where(x => ((Customer)lstbox_customer.SelectedItem).CustomerID == x.CustomerID).
-              Select(x => new
-              {
-                  trans_id = x.InvoiceID,
-                  trans_date = x.TransactionDateTime.ToString("MM/dd/yyyy"),
-                  trans_total = x.Total.ToString("C"),
-
-              }).
-              OrderBy(x => x.trans_id).
-              ToList();
-
-        }
-
-
-
-
         private void btn_setCust_Click(object sender, EventArgs e)
         {
             transaction_dataGrid.DataSource = transaction_history.Where(x => ((Customer)lstbox_customer.SelectedItem).CustomerID == x.CustomerID).
@@ -381,26 +342,6 @@ namespace SecretCellar
             populate();
         }
 
-        private void txt_name_TextChanged(object sender, EventArgs e)
-        {
-            cust_refresh();
-        }
-
-        private void txt_cust_name_TextChanged(object sender, EventArgs e)
-        {
-            customer_refresh();
-        }
-
-        private void customer_refresh()
-        {
-            lst_customer.DataSource = DataAccess.instance.GetCustomer(txt_cust_name.Text, true);
-            /*Select(x => new {
-                customerID = x.CustomerID,
-                cust_name = $"{x.LastName}, {x.FirstName}"
-            }).
-              ToList();*/
-        }
-
         private void btn_prod_delete_Click(object sender, EventArgs e)
         {
             if (request_dataGrid.SelectedRows.Count > 0)
@@ -427,7 +368,6 @@ namespace SecretCellar
 
                 DataAccess.instance.DeleteCustomerNote(currentNote);
                 cust_notes_refresh();
-                txt_cust_name.Focus();
             }
         }
 
@@ -460,23 +400,6 @@ namespace SecretCellar
 
         }
 
-        public void PrintTotal()
-        {
-            {
-                double total = 0;
-                // All items with price * qty
-
-                foreach (DataGridViewRow row in supp_dataGrid.Rows)
-                {
-                    if (row.Cells["orderqty"].Value.ToString() != null || uint.Parse(row.Cells["orderqty"].Value.ToString()) > 0)
-                    {
-                        total = total + Convert.ToDouble((uint.Parse(row.Cells["orderqty"].Value.ToString()) * (Convert.ToDouble(row.Cells["Price"].Value.ToString()))));
-                    }
-                }
-                printTotal = total.ToString();
-            }
-        }
-
         public List<Inventory> listItems(Supplier orderSupplier)
         {
             
@@ -497,15 +420,59 @@ namespace SecretCellar
 
         }
 
-        private void cbx_fullfill_supp_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            frefresh();
+		private void textBox_CustomerName_TextChanged(object sender, EventArgs e) {
+            lst_customer.DataSource = DataAccess.instance.GetCustomer(textBox_CustomerName.Text, true);
+            /*Select(x => new {
+                customerID = x.CustomerID,
+                cust_name = $"{x.LastName}, {x.FirstName}"
+            }).
+              ToList();*/
         }
 
-        //cust order tab
 
+        //REMOVE THE PLACEHOLDER TEXT WHEN CLICKING INTO THE TEXT BOX
+		private void textBox_CustomerName_Enter(object sender, EventArgs e) {
+            if (textBox_CustomerName.Text == searchForCustomerText) {
+                textBox_CustomerName.Text = "";
+            }
+		}
         
+        
+        //RESET THE PLACEHOLDER TEXT IF THE TEXT BOX IS EMPTY
+		private void textBox_CustomerName_Leave(object sender, EventArgs e) {
+            if (string.IsNullOrEmpty(textBox_CustomerName.Text)) {
+                textBox_CustomerName.Text = searchForCustomerText;
+
+                lst_customer.DataSource = DataAccess.instance.GetCustomer(true);
+            }
+		}
 
 
-}
+		private void textBox_CustomerName_History_TextChanged(object sender, EventArgs e) {
+            lstbox_customer.DataSource = DataAccess.instance.GetCustomer(textBox_CustomerName_History.Text, true);
+            /*Select(x => new {
+                customerID = x.CustomerID,
+                cust_name = $"{x.LastName}, {x.FirstName}"
+            }).
+              ToList();*/
+        }
+
+
+        //REMOVE THE PLACEHOLDER TEXT WHEN CLICKING INTO THE TEXT BOX
+        private void textBox_CustomerName_History_Enter(object sender, EventArgs e) {
+            if (textBox_CustomerName_History.Text == searchForCustomerText) {
+                textBox_CustomerName_History.Text = "";
+            }
+        }
+
+
+        //RESET THE PLACEHOLDER TEXT IF THE TEXT BOX IS EMPTY
+        private void textBox_CustomerName_History_Leave(object sender, EventArgs e) {
+            if (string.IsNullOrEmpty(textBox_CustomerName_History.Text)) {
+                textBox_CustomerName_History.Text = searchForCustomerText;
+
+                lstbox_customer.DataSource = DataAccess.instance.GetCustomer(true);
+            }
+        }
+	}
 }
