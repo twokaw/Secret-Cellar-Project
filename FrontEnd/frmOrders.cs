@@ -457,8 +457,62 @@ namespace SecretCellar
               ToList();*/
         }
 
+        //cust order tab
+        #region Customer Order Tab
 
-        //REMOVE THE PLACEHOLDER TEXT WHEN CLICKING INTO THE TEXT BOX
+        private void cbx_cust_custorder_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            uint cid = ((Customer)cbx_cust_custorder.SelectedItem).CustomerID;
+            RefreshFavorite(cid);
+        }
+
+        #endregion
+
+        private void btnFavoritesAdd_Click(object sender, EventArgs e)
+        {
+            uint cid = ((Customer)cbx_cust_custorder.SelectedItem).CustomerID;
+            Transaction t = new Transaction();
+            frmLookup fl = new frmLookup(t);
+            fl.ShowDialog();
+
+            foreach (Item i in t.Items)
+                DataAccess.instance.AddCustomerFavorite(cid, i.Id);
+
+            RefreshFavorite(cid);
+        }
+
+       private void  RefreshFavorite(uint customerId)
+        {
+            List<CustomerFavorite> custFav = DataAccess.instance.GetCustomerFavorite(customerId).Favorites;
+            List<CustomerOrderItem> custItems = (DataAccess.instance.GetCustomerOrderforCustomer(customerId)?.Items ?? new List<CustomerOrderItem>()).Where(x => x.DeliverQty < x.OrderQty).ToList();
+
+            custOrder_datagrid.DataSource = inventory
+                            .GroupJoin(custFav, i => i.Id, f => f.InventoryID, (i, f) => new
+                            {
+                                Inv = i,
+                                Fav = f.SingleOrDefault()
+                            })
+                            // .Where(x => x.Fav.InventoryID != 0 && !x.Inv.Hidden  ) //&& x.Fav.InventoryID == x.Inv.Id 
+                            .GroupJoin(custItems, i => i.Inv.Id, o => o.Id, (i, o) => new
+                            {
+                                i.Inv,
+                                i.Fav,
+                                Ord = o.SingleOrDefault()
+                            })
+                            .Where(x => (x.Fav != null && !x.Inv.Hidden || x.Ord != null) )
+                            .Select(x => new
+                            {
+                                x.Inv.Name,
+                                x.Inv.Qty,
+                                x.Inv.OrderQty,
+                                Requsted = x.Ord?.OrderQty,
+                                x.Inv.Price,
+                                x.Fav?.Lastused
+                            })
+                            .ToList();
+        }
+    /*
+      //REMOVE THE PLACEHOLDER TEXT WHEN CLICKING INTO THE TEXT BOX
         private void textBox_CustomerName_History_Enter(object sender, EventArgs e) {
             if (textBox_CustomerName_History.Text == searchForCustomerText) {
                 textBox_CustomerName_History.Text = "";
@@ -475,4 +529,44 @@ namespace SecretCellar
             }
         }
 	}
+    */
+        private void btnFavoritesRemove_Click(object sender, EventArgs e)
+        {
+            uint cid = ((Customer)cbx_cust_custorder.SelectedItem).CustomerID;
+            uint iid = inventory.FirstOrDefault(x => x.Name == custOrder_datagrid.SelectedRows[0].Cells["Name"].Value.ToString()).Id;
+            
+            DataAccess.instance.DeleteCustomerFavorite(cid, iid);
+
+            RefreshFavorite(cid);
+        }
+
+        private void btnAddOrder_Click(object sender, EventArgs e)
+        {
+            Transaction t = new Transaction
+            {
+                CustomerID = ((Customer)cbx_cust_custorder.SelectedItem).CustomerID
+            };
+
+            frmLookup fl = new frmLookup(t);
+            fl.ShowDialog();
+
+            if (t.Items.Count > 0)
+            {
+                CustomerOrder co = DataAccess.instance.GetCustomerOrder(t.CustomerID) ?? new CustomerOrder() 
+                { CustomerID = t.CustomerID
+                };
+                foreach (Item i in t.Items)
+                {
+                    if (co.Items.FirstOrDefault(x => x.Id == i.Id) == null)
+                        co.Items.Add(new CustomerOrderItem { Id = i.Id, OrderQty = 1 });
+                    else
+                        co.Items.FirstOrDefault(x => x.Id == i.Id).OrderQty++;
+                }
+
+                DataAccess.instance.UpdateCustomerOrder(co);
+            }
+
+            RefreshFavorite(t.CustomerID);
+        }
+    }
 }

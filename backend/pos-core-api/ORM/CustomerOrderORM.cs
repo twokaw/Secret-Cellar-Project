@@ -65,7 +65,7 @@ namespace pos_core_api.ORM
                 if (output.Count > 0)
                     return output[0];
                 else
-                    return new CustomerOrder();
+                    return null;
             }
             finally
             {
