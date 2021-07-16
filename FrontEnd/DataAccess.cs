@@ -385,10 +385,10 @@ namespace SecretCellar
             return JsonConvert.DeserializeObject<List<CustomerOrder>>(result);
         }
 
-        public List<CustomerOrder> GetCustomerOrderforCustomer(uint customerID, bool includeHistory = false)
+        public CustomerOrder GetCustomerOrderforCustomer(uint customerID, bool includeHistory = false)
         {
             string result = web.DataGet($"api/CustomerOrder/{customerID}?includeHistory={includeHistory }");
-            return JsonConvert.DeserializeObject<List<CustomerOrder>>(result);
+            return JsonConvert.DeserializeObject<CustomerOrder>(result);
         }
         public CustomerOrder GetCustomerOrder(uint customerOrderID, bool includeHistory = false)
         {
