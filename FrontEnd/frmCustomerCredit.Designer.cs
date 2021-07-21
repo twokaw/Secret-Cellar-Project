@@ -24,6 +24,7 @@ namespace SecretCellar {
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent() {
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCustomerCredit));
 			this.button_AddCredit = new System.Windows.Forms.Button();
 			this.button_SubtractCredit = new System.Windows.Forms.Button();
 			this.button_CloseWindow = new System.Windows.Forms.Button();
@@ -174,6 +175,7 @@ namespace SecretCellar {
 			this.Controls.Add(this.button_SubtractCredit);
 			this.Controls.Add(this.button_AddCredit);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
 			this.Name = "frmCustomerCredit";

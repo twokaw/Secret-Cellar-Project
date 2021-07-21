@@ -29,6 +29,7 @@ namespace SecretCellar
         /// </summary>
         private void InitializeComponent()
         {
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCustomer));
 			this.pnl_change_info = new System.Windows.Forms.Panel();
 			this.txt_phone = new System.Windows.Forms.MaskedTextBox();
 			this.button_UpdateCredit = new System.Windows.Forms.Button();
@@ -635,6 +636,7 @@ namespace SecretCellar
 			this.Controls.Add(this.customer_data_grid);
 			this.Controls.Add(this.pnl_change_info);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
 			this.Name = "frmCustomer";

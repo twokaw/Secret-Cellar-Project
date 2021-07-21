@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPropane));
 			this.txt_ex_Qty = new System.Windows.Forms.TextBox();
 			this.btn_minus_ex = new System.Windows.Forms.Button();
 			this.btn_plus_ex = new System.Windows.Forms.Button();
@@ -177,6 +178,7 @@
 			this.Controls.Add(this.btn_minus_ex);
 			this.Controls.Add(this.txt_ex_Qty);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Margin = new System.Windows.Forms.Padding(4);
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;

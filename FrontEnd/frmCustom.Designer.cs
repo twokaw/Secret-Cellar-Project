@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCustom));
 			this.txt_charge_am = new System.Windows.Forms.TextBox();
 			this.lbl_custom = new System.Windows.Forms.Label();
 			this.txt_descript = new System.Windows.Forms.TextBox();
@@ -142,6 +143,7 @@
 			this.Controls.Add(this.txt_charge_am);
 			this.Controls.Add(this.lbl_custom);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Margin = new System.Windows.Forms.Padding(4);
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;

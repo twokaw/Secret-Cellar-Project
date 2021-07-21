@@ -24,6 +24,7 @@ namespace SecretCellar {
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent() {
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmEventsWaitlistCustomerList));
 			this.dataGridView_CustomerList = new System.Windows.Forms.DataGridView();
 			this.Customer_Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.Customer_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -113,6 +114,7 @@ namespace SecretCellar {
 			this.Controls.Add(this.button_SelectCustomer);
 			this.Controls.Add(this.textBox_CustomerName);
 			this.Controls.Add(this.dataGridView_CustomerList);
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
 			this.Name = "frmEventsWaitlistCustomerList";

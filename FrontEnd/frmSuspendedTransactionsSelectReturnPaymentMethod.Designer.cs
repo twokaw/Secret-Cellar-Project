@@ -24,6 +24,7 @@ namespace SecretCellar {
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent() {
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSuspendedTransactionsSelectReturnPaymentMethod));
 			this.label_Result = new System.Windows.Forms.Label();
 			this.button_Credit = new System.Windows.Forms.Button();
 			this.button_CloseWindow = new System.Windows.Forms.Button();
@@ -90,6 +91,7 @@ namespace SecretCellar {
 			this.Controls.Add(this.button_Credit);
 			this.Controls.Add(this.label_Result);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
 			this.Name = "frmSuspendedTransactionsSelectReturnPaymentMethod";

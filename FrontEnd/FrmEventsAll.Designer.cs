@@ -24,6 +24,7 @@ namespace SecretCellar {
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent() {
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmEventsAll));
 			this.dataGridView_Events = new System.Windows.Forms.DataGridView();
 			this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -128,6 +129,7 @@ namespace SecretCellar {
 			this.Controls.Add(this.button_DeleteEvent);
 			this.Controls.Add(this.button_CloseWindow);
 			this.Controls.Add(this.dataGridView_Events);
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
 			this.Name = "frmEventsAll";
