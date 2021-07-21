@@ -32,6 +32,15 @@
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmLookup));
 			this.txtlookup = new System.Windows.Forms.TextBox();
 			this.LookupView = new System.Windows.Forms.DataGridView();
+			this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Class = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Barcode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Qty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.minqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.orderqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.maxqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.btn_cancel = new System.Windows.Forms.Button();
 			this.btn_add = new System.Windows.Forms.Button();
 			this.panel1 = new System.Windows.Forms.Panel();
@@ -72,15 +81,7 @@
 			this.checkListBox_Discounts = new System.Windows.Forms.CheckedListBox();
 			this.label_CaseDiscount = new System.Windows.Forms.Label();
 			this.chk_box_show_hidden = new System.Windows.Forms.CheckBox();
-			this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Class = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Barcode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Qty = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.minqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.orderqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.maxqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.button_Broken = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.LookupView)).BeginInit();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
@@ -130,6 +131,87 @@
 			this.LookupView.Size = new System.Drawing.Size(658, 585);
 			this.LookupView.TabIndex = 0;
 			this.LookupView.SelectionChanged += new System.EventHandler(this.LookupView_SelectionChanged);
+			// 
+			// Id
+			// 
+			this.Id.DataPropertyName = "Id";
+			this.Id.HeaderText = "ItemId";
+			this.Id.MinimumWidth = 8;
+			this.Id.Name = "Id";
+			this.Id.ReadOnly = true;
+			this.Id.Visible = false;
+			// 
+			// Description
+			// 
+			this.Description.DataPropertyName = "Name";
+			this.Description.FillWeight = 200F;
+			this.Description.HeaderText = "Name";
+			this.Description.MinimumWidth = 8;
+			this.Description.Name = "Description";
+			this.Description.ReadOnly = true;
+			// 
+			// Class
+			// 
+			this.Class.DataPropertyName = "ItemType";
+			this.Class.HeaderText = "Class";
+			this.Class.MinimumWidth = 8;
+			this.Class.Name = "Class";
+			this.Class.ReadOnly = true;
+			// 
+			// Barcode
+			// 
+			this.Barcode.DataPropertyName = "Barcode";
+			this.Barcode.FillWeight = 150F;
+			this.Barcode.HeaderText = "Barcode";
+			this.Barcode.MinimumWidth = 8;
+			this.Barcode.Name = "Barcode";
+			this.Barcode.ReadOnly = true;
+			// 
+			// Qty
+			// 
+			this.Qty.DataPropertyName = "Qty";
+			this.Qty.HeaderText = "Qty";
+			this.Qty.MinimumWidth = 8;
+			this.Qty.Name = "Qty";
+			this.Qty.ReadOnly = true;
+			// 
+			// Price
+			// 
+			this.Price.DataPropertyName = "Price";
+			dataGridViewCellStyle1.Format = "C2";
+			dataGridViewCellStyle1.NullValue = null;
+			this.Price.DefaultCellStyle = dataGridViewCellStyle1;
+			this.Price.HeaderText = "Price";
+			this.Price.MinimumWidth = 8;
+			this.Price.Name = "Price";
+			this.Price.ReadOnly = true;
+			// 
+			// minqty
+			// 
+			this.minqty.DataPropertyName = "minqty";
+			this.minqty.FillWeight = 150F;
+			this.minqty.HeaderText = "Min Qty";
+			this.minqty.MinimumWidth = 8;
+			this.minqty.Name = "minqty";
+			this.minqty.ReadOnly = true;
+			// 
+			// orderqty
+			// 
+			this.orderqty.DataPropertyName = "orderqty";
+			this.orderqty.FillWeight = 175F;
+			this.orderqty.HeaderText = "Order Qty";
+			this.orderqty.MinimumWidth = 8;
+			this.orderqty.Name = "orderqty";
+			this.orderqty.ReadOnly = true;
+			// 
+			// maxqty
+			// 
+			this.maxqty.DataPropertyName = "maxqty";
+			this.maxqty.FillWeight = 155F;
+			this.maxqty.HeaderText = "Max Qty";
+			this.maxqty.MinimumWidth = 8;
+			this.maxqty.Name = "maxqty";
+			this.maxqty.ReadOnly = true;
 			// 
 			// btn_cancel
 			// 
@@ -590,86 +672,18 @@
 			this.chk_box_show_hidden.UseVisualStyleBackColor = true;
 			this.chk_box_show_hidden.CheckedChanged += new System.EventHandler(this.chk_box_show_hidden_CheckedChanged);
 			// 
-			// Id
+			// button_Broken
 			// 
-			this.Id.DataPropertyName = "Id";
-			this.Id.HeaderText = "ItemId";
-			this.Id.MinimumWidth = 8;
-			this.Id.Name = "Id";
-			this.Id.ReadOnly = true;
-			this.Id.Visible = false;
-			// 
-			// Description
-			// 
-			this.Description.DataPropertyName = "Name";
-			this.Description.FillWeight = 200F;
-			this.Description.HeaderText = "Name";
-			this.Description.MinimumWidth = 8;
-			this.Description.Name = "Description";
-			this.Description.ReadOnly = true;
-			// 
-			// Class
-			// 
-			this.Class.DataPropertyName = "ItemType";
-			this.Class.HeaderText = "Class";
-			this.Class.MinimumWidth = 8;
-			this.Class.Name = "Class";
-			this.Class.ReadOnly = true;
-			// 
-			// Barcode
-			// 
-			this.Barcode.DataPropertyName = "Barcode";
-			this.Barcode.FillWeight = 150F;
-			this.Barcode.HeaderText = "Barcode";
-			this.Barcode.MinimumWidth = 8;
-			this.Barcode.Name = "Barcode";
-			this.Barcode.ReadOnly = true;
-			// 
-			// Qty
-			// 
-			this.Qty.DataPropertyName = "Qty";
-			this.Qty.HeaderText = "Qty";
-			this.Qty.MinimumWidth = 8;
-			this.Qty.Name = "Qty";
-			this.Qty.ReadOnly = true;
-			// 
-			// Price
-			// 
-			this.Price.DataPropertyName = "Price";
-			dataGridViewCellStyle1.Format = "C2";
-			dataGridViewCellStyle1.NullValue = null;
-			this.Price.DefaultCellStyle = dataGridViewCellStyle1;
-			this.Price.HeaderText = "Price";
-			this.Price.MinimumWidth = 8;
-			this.Price.Name = "Price";
-			this.Price.ReadOnly = true;
-			// 
-			// minqty
-			// 
-			this.minqty.DataPropertyName = "minqty";
-			this.minqty.FillWeight = 150F;
-			this.minqty.HeaderText = "Min Qty";
-			this.minqty.MinimumWidth = 8;
-			this.minqty.Name = "minqty";
-			this.minqty.ReadOnly = true;
-			// 
-			// orderqty
-			// 
-			this.orderqty.DataPropertyName = "orderqty";
-			this.orderqty.FillWeight = 175F;
-			this.orderqty.HeaderText = "Order Qty";
-			this.orderqty.MinimumWidth = 8;
-			this.orderqty.Name = "orderqty";
-			this.orderqty.ReadOnly = true;
-			// 
-			// maxqty
-			// 
-			this.maxqty.DataPropertyName = "maxqty";
-			this.maxqty.FillWeight = 155F;
-			this.maxqty.HeaderText = "Max Qty";
-			this.maxqty.MinimumWidth = 8;
-			this.maxqty.Name = "maxqty";
-			this.maxqty.ReadOnly = true;
+			this.button_Broken.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.button_Broken.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.button_Broken.Location = new System.Drawing.Point(673, 664);
+			this.button_Broken.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.button_Broken.Name = "button_Broken";
+			this.button_Broken.Size = new System.Drawing.Size(142, 37);
+			this.button_Broken.TabIndex = 24;
+			this.button_Broken.Text = "ADD CONSUMED";
+			this.button_Broken.UseVisualStyleBackColor = true;
+			this.button_Broken.Click += new System.EventHandler(this.button_Broken_Click);
 			// 
 			// frmLookup
 			// 
@@ -679,6 +693,7 @@
 			this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
 			this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
 			this.ClientSize = new System.Drawing.Size(1028, 712);
+			this.Controls.Add(this.button_Broken);
 			this.Controls.Add(this.chk_box_show_hidden);
 			this.Controls.Add(this.cbxOnlyItemsWithInventory);
 			this.Controls.Add(this.lblSupplyFilter);
@@ -761,5 +776,6 @@
 		private System.Windows.Forms.DataGridViewTextBoxColumn minqty;
 		private System.Windows.Forms.DataGridViewTextBoxColumn orderqty;
 		private System.Windows.Forms.DataGridViewTextBoxColumn maxqty;
+		private System.Windows.Forms.Button button_Broken;
 	}
 }
