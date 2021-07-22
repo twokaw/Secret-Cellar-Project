@@ -68,6 +68,9 @@ namespace SecretCellar
             cbx_cust_custorder.DataSource = cust;
             cbx_supp_custorder.DataSource = suppliers;
 
+            cbx_fullfill_cust.DataSource = DataAccess.instance.GetCustomerOrder().Where(x => x.d);
+            cbx_fullfill_cust.DisplayMember = "FullName";
+
             lstbox_customer.DataSource = DataAccess.instance?.GetCustomer();
             lstbox_customer.DisplayMember = "FullName";
             supp_dataGrid.Columns[5].DefaultCellStyle.Format = "C";
