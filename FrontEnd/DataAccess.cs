@@ -379,6 +379,16 @@ namespace SecretCellar
 
         #endregion
         #region CustomerOrder
+        public List<BaseCustomer> GetCustomersWithOpenRequests()
+        {
+            List<BaseCustomer> c = new List<BaseCustomer>();
+
+            foreach(CustomerOrder co in GetCustomerOrder())
+                if (c.FirstOrDefault(x => x.CustomerID == co.CustomerID) == null)
+                    c.Add(co);
+
+            return c;
+        }
         public List<CustomerOrder> GetCustomerOrder(bool includeHistory = false)
         {
             string result = web.DataGet($"api/CustomerOrder?includeHistory={includeHistory }");
