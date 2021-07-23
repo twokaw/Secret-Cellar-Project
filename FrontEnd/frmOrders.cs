@@ -68,7 +68,7 @@ namespace SecretCellar
             cbx_cust_custorder.DataSource = cust;
             cbx_supp_custorder.DataSource = suppliers;
 
-            cbx_fullfill_cust.DataSource = DataAccess.instance.GetCustomersWithOpenRequests();
+            cbx_fullfill_cust.DataSource = DataAccess.instance.GetCustomerOrder();
             cbx_fullfill_cust.DisplayMember = "FullName";
 
             lstbox_customer.DataSource = DataAccess.instance?.GetCustomer();
@@ -93,7 +93,7 @@ namespace SecretCellar
                OrderBy(x => x.Name).
                ToList();
 
-            fullfill_datagrid.DataSource = inventory.
+            fullfill_datagrid.DataSource = ((CustomerOrder)cbx_fullfill_cust.SelectedItem).Items.
                Select(x => new
                {
                    fname = x.Name,
@@ -101,10 +101,8 @@ namespace SecretCellar
                    ftype = x.ItemType,
                    fqty = x.Qty,
                    fbarcode = x.Barcode,
-                   fprice = x.SupplierPrice,
-                   fmin = x.InvMin,
-                   fmax = x.InvMax,
-                   forderqty = x.RequestQty
+                   fprice = x.Price,
+                   frequestqty = x.RequestQty
                }).
                OrderBy(x => x.fname).
                ToList();
