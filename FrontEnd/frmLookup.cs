@@ -11,7 +11,7 @@ namespace SecretCellar
 {
     public partial class frmLookup : ManagedForm
     {
-        private Transaction lookUp = null;
+        private Transaction currentTransaction = null;
         private DataAccess dataAccess = new DataAccess(Properties.Settings.Default.URL);
         private List<Inventory> inventory = null;
         private List<Supplier> suppliers = null;
@@ -21,7 +21,7 @@ namespace SecretCellar
 
         public frmLookup(Transaction transaction)
         {
-            lookUp = transaction;
+            currentTransaction = transaction;
             InitializeComponent();
             inventory = dataAccess.GetInventory();
             suppliers = dataAccess.GetSuppliers();
@@ -47,6 +47,21 @@ namespace SecretCellar
             }
         }
 
+        private void button_Broken_Click(object sender, EventArgs e) {
+            if (LookupView.SelectedRows.Count > 0) {
+                Inventory i = inventory.First(x => x.Id == uint.Parse(LookupView.SelectedRows[0].Cells["id"].Value.ToString()));
+
+                i.Price = 0;
+                i.BottleDeposit = 0;
+                i.LocalSalesTax = 0;
+                i.SalesTax = 0;
+
+                currentTransaction.Add(i);
+
+                this.Close();
+            }
+        }
+
         private void btn_Cancel_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;
@@ -59,7 +74,7 @@ namespace SecretCellar
             {
                 Inventory i = inventory.First(x => x.Id == uint.Parse(LookupView.SelectedRows[0].Cells["id"].Value.ToString()));
 
-                lookUp.Add(i);
+                currentTransaction.Add(i);
                 return true;
             }
             return false;
@@ -385,5 +400,5 @@ namespace SecretCellar
                OrderBy(x => x.Name).
                ToList();
         }
-    }
+	}
 }

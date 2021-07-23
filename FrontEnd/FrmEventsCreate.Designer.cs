@@ -24,6 +24,7 @@ namespace SecretCellar {
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent() {
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmEventsCreate));
 			this.textBox_Quantity = new System.Windows.Forms.TextBox();
 			this.label_Qty = new System.Windows.Forms.Label();
 			this.textBox_Price = new System.Windows.Forms.TextBox();
@@ -409,6 +410,7 @@ namespace SecretCellar {
 			this.Controls.Add(this.textBox_Quantity);
 			this.Controls.Add(this.label_Qty);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
 			this.Name = "frmEventsCreate";
