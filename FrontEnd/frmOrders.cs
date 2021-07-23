@@ -487,7 +487,7 @@ namespace SecretCellar
        private void  RefreshFavorite(uint customerId)
         {
             List<CustomerFavorite> custFav = DataAccess.instance.GetCustomerFavorite(customerId).Favorites;
-            List<CustomerOrderItem> custItems = (DataAccess.instance.GetCustomerOrderforCustomer(customerId)?.Items ?? new List<CustomerOrderItem>()).Where(x => x.DeliverQty < x.OrderQty).ToList();
+            List<CustomerOrderItem> custItems = (DataAccess.instance.GetCustomerOrderforCustomer(customerId)?.Items ?? new List<CustomerOrderItem>()).Where(x => x.DeliverQty < x.RequestQty).ToList();
 
             custOrder_datagrid.DataSource = inventory
                 .GroupJoin(custFav, i => i.Id, f => f.InventoryID, (i, f) => new
@@ -509,7 +509,7 @@ namespace SecretCellar
                     x.Inv.Name,
                     x.Inv.Qty,
                     x.Inv.OrderQty,
-                    Requsted = x.Ord?.OrderQty,
+                    Requsted = x.Ord?.RequestQty,
                     x.Inv.Price,
                     x.Fav?.Lastused
                 })
@@ -562,9 +562,9 @@ namespace SecretCellar
                 foreach (Item i in t.Items)
                 {
                     if (co.Items.FirstOrDefault(x => x.Id == i.Id) == null)
-                        co.Items.Add(new CustomerOrderItem { Id = i.Id, OrderQty = 1 });
+                        co.Items.Add(new CustomerOrderItem { Id = i.Id, RequestQty = 1 });
                     else
-                        co.Items.FirstOrDefault(x => x.Id == i.Id).OrderQty++;
+                        co.Items.FirstOrDefault(x => x.Id == i.Id).RequestQty++;
                 }
 
                 DataAccess.instance.UpdateCustomerOrder(co);
@@ -603,7 +603,7 @@ namespace SecretCellar
                     if (coi.CustomerOrderItemID == 0)
                         co.Items.Add(coi);
 
-                    coi.OrderQty = Convert.ToUInt32(txt_orderqty_custorder.Text);
+                    coi.RequestQty = Convert.ToUInt32(txt_orderqty_custorder.Text);
                     DataAccess.instance.UpdateCustomerOrder(co);
                     RefreshFavorite(cid);
                 }
