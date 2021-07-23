@@ -121,7 +121,7 @@ namespace SecretCellar
             cust_notes_refresh();
 
             //customer order tab
-
+           /*
             custOrder_datagrid.DataSource = inventory.
               Select(x => new
               {
@@ -137,7 +137,7 @@ namespace SecretCellar
               }).
                OrderBy(x => x.Name).
                ToList();
-
+           */
         }
 
         private void cust_notes_refresh()
@@ -487,29 +487,30 @@ namespace SecretCellar
             List<CustomerOrderItem> custItems = (DataAccess.instance.GetCustomerOrderforCustomer(customerId)?.Items ?? new List<CustomerOrderItem>()).Where(x => x.DeliverQty < x.OrderQty).ToList();
 
             custOrder_datagrid.DataSource = inventory
-                            .GroupJoin(custFav, i => i.Id, f => f.InventoryID, (i, f) => new
-                            {
-                                Inv = i,
-                                Fav = f.SingleOrDefault()
-                            })
-                            // .Where(x => x.Fav.InventoryID != 0 && !x.Inv.Hidden  ) //&& x.Fav.InventoryID == x.Inv.Id 
-                            .GroupJoin(custItems, i => i.Inv.Id, o => o.Id, (i, o) => new
-                            {
-                                i.Inv,
-                                i.Fav,
-                                Ord = o.SingleOrDefault()
-                            })
-                            .Where(x => (x.Fav != null && !x.Inv.Hidden || x.Ord != null) )
-                            .Select(x => new
-                            {
-                                x.Inv.Name,
-                                x.Inv.Qty,
-                                x.Inv.OrderQty,
-                                Requsted = x.Ord?.OrderQty,
-                                x.Inv.Price,
-                                x.Fav?.Lastused
-                            })
-                            .ToList();
+                .GroupJoin(custFav, i => i.Id, f => f.InventoryID, (i, f) => new
+                {
+                    Inv = i,
+                    Fav = f.SingleOrDefault()
+                })
+                // .Where(x => x.Fav.InventoryID != 0 && !x.Inv.Hidden  ) //&& x.Fav.InventoryID == x.Inv.Id 
+                .GroupJoin(custItems, i => i.Inv.Id, o => o.Id, (i, o) => new
+                {
+                    i.Inv,
+                    i.Fav,
+                    Ord = o.SingleOrDefault()
+                }) 
+                .Where(x => (x.Fav != null && !x.Inv.Hidden || x.Ord != null) )
+                .Select(x => new
+                {
+                    x.Inv.Id, 
+                    x.Inv.Name,
+                    x.Inv.Qty,
+                    x.Inv.OrderQty,
+                    Requsted = x.Ord?.OrderQty,
+                    x.Inv.Price,
+                    x.Fav?.Lastused
+                })
+                .ToList();
         }
     /*
       //REMOVE THE PLACEHOLDER TEXT WHEN CLICKING INTO THE TEXT BOX
@@ -568,5 +569,49 @@ namespace SecretCellar
 
             RefreshFavorite(t.CustomerID);
         }
+
+        private void custOrder_datagrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            //if (custOrder_datagrid.SelectedRows.Count > 0)
+            //    txt_orderqty_custorder.Text = request_dataGrid.SelectedRows[0].Cells["Requsted"].Value.ToString();
+        }
+
+        private void custOrder_datagrid_SelectionChanged(object sender, EventArgs e)
+        {
+            if (custOrder_datagrid.SelectedRows.Count > 0)
+                txt_orderqty_custorder.Text = (custOrder_datagrid.SelectedRows[0].Cells["Requsted"].Value ?? 0).ToString();
+        }
+
+        private void btn_update_custorder_Click(object sender, EventArgs e)
+        {
+            if (custOrder_datagrid.SelectedRows.Count > 0)
+            {
+                uint cid = ((Customer)cbx_cust_custorder.SelectedItem).CustomerID;
+                if(cid > 0)
+                { 
+                    uint iid = Convert.ToUInt32( custOrder_datagrid.SelectedRows[0].Cells["CustOrd_id"].Value?.ToString());
+
+                    CustomerOrder co = DataAccess.instance.GetCustomerOrder(cid) ?? new CustomerOrder();
+                    CustomerOrderItem coi = co.Items.FirstOrDefault(x => x.Id == iid) ?? new CustomerOrderItem
+                    {
+                        Id = iid
+                    };
+
+                    if (coi.CustomerOrderItemID == 0)
+                        co.Items.Add(coi);
+
+                    coi.OrderQty = Convert.ToUInt32(txt_orderqty_custorder.Text);
+                    DataAccess.instance.UpdateCustomerOrder(co);
+                    RefreshFavorite(cid);
+                }
+            }
+        }
+
+        private void txt_orderqty_custorder_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+                e.Handled = true;
+        }
+
     }
 }

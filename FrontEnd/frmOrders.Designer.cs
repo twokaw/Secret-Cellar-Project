@@ -29,7 +29,7 @@ namespace SecretCellar
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.supp_order = new System.Windows.Forms.TabPage();
             this.btn_recived = new System.Windows.Forms.Button();
             this.btn_update = new System.Windows.Forms.Button();
@@ -67,11 +67,16 @@ namespace SecretCellar
             this.prod_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.cust_order = new System.Windows.Forms.TabPage();
+            this.grpOrder = new System.Windows.Forms.GroupBox();
+            this.btnAddOrder = new System.Windows.Forms.Button();
             this.btn_update_custorder = new System.Windows.Forms.Button();
+            this.txt_orderqty_custorder = new System.Windows.Forms.TextBox();
+            this.lbl_qty_custorder = new System.Windows.Forms.Label();
+            this.grpFavorites = new System.Windows.Forms.GroupBox();
+            this.btnFavoritesRemove = new System.Windows.Forms.Button();
+            this.btnFavoritesAdd = new System.Windows.Forms.Button();
             this.lbl_supp_custorder = new System.Windows.Forms.Label();
             this.cbx_supp_custorder = new System.Windows.Forms.ComboBox();
-            this.lbl_qty_custorder = new System.Windows.Forms.Label();
-            this.txt_orderqty_custorder = new System.Windows.Forms.TextBox();
             this.custOrder_datagrid = new System.Windows.Forms.DataGridView();
             this.lbl_cust_custorder = new System.Windows.Forms.Label();
             this.cbx_cust_custorder = new System.Windows.Forms.ComboBox();
@@ -112,15 +117,21 @@ namespace SecretCellar
             this.lbl_start = new System.Windows.Forms.Label();
             this.start_dateTime = new System.Windows.Forms.DateTimePicker();
             this.btn_close = new System.Windows.Forms.Button();
-            this.btnFavoritesAdd = new System.Windows.Forms.Button();
-            this.btnFavoritesRemove = new System.Windows.Forms.Button();
-            this.btnAddOrder = new System.Windows.Forms.Button();
+            this.CustOrd_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CustOrdName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CustOrdQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CustOrdOrderQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CustOrdRequest = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CustOrdPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CustOrdLastUsed = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.supp_order.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.supp_dataGrid)).BeginInit();
             this.cust_request.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.request_dataGrid)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.cust_order.SuspendLayout();
+            this.grpOrder.SuspendLayout();
+            this.grpFavorites.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.custOrder_datagrid)).BeginInit();
             this.Fullfillment.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fullfill_datagrid)).BeginInit();
@@ -538,14 +549,10 @@ namespace SecretCellar
             // 
             // cust_order
             // 
-            this.cust_order.Controls.Add(this.btnAddOrder);
-            this.cust_order.Controls.Add(this.btnFavoritesRemove);
-            this.cust_order.Controls.Add(this.btnFavoritesAdd);
-            this.cust_order.Controls.Add(this.btn_update_custorder);
+            this.cust_order.Controls.Add(this.grpOrder);
+            this.cust_order.Controls.Add(this.grpFavorites);
             this.cust_order.Controls.Add(this.lbl_supp_custorder);
             this.cust_order.Controls.Add(this.cbx_supp_custorder);
-            this.cust_order.Controls.Add(this.lbl_qty_custorder);
-            this.cust_order.Controls.Add(this.txt_orderqty_custorder);
             this.cust_order.Controls.Add(this.custOrder_datagrid);
             this.cust_order.Controls.Add(this.lbl_cust_custorder);
             this.cust_order.Controls.Add(this.cbx_cust_custorder);
@@ -558,20 +565,98 @@ namespace SecretCellar
             this.cust_order.Text = "Customer Order";
             this.cust_order.UseVisualStyleBackColor = true;
             // 
+            // grpOrder
+            // 
+            this.grpOrder.Controls.Add(this.btnAddOrder);
+            this.grpOrder.Controls.Add(this.btn_update_custorder);
+            this.grpOrder.Controls.Add(this.txt_orderqty_custorder);
+            this.grpOrder.Controls.Add(this.lbl_qty_custorder);
+            this.grpOrder.Location = new System.Drawing.Point(1267, 58);
+            this.grpOrder.Name = "grpOrder";
+            this.grpOrder.Size = new System.Drawing.Size(186, 300);
+            this.grpOrder.TabIndex = 12;
+            this.grpOrder.TabStop = false;
+            this.grpOrder.Text = "Order";
+            // 
+            // btnAddOrder
+            // 
+            this.btnAddOrder.Location = new System.Drawing.Point(17, 36);
+            this.btnAddOrder.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnAddOrder.Name = "btnAddOrder";
+            this.btnAddOrder.Size = new System.Drawing.Size(150, 62);
+            this.btnAddOrder.TabIndex = 10;
+            this.btnAddOrder.Text = "Add";
+            this.btnAddOrder.UseVisualStyleBackColor = true;
+            this.btnAddOrder.Click += new System.EventHandler(this.btnAddOrder_Click);
+            // 
             // btn_update_custorder
             // 
-            this.btn_update_custorder.Location = new System.Drawing.Point(1113, 608);
+            this.btn_update_custorder.Location = new System.Drawing.Point(17, 219);
             this.btn_update_custorder.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btn_update_custorder.Name = "btn_update_custorder";
-            this.btn_update_custorder.Size = new System.Drawing.Size(267, 62);
+            this.btn_update_custorder.Size = new System.Drawing.Size(150, 62);
             this.btn_update_custorder.TabIndex = 7;
-            this.btn_update_custorder.Text = "Update Qty";
+            this.btn_update_custorder.Text = "Update";
             this.btn_update_custorder.UseVisualStyleBackColor = true;
+            this.btn_update_custorder.Click += new System.EventHandler(this.btn_update_custorder_Click);
+            // 
+            // txt_orderqty_custorder
+            // 
+            this.txt_orderqty_custorder.Location = new System.Drawing.Point(17, 159);
+            this.txt_orderqty_custorder.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txt_orderqty_custorder.Name = "txt_orderqty_custorder";
+            this.txt_orderqty_custorder.Size = new System.Drawing.Size(158, 35);
+            this.txt_orderqty_custorder.TabIndex = 3;
+            this.txt_orderqty_custorder.Text = "0";
+            this.txt_orderqty_custorder.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_orderqty_custorder_KeyPress);
+            // 
+            // lbl_qty_custorder
+            // 
+            this.lbl_qty_custorder.AutoSize = true;
+            this.lbl_qty_custorder.Location = new System.Drawing.Point(12, 125);
+            this.lbl_qty_custorder.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_qty_custorder.Name = "lbl_qty_custorder";
+            this.lbl_qty_custorder.Size = new System.Drawing.Size(163, 29);
+            this.lbl_qty_custorder.TabIndex = 4;
+            this.lbl_qty_custorder.Text = "Request Qty:";
+            // 
+            // grpFavorites
+            // 
+            this.grpFavorites.Controls.Add(this.btnFavoritesRemove);
+            this.grpFavorites.Controls.Add(this.btnFavoritesAdd);
+            this.grpFavorites.Location = new System.Drawing.Point(1267, 413);
+            this.grpFavorites.Name = "grpFavorites";
+            this.grpFavorites.Size = new System.Drawing.Size(186, 211);
+            this.grpFavorites.TabIndex = 11;
+            this.grpFavorites.TabStop = false;
+            this.grpFavorites.Text = "Favorites";
+            // 
+            // btnFavoritesRemove
+            // 
+            this.btnFavoritesRemove.Location = new System.Drawing.Point(17, 122);
+            this.btnFavoritesRemove.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnFavoritesRemove.Name = "btnFavoritesRemove";
+            this.btnFavoritesRemove.Size = new System.Drawing.Size(150, 62);
+            this.btnFavoritesRemove.TabIndex = 9;
+            this.btnFavoritesRemove.Text = "Remove";
+            this.btnFavoritesRemove.UseVisualStyleBackColor = true;
+            this.btnFavoritesRemove.Click += new System.EventHandler(this.btnFavoritesRemove_Click);
+            // 
+            // btnFavoritesAdd
+            // 
+            this.btnFavoritesAdd.Location = new System.Drawing.Point(17, 40);
+            this.btnFavoritesAdd.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnFavoritesAdd.Name = "btnFavoritesAdd";
+            this.btnFavoritesAdd.Size = new System.Drawing.Size(150, 62);
+            this.btnFavoritesAdd.TabIndex = 8;
+            this.btnFavoritesAdd.Text = "Add";
+            this.btnFavoritesAdd.UseVisualStyleBackColor = true;
+            this.btnFavoritesAdd.Click += new System.EventHandler(this.btnFavoritesAdd_Click);
             // 
             // lbl_supp_custorder
             // 
             this.lbl_supp_custorder.AutoSize = true;
-            this.lbl_supp_custorder.Location = new System.Drawing.Point(562, 25);
+            this.lbl_supp_custorder.Location = new System.Drawing.Point(663, 25);
             this.lbl_supp_custorder.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_supp_custorder.Name = "lbl_supp_custorder";
             this.lbl_supp_custorder.Size = new System.Drawing.Size(119, 29);
@@ -582,44 +667,38 @@ namespace SecretCellar
             // 
             this.cbx_supp_custorder.DisplayMember = "Name";
             this.cbx_supp_custorder.FormattingEnabled = true;
-            this.cbx_supp_custorder.Location = new System.Drawing.Point(692, 20);
+            this.cbx_supp_custorder.Location = new System.Drawing.Point(790, 20);
             this.cbx_supp_custorder.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cbx_supp_custorder.Name = "cbx_supp_custorder";
-            this.cbx_supp_custorder.Size = new System.Drawing.Size(370, 37);
+            this.cbx_supp_custorder.Size = new System.Drawing.Size(453, 37);
             this.cbx_supp_custorder.TabIndex = 5;
-            // 
-            // lbl_qty_custorder
-            // 
-            this.lbl_qty_custorder.AutoSize = true;
-            this.lbl_qty_custorder.Location = new System.Drawing.Point(1111, 513);
-            this.lbl_qty_custorder.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lbl_qty_custorder.Name = "lbl_qty_custorder";
-            this.lbl_qty_custorder.Size = new System.Drawing.Size(134, 29);
-            this.lbl_qty_custorder.TabIndex = 4;
-            this.lbl_qty_custorder.Text = "Order Qty:";
-            // 
-            // txt_orderqty_custorder
-            // 
-            this.txt_orderqty_custorder.Location = new System.Drawing.Point(1117, 548);
-            this.txt_orderqty_custorder.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txt_orderqty_custorder.Name = "txt_orderqty_custorder";
-            this.txt_orderqty_custorder.Size = new System.Drawing.Size(265, 35);
-            this.txt_orderqty_custorder.TabIndex = 3;
             // 
             // custOrder_datagrid
             // 
             this.custOrder_datagrid.AllowUserToAddRows = false;
             this.custOrder_datagrid.AllowUserToDeleteRows = false;
+            this.custOrder_datagrid.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.custOrder_datagrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.custOrder_datagrid.Location = new System.Drawing.Point(15, 88);
+            this.custOrder_datagrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.CustOrd_id,
+            this.CustOrdName,
+            this.CustOrdQty,
+            this.CustOrdOrderQty,
+            this.CustOrdRequest,
+            this.CustOrdPrice,
+            this.CustOrdLastUsed});
+            this.custOrder_datagrid.Location = new System.Drawing.Point(16, 71);
             this.custOrder_datagrid.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.custOrder_datagrid.MultiSelect = false;
             this.custOrder_datagrid.Name = "custOrder_datagrid";
             this.custOrder_datagrid.ReadOnly = true;
             this.custOrder_datagrid.RowHeadersVisible = false;
             this.custOrder_datagrid.RowHeadersWidth = 62;
             this.custOrder_datagrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.custOrder_datagrid.Size = new System.Drawing.Size(1083, 582);
+            this.custOrder_datagrid.Size = new System.Drawing.Size(1227, 615);
             this.custOrder_datagrid.TabIndex = 2;
+            this.custOrder_datagrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.custOrder_datagrid_CellContentClick);
+            this.custOrder_datagrid.SelectionChanged += new System.EventHandler(this.custOrder_datagrid_SelectionChanged);
             // 
             // lbl_cust_custorder
             // 
@@ -635,10 +714,10 @@ namespace SecretCellar
             // 
             this.cbx_cust_custorder.DisplayMember = "FullName";
             this.cbx_cust_custorder.FormattingEnabled = true;
-            this.cbx_cust_custorder.Location = new System.Drawing.Point(162, 20);
+            this.cbx_cust_custorder.Location = new System.Drawing.Point(156, 20);
             this.cbx_cust_custorder.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cbx_cust_custorder.Name = "cbx_cust_custorder";
-            this.cbx_cust_custorder.Size = new System.Drawing.Size(370, 37);
+            this.cbx_cust_custorder.Size = new System.Drawing.Size(455, 37);
             this.cbx_cust_custorder.TabIndex = 0;
             this.cbx_cust_custorder.SelectedIndexChanged += new System.EventHandler(this.cbx_cust_custorder_SelectedIndexChanged);
             // 
@@ -994,8 +1073,8 @@ namespace SecretCellar
             // trans_total
             // 
             this.trans_total.DataPropertyName = "trans_total";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.trans_total.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.trans_total.DefaultCellStyle = dataGridViewCellStyle1;
             this.trans_total.HeaderText = "Total";
             this.trans_total.MinimumWidth = 8;
             this.trans_total.Name = "trans_total";
@@ -1050,38 +1129,75 @@ namespace SecretCellar
             this.btn_close.UseVisualStyleBackColor = true;
             this.btn_close.Click += new System.EventHandler(this.btn_close_Click);
             // 
-            // btnFavoritesAdd
+            // CustOrd_id
             // 
-            this.btnFavoritesAdd.Location = new System.Drawing.Point(1115, 88);
-            this.btnFavoritesAdd.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnFavoritesAdd.Name = "btnFavoritesAdd";
-            this.btnFavoritesAdd.Size = new System.Drawing.Size(267, 62);
-            this.btnFavoritesAdd.TabIndex = 8;
-            this.btnFavoritesAdd.Text = "Add Favorite";
-            this.btnFavoritesAdd.UseVisualStyleBackColor = true;
-            this.btnFavoritesAdd.Click += new System.EventHandler(this.btnFavoritesAdd_Click);
+            this.CustOrd_id.DataPropertyName = "id";
+            this.CustOrd_id.HeaderText = "id";
+            this.CustOrd_id.MinimumWidth = 8;
+            this.CustOrd_id.Name = "CustOrd_id";
+            this.CustOrd_id.ReadOnly = true;
+            this.CustOrd_id.Visible = false;
+            this.CustOrd_id.Width = 150;
             // 
-            // btnFavoritesRemove
+            // CustOrdName
             // 
-            this.btnFavoritesRemove.Location = new System.Drawing.Point(1115, 160);
-            this.btnFavoritesRemove.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnFavoritesRemove.Name = "btnFavoritesRemove";
-            this.btnFavoritesRemove.Size = new System.Drawing.Size(267, 62);
-            this.btnFavoritesRemove.TabIndex = 9;
-            this.btnFavoritesRemove.Text = "Remove Favorite";
-            this.btnFavoritesRemove.UseVisualStyleBackColor = true;
-            this.btnFavoritesRemove.Click += new System.EventHandler(this.btnFavoritesRemove_Click);
+            this.CustOrdName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.CustOrdName.DataPropertyName = "Name";
+            this.CustOrdName.HeaderText = "Name";
+            this.CustOrdName.MinimumWidth = 8;
+            this.CustOrdName.Name = "CustOrdName";
+            this.CustOrdName.ReadOnly = true;
+            this.CustOrdName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             // 
-            // btnAddOrder
+            // CustOrdQty
             // 
-            this.btnAddOrder.Location = new System.Drawing.Point(1115, 232);
-            this.btnAddOrder.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnAddOrder.Name = "btnAddOrder";
-            this.btnAddOrder.Size = new System.Drawing.Size(267, 62);
-            this.btnAddOrder.TabIndex = 10;
-            this.btnAddOrder.Text = "Add Order";
-            this.btnAddOrder.UseVisualStyleBackColor = true;
-            this.btnAddOrder.Click += new System.EventHandler(this.btnAddOrder_Click);
+            this.CustOrdQty.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.CustOrdQty.DataPropertyName = "Qty";
+            this.CustOrdQty.HeaderText = "Qty";
+            this.CustOrdQty.MinimumWidth = 8;
+            this.CustOrdQty.Name = "CustOrdQty";
+            this.CustOrdQty.ReadOnly = true;
+            this.CustOrdQty.Width = 88;
+            // 
+            // CustOrdOrderQty
+            // 
+            this.CustOrdOrderQty.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.CustOrdOrderQty.DataPropertyName = "OrderQty";
+            this.CustOrdOrderQty.HeaderText = "Order Qty";
+            this.CustOrdOrderQty.MinimumWidth = 8;
+            this.CustOrdOrderQty.Name = "CustOrdOrderQty";
+            this.CustOrdOrderQty.ReadOnly = true;
+            this.CustOrdOrderQty.Width = 163;
+            // 
+            // CustOrdRequest
+            // 
+            this.CustOrdRequest.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.CustOrdRequest.DataPropertyName = "Requested";
+            this.CustOrdRequest.HeaderText = "Request Qty";
+            this.CustOrdRequest.MinimumWidth = 8;
+            this.CustOrdRequest.Name = "CustOrdRequest";
+            this.CustOrdRequest.ReadOnly = true;
+            this.CustOrdRequest.Width = 192;
+            // 
+            // CustOrdPrice
+            // 
+            this.CustOrdPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.CustOrdPrice.DataPropertyName = "Price";
+            this.CustOrdPrice.HeaderText = "Price";
+            this.CustOrdPrice.MinimumWidth = 8;
+            this.CustOrdPrice.Name = "CustOrdPrice";
+            this.CustOrdPrice.ReadOnly = true;
+            this.CustOrdPrice.Width = 110;
+            // 
+            // CustOrdLastUsed
+            // 
+            this.CustOrdLastUsed.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.CustOrdLastUsed.DataPropertyName = "Lastused";
+            this.CustOrdLastUsed.HeaderText = "Last Ordered";
+            this.CustOrdLastUsed.MinimumWidth = 8;
+            this.CustOrdLastUsed.Name = "CustOrdLastUsed";
+            this.CustOrdLastUsed.ReadOnly = true;
+            this.CustOrdLastUsed.Width = 202;
             // 
             // frmOrders
             // 
@@ -1097,7 +1213,7 @@ namespace SecretCellar
             this.MinimizeBox = false;
             this.Name = "frmOrders";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "frmOrders";
+            this.Text = "Customer Orders";
             this.supp_order.ResumeLayout(false);
             this.supp_order.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.supp_dataGrid)).EndInit();
@@ -1107,6 +1223,9 @@ namespace SecretCellar
             this.tabControl1.ResumeLayout(false);
             this.cust_order.ResumeLayout(false);
             this.cust_order.PerformLayout();
+            this.grpOrder.ResumeLayout(false);
+            this.grpOrder.PerformLayout();
+            this.grpFavorites.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.custOrder_datagrid)).EndInit();
             this.Fullfillment.ResumeLayout(false);
             this.Fullfillment.PerformLayout();
@@ -1206,5 +1325,14 @@ namespace SecretCellar
         private System.Windows.Forms.Button btnFavoritesRemove;
         private System.Windows.Forms.Button btnFavoritesAdd;
         private System.Windows.Forms.Button btnAddOrder;
+        private System.Windows.Forms.GroupBox grpOrder;
+        private System.Windows.Forms.GroupBox grpFavorites;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CustOrd_id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CustOrdName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CustOrdQty;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CustOrdOrderQty;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CustOrdRequest;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CustOrdPrice;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CustOrdLastUsed;
     }
 }

@@ -19,7 +19,7 @@ namespace pos_core_api.ORM
         const string OUTSTANDINGCUSTOMERORDERSQL = @"
         SELECT *
         FROM  v_CustomerOrder
-        WHERE DeliverQty < OrderQty
+        WHERE IFNULL(DeliverQty, 0) < OrderQty
         ";
 
         public List<CustomerOrder> Get(bool includehistory)
@@ -155,7 +155,7 @@ namespace pos_core_api.ORM
         {
             CustomerOrder co = GetOrder(cust.CustomerOrderID, true);
 
-            if (co is null)
+            if (co is null || co.CustomerOrderID == 0)
                 return Insert(cust);
 
             db.OpenConnection();
@@ -187,11 +187,10 @@ namespace pos_core_api.ORM
                 {
                     cmd = new MySqlCommand(@"
                      INSERT INTO customerorderitem
-                      (CustomerOrderItemID, CustomerOrderID, InventoryID, OrderQTY, DeliverQTY, Deliverdate)
+                      (CustomerOrderItemID, CustomerOrderID, InventoryID, OrderQTY)
                      VALUES
-                      (@OrderItemID, @CustomerOrderID, @InventoryID, @OrderQTY, @DeliverQTY, @Deliverdate)
+                      (@OrderItemID, @CustomerOrderID, @InventoryID, @OrderQTY)
                      ON DUPLICATE KEY UPDATE
-                         CustomerOrderID = @CustomerOrderID, 
                          InventoryID     = @InventoryID, 
                          OrderQTY        = @OrderQTY, 
                          DeliverQTY      = @DeliverQTY, 
@@ -272,6 +271,7 @@ namespace pos_core_api.ORM
 
                 temp.Items.Add(new CustomerOrderItem
                 {
+                    CustomerOrderItemID = reader.IsDBNull("CustomerOrderItemID") ? 0 : reader.GetUInt32("CustomerOrderItemID"),
                     DeliverDate = reader.IsDBNull("itemDeliverDate") ? DateTime.MinValue : reader.GetDateTime("itemDeliverDate"),
                     DeliverQty = reader.IsDBNull("DeliverQty") ? 0 : reader.GetUInt32("DeliverQty"),
                     BottleDeposit = reader.IsDBNull("Bottle_Deposit") ? 0 : reader.GetUInt32("Bottle_Deposit"),
