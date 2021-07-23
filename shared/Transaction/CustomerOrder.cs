@@ -7,7 +7,7 @@ namespace Shared
     public class CustomerOrderItem: BaseItem
     {
         public uint CustomerOrderItemID { get; set; }
-        public uint OrderQty { get; set; }
+        public uint RequestQty { get; set; }
         public uint DeliverQty { get; set; }
         public DateTime DeliverDate { get; set; }
     }

@@ -15,11 +15,13 @@ namespace pos_core_api.ORM
         const string CUSTOMERORDERSQL = @"
         SELECT *
         FROM  v_CustomerOrder
+        ORDER BY customerID, CustomerOrderID
         ";
         const string OUTSTANDINGCUSTOMERORDERSQL = @"
         SELECT *
         FROM  v_CustomerOrder
         WHERE IFNULL(DeliverQty, 0) < OrderQty
+        ORDER BY customerID, CustomerOrderID
         ";
 
         public List<CustomerOrder> Get(bool includehistory)
@@ -138,7 +140,7 @@ namespace pos_core_api.ORM
 
                     cmd.Parameters.Add(new MySqlParameter("CustomerOrderID", CustomerOrderID));
                     cmd.Parameters.Add(new MySqlParameter("InventoryID", i.Id));
-                    cmd.Parameters.Add(new MySqlParameter("OrderQTY", i.OrderQty));
+                    cmd.Parameters.Add(new MySqlParameter("OrderQTY", i.RequestQty));
                     cmd.Parameters.Add(new MySqlParameter("DeliverQTY", i.DeliverQty));
                     cmd.Parameters.Add(new MySqlParameter("Deliverdate", i.DeliverDate));
 
@@ -199,7 +201,7 @@ namespace pos_core_api.ORM
 
                     cmd.Parameters.Add(new MySqlParameter("CustomerOrderID", cust.CustomerOrderID));
                     cmd.Parameters.Add(new MySqlParameter("InventoryID", i.Id));
-                    cmd.Parameters.Add(new MySqlParameter("OrderQTY", i.OrderQty));
+                    cmd.Parameters.Add(new MySqlParameter("OrderQTY", i.RequestQty));
                     cmd.Parameters.Add(new MySqlParameter("DeliverQTY", i.DeliverQty));
                     cmd.Parameters.Add(new MySqlParameter("Deliverdate", i.DeliverDate));
                     cmd.Parameters.Add(new MySqlParameter("OrderItemID", i.CustomerOrderItemID ));
@@ -249,7 +251,7 @@ namespace pos_core_api.ORM
             CustomerOrder temp = null;
             while (reader.Read())
             {
-                if(temp == null || temp.CustomerOrderID != reader.GetUInt32("CustomerOrderID"))
+                if(temp == null || temp.CustomerID != reader.GetUInt32("CustomerID"))
                 {
                     temp = new CustomerOrder
                     {
@@ -269,23 +271,31 @@ namespace pos_core_api.ORM
                     output.Add(temp);
                 }
 
-                temp.Items.Add(new CustomerOrderItem
+                uint id = reader.IsDBNull("InventoryID") ? 0 : reader.GetUInt32("InventoryID");
+                CustomerOrderItem coi = temp.Items.FirstOrDefault(x => x.Id == id);
+                if (coi == null)
+                    temp.Items.Add(new CustomerOrderItem
+                    {
+                        CustomerOrderItemID = reader.IsDBNull("CustomerOrderItemID") ? 0 : reader.GetUInt32("CustomerOrderItemID"),
+                        DeliverDate = reader.IsDBNull("itemDeliverDate") ? DateTime.MinValue : reader.GetDateTime("itemDeliverDate"),
+                        DeliverQty = reader.IsDBNull("DeliverQty") ? 0 : reader.GetUInt32("DeliverQty"),
+                        BottleDeposit = reader.IsDBNull("Bottle_Deposit") ? 0 : reader.GetUInt32("Bottle_Deposit"),
+                        Name = reader.IsDBNull("name") ? "" : reader.GetString("name"),
+                        RequestQty = reader.IsDBNull("OrderQty") ? 0 : reader.GetUInt32("OrderQty"),
+                        Id = reader.IsDBNull("InventoryID") ? 0 : reader.GetUInt32("InventoryID"),
+                        Price = reader.IsDBNull("retail_price") ? 0 : reader.GetDouble("retail_price"),
+                        ItemType = reader.IsDBNull("inventory_type_name") ? "" : reader.GetString("inventory_type_name"),
+                        AllQty = new List<InventoryQty>
+                          { new InventoryQty
+                            {
+                              Qty = reader.IsDBNull("Inventory_qty") ? 0 : reader.GetUInt32("Inventory_qty")
+                          } }
+                    });
+                else
                 {
-                    CustomerOrderItemID = reader.IsDBNull("CustomerOrderItemID") ? 0 : reader.GetUInt32("CustomerOrderItemID"),
-                    DeliverDate = reader.IsDBNull("itemDeliverDate") ? DateTime.MinValue : reader.GetDateTime("itemDeliverDate"),
-                    DeliverQty = reader.IsDBNull("DeliverQty") ? 0 : reader.GetUInt32("DeliverQty"),
-                    BottleDeposit = reader.IsDBNull("Bottle_Deposit") ? 0 : reader.GetUInt32("Bottle_Deposit"),
-                    Name = reader.IsDBNull("name") ? "" : reader.GetString("name"),
-                    OrderQty = reader.IsDBNull("OrderQty") ? 0 : reader.GetUInt32("OrderQty"),
-                    Id = reader.IsDBNull("InventoryID") ? 0 : reader.GetUInt32("InventoryID"),
-                    Price = reader.IsDBNull("retail_price") ? 0 : reader.GetDouble("retail_price"),
-                    ItemType = reader.IsDBNull("inventory_type_name") ? "" : reader.GetString("inventory_type_name"),
-                    AllQty = new List<InventoryQty>
-                      { new InventoryQty 
-                        {
-                          Qty = reader.IsDBNull("Inventory_qty") ? 0 : reader.GetUInt32("Inventory_qty")
-                      } }
-                });
+                    coi.RequestQty += reader.IsDBNull("OrderQty") ? 0 : reader.GetUInt32("OrderQty");
+                    coi.DeliverQty += reader.IsDBNull("DeliverQty") ? 0 : reader.GetUInt32("DeliverQty");
+                }
             }
             return output;
         }
