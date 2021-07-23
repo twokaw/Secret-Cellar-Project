@@ -614,5 +614,11 @@ namespace SecretCellar
                 e.Handled = true;
         }
 
+        //fullfillment tab
+
+        private void btn_whole_assign_update_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
