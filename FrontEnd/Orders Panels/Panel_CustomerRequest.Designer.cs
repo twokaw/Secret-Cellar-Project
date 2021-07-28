@@ -46,6 +46,9 @@ namespace SecretCellar.Orders_Panels {
 			this.textBox_CustomerName.Size = new System.Drawing.Size(339, 20);
 			this.textBox_CustomerName.TabIndex = 22;
 			this.textBox_CustomerName.Text = "Search for customer";
+			this.textBox_CustomerName.TextChanged += new System.EventHandler(this.textBox_CustomerName_TextChanged);
+			this.textBox_CustomerName.Enter += new System.EventHandler(this.textBox_CustomerName_Enter);
+			this.textBox_CustomerName.Leave += new System.EventHandler(this.textBox_CustomerName_Leave);
 			// 
 			// lst_customer
 			// 
@@ -65,6 +68,7 @@ namespace SecretCellar.Orders_Panels {
 			this.btn_prod_delete.TabIndex = 20;
 			this.btn_prod_delete.Text = "Remove";
 			this.btn_prod_delete.UseVisualStyleBackColor = true;
+			this.btn_prod_delete.Click += new System.EventHandler(this.btn_prod_delete_Click);
 			// 
 			// btn_prod_add
 			// 
@@ -76,6 +80,7 @@ namespace SecretCellar.Orders_Panels {
 			this.btn_prod_add.TabIndex = 19;
 			this.btn_prod_add.Text = "Add";
 			this.btn_prod_add.UseVisualStyleBackColor = true;
+			this.btn_prod_add.Click += new System.EventHandler(this.btn_prod_add_Click);
 			// 
 			// txt_prod_name
 			// 
