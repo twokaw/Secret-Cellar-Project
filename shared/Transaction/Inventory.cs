@@ -9,7 +9,6 @@ namespace Shared
         public uint InvMax { get; set; }
         public double OrderIncrement { get; set; }
         
-        public uint OrderQty { get; set; }
         /*
          * Inventory description section of the database.
          */

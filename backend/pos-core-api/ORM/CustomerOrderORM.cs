@@ -260,14 +260,9 @@ namespace pos_core_api.ORM
                         FirstName = reader.IsDBNull("first_name") ? "" : reader.GetString("first_name"),
                         LastName = reader.IsDBNull("last_name") ? "" : reader.GetString("last_name"),
                         BusinessName = reader.IsDBNull("business_name") ? "" : reader.GetString("business_name"),
-                        IsWholesale = !reader.IsDBNull("isWholesale") && reader.GetBoolean("isWholesale"),
-                        CustomerOrderID = reader.IsDBNull("CustomerOrderID") ? 0 : reader.GetUInt32("CustomerOrderID"),
-                        DeliveryDate  = reader.IsDBNull("DeliverDate") ? DateTime.MinValue : reader.GetDateTime("DeliverDate"),
-                        OrderNote = reader.IsDBNull("OrderNote") ? "" : reader.GetString("OrderNote"),
-                        RequestDate = reader.IsDBNull("RequestDate") ? DateTime.MinValue : reader.GetDateTime("RequestDate"), 
-                        PaidAmount = reader.IsDBNull("PaidAmount") ? 0 : reader.GetDouble("PaidAmount")
+                        IsWholesale = !reader.IsDBNull("isWholesale") && reader.GetBoolean("isWholesale"), 
                     };
-
+// OrderNote = reader.IsDBNull("OrderNote") ? "" : reader.GetString("OrderNote"),
                     output.Add(temp);
                 }
 
@@ -277,17 +272,21 @@ namespace pos_core_api.ORM
                     temp.Items.Add(new CustomerOrderItem
                     {
                         CustomerOrderItemID = reader.IsDBNull("CustomerOrderItemID") ? 0 : reader.GetUInt32("CustomerOrderItemID"),
-                        DeliverDate = reader.IsDBNull("itemDeliverDate") ? DateTime.MinValue : reader.GetDateTime("itemDeliverDate"),
+                        RequestDate = reader.IsDBNull("requestDate") ? DateTime.MinValue : reader.GetDateTime("RequestDate"),
+                        DeliverDate = reader.IsDBNull("DeliverDate") ? DateTime.MinValue : reader.GetDateTime("DeliverDate"),
+                        PaidDate = reader.IsDBNull("PaidDate") ? DateTime.MinValue : reader.GetDateTime("PaidDate"),
                         DeliverQty = reader.IsDBNull("DeliverQty") ? 0 : reader.GetUInt32("DeliverQty"),
                         BottleDeposit = reader.IsDBNull("Bottle_Deposit") ? 0 : reader.GetUInt32("Bottle_Deposit"),
                         Name = reader.IsDBNull("name") ? "" : reader.GetString("name"),
-                        RequestQty = reader.IsDBNull("OrderQty") ? 0 : reader.GetUInt32("OrderQty"),
+                        Barcode = reader.IsDBNull("Barcode") ? "" : reader.GetString("Barcode"),
+                        RequestQty = reader.IsDBNull("RequestQty") ? 0 : reader.GetUInt32("RequestQty"),
+                        OrderQty = reader.IsDBNull("OrderQty") ? 0 : reader.GetUInt32("OrderQty"),
                         Id = reader.IsDBNull("InventoryID") ? 0 : reader.GetUInt32("InventoryID"),
-                        Price = reader.IsDBNull("retail_price") ? 0 : reader.GetDouble("retail_price"),
+                        Price = reader.IsDBNull("price") ? 0 : reader.GetDouble("price"),
                         ItemType = reader.IsDBNull("inventory_type_name") ? "" : reader.GetString("inventory_type_name"),
                         AllQty = new List<InventoryQty>
                           { new InventoryQty
-                            {
+                            {  
                               Qty = reader.IsDBNull("Inventory_qty") ? 0 : reader.GetUInt32("Inventory_qty")
                           } }
                     });

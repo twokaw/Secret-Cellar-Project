@@ -15,8 +15,10 @@ namespace Shared
                 uint qty = 0;
                 AllQty.ForEach(x => qty += x.Qty);
                 return qty;
-            } 
+            }
         }
+        public uint OrderQty { get; set; }
+
         // Price in dollars
         public double Price { get; set; }   
         public bool NonTaxable { get; set; }
