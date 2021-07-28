@@ -49,6 +49,7 @@ namespace SecretCellar.Orders_Panels {
 			// btn_whole_assign_update
 			// 
 			this.btn_whole_assign_update.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.btn_whole_assign_update.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.btn_whole_assign_update.Location = new System.Drawing.Point(651, 272);
 			this.btn_whole_assign_update.Name = "btn_whole_assign_update";
 			this.btn_whole_assign_update.Size = new System.Drawing.Size(135, 36);
@@ -59,6 +60,7 @@ namespace SecretCellar.Orders_Panels {
 			// btn_whole_order_update
 			// 
 			this.btn_whole_order_update.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.btn_whole_order_update.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.btn_whole_order_update.Location = new System.Drawing.Point(651, 111);
 			this.btn_whole_order_update.Name = "btn_whole_order_update";
 			this.btn_whole_order_update.Size = new System.Drawing.Size(135, 36);

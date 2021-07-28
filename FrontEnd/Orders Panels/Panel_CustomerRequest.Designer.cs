@@ -58,6 +58,7 @@ namespace SecretCellar.Orders_Panels {
 			// btn_prod_delete
 			// 
 			this.btn_prod_delete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.btn_prod_delete.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.btn_prod_delete.Location = new System.Drawing.Point(373, 288);
 			this.btn_prod_delete.Name = "btn_prod_delete";
 			this.btn_prod_delete.Size = new System.Drawing.Size(154, 36);
@@ -68,6 +69,7 @@ namespace SecretCellar.Orders_Panels {
 			// btn_prod_add
 			// 
 			this.btn_prod_add.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.btn_prod_add.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.btn_prod_add.Location = new System.Drawing.Point(678, 288);
 			this.btn_prod_add.Name = "btn_prod_add";
 			this.btn_prod_add.Size = new System.Drawing.Size(154, 36);

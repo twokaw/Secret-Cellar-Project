@@ -67,6 +67,7 @@ namespace SecretCellar.Orders_Panels {
 			// 
 			// btnAddOrder
 			// 
+			this.btnAddOrder.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.btnAddOrder.Location = new System.Drawing.Point(11, 23);
 			this.btnAddOrder.Name = "btnAddOrder";
 			this.btnAddOrder.Size = new System.Drawing.Size(100, 40);
@@ -76,6 +77,7 @@ namespace SecretCellar.Orders_Panels {
 			// 
 			// btn_update_custorder
 			// 
+			this.btn_update_custorder.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.btn_update_custorder.Location = new System.Drawing.Point(11, 142);
 			this.btn_update_custorder.Name = "btn_update_custorder";
 			this.btn_update_custorder.Size = new System.Drawing.Size(100, 40);
@@ -116,6 +118,7 @@ namespace SecretCellar.Orders_Panels {
 			// 
 			// btnFavoritesRemove
 			// 
+			this.btnFavoritesRemove.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.btnFavoritesRemove.Location = new System.Drawing.Point(11, 79);
 			this.btnFavoritesRemove.Name = "btnFavoritesRemove";
 			this.btnFavoritesRemove.Size = new System.Drawing.Size(100, 40);
@@ -125,6 +128,7 @@ namespace SecretCellar.Orders_Panels {
 			// 
 			// btnFavoritesAdd
 			// 
+			this.btnFavoritesAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.btnFavoritesAdd.Location = new System.Drawing.Point(11, 26);
 			this.btnFavoritesAdd.Name = "btnFavoritesAdd";
 			this.btnFavoritesAdd.Size = new System.Drawing.Size(100, 40);
