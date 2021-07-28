@@ -26,15 +26,16 @@ namespace SecretCellar {
 		private void InitializeComponent() {
 			this.tabControl1 = new System.Windows.Forms.TabControl();
 			this.tab_CustomerRequest = new System.Windows.Forms.TabPage();
-			this.panel_CustomerRequest1 = new SecretCellar.Orders_Panels.Panel_CustomerRequest();
 			this.tab_SupplierOrder = new System.Windows.Forms.TabPage();
-			this.panel_SupplierOrder1 = new SecretCellar.Orders_Panels.Panel_SupplierOrder();
 			this.tab_CustomerOrder = new System.Windows.Forms.TabPage();
-			this.panel_CustomerOrder1 = new SecretCellar.Orders_Panels.Panel_CustomerOrder();
 			this.tab_Fulfillment = new System.Windows.Forms.TabPage();
-			this.panel_Fulfillment1 = new SecretCellar.Orders_Panels.Panel_Fulfillment();
 			this.tab_History = new System.Windows.Forms.TabPage();
+			this.panel_CustomerRequest1 = new SecretCellar.Orders_Panels.Panel_CustomerRequest();
+			this.panel_SupplierOrder1 = new SecretCellar.Orders_Panels.Panel_SupplierOrder();
+			this.panel_CustomerOrder1 = new SecretCellar.Orders_Panels.Panel_CustomerOrder();
+			this.panel_Fulfillment1 = new SecretCellar.Orders_Panels.Panel_Fulfillment();
 			this.panel_History1 = new SecretCellar.Orders_Panels.Panel_History();
+			this.btn_close = new System.Windows.Forms.Button();
 			this.tabControl1.SuspendLayout();
 			this.tab_CustomerRequest.SuspendLayout();
 			this.tab_SupplierOrder.SuspendLayout();
@@ -67,13 +68,6 @@ namespace SecretCellar {
 			this.tab_CustomerRequest.Text = "Customer Request";
 			this.tab_CustomerRequest.UseVisualStyleBackColor = true;
 			// 
-			// panel_CustomerRequest1
-			// 
-			this.panel_CustomerRequest1.Location = new System.Drawing.Point(0, 0);
-			this.panel_CustomerRequest1.Name = "panel_CustomerRequest1";
-			this.panel_CustomerRequest1.Size = new System.Drawing.Size(836, 329);
-			this.panel_CustomerRequest1.TabIndex = 0;
-			// 
 			// tab_SupplierOrder
 			// 
 			this.tab_SupplierOrder.Controls.Add(this.panel_SupplierOrder1);
@@ -84,13 +78,6 @@ namespace SecretCellar {
 			this.tab_SupplierOrder.TabIndex = 1;
 			this.tab_SupplierOrder.Text = "Supplier Order";
 			this.tab_SupplierOrder.UseVisualStyleBackColor = true;
-			// 
-			// panel_SupplierOrder1
-			// 
-			this.panel_SupplierOrder1.Location = new System.Drawing.Point(0, 0);
-			this.panel_SupplierOrder1.Name = "panel_SupplierOrder1";
-			this.panel_SupplierOrder1.Size = new System.Drawing.Size(838, 332);
-			this.panel_SupplierOrder1.TabIndex = 0;
 			// 
 			// tab_CustomerOrder
 			// 
@@ -103,13 +90,6 @@ namespace SecretCellar {
 			this.tab_CustomerOrder.Text = "Customer Order";
 			this.tab_CustomerOrder.UseVisualStyleBackColor = true;
 			// 
-			// panel_CustomerOrder1
-			// 
-			this.panel_CustomerOrder1.Location = new System.Drawing.Point(0, 1);
-			this.panel_CustomerOrder1.Name = "panel_CustomerOrder1";
-			this.panel_CustomerOrder1.Size = new System.Drawing.Size(838, 329);
-			this.panel_CustomerOrder1.TabIndex = 0;
-			// 
 			// tab_Fulfillment
 			// 
 			this.tab_Fulfillment.Controls.Add(this.panel_Fulfillment1);
@@ -120,13 +100,6 @@ namespace SecretCellar {
 			this.tab_Fulfillment.TabIndex = 3;
 			this.tab_Fulfillment.Text = "Fulfillment";
 			this.tab_Fulfillment.UseVisualStyleBackColor = true;
-			// 
-			// panel_Fulfillment1
-			// 
-			this.panel_Fulfillment1.Location = new System.Drawing.Point(0, 1);
-			this.panel_Fulfillment1.Name = "panel_Fulfillment1";
-			this.panel_Fulfillment1.Size = new System.Drawing.Size(838, 329);
-			this.panel_Fulfillment1.TabIndex = 0;
 			// 
 			// tab_History
 			// 
@@ -139,6 +112,34 @@ namespace SecretCellar {
 			this.tab_History.Text = "History";
 			this.tab_History.UseVisualStyleBackColor = true;
 			// 
+			// panel_CustomerRequest1
+			// 
+			this.panel_CustomerRequest1.Location = new System.Drawing.Point(0, 0);
+			this.panel_CustomerRequest1.Name = "panel_CustomerRequest1";
+			this.panel_CustomerRequest1.Size = new System.Drawing.Size(836, 329);
+			this.panel_CustomerRequest1.TabIndex = 0;
+			// 
+			// panel_SupplierOrder1
+			// 
+			this.panel_SupplierOrder1.Location = new System.Drawing.Point(0, 0);
+			this.panel_SupplierOrder1.Name = "panel_SupplierOrder1";
+			this.panel_SupplierOrder1.Size = new System.Drawing.Size(838, 332);
+			this.panel_SupplierOrder1.TabIndex = 0;
+			// 
+			// panel_CustomerOrder1
+			// 
+			this.panel_CustomerOrder1.Location = new System.Drawing.Point(0, 1);
+			this.panel_CustomerOrder1.Name = "panel_CustomerOrder1";
+			this.panel_CustomerOrder1.Size = new System.Drawing.Size(838, 329);
+			this.panel_CustomerOrder1.TabIndex = 0;
+			// 
+			// panel_Fulfillment1
+			// 
+			this.panel_Fulfillment1.Location = new System.Drawing.Point(0, 1);
+			this.panel_Fulfillment1.Name = "panel_Fulfillment1";
+			this.panel_Fulfillment1.Size = new System.Drawing.Size(838, 329);
+			this.panel_Fulfillment1.TabIndex = 0;
+			// 
 			// panel_History1
 			// 
 			this.panel_History1.Location = new System.Drawing.Point(-1, 1);
@@ -146,11 +147,24 @@ namespace SecretCellar {
 			this.panel_History1.Size = new System.Drawing.Size(836, 329);
 			this.panel_History1.TabIndex = 0;
 			// 
+			// btn_close
+			// 
+			this.btn_close.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.btn_close.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btn_close.Location = new System.Drawing.Point(12, 369);
+			this.btn_close.Name = "btn_close";
+			this.btn_close.Size = new System.Drawing.Size(150, 36);
+			this.btn_close.TabIndex = 8;
+			this.btn_close.Text = "Close";
+			this.btn_close.UseVisualStyleBackColor = true;
+			// 
 			// frmOrdersPanels
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(869, 378);
+			this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+			this.ClientSize = new System.Drawing.Size(869, 408);
+			this.Controls.Add(this.btn_close);
 			this.Controls.Add(this.tabControl1);
 			this.Name = "frmOrdersPanels";
 			this.Text = "frmOrdersPanels";
@@ -177,5 +191,6 @@ namespace SecretCellar {
 		private Orders_Panels.Panel_CustomerOrder panel_CustomerOrder1;
 		private Orders_Panels.Panel_Fulfillment panel_Fulfillment1;
 		private Orders_Panels.Panel_History panel_History1;
+		private System.Windows.Forms.Button btn_close;
 	}
 }
