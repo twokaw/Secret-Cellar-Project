@@ -24,7 +24,7 @@ namespace SecretCellar.Orders_Panels {
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent() {
-			this.btn_recived = new System.Windows.Forms.Button();
+			this.btn_received = new System.Windows.Forms.Button();
 			this.btn_update = new System.Windows.Forms.Button();
 			this.txt_update_qty = new System.Windows.Forms.TextBox();
 			this.lbl_qty = new System.Windows.Forms.Label();
@@ -48,16 +48,17 @@ namespace SecretCellar.Orders_Panels {
 			((System.ComponentModel.ISupportInitialize)(this.supp_dataGrid)).BeginInit();
 			this.SuspendLayout();
 			// 
-			// btn_recived
+			// btn_received
 			// 
-			this.btn_recived.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.btn_recived.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btn_recived.Location = new System.Drawing.Point(611, 290);
-			this.btn_recived.Name = "btn_recived";
-			this.btn_recived.Size = new System.Drawing.Size(154, 36);
-			this.btn_recived.TabIndex = 26;
-			this.btn_recived.Text = "Enter Received";
-			this.btn_recived.UseVisualStyleBackColor = true;
+			this.btn_received.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.btn_received.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btn_received.Location = new System.Drawing.Point(611, 290);
+			this.btn_received.Name = "btn_received";
+			this.btn_received.Size = new System.Drawing.Size(154, 36);
+			this.btn_received.TabIndex = 26;
+			this.btn_received.Text = "Enter Received";
+			this.btn_received.UseVisualStyleBackColor = true;
+			this.btn_received.Click += new System.EventHandler(this.btn_received_Click);
 			// 
 			// btn_update
 			// 
@@ -69,6 +70,7 @@ namespace SecretCellar.Orders_Panels {
 			this.btn_update.TabIndex = 25;
 			this.btn_update.Text = "Update Qty";
 			this.btn_update.UseVisualStyleBackColor = true;
+			this.btn_update.Click += new System.EventHandler(this.btn_update_Click);
 			// 
 			// txt_update_qty
 			// 
@@ -114,6 +116,7 @@ namespace SecretCellar.Orders_Panels {
 			this.btn_print_supp.TabIndex = 20;
 			this.btn_print_supp.Text = "Print Form";
 			this.btn_print_supp.UseVisualStyleBackColor = true;
+			this.btn_print_supp.Click += new System.EventHandler(this.btn_print_supp_Click);
 			// 
 			// txt_supp_total
 			// 
@@ -149,6 +152,7 @@ namespace SecretCellar.Orders_Panels {
 			this.cbx_supplier.Name = "cbx_supplier";
 			this.cbx_supplier.Size = new System.Drawing.Size(248, 21);
 			this.cbx_supplier.TabIndex = 16;
+			this.cbx_supplier.SelectedIndexChanged += new System.EventHandler(this.cbx_supplier_SelectedIndexChanged);
 			// 
 			// supp_dataGrid
 			// 
@@ -176,6 +180,7 @@ namespace SecretCellar.Orders_Panels {
 			this.supp_dataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
 			this.supp_dataGrid.Size = new System.Drawing.Size(594, 206);
 			this.supp_dataGrid.TabIndex = 15;
+			this.supp_dataGrid.SelectionChanged += new System.EventHandler(this.supp_dataGrid_SelectionChanged);
 			// 
 			// id
 			// 
@@ -255,7 +260,7 @@ namespace SecretCellar.Orders_Panels {
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.Controls.Add(this.btn_recived);
+			this.Controls.Add(this.btn_received);
 			this.Controls.Add(this.btn_update);
 			this.Controls.Add(this.txt_update_qty);
 			this.Controls.Add(this.lbl_qty);
@@ -277,7 +282,7 @@ namespace SecretCellar.Orders_Panels {
 
 		#endregion
 
-		private System.Windows.Forms.Button btn_recived;
+		private System.Windows.Forms.Button btn_received;
 		private System.Windows.Forms.Button btn_update;
 		private System.Windows.Forms.TextBox txt_update_qty;
 		private System.Windows.Forms.Label lbl_qty;
