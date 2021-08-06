@@ -38,19 +38,15 @@ namespace SecretCellar.Orders_Panels {
         /////////////////////////////////////////////////////
         //RESET THE PLACEHOLDER TEXT IF THE TEXT BOX IS EMPTY
         /////////////////////////////////////////////////////
-        private void textBox_CustomerName_History_Leave(object sender, EventArgs e) {
-            if (string.IsNullOrEmpty(textBox_CustomerName.Text)) {
-                textBox_CustomerName.Text = searchForCustomerText;
+        private void textBox_CustomerName_Leave(object sender, EventArgs e) {
 
-                lstbox_customer.DataSource = DataAccess.instance.GetCustomer(true);
-            }
-        }
+		}
 
 
-        ////////////////
-        //ON TEXT CHANGE
-        ////////////////
-        private void textBox_CustomerName_TextChanged(object sender, EventArgs e) {
+		////////////////
+		//ON TEXT CHANGE
+		////////////////
+		private void textBox_CustomerName_TextChanged(object sender, EventArgs e) {
 			lstbox_customer.DataSource = DataAccess.instance.GetCustomer(textBox_CustomerName.Text, true);
 			/*Select(x => new {
                 customerID = x.CustomerID,
