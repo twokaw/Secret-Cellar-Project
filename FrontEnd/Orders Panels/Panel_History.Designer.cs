@@ -24,7 +24,7 @@ namespace SecretCellar.Orders_Panels {
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent() {
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.textBox_CustomerName = new System.Windows.Forms.TextBox();
 			this.btn_setDate = new System.Windows.Forms.Button();
 			this.btn_setCust = new System.Windows.Forms.Button();
@@ -63,6 +63,7 @@ namespace SecretCellar.Orders_Panels {
 			this.btn_setDate.TabIndex = 24;
 			this.btn_setDate.Text = "Set Date Range";
 			this.btn_setDate.UseVisualStyleBackColor = true;
+			this.btn_setDate.Click += new System.EventHandler(this.btn_setDate_Click);
 			// 
 			// btn_setCust
 			// 
@@ -73,6 +74,7 @@ namespace SecretCellar.Orders_Panels {
 			this.btn_setCust.TabIndex = 23;
 			this.btn_setCust.Text = "Set Customer";
 			this.btn_setCust.UseVisualStyleBackColor = true;
+			this.btn_setCust.Click += new System.EventHandler(this.btn_setCust_Click);
 			// 
 			// lbl_orders
 			// 
@@ -92,6 +94,7 @@ namespace SecretCellar.Orders_Panels {
 			this.btn_reset.TabIndex = 21;
 			this.btn_reset.Text = "Reset";
 			this.btn_reset.UseVisualStyleBackColor = true;
+			this.btn_reset.Click += new System.EventHandler(this.btn_reset_Click);
 			// 
 			// btn_print
 			// 
@@ -102,6 +105,7 @@ namespace SecretCellar.Orders_Panels {
 			this.btn_print.TabIndex = 20;
 			this.btn_print.Text = "View/Print";
 			this.btn_print.UseVisualStyleBackColor = true;
+			this.btn_print.Click += new System.EventHandler(this.btn_print_Click);
 			// 
 			// lstbox_customer
 			// 
@@ -131,6 +135,7 @@ namespace SecretCellar.Orders_Panels {
 			this.transaction_dataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
 			this.transaction_dataGrid.Size = new System.Drawing.Size(552, 189);
 			this.transaction_dataGrid.TabIndex = 18;
+			this.transaction_dataGrid.SelectionChanged += new System.EventHandler(this.transaction_dataGrid_SelectionChanged);
 			// 
 			// trans_id
 			// 
@@ -151,8 +156,8 @@ namespace SecretCellar.Orders_Panels {
 			// trans_total
 			// 
 			this.trans_total.DataPropertyName = "trans_total";
-			dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-			this.trans_total.DefaultCellStyle = dataGridViewCellStyle3;
+			dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+			this.trans_total.DefaultCellStyle = dataGridViewCellStyle4;
 			this.trans_total.HeaderText = "Total";
 			this.trans_total.MinimumWidth = 8;
 			this.trans_total.Name = "trans_total";
