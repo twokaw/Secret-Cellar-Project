@@ -39,8 +39,12 @@ namespace SecretCellar.Orders_Panels {
         //RESET THE PLACEHOLDER TEXT IF THE TEXT BOX IS EMPTY
         /////////////////////////////////////////////////////
         private void textBox_CustomerName_Leave(object sender, EventArgs e) {
+            if (string.IsNullOrEmpty(textBox_CustomerName.Text)) {
+                textBox_CustomerName.Text = searchForCustomerText;
 
-		}
+                lstbox_customer.DataSource = DataAccess.instance.GetCustomer(true);
+            }
+        }
 
 
 		////////////////
