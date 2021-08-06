@@ -25,7 +25,7 @@ namespace SecretCellar.Orders_Panels {
 		/// </summary>
 		private void InitializeComponent() {
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-			this.textBox_CustomerName_History = new System.Windows.Forms.TextBox();
+			this.textBox_CustomerName = new System.Windows.Forms.TextBox();
 			this.btn_setDate = new System.Windows.Forms.Button();
 			this.btn_setCust = new System.Windows.Forms.Button();
 			this.lbl_orders = new System.Windows.Forms.Label();
@@ -43,13 +43,13 @@ namespace SecretCellar.Orders_Panels {
 			((System.ComponentModel.ISupportInitialize)(this.transaction_dataGrid)).BeginInit();
 			this.SuspendLayout();
 			// 
-			// textBox_CustomerName_History
+			// textBox_CustomerName
 			// 
-			this.textBox_CustomerName_History.Location = new System.Drawing.Point(3, 3);
-			this.textBox_CustomerName_History.Name = "textBox_CustomerName_History";
-			this.textBox_CustomerName_History.Size = new System.Drawing.Size(268, 20);
-			this.textBox_CustomerName_History.TabIndex = 25;
-			this.textBox_CustomerName_History.Text = "Search for customer";
+			this.textBox_CustomerName.Location = new System.Drawing.Point(3, 3);
+			this.textBox_CustomerName.Name = "textBox_CustomerName";
+			this.textBox_CustomerName.Size = new System.Drawing.Size(268, 20);
+			this.textBox_CustomerName.TabIndex = 25;
+			this.textBox_CustomerName.Text = "Search for customer";
 			// 
 			// btn_setDate
 			// 
@@ -191,7 +191,7 @@ namespace SecretCellar.Orders_Panels {
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.Controls.Add(this.textBox_CustomerName_History);
+			this.Controls.Add(this.textBox_CustomerName);
 			this.Controls.Add(this.btn_setDate);
 			this.Controls.Add(this.btn_setCust);
 			this.Controls.Add(this.lbl_orders);
@@ -213,7 +213,7 @@ namespace SecretCellar.Orders_Panels {
 
 		#endregion
 
-		private System.Windows.Forms.TextBox textBox_CustomerName_History;
+		private System.Windows.Forms.TextBox textBox_CustomerName;
 		private System.Windows.Forms.Button btn_setDate;
 		private System.Windows.Forms.Button btn_setCust;
 		private System.Windows.Forms.Label lbl_orders;
