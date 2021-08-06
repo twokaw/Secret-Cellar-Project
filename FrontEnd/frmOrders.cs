@@ -618,7 +618,27 @@ namespace SecretCellar
 
         private void btn_whole_assign_update_Click(object sender, EventArgs e)
         {
+            /*
+            if (fullfill_datagrid.SelectedRows.Count > 0)
+            {
+                Inventory i = inventory.First(x => x.Id == uint.Parse(supp_dataGrid.SelectedRows[0].Cells["id"].Value.ToString()));
 
+
+                if (uint.TryParse(txt_receivqty.Text.Trim(), out uint order)) i.OrderQty = order;
+                else
+                {
+                    txt_receivqty.Focus();
+                    txt_receivqty.SelectAll();
+                    MessageBox.Show("Invalid Order Quantity");
+
+                    return;
+                }
+
+                dataAccess.UpdateItem(i);
+            }
+            txt_receivqty.Text = "";
+            refresh();
+            */
         }
     }
 }
