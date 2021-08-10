@@ -29,7 +29,7 @@ namespace SecretCellar
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.supp_order = new System.Windows.Forms.TabPage();
             this.btn_recived = new System.Windows.Forms.Button();
             this.btn_update = new System.Windows.Forms.Button();
@@ -95,6 +95,13 @@ namespace SecretCellar
             this.lbl_whole_cust = new System.Windows.Forms.Label();
             this.cbx_fullfill_cust = new System.Windows.Forms.ComboBox();
             this.fullfill_datagrid = new System.Windows.Forms.DataGridView();
+            this.fid = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fbarcode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fname = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ftype = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fprice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.frequestqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.History = new System.Windows.Forms.TabPage();
             this.textBox_CustomerName_History = new System.Windows.Forms.TextBox();
             this.btn_setDate = new System.Windows.Forms.Button();
@@ -112,13 +119,6 @@ namespace SecretCellar
             this.lbl_start = new System.Windows.Forms.Label();
             this.start_dateTime = new System.Windows.Forms.DateTimePicker();
             this.btn_close = new System.Windows.Forms.Button();
-            this.fid = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fbarcode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ftype = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fprice = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.frequestqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.supp_order.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.supp_dataGrid)).BeginInit();
             this.cust_request.SuspendLayout();
@@ -150,7 +150,7 @@ namespace SecretCellar
             this.supp_order.Controls.Add(this.supp_dataGrid);
             this.supp_order.Location = new System.Drawing.Point(4, 29);
             this.supp_order.Name = "supp_order";
-            this.supp_order.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.supp_order.Padding = new System.Windows.Forms.Padding(3);
             this.supp_order.Size = new System.Drawing.Size(987, 452);
             this.supp_order.TabIndex = 2;
             this.supp_order.Text = "Supplier Order";
@@ -375,7 +375,7 @@ namespace SecretCellar
             this.cust_request.Controls.Add(this.request_dataGrid);
             this.cust_request.Location = new System.Drawing.Point(4, 29);
             this.cust_request.Name = "cust_request";
-            this.cust_request.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.cust_request.Padding = new System.Windows.Forms.Padding(3);
             this.cust_request.Size = new System.Drawing.Size(987, 452);
             this.cust_request.TabIndex = 1;
             this.cust_request.Text = "Customer Request";
@@ -531,7 +531,7 @@ namespace SecretCellar
             this.cust_order.Controls.Add(this.cbx_cust_custorder);
             this.cust_order.Location = new System.Drawing.Point(4, 29);
             this.cust_order.Name = "cust_order";
-            this.cust_order.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.cust_order.Padding = new System.Windows.Forms.Padding(3);
             this.cust_order.Size = new System.Drawing.Size(987, 452);
             this.cust_order.TabIndex = 5;
             this.cust_order.Text = "Customer Order";
@@ -544,9 +544,9 @@ namespace SecretCellar
             this.grpOrder.Controls.Add(this.txt_orderqty_custorder);
             this.grpOrder.Controls.Add(this.lbl_qty_custorder);
             this.grpOrder.Location = new System.Drawing.Point(845, 38);
-            this.grpOrder.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.grpOrder.Margin = new System.Windows.Forms.Padding(2);
             this.grpOrder.Name = "grpOrder";
-            this.grpOrder.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.grpOrder.Padding = new System.Windows.Forms.Padding(2);
             this.grpOrder.Size = new System.Drawing.Size(124, 195);
             this.grpOrder.TabIndex = 12;
             this.grpOrder.TabStop = false;
@@ -595,9 +595,9 @@ namespace SecretCellar
             this.grpFavorites.Controls.Add(this.btnFavoritesRemove);
             this.grpFavorites.Controls.Add(this.btnFavoritesAdd);
             this.grpFavorites.Location = new System.Drawing.Point(845, 268);
-            this.grpFavorites.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.grpFavorites.Margin = new System.Windows.Forms.Padding(2);
             this.grpFavorites.Name = "grpFavorites";
-            this.grpFavorites.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.grpFavorites.Padding = new System.Windows.Forms.Padding(2);
             this.grpFavorites.Size = new System.Drawing.Size(124, 137);
             this.grpFavorites.TabIndex = 11;
             this.grpFavorites.TabStop = false;
@@ -767,7 +767,7 @@ namespace SecretCellar
             this.Fullfillment.Controls.Add(this.fullfill_datagrid);
             this.Fullfillment.Location = new System.Drawing.Point(4, 29);
             this.Fullfillment.Name = "Fullfillment";
-            this.Fullfillment.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.Fullfillment.Padding = new System.Windows.Forms.Padding(3);
             this.Fullfillment.Size = new System.Drawing.Size(987, 452);
             this.Fullfillment.TabIndex = 4;
             this.Fullfillment.Text = "Fullfillment";
@@ -845,6 +845,71 @@ namespace SecretCellar
             this.fullfill_datagrid.Size = new System.Drawing.Size(772, 300);
             this.fullfill_datagrid.TabIndex = 0;
             // 
+            // fid
+            // 
+            this.fid.DataPropertyName = "fid";
+            this.fid.HeaderText = "Id";
+            this.fid.MinimumWidth = 8;
+            this.fid.Name = "fid";
+            this.fid.ReadOnly = true;
+            this.fid.Visible = false;
+            this.fid.Width = 150;
+            // 
+            // fbarcode
+            // 
+            this.fbarcode.DataPropertyName = "fbarcode";
+            this.fbarcode.HeaderText = "Barcode";
+            this.fbarcode.MinimumWidth = 8;
+            this.fbarcode.Name = "fbarcode";
+            this.fbarcode.ReadOnly = true;
+            this.fbarcode.Width = 200;
+            // 
+            // fname
+            // 
+            this.fname.DataPropertyName = "fname";
+            this.fname.HeaderText = "Name";
+            this.fname.MinimumWidth = 8;
+            this.fname.Name = "fname";
+            this.fname.ReadOnly = true;
+            this.fname.Width = 400;
+            // 
+            // ftype
+            // 
+            this.ftype.DataPropertyName = "ftype";
+            this.ftype.HeaderText = "Type";
+            this.ftype.MinimumWidth = 8;
+            this.ftype.Name = "ftype";
+            this.ftype.ReadOnly = true;
+            this.ftype.Visible = false;
+            this.ftype.Width = 150;
+            // 
+            // fqty
+            // 
+            this.fqty.DataPropertyName = "fqty";
+            this.fqty.HeaderText = "Qty";
+            this.fqty.MinimumWidth = 8;
+            this.fqty.Name = "fqty";
+            this.fqty.ReadOnly = true;
+            this.fqty.Width = 80;
+            // 
+            // fprice
+            // 
+            this.fprice.DataPropertyName = "fprice";
+            this.fprice.HeaderText = "Price";
+            this.fprice.MinimumWidth = 8;
+            this.fprice.Name = "fprice";
+            this.fprice.ReadOnly = true;
+            this.fprice.Width = 90;
+            // 
+            // frequestqty
+            // 
+            this.frequestqty.DataPropertyName = "frequestqty";
+            this.frequestqty.HeaderText = "Request Qty";
+            this.frequestqty.MinimumWidth = 8;
+            this.frequestqty.Name = "frequestqty";
+            this.frequestqty.ReadOnly = true;
+            this.frequestqty.Width = 80;
+            // 
             // History
             // 
             this.History.Controls.Add(this.textBox_CustomerName_History);
@@ -861,7 +926,7 @@ namespace SecretCellar
             this.History.Controls.Add(this.start_dateTime);
             this.History.Location = new System.Drawing.Point(4, 29);
             this.History.Name = "History";
-            this.History.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.History.Padding = new System.Windows.Forms.Padding(3);
             this.History.Size = new System.Drawing.Size(987, 452);
             this.History.TabIndex = 3;
             this.History.Text = "History";
@@ -973,8 +1038,8 @@ namespace SecretCellar
             // trans_total
             // 
             this.trans_total.DataPropertyName = "trans_total";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.trans_total.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.trans_total.DefaultCellStyle = dataGridViewCellStyle1;
             this.trans_total.HeaderText = "Total";
             this.trans_total.MinimumWidth = 8;
             this.trans_total.Name = "trans_total";
@@ -1023,71 +1088,6 @@ namespace SecretCellar
             this.btn_close.Text = "Close";
             this.btn_close.UseVisualStyleBackColor = true;
             this.btn_close.Click += new System.EventHandler(this.btn_close_Click);
-            // 
-            // fid
-            // 
-            this.fid.DataPropertyName = "fid";
-            this.fid.HeaderText = "Id";
-            this.fid.MinimumWidth = 8;
-            this.fid.Name = "fid";
-            this.fid.ReadOnly = true;
-            this.fid.Visible = false;
-            this.fid.Width = 150;
-            // 
-            // fbarcode
-            // 
-            this.fbarcode.DataPropertyName = "fbarcode";
-            this.fbarcode.HeaderText = "Barcode";
-            this.fbarcode.MinimumWidth = 8;
-            this.fbarcode.Name = "fbarcode";
-            this.fbarcode.ReadOnly = true;
-            this.fbarcode.Width = 200;
-            // 
-            // fname
-            // 
-            this.fname.DataPropertyName = "fname";
-            this.fname.HeaderText = "Name";
-            this.fname.MinimumWidth = 8;
-            this.fname.Name = "fname";
-            this.fname.ReadOnly = true;
-            this.fname.Width = 400;
-            // 
-            // ftype
-            // 
-            this.ftype.DataPropertyName = "ftype";
-            this.ftype.HeaderText = "Type";
-            this.ftype.MinimumWidth = 8;
-            this.ftype.Name = "ftype";
-            this.ftype.ReadOnly = true;
-            this.ftype.Visible = false;
-            this.ftype.Width = 150;
-            // 
-            // fqty
-            // 
-            this.fqty.DataPropertyName = "fqty";
-            this.fqty.HeaderText = "Qty";
-            this.fqty.MinimumWidth = 8;
-            this.fqty.Name = "fqty";
-            this.fqty.ReadOnly = true;
-            this.fqty.Width = 80;
-            // 
-            // fprice
-            // 
-            this.fprice.DataPropertyName = "fprice";
-            this.fprice.HeaderText = "Price";
-            this.fprice.MinimumWidth = 8;
-            this.fprice.Name = "fprice";
-            this.fprice.ReadOnly = true;
-            this.fprice.Width = 90;
-            // 
-            // frequestqty
-            // 
-            this.frequestqty.DataPropertyName = "frequestqty";
-            this.frequestqty.HeaderText = "Request Qty";
-            this.frequestqty.MinimumWidth = 8;
-            this.frequestqty.Name = "frequestqty";
-            this.frequestqty.ReadOnly = true;
-            this.frequestqty.Width = 80;
             // 
             // frmOrders
             // 

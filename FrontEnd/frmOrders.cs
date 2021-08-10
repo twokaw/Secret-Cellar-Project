@@ -618,13 +618,17 @@ namespace SecretCellar
 
         private void btn_whole_assign_update_Click(object sender, EventArgs e)
         {
-            /*
+            //Transaction custorder = new Transaction();
+
             if (fullfill_datagrid.SelectedRows.Count > 0)
             {
-                Inventory i = inventory.First(x => x.Id == uint.Parse(supp_dataGrid.SelectedRows[0].Cells["id"].Value.ToString()));
+                CustomerOrder co = DataAccess.instance.GetCustomerOrder(custorder.CustomerID) ?? new CustomerOrder();
+                Inventory i = inventory.First(x => x.Id == uint.Parse(fullfill_datagrid.SelectedRows[0].Cells["id"].Value.ToString()));//customer id need to be found 
+                CustomerOrderItem coid = co.Items.FirstOrDefault(x => x.Id == co.CustomerID) ?? new CustomerOrderItem();
 
 
-                if (uint.TryParse(txt_receivqty.Text.Trim(), out uint order)) i.OrderQty = order;
+                i.AllQty.Remove(new InventoryQty { Qty = co.RequestQty, PurchasedDate = DateTime.Now, SupplierPrice = 0 });
+                if (uint.TryParse(txt_receivqty.Text.Trim(), out uint custorder)) i.OrderQty = co.Qty;
                 else
                 {
                     txt_receivqty.Focus();
@@ -634,11 +638,41 @@ namespace SecretCellar
                     return;
                 }
 
-                dataAccess.UpdateItem(i);
+
+            else if (uint.TryParse(txt_receivqty.Text.Trim(), out uint order))
+                {
+
+                    if (coid.RequestQty >= order)
+                    {
+                        coid.RequestQty -= order;
+                    }
+                    else
+                    {
+                        i.OrderQty = 0;
+                    }
+                }
+                txt_receivqty.Text = "";
+                refreshcust();
+
             }
-            txt_receivqty.Text = "";
-            refresh();
-            */
+            
+        }
+
+        private void refreshcust()
+        {
+            fullfill_datagrid.DataSource = ((CustomerOrder)cbx_fullfill_cust.SelectedItem).Items.
+               Select(x => new
+               {
+                   fname = x.Name,
+                   fid = x.Id,
+                   ftype = x.ItemType,
+                   fqty = x.Qty,
+                   fbarcode = x.Barcode,
+                   fprice = x.Price,
+                   frequestqty = x.RequestQty
+               }).
+               OrderBy(x => x.fname).
+               ToList();
         }
     }
 }
