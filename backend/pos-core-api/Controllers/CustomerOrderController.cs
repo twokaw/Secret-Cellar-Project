@@ -39,12 +39,12 @@ namespace WebApi.Controllers
             }
         }
 
-        [HttpGet("Order/{order}")]
-        public IActionResult GetOrder(uint order, bool includeHistory = false)
+        [HttpGet("OrderItem/{orderItem}")]
+        public IActionResult GetOrder(uint orderItem, bool includeHistory = false)
         {
             try
             {
-                return Ok(DataAccess.Instance.CustomerOrder.Get(order, includeHistory));
+                return Ok(DataAccess.Instance.CustomerOrder.GetCustomerItem(orderItem));
             }
             catch (Exception ex)
             {
@@ -53,12 +53,12 @@ namespace WebApi.Controllers
             }
         }
 
-        [HttpPost]
-        public IActionResult Post([FromBody] CustomerOrder cust)
+        [HttpPost("{customerID}")]
+        public IActionResult Post(uint customerID, [FromBody] CustomerOrderItem cust)
         {
             try
             {
-               return Ok( DataAccess.Instance.CustomerOrder.Insert(cust));
+                return Ok( DataAccess.Instance.CustomerOrder.Insert(customerID, cust));
             }
             catch (Exception ex)
             {
@@ -68,7 +68,7 @@ namespace WebApi.Controllers
         }
 
         [HttpPut]
-        public IActionResult Put([FromBody] CustomerOrder cust)
+        public IActionResult Put([FromBody] CustomerOrderItem cust)
         {
             try
             {

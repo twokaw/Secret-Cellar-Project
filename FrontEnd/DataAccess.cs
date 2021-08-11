@@ -427,7 +427,7 @@ namespace SecretCellar
         }
         public void DeleteCustomerOrder(CustomerOrder customerOrder)
         {
-            try { web.DataDelete($"api/CustomerOrdere/{customerOrder.CustomerOrderID}"); }
+            try { web.DataDelete($"api/CustomerOrdere/{customerOrder}"); }
             catch (Exception ex) { LogError(ex, "DeleteCustomerOrder"); }
         }
 
