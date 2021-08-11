@@ -133,9 +133,11 @@ namespace pos_core_api.ORM
                 if(coi != null)
                 {
                     coi.RequestQty += cust.RequestQty;
+                    coi.DeliverQty += cust.DeliverQty;
                     return Update(coi);
                 }
             }
+
             try
             {
                 db.OpenConnection();
@@ -174,11 +176,11 @@ namespace pos_core_api.ORM
             if (temp == null)
                 throw new Exception("CustomerOrderItem is missing");
 
-            if(temp.Id != temp.Id
-             || temp.RequestQty != temp.RequestQty
-             || temp.DeliverQty != temp.DeliverQty
-             || temp.Price != temp.Price
-             || temp.Paid != temp.Paid)
+            if(temp.Id != cust.Id
+             || temp.RequestQty != cust.RequestQty
+             || temp.DeliverQty != cust.DeliverQty
+             || temp.Price != cust.Price
+             || temp.Paid != cust.Paid)
             {
                 db.OpenConnection();
                 try
@@ -199,6 +201,8 @@ namespace pos_core_api.ORM
                     cmd.Parameters.Add(new MySqlParameter("DeliverQTY", cust.DeliverQty));
                     cmd.Parameters.Add(new MySqlParameter("Deliverdate", cust.DeliverDate));
                     cmd.Parameters.Add(new MySqlParameter("OrderItemID", cust.CustomerOrderItemID));
+                    cmd.Parameters.Add(new MySqlParameter("Price", cust.Price));
+                    cmd.Parameters.Add(new MySqlParameter("paid", cust.Paid));
                     cmd.ExecuteNonQuery();
 
                     if (cust.RequestQty <= cust.DeliverQty)
@@ -221,90 +225,33 @@ namespace pos_core_api.ORM
             return cust.CustomerOrderItemID;
         }
 
-        //public long Update(CustomerOrder cust)
-        //{
-        //    CustomerOrder co = GetOrder(cust., true);
-
-        //    //if (co is null || co.CustomerOrderID == 0)
-        //    //    return Insert(cust);
-
-        //    db.OpenConnection();
-        //    try
-        //    {
-        //        string sqlStatementDesc = @"
-        //          UPDATE customerorder
-        //          SET CustomerID    = @CustomerID, 
-        //              InvoiceAmount = @InvoiceAmount, 
-        //              PaidAmount    = @PaidAmount, 
-        //              RequestDate   = @RequestDate, 
-        //              DeliverDate   = @DeliverDate, 
-        //              OrderNote     = @OrderNote
-        //          WHERE CustomerOrderID = @CustomerOrderID
-        //        ";
-
-        //        MySqlCommand cmd = new MySqlCommand(sqlStatementDesc, db.Connection());
-        //        cmd.Parameters.Add(new MySqlParameter("CustomerID", cust.CustomerID));
-        //        cmd.Parameters.Add(new MySqlParameter("InvoiceAmount", cust.InvoiceAmount));
-        //        cmd.Parameters.Add(new MySqlParameter("PaidAmount", cust.PaidAmount));
-        //        cmd.Parameters.Add(new MySqlParameter("RequestDate", cust.RequestDate));
-        //        cmd.Parameters.Add(new MySqlParameter("DeliverDate", cust.DeliveryDate));
-        //        cmd.Parameters.Add(new MySqlParameter("OrderNote", cust.OrderNote));
-        //        cmd.Parameters.Add(new MySqlParameter("CustomerOrderID", cust.CustomerOrderID));
-
-        //        cmd.ExecuteNonQuery();
-
-        //        foreach (CustomerOrderItem i in cust.Items)
-        //        {
-        //            cmd = new MySqlCommand(@"
-        //             INSERT INTO customerorderitem
-        //              (CustomerOrderItemID, CustomerOrderID, InventoryID, OrderQTY)
-        //             VALUES
-        //              (@OrderItemID, @CustomerOrderID, @InventoryID, @OrderQTY)
-        //             ON DUPLICATE KEY UPDATE
-        //                 InventoryID     = @InventoryID, 
-        //                 OrderQTY        = @OrderQTY, 
-        //                 DeliverQTY      = @DeliverQTY, 
-        //                 Deliverdate     = @Deliverdate
-        //            ", db.Connection());
-
-        //            cmd.Parameters.Add(new MySqlParameter("CustomerOrderID", cust.CustomerOrderID));
-        //            cmd.Parameters.Add(new MySqlParameter("InventoryID", i.Id));
-        //            cmd.Parameters.Add(new MySqlParameter("OrderQTY", i.RequestQty));
-        //            cmd.Parameters.Add(new MySqlParameter("DeliverQTY", i.DeliverQty));
-        //            cmd.Parameters.Add(new MySqlParameter("Deliverdate", i.DeliverDate));
-        //            cmd.Parameters.Add(new MySqlParameter("OrderItemID", i.CustomerOrderItemID));
-        //            cmd.ExecuteNonQuery();
-        //        }
-
-        //        cmd = new MySqlCommand(@$"
-        //             DELETE FROM  customerorderitem
-        //             WHERE CustomerOrderID = @CustomerOrderID
-        //             AND NOT InventoryID IN ('{ string.Join("','", cust.Items.Select(x => x.Id).ToArray())}')
-        //            ", db.Connection());
-
-        //        cmd.Parameters.Add(new MySqlParameter("CustomerOrderID", cust.CustomerOrderID));
-        //        cmd.ExecuteNonQuery();
-
-        //        return cust.CustomerOrderID;
-        //    }
-        //    finally
-        //    {
-        //        db.CloseConnnection();
-        //    }
-        //}
-
-        public void Delete(uint custOrdID)
+        public void Delete(uint custOrdItemID)
         {
+
+            if (custOrdItemID == 0)
+                throw new Exception("Missing CustomerOrderItem Id");
+
+            CustomerOrderItem temp = GetCustomerItem(custOrdItemID);
+
+            if (temp == null)
+                throw new Exception("CustomerOrderItem is missing");
+
+            if (temp.Price * temp.DeliverQty > temp.Paid)
+                throw new Exception("Items not delivered");
+
+            if (temp.Price * temp.DeliverQty < temp.Paid)
+                throw new Exception("Items not paid for");
+
             db.OpenConnection();
             try
             {
                 string sqlStatementDesc = @"
-                  DELETE FROM customerOrder 
-                  WHERE CustomerOrderID = @CustID
+                  DELETE FROM customerOrderItem
+                  WHERE CustomerOrderItemID = @CustID
                 ";
 
                 MySqlCommand cmd = new MySqlCommand(sqlStatementDesc, db.Connection());
-                cmd.Parameters.Add(new MySqlParameter("custID", custOrdID));
+                cmd.Parameters.Add(new MySqlParameter("custID", custOrdItemID));
                 cmd.ExecuteNonQuery();
             }
             finally
@@ -328,12 +275,7 @@ namespace pos_core_api.ORM
                         FirstName = reader.IsDBNull("first_name") ? "" : reader.GetString("first_name"),
                         LastName = reader.IsDBNull("last_name") ? "" : reader.GetString("last_name"),
                         BusinessName = reader.IsDBNull("business_name") ? "" : reader.GetString("business_name"),
-                        IsWholesale = !reader.IsDBNull("isWholesale") && reader.GetBoolean("isWholesale"),
-                      //  CustomerOrderID = reader.IsDBNull("CustomerOrderID") ? 0 : reader.GetUInt32("CustomerOrderID"),
-                      // DeliveryDate  = reader.IsDBNull("DeliverDate") ? DateTime.MinValue : reader.GetDateTime("DeliverDate"),
-                      //  OrderNote = reader.IsDBNull("OrderNote") ? "" : reader.GetString("OrderNote"),
-                      //  RequestDate = reader.IsDBNull("RequestDate") ? DateTime.MinValue : reader.GetDateTime("RequestDate"), 
-                      //  PaidAmount = reader.IsDBNull("PaidAmount") ? 0 : reader.GetDouble("PaidAmount")
+                        IsWholesale = !reader.IsDBNull("isWholesale") && reader.GetBoolean("isWholesale")
                     };
 
                     output.Add(temp);
@@ -353,7 +295,7 @@ namespace pos_core_api.ORM
                         RequestDate = reader.IsDBNull("RequestDate") ? DateTime.MinValue : reader.GetDateTime("Requestdate"),
                         RequestQty = reader.IsDBNull("RequestQty") ? 0 : reader.GetUInt32("RequestQty"),
                         Id = reader.IsDBNull("InventoryID") ? 0 : reader.GetUInt32("InventoryID"),
-                        Price = reader.IsDBNull("price") ? 0 : reader.GetDouble("retail_price"),
+                        Price = reader.IsDBNull("price") ? 0 : reader.GetDouble("price"),
                         ItemType = reader.IsDBNull("inventory_type_name") ? "" : reader.GetString("inventory_type_name"),
                         AllQty = new List<InventoryQty>
                           { new InventoryQty

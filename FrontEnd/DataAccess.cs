@@ -400,34 +400,34 @@ namespace SecretCellar
             string result = web.DataGet($"api/CustomerOrder/{customerID}?includeHistory={includeHistory }");
             return JsonConvert.DeserializeObject<CustomerOrder>(result);
         }
-        public CustomerOrder GetCustomerOrder(uint customerOrderID, bool includeHistory = false)
+        public CustomerOrder GetCustomerOrderItem(uint OrderitemID)
         {
-            string result = web.DataGet($"api/CustomerOrder/order/{customerOrderID}?includeHistory={includeHistory }");
+            string result = web.DataGet($"api/CustomerOrder/orderitem/{OrderitemID}");
             return JsonConvert.DeserializeObject<CustomerOrder>(result);
         }
 
-        public uint UpdateCustomerOrder(CustomerOrder customerOrder)
+        public uint NewCustomerOrderItem(uint customerID, CustomerOrderItem customerOrder)
         {
             Response resp = null;
-            string result = web.DataPut($"api/CustomerOrder", customerOrder, resp);
+            string result = web.DataPost($"api/CustomerOrder/{customerID}", customerOrder, resp);
             if (uint.TryParse(result, out uint id))
                 return id;
             else
                 return 0;
         }
 
-        public uint NewCustomerOrder(CustomerOrder customerOrder)
+        public uint UpdateCustomerOrderItem(CustomerOrderItem customerOrderItem)
         {
             Response resp = null;
-            string result = web.DataPost($"api/CustomerOrder", customerOrder, resp);
+            string result = web.DataPut($"api/CustomerOrder", customerOrderItem, resp);
             if (uint.TryParse(result, out uint id))
                 return id;
             else
                 return 0;
         }
-        public void DeleteCustomerOrder(CustomerOrder customerOrder)
+        public void DeleteCustomerOrderItem(uint custOrdID)
         {
-            try { web.DataDelete($"api/CustomerOrdere/{customerOrder}"); }
+            try { web.DataDelete($"api/CustomerOrder/{custOrdID}"); }
             catch (Exception ex) { LogError(ex, "DeleteCustomerOrder"); }
         }
 

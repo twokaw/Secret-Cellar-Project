@@ -84,13 +84,12 @@ namespace WebApi.Controllers
             }
         }
 
-        // Delete: api/Customer/{custID}
-        [HttpDelete("{custID}")]
-        public IActionResult Delete(uint custID)
+        [HttpDelete("{custOrdID}")]
+        public IActionResult Delete(uint custOrdID)
         {
             try
             {
-                DataAccess.Instance.CustomerOrder.Delete(custID);
+                DataAccess.Instance.CustomerOrder.Delete(custOrdID);
                 return Ok();
             }
             catch (Exception ex)
