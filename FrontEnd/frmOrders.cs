@@ -618,16 +618,16 @@ namespace SecretCellar
 
         private void btn_whole_assign_update_Click(object sender, EventArgs e)
         {
-            //Transaction custorder = new Transaction();
+            CustomerOrder custorder = DataAccess.instance.GetCustomerOrder(((Customer)cbx_cust_custorder.SelectedItem).CustomerID,false);
 
             if (fullfill_datagrid.SelectedRows.Count > 0)
             {
-                CustomerOrder co = DataAccess.instance.GetCustomerOrder(custorder.CustomerID) ?? new CustomerOrder();
+                
                 Inventory i = inventory.First(x => x.Id == uint.Parse(fullfill_datagrid.SelectedRows[0].Cells["id"].Value.ToString()));//customer id need to be found 
-                CustomerOrderItem coid = co.Items.FirstOrDefault(x => x.Id == co.CustomerID) ?? new CustomerOrderItem();
+                CustomerOrderItem coid = custorder.Items.FirstOrDefault(x => x.Id == custorder.CustomerID);
 
-
-                i.AllQty.Remove(new InventoryQty { Qty = co.RequestQty, PurchasedDate = DateTime.Now, SupplierPrice = 0 });
+                i.AllQty.Add(new InventoryQty { Qty = custorder.qty });
+                i.OrderQty.Add(new CustomerOrder {RequestQty = co.RequestQty, DeliveredDate = DateTime.Now, SupplierPrice = 0 });
                 if (uint.TryParse(txt_receivqty.Text.Trim(), out uint custorder)) i.OrderQty = co.Qty;
                 else
                 {
@@ -637,24 +637,26 @@ namespace SecretCellar
 
                     return;
                 }
+            }
 
 
             else if (uint.TryParse(txt_receivqty.Text.Trim(), out uint order))
+            {
+
+                if (coid.RequestQty >= order)
                 {
-
-                    if (coid.RequestQty >= order)
-                    {
-                        coid.RequestQty -= order;
-                    }
-                    else
-                    {
-                        i.OrderQty = 0;
-                    }
+                    coid.RequestQty -= order;
                 }
-                txt_receivqty.Text = "";
-                refreshcust();
-
+                else
+                {
+                    i.OrderQty = 0;
+                }
             }
+
+            txt_receivqty.Text = "";
+            refreshcust();
+
+            
             
         }
 
