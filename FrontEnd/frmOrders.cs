@@ -618,17 +618,17 @@ namespace SecretCellar
 
         private void btn_whole_assign_update_Click(object sender, EventArgs e)
         {
-            CustomerOrder custorder = DataAccess.instance.GetCustomerOrder(((Customer)cbx_cust_custorder.SelectedItem).CustomerID,false);
+            CustomerOrder custorder = DataAccess.instance.GetCustomerOrderforCustomer(((Customer)cbx_cust_custorder.SelectedItem).CustomerID,false);
 
             if (fullfill_datagrid.SelectedRows.Count > 0)
             {
                 
-                Inventory i = inventory.First(x => x.Id == uint.Parse(fullfill_datagrid.SelectedRows[0].Cells["id"].Value.ToString()));//customer id need to be found 
+                Inventory i = inventory.First(x => x.Id == uint.Parse(fullfill_datagrid.SelectedRows[0].Cells["id"].Value.ToString())); 
                 CustomerOrderItem coid = custorder.Items.FirstOrDefault(x => x.Id == custorder.CustomerID);
 
                 i.AllQty.Add(new InventoryQty { Qty = custorder.qty });
-                i.OrderQty.Add(new CustomerOrder {RequestQty = co.RequestQty, DeliveredDate = DateTime.Now, SupplierPrice = 0 });
-                if (uint.TryParse(txt_receivqty.Text.Trim(), out uint custorder)) i.OrderQty = co.Qty;
+                i.OrderQty.Add(new CustomerOrder {RequestQty = coid.RequestQty, DeliveredDate = DateTime.Now, SupplierPrice = 0 });
+                if (uint.TryParse(txt_receivqty.Text.Trim(), out uint custorder)) i.OrderQty = coid.Qty;
                 else
                 {
                     txt_receivqty.Focus();
