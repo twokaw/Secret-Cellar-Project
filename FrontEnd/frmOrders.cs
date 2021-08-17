@@ -616,7 +616,7 @@ namespace SecretCellar
 
         //fullfillment tab
 
-        private void btn_whole_assign_update_Click(object sender, EventArgs e)
+        private void btn_delivered_update_Click(object sender, EventArgs e)
         {
             CustomerOrder custorder = DataAccess.instance.GetCustomerOrderforCustomer(((Customer)cbx_cust_custorder.SelectedItem).CustomerID,false);
 

@@ -781,7 +781,7 @@ namespace SecretCellar
             this.btn_whole_assign_update.TabIndex = 11;
             this.btn_whole_assign_update.Text = "Delivered Update";
             this.btn_whole_assign_update.UseVisualStyleBackColor = true;
-            this.btn_whole_assign_update.Click += new System.EventHandler(this.btn_whole_assign_update_Click);
+            this.btn_whole_assign_update.Click += new System.EventHandler(this.btn_delivered_update_Click);
             // 
             // dateTimePicker2
             // 
