@@ -68,6 +68,9 @@ namespace SecretCellar
             cbx_cust_custorder.DataSource = cust;
             cbx_supp_custorder.DataSource = suppliers;
 
+            cbx_fullfill_cust.DataSource = DataAccess.instance.GetCustomerOrder();
+            cbx_fullfill_cust.DisplayMember = "FullName";
+
             lstbox_customer.DataSource = DataAccess.instance?.GetCustomer();
             lstbox_customer.DisplayMember = "FullName";
             supp_dataGrid.Columns[5].DefaultCellStyle.Format = "C";
@@ -90,7 +93,7 @@ namespace SecretCellar
                OrderBy(x => x.Name).
                ToList();
 
-            fullfill_datagrid.DataSource = inventory.
+            fullfill_datagrid.DataSource = ((CustomerOrder)cbx_fullfill_cust.SelectedItem).Items.
                Select(x => new
                {
                    fname = x.Name,
@@ -98,10 +101,8 @@ namespace SecretCellar
                    ftype = x.ItemType,
                    fqty = x.Qty,
                    fbarcode = x.Barcode,
-                   fprice = x.SupplierPrice,
-                   fmin = x.InvMin,
-                   fmax = x.InvMax,
-                   forderqty = x.OrderQty
+                   fprice = x.Price,
+                   frequestqty = x.RequestQty
                }).
                OrderBy(x => x.fname).
                ToList();
@@ -484,7 +485,7 @@ namespace SecretCellar
        private void  RefreshFavorite(uint customerId)
         {
             List<CustomerFavorite> custFav = DataAccess.instance.GetCustomerFavorite(customerId).Favorites;
-            List<CustomerOrderItem> custItems = (DataAccess.instance.GetCustomerOrderforCustomer(customerId)?.Items ?? new List<CustomerOrderItem>()).Where(x => x.DeliverQty < x.OrderQty).ToList();
+            List<CustomerOrderItem> custItems = (DataAccess.instance.GetCustomerOrderforCustomer(customerId)?.Items ?? new List<CustomerOrderItem>()).Where(x => x.DeliverQty < x.RequestQty).ToList();
 
             custOrder_datagrid.DataSource = inventory
                 .GroupJoin(custFav, i => i.Id, f => f.InventoryID, (i, f) => new
@@ -506,7 +507,7 @@ namespace SecretCellar
                     x.Inv.Name,
                     x.Inv.Qty,
                     x.Inv.OrderQty,
-                    Requsted = x.Ord?.OrderQty,
+                    Requsted = x.Ord?.RequestQty,
                     x.Inv.Price,
                     x.Fav?.Lastused
                 })
@@ -559,9 +560,9 @@ namespace SecretCellar
                 foreach (Item i in t.Items)
                 {
                     if (co.Items.FirstOrDefault(x => x.Id == i.Id) == null)
-                        co.Items.Add(new CustomerOrderItem { Id = i.Id, OrderQty = 1 });
+                        co.Items.Add(new CustomerOrderItem { Id = i.Id, RequestQty = 1 });
                     else
-                        co.Items.FirstOrDefault(x => x.Id == i.Id).OrderQty++;
+                        co.Items.FirstOrDefault(x => x.Id == i.Id).RequestQty++;
                 }
 
                 DataAccess.instance.UpdateCustomerOrder(co);
@@ -600,7 +601,7 @@ namespace SecretCellar
                     if (coi.CustomerOrderItemID == 0)
                         co.Items.Add(coi);
 
-                    coi.OrderQty = Convert.ToUInt32(txt_orderqty_custorder.Text);
+                    coi.RequestQty = Convert.ToUInt32(txt_orderqty_custorder.Text);
                     DataAccess.instance.UpdateCustomerOrder(co);
                     RefreshFavorite(cid);
                 }
@@ -613,5 +614,11 @@ namespace SecretCellar
                 e.Handled = true;
         }
 
+        //fullfillment tab
+
+        private void btn_whole_assign_update_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
