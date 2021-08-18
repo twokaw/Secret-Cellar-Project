@@ -91,7 +91,7 @@ namespace SecretCellar
             this.btn_whole_assign_update = new System.Windows.Forms.Button();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.lbl_assignqty = new System.Windows.Forms.Label();
-            this.txt_receivqty = new System.Windows.Forms.TextBox();
+            this.txt_deliverqty = new System.Windows.Forms.TextBox();
             this.lbl_whole_cust = new System.Windows.Forms.Label();
             this.cbx_fullfill_cust = new System.Windows.Forms.ComboBox();
             this.fullfill_datagrid = new System.Windows.Forms.DataGridView();
@@ -761,7 +761,7 @@ namespace SecretCellar
             this.Fullfillment.Controls.Add(this.btn_whole_assign_update);
             this.Fullfillment.Controls.Add(this.dateTimePicker2);
             this.Fullfillment.Controls.Add(this.lbl_assignqty);
-            this.Fullfillment.Controls.Add(this.txt_receivqty);
+            this.Fullfillment.Controls.Add(this.txt_deliverqty);
             this.Fullfillment.Controls.Add(this.lbl_whole_cust);
             this.Fullfillment.Controls.Add(this.cbx_fullfill_cust);
             this.Fullfillment.Controls.Add(this.fullfill_datagrid);
@@ -775,7 +775,7 @@ namespace SecretCellar
             // 
             // btn_whole_assign_update
             // 
-            this.btn_whole_assign_update.Location = new System.Drawing.Point(798, 160);
+            this.btn_whole_assign_update.Location = new System.Drawing.Point(350, 401);
             this.btn_whole_assign_update.Name = "btn_whole_assign_update";
             this.btn_whole_assign_update.Size = new System.Drawing.Size(170, 36);
             this.btn_whole_assign_update.TabIndex = 11;
@@ -793,18 +793,18 @@ namespace SecretCellar
             // lbl_assignqty
             // 
             this.lbl_assignqty.AutoSize = true;
-            this.lbl_assignqty.Location = new System.Drawing.Point(794, 105);
+            this.lbl_assignqty.Location = new System.Drawing.Point(205, 388);
             this.lbl_assignqty.Name = "lbl_assignqty";
             this.lbl_assignqty.Size = new System.Drawing.Size(121, 20);
             this.lbl_assignqty.TabIndex = 8;
             this.lbl_assignqty.Text = "Qty Delivered:";
             // 
-            // txt_receivqty
+            // txt_deliverqty
             // 
-            this.txt_receivqty.Location = new System.Drawing.Point(798, 128);
-            this.txt_receivqty.Name = "txt_receivqty";
-            this.txt_receivqty.Size = new System.Drawing.Size(135, 26);
-            this.txt_receivqty.TabIndex = 7;
+            this.txt_deliverqty.Location = new System.Drawing.Point(209, 411);
+            this.txt_deliverqty.Name = "txt_deliverqty";
+            this.txt_deliverqty.Size = new System.Drawing.Size(135, 26);
+            this.txt_deliverqty.TabIndex = 7;
             // 
             // lbl_whole_cust
             // 
@@ -836,13 +836,13 @@ namespace SecretCellar
             this.fqty,
             this.fprice,
             this.frequestqty});
-            this.fullfill_datagrid.Location = new System.Drawing.Point(10, 89);
+            this.fullfill_datagrid.Location = new System.Drawing.Point(10, 48);
             this.fullfill_datagrid.Name = "fullfill_datagrid";
             this.fullfill_datagrid.ReadOnly = true;
             this.fullfill_datagrid.RowHeadersVisible = false;
             this.fullfill_datagrid.RowHeadersWidth = 62;
             this.fullfill_datagrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.fullfill_datagrid.Size = new System.Drawing.Size(772, 300);
+            this.fullfill_datagrid.Size = new System.Drawing.Size(855, 300);
             this.fullfill_datagrid.TabIndex = 0;
             // 
             // fid
@@ -1185,7 +1185,7 @@ namespace SecretCellar
         private System.Windows.Forms.Label lbl_whole_cust;
         private System.Windows.Forms.ComboBox cbx_fullfill_cust;
         private System.Windows.Forms.Label lbl_assignqty;
-        private System.Windows.Forms.TextBox txt_receivqty;
+        private System.Windows.Forms.TextBox txt_deliverqty;
         private System.Windows.Forms.Button btn_whole_assign_update;
         private System.Windows.Forms.DateTimePicker dateTimePicker2;
         private System.Windows.Forms.TabPage cust_order;

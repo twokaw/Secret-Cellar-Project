@@ -92,20 +92,23 @@ namespace SecretCellar
                }).
                OrderBy(x => x.Name).
                ToList();
-
-            fullfill_datagrid.DataSource = ((CustomerOrder)cbx_fullfill_cust.SelectedItem).Items.
-               Select(x => new
-               {
-                   fname = x.Name,
-                   fid = x.Id,
-                   ftype = x.ItemType,
-                   fqty = x.Qty,
-                   fbarcode = x.Barcode,
-                   fprice = x.Price,
-                   frequestqty = x.RequestQty
-               }).
-               OrderBy(x => x.fname).
-               ToList();
+            if (cbx_fullfill_cust.SelectedItem != null)
+            {
+                fullfill_datagrid.DataSource = ((CustomerOrder)cbx_fullfill_cust.SelectedItem).Items.
+                               Select(x => new
+                               {
+                                   fname = x.Name,
+                                   fid = x.Id,
+                                   ftype = x.ItemType,
+                                   fqty = x.Qty,
+                                   fbarcode = x.Barcode,
+                                   fprice = x.Price,
+                                   frequestqty = x.RequestQty
+                               }).
+                               OrderBy(x => x.fname).
+                               ToList();
+            }
+            
 
 
 
@@ -554,18 +557,23 @@ namespace SecretCellar
 
             if (t.Items.Count > 0)
             {
-                CustomerOrder co = DataAccess.instance.GetCustomerOrder(t.CustomerID) ?? new CustomerOrder() 
+                CustomerOrder co = DataAccess.instance.GetCustomerOrderforCustomer(t.CustomerID) ?? new CustomerOrder() 
                 { CustomerID = t.CustomerID
                 };
                 foreach (Item i in t.Items)
                 {
-                    if (co.Items.FirstOrDefault(x => x.Id == i.Id) == null)
-                        co.Items.Add(new CustomerOrderItem { Id = i.Id, RequestQty = 1 });
+                    CustomerOrderItem coi = co.Items.FirstOrDefault(x => x.Id == i.Id);
+
+                    if (coi == null)
+                        dataAccess.NewCustomerOrderItem(co.CustomerID, new CustomerOrderItem { Id = i.Id, RequestQty = 1 });
                     else
-                        co.Items.FirstOrDefault(x => x.Id == i.Id).RequestQty++;
+                    {
+                        coi.RequestQty++;
+                        dataAccess.UpdateCustomerOrderItem(coi);
+                    }
                 }
 
-                DataAccess.instance.UpdateCustomerOrder(co);
+                //DataAccess.instance.UpdateCustomerOrderforCustomer(co);
             }
 
             RefreshFavorite(t.CustomerID);
@@ -592,17 +600,25 @@ namespace SecretCellar
                 { 
                     uint iid = Convert.ToUInt32( custOrder_datagrid.SelectedRows[0].Cells["CustOrd_id"].Value?.ToString());
 
-                    CustomerOrder co = DataAccess.instance.GetCustomerOrder(cid) ?? new CustomerOrder();
+                    CustomerOrder co = DataAccess.instance.GetCustomerOrderforCustomer(cid) ?? new CustomerOrder();
                     CustomerOrderItem coi = co.Items.FirstOrDefault(x => x.Id == iid) ?? new CustomerOrderItem
                     {
                         Id = iid
                     };
 
-                    if (coi.CustomerOrderItemID == 0)
-                        co.Items.Add(coi);
-
-                    coi.RequestQty = Convert.ToUInt32(txt_orderqty_custorder.Text);
-                    DataAccess.instance.UpdateCustomerOrder(co);
+                    if (coi == null)
+                        dataAccess.NewCustomerOrderItem(cid, new CustomerOrderItem
+                        {
+                            Id = iid,
+                            RequestQty = Convert.ToUInt32(txt_orderqty_custorder.Text)
+                });
+                    else
+                    {
+                        coi.RequestQty = Convert.ToUInt32(txt_orderqty_custorder.Text);
+                        DataAccess.instance.UpdateCustomerOrderItem(coi);
+                    }
+                    
+                    //DataAccess.instance.UpdateCustomerOrder(co);
                     RefreshFavorite(cid);
                 }
             }
@@ -618,29 +634,35 @@ namespace SecretCellar
 
         private void btn_delivered_update_Click(object sender, EventArgs e)
         {
-            CustomerOrder custorder = DataAccess.instance.GetCustomerOrderforCustomer(((Customer)cbx_cust_custorder.SelectedItem).CustomerID,false);
+            CustomerOrder custorder = DataAccess.instance.GetCustomerOrderforCustomer(((Customer)cbx_cust_custorder.SelectedItem).CustomerID, false);
+
+            Inventory i = inventory.First(x => x.Id == uint.Parse(fullfill_datagrid.SelectedRows[0].Cells["id"].Value.ToString()));
+            CustomerOrderItem coid = custorder.Items.FirstOrDefault(x => x.Id == i.Id);
+
 
             if (fullfill_datagrid.SelectedRows.Count > 0)
             {
                 
-                Inventory i = inventory.First(x => x.Id == uint.Parse(fullfill_datagrid.SelectedRows[0].Cells["id"].Value.ToString())); 
-                CustomerOrderItem coid = custorder.Items.FirstOrDefault(x => x.Id == custorder.CustomerID);
 
-                i.AllQty.Add(new InventoryQty { Qty = custorder.qty });
-                i.OrderQty.Add(new CustomerOrder {RequestQty = coid.RequestQty, DeliveredDate = DateTime.Now, SupplierPrice = 0 });
-                if (uint.TryParse(txt_receivqty.Text.Trim(), out uint custorder)) i.OrderQty = coid.Qty;
+                //i.AllQty.Add(new InventoryQty { Qty = custorder.qty });
+               // i.OrderQty.Add(new CustomerOrder {RequestQty = coid.RequestQty, DeliveredDate = DateTime.Now, SupplierPrice = 0 });
+                if (uint.TryParse(txt_deliverqty.Text.Trim(), out uint dqty)) 
+                {
+                    coid.DeliverQty = dqty;
+                    dataAccess.UpdateCustomerOrderItem(coid);
+                }
                 else
                 {
-                    txt_receivqty.Focus();
-                    txt_receivqty.SelectAll();
+                    txt_deliverqty.Focus();
+                    txt_deliverqty.SelectAll();
                     MessageBox.Show("Invalid Order Quantity");
 
                     return;
                 }
             }
 
-
-            else if (uint.TryParse(txt_receivqty.Text.Trim(), out uint order))
+            /*
+            else if (uint.TryParse(txt_deliverqty.Text.Trim(), out uint order))
             {
 
                 if (coid.RequestQty >= order)
@@ -652,8 +674,9 @@ namespace SecretCellar
                     i.OrderQty = 0;
                 }
             }
+            */
 
-            txt_receivqty.Text = "";
+            txt_deliverqty.Text = "";
             refreshcust();
 
             
