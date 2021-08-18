@@ -177,7 +177,7 @@ namespace Shared
         public string CustomerName { get; set; }
         public uint CustomerID { get; set; }
         public double Shipping { get; set; }
-
+        
         // Default constructor
         public Transaction()
         {

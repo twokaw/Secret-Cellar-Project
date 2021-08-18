@@ -10,17 +10,23 @@ namespace pos_core_api.ORM
 {
     public class CustomerOrderORM
     {
-        readonly DbConn db = new DbConn();
-
-        const string CUSTOMERORDERSQL = @"
+        private readonly DbConn db = new DbConn();
+        private TransactionORM transactionORM;
+        private const string CUSTOMERORDERSQL = @"
         SELECT *
         FROM  v_CustomerOrder
         ";
-        const string OUTSTANDINGCUSTOMERORDERSQL = @"
+
+        private const string OUTSTANDINGCUSTOMERORDERSQL = @"
         SELECT *
         FROM  v_CustomerOrder
         WHERE IFNULL(DeliverQty, 0) < RequestQty
         ";
+
+        public CustomerOrderORM(TransactionORM transactionORM)
+        {
+            this.transactionORM = transactionORM;
+        }
 
         public List<CustomerOrder> Get(bool includehistory)
         {
@@ -158,6 +164,9 @@ namespace pos_core_api.ORM
                 cmd.Parameters.Add(new MySqlParameter("RequestQty", cust.RequestQty));
                 cmd.ExecuteNonQuery();
 
+                if (cust.DeliverQty > 0)
+                    transactionORM.DecrementInventoryQty(new Item { Id = cust.Id, NumSold = cust.DeliverQty });
+
                 return cmd.LastInsertedId;
             }
             finally
@@ -182,6 +191,7 @@ namespace pos_core_api.ORM
              || temp.Price != cust.Price
              || temp.Paid != cust.Paid)
             {
+
                 db.OpenConnection();
                 try
                 {
@@ -205,12 +215,16 @@ namespace pos_core_api.ORM
                     cmd.Parameters.Add(new MySqlParameter("paid", cust.Paid));
                     cmd.ExecuteNonQuery();
 
+                    if (cust.DeliverQty != temp.DeliverQty)
+                        transactionORM.DecrementInventoryQty(new Item { Id = cust.Id, NumSold = cust.DeliverQty - temp.DeliverQty });
+
                     if (cust.RequestQty <= cust.DeliverQty)
                     {
                         cmd = new MySqlCommand(@$"
                          DELETE FROM  customerorderitem
                          WHERE CustomerOrderItemID = @OrderItemID
                          AND DeliverQty >= RequestQty
+                         AND Paid = Price * DeliverQty
                         ", db.Connection());
 
                         cmd.Parameters.Add(new MySqlParameter("CustomerOrderID", cust.CustomerOrderItemID));
