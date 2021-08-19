@@ -702,15 +702,22 @@ namespace SecretCellar
 
         private void btn_deliver_all_Click(object sender, EventArgs e)
         {
+            CustomerOrder custorder = DataAccess.instance.GetCustomerOrderforCustomer(((Customer)cbx_cust_custorder.SelectedItem).CustomerID, false);
+
+            Inventory i = inventory.First(x => x.Id == uint.Parse(fullfill_datagrid.SelectedRows[0].Cells["id"].Value.ToString()));
+            CustomerOrderItem coid = custorder.Items.FirstOrDefault(x => x.Id == i.Id);
 
             foreach (DataGridViewRow row in fullfill_datagrid.Rows)
             {
-                coid.DeliverQty = dqty;
-                dataAccess.UpdateCustomerOrderItem(coid);
+                uint delivqty = uint.Parse(row.Cells["RequstQty"]);
+                dataAccess.UpdateCustomerOrderItem(delivqty);
 
             }
 
-            
+            txt_deliverqty.Text = "";
+            refreshcust();
+
+
         }
     }
     }
