@@ -704,13 +704,14 @@ namespace SecretCellar
         {
             CustomerOrder custorder = DataAccess.instance.GetCustomerOrderforCustomer(((Customer)cbx_cust_custorder.SelectedItem).CustomerID, false);
 
-            Inventory i = inventory.First(x => x.Id == uint.Parse(fullfill_datagrid.SelectedRows[0].Cells["id"].Value.ToString()));
-            CustomerOrderItem coid = custorder.Items.FirstOrDefault(x => x.Id == i.Id);
+            
 
             foreach (DataGridViewRow row in fullfill_datagrid.Rows)
             {
-                uint delivqty = uint.Parse(row.Cells["RequstQty"]);
-                dataAccess.UpdateCustomerOrderItem(delivqty);
+                Inventory i = inventory.First(x => x.Id == uint.Parse(row.Cells["id"].Value.ToString()));
+                CustomerOrderItem coid = custorder.Items.FirstOrDefault(x => x.Id == i.Id);
+                coid.DeliverQty = uint.Parse(row.Cells["RequstQty"].Value.ToString());
+                dataAccess.UpdateCustomerOrderItem(coid);
 
             }
 
