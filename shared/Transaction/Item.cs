@@ -46,7 +46,8 @@ namespace Shared
             }
         }
 
-        public uint NumSold { get; set; } 
+        public uint NumSold { get; set; }
+        public bool DecrementInventory { get; set; } = true; 
         public double Discount { get; set; }
         public double Coupon { get; set; }
 

@@ -268,7 +268,7 @@ namespace pos_core_api.ORM
             }
         }
 
-        public uint InsertTransaction(Transaction transaction)
+        public uint InsertTransaction(Transaction transaction, bool decrementItems = true)
         {
             db.OpenConnection();
             try
@@ -287,7 +287,7 @@ namespace pos_core_api.ORM
                 cmd.Parameters.Add(new MySqlParameter("empID", transaction.EmployeeID));
                 cmd.Parameters.Add(new MySqlParameter("location", transaction.Location));
                 cmd.Parameters.Add(new MySqlParameter("tax_exempt", transaction.TaxExempt));
-                cmd.Parameters.Add(new MySqlParameter("discount", transaction.Discount)); ;
+                cmd.Parameters.Add(new MySqlParameter("discount", transaction.Discount));
                 cmd.Parameters.Add(new MySqlParameter("shipping", transaction.Shipping));
 
                 cmd.ExecuteNonQuery();
@@ -297,7 +297,8 @@ namespace pos_core_api.ORM
             {
                 db.CloseConnnection();
             }
-            InsertItems(transaction, FullyPaid(transaction));
+
+            InsertItems(transaction, FullyPaid(transaction) && decrementItems);
             InsertPayments(transaction);
 
             return transaction.InvoiceID;
@@ -446,17 +447,20 @@ namespace pos_core_api.ORM
 
         public void DecrementInventoryQty(Item item)
         {
-            string sql = @"
-                UPDATE Inventory_price
-                SET Inventory_qty = GREATEST(Inventory_qty - @qty, 0 ) 
-                WHERE inventoryID = @inventoryID 
-            ";
+            if (item.DecrementInventory)
+            {
+                string sql = @"
+                    UPDATE Inventory_price
+                    SET Inventory_qty = GREATEST(Inventory_qty - @qty, 0 ) 
+                    WHERE inventoryID = @inventoryID 
+                ";
 
-            using MySqlCommand cmd = new MySqlCommand(sql, db.Connection());
-            cmd.Parameters.Add(new MySqlParameter("qty", item.NumSold));
-            cmd.Parameters.Add(new MySqlParameter("inventoryID", item.Id));
+                using MySqlCommand cmd = new MySqlCommand(sql, db.Connection());
+                cmd.Parameters.Add(new MySqlParameter("qty", item.NumSold));
+                cmd.Parameters.Add(new MySqlParameter("inventoryID", item.Id));
 
-            cmd.ExecuteNonQuery();
+                cmd.ExecuteNonQuery();
+            }
         }
 
         public void AddInventoryQty(Item item, int qty)
