@@ -29,7 +29,7 @@ namespace SecretCellar
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.supp_order = new System.Windows.Forms.TabPage();
             this.btn_recived = new System.Windows.Forms.Button();
             this.btn_update = new System.Windows.Forms.Button();
@@ -777,7 +777,7 @@ namespace SecretCellar
             // 
             // btn_whole_assign_update
             // 
-            this.btn_whole_assign_update.Location = new System.Drawing.Point(350, 401);
+            this.btn_whole_assign_update.Location = new System.Drawing.Point(356, 401);
             this.btn_whole_assign_update.Name = "btn_whole_assign_update";
             this.btn_whole_assign_update.Size = new System.Drawing.Size(170, 36);
             this.btn_whole_assign_update.TabIndex = 11;
@@ -1040,8 +1040,8 @@ namespace SecretCellar
             // trans_total
             // 
             this.trans_total.DataPropertyName = "trans_total";
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.trans_total.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.trans_total.DefaultCellStyle = dataGridViewCellStyle2;
             this.trans_total.HeaderText = "Total";
             this.trans_total.MinimumWidth = 8;
             this.trans_total.Name = "trans_total";
