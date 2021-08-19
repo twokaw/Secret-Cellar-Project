@@ -699,5 +699,19 @@ namespace SecretCellar
                OrderBy(x => x.fname).
                ToList();
         }
+
+        private void btn_deliver_all_Click(object sender, EventArgs e)
+        {
+
+            foreach (DataGridViewRow row in fullfill_datagrid.Rows)
+            {
+                coid.DeliverQty = dqty;
+                dataAccess.UpdateCustomerOrderItem(coid);
+
+            }
+
+            
+        }
+    }
     }
 }

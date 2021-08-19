@@ -119,6 +119,7 @@ namespace SecretCellar
             this.lbl_start = new System.Windows.Forms.Label();
             this.start_dateTime = new System.Windows.Forms.DateTimePicker();
             this.btn_close = new System.Windows.Forms.Button();
+            this.btn_deliver_all = new System.Windows.Forms.Button();
             this.supp_order.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.supp_dataGrid)).BeginInit();
             this.cust_request.SuspendLayout();
@@ -758,6 +759,7 @@ namespace SecretCellar
             // 
             // Fullfillment
             // 
+            this.Fullfillment.Controls.Add(this.btn_deliver_all);
             this.Fullfillment.Controls.Add(this.btn_whole_assign_update);
             this.Fullfillment.Controls.Add(this.dateTimePicker2);
             this.Fullfillment.Controls.Add(this.lbl_assignqty);
@@ -1089,6 +1091,16 @@ namespace SecretCellar
             this.btn_close.UseVisualStyleBackColor = true;
             this.btn_close.Click += new System.EventHandler(this.btn_close_Click);
             // 
+            // btn_deliver_all
+            // 
+            this.btn_deliver_all.Location = new System.Drawing.Point(594, 401);
+            this.btn_deliver_all.Name = "btn_deliver_all";
+            this.btn_deliver_all.Size = new System.Drawing.Size(170, 36);
+            this.btn_deliver_all.TabIndex = 12;
+            this.btn_deliver_all.Text = "Deliver All";
+            this.btn_deliver_all.UseVisualStyleBackColor = true;
+            this.btn_deliver_all.Click += new System.EventHandler(this.btn_deliver_all_Click);
+            // 
             // frmOrders
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1218,5 +1230,6 @@ namespace SecretCellar
         private System.Windows.Forms.DataGridViewTextBoxColumn fqty;
         private System.Windows.Forms.DataGridViewTextBoxColumn fprice;
         private System.Windows.Forms.DataGridViewTextBoxColumn frequestqty;
+        private System.Windows.Forms.Button btn_deliver_all;
     }
 }
