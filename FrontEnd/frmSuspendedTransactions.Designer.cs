@@ -30,7 +30,6 @@
 		{
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSuspendedTransactions));
-			this.mySqlCommand1 = new MySql.Data.MySqlClient.MySqlCommand();
 			this.btnDelete = new System.Windows.Forms.Button();
 			this.btnAdd = new System.Windows.Forms.Button();
 			this.selectionListSuspendedTransactions = new System.Windows.Forms.ListBox();
@@ -45,14 +44,7 @@
 			this.btn_CloseWindow = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridViewSuspendedTransaction)).BeginInit();
 			this.SuspendLayout();
-			// 
-			// mySqlCommand1
-			// 
-			this.mySqlCommand1.CacheAge = 0;
-			this.mySqlCommand1.Connection = null;
-			this.mySqlCommand1.EnableCaching = false;
-			this.mySqlCommand1.Transaction = null;
-			// 
+			//
 			// btnDelete
 			// 
 			this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -225,7 +217,6 @@
 		}
 
 		#endregion
-		private MySql.Data.MySqlClient.MySqlCommand mySqlCommand1;
 		private System.Windows.Forms.Button btnDelete;
 		private System.Windows.Forms.Button btnAdd;
 		private System.Windows.Forms.ListBox selectionListSuspendedTransactions;
