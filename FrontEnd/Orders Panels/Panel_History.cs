@@ -18,13 +18,13 @@ namespace SecretCellar.Orders_Panels {
 
         public Panel_History() {
 			InitializeComponent();
-            transaction_history = DataAccess.instance.GetTransactions();
 
+            transaction_history = DataAccess.instance?.GetTransactions();
             lstbox_customer.DataSource = DataAccess.instance?.GetCustomer();
             lstbox_customer.DisplayMember = "FullName";
 
             //POPULATE THE DATA GRID
-            populate();
+            if (DataAccess.instance != null) { populate(); }
         }
 
 
@@ -144,5 +144,5 @@ namespace SecretCellar.Orders_Panels {
               OrderBy(x => x.trans_id).
               ToList();
         }
-    }
+	}
 }

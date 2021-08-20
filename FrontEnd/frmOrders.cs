@@ -705,13 +705,12 @@ namespace SecretCellar
 
             foreach (DataGridViewRow row in fullfill_datagrid.Rows)
             {
-                coid.DeliverQty = dqty;
-                dataAccess.UpdateCustomerOrderItem(coid);
+                //coid.DeliverQty = dqty;
+                //dataAccess.UpdateCustomerOrderItem(coid);
 
             }
 
             
         }
-    }
     }
 }

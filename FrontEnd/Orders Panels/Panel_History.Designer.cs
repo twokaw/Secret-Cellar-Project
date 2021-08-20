@@ -24,7 +24,7 @@ namespace SecretCellar.Orders_Panels {
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent() {
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.textBox_CustomerName = new System.Windows.Forms.TextBox();
 			this.btn_setDate = new System.Windows.Forms.Button();
 			this.btn_setCust = new System.Windows.Forms.Button();
@@ -156,8 +156,8 @@ namespace SecretCellar.Orders_Panels {
 			// trans_total
 			// 
 			this.trans_total.DataPropertyName = "trans_total";
-			dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-			this.trans_total.DefaultCellStyle = dataGridViewCellStyle4;
+			dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+			this.trans_total.DefaultCellStyle = dataGridViewCellStyle1;
 			this.trans_total.HeaderText = "Total";
 			this.trans_total.MinimumWidth = 8;
 			this.trans_total.Name = "trans_total";
