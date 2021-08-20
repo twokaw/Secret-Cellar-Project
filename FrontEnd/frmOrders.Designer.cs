@@ -29,7 +29,7 @@ namespace SecretCellar
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.supp_order = new System.Windows.Forms.TabPage();
             this.btn_recived = new System.Windows.Forms.Button();
             this.btn_update = new System.Windows.Forms.Button();
@@ -120,6 +120,7 @@ namespace SecretCellar
             this.start_dateTime = new System.Windows.Forms.DateTimePicker();
             this.btn_close = new System.Windows.Forms.Button();
             this.btn_deliver_all = new System.Windows.Forms.Button();
+            this.btn_deliver_selected = new System.Windows.Forms.Button();
             this.supp_order.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.supp_dataGrid)).BeginInit();
             this.cust_request.SuspendLayout();
@@ -759,6 +760,7 @@ namespace SecretCellar
             // 
             // Fullfillment
             // 
+            this.Fullfillment.Controls.Add(this.btn_deliver_selected);
             this.Fullfillment.Controls.Add(this.btn_deliver_all);
             this.Fullfillment.Controls.Add(this.btn_whole_assign_update);
             this.Fullfillment.Controls.Add(this.dateTimePicker2);
@@ -777,7 +779,7 @@ namespace SecretCellar
             // 
             // btn_whole_assign_update
             // 
-            this.btn_whole_assign_update.Location = new System.Drawing.Point(356, 401);
+            this.btn_whole_assign_update.Location = new System.Drawing.Point(243, 390);
             this.btn_whole_assign_update.Name = "btn_whole_assign_update";
             this.btn_whole_assign_update.Size = new System.Drawing.Size(170, 36);
             this.btn_whole_assign_update.TabIndex = 11;
@@ -795,7 +797,7 @@ namespace SecretCellar
             // lbl_assignqty
             // 
             this.lbl_assignqty.AutoSize = true;
-            this.lbl_assignqty.Location = new System.Drawing.Point(205, 388);
+            this.lbl_assignqty.Location = new System.Drawing.Point(92, 377);
             this.lbl_assignqty.Name = "lbl_assignqty";
             this.lbl_assignqty.Size = new System.Drawing.Size(121, 20);
             this.lbl_assignqty.TabIndex = 8;
@@ -803,7 +805,7 @@ namespace SecretCellar
             // 
             // txt_deliverqty
             // 
-            this.txt_deliverqty.Location = new System.Drawing.Point(209, 411);
+            this.txt_deliverqty.Location = new System.Drawing.Point(96, 400);
             this.txt_deliverqty.Name = "txt_deliverqty";
             this.txt_deliverqty.Size = new System.Drawing.Size(135, 26);
             this.txt_deliverqty.TabIndex = 7;
@@ -1040,8 +1042,8 @@ namespace SecretCellar
             // trans_total
             // 
             this.trans_total.DataPropertyName = "trans_total";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.trans_total.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.trans_total.DefaultCellStyle = dataGridViewCellStyle1;
             this.trans_total.HeaderText = "Total";
             this.trans_total.MinimumWidth = 8;
             this.trans_total.Name = "trans_total";
@@ -1093,13 +1095,23 @@ namespace SecretCellar
             // 
             // btn_deliver_all
             // 
-            this.btn_deliver_all.Location = new System.Drawing.Point(594, 401);
+            this.btn_deliver_all.Location = new System.Drawing.Point(695, 390);
             this.btn_deliver_all.Name = "btn_deliver_all";
             this.btn_deliver_all.Size = new System.Drawing.Size(170, 36);
             this.btn_deliver_all.TabIndex = 12;
             this.btn_deliver_all.Text = "Deliver All";
             this.btn_deliver_all.UseVisualStyleBackColor = true;
             this.btn_deliver_all.Click += new System.EventHandler(this.btn_deliver_all_Click);
+            // 
+            // btn_deliver_selected
+            // 
+            this.btn_deliver_selected.Location = new System.Drawing.Point(467, 390);
+            this.btn_deliver_selected.Name = "btn_deliver_selected";
+            this.btn_deliver_selected.Size = new System.Drawing.Size(170, 36);
+            this.btn_deliver_selected.TabIndex = 13;
+            this.btn_deliver_selected.Text = "Deliver Selected";
+            this.btn_deliver_selected.UseVisualStyleBackColor = true;
+            this.btn_deliver_selected.Click += new System.EventHandler(this.btn_deliver_selected_Click);
             // 
             // frmOrders
             // 
@@ -1231,5 +1243,6 @@ namespace SecretCellar
         private System.Windows.Forms.DataGridViewTextBoxColumn fprice;
         private System.Windows.Forms.DataGridViewTextBoxColumn frequestqty;
         private System.Windows.Forms.Button btn_deliver_all;
+        private System.Windows.Forms.Button btn_deliver_selected;
     }
 }
