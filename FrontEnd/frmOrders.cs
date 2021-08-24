@@ -538,7 +538,7 @@ namespace SecretCellar
         private void btnFavoritesRemove_Click(object sender, EventArgs e)
         {
             uint cid = ((Customer)cbx_cust_custorder.SelectedItem).CustomerID;
-            uint iid = inventory.FirstOrDefault(x => x.Name == custOrder_datagrid.SelectedRows[0].Cells["Name"].Value.ToString()).Id;
+            uint iid = inventory.FirstOrDefault(x => x.Name == custOrder_datagrid.SelectedRows[0].Cells["CustOrdName"].Value.ToString()).Id;
             
             DataAccess.instance.DeleteCustomerFavorite(cid, iid);
 
@@ -606,12 +606,12 @@ namespace SecretCellar
                         Id = iid
                     };
 
-                    if (coi == null)
+                    if (coi == null || coi.CustomerOrderItemID == 0)
                         dataAccess.NewCustomerOrderItem(cid, new CustomerOrderItem
                         {
                             Id = iid,
                             RequestQty = Convert.ToUInt32(txt_orderqty_custorder.Text)
-                });
+                        });
                     else
                     {
                         coi.RequestQty = Convert.ToUInt32(txt_orderqty_custorder.Text);
