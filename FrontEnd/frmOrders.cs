@@ -80,15 +80,15 @@ namespace SecretCellar
             supp_dataGrid.DataSource = inventory.
                Select(x => new
                {
-                   Name = x.Name,
-                   Id = x.Id,
-                   ItemType = x.ItemType,
-                   Qty = x.Qty,
-                   Barcode = x.Barcode,
+                   x.Name,
+                   x.Id,
+                   x.ItemType,
+                   x.Qty,
+                   x.Barcode,
                    Price = x.SupplierPrice,
                    minqty = x.InvMin,
                    maxqty = x.InvMax,
-                   orderqty = x.OrderQty
+                   x.OrderQty
                }).
                OrderBy(x => x.Name).
                ToList();
@@ -516,25 +516,48 @@ namespace SecretCellar
                 })
                 .ToList();
         }
-    /*
-      //REMOVE THE PLACEHOLDER TEXT WHEN CLICKING INTO THE TEXT BOX
-        private void textBox_CustomerName_History_Enter(object sender, EventArgs e) {
-            if (textBox_CustomerName_History.Text == searchForCustomerText) {
-                textBox_CustomerName_History.Text = "";
+
+        private void RefreshFillment(uint customerId)
+        {
+           List<CustomerOrderItem> custItems = (DataAccess.instance.GetCustomerOrderforCustomer(customerId)?.Items ?? new List<CustomerOrderItem>()).Where(x => x.DeliverQty < x.RequestQty).ToList();
+
+            fullfill_datagrid.DataSource = inventory
+                .GroupJoin(custItems, i => i.Id, o => o.Id, (i, o) => new
+                {
+                    Inv = i,
+                    Ord = o.SingleOrDefault()
+                })
+                .Where(x => (x.Ord != null ))
+                .Select(x => new
+                {
+                    x.Inv.Name,
+                    x.Inv.Qty,
+                    x.Inv.OrderQty,
+                    x.Ord.RequestQty,
+                    x.Inv.Price,
+                    Balance_Due = x.Ord.RequestQty * x.Inv.Price - x.Ord.Paid
+                })
+                .ToList();
+        }
+        /*
+          //REMOVE THE PLACEHOLDER TEXT WHEN CLICKING INTO THE TEXT BOX
+            private void textBox_CustomerName_History_Enter(object sender, EventArgs e) {
+                if (textBox_CustomerName_History.Text == searchForCustomerText) {
+                    textBox_CustomerName_History.Text = "";
+                }
+            }
+
+
+            //RESET THE PLACEHOLDER TEXT IF THE TEXT BOX IS EMPTY
+            private void textBox_CustomerName_History_Leave(object sender, EventArgs e) {
+                if (string.IsNullOrEmpty(textBox_CustomerName_History.Text)) {
+                    textBox_CustomerName_History.Text = searchForCustomerText;
+
+                    lstbox_customer.DataSource = DataAccess.instance.GetCustomer(true);
+                }
             }
         }
-
-
-        //RESET THE PLACEHOLDER TEXT IF THE TEXT BOX IS EMPTY
-        private void textBox_CustomerName_History_Leave(object sender, EventArgs e) {
-            if (string.IsNullOrEmpty(textBox_CustomerName_History.Text)) {
-                textBox_CustomerName_History.Text = searchForCustomerText;
-
-                lstbox_customer.DataSource = DataAccess.instance.GetCustomer(true);
-            }
-        }
-	}
-    */
+        */
         private void btnFavoritesRemove_Click(object sender, EventArgs e)
         {
             uint cid = ((Customer)cbx_cust_custorder.SelectedItem).CustomerID;
@@ -737,6 +760,12 @@ namespace SecretCellar
 
             txt_deliverqty.Text = "";
             refreshcust();
+        }
+
+        private void cbx_fullfill_cust_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            uint cid = ((CustomerOrder)cbx_fullfill_cust.SelectedItem).CustomerID;
+            RefreshFillment(cid);
         }
     }
     
