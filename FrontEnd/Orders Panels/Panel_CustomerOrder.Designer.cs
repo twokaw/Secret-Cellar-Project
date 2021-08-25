@@ -74,6 +74,7 @@ namespace SecretCellar.Orders_Panels {
 			this.btnAddOrder.TabIndex = 10;
 			this.btnAddOrder.Text = "Add";
 			this.btnAddOrder.UseVisualStyleBackColor = true;
+			this.btnAddOrder.Click += new System.EventHandler(this.btnAddOrder_Click);
 			// 
 			// btn_update_custorder
 			// 
@@ -84,6 +85,7 @@ namespace SecretCellar.Orders_Panels {
 			this.btn_update_custorder.TabIndex = 7;
 			this.btn_update_custorder.Text = "Update";
 			this.btn_update_custorder.UseVisualStyleBackColor = true;
+			this.btn_update_custorder.Click += new System.EventHandler(this.btn_update_custorder_Click);
 			// 
 			// txt_orderqty_custorder
 			// 
@@ -92,6 +94,7 @@ namespace SecretCellar.Orders_Panels {
 			this.txt_orderqty_custorder.Size = new System.Drawing.Size(107, 20);
 			this.txt_orderqty_custorder.TabIndex = 3;
 			this.txt_orderqty_custorder.Text = "0";
+			this.txt_orderqty_custorder.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_orderqty_custorder_KeyPress);
 			// 
 			// lbl_qty_custorder
 			// 
@@ -125,6 +128,7 @@ namespace SecretCellar.Orders_Panels {
 			this.btnFavoritesRemove.TabIndex = 9;
 			this.btnFavoritesRemove.Text = "Remove";
 			this.btnFavoritesRemove.UseVisualStyleBackColor = true;
+			this.btnFavoritesRemove.Click += new System.EventHandler(this.btnFavoritesRemove_Click);
 			// 
 			// btnFavoritesAdd
 			// 
@@ -135,6 +139,7 @@ namespace SecretCellar.Orders_Panels {
 			this.btnFavoritesAdd.TabIndex = 8;
 			this.btnFavoritesAdd.Text = "Add";
 			this.btnFavoritesAdd.UseVisualStyleBackColor = true;
+			this.btnFavoritesAdd.Click += new System.EventHandler(this.btnFavoritesAdd_Click);
 			// 
 			// lbl_supp_custorder
 			// 
@@ -267,6 +272,7 @@ namespace SecretCellar.Orders_Panels {
 			this.cbx_cust_custorder.Name = "cbx_cust_custorder";
 			this.cbx_cust_custorder.Size = new System.Drawing.Size(243, 21);
 			this.cbx_cust_custorder.TabIndex = 13;
+			this.cbx_cust_custorder.SelectedIndexChanged += new System.EventHandler(this.cbx_cust_custorder_SelectedIndexChanged);
 			// 
 			// Panel_CustomerOrder
 			// 
