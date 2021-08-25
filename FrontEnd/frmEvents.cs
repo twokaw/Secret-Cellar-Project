@@ -153,12 +153,9 @@ namespace SecretCellar
 
             //ADD ALL THE EVENTS
             foreach (Event currentEvent in listOfEvents) {
-                string selectedDate = $"{dateTimePicker_Date.Value.Month}/{dateTimePicker_Date.Value.Day}/{dateTimePicker_Date.Value.Year}";
-                string eventDate = $"{currentEvent.EventDate.Month}/{currentEvent.EventDate.Day}/{currentEvent.EventDate.Year}";
-
-                if (eventDate == selectedDate) {
+                if (ShouldShowEvent(dateTimePicker_Date, currentEvent)) {
                     //IF THE DATE IS BEFORE TODAY, SHOW THE PREORDER AMOUNT
-                    if (IsTodayBeforeEvent(currentEvent, DateTime.Now)) {
+                    if (IsTodayBeforeEvent(currentEvent)) {
                         dataGridView_Events.Rows.Add(currentEvent.Id, currentEvent.Barcode, currentEvent.EventDate, currentEvent.Name, currentEvent.PreOrder, currentEvent.Qty);
                     }
 
@@ -201,14 +198,28 @@ namespace SecretCellar
             return null;
         }
 
-        private bool IsTodayBeforeEvent(Event currentEvent, DateTime today) {
-            if (currentEvent.EventDate.Year > today.Year) {
+        private bool ShouldShowEvent(DateTimePicker selectedDate, Event currentEvent) {
+            DateTime startDate = currentEvent.EventDate;
+            DateTime endDate = currentEvent.Duration;
+
+            if (startDate.Year <= selectedDate.Value.Year && selectedDate.Value.Year <= endDate.Year
+            && startDate.Month <= selectedDate.Value.Month && selectedDate.Value.Month <= endDate.Month
+            && startDate.Day <= selectedDate.Value.Day && selectedDate.Value.Day <= endDate.Day) {
                 return true;
             }
-            else if (currentEvent.EventDate.Year == today.Year && currentEvent.EventDate.Month > today.Month) {
+            else {
+                return false;
+			}
+		}
+
+        private bool IsTodayBeforeEvent(Event currentEvent) {
+            if (currentEvent.EventDate.Year > DateTime.Now.Year) {
                 return true;
             }
-            else if (currentEvent.EventDate.Year == today.Year && currentEvent.EventDate.Month == today.Month && currentEvent.EventDate.Day > today.Day) {
+            else if (currentEvent.EventDate.Year == DateTime.Now.Year && currentEvent.EventDate.Month > DateTime.Now.Month) {
+                return true;
+            }
+            else if (currentEvent.EventDate.Year == DateTime.Now.Year && currentEvent.EventDate.Month == DateTime.Now.Month && currentEvent.EventDate.Day > DateTime.Now.Day) {
                 return true;
             }
             else {
