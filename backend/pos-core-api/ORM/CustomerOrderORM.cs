@@ -221,7 +221,7 @@ namespace pos_core_api.ORM
                     if (cust.RequestQty <= cust.DeliverQty)
                     {
                         cmd = new MySqlCommand(@$"
-                         DELETE FROM  customerorderitem
+                         DELETE FROM customerorderitem
                          WHERE CustomerOrderItemID = @OrderItemID
                          AND DeliverQty >= RequestQty
                          AND Paid = Price * DeliverQty
