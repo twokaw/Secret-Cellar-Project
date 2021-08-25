@@ -63,8 +63,8 @@ namespace SecretCellar
             lst_customer.DisplayMember = "FullName";
             //cbx_fullfill_supp.DataSource = suppliers;
             //cbx_fullfill_supp.DisplayMember = "Name";
-            cbx_fullfill_cust.DataSource = cust;
-            cbx_fullfill_cust.DisplayMember = "FullName";
+            //cbx_fullfill_cust.DataSource = cust;
+            //cbx_fullfill_cust.DisplayMember = "FullName";
             cbx_cust_custorder.DataSource = cust;
             cbx_supp_custorder.DataSource = suppliers;
 
