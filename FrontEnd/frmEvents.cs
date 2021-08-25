@@ -154,10 +154,18 @@ namespace SecretCellar
             //ADD ALL THE EVENTS
             foreach (Event currentEvent in listOfEvents) {
                 string selectedDate = $"{dateTimePicker_Date.Value.Month}/{dateTimePicker_Date.Value.Day}/{dateTimePicker_Date.Value.Year}";
-                string currentDate = $"{currentEvent.EventDate.Month}/{currentEvent.EventDate.Day}/{currentEvent.EventDate.Year}";
+                string eventDate = $"{currentEvent.EventDate.Month}/{currentEvent.EventDate.Day}/{currentEvent.EventDate.Year}";
 
-                if (currentDate == selectedDate) {
-                    dataGridView_Events.Rows.Add(currentEvent.Id, currentEvent.Barcode, currentEvent.EventDate, currentEvent.Name, currentEvent.Price, currentEvent.Qty);
+                if (eventDate == selectedDate) {
+                    //IF THE DATE IS BEFORE TODAY, SHOW THE PREORDER AMOUNT
+                    if (IsTodayBeforeEvent(currentEvent, DateTime.Now)) {
+                        dataGridView_Events.Rows.Add(currentEvent.Id, currentEvent.Barcode, currentEvent.EventDate, currentEvent.Name, currentEvent.PreOrder, currentEvent.Qty);
+                    }
+
+                    //ELSE SHOW THE AT DOOR AMOUNT
+                    else {
+                        dataGridView_Events.Rows.Add(currentEvent.Id, currentEvent.Barcode, currentEvent.EventDate, currentEvent.Name, currentEvent.AtDoor, currentEvent.Qty);
+					}
                 }
             }
             
@@ -193,5 +201,19 @@ namespace SecretCellar
             return null;
         }
 
+        private bool IsTodayBeforeEvent(Event currentEvent, DateTime today) {
+            if (currentEvent.EventDate.Year > today.Year) {
+                return true;
+            }
+            else if (currentEvent.EventDate.Year == today.Year && currentEvent.EventDate.Month > today.Month) {
+                return true;
+            }
+            else if (currentEvent.EventDate.Year == today.Year && currentEvent.EventDate.Month == today.Month && currentEvent.EventDate.Day > today.Day) {
+                return true;
+            }
+            else {
+                return false;
+			}
+		}
 	}
 }
