@@ -88,6 +88,8 @@ namespace SecretCellar
             this.lbl_cust_custorder = new System.Windows.Forms.Label();
             this.cbx_cust_custorder = new System.Windows.Forms.ComboBox();
             this.Fullfillment = new System.Windows.Forms.TabPage();
+            this.btn_deliver_selected = new System.Windows.Forms.Button();
+            this.btn_deliver_all = new System.Windows.Forms.Button();
             this.btn_whole_assign_update = new System.Windows.Forms.Button();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.lbl_assignqty = new System.Windows.Forms.Label();
@@ -119,8 +121,6 @@ namespace SecretCellar
             this.lbl_start = new System.Windows.Forms.Label();
             this.start_dateTime = new System.Windows.Forms.DateTimePicker();
             this.btn_close = new System.Windows.Forms.Button();
-            this.btn_deliver_all = new System.Windows.Forms.Button();
-            this.btn_deliver_selected = new System.Windows.Forms.Button();
             this.supp_order.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.supp_dataGrid)).BeginInit();
             this.cust_request.SuspendLayout();
@@ -777,6 +777,26 @@ namespace SecretCellar
             this.Fullfillment.Text = "Fullfillment";
             this.Fullfillment.UseVisualStyleBackColor = true;
             // 
+            // btn_deliver_selected
+            // 
+            this.btn_deliver_selected.Location = new System.Drawing.Point(467, 390);
+            this.btn_deliver_selected.Name = "btn_deliver_selected";
+            this.btn_deliver_selected.Size = new System.Drawing.Size(170, 36);
+            this.btn_deliver_selected.TabIndex = 13;
+            this.btn_deliver_selected.Text = "Deliver Selected";
+            this.btn_deliver_selected.UseVisualStyleBackColor = true;
+            this.btn_deliver_selected.Click += new System.EventHandler(this.btn_deliver_selected_Click);
+            // 
+            // btn_deliver_all
+            // 
+            this.btn_deliver_all.Location = new System.Drawing.Point(695, 390);
+            this.btn_deliver_all.Name = "btn_deliver_all";
+            this.btn_deliver_all.Size = new System.Drawing.Size(170, 36);
+            this.btn_deliver_all.TabIndex = 12;
+            this.btn_deliver_all.Text = "Deliver All";
+            this.btn_deliver_all.UseVisualStyleBackColor = true;
+            this.btn_deliver_all.Click += new System.EventHandler(this.btn_deliver_all_Click);
+            // 
             // btn_whole_assign_update
             // 
             this.btn_whole_assign_update.Location = new System.Drawing.Point(243, 390);
@@ -826,6 +846,7 @@ namespace SecretCellar
             this.cbx_fullfill_cust.Name = "cbx_fullfill_cust";
             this.cbx_fullfill_cust.Size = new System.Drawing.Size(260, 28);
             this.cbx_fullfill_cust.TabIndex = 2;
+            this.cbx_fullfill_cust.SelectedIndexChanged += new System.EventHandler(this.frefresh);
             // 
             // fullfill_datagrid
             // 
@@ -1092,26 +1113,6 @@ namespace SecretCellar
             this.btn_close.Text = "Close";
             this.btn_close.UseVisualStyleBackColor = true;
             this.btn_close.Click += new System.EventHandler(this.btn_close_Click);
-            // 
-            // btn_deliver_all
-            // 
-            this.btn_deliver_all.Location = new System.Drawing.Point(695, 390);
-            this.btn_deliver_all.Name = "btn_deliver_all";
-            this.btn_deliver_all.Size = new System.Drawing.Size(170, 36);
-            this.btn_deliver_all.TabIndex = 12;
-            this.btn_deliver_all.Text = "Deliver All";
-            this.btn_deliver_all.UseVisualStyleBackColor = true;
-            this.btn_deliver_all.Click += new System.EventHandler(this.btn_deliver_all_Click);
-            // 
-            // btn_deliver_selected
-            // 
-            this.btn_deliver_selected.Location = new System.Drawing.Point(467, 390);
-            this.btn_deliver_selected.Name = "btn_deliver_selected";
-            this.btn_deliver_selected.Size = new System.Drawing.Size(170, 36);
-            this.btn_deliver_selected.TabIndex = 13;
-            this.btn_deliver_selected.Text = "Deliver Selected";
-            this.btn_deliver_selected.UseVisualStyleBackColor = true;
-            this.btn_deliver_selected.Click += new System.EventHandler(this.btn_deliver_selected_Click);
             // 
             // frmOrders
             // 

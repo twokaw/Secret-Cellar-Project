@@ -738,6 +738,25 @@ namespace SecretCellar
             txt_deliverqty.Text = "";
             refreshcust();
         }
+
+
+        // fullfillment datagrid refresh
+        private void frefresh(object sender, EventArgs e)
+        {
+            fullfill_datagrid.DataSource = ((CustomerOrder)cbx_fullfill_cust.SelectedItem).Items.
+                              Select(x => new
+                              {
+                                  fname = x.Name,
+                                  fid = x.Id,
+                                  ftype = x.ItemType,
+                                  fqty = x.Qty,
+                                  fbarcode = x.Barcode,
+                                  fprice = x.Price,
+                                  frequestqty = x.RequestQty
+                              }).
+                              OrderBy(x => x.fname).
+                              ToList();
+        }
     }
     
 }
