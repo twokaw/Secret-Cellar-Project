@@ -313,9 +313,27 @@ namespace SecretCellar
                 i.ItemType = cboType.Text;
                 i.TypeID = types.First(x => x.TypeName == cboType.Text).TypeId;
                 i.SupplierID = suppliers.First(x => x.Name == cbo_Supplier.Text).SupplierID;
-                i.InvMin = uint.Parse(txt_min_qty.Text.Trim()); 
-                i.InvMax = uint.Parse(txt_max_qty.Text.Trim());
-                i.OrderQty = uint.Parse(txt_order_qty.Text.Trim());
+
+                if (uint.TryParse(txt_min_qty.Text.Trim(), out uint min)) i.InvMin = min;
+                else
+                {
+                    txt_min_qty.Focus();
+                    txt_min_qty.SelectAll();
+                    MessageBox.Show("Invalid Min Qty");
+                    return;
+                }
+
+                if (uint.TryParse(txt_max_qty.Text.Trim(), out uint max)) i.InvMax = max;
+                else
+                {
+                    txt_max_qty.Focus();
+                    txt_max_qty.SelectAll();
+                    MessageBox.Show("Invalid Max Qty");
+                    return;
+                }
+
+                //i.InvMax = uint.Parse(txt_max_qty.Text.Trim());
+                //i.OrderQty = uint.Parse(txt_order_qty.Text.Trim());
 
                 i.Id = dataAccess.InsertItem(i);
                 inventory.Add(i);
