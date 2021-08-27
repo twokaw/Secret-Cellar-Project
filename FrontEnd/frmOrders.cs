@@ -657,9 +657,9 @@ namespace SecretCellar
 
         private void btn_delivered_update_Click(object sender, EventArgs e)
         {
-            CustomerOrder custorder = DataAccess.instance.GetCustomerOrderforCustomer(((Customer)cbx_cust_custorder.SelectedItem).CustomerID, false);
+            CustomerOrder custorder = DataAccess.instance.GetCustomerOrderforCustomer(((CustomerOrder)cbx_fullfill_cust.SelectedItem).CustomerID, false);
 
-            Inventory i = inventory.First(x => x.Id == uint.Parse(fullfill_datagrid.SelectedRows[0].Cells["id"].Value.ToString()));
+            Inventory i = inventory.First(x => x.Id == uint.Parse(fullfill_datagrid.SelectedRows[0].Cells["fid"].Value.ToString()));
             CustomerOrderItem coid = custorder.Items.FirstOrDefault(x => x.Id == i.Id);
 
 
