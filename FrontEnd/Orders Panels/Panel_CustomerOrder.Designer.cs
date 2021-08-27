@@ -51,16 +51,16 @@ namespace SecretCellar.Orders_Panels {
 			// 
 			// grpOrder
 			// 
-			this.grpOrder.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.grpOrder.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.grpOrder.Controls.Add(this.btnAddOrder);
 			this.grpOrder.Controls.Add(this.btn_update_custorder);
 			this.grpOrder.Controls.Add(this.txt_orderqty_custorder);
 			this.grpOrder.Controls.Add(this.lbl_qty_custorder);
-			this.grpOrder.Location = new System.Drawing.Point(521, 52);
+			this.grpOrder.Location = new System.Drawing.Point(661, 145);
 			this.grpOrder.Margin = new System.Windows.Forms.Padding(2);
 			this.grpOrder.Name = "grpOrder";
 			this.grpOrder.Padding = new System.Windows.Forms.Padding(2);
-			this.grpOrder.Size = new System.Drawing.Size(124, 195);
+			this.grpOrder.Size = new System.Drawing.Size(124, 177);
 			this.grpOrder.TabIndex = 19;
 			this.grpOrder.TabStop = false;
 			this.grpOrder.Text = "Order";
@@ -74,29 +74,32 @@ namespace SecretCellar.Orders_Panels {
 			this.btnAddOrder.TabIndex = 10;
 			this.btnAddOrder.Text = "Add";
 			this.btnAddOrder.UseVisualStyleBackColor = true;
+			this.btnAddOrder.Click += new System.EventHandler(this.btnAddOrder_Click);
 			// 
 			// btn_update_custorder
 			// 
 			this.btn_update_custorder.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btn_update_custorder.Location = new System.Drawing.Point(11, 142);
+			this.btn_update_custorder.Location = new System.Drawing.Point(11, 131);
 			this.btn_update_custorder.Name = "btn_update_custorder";
 			this.btn_update_custorder.Size = new System.Drawing.Size(100, 40);
 			this.btn_update_custorder.TabIndex = 7;
 			this.btn_update_custorder.Text = "Update";
 			this.btn_update_custorder.UseVisualStyleBackColor = true;
+			this.btn_update_custorder.Click += new System.EventHandler(this.btn_update_custorder_Click);
 			// 
 			// txt_orderqty_custorder
 			// 
-			this.txt_orderqty_custorder.Location = new System.Drawing.Point(11, 103);
+			this.txt_orderqty_custorder.Location = new System.Drawing.Point(11, 105);
 			this.txt_orderqty_custorder.Name = "txt_orderqty_custorder";
 			this.txt_orderqty_custorder.Size = new System.Drawing.Size(107, 20);
 			this.txt_orderqty_custorder.TabIndex = 3;
 			this.txt_orderqty_custorder.Text = "0";
+			this.txt_orderqty_custorder.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_orderqty_custorder_KeyPress);
 			// 
 			// lbl_qty_custorder
 			// 
 			this.lbl_qty_custorder.AutoSize = true;
-			this.lbl_qty_custorder.Location = new System.Drawing.Point(8, 81);
+			this.lbl_qty_custorder.Location = new System.Drawing.Point(8, 83);
 			this.lbl_qty_custorder.Name = "lbl_qty_custorder";
 			this.lbl_qty_custorder.Size = new System.Drawing.Size(69, 13);
 			this.lbl_qty_custorder.TabIndex = 4;
@@ -104,10 +107,10 @@ namespace SecretCellar.Orders_Panels {
 			// 
 			// grpFavorites
 			// 
-			this.grpFavorites.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.grpFavorites.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.grpFavorites.Controls.Add(this.btnFavoritesRemove);
 			this.grpFavorites.Controls.Add(this.btnFavoritesAdd);
-			this.grpFavorites.Location = new System.Drawing.Point(661, 52);
+			this.grpFavorites.Location = new System.Drawing.Point(661, 0);
 			this.grpFavorites.Margin = new System.Windows.Forms.Padding(2);
 			this.grpFavorites.Name = "grpFavorites";
 			this.grpFavorites.Padding = new System.Windows.Forms.Padding(2);
@@ -125,6 +128,7 @@ namespace SecretCellar.Orders_Panels {
 			this.btnFavoritesRemove.TabIndex = 9;
 			this.btnFavoritesRemove.Text = "Remove";
 			this.btnFavoritesRemove.UseVisualStyleBackColor = true;
+			this.btnFavoritesRemove.Click += new System.EventHandler(this.btnFavoritesRemove_Click);
 			// 
 			// btnFavoritesAdd
 			// 
@@ -135,6 +139,7 @@ namespace SecretCellar.Orders_Panels {
 			this.btnFavoritesAdd.TabIndex = 8;
 			this.btnFavoritesAdd.Text = "Add";
 			this.btnFavoritesAdd.UseVisualStyleBackColor = true;
+			this.btnFavoritesAdd.Click += new System.EventHandler(this.btnFavoritesAdd_Click);
 			// 
 			// lbl_supp_custorder
 			// 
@@ -158,7 +163,8 @@ namespace SecretCellar.Orders_Panels {
 			// 
 			this.custOrder_datagrid.AllowUserToAddRows = false;
 			this.custOrder_datagrid.AllowUserToDeleteRows = false;
-			this.custOrder_datagrid.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			this.custOrder_datagrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.custOrder_datagrid.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
 			this.custOrder_datagrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -177,7 +183,7 @@ namespace SecretCellar.Orders_Panels {
 			this.custOrder_datagrid.RowHeadersVisible = false;
 			this.custOrder_datagrid.RowHeadersWidth = 62;
 			this.custOrder_datagrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-			this.custOrder_datagrid.Size = new System.Drawing.Size(502, 263);
+			this.custOrder_datagrid.Size = new System.Drawing.Size(648, 270);
 			this.custOrder_datagrid.TabIndex = 15;
 			// 
 			// CustOrd_id
@@ -267,6 +273,7 @@ namespace SecretCellar.Orders_Panels {
 			this.cbx_cust_custorder.Name = "cbx_cust_custorder";
 			this.cbx_cust_custorder.Size = new System.Drawing.Size(243, 21);
 			this.cbx_cust_custorder.TabIndex = 13;
+			this.cbx_cust_custorder.SelectedIndexChanged += new System.EventHandler(this.cbx_cust_custorder_SelectedIndexChanged);
 			// 
 			// Panel_CustomerOrder
 			// 

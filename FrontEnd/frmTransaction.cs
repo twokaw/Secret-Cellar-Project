@@ -404,8 +404,11 @@ namespace SecretCellar
 
         private void btn_order_Click(object sender, EventArgs e)
         {
-            frmOrders order = new frmOrders(transaction);
-            order.ShowDialog();
+            //frmOrders order = new frmOrders(transaction);
+            //order.ShowDialog();
+
+            frmOrdersPanels ordersPanels = new frmOrdersPanels();
+            ordersPanels.ShowDialog();
         }
 
         private void btnTender2_MouseHover(object sender, EventArgs e)

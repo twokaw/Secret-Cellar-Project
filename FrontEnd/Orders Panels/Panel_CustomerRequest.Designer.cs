@@ -52,10 +52,12 @@ namespace SecretCellar.Orders_Panels {
 			// 
 			// lst_customer
 			// 
+			this.lst_customer.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
 			this.lst_customer.FormattingEnabled = true;
 			this.lst_customer.Location = new System.Drawing.Point(5, 45);
 			this.lst_customer.Name = "lst_customer";
-			this.lst_customer.Size = new System.Drawing.Size(339, 173);
+			this.lst_customer.Size = new System.Drawing.Size(339, 238);
 			this.lst_customer.TabIndex = 21;
 			// 
 			// btn_prod_delete
@@ -72,7 +74,7 @@ namespace SecretCellar.Orders_Panels {
 			// 
 			// btn_prod_add
 			// 
-			this.btn_prod_add.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.btn_prod_add.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.btn_prod_add.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.btn_prod_add.Location = new System.Drawing.Point(678, 288);
 			this.btn_prod_add.Name = "btn_prod_add";
@@ -84,17 +86,18 @@ namespace SecretCellar.Orders_Panels {
 			// 
 			// txt_prod_name
 			// 
-			this.txt_prod_name.Location = new System.Drawing.Point(452, 4);
+			this.txt_prod_name.Location = new System.Drawing.Point(499, 4);
 			this.txt_prod_name.Name = "txt_prod_name";
-			this.txt_prod_name.Size = new System.Drawing.Size(380, 20);
+			this.txt_prod_name.Size = new System.Drawing.Size(333, 20);
 			this.txt_prod_name.TabIndex = 18;
 			// 
 			// lbl_prod_name
 			// 
 			this.lbl_prod_name.AutoSize = true;
-			this.lbl_prod_name.Location = new System.Drawing.Point(371, 7);
+			this.lbl_prod_name.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lbl_prod_name.Location = new System.Drawing.Point(371, 2);
 			this.lbl_prod_name.Name = "lbl_prod_name";
-			this.lbl_prod_name.Size = new System.Drawing.Size(75, 13);
+			this.lbl_prod_name.Size = new System.Drawing.Size(122, 20);
 			this.lbl_prod_name.TabIndex = 17;
 			this.lbl_prod_name.Text = "Product Name";
 			// 
@@ -102,7 +105,8 @@ namespace SecretCellar.Orders_Panels {
 			// 
 			this.request_dataGrid.AllowUserToAddRows = false;
 			this.request_dataGrid.AllowUserToDeleteRows = false;
-			this.request_dataGrid.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			this.request_dataGrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.request_dataGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
 			this.request_dataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;

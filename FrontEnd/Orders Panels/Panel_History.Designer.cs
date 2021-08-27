@@ -24,7 +24,7 @@ namespace SecretCellar.Orders_Panels {
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent() {
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.textBox_CustomerName = new System.Windows.Forms.TextBox();
 			this.btn_setDate = new System.Windows.Forms.Button();
 			this.btn_setCust = new System.Windows.Forms.Button();
@@ -67,8 +67,9 @@ namespace SecretCellar.Orders_Panels {
 			// 
 			// btn_setCust
 			// 
+			this.btn_setCust.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.btn_setCust.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btn_setCust.Location = new System.Drawing.Point(3, 212);
+			this.btn_setCust.Location = new System.Drawing.Point(3, 278);
 			this.btn_setCust.Name = "btn_setCust";
 			this.btn_setCust.Size = new System.Drawing.Size(179, 48);
 			this.btn_setCust.TabIndex = 23;
@@ -87,6 +88,7 @@ namespace SecretCellar.Orders_Panels {
 			// 
 			// btn_reset
 			// 
+			this.btn_reset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.btn_reset.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.btn_reset.Location = new System.Drawing.Point(281, 278);
 			this.btn_reset.Name = "btn_reset";
@@ -98,6 +100,7 @@ namespace SecretCellar.Orders_Panels {
 			// 
 			// btn_print
 			// 
+			this.btn_print.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.btn_print.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.btn_print.Location = new System.Drawing.Point(654, 278);
 			this.btn_print.Name = "btn_print";
@@ -109,17 +112,20 @@ namespace SecretCellar.Orders_Panels {
 			// 
 			// lstbox_customer
 			// 
+			this.lstbox_customer.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
 			this.lstbox_customer.FormattingEnabled = true;
 			this.lstbox_customer.Location = new System.Drawing.Point(3, 33);
 			this.lstbox_customer.Name = "lstbox_customer";
-			this.lstbox_customer.Size = new System.Drawing.Size(268, 173);
+			this.lstbox_customer.Size = new System.Drawing.Size(268, 238);
 			this.lstbox_customer.TabIndex = 19;
 			// 
 			// transaction_dataGrid
 			// 
 			this.transaction_dataGrid.AllowUserToAddRows = false;
 			this.transaction_dataGrid.AllowUserToDeleteRows = false;
-			this.transaction_dataGrid.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			this.transaction_dataGrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.transaction_dataGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
 			this.transaction_dataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -156,8 +162,8 @@ namespace SecretCellar.Orders_Panels {
 			// trans_total
 			// 
 			this.trans_total.DataPropertyName = "trans_total";
-			dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-			this.trans_total.DefaultCellStyle = dataGridViewCellStyle4;
+			dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+			this.trans_total.DefaultCellStyle = dataGridViewCellStyle6;
 			this.trans_total.HeaderText = "Total";
 			this.trans_total.MinimumWidth = 8;
 			this.trans_total.Name = "trans_total";

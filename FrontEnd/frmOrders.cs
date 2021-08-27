@@ -800,5 +800,4 @@ namespace SecretCellar
             RefreshFillment(cid);
         }
     }
-    
 }
