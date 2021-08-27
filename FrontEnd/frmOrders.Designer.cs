@@ -152,7 +152,7 @@ namespace SecretCellar
             this.supp_order.Controls.Add(this.supp_dataGrid);
             this.supp_order.Location = new System.Drawing.Point(4, 29);
             this.supp_order.Name = "supp_order";
-            this.supp_order.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.supp_order.Padding = new System.Windows.Forms.Padding(3);
             this.supp_order.Size = new System.Drawing.Size(987, 452);
             this.supp_order.TabIndex = 2;
             this.supp_order.Text = "Supplier Order";
@@ -377,7 +377,7 @@ namespace SecretCellar
             this.cust_request.Controls.Add(this.request_dataGrid);
             this.cust_request.Location = new System.Drawing.Point(4, 29);
             this.cust_request.Name = "cust_request";
-            this.cust_request.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.cust_request.Padding = new System.Windows.Forms.Padding(3);
             this.cust_request.Size = new System.Drawing.Size(987, 452);
             this.cust_request.TabIndex = 1;
             this.cust_request.Text = "Customer Request";
@@ -533,7 +533,7 @@ namespace SecretCellar
             this.cust_order.Controls.Add(this.cbx_cust_custorder);
             this.cust_order.Location = new System.Drawing.Point(4, 29);
             this.cust_order.Name = "cust_order";
-            this.cust_order.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.cust_order.Padding = new System.Windows.Forms.Padding(3);
             this.cust_order.Size = new System.Drawing.Size(987, 452);
             this.cust_order.TabIndex = 5;
             this.cust_order.Text = "Customer Order";
@@ -546,9 +546,9 @@ namespace SecretCellar
             this.grpOrder.Controls.Add(this.txt_orderqty_custorder);
             this.grpOrder.Controls.Add(this.lbl_qty_custorder);
             this.grpOrder.Location = new System.Drawing.Point(845, 38);
-            this.grpOrder.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.grpOrder.Margin = new System.Windows.Forms.Padding(2);
             this.grpOrder.Name = "grpOrder";
-            this.grpOrder.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.grpOrder.Padding = new System.Windows.Forms.Padding(2);
             this.grpOrder.Size = new System.Drawing.Size(124, 195);
             this.grpOrder.TabIndex = 12;
             this.grpOrder.TabStop = false;
@@ -597,9 +597,9 @@ namespace SecretCellar
             this.grpFavorites.Controls.Add(this.btnFavoritesRemove);
             this.grpFavorites.Controls.Add(this.btnFavoritesAdd);
             this.grpFavorites.Location = new System.Drawing.Point(845, 268);
-            this.grpFavorites.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.grpFavorites.Margin = new System.Windows.Forms.Padding(2);
             this.grpFavorites.Name = "grpFavorites";
-            this.grpFavorites.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.grpFavorites.Padding = new System.Windows.Forms.Padding(2);
             this.grpFavorites.Size = new System.Drawing.Size(124, 137);
             this.grpFavorites.TabIndex = 11;
             this.grpFavorites.TabStop = false;
@@ -771,7 +771,7 @@ namespace SecretCellar
             this.Fullfillment.Controls.Add(this.fullfill_datagrid);
             this.Fullfillment.Location = new System.Drawing.Point(4, 29);
             this.Fullfillment.Name = "Fullfillment";
-            this.Fullfillment.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.Fullfillment.Padding = new System.Windows.Forms.Padding(3);
             this.Fullfillment.Size = new System.Drawing.Size(987, 452);
             this.Fullfillment.TabIndex = 4;
             this.Fullfillment.Text = "Fullfillment";
@@ -779,10 +779,10 @@ namespace SecretCellar
             // 
             // btn_deliver_selected
             // 
-            this.btn_deliver_selected.Location = new System.Drawing.Point(463, 390);
-            this.btn_deliver_selected.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_deliver_selected.Location = new System.Drawing.Point(437, 390);
+            this.btn_deliver_selected.Margin = new System.Windows.Forms.Padding(2);
             this.btn_deliver_selected.Name = "btn_deliver_selected";
-            this.btn_deliver_selected.Size = new System.Drawing.Size(121, 36);
+            this.btn_deliver_selected.Size = new System.Drawing.Size(162, 36);
             this.btn_deliver_selected.TabIndex = 13;
             this.btn_deliver_selected.Text = "Deliver Selected";
             this.btn_deliver_selected.UseVisualStyleBackColor = true;
@@ -791,9 +791,9 @@ namespace SecretCellar
             // btn_deliver_all
             // 
             this.btn_deliver_all.Location = new System.Drawing.Point(650, 390);
-            this.btn_deliver_all.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_deliver_all.Margin = new System.Windows.Forms.Padding(2);
             this.btn_deliver_all.Name = "btn_deliver_all";
-            this.btn_deliver_all.Size = new System.Drawing.Size(108, 36);
+            this.btn_deliver_all.Size = new System.Drawing.Size(124, 36);
             this.btn_deliver_all.TabIndex = 12;
             this.btn_deliver_all.Text = "Deliver All";
             this.btn_deliver_all.UseVisualStyleBackColor = true;
@@ -953,7 +953,7 @@ namespace SecretCellar
             this.History.Controls.Add(this.start_dateTime);
             this.History.Location = new System.Drawing.Point(4, 29);
             this.History.Name = "History";
-            this.History.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.History.Padding = new System.Windows.Forms.Padding(3);
             this.History.Size = new System.Drawing.Size(987, 452);
             this.History.TabIndex = 3;
             this.History.Text = "History";
