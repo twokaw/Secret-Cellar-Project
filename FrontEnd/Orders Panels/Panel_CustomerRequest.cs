@@ -14,7 +14,10 @@ namespace SecretCellar.Orders_Panels {
 
         public Panel_CustomerRequest() {
 			InitializeComponent();
-		}
+
+            lst_customer.DataSource = DataAccess.instance?.GetCustomer();
+            lst_customer.DisplayMember = "FullName";
+        }
 
 
         //UPDATE THE LIST OF CUSTOMERS BASED ON WHAT IS ENTERED
@@ -60,7 +63,6 @@ namespace SecretCellar.Orders_Panels {
         private void cust_notes_refresh() {
             //request_dataGrid.Rows.Clear();
             List<Customer> customers = DataAccess.instance.GetCustomer();
-
             List<CustomerNote> customerNotes = DataAccess.instance.GetCustomerNotes(2);
 
             if (customers != null && customerNotes != null) {

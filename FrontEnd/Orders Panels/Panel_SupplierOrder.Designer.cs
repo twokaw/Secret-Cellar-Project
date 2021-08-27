@@ -62,9 +62,9 @@ namespace SecretCellar.Orders_Panels {
 			// 
 			// btn_update
 			// 
-			this.btn_update.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.btn_update.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.btn_update.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btn_update.Location = new System.Drawing.Point(611, 117);
+			this.btn_update.Location = new System.Drawing.Point(611, 127);
 			this.btn_update.Name = "btn_update";
 			this.btn_update.Size = new System.Drawing.Size(154, 36);
 			this.btn_update.TabIndex = 25;
@@ -74,17 +74,17 @@ namespace SecretCellar.Orders_Panels {
 			// 
 			// txt_update_qty
 			// 
-			this.txt_update_qty.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.txt_update_qty.Location = new System.Drawing.Point(610, 85);
+			this.txt_update_qty.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.txt_update_qty.Location = new System.Drawing.Point(610, 95);
 			this.txt_update_qty.Name = "txt_update_qty";
 			this.txt_update_qty.Size = new System.Drawing.Size(155, 20);
 			this.txt_update_qty.TabIndex = 24;
 			// 
 			// lbl_qty
 			// 
-			this.lbl_qty.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.lbl_qty.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.lbl_qty.AutoSize = true;
-			this.lbl_qty.Location = new System.Drawing.Point(606, 62);
+			this.lbl_qty.Location = new System.Drawing.Point(606, 72);
 			this.lbl_qty.Name = "lbl_qty";
 			this.lbl_qty.Size = new System.Drawing.Size(75, 13);
 			this.lbl_qty.TabIndex = 23;
@@ -108,9 +108,9 @@ namespace SecretCellar.Orders_Panels {
 			// 
 			// btn_print_supp
 			// 
-			this.btn_print_supp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.btn_print_supp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.btn_print_supp.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btn_print_supp.Location = new System.Drawing.Point(435, 290);
+			this.btn_print_supp.Location = new System.Drawing.Point(611, 7);
 			this.btn_print_supp.Name = "btn_print_supp";
 			this.btn_print_supp.Size = new System.Drawing.Size(154, 36);
 			this.btn_print_supp.TabIndex = 20;
@@ -158,7 +158,8 @@ namespace SecretCellar.Orders_Panels {
 			// 
 			this.supp_dataGrid.AllowUserToAddRows = false;
 			this.supp_dataGrid.AllowUserToDeleteRows = false;
-			this.supp_dataGrid.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			this.supp_dataGrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.supp_dataGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
 			this.supp_dataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -178,7 +179,7 @@ namespace SecretCellar.Orders_Panels {
 			this.supp_dataGrid.RowHeadersVisible = false;
 			this.supp_dataGrid.RowHeadersWidth = 62;
 			this.supp_dataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-			this.supp_dataGrid.Size = new System.Drawing.Size(594, 206);
+			this.supp_dataGrid.Size = new System.Drawing.Size(594, 264);
 			this.supp_dataGrid.TabIndex = 15;
 			this.supp_dataGrid.SelectionChanged += new System.EventHandler(this.supp_dataGrid_SelectionChanged);
 			// 
