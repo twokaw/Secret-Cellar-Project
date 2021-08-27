@@ -80,20 +80,22 @@ namespace SecretCellar
             supp_dataGrid.DataSource = inventory.
                Select(x => new
                {
-                   Name = x.Name,
-                   Id = x.Id,
-                   ItemType = x.ItemType,
-                   Qty = x.Qty,
-                   Barcode = x.Barcode,
+                   x.Name,
+                   x.Id,
+                   x.ItemType,
+                   x.Qty,
+                   x.Barcode,
                    Price = x.SupplierPrice,
                    minqty = x.InvMin,
                    maxqty = x.InvMax,
-                   orderqty = x.OrderQty
+                   x.OrderQty
                }).
                OrderBy(x => x.Name).
                ToList();
             if (cbx_fullfill_cust.SelectedItem != null)
             {
+                RefreshFillment();
+                /*
                 fullfill_datagrid.DataSource = ((CustomerOrder)cbx_fullfill_cust.SelectedItem).Items.
                                Select(x => new
                                {
@@ -107,12 +109,14 @@ namespace SecretCellar
                                }).
                                OrderBy(x => x.fname).
                                ToList();
+                */
             }
             
 
 
 
-            transaction_dataGrid.DataSource = transaction_history.
+
+                transaction_dataGrid.DataSource = transaction_history.
                Select(x => new
                {
                    trans_id = x.InvoiceID,
@@ -516,25 +520,54 @@ namespace SecretCellar
                 })
                 .ToList();
         }
-    /*
-      //REMOVE THE PLACEHOLDER TEXT WHEN CLICKING INTO THE TEXT BOX
-        private void textBox_CustomerName_History_Enter(object sender, EventArgs e) {
-            if (textBox_CustomerName_History.Text == searchForCustomerText) {
-                textBox_CustomerName_History.Text = "";
+
+        private void RefreshFillment()
+        {
+            RefreshFillment(((CustomerOrder)cbx_fullfill_cust.SelectedItem).CustomerID);
+        }
+        private void RefreshFillment(uint customerId)
+        {
+           List<CustomerOrderItem> custItems = (DataAccess.instance.GetCustomerOrderforCustomer(customerId)?.Items ?? new List<CustomerOrderItem>())./*Where(x => x.DeliverQty < x.RequestQty).*/ToList();
+
+            fullfill_datagrid.DataSource = inventory
+                .GroupJoin(custItems, i => i.Id, o => o.Id, (i, o) => new
+                {
+                    Inv = i,
+                    Ord = o.SingleOrDefault()
+                })
+                .Where(x => (x.Ord != null ))
+                .Select(x => new
+                {
+                    x.Inv.Id,
+                    x.Inv.Barcode,
+                    x.Inv.Name,
+                    x.Inv.Qty,
+                    x.Inv.OrderQty,
+                    x.Ord.RequestQty,
+                    x.Inv.Price,
+                    Balance_Due = x.Ord.RequestQty * x.Inv.Price - x.Ord.Paid
+                })
+                .ToList();
+        }
+        /*
+          //REMOVE THE PLACEHOLDER TEXT WHEN CLICKING INTO THE TEXT BOX
+            private void textBox_CustomerName_History_Enter(object sender, EventArgs e) {
+                if (textBox_CustomerName_History.Text == searchForCustomerText) {
+                    textBox_CustomerName_History.Text = "";
+                }
+            }
+
+
+            //RESET THE PLACEHOLDER TEXT IF THE TEXT BOX IS EMPTY
+            private void textBox_CustomerName_History_Leave(object sender, EventArgs e) {
+                if (string.IsNullOrEmpty(textBox_CustomerName_History.Text)) {
+                    textBox_CustomerName_History.Text = searchForCustomerText;
+
+                    lstbox_customer.DataSource = DataAccess.instance.GetCustomer(true);
+                }
             }
         }
-
-
-        //RESET THE PLACEHOLDER TEXT IF THE TEXT BOX IS EMPTY
-        private void textBox_CustomerName_History_Leave(object sender, EventArgs e) {
-            if (string.IsNullOrEmpty(textBox_CustomerName_History.Text)) {
-                textBox_CustomerName_History.Text = searchForCustomerText;
-
-                lstbox_customer.DataSource = DataAccess.instance.GetCustomer(true);
-            }
-        }
-	}
-    */
+        */
         private void btnFavoritesRemove_Click(object sender, EventArgs e)
         {
             uint cid = ((Customer)cbx_cust_custorder.SelectedItem).CustomerID;
@@ -634,9 +667,9 @@ namespace SecretCellar
 
         private void btn_delivered_update_Click(object sender, EventArgs e)
         {
-            CustomerOrder custorder = DataAccess.instance.GetCustomerOrderforCustomer(((Customer)cbx_cust_custorder.SelectedItem).CustomerID, false);
+            CustomerOrder custorder = DataAccess.instance.GetCustomerOrderforCustomer(((CustomerOrder)cbx_fullfill_cust.SelectedItem).CustomerID, false);
 
-            Inventory i = inventory.First(x => x.Id == uint.Parse(fullfill_datagrid.SelectedRows[0].Cells["id"].Value.ToString()));
+            Inventory i = inventory.First(x => x.Id == uint.Parse(fullfill_datagrid.SelectedRows[0].Cells["Id"].Value.ToString()));
             CustomerOrderItem coid = custorder.Items.FirstOrDefault(x => x.Id == i.Id);
 
 
@@ -685,7 +718,8 @@ namespace SecretCellar
 
         private void refreshcust()
         {
-            fullfill_datagrid.DataSource = ((CustomerOrder)cbx_fullfill_cust.SelectedItem).Items.
+            RefreshFillment(((CustomerOrder)cbx_fullfill_cust.SelectedItem).CustomerID);
+            /*fullfill_datagrid.DataSource = ((CustomerOrder)cbx_fullfill_cust.SelectedItem).Items.
                Select(x => new
                {
                    fname = x.Name,
@@ -698,17 +732,18 @@ namespace SecretCellar
                }).
                OrderBy(x => x.fname).
                ToList();
+            */
         }
 
         private void btn_deliver_all_Click(object sender, EventArgs e)
         {
 
-            CustomerOrder custorder = DataAccess.instance.GetCustomerOrderforCustomer(((Customer)cbx_cust_custorder.SelectedItem).CustomerID, false);
+            CustomerOrder custorder = DataAccess.instance.GetCustomerOrderforCustomer(((CustomerOrder)cbx_fullfill_cust.SelectedItem).CustomerID, false);
 
             
             foreach (DataGridViewRow row in fullfill_datagrid.Rows)
             {
-                Inventory i = inventory.First(x => x.Id == uint.Parse(row.Cells["id"].Value.ToString()));
+                Inventory i = inventory.First(x => x.Id == uint.Parse(row.Cells["fid"].Value.ToString()));
                 CustomerOrderItem coid = custorder.Items.FirstOrDefault(x => x.Id == i.Id);
                 coid.DeliverQty = uint.Parse(row.Cells["RequstQty"].Value.ToString());
                 dataAccess.UpdateCustomerOrderItem(coid);
@@ -723,20 +758,46 @@ namespace SecretCellar
 
         private void btn_deliver_selected_Click(object sender, EventArgs e)
         {
-            CustomerOrder custorder = DataAccess.instance.GetCustomerOrderforCustomer(((Customer)cbx_cust_custorder.SelectedItem).CustomerID, false);
+            CustomerOrder custorder = DataAccess.instance.GetCustomerOrderforCustomer(((CustomerOrder)cbx_fullfill_cust.SelectedItem).CustomerID, false);
 
 
             foreach (DataGridViewRow row in fullfill_datagrid.SelectedRows)
             {
-                Inventory i = inventory.First(x => x.Id == uint.Parse(row.Cells["id"].Value.ToString()));
+                Inventory i = inventory.First(x => x.Id == uint.Parse(row.Cells["fid"].Value.ToString()));
                 CustomerOrderItem coid = custorder.Items.FirstOrDefault(x => x.Id == i.Id);
-                coid.DeliverQty = uint.Parse(row.Cells["RequstQty"].Value.ToString());
+                coid.DeliverQty = uint.Parse(row.Cells["frequestqty"].Value.ToString());
                 dataAccess.UpdateCustomerOrderItem(coid);
 
             }
 
             txt_deliverqty.Text = "";
-            refreshcust();
+            RefreshFillment(custorder.CustomerID);
+            //refreshcust();
+        }
+
+
+
+        // fullfillment datagrid refresh
+        private void frefresh(object sender, EventArgs e)
+        {
+            /*fullfill_datagrid.DataSource = ((CustomerOrder)cbx_fullfill_cust.SelectedItem).Items.
+                              Select(x => new
+                              {
+                                  fname = x.Name,
+                                  fid = x.Id,
+                                  ftype = x.ItemType,
+                                  fqty = x.Qty,
+                                  fbarcode = x.Barcode,
+                                  fprice = x.Price,
+                                  frequestqty = x.RequestQty
+                              }).
+                              OrderBy(x => x.fname).
+                              ToList();
+
+        private void cbx_fullfill_cust_SelectedIndexChanged(object sender, EventArgs e)
+        {
+           */ uint cid = ((CustomerOrder)cbx_fullfill_cust.SelectedItem).CustomerID;
+            RefreshFillment(cid);
         }
     }
     
