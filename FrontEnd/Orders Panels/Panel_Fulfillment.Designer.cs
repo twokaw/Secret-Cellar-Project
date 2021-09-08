@@ -24,6 +24,10 @@ namespace SecretCellar.Orders_Panels {
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent() {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.lbl_whole_cust = new System.Windows.Forms.Label();
             this.cbx_fullfill_cust = new System.Windows.Forms.ComboBox();
@@ -33,37 +37,42 @@ namespace SecretCellar.Orders_Panels {
             this.lbl_assignqty = new System.Windows.Forms.Label();
             this.txt_deliverqty = new System.Windows.Forms.TextBox();
             this.fullfill_datagrid = new System.Windows.Forms.DataGridView();
-            this.fid = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fbarcode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ftype = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fprice = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.frequestqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.barcode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.type = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.qty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.orderqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.price = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.requestqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.due = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.fullfill_datagrid)).BeginInit();
             this.SuspendLayout();
             // 
             // dateTimePicker2
             // 
             this.dateTimePicker2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.dateTimePicker2.Location = new System.Drawing.Point(597, 6);
+            this.dateTimePicker2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimePicker2.Location = new System.Drawing.Point(585, 6);
             this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(200, 20);
+            this.dateTimePicker2.Size = new System.Drawing.Size(209, 20);
             this.dateTimePicker2.TabIndex = 19;
             // 
             // lbl_whole_cust
             // 
             this.lbl_whole_cust.AutoSize = true;
+            this.lbl_whole_cust.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_whole_cust.Location = new System.Drawing.Point(3, 9);
             this.lbl_whole_cust.Name = "lbl_whole_cust";
-            this.lbl_whole_cust.Size = new System.Drawing.Size(54, 13);
+            this.lbl_whole_cust.Size = new System.Drawing.Size(63, 13);
             this.lbl_whole_cust.TabIndex = 14;
             this.lbl_whole_cust.Text = "Customer:";
             // 
             // cbx_fullfill_cust
             // 
+            this.cbx_fullfill_cust.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbx_fullfill_cust.FormattingEnabled = true;
-            this.cbx_fullfill_cust.Location = new System.Drawing.Point(63, 5);
+            this.cbx_fullfill_cust.Location = new System.Drawing.Point(69, 5);
             this.cbx_fullfill_cust.Name = "cbx_fullfill_cust";
             this.cbx_fullfill_cust.Size = new System.Drawing.Size(260, 21);
             this.cbx_fullfill_cust.TabIndex = 13;
@@ -111,15 +120,17 @@ namespace SecretCellar.Orders_Panels {
             // 
             this.lbl_assignqty.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lbl_assignqty.AutoSize = true;
+            this.lbl_assignqty.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_assignqty.Location = new System.Drawing.Point(3, 278);
             this.lbl_assignqty.Name = "lbl_assignqty";
-            this.lbl_assignqty.Size = new System.Drawing.Size(74, 13);
+            this.lbl_assignqty.Size = new System.Drawing.Size(88, 13);
             this.lbl_assignqty.TabIndex = 22;
             this.lbl_assignqty.Text = "Qty Delivered:";
             // 
             // txt_deliverqty
             // 
             this.txt_deliverqty.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.txt_deliverqty.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_deliverqty.Location = new System.Drawing.Point(6, 294);
             this.txt_deliverqty.Name = "txt_deliverqty";
             this.txt_deliverqty.Size = new System.Drawing.Size(135, 20);
@@ -132,88 +143,130 @@ namespace SecretCellar.Orders_Panels {
             this.fullfill_datagrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.fullfill_datagrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.fullfill_datagrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.fullfill_datagrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.fid,
-            this.fbarcode,
-            this.fname,
-            this.ftype,
-            this.fqty,
-            this.fprice,
-            this.frequestqty});
+            this.id,
+            this.barcode,
+            this.name,
+            this.type,
+            this.qty,
+            this.orderqty,
+            this.price,
+            this.requestqty,
+            this.due});
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.fullfill_datagrid.DefaultCellStyle = dataGridViewCellStyle2;
             this.fullfill_datagrid.Location = new System.Drawing.Point(6, 36);
             this.fullfill_datagrid.Name = "fullfill_datagrid";
             this.fullfill_datagrid.ReadOnly = true;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.fullfill_datagrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.fullfill_datagrid.RowHeadersVisible = false;
             this.fullfill_datagrid.RowHeadersWidth = 62;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.fullfill_datagrid.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.fullfill_datagrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.fullfill_datagrid.Size = new System.Drawing.Size(791, 224);
             this.fullfill_datagrid.TabIndex = 20;
             // 
-            // fid
+            // id
             // 
-            this.fid.DataPropertyName = "fid";
-            this.fid.HeaderText = "Id";
-            this.fid.MinimumWidth = 8;
-            this.fid.Name = "fid";
-            this.fid.ReadOnly = true;
-            this.fid.Visible = false;
-            this.fid.Width = 150;
+            this.id.DataPropertyName = "id";
+            this.id.HeaderText = "Id";
+            this.id.MinimumWidth = 8;
+            this.id.Name = "id";
+            this.id.ReadOnly = true;
+            this.id.Visible = false;
+            this.id.Width = 150;
             // 
-            // fbarcode
+            // barcode
             // 
-            this.fbarcode.DataPropertyName = "fbarcode";
-            this.fbarcode.HeaderText = "Barcode";
-            this.fbarcode.MinimumWidth = 8;
-            this.fbarcode.Name = "fbarcode";
-            this.fbarcode.ReadOnly = true;
-            this.fbarcode.Width = 200;
+            this.barcode.DataPropertyName = "barcode";
+            this.barcode.HeaderText = "Barcode";
+            this.barcode.MinimumWidth = 8;
+            this.barcode.Name = "barcode";
+            this.barcode.ReadOnly = true;
+            this.barcode.Width = 130;
             // 
-            // fname
+            // name
             // 
-            this.fname.DataPropertyName = "fname";
-            this.fname.HeaderText = "Name";
-            this.fname.MinimumWidth = 8;
-            this.fname.Name = "fname";
-            this.fname.ReadOnly = true;
-            this.fname.Width = 400;
+            this.name.DataPropertyName = "name";
+            this.name.HeaderText = "Name";
+            this.name.MinimumWidth = 8;
+            this.name.Name = "name";
+            this.name.ReadOnly = true;
+            this.name.Width = 240;
             // 
-            // ftype
+            // type
             // 
-            this.ftype.DataPropertyName = "ftype";
-            this.ftype.HeaderText = "Type";
-            this.ftype.MinimumWidth = 8;
-            this.ftype.Name = "ftype";
-            this.ftype.ReadOnly = true;
-            this.ftype.Visible = false;
-            this.ftype.Width = 150;
+            this.type.DataPropertyName = "type";
+            this.type.HeaderText = "Type";
+            this.type.MinimumWidth = 8;
+            this.type.Name = "type";
+            this.type.ReadOnly = true;
+            this.type.Visible = false;
+            this.type.Width = 150;
             // 
-            // fqty
+            // qty
             // 
-            this.fqty.DataPropertyName = "fqty";
-            this.fqty.HeaderText = "Qty";
-            this.fqty.MinimumWidth = 8;
-            this.fqty.Name = "fqty";
-            this.fqty.ReadOnly = true;
-            this.fqty.Width = 80;
+            this.qty.DataPropertyName = "qty";
+            this.qty.HeaderText = "Qty";
+            this.qty.MinimumWidth = 8;
+            this.qty.Name = "qty";
+            this.qty.ReadOnly = true;
+            this.qty.Width = 80;
             // 
-            // fprice
+            // orderqty
             // 
-            this.fprice.DataPropertyName = "fprice";
-            this.fprice.HeaderText = "Price";
-            this.fprice.MinimumWidth = 8;
-            this.fprice.Name = "fprice";
-            this.fprice.ReadOnly = true;
-            this.fprice.Width = 90;
+            this.orderqty.DataPropertyName = "orderqty";
+            this.orderqty.HeaderText = "Order Qty";
+            this.orderqty.Name = "orderqty";
+            this.orderqty.ReadOnly = true;
             // 
-            // frequestqty
+            // price
             // 
-            this.frequestqty.DataPropertyName = "frequestqty";
-            this.frequestqty.HeaderText = "Request Qty";
-            this.frequestqty.MinimumWidth = 8;
-            this.frequestqty.Name = "frequestqty";
-            this.frequestqty.ReadOnly = true;
-            this.frequestqty.Width = 80;
+            this.price.DataPropertyName = "price";
+            this.price.HeaderText = "Price";
+            this.price.MinimumWidth = 8;
+            this.price.Name = "price";
+            this.price.ReadOnly = true;
+            this.price.Width = 90;
+            // 
+            // requestqty
+            // 
+            this.requestqty.DataPropertyName = "requestqty";
+            this.requestqty.HeaderText = "Request Qty";
+            this.requestqty.MinimumWidth = 8;
+            this.requestqty.Name = "requestqty";
+            this.requestqty.ReadOnly = true;
+            this.requestqty.Width = 80;
+            // 
+            // due
+            // 
+            this.due.DataPropertyName = "due";
+            this.due.HeaderText = "Balance Due";
+            this.due.Name = "due";
+            this.due.ReadOnly = true;
             // 
             // Panel_Fulfillment
             // 
@@ -246,12 +299,14 @@ namespace SecretCellar.Orders_Panels {
 		private System.Windows.Forms.Label lbl_assignqty;
 		private System.Windows.Forms.TextBox txt_deliverqty;
 		private System.Windows.Forms.DataGridView fullfill_datagrid;
-		private System.Windows.Forms.DataGridViewTextBoxColumn fid;
-		private System.Windows.Forms.DataGridViewTextBoxColumn fbarcode;
-		private System.Windows.Forms.DataGridViewTextBoxColumn fname;
-		private System.Windows.Forms.DataGridViewTextBoxColumn ftype;
-		private System.Windows.Forms.DataGridViewTextBoxColumn fqty;
-		private System.Windows.Forms.DataGridViewTextBoxColumn fprice;
-		private System.Windows.Forms.DataGridViewTextBoxColumn frequestqty;
-	}
+        private System.Windows.Forms.DataGridViewTextBoxColumn id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn barcode;
+        private System.Windows.Forms.DataGridViewTextBoxColumn name;
+        private System.Windows.Forms.DataGridViewTextBoxColumn type;
+        private System.Windows.Forms.DataGridViewTextBoxColumn qty;
+        private System.Windows.Forms.DataGridViewTextBoxColumn orderqty;
+        private System.Windows.Forms.DataGridViewTextBoxColumn price;
+        private System.Windows.Forms.DataGridViewTextBoxColumn requestqty;
+        private System.Windows.Forms.DataGridViewTextBoxColumn due;
+    }
 }
