@@ -586,7 +586,6 @@ namespace pos_core_api.ORM
             return DeletePayment(GetPayment(payId));
         }
 
-
         public bool DeletePayment(Payment pay)
         {
             if (pay.PayId > 0)

@@ -157,7 +157,8 @@ namespace pos_core_api.ORM
                         InvMax = reader.IsDBNull("InvMax") ? 0 : reader.GetUInt32("InvMax"),
                         InvMin = reader.IsDBNull("InvMin") ? 0 : reader.GetUInt32("InvMin"),
                         OrderIncrement = reader.GetUInt32("OrderIncrement"),
-                        OrderQty = reader.IsDBNull("OrderQty") ? 0 : reader.GetUInt32("OrderQty")
+                        OrderQty = reader.IsDBNull("OrderQty") ? 0 : reader.GetUInt32("OrderQty"),
+                        RequestQty = reader.IsDBNull("RequestQty") ? 0 : reader.GetUInt32("RequestQty")
                     };
                     output.Add(outputItem);
                 }

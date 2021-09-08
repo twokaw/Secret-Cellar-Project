@@ -777,7 +777,7 @@ namespace SecretCellar
 
 
 
-        // fullfillment datagrid refresh
+        // fullfillment datagrid refresh on customer selection change
         private void frefresh(object sender, EventArgs e)
         {
             /*fullfill_datagrid.DataSource = ((CustomerOrder)cbx_fullfill_cust.SelectedItem).Items.

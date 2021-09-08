@@ -9,7 +9,7 @@ using System.Windows.Forms;
 namespace SecretCellar.Orders_Panels {
 	public partial class Panel_CustomerOrder : UserControl {
 		private List<Customer> cust = null;
-		private List<Supplier> suppliers = null;
+		private List<Supplier> suppliers = new List<Supplier>();
 		private List<Inventory> inventory = null;
 
 
@@ -17,7 +17,12 @@ namespace SecretCellar.Orders_Panels {
 			InitializeComponent();
 
 			cust = DataAccess.instance?.GetCustomer();
-			suppliers = DataAccess.instance?.GetSuppliers();
+			suppliers.Add(new Supplier
+			{ 
+				Name = "All",
+				SupplierID = 0
+			});
+			suppliers.AddRange( DataAccess.instance?.GetSuppliers());
 			inventory = DataAccess.instance?.GetInventory();
 
 			cbx_cust_custorder.DataSource = cust;
@@ -161,13 +166,15 @@ namespace SecretCellar.Orders_Panels {
 					Inv = i,
 					Fav = f.SingleOrDefault()
 				})
-				// .Where(x => x.Fav.InventoryID != 0 && !x.Inv.Hidden  ) //&& x.Fav.InventoryID == x.Inv.Id 
+				//.Where(x => x.Fav.InventoryID != 0 && !x.Inv.Hidden)
 				.GroupJoin(custItems, i => i.Inv.Id, o => o.Id, (i, o) => new {
 					i.Inv,
 					i.Fav,
 					Ord = o.SingleOrDefault()
 				})
-				.Where(x => (x.Fav != null && !x.Inv.Hidden || x.Ord != null))
+				.Where(x => (x.Fav != null && (!x.Inv.Hidden || x.Ord != null) &&
+							(0 == ((Supplier)cbx_supp_custorder.SelectedItem).SupplierID ||
+							 x.Inv.SupplierID == ((Supplier)cbx_supp_custorder.SelectedItem).SupplierID)))
 				.Select(x => new {
 					x.Inv.Id,
 					x.Inv.Name,
@@ -179,5 +186,11 @@ namespace SecretCellar.Orders_Panels {
 				})
 				.ToList();
 		}
-	}
+
+        private void cbx_supp_custorder_SelectedIndexChanged(object sender, EventArgs e)
+        {
+			uint cid = ((Customer)cbx_cust_custorder.SelectedItem).CustomerID;
+			RefreshFavorite(cid);
+		}
+    }
 }

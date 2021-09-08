@@ -20,7 +20,8 @@ namespace SecretCellar.Orders_Panels {
 
             cbx_fullfill_cust.DataSource = DataAccess.instance?.GetCustomerOrder();
             cbx_fullfill_cust.DisplayMember = "FullName";
-            fullfill_datagrid.Columns[5].DefaultCellStyle.Format = "C";
+            fullfill_datagrid.Columns[7].DefaultCellStyle.Format = "C";
+            fullfill_datagrid.Columns[8].DefaultCellStyle.Format = "C";
 
             if (cbx_fullfill_cust.SelectedItem != null) {
                 RefreshFillment();
@@ -86,9 +87,28 @@ namespace SecretCellar.Orders_Panels {
             */
 
             txt_deliverqty.Text = "";
-            RefreshFillment();
+            refreshcust();
+            //RefreshFillment();
         }
 
+        private void refreshcust()
+        {
+            RefreshFillment(((CustomerOrder)cbx_fullfill_cust.SelectedItem).CustomerID);
+            /*fullfill_datagrid.DataSource = ((CustomerOrder)cbx_fullfill_cust.SelectedItem).Items.
+               Select(x => new
+               {
+                   fname = x.Name,
+                   fid = x.Id,
+                   ftype = x.ItemType,
+                   fqty = x.Qty,
+                   fbarcode = x.Barcode,
+                   fprice = x.Price,
+                   frequestqty = x.RequestQty
+               }).
+               OrderBy(x => x.fname).
+               ToList();
+            */
+        }
 
         /// <summary>
         /// Deliver all the items.
@@ -106,7 +126,8 @@ namespace SecretCellar.Orders_Panels {
             }
 
             txt_deliverqty.Text = "";
-            RefreshFillment();
+            refreshcust();
+            //RefreshFillment();
         }
 
 
@@ -153,16 +174,42 @@ namespace SecretCellar.Orders_Panels {
                 })
                 .Where(x => (x.Ord != null))
                 .Select(x => new {
-                    x.Inv.Id,
-                    x.Inv.Barcode,
-                    x.Inv.Name,
-                    x.Inv.Qty,
-                    x.Inv.OrderQty,
-                    x.Ord.RequestQty,
-                    x.Inv.Price,
-                    Balance_Due = x.Ord.RequestQty * x.Inv.Price - x.Ord.Paid
+                    id = x.Inv.Id,
+                    barcode = x.Inv.Barcode,
+                    name = x.Inv.Name,
+                    qty = x.Inv.Qty,
+                    orderqty = x.Inv.OrderQty,
+                    requestqty = x.Ord.RequestQty,
+                    price = x.Inv.Price,
+                    due = x.Ord.RequestQty * x.Inv.Price - x.Ord.Paid
                 })
                 .ToList();
         }
+
+
+        // frefresh updates fullfillment datagrid refresh on customer selection change
+        private void frefresh(object sender, EventArgs e)
+        {
+            /*fullfill_datagrid.DataSource = ((CustomerOrder)cbx_fullfill_cust.SelectedItem).Items.
+                              Select(x => new
+                              {
+                                  fname = x.Name,
+                                  fid = x.Id,
+                                  ftype = x.ItemType,
+                                  fqty = x.Qty,
+                                  fbarcode = x.Barcode,
+                                  fprice = x.Price,
+                                  frequestqty = x.RequestQty
+                              }).
+                              OrderBy(x => x.fname).
+                              ToList();
+
+        private void cbx_fullfill_cust_SelectedIndexChanged(object sender, EventArgs e)
+        {
+           */
+            uint cid = ((CustomerOrder)cbx_fullfill_cust.SelectedItem).CustomerID;
+            RefreshFillment(cid);
+        }
+
     }
 }
