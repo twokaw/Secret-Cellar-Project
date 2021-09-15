@@ -631,5 +631,29 @@ namespace pos_core_api.ORM
 
             return transaction.Total <= payments;
         }
+        public List<PaymentMethod> GetPaymentMethods()
+        {
+            List<PaymentMethod> result = new List<PaymentMethod>();
+            string itemSQLStatement = @"
+                SELECT PaymentMethodid, PaymentMethod, PercentOffset
+                FROM paymentMethod
+            ";
+            
+            using MySqlCommand cmd = new MySqlCommand(itemSQLStatement, db.Connection());
+            try
+            {
+                using MySqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                    result.Add(new PaymentMethod
+                    {
+                        PaymentMethodId = reader.IsDBNull("PaymentMethodid") ? 0 : reader.GetUInt32("PaymentMethodid"),
+                        PayMethod = reader.IsDBNull("method") ? "" : reader.GetString("PaymentMethod"),
+                        PercentOffset = reader.IsDBNull("Amount") ? 0 : reader.GetDecimal("PercentOffset")
+                    });
+            }
+            finally { db.CloseConnnection(); }
+
+            return result;
+        }
     }
 }

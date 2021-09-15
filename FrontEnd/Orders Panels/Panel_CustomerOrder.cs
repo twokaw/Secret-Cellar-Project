@@ -73,7 +73,6 @@ namespace SecretCellar.Orders_Panels {
 			RefreshFavorite(cid);
 		}
 
-
 		/// <summary>
 		/// On click Add Order.
 		/// </summary>
@@ -107,7 +106,6 @@ namespace SecretCellar.Orders_Panels {
 
 			RefreshFavorite(t.CustomerID);
 		}
-
 
 		/// <summary>
 		/// On click update order.
