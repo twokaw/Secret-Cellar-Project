@@ -29,6 +29,11 @@ namespace SecretCellar
         }
         public DataAccess() { }
 
+        public void RefreshCache()
+        {
+            GetInventory();
+        }
+
         #region Inventory
         public void DeleteItem(Inventory inv)
         {

@@ -19,7 +19,6 @@ namespace SecretCellar
     public partial class frmOrders : Form
     {
 
-        private DataAccess dataAccess = new DataAccess(Properties.Settings.Default.URL);
         private List<Supplier> suppliers = null;
         private List<Inventory> inventory = null;
         private List<Transaction> transaction_history = null;
@@ -40,17 +39,17 @@ namespace SecretCellar
         public frmOrders(Transaction transaction)
         {
             InitializeComponent();
-            inventory = dataAccess.GetInventory();
-            suppliers = dataAccess.GetSuppliers();
+            inventory = DataAccess.instance.GetInventory();
+            suppliers = DataAccess.instance.GetSuppliers();
             suppliers.Insert(0, new Supplier()
             {
                 Name = "All",
                 SupplierID = 0
             });
-            transaction_history = dataAccess.GetTransactions();
+            transaction_history = DataAccess.instance.GetTransactions();
 
             //get wholesale customer list
-            cust = dataAccess.GetCustomer();
+            cust = DataAccess.instance.GetCustomer();
             wholeCust = cust.Where(x => x.IsWholesale == true).
                 OrderBy(x => x.LastName).
                 ToList();
@@ -194,7 +193,7 @@ namespace SecretCellar
                 Note = txt_prod_name.Text,
                 IdNoteType = 2
             };
-            dataAccess.NewCustomerNote(note);
+            DataAccess.instance.NewCustomerNote(note);
 
             cust_notes_refresh();
             txt_prod_name.Text = "";
@@ -202,7 +201,7 @@ namespace SecretCellar
 
         private void refresh()
         {
-            inventory = dataAccess.GetInventory();
+            inventory = DataAccess.instance.GetInventory();
             uint id = ((Supplier)cbx_supplier.SelectedItem).SupplierID;
             supp_dataGrid.DataSource = inventory.Where(x => id == x.SupplierID || id == 0).
                Select(x => new
@@ -225,7 +224,7 @@ namespace SecretCellar
 
         private void frefresh()
         {
-            inventory = dataAccess.GetInventory();
+            inventory = DataAccess.instance.GetInventory();
             uint id = ((Supplier)cbx_fullfill_cust.SelectedItem).SupplierID;
             fullfill_datagrid.DataSource = inventory.Where(x => id == x.SupplierID || id == 0).
             Select(x => new
@@ -279,7 +278,7 @@ namespace SecretCellar
                     return;
                 }
 
-                dataAccess.UpdateItem(i);
+                DataAccess.instance.UpdateItem(i);
             }
             txt_update_qty.Text = "";
             refresh();
@@ -411,7 +410,7 @@ namespace SecretCellar
         public List<Inventory> listItems(Supplier orderSupplier)
         {
             
-            inventory = dataAccess.GetInventory();
+            inventory = DataAccess.instance.GetInventory();
             withQty = inventory.Where(x => (orderSupplier.SupplierID == x.SupplierID || orderSupplier.SupplierID == 0) && x.OrderQty > 0).
              OrderBy(x => x.Name)
              .ToList();
@@ -598,11 +597,11 @@ namespace SecretCellar
                     CustomerOrderItem coi = co.Items.FirstOrDefault(x => x.Id == i.Id);
 
                     if (coi == null)
-                        dataAccess.NewCustomerOrderItem(co.CustomerID, new CustomerOrderItem { Id = i.Id, RequestQty = 1 });
+                        DataAccess.instance.NewCustomerOrderItem(co.CustomerID, new CustomerOrderItem { Id = i.Id, RequestQty = 1 });
                     else
                     {
                         coi.RequestQty++;
-                        dataAccess.UpdateCustomerOrderItem(coi);
+                        DataAccess.instance.UpdateCustomerOrderItem(coi);
                     }
                 }
 
@@ -640,7 +639,7 @@ namespace SecretCellar
                     };
 
                     if (coi == null || coi.CustomerOrderItemID == 0)
-                        dataAccess.NewCustomerOrderItem(cid, new CustomerOrderItem
+                        DataAccess.instance.NewCustomerOrderItem(cid, new CustomerOrderItem
                         {
                             Id = iid,
                             RequestQty = Convert.ToUInt32(txt_orderqty_custorder.Text)
@@ -682,7 +681,7 @@ namespace SecretCellar
                 if (uint.TryParse(txt_deliverqty.Text.Trim(), out uint dqty)) 
                 {
                     coid.DeliverQty = dqty;
-                    dataAccess.UpdateCustomerOrderItem(coid);
+                    DataAccess.instance.UpdateCustomerOrderItem(coid);
                 }
                 else
                 {
@@ -746,7 +745,7 @@ namespace SecretCellar
                 Inventory i = inventory.First(x => x.Id == uint.Parse(row.Cells["fid"].Value.ToString()));
                 CustomerOrderItem coid = custorder.Items.FirstOrDefault(x => x.Id == i.Id);
                 coid.DeliverQty = uint.Parse(row.Cells["RequstQty"].Value.ToString());
-                dataAccess.UpdateCustomerOrderItem(coid);
+                DataAccess.instance.UpdateCustomerOrderItem(coid);
 
             }
 
@@ -766,7 +765,7 @@ namespace SecretCellar
                 Inventory i = inventory.First(x => x.Id == uint.Parse(row.Cells["fid"].Value.ToString()));
                 CustomerOrderItem coid = custorder.Items.FirstOrDefault(x => x.Id == i.Id);
                 coid.DeliverQty = uint.Parse(row.Cells["frequestqty"].Value.ToString());
-                dataAccess.UpdateCustomerOrderItem(coid);
+                DataAccess.instance.UpdateCustomerOrderItem(coid);
 
             }
 
