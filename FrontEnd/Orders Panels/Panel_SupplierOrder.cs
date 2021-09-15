@@ -16,11 +16,11 @@ namespace SecretCellar.Orders_Panels {
 
         public Panel_SupplierOrder() {
 			InitializeComponent();
-            inventory = DataAccess.instance?.GetInventory();
-            suppliers = DataAccess.instance?.GetSuppliers();
+            inventory = DataAccess.instance.GetInventory();
+            suppliers = DataAccess.instance.GetSuppliers();
 
             //POPULATE SUPPLIERS
-            suppliers?.Insert(0, new Supplier() {
+            suppliers.Insert(0, new Supplier() {
                 Name = "All",
                 SupplierID = 0
             });
@@ -29,7 +29,7 @@ namespace SecretCellar.Orders_Panels {
             cbx_supplier.DisplayMember = "Name";
 
             //POPULATE DATA GRID
-            supp_dataGrid.DataSource = inventory?.
+            supp_dataGrid.DataSource = inventory.
                Select(x => new {
                    Name = x.Name,
                    Id = x.Id,

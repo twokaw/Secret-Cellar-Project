@@ -126,6 +126,27 @@ namespace pos_core_api.ORM
             return output[0];
         }
 
+        public string GetInvHash()
+        {
+            try
+            {
+                db.OpenConnection();
+
+                string sqlStatement = @"
+                 SELECT HashValue
+                 FROM v_inventory_hash
+                ";
+
+                using MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
+                using MySqlDataReader reader = cmd.ExecuteReader();
+
+                return reader.GetString("HashValue");
+            }
+            finally
+            {
+                db.CloseConnnection();
+            }
+        }
         public List<Inventory> fetchInventory(MySqlDataReader reader)
         {
             List<Inventory> output = new List<Inventory>();

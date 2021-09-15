@@ -66,13 +66,12 @@ namespace SecretCellar.Orders_Panels {
 		/// <param name="e"></param>
 		private void btnFavoritesRemove_Click(object sender, EventArgs e) {
 			uint cid = ((Customer)cbx_cust_custorder.SelectedItem).CustomerID;
-			uint iid = inventory.FirstOrDefault(x => x.Name == custOrder_datagrid.SelectedRows[0].Cells["Name"].Value.ToString()).Id;
+			uint iid = inventory.FirstOrDefault(x => x.Name == custOrder_datagrid.SelectedRows[0].Cells["CustOrdName"].Value.ToString()).Id;
 
 			DataAccess.instance.DeleteCustomerFavorite(cid, iid);
 
 			RefreshFavorite(cid);
 		}
-
 
 		/// <summary>
 		/// On click Add Order.
@@ -107,7 +106,6 @@ namespace SecretCellar.Orders_Panels {
 
 			RefreshFavorite(t.CustomerID);
 		}
-
 
 		/// <summary>
 		/// On click update order.

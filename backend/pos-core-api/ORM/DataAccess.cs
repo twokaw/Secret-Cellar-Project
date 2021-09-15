@@ -77,7 +77,7 @@ namespace pos_core_api.ORM
             get
             {
                 if (customerOrderORM == null)
-                    customerOrderORM = new CustomerOrderORM(transactionORM);
+                    customerOrderORM = new CustomerOrderORM(Transaction);
 
                 return customerOrderORM;
             }

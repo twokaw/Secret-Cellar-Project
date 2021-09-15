@@ -29,16 +29,30 @@ namespace SecretCellar
         }
         public DataAccess() { }
 
+        public void RefreshCache()
+        {
+            GetInventory();
+        }
+
         #region Inventory
         public void DeleteItem(Inventory inv)
         {
             web.DataDelete($"api/inventory/{inv.Id}");
         }
 
+        private string InvHash = "";
+        private List<Inventory> Inventory = null;
+        public string GetInventoryHash()
+        {
+            InvHash = web.DataGet("api/inventory/hash");
+            return InvHash;
+        }
+        
         public List<Inventory> GetInventory()
         {
-            string test = web.DataGet("api/inventory");
-            return (List<Inventory>)JsonConvert.DeserializeObject(test, typeof(List<Inventory>));
+            if (InvHash != GetInventoryHash()) { }
+                Inventory = (List<Inventory>)JsonConvert.DeserializeObject(web.DataGet("api/inventory"), typeof(List<Inventory>));
+            return Inventory;
         }
 
         public Inventory GetItem(string barcode)
