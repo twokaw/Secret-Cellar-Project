@@ -19,7 +19,6 @@ namespace SecretCellar
         public frmTransaction()
         {
             InitializeComponent();
-            DataAccess.instance = new DataAccess(Properties.Settings.Default.URL);
             txtBarcode.Focus();
             ReloadLogo();
             //this.Size = new System.Drawing.Size(1366, 768);

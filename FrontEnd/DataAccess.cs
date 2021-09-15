@@ -26,6 +26,7 @@ namespace SecretCellar
 
             if (web == null)
                 web = new WebConnector(connectionString);
+            RefreshCache();
         }
         public DataAccess() { }
 
@@ -50,7 +51,8 @@ namespace SecretCellar
         
         public List<Inventory> GetInventory()
         {
-            if (InvHash != GetInventoryHash()) { }
+            string hash = InvHash;
+            if (hash != GetInventoryHash()) { }
                 Inventory = (List<Inventory>)JsonConvert.DeserializeObject(web.DataGet("api/inventory"), typeof(List<Inventory>));
             return Inventory;
         }
