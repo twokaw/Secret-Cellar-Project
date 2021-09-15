@@ -2,10 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web.UI.WebControls;
 using System.Windows.Forms;
-
-
 
 namespace SecretCellar
 {
@@ -16,10 +13,8 @@ namespace SecretCellar
         private List<InventoryType> types = null;
         private string descriptionAndBarcodeSearchText = "Enter Description/Barcode";
 
-
-        public frmLookup(Transaction transaction)
+        public frmLookup()
         {
-            currentTransaction = transaction;
             InitializeComponent();
             suppliers = DataAccess.instance.GetSuppliers();
             types = DataAccess.instance.GetInventoryType();
@@ -33,6 +28,16 @@ namespace SecretCellar
             cbxSupplyFilter.Items.AddRange((string[])suppliers.Select(x => x.Name).ToArray());
             cbxTypeFilter.Items.Add("");
             cbxTypeFilter.Items.AddRange((string[])types.Select(x => x.TypeName).ToArray());
+        }
+
+        public frmLookup(Transaction transaction) : base()
+        {
+            SetTransaction(transaction);
+        }
+
+        public void SetTransaction(Transaction transaction)
+        {
+            currentTransaction = transaction;
         }
 
         private void btn_add_Click(object sender, EventArgs e)

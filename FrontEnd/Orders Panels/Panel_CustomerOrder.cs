@@ -10,7 +10,7 @@ namespace SecretCellar.Orders_Panels {
 	public partial class Panel_CustomerOrder : UserControl {
 		private List<Customer> cust = null;
 		private List<Supplier> suppliers = new List<Supplier>();
-		private List<Inventory> inventory = null;
+		//private List<Inventory> inventory = null;
 
 
 		public Panel_CustomerOrder() {
@@ -23,7 +23,7 @@ namespace SecretCellar.Orders_Panels {
 				SupplierID = 0
 			});
 			suppliers.AddRange( DataAccess.instance?.GetSuppliers());
-			inventory = DataAccess.instance?.GetInventory();
+			//inventory = DataAccess.instance?.GetInventory();
 
 			cbx_cust_custorder.DataSource = cust;
 			cbx_supp_custorder.DataSource = suppliers;
@@ -49,8 +49,7 @@ namespace SecretCellar.Orders_Panels {
 		private void btnFavoritesAdd_Click(object sender, EventArgs e) {
 			uint cid = ((Customer)cbx_cust_custorder.SelectedItem).CustomerID;
 			Transaction t = new Transaction();
-			frmLookup fl = new frmLookup(t);
-			fl.ShowDialog();
+			DataAccess.instance.ShowLookupForm(t);
 
 			foreach (Item i in t.Items)
 				DataAccess.instance.AddCustomerFavorite(cid, i.Id);
@@ -66,7 +65,7 @@ namespace SecretCellar.Orders_Panels {
 		/// <param name="e"></param>
 		private void btnFavoritesRemove_Click(object sender, EventArgs e) {
 			uint cid = ((Customer)cbx_cust_custorder.SelectedItem).CustomerID;
-			uint iid = inventory.FirstOrDefault(x => x.Name == custOrder_datagrid.SelectedRows[0].Cells["CustOrdName"].Value.ToString()).Id;
+			uint iid = DataAccess.instance.GetInventory().FirstOrDefault(x => x.Name == custOrder_datagrid.SelectedRows[0].Cells["CustOrdName"].Value.ToString()).Id;
 
 			DataAccess.instance.DeleteCustomerFavorite(cid, iid);
 
@@ -83,8 +82,7 @@ namespace SecretCellar.Orders_Panels {
 				CustomerID = ((Customer)cbx_cust_custorder.SelectedItem).CustomerID
 			};
 
-			frmLookup fl = new frmLookup(t);
-			fl.ShowDialog();
+			DataAccess.instance.ShowLookupForm(t);
 
 			if (t.Items.Count > 0) {
 				CustomerOrder co = DataAccess.instance.GetCustomerOrderforCustomer(t.CustomerID) ?? new CustomerOrder() {
@@ -159,7 +157,7 @@ namespace SecretCellar.Orders_Panels {
 			List<CustomerFavorite> custFav = DataAccess.instance.GetCustomerFavorite(customerId).Favorites;
 			List<CustomerOrderItem> custItems = (DataAccess.instance.GetCustomerOrderforCustomer(customerId)?.Items ?? new List<CustomerOrderItem>()).Where(x => x.DeliverQty < x.RequestQty).ToList();
 
-			custOrder_datagrid.DataSource = inventory
+			custOrder_datagrid.DataSource = DataAccess.instance.GetInventory()
 				.GroupJoin(custFav, i => i.Id, f => f.InventoryID, (i, f) => new {
 					Inv = i,
 					Fav = f.SingleOrDefault()

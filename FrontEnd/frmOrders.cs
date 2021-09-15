@@ -8,7 +8,6 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Web.UI.WebControls;
 using System.Windows.Forms;
 using NCR_Printer;
 using System.Drawing.Printing;
@@ -479,9 +478,7 @@ namespace SecretCellar
         {
             uint cid = ((Customer)cbx_cust_custorder.SelectedItem).CustomerID;
             Transaction t = new Transaction();
-            frmLookup fl = new frmLookup(t);
-            fl.ShowDialog();
-
+            DataAccess.instance.ShowLookupForm(t);
             foreach (Item i in t.Items)
                 DataAccess.instance.AddCustomerFavorite(cid, i.Id);
 
@@ -584,8 +581,7 @@ namespace SecretCellar
                 CustomerID = ((Customer)cbx_cust_custorder.SelectedItem).CustomerID
             };
 
-            frmLookup fl = new frmLookup(t);
-            fl.ShowDialog();
+            DataAccess.instance.ShowLookupForm(t);
 
             if (t.Items.Count > 0)
             {

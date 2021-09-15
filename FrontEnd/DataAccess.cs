@@ -26,13 +26,21 @@ namespace SecretCellar
 
             if (web == null)
                 web = new WebConnector(connectionString);
-            RefreshCache();
+            instance.RefreshCache();
         }
-        public DataAccess() { }
+        private DataAccess() { }
+        private frmLookup lookup;
 
         public void RefreshCache()
         {
             GetInventory();
+            lookup = new frmLookup();
+        }
+
+        public DialogResult ShowLookupForm(Transaction t)
+        {
+            lookup.SetTransaction(t);
+            return lookup.ShowDialog();
         }
 
         #region Inventory
