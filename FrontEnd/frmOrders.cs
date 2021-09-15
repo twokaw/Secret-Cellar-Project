@@ -35,7 +35,7 @@ namespace SecretCellar
 
 
 
-        public frmOrders(Transaction transaction)
+        public frmOrders(/*Transaction transaction*/)
         {
             InitializeComponent();
             inventory = DataAccess.instance.GetInventory();

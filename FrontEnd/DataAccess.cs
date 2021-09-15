@@ -30,17 +30,23 @@ namespace SecretCellar
         }
         private DataAccess() { }
         private frmLookup lookup;
+        private frmOrders orders;
 
         public void RefreshCache()
         {
             GetInventory();
             lookup = new frmLookup();
+            orders= new frmOrders();
         }
 
         public DialogResult ShowLookupForm(Transaction t)
         {
             lookup.SetTransaction(t);
             return lookup.ShowDialog();
+        }
+        public DialogResult ShowOrdersForm()
+        {
+            return orders.ShowDialog();
         }
 
         #region Inventory
