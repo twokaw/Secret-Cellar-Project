@@ -54,15 +54,18 @@ namespace SecretCellar.Settings_Panels
 
         private void btn_new_type_Click(object sender, EventArgs e)
         {
-            if (DataAccess.instance.GetInventoryType(lbl_typename.Text) == null)
+            if (DataAccess.instance.GetInventoryType(txt_typename.Text) == null)
             {
                 InventoryType i = new InventoryType();
-                i.TypeName = lbl_typename.Text.Trim();
+                i.TypeName = txt_typename.Text.Trim();
                 i.IdTax = ((Tax)cbx_tax.SelectedItem).IdTax;
                 //i.BottleDeposit = Convert.ToDouble(txt_bottleDep.Text);
                 //i.SalesTax = Convert.ToDouble(txt_salesTax.Text);
                 //i.LocalSalesTax = Convert.ToDouble(txt_localTax.Text);
                 DataAccess.instance.UpdateInventoryType(i);
+                
+                //REFRESH LIST
+                lstTypes.DataSource = DataAccess.instance?.GetInventoryType();
             }
         }
 
@@ -75,6 +78,9 @@ namespace SecretCellar.Settings_Panels
 
             // TODO: Update Discount
             DataAccess.instance.UpdateInventoryType(i);
+
+            //REFRESH LIST
+            lstTypes.DataSource = DataAccess.instance?.GetInventoryType();
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
@@ -84,59 +90,67 @@ namespace SecretCellar.Settings_Panels
 
         private void chk_lst_discount_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Discount selected = discounts.FirstOrDefault(x => x.DiscountName == chk_lst_discount.SelectedItem.ToString());
-            txt_dis_name.Text = selected.DiscountName;
-            txt_dis_min.Text = selected.Min.ToString();
-            txt_dis_max.Text = selected.Max.ToString();
-            txt_discount.Text = selected.Amount.ToString();
+            if (chk_lst_discount.SelectedItem != null) {
+                Discount selected = discounts.FirstOrDefault(x => x.DiscountName == chk_lst_discount.SelectedItem.ToString());
+                txt_dis_name.Text = selected.DiscountName;
+                txt_dis_min.Text = selected.Min.ToString();
+                txt_dis_max.Text = selected.Max.ToString();
+                txt_discount.Text = selected.Amount.ToString();
+			}
         }
 
         private void btn_new_discount_Click(object sender, EventArgs e)
         {
-            newDiscount = new Discount
-            {
-                DiscountName = txt_dis_name.Text.Trim(),
-                Min = uint.Parse(txt_dis_min.Text),
-                Max = uint.Parse(txt_dis_min.Text),
-                Amount = Convert.ToDouble(txt_discount.Text)
+            if (txt_dis_name.Text.Replace(" ", "") == "") {
+                MessageBox.Show("The discount name cannot be empty.", "Error");
+			}
+            else {
+                newDiscount = new Discount
+                {
+                    DiscountName = txt_dis_name.Text.Trim(),
+                    Min = uint.Parse(txt_dis_min.Text),
+                    Max = uint.Parse(txt_dis_min.Text),
+                    Amount = Convert.ToDouble(txt_discount.Text)
 
-            };
-            //newDiscount.(new Discount { DiscountName = txt_dis_name.Text, Min = uint.Parse(txt_dis_min.Text), Max = uint.Parse(txt_dis_min.Text), Amount = Convert.ToDouble(txt_discount.Text)});
-            newDiscount.DiscountID = DataAccess.instance.UpdateDiscount(newDiscount);
-            populate();
-
-           
+                };
+                //newDiscount.(new Discount { DiscountName = txt_dis_name.Text, Min = uint.Parse(txt_dis_min.Text), Max = uint.Parse(txt_dis_min.Text), Amount = Convert.ToDouble(txt_discount.Text)});
+                newDiscount.DiscountID = DataAccess.instance.UpdateDiscount(newDiscount);
+                populate();
+			}
         }
 
         private void btn_update_discount_Click(object sender, EventArgs e)
         {
+            if (chk_lst_discount.SelectedItem != null) {
+                Discount d = discounts.First(x => x.DiscountName == chk_lst_discount.SelectedItem.ToString());
+                d.DiscountName = txt_dis_name.Text.Trim();
+                d.Min = uint.Parse(txt_dis_min.Text.Trim());
+                d.Max = uint.Parse(txt_dis_max.Text.Trim());
+                d.Amount = Convert.ToDouble(txt_discount.Text);
 
-            Discount d = discounts.First(x => x.DiscountName == chk_lst_discount.SelectedItem.ToString());
-            d.DiscountName = txt_dis_name.Text.Trim();
-            d.Min = uint.Parse(txt_dis_min.Text.Trim());
-            d.Max = uint.Parse(txt_dis_max.Text.Trim());
-            d.Amount = Convert.ToDouble(txt_discount.Text);
-
-            /* if (newDiscount != null && newDiscount.DiscountID > 0)
-             {
-                 newDiscount.Min = uint.Parse(txt_dis_min.Text),
-                 newDiscount.Max = uint.Parse(txt_dis_min.Text),
-                 newDiscount.Amount = Convert.ToDouble(txt_discount.Text)
-             };*/
-            DataAccess.instance.UpdateDiscount(d);
-            populate();
+                /* if (newDiscount != null && newDiscount.DiscountID > 0)
+                 {
+                     newDiscount.Min = uint.Parse(txt_dis_min.Text),
+                     newDiscount.Max = uint.Parse(txt_dis_min.Text),
+                     newDiscount.Amount = Convert.ToDouble(txt_discount.Text)
+                 };*/
+                DataAccess.instance.UpdateDiscount(d);
+                populate();
+            }
         }
 
         private void btn_delete_discount_Click(object sender, EventArgs e)
         {
-            Discount dis = discounts.First(x => x.DiscountName == chk_lst_discount.SelectedItem.ToString());
-            DataAccess.instance.DeleteDiscount(dis);
-            txt_dis_name.Text = "";
-            txt_dis_min.Text = "";
-            txt_dis_max.Text = "";
-            txt_discount.Text = "";
-            txt_dis_name.Focus();
-            populate();
+            if (chk_lst_discount.SelectedItem != null) {
+                Discount dis = discounts.First(x => x.DiscountName == chk_lst_discount.SelectedItem.ToString());
+                DataAccess.instance.DeleteDiscount(dis);
+                txt_dis_name.Text = "";
+                txt_dis_min.Text = "";
+                txt_dis_max.Text = "";
+                txt_discount.Text = "";
+                txt_dis_name.Focus();
+                populate();
+            }
         }
 
         private void populate()
