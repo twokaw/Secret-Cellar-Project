@@ -108,19 +108,12 @@ namespace SecretCellar
 
                 //CLEAR ALL THE DISCOUNTS THAT ARE IN THE DISCOUNTS LIST ALREADY
                 checkListBox_Discounts.Items.Clear();
-                
-                //LOOP THROUGH ALL OF THE INVENTORY TYPES TO MATCH THE CURRENTLY SELECTED ONE
-                foreach (InventoryType inventoryType in types) {
-                    if (inventoryType.TypeName.Equals(i.ItemType)) {
-                        List<Discount> discounts = inventoryType.Discount;
 
-                        //ADD EACH DISCOUNT OF THE MATCHED INVENTORY TYPE TO THE CHECK BOX LIST AND SET IT TO TRUE
-                        foreach (Discount discount in discounts) {
-                            checkListBox_Discounts.Items.Add(discount.DiscountName);
-                            checkListBox_Discounts.SetItemChecked(checkListBox_Discounts.Items.Count - 1, true);
-                        }
-					}
-				}
+                //ADD EACH DISCOUNT OF THE MATCHED INVENTORY TYPE TO THE CHECK BOX LIST AND SET IT TO TRUE
+                foreach (Discount discount in types.FirstOrDefault(x => x.TypeName == i.ItemType)?.Discount) {
+                    checkListBox_Discounts.Items.Add(discount.DiscountName);
+                    checkListBox_Discounts.SetItemChecked(checkListBox_Discounts.Items.Count - 1, true);
+                }
             }
         }
 

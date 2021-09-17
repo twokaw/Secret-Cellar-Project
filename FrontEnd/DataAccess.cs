@@ -59,16 +59,17 @@ namespace SecretCellar
             web.DataDelete($"api/inventory/{inv.Id}");
         }
 
-        public string GetInventoryHash()
-        {
+        public bool InventoryChanged()
+        { 
+            string hash = InvHash; 
             InvHash = web.DataGet("api/inventory/hash");
-            return InvHash;
+
+            return hash != InvHash;
         }
         
         public List<Inventory> GetInventory()
         {
-            string hash = InvHash;
-            if (hash != GetInventoryHash()) { }
+            if(InventoryChanged())
                 Inventory = (List<Inventory>)JsonConvert.DeserializeObject(web.DataGet("api/inventory"), typeof(List<Inventory>));
             return Inventory;
         }
