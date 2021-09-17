@@ -51,13 +51,12 @@ namespace WebApi.Controllers
         }
 
         /// <summary>
-        /// Returns the hash of the data for the  . 
+        /// Returns the hash of the data for the Inventory view. 
         /// </summary>
-        /// <param name="barcode"></param>
         /// <returns>
-        /// A single inventory item that matches the barcode. 
+        /// The hash value for the Inventory view
         /// </returns>
-        // GET: api/Inventory/barcode
+        // GET: api/Inventory/Hash
         [HttpGet("Hash", Name = "GetInventoryHash")]
         public IActionResult GetHash()
         {

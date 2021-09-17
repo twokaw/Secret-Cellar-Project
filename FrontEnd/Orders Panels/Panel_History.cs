@@ -45,7 +45,7 @@ namespace SecretCellar.Orders_Panels {
             if (string.IsNullOrEmpty(textBox_CustomerName.Text)) {
                 textBox_CustomerName.Text = searchForCustomerText;
 
-                lstbox_customer.DataSource = DataAccess.instance.GetCustomer(true);
+                lstbox_customer.DataSource = DataAccess.instance.GetCustomer();
             }
         }
 
@@ -54,7 +54,7 @@ namespace SecretCellar.Orders_Panels {
 		//ON TEXT CHANGE
 		////////////////
 		private void textBox_CustomerName_TextChanged(object sender, EventArgs e) {
-			lstbox_customer.DataSource = DataAccess.instance.GetCustomer(textBox_CustomerName.Text, true);
+			lstbox_customer.DataSource = DataAccess.instance.GetCustomer(textBox_CustomerName.Text);
 			/*Select(x => new {
                 customerID = x.CustomerID,
                 cust_name = $"{x.LastName}, {x.FirstName}"

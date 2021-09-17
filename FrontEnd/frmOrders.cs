@@ -364,7 +364,7 @@ namespace SecretCellar
         }
 
 		private void textBox_CustomerName_TextChanged(object sender, EventArgs e) {
-            lst_customer.DataSource = DataAccess.instance.GetCustomer(textBox_CustomerName.Text, true);
+            lst_customer.DataSource = DataAccess.instance.GetCustomer(textBox_CustomerName.Text);
             /*Select(x => new {
                 customerID = x.CustomerID,
                 cust_name = $"{x.LastName}, {x.FirstName}"
@@ -384,17 +384,12 @@ namespace SecretCellar
             if (string.IsNullOrEmpty(textBox_CustomerName.Text)) {
                 textBox_CustomerName.Text = searchForCustomerText;
 
-                lst_customer.DataSource = DataAccess.instance.GetCustomer(true);
+                lst_customer.DataSource = DataAccess.instance.GetCustomer();
             }
 		}
 
 		private void textBox_CustomerName_History_TextChanged(object sender, EventArgs e) {
-            lstbox_customer.DataSource = DataAccess.instance.GetCustomer(textBox_CustomerName_History.Text, true);
-            /*Select(x => new {
-                customerID = x.CustomerID,
-                cust_name = $"{x.LastName}, {x.FirstName}"
-            }).
-              ToList();*/
+            lstbox_customer.DataSource = DataAccess.instance.GetCustomer(textBox_CustomerName_History.Text);
         }
 
         //cust order tab
