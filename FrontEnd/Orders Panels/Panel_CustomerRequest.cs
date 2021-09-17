@@ -28,7 +28,7 @@ namespace SecretCellar.Orders_Panels {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void textBox_CustomerName_TextChanged(object sender, EventArgs e) {
-            lst_customer.DataSource = DataAccess.instance.GetCustomer(textBox_CustomerName.Text, true);
+            lst_customer.DataSource = DataAccess.instance.GetCustomer(textBox_CustomerName.Text);
         }
 
 
@@ -53,7 +53,7 @@ namespace SecretCellar.Orders_Panels {
             if (string.IsNullOrEmpty(textBox_CustomerName.Text)) {
                 textBox_CustomerName.Text = searchForCustomerText;
 
-                lst_customer.DataSource = DataAccess.instance.GetCustomer(true);
+                lst_customer.DataSource = DataAccess.instance.GetCustomer();
             }
         }
 

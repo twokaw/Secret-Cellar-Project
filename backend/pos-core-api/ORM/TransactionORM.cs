@@ -447,19 +447,27 @@ namespace pos_core_api.ORM
 
         public void DecrementInventoryQty(Item item)
         {
-            if (item.DecrementInventory)
+            db.OpenConnection();
+            try
             {
-                string sql = @"
-                    UPDATE Inventory_price
-                    SET Inventory_qty = GREATEST(Inventory_qty - @qty, 0 ) 
-                    WHERE inventoryID = @inventoryID 
-                ";
+                if (item.DecrementInventory)
+                {
+                    string sql = @"
+                        UPDATE Inventory_price
+                        SET Inventory_qty = GREATEST(Inventory_qty - @qty, 0 ) 
+                        WHERE inventoryID = @inventoryID 
+                    ";
 
-                using MySqlCommand cmd = new MySqlCommand(sql, db.Connection());
-                cmd.Parameters.Add(new MySqlParameter("qty", item.NumSold));
-                cmd.Parameters.Add(new MySqlParameter("inventoryID", item.Id));
+                    using MySqlCommand cmd = new MySqlCommand(sql, db.Connection());
+                    cmd.Parameters.Add(new MySqlParameter("qty", item.NumSold));
+                    cmd.Parameters.Add(new MySqlParameter("inventoryID", item.Id));
 
-                cmd.ExecuteNonQuery();
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            finally
+            {
+                db.CloseConnnection();
             }
         }
 

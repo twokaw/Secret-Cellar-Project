@@ -29,8 +29,12 @@ namespace SecretCellar
             instance.RefreshCache();
         }
         private DataAccess() { }
+
         private frmLookup lookup;
         private frmOrdersPanels orders;
+
+        private string InvHash = "";
+        private List<Inventory> Inventory = null;
 
         public void RefreshCache()
         {
@@ -55,8 +59,6 @@ namespace SecretCellar
             web.DataDelete($"api/inventory/{inv.Id}");
         }
 
-        private string InvHash = "";
-        private List<Inventory> Inventory = null;
         public string GetInventoryHash()
         {
             InvHash = web.DataGet("api/inventory/hash");
@@ -256,39 +258,38 @@ namespace SecretCellar
         #endregion
 
         #region Customer
+        private string CustHash = null;
         private List<Customer> customers = null;
         private DateTime customerLastUpdate = DateTime.MinValue;
-        
-        public List<Customer> GetCustomer(bool force = false)
+
+
+        public bool CustomerChanged()
         {
-            if(force || customers == null || customerLastUpdate.AddMinutes(15) < DateTime.Now )
+            string hash = CustHash;
+            CustHash = web.DataGet("api/customer/hash");
+
+            return hash != CustHash;
+        }
+
+        public List<Customer> GetCustomer()
+        {
+            if (CustomerChanged())
             {
                 string result = web.DataGet("api/Customer");
-                customers =  JsonConvert.DeserializeObject<List<Customer>>(result);
+                customers = JsonConvert.DeserializeObject<List<Customer>>(result);
                 customerLastUpdate = DateTime.Now;
             }
             return customers;
         }
 
-        public   Customer GetCustomer(uint customerID, bool force = false)
+        public   Customer GetCustomer(uint customerID)
         {
-            Customer c = null;
-            if (force)
-            {
-                string result = web.DataGet($"api/Customer/{customerID}");
-                c = JsonConvert.DeserializeObject<Customer>(result);
-            }
-            else
-            {
-               c =  GetCustomer().FirstOrDefault(x => x.CustomerID == customerID);
-            }
-
-            return c;
+            return  GetCustomer().FirstOrDefault(x => x.CustomerID == customerID);
         }
 
-        public List<Customer> GetCustomer(string cust_name, bool force = false)
+        public List<Customer> GetCustomer(string cust_name)
         {
-            return GetCustomer(force)
+            return GetCustomer()
                 .Where(x => (x.LastName.IndexOf(cust_name, StringComparison.OrdinalIgnoreCase) >= 0) || 
                              x.FirstName.IndexOf(cust_name, StringComparison.OrdinalIgnoreCase) >= 0 ||
                              x.PhoneNumber.IndexOf(cust_name, StringComparison.OrdinalIgnoreCase) >= 0)
@@ -296,27 +297,16 @@ namespace SecretCellar
                 .ToList();
         }
 
-        public Customer GetCustomerByPhone(string phone, bool force = false)
+        public Customer GetCustomerByPhone(string phone)
         {
-            Customer c = null;
-            if (force)
-            {
-                string result = web.DataGet($"api/Customer/phone/{phone}");
-                c = JsonConvert.DeserializeObject<Customer>(result);
-            }
-            else
-            {
-                c = GetCustomer().FirstOrDefault(x => x.PhoneNumber == phone);
-            }
-
-            return c;
+            return  GetCustomer().FirstOrDefault(x => x.PhoneNumber == phone);
         }
 
         public uint UpdateCustomer(Customer customer)
         {
             Response resp = null;
             string result = web.DataPut($"api/Customer", customer, resp);
-            GetCustomer(true);
+            GetCustomer();
 
             if (uint.TryParse(result, out uint id))
                 return id;
@@ -328,7 +318,7 @@ namespace SecretCellar
         {
             Response resp = null;
             string result = web.DataPost($"api/Customer", customer, resp);
-            GetCustomer(true);
+            GetCustomer();
             if (uint.TryParse(result, out uint id))
                 return id;
             else
@@ -338,7 +328,7 @@ namespace SecretCellar
         {
             try { 
                 web.DataDelete($"api/Customer/{customer.CustomerID}");
-                GetCustomer(true);
+                GetCustomer();
             }
             catch (Exception ex) { LogError(ex, "DeleteCustomer"); }
         }

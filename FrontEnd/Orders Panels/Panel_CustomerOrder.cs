@@ -16,15 +16,13 @@ namespace SecretCellar.Orders_Panels {
 		public Panel_CustomerOrder() {
 			InitializeComponent();
 
-			cust = DataAccess.instance?.GetCustomer();
+			cust = DataAccess.instance?.GetCustomer() ?? new List<Customer> ();
+			suppliers = DataAccess.instance?.GetSuppliers() ?? new List<Supplier>();
 			suppliers.Add(new Supplier
 			{ 
 				Name = "All",
 				SupplierID = 0
 			});
-			suppliers.AddRange( DataAccess.instance?.GetSuppliers());
-			//inventory = DataAccess.instance?.GetInventory();
-
 			cbx_cust_custorder.DataSource = cust;
 			cbx_supp_custorder.DataSource = suppliers;
 		}

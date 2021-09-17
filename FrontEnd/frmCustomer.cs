@@ -140,7 +140,7 @@ namespace SecretCellar
         {
             if (customer_data_grid.SelectedRows.Count > 0)
             {
-                Customer i = DataAccess.instance.GetCustomer(true).FirstOrDefault(x => x.LastName == txt_lname.Text.Trim() && x.FirstName == txt_fname.Text.Trim());
+                Customer i = DataAccess.instance.GetCustomer().FirstOrDefault(x => x.LastName == txt_lname.Text.Trim() && x.FirstName == txt_fname.Text.Trim());
 
                 if (i != null)
                 {
@@ -183,7 +183,7 @@ Address:
         {
             if (customer_data_grid.SelectedRows.Count > 0)
             {
-                Customer i = DataAccess.instance.GetCustomer(uint.Parse(customer_data_grid.SelectedRows[0].Cells["customerID"].Value.ToString()), true);
+                Customer i = DataAccess.instance.GetCustomer(uint.Parse(customer_data_grid.SelectedRows[0].Cells["customerID"].Value.ToString()));
 
                 i.LastName = txt_lname.Text;
                 i.FirstName = txt_fname.Text;
@@ -238,7 +238,7 @@ Address:
         {
             if (customer_data_grid.SelectedRows.Count > 0)
             {
-                Customer i = DataAccess.instance.GetCustomer(uint.Parse(customer_data_grid.SelectedRows[0].Cells["customerID"].Value.ToString()), true);
+                Customer i = DataAccess.instance.GetCustomer(uint.Parse(customer_data_grid.SelectedRows[0].Cells["customerID"].Value.ToString()));
 
                 customer.CustomerID = i.CustomerID;
                 return true;
@@ -264,7 +264,7 @@ Address:
         }
 
 		private void button_UpdateCredit_Click(object sender, EventArgs e) {
-            Customer customer = DataAccess.instance.GetCustomer(uint.Parse(customer_data_grid.SelectedRows[0].Cells["customerID"].Value.ToString()), true);
+            Customer customer = DataAccess.instance.GetCustomer(uint.Parse(customer_data_grid.SelectedRows[0].Cells["customerID"].Value.ToString()));
 
             frmCustomerCredit frmCustomerCredit = new frmCustomerCredit(customer);
             DialogResult result = frmCustomerCredit.ShowDialog();

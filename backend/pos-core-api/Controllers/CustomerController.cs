@@ -86,6 +86,23 @@ namespace WebApi.Controllers
             }
         }
 
+        /// <summary>
+        /// Returns the hash of the data for the customer View. 
+        /// </summary>
+        /// <returns>
+        /// The hash value for the customer view
+        /// </returns>
+        // GET: api/Customer/Hash
+        [HttpGet("Hash", Name = "GetCustomerHash")]
+        public IActionResult GetHash()
+        {
+            try
+            {
+                return Ok(DataAccess.Instance.Customer.GetCustHash());
+            }
+            catch (Exception ex) { ErrorLogging.WriteToErrorLog(ex); return StatusCode(500, ex.Message); }
+        }
+
         //  DELETE: api/Customer/Favorite/
         [HttpDelete("Favorite/{CustomerID}/{InventoryID}")]
         public IActionResult DeleteFavorite(uint CustomerID, uint InventoryID)
