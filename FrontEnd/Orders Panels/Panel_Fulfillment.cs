@@ -119,9 +119,9 @@ namespace SecretCellar.Orders_Panels {
             CustomerOrder custorder = DataAccess.instance.GetCustomerOrderforCustomer(((CustomerOrder)cbx_fullfill_cust.SelectedItem).CustomerID, false);
 
             foreach (DataGridViewRow row in fullfill_datagrid.Rows) {
-                Inventory i = inventory.First(x => x.Id == uint.Parse(row.Cells["fid"].Value.ToString()));
+                Inventory i = inventory.First(x => x.Id == uint.Parse(row.Cells["id"].Value.ToString()));
                 CustomerOrderItem coid = custorder.Items.FirstOrDefault(x => x.Id == i.Id);
-                coid.DeliverQty = uint.Parse(row.Cells["RequstQty"].Value.ToString());
+                coid.DeliverQty = uint.Parse(row.Cells["requestqty"].Value.ToString());
                 DataAccess.instance.UpdateCustomerOrderItem(coid);
             }
 
@@ -140,9 +140,9 @@ namespace SecretCellar.Orders_Panels {
             CustomerOrder custorder = DataAccess.instance.GetCustomerOrderforCustomer(((CustomerOrder)cbx_fullfill_cust.SelectedItem).CustomerID, false);
 
             foreach (DataGridViewRow row in fullfill_datagrid.SelectedRows) {
-                Inventory i = inventory.First(x => x.Id == uint.Parse(row.Cells["fid"].Value.ToString()));
+                Inventory i = inventory.First(x => x.Id == uint.Parse(row.Cells["id"].Value.ToString()));
                 CustomerOrderItem coid = custorder.Items.FirstOrDefault(x => x.Id == i.Id);
-                coid.DeliverQty = uint.Parse(row.Cells["frequestqty"].Value.ToString());
+                coid.DeliverQty = uint.Parse(row.Cells["requestqty"].Value.ToString());
                 DataAccess.instance.UpdateCustomerOrderItem(coid);
             }
 

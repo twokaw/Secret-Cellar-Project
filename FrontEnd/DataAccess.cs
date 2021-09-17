@@ -26,12 +26,27 @@ namespace SecretCellar
 
             if (web == null)
                 web = new WebConnector(connectionString);
+            instance.RefreshCache();
         }
-        public DataAccess() { }
+        private DataAccess() { }
+        private frmLookup lookup;
+        private frmOrdersPanels orders;
 
         public void RefreshCache()
         {
             GetInventory();
+            lookup = new frmLookup();
+            orders= new frmOrdersPanels();
+        }
+
+        public DialogResult ShowLookupForm(Transaction t)
+        {
+            lookup.SetTransaction(t);
+            return lookup.ShowDialog();
+        }
+        public DialogResult ShowOrdersForm()
+        {
+            return orders.ShowDialog();
         }
 
         #region Inventory
@@ -50,7 +65,8 @@ namespace SecretCellar
         
         public List<Inventory> GetInventory()
         {
-            if (InvHash != GetInventoryHash()) { }
+            string hash = InvHash;
+            if (hash != GetInventoryHash()) { }
                 Inventory = (List<Inventory>)JsonConvert.DeserializeObject(web.DataGet("api/inventory"), typeof(List<Inventory>));
             return Inventory;
         }
