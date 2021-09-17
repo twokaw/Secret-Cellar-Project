@@ -30,13 +30,13 @@ namespace SecretCellar
         }
         private DataAccess() { }
         private frmLookup lookup;
-        private frmOrders orders;
+        private frmOrdersPanels orders;
 
         public void RefreshCache()
         {
             GetInventory();
             lookup = new frmLookup();
-            orders= new frmOrders();
+            orders= new frmOrdersPanels();
         }
 
         public DialogResult ShowLookupForm(Transaction t)
