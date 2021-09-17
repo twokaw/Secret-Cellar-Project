@@ -54,9 +54,10 @@ namespace SecretCellar.Orders_Panels {
             // 
             this.btn_received.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_received.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_received.Location = new System.Drawing.Point(611, 290);
+            this.btn_received.Location = new System.Drawing.Point(916, 446);
+            this.btn_received.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btn_received.Name = "btn_received";
-            this.btn_received.Size = new System.Drawing.Size(154, 36);
+            this.btn_received.Size = new System.Drawing.Size(231, 55);
             this.btn_received.TabIndex = 26;
             this.btn_received.Text = "Enter Received";
             this.btn_received.UseVisualStyleBackColor = true;
@@ -66,9 +67,10 @@ namespace SecretCellar.Orders_Panels {
             // 
             this.btn_update.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_update.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_update.Location = new System.Drawing.Point(611, 127);
+            this.btn_update.Location = new System.Drawing.Point(916, 195);
+            this.btn_update.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btn_update.Name = "btn_update";
-            this.btn_update.Size = new System.Drawing.Size(154, 36);
+            this.btn_update.Size = new System.Drawing.Size(231, 55);
             this.btn_update.TabIndex = 25;
             this.btn_update.Text = "Update Qty";
             this.btn_update.UseVisualStyleBackColor = true;
@@ -78,9 +80,10 @@ namespace SecretCellar.Orders_Panels {
             // 
             this.txt_update_qty.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txt_update_qty.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_update_qty.Location = new System.Drawing.Point(610, 95);
+            this.txt_update_qty.Location = new System.Drawing.Point(915, 146);
+            this.txt_update_qty.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txt_update_qty.Name = "txt_update_qty";
-            this.txt_update_qty.Size = new System.Drawing.Size(155, 20);
+            this.txt_update_qty.Size = new System.Drawing.Size(230, 26);
             this.txt_update_qty.TabIndex = 24;
             // 
             // lbl_qty
@@ -88,9 +91,10 @@ namespace SecretCellar.Orders_Panels {
             this.lbl_qty.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lbl_qty.AutoSize = true;
             this.lbl_qty.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_qty.Location = new System.Drawing.Point(606, 72);
+            this.lbl_qty.Location = new System.Drawing.Point(909, 111);
+            this.lbl_qty.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_qty.Name = "lbl_qty";
-            this.lbl_qty.Size = new System.Drawing.Size(89, 13);
+            this.lbl_qty.Size = new System.Drawing.Size(133, 20);
             this.lbl_qty.TabIndex = 23;
             this.lbl_qty.Text = "Order Quantity";
             // 
@@ -98,27 +102,30 @@ namespace SecretCellar.Orders_Panels {
             // 
             this.lbl_order_date.AutoSize = true;
             this.lbl_order_date.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_order_date.Location = new System.Drawing.Point(3, 10);
+            this.lbl_order_date.Location = new System.Drawing.Point(4, 15);
+            this.lbl_order_date.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_order_date.Name = "lbl_order_date";
-            this.lbl_order_date.Size = new System.Drawing.Size(69, 13);
+            this.lbl_order_date.Size = new System.Drawing.Size(103, 20);
             this.lbl_order_date.TabIndex = 22;
             this.lbl_order_date.Text = "Order Date";
             // 
             // dateTimePicker1
             // 
             this.dateTimePicker1.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePicker1.Location = new System.Drawing.Point(76, 8);
+            this.dateTimePicker1.Location = new System.Drawing.Point(114, 12);
+            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
+            this.dateTimePicker1.Size = new System.Drawing.Size(298, 26);
             this.dateTimePicker1.TabIndex = 21;
             // 
             // btn_print_supp
             // 
             this.btn_print_supp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_print_supp.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_print_supp.Location = new System.Drawing.Point(611, 7);
+            this.btn_print_supp.Location = new System.Drawing.Point(916, 11);
+            this.btn_print_supp.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btn_print_supp.Name = "btn_print_supp";
-            this.btn_print_supp.Size = new System.Drawing.Size(154, 36);
+            this.btn_print_supp.Size = new System.Drawing.Size(231, 55);
             this.btn_print_supp.TabIndex = 20;
             this.btn_print_supp.Text = "Print Form";
             this.btn_print_supp.UseVisualStyleBackColor = true;
@@ -128,9 +135,10 @@ namespace SecretCellar.Orders_Panels {
             // 
             this.txt_supp_total.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.txt_supp_total.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_supp_total.Location = new System.Drawing.Point(612, 248);
+            this.txt_supp_total.Location = new System.Drawing.Point(918, 382);
+            this.txt_supp_total.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txt_supp_total.Name = "txt_supp_total";
-            this.txt_supp_total.Size = new System.Drawing.Size(153, 20);
+            this.txt_supp_total.Size = new System.Drawing.Size(228, 26);
             this.txt_supp_total.TabIndex = 19;
             // 
             // lbl_supp_total
@@ -138,9 +146,10 @@ namespace SecretCellar.Orders_Panels {
             this.lbl_supp_total.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lbl_supp_total.AutoSize = true;
             this.lbl_supp_total.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_supp_total.Location = new System.Drawing.Point(608, 225);
+            this.lbl_supp_total.Location = new System.Drawing.Point(912, 346);
+            this.lbl_supp_total.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_supp_total.Name = "lbl_supp_total";
-            this.lbl_supp_total.Size = new System.Drawing.Size(36, 13);
+            this.lbl_supp_total.Size = new System.Drawing.Size(51, 20);
             this.lbl_supp_total.TabIndex = 18;
             this.lbl_supp_total.Text = "Total";
             // 
@@ -148,9 +157,10 @@ namespace SecretCellar.Orders_Panels {
             // 
             this.lbl_supplier.AutoSize = true;
             this.lbl_supplier.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_supplier.Location = new System.Drawing.Point(301, 10);
+            this.lbl_supplier.Location = new System.Drawing.Point(452, 15);
+            this.lbl_supplier.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_supplier.Name = "lbl_supplier";
-            this.lbl_supplier.Size = new System.Drawing.Size(53, 13);
+            this.lbl_supplier.Size = new System.Drawing.Size(78, 20);
             this.lbl_supplier.TabIndex = 17;
             this.lbl_supplier.Text = "Supplier";
             // 
@@ -158,9 +168,10 @@ namespace SecretCellar.Orders_Panels {
             // 
             this.cbx_supplier.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbx_supplier.FormattingEnabled = true;
-            this.cbx_supplier.Location = new System.Drawing.Point(356, 7);
+            this.cbx_supplier.Location = new System.Drawing.Point(534, 11);
+            this.cbx_supplier.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cbx_supplier.Name = "cbx_supplier";
-            this.cbx_supplier.Size = new System.Drawing.Size(248, 21);
+            this.cbx_supplier.Size = new System.Drawing.Size(370, 28);
             this.cbx_supplier.TabIndex = 16;
             this.cbx_supplier.SelectedIndexChanged += new System.EventHandler(this.cbx_supplier_SelectedIndexChanged);
             // 
@@ -191,7 +202,8 @@ namespace SecretCellar.Orders_Panels {
             this.minqty,
             this.maxqty,
             this.orderqty});
-            this.supp_dataGrid.Location = new System.Drawing.Point(6, 62);
+            this.supp_dataGrid.Location = new System.Drawing.Point(9, 95);
+            this.supp_dataGrid.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.supp_dataGrid.Name = "supp_dataGrid";
             this.supp_dataGrid.ReadOnly = true;
             this.supp_dataGrid.RowHeadersVisible = false;
@@ -199,7 +211,7 @@ namespace SecretCellar.Orders_Panels {
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.supp_dataGrid.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.supp_dataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.supp_dataGrid.Size = new System.Drawing.Size(594, 264);
+            this.supp_dataGrid.Size = new System.Drawing.Size(891, 406);
             this.supp_dataGrid.TabIndex = 15;
             this.supp_dataGrid.SelectionChanged += new System.EventHandler(this.supp_dataGrid_SelectionChanged);
             // 
@@ -279,7 +291,7 @@ namespace SecretCellar.Orders_Panels {
             // 
             // Panel_SupplierOrder
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.btn_received);
             this.Controls.Add(this.btn_update);
@@ -293,8 +305,10 @@ namespace SecretCellar.Orders_Panels {
             this.Controls.Add(this.lbl_supplier);
             this.Controls.Add(this.cbx_supplier);
             this.Controls.Add(this.supp_dataGrid);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "Panel_SupplierOrder";
-            this.Size = new System.Drawing.Size(768, 329);
+            this.Size = new System.Drawing.Size(1152, 506);
+            this.Load += new System.EventHandler(this.Panel_SupplierOrder_Load);
             ((System.ComponentModel.ISupportInitialize)(this.supp_dataGrid)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
