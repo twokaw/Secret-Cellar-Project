@@ -4,7 +4,6 @@
 -- ------------------------------------------------------
 -- Server version	8.0.25
 
-
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
@@ -19,7 +18,9 @@
 --
 -- Table structure for table `customer`
 --
-use inventory;
+CREATE DATABASE  IF NOT EXISTS `inventory` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `inventory`;
+
 DROP TABLE IF EXISTS `customer`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
@@ -75,7 +76,7 @@ CREATE TABLE `customerfavorite` (
 
 LOCK TABLES `customerfavorite` WRITE;
 /*!40000 ALTER TABLE `customerfavorite` DISABLE KEYS */;
-INSERT INTO `customerfavorite` VALUES (1056,1),(2326,1),(2524,3),(3604,3),(3941,1);
+INSERT INTO `customerfavorite` VALUES (1056,1),(2326,1),(2524,3),(2656,3),(3604,3),(3941,1);
 /*!40000 ALTER TABLE `customerfavorite` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -200,7 +201,7 @@ CREATE TABLE `customerorderitem` (
 
 LOCK TABLES `customerorderitem` WRITE;
 /*!40000 ALTER TABLE `customerorderitem` DISABLE KEYS */;
-INSERT INTO `customerorderitem` VALUES (1,1024,3,0,'2021-06-23 00:38:31',3,0,0,'2021-07-22 19:34:26',NULL),(10,4315,1,0,'0001-01-01 00:00:00',1,NULL,NULL,'2021-07-22 19:34:26',NULL),(11,3085,0,0,'0001-01-01 00:00:00',1,NULL,NULL,'2021-07-22 19:34:26',NULL),(19,2524,3,0,'0001-01-01 00:00:00',3,0,0,'2021-08-24 18:54:04','0001-01-01 00:00:00');
+INSERT INTO `customerorderitem` VALUES (1,1024,3,0,'2021-06-23 00:38:31',3,0,0,'2021-07-22 19:34:26',NULL),(10,4315,1,0,'0001-01-01 00:00:00',1,NULL,NULL,'2021-07-22 19:34:26',NULL),(11,3085,0,0,'0001-01-01 00:00:00',1,NULL,NULL,'2021-07-22 19:34:26',NULL),(19,2524,2,0,'0001-01-01 00:00:00',3,0,0,'2021-08-24 18:54:04','0001-01-01 00:00:00');
 /*!40000 ALTER TABLE `customerorderitem` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -222,7 +223,7 @@ CREATE TABLE `customerorderitemhist` (
   `CustomerID` int NOT NULL,
   `Price` double DEFAULT NULL,
   PRIMARY KEY (`CustomerOrderItemHistID`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -231,7 +232,7 @@ CREATE TABLE `customerorderitemhist` (
 
 LOCK TABLES `customerorderitemhist` WRITE;
 /*!40000 ALTER TABLE `customerorderitemhist` DISABLE KEYS */;
-INSERT INTO `customerorderitemhist` VALUES (1,17,2326,0,0,'2021-08-10 20:14:06',0,1,15),(2,17,2326,0,0,'2021-08-10 20:16:30',0,1,0),(3,17,2326,1,0,'2021-08-10 20:18:04',0,1,0),(4,17,2326,0,0,'2021-08-10 20:18:43',0,1,0),(5,1,1024,1,0,'2021-08-24 18:42:58',0,3,0),(6,19,2524,3,0,'2021-08-24 18:54:04',0,3,0);
+INSERT INTO `customerorderitemhist` VALUES (1,17,2326,0,0,'2021-08-10 20:14:06',0,1,15),(2,17,2326,0,0,'2021-08-10 20:16:30',0,1,0),(3,17,2326,1,0,'2021-08-10 20:18:04',0,1,0),(4,17,2326,0,0,'2021-08-10 20:18:43',0,1,0),(5,1,1024,1,0,'2021-08-24 18:42:58',0,3,0),(6,19,2524,3,0,'2021-08-24 18:54:04',0,3,0),(7,19,2524,0,1,'2021-08-26 19:03:40',0,3,0),(8,19,2524,1,1,'2021-08-26 19:03:42',0,3,0);
 /*!40000 ALTER TABLE `customerorderitemhist` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -996,6 +997,7 @@ SET @saved_cs_client     = @@character_set_client;
  1 AS `invMin`,
  1 AS `invMax`,
  1 AS `orderQty`,
+ 1 AS `RequestQty`,
  1 AS `Orderincrement`,
  1 AS `supplier`,
  1 AS `DiscountID`,
@@ -1004,6 +1006,7 @@ SET @saved_cs_client     = @@character_set_client;
  1 AS `maxQty`,
  1 AS `Discount`,
  1 AS `inventory_qty`,
+ 1 AS `all_qty`,
  1 AS `supplier_price`,
  1 AS `purchased_date`,
  1 AS `idTax`,
@@ -1265,7 +1268,7 @@ SET character_set_client = @saved_cs_client;
 /*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `v_inventory` AS select `i`.`inventoryID` AS `inventoryID`,`i`.`description` AS `description`,`i`.`name` AS `name`,`i`.`barcode` AS `barcode`,`i`.`retail_price` AS `retail_price`,`i`.`bottle_deposit_qty` AS `bottles`,`i`.`nontaxable` AS `nontaxable`,`i`.`nontaxable_local` AS `nontaxable_local`,`i`.`typeID` AS `typeID`,`i`.`hidden` AS `hidden`,`t`.`inventory_type_name` AS `inventory_type_name`,`i`.`supplierID` AS `supplierID`,`i`.`InvMin` AS `invMin`,`i`.`InvMax` AS `invMax`,`i`.`OrderQty` AS `orderQty`,`i`.`orderIncrement` AS `Orderincrement`,`s`.`name` AS `supplier`,`discount_inventory`.`DiscountID` AS `DiscountID`,`d`.`DiscountName` AS `DiscountName`,`d`.`minQty` AS `minQty`,`d`.`maxQty` AS `maxQty`,`d`.`Discount` AS `Discount`,`ip`.`inventory_qty` AS `inventory_qty`,`ip`.`supplier_price` AS `supplier_price`,`ip`.`purchased_date` AS `purchased_date`,`t`.`idTax` AS `idTax`,`c`.`bottle_deposit` AS `bottle_deposit`,`c`.`sales_tax` AS `sales_tax`,`c`.`local_sales_tax` AS `local_sales_tax`,`c`.`Tax_Name` AS `Tax_Name` from ((((((`inventory_description` `i` join `inventory_type` `t` on((`i`.`typeID` = `t`.`typeID`))) join `tax` `c` on((`c`.`idTAX` = `t`.`idTax`))) left join `supplier` `s` on((`i`.`supplierID` = `s`.`supplierID`))) left join `inventory_price` `ip` on((`i`.`inventoryID` = `ip`.`inventoryID`))) left join `discount_inventory` on((`i`.`inventoryID` = `discount_inventory`.`InventoryID`))) left join `discount` `d` on((`discount_inventory`.`DiscountID` = `d`.`DiscountID`))) */;
+/*!50001 VIEW `v_inventory` AS select `i`.`inventoryID` AS `inventoryID`,`i`.`description` AS `description`,`i`.`name` AS `name`,`i`.`barcode` AS `barcode`,`i`.`retail_price` AS `retail_price`,`i`.`bottle_deposit_qty` AS `bottles`,`i`.`nontaxable` AS `nontaxable`,`i`.`nontaxable_local` AS `nontaxable_local`,`i`.`typeID` AS `typeID`,`i`.`hidden` AS `hidden`,`t`.`inventory_type_name` AS `inventory_type_name`,`i`.`supplierID` AS `supplierID`,`i`.`InvMin` AS `invMin`,`i`.`InvMax` AS `invMax`,`i`.`OrderQty` AS `orderQty`,((sum(`ip`.`inventory_qty`) OVER (PARTITION BY `i`.`inventoryID`,`discount_inventory`.`DiscountID` )  + `i`.`OrderQty`) - `r`.`requestQty`) AS `RequestQty`,`i`.`orderIncrement` AS `Orderincrement`,`s`.`name` AS `supplier`,`discount_inventory`.`DiscountID` AS `DiscountID`,`d`.`DiscountName` AS `DiscountName`,`d`.`minQty` AS `minQty`,`d`.`maxQty` AS `maxQty`,`d`.`Discount` AS `Discount`,`ip`.`inventory_qty` AS `inventory_qty`,sum(`ip`.`inventory_qty`) OVER (PARTITION BY `i`.`inventoryID`,`discount_inventory`.`DiscountID` )  AS `all_qty`,`ip`.`supplier_price` AS `supplier_price`,`ip`.`purchased_date` AS `purchased_date`,`t`.`idTax` AS `idTax`,`c`.`bottle_deposit` AS `bottle_deposit`,`c`.`sales_tax` AS `sales_tax`,`c`.`local_sales_tax` AS `local_sales_tax`,`c`.`Tax_Name` AS `Tax_Name` from (((((((`inventory_description` `i` join `inventory_type` `t` on((`i`.`typeID` = `t`.`typeID`))) join `tax` `c` on((`c`.`idTAX` = `t`.`idTax`))) left join `supplier` `s` on((`i`.`supplierID` = `s`.`supplierID`))) left join `inventory_price` `ip` on((`i`.`inventoryID` = `ip`.`inventoryID`))) left join `discount_inventory` on((`i`.`inventoryID` = `discount_inventory`.`InventoryID`))) left join `discount` `d` on((`discount_inventory`.`DiscountID` = `d`.`DiscountID`))) left join (select `customerorderitem`.`InventoryID` AS `InventoryId`,(`customerorderitem`.`RequestQTY` - `customerorderitem`.`DeliverQTY`) AS `requestQty` from `customerorderitem` where ((`customerorderitem`.`RequestQTY` - `customerorderitem`.`DeliverQTY`) > 0)) `r` on((`r`.`InventoryId` = `i`.`inventoryID`))) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -1369,4 +1372,4 @@ SET character_set_client = @saved_cs_client;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-08-24 19:30:53
+-- Dump completed on 2021-08-26 20:42:57

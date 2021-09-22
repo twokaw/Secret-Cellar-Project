@@ -92,7 +92,7 @@ namespace Shared
                 if (!TaxExempt)
                     Items.ForEach(x => tax += ItemTax(x));
 
-                return tax;
+                return Math.Round(tax, 2, MidpointRounding.AwayFromZero);
             }
         }
         public double ItemTax(Item i)

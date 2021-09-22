@@ -2,33 +2,25 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web.UI.WebControls;
 using System.Windows.Forms;
-
-
 
 namespace SecretCellar
 {
     public partial class frmLookup : ManagedForm
     {
         private Transaction currentTransaction = null;
-        private DataAccess dataAccess = new DataAccess(Properties.Settings.Default.URL);
-        private List<Inventory> inventory = null;
         private List<Supplier> suppliers = null;
         private List<InventoryType> types = null;
         private string descriptionAndBarcodeSearchText = "Enter Description/Barcode";
 
-
-        public frmLookup(Transaction transaction)
+        public frmLookup()
         {
-            currentTransaction = transaction;
             InitializeComponent();
-            inventory = dataAccess.GetInventory();
-            suppliers = dataAccess.GetSuppliers();
-            types = dataAccess.GetInventoryType();
+            suppliers = DataAccess.instance.GetSuppliers();
+            types = DataAccess.instance.GetInventoryType();
             txtlookup.Focus();
 
-            refresh();
+            RefreshInv();
 
             cbo_Supplier.DataSource = suppliers;
             cboType.DataSource = types;
@@ -36,6 +28,16 @@ namespace SecretCellar
             cbxSupplyFilter.Items.AddRange((string[])suppliers.Select(x => x.Name).ToArray());
             cbxTypeFilter.Items.Add("");
             cbxTypeFilter.Items.AddRange((string[])types.Select(x => x.TypeName).ToArray());
+        }
+
+        public frmLookup(Transaction transaction) : base()
+        {
+            SetTransaction(transaction);
+        }
+
+        public void SetTransaction(Transaction transaction)
+        {
+            currentTransaction = transaction;
         }
 
         private void btn_add_Click(object sender, EventArgs e)
@@ -49,7 +51,7 @@ namespace SecretCellar
 
         private void button_Broken_Click(object sender, EventArgs e) {
             if (LookupView.SelectedRows.Count > 0) {
-                Inventory i = inventory.First(x => x.Id == uint.Parse(LookupView.SelectedRows[0].Cells["id"].Value.ToString()));
+                Inventory i = DataAccess.instance.GetInventory().First(x => x.Id == uint.Parse(LookupView.SelectedRows[0].Cells["id"].Value.ToString()));
 
                 i.Price = 0;
                 i.BottleDeposit = 0;
@@ -72,7 +74,7 @@ namespace SecretCellar
         {
             if (LookupView.SelectedRows.Count > 0)
             {
-                Inventory i = inventory.First(x => x.Id == uint.Parse(LookupView.SelectedRows[0].Cells["id"].Value.ToString()));
+                Inventory i = DataAccess.instance.GetInventory().First(x => x.Id == uint.Parse(LookupView.SelectedRows[0].Cells["id"].Value.ToString()));
 
                 currentTransaction.Add(i);
                 return true;
@@ -82,14 +84,14 @@ namespace SecretCellar
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            refresh();
+            RefreshInv();
         }
 
         private void LookupView_SelectionChanged(object sender, EventArgs e)
         {
             if (LookupView.SelectedRows.Count > 0)
             {
-                Inventory i = inventory.First(x => x.Id == uint.Parse(LookupView.SelectedRows[0].Cells["id"].Value.ToString()));
+                Inventory i = DataAccess.instance.GetInventory().First(x => x.Id == uint.Parse(LookupView.SelectedRows[0].Cells["id"].Value.ToString()));
                 txtName.Text = i.Name;
                 txt_qty.Text = i.Qty.ToString();
                 cboType.Text = types.First(x => x.TypeId == i.TypeID).TypeName;
@@ -126,7 +128,7 @@ namespace SecretCellar
         {
             if (LookupView.SelectedRows.Count > 0)
             {
-                Inventory i = inventory.First(x => x.Id == uint.Parse(LookupView.SelectedRows[0].Cells["id"].Value.ToString()));
+                Inventory i = DataAccess.instance.GetInventory().First(x => x.Id == uint.Parse(LookupView.SelectedRows[0].Cells["id"].Value.ToString()));
 
                 i.Name = txtName.Text.Trim();
                 i.Barcode = txtBarcode.Text.Trim();
@@ -245,9 +247,9 @@ namespace SecretCellar
                 i.ItemType = cboType.Text;
                 i.TypeID = types.First(x => x.TypeName == cboType.Text).TypeId;
                 i.SupplierID = suppliers.First(x => x.Name == cbo_Supplier.Text).SupplierID;
-                dataAccess.UpdateItem(i);
+                DataAccess.instance.UpdateItem(i);
 
-                refresh();
+                RefreshInv();
             }
 
         }
@@ -256,7 +258,7 @@ namespace SecretCellar
         {
             if (LookupView.SelectedRows.Count > 0)
             {
-                Inventory i = inventory.FirstOrDefault(x => x.Barcode == txtBarcode.Text);
+                Inventory i = DataAccess.instance.GetInventory().FirstOrDefault(x => x.Barcode == txtBarcode.Text);
 
                 if (i == null)
                     i = new Inventory();
@@ -335,30 +337,29 @@ namespace SecretCellar
                 //i.InvMax = uint.Parse(txt_max_qty.Text.Trim());
                 //i.OrderQty = uint.Parse(txt_order_qty.Text.Trim());
 
-                i.Id = dataAccess.InsertItem(i);
-                inventory.Add(i);
-                refresh();
+                i.Id = DataAccess.instance.InsertItem(i);
+                RefreshInv();
             }
         }
 
         private void cbxTypeFilter_SelectedIndexChanged(object sender, EventArgs e)
         {
-            refresh();
+            RefreshInv();
         }
 
         private void cbxSupplyFilter_SelectedIndexChanged(object sender, EventArgs e)
         {
-            refresh();
+            RefreshInv();
         }
 
         private void cbxOnlyItemsWithInventory_CheckedChanged(object sender, EventArgs e)
         {
-            refresh();
+            RefreshInv();
 		}
 
         private void chk_box_show_hidden_CheckedChanged(object sender, EventArgs e)
         {
-            refresh();
+            RefreshInv();
         }
 
         private void btn_clear_info_Click(object sender, EventArgs e)
@@ -390,13 +391,13 @@ namespace SecretCellar
             }
         }
 
-        private void refresh() {
+        private void RefreshInv() {
             int quantity;
 
             if (cbxOnlyItemsWithInventory.Checked) { quantity = 0; }
             else { quantity = -1; }
 
-            LookupView.DataSource = inventory.Where(x => (x.Name.IndexOf(txtlookup.Text, StringComparison.OrdinalIgnoreCase) >= 0
+            LookupView.DataSource = DataAccess.instance.GetInventory().Where(x => (x.Name.IndexOf(txtlookup.Text, StringComparison.OrdinalIgnoreCase) >= 0
                                                         || x.Barcode.IndexOf(txtlookup.Text, StringComparison.OrdinalIgnoreCase) >= 0
                                                         || txtlookup.Text == descriptionAndBarcodeSearchText
                                                         || txtlookup.Text == "")

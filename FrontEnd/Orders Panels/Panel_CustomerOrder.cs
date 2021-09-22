@@ -9,17 +9,20 @@ using System.Windows.Forms;
 namespace SecretCellar.Orders_Panels {
 	public partial class Panel_CustomerOrder : UserControl {
 		private List<Customer> cust = null;
-		private List<Supplier> suppliers = null;
-		private List<Inventory> inventory = null;
+		private List<Supplier> suppliers = new List<Supplier>();
+		//private List<Inventory> inventory = null;
 
 
 		public Panel_CustomerOrder() {
 			InitializeComponent();
 
-			cust = DataAccess.instance?.GetCustomer();
-			suppliers = DataAccess.instance?.GetSuppliers();
-			inventory = DataAccess.instance?.GetInventory();
-
+			cust = DataAccess.instance?.GetCustomer() ?? new List<Customer> ();
+			suppliers = DataAccess.instance?.GetSuppliers() ?? new List<Supplier>();
+			suppliers.Add(new Supplier
+			{ 
+				Name = "All",
+				SupplierID = 0
+			});
 			cbx_cust_custorder.DataSource = cust;
 			cbx_supp_custorder.DataSource = suppliers;
 		}
@@ -44,8 +47,7 @@ namespace SecretCellar.Orders_Panels {
 		private void btnFavoritesAdd_Click(object sender, EventArgs e) {
 			uint cid = ((Customer)cbx_cust_custorder.SelectedItem).CustomerID;
 			Transaction t = new Transaction();
-			frmLookup fl = new frmLookup(t);
-			fl.ShowDialog();
+			DataAccess.instance.ShowLookupForm(t);
 
 			foreach (Item i in t.Items)
 				DataAccess.instance.AddCustomerFavorite(cid, i.Id);
@@ -61,13 +63,12 @@ namespace SecretCellar.Orders_Panels {
 		/// <param name="e"></param>
 		private void btnFavoritesRemove_Click(object sender, EventArgs e) {
 			uint cid = ((Customer)cbx_cust_custorder.SelectedItem).CustomerID;
-			uint iid = inventory.FirstOrDefault(x => x.Name == custOrder_datagrid.SelectedRows[0].Cells["Name"].Value.ToString()).Id;
+			uint iid = DataAccess.instance.GetInventory().FirstOrDefault(x => x.Name == custOrder_datagrid.SelectedRows[0].Cells["CustOrdName"].Value.ToString()).Id;
 
 			DataAccess.instance.DeleteCustomerFavorite(cid, iid);
 
 			RefreshFavorite(cid);
 		}
-
 
 		/// <summary>
 		/// On click Add Order.
@@ -79,8 +80,7 @@ namespace SecretCellar.Orders_Panels {
 				CustomerID = ((Customer)cbx_cust_custorder.SelectedItem).CustomerID
 			};
 
-			frmLookup fl = new frmLookup(t);
-			fl.ShowDialog();
+			DataAccess.instance.ShowLookupForm(t);
 
 			if (t.Items.Count > 0) {
 				CustomerOrder co = DataAccess.instance.GetCustomerOrderforCustomer(t.CustomerID) ?? new CustomerOrder() {
@@ -102,7 +102,6 @@ namespace SecretCellar.Orders_Panels {
 
 			RefreshFavorite(t.CustomerID);
 		}
-
 
 		/// <summary>
 		/// On click update order.
@@ -156,18 +155,20 @@ namespace SecretCellar.Orders_Panels {
 			List<CustomerFavorite> custFav = DataAccess.instance.GetCustomerFavorite(customerId).Favorites;
 			List<CustomerOrderItem> custItems = (DataAccess.instance.GetCustomerOrderforCustomer(customerId)?.Items ?? new List<CustomerOrderItem>()).Where(x => x.DeliverQty < x.RequestQty).ToList();
 
-			custOrder_datagrid.DataSource = inventory
+			custOrder_datagrid.DataSource = DataAccess.instance.GetInventory()
 				.GroupJoin(custFav, i => i.Id, f => f.InventoryID, (i, f) => new {
 					Inv = i,
 					Fav = f.SingleOrDefault()
 				})
-				// .Where(x => x.Fav.InventoryID != 0 && !x.Inv.Hidden  ) //&& x.Fav.InventoryID == x.Inv.Id 
+				//.Where(x => x.Fav.InventoryID != 0 && !x.Inv.Hidden)
 				.GroupJoin(custItems, i => i.Inv.Id, o => o.Id, (i, o) => new {
 					i.Inv,
 					i.Fav,
 					Ord = o.SingleOrDefault()
 				})
-				.Where(x => (x.Fav != null && !x.Inv.Hidden || x.Ord != null))
+				.Where(x => (x.Fav != null && (!x.Inv.Hidden || x.Ord != null) &&
+							(0 == ((Supplier)cbx_supp_custorder.SelectedItem).SupplierID ||
+							 x.Inv.SupplierID == ((Supplier)cbx_supp_custorder.SelectedItem).SupplierID)))
 				.Select(x => new {
 					x.Inv.Id,
 					x.Inv.Name,
@@ -179,5 +180,11 @@ namespace SecretCellar.Orders_Panels {
 				})
 				.ToList();
 		}
-	}
+
+        private void cbx_supp_custorder_SelectedIndexChanged(object sender, EventArgs e)
+        {
+			uint cid = ((Customer)cbx_cust_custorder.SelectedItem).CustomerID;
+			RefreshFavorite(cid);
+		}
+    }
 }

@@ -147,6 +147,27 @@ namespace pos_core_api.ORM
             }
         }
 
+        public string GetCustHash()
+        {
+            try
+            {
+                db.OpenConnection();
+
+                string sqlStatement = @"
+                 SELECT HashValue
+                 FROM v_customer_hash
+                ";
+
+                using MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
+                using MySqlDataReader reader = cmd.ExecuteReader();
+
+                return reader.GetString("HashValue");
+            }
+            finally
+            {
+                db.CloseConnnection();
+            }
+        }
 
         public void AddCustomerFavorite(uint CustomerID, uint InventoryID)
         {

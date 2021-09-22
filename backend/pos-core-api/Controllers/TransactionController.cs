@@ -46,8 +46,20 @@ namespace WebApi.Controllers
             catch (Exception ex) { ErrorLogging.WriteToErrorLog(ex); return StatusCode(500, ex.Message); }
         }
 
+        // Returns a list of all payment methods
+        //Get: api/Transaction/PaymentMethods
+        [HttpGet("PaymentMethods/")]
+        public ActionResult GetPaymentMethods()
+        {
+            try
+            {
+                return Ok(DataAccess.Instance.Transaction.GetPaymentMethods());
+            }
+            catch (Exception ex) { ErrorLogging.WriteToErrorLog(ex); return StatusCode(500, ex.Message); }
+        }
+
         // Get transaction 
-        //Get: api/Transaction/Suspended
+        //Get: api/Transaction/Customer/{customerID}
         [HttpGet("Customer/{customerID}")]
         public ActionResult GetCustomer(uint customerID, DateTime start, DateTime end, bool includeItems, bool includePayments)
         {

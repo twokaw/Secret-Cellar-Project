@@ -82,8 +82,16 @@ namespace WebApi.Helpers
 
         public void CloseConnnection()
         {
-            if(conn.Ping() == true)
-                conn.Close();
+            try
+            {
+                if (conn.Ping() == true)
+                    conn.Close();
+
+            }
+            catch (Exception ex)
+            {
+                ErrorLogging.WriteToErrorLog(ex);
+            }
         }
 
         public MySqlConnection Connection()

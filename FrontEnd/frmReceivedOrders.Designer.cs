@@ -74,7 +74,6 @@ namespace SecretCellar
             this.maxqty,
             this.orderqty});
             this.received_dataGrid.Location = new System.Drawing.Point(52, 154);
-            this.received_dataGrid.MultiSelect = false;
             this.received_dataGrid.Name = "received_dataGrid";
             this.received_dataGrid.RowHeadersVisible = false;
             this.received_dataGrid.RowHeadersWidth = 62;

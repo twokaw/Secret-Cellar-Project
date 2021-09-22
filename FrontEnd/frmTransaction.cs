@@ -19,7 +19,6 @@ namespace SecretCellar
         public frmTransaction()
         {
             InitializeComponent();
-            DataAccess.instance = new DataAccess(Properties.Settings.Default.URL);
             txtBarcode.Focus();
             ReloadLogo();
             //this.Size = new System.Drawing.Size(1366, 768);
@@ -233,8 +232,7 @@ namespace SecretCellar
 
         private void btnLookup_Click(object sender, EventArgs e)
         {
-            frmLookup lookup = new frmLookup(transaction); //instantiates frmLookup using Lookup
-            lookup.ShowDialog(); // opens form associated with Lookup instantiation
+            DataAccess.instance.ShowLookupForm(transaction);
             RefreshDataGrid();
         }
 
@@ -407,8 +405,9 @@ namespace SecretCellar
             //frmOrders order = new frmOrders(transaction);
             //order.ShowDialog();
 
-            frmOrdersPanels ordersPanels = new frmOrdersPanels();
-            ordersPanels.ShowDialog();
+            //frmOrdersPanels ordersPanels = new frmOrdersPanels();
+            //ordersPanels.ShowDialog();
+            DataAccess.instance.ShowOrdersForm();
         }
 
         private void btnTender2_MouseHover(object sender, EventArgs e)
