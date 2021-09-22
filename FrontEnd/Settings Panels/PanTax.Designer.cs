@@ -50,7 +50,7 @@ namespace SecretCellar.Settings_Panels
 			// 
 			this.btn_update_tax.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.btn_update_tax.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
-			this.btn_update_tax.Location = new System.Drawing.Point(469, 282);
+			this.btn_update_tax.Location = new System.Drawing.Point(463, 272);
 			this.btn_update_tax.Name = "btn_update_tax";
 			this.btn_update_tax.Size = new System.Drawing.Size(133, 35);
 			this.btn_update_tax.TabIndex = 8;
@@ -77,7 +77,7 @@ namespace SecretCellar.Settings_Panels
 			this.lst_tax_list.ItemHeight = 16;
 			this.lst_tax_list.Location = new System.Drawing.Point(9, 31);
 			this.lst_tax_list.Name = "lst_tax_list";
-			this.lst_tax_list.Size = new System.Drawing.Size(120, 260);
+			this.lst_tax_list.Size = new System.Drawing.Size(120, 276);
 			this.lst_tax_list.TabIndex = 1;
 			this.lst_tax_list.SelectedIndexChanged += new System.EventHandler(this.lst_tax_list_SelectedIndexChanged);
 			// 
@@ -163,7 +163,7 @@ namespace SecretCellar.Settings_Panels
 			// 
 			this.btn_new.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.btn_new.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
-			this.btn_new.Location = new System.Drawing.Point(469, 241);
+			this.btn_new.Location = new System.Drawing.Point(463, 231);
 			this.btn_new.Name = "btn_new";
 			this.btn_new.Size = new System.Drawing.Size(133, 35);
 			this.btn_new.TabIndex = 7;
@@ -175,7 +175,7 @@ namespace SecretCellar.Settings_Panels
 			// 
 			this.btn_clear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.btn_clear.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
-			this.btn_clear.Location = new System.Drawing.Point(469, 184);
+			this.btn_clear.Location = new System.Drawing.Point(463, 174);
 			this.btn_clear.Name = "btn_clear";
 			this.btn_clear.Size = new System.Drawing.Size(133, 35);
 			this.btn_clear.TabIndex = 6;

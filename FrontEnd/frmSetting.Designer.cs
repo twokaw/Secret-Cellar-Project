@@ -223,7 +223,7 @@ namespace SecretCellar
 			this.MinimizeBox = false;
 			this.Name = "FrmSettings";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-			this.Text = "frmSetting";
+			this.Text = "Setting";
 			this.Load += new System.EventHandler(this.FrmSetting_Load);
 			this.tab_receipt.ResumeLayout(false);
 			this.tab_Hardware.ResumeLayout(false);

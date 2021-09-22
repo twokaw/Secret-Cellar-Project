@@ -138,7 +138,7 @@ namespace SecretCellar.Settings_Panels
 			// 
 			// btn_update_type
 			// 
-			this.btn_update_type.Location = new System.Drawing.Point(199, 287);
+			this.btn_update_type.Location = new System.Drawing.Point(200, 241);
 			this.btn_update_type.Margin = new System.Windows.Forms.Padding(6);
 			this.btn_update_type.Name = "btn_update_type";
 			this.btn_update_type.Size = new System.Drawing.Size(133, 35);
@@ -149,7 +149,7 @@ namespace SecretCellar.Settings_Panels
 			// 
 			// btn_new_type
 			// 
-			this.btn_new_type.Location = new System.Drawing.Point(199, 241);
+			this.btn_new_type.Location = new System.Drawing.Point(199, 287);
 			this.btn_new_type.Margin = new System.Windows.Forms.Padding(6);
 			this.btn_new_type.Name = "btn_new_type";
 			this.btn_new_type.Size = new System.Drawing.Size(133, 35);
