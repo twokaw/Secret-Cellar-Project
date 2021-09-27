@@ -18,8 +18,16 @@ namespace SecretCellar.Settings_Panels
             InitializeComponent();
             lst_tax_list.DataSource = DataAccess.instance?.GetTax();
             lst_tax_list.DisplayMember = "TaxName";
-
         }
+
+
+        private void lst_tax_list_SelectedIndexChanged(object sender, EventArgs e) {
+            txt_tax_type_name.Text = ((Tax)lst_tax_list.SelectedItem).TaxName;
+            txt_bottle_dep.Text = ((Tax)lst_tax_list.SelectedItem).BottleDeposit.ToString();
+            txt_sales_tax.Text = ((Tax)lst_tax_list.SelectedItem).SalesTax.ToString();
+            txt_local_tax.Text = ((Tax)lst_tax_list.SelectedItem).LocalSalesTax.ToString();
+        }
+
 
         private void btn_update_tax_Click(object sender, EventArgs e)
         {
@@ -30,15 +38,9 @@ namespace SecretCellar.Settings_Panels
             i.IdTax = ((Tax)lst_tax_list.SelectedItem).IdTax;
 
             DataAccess.instance.UpdateTax(i);
+            lst_tax_list.DataSource = DataAccess.instance?.GetTax();
         }
 
-        private void lst_tax_list_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            txt_tax_type_name.Text = ((Tax)lst_tax_list.SelectedItem).TaxName;
-            txt_bottle_dep.Text = ((Tax)lst_tax_list.SelectedItem).BottleDeposit.ToString();
-            txt_sales_tax.Text = ((Tax)lst_tax_list.SelectedItem).SalesTax.ToString();
-            txt_local_tax.Text = ((Tax)lst_tax_list.SelectedItem).LocalSalesTax.ToString();
-        }
 
         private void btn_clear_Click(object sender, EventArgs e)
         {
@@ -48,8 +50,10 @@ namespace SecretCellar.Settings_Panels
             txt_local_tax.Text = "";
         }
 
+
         private void btn_new_Click(object sender, EventArgs e)
         {
+            Console.WriteLine("text " + lst_tax_list.Text);
             if (((List<Tax>)lst_tax_list.DataSource).FirstOrDefault(x => x.TaxName == lst_tax_list.Text) != null)
             {
                 Tax i = new Tax
@@ -60,8 +64,10 @@ namespace SecretCellar.Settings_Panels
                 };
 
                 DataAccess.instance.UpdateTax(i);
+                lst_tax_list.DataSource = DataAccess.instance?.GetTax();
             }
         }
+
 
         private void panel1_Paint(object sender, PaintEventArgs e)
         {

@@ -40,16 +40,6 @@ namespace SecretCellar.Settings_Panels
             Properties.Settings.Default.Save();
         }
 
-        private void btn_comm_default_Click(object sender, EventArgs e)
-        {
-            Properties.Settings.Default.CashDrawerPort = "COM3";
-            Properties.Settings.Default.Save();
-        }
-
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
 
         private void btn_new_print_Click(object sender, EventArgs e)
         {
@@ -59,10 +49,12 @@ namespace SecretCellar.Settings_Panels
                 Refresh(addPrinter?.newPrinter?.Make, addPrinter?.newPrinter?.Model);
         }
 
+
         private void lst_print_model_SelectedIndexChanged(object sender, EventArgs e)
         {
             populate();
         }
+
 
         private void populate()
         {
@@ -73,6 +65,7 @@ namespace SecretCellar.Settings_Panels
             }
         }
 
+
         private void cbx_manufact_SelectedIndexChanged(object sender, EventArgs e)
         {
             string makeId = cbx_manufact.Text;
@@ -80,18 +73,21 @@ namespace SecretCellar.Settings_Panels
             lst_print_model.DataSource = printerNames.Where(x => x.Make == makeId).ToList();
         }
 
+
         private void btn_set_printer_Click(object sender, EventArgs e)
         {
-            Properties.Settings.Default.PrinterModelId =(int)((Printer)lst_print_model.SelectedItem).ModelId;
-            Properties.Settings.Default.PrintCodeId = int.Parse(grid_print_codes.SelectedRows[0].Cells["CodeId"].Value.ToString());
-            Properties.Settings.Default.Save();
+            if (lst_print_model.SelectedItem != null) {
+                Properties.Settings.Default.PrinterModelId = (int)((Printer)lst_print_model.SelectedItem).ModelId;
+                Properties.Settings.Default.PrintCodeId = int.Parse(grid_print_codes.SelectedRows[0].Cells["CodeId"].Value.ToString());
+                Properties.Settings.Default.Save();
+			}
         }
+
 
         private void Refresh(string make, string model)
         {
             if(make != null && model != null)
             {
-
                 printerNames = DataAccess.instance.GetPrinter();
                 cbx_manufact.DataSource = DataAccess.instance.GetPrinterMake();
                 cbx_manufact.SelectedItem = make ?? cbx_manufact.Items[0];
@@ -108,15 +104,19 @@ namespace SecretCellar.Settings_Panels
             }
         }
 
+
         private void btn_add_code_Click(object sender, EventArgs e)
         {
-             frmAddPrinter printercodes =new frmAddPrinter(((Printer)lst_print_model?.SelectedItem));
+            if (lst_print_model.SelectedItem != null) {
+                frmAddPrinter printercodes = new frmAddPrinter((Printer)lst_print_model?.SelectedItem);
 
-            if (printercodes.ShowDialog() == DialogResult.OK)
-                Refresh(printercodes?.newPrinter?.Make, printercodes?.newPrinter?.Model);
+                if (printercodes.ShowDialog() == DialogResult.OK)
+                    Refresh(printercodes?.newPrinter?.Make, printercodes?.newPrinter?.Model);
 
-            // set to read only
+                // set to read only
+			}
         }
+
 
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
