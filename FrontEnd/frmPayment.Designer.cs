@@ -352,6 +352,7 @@
 			this.txt_customer.Location = new System.Drawing.Point(691, 25);
 			this.txt_customer.Margin = new System.Windows.Forms.Padding(2);
 			this.txt_customer.Name = "txt_customer";
+			this.txt_customer.ReadOnly = true;
 			this.txt_customer.Size = new System.Drawing.Size(164, 29);
 			this.txt_customer.TabIndex = 39;
 			this.txt_customer.TabStop = false;
