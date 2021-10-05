@@ -70,7 +70,7 @@ namespace SecretCellar
         public List<Inventory> GetInventory()
         {
             if(InventoryChanged())
-                Inventory = (List<Inventory>)JsonConvert.DeserializeObject(web.DataGet("api/inventory"), typeof(List<Inventory>));
+                 Inventory = (List<Inventory>)JsonConvert.DeserializeObject(web.DataGet("api/inventory"), typeof(List<Inventory>));
             return Inventory;
         }
 

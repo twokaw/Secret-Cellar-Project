@@ -81,7 +81,6 @@ namespace WebApi
 
             app.UseRouting();
             app.UseCors();
-
             if (UseSwagger)
             {
                 app.UseSwagger();
@@ -91,6 +90,8 @@ namespace WebApi
                     c.RoutePrefix = string.Empty;
                 });
             }
+            else
+                app.UseWelcomePage();
 
             app.UseAuthentication();
             app.UseAuthorization();
