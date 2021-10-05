@@ -128,217 +128,205 @@ namespace SecretCellar
         {
             if (LookupView.SelectedRows.Count > 0)
             {
-                Inventory i = DataAccess.instance.GetInventory().First(x => x.Id == uint.Parse(LookupView.SelectedRows[0].Cells["id"].Value.ToString()));
+                if (txtName.Text.Replace(" ", "") != "" && txtBarcode.Text.Replace(" ", "") != "") {
+                    Inventory i = DataAccess.instance.GetInventory().First(x => x.Id == uint.Parse(LookupView.SelectedRows[0].Cells["id"].Value.ToString()));
 
-                i.Name = txtName.Text.Trim();
-                i.Barcode = txtBarcode.Text.Trim();
+                    i.Name = txtName.Text.Trim();
+                    i.Barcode = txtBarcode.Text.Trim();
 
 
-                if (!uint.TryParse(txt_qty.Text, out uint qty))
-                {
-                    txt_qty.Focus();
-                    txt_qty.SelectAll();
-                    MessageBox.Show("Invalid Quantity");
-                    return;
-                }
+                    if (!uint.TryParse(txt_qty.Text, out uint qty)) {
+                        txt_qty.Focus();
+                        txt_qty.SelectAll();
+                        MessageBox.Show("Invalid Quantity");
+                        return;
+                    }
 
-                if (!double.TryParse(txt_net_price.Text, out double netprice))
-                {
-                    txt_net_price.Focus();
-                    txt_net_price.SelectAll();
-                    MessageBox.Show("Invalid Supply Price");
-                    return;
-                }
+                    if (!double.TryParse(txt_net_price.Text, out double netprice)) {
+                        txt_net_price.Focus();
+                        txt_net_price.SelectAll();
+                        MessageBox.Show("Invalid Supply Price");
+                        return;
+                    }
 
-                // find the inventory price object
-                InventoryQty inventoryQty = i.AllQty.FirstOrDefault(x => x.SupplierPrice == netprice);
+                    // find the inventory price object
+                    InventoryQty inventoryQty = i.AllQty.FirstOrDefault(x => x.SupplierPrice == netprice);
 
-                // if it is not found then create it and add it
-                if (inventoryQty == null)
-                {
-                    inventoryQty = new InventoryQty
-                    {
-                        Qty = 0,
-                        SupplierPrice = netprice,
-                        PurchasedDate = DateTime.Now
-                    };
+                    // if it is not found then create it and add it
+                    if (inventoryQty == null) {
+                        inventoryQty = new InventoryQty {
+                            Qty = 0,
+                            SupplierPrice = netprice,
+                            PurchasedDate = DateTime.Now
+                        };
 
-                    i.AllQty.Add(inventoryQty);
-                }
+                        i.AllQty.Add(inventoryQty);
+                    }
 
-                // if the supply price is the same and there is only 1 supply price then we can just set the qty
-                if (i.AllQty.Count == 1 && i.AllQty[0].SupplierPrice == netprice)
-                    inventoryQty.Qty = qty;
+                    // if the supply price is the same and there is only 1 supply price then we can just set the qty
+                    if (i.AllQty.Count == 1 && i.AllQty[0].SupplierPrice == netprice)
+                        inventoryQty.Qty = qty;
 
-                // New inventory was added to the specific supply price.  Items of this price are now the default price
-                else if (i.Qty < qty)
-                {
-                    inventoryQty.Qty += qty - i.Qty;
-                    inventoryQty.PurchasedDate = DateTime.Now;
-                }
+                    // New inventory was added to the specific supply price.  Items of this price are now the default price
+                    else if (i.Qty < qty) {
+                        inventoryQty.Qty += qty - i.Qty;
+                        inventoryQty.PurchasedDate = DateTime.Now;
+                    }
 
-                // The Qty was written off
-                else if (i.Qty > qty)
-                {
-                    qty = i.Qty - qty;
-                    foreach (InventoryQty iq in i.AllQty.OrderBy(x => x.PurchasedDate).ToArray())
-                    {
-                        if (iq.Qty >= qty)
-                        {
-                            iq.Qty -= qty;
-                            break;
-                        }
-                        else
-                        {
-                            qty -= iq.Qty;
-                            iq.Qty = 0;
+                    // The Qty was written off
+                    else if (i.Qty > qty) {
+                        qty = i.Qty - qty;
+                        foreach (InventoryQty iq in i.AllQty.OrderBy(x => x.PurchasedDate).ToArray()) {
+                            if (iq.Qty >= qty) {
+                                iq.Qty -= qty;
+                                break;
+                            }
+                            else {
+                                qty -= iq.Qty;
+                                iq.Qty = 0;
+                            }
                         }
                     }
-                }
 
-                if (double.TryParse(txtPrice.Text, out double price)) i.Price = price;
-                else
-                {
-                    txtPrice.Focus();
-                    txtPrice.SelectAll();
-                    MessageBox.Show("Invalid Price");
-                    return;
-                }
-                if (uint.TryParse(txtProd_Qty.Text, out uint product)) i.Bottles = product;
-                else
-                {
-                    txtProd_Qty.Focus();
-                    txtProd_Qty.SelectAll();
-                    MessageBox.Show("Invalid Product Quantity");
-                    return;
-                }
+                    if (double.TryParse(txtPrice.Text, out double price)) i.Price = price;
+                    else {
+                        txtPrice.Focus();
+                        txtPrice.SelectAll();
+                        MessageBox.Show("Invalid Price");
+                        return;
+                    }
+                    if (uint.TryParse(txtProd_Qty.Text, out uint product)) i.Bottles = product;
+                    else {
+                        txtProd_Qty.Focus();
+                        txtProd_Qty.SelectAll();
+                        MessageBox.Show("Invalid Product Quantity");
+                        return;
+                    }
 
-                if (uint.TryParse(txt_min_qty.Text.Trim(), out uint min)) i.InvMin = min;
-                else
-                {
-                    txt_min_qty.Focus();
-                    txtPrice.SelectAll();
-                    MessageBox.Show("Invalid Minimum Quantity");
-                    return;
+                    if (uint.TryParse(txt_min_qty.Text.Trim(), out uint min)) i.InvMin = min;
+                    else {
+                        txt_min_qty.Focus();
+                        txtPrice.SelectAll();
+                        MessageBox.Show("Invalid Minimum Quantity");
+                        return;
+                    }
+
+                    if (uint.TryParse(txt_max_qty.Text.Trim(), out uint max)) i.InvMax = max;
+                    else {
+                        txt_max_qty.Focus();
+                        txtPrice.SelectAll();
+                        MessageBox.Show("Invalid Maximum Quantity");
+                        return;
+                    }
+
+                    if (uint.TryParse(txt_order_qty.Text.Trim(), out uint order)) i.OrderQty = order;
+                    else {
+                        txt_min_qty.Focus();
+                        txtPrice.SelectAll();
+                        MessageBox.Show("Invalid Order Quantity");
+                        return;
+                    }
+                    //i.InvMin = uint.Parse(txt_min_qty.Text.Trim());
+                    //i.InvMax = uint.Parse(txt_max_qty.Text.Trim());
+                    //i.OrderQty = uint.Parse(txt_order_qty.Text.Trim());
+                    i.Hidden = chk_hide_item.Checked;
+
+                    i.ItemType = cboType.Text;
+                    i.TypeID = types.First(x => x.TypeName == cboType.Text).TypeId;
+                    i.SupplierID = suppliers.First(x => x.Name == cbo_Supplier.Text).SupplierID;
+                    DataAccess.instance.UpdateItem(i);
+
+                    RefreshInv();
                 }
-
-                if (uint.TryParse(txt_max_qty.Text.Trim(), out uint max)) i.InvMax = max;
-                else
-                {
-                    txt_max_qty.Focus();
-                    txtPrice.SelectAll();
-                    MessageBox.Show("Invalid Maximum Quantity");
-                    return;
-                }
-
-                if (uint.TryParse(txt_order_qty.Text.Trim(), out uint order)) i.OrderQty = order;
-                else
-                {
-                    txt_min_qty.Focus();
-                    txtPrice.SelectAll();
-                    MessageBox.Show("Invalid Order Quantity");
-                    return;
-                }
-                //i.InvMin = uint.Parse(txt_min_qty.Text.Trim());
-                //i.InvMax = uint.Parse(txt_max_qty.Text.Trim());
-                //i.OrderQty = uint.Parse(txt_order_qty.Text.Trim());
-                i.Hidden = chk_hide_item.Checked; 
-
-                i.ItemType = cboType.Text;
-                i.TypeID = types.First(x => x.TypeName == cboType.Text).TypeId;
-                i.SupplierID = suppliers.First(x => x.Name == cbo_Supplier.Text).SupplierID;
-                DataAccess.instance.UpdateItem(i);
-
-                RefreshInv();
+                else {
+                    MessageBox.Show("Name and Barcode cannot be empty.", "Error");
+				}
             }
-
         }
+
 
         private void btn_new_Click(object sender, EventArgs e)
         {
             if (LookupView.SelectedRows.Count > 0)
             {
-                Inventory i = DataAccess.instance.GetInventory().FirstOrDefault(x => x.Barcode == txtBarcode.Text);
+                if (txtName.Text.Replace(" ", "") != "" && txtBarcode.Text.Replace(" ", "") != "") {
+                    Inventory i = DataAccess.instance.GetInventory().FirstOrDefault(x => x.Barcode == txtBarcode.Text);
 
-                if (i == null)
-                    i = new Inventory();
-                else
-                {
-                    txtBarcode.Focus();
-                    txtBarcode.SelectAll();
-                    MessageBox.Show("Barcode already used");
-                    return;
+                    if (i == null)
+                        i = new Inventory();
+                    else {
+                        txtBarcode.Focus();
+                        txtBarcode.SelectAll();
+                        MessageBox.Show("Barcode already used");
+                        return;
+                    }
+
+                    i.Name = txtName.Text.Trim();
+                    i.Barcode = txtBarcode.Text.Trim();
+
+                    if (!uint.TryParse(txt_qty.Text, out uint qty)) {
+                        txt_qty.Focus();
+                        txt_qty.SelectAll();
+                        MessageBox.Show("Invalid Quantity");
+                        return;
+                    }
+
+                    if (!double.TryParse(txt_net_price.Text, out double netprice)) {
+                        txt_net_price.Focus();
+                        txt_net_price.SelectAll();
+                        MessageBox.Show("Invalid Supply Price");
+                        return;
+                    }
+
+                    i.AllQty.Add(new InventoryQty {
+                        Qty = qty,
+                        SupplierPrice = netprice,
+                        PurchasedDate = DateTime.Now
+                    });
+
+                    if (double.TryParse(txtPrice.Text, out double price)) i.Price = price;
+                    else {
+                        txtPrice.Focus();
+                        txtPrice.SelectAll();
+                        MessageBox.Show("Invalid Price");
+                        return;
+                    }
+                    if (uint.TryParse(txtProd_Qty.Text, out uint product)) i.Bottles = product;
+                    else {
+                        txtProd_Qty.Focus();
+                        txtProd_Qty.SelectAll();
+                        MessageBox.Show("Invalid Product Quantity");
+                        return;
+                    }
+                    i.ItemType = cboType.Text;
+                    i.TypeID = types.First(x => x.TypeName == cboType.Text).TypeId;
+                    i.SupplierID = suppliers.First(x => x.Name == cbo_Supplier.Text).SupplierID;
+
+                    if (uint.TryParse(txt_min_qty.Text.Trim(), out uint min)) i.InvMin = min;
+                    else {
+                        txt_min_qty.Focus();
+                        txt_min_qty.SelectAll();
+                        MessageBox.Show("Invalid Min Qty");
+                        return;
+                    }
+
+                    if (uint.TryParse(txt_max_qty.Text.Trim(), out uint max)) i.InvMax = max;
+                    else {
+                        txt_max_qty.Focus();
+                        txt_max_qty.SelectAll();
+                        MessageBox.Show("Invalid Max Qty");
+                        return;
+                    }
+
+                    //i.InvMax = uint.Parse(txt_max_qty.Text.Trim());
+                    //i.OrderQty = uint.Parse(txt_order_qty.Text.Trim());
+
+                    i.Id = DataAccess.instance.InsertItem(i);
+                    RefreshInv();
                 }
-
-                i.Name = txtName.Text.Trim();
-                i.Barcode = txtBarcode.Text.Trim();
-
-                if (!uint.TryParse(txt_qty.Text, out uint qty))
-                {
-                    txt_qty.Focus();
-                    txt_qty.SelectAll();
-                    MessageBox.Show("Invalid Quantity");
-                    return;
+                else {
+                    MessageBox.Show("Name and Barcode cannot be empty.", "Error");
                 }
-
-                if (!double.TryParse(txt_net_price.Text, out double netprice))
-                {
-                    txt_net_price.Focus();
-                    txt_net_price.SelectAll();
-                    MessageBox.Show("Invalid Supply Price");
-                    return;
-                }
-
-                i.AllQty.Add(new InventoryQty
-                {
-                    Qty = qty,
-                    SupplierPrice = netprice,
-                    PurchasedDate = DateTime.Now
-                });
-
-                if (double.TryParse(txtPrice.Text, out double price)) i.Price = price;
-                else
-                {
-                    txtPrice.Focus();
-                    txtPrice.SelectAll();
-                    MessageBox.Show("Invalid Price");
-                    return;
-                }
-                if (uint.TryParse(txtProd_Qty.Text, out uint product)) i.Bottles = product;
-                else
-                {
-                    txtProd_Qty.Focus();
-                    txtProd_Qty.SelectAll();
-                    MessageBox.Show("Invalid Product Quantity");
-                    return;
-                }
-                i.ItemType = cboType.Text;
-                i.TypeID = types.First(x => x.TypeName == cboType.Text).TypeId;
-                i.SupplierID = suppliers.First(x => x.Name == cbo_Supplier.Text).SupplierID;
-
-                if (uint.TryParse(txt_min_qty.Text.Trim(), out uint min)) i.InvMin = min;
-                else
-                {
-                    txt_min_qty.Focus();
-                    txt_min_qty.SelectAll();
-                    MessageBox.Show("Invalid Min Qty");
-                    return;
-                }
-
-                if (uint.TryParse(txt_max_qty.Text.Trim(), out uint max)) i.InvMax = max;
-                else
-                {
-                    txt_max_qty.Focus();
-                    txt_max_qty.SelectAll();
-                    MessageBox.Show("Invalid Max Qty");
-                    return;
-                }
-
-                //i.InvMax = uint.Parse(txt_max_qty.Text.Trim());
-                //i.OrderQty = uint.Parse(txt_order_qty.Text.Trim());
-
-                i.Id = DataAccess.instance.InsertItem(i);
-                RefreshInv();
             }
         }
 
