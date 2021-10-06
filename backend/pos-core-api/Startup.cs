@@ -11,6 +11,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.OpenApi.Models;
 using System.IO;
+using pos_core_api.Helpers;
 
 namespace WebApi
 {
@@ -19,6 +20,8 @@ namespace WebApi
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            UseSwagger = bool.Parse ( Resources.GetValue("UseSwagger", UseSwagger.ToString()));
+            Resources.SetValue("UseSwagger", UseSwagger.ToString());
         }
 
         public IConfiguration Configuration { get; }

@@ -18,13 +18,12 @@ namespace pos_core_api.Helpers
             try
             {
                 using IResourceWriter writer = new ResourceWriter(asset);
-
-                // TODO: Encrypt connection string
-                // Adds resources to the resource writer.
-                writer.AddResource(key, value);
-
-                // Writes the resources to the file or stream, and closes it.
-                writer.Close();
+                {
+                    // TODO: Encrypt connection string
+                    // Adds resources to the resource writer.
+                    writer.AddResource(key, value);
+                    writer.Close();  
+                }
             }
             catch (Exception ex) { ErrorLogging.WriteToErrorLog(ex); }
         }
@@ -41,13 +40,18 @@ namespace pos_core_api.Helpers
                 try
                 {
                     // try to read the resource file
-                    ResourceReader rw = new ResourceReader(asset);
+                    using ResourceReader rw = new ResourceReader(asset);
+                    {
+                        IDictionaryEnumerator dict = rw.GetEnumerator();
 
-                    IDictionaryEnumerator dict = rw.GetEnumerator();
-
-                    while (dict.MoveNext())
-                        if (dict.Key.ToString() == key)
-                           return dict.Value.ToString();
+                        while (dict.MoveNext())
+                            if (dict.Key.ToString() == key)
+                            {
+                               rw.Close();
+                               return dict.Value.ToString();
+                            }
+                    }
+                    rw.Close();
                 }
                 catch (Exception ex)
                 {
