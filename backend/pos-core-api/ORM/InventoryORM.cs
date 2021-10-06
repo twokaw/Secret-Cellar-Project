@@ -139,8 +139,10 @@ namespace pos_core_api.ORM
 
                 using MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
                 using MySqlDataReader reader = cmd.ExecuteReader();
-
-                return reader.GetString("HashValue");
+                if (reader.Read())
+                    return reader.GetString("HashValue");
+                else
+                    return "";
             }
             finally
             {

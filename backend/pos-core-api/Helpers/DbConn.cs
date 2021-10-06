@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using pos_core_api.Helpers;
 using Shared;
 using System;
 using System.Collections;
@@ -18,7 +19,7 @@ namespace WebApi.Helpers
         }
 
         public void SetConnectionString(string conString)
-        {
+        {/*
             try
             {
                 using IResourceWriter writer = new ResourceWriter("myResources.resources");
@@ -26,18 +27,24 @@ namespace WebApi.Helpers
                 // TODO: Encrypt connection string
                 // Adds resources to the resource writer.
                 writer.AddResource("ConnectionString", conString);
-
-                // Writes the resources to the file or stream, and closes it.
-                writer.Close();
-                connString = conString;
-            }
-            catch (Exception ex) { ErrorLogging.WriteToErrorLog(ex); }
+                */
+            Resources.SetValue("ConnectionString", conString);
+            connString = conString;
+            /*
+            // Writes the resources to the file or stream, and closes it.
+            writer.Close();
+            connString = conString;
+        }
+        catch (Exception ex) { ErrorLogging.WriteToErrorLog(ex); }
+            */
         }
 
         public string GetConnectionString()
         {
+
             if(connString == null)
             {
+                /*
                 try
                 {
                     // try to read the resource file
@@ -63,6 +70,8 @@ namespace WebApi.Helpers
                 // if that fails then use the default connection string
                 if (connString == null) 
                     connString = defaultConnectionString;
+                */
+                connString = Resources.GetValue("ConnectionString", defaultConnectionString);
             }
 
             return connString;
@@ -86,7 +95,6 @@ namespace WebApi.Helpers
             {
                 if (conn.Ping() == true)
                     conn.Close();
-
             }
             catch (Exception ex)
             {

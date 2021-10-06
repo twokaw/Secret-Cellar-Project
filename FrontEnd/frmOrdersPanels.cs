@@ -9,7 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SecretCellar {
-	public partial class frmOrdersPanels : Form {
+	public partial class frmOrdersPanels : ManagedForm
+    {
 		public frmOrdersPanels() {
 			InitializeComponent();
 		}
@@ -17,5 +18,15 @@ namespace SecretCellar {
 		private void btn_close_Click(object sender, EventArgs e) {
 			this.Close();
 		}
-	}
+
+        private void panel_CustomerRequest1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void frmOrdersPanels_Load(object sender, EventArgs e)
+        {
+
+        }
+    }
 }
