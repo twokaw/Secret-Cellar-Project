@@ -126,11 +126,12 @@ namespace SecretCellar
                 Payment p = transaction.Payments.First(x => x.Method == TYPE && x.Amount == amt);
                 transaction.Payments.Remove(p);
 
-                
+
                 //checks to see if the deletion is customer credit so that it doesn't add too much back to customer credit
-
-                if (TYPE == "CUSTOMER CREDIT") txt_credit_amount.Text = (Convert.ToDouble(txt_credit_amount.Text) + amt).ToString();
-
+                if (TYPE == "CUSTOMER CREDIT") {
+                    txt_credit_amount.Text = (Convert.ToDouble(txt_credit_amount.Text) + amt).ToString();
+                    currentCustomer.Credit = Convert.ToDouble(txt_credit_amount.Text);
+                }
 
                 RefreshGrid();
             }
@@ -143,7 +144,7 @@ namespace SecretCellar
 
         private void btn_cust_credit_Click(object sender, EventArgs e)
         {
-            double creditAmount = (Convert.ToDouble(txt_credit_amount.Text));
+            double creditAmount = Convert.ToDouble(txt_credit_amount.Text);
             double due = (Convert.ToDouble(txtDue.Text.Replace("$","")));
 
             if (txtCashAmt.Text == "")
@@ -161,13 +162,12 @@ namespace SecretCellar
             {
                 creditAmount = Math.Min(due, Convert.ToDouble(txtCashAmt.Text.Trim()));
             }
+
             txtCashAmt.Text = creditAmount.ToString();
             UpdatePayment("CUSTOMER CREDIT");
 
             txt_credit_amount.Text =  (Convert.ToDouble(txt_credit_amount.Text.Trim())- creditAmount).ToString();
-           
-                    
-        
+            currentCustomer.Credit = Convert.ToDouble(txt_credit_amount.Text);
         }
     }
 }
