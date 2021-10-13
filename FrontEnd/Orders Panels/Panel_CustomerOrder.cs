@@ -16,15 +16,13 @@ namespace SecretCellar.Orders_Panels {
 		public Panel_CustomerOrder() {
 			InitializeComponent();
 
-			cust = DataAccess.instance?.GetCustomer() ?? new List<Customer> ();
-			suppliers = DataAccess.instance?.GetSuppliers() ?? new List<Supplier>();
+			cbx_cust_custorder.DataSource = DataAccess.instance?.GetCustomer() ?? new List<Customer> ();
+			cbx_supp_custorder.DataSource = DataAccess.instance?.GetSuppliers() ?? new List<Supplier>();
 			suppliers.Add(new Supplier
 			{ 
 				Name = "All",
 				SupplierID = 0
 			});
-			cbx_cust_custorder.DataSource = cust;
-			cbx_supp_custorder.DataSource = suppliers;
 		}
 
 
@@ -62,12 +60,14 @@ namespace SecretCellar.Orders_Panels {
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
 		private void btnFavoritesRemove_Click(object sender, EventArgs e) {
-			uint cid = ((Customer)cbx_cust_custorder.SelectedItem).CustomerID;
-			uint iid = DataAccess.instance.GetInventory().FirstOrDefault(x => x.Name == custOrder_datagrid.SelectedRows[0].Cells["CustOrdName"].Value.ToString()).Id;
+			if (custOrder_datagrid.SelectedRows.Count > 0) {
+				uint cid = ((Customer)cbx_cust_custorder.SelectedItem).CustomerID;
+				uint iid = DataAccess.instance.GetInventory().FirstOrDefault(x => x.Name == custOrder_datagrid.SelectedRows[0].Cells["CustOrdName"].Value.ToString()).Id;
 
-			DataAccess.instance.DeleteCustomerFavorite(cid, iid);
+				DataAccess.instance.DeleteCustomerFavorite(cid, iid);
 
-			RefreshFavorite(cid);
+				RefreshFavorite(cid);
+			}
 		}
 
 		/// <summary>
@@ -76,6 +76,7 @@ namespace SecretCellar.Orders_Panels {
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
 		private void btnAddOrder_Click(object sender, EventArgs e) {
+
 			Transaction t = new Transaction {
 				CustomerID = ((Customer)cbx_cust_custorder.SelectedItem).CustomerID
 			};
