@@ -62,6 +62,7 @@ namespace SecretCellar.Orders_Panels {
                    Price = x.SupplierPrice,
                    minqty = x.InvMin,
                    maxqty = x.InvMax,
+                   requredqty = x.RequiredQty,
                    orderqty = x.OrderQty
                }).
                OrderBy(x => x.Name).
@@ -119,7 +120,7 @@ namespace SecretCellar.Orders_Panels {
         ///////////////////////
         public List<Inventory> listItems(Supplier orderSupplier) {
             inventory = DataAccess.instance.GetInventory();
-            withQty = inventory.Where(x => (orderSupplier.SupplierID == x.SupplierID || orderSupplier.SupplierID == 0) && x.OrderQty > 0).
+            withQty = inventory.Where(x => (orderSupplier.SupplierID == x.SupplierID || orderSupplier.SupplierID == 0) && x.RequiredQty > 0).
             OrderBy(x => x.Name)
             .ToList();
 
@@ -168,6 +169,11 @@ namespace SecretCellar.Orders_Panels {
         }
 
         private void Panel_SupplierOrder_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void supp_dataGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }

@@ -346,10 +346,12 @@ namespace pos_core_api.ORM
                 cmd.Dispose();
 
                 cmd = new MySqlCommand(@"
-                   UPDATE inventory_price 
-                   SET    Inventory_Qty  = @qty, 
-                          Supplier_price = @supplier_price
-                   WHERE InventoryId = @id;
+                  INSERT INTO  inventory_price 
+                   (inventoryid, Inventory_Qty, Supplier_price)
+                  VALUES 
+                   (@id, @Qty, @Supplier_price)
+                  ON DUPLICATE KEY UPDATE Inventory_Qty  = @qty, 
+                          Supplier_price = @supplier_price;
                 ", db.Connection());
 
                 cmd.Parameters.Add(new MySqlParameter("id", inv.Id));

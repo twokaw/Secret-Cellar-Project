@@ -372,7 +372,7 @@ namespace SecretCellar
             }
         }
 
-        private void RefreshInv() {
+        public void RefreshInv() {
             int quantity;
 
             if (cbxOnlyItemsWithInventory.Checked) { quantity = 0; }
@@ -400,5 +400,10 @@ namespace SecretCellar
                    OrderBy(x => x.Name).
                    ToList();
         }
-	}
+
+        private void LookupView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+    }
 }
