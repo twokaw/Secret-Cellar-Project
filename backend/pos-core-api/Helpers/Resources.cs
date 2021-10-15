@@ -1,6 +1,7 @@
 ﻿using Shared;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Resources;
 
 namespace pos_core_api.Helpers
@@ -28,13 +29,43 @@ namespace pos_core_api.Helpers
             catch (Exception ex) { ErrorLogging.WriteToErrorLog(ex); }
         }
 
+        public static Dictionary<string, string> GetValues()
+        {
+            return GetValues(DefaultAsset);
+        }
+
+        public static Dictionary<string, string> GetValues(string asset)
+        {
+            Dictionary<string, string> result = new Dictionary<string, string>();
+
+            try
+            {
+                // try to read the resource file
+                using ResourceReader rw = new ResourceReader(asset);
+                {
+                    IDictionaryEnumerator dict = rw.GetEnumerator();
+
+                    while (dict.MoveNext())
+                        result.Add(dict.Key.ToString(), dict.Value.ToString());                        
+                }
+                rw.Close();
+            }
+            catch (Exception ex)
+            {
+                ErrorLogging.WriteToErrorLog(ex);
+            }
+
+            return result;
+        }
+
         public static string GetValue(string key, string defaultValue = "")
         {
             return GetValue(DefaultAsset, key, defaultValue);
         }
 
-        public static string GetValue(string asset, string key, string defaultValue = "")
+        public static string GetValue(string asset, string key, string defaultValue)
         {
+            string result = defaultValue;
             if (key != null)
             {
                 try
@@ -47,18 +78,18 @@ namespace pos_core_api.Helpers
                         while (dict.MoveNext())
                             if (dict.Key.ToString() == key)
                             {
-                               rw.Close();
-                               return dict.Value.ToString();
+                               result = dict.Value.ToString();
+                               break;
                             }
+                        rw.Close();
                     }
-                    rw.Close();
                 }
                 catch (Exception ex)
                 {
                     ErrorLogging.WriteToErrorLog(ex);
                 }
             }
-            return defaultValue;
+            return result; 
         }
     }
 }

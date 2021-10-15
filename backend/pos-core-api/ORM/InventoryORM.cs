@@ -160,43 +160,60 @@ namespace pos_core_api.ORM
 
                 if (outputItem == null)
                 {
-                    outputItem = new Inventory
+
+                    try
                     {
-                        Id = reader.IsDBNull("InventoryId") ? 0 : reader.GetUInt32("InventoryId"),
-                        Name = reader.IsDBNull("name") ? "" : reader.GetString("name"),
-                        SupplierID = reader.IsDBNull("supplierID") ? 0 : reader.GetUInt32("supplierID"),
-                        Barcode = reader.IsDBNull("barcode") ? "" : reader.GetString("barcode"),
-                        Price = reader.IsDBNull("retail_price") ? 0.00 : reader.GetDouble("retail_price"),
-                        TypeID = reader.IsDBNull("typeID") ? 0 : reader.GetUInt32("typeID"),
-                        Bottles = reader.IsDBNull("bottles") ? 0 : reader.GetUInt32("bottles"),
-                        NonTaxable = !reader.IsDBNull("nontaxable") && (0 != reader.GetInt16("nontaxable")),
-                        NonTaxableLocal = !reader.IsDBNull("nontaxable_local") && (0 != reader.GetInt16("nontaxable_local")),
-                        ItemType = reader.IsDBNull("inventory_type_name") ? "" : reader.GetString("inventory_type_name"),
-                        BottleDeposit = reader.IsDBNull("bottle_deposit") ? 0 : reader.GetDouble("bottle_deposit"),
-                        IdTax = reader.IsDBNull("idTax") ? 0 : reader.GetUInt32("idTax"),
-                        Hidden = reader.IsDBNull("hidden") ? false : reader.GetBoolean("hidden"),
-                        SalesTax = reader.IsDBNull("sales_tax") ? 0 : reader.GetDouble("sales_tax"),
-                        LocalSalesTax = reader.IsDBNull("local_sales_tax") ? 0 : reader.GetDouble("local_sales_tax"),
-                        InvMax = reader.IsDBNull("InvMax") ? 0 : reader.GetUInt32("InvMax"),
-                        InvMin = reader.IsDBNull("InvMin") ? 0 : reader.GetUInt32("InvMin"),
-                        OrderIncrement = reader.GetUInt32("OrderIncrement"),
-                        OrderQty = reader.IsDBNull("OrderQty") ? 0 : reader.GetUInt32("OrderQty"),
-                        RequestQty = reader.IsDBNull("RequestQty") ? 0 : reader.GetUInt32("RequestQty")
-                    };
-                    output.Add(outputItem);
+
+                        outputItem = new Inventory
+                        {
+                            Id = reader.IsDBNull("InventoryId") ? 0 : reader.GetUInt32("InventoryId"),
+                            Name = reader.IsDBNull("name") ? "" : reader.GetString("name"),
+                            SupplierID = reader.IsDBNull("supplierID") ? 0 : reader.GetUInt32("supplierID"),
+                            Barcode = reader.IsDBNull("barcode") ? "" : reader.GetString("barcode"),
+                            Price = reader.IsDBNull("retail_price") ? 0.00 : reader.GetDouble("retail_price"),
+                            TypeID = reader.IsDBNull("typeID") ? 0 : reader.GetUInt32("typeID"),
+                            Bottles = reader.IsDBNull("bottles") ? 0 : reader.GetUInt32("bottles"),
+                            NonTaxable = !reader.IsDBNull("nontaxable") && (0 != reader.GetInt16("nontaxable")),
+                            NonTaxableLocal = !reader.IsDBNull("nontaxable_local") && (0 != reader.GetInt16("nontaxable_local")),
+                            ItemType = reader.IsDBNull("inventory_type_name") ? "" : reader.GetString("inventory_type_name"),
+                            BottleDeposit = reader.IsDBNull("bottle_deposit") ? 0 : reader.GetDouble("bottle_deposit"),
+                            IdTax = reader.IsDBNull("idTax") ? 0 : reader.GetUInt32("idTax"),
+                            Hidden = reader.IsDBNull("hidden") ? false : reader.GetBoolean("hidden"),
+                            SalesTax = reader.IsDBNull("sales_tax") ? 0 : reader.GetDouble("sales_tax"),
+                            LocalSalesTax = reader.IsDBNull("local_sales_tax") ? 0 : reader.GetDouble("local_sales_tax"),
+                            InvMax = reader.IsDBNull("InvMax") ? 0 : reader.GetUInt32("InvMax"),
+                            InvMin = reader.IsDBNull("InvMin") ? 0 : reader.GetUInt32("InvMin"),
+                            OrderIncrement = reader.GetUInt32("OrderIncrement"),
+                            OrderQty = reader.IsDBNull("OrderQty") ? 0 : reader.GetUInt32("OrderQty"),
+                            RequestQty = reader.IsDBNull("RequestQty") ? 0 : reader.GetUInt32("RequestQty"),
+                            RequiredQty = reader.IsDBNull("RequiredQty") ? 0 : reader.GetUInt32("RequiredQty")
+                        };
+                        output.Add(outputItem);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex);
+                    }
                 }
 
-                if (!reader.IsDBNull("discountID")
-                && outputItem.Discounts.FirstOrDefault(x => x.DiscountID == reader.GetUInt32("discountID")) == null)
-                    outputItem.Discounts.Add(new Discount()
-                    {
-                        DiscountID = reader.GetUInt32("discountID"),
-                        DiscountName = reader.GetString("discountName"),
-                        Min = reader.IsDBNull("minqty") ? 0 : reader.GetUInt32("minqty"),
-                        Max = reader.IsDBNull("maxqty") ? 99999999 : reader.GetUInt32("maxqty"),
-                        Amount = reader.GetDouble("Discount"),
-                        Enabled = reader.IsDBNull("minqty") && reader.IsDBNull("maxqty")
-                    });
+                try
+                {
+                    if (!reader.IsDBNull("discountID")
+                    && outputItem.Discounts.FirstOrDefault(x => x.DiscountID == reader.GetUInt32("discountID")) == null)
+                        outputItem.Discounts.Add(new Discount()
+                        {
+                            DiscountID = reader.GetUInt32("discountID"),
+                            DiscountName = reader.GetString("discountName"),
+                            Min = reader.IsDBNull("minqty") ? 0 : reader.GetUInt32("minqty"),
+                            Max = reader.IsDBNull("maxqty") ? 99999999 : reader.GetUInt32("maxqty"),
+                            Amount = reader.GetDouble("Discount"),
+                            Enabled = reader.IsDBNull("minqty") && reader.IsDBNull("maxqty")
+                        });
+                }
+                    catch (Exception ex)
+                {
+                    Console.WriteLine(ex);
+                }
 
                 if (!reader.IsDBNull("supplier_Price")
                 && outputItem.AllQty.FirstOrDefault(x => x.SupplierPrice == reader.GetDouble("supplier_Price")) == null)
