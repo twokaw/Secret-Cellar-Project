@@ -87,7 +87,7 @@ namespace WebApi.Controllers
                 if (DataAccess.Instance.CustomerNote.Update(custNote) > 0)
                     return Ok();
                 else
-                    return StatusCode(404);
+                    return NotFound();
             }
             catch (Exception ex)
             {
@@ -136,7 +136,7 @@ namespace WebApi.Controllers
                 if (DataAccess.Instance.CustomerNote.UpdateNoteType(noteType) > 0)
                     return Ok();
                 else
-                    return StatusCode(404);
+                    return NotFound();
             }
             catch (Exception ex)
             {

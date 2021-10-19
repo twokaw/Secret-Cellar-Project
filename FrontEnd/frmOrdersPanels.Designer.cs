@@ -199,7 +199,6 @@ namespace SecretCellar {
             this.Name = "frmOrdersPanels";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmOrdersPanels";
-            this.Load += new System.EventHandler(this.frmOrdersPanels_Load);
             this.tabControl1.ResumeLayout(false);
             this.tab_CustomerRequest.ResumeLayout(false);
             this.tab_CustomerRequest.PerformLayout();

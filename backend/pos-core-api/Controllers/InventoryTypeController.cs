@@ -82,7 +82,7 @@ namespace WebApi.Controllers
             try
             {
                 if (DataAccess.Instance.InventoryType.GetTypeQty(-1, invType.TypeName) > -1) 
-                    return StatusCode(400, "Type already exist.");
+                    return BadRequest("Type already exist.");
 
                 return StatusCode(201, DataAccess.Instance.InventoryType.Insert(invType));
             }
@@ -106,7 +106,7 @@ namespace WebApi.Controllers
                     newId = invType.TypeId;
                 }
 
-                return Ok($"{newId}");
+                return Ok(newId);
             }
             catch (Exception ex) { ErrorLogging.WriteToErrorLog(ex); return StatusCode(500, ex.Message); }
         }
@@ -120,9 +120,9 @@ namespace WebApi.Controllers
                 int qty = DataAccess.Instance.InventoryType.GetTypeQty(id, "");
 
                 if(qty == -1)
-                    return StatusCode(400, $"No type with the id '{id}'.");
+                    return BadRequest($"No type with the id '{id}'.");
                 else if (qty > 0)
-                    return StatusCode(400, $"Can't delete Type id '{id}'.  It has {qty} inventory items assigned to it");
+                    return BadRequest($"Can't delete Type id '{id}'.  It has {qty} inventory items assigned to it");
 
                 DataAccess.Instance.InventoryType.Delete(id);
                 return Ok("Type succesfully Deleted");
