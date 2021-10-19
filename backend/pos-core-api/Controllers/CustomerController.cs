@@ -158,7 +158,7 @@ namespace WebApi.Controllers
                 if (DataAccess.Instance.Customer.Update(cust) > 0)
                     return Ok();
                 else
-                    return StatusCode(404);
+                    return NotFound();
             }
             catch (Exception ex)
             {

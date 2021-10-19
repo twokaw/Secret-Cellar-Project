@@ -42,7 +42,7 @@ namespace WebApi.Controllers
             {
                 Inventory output = DataAccess.Instance.Inventory.GetInv(id);
                 if (output == null)
-                    return StatusCode(400, $"The item with the id '{id}' does not exist.");
+                    return BadRequest($"The item with the id '{id}' does not exist.");
                 else
                     return Ok(output);
             }
@@ -83,7 +83,7 @@ namespace WebApi.Controllers
                 Inventory output = DataAccess.Instance.Inventory.GetInv(barcode);
 
                 if (output == null) 
-                    return StatusCode(400, $"That item with the barcode '{barcode}' does not exist.");
+                    return BadRequest($"That item with the barcode '{barcode}' does not exist.");
                 else
                     return Ok(output);
             }
@@ -104,7 +104,7 @@ namespace WebApi.Controllers
                 long lastID = -1;
 
                 if (DataAccess.Instance.Inventory.DoesBarcodeExist(inv.Barcode))
-                    return StatusCode(400, "Barcode already exist.");
+                    return BadRequest("Barcode already exist.");
 
                 DataAccess.Instance.Inventory.Insert(inv);
                 return StatusCode(201, lastID);

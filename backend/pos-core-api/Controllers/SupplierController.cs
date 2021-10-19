@@ -59,7 +59,7 @@ namespace WebApi.Controllers
                 Supplier output = DataAccess.Instance.Supplier.Get(id);
 
                 if (output == null)
-                    return StatusCode(400, $"The '{id}' does not exist. ");
+                    return BadRequest($"The '{id}' does not exist. ");
                 else
                     return Ok(output);
             }
