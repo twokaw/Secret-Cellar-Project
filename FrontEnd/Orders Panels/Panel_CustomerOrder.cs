@@ -8,21 +8,13 @@ using System.Windows.Forms;
 
 namespace SecretCellar.Orders_Panels {
 	public partial class Panel_CustomerOrder : UserControl {
-		private List<Customer> cust = null;
-		private List<Supplier> suppliers = new List<Supplier>();
-		//private List<Inventory> inventory = null;
-
-
 		public Panel_CustomerOrder() {
 			InitializeComponent();
 
 			cbx_cust_custorder.DataSource = DataAccess.instance?.GetCustomer() ?? new List<Customer> ();
-			cbx_supp_custorder.DataSource = DataAccess.instance?.GetSuppliers() ?? new List<Supplier>();
-			suppliers.Add(new Supplier
-			{ 
-				Name = "All",
-				SupplierID = 0
-			});
+
+			cbx_supp_custorder.Items.Add("");
+			cbx_supp_custorder.Items.AddRange(DataAccess.instance?.GetSuppliers().Select(x => x.Name).ToArray());
 		}
 
 
@@ -180,9 +172,9 @@ namespace SecretCellar.Orders_Panels {
 					i.Fav,
 					Ord = o.SingleOrDefault()
 				})
-				.Where(x => (x.Fav != null && (!x.Inv.Hidden || x.Ord != null) &&
-							(0 == ((Supplier)cbx_supp_custorder.SelectedItem).SupplierID ||
-							 x.Inv.SupplierID == ((Supplier)cbx_supp_custorder.SelectedItem).SupplierID)))
+				.Where(x => x.Fav != null && (!x.Inv.Hidden || x.Ord != null) &&
+							(cbx_supp_custorder.Text == "" ||
+							 DataAccess.instance?.GetSuppliers().First(supplier => supplier.Name == cbx_supp_custorder.Text).SupplierID == x.Inv.SupplierID))
 				.Select(x => new {
 					x.Inv.Id,
 					x.Inv.Name,
