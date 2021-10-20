@@ -70,6 +70,7 @@ namespace SecretCellar.Orders_Panels {
 			}
 		}
 
+
 		/// <summary>
 		/// On click Add Order.
 		/// </summary>
@@ -103,6 +104,7 @@ namespace SecretCellar.Orders_Panels {
 
 			RefreshFavorite(t.CustomerID);
 		}
+
 
 		/// <summary>
 		/// On click update order.
@@ -149,6 +151,17 @@ namespace SecretCellar.Orders_Panels {
 
 
 		/// <summary>
+		/// When the supplier checkbox is changed.
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void cbx_supp_custorder_SelectedIndexChanged(object sender, EventArgs e) {
+			uint cid = ((Customer)cbx_cust_custorder.SelectedItem).CustomerID;
+			RefreshFavorite(cid);
+		}
+
+
+		/// <summary>
 		/// Refresh the favorites list.
 		/// </summary>
 		/// <param name="customerId"></param>
@@ -180,12 +193,6 @@ namespace SecretCellar.Orders_Panels {
 					x.Fav?.Lastused
 				})
 				.ToList();
-		}
-
-        private void cbx_supp_custorder_SelectedIndexChanged(object sender, EventArgs e)
-        {
-			uint cid = ((Customer)cbx_cust_custorder.SelectedItem).CustomerID;
-			RefreshFavorite(cid);
 		}
     }
 }
