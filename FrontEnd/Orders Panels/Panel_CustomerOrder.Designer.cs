@@ -38,6 +38,9 @@ namespace SecretCellar.Orders_Panels {
             this.lbl_supp_custorder = new System.Windows.Forms.Label();
             this.cbx_supp_custorder = new System.Windows.Forms.ComboBox();
             this.custOrder_datagrid = new System.Windows.Forms.DataGridView();
+            this.lbl_cust_custorder = new System.Windows.Forms.Label();
+            this.cbx_cust_custorder = new System.Windows.Forms.ComboBox();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.CustOrd_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CustOrdName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CustOrdQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -45,9 +48,6 @@ namespace SecretCellar.Orders_Panels {
             this.CustOrdRequest = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CustOrdPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CustOrdLastUsed = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lbl_cust_custorder = new System.Windows.Forms.Label();
-            this.cbx_cust_custorder = new System.Windows.Forms.ComboBox();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.grpOrder.SuspendLayout();
             this.grpFavorites.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.custOrder_datagrid)).BeginInit();
@@ -221,76 +221,7 @@ namespace SecretCellar.Orders_Panels {
             this.custOrder_datagrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.custOrder_datagrid.Size = new System.Drawing.Size(990, 448);
             this.custOrder_datagrid.TabIndex = 15;
-            // 
-            // CustOrd_id
-            // 
-            this.CustOrd_id.DataPropertyName = "id";
-            this.CustOrd_id.HeaderText = "id";
-            this.CustOrd_id.MinimumWidth = 8;
-            this.CustOrd_id.Name = "CustOrd_id";
-            this.CustOrd_id.ReadOnly = true;
-            this.CustOrd_id.Visible = false;
-            this.CustOrd_id.Width = 150;
-            // 
-            // CustOrdName
-            // 
-            this.CustOrdName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.CustOrdName.DataPropertyName = "Name";
-            this.CustOrdName.HeaderText = "Name";
-            this.CustOrdName.MinimumWidth = 8;
-            this.CustOrdName.Name = "CustOrdName";
-            this.CustOrdName.ReadOnly = true;
-            this.CustOrdName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // CustOrdQty
-            // 
-            this.CustOrdQty.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.CustOrdQty.DataPropertyName = "Qty";
-            this.CustOrdQty.HeaderText = "Qty";
-            this.CustOrdQty.MinimumWidth = 8;
-            this.CustOrdQty.Name = "CustOrdQty";
-            this.CustOrdQty.ReadOnly = true;
-            this.CustOrdQty.Width = 74;
-            // 
-            // CustOrdOrderQty
-            // 
-            this.CustOrdOrderQty.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.CustOrdOrderQty.DataPropertyName = "OrderQty";
-            this.CustOrdOrderQty.HeaderText = "Order Qty";
-            this.CustOrdOrderQty.MinimumWidth = 8;
-            this.CustOrdOrderQty.Name = "CustOrdOrderQty";
-            this.CustOrdOrderQty.ReadOnly = true;
-            this.CustOrdOrderQty.Width = 118;
-            // 
-            // CustOrdRequest
-            // 
-            this.CustOrdRequest.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.CustOrdRequest.DataPropertyName = "Requested";
-            this.CustOrdRequest.HeaderText = "Request Qty";
-            this.CustOrdRequest.MinimumWidth = 8;
-            this.CustOrdRequest.Name = "CustOrdRequest";
-            this.CustOrdRequest.ReadOnly = true;
-            this.CustOrdRequest.Width = 137;
-            // 
-            // CustOrdPrice
-            // 
-            this.CustOrdPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.CustOrdPrice.DataPropertyName = "Price";
-            this.CustOrdPrice.HeaderText = "Price";
-            this.CustOrdPrice.MinimumWidth = 8;
-            this.CustOrdPrice.Name = "CustOrdPrice";
-            this.CustOrdPrice.ReadOnly = true;
-            this.CustOrdPrice.Width = 89;
-            // 
-            // CustOrdLastUsed
-            // 
-            this.CustOrdLastUsed.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.CustOrdLastUsed.DataPropertyName = "Lastused";
-            this.CustOrdLastUsed.HeaderText = "Last Ordered";
-            this.CustOrdLastUsed.MinimumWidth = 8;
-            this.CustOrdLastUsed.Name = "CustOrdLastUsed";
-            this.CustOrdLastUsed.ReadOnly = true;
-            this.CustOrdLastUsed.Width = 143;
+            this.custOrder_datagrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.custOrder_datagrid_CellContentClick);
             // 
             // lbl_cust_custorder
             // 
@@ -330,6 +261,76 @@ namespace SecretCellar.Orders_Panels {
             this.panel1.Size = new System.Drawing.Size(1194, 506);
             this.panel1.TabIndex = 20;
             // 
+            // CustOrd_id
+            // 
+            this.CustOrd_id.DataPropertyName = "id";
+            this.CustOrd_id.HeaderText = "id";
+            this.CustOrd_id.MinimumWidth = 8;
+            this.CustOrd_id.Name = "CustOrd_id";
+            this.CustOrd_id.ReadOnly = true;
+            this.CustOrd_id.Visible = false;
+            this.CustOrd_id.Width = 150;
+            // 
+            // CustOrdName
+            // 
+            this.CustOrdName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.CustOrdName.DataPropertyName = "Name";
+            this.CustOrdName.HeaderText = "Name";
+            this.CustOrdName.MinimumWidth = 8;
+            this.CustOrdName.Name = "CustOrdName";
+            this.CustOrdName.ReadOnly = true;
+            this.CustOrdName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // CustOrdQty
+            // 
+            this.CustOrdQty.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.CustOrdQty.DataPropertyName = "Qty";
+            this.CustOrdQty.HeaderText = "Qty";
+            this.CustOrdQty.MinimumWidth = 8;
+            this.CustOrdQty.Name = "CustOrdQty";
+            this.CustOrdQty.ReadOnly = true;
+            this.CustOrdQty.Width = 74;
+            // 
+            // CustOrdOrderQty
+            // 
+            this.CustOrdOrderQty.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.CustOrdOrderQty.DataPropertyName = "OrderQty";
+            this.CustOrdOrderQty.HeaderText = "Order Qty";
+            this.CustOrdOrderQty.MinimumWidth = 8;
+            this.CustOrdOrderQty.Name = "CustOrdOrderQty";
+            this.CustOrdOrderQty.ReadOnly = true;
+            this.CustOrdOrderQty.Width = 128;
+            // 
+            // CustOrdRequest
+            // 
+            this.CustOrdRequest.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.CustOrdRequest.DataPropertyName = "RequestQty";
+            this.CustOrdRequest.HeaderText = "Request Qty";
+            this.CustOrdRequest.MinimumWidth = 8;
+            this.CustOrdRequest.Name = "CustOrdRequest";
+            this.CustOrdRequest.ReadOnly = true;
+            this.CustOrdRequest.Width = 149;
+            // 
+            // CustOrdPrice
+            // 
+            this.CustOrdPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.CustOrdPrice.DataPropertyName = "Price";
+            this.CustOrdPrice.HeaderText = "Price";
+            this.CustOrdPrice.MinimumWidth = 8;
+            this.CustOrdPrice.Name = "CustOrdPrice";
+            this.CustOrdPrice.ReadOnly = true;
+            this.CustOrdPrice.Width = 89;
+            // 
+            // CustOrdLastUsed
+            // 
+            this.CustOrdLastUsed.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.CustOrdLastUsed.DataPropertyName = "Lastused";
+            this.CustOrdLastUsed.HeaderText = "Last Ordered";
+            this.CustOrdLastUsed.MinimumWidth = 8;
+            this.CustOrdLastUsed.Name = "CustOrdLastUsed";
+            this.CustOrdLastUsed.ReadOnly = true;
+            this.CustOrdLastUsed.Width = 143;
+            // 
             // Panel_CustomerOrder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -361,15 +362,15 @@ namespace SecretCellar.Orders_Panels {
 		private System.Windows.Forms.Label lbl_supp_custorder;
 		private System.Windows.Forms.ComboBox cbx_supp_custorder;
 		private System.Windows.Forms.DataGridView custOrder_datagrid;
-		private System.Windows.Forms.DataGridViewTextBoxColumn CustOrd_id;
-		private System.Windows.Forms.DataGridViewTextBoxColumn CustOrdName;
-		private System.Windows.Forms.DataGridViewTextBoxColumn CustOrdQty;
-		private System.Windows.Forms.DataGridViewTextBoxColumn CustOrdOrderQty;
-		private System.Windows.Forms.DataGridViewTextBoxColumn CustOrdRequest;
-		private System.Windows.Forms.DataGridViewTextBoxColumn CustOrdPrice;
-		private System.Windows.Forms.DataGridViewTextBoxColumn CustOrdLastUsed;
 		private System.Windows.Forms.Label lbl_cust_custorder;
 		private System.Windows.Forms.ComboBox cbx_cust_custorder;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CustOrd_id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CustOrdName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CustOrdQty;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CustOrdOrderQty;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CustOrdRequest;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CustOrdPrice;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CustOrdLastUsed;
     }
 }

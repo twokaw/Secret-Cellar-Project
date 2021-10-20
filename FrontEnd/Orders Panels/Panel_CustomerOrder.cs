@@ -18,11 +18,12 @@ namespace SecretCellar.Orders_Panels {
 
 			cust = DataAccess.instance?.GetCustomer() ?? new List<Customer> ();
 			suppliers = DataAccess.instance?.GetSuppliers() ?? new List<Supplier>();
-			suppliers.Add(new Supplier
+			suppliers.Insert (0, new Supplier
 			{ 
 				Name = "All",
 				SupplierID = 0
 			});
+			
 			cbx_cust_custorder.DataSource = cust;
 			cbx_supp_custorder.DataSource = suppliers;
 		}
@@ -153,12 +154,14 @@ namespace SecretCellar.Orders_Panels {
 		/// <param name="customerId"></param>
 		private void RefreshFavorite(uint customerId) {
 			List<CustomerFavorite> custFav = DataAccess.instance.GetCustomerFavorite(customerId).Favorites;
-			List<CustomerOrderItem> custItems = (DataAccess.instance.GetCustomerOrderforCustomer(customerId)?.Items ?? new List<CustomerOrderItem>()).Where(x => x.DeliverQty < x.RequestQty).ToList();
+			List<CustomerOrderItem> custItems = (DataAccess.instance.GetCustomerOrderforCustomer(customerId)?.Items ??
+				                                 new List<CustomerOrderItem>()).
+												 Where(x => x.DeliverQty < x.RequestQty).ToList();
 
 			custOrder_datagrid.DataSource = DataAccess.instance.GetInventory()
 				.GroupJoin(custFav, i => i.Id, f => f.InventoryID, (i, f) => new {
 					Inv = i,
-					Fav = f.SingleOrDefault()
+					Fav = f.SingleOrDefault()  
 				})
 				//.Where(x => x.Fav.InventoryID != 0 && !x.Inv.Hidden)
 				.GroupJoin(custItems, i => i.Inv.Id, o => o.Id, (i, o) => new {
@@ -174,6 +177,7 @@ namespace SecretCellar.Orders_Panels {
 					x.Inv.Name,
 					x.Inv.Qty,
 					x.Inv.OrderQty,
+					RequestQty = x.Inv?.RequestQty,
 					Requsted = x.Ord?.RequestQty,
 					x.Inv.Price,
 					x.Fav?.Lastused
@@ -186,5 +190,10 @@ namespace SecretCellar.Orders_Panels {
 			uint cid = ((Customer)cbx_cust_custorder.SelectedItem).CustomerID;
 			RefreshFavorite(cid);
 		}
+
+        private void custOrder_datagrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

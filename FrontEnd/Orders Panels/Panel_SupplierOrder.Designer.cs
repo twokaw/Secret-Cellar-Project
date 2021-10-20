@@ -47,7 +47,7 @@ namespace SecretCellar.Orders_Panels {
             this.price = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.minqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.maxqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.RequiredQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RequestQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.orderqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.supp_dataGrid)).BeginInit();
             this.panel1.SuspendLayout();
@@ -205,7 +205,7 @@ namespace SecretCellar.Orders_Panels {
             this.price,
             this.minqty,
             this.maxqty,
-            this.RequiredQty,
+            this.RequestQty,
             this.orderqty});
             this.supp_dataGrid.Location = new System.Drawing.Point(14, 45);
             this.supp_dataGrid.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -307,12 +307,13 @@ namespace SecretCellar.Orders_Panels {
             this.maxqty.Name = "maxqty";
             this.maxqty.ReadOnly = true;
             // 
-            // RequiredQty
+            // RequestQty
             // 
-            this.RequiredQty.HeaderText = "Required Qty";
-            this.RequiredQty.MinimumWidth = 8;
-            this.RequiredQty.Name = "RequiredQty";
-            this.RequiredQty.ReadOnly = true;
+            this.RequestQty.DataPropertyName = "RequestQty";
+            this.RequestQty.HeaderText = "Request Qty";
+            this.RequestQty.MinimumWidth = 8;
+            this.RequestQty.Name = "RequestQty";
+            this.RequestQty.ReadOnly = true;
             // 
             // orderqty
             // 
@@ -361,7 +362,7 @@ namespace SecretCellar.Orders_Panels {
         private System.Windows.Forms.DataGridViewTextBoxColumn price;
         private System.Windows.Forms.DataGridViewTextBoxColumn minqty;
         private System.Windows.Forms.DataGridViewTextBoxColumn maxqty;
-        private System.Windows.Forms.DataGridViewTextBoxColumn RequiredQty;
+        private System.Windows.Forms.DataGridViewTextBoxColumn RequestQty;
         private System.Windows.Forms.DataGridViewTextBoxColumn orderqty;
     }
 }
