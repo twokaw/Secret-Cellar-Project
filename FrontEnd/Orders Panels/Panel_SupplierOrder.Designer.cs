@@ -38,6 +38,7 @@ namespace SecretCellar.Orders_Panels {
             this.lbl_supplier = new System.Windows.Forms.Label();
             this.cbx_supplier = new System.Windows.Forms.ComboBox();
             this.supp_dataGrid = new System.Windows.Forms.DataGridView();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.barcode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -46,8 +47,8 @@ namespace SecretCellar.Orders_Panels {
             this.price = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.minqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.maxqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RequiredQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.orderqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.panel1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.supp_dataGrid)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -204,6 +205,7 @@ namespace SecretCellar.Orders_Panels {
             this.price,
             this.minqty,
             this.maxqty,
+            this.RequiredQty,
             this.orderqty});
             this.supp_dataGrid.Location = new System.Drawing.Point(14, 45);
             this.supp_dataGrid.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -216,7 +218,28 @@ namespace SecretCellar.Orders_Panels {
             this.supp_dataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.supp_dataGrid.Size = new System.Drawing.Size(895, 456);
             this.supp_dataGrid.TabIndex = 15;
+            this.supp_dataGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.supp_dataGrid_CellContentClick);
             this.supp_dataGrid.SelectionChanged += new System.EventHandler(this.supp_dataGrid_SelectionChanged);
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.lbl_qty);
+            this.panel1.Controls.Add(this.btn_received);
+            this.panel1.Controls.Add(this.lbl_supp_total);
+            this.panel1.Controls.Add(this.btn_update);
+            this.panel1.Controls.Add(this.supp_dataGrid);
+            this.panel1.Controls.Add(this.txt_update_qty);
+            this.panel1.Controls.Add(this.cbx_supplier);
+            this.panel1.Controls.Add(this.lbl_order_date);
+            this.panel1.Controls.Add(this.lbl_supplier);
+            this.panel1.Controls.Add(this.dateTimePicker1);
+            this.panel1.Controls.Add(this.txt_supp_total);
+            this.panel1.Controls.Add(this.btn_print_supp);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1152, 506);
+            this.panel1.TabIndex = 27;
             // 
             // id
             // 
@@ -284,33 +307,20 @@ namespace SecretCellar.Orders_Panels {
             this.maxqty.Name = "maxqty";
             this.maxqty.ReadOnly = true;
             // 
+            // RequiredQty
+            // 
+            this.RequiredQty.HeaderText = "Required Qty";
+            this.RequiredQty.MinimumWidth = 8;
+            this.RequiredQty.Name = "RequiredQty";
+            this.RequiredQty.ReadOnly = true;
+            // 
             // orderqty
             // 
             this.orderqty.DataPropertyName = "orderqty";
-            this.orderqty.HeaderText = "Order Qty";
+            this.orderqty.HeaderText = "Ordered Qty";
             this.orderqty.MinimumWidth = 8;
             this.orderqty.Name = "orderqty";
             this.orderqty.ReadOnly = true;
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.lbl_qty);
-            this.panel1.Controls.Add(this.btn_received);
-            this.panel1.Controls.Add(this.lbl_supp_total);
-            this.panel1.Controls.Add(this.btn_update);
-            this.panel1.Controls.Add(this.supp_dataGrid);
-            this.panel1.Controls.Add(this.txt_update_qty);
-            this.panel1.Controls.Add(this.cbx_supplier);
-            this.panel1.Controls.Add(this.lbl_order_date);
-            this.panel1.Controls.Add(this.lbl_supplier);
-            this.panel1.Controls.Add(this.dateTimePicker1);
-            this.panel1.Controls.Add(this.txt_supp_total);
-            this.panel1.Controls.Add(this.btn_print_supp);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1152, 506);
-            this.panel1.TabIndex = 27;
             // 
             // Panel_SupplierOrder
             // 
@@ -342,15 +352,16 @@ namespace SecretCellar.Orders_Panels {
 		private System.Windows.Forms.Label lbl_supplier;
 		private System.Windows.Forms.ComboBox cbx_supplier;
 		private System.Windows.Forms.DataGridView supp_dataGrid;
-		private System.Windows.Forms.DataGridViewTextBoxColumn id;
-		private System.Windows.Forms.DataGridViewTextBoxColumn barcode;
-		private System.Windows.Forms.DataGridViewTextBoxColumn name;
-		private System.Windows.Forms.DataGridViewTextBoxColumn ItemType;
-		private System.Windows.Forms.DataGridViewTextBoxColumn qty;
-		private System.Windows.Forms.DataGridViewTextBoxColumn price;
-		private System.Windows.Forms.DataGridViewTextBoxColumn minqty;
-		private System.Windows.Forms.DataGridViewTextBoxColumn maxqty;
-		private System.Windows.Forms.DataGridViewTextBoxColumn orderqty;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn barcode;
+        private System.Windows.Forms.DataGridViewTextBoxColumn name;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ItemType;
+        private System.Windows.Forms.DataGridViewTextBoxColumn qty;
+        private System.Windows.Forms.DataGridViewTextBoxColumn price;
+        private System.Windows.Forms.DataGridViewTextBoxColumn minqty;
+        private System.Windows.Forms.DataGridViewTextBoxColumn maxqty;
+        private System.Windows.Forms.DataGridViewTextBoxColumn RequiredQty;
+        private System.Windows.Forms.DataGridViewTextBoxColumn orderqty;
     }
 }

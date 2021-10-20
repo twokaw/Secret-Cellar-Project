@@ -38,9 +38,19 @@ namespace SecretCellar
 
         public void RefreshCache()
         {
-            GetInventory();
-            lookup = new frmLookup();
-            orders= new frmOrdersPanels();
+            if (InventoryChanged())
+            {
+
+                GetInventory();
+                if (lookup == null)
+                    lookup = new frmLookup();
+                else
+                    lookup.RefreshInv();
+                if (orders== null)
+                    orders = new frmOrdersPanels();
+                else
+                    orders.refreshInv();
+            }
         }
 
         public DialogResult ShowLookupForm(Transaction t)
@@ -69,7 +79,7 @@ namespace SecretCellar
         
         public List<Inventory> GetInventory()
         {
-            if(InventoryChanged())
+            if(InventoryChanged() || Inventory == null)
                  Inventory = (List<Inventory>)JsonConvert.DeserializeObject(web.DataGet("api/inventory"), typeof(List<Inventory>));
             return Inventory;
         }
@@ -90,7 +100,10 @@ namespace SecretCellar
             string result = web.DataPut($"api/Inventory", item, resp);
 
             if (uint.TryParse(result, out uint id))
+            {
+                RefreshCache();
                 return id;
+            }
             else
                 return 0;
         }
@@ -101,9 +114,13 @@ namespace SecretCellar
             string result = web.DataPost($"api/Inventory", item, resp);
 
             if (uint.TryParse(result, out uint id))
+            {
+                RefreshCache();
                 return id;
+            }
             else
                 return 0;
+
         }
         #endregion
 

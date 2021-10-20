@@ -27,7 +27,7 @@ namespace pos_core_api.Controllers
                 Event output = DataAccess.Instance.Event.Get(id);
 
                 if (output == null)
-                    return StatusCode(400, $"The event id '{id}' does not exist.");
+                    return BadRequest($"The event id '{id}' does not exist.");
                 else
                     return Ok(output);
             }
@@ -55,7 +55,7 @@ namespace pos_core_api.Controllers
             catch (Exception ex) { ErrorLogging.WriteToErrorLog(ex); return StatusCode(500, ex.Message); }
 
             if (output == null)
-                return StatusCode(400, $"That item with the barcode '{barcode}' does not exist.");
+                return BadRequest($"That item with the barcode '{barcode}' does not exist.");
             else
                 return Ok(output);
         }

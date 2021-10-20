@@ -19,6 +19,7 @@ namespace Shared
         }
         public uint OrderQty { get; set; }
         public uint RequestQty { get; set; }
+        public uint RequiredQty { get; set; }
 
         // Price in dollars
         public double Price { get; set; }   
