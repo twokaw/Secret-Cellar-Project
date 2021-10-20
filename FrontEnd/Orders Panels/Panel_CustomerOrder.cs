@@ -13,8 +13,10 @@ namespace SecretCellar.Orders_Panels {
 
 			cbx_cust_custorder.DataSource = DataAccess.instance?.GetCustomer() ?? new List<Customer> ();
 
-			cbx_supp_custorder.Items.Add("");
-			cbx_supp_custorder.Items.AddRange(DataAccess.instance?.GetSuppliers().Select(x => x.Name).ToArray());
+			if (DataAccess.instance != null) {
+				cbx_supp_custorder.Items.Add("");
+				cbx_supp_custorder.Items.AddRange(DataAccess.instance.GetSuppliers().Select(x => x.Name).ToArray());
+			}
 		}
 
 
