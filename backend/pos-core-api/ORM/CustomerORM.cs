@@ -181,6 +181,7 @@ namespace pos_core_api.ORM
               ( InventoryID, CustomerID)
               VALUES
               (@InventoryID, @customerID)
+              ON DUPLICATE KEY UPDATE customerID = @customerID
             ";
 
             MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
