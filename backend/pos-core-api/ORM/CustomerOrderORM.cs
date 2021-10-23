@@ -66,11 +66,37 @@ namespace pos_core_api.ORM
                 if (output.Count > 0)
                     return output[0];
                 else
-                    return null;
+                    return CreateOrder(customerID);
             }
             finally
             {
                 reader.Close();
+                db.CloseConnnection();
+            }
+        }
+        public CustomerOrder CreateOrder(uint customerID)
+        {
+            db.OpenConnection();
+
+            MySqlCommand cmd = new MySqlCommand(@"
+              INSERT INTO customerorder
+              (CustomerID, RequestDate)
+              VALUES
+              (@custid, SYSDATE())
+            ", db.Connection());
+            cmd.Parameters.Add(new MySqlParameter("custID", customerID));
+           
+            try
+            {
+                if (cmd.ExecuteNonQuery() > 0)
+                    return new CustomerOrder()
+                    {
+                        CustomerID = (uint)cmd.LastInsertedId
+                    };
+                else throw new Exception("Failed to create orderid");
+            }
+            finally
+            {
                 db.CloseConnnection();
             }
         }
@@ -131,11 +157,11 @@ namespace pos_core_api.ORM
 
         public long Insert(uint customerId, CustomerOrderItem cust)
         {
-            CustomerOrder co = Get(customerId, false);
-            if (co.Items.FirstOrDefault(x => x.CustomerOrderItemID == cust.CustomerOrderItemID) != null)
+               CustomerOrder co = Get(customerId, false);
+            if (co?.Items.FirstOrDefault(x => x.CustomerOrderItemID == cust.CustomerOrderItemID) != null)
                 return Update(cust);
             else {
-                CustomerOrderItem coi = co.Items.FirstOrDefault(x => x.Id == cust.Id && x.Price == cust.Price);
+                CustomerOrderItem coi = co?.Items.FirstOrDefault(x => x.Id == cust.Id && x.Price == cust.Price);
                 if(coi != null)
                 {
                     coi.RequestQty += cust.RequestQty;
