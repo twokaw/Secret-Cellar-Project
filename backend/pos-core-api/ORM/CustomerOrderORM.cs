@@ -132,15 +132,17 @@ namespace pos_core_api.ORM
         public long Insert(uint customerId, CustomerOrderItem cust)
         {
             CustomerOrder co = Get(customerId, false);
-            if (co.Items.FirstOrDefault(x => x.CustomerOrderItemID == cust.CustomerOrderItemID) != null)
-                return Update(cust);
-            else {
-                CustomerOrderItem coi = co.Items.FirstOrDefault(x => x.Id == cust.Id && x.Price == cust.Price);
-                if(coi != null)
-                {
-                    coi.RequestQty += cust.RequestQty;
-                    coi.DeliverQty += cust.DeliverQty;
-                    return Update(coi);
+
+            if (co != null) {
+                if (co.Items.FirstOrDefault(x => x.CustomerOrderItemID == cust.CustomerOrderItemID) != null)
+                    return Update(cust);
+                else {
+                    CustomerOrderItem coi = co.Items.FirstOrDefault(x => x.Id == cust.Id && x.Price == cust.Price);
+                    if (coi != null) {
+                        coi.RequestQty += cust.RequestQty;
+                        coi.DeliverQty += cust.DeliverQty;
+                        return Update(coi);
+                    }
                 }
             }
 
