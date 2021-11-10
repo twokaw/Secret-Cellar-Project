@@ -18,11 +18,11 @@ namespace pos_core_api.ORM
 
             List<EmployeeModel> output = new List<EmployeeModel>();
             EmployeeModel outputItem;
-            db.OpenConnection();
+            
 
             string sqlStatement = "SELECT * FROM employee";
 
-            MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
+            MySqlCommand cmd = db.CreateCommand(sqlStatement);
             MySqlDataReader reader = cmd.ExecuteReader();
 
             try
@@ -51,50 +51,40 @@ namespace pos_core_api.ORM
             {
                 reader.Close();
             }
-            db.CloseConnnection();
+            db.CloseCommand(cmd);
             return output;
         }
 
         public EmployeeModel Get(String employeeID)
         {
             EmployeeModel outputItem = new EmployeeModel();
+
+            MySqlCommand cmd = db.CreateCommand("SELECT * FROM employee WHERE emp_id = @empID");
+            cmd.Parameters.Add(new MySqlParameter("empID", employeeID));
+
             try
             {
-                db.OpenConnection();
+                using MySqlDataReader reader = cmd.ExecuteReader();
 
-                string sqlStatement = "SELECT * FROM employee WHERE emp_id = @empID";
-
-                MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
-                cmd.Parameters.Add(new MySqlParameter("empID", employeeID));
-                MySqlDataReader reader = cmd.ExecuteReader();
-
-                try
+                while (reader.Read())
                 {
-                    while (reader.Read())
-                    {
-                        outputItem.EmpID = reader.IsDBNull("emp_id") ? 0 : reader.GetUInt32("emp_id");
-                        outputItem.PinNumber = reader.IsDBNull("pin_number") ? 0 : reader.GetUInt32("pin_number");
-                        outputItem.IsAdmin = !reader.IsDBNull("admin") && (0 != reader.GetInt16("admin"));
-                        outputItem.FirstName = reader.IsDBNull("first_name") ? "" : reader.GetString("first_name");
-                        outputItem.LastName = reader.IsDBNull("last_name") ? "" : reader.GetString("last_name");
-                        outputItem.Email = reader.IsDBNull("email") ? "" : reader.GetString("email");
-                        outputItem.Address1 = reader.IsDBNull("addr1") ? "" : reader.GetString("addr1");
-                        outputItem.Address2 = reader.IsDBNull("addr2") ? "" : reader.GetString("addr2");
-                        outputItem.City = reader.IsDBNull("city") ? "" : reader.GetString("city");
-                        outputItem.State = reader.IsDBNull("state") ? "" : reader.GetString("state");
-                        outputItem.ZipCode = reader.IsDBNull("zip") ? "" : reader.GetString("zip");
-                        outputItem.PhoneNumber = reader.IsDBNull("phone") ? "" : reader.GetString("phone");
-                    }
-
-                }
-                finally
-                {
-                    reader.Close();
+                    outputItem.EmpID = reader.IsDBNull("emp_id") ? 0 : reader.GetUInt32("emp_id");
+                    outputItem.PinNumber = reader.IsDBNull("pin_number") ? 0 : reader.GetUInt32("pin_number");
+                    outputItem.IsAdmin = !reader.IsDBNull("admin") && (0 != reader.GetInt16("admin"));
+                    outputItem.FirstName = reader.IsDBNull("first_name") ? "" : reader.GetString("first_name");
+                    outputItem.LastName = reader.IsDBNull("last_name") ? "" : reader.GetString("last_name");
+                    outputItem.Email = reader.IsDBNull("email") ? "" : reader.GetString("email");
+                    outputItem.Address1 = reader.IsDBNull("addr1") ? "" : reader.GetString("addr1");
+                    outputItem.Address2 = reader.IsDBNull("addr2") ? "" : reader.GetString("addr2");
+                    outputItem.City = reader.IsDBNull("city") ? "" : reader.GetString("city");
+                    outputItem.State = reader.IsDBNull("state") ? "" : reader.GetString("state");
+                    outputItem.ZipCode = reader.IsDBNull("zip") ? "" : reader.GetString("zip");
+                    outputItem.PhoneNumber = reader.IsDBNull("phone") ? "" : reader.GetString("phone");
                 }
             }
             finally
             {
-                db.CloseConnnection();
+                db.CloseCommand(cmd);
             }
     
             return outputItem;
@@ -104,124 +94,104 @@ namespace pos_core_api.ORM
         [HttpPost]
         public long Insert(EmployeeModel emp)
         {
+            MySqlCommand cmd = db.CreateCommand(@"
+                SET SQL_MODE = '';
+                INSERT INTO employee 
+                (pin_number, admin, first_name, last_name, email, addr1, addr2, city, state, zip, phone)
+                VALUES 
+                (@pinNumber, @admin, @firstName, @lastName, @email, @addr1, @addr2, @city, @state, @zip, @phone)
+            ");
+            cmd.Parameters.Add(new MySqlParameter("pinNumber", emp.PinNumber));
+            cmd.Parameters.Add(new MySqlParameter("admin", emp.IsAdmin));
+            cmd.Parameters.Add(new MySqlParameter("firstName", emp.FirstName));
+            cmd.Parameters.Add(new MySqlParameter("lastName", emp.LastName));
+            cmd.Parameters.Add(new MySqlParameter("email", emp.Email));
+            cmd.Parameters.Add(new MySqlParameter("addr1", emp.Address1));
+            cmd.Parameters.Add(new MySqlParameter("addr2", emp.Address2));
+            cmd.Parameters.Add(new MySqlParameter("city", emp.City));
+            cmd.Parameters.Add(new MySqlParameter("state", emp.State));
+            cmd.Parameters.Add(new MySqlParameter("zip", emp.ZipCode));
+            cmd.Parameters.Add(new MySqlParameter("phone", emp.PhoneNumber));
+
             try
             {
-                db.OpenConnection();
-
-                string sqlStatementDesc = @"
-                    SET SQL_MODE = '';
-                    INSERT INTO employee 
-                    (pin_number, admin, first_name, last_name, email, addr1, addr2, city, state, zip, phone)
-                    VALUES 
-                    (@pinNumber, @admin, @firstName, @lastName, @email, @addr1, @addr2, @city, @state, @zip, @phone)
-                ";
-
-                MySqlCommand cmd = new MySqlCommand(sqlStatementDesc, db.Connection());
-                cmd.Parameters.Add(new MySqlParameter("pinNumber", emp.PinNumber));
-                cmd.Parameters.Add(new MySqlParameter("admin", emp.IsAdmin));
-                cmd.Parameters.Add(new MySqlParameter("firstName", emp.FirstName));
-                cmd.Parameters.Add(new MySqlParameter("lastName", emp.LastName));
-                cmd.Parameters.Add(new MySqlParameter("email", emp.Email));
-                cmd.Parameters.Add(new MySqlParameter("addr1", emp.Address1));
-                cmd.Parameters.Add(new MySqlParameter("addr2", emp.Address2));
-                cmd.Parameters.Add(new MySqlParameter("city", emp.City));
-                cmd.Parameters.Add(new MySqlParameter("state", emp.State));
-                cmd.Parameters.Add(new MySqlParameter("zip", emp.ZipCode));
-                cmd.Parameters.Add(new MySqlParameter("phone", emp.PhoneNumber));
-
                 cmd.ExecuteNonQuery();
 
                 return 0;
             }
             finally 
             {
-                db.CloseConnnection();
+                db.CloseCommand(cmd);
             }
         }
 
         public void Update( EmployeeModel emp)
         {
-            db.OpenConnection();
+            MySqlCommand cmd = db.CreateCommand(@"
+                UPDATE employee 
+                SET pin_number = @pinNumber, admin = @admin, 
+                    first_name = @firstName, last_name = @lastName, 
+                    email = @email, addr1 = @addr1, addr2 = @addr2, 
+                    city = @city, state = @state, zip = @zip, phone = @phone 
+                WHERE emp_id = @empID
+            ");
+
+            cmd.Parameters.Add(new MySqlParameter("pinNumber", emp.PinNumber));
+            cmd.Parameters.Add(new MySqlParameter("admin", emp.IsAdmin));
+            cmd.Parameters.Add(new MySqlParameter("firstName", emp.FirstName));
+            cmd.Parameters.Add(new MySqlParameter("lastName", emp.LastName));
+            cmd.Parameters.Add(new MySqlParameter("email", emp.Email));
+            cmd.Parameters.Add(new MySqlParameter("addr1", emp.Address1));
+            cmd.Parameters.Add(new MySqlParameter("addr2", emp.Address2));
+            cmd.Parameters.Add(new MySqlParameter("city", emp.City));
+            cmd.Parameters.Add(new MySqlParameter("state", emp.State));
+            cmd.Parameters.Add(new MySqlParameter("zip", emp.ZipCode));
+            cmd.Parameters.Add(new MySqlParameter("phone", emp.PhoneNumber));
+            cmd.Parameters.Add(new MySqlParameter("empID", emp.EmpID));      
 
             try
             {
-                string sqlStatementDesc = @"
-                  UPDATE employee 
-                  SET pin_number = @pinNumber, admin = @admin, 
-                      first_name = @firstName, last_name = @lastName, 
-                      email = @email, addr1 = @addr1, addr2 = @addr2, 
-                      city = @city, state = @state, zip = @zip, phone = @phone 
-                  WHERE emp_id = @empID
-                ";
-
-                MySqlCommand cmd = new MySqlCommand(sqlStatementDesc, db.Connection());
-                cmd.Parameters.Add(new MySqlParameter("pinNumber", emp.PinNumber));
-                cmd.Parameters.Add(new MySqlParameter("admin", emp.IsAdmin));
-                cmd.Parameters.Add(new MySqlParameter("firstName", emp.FirstName));
-                cmd.Parameters.Add(new MySqlParameter("lastName", emp.LastName));
-                cmd.Parameters.Add(new MySqlParameter("email", emp.Email));
-                cmd.Parameters.Add(new MySqlParameter("addr1", emp.Address1));
-                cmd.Parameters.Add(new MySqlParameter("addr2", emp.Address2));
-                cmd.Parameters.Add(new MySqlParameter("city", emp.City));
-                cmd.Parameters.Add(new MySqlParameter("state", emp.State));
-                cmd.Parameters.Add(new MySqlParameter("zip", emp.ZipCode));
-                cmd.Parameters.Add(new MySqlParameter("phone", emp.PhoneNumber));
-                cmd.Parameters.Add(new MySqlParameter("empID", emp.EmpID));
                 cmd.ExecuteNonQuery();
             }
             finally
             {
-                db.CloseConnnection();
+                db.CloseCommand(cmd);
             }
         }
 
         public void Delete(uint EmpID)
         {
-            db.OpenConnection();
+            MySqlCommand cmd = db.CreateCommand("DELETE FROM employee WHERE emp_id = @EmpID");
+            cmd.Parameters.Add(new MySqlParameter("EmpID", EmpID));            
 
             try
             {
-                string sqlStatementDesc = "DELETE FROM employee WHERE emp_id = @EmpID";
-
-                MySqlCommand cmd = new MySqlCommand(sqlStatementDesc, db.Connection());
-                cmd.Parameters.Add(new MySqlParameter("EmpID", EmpID));
                 cmd.ExecuteNonQuery();
             }
             finally
             {
-                db.CloseConnnection();
+                db.CloseCommand(cmd);
             }
         }
 
         public bool DoesEmployeeExist(uint empID)
         {
+            string sqlStatement = @"
+                SELECT emp_id 
+                FROM   employee 
+                WHERE  emp_id = @empID
+            ";
+
+            MySqlCommand cmd = db.CreateCommand(sqlStatement);
+            cmd.Parameters.Add(new MySqlParameter("empID", empID));
             try
             {
-
-                db.OpenConnection();
-
-                string sqlStatement = @"
-                    SELECT emp_id 
-                    FROM   employee 
-                    WHERE  emp_id = @empID
-                ";
-
-                MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
-                cmd.Parameters.Add(new MySqlParameter("empID", empID));
-                MySqlDataReader reader = cmd.ExecuteReader();
-
-                try
-                {
-                    return reader.Read();
-                }
-                finally
-                {
-                    reader.Close();
-                }
+                using MySqlDataReader reader = cmd.ExecuteReader();
+                return reader.Read();
             }
             finally
             {
-                db.CloseConnnection();
+                db.CloseCommand(cmd);
             }
         }
     }

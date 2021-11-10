@@ -29,18 +29,17 @@ namespace pos_core_api.ORM
         /// <returns>True if the barcode exist.</returns>
         public bool DoesBarcodeExist(string barcode)
         {
+            string sqlStatement = @"
+                SELECT barcode 
+                FROM v_event
+                WHERE barcode = @barcode
+            ";
+
+            MySqlCommand cmd = db.CreateCommand(sqlStatement);
+            cmd.Parameters.Add(new MySqlParameter("barcode", barcode));
+
             try
             {
-                db.OpenConnection();
-
-                string sqlStatement = @"
-                  SELECT barcode 
-                  FROM v_event
-                  WHERE barcode = @barcode
-                ";
-
-                MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
-                cmd.Parameters.Add(new MySqlParameter("barcode", barcode));
                 MySqlDataReader reader = cmd.ExecuteReader();
 
                 try
@@ -54,28 +53,28 @@ namespace pos_core_api.ORM
             }
             finally
             {
-                db.CloseConnnection();
+                db.CloseCommand(cmd);
             }
         }
 
         public List<Event> Get()
         {
             List<Event> output = new List<Event>();
-            db.OpenConnection();
+            
+            //change to view that does sum
+            MySqlCommand cmd = db.CreateCommand(@"
+                SELECT *
+                FROM v_event 
+            ");
+
             try
             {
-                //change to view that does sum
-                string sqlStatement = @"
-                    SELECT *
-                    FROM v_event 
-                ";
-                using MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
                 using MySqlDataReader reader = cmd.ExecuteReader();
                 output = FetchEvent(reader);
             }
             finally
             {
-                db.CloseConnnection();
+                db.CloseCommand(cmd);
             }
 
             return output;
@@ -85,24 +84,21 @@ namespace pos_core_api.ORM
         {
             List<Event> output = null;
 
+            MySqlCommand cmd = db.CreateCommand(@"
+                SELECT *
+                FROM v_event 
+                WHERE Inventoryid = @id
+            ");
+            cmd.Parameters.Add(new MySqlParameter("id", id));
+
             try
             {
-                db.OpenConnection();
-
-                string sqlStatement = @"
-                    SELECT *
-                    FROM v_event 
-                    WHERE Inventoryid = @id
-                ";
-
-                using MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
-                cmd.Parameters.Add(new MySqlParameter("id", id));
                 using MySqlDataReader reader = cmd.ExecuteReader();
                 output = FetchEvent(reader);
             }
             finally
             {
-                db.CloseConnnection();
+                db.CloseCommand(cmd);
             }
 
             return output[0];
@@ -111,26 +107,23 @@ namespace pos_core_api.ORM
         public Event Get(string barcode)
         {
             List<Event> output = null;
+ 
+            MySqlCommand cmd = db.CreateCommand(@"
+                SELECT *
+                FROM v_event 
+                WHERE barcode = @bar
+            ");
 
+            cmd.Parameters.Add(new MySqlParameter("bar", barcode));
             try
             {
-                db.OpenConnection();
-
-                string sqlStatement = @"
-                    SELECT *
-                    FROM v_event 
-                    WHERE barcode = @bar
-                ";
-
-                using MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
-                cmd.Parameters.Add(new MySqlParameter("bar", barcode));
                 using MySqlDataReader reader = cmd.ExecuteReader();
 
                 output = FetchEvent(reader);
             }
             finally
             {
-                db.CloseConnnection();
+                db.CloseCommand(cmd);
             }
 
             return output[0];
@@ -153,66 +146,65 @@ namespace pos_core_api.ORM
             if (evnt.IdTax == 0)
                 evnt.IdTax = Tax.Get("Event")?.IdTax ?? 1;
 
+            if (string.IsNullOrWhiteSpace(evnt.Barcode))
+                evnt.Barcode = evnt.Name.Replace(" ", "").ToUpper();
+            else
+                evnt.Barcode = evnt.Barcode.Replace(" ", "").ToUpper();
+
+            MySqlCommand cmd = db.CreateCommand(@"
+                INSERT INTO inventory_description 
+                (name, barcode, retail_price, typeID, nontaxable, nontaxable_local) 
+                VALUES 
+                (@name, @barcode, @Price, @typeID, @nonTaxable, @nonTaxableLocal);
+            ");
+
+            //cmd.Parameters.Add(new MySqlParameter("id", inv.Id));
+            cmd.Parameters.Add(new MySqlParameter("name", evnt.Name.Trim()));
+            cmd.Parameters.Add(new MySqlParameter("barcode", evnt.Barcode.Trim().ToUpper()));
+            cmd.Parameters.Add(new MySqlParameter("Price", evnt.Price));
+            cmd.Parameters.Add(new MySqlParameter("typeID", evnt.TypeID));
+            cmd.Parameters.Add(new MySqlParameter("nonTaxable", evnt.NonTaxable));
+            cmd.Parameters.Add(new MySqlParameter("nonTaxableLocal", evnt.NonTaxableLocal));
+
             try
             {
-                db.OpenConnection();
-
-                //Inserting into inventory_description
-                 string sql = @"
-                    INSERT INTO inventory_description 
-                    (name, barcode, retail_price, typeID, nontaxable, nontaxable_local) 
-                    VALUES 
-                    (@name, @barcode, @Price, @typeID, @nonTaxable, @nonTaxableLocal);
-                ";
-
-                if (string.IsNullOrWhiteSpace(evnt.Barcode))
-                    evnt.Barcode = evnt.Name.Replace(" ", "").ToUpper();
-                else
-                    evnt.Barcode = evnt.Barcode.Replace(" ", "").ToUpper();
-
-                MySqlCommand cmd = new MySqlCommand(sql, db.Connection());
-
-                //cmd.Parameters.Add(new MySqlParameter("id", inv.Id));
-                cmd.Parameters.Add(new MySqlParameter("name", evnt.Name.Trim()));
-                cmd.Parameters.Add(new MySqlParameter("barcode", evnt.Barcode.Trim().ToUpper()));
-                cmd.Parameters.Add(new MySqlParameter("Price", evnt.Price));
-                cmd.Parameters.Add(new MySqlParameter("typeID", evnt.TypeID));
-                cmd.Parameters.Add(new MySqlParameter("nonTaxable", evnt.NonTaxable));
-                cmd.Parameters.Add(new MySqlParameter("nonTaxableLocal", evnt.NonTaxableLocal));
                 cmd.ExecuteNonQuery();
 
                 evnt.Id = Convert.ToUInt32(cmd.LastInsertedId);
-                cmd.Dispose();
-
-                //Inserting into inventory_description
-                sql = @"
-                    INSERT INTO inventory_price 
-                    (InventoryID, Inventory_Qty, Supplier_price) 
-                    VALUES 
-                    (@id, @qty, @supplier_price);
-
-                    INSERT INTO events 
-                    ( inventoryID,  eventDate,  Duration,  preorder,  atDoor) 
-                    VALUES 
-                    (@inventoryID, @eventDate, @Duration, @preorder, @atDoor);
-                ";
-
-                cmd = new MySqlCommand(sql, db.Connection());
-                //cmd.Parameters.Add(new MySqlParameter("id", inv.Id));
-                cmd.Parameters.Add(new MySqlParameter("id", evnt.Id));
-                cmd.Parameters.Add(new MySqlParameter("Qty", evnt.Qty));
-                cmd.Parameters.Add(new MySqlParameter("Supplier_price", evnt.SupplierPrice));
-                cmd.Parameters.Add(new MySqlParameter("inventoryID", evnt.Id));
-                cmd.Parameters.Add(new MySqlParameter("eventDate", evnt.EventDate));
-                cmd.Parameters.Add(new MySqlParameter("Duration", evnt.Duration));
-                cmd.Parameters.Add(new MySqlParameter("preorder", evnt.PreOrder));
-                cmd.Parameters.Add(new MySqlParameter("atDoor", evnt.AtDoor));
-                cmd.ExecuteNonQuery();
-                cmd.Dispose();
             }
             finally
             {
-                db.CloseConnnection();
+                db.CloseCommand(cmd);
+            }
+
+            //Inserting into inventory_description
+            cmd = db.CreateCommand(@"
+                INSERT INTO inventory_price 
+                (InventoryID, Inventory_Qty, Supplier_price) 
+                VALUES 
+                (@id, @qty, @supplier_price);
+
+                INSERT INTO events 
+                ( inventoryID,  eventDate,  Duration,  preorder,  atDoor) 
+                VALUES 
+                (@inventoryID, @eventDate, @Duration, @preorder, @atDoor);
+            ");
+            cmd.Parameters.Add(new MySqlParameter("id", evnt.Id));
+            cmd.Parameters.Add(new MySqlParameter("Qty", evnt.Qty));
+            cmd.Parameters.Add(new MySqlParameter("Supplier_price", evnt.SupplierPrice));
+            cmd.Parameters.Add(new MySqlParameter("inventoryID", evnt.Id));
+            cmd.Parameters.Add(new MySqlParameter("eventDate", evnt.EventDate));
+            cmd.Parameters.Add(new MySqlParameter("Duration", evnt.Duration));
+            cmd.Parameters.Add(new MySqlParameter("preorder", evnt.PreOrder));
+            cmd.Parameters.Add(new MySqlParameter("atDoor", evnt.AtDoor));
+
+            try
+            {
+                cmd.ExecuteNonQuery();
+            }
+            finally
+            {
+                db.CloseCommand(cmd);
             }
 
             return evnt.Id;
@@ -233,91 +225,72 @@ namespace pos_core_api.ORM
             if (evnt.IdTax == 0)
                 evnt.IdTax = Tax.Get("Event")?.IdTax ?? 1;
 
-            try
-            {
-                db.OpenConnection();
+            //Inserting into inventory_description
+            string sql = @"
+                UPDATE inventory_description 
+                SET    name    = @name, 
+                       barcode = @barcode, 
+                       retail_price = @Price, 
+                       typeID = @typeID, 
+                       nontaxable = @nonTaxable, 
+                       nontaxable_local = @nonTaxableLocal
+                WHERE inventoryid = @id;
+            ";
 
-                //Inserting into inventory_description
-                string sql = @"
-                   UPDATE inventory_description 
-                   SET    name    = @name, 
-                          barcode = @barcode, 
-                          retail_price = @Price, 
-                          typeID = @typeID, 
-                          nontaxable = @nonTaxable, 
-                          nontaxable_local = @nonTaxableLocal
-                    WHERE inventoryid = @id;
-                ";
+            if (string.IsNullOrWhiteSpace(evnt.Barcode))
+                evnt.Barcode = evnt.Name.Replace(" ", "").ToUpper();
+            else
+                evnt.Barcode = evnt.Barcode.Replace(" ", "").ToUpper();
 
-                if (string.IsNullOrWhiteSpace(evnt.Barcode))
-                    evnt.Barcode = evnt.Name.Replace(" ", "").ToUpper();
-                else
-                    evnt.Barcode = evnt.Barcode.Replace(" ", "").ToUpper();
+            MySqlCommand cmd = db.CreateCommand(sql);
 
-                MySqlCommand cmd = new MySqlCommand(sql, db.Connection());
+            //cmd.Parameters.Add(new MySqlParameter("id", inv.Id));
+            cmd.Parameters.Add(new MySqlParameter("id", evnt.Id));
+            cmd.Parameters.Add(new MySqlParameter("name", evnt.Name.Trim()));
+            cmd.Parameters.Add(new MySqlParameter("barcode", evnt.Barcode.Trim().ToUpper()));
+            cmd.Parameters.Add(new MySqlParameter("Price", evnt.Price));
+            cmd.Parameters.Add(new MySqlParameter("typeID", evnt.TypeID));
+            cmd.Parameters.Add(new MySqlParameter("nonTaxable", evnt.NonTaxable));
+            cmd.Parameters.Add(new MySqlParameter("nonTaxableLocal", evnt.NonTaxableLocal));
 
-                //cmd.Parameters.Add(new MySqlParameter("id", inv.Id));
-                cmd.Parameters.Add(new MySqlParameter("id", evnt.Id));
-                cmd.Parameters.Add(new MySqlParameter("name", evnt.Name.Trim()));
-                cmd.Parameters.Add(new MySqlParameter("barcode", evnt.Barcode.Trim().ToUpper()));
-                cmd.Parameters.Add(new MySqlParameter("Price", evnt.Price));
-                cmd.Parameters.Add(new MySqlParameter("typeID", evnt.TypeID));
-                cmd.Parameters.Add(new MySqlParameter("nonTaxable", evnt.NonTaxable));
-                cmd.Parameters.Add(new MySqlParameter("nonTaxableLocal", evnt.NonTaxableLocal));
-                cmd.ExecuteNonQuery();
+            try { cmd.ExecuteNonQuery(); }
+            finally { db.CloseCommand(cmd); }
 
-                cmd.Dispose();
+            //Inserting into inventory_description Changed to insert or update
+            cmd = db.CreateCommand(@"
+                UPDATE inventory_price 
+                SET Inventory_Qty = @qty, 
+                    Supplier_price = @supplier_price
+                WHERE inventoryID = @id;
+            ");
 
-                //Inserting into inventory_description Changed to insert or update
-                sql = @"
-                    UPDATE inventory_price 
-                    SET Inventory_Qty = @qty, 
-                        Supplier_price = @supplier_price
-                    WHERE inventoryID = @id;
-                ";
-                /*
-                foreach (var i in evnt.AllQty)
-                {
-                    cmd = new MySqlCommand(sql, db.Connection());
-                    //cmd.Parameters.Add(new MySqlParameter("id", inv.Id));
-                    cmd.Parameters.Add(new MySqlParameter("id", evnt.Id));
-                    cmd.Parameters.Add(new MySqlParameter("Qty", i.Qty));
-                    cmd.Parameters.Add(new MySqlParameter("Supplier_price", evnt.SupplierPrice));
-                    cmd.ExecuteNonQuery();
-                    cmd.Dispose();
-                }
-                */
-                    cmd = new MySqlCommand(sql, db.Connection());
-                    //cmd.Parameters.Add(new MySqlParameter("id", inv.Id));
-                    cmd.Parameters.Add(new MySqlParameter("id", evnt.Id));
-                    cmd.Parameters.Add(new MySqlParameter("Qty", evnt.AllQty.Sum(x=>x.Qty)));
-                    cmd.Parameters.Add(new MySqlParameter("Supplier_price", evnt.AllQty.Max(x => x.SupplierPrice)));
-                    cmd.ExecuteNonQuery();
-                    cmd.Dispose();
-                
+            //cmd.Parameters.Add(new MySqlParameter("id", inv.Id));
+            cmd.Parameters.Add(new MySqlParameter("id", evnt.Id));
+            cmd.Parameters.Add(new MySqlParameter("Qty", evnt.AllQty.Sum(x=>x.Qty)));
+            cmd.Parameters.Add(new MySqlParameter("Supplier_price", evnt.AllQty.Max(x => x.SupplierPrice)));
 
-                //Inserting into events
-                cmd = new MySqlCommand(@"
+            try { cmd.ExecuteNonQuery(); }
+            finally { db.CloseCommand(cmd); }
+
+            //Inserting into events
+            cmd = db.CreateCommand(@"
                     UPDATE events 
                     SET eventDate = @eventDate,  
                         Duration = @Duration,  
                         preorder = @preorder,  
                         atDoor = @atDoor
                     WHERE inventoryID = @id;
-                ", db.Connection());
+                ");
 
-                //cmd.Parameters.Add(new MySqlParameter("id", inv.Id));
-                cmd.Parameters.Add(new MySqlParameter("ID", evnt.Id));
-                cmd.Parameters.Add(new MySqlParameter("eventDate", evnt.EventDate));
-                cmd.Parameters.Add(new MySqlParameter("Duration", evnt.Duration));
-                cmd.Parameters.Add(new MySqlParameter("preorder", evnt.PreOrder));
-                cmd.Parameters.Add(new MySqlParameter("atDoor", evnt.AtDoor));
-                cmd.ExecuteNonQuery();
-            }
-            finally
-            {
-                db.CloseConnnection();
-            }
+            //cmd.Parameters.Add(new MySqlParameter("id", inv.Id));
+            cmd.Parameters.Add(new MySqlParameter("ID", evnt.Id));
+            cmd.Parameters.Add(new MySqlParameter("eventDate", evnt.EventDate));
+            cmd.Parameters.Add(new MySqlParameter("Duration", evnt.Duration));
+            cmd.Parameters.Add(new MySqlParameter("preorder", evnt.PreOrder));
+            cmd.Parameters.Add(new MySqlParameter("atDoor", evnt.AtDoor));
+
+            try     { cmd.ExecuteNonQuery(); }
+            finally { db.CloseCommand(cmd);  }
 
             return evnt.Id;
         }
@@ -404,15 +377,12 @@ namespace pos_core_api.ORM
         public List<EventWaitlistItem> GetEventsWaitlists() {
             List<EventWaitlistItem> output = new List<EventWaitlistItem>();
 
+            MySqlCommand cmd = db.CreateCommand(@"
+                SELECT *
+                FROM event_waitlist
+            ");
+
             try {
-                db.OpenConnection();
-
-                string sqlStatement = @"
-                    SELECT *
-                    FROM event_waitlist
-                ";
-
-                using MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
                 using MySqlDataReader reader = cmd.ExecuteReader();
                 EventWaitlistItem outputItem = null;
                 
@@ -425,11 +395,8 @@ namespace pos_core_api.ORM
                     };
 
                     output.Add(outputItem);
-
                 }
-            } finally {
-                db.CloseConnnection();
-            }
+            } finally {  db.CloseCommand(cmd); }
 
             return output;
         }
@@ -437,51 +404,41 @@ namespace pos_core_api.ORM
         public uint AddEventWaitlistItem(EventWaitlistItem eventWaitlistItem) {
             uint returnedId = 0;
 
-            try {
-                db.OpenConnection();
-
-                string sqlStatement = @"
-                    INSERT INTO event_waitlist
-                    (eventId, customerId, customerName, dateAdded)
-                    VALUES
-                    (@eventId, @customerId, @customerName, @dateAdded);
-                ";
-
-                using MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
+            using MySqlCommand cmd = db.CreateCommand(@"
+                INSERT INTO event_waitlist
+                (eventId, customerId, customerName, dateAdded)
+                VALUES
+                (@eventId, @customerId, @customerName, @dateAdded);
+            ");
                 
-                cmd.Parameters.Add(new MySqlParameter("eventId", eventWaitlistItem.EventId));
-                cmd.Parameters.Add(new MySqlParameter("customerId", eventWaitlistItem.CustomerId));
-                cmd.Parameters.Add(new MySqlParameter("customerName", eventWaitlistItem.CustomerName));
-                cmd.Parameters.Add(new MySqlParameter("dateAdded", eventWaitlistItem.DateAdded));
+            cmd.Parameters.Add(new MySqlParameter("eventId", eventWaitlistItem.EventId));
+            cmd.Parameters.Add(new MySqlParameter("customerId", eventWaitlistItem.CustomerId));
+            cmd.Parameters.Add(new MySqlParameter("customerName", eventWaitlistItem.CustomerName));
+            cmd.Parameters.Add(new MySqlParameter("dateAdded", eventWaitlistItem.DateAdded));
 
+            try {
                 cmd.ExecuteNonQuery();
 
                 returnedId = Convert.ToUInt32(cmd.LastInsertedId);
 
-                cmd.Dispose();
-            } finally {
-                db.CloseConnnection();
-            }
+            } finally { db.CloseCommand(cmd); }
 
             return returnedId;
         }
         
         public void DeleteEventWaitlistItem(uint eventId, uint customerId) {
-            try {
-                db.OpenConnection();
+            MySqlCommand cmd = db.CreateCommand(@"
+                DELETE FROM event_waitlist
+                WHERE eventId = @eventId
+                AND customerId = @customerId
+            ");
+            cmd.Parameters.Add(new MySqlParameter("eventId", eventId));
+            cmd.Parameters.Add(new MySqlParameter("customerId", customerId));
 
-                string sqlStatement = @"
-                    DELETE FROM event_waitlist
-                    WHERE eventId = @eventId
-                    AND customerId = @customerId
-                ";
-
-                using MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
-                cmd.Parameters.Add(new MySqlParameter("eventId", eventId));
-                cmd.Parameters.Add(new MySqlParameter("customerId", customerId));
+            try { 
                 cmd.ExecuteNonQuery();
             } finally {
-                db.CloseConnnection();
+                db.CloseCommand(cmd);
             }
         }
     }

@@ -28,42 +28,31 @@ namespace SecretCellar.Orders_Panels {
             cbx_supplier.DataSource = suppliers;
             cbx_supplier.DisplayMember = "Name";
 
-            //POPULATE DATA GRID
-            supp_dataGrid.DataSource = inventory.
-                Select(x => new
-                {
-                    Name = x.Name,
-                    Id = x.Id,
-                    ItemType = x.ItemType,
-                    Qty = x.Qty,
-                    Barcode = x.Barcode,
-                    Price = x.SupplierPrice,
-                    minqty = x.InvMin,
-                    maxqty = x.InvMax,
-                    orderqty = x.OrderQty
-                }).
-                OrderBy(x => x.Name).
-                ToList();
+
+            refresh();
         }
 
         /////////
         //REFRESH
         /////////
-        private void refresh() {
-            inventory = DataAccess.instance.GetInventory();
-            uint id = ((Supplier)cbx_supplier.SelectedItem).SupplierID;
-            supp_dataGrid.DataSource = inventory.Where(x => id == x.SupplierID || id == 0).
+        private void refresh()
+        {
+            inventory = DataAccess.instance?.GetInventory() ?? new List<Inventory>();
+            uint id = ((Supplier)cbx_supplier?.SelectedItem)?.SupplierID ?? 0;
+            supp_dataGrid.DataSource = inventory.Where(x => (id == x.SupplierID || id == 0) 
+                                                         && (!x.Hidden || chk_ShowHidden.Checked)
+                                                         && (x.RequiredQty > 0 || !chk_OnlyRequired.Checked)).
                Select(x => new {
-                   Name = x.Name,
-                   Id = x.Id,
-                   ItemType = x.ItemType,
-                   Qty = x.Qty,
-                   Barcode = x.Barcode,
+                   x.Name,
+                   x.Id,
+                   x.ItemType,
+                   x.Qty,
+                   x.Barcode,
                    Price = x.SupplierPrice,
                    minqty = x.InvMin,
                    maxqty = x.InvMax,
-                   requredqty = x.RequiredQty,
-                   orderqty = x.OrderQty
+                   x.OrderQty,
+                   x.RequiredQty
                }).
                OrderBy(x => x.Name).
                ToList();
@@ -81,7 +70,7 @@ namespace SecretCellar.Orders_Panels {
 
                 foreach (DataGridViewRow row in supp_dataGrid.Rows) {
                     if (row.Cells["orderqty"].Value.ToString() != null || uint.Parse(row.Cells["orderqty"].Value.ToString()) > 0) {
-                        total = total + Convert.ToDouble((uint.Parse(row.Cells["orderqty"].Value.ToString()) * (Convert.ToDouble(row.Cells["Price"].Value.ToString()))));
+                        total += Convert.ToDouble((uint.Parse(row.Cells["orderqty"].Value.ToString()) * (Convert.ToDouble(row.Cells["Price"].Value.ToString()))));
                     }
                 }
                 txt_supp_total.Text = total.ToString("C");
@@ -176,6 +165,16 @@ namespace SecretCellar.Orders_Panels {
         private void supp_dataGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void chk_ShowHidden_CheckedChanged(object sender, EventArgs e)
+        {
+            refresh();
+        }
+
+        private void chk_OnlyRequired_CheckedChanged(object sender, EventArgs e)
+        {
+            refresh();
         }
     }
 }

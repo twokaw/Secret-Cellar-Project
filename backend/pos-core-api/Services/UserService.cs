@@ -27,11 +27,11 @@ namespace WebApi.Services
         private readonly List<User> _users = new List<User>();
         private void GetCredentials()
         {
-            db.OpenConnection();
+            
 
             string sqlStatement = "SELECT emp_id, pin_number, admin FROM employee";
 
-            MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
+            MySqlCommand cmd = db.CreateCommand(sqlStatement);
             MySqlDataReader reader = cmd.ExecuteReader();
 
             try
@@ -50,7 +50,7 @@ namespace WebApi.Services
             {
                 reader.Close();
             }
-            db.CloseConnnection();
+            db.CloseCommand(cmd);
         }
 
         private readonly AppSettings _appSettings;

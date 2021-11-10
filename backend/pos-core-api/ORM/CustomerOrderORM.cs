@@ -30,11 +30,11 @@ namespace pos_core_api.ORM
 
         public List<CustomerOrder> Get(bool includehistory)
         {
-            db.OpenConnection();
+            
 
-            MySqlCommand cmd = new MySqlCommand(@$"{(includehistory ? $"{CUSTOMERORDERSQL} " : $"{OUTSTANDINGCUSTOMERORDERSQL}")}
+            MySqlCommand cmd = db.CreateCommand(@$"{(includehistory ? $"{CUSTOMERORDERSQL} " : $"{OUTSTANDINGCUSTOMERORDERSQL}")}
               ORDER BY customerID
-            ", db.Connection()); 
+            "); 
             
             MySqlDataReader reader = cmd.ExecuteReader();
 
@@ -45,17 +45,17 @@ namespace pos_core_api.ORM
             finally
             {
                 reader.Close();
-                db.CloseConnnection();
+                db.CloseCommand(cmd);
             }
         }
 
         public CustomerOrder Get(uint customerID, bool includehistory)
         {
-            db.OpenConnection();
+            
 
-            MySqlCommand cmd = new MySqlCommand(@$"{(includehistory ? $"{CUSTOMERORDERSQL} WHERE " : $"{OUTSTANDINGCUSTOMERORDERSQL} AND ")}
+            MySqlCommand cmd = db.CreateCommand(@$"{(includehistory ? $"{CUSTOMERORDERSQL} WHERE " : $"{OUTSTANDINGCUSTOMERORDERSQL} AND ")}
               customerID = @custID
-            ", db.Connection());
+            ");
             cmd.Parameters.Add(new MySqlParameter("custID", customerID));
             MySqlDataReader reader = cmd.ExecuteReader();
             try
@@ -71,19 +71,19 @@ namespace pos_core_api.ORM
             finally
             {
                 reader.Close();
-                db.CloseConnnection();
+                db.CloseCommand(cmd);
             }
         }
         public CustomerOrder CreateOrder(uint customerID)
         {
-            db.OpenConnection();
+            
 
-            MySqlCommand cmd = new MySqlCommand(@"
+            MySqlCommand cmd = db.CreateCommand(@"
               INSERT INTO customerorder
               (CustomerID, RequestDate)
               VALUES
               (@custid, SYSDATE())
-            ", db.Connection());
+            ");
             cmd.Parameters.Add(new MySqlParameter("custID", customerID));
            
             try
@@ -97,17 +97,17 @@ namespace pos_core_api.ORM
             }
             finally
             {
-                db.CloseConnnection();
+                db.CloseCommand(cmd);
             }
         }
 
         public CustomerOrderItem GetCustomerItem(uint customerOrderItemID)
         {
-            db.OpenConnection();
+            
 
             string sqlStatement = $"{CUSTOMERORDERSQL} WHERE CustomerOrderItemID = @customerOrderItemID";
 
-            MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
+            MySqlCommand cmd = db.CreateCommand(sqlStatement);
             cmd.Parameters.Add(new MySqlParameter("customerOrderItemID", customerOrderItemID));
             MySqlDataReader reader = cmd.ExecuteReader();
             try
@@ -123,19 +123,19 @@ namespace pos_core_api.ORM
             finally
             {
                 reader.Close();
-                db.CloseConnnection();
+                db.CloseCommand(cmd);
             }
         }
 
         public CustomerOrder GetOrder(uint orderId, bool includehistory)
         {
-            db.OpenConnection();
+            
 
             string sqlStatement = @$"{(includehistory ? $"{CUSTOMERORDERSQL} WHERE " : $"{OUTSTANDINGCUSTOMERORDERSQL} AND ")}
               CustomerOrderid = @orderId
             ";
 
-            MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
+            MySqlCommand cmd = db.CreateCommand(sqlStatement);
             cmd.Parameters.Add(new MySqlParameter("orderId", orderId));
             MySqlDataReader reader = cmd.ExecuteReader();
             try
@@ -151,7 +151,7 @@ namespace pos_core_api.ORM
             finally
             {
                 reader.Close();
-                db.CloseConnnection();
+                db.CloseCommand(cmd);
             }
         }
 
@@ -170,24 +170,23 @@ namespace pos_core_api.ORM
                 }
             }
 
+            MySqlCommand cmd = db.CreateCommand(@"
+                INSERT INTO customerorderItem
+                (CustomerID, InventoryID, Paid, Price, PaidDate, DeliverDate, DeliverQty, RequestQty)
+                VALUES
+                (@CustomerID, @InventoryID, @Paid, @Price, @PaidDate, @DeliverDate, @DeliverQty, @RequestQty)
+            ");
+            cmd.Parameters.Add(new MySqlParameter("CustomerID", customerId));
+            cmd.Parameters.Add(new MySqlParameter("InventoryID", cust.Id));
+            cmd.Parameters.Add(new MySqlParameter("Paid", cust.Paid));
+            cmd.Parameters.Add(new MySqlParameter("Price", cust.Price));
+            cmd.Parameters.Add(new MySqlParameter("PaidDate", cust.PaidDate));
+            cmd.Parameters.Add(new MySqlParameter("DeliverDate", cust.DeliverDate ));
+            cmd.Parameters.Add(new MySqlParameter("DeliverQty", cust.DeliverQty));
+            cmd.Parameters.Add(new MySqlParameter("RequestQty", cust.RequestQty));
+               
             try
             {
-                db.OpenConnection();
-
-                 MySqlCommand cmd = new MySqlCommand(@"
-                  INSERT INTO customerorderItem
-                  (CustomerID, InventoryID, Paid, Price, PaidDate, DeliverDate, DeliverQty, RequestQty)
-                  VALUES
-                  (@CustomerID, @InventoryID, @Paid, @Price, @PaidDate, @DeliverDate, @DeliverQty, @RequestQty)
-                ", db.Connection());
-                cmd.Parameters.Add(new MySqlParameter("CustomerID", customerId));
-                cmd.Parameters.Add(new MySqlParameter("InventoryID", cust.Id));
-                cmd.Parameters.Add(new MySqlParameter("Paid", cust.Paid));
-                cmd.Parameters.Add(new MySqlParameter("Price", cust.Price));
-                cmd.Parameters.Add(new MySqlParameter("PaidDate", cust.PaidDate));
-                cmd.Parameters.Add(new MySqlParameter("DeliverDate", cust.DeliverDate ));
-                cmd.Parameters.Add(new MySqlParameter("DeliverQty", cust.DeliverQty));
-                cmd.Parameters.Add(new MySqlParameter("RequestQty", cust.RequestQty));
                 cmd.ExecuteNonQuery();
 
                 if (cust.DeliverQty > 0)
@@ -197,7 +196,7 @@ namespace pos_core_api.ORM
             }
             finally
             {
-                db.CloseConnnection();
+                db.CloseCommand(cmd);
             }
         }
 
@@ -218,10 +217,7 @@ namespace pos_core_api.ORM
              || temp.Paid != cust.Paid)
             {
 
-                db.OpenConnection();
-                try
-                {
-                    MySqlCommand cmd = new MySqlCommand(@"
+                MySqlCommand cmd = db.CreateCommand(@"
                     UPDATE customerorderitem
                     SET InventoryID     = @InventoryID, 
                         RequestQTY      = @RequestQTY, 
@@ -230,15 +226,19 @@ namespace pos_core_api.ORM
                         Price           = @Price,
                         Paid            = @paid
                     WHERE CustomerOrderItemID = @OrderItemID
-                ", db.Connection());
+                ");
 
-                    cmd.Parameters.Add(new MySqlParameter("InventoryID", cust.Id));
-                    cmd.Parameters.Add(new MySqlParameter("RequestQTY", cust.RequestQty));
-                    cmd.Parameters.Add(new MySqlParameter("DeliverQTY", cust.DeliverQty));
-                    cmd.Parameters.Add(new MySqlParameter("Deliverdate", cust.DeliverDate));
-                    cmd.Parameters.Add(new MySqlParameter("OrderItemID", cust.CustomerOrderItemID));
-                    cmd.Parameters.Add(new MySqlParameter("Price", cust.Price));
-                    cmd.Parameters.Add(new MySqlParameter("paid", cust.Paid));
+                cmd.Parameters.Add(new MySqlParameter("InventoryID", cust.Id));
+                cmd.Parameters.Add(new MySqlParameter("RequestQTY", cust.RequestQty));
+                cmd.Parameters.Add(new MySqlParameter("DeliverQTY", cust.DeliverQty));
+                cmd.Parameters.Add(new MySqlParameter("Deliverdate", cust.DeliverDate));
+                cmd.Parameters.Add(new MySqlParameter("OrderItemID", cust.CustomerOrderItemID));
+                cmd.Parameters.Add(new MySqlParameter("Price", cust.Price));
+                cmd.Parameters.Add(new MySqlParameter("paid", cust.Paid));   
+                
+                try
+                {
+
                     cmd.ExecuteNonQuery();
 
                     if (cust.DeliverQty != temp.DeliverQty)
@@ -251,7 +251,7 @@ namespace pos_core_api.ORM
                          WHERE CustomerOrderItemID = @OrderItemID
                          AND DeliverQty >= RequestQty
                          AND Paid = Price * DeliverQty
-                        ", db.Connection());
+                        ");
 
                         cmd.Parameters.Add(new MySqlParameter("CustomerOrderID", cust.CustomerOrderItemID));
                         cmd.ExecuteNonQuery();
@@ -259,7 +259,7 @@ namespace pos_core_api.ORM
                 }
                 finally
                 {
-                    db.CloseConnnection();
+                    db.CloseCommand(cmd);
                 }
             }
             return cust.CustomerOrderItemID;
@@ -282,21 +282,20 @@ namespace pos_core_api.ORM
             if (temp.Price * temp.DeliverQty < temp.Paid)
                 throw new Exception("Items not paid for");
 
-            db.OpenConnection();
+            MySqlCommand cmd = db.CreateCommand(@"
+                DELETE FROM customerOrderItem
+                WHERE CustomerOrderItemID = @CustID
+            ");  
+
+            cmd.Parameters.Add(new MySqlParameter("custID", custOrdItemID));
+                
             try
             {
-                string sqlStatementDesc = @"
-                  DELETE FROM customerOrderItem
-                  WHERE CustomerOrderItemID = @CustID
-                ";
-
-                MySqlCommand cmd = new MySqlCommand(sqlStatementDesc, db.Connection());
-                cmd.Parameters.Add(new MySqlParameter("custID", custOrdItemID));
                 cmd.ExecuteNonQuery();
             }
             finally
             {
-                db.CloseConnnection();
+                db.CloseCommand(cmd);
             }
         }
 

@@ -20,10 +20,10 @@ namespace pos_core_api.ORM
 
         public List<Customer> Get()
         {
-            db.OpenConnection();
+            
 
 
-            MySqlCommand cmd = new MySqlCommand(CUSTOMERSQL, db.Connection());
+            MySqlCommand cmd = db.CreateCommand(CUSTOMERSQL);
             MySqlDataReader reader = cmd.ExecuteReader();
 
             try
@@ -33,19 +33,19 @@ namespace pos_core_api.ORM
             finally
             {
                 reader.Close();
-                db.CloseConnnection();
+                db.CloseCommand(cmd);
             }
         }
 
         public Customer Get(uint customerID)
         {
-            db.OpenConnection();
+            
 
             string sqlStatement = @$"{CUSTOMERSQL}
               WHERE customerID = @custID
             ";
 
-            MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
+            MySqlCommand cmd = db.CreateCommand(sqlStatement);
             cmd.Parameters.Add(new MySqlParameter("custID", customerID));
             MySqlDataReader reader = cmd.ExecuteReader();
             try
@@ -61,19 +61,19 @@ namespace pos_core_api.ORM
             finally
             {
                 reader.Close();
-                db.CloseConnnection();
+                db.CloseCommand(cmd);
             }
         }
 
         public Customer Get(string phone)
         {
-            db.OpenConnection();
+            
 
             string sqlStatement = @$"{CUSTOMERSQL}
               WHERE phone = @phone
             ";
 
-            MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
+            MySqlCommand cmd = db.CreateCommand(sqlStatement);
             cmd.Parameters.Add(new MySqlParameter("phone", phone));
             MySqlDataReader reader = cmd.ExecuteReader();
             try
@@ -89,12 +89,12 @@ namespace pos_core_api.ORM
             finally
             {
                 reader.Close();
-                db.CloseConnnection();
+                db.CloseCommand(cmd);
             }
         }
         public List<CustomerFavorites> GetCustomerFavorites()
         {
-            db.OpenConnection();
+            
 
             string sqlStatement = @"
               SELECT InventoryID,
@@ -103,7 +103,7 @@ namespace pos_core_api.ORM
               FROM v_customerfavorite
             ";
 
-            MySqlCommand cmd = new  MySqlCommand(sqlStatement, db.Connection());
+            MySqlCommand cmd = new  MySqlCommand(sqlStatement);
             MySqlDataReader reader = cmd.ExecuteReader();
             try
             {
@@ -112,13 +112,13 @@ namespace pos_core_api.ORM
             finally
             {
                 reader.Close();
-                db.CloseConnnection();
+                db.CloseCommand(cmd);
             }
         }
 
         public CustomerFavorites GetCustomerFavorites(uint customerID)
         {
-            db.OpenConnection();
+            
 
             string sqlStatement = @"
               SELECT InventoryID,
@@ -128,7 +128,7 @@ namespace pos_core_api.ORM
               WHERE CustomerID = @custId
             ";
 
-            MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
+            MySqlCommand cmd = db.CreateCommand(sqlStatement);
             cmd.Parameters.Add(new MySqlParameter("custID", customerID));
             MySqlDataReader reader = cmd.ExecuteReader();
 
@@ -143,22 +143,19 @@ namespace pos_core_api.ORM
             finally
             {
                 reader.Close();
-                db.CloseConnnection();
+                db.CloseCommand(cmd);
             }
         }
 
         public string GetCustHash()
         {
+            using MySqlCommand cmd = db.CreateCommand(@"
+                SELECT HashValue
+                FROM v_customer_hash
+            ");
+
             try
             {
-                db.OpenConnection();
-
-                string sqlStatement = @"
-                 SELECT HashValue
-                 FROM v_customer_hash
-                ";
-
-                using MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
                 using MySqlDataReader reader = cmd.ExecuteReader();
 
                 if (reader.Read())
@@ -168,13 +165,12 @@ namespace pos_core_api.ORM
             }
             finally
             {
-                db.CloseConnnection();
+                db.CloseCommand(cmd);
             }
         }
 
         public void AddCustomerFavorite(uint CustomerID, uint InventoryID)
         {
-            db.OpenConnection();
 
             string sqlStatement = @"
               INSERT INTO customerfavorite
@@ -184,7 +180,7 @@ namespace pos_core_api.ORM
               ON DUPLICATE KEY UPDATE customerID = @customerID
             ";
 
-            MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
+            MySqlCommand cmd = db.CreateCommand(sqlStatement);
             cmd.Parameters.Add(new MySqlParameter("customerID", CustomerID));
             cmd.Parameters.Add(new MySqlParameter("InventoryID", InventoryID));
 
@@ -194,13 +190,13 @@ namespace pos_core_api.ORM
             }
             finally
             {
-                db.CloseConnnection();
+                db.CloseCommand(cmd);
             }
         }
 
         public void RemoveCustomerFavorite(uint CustomerID, uint InventoryID)
         {
-            db.OpenConnection();
+            
 
             string sqlStatement = @"
               DELETE FROM customerfavorite
@@ -208,7 +204,7 @@ namespace pos_core_api.ORM
               AND   CustomerID  = @customerID
             ";
 
-            MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
+            MySqlCommand cmd = db.CreateCommand(sqlStatement);
             cmd.Parameters.Add(new MySqlParameter("customerID", CustomerID));
             cmd.Parameters.Add(new MySqlParameter("InventoryID", InventoryID));
 
@@ -218,125 +214,118 @@ namespace pos_core_api.ORM
             }
             finally
             {
-                db.CloseConnnection();
+                db.CloseCommand(cmd);
             }
         }
         public long Insert(Customer cust)
         {
+            string sqlStatementDesc = @"
+                INSERT INTO customer 
+                (customer_discount, first_name, last_name, business_name, email, isWholesale, addr1, addr2, city, state, zip, phone, credit)
+                VALUES 
+                (@customerDiscount, @firstName, @lastName, @businessName, @email, @isWholesale, @addr1, @addr2, @city, @state, @zip, @phone, @credit)
+            ";
+            MySqlCommand cmd = db.CreateCommand(sqlStatementDesc);
+            cmd.Parameters.Add(new MySqlParameter("customerDiscount", cust.CustomerDiscount));
+            cmd.Parameters.Add(new MySqlParameter("firstName", cust.FirstName));
+            cmd.Parameters.Add(new MySqlParameter("lastName", cust.LastName));
+            cmd.Parameters.Add(new MySqlParameter("businessName", cust.BusinessName));
+            cmd.Parameters.Add(new MySqlParameter("email", cust.Email));
+            cmd.Parameters.Add(new MySqlParameter("isWholesale", cust.IsWholesale));
+            cmd.Parameters.Add(new MySqlParameter("addr1", cust.Address1));
+            cmd.Parameters.Add(new MySqlParameter("addr2", cust.Address2));
+            cmd.Parameters.Add(new MySqlParameter("city", cust.City));
+            cmd.Parameters.Add(new MySqlParameter("state", cust.State));
+            cmd.Parameters.Add(new MySqlParameter("zip", cust.ZipCode));
+            cmd.Parameters.Add(new MySqlParameter("phone", cust.PhoneNumber));
+            cmd.Parameters.Add(new MySqlParameter("credit", cust.Credit));
+
             try
             {
-                db.OpenConnection();
-
-                string sqlStatementDesc = @"
-                  INSERT INTO customer 
-                  (customer_discount, first_name, last_name, business_name, email, isWholesale, addr1, addr2, city, state, zip, phone, credit)
-                  VALUES 
-                  (@customerDiscount, @firstName, @lastName, @businessName, @email, @isWholesale, @addr1, @addr2, @city, @state, @zip, @phone, @credit)
-                ";
-                MySqlCommand cmd = new MySqlCommand(sqlStatementDesc, db.Connection());
-                cmd.Parameters.Add(new MySqlParameter("customerDiscount", cust.CustomerDiscount));
-                cmd.Parameters.Add(new MySqlParameter("firstName", cust.FirstName));
-                cmd.Parameters.Add(new MySqlParameter("lastName", cust.LastName));
-                cmd.Parameters.Add(new MySqlParameter("businessName", cust.BusinessName));
-                cmd.Parameters.Add(new MySqlParameter("email", cust.Email));
-                cmd.Parameters.Add(new MySqlParameter("isWholesale", cust.IsWholesale));
-                cmd.Parameters.Add(new MySqlParameter("addr1", cust.Address1));
-                cmd.Parameters.Add(new MySqlParameter("addr2", cust.Address2));
-                cmd.Parameters.Add(new MySqlParameter("city", cust.City));
-                cmd.Parameters.Add(new MySqlParameter("state", cust.State));
-                cmd.Parameters.Add(new MySqlParameter("zip", cust.ZipCode));
-                cmd.Parameters.Add(new MySqlParameter("phone", cust.PhoneNumber));
-                cmd.Parameters.Add(new MySqlParameter("credit", cust.Credit));
-
                 cmd.ExecuteNonQuery();
 
                 return cmd.LastInsertedId;
             }
             finally
             {
-                db.CloseConnnection();
+                db.CloseCommand(cmd);
             }
         }
+
         public long Update(Customer cust)
         {
-            db.OpenConnection();
+            MySqlCommand cmd = db.CreateCommand(@"
+                UPDATE customer 
+                SET customer_discount = @customerDiscount, first_name = @firstName,
+                    last_name = @lastName, business_name = @businessName,
+                    email = @email, isWholesale = @isWholesale,
+                    addr1 = @addr1, addr2 = @addr2, 
+                    city = @city, state = @state, 
+                    zip = @zip, phone = @phone,
+                    credit = @credit
+                WHERE customerID = @custID
+            ");
+
+            cmd.Parameters.Add(new MySqlParameter("customerDiscount", cust.CustomerDiscount));
+            cmd.Parameters.Add(new MySqlParameter("firstName", cust.FirstName));
+            cmd.Parameters.Add(new MySqlParameter("lastName", cust.LastName));
+            cmd.Parameters.Add(new MySqlParameter("businessName", cust.BusinessName));
+            cmd.Parameters.Add(new MySqlParameter("email", cust.Email));
+            cmd.Parameters.Add(new MySqlParameter("isWholesale", cust.IsWholesale));
+            cmd.Parameters.Add(new MySqlParameter("addr1", cust.Address1));
+            cmd.Parameters.Add(new MySqlParameter("addr2", cust.Address2));
+            cmd.Parameters.Add(new MySqlParameter("city", cust.City));
+            cmd.Parameters.Add(new MySqlParameter("state", cust.State));
+            cmd.Parameters.Add(new MySqlParameter("zip", cust.ZipCode));
+            cmd.Parameters.Add(new MySqlParameter("phone", cust.PhoneNumber));
+            cmd.Parameters.Add(new MySqlParameter("credit", cust.Credit));
+            cmd.Parameters.Add(new MySqlParameter("custID", cust.CustomerID));
 
             try
             {
-                string sqlStatementDesc = @"
-                 UPDATE customer 
-                 SET customer_discount = @customerDiscount, first_name = @firstName,
-                     last_name = @lastName, business_name = @businessName,
-                     email = @email, isWholesale = @isWholesale,
-                     addr1 = @addr1, addr2 = @addr2, 
-                     city = @city, state = @state, 
-                     zip = @zip, phone = @phone,
-                     credit = @credit
-                 WHERE customerID = @custID
-                ";
-
-                MySqlCommand cmd = new MySqlCommand(sqlStatementDesc, db.Connection());
-                cmd.Parameters.Add(new MySqlParameter("customerDiscount", cust.CustomerDiscount));
-                cmd.Parameters.Add(new MySqlParameter("firstName", cust.FirstName));
-                cmd.Parameters.Add(new MySqlParameter("lastName", cust.LastName));
-                cmd.Parameters.Add(new MySqlParameter("businessName", cust.BusinessName));
-                cmd.Parameters.Add(new MySqlParameter("email", cust.Email));
-                cmd.Parameters.Add(new MySqlParameter("isWholesale", cust.IsWholesale));
-                cmd.Parameters.Add(new MySqlParameter("addr1", cust.Address1));
-                cmd.Parameters.Add(new MySqlParameter("addr2", cust.Address2));
-                cmd.Parameters.Add(new MySqlParameter("city", cust.City));
-                cmd.Parameters.Add(new MySqlParameter("state", cust.State));
-                cmd.Parameters.Add(new MySqlParameter("zip", cust.ZipCode));
-                cmd.Parameters.Add(new MySqlParameter("phone", cust.PhoneNumber));
-                cmd.Parameters.Add(new MySqlParameter("credit", cust.Credit));
-                cmd.Parameters.Add(new MySqlParameter("custID", cust.CustomerID));
-
                 return cmd.ExecuteNonQuery();
             }
             finally
             {
-                db.CloseConnnection();
+                db.CloseCommand(cmd);
             }
         }
 
         public void Delete(uint custID)
         {
-            db.OpenConnection();
+            MySqlCommand cmd = db.CreateCommand(@"
+                DELETE FROM customer 
+                WHERE customerID = @CustID
+            ");
+            cmd.Parameters.Add(new MySqlParameter("custID", custID));
+
             try
             {
-                string sqlStatementDesc = @"
-                  DELETE FROM customer 
-                  WHERE customerID = @CustID
-                ";
-
-                MySqlCommand cmd = new MySqlCommand(sqlStatementDesc, db.Connection());
-                cmd.Parameters.Add(new MySqlParameter("custID", custID));
                 cmd.ExecuteNonQuery();
             }
             finally
             {
-                db.CloseConnnection();
+                db.CloseCommand(cmd);
             }
         }
+
         public void AddCredit(uint custID, double amount)
         {
-            db.OpenConnection();
+            MySqlCommand cmd = db.CreateCommand(@"
+                UPDATE customer 
+                SET Credit = IFNULL(Credit, 0) - @amount
+                WHERE customerID = @CustID
+            ");
+            cmd.Parameters.Add(new MySqlParameter("custID", custID));
+            cmd.Parameters.Add(new MySqlParameter("amount", amount));
+
             try
             {
-                string sqlStatementDesc = @"
-                  UPDATE customer 
-                  SET Credit = IFNULL(Credit, 0) - @amount
-                  WHERE customerID = @CustID
-                ";
-
-                MySqlCommand cmd = new MySqlCommand(sqlStatementDesc, db.Connection());
-                cmd.Parameters.Add(new MySqlParameter("custID", custID));
-                cmd.Parameters.Add(new MySqlParameter("amount", amount));
                 cmd.ExecuteNonQuery();
             }
             finally
             {
-                db.CloseConnnection();
+                db.CloseCommand(cmd);
             }
         }
         private List<Customer> FetchCustomers(MySqlDataReader reader)

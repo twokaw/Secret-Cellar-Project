@@ -20,9 +20,9 @@ namespace pos_core_api.ORM
 
         public List<CustomerNote> Get()
         {
-            db.OpenConnection();
+            
 
-            MySqlCommand cmd = new MySqlCommand(CUSTOMERNOTESSQL, db.Connection());
+            MySqlCommand cmd = db.CreateCommand(CUSTOMERNOTESSQL);
             MySqlDataReader reader = cmd.ExecuteReader();
 
             try
@@ -32,17 +32,17 @@ namespace pos_core_api.ORM
             finally
             {
                 reader.Close();
-                db.CloseConnnection();
+                db.CloseCommand(cmd);
             }
         }
 
         public List<CustomerNote> Get(uint customerID)
         {
-            db.OpenConnection();
+            
 
-            MySqlCommand cmd = new MySqlCommand(@$"{CUSTOMERNOTESSQL}
+            MySqlCommand cmd = db.CreateCommand(@$"{CUSTOMERNOTESSQL}
               WHERE customerID = @custID
-            ", db.Connection());
+            ");
 
             cmd.Parameters.Add(new MySqlParameter("custID", customerID));
 
@@ -60,17 +60,17 @@ namespace pos_core_api.ORM
             finally
             {
                 reader.Close();
-                db.CloseConnnection();
+                db.CloseCommand(cmd);
             }
         }
 
         public List<CustomerNote> GetbyType(uint customerTypeID)
         {
-            db.OpenConnection();
+            
 
-            MySqlCommand cmd = new MySqlCommand(@$"{CUSTOMERNOTESSQL}
+            MySqlCommand cmd = db.CreateCommand(@$"{CUSTOMERNOTESSQL}
               WHERE NoteTypeID = @customerTypeID
-            ", db.Connection());
+            ");
 
             cmd.Parameters.Add(new MySqlParameter("customerTypeID", customerTypeID));
             MySqlDataReader reader = cmd.ExecuteReader();
@@ -84,20 +84,20 @@ namespace pos_core_api.ORM
             finally
             {
                 reader.Close();
-                db.CloseConnnection();
+                db.CloseCommand(cmd);
             }
         }
 
         public List<NoteType> GetNoteTypes()
         {
             List<NoteType> output = new List<NoteType>();
-            db.OpenConnection();
+            
 
 
-            MySqlCommand cmd = new MySqlCommand(@$"
+            MySqlCommand cmd = db.CreateCommand(@$"
               SELECT NotetypeId, NoteType
               FROM   Notetype
-            ", db.Connection());
+            ");
 
             MySqlDataReader reader = cmd.ExecuteReader();
 
@@ -115,152 +115,141 @@ namespace pos_core_api.ORM
             finally
             {
                 reader.Close();
-                db.CloseConnnection();
+                db.CloseCommand(cmd);
             }
         }
 
         public long Insert(CustomerNote custNote)
         {
+            MySqlCommand cmd = db.CreateCommand(@"
+                INSERT INTO CustomerNote
+                ( CustomerId, NoteTypeId, Note, NoteDate)
+                VALUES 
+                ( @CustomerId, @NoteTypeId, @Note, @NoteDate)
+            ");
+
+            cmd.Parameters.Add(new MySqlParameter("CustomerId", custNote.IdCustomer));
+            cmd.Parameters.Add(new MySqlParameter("NoteTypeId", custNote.IdNoteType));
+            cmd.Parameters.Add(new MySqlParameter("Note", custNote.Note));
+            cmd.Parameters.Add(new MySqlParameter("NoteDate", custNote.NoteDate));
+
             try
             {
-                db.OpenConnection();
-
-                MySqlCommand cmd = new MySqlCommand(@"
-                  INSERT INTO CustomerNote
-                  ( CustomerId, NoteTypeId, Note, NoteDate)
-                  VALUES 
-                  ( @CustomerId, @NoteTypeId, @Note, @NoteDate)
-                ", db.Connection());
-
-                cmd.Parameters.Add(new MySqlParameter("CustomerId", custNote.IdCustomer));
-                cmd.Parameters.Add(new MySqlParameter("NoteTypeId", custNote.IdNoteType));
-                cmd.Parameters.Add(new MySqlParameter("Note", custNote.Note));
-                cmd.Parameters.Add(new MySqlParameter("NoteDate", custNote.NoteDate));
-
                 cmd.ExecuteNonQuery();
 
                 return cmd.LastInsertedId;
             }
             finally
             {
-                db.CloseConnnection();
+                db.CloseCommand(cmd);
             }
         }
 
         public long Update(CustomerNote custNote)
         {
-            db.OpenConnection();
+            MySqlCommand cmd = db.CreateCommand(@"
+                UPDATE customerNote 
+                SET CustomerId = @CustomerId,
+                    NoteTypeId = @NoteTypeId,
+                    Note       = @Note,
+                    NoteDate   = @NoteDate
+                WHERE CustomerNoteID = @CustomerNoteID
+            ");
+            cmd.Parameters.Add(new MySqlParameter("CustomerNoteID", custNote.IdNote));
+            cmd.Parameters.Add(new MySqlParameter("CustomerId", custNote.IdCustomer));
+            cmd.Parameters.Add(new MySqlParameter("NoteTypeId", custNote.IdNoteType));
+            cmd.Parameters.Add(new MySqlParameter("Note", custNote.Note));
+            cmd.Parameters.Add(new MySqlParameter("NoteDate", custNote.NoteDate ));            
 
             try
             {
-                string sqlStatementDesc = @"
-                 UPDATE customerNote 
-                 SET CustomerId = @CustomerId,
-                     NoteTypeId = @NoteTypeId,
-                     Note       = @Note,
-                     NoteDate   = @NoteDate
-                 WHERE CustomerNoteID = @CustomerNoteID
-                ";
-
-                MySqlCommand cmd = new MySqlCommand(sqlStatementDesc, db.Connection());
-                cmd.Parameters.Add(new MySqlParameter("CustomerNoteID", custNote.IdNote));
-                cmd.Parameters.Add(new MySqlParameter("CustomerId", custNote.IdCustomer));
-                cmd.Parameters.Add(new MySqlParameter("NoteTypeId", custNote.IdNoteType));
-                cmd.Parameters.Add(new MySqlParameter("Note", custNote.Note));
-                cmd.Parameters.Add(new MySqlParameter("NoteDate", custNote.NoteDate ));
-
                 return cmd.ExecuteNonQuery();
             }
             finally
             {
-                db.CloseConnnection();
+                db.CloseCommand(cmd);
             }
         }
 
         public void Delete(uint custNoteID)
         {
-            db.OpenConnection();
+            string sqlStatementDesc = @"
+                DELETE FROM CustomerNote
+                WHERE CustomerNoteID = @custID
+            ";
+
+            MySqlCommand cmd = db.CreateCommand(sqlStatementDesc);
+            cmd.Parameters.Add(new MySqlParameter("custID", custNoteID));   
+            
             try
             {
-                string sqlStatementDesc = @"
-                  DELETE FROM CustomerNote
-                  WHERE CustomerNoteID = @custID
-                ";
-
-                MySqlCommand cmd = new MySqlCommand(sqlStatementDesc, db.Connection());
-                cmd.Parameters.Add(new MySqlParameter("custID", custNoteID));
                 cmd.ExecuteNonQuery();
             }
             finally
             {
-                db.CloseConnnection();
+                db.CloseCommand(cmd);
             }
         }
 
         public long InsertNoteType(NoteType noteType)
         {
+            MySqlCommand cmd = db.CreateCommand(@"
+                INSERT INTO Notetype
+                (NoteType)
+                VALUES 
+                (@NoteType)
+            ");
+            cmd.Parameters.Add(new MySqlParameter("NoteType", noteType.Note_Type));
+
             try
             {
-                db.OpenConnection();
-
-                string sqlStatementDesc = @"
-                  INSERT INTO Notetype
-                  (NoteType)
-                  VALUES 
-                  (@NoteType)
-                ";
-                MySqlCommand cmd = new MySqlCommand(sqlStatementDesc, db.Connection());
-                cmd.Parameters.Add(new MySqlParameter("NoteType", noteType.Note_Type));
                 cmd.ExecuteNonQuery();
 
                 return cmd.LastInsertedId;
             }
             finally
             {
-                db.CloseConnnection();
+                db.CloseCommand(cmd);
             }
         }
+
         public long UpdateNoteType(NoteType noteType)
         {
-            db.OpenConnection();
+            MySqlCommand cmd = db.CreateCommand(@"
+                UPDATE Notetype 
+                SET NoteType = @NoteType
+                WHERE NoteTypeID = @NoteTypeID
+            ");
+            cmd.Parameters.Add(new MySqlParameter("NoteType", noteType.Note_Type));
+            cmd.Parameters.Add(new MySqlParameter("NoteTypeID", noteType.IdNoteType));            
 
             try
             {
-                string sqlStatementDesc = @"
-                 UPDATE Notetype 
-                 SET NoteType = @NoteType
-                 WHERE NoteTypeID = @NoteTypeID
-                ";
-
-                MySqlCommand cmd = new MySqlCommand(sqlStatementDesc, db.Connection());
-                cmd.Parameters.Add(new MySqlParameter("NoteType", noteType.Note_Type));
-                cmd.Parameters.Add(new MySqlParameter("NoteTypeID", noteType.IdNoteType));
-
                 return cmd.ExecuteNonQuery();
             }
             finally
             {
-                db.CloseConnnection();
+                db.CloseCommand(cmd);
             }
         }
 
         public void DeleteNoteType(uint IdNoteType)
         {
-            db.OpenConnection();
+            string sqlStatementDesc = @"
+                DELETE FROM Notetype 
+                WHERE NoteTypeID = @NoteTypeID
+            ";
+
+            MySqlCommand cmd = db.CreateCommand(sqlStatementDesc);
+            cmd.Parameters.Add(new MySqlParameter("NoteTypeID", IdNoteType));     
+            
             try
             {
-                string sqlStatementDesc = @"
-                  DELETE FROM Notetype 
-                  WHERE NoteTypeID = @NoteTypeID
-                ";
-
-                MySqlCommand cmd = new MySqlCommand(sqlStatementDesc, db.Connection());
-                cmd.Parameters.Add(new MySqlParameter("NoteTypeID", IdNoteType));
                 cmd.ExecuteNonQuery();
             }
             finally
             {
-                db.CloseConnnection();
+                db.CloseCommand(cmd);
             }
         }
 
