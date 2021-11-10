@@ -82,6 +82,7 @@ namespace SecretCellar.Orders_Panels {
 				CustomerOrder co = DataAccess.instance.GetCustomerOrderforCustomer(t.CustomerID) ?? new CustomerOrder() {
 					CustomerID = t.CustomerID
 				};
+
 				foreach (Item i in t.Items) {
 					CustomerOrderItem coi = co.Items.FirstOrDefault(x => x.Id == i.Id);
 
