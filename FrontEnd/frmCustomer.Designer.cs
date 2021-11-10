@@ -81,6 +81,7 @@ namespace SecretCellar
 			this.btn_add = new System.Windows.Forms.Button();
 			this.btn_cancel = new System.Windows.Forms.Button();
 			this.btn_clear = new System.Windows.Forms.Button();
+			this.button_delete = new System.Windows.Forms.Button();
 			this.pnl_change_info.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.customer_data_grid)).BeginInit();
 			this.SuspendLayout();
@@ -88,6 +89,7 @@ namespace SecretCellar
 			// pnl_change_info
 			// 
 			this.pnl_change_info.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.pnl_change_info.Controls.Add(this.button_delete);
 			this.pnl_change_info.Controls.Add(this.txt_phone);
 			this.pnl_change_info.Controls.Add(this.button_UpdateCredit);
 			this.pnl_change_info.Controls.Add(this.txt_zip);
@@ -149,7 +151,7 @@ namespace SecretCellar
 			this.txt_zip.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.txt_zip.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.txt_zip.Location = new System.Drawing.Point(142, 337);
-			this.txt_zip.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.txt_zip.Margin = new System.Windows.Forms.Padding(4);
 			this.txt_zip.Name = "txt_zip";
 			this.txt_zip.Size = new System.Drawing.Size(211, 19);
 			this.txt_zip.TabIndex = 14;
@@ -170,7 +172,7 @@ namespace SecretCellar
 			this.txt_state.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.txt_state.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.txt_state.Location = new System.Drawing.Point(142, 309);
-			this.txt_state.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.txt_state.Margin = new System.Windows.Forms.Padding(4);
 			this.txt_state.Name = "txt_state";
 			this.txt_state.Size = new System.Drawing.Size(211, 19);
 			this.txt_state.TabIndex = 13;
@@ -191,7 +193,7 @@ namespace SecretCellar
 			this.txt_city.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.txt_city.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.txt_city.Location = new System.Drawing.Point(142, 281);
-			this.txt_city.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.txt_city.Margin = new System.Windows.Forms.Padding(4);
 			this.txt_city.Name = "txt_city";
 			this.txt_city.Size = new System.Drawing.Size(211, 19);
 			this.txt_city.TabIndex = 12;
@@ -212,7 +214,7 @@ namespace SecretCellar
 			this.txt_addr2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.txt_addr2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.txt_addr2.Location = new System.Drawing.Point(142, 253);
-			this.txt_addr2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.txt_addr2.Margin = new System.Windows.Forms.Padding(4);
 			this.txt_addr2.Name = "txt_addr2";
 			this.txt_addr2.Size = new System.Drawing.Size(211, 19);
 			this.txt_addr2.TabIndex = 11;
@@ -242,8 +244,9 @@ namespace SecretCellar
 			// 
 			// btn_update
 			// 
+			this.btn_update.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.btn_update.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btn_update.Location = new System.Drawing.Point(-1, 381);
+			this.btn_update.Location = new System.Drawing.Point(203, 383);
 			this.btn_update.Margin = new System.Windows.Forms.Padding(1);
 			this.btn_update.Name = "btn_update";
 			this.btn_update.Size = new System.Drawing.Size(150, 37);
@@ -257,7 +260,7 @@ namespace SecretCellar
 			this.txt_addr1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.txt_addr1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.txt_addr1.Location = new System.Drawing.Point(142, 225);
-			this.txt_addr1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.txt_addr1.Margin = new System.Windows.Forms.Padding(4);
 			this.txt_addr1.Name = "txt_addr1";
 			this.txt_addr1.Size = new System.Drawing.Size(211, 19);
 			this.txt_addr1.TabIndex = 10;
@@ -278,7 +281,7 @@ namespace SecretCellar
 			this.txt_company.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.txt_company.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.txt_company.Location = new System.Drawing.Point(142, 139);
-			this.txt_company.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.txt_company.Margin = new System.Windows.Forms.Padding(4);
 			this.txt_company.Name = "txt_company";
 			this.txt_company.Size = new System.Drawing.Size(211, 19);
 			this.txt_company.TabIndex = 7;
@@ -288,7 +291,7 @@ namespace SecretCellar
 			this.txt_fname.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.txt_fname.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.txt_fname.Location = new System.Drawing.Point(142, 55);
-			this.txt_fname.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.txt_fname.Margin = new System.Windows.Forms.Padding(4);
 			this.txt_fname.Name = "txt_fname";
 			this.txt_fname.Size = new System.Drawing.Size(211, 19);
 			this.txt_fname.TabIndex = 4;
@@ -319,7 +322,7 @@ namespace SecretCellar
 			this.txt_custDisc.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.txt_custDisc.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.txt_custDisc.Location = new System.Drawing.Point(142, 196);
-			this.txt_custDisc.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.txt_custDisc.Margin = new System.Windows.Forms.Padding(4);
 			this.txt_custDisc.Name = "txt_custDisc";
 			this.txt_custDisc.Size = new System.Drawing.Size(211, 19);
 			this.txt_custDisc.TabIndex = 9;
@@ -353,7 +356,7 @@ namespace SecretCellar
             "False",
             "True"});
 			this.cbo_wholesale.Location = new System.Drawing.Point(142, 167);
-			this.cbo_wholesale.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.cbo_wholesale.Margin = new System.Windows.Forms.Padding(4);
 			this.cbo_wholesale.Name = "cbo_wholesale";
 			this.cbo_wholesale.Size = new System.Drawing.Size(211, 21);
 			this.cbo_wholesale.TabIndex = 8;
@@ -364,7 +367,7 @@ namespace SecretCellar
 			this.txt_lname.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.txt_lname.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.txt_lname.Location = new System.Drawing.Point(142, 27);
-			this.txt_lname.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.txt_lname.Margin = new System.Windows.Forms.Padding(4);
 			this.txt_lname.Name = "txt_lname";
 			this.txt_lname.Size = new System.Drawing.Size(211, 19);
 			this.txt_lname.TabIndex = 3;
@@ -396,7 +399,7 @@ namespace SecretCellar
 			this.txt_email.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.txt_email.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.txt_email.Location = new System.Drawing.Point(142, 111);
-			this.txt_email.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.txt_email.Margin = new System.Windows.Forms.Padding(4);
 			this.txt_email.Name = "txt_email";
 			this.txt_email.Size = new System.Drawing.Size(211, 19);
 			this.txt_email.TabIndex = 6;
@@ -662,13 +665,25 @@ namespace SecretCellar
 			this.btn_clear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.btn_clear.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.btn_clear.Location = new System.Drawing.Point(806, 26);
-			this.btn_clear.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.btn_clear.Margin = new System.Windows.Forms.Padding(4);
 			this.btn_clear.Name = "btn_clear";
 			this.btn_clear.Size = new System.Drawing.Size(191, 37);
 			this.btn_clear.TabIndex = 2;
 			this.btn_clear.Text = "CLEAR CUSTOMER INFO";
 			this.btn_clear.UseVisualStyleBackColor = true;
 			this.btn_clear.Click += new System.EventHandler(this.btn_clear_Click);
+			// 
+			// button_delete
+			// 
+			this.button_delete.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.button_delete.Location = new System.Drawing.Point(0, 383);
+			this.button_delete.Margin = new System.Windows.Forms.Padding(1);
+			this.button_delete.Name = "button_delete";
+			this.button_delete.Size = new System.Drawing.Size(150, 37);
+			this.button_delete.TabIndex = 48;
+			this.button_delete.Text = "DELETE CUSTOMER";
+			this.button_delete.UseVisualStyleBackColor = true;
+			this.button_delete.Click += new System.EventHandler(this.button_delete_Click);
 			// 
 			// frmCustomer
 			// 
@@ -751,5 +766,6 @@ namespace SecretCellar
         private System.Windows.Forms.DataGridViewTextBoxColumn city;
         private System.Windows.Forms.DataGridViewTextBoxColumn state;
         private System.Windows.Forms.DataGridViewTextBoxColumn zip;
-    }
+		private System.Windows.Forms.Button button_delete;
+	}
 }

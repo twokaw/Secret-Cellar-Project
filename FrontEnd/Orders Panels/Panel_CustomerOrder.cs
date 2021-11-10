@@ -8,25 +8,17 @@ using System.Windows.Forms;
 
 namespace SecretCellar.Orders_Panels {
 	public partial class Panel_CustomerOrder : UserControl {
-		private List<Customer> cust = null;
-		private List<Supplier> suppliers = new List<Supplier>();
-		//private List<Inventory> inventory = null;
-
-
 		public Panel_CustomerOrder() {
 			InitializeComponent();
 
-			cust = DataAccess.instance?.GetCustomer() ?? new List<Customer> ();
-			suppliers = DataAccess.instance?.GetSuppliers() ?? new List<Supplier>();
-			suppliers.Insert (0, new Supplier
-			{ 
-				Name = "All",
-				SupplierID = 0
-			});
-			
-			cbx_cust_custorder.DataSource = cust;
-			cbx_supp_custorder.DataSource = suppliers;
+			cbx_cust_custorder.DataSource = DataAccess.instance?.GetCustomer() ?? new List<Customer> ();
+
+			if (DataAccess.instance != null) {
+				cbx_supp_custorder.Items.Add("");
+				cbx_supp_custorder.Items.AddRange(DataAccess.instance.GetSuppliers().Select(x => x.Name).ToArray());
+			}
 		}
+
 
 		/// <summary>
 		/// On selected index change.
@@ -37,6 +29,7 @@ namespace SecretCellar.Orders_Panels {
 			uint cid = ((Customer)cbx_cust_custorder.SelectedItem).CustomerID;
 			RefreshFavorite(cid);
 		}
+
 
 		/// <summary>
 		/// On click add favorites.
@@ -54,19 +47,23 @@ namespace SecretCellar.Orders_Panels {
 			RefreshFavorite(cid);
 		}
 
+
 		/// <summary>
 		/// On click remove favorites.
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
 		private void btnFavoritesRemove_Click(object sender, EventArgs e) {
-			uint cid = ((Customer)cbx_cust_custorder.SelectedItem).CustomerID;
-			uint iid = DataAccess.instance.GetInventory().FirstOrDefault(x => x.Name == custOrder_datagrid.SelectedRows[0].Cells["CustOrdName"].Value.ToString()).Id;
+			if (custOrder_datagrid.SelectedRows.Count > 0) {
+				uint cid = ((Customer)cbx_cust_custorder.SelectedItem).CustomerID;
+				uint iid = DataAccess.instance.GetInventory().FirstOrDefault(x => x.Name == custOrder_datagrid.SelectedRows[0].Cells["CustOrdName"].Value.ToString()).Id;
 
-			DataAccess.instance.DeleteCustomerFavorite(cid, iid);
+				DataAccess.instance.DeleteCustomerFavorite(cid, iid);
 
-			RefreshFavorite(cid);
+				RefreshFavorite(cid);
+			}
 		}
+
 
 		/// <summary>
 		/// On click Add Order.
@@ -74,6 +71,7 @@ namespace SecretCellar.Orders_Panels {
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
 		private void btnAddOrder_Click(object sender, EventArgs e) {
+
 			Transaction t = new Transaction {
 				CustomerID = ((Customer)cbx_cust_custorder.SelectedItem).CustomerID
 			};
@@ -81,40 +79,43 @@ namespace SecretCellar.Orders_Panels {
 			DataAccess.instance.ShowLookupForm(t);
 
 			if (t.Items.Count > 0) {
-				CustomerOrder co = DataAccess.instance.GetCustomerOrderforCustomer(t.CustomerID);
+				CustomerOrder co = DataAccess.instance.GetCustomerOrderforCustomer(t.CustomerID) ?? new CustomerOrder() {
+					CustomerID = t.CustomerID
+				};
 
 				foreach (Item i in t.Items) {
 					CustomerOrderItem coi = co.Items.FirstOrDefault(x => x.Id == i.Id);
 
 					if (coi == null)
-						DataAccess.instance.NewCustomerOrderItem(co.CustomerID, new CustomerOrderItem 
-						{ 
-							Id = i.Id, 
-							RequestQty = 1, 
-						    Price = i.Price
-					       
-						});
+						DataAccess.instance.NewCustomerOrderItem(co.CustomerID, new CustomerOrderItem { Id = i.Id, RequestQty = 1 });
 					else {
 						coi.RequestQty++;
 						DataAccess.instance.UpdateCustomerOrderItem(coi);
 					}
 				}
+
+				//DataAccess.instance.UpdateCustomerOrderforCustomer(co);
 			}
 
 			RefreshFavorite(t.CustomerID);
 		}
 
+
 		/// <summary>
 		/// On click update order.
 		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void btn_update_custorder_Click(object sender, EventArgs e) {
 			if (custOrder_datagrid.SelectedRows.Count > 0) {
 				uint cid = ((Customer)cbx_cust_custorder.SelectedItem).CustomerID;
 				if (cid > 0) {
 					uint iid = Convert.ToUInt32(custOrder_datagrid.SelectedRows[0].Cells["CustOrd_id"].Value?.ToString());
 
-					CustomerOrder co = DataAccess.instance.GetCustomerOrderforCustomer(cid);
-					CustomerOrderItem coi = co.Items.FirstOrDefault(x => x.Id == iid);
+					CustomerOrder co = DataAccess.instance.GetCustomerOrderforCustomer(cid) ?? new CustomerOrder();
+					CustomerOrderItem coi = co.Items.FirstOrDefault(x => x.Id == iid) ?? new CustomerOrderItem {
+						Id = iid
+					};
 
 					if (coi == null)
 						DataAccess.instance.NewCustomerOrderItem(cid, new CustomerOrderItem {
@@ -132,13 +133,28 @@ namespace SecretCellar.Orders_Panels {
 			}
 		}
 
+
 		/// <summary>
 		/// On Keypress.
 		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void txt_orderqty_custorder_KeyPress(object sender, KeyPressEventArgs e) {
 			if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
 				e.Handled = true;
 		}
+
+
+		/// <summary>
+		/// When the supplier checkbox is changed.
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void cbx_supp_custorder_SelectedIndexChanged(object sender, EventArgs e) {
+			uint cid = ((Customer)cbx_cust_custorder.SelectedItem).CustomerID;
+			RefreshFavorite(cid);
+		}
+
 
 		/// <summary>
 		/// Refresh the favorites list.
@@ -146,14 +162,12 @@ namespace SecretCellar.Orders_Panels {
 		/// <param name="customerId"></param>
 		private void RefreshFavorite(uint customerId) {
 			List<CustomerFavorite> custFav = DataAccess.instance.GetCustomerFavorite(customerId).Favorites;
-			List<CustomerOrderItem> custItems = (DataAccess.instance.GetCustomerOrderforCustomer(customerId)?.Items ??
-				                                 new List<CustomerOrderItem>()).
-												 Where(x => x.DeliverQty < x.RequestQty).ToList();
+			List<CustomerOrderItem> custItems = (DataAccess.instance.GetCustomerOrderforCustomer(customerId)?.Items ?? new List<CustomerOrderItem>()).Where(x => x.DeliverQty < x.RequestQty).ToList();
 
 			custOrder_datagrid.DataSource = DataAccess.instance.GetInventory()
 				.GroupJoin(custFav, i => i.Id, f => f.InventoryID, (i, f) => new {
 					Inv = i,
-					Fav = f.SingleOrDefault()  
+					Fav = f.SingleOrDefault()
 				})
 				//.Where(x => x.Fav.InventoryID != 0 && !x.Inv.Hidden)
 				.GroupJoin(custItems, i => i.Inv.Id, o => o.Id, (i, o) => new {
@@ -161,33 +175,19 @@ namespace SecretCellar.Orders_Panels {
 					i.Fav,
 					Ord = o.SingleOrDefault()
 				})
-                .Where(x => (x.Fav != null || x.Ord != null)
-                         && !x.Inv.Hidden
-                         && ( 0 == ((Supplier)cbx_supp_custorder.SelectedItem).SupplierID
-						 ||   x.Inv.SupplierID == ((Supplier)cbx_supp_custorder.SelectedItem).SupplierID)
-					  )
+				.Where(x => x.Fav != null && (!x.Inv.Hidden || x.Ord != null) &&
+							(cbx_supp_custorder.Text == "" ||
+							 DataAccess.instance?.GetSuppliers().First(supplier => supplier.Name == cbx_supp_custorder.Text).SupplierID == x.Inv.SupplierID))
 				.Select(x => new {
 					x.Inv.Id,
 					x.Inv.Name,
 					x.Inv.Qty,
 					x.Inv.OrderQty,
-					x.Inv?.RequestQty,
 					Requsted = x.Ord?.RequestQty,
 					x.Inv.Price,
 					x.Fav?.Lastused
 				})
 				.ToList();
 		}
-
-        private void cbx_supp_custorder_SelectedIndexChanged(object sender, EventArgs e)
-        {
-			uint cid = ((Customer)cbx_cust_custorder.SelectedItem).CustomerID;
-			RefreshFavorite(cid);
-		}
-
-        private void custOrder_datagrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
     }
 }
