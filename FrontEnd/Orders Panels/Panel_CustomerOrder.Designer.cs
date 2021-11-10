@@ -221,7 +221,7 @@ namespace SecretCellar.Orders_Panels {
             this.custOrder_datagrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.custOrder_datagrid.Size = new System.Drawing.Size(990, 448);
             this.custOrder_datagrid.TabIndex = 15;
-            this.custOrder_datagrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.custOrder_datagrid_CellContentClick);
+           // this.custOrder_datagrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.custOrder_datagrid_Ce);
             // 
             // lbl_cust_custorder
             // 

@@ -216,7 +216,6 @@ namespace pos_core_api.ORM
              || temp.Price != cust.Price
              || temp.Paid != cust.Paid)
             {
-
                 MySqlCommand cmd = db.CreateCommand(@"
                     UPDATE customerorderitem
                     SET InventoryID     = @InventoryID, 
@@ -238,15 +237,22 @@ namespace pos_core_api.ORM
                 
                 try
                 {
-
                     cmd.ExecuteNonQuery();
 
                     if (cust.DeliverQty != temp.DeliverQty)
                         transactionORM.DecrementInventoryQty(new Item { Id = cust.Id, NumSold = cust.DeliverQty - temp.DeliverQty });
+                }
+                finally
+                {
+                    db.CloseCommand(cmd);
+                }
 
+                try 
+                { 
                     if (cust.RequestQty <= cust.DeliverQty)
                     {
                         cmd = new MySqlCommand(@$"
+                        cmd = db.CreateCommand(@$"
                          DELETE FROM customerorderitem
                          WHERE CustomerOrderItemID = @OrderItemID
                          AND DeliverQty >= RequestQty

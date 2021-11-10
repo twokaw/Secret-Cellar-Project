@@ -108,7 +108,7 @@ namespace pos_core_api.ORM
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-            using MySqlCommand cmd = new MySqlCommand(@"
+            using MySqlCommand cmd = db.CreateCommand(@"
                 DELETE FROM  inventory_type 
                 WHERE typeID = @typeID
             ");

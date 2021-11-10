@@ -204,20 +204,17 @@ namespace pos_core_api.ORM
             if (DoesBarcodeExist(inv.Barcode))
                 throw new Exception ("Barcode already exist.");
 
-            //Inserting into inventory_description
-            string sql = @"
-                INSERT INTO inventory_description 
-                (name, supplierID, barcode, retail_price, typeID, bottle_deposit_qty, nontaxable, nontaxable_local, InvMax, InvMin, OrderQty, Hidden) 
-                VALUES 
-                (@name, @supplierID, @barcode, @Price, @typeID, @bottles, @nonTaxable, @nonTaxableLocal, @InvMax, OrderQty, @Hidden);
-            ";
-
             if (string.IsNullOrWhiteSpace(inv.Barcode))
                 inv.Barcode = inv.Name.Replace(" ", "").ToUpper();
             else
                 inv.Barcode = inv.Barcode.Replace(" ", "").ToUpper();
 
-            MySqlCommand cmd = db.CreateCommand(sql);
+            MySqlCommand cmd = db.CreateCommand(@"
+                INSERT INTO inventory_description 
+                (name, supplierID, barcode, retail_price, typeID, bottle_deposit_qty, nontaxable, nontaxable_local, InvMax, InvMin, OrderQty, Hidden) 
+                VALUES 
+                (@name, @supplierID, @barcode, @Price, @typeID, @bottles, @nonTaxable, @nonTaxableLocal, @InvMax, OrderQty, @Hidden);
+            ");
 
             //cmd.Parameters.Add(new MySqlParameter("id", inv.Id));
             cmd.Parameters.Add(new MySqlParameter("name", inv.Name.Trim()));
@@ -238,21 +235,28 @@ namespace pos_core_api.ORM
                 cmd.ExecuteNonQuery();
 
                 inv.Id = Convert.ToUInt32(cmd.LastInsertedId);
-                cmd.Dispose();
+            }
+            finally
+            {
+                db.CloseCommand(cmd);
+            }
 
-                //Inserting into inventory_description
-                sql = @"
-                    INSERT INTO inventory_price 
-                    (name, Inventory_Qty, Supplier_price) 
-                    VALUES 
-                    (@id, @qty, @supplier_price);
-                ";
+            //Inserting into inventory_description
 
-                cmd = new MySqlCommand(sql);
-                //cmd.Parameters.Add(new MySqlParameter("id", inv.Id));
-                cmd.Parameters.Add(new MySqlParameter("id", inv.Id));
-                cmd.Parameters.Add(new MySqlParameter("Qty", inv.Qty));
-                cmd.Parameters.Add(new MySqlParameter("Supplier_price", inv.SupplierPrice));
+            cmd = db.CreateCommand(@"
+                INSERT INTO inventory_price 
+                (name, Inventory_Qty, Supplier_price) 
+                VALUES 
+                (@id, @qty, @supplier_price);
+            ");
+
+            //cmd.Parameters.Add(new MySqlParameter("id", inv.Id));
+            cmd.Parameters.Add(new MySqlParameter("id", inv.Id));
+            cmd.Parameters.Add(new MySqlParameter("Qty", inv.Qty));
+            cmd.Parameters.Add(new MySqlParameter("Supplier_price", inv.SupplierPrice));
+            
+            try
+            {
                 cmd.ExecuteNonQuery();
 
                 UpdateDiscount(inv);
@@ -310,27 +314,27 @@ namespace pos_core_api.ORM
             try
             {
                 cmd.ExecuteNonQuery();
-
             }
             finally
             {
                 db.CloseCommand(cmd);
             }
 
+            cmd = db.CreateCommand(@"
+                INSERT INTO  inventory_price 
+                (inventoryid, Inventory_Qty, Supplier_price)
+                VALUES 
+                (@id, @Qty, @Supplier_price)
+                ON DUPLICATE KEY UPDATE Inventory_Qty  = @qty, 
+                        Supplier_price = @supplier_price;
+            ");
+
+            cmd.Parameters.Add(new MySqlParameter("id", inv.Id));
+            cmd.Parameters.Add(new MySqlParameter("Qty", inv.Qty));
+            cmd.Parameters.Add(new MySqlParameter("Supplier_price", inv.SupplierPrice));
+
             try
             {
-                cmd = db.CreateCommand(@"
-                  INSERT INTO  inventory_price 
-                   (inventoryid, Inventory_Qty, Supplier_price)
-                  VALUES 
-                   (@id, @Qty, @Supplier_price)
-                  ON DUPLICATE KEY UPDATE Inventory_Qty  = @qty, 
-                          Supplier_price = @supplier_price;
-                ");
-
-                cmd.Parameters.Add(new MySqlParameter("id", inv.Id));
-                cmd.Parameters.Add(new MySqlParameter("Qty", inv.Qty));
-                cmd.Parameters.Add(new MySqlParameter("Supplier_price", inv.SupplierPrice));
                 cmd.ExecuteNonQuery();
 
                 UpdateDiscount(inv);
@@ -378,7 +382,7 @@ namespace pos_core_api.ORM
 
             MySqlCommand cmd = db.CreateCommand(sql);
 
-            cmd = new MySqlCommand(sql);
+            cmd = db.CreateCommand(sql);
             cmd.Parameters.Add(new MySqlParameter("InventoryID", inv.Id));
 
             try

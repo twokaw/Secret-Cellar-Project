@@ -254,7 +254,7 @@ namespace pos_core_api.ORM
 
             CodeIds = CodeIds.Trim(',');
 
-            cmd = new MySqlCommand(@$"
+            cmd = db.CreateCommand(@$"
                     DELETE FROM printerModelcode
                     WHERE printerModelID = @ModelID
                     {(string.IsNullOrWhiteSpace(CodeIds) ? "" : $"AND NOT printerCodeid IN ({CodeIds})")};
