@@ -28,71 +28,65 @@ namespace pos_core_api.ORM
 
         public List<Transaction> GetTransactions(DateTime start, DateTime end, bool includeItems = true, bool includePayments = true)
         {
-            db.OpenConnection();
+            MySqlCommand cmd = db.CreateCommand(SQLGET);
+
+            if (start > DateTime.MinValue)
+            {
+                cmd.Parameters.Add(new MySqlParameter("start", start));
+                cmd.CommandText += " WHERE sold_datetime >= @start";
+
+                if (end >= start)
+                {
+                    cmd.CommandText += " AND sold_datetime <= @end";
+                    cmd.Parameters.Add(new MySqlParameter("end", end));
+                }
+            }  
             try
             {
-                string sqlStatement = SQLGET;
-
-                using MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
-
-                if (start > DateTime.MinValue)
-                {
-                    cmd.Parameters.Add(new MySqlParameter("start", start));
-                    cmd.CommandText += " WHERE sold_datetime >= @start";
-
-                    if (end >= start)
-                    {
-                        cmd.CommandText += " AND sold_datetime <= @end";
-                        cmd.Parameters.Add(new MySqlParameter("end", end));
-                    }
-                }
                 return GetTransactions(cmd, includeItems, includePayments);
             }
             finally
             {
-                db.CloseConnnection();
+                db.CloseCommand(cmd);
             }
         }
+
         public Transaction GetTransaction(uint invoiceID, bool includeItems = true, bool includePayments = true)
         {
-            db.OpenConnection();
+            MySqlCommand cmd = db.CreateCommand(@$"
+                {SQLGET}
+                WHERE receiptID = @invoiceID;
+            ");
+            cmd.Parameters.Add(new MySqlParameter("invoiceID", invoiceID));    
+            
             try
             {
-                using MySqlCommand cmd = new MySqlCommand(@$"
-                 {SQLGET}
-                 WHERE receiptID = @invoiceID;
-                ", db.Connection());
-                cmd.Parameters.Add(new MySqlParameter("invoiceID", invoiceID));
                 List<Transaction> transaction = GetTransactions(cmd, includeItems, includePayments);
 
                 return (transaction.Count > 0) ? transaction[0] : null;
             }
             finally
             {
-                db.CloseConnnection();
+                db.CloseCommand(cmd);
             }
         }
 
         public List<Transaction> GetSuspendedTransactions(bool includeItems = true, bool includePayments = true)
         {
-            db.OpenConnection();
+            MySqlCommand cmd = db.CreateCommand(@$"
+                SELECT receiptID, register, sold_datetime, customerID, empID, location, tax_exempt, discount, shipping
+                FROM Transaction 
+                JOIN v_suspendedtransaction
+                USING(ReceiptID);
+            "); 
+            
             try
             {
-                string sqlStatement = @$"
-                 SELECT receiptID, register, sold_datetime, customerID, empID, location, tax_exempt, discount, shipping
-                 FROM Transaction 
-                 JOIN v_suspendedtransaction
-                 USING(ReceiptID);
-                ";
-
-                using MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
-                List<Transaction> transaction = GetTransactions(cmd, includeItems, includePayments);
-
-                return transaction;
+                return GetTransactions(cmd, includeItems, includePayments);
             }
             finally
             {
-                db.CloseConnnection();
+                db.CloseCommand(cmd);
             }
         }
         public List<Transaction> GetCustomerTransactions(uint customerID, bool includeItems = true, bool includePayments = true)
@@ -101,34 +95,34 @@ namespace pos_core_api.ORM
         }
         public List<Transaction> GetCustomerTransactions(uint customerID, DateTime start, DateTime end, bool includeItems = true, bool includePayments = true)
         {
-            db.OpenConnection();
+            MySqlCommand cmd = db.CreateCommand(@$"
+                {SQLGET}
+                WHERE customerID = @customerID
+            ");
+
+            if (start > DateTime.MinValue)
+            {
+                cmd.Parameters.Add(new MySqlParameter("start", start));
+                cmd.CommandText += " AND sold_datetime >= @start";
+
+                if (end >= start)
+                {
+                    cmd.CommandText += " AND sold_datetime <= @end";
+                    cmd.Parameters.Add(new MySqlParameter("end", end));
+                }
+            }
+
+            cmd.Parameters.Add(new MySqlParameter("customerID", customerID)); 
+            
             try
             {
-                using MySqlCommand cmd = new MySqlCommand(@$"
-                 {SQLGET}
-                 WHERE customerID = @customerID
-                ", db.Connection());
-
-                if (start > DateTime.MinValue)
-                {
-                    cmd.Parameters.Add(new MySqlParameter("start", start));
-                    cmd.CommandText += " AND sold_datetime >= @start";
-
-                    if (end >= start)
-                    {
-                        cmd.CommandText += " AND sold_datetime <= @end";
-                        cmd.Parameters.Add(new MySqlParameter("end", end));
-                    }
-                }
-
-                cmd.Parameters.Add(new MySqlParameter("customerID", customerID));
                 List<Transaction> transaction = GetTransactions(cmd, includeItems, includePayments);
 
                 return transaction;
             }
             finally
             {
-                db.CloseConnnection();
+                db.CloseCommand(cmd);
             }
         }
 
@@ -137,28 +131,23 @@ namespace pos_core_api.ORM
             Transaction transaction;
             List<Transaction> output = new List<Transaction>();
 
-            try
+            using MySqlDataReader reader = cmd.ExecuteReader();
+
+            while (reader.Read())
             {
-                using MySqlDataReader reader = cmd.ExecuteReader();
-                while (reader.Read())
+                transaction = new Transaction
                 {
-                    transaction = new Transaction
-                    {
-                        InvoiceID = reader.IsDBNull("receiptID") ? 0 : reader.GetUInt32("receiptID"),
-                        RegisterID = reader.IsDBNull("register") ? 0 : reader.GetUInt32("register"),
-                        TransactionDateTime = reader.IsDBNull("sold_datetime") ? new DateTime() : reader.GetDateTime("sold_datetime"),
-                        CustomerID = reader.IsDBNull("customerID") ? 0 : reader.GetUInt32("customerID"),
-                        EmployeeID = reader.IsDBNull("empID") ? 0 : reader.GetUInt32("empID"),
-                        Location = reader.IsDBNull("location") ? "" : reader.GetString("location"),
-                        TaxExempt = !reader.IsDBNull("tax_exempt") && reader.GetBoolean("tax_exempt"),
-                        Discount = reader.IsDBNull("discount") ? 0.0 : reader.GetDouble("discount"),
-                        Shipping = reader.IsDBNull("shipping") ? 0.0 : reader.GetDouble("shipping")
-                    };
-                    output.Add(transaction);
-                }
-            }
-            finally
-            {
+                    InvoiceID = reader.IsDBNull("receiptID") ? 0 : reader.GetUInt32("receiptID"),
+                    RegisterID = reader.IsDBNull("register") ? 0 : reader.GetUInt32("register"),
+                    TransactionDateTime = reader.IsDBNull("sold_datetime") ? new DateTime() : reader.GetDateTime("sold_datetime"),
+                    CustomerID = reader.IsDBNull("customerID") ? 0 : reader.GetUInt32("customerID"),
+                    EmployeeID = reader.IsDBNull("empID") ? 0 : reader.GetUInt32("empID"),
+                    Location = reader.IsDBNull("location") ? "" : reader.GetString("location"),
+                    TaxExempt = !reader.IsDBNull("tax_exempt") && reader.GetBoolean("tax_exempt"),
+                    Discount = reader.IsDBNull("discount") ? 0.0 : reader.GetDouble("discount"),
+                    Shipping = reader.IsDBNull("shipping") ? 0.0 : reader.GetDouble("shipping")
+                };
+                output.Add(transaction);
             }
 
             if (includeItems) output.ForEach(x => GetItems(x));
@@ -166,87 +155,99 @@ namespace pos_core_api.ORM
 
             return output;
         }
+
         public void GetItems(Transaction transaction)
         {
-            string itemSQLStatement = @"
+            MySqlCommand cmd = db.CreateCommand(@"
                 SELECT receiptID, name, InventoryID, barcode, sold_qty, sold_price, supplier_price, 
                         bottles, inventory_type_name, nontaxable, nontaxable_local, inventory_qty
                 FROM v_transaction_items
                 WHERE receiptID = @receiptID
                 ORDER BY InventoryID
-            ";
+            ");
 
-            using MySqlCommand cmd = new MySqlCommand(itemSQLStatement, db.Connection());
             cmd.Parameters.Add(new MySqlParameter("receiptID", transaction.InvoiceID));
 
-            using MySqlDataReader itemReader = cmd.ExecuteReader();
-            Item item = null;
-            while (itemReader.Read())
+            try
             {
-                if (item?.Id != itemReader.GetUInt32("inventoryid"))
+                using MySqlDataReader itemReader = cmd.ExecuteReader();
+                Item item = null;
+                while (itemReader.Read())
                 {
-                    item = new Item()
+                    if (item?.Id != itemReader.GetUInt32("inventoryid"))
                     {
-                        Name = itemReader.IsDBNull("name") ? "" : itemReader.GetString("name"),
-                        Id = itemReader.GetUInt32("inventoryid"),
-                        Barcode = itemReader.IsDBNull("barcode") ? "" : itemReader.GetString("barcode"),
-                        Price = itemReader.IsDBNull("sold_price") ? 0.0 : itemReader.GetDouble("sold_price"),
-                        Bottles = itemReader.IsDBNull("bottles") ? 0 : itemReader.GetUInt32("bottles"),
-                        ItemType = itemReader.IsDBNull("inventory_type_name") ? "" : itemReader.GetString("inventory_type_name"),
-                        NonTaxable = !itemReader.IsDBNull("nontaxable") && itemReader.GetBoolean("nontaxable"),
-                        NonTaxableLocal = !itemReader.IsDBNull("nontaxable_local") && itemReader.GetBoolean("nontaxable_local")
-                    };
-                    item.NumSold = 0;
-                    transaction.Items.Add(item);
+                        item = new Item()
+                        {
+                            Name = itemReader.IsDBNull("name") ? "" : itemReader.GetString("name"),
+                            Id = itemReader.GetUInt32("inventoryid"),
+                            Barcode = itemReader.IsDBNull("barcode") ? "" : itemReader.GetString("barcode"),
+                            Price = itemReader.IsDBNull("sold_price") ? 0.0 : itemReader.GetDouble("sold_price"),
+                            Bottles = itemReader.IsDBNull("bottles") ? 0 : itemReader.GetUInt32("bottles"),
+                            ItemType = itemReader.IsDBNull("inventory_type_name") ? "" : itemReader.GetString("inventory_type_name"),
+                            NonTaxable = !itemReader.IsDBNull("nontaxable") && itemReader.GetBoolean("nontaxable"),
+                            NonTaxableLocal = !itemReader.IsDBNull("nontaxable_local") && itemReader.GetBoolean("nontaxable_local")
+                        };
+                        item.NumSold = 0;
+                        transaction.Items.Add(item);
+                    }
+
+                    item.NumSold += itemReader.IsDBNull("sold_qty") ? 0 : itemReader.GetUInt32("sold_qty");
+
+                    item.AllQty.Add(new InventoryQty
+                    {
+                        PurchasedDate = DateTime.Now,
+                        Qty = itemReader.IsDBNull("sold_qty") ? 0 : itemReader.GetUInt32("sold_qty"),
+                        SupplierPrice = itemReader.IsDBNull("supplier_price") ? 0.0 : itemReader.GetDouble("supplier_price"),
+                    });
                 }
-
-                item.NumSold += itemReader.IsDBNull("sold_qty") ? 0 : itemReader.GetUInt32("sold_qty");
-
-                item.AllQty.Add(new InventoryQty
-                {
-                    PurchasedDate = DateTime.Now,
-                    Qty = itemReader.IsDBNull("sold_qty") ? 0 : itemReader.GetUInt32("sold_qty"),
-                    SupplierPrice = itemReader.IsDBNull("supplier_price") ? 0.0 : itemReader.GetDouble("supplier_price"),
-                });
+            }
+            finally
+            {
+                db.CloseCommand(cmd);
             }
         }
 
         public void GetPayments(Transaction transaction)
         {
-            string itemSQLStatement = @"
+            MySqlCommand cmd = db.CreateCommand(@"
                 SELECT PayId, Method, Number, Amount
                 FROM payments
                 WHERE receiptID = @receiptID
-            ";
-
-            using MySqlCommand cmd = new MySqlCommand(itemSQLStatement, db.Connection());
+            ");
             cmd.Parameters.Add(new MySqlParameter("receiptID", transaction.InvoiceID));
 
-            using MySqlDataReader itemReader = cmd.ExecuteReader();
-            while (itemReader.Read())
-            {
-                transaction.Payments.Add(new Payment
-                {
-                    ReciptId = transaction.InvoiceID,
-                    Method = itemReader.IsDBNull("method") ? "" : itemReader.GetString("method"),
-                    PayId = itemReader.IsDBNull("payid") ? 0 : itemReader.GetUInt32("payid"),
-                    Number = itemReader.IsDBNull("Number") ? "" : itemReader.GetString("Number"),
-                    Amount = itemReader.IsDBNull("Amount") ? 0 : itemReader.GetUInt32("Amount")
-                });
-            }
-        }
-        public Payment GetPayment(uint payId)
-        {
-            db.OpenConnection();
             try
             {
-                using MySqlCommand cmd = new MySqlCommand(@"
-                    SELECT receiptID, PayId, Method, Number, Amount
-                    FROM payments
-                    WHERE payID = @payId
-                ", db.Connection());
-                cmd.Parameters.Add(new MySqlParameter("payId", payId));
+                using MySqlDataReader itemReader = cmd.ExecuteReader();
+                while (itemReader.Read())
+                {
+                    transaction.Payments.Add(new Payment
+                    {
+                        ReciptId = transaction.InvoiceID,
+                        Method = itemReader.IsDBNull("method") ? "" : itemReader.GetString("method"),
+                        PayId = itemReader.IsDBNull("payid") ? 0 : itemReader.GetUInt32("payid"),
+                        Number = itemReader.IsDBNull("Number") ? "" : itemReader.GetString("Number"),
+                        Amount = itemReader.IsDBNull("Amount") ? 0 : itemReader.GetUInt32("Amount")
+                    });
+                }
+            }
+            finally
+            {
+                db.CloseCommand(cmd);
+            }
+        }
 
+        public Payment GetPayment(uint payId)
+        {
+            MySqlCommand cmd = db.CreateCommand(@"
+                SELECT receiptID, PayId, Method, Number, Amount
+                FROM payments
+                WHERE payID = @payId
+            ");
+            cmd.Parameters.Add(new MySqlParameter("payId", payId));
+            
+            try
+            {
                 using MySqlDataReader itemReader = cmd.ExecuteReader();
                 if (itemReader.Read())
                 {
@@ -264,38 +265,36 @@ namespace pos_core_api.ORM
             }
             finally
             {
-                db.CloseConnnection();
+                db.CloseCommand(cmd);
             }
         }
 
         public uint InsertTransaction(Transaction transaction, bool decrementItems = true)
         {
-            db.OpenConnection();
+            MySqlCommand cmd = db.CreateCommand(@"
+                INSERT INTO transaction
+                (register,  sold_datetime,  customerID,  empID,  location,  tax_exempt,  discount, shipping)
+                VALUES
+                (@register, @sold_datetime, @customerID, @empID, @location, @tax_exempt, @discount, @shipping)
+            ");            
+
+            cmd.Parameters.Add(new MySqlParameter("register", transaction.RegisterID));
+            cmd.Parameters.Add(new MySqlParameter("sold_datetime", transaction.TransactionDateTime));
+            cmd.Parameters.Add(new MySqlParameter("customerID", transaction.CustomerID));
+            cmd.Parameters.Add(new MySqlParameter("empID", transaction.EmployeeID));
+            cmd.Parameters.Add(new MySqlParameter("location", transaction.Location));
+            cmd.Parameters.Add(new MySqlParameter("tax_exempt", transaction.TaxExempt));
+            cmd.Parameters.Add(new MySqlParameter("discount", transaction.Discount));
+            cmd.Parameters.Add(new MySqlParameter("shipping", transaction.Shipping));
+
             try
             {
-                string sql = @"
-                  INSERT INTO transaction
-                  (register,  sold_datetime,  customerID,  empID,  location,  tax_exempt,  discount, shipping)
-                  VALUES
-                  (@register, @sold_datetime, @customerID, @empID, @location, @tax_exempt, @discount, @shipping)
-                ";
-
-                MySqlCommand cmd = new MySqlCommand(sql, db.Connection());
-                cmd.Parameters.Add(new MySqlParameter("register", transaction.RegisterID));
-                cmd.Parameters.Add(new MySqlParameter("sold_datetime", transaction.TransactionDateTime));
-                cmd.Parameters.Add(new MySqlParameter("customerID", transaction.CustomerID));
-                cmd.Parameters.Add(new MySqlParameter("empID", transaction.EmployeeID));
-                cmd.Parameters.Add(new MySqlParameter("location", transaction.Location));
-                cmd.Parameters.Add(new MySqlParameter("tax_exempt", transaction.TaxExempt));
-                cmd.Parameters.Add(new MySqlParameter("discount", transaction.Discount));
-                cmd.Parameters.Add(new MySqlParameter("shipping", transaction.Shipping));
-
                 cmd.ExecuteNonQuery();
                 transaction.InvoiceID = Convert.ToUInt32(cmd.LastInsertedId);
             }
             finally
             {
-                db.CloseConnnection();
+                db.CloseCommand(cmd);
             }
 
             InsertItems(transaction, FullyPaid(transaction) && decrementItems);
@@ -306,38 +305,35 @@ namespace pos_core_api.ORM
 
         public uint UpdateTransaction(Transaction transaction, Transaction previousTransaction)
         {
-            db.OpenConnection();
+            MySqlCommand cmd = db.CreateCommand(@"
+                UPDATE transaction
+                SET register = @register,  
+                    sold_datetime = @sold_datetime,  
+                    customerID = @customerID,   
+                    empID = @empID,  
+                    location = @location,  
+                    tax_exempt = @tax_exempt,  
+                    discount = @discount, 
+                    shipping = @shipping
+                WHERE Receiptid = @InvoiceID
+            ");
+            cmd.Parameters.Add(new MySqlParameter("register", transaction.RegisterID));
+            cmd.Parameters.Add(new MySqlParameter("sold_datetime", transaction.TransactionDateTime));
+            cmd.Parameters.Add(new MySqlParameter("customerID", transaction.CustomerID));
+            cmd.Parameters.Add(new MySqlParameter("empID", transaction.EmployeeID));
+            cmd.Parameters.Add(new MySqlParameter("location", transaction.Location));
+            cmd.Parameters.Add(new MySqlParameter("tax_exempt", transaction.TaxExempt));
+            cmd.Parameters.Add(new MySqlParameter("discount", transaction.Discount));
+            cmd.Parameters.Add(new MySqlParameter("shipping", transaction.Shipping));
+            cmd.Parameters.Add(new MySqlParameter("InvoiceID", transaction.InvoiceID));      
+            
             try
             {
-                string sql = @"
-                  UPDATE transaction
-                  SET register = @register,  
-                      sold_datetime = @sold_datetime,  
-                      customerID = @customerID,   
-                      empID = @empID,  
-                      location = @location,  
-                      tax_exempt = @tax_exempt,  
-                      discount = @discount, 
-                      shipping = @shipping
-                  WHERE Receiptid = @InvoiceID
-                ";
-
-                MySqlCommand cmd = new MySqlCommand(sql, db.Connection());
-                cmd.Parameters.Add(new MySqlParameter("register", transaction.RegisterID));
-                cmd.Parameters.Add(new MySqlParameter("sold_datetime", transaction.TransactionDateTime));
-                cmd.Parameters.Add(new MySqlParameter("customerID", transaction.CustomerID));
-                cmd.Parameters.Add(new MySqlParameter("empID", transaction.EmployeeID));
-                cmd.Parameters.Add(new MySqlParameter("location", transaction.Location));
-                cmd.Parameters.Add(new MySqlParameter("tax_exempt", transaction.TaxExempt));
-                cmd.Parameters.Add(new MySqlParameter("discount", transaction.Discount));
-                cmd.Parameters.Add(new MySqlParameter("shipping", transaction.Shipping));
-                cmd.Parameters.Add(new MySqlParameter("InvoiceID", transaction.InvoiceID));
-
                 cmd.ExecuteNonQuery();
             }
             finally
             {
-                db.CloseConnnection();
+                db.CloseCommand(cmd);
             }
             InsertItems(transaction, FullyPaid(transaction), previousTransaction);
             InsertPayments(transaction, previousTransaction);
@@ -347,150 +343,129 @@ namespace pos_core_api.ORM
 
         public void InsertItems(Transaction transaction, bool updateDecrementInvQty)
         {
-            MySqlCommand cmd;
-            string sql;
-            db.OpenConnection();
 
             // TODO: remove items that have been removed
-            try
+            foreach (Item item in transaction.Items)
             {
-                foreach (Item item in transaction.Items)
-                {
-                    sql = @"
+
+                MySqlCommand cmd = db.CreateCommand (@"
                      REPLACE INTO transaction_items
                      ( receiptID,  inventoryID,  sold_price,  supplier_price,  sold_qty)
                      VALUES
                      (@receiptID, @inventoryID, @sold_price, @supplier_price, @sold_qty)
-                    ";
+                    ");
+                cmd.Parameters.Add(new MySqlParameter("receiptID", transaction.InvoiceID));
+                cmd.Parameters.Add(new MySqlParameter("inventoryID", item.Id));
+                cmd.Parameters.Add(new MySqlParameter("sold_price", item.Price));
+                cmd.Parameters.Add(new MySqlParameter("supplier_price", item.SupplierPrice));
+                cmd.Parameters.Add(new MySqlParameter("sold_qty", item.NumSold));
 
-                    cmd = new MySqlCommand(sql, db.Connection());
-                    cmd.Parameters.Add(new MySqlParameter("receiptID", transaction.InvoiceID));
-                    cmd.Parameters.Add(new MySqlParameter("inventoryID", item.Id));
-                    cmd.Parameters.Add(new MySqlParameter("sold_price", item.Price));
-                    cmd.Parameters.Add(new MySqlParameter("supplier_price", item.SupplierPrice));
-                    cmd.Parameters.Add(new MySqlParameter("sold_qty", item.NumSold));
-
+                try
+                {
                     cmd.ExecuteNonQuery();
 
                     if(updateDecrementInvQty)
                         DecrementInventoryQty(item);
-
-                    cmd.Dispose();
+                }
+                finally
+                {
+                    db.CloseCommand(cmd);
                 }
             }
-            finally
-            {
-                db.CloseConnnection();
-            }
         }
-
-
 
         public void InsertItems(Transaction transaction, bool updateDecrementInvQty, Transaction previousTransaction )
         {
             InsertItems(transaction, updateDecrementInvQty);
 
-
             MySqlCommand cmd;
-            db.OpenConnection();
-
-            try
+            
+            foreach (Item item in previousTransaction.Items.Where(x=>transaction.Items.FirstOrDefault(y => y.Id == x.Id) == null))
             {
-                foreach (Item item in previousTransaction.Items.Where(x=>transaction.Items.FirstOrDefault(y => y.Id == x.Id) == null))
-                {
-                    cmd = new MySqlCommand(@"
-                       DELETE FROM transaction_items
-                       WHERE receiptID = @receiptID
-                       AND   inventoryID =  @inventoryID
-                    ", db.Connection());
-                    cmd.Parameters.Add(new MySqlParameter("receiptID", transaction.InvoiceID));
-                    cmd.Parameters.Add(new MySqlParameter("inventoryID", item.Id));
+                cmd = db.CreateCommand (@"
+                    DELETE FROM transaction_items
+                    WHERE receiptID = @receiptID
+                    AND   inventoryID =  @inventoryID
+                ");
+                cmd.Parameters.Add(new MySqlParameter("receiptID", transaction.InvoiceID));
+                cmd.Parameters.Add(new MySqlParameter("inventoryID", item.Id));
 
+                try
+                {
                     cmd.ExecuteNonQuery();
 
                     // if (updateDecrementInvQty)
                     //    DecrementInventoryQty(item); // TODO: add increment qty
-
-                    cmd.Dispose();
                 }
-            }
-            finally
-            {
-                db.CloseConnnection();
+                finally
+                {
+                    db.CloseCommand(cmd);
+                }
             }
         }
 
-
         public void UpdateItemQty(uint receiptId, uint itemId, int qty)
         {
-            db.OpenConnection();
+            using MySqlCommand cmd = db.CreateCommand(@"
+                UPDATE transaction_items
+                SET sold_qty = GREATER(sold_qty, 0)
+                WHERE  receiptID = @receiptID
+                AND    inventoryID = @inventoryID
+            ");
+
+            cmd.Parameters.Add(new MySqlParameter("receiptID", receiptId));
+            cmd.Parameters.Add(new MySqlParameter("inventoryID", itemId));
+            cmd.Parameters.Add(new MySqlParameter("sold_qty", qty));    
+            
             try
             {
-                using MySqlCommand cmd = new MySqlCommand(@"
-                    UPDATE transaction_items
-                    SET sold_qty = GREATER(sold_qty, 0)
-                    WHERE  receiptID = @receiptID
-                    AND    inventoryID = @inventoryID
-                ", db.Connection());
-
-                cmd.Parameters.Add(new MySqlParameter("receiptID", receiptId));
-                cmd.Parameters.Add(new MySqlParameter("inventoryID", itemId));
-                cmd.Parameters.Add(new MySqlParameter("sold_qty", qty));
-
                 cmd.ExecuteNonQuery();
             }
             finally
             {
-                db.CloseConnnection();
+                db.CloseCommand(cmd);
             }
         }
 
         public void DecrementInventoryQty(Item item)
         {
-            db.OpenConnection();
-            try
+            if (item.DecrementInventory)
             {
-                if (item.DecrementInventory)
+                MySqlCommand cmd = db.CreateCommand(@"
+                    UPDATE Inventory_price
+                    SET Inventory_qty = GREATEST(Inventory_qty - @qty, 0 ) 
+                    WHERE inventoryID = @inventoryID 
+                ");
+                cmd.Parameters.Add(new MySqlParameter("qty", item.NumSold));
+                cmd.Parameters.Add(new MySqlParameter("inventoryID", item.Id));
+                try
                 {
-                    string sql = @"
-                        UPDATE Inventory_price
-                        SET Inventory_qty = GREATEST(Inventory_qty - @qty, 0 ) 
-                        WHERE inventoryID = @inventoryID 
-                    ";
-
-                    using MySqlCommand cmd = new MySqlCommand(sql, db.Connection());
-                    cmd.Parameters.Add(new MySqlParameter("qty", item.NumSold));
-                    cmd.Parameters.Add(new MySqlParameter("inventoryID", item.Id));
-
                     cmd.ExecuteNonQuery();
                 }
-            }
-            finally
-            {
-                db.CloseConnnection();
+                finally
+                {
+                    db.CloseCommand(cmd);
+                }
             }
         }
 
         public void AddInventoryQty(Item item, int qty)
         {
-            string sql = @"
+            using MySqlCommand cmd = db.CreateCommand(@"
                 UPDATE Inventory_price 
                 SET Inventory_qty = Inventory_qty + @qty 
                 WHERE inventoryID = @inventoryID 
-            ";
-
-            db.OpenConnection();
+            ");
+            cmd.Parameters.Add(new MySqlParameter("qty", Math.Min(item.NumSold, qty)));
+            cmd.Parameters.Add(new MySqlParameter("inventoryID", item.Id));
+            
             try
             {
-                using MySqlCommand cmd = new MySqlCommand(sql, db.Connection());
-                cmd.Parameters.Add(new MySqlParameter("qty", Math.Min(item.NumSold, qty)));
-                cmd.Parameters.Add(new MySqlParameter("inventoryID", item.Id));
-
                 cmd.ExecuteNonQuery();
             }
             finally
             {
-                db.CloseConnnection();
+                db.CloseCommand(cmd);
             }
         }
 
@@ -515,34 +490,34 @@ namespace pos_core_api.ORM
 
             //  TODO: Remove playments that are removed
 
-            db.OpenConnection();
-            try
+            
+            foreach (Payment pay in transaction.Payments)
             {
-                foreach (Payment pay in transaction.Payments)
+                if(pay.PayId > 0)
                 {
-                    if(pay.PayId > 0)
-                    {
-                        cmd = new MySqlCommand(update, db.Connection());
-                        cmd.Parameters.Add(new MySqlParameter("PayID", pay.PayId));
-                    }
-                    else
-                    {
-                        cmd = new MySqlCommand(insert, db.Connection());
+                    cmd = db.CreateCommand(update);
+                    cmd.Parameters.Add(new MySqlParameter("PayID", pay.PayId));
+                }
+                else
+                {
+                    cmd = db.CreateCommand(insert);
 
-                        if (pay.Method == "CUSTOMER CREDIT")
-                            CustORM.AddCredit(transaction.CustomerID, pay.Amount * -1);
-                    }
-                    cmd.Parameters.Add(new MySqlParameter("receiptID", transaction.InvoiceID));
-                    cmd.Parameters.Add(new MySqlParameter("Method", pay.Method));
-                    cmd.Parameters.Add(new MySqlParameter("Number", pay.Number));
-                    cmd.Parameters.Add(new MySqlParameter("Amount", pay.Amount));
+                    if (pay.Method == "CUSTOMER CREDIT")
+                        CustORM.AddCredit(transaction.CustomerID, pay.Amount * -1);
+                }
+                cmd.Parameters.Add(new MySqlParameter("receiptID", transaction.InvoiceID));
+                cmd.Parameters.Add(new MySqlParameter("Method", pay.Method));
+                cmd.Parameters.Add(new MySqlParameter("Number", pay.Number));
+                cmd.Parameters.Add(new MySqlParameter("Amount", pay.Amount));
 
+                try
+                {
                     cmd.ExecuteNonQuery();
                 }
-            }
-            finally
-            {
-                db.CloseConnnection();
+                finally
+                {
+                    db.CloseCommand(cmd);
+                }
             }
         }
 
@@ -565,15 +540,15 @@ namespace pos_core_api.ORM
         {
             if (transaction.Payments.Count == 0)
             {
-                MySqlCommand cmd = new MySqlCommand(@"
+                MySqlCommand cmd = db.CreateCommand(@"
                     DELETE FROM Transaction_items 
                     WHERE ReceiptID = @ReceiptID;
 
                     DELETE FROM Transaction 
                     WHERE ReceiptID = @ReceiptID;
-                ", db.Connection());
+                ");
 
-                db.OpenConnection();
+                
                 try
                 {
                     cmd.Parameters.Add(new MySqlParameter("receiptID", transaction.InvoiceID));
@@ -581,7 +556,7 @@ namespace pos_core_api.ORM
                 }
                 finally
                 {
-                    db.CloseConnnection();
+                    db.CloseCommand(cmd);
                 }
                 return true;
             }
@@ -598,12 +573,12 @@ namespace pos_core_api.ORM
         {
             if (pay.PayId > 0)
             {
-                MySqlCommand cmd = new MySqlCommand(@"
+                MySqlCommand cmd = db.CreateCommand(@"
                     DELETE FROM Payments
                     WHERE payID = @payId
-                ", db.Connection());
+                ");
 
-                db.OpenConnection();
+                
                 try
                 {
                     if (pay.Method == "CUSTOMER CREDIT")
@@ -618,7 +593,7 @@ namespace pos_core_api.ORM
                 }
                 finally
                 {
-                    db.CloseConnnection();
+                    db.CloseCommand(cmd);
                 }
                 return true;
             }
@@ -647,7 +622,7 @@ namespace pos_core_api.ORM
                 FROM paymentMethod
             ";
             
-            using MySqlCommand cmd = new MySqlCommand(itemSQLStatement, db.Connection());
+            using MySqlCommand cmd = db.CreateCommand(itemSQLStatement);
             try
             {
                 using MySqlDataReader reader = cmd.ExecuteReader();
@@ -659,7 +634,7 @@ namespace pos_core_api.ORM
                         PercentOffset = reader.IsDBNull("Amount") ? 0 : reader.GetDecimal("PercentOffset")
                     });
             }
-            finally { db.CloseConnnection(); }
+            finally { db.CloseCommand(cmd); }
 
             return result;
         }

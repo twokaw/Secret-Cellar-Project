@@ -22,14 +22,14 @@ namespace pos_core_api.ORM
         public List<Supplier> Get()
         {
             List<Supplier> output = new List<Supplier>();
-            db.OpenConnection();
+            
 
             //change to view that does sum
             string sqlStatement = @"
                     SELECT *
                     FROM supplier
                ";
-            MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
+            MySqlCommand cmd = db.CreateCommand(sqlStatement);
             try
             {
                 using MySqlDataReader reader = cmd.ExecuteReader();
@@ -44,69 +44,60 @@ namespace pos_core_api.ORM
             }
             finally
             {
-                db.CloseConnnection();
+                db.CloseCommand(cmd);
             }
             return output;
         }
 
 
         public uint Insert(Supplier supplier)
-        {
+        { 
+            MySqlCommand cmd = db.CreateCommand(@"
+                INSERT INTO supplier
+                (name,  web, phone) 
+                VALUES 
+                (@name,  @Web, @phone);
+            ");
+
+            //cmd.Parameters.Add(new MySqlParameter("id", tester.Id));
+            cmd.Parameters.Add(new MySqlParameter("name", supplier.Name));
+            cmd.Parameters.Add(new MySqlParameter("web", supplier.Web));
+            cmd.Parameters.Add(new MySqlParameter("phone", supplier.Phone));
+
             try
             {
-                db.OpenConnection();
-
-                //Inserting into inventory_description
-                string sql = @"
-                    INSERT INTO supplier
-                    (name,  web, phone) 
-                    VALUES 
-                    (@name,  @Web, @phone);
-                ";
-
-                MySqlCommand cmd = new MySqlCommand(sql, db.Connection());
-                //cmd.Parameters.Add(new MySqlParameter("id", tester.Id));
-                cmd.Parameters.Add(new MySqlParameter("name", supplier.Name));
-                cmd.Parameters.Add(new MySqlParameter("web", supplier.Web));
-                cmd.Parameters.Add(new MySqlParameter("phone", supplier.Phone));
-
                 cmd.ExecuteNonQuery();
 
                 return Convert.ToUInt32(cmd.LastInsertedId);
             }
             finally
             {
-                db.CloseConnnection();
+                db.CloseCommand(cmd);
             }
         }
 
         public uint Update(Supplier supplier)
         {
+            MySqlCommand cmd = db.CreateCommand(@"
+                UPDATE Supplier
+                SET name = @name,
+                    web  =  @Web,
+                    phone = @phone
+                WHERE SupplierID = @SupplierID;
+            ");
+            cmd.Parameters.Add(new MySqlParameter("SupplierID", supplier.SupplierID));
+            cmd.Parameters.Add(new MySqlParameter("name", supplier.Name));
+            cmd.Parameters.Add(new MySqlParameter("web", supplier.Web));
+            cmd.Parameters.Add(new MySqlParameter("phone", supplier.Phone));
+
             try
             {
-                db.OpenConnection();
-
-                //Inserting into inventory_description
-                string sql = @"
-                    UPDATE Supplier
-                    SET name = @name,
-                        web  =  @Web,
-                        phone = @phone
-                    WHERE SupplierID = @SupplierID;
-                ";
-
-                MySqlCommand cmd = new MySqlCommand(sql, db.Connection());
-                cmd.Parameters.Add(new MySqlParameter("SupplierID", supplier.SupplierID));
-                cmd.Parameters.Add(new MySqlParameter("name", supplier.Name));
-                cmd.Parameters.Add(new MySqlParameter("web", supplier.Web));
-                cmd.Parameters.Add(new MySqlParameter("phone", supplier.Phone));
-
                 cmd.ExecuteNonQuery();
                 return supplier.SupplierID;
             }
             finally
             {
-                db.CloseConnnection();
+                db.CloseCommand(cmd);
             }
         }
 
@@ -114,7 +105,7 @@ namespace pos_core_api.ORM
         public Supplier Get(uint supplierID)
         {
             Supplier output = null;
-            db.OpenConnection();
+            
 
             //change to view that does sum
             string sqlStatement = @"
@@ -122,7 +113,7 @@ namespace pos_core_api.ORM
                 FROM supplier
                 WHERE supplierID = @id
             ";
-            MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
+            MySqlCommand cmd = db.CreateCommand(sqlStatement);
             cmd.Parameters.Add(new MySqlParameter("id", supplierID));
 
             try
@@ -139,7 +130,7 @@ namespace pos_core_api.ORM
             }
             finally
             {
-                db.CloseConnnection();
+                db.CloseCommand(cmd);
             }
 
             return output;
@@ -148,7 +139,7 @@ namespace pos_core_api.ORM
         public Supplier Get(string name)
         {
             Supplier output = null;
-            db.OpenConnection();
+            
 
             //change to view that does sum
             string sqlStatement = @"
@@ -156,7 +147,7 @@ namespace pos_core_api.ORM
                 FROM supplier
                 WHERE name = @name
             ";
-            MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
+            MySqlCommand cmd = db.CreateCommand(sqlStatement);
             cmd.Parameters.Add(new MySqlParameter("name", name));
 
             try
@@ -173,7 +164,7 @@ namespace pos_core_api.ORM
             }
             finally
             {
-                db.CloseConnnection();
+                db.CloseCommand(cmd);
             }
 
             return output;
@@ -182,14 +173,14 @@ namespace pos_core_api.ORM
        //public List<Supplier> Get()
        // {
        //     List<Supplier> output = new List<Supplier>();
-       //     db.OpenConnection();
+       //     
 
        //     //change to view that does sum
        //     string sqlStatement = @"
        //             SELECT *
        //             FROM supplier
        //        ";
-       //     MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
+       //     MySqlCommand cmd = db.CreateCommand(sqlStatement);
        //     try
        //     {
        //         using (MySqlDataReader reader = cmd.ExecuteReader())
@@ -204,7 +195,7 @@ namespace pos_core_api.ORM
        //     }
        //     finally
        //     {
-       //         db.CloseConnnection();
+       //         db.CloseCommand(cmd);
        //     }
        //     return output;
        // }

@@ -15,86 +15,87 @@ namespace pos_core_api.ORM
             List<Printer> output = new List<Printer>();
             Printer outputItem = null;
             MySqlDataReader reader = null;
-            try
-            {
-                db.OpenConnection();
 
-                MySqlCommand cmd = new MySqlCommand(@"
+                MySqlCommand cmd = db.CreateCommand(@"
                  SELECT *
                  FROM v_printer
-                ", db.Connection());
-                reader = cmd.ExecuteReader();
+                ");
+            try
+            {
 
-                while (reader.Read())
-                {
-                    if(outputItem == null || outputItem.ModelId != reader.GetUInt32("Modelid"))
+
+
+                using (reader = cmd.ExecuteReader())
+                    while (reader.Read())
                     {
-                        outputItem = new Printer
+                        if (outputItem == null || outputItem.ModelId != reader.GetUInt32("Modelid"))
                         {
-                            MakeId = reader.IsDBNull("MakeID") ? 0 : reader.GetUInt32("MakeID"),
-                            ModelId = reader.IsDBNull("Modelid") ? 0 : reader.GetUInt32("Modelid"),
-                            Make = reader.IsDBNull("MakeName") ? "" : reader.GetString("MakeName"),
-                            Model = reader.IsDBNull("ModelName") ? "" : reader.GetString("ModelName")
-                        };
-                        output.Add(outputItem);  
-                    }
+                            outputItem = new Printer
+                            {
+                                MakeId = reader.IsDBNull("MakeID") ? 0 : reader.GetUInt32("MakeID"),
+                                ModelId = reader.IsDBNull("Modelid") ? 0 : reader.GetUInt32("Modelid"),
+                                Make = reader.IsDBNull("MakeName") ? "" : reader.GetString("MakeName"),
+                                Model = reader.IsDBNull("ModelName") ? "" : reader.GetString("ModelName")
+                            };
+                            output.Add(outputItem);
+                        }
 
-                    outputItem.Codes.Add(new PrinterCode
-                    {
-                        CodeId = reader.IsDBNull("Codeid") ? 0 : reader.GetUInt32("codeid"),
-                        Drawer = reader.IsDBNull("Drawer") ? "" : reader.GetString("Drawer"),
-                        Cutter = reader.IsDBNull("Cutter") ? "" : reader.GetString("Cutter"),
-                        PartialCutter = reader.IsDBNull("PartialCutter") ? "" : reader.GetString("PartialCutter")
-                    });
-                }  
+                        outputItem.Codes.Add(new PrinterCode
+                        {
+                            CodeId = reader.IsDBNull("Codeid") ? 0 : reader.GetUInt32("codeid"),
+                            Drawer = reader.IsDBNull("Drawer") ? "" : reader.GetString("Drawer"),
+                            Cutter = reader.IsDBNull("Cutter") ? "" : reader.GetString("Cutter"),
+                            PartialCutter = reader.IsDBNull("PartialCutter") ? "" : reader.GetString("PartialCutter")
+                        });
+                    }  
             }
             finally
             {
-                reader?.Close();
-                db.CloseConnnection();
+                db.CloseCommand(cmd);
             }
             return output;
         }
 
         private uint Get(string make, string model)
-        {
-            uint result = 0;
-            db.OpenConnection();
-
-            MySqlCommand cmd = new MySqlCommand(@"
+        {            
+            MySqlCommand cmd = db.CreateCommand(@"
               SELECT modelId 
               FROM v_printer 
               WHERE UPPER(makeName) = UPPER(@make)
               AND  UPPER(modelName) = UPPER(@Model)
-            ", db.Connection());
+            ");
             cmd.Parameters.Add(new MySqlParameter("make", make));
             cmd.Parameters.Add(new MySqlParameter("Model", model));
 
-            using (MySqlDataReader reader = cmd.ExecuteReader())
+            try
+            {
+                using MySqlDataReader reader = cmd.ExecuteReader();
                 if (reader.Read())
-                    result = uint.Parse(reader["ModelID"].ToString());
-
-            return result;
+                    return uint.Parse(reader["ModelID"].ToString());
+            }
+            finally
+            {
+                db.CloseCommand(cmd);
+            }
+            return 0;
         }
 
-            public Printer Get(uint PrinterId)
+        public Printer Get(uint PrinterId)
         {
             Printer outputItem = null;
-            db.OpenConnection();
-
-            MySqlCommand cmd = new MySqlCommand(@"
+            
+            MySqlCommand cmd = db.CreateCommand(@"
               SELECT * 
               FROM v_printer 
               WHERE Modelid = @Id
-            ", db.Connection());
+            ");
             cmd.Parameters.Add(new MySqlParameter("Id", PrinterId));
-            MySqlDataReader reader = cmd.ExecuteReader();
-
             try
             {
-                while(reader.Read())
+                using MySqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
                 {
-                    if(outputItem == null)
+                    if (outputItem == null)
                         outputItem = new Printer
                         {
                             MakeId = reader.IsDBNull("MakeID") ? 0 : reader.GetUInt32("MakeID"),
@@ -114,42 +115,42 @@ namespace pos_core_api.ORM
             }
             finally
             {
-                reader.Close();
-                db.CloseConnnection();
+                db.CloseCommand(cmd);
             }
             return outputItem;
         }
 
         public uint Insert (Printer printer)
         {
+            MySqlCommand cmd = db.CreateCommand(@"
+                -- Add the printer Make, if it doesn't exist
+                INSERT IGNORE INTO printerMake
+                (printerMakeName) 
+                VALUES
+                (@Make);                
+
+                -- Add the printer Model, if it doesn't exist
+                INSERT IGNORE INTO printerModel
+                (printerModelName, printerMakeID ) 
+                SELECT @Model, printerMakeID 
+                FROM   printerMake 
+                WHERE  printerMakeName = @Make;
+            ");
+
+            cmd.Parameters.Add(new MySqlParameter("Make", printer.Make));
+            cmd.Parameters.Add(new MySqlParameter("Model", printer.Model));
+
             try
             {
-                db.OpenConnection();
-                MySqlCommand cmd = new MySqlCommand(@"
-                    -- Add the printer Make, if it doesn't exist
-                    INSERT IGNORE INTO printerMake
-                    (printerMakeName) 
-                    VALUES
-                    (@Make);                
-
-                    -- Add the printer Model, if it doesn't exist
-                    INSERT IGNORE INTO printerModel
-                    (printerModelName, printerMakeID ) 
-                    SELECT @Model, printerMakeID 
-                    FROM   printerMake 
-                    WHERE  printerMakeName = @Make;
-                ", db.Connection());
-
-                cmd.Parameters.Add(new MySqlParameter("Make", printer.Make));
-                cmd.Parameters.Add(new MySqlParameter("Model", printer.Model));
                 cmd.ExecuteNonQuery();
 
                 printer.ModelId = (uint)cmd.LastInsertedId;
             }
             finally
             {
-                db.CloseConnnection();
+                db.CloseCommand(cmd);
             }
+
             UpdateCodes(printer);
 
             return printer.ModelId;
@@ -157,26 +158,23 @@ namespace pos_core_api.ORM
 
         public string GetMake(uint makeId)
         {
-            MySqlDataReader reader = null;
+            MySqlCommand cmd = db.CreateCommand(@"
+                SELECT  PrinterMakeName
+                FROM PrinterMake
+                WHERE printermakeid = @makeid
+            ");
+
+            cmd.Parameters.Add(new MySqlParameter("makeid", makeId));
+
             try
             {
-                db.OpenConnection();
-                MySqlCommand cmd = new MySqlCommand(@"
-                    SELECT  PrinterMakeName
-                    FROM PrinterMake
-                    WHERE printermakeid = @makeid
-                ", db.Connection());
-
-                cmd.Parameters.Add(new MySqlParameter("makeid", makeId));
-                reader = cmd.ExecuteReader();
-
+                using MySqlDataReader reader = cmd.ExecuteReader();
                 if (reader.Read())
                     return reader.IsDBNull("PrinterMakeName") ? "" : reader.GetString("PrinterMakeName");
             }
             finally
             {
-                reader?.Close();
-                db.CloseConnnection();
+                db.CloseCommand(cmd);
             }
             return "";
         }
@@ -184,16 +182,15 @@ namespace pos_core_api.ORM
         public List<string> GetMake()
         {
             List<string> result = new List<string>();
-            MySqlDataReader reader = null;
+
+            MySqlCommand cmd = db.CreateCommand(@"
+                SELECT  PrinterMakeName
+                FROM PrinterMake
+            ");
+
             try
             {
-                db.OpenConnection();
-                MySqlCommand cmd = new MySqlCommand(@"
-                 SELECT  PrinterMakeName
-                 FROM PrinterMake
-                ", db.Connection());
-
-                reader = cmd.ExecuteReader();
+                MySqlDataReader reader = cmd.ExecuteReader();
 
                 while (reader.Read())
                     if(!reader.IsDBNull("PrinterMakeName") && !string.IsNullOrWhiteSpace(reader.GetString("PrinterMakeName")))
@@ -201,72 +198,77 @@ namespace pos_core_api.ORM
             }
             finally
             {
-                reader?.Close();
-                db.CloseConnnection();
+                db.CloseCommand(cmd);
             }
             return result;
         }
 
         public void UpdateCodes(Printer printer)
         {
-            try
+           string CodeIds = "";
+
+           string sql = @"
+                -- Add the printer Model, if it doesn't exist
+                INSERT IGNORE INTO Printercode
+                (Drawer, Cutter, PartialCutter) 
+                VALUES
+                (@Drawer, @Cutter, @PartialCutter);
+
+                INSERT IGNORE INTO printerModelCode
+                (printerModelID, printercodeid)
+
+                SELECT @ModelID,  Printercodeid
+                FROM Printercode
+                WHERE Drawer = @Drawer
+                AND   Cutter = @Cutter
+                AND   PartialCutter = @PartialCutter;
+
+                SELECT  Printercodeid
+                FROM Printercode
+                WHERE Drawer = @Drawer
+                AND   Cutter = @Cutter
+                AND   PartialCutter = @PartialCutter;
+            ";
+            MySqlCommand cmd;
+
+            foreach (PrinterCode pc in printer.Codes)
             {
-                db.OpenConnection();
-                MySqlCommand cmd;
-                string CodeIds = "";
+                cmd = db.CreateCommand(sql);
+                cmd.Parameters.Add(new MySqlParameter("ModelID", printer.ModelId));
+                cmd.Parameters.Add(new MySqlParameter("Drawer", $"{pc.Drawer}"));
+                cmd.Parameters.Add(new MySqlParameter("Cutter", $"{pc.Cutter}"));
+                cmd.Parameters.Add(new MySqlParameter("PartialCutter", $"{pc.PartialCutter}"));
 
-                string sqlStatement = @"
-                    -- Add the printer Model, if it doesn't exist
-                    INSERT IGNORE INTO Printercode
-                    (Drawer, Cutter, PartialCutter) 
-                    VALUES
-                    (@Drawer, @Cutter, @PartialCutter);
-
-                    INSERT IGNORE INTO printerModelCode
-                    (printerModelID, printercodeid)
-
-                    SELECT @ModelID,  Printercodeid
-                    FROM Printercode
-                    WHERE Drawer = @Drawer
-                    AND   Cutter = @Cutter
-                    AND   PartialCutter = @PartialCutter;
-
-                    SELECT  Printercodeid
-                    FROM Printercode
-                    WHERE Drawer = @Drawer
-                    AND   Cutter = @Cutter
-                    AND   PartialCutter = @PartialCutter;
-                ";
-
-                foreach (PrinterCode pc in printer.Codes)
+                try
                 {
-                    cmd = new MySqlCommand(sqlStatement, db.Connection());
-                    cmd.Parameters.Add(new MySqlParameter("ModelID", printer.ModelId));
-                    cmd.Parameters.Add(new MySqlParameter("Drawer", $"{pc.Drawer}"));
-                    cmd.Parameters.Add(new MySqlParameter("Cutter", $"{pc.Cutter}"));
-                    cmd.Parameters.Add(new MySqlParameter("PartialCutter", $"{pc.PartialCutter}"));
-                   
-                    MySqlDataReader reader = cmd.ExecuteReader();
+                    using MySqlDataReader reader = cmd.ExecuteReader();
 
                     if (reader.Read())
                         CodeIds += $"{(reader.IsDBNull("printercodeid") ? 0 : reader.GetUInt32("printercodeid"))},";
-
-                    reader.Close();
                 }
-                CodeIds = CodeIds.Trim(',');
+                finally
+                {
+                    db.CloseCommand(cmd);
+                }
+            }
 
-                cmd = new MySqlCommand(@$"
-                        DELETE FROM printerModelcode
-                        WHERE printerModelID = @ModelID
-                        {(string.IsNullOrWhiteSpace(CodeIds) ? "" : $"AND NOT printerCodeid IN ({CodeIds})")};
-                    ", db.Connection());
+            CodeIds = CodeIds.Trim(',');
 
-                cmd.Parameters.Add(new MySqlParameter("ModelID", printer.ModelId));
+            cmd = db.CreateCommand(@$"
+                    DELETE FROM printerModelcode
+                    WHERE printerModelID = @ModelID
+                    {(string.IsNullOrWhiteSpace(CodeIds) ? "" : $"AND NOT printerCodeid IN ({CodeIds})")};
+                ");
+
+            cmd.Parameters.Add(new MySqlParameter("ModelID", printer.ModelId));
+
+            try
+            {
                 cmd.ExecuteNonQuery();
             }
             finally
             {
-                db.CloseConnnection();
+                db.CloseCommand(cmd);
             }
         }
 
@@ -283,11 +285,8 @@ namespace pos_core_api.ORM
             if (printer.ModelId == 0 || Get(printer.ModelId) == null)
                 Insert(printer);
             else
-            {
-                try
-                {
-                    db.OpenConnection();
-                    MySqlCommand cmd = new MySqlCommand(@"
+            {       
+                MySqlCommand cmd = db.CreateCommand(@"
                     -- Add the printer Make, if it doesn't exist
                     INSERT IGNORE INTO printerMake
                     (printerMakeName) 
@@ -303,15 +302,18 @@ namespace pos_core_api.ORM
                             WHERE  printerMakeName = @Make
                             )
                     WHERE printerModelID = @ModelId;
-                    ", db.Connection());
-                    cmd.Parameters.Add(new MySqlParameter("Make", printer.Make));
-                    cmd.Parameters.Add(new MySqlParameter("ModelID", printer.ModelId));
-                    cmd.Parameters.Add(new MySqlParameter("Model", printer.Model));
+                ");
+                cmd.Parameters.Add(new MySqlParameter("Make", printer.Make));
+                cmd.Parameters.Add(new MySqlParameter("ModelID", printer.ModelId));
+                cmd.Parameters.Add(new MySqlParameter("Model", printer.Model));   
+
+                try
+                {
                     cmd.ExecuteNonQuery();
                 }
                 finally
                 {
-                    db.CloseConnnection();
+                    db.CloseCommand(cmd);
                 }
 
                 UpdateCodes(printer);
@@ -325,25 +327,24 @@ namespace pos_core_api.ORM
                 return false;
             else
             {
-                string sqlStatement = @"
+                MySqlCommand cmd = db.CreateCommand(@"
 
                     DELETE FROM printerModelCode
                     WHERE printerModelID = @idPrinter;
 
                     DELETE FROM printerModel
                     WHERE printerModelID = @idPrinter;
-                ";
+                ");
+
+                cmd.Parameters.Add(new MySqlParameter("idPrinter", ModelId));
 
                 try
                 {
-                    db.OpenConnection();
-                    MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
-                    cmd.Parameters.Add(new MySqlParameter("idPrinter", ModelId));
                     cmd.ExecuteNonQuery();
                 }
                 finally
                 {
-                    db.CloseConnnection();
+                    db.CloseCommand(cmd);
                 }
             }
 

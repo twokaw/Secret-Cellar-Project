@@ -23,19 +23,17 @@ namespace pos_core_api.ORM
         public List<InventoryType> Get()
         {
             List<InventoryType> types = new List<InventoryType>();
-
-            string sqlStatement = "SELECT * FROM V_type";
+            MySqlCommand cmd = db.CreateCommand("SELECT * FROM V_type");
 
             try
             {
-                db.OpenConnection();
-                using MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
+                
                 using MySqlDataReader reader = cmd.ExecuteReader();
                 types = FetchType(reader);
             }
             finally
             {
-                db.CloseConnnection();
+                db.CloseCommand(cmd);
             }
 
             return types;
@@ -50,25 +48,21 @@ namespace pos_core_api.ORM
         {
             List<InventoryType> types = null;
 
-            string sqlStatement = @"
+            using MySqlCommand cmd = db.CreateCommand(@"
                 SELECT * 
                 FROM v_type 
                 WHERE typeid = @id
-            ";
+            ");
+            cmd.Parameters.Add(new MySqlParameter("id", typeId));
 
             try
             {
-                db.OpenConnection();
-
-                using MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
-                cmd.Parameters.Add(new MySqlParameter("id", typeId));
-
                 using MySqlDataReader reader = cmd.ExecuteReader();
                 types = FetchType(reader);
             }
             finally
             {
-                db.CloseConnnection();
+                db.CloseCommand(cmd);
             }
 
             if (types != null && types.Count > 0)
@@ -86,25 +80,21 @@ namespace pos_core_api.ORM
         {
             List<InventoryType> types = null;
 
-            string sqlStatement = @"
+            MySqlCommand cmd = db.CreateCommand(@"
                 SELECT * 
                 FROM v_type 
                 WHERE inventory_type_name = @name
-            ";
+            ");
+            cmd.Parameters.Add(new MySqlParameter("name", typeName));
 
             try
             {
-                db.OpenConnection();
-
-                using MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
-                cmd.Parameters.Add(new MySqlParameter("name", typeName));
-
                 using MySqlDataReader reader = cmd.ExecuteReader();
                 types = FetchType(reader);
             }
             finally
             {
-                db.CloseConnnection();
+                db.CloseCommand(cmd);
             }
 
             if (types != null && types.Count > 0)
@@ -118,24 +108,20 @@ namespace pos_core_api.ORM
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            using MySqlCommand cmd = db.CreateCommand(@"
+                DELETE FROM  inventory_type 
+                WHERE typeID = @typeID
+            ");
+
+            cmd.Parameters.Add(new MySqlParameter("typeID", id));
+
             try
             {
-                db.OpenConnection();
-
-                //Inserting into inventory_type
-                string sqlStatementType = @"
-                    DELETE FROM  inventory_type 
-                    WHERE typeID = @typeID";
-
-                using MySqlCommand cmdType = new MySqlCommand(sqlStatementType, db.Connection());
-
-                cmdType.Parameters.Add(new MySqlParameter("typeID", id));
-
-                cmdType.ExecuteNonQuery();
+                cmd.ExecuteNonQuery();
             }
             finally
             {
-                db.CloseConnnection();
+                db.CloseCommand(cmd);
             }
         }
 
@@ -184,50 +170,44 @@ namespace pos_core_api.ORM
         /// <returns>true if the type already exists</returns>
         public int GetTypeQty(int id, string name)
         {
+            string sql = @"
+                SELECT COUNT(inventoryID) inv
+                FROM inventory_type
+                LEFT JOIN inventory_description
+                USING(typeID)
+                WHERE 1 <> 1
+                -- name -- OR   inventory_type_name = @name
+                -- typeid -- OR   typeid = @typeId
+                GROUP BY typeID
+            ";
+
+            MySqlCommand cmd = db.CreateCommand();
+
+            if (!string.IsNullOrEmpty(name))
+            {
+                cmd.Parameters.Add(new MySqlParameter("name", name));
+                sql = sql.Replace("-- name --", "");
+            }
+
+            if (id > 0)
+            {
+                cmd.Parameters.Add(new MySqlParameter("typeId", id));
+                sql = sql.Replace("-- typeid --", "");
+            }
+
+            cmd.CommandText = sql;
             try
             {
-                db.OpenConnection();
-
-                string sql = @"
-                    SELECT COUNT(inventoryID) inv
-                    FROM inventory_type
-                    LEFT JOIN inventory_description
-                    USING(typeID)
-                    WHERE 1 <> 1
-                    -- name -- OR   inventory_type_name = @name
-                    -- typeid -- OR   typeid = @typeId
-                    GROUP BY typeID
-                ";
-
-                using MySqlCommand cmd = new MySqlCommand
-                {
-                    Connection = db.Connection()
-                };
-
-                if (!string.IsNullOrEmpty(name))
-                {
-                    cmd.Parameters.Add(new MySqlParameter("name", name));
-                    sql = sql.Replace("-- name --", "");
-                }
-
-                if (id > 0)
-                {
-                    cmd.Parameters.Add(new MySqlParameter("typeId", id));
-                    sql = sql.Replace("-- typeid --", "");
-                }
-
-                cmd.CommandText = sql;
-
                 using MySqlDataReader reader = cmd.ExecuteReader();
 
                 if (reader.Read())
                     return reader.GetInt32("inv");
                 else
                     return -1;
-
             }
-            finally { db.CloseConnnection(); }
+            finally { db.CloseCommand(cmd); }
         }
+
         /// <summary>
         /// Update the type's discount
         /// </summary>
@@ -239,8 +219,6 @@ namespace pos_core_api.ORM
                 DELETE FROM Discount_Type WHERE TypeID = @TypeID;
             ";
 
-            MySqlCommand cmd = new MySqlCommand(sql, db.Connection());
-
             inv.Discount.ForEach(x => sql += @$"                   
                     INSERT INTO Discount_Type
                     (discountID, InventoryID) 
@@ -248,32 +226,36 @@ namespace pos_core_api.ORM
                     ({x.DiscountID}, @TypeID);
                 ");
 
-            cmd = new MySqlCommand(sql, db.Connection());
+            MySqlCommand cmd = db.CreateCommand(sql);
             cmd.Parameters.Add(new MySqlParameter("TypeID", inv.TypeId));
-            cmd.ExecuteNonQuery();
+
+            try
+            {
+                cmd.ExecuteNonQuery();
+            }
+            finally
+            {
+                db.CloseCommand(cmd);
+            }
         }
 
         public uint Insert(InventoryType invType)
         {
+            using MySqlCommand cmd = db.CreateCommand(@"
+                SET SQL_MODE = '';
+
+                INSERT INTO inventory_type
+                (typeID, Inventory_Type_name, idTax)
+                VALUES 
+                (@typeID, @inventoryType, @idTax)
+            ");
+
+            cmd.Parameters.Add(new MySqlParameter("typeID", invType.TypeId));
+            cmd.Parameters.Add(new MySqlParameter("inventoryType", invType.TypeName));
+            cmd.Parameters.Add(new MySqlParameter("idTax", invType.IdTax));
+
             try
             {
-                db.OpenConnection();
-
-                //Inserting into inventory_type
-                string sqlStatementType = @"
-                    SET SQL_MODE = '';
-
-                    INSERT INTO inventory_type
-                    (typeID, Inventory_Type_name, idTax)
-                    VALUES 
-                    (@typeID, @inventoryType, @idTax)";
-
-                using MySqlCommand cmd = new MySqlCommand(sqlStatementType, db.Connection());
-
-                cmd.Parameters.Add(new MySqlParameter("typeID", invType.TypeId));
-                cmd.Parameters.Add(new MySqlParameter("inventoryType", invType.TypeName));
-                cmd.Parameters.Add(new MySqlParameter("idTax", invType.IdTax));
-
                 cmd.ExecuteNonQuery();
 
                 invType.TypeId = Convert.ToUInt32(cmd.LastInsertedId);
@@ -281,37 +263,34 @@ namespace pos_core_api.ORM
             }
             finally
             {
-                db.CloseConnnection();
+                db.CloseCommand(cmd);
             }
 
             return invType.TypeId;
         }
 
         public void Update(InventoryType invType)
-        {
+        { 
+            //Inserting into inventory_type
+
+            MySqlCommand cmd = db.CreateCommand(@"
+                UPDATE inventory_type 
+                SET inventory_type_name = @inventoryType, 
+                    idTax = @idTax
+                WHERE typeID = @typeID");
+
+            cmd.Parameters.Add(new MySqlParameter("typeID", invType.TypeId));
+            cmd.Parameters.Add(new MySqlParameter("inventoryType", invType.TypeName));
+            cmd.Parameters.Add(new MySqlParameter("idTax", invType.IdTax));
+
             try
             {
-                db.OpenConnection();
-
-                //Inserting into inventory_type
-                string sqlStatementType = @"
-                    UPDATE inventory_type 
-                    SET inventory_type_name = @inventoryType, 
-                        idTax = @idTax
-                    WHERE typeID = @typeID";
-
-                using MySqlCommand cmdType = new MySqlCommand(sqlStatementType, db.Connection());
-
-                cmdType.Parameters.Add(new MySqlParameter("typeID", invType.TypeId));
-                cmdType.Parameters.Add(new MySqlParameter("inventoryType", invType.TypeName));
-                cmdType.Parameters.Add(new MySqlParameter("idTax", invType.IdTax));
-
-                cmdType.ExecuteNonQuery();
+                cmd.ExecuteNonQuery();
                 UpdateDiscount(invType);
             }
             finally
             {
-                db.CloseConnnection();
+                db.CloseCommand(cmd);
             }
         }
     }

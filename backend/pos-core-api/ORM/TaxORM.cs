@@ -13,11 +13,11 @@ namespace pos_core_api.ORM
         public List<Tax> Get()
         {
             List<Tax> output = new List<Tax>();
-            db.OpenConnection();
+            
 
             string sqlStatement = "SELECT * FROM v_tax";
 
-            MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
+            MySqlCommand cmd = db.CreateCommand(sqlStatement);
             MySqlDataReader reader = cmd.ExecuteReader();
 
             try
@@ -30,69 +30,61 @@ namespace pos_core_api.ORM
                 reader.Close();
             }
 
-            db.CloseConnnection();
+            db.CloseCommand(cmd);
             return output;
         }
 
         public uint Insert (Tax tax)
         {
-            db.OpenConnection();
-            uint newId = 0;
-            string sqlStatement = @"
+            MySqlCommand cmd = db.CreateCommand(@"
                 INSERT INTO v_tax
                 (bottle_deposit, sales_tax, local_sales_tax, Tax_name
                 VALUES
                 (@bottle_deposit, @sales_tax, @local_sales_tax, @Tax_name)
-            ";
+            ");
+            cmd.Parameters.Add(new MySqlParameter("idTAX", tax.IdTax));
+            cmd.Parameters.Add(new MySqlParameter("bottle_deposit", tax.BottleDeposit));
+            cmd.Parameters.Add(new MySqlParameter("Tax_name", tax.TaxName));
+            cmd.Parameters.Add(new MySqlParameter("sales_tax", tax.SalesTax));
+            cmd.Parameters.Add(new MySqlParameter("local_sales_tax", tax.LocalSalesTax));
 
             try
             {
-                MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
-                cmd.Parameters.Add(new MySqlParameter("idTAX", tax.IdTax));
-                cmd.Parameters.Add(new MySqlParameter("bottle_deposit", tax.BottleDeposit));
-                cmd.Parameters.Add(new MySqlParameter("Tax_name", tax.TaxName));
-                cmd.Parameters.Add(new MySqlParameter("sales_tax", tax.SalesTax));
-                cmd.Parameters.Add(new MySqlParameter("local_sales_tax", tax.LocalSalesTax));
                 cmd.ExecuteNonQuery();
-                newId = (uint)cmd.LastInsertedId;
+                return (uint)cmd.LastInsertedId;
             }
             finally
             {
-                db.CloseConnnection();
+                db.CloseCommand(cmd);
             }
-
-            return newId;
         }
 
         public uint Update( Tax tax)
         {
-            db.OpenConnection();
             if (Get(tax.IdTax) == null)
                 return Insert(tax);
             else
             {
-                string sqlStatement = @"
+                MySqlCommand cmd = db.CreateCommand(@"
                     UPDATE v_tax
                     SET bottle_deposit = @bottle_deposit, 
                         sales_tax = @sales_tax, 
                         local_sales_tax = @local_sales_tax, 
                         tax_name = @Tax_name
                     WHERE idTAX = @idTAX
-                ";
-
+                ");
+                cmd.Parameters.Add(new MySqlParameter("idTAX", tax.IdTax));
+                cmd.Parameters.Add(new MySqlParameter("bottle_deposit", tax.BottleDeposit));
+                cmd.Parameters.Add(new MySqlParameter("Tax_name", tax.TaxName));
+                cmd.Parameters.Add(new MySqlParameter("sales_tax", tax.SalesTax));
+                cmd.Parameters.Add(new MySqlParameter("local_sales_tax", tax.LocalSalesTax));
                 try
                 {
-                    MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
-                    cmd.Parameters.Add(new MySqlParameter("idTAX", tax.IdTax));
-                    cmd.Parameters.Add(new MySqlParameter("bottle_deposit", tax.BottleDeposit));
-                    cmd.Parameters.Add(new MySqlParameter("Tax_name", tax.TaxName));
-                    cmd.Parameters.Add(new MySqlParameter("sales_tax", tax.SalesTax));
-                    cmd.Parameters.Add(new MySqlParameter("local_sales_tax", tax.LocalSalesTax));
                     cmd.ExecuteNonQuery();
                 }
                 finally
                 {
-                    db.CloseConnnection();
+                    db.CloseCommand(cmd);
                 }
             }
 
@@ -101,25 +93,24 @@ namespace pos_core_api.ORM
 
         public bool Delete(uint taxId)
         {
-            db.OpenConnection();
+            
             if (Get(taxId) == null)
                 return false;
             else
             {
-                string sqlStatement = @"
+                MySqlCommand cmd = db.CreateCommand(@"
                     DELETE FROM v_tax
                     WHERE idTAX = @idTAX
-                ";
+                ");
+                cmd.Parameters.Add(new MySqlParameter("idTAX", taxId));
 
                 try
                 {
-                    MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
-                    cmd.Parameters.Add(new MySqlParameter("idTAX", taxId));
                     cmd.ExecuteNonQuery();
                 }
                 finally
                 {
-                    db.CloseConnnection();
+                    db.CloseCommand(cmd);
                 }
             }
 
@@ -130,13 +121,13 @@ namespace pos_core_api.ORM
         public Tax Get(string name)
         {
             Tax outputItem = null;
-            db.OpenConnection();
+            
 
-            MySqlCommand cmd = new MySqlCommand(@"
+            MySqlCommand cmd = db.CreateCommand(@"
               SELECT * 
               FROM v_tax 
               WHERE UPPER(Tax_name) = @name
-            ", db.Connection());
+            ");
             cmd.Parameters.Add(new MySqlParameter("name", name.ToUpper()));
             MySqlDataReader reader = cmd.ExecuteReader();
 
@@ -148,7 +139,7 @@ namespace pos_core_api.ORM
             finally
             {
                 reader.Close();
-                db.CloseConnnection();
+                db.CloseCommand(cmd);
             }
             return outputItem;
         }
@@ -157,13 +148,13 @@ namespace pos_core_api.ORM
         public Tax Get(uint taxId)
         {
             Tax outputItem = null;
-            db.OpenConnection();
+            
 
-            MySqlCommand cmd = new MySqlCommand(@"
+            MySqlCommand cmd = db.CreateCommand(@"
               SELECT * 
               FROM v_tax 
               WHERE idTax = @ID
-            ", db.Connection());
+            ");
             cmd.Parameters.Add(new MySqlParameter("ID", taxId));
             MySqlDataReader reader = cmd.ExecuteReader();
 
@@ -175,7 +166,7 @@ namespace pos_core_api.ORM
             finally
             {
                 reader.Close();
-                db.CloseConnnection();
+                db.CloseCommand(cmd);
             }
             return outputItem;
         }

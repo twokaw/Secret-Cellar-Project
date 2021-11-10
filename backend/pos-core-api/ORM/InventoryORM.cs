@@ -19,125 +19,94 @@ namespace pos_core_api.ORM
         /// <returns>True if the barcode exist.</returns>
         public bool DoesBarcodeExist(string barcode)
         {
+            MySqlCommand cmd = db.CreateCommand(@"
+                SELECT barcode 
+                FROM inventory_description 
+                WHERE barcode = @barcode
+            ");
+            cmd.Parameters.Add(new MySqlParameter("barcode", barcode));
+
             try
             {
-                db.OpenConnection();
-
-                string sqlStatement = @"
-                 SELECT barcode 
-                 FROM inventory_description 
-                 WHERE barcode = @barcode
-                ";
-
-                MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
-                cmd.Parameters.Add(new MySqlParameter("barcode", barcode));
-                MySqlDataReader reader = cmd.ExecuteReader();
-
-                try
-                {
+                using MySqlDataReader reader = cmd.ExecuteReader();
                     return reader.Read();
-                }
-                finally
-                {
-                    reader.Close();
-                }
             }
             finally
             {
-                db.CloseConnnection();
+                db.CloseCommand(cmd);
             }
         }
 
-
         public List<Inventory> GetInv()
         {
-            List<Inventory> output = new List<Inventory>();
-            db.OpenConnection();
+            MySqlCommand cmd = db.CreateCommand(@"
+                SELECT *
+                FROM v_inventory 
+            ");   
+            
             try
             {
-                string sqlStatement = @"
-                 SELECT *
-                 FROM v_inventory 
-                ";
-                using MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
                 using MySqlDataReader reader = cmd.ExecuteReader();
-                output = fetchInventory(reader);
+                return FetchInventory(reader);
             }
             finally 
             {
-                db.CloseConnnection();
+                db.CloseCommand(cmd);
             }
-
-            return output;
         }
 
         public Inventory GetInv(uint id)
         {
-            List<Inventory> output = null;
+            MySqlCommand cmd = db.CreateCommand(@"
+                SELECT *
+                FROM v_inventory 
+                WHERE Inventoryid = @id
+            ");
+
+            cmd.Parameters.Add(new MySqlParameter("id", id));
 
             try
             {
-                db.OpenConnection();
-
-                string sqlStatement = @"
-                  SELECT *
-                  FROM v_inventory 
-                  WHERE Inventoryid = @id
-                ";
-
-                using MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
-                cmd.Parameters.Add(new MySqlParameter("id", id));
                 using MySqlDataReader reader = cmd.ExecuteReader();
-                output = fetchInventory(reader);
+                return FetchInventory(reader)[0];
             }
             finally
             {
-                db.CloseConnnection();
+                db.CloseCommand(cmd);
             }
-
-            return output[0];
         }
 
         public Inventory GetInv(string barcode)
         {
-            List<Inventory> output = null;
+            using MySqlCommand cmd = db.CreateCommand(@"
+                SELECT *
+                FROM v_inventory 
+                WHERE barcode = @bar
+            ");
+
+            cmd.Parameters.Add(new MySqlParameter("bar", barcode));
 
             try
             {
-                db.OpenConnection();
-
-                string sqlStatement = @"
-                 SELECT *
-                 FROM v_inventory 
-                 WHERE barcode = @bar
-                ";
-
-                using MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
-                cmd.Parameters.Add(new MySqlParameter("bar", barcode));
                 using MySqlDataReader reader = cmd.ExecuteReader();
 
-                output = fetchInventory(reader);
+                return FetchInventory(reader)[0];
             }
             finally
             {
-                db.CloseConnnection();
+                db.CloseCommand(cmd);
             }
-
-            return output[0];
         }
 
         public string GetInvHash()
         {
+            MySqlCommand cmd = db.CreateCommand(@"
+                SELECT HashValue
+                FROM v_inventory_hash
+            "); 
+
             try
             {
-                db.OpenConnection();
-
-                string sqlStatement = @"
-                 SELECT HashValue
-                 FROM v_inventory_hash
-                ";
-
-                using MySqlCommand cmd = new MySqlCommand(sqlStatement, db.Connection());
                 using MySqlDataReader reader = cmd.ExecuteReader();
                 if (reader.Read())
                     return reader.GetString("HashValue");
@@ -146,10 +115,11 @@ namespace pos_core_api.ORM
             }
             finally
             {
-                db.CloseConnnection();
+                db.CloseCommand(cmd);
             }
         }
-        public List<Inventory> fetchInventory(MySqlDataReader reader)
+
+        public List<Inventory> FetchInventory(MySqlDataReader reader)
         {
             List<Inventory> output = new List<Inventory>();
 
@@ -160,10 +130,8 @@ namespace pos_core_api.ORM
 
                 if (outputItem == null)
                 {
-
                     try
                     {
-
                         outputItem = new Inventory
                         {
                             Id = reader.IsDBNull("InventoryId") ? 0 : reader.GetUInt32("InventoryId"),
@@ -193,6 +161,7 @@ namespace pos_core_api.ORM
                     catch (Exception ex)
                     {
                         Console.WriteLine(ex);
+                        throw;
                     }
                 }
 
@@ -210,9 +179,10 @@ namespace pos_core_api.ORM
                             Enabled = reader.IsDBNull("minqty") && reader.IsDBNull("maxqty")
                         });
                 }
-                    catch (Exception ex)
+                catch (Exception ex)
                 {
                     Console.WriteLine(ex);
+                    throw;
                 }
 
                 if (!reader.IsDBNull("supplier_Price")
@@ -234,63 +204,66 @@ namespace pos_core_api.ORM
             if (DoesBarcodeExist(inv.Barcode))
                 throw new Exception ("Barcode already exist.");
 
+            if (string.IsNullOrWhiteSpace(inv.Barcode))
+                inv.Barcode = inv.Name.Replace(" ", "").ToUpper();
+            else
+                inv.Barcode = inv.Barcode.Replace(" ", "").ToUpper();
+
+            MySqlCommand cmd = db.CreateCommand(@"
+                INSERT INTO inventory_description 
+                (name, supplierID, barcode, retail_price, typeID, bottle_deposit_qty, nontaxable, nontaxable_local, InvMax, InvMin, OrderQty, Hidden) 
+                VALUES 
+                (@name, @supplierID, @barcode, @Price, @typeID, @bottles, @nonTaxable, @nonTaxableLocal, @InvMax, OrderQty, @Hidden);
+            ");
+
+            //cmd.Parameters.Add(new MySqlParameter("id", inv.Id));
+            cmd.Parameters.Add(new MySqlParameter("name", inv.Name.Trim()));
+            cmd.Parameters.Add(new MySqlParameter("supplierID", inv.SupplierID));
+            cmd.Parameters.Add(new MySqlParameter("barcode", inv.Barcode.Trim().ToUpper()));
+            cmd.Parameters.Add(new MySqlParameter("Price", inv.Price));
+            cmd.Parameters.Add(new MySqlParameter("typeID", inv.TypeID));
+            cmd.Parameters.Add(new MySqlParameter("bottles", inv.Bottles));
+            cmd.Parameters.Add(new MySqlParameter("nonTaxable", inv.NonTaxable));
+            cmd.Parameters.Add(new MySqlParameter("nonTaxableLocal", inv.NonTaxableLocal));
+            cmd.Parameters.Add(new MySqlParameter("InvMax", inv.InvMax));
+            cmd.Parameters.Add(new MySqlParameter("InvMin", inv.InvMin));
+            cmd.Parameters.Add(new MySqlParameter("OrderQty", inv.OrderQty));
+            cmd.Parameters.Add(new MySqlParameter("Hidden", inv.Hidden));
+
             try
             {
-                db.OpenConnection();
-
-                //Inserting into inventory_description
-                string sql = @"
-                    INSERT INTO inventory_description 
-                    (name, supplierID, barcode, retail_price, typeID, bottle_deposit_qty, nontaxable, nontaxable_local, InvMax, InvMin, OrderQty, Hidden) 
-                    VALUES 
-                    (@name, @supplierID, @barcode, @Price, @typeID, @bottles, @nonTaxable, @nonTaxableLocal, @InvMax, OrderQty, @Hidden);
-                ";
-
-                if (string.IsNullOrWhiteSpace(inv.Barcode))
-                    inv.Barcode = inv.Name.Replace(" ", "").ToUpper();
-                else
-                    inv.Barcode = inv.Barcode.Replace(" ", "").ToUpper();
-
-                MySqlCommand cmd = new MySqlCommand(sql, db.Connection());
-
-                //cmd.Parameters.Add(new MySqlParameter("id", inv.Id));
-                cmd.Parameters.Add(new MySqlParameter("name", inv.Name.Trim()));
-                cmd.Parameters.Add(new MySqlParameter("supplierID", inv.SupplierID));
-                cmd.Parameters.Add(new MySqlParameter("barcode", inv.Barcode.Trim().ToUpper()));
-                cmd.Parameters.Add(new MySqlParameter("Price", inv.Price));
-                cmd.Parameters.Add(new MySqlParameter("typeID", inv.TypeID));
-                cmd.Parameters.Add(new MySqlParameter("bottles", inv.Bottles));
-                cmd.Parameters.Add(new MySqlParameter("nonTaxable", inv.NonTaxable));
-                cmd.Parameters.Add(new MySqlParameter("nonTaxableLocal", inv.NonTaxableLocal));
-                cmd.Parameters.Add(new MySqlParameter("InvMax", inv.InvMax));
-                cmd.Parameters.Add(new MySqlParameter("InvMin", inv.InvMin));
-                cmd.Parameters.Add(new MySqlParameter("OrderQty", inv.OrderQty));
-                cmd.Parameters.Add(new MySqlParameter("Hidden", inv.Hidden));
                 cmd.ExecuteNonQuery();
 
                 inv.Id = Convert.ToUInt32(cmd.LastInsertedId);
-                cmd.Dispose();
+            }
+            finally
+            {
+                db.CloseCommand(cmd);
+            }
 
-                //Inserting into inventory_description
-                sql = @"
-                    INSERT INTO inventory_price 
-                    (name, Inventory_Qty, Supplier_price) 
-                    VALUES 
-                    (@id, @qty, @supplier_price);
-                ";
+            //Inserting into inventory_description
 
-                cmd = new MySqlCommand(sql, db.Connection());
-                //cmd.Parameters.Add(new MySqlParameter("id", inv.Id));
-                cmd.Parameters.Add(new MySqlParameter("id", inv.Id));
-                cmd.Parameters.Add(new MySqlParameter("Qty", inv.Qty));
-                cmd.Parameters.Add(new MySqlParameter("Supplier_price", inv.SupplierPrice));
+            cmd = db.CreateCommand(@"
+                INSERT INTO inventory_price 
+                (name, Inventory_Qty, Supplier_price) 
+                VALUES 
+                (@id, @qty, @supplier_price);
+            ");
+
+            //cmd.Parameters.Add(new MySqlParameter("id", inv.Id));
+            cmd.Parameters.Add(new MySqlParameter("id", inv.Id));
+            cmd.Parameters.Add(new MySqlParameter("Qty", inv.Qty));
+            cmd.Parameters.Add(new MySqlParameter("Supplier_price", inv.SupplierPrice));
+            
+            try
+            {
                 cmd.ExecuteNonQuery();
 
                 UpdateDiscount(inv);
             }
             finally
             {
-                db.CloseConnnection();
+                db.CloseCommand(cmd);
             }
 
             return lastID;
@@ -309,61 +282,66 @@ namespace pos_core_api.ORM
             else if (i.Barcode != inv.Barcode.Trim().ToUpper() && DoesBarcodeExist(inv.Barcode))
                 throw new Exception("Barcode already exist.");
 
+            MySqlCommand cmd = db.CreateCommand(@"
+                UPDATE inventory_description 
+                SET name = @name, supplierID = @supplierID, 
+                    barcode = @barcode, retail_price = @Price, 
+                    typeID = @typeID, 
+                    bottle_deposit_qty = @bottleDepositQty,
+                    nontaxable = @nonTaxable, 
+                    nontaxable_local = @nonTaxableLocal,
+                    InvMax = @InvMax, 
+                    InvMin = @InvMin, 
+                    OrderQty = @OrderQty, 
+                    Hidden = @Hidden
+                WHERE InventoryId = @id;
+            ");
+
+            cmd.Parameters.Add(new MySqlParameter("id", inv.Id));
+            cmd.Parameters.Add(new MySqlParameter("name", inv.Name));
+            cmd.Parameters.Add(new MySqlParameter("supplierID", inv.SupplierID));
+            cmd.Parameters.Add(new MySqlParameter("barcode", inv.Barcode));
+            cmd.Parameters.Add(new MySqlParameter("Price", inv.Price));
+            cmd.Parameters.Add(new MySqlParameter("typeID", inv.TypeID));
+            cmd.Parameters.Add(new MySqlParameter("bottleDepositQty", inv.Bottles));
+            cmd.Parameters.Add(new MySqlParameter("nonTaxable", inv.NonTaxable));
+            cmd.Parameters.Add(new MySqlParameter("nonTaxableLocal", inv.NonTaxableLocal));
+            cmd.Parameters.Add(new MySqlParameter("InvMax", inv.InvMax));
+            cmd.Parameters.Add(new MySqlParameter("InvMin", inv.InvMin));
+            cmd.Parameters.Add(new MySqlParameter("OrderQty", inv.OrderQty));
+            cmd.Parameters.Add(new MySqlParameter("Hidden", inv.Hidden));
+
             try
             {
-                db.OpenConnection();
+                cmd.ExecuteNonQuery();
+            }
+            finally
+            {
+                db.CloseCommand(cmd);
+            }
 
-                MySqlCommand cmd = new MySqlCommand(@"
-                    UPDATE inventory_description 
-                    SET name = @name, supplierID = @supplierID, 
-                        barcode = @barcode, retail_price = @Price, 
-                        typeID = @typeID, 
-                        bottle_deposit_qty = @bottleDepositQty,
-                        nontaxable = @nonTaxable, 
-                        nontaxable_local = @nonTaxableLocal,
-                        InvMax = @InvMax, 
-                        InvMin = @InvMin, 
-                        OrderQty = @OrderQty, 
-                        Hidden = @Hidden
-                    WHERE InventoryId = @id;
-                ", db.Connection());
+            cmd = db.CreateCommand(@"
+                INSERT INTO  inventory_price 
+                (inventoryid, Inventory_Qty, Supplier_price)
+                VALUES 
+                (@id, @Qty, @Supplier_price)
+                ON DUPLICATE KEY UPDATE Inventory_Qty  = @qty, 
+                        Supplier_price = @supplier_price;
+            ");
 
-                cmd.Parameters.Add(new MySqlParameter("id", inv.Id));
-                cmd.Parameters.Add(new MySqlParameter("name", inv.Name));
-                cmd.Parameters.Add(new MySqlParameter("supplierID", inv.SupplierID));
-                cmd.Parameters.Add(new MySqlParameter("barcode", inv.Barcode));
-                cmd.Parameters.Add(new MySqlParameter("Price", inv.Price));
-                cmd.Parameters.Add(new MySqlParameter("typeID", inv.TypeID));
-                cmd.Parameters.Add(new MySqlParameter("bottleDepositQty", inv.Bottles));
-                cmd.Parameters.Add(new MySqlParameter("nonTaxable", inv.NonTaxable));
-                cmd.Parameters.Add(new MySqlParameter("nonTaxableLocal", inv.NonTaxableLocal));
-                cmd.Parameters.Add(new MySqlParameter("InvMax", inv.InvMax));
-                cmd.Parameters.Add(new MySqlParameter("InvMin", inv.InvMin));
-                cmd.Parameters.Add(new MySqlParameter("OrderQty", inv.OrderQty));
-                cmd.Parameters.Add(new MySqlParameter("Hidden", inv.Hidden));
+            cmd.Parameters.Add(new MySqlParameter("id", inv.Id));
+            cmd.Parameters.Add(new MySqlParameter("Qty", inv.Qty));
+            cmd.Parameters.Add(new MySqlParameter("Supplier_price", inv.SupplierPrice));
+
+            try
+            {
                 cmd.ExecuteNonQuery();
 
-                cmd.Dispose();
-
-                cmd = new MySqlCommand(@"
-                  INSERT INTO  inventory_price 
-                   (inventoryid, Inventory_Qty, Supplier_price)
-                  VALUES 
-                   (@id, @Qty, @Supplier_price)
-                  ON DUPLICATE KEY UPDATE Inventory_Qty  = @qty, 
-                          Supplier_price = @supplier_price;
-                ", db.Connection());
-
-                cmd.Parameters.Add(new MySqlParameter("id", inv.Id));
-                cmd.Parameters.Add(new MySqlParameter("Qty", inv.Qty));
-                cmd.Parameters.Add(new MySqlParameter("Supplier_price", inv.SupplierPrice));
-                cmd.ExecuteNonQuery();
-                cmd.Dispose();
                 UpdateDiscount(inv);
             }
             finally
             {
-                db.CloseConnnection();
+                db.CloseCommand(cmd);
             }
 
             return inv.Id;
@@ -371,22 +349,19 @@ namespace pos_core_api.ORM
 
         public void Delete(uint invId)
         {
+            MySqlCommand cmd = db.CreateCommand(@"
+                DELETE FROM inventory_description 
+                WHERE InventoryID = @id
+            ");
+            cmd.Parameters.Add(new MySqlParameter("id", invId));
+
             try
             {
-                db.OpenConnection();
-
-                string sqlStatementType = @"
-                 DELETE FROM inventory_description 
-                 WHERE InventoryID = @id
-                ";
-
-                MySqlCommand cmd = new MySqlCommand(sqlStatementType, db.Connection());
-                cmd.Parameters.Add(new MySqlParameter("id", invId));
                 cmd.ExecuteNonQuery();
             }
             finally
             {
-                db.CloseConnnection();
+                db.CloseCommand(cmd);
             }
         }
 
@@ -405,11 +380,19 @@ namespace pos_core_api.ORM
                 ({x.DiscountID}, @InventoryID);
             ");
 
-            MySqlCommand cmd = new MySqlCommand(sql, db.Connection());
+            MySqlCommand cmd = db.CreateCommand(sql);
 
-            cmd = new MySqlCommand(sql, db.Connection());
+            cmd = db.CreateCommand(sql);
             cmd.Parameters.Add(new MySqlParameter("InventoryID", inv.Id));
-            cmd.ExecuteNonQuery();
+
+            try
+            {
+                cmd.ExecuteNonQuery();
+            }
+            finally
+            {
+                db.CloseCommand(cmd);
+            }
         }
     }
 }

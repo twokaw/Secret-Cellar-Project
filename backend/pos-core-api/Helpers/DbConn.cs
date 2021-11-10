@@ -3,12 +3,15 @@ using pos_core_api.Helpers;
 using Shared;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Resources;
 
 namespace WebApi.Helpers
 {
     public class DbConn
     {
+
+        private List<MySqlCommand> Cmds = new List<MySqlCommand>();
         private readonly MySqlConnection conn;
         private static readonly string defaultConnectionString = "Server=localhost;Port=3306;Database=inventory;Uid=invuser;Pwd=testinv!;";
         private static string connString = null;
@@ -77,7 +80,7 @@ namespace WebApi.Helpers
             return connString;
         }
 
-        public void OpenConnection()
+        public void OpenConnection(MySqlConnection conn)
         {
             try
             {
@@ -89,7 +92,7 @@ namespace WebApi.Helpers
             }
         }
 
-        public void CloseConnnection()
+        public void CloseConnnection(MySqlConnection conn)
         {
             try
             {
@@ -102,6 +105,22 @@ namespace WebApi.Helpers
             }
         }
 
+        public MySqlCommand CreateCommand(string sql = "")
+        {
+            MySqlConnection db = new MySqlConnection(GetConnectionString());
+
+            OpenConnection(db);
+            MySqlCommand cmd = db.CreateCommand();
+            cmd.CommandText = sql;
+
+            return cmd;
+        }
+
+        public void CloseCommand(MySqlCommand cmd)
+        {
+            CloseConnnection(cmd.Connection);
+            cmd.Dispose();
+        }
         public MySqlConnection Connection()
         {
             return this.conn;
