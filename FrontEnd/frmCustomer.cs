@@ -279,5 +279,15 @@ Address:
                 refresh();
 			}
         }
+
+		private void button_delete_Click(object sender, EventArgs e) {
+            if (customer_data_grid.SelectedRows.Count > 0) {
+                Customer customer = DataAccess.instance.GetCustomer(uint.Parse(customer_data_grid.SelectedRows[0].Cells["customerID"].Value.ToString()));
+
+                DataAccess.instance.DeleteCustomer(customer);
+
+                refresh();
+			}
+        }
 	}
 }
