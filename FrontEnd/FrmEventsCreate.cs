@@ -109,31 +109,19 @@ namespace SecretCellar {
 			#endregion
 
 			//CHECK PRE ORDER
-			if (!IsEmpty(textBox_Preorder.Text) && !double.TryParse(textBox_Preorder.Text, out _)) {
-				hasNoErrors = false;
-				result += "Preorder field needs to be filled in like: 0.0.\n";
-			}
-			else if (IsEmpty(textBox_Preorder.Text)) {
+			if (IsEmpty(textBox_Preorder.Text)) {
 				hasNoErrors = false;
 				result += "Preorder field is not filled.\n";
 			}
 
 			//CHECK AT DOOR
-			if (!IsEmpty(textBox_AtDoor.Text) && !double.TryParse(textBox_AtDoor.Text, out _)) {
-				hasNoErrors = false;
-				result += "At Door field needs to be filled in like: 0.0.\n";
-			}
-			else if (IsEmpty(textBox_AtDoor.Text)) {
+			if (IsEmpty(textBox_AtDoor.Text)) {
 				hasNoErrors = false;
 				result += "At Door field is not filled.\n";
 			}
 
 			//CHECK PRICE
-			if (!IsEmpty(textBox_Price.Text) && !double.TryParse(textBox_Price.Text, out _)) {
-				hasNoErrors = false;
-				result += "Price field needs to be filled in like: 0.0.\n";
-			}
-			else if (IsEmpty(textBox_Price.Text)) {
+			if (IsEmpty(textBox_Price.Text)) {
 				hasNoErrors = false;
 				result += "Price field is not filled.\n";
 			}

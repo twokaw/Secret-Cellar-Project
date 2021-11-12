@@ -28,10 +28,10 @@ namespace SecretCellar {
 			dateTimePicker_EventDate.Value = eventFromForm.EventDate;
 			dateTimePicker_Duration.Value = eventFromForm.Duration;
 			textBox_Quantity.Text = eventFromForm.Qty + "";
-			textBox_AtDoor.Text = eventFromForm.AtDoor + "";
-			textBox_Preorder.Text = eventFromForm.PreOrder + "";
-			textBox_Price.Text = eventFromForm.Price + "";
-			textBox_SupplierPrice.Text = eventFromForm.SupplierPrice + "";
+			textBox_AtDoor.Text = eventFromForm.AtDoor.ToString("C");
+			textBox_Preorder.Text = eventFromForm.PreOrder.ToString("C");
+			textBox_Price.Text = eventFromForm.Price.ToString("C");
+			textBox_SupplierPrice.Text = eventFromForm.SupplierPrice.ToString("C");
 			checkBox_NonTaxable.Checked = eventFromForm.NonTaxable;
 			checkBox_NonTaxableLocal.Checked = eventFromForm.NonTaxableLocal;
 		}
@@ -48,7 +48,7 @@ namespace SecretCellar {
 				}
 
 				//CHECK IF SUPPLIER PRICE IS FILLED
-				if (double.TryParse(textBox_SupplierPrice.Text, out double doubleValue)) {
+				if (double.TryParse(textBox_SupplierPrice.Text.Substring(1), out double doubleValue)) {
 					supplierPrice = doubleValue;
 				}
 
@@ -62,9 +62,9 @@ namespace SecretCellar {
 				_eventToEdit.Name = textBox_Name.Text;
 				_eventToEdit.EventDate = dateTimePicker_EventDate.Value;
 				_eventToEdit.Duration = dateTimePicker_Duration.Value;
-				_eventToEdit.PreOrder = double.Parse(textBox_Preorder.Text);
-				_eventToEdit.AtDoor = double.Parse(textBox_AtDoor.Text);
-				_eventToEdit.Price = double.Parse(textBox_Price.Text);
+				_eventToEdit.PreOrder = double.Parse(textBox_Preorder.Text.Substring(1));
+				_eventToEdit.AtDoor = double.Parse(textBox_AtDoor.Text.Substring(1));
+				_eventToEdit.Price = double.Parse(textBox_Price.Text.Substring(1));
 				_eventToEdit.NonTaxable = checkBox_NonTaxable.Checked;
 				_eventToEdit.NonTaxableLocal = checkBox_NonTaxableLocal.Checked;
 
@@ -166,31 +166,19 @@ namespace SecretCellar {
 			#endregion
 
 			//CHECK PRE ORDER
-			if (!IsEmpty(textBox_Preorder.Text) && !double.TryParse(textBox_Preorder.Text, out _)) {
-				hasNoErrors = false;
-				result += "Preorder field needs to be filled in like: 0.0.\n";
-			}
-			else if (IsEmpty(textBox_Preorder.Text)) {
+			if (IsEmpty(textBox_Preorder.Text)) {
 				hasNoErrors = false;
 				result += "Preorder field is not filled.\n";
 			}
 
 			//CHECK AT DOOR
-			if (!IsEmpty(textBox_AtDoor.Text) && !double.TryParse(textBox_AtDoor.Text, out _)) {
-				hasNoErrors = false;
-				result += "At Door field needs to be filled in like: 0.0.\n";
-			}
-			else if (IsEmpty(textBox_AtDoor.Text)) {
+			if (IsEmpty(textBox_AtDoor.Text)) {
 				hasNoErrors = false;
 				result += "At Door field is not filled.\n";
 			}
 
 			//CHECK PRICE
-			if (!IsEmpty(textBox_Price.Text) && !double.TryParse(textBox_Price.Text, out _)) {
-				hasNoErrors = false;
-				result += "Price field needs to be filled in like: 0.0.\n";
-			}
-			else if (IsEmpty(textBox_Price.Text)) {
+			if (IsEmpty(textBox_Price.Text)) {
 				hasNoErrors = false;
 				result += "Price field is not filled.\n";
 			}
