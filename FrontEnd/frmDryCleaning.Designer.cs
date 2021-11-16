@@ -30,7 +30,7 @@
         {
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDryCleaning));
 			this.lblTitle = new System.Windows.Forms.Label();
-			this.txtCharge = new System.Windows.Forms.TextBox();
+			this.txtCharge = new SecretCellar.CurrencyBox();
 			this.button_AddCharge = new System.Windows.Forms.Button();
 			this.button_Cancel = new System.Windows.Forms.Button();
 			this.label1 = new System.Windows.Forms.Label();
@@ -122,7 +122,7 @@
         #endregion
 
         private System.Windows.Forms.Label lblTitle;
-        private System.Windows.Forms.TextBox txtCharge;
+        private SecretCellar.CurrencyBox txtCharge;
 		private System.Windows.Forms.Button button_AddCharge;
 		private System.Windows.Forms.Button button_Cancel;
 		private System.Windows.Forms.Label label1;

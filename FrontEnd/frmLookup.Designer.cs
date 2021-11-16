@@ -63,7 +63,7 @@
             this.barcode_label = new System.Windows.Forms.Label();
             this.txtPrice = new SecretCellar.CurrencyBox();
             this.Price_txt = new System.Windows.Forms.Label();
-            this.txt_net_price = new System.Windows.Forms.TextBox();
+            this.txt_net_price = new SecretCellar.CurrencyBox();
             this.lbl_netPrice = new System.Windows.Forms.Label();
             this.btn_new = new System.Windows.Forms.Button();
             this.txtProd_Qty = new System.Windows.Forms.TextBox();
@@ -792,7 +792,7 @@
 		private System.Windows.Forms.Label barcode_label;
 		private SecretCellar.CurrencyBox txtPrice;
 		private System.Windows.Forms.Label Price_txt;
-		private System.Windows.Forms.TextBox txt_net_price;
+		private SecretCellar.CurrencyBox txt_net_price;
 		private System.Windows.Forms.Label lbl_netPrice;
 		private System.Windows.Forms.Button btn_new;
 		private System.Windows.Forms.TextBox txtProd_Qty;

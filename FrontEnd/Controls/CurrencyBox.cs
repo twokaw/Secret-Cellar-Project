@@ -8,8 +8,8 @@ namespace SecretCellar
         private int CursorPosition = 0;
         public CurrencyBox() : base(){
             this.TextAlign = HorizontalAlignment.Left;
-            this.CursorPosition = this.TextLength;
             this.Text = "0.00";
+            this.CursorPosition = this.TextLength;
         }
         protected override void OnKeyDown(KeyEventArgs e)
         {

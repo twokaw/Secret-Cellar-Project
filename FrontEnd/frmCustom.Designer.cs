@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCustom));
-			this.txt_charge_am = new System.Windows.Forms.TextBox();
+			this.txt_charge_am = new SecretCellar.CurrencyBox();
 			this.lbl_custom = new System.Windows.Forms.Label();
 			this.txt_descript = new System.Windows.Forms.TextBox();
 			this.lbl_Descript = new System.Windows.Forms.Label();
@@ -156,7 +156,7 @@
         }
 
         #endregion
-        private System.Windows.Forms.TextBox txt_charge_am;
+        private SecretCellar.CurrencyBox txt_charge_am;
         private System.Windows.Forms.Label lbl_custom;
         private System.Windows.Forms.TextBox txt_descript;
         private System.Windows.Forms.Label lbl_Descript;

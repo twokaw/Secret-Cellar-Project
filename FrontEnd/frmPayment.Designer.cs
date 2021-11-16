@@ -30,7 +30,7 @@
         {
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPayment));
 			this.LB_EnterAmt = new System.Windows.Forms.Label();
-			this.txtCashAmt = new System.Windows.Forms.TextBox();
+			this.txtCashAmt = new SecretCellar.CurrencyBox();
 			this.btnMainMenu = new System.Windows.Forms.Button();
 			this.paymentType = new System.Windows.Forms.DataGridView();
 			this.TYPE = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -39,19 +39,19 @@
 			this.LB_Total = new System.Windows.Forms.Label();
 			this.LB_ChangeDue = new System.Windows.Forms.Label();
 			this.btnCompleteSale = new System.Windows.Forms.Button();
-			this.txt_TenderTransTotal = new System.Windows.Forms.TextBox();
-			this.txtDue = new System.Windows.Forms.TextBox();
+			this.txt_TenderTransTotal = new SecretCellar.CurrencyBox();
+			this.txtDue = new SecretCellar.CurrencyBox();
 			this.btn_Cash = new System.Windows.Forms.Button();
 			this.btn_Check = new System.Windows.Forms.Button();
 			this.btn_Credit = new System.Windows.Forms.Button();
 			this.btn_GiftCard = new System.Windows.Forms.Button();
-			this.txtChange = new System.Windows.Forms.TextBox();
+			this.txtChange = new SecretCellar.CurrencyBox();
 			this.txtNumber = new System.Windows.Forms.TextBox();
 			this.label2 = new System.Windows.Forms.Label();
 			this.btnDelete = new System.Windows.Forms.Button();
 			this.chk_printReceipt = new System.Windows.Forms.CheckBox();
 			this.lbl_credit = new System.Windows.Forms.Label();
-			this.txt_credit_amount = new System.Windows.Forms.TextBox();
+			this.txt_credit_amount = new SecretCellar.CurrencyBox();
 			this.lbl_customer = new System.Windows.Forms.Label();
 			this.txt_customer = new System.Windows.Forms.TextBox();
 			this.btn_cust_credit = new System.Windows.Forms.Button();
@@ -417,19 +417,19 @@
         #endregion
         private System.Windows.Forms.Button btnMainMenu;
         private System.Windows.Forms.Label LB_EnterAmt;
-        private System.Windows.Forms.TextBox txtCashAmt;
+        private SecretCellar.CurrencyBox txtCashAmt;
         private System.Windows.Forms.DataGridView paymentType;
         private System.Windows.Forms.Label LB_Due;
         private System.Windows.Forms.Label LB_Total;
         private System.Windows.Forms.Label LB_ChangeDue;
         private System.Windows.Forms.Button btnCompleteSale;
-        private System.Windows.Forms.TextBox txt_TenderTransTotal;
-        private System.Windows.Forms.TextBox txtDue;
+        private SecretCellar.CurrencyBox txt_TenderTransTotal;
+        private SecretCellar.CurrencyBox txtDue;
         private System.Windows.Forms.Button btn_Cash;
         private System.Windows.Forms.Button btn_Check;
         private System.Windows.Forms.Button btn_Credit;
         private System.Windows.Forms.Button btn_GiftCard;
-        private System.Windows.Forms.TextBox txtChange;
+        private SecretCellar.CurrencyBox txtChange;
         private System.Windows.Forms.TextBox txtNumber;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridViewTextBoxColumn TYPE;
@@ -437,7 +437,7 @@
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.CheckBox chk_printReceipt;
         private System.Windows.Forms.Label lbl_credit;
-        private System.Windows.Forms.TextBox txt_credit_amount;
+        private SecretCellar.CurrencyBox txt_credit_amount;
         private System.Windows.Forms.Label lbl_customer;
         private System.Windows.Forms.TextBox txt_customer;
         private System.Windows.Forms.Button btn_cust_credit;
