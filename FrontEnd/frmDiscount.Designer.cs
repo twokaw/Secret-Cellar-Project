@@ -48,7 +48,7 @@
 			this.btn_ApplyDiscount = new System.Windows.Forms.Button();
 			this.panel3 = new System.Windows.Forms.Panel();
 			this.button_ApplyToItem = new System.Windows.Forms.Button();
-			this.txt_discountTotal = new System.Windows.Forms.TextBox();
+			this.txt_discountTotal = new SecretCellar.CurrencyBox();
 			this.total_lbl = new System.Windows.Forms.Label();
 			this.button_Clear = new System.Windows.Forms.Button();
 			this.button_Close = new System.Windows.Forms.Button();
@@ -376,7 +376,7 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.TextBox txt_discountTotal;
+        private SecretCellar.CurrencyBox txt_discountTotal;
         private System.Windows.Forms.Label total_lbl;
         private System.Windows.Forms.DataGridViewTextBoxColumn ItemNumber;
         private System.Windows.Forms.DataGridViewTextBoxColumn ItemDescription;

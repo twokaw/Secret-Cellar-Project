@@ -29,7 +29,7 @@ namespace SecretCellar {
 			this.button_SubtractCredit = new System.Windows.Forms.Button();
 			this.button_CloseWindow = new System.Windows.Forms.Button();
 			this.button_ResetCredit = new System.Windows.Forms.Button();
-			this.textBox_NewCreditAmount = new System.Windows.Forms.TextBox();
+			this.textBox_NewCreditAmount = new SecretCellar.CurrencyBox();
 			this.label_NewCreditAmount = new System.Windows.Forms.Label();
 			this.button_ForceChange = new System.Windows.Forms.Button();
 			this.button_Confirm = new System.Windows.Forms.Button();
@@ -192,7 +192,7 @@ namespace SecretCellar {
 		private System.Windows.Forms.Button button_SubtractCredit;
 		private System.Windows.Forms.Button button_CloseWindow;
 		private System.Windows.Forms.Button button_ResetCredit;
-		private System.Windows.Forms.TextBox textBox_NewCreditAmount;
+		private SecretCellar.CurrencyBox textBox_NewCreditAmount;
 		private System.Windows.Forms.Label label_NewCreditAmount;
 		private System.Windows.Forms.Button button_ForceChange;
 		private System.Windows.Forms.Button button_Confirm;
