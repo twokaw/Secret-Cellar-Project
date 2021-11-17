@@ -204,12 +204,12 @@ namespace SecretCellar
 
         private void UpdateTotal() {
             if (uint.TryParse(textBox_Quantity.Text, out uint quantity) && dataGridView_Events.SelectedRows.Count > 0) {
-                double price = double.Parse(dataGridView_Events.SelectedRows[0].Cells["Price"].Value.ToString().Substring(1));
+                double price = double.Parse(dataGridView_Events.SelectedRows[0].Cells["Price"].Value.ToString());//.Substring(1));
 
-                textBox_Total.Text = "$" + quantity * price * 100;
+                if (quantity != 0) { textBox_Total.Text = "$" + quantity * price * 100; }
             }
             else {
-                textBox_Total.Text = "0";
+                textBox_Total.Text = "$000";
             }
         }
 
