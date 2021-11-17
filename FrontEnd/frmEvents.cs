@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using System.Drawing;
+
 
 
 namespace SecretCellar
@@ -23,8 +25,7 @@ namespace SecretCellar
                 _selectedEvent = GetSelectedEvent();
 			}
 
-            //SET THE ID COLUMN TO HIDDEN SO THAT THE ID IS STILL
-            //ACCESSIBLE WHEN DELETING EVENTS
+            //SET THE ID, BARCODE, AND DURATION COLUMN TO HIDDEN
             dataGridView_Events.Columns["Id"].Visible = false;
             dataGridView_Events.Columns["Barcode"].Visible = false;
             dataGridView_Events.Columns["Duration"].Visible = false;
@@ -66,8 +67,8 @@ namespace SecretCellar
 
                 //SELECT THE SPECIFIC EVENT THAT THE USER CLICKED ON
                 foreach (DataGridViewRow row in dataGridView_Events.Rows) {
-                    if (row.Cells[Date.Index].Value.ToString() == dateTimePicker_Date.Value.ToString()) {
-                        dataGridView_Events.CurrentCell = row.Cells[Date.Index];
+                    if (row.Cells["Date"].Value.ToString() == dateTimePicker_Date.Value.ToString()) {
+                        dataGridView_Events.CurrentCell = row.Cells["Date"];
 					}
 				}
 			}
@@ -76,7 +77,7 @@ namespace SecretCellar
             else {
                 if (dataGridView_Events.Rows.Count > 0) {
                     //RESET THE SELECTED ROW TO THE FIRST ROW
-                    dataGridView_Events.CurrentCell = dataGridView_Events.Rows[0].Cells[Date.Index];
+                    dataGridView_Events.CurrentCell = dataGridView_Events.Rows[0].Cells["Date"];
                 }
 
                 UpdateEventGrid();
@@ -105,10 +106,15 @@ namespace SecretCellar
                     }
 
                     //GET THE SELECTED ROW'S BARCODE AND CONVERT IT TO AN ITEM
-                    Item item = Transaction.ConvertInvtoItem(DataAccess.instance.GetItem(selectedRow[Barcode.Index].Value.ToString()), quantity);
+                    Item item = Transaction.ConvertInvtoItem(DataAccess.instance.GetItem(selectedRow["Barcode"].Value.ToString()), quantity);
 
                     //UPDATE THE PRICE OF THE ITEM WITH THE SELECTED ROW'S PRICE
-                    item.Price = double.Parse(selectedRow[Price.Index].Value.ToString());
+                    if (dataGridView_Events.SelectedRows[0].Cells["PreorderPrice"].Style.ForeColor == Color.Red) {
+                        item.Price = double.Parse(selectedRow["PreorderPrice"].Value.ToString().Substring(1));
+                    }
+                    else {
+                        item.Price = double.Parse(selectedRow["AtDoorPrice"].Value.ToString().Substring(1));
+                    }
 
                     //ADD THE ITEM TO THE TRANSACTION
                     _transaction.Items.Add(item);
@@ -147,22 +153,23 @@ namespace SecretCellar
 		}
 
         private void UpdateEventGrid() {
-            /*
+            
             dataGridView_Events.DataSource = DataAccess.instance.GetEvent()
-                .Select(x => new {
-                    eventId = x.Id,
-                    eventBarcode = x.Barcode,
-                    eventDate = x.EventDate,
-                    eventDuration = x.Duration,
-                    eventName = x.Name,
-                    eventPrice = x.AtDoor.ToString("C"),
-                    quantity = x.Qty
-                })
-                .Where(x => x.eventDate.Year <= dateTimePicker_Date.Value.Year
-                        && dateTimePicker_Date.Value.Year <= x.eventDuration.Year
-                        && x.eventDate.Month <= dateTimePicker_Date.Value.Month && dateTimePicker_Date.Value.Month <= x.eventDuration.Month
-                        && x.eventDate.Day <= dateTimePicker_Date.Value.Day && dateTimePicker_Date.Value.Day <= x.eventDuration.Day)
-                .ToList();
+            .Select(x => new {
+                eventId = x.Id,
+                eventBarcode = x.Barcode,
+                eventDate = x.EventDate,
+                eventDuration = x.Duration,
+                eventName = x.Name,
+                preorderPrice = x.PreOrder.ToString("C"),
+                atDoorPrice = x.AtDoor.ToString("C"),
+                quantity = x.Qty
+            })
+            .Where(x => x.eventDate.Year <= dateTimePicker_Date.Value.Year
+                    && dateTimePicker_Date.Value.Year <= x.eventDuration.Year
+                    && x.eventDate.Month <= dateTimePicker_Date.Value.Month && dateTimePicker_Date.Value.Month <= x.eventDuration.Month
+                    && x.eventDate.Day <= dateTimePicker_Date.Value.Day && dateTimePicker_Date.Value.Day <= x.eventDuration.Day)
+            .ToList();
 
 
             //TODO figure out how to set the pre order price
@@ -170,11 +177,17 @@ namespace SecretCellar
                 Event currentEvent = DataAccess.instance.GetEvent(uint.Parse(dataGridView_Events.Rows[i].Cells["Id"].Value.ToString()));
 
                 if (IsTodayBeforeEvent(currentEvent)) {
-                    dataGridView_Events.Rows[i].Cells["Price"].Value = currentEvent.PreOrder;
+                    dataGridView_Events.Rows[i].Cells["PreorderPrice"].Style.ForeColor = Color.Red;
+                    dataGridView_Events.Rows[i].Cells["PreorderPrice"].Style.SelectionForeColor = Color.Red;
+                }
+                else {
+                    dataGridView_Events.Rows[i].Cells["AtDoorPrice"].Style.ForeColor = Color.Red;
+                    dataGridView_Events.Rows[i].Cells["AtDoorPrice"].Style.SelectionForeColor = Color.Red;
                 }
 			}
-            */
+            
 
+            /*
             //GET ALL THE EVENTS
             List<Event> listOfEvents = DataAccess.instance.GetEvent();
 
@@ -195,6 +208,7 @@ namespace SecretCellar
 					}
                 }
             }
+            */
             
             //CLEAR OUT THE SELECTED EVENT IF THERE ARE NO ROWS
             if (dataGridView_Events.Rows.Count == 0) {
@@ -204,7 +218,14 @@ namespace SecretCellar
 
         private void UpdateTotal() {
             if (uint.TryParse(textBox_Quantity.Text, out uint quantity) && dataGridView_Events.SelectedRows.Count > 0) {
-                double price = double.Parse(dataGridView_Events.SelectedRows[0].Cells["Price"].Value.ToString());//.Substring(1));
+                double price;
+
+                if (dataGridView_Events.SelectedRows[0].Cells["PreorderPrice"].Style.ForeColor == Color.Red) {
+                    price = double.Parse(dataGridView_Events.SelectedRows[0].Cells["PreorderPrice"].Value.ToString().Substring(1));
+                }
+                else {
+                    price = double.Parse(dataGridView_Events.SelectedRows[0].Cells["AtDoorPrice"].Value.ToString().Substring(1));
+                }
 
                 if (quantity != 0) { textBox_Total.Text = "$" + quantity * price * 100; }
             }
