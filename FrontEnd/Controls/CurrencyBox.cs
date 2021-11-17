@@ -7,9 +7,9 @@ namespace SecretCellar
     {
         private int CursorPosition = 0;
         public CurrencyBox() : base(){
-            this.TextAlign = HorizontalAlignment.Right;
-
+            this.TextAlign = HorizontalAlignment.Left;
             this.Text = "0.00";
+            this.CursorPosition = this.TextLength;
         }
         protected override void OnKeyDown(KeyEventArgs e)
         {

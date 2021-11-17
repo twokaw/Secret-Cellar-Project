@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmShipping));
-			this.txtCharge = new System.Windows.Forms.TextBox();
+			this.txtCharge = new SecretCellar.CurrencyBox();
 			this.lblTitle = new System.Windows.Forms.Label();
 			this.button_AddCharge = new System.Windows.Forms.Button();
 			this.button_Cancel = new System.Windows.Forms.Button();
@@ -123,7 +123,7 @@
         }
 
         #endregion
-        private System.Windows.Forms.TextBox txtCharge;
+        private SecretCellar.CurrencyBox txtCharge;
         private System.Windows.Forms.Label lblTitle;
 		private System.Windows.Forms.Button button_AddCharge;
 		private System.Windows.Forms.Button button_Cancel;
