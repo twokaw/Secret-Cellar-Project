@@ -70,6 +70,7 @@
             this.Btl_Dep_Lb = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
+            this.button_Broken = new System.Windows.Forms.Button();
             this.btn_clear_info = new System.Windows.Forms.Button();
             this.chk_hide_item = new System.Windows.Forms.CheckBox();
             this.lbl_max_qty = new System.Windows.Forms.Label();
@@ -83,7 +84,6 @@
             this.checkListBox_Discounts = new System.Windows.Forms.CheckedListBox();
             this.label_CaseDiscount = new System.Windows.Forms.Label();
             this.chk_box_show_hidden = new System.Windows.Forms.CheckBox();
-            this.button_Broken = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.LookupView)).BeginInit();
             this.panel1.SuspendLayout();
@@ -140,7 +140,7 @@
             this.LookupView.RowHeadersWidth = 62;
             this.LookupView.RowTemplate.Height = 24;
             this.LookupView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.LookupView.Size = new System.Drawing.Size(645, 583);
+            this.LookupView.Size = new System.Drawing.Size(881, 590);
             this.LookupView.TabIndex = 0;
             this.LookupView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.LookupView_CellContentClick);
             this.LookupView.SelectionChanged += new System.EventHandler(this.LookupView_SelectionChanged);
@@ -230,7 +230,7 @@
             // 
             this.btn_cancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btn_cancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_cancel.Location = new System.Drawing.Point(20, 664);
+            this.btn_cancel.Location = new System.Drawing.Point(20, 681);
             this.btn_cancel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_cancel.Name = "btn_cancel";
             this.btn_cancel.Size = new System.Drawing.Size(141, 37);
@@ -243,7 +243,7 @@
             // 
             this.btn_add.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_add.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_add.Location = new System.Drawing.Point(877, 664);
+            this.btn_add.Location = new System.Drawing.Point(181, 605);
             this.btn_add.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_add.Name = "btn_add";
             this.btn_add.Size = new System.Drawing.Size(142, 37);
@@ -259,9 +259,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.Controls.Add(this.LookupView);
             this.panel1.Location = new System.Drawing.Point(20, 66);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(645, 585);
+            this.panel1.Size = new System.Drawing.Size(881, 592);
             this.panel1.TabIndex = 7;
             // 
             // cbxTypeFilter
@@ -269,7 +269,7 @@
             this.cbxTypeFilter.DisplayMember = "TypeName";
             this.cbxTypeFilter.FormattingEnabled = true;
             this.cbxTypeFilter.Location = new System.Drawing.Point(282, 23);
-            this.cbxTypeFilter.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbxTypeFilter.Margin = new System.Windows.Forms.Padding(4);
             this.cbxTypeFilter.Name = "cbxTypeFilter";
             this.cbxTypeFilter.Size = new System.Drawing.Size(180, 24);
             this.cbxTypeFilter.TabIndex = 2;
@@ -290,7 +290,7 @@
             this.cbxSupplyFilter.DisplayMember = "Name";
             this.cbxSupplyFilter.FormattingEnabled = true;
             this.cbxSupplyFilter.Location = new System.Drawing.Point(494, 23);
-            this.cbxSupplyFilter.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbxSupplyFilter.Margin = new System.Windows.Forms.Padding(4);
             this.cbxSupplyFilter.Name = "cbxSupplyFilter";
             this.cbxSupplyFilter.Size = new System.Drawing.Size(180, 24);
             this.cbxSupplyFilter.TabIndex = 3;
@@ -310,7 +310,7 @@
             // 
             this.cbxOnlyItemsWithInventory.AutoSize = true;
             this.cbxOnlyItemsWithInventory.Location = new System.Drawing.Point(691, 25);
-            this.cbxOnlyItemsWithInventory.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbxOnlyItemsWithInventory.Margin = new System.Windows.Forms.Padding(4);
             this.cbxOnlyItemsWithInventory.Name = "cbxOnlyItemsWithInventory";
             this.cbxOnlyItemsWithInventory.Size = new System.Drawing.Size(200, 20);
             this.cbxOnlyItemsWithInventory.TabIndex = 4;
@@ -372,7 +372,7 @@
             // 
             this.btn_update.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btn_update.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_update.Location = new System.Drawing.Point(-1, 548);
+            this.btn_update.Location = new System.Drawing.Point(-1, 537);
             this.btn_update.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_update.Name = "btn_update";
             this.btn_update.Size = new System.Drawing.Size(142, 37);
@@ -444,6 +444,7 @@
             this.txtPrice.Name = "txtPrice";
             this.txtPrice.Size = new System.Drawing.Size(186, 22);
             this.txtPrice.TabIndex = 12;
+            this.txtPrice.Text = "0.00";
             // 
             // Price_txt
             // 
@@ -464,6 +465,7 @@
             this.txt_net_price.Name = "txt_net_price";
             this.txt_net_price.Size = new System.Drawing.Size(186, 22);
             this.txt_net_price.TabIndex = 14;
+            this.txt_net_price.Text = "0.00";
             // 
             // lbl_netPrice
             // 
@@ -479,8 +481,8 @@
             // 
             this.btn_new.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btn_new.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_new.Location = new System.Drawing.Point(-1, 496);
-            this.btn_new.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_new.Location = new System.Drawing.Point(0, 494);
+            this.btn_new.Margin = new System.Windows.Forms.Padding(4);
             this.btn_new.Name = "btn_new";
             this.btn_new.Size = new System.Drawing.Size(141, 37);
             this.btn_new.TabIndex = 20;
@@ -515,6 +517,7 @@
             this.panel2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel2.Controls.Add(this.label1);
+            this.panel2.Controls.Add(this.button_Broken);
             this.panel2.Controls.Add(this.btn_clear_info);
             this.panel2.Controls.Add(this.chk_hide_item);
             this.panel2.Controls.Add(this.lbl_max_qty);
@@ -522,6 +525,7 @@
             this.panel2.Controls.Add(this.txt_max_qty);
             this.panel2.Controls.Add(this.txt_order_qty);
             this.panel2.Controls.Add(this.lbl_min);
+            this.panel2.Controls.Add(this.btn_add);
             this.panel2.Controls.Add(this.txt_min_qty);
             this.panel2.Controls.Add(this.lbl_markup);
             this.panel2.Controls.Add(this.txt_markup);
@@ -545,10 +549,10 @@
             this.panel2.Controls.Add(this.label3);
             this.panel2.Controls.Add(this.txt_qty);
             this.panel2.Controls.Add(this.label4);
-            this.panel2.Location = new System.Drawing.Point(673, 66);
-            this.panel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel2.Location = new System.Drawing.Point(909, 53);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(345, 585);
+            this.panel2.Size = new System.Drawing.Size(345, 663);
             this.panel2.TabIndex = 8;
             // 
             // label1
@@ -561,12 +565,25 @@
             this.label1.Text = "Hidden:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // button_Broken
+            // 
+            this.button_Broken.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button_Broken.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_Broken.Location = new System.Drawing.Point(0, 605);
+            this.button_Broken.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button_Broken.Name = "button_Broken";
+            this.button_Broken.Size = new System.Drawing.Size(142, 37);
+            this.button_Broken.TabIndex = 24;
+            this.button_Broken.Text = "ADD CONSUMED";
+            this.button_Broken.UseVisualStyleBackColor = true;
+            this.button_Broken.Click += new System.EventHandler(this.button_Broken_Click);
+            // 
             // btn_clear_info
             // 
             this.btn_clear_info.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btn_clear_info.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_clear_info.Location = new System.Drawing.Point(-1, 444);
-            this.btn_clear_info.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_clear_info.Location = new System.Drawing.Point(0, 449);
+            this.btn_clear_info.Margin = new System.Windows.Forms.Padding(4);
             this.btn_clear_info.Name = "btn_clear_info";
             this.btn_clear_info.Size = new System.Drawing.Size(141, 37);
             this.btn_clear_info.TabIndex = 19;
@@ -578,7 +595,7 @@
             // 
             this.chk_hide_item.AutoSize = true;
             this.chk_hide_item.Location = new System.Drawing.Point(157, 6);
-            this.chk_hide_item.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chk_hide_item.Margin = new System.Windows.Forms.Padding(4);
             this.chk_hide_item.Name = "chk_hide_item";
             this.chk_hide_item.Size = new System.Drawing.Size(15, 14);
             this.chk_hide_item.TabIndex = 6;
@@ -697,26 +714,13 @@
             // 
             this.chk_box_show_hidden.AutoSize = true;
             this.chk_box_show_hidden.Location = new System.Drawing.Point(905, 25);
-            this.chk_box_show_hidden.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chk_box_show_hidden.Margin = new System.Windows.Forms.Padding(4);
             this.chk_box_show_hidden.Name = "chk_box_show_hidden";
             this.chk_box_show_hidden.Size = new System.Drawing.Size(118, 20);
             this.chk_box_show_hidden.TabIndex = 5;
             this.chk_box_show_hidden.Text = "Hidden Items";
             this.chk_box_show_hidden.UseVisualStyleBackColor = true;
             this.chk_box_show_hidden.CheckedChanged += new System.EventHandler(this.chk_box_show_hidden_CheckedChanged);
-            // 
-            // button_Broken
-            // 
-            this.button_Broken.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button_Broken.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_Broken.Location = new System.Drawing.Point(673, 664);
-            this.button_Broken.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button_Broken.Name = "button_Broken";
-            this.button_Broken.Size = new System.Drawing.Size(142, 37);
-            this.button_Broken.TabIndex = 24;
-            this.button_Broken.Text = "ADD CONSUMED";
-            this.button_Broken.UseVisualStyleBackColor = true;
-            this.button_Broken.Click += new System.EventHandler(this.button_Broken_Click);
             // 
             // label7
             // 
@@ -735,9 +739,9 @@
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.ClientSize = new System.Drawing.Size(1028, 679);
+            this.ClientSize = new System.Drawing.Size(1264, 729);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.button_Broken);
+            this.Controls.Add(this.btn_cancel);
             this.Controls.Add(this.chk_box_show_hidden);
             this.Controls.Add(this.cbxOnlyItemsWithInventory);
             this.Controls.Add(this.lblSupplyFilter);
@@ -746,14 +750,10 @@
             this.Controls.Add(this.cbxTypeFilter);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.btn_add);
-            this.Controls.Add(this.btn_cancel);
             this.Controls.Add(this.txtlookup);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
             this.Name = "frmLookup";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Item lookup";
