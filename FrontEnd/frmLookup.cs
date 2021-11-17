@@ -45,6 +45,7 @@ namespace SecretCellar
             if (addCharge())
             {
                 this.DialogResult = DialogResult.OK;
+                txtlookup.Text = "";
                 this.Close();
             }
         }
