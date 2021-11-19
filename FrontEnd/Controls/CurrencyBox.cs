@@ -11,6 +11,7 @@ namespace SecretCellar
             this.Text = "0.00";
             this.CursorPosition = this.TextLength;
         }
+
         protected override void OnKeyDown(KeyEventArgs e)
         {
             base.OnKeyDown(e);
@@ -44,6 +45,11 @@ namespace SecretCellar
 
         protected override void OnTextChanged(EventArgs e)
         {
+            if (!base.Text.Contains("."))
+                base.Text += ".00";
+            else if ("." == base.Text.Substring(base.Text.Length - 2, 1))
+                base.Text += "0";
+
             base.OnTextChanged(e);
 
             this.Text = FormatText(this.Text);
