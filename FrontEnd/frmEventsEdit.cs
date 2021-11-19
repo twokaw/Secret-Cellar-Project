@@ -14,10 +14,10 @@ namespace SecretCellar {
 			InitializeComponent();
 
 			dateTimePicker_EventDate.Format = DateTimePickerFormat.Custom;
-			dateTimePicker_EventDate.CustomFormat = "MM/dd/yyyy hh:mm:ss";
+			dateTimePicker_EventDate.CustomFormat = "MM/dd/yyyy hh:mm tt";
 
 			dateTimePicker_Duration.Format = DateTimePickerFormat.Custom;
-			dateTimePicker_Duration.CustomFormat = "MM/dd/yyyy hh:mm:ss";
+			dateTimePicker_Duration.CustomFormat = "MM/dd/yyyy hh:mm tt";
 
 			//GET THE ID OF THE EVENT THAT'S BEING EDITED
 			_id = eventFromForm.Id;

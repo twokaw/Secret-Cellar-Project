@@ -20,17 +20,17 @@ namespace SecretCellar
             InitializeComponent();
             _transaction = transactionFromFrmTransaction;
 
-            //UPDATE THE SELECTED EVENT FIELD IF THE DATA GRID HAS ROWS
-            if (dataGridView_Events.SelectedRows.Count > 0) {
-                _selectedEvent = GetSelectedEvent();
-			}
-
             //SET THE ID, BARCODE, AND DURATION COLUMN TO HIDDEN
             dataGridView_Events.Columns["Id"].Visible = false;
             dataGridView_Events.Columns["Barcode"].Visible = false;
             dataGridView_Events.Columns["Duration"].Visible = false;
 
             UpdateEventGrid();
+
+            //UPDATE THE SELECTED EVENT FIELD IF THE DATA GRID HAS ROWS
+            if (dataGridView_Events.SelectedRows.Count > 0) {
+                _selectedEvent = GetSelectedEvent();
+            }
         }
 
         private void dataGridView_Events_SelectionChanged(object sender, EventArgs e) {
@@ -170,7 +170,7 @@ namespace SecretCellar
                     && x.eventDate.Day <= dateTimePicker_Date.Value.Day && dateTimePicker_Date.Value.Day <= x.eventDuration.Day)
             .ToList();
 
-            for (int i=0; i< dataGridView_Events.Rows.Count; i++) {
+            for (int i=0; i<dataGridView_Events.Rows.Count; i++) {
                 Event currentEvent = DataAccess.instance.GetEvent(uint.Parse(dataGridView_Events.Rows[i].Cells["Id"].Value.ToString()));
 
                 if (IsTodayBeforeEvent(currentEvent)) {
@@ -269,6 +269,14 @@ namespace SecretCellar
                 return true;
             }
             else if (currentEvent.EventDate.Year == DateTime.Now.Year && currentEvent.EventDate.Month == DateTime.Now.Month && currentEvent.EventDate.Day > DateTime.Now.Day) {
+                return true;
+            }
+            else if (currentEvent.EventDate.Year == DateTime.Now.Year && currentEvent.EventDate.Month == DateTime.Now.Month && currentEvent.EventDate.Day == DateTime.Now.Day
+            && currentEvent.EventDate.Hour > DateTime.Now.Hour) {
+                return true;
+            }
+            else if (currentEvent.EventDate.Year == DateTime.Now.Year && currentEvent.EventDate.Month == DateTime.Now.Month && currentEvent.EventDate.Day == DateTime.Now.Day
+            && currentEvent.EventDate.Hour == DateTime.Now.Hour && currentEvent.EventDate.Minute > DateTime.Now.Minute) {
                 return true;
             }
             else {
