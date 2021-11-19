@@ -25,13 +25,19 @@ namespace SecretCellar
             dataGridView_Events.Columns["Barcode"].Visible = false;
             dataGridView_Events.Columns["Duration"].Visible = false;
 
-            UpdateEventGrid();
-
             //UPDATE THE SELECTED EVENT FIELD IF THE DATA GRID HAS ROWS
             if (dataGridView_Events.SelectedRows.Count > 0) {
                 _selectedEvent = GetSelectedEvent();
             }
         }
+
+
+        /// <summary>
+        /// When the form loads, update the grid so the preorder/at door color is changed.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void frmEvents_Shown(object sender, EventArgs e) { UpdateEventGrid(); }
 
         private void dataGridView_Events_SelectionChanged(object sender, EventArgs e) {
             //UPDATE THE SELECTED EVENT FIELD
