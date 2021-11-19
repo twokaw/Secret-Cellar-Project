@@ -153,7 +153,6 @@ namespace SecretCellar
 		}
 
         private void UpdateEventGrid() {
-            
             dataGridView_Events.DataSource = DataAccess.instance.GetEvent()
             .Select(x => new {
                 eventId = x.Id,
@@ -171,8 +170,6 @@ namespace SecretCellar
                     && x.eventDate.Day <= dateTimePicker_Date.Value.Day && dateTimePicker_Date.Value.Day <= x.eventDuration.Day)
             .ToList();
 
-
-            //TODO figure out how to set the pre order price
             for (int i=0; i< dataGridView_Events.Rows.Count; i++) {
                 Event currentEvent = DataAccess.instance.GetEvent(uint.Parse(dataGridView_Events.Rows[i].Cells["Id"].Value.ToString()));
 
@@ -185,7 +182,6 @@ namespace SecretCellar
                     dataGridView_Events.Rows[i].Cells["AtDoorPrice"].Style.SelectionForeColor = Color.Red;
                 }
 			}
-            
 
             /*
             //GET ALL THE EVENTS

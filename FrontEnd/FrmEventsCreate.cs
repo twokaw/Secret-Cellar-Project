@@ -3,10 +3,17 @@ using System.Windows.Forms;
 using Shared;
 
 
+
 namespace SecretCellar {
 	public partial class frmEventsCreate : Form {
 		public frmEventsCreate() {
 			InitializeComponent();
+
+			dateTimePicker_EventDate.Format = DateTimePickerFormat.Custom;
+			dateTimePicker_EventDate.CustomFormat = "MM/dd/yyyy hh:mm:ss";
+
+			dateTimePicker_Duration.Format = DateTimePickerFormat.Custom;
+			dateTimePicker_Duration.CustomFormat = "MM/dd/yyyy hh:mm:ss";
 		}
 
 		private void button_CloseWindow_Click(object sender, EventArgs e) {
