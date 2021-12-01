@@ -27,10 +27,10 @@ namespace SecretCellar {
 			dateTimePicker_EventDate.Value = eventFromForm.EventDate;
 			dateTimePicker_Duration.Value = eventFromForm.Duration;
 			textBox_Quantity.Text = eventFromForm.Qty + "";
-			textBox_AtDoor.Text = eventFromForm.AtDoor.ToString("C");
-			textBox_Preorder.Text = eventFromForm.PreOrder.ToString("C");
-			textBox_Price.Text = eventFromForm.Price.ToString("C");
-			textBox_SupplierPrice.Text = eventFromForm.SupplierPrice.ToString("C");
+			textBox_AtDoor.Text = eventFromForm.AtDoor.ToString("C").Substring(1);
+			textBox_Preorder.Text = eventFromForm.PreOrder.ToString("C").Substring(1);
+			textBox_Price.Text = eventFromForm.Price.ToString("C").Substring(1);
+			textBox_SupplierPrice.Text = eventFromForm.SupplierPrice.ToString("C").Substring(1);
 			checkBox_NonTaxable.Checked = eventFromForm.NonTaxable;
 			checkBox_NonTaxableLocal.Checked = eventFromForm.NonTaxableLocal;
 		}
@@ -47,7 +47,7 @@ namespace SecretCellar {
 				}
 
 				//CHECK IF SUPPLIER PRICE IS FILLED
-				if (double.TryParse(textBox_SupplierPrice.Text.Substring(1), out double doubleValue)) {
+				if (double.TryParse(textBox_SupplierPrice.Text, out double doubleValue)) {
 					supplierPrice = doubleValue;
 				}
 
@@ -61,9 +61,9 @@ namespace SecretCellar {
 				_eventToEdit.Name = textBox_Name.Text;
 				_eventToEdit.EventDate = dateTimePicker_EventDate.Value;
 				_eventToEdit.Duration = dateTimePicker_Duration.Value;
-				_eventToEdit.PreOrder = double.Parse(textBox_Preorder.Text.Substring(1));
-				_eventToEdit.AtDoor = double.Parse(textBox_AtDoor.Text.Substring(1));
-				_eventToEdit.Price = double.Parse(textBox_Price.Text.Substring(1));
+				_eventToEdit.PreOrder = Double.Parse(textBox_Preorder.Text);
+				_eventToEdit.AtDoor = Double.Parse(textBox_AtDoor.Text);
+				_eventToEdit.Price = Double.Parse(textBox_Price.Text);
 				_eventToEdit.NonTaxable = checkBox_NonTaxable.Checked;
 				_eventToEdit.NonTaxableLocal = checkBox_NonTaxableLocal.Checked;
 
