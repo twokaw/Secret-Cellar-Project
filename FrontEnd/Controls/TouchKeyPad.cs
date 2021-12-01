@@ -88,7 +88,7 @@ namespace SecretCellar
         private void insertText(string text)
         {
             Target.Focus();
-            if (Target.TextLength == Target.SelectionLength) Target.Clear();
+            //if (Target.TextLength == Target.SelectionLength) Target.Clear();
             Target.AppendText(text);
         }
     }
