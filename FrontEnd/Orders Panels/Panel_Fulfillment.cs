@@ -211,5 +211,9 @@ namespace SecretCellar.Orders_Panels {
             RefreshFillment(cid);
         }
 
+        private void fullfill_datagrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

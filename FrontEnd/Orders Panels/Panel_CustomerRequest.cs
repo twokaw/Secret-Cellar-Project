@@ -142,5 +142,9 @@ namespace SecretCellar.Orders_Panels {
             }
         }
 
+        private void request_dataGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

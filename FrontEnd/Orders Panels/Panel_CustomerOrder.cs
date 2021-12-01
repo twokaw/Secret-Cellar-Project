@@ -189,5 +189,10 @@ namespace SecretCellar.Orders_Panels {
 				})
 				.ToList();
 		}
+
+        private void custOrder_datagrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

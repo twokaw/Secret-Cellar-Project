@@ -38,9 +38,6 @@ namespace SecretCellar.Orders_Panels {
             this.lbl_supp_custorder = new System.Windows.Forms.Label();
             this.cbx_supp_custorder = new System.Windows.Forms.ComboBox();
             this.custOrder_datagrid = new System.Windows.Forms.DataGridView();
-            this.lbl_cust_custorder = new System.Windows.Forms.Label();
-            this.cbx_cust_custorder = new System.Windows.Forms.ComboBox();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.CustOrd_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CustOrdName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CustOrdQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -48,6 +45,9 @@ namespace SecretCellar.Orders_Panels {
             this.CustOrdRequest = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CustOrdPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CustOrdLastUsed = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lbl_cust_custorder = new System.Windows.Forms.Label();
+            this.cbx_cust_custorder = new System.Windows.Forms.ComboBox();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.grpOrder.SuspendLayout();
             this.grpFavorites.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.custOrder_datagrid)).BeginInit();
@@ -221,45 +221,7 @@ namespace SecretCellar.Orders_Panels {
             this.custOrder_datagrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.custOrder_datagrid.Size = new System.Drawing.Size(990, 448);
             this.custOrder_datagrid.TabIndex = 15;
-           // this.custOrder_datagrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.custOrder_datagrid_Ce);
-            // 
-            // lbl_cust_custorder
-            // 
-            this.lbl_cust_custorder.AutoSize = true;
-            this.lbl_cust_custorder.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_cust_custorder.Location = new System.Drawing.Point(8, 8);
-            this.lbl_cust_custorder.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lbl_cust_custorder.Name = "lbl_cust_custorder";
-            this.lbl_cust_custorder.Size = new System.Drawing.Size(102, 20);
-            this.lbl_cust_custorder.TabIndex = 14;
-            this.lbl_cust_custorder.Text = "Customer: ";
-            // 
-            // cbx_cust_custorder
-            // 
-            this.cbx_cust_custorder.DisplayMember = "FullName";
-            this.cbx_cust_custorder.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbx_cust_custorder.FormattingEnabled = true;
-            this.cbx_cust_custorder.Location = new System.Drawing.Point(114, 5);
-            this.cbx_cust_custorder.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.cbx_cust_custorder.Name = "cbx_cust_custorder";
-            this.cbx_cust_custorder.Size = new System.Drawing.Size(363, 28);
-            this.cbx_cust_custorder.TabIndex = 13;
-            this.cbx_cust_custorder.SelectedIndexChanged += new System.EventHandler(this.cbx_cust_custorder_SelectedIndexChanged);
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.grpOrder);
-            this.panel1.Controls.Add(this.grpFavorites);
-            this.panel1.Controls.Add(this.lbl_supp_custorder);
-            this.panel1.Controls.Add(this.custOrder_datagrid);
-            this.panel1.Controls.Add(this.cbx_supp_custorder);
-            this.panel1.Controls.Add(this.lbl_cust_custorder);
-            this.panel1.Controls.Add(this.cbx_cust_custorder);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1194, 506);
-            this.panel1.TabIndex = 20;
+            this.custOrder_datagrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.custOrder_datagrid_CellContentClick);
             // 
             // CustOrd_id
             // 
@@ -299,7 +261,7 @@ namespace SecretCellar.Orders_Panels {
             this.CustOrdOrderQty.MinimumWidth = 8;
             this.CustOrdOrderQty.Name = "CustOrdOrderQty";
             this.CustOrdOrderQty.ReadOnly = true;
-            this.CustOrdOrderQty.Width = 128;
+            this.CustOrdOrderQty.Width = 118;
             // 
             // CustOrdRequest
             // 
@@ -309,7 +271,7 @@ namespace SecretCellar.Orders_Panels {
             this.CustOrdRequest.MinimumWidth = 8;
             this.CustOrdRequest.Name = "CustOrdRequest";
             this.CustOrdRequest.ReadOnly = true;
-            this.CustOrdRequest.Width = 149;
+            this.CustOrdRequest.Width = 137;
             // 
             // CustOrdPrice
             // 
@@ -330,6 +292,44 @@ namespace SecretCellar.Orders_Panels {
             this.CustOrdLastUsed.Name = "CustOrdLastUsed";
             this.CustOrdLastUsed.ReadOnly = true;
             this.CustOrdLastUsed.Width = 143;
+            // 
+            // lbl_cust_custorder
+            // 
+            this.lbl_cust_custorder.AutoSize = true;
+            this.lbl_cust_custorder.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_cust_custorder.Location = new System.Drawing.Point(8, 8);
+            this.lbl_cust_custorder.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_cust_custorder.Name = "lbl_cust_custorder";
+            this.lbl_cust_custorder.Size = new System.Drawing.Size(102, 20);
+            this.lbl_cust_custorder.TabIndex = 14;
+            this.lbl_cust_custorder.Text = "Customer: ";
+            // 
+            // cbx_cust_custorder
+            // 
+            this.cbx_cust_custorder.DisplayMember = "FullName";
+            this.cbx_cust_custorder.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbx_cust_custorder.FormattingEnabled = true;
+            this.cbx_cust_custorder.Location = new System.Drawing.Point(114, 5);
+            this.cbx_cust_custorder.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.cbx_cust_custorder.Name = "cbx_cust_custorder";
+            this.cbx_cust_custorder.Size = new System.Drawing.Size(363, 28);
+            this.cbx_cust_custorder.TabIndex = 13;
+            this.cbx_cust_custorder.SelectedIndexChanged += new System.EventHandler(this.cbx_cust_custorder_SelectedIndexChanged);
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.grpOrder);
+            this.panel1.Controls.Add(this.grpFavorites);
+            this.panel1.Controls.Add(this.lbl_supp_custorder);
+            this.panel1.Controls.Add(this.custOrder_datagrid);
+            this.panel1.Controls.Add(this.cbx_supp_custorder);
+            this.panel1.Controls.Add(this.lbl_cust_custorder);
+            this.panel1.Controls.Add(this.cbx_cust_custorder);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1194, 506);
+            this.panel1.TabIndex = 20;
             // 
             // Panel_CustomerOrder
             // 
