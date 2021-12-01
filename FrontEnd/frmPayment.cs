@@ -181,5 +181,10 @@ namespace SecretCellar
             txt_credit_amount.Text =  (Convert.ToDouble(txt_credit_amount.Text.Trim())- creditAmount).ToString();
             currentCustomer.Credit = Convert.ToDouble(txt_credit_amount.Text);
         }
+
+        private void txtCashAmt_Enter(object sender, EventArgs e)
+        {
+            touchKeyPad1.Target = (TextBox)sender;
+        }
     }
 }
