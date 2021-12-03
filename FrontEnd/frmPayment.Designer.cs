@@ -91,10 +91,10 @@
             // btnMainMenu
             // 
             this.btnMainMenu.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMainMenu.Location = new System.Drawing.Point(36, 643);
+            this.btnMainMenu.Location = new System.Drawing.Point(48, 638);
             this.btnMainMenu.Margin = new System.Windows.Forms.Padding(2);
             this.btnMainMenu.Name = "btnMainMenu";
-            this.btnMainMenu.Size = new System.Drawing.Size(299, 40);
+            this.btnMainMenu.Size = new System.Drawing.Size(382, 52);
             this.btnMainMenu.TabIndex = 10;
             this.btnMainMenu.Text = "Close";
             this.btnMainMenu.UseVisualStyleBackColor = true;
@@ -172,10 +172,10 @@
             // 
             this.btnCompleteSale.Enabled = false;
             this.btnCompleteSale.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCompleteSale.Location = new System.Drawing.Point(674, 637);
+            this.btnCompleteSale.Location = new System.Drawing.Point(596, 637);
             this.btnCompleteSale.Margin = new System.Windows.Forms.Padding(2);
             this.btnCompleteSale.Name = "btnCompleteSale";
-            this.btnCompleteSale.Size = new System.Drawing.Size(293, 53);
+            this.btnCompleteSale.Size = new System.Drawing.Size(371, 53);
             this.btnCompleteSale.TabIndex = 12;
             this.btnCompleteSale.Text = "Complete Sale";
             this.btnCompleteSale.UseVisualStyleBackColor = true;
@@ -387,10 +387,10 @@
             // btnDonation
             // 
             this.btnDonation.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDonation.Location = new System.Drawing.Point(15, 81);
+            this.btnDonation.Location = new System.Drawing.Point(13, 81);
             this.btnDonation.Margin = new System.Windows.Forms.Padding(2);
             this.btnDonation.Name = "btnDonation";
-            this.btnDonation.Size = new System.Drawing.Size(133, 36);
+            this.btnDonation.Size = new System.Drawing.Size(135, 36);
             this.btnDonation.TabIndex = 41;
             this.btnDonation.Text = "Donation";
             this.btnDonation.UseVisualStyleBackColor = true;
@@ -448,7 +448,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.ClientSize = new System.Drawing.Size(993, 701);
+            this.ClientSize = new System.Drawing.Size(993, 721);
             this.Controls.Add(this.touchKeyPad1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.gb_NoPayment);
