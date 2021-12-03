@@ -76,7 +76,7 @@ namespace SecretCellar
 
         private void btn_delete_Click(object sender, EventArgs e)
         {
-
+            
             int decimalIndex = Target.Text.IndexOf('.');
             string targetText = Target.Text;
             targetText = targetText.Substring(0, targetText.Length - 1);
@@ -84,6 +84,17 @@ namespace SecretCellar
             targetText = targetText.Insert(decimalIndex - 1,".");
             Target.Text = targetText;
             return;
+
+            /*
+            int decimalIndex = Target.Text.IndexOf('.');
+            string targetText = Target.Text;
+            targetText = targetText.Substring(0, targetText.Length - 1);
+            Target.Clear();
+            targetText = targetText.Replace(".", "");
+            targetText = targetText.Insert(decimalIndex - 1, ".");
+            Target.Text = targetText;
+            return;
+            */
 
             /*
             string text = Target.Text.ToString();
@@ -105,7 +116,7 @@ namespace SecretCellar
             }
 
             */
-           //Target.Text = newAmount;
+            //Target.Text = newAmount;
             //string oldtext = Target.Text.ToString();
             //string text;
             //Target.Focus();
