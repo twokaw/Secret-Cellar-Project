@@ -76,13 +76,21 @@ namespace SecretCellar
 
         private void btn_delete_Click(object sender, EventArgs e)
         {
-            
             int decimalIndex = Target.Text.IndexOf('.');
             string targetText = Target.Text;
-            targetText = targetText.Substring(0, targetText.Length - 1);
-            targetText =targetText.Replace(".", "");
-            targetText = targetText.Insert(decimalIndex - 1,".");
-            Target.Text = targetText;
+
+            if (Target.Text.Contains('.'))
+            {
+                targetText = targetText.Substring(0, targetText.Length - 1);
+                targetText = targetText.Replace(".", "");
+                targetText = targetText.Insert(decimalIndex - 1, ".");
+                Target.Text = targetText;
+            }
+            else
+            {
+
+                Target.Text = targetText.Remove(targetText.Length -1);
+            }
             return;
 
             /*
