@@ -112,7 +112,7 @@
             this.lbl_title.AutoSize = true;
             this.lbl_title.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.lbl_title.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.25F, System.Drawing.FontStyle.Bold);
-            this.lbl_title.Location = new System.Drawing.Point(143, 9);
+            this.lbl_title.Location = new System.Drawing.Point(140, 9);
             this.lbl_title.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_title.Name = "lbl_title";
             this.lbl_title.Size = new System.Drawing.Size(227, 39);
@@ -125,7 +125,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.ClientSize = new System.Drawing.Size(528, 616);
+            this.ClientSize = new System.Drawing.Size(505, 616);
             this.Controls.Add(this.lbl_title);
             this.Controls.Add(this.touchKeyPad1);
             this.Controls.Add(this.label1);
