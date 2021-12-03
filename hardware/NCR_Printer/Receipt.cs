@@ -58,7 +58,8 @@ namespace NCR_Printer
             // Print Items
             foreach (Item item in transaction.Items)
             {
-                PrintText($"{item.Name.Substring(0, Math.Min(item.Name.Length, Layout.DesctiptionWidth - item.DiscountText.Length))}{item.DiscountText}", false);
+                string itemLine = $"{item.NumSold} - {item.Name}";
+                PrintText($"{itemLine.Substring(0, Math.Min(itemLine.Length, Layout.DesctiptionWidth - item.DiscountText.Length))}{item.DiscountText}", false);
                 PrintText($"{item.Price:C}", true, TextAlignment.Right);
             }
 

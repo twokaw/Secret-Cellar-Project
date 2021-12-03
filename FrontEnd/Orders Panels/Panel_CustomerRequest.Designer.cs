@@ -148,6 +148,7 @@ namespace SecretCellar.Orders_Panels {
             this.request_dataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.request_dataGrid.Size = new System.Drawing.Size(691, 363);
             this.request_dataGrid.TabIndex = 16;
+            this.request_dataGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.request_dataGrid_CellContentClick);
             // 
             // customer_id
             // 

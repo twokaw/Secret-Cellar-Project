@@ -70,16 +70,28 @@ namespace SecretCellar
         private void btn_Check_Click(object sender, EventArgs e)    { UpdatePayment("CHECK", txtNumber.Text.Trim()); }
         private void btn_Credit_Click(object sender, EventArgs e)   { UpdatePayment("CREDIT CARD", txtNumber.Text.Trim()); }
         private void btn_GiftCard_Click(object sender, EventArgs e) { UpdatePayment("GIFT CARD", txtNumber.Text.Trim()); }
+        private void btnDonation_Click(object sender, EventArgs e)  { RemovePayments("DONATE"); }
+        private void btnBreakage_Click(object sender, EventArgs e)  { RemovePayments("BREAKAGE"); }
+        private void btn_RemoveAllPayments_Click(object sender, EventArgs e)  { RemovePayments(); }
 
         private void UpdatePayment(string method, string number = null)
         {
-           
-           if (double.TryParse(txtCashAmt.Text, out double amount))
+            if (double.TryParse(txtCashAmt.Text, out double amount))
                 transaction.AddPayment(new Payment { Method = method, Amount = amount, Number = number });
-                
 
             RefreshGrid();
         }
+        private void RemovePayments(string method = "")
+        {
+            transaction.Payments.Clear();
+
+            if (!string.IsNullOrWhiteSpace(method) && double.TryParse(txt_TenderTransTotal.Text.Replace("$", ""), out double amount))
+                transaction.AddPayment(new Payment { Method = method, Amount = amount });
+
+            RefreshGrid();
+        }
+
+
 
         private void RefreshGrid()
         {
@@ -88,7 +100,7 @@ namespace SecretCellar
             paymentType.Rows.Clear();
             txtCashAmt.Clear();
             txtNumber.Clear();
-
+              
             foreach (Payment p in transaction.Payments)
             {
                 int row = paymentType.Rows.Add();
@@ -168,6 +180,11 @@ namespace SecretCellar
 
             txt_credit_amount.Text =  (Convert.ToDouble(txt_credit_amount.Text.Trim())- creditAmount).ToString();
             currentCustomer.Credit = Convert.ToDouble(txt_credit_amount.Text);
+        }
+
+        private void txtCashAmt_Enter(object sender, EventArgs e)
+        {
+            touchKeyPad1.Target = (TextBox)sender;
         }
     }
 }
