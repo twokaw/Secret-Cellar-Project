@@ -17,9 +17,12 @@ namespace SecretCellar
         {
             InitializeComponent();
             transaction = items;
-            txtPercentLineItem.Focus();
-            txtPercentTotalSale.Text = "0";//(transaction.Discount * 100).ToString();
+            txtFixedDiscount.Focus();
+            //txtPercentLineItem.Focus();
+            txtPercentTotalSale.Text = "";
+            //txtPercentTotalSale.Text = "0";//(transaction.Discount * 100).ToString();
             populate();
+
         }
 
         private void btnSelectItems_Click(object sender, EventArgs e)
@@ -57,6 +60,7 @@ namespace SecretCellar
                     r.Cells["Discount"].Value = ((1-i.Discount)*transaction.Discount+i.Discount).ToString("P0");
                 }
             }
+            txtPercentLineItem.Focus();
         }
 
         public void selectItemDiscount()
@@ -190,6 +194,7 @@ namespace SecretCellar
             resetselectItemDiscount();
             //percent_discount();
             txtFixedDiscount.Text = "";
+            txtFixedDiscount.Focus();
             populate();
         }
 
@@ -200,5 +205,10 @@ namespace SecretCellar
 		private void button_Close_Click(object sender, EventArgs e) {
             this.Close();
 		}
-	}
+
+        private void txtCashAmt_Enter(object sender, EventArgs e)
+        {
+            touchKeyPad1.Target = (TextBox)sender;
+        }
+    }
 }
