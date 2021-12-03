@@ -13,6 +13,7 @@ namespace SecretCellar
     public partial class TouchKeyPad : UserControl
     {
         public TextBox Target {get; set;}
+        private int CursorPosition = 0;
         public TouchKeyPad()
         {
             InitializeComponent();
@@ -75,8 +76,46 @@ namespace SecretCellar
 
         private void btn_delete_Click(object sender, EventArgs e)
         {
-            Target.Focus();
-            Target.Text = Target.Text.ToString().Remove(Target.Text.ToString().Length - 1, 1);
+
+            int decimalIndex = Target.Text.IndexOf('.');
+            string targetText = Target.Text;
+            targetText = targetText.Substring(0, targetText.Length - 1);
+            targetText =targetText.Replace(".", "");
+            targetText = targetText.Insert(decimalIndex - 1,".");
+            Target.Text = targetText;
+            return;
+
+            /*
+            string text = Target.Text.ToString();
+            Target.Text = text.Remove(text.Length -1);
+            return;
+            int decimalIndex = Target.Text.IndexOf('.');
+            string newAmount = "";
+            string targetText = Target.Text;
+            targetText = targetText.Replace(".", "");
+            targetText = targetText.Substring(0, targetText.Length - 1);
+
+            for(int i = 0; i< targetText.Length; i++)
+            {
+                if (i +1 == decimalIndex)
+                {
+                    newAmount += ".";
+                }
+                newAmount += Target.Text[i];
+            }
+
+            */
+           //Target.Text = newAmount;
+            //string oldtext = Target.Text.ToString();
+            //string text;
+            //Target.Focus();
+            //this.CursorPosition = Target.Text.Length;
+            //Target.Text = "0" + Target.Text.ToString().Substring(0, Target.Text.ToString().Length - 1);//.Remove(Target.Text.ToString().Length - 1, 1);
+            //this.CursorPosition = this.CursorPosition - 1;*/
+            //text = Target.Text.ToString().Remove(Target.Text.ToString().Length - 1, 1);
+            //Target.Text = Target.Text.ToString().TrimEnd();
+            //Target.Text.Replace(oldtext,"0"+text);
+
         }
 
         private void btn_clear_Click(object sender, EventArgs e)
