@@ -147,7 +147,8 @@ namespace SecretCellar
         {
             Target.Focus();
             //if (Target.TextLength == Target.SelectionLength) Target.Clear();
-            Target.AppendText(text);
+            if(Target.TextLength + text.Length <= Target.MaxLength )
+                Target.AppendText(text);
         }
     }
 }
