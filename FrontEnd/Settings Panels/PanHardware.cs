@@ -116,11 +116,5 @@ namespace SecretCellar.Settings_Panels
                 // set to read only
 			}
         }
-
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
     }
 }
