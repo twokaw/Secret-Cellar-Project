@@ -242,6 +242,16 @@ Address:
                 this.Close();
             }
 
+            /*else
+            {
+                if(MessageBox.Show("Transaction Customer already set do you want to change customers? ","Customer Error", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    {
+                        addCustomer();
+                        this.DialogResult = DialogResult.OK;
+                    }
+               
+            }*/
+
         }
         private bool addCustomer()
         {

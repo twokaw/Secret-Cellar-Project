@@ -55,6 +55,7 @@
             this.txtCharge.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold);
             this.txtCharge.Location = new System.Drawing.Point(221, 70);
             this.txtCharge.Margin = new System.Windows.Forms.Padding(4);
+            this.txtCharge.MaxLength = 6;
             this.txtCharge.Name = "txtCharge";
             this.txtCharge.Size = new System.Drawing.Size(233, 38);
             this.txtCharge.TabIndex = 0;
