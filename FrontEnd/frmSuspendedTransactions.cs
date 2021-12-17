@@ -52,9 +52,6 @@ namespace SecretCellar
 			}
 		}
 
-		private void dataGridViewSuspendedTransaction_CellContentClick(object sender, DataGridViewCellEventArgs e) {
-
-		}
 
 		private void selectionListSuspendedTransactions_SelectedIndexChanged(object sender, EventArgs e) {
 			//IF THERE IS AT LEAST ONE SUSPENDED TRANSACTION THEN CONTINUE

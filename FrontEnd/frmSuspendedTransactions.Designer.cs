@@ -120,7 +120,6 @@
 			this.dataGridViewSuspendedTransaction.Size = new System.Drawing.Size(805, 239);
 			this.dataGridViewSuspendedTransaction.TabIndex = 13;
 			this.dataGridViewSuspendedTransaction.TabStop = false;
-			this.dataGridViewSuspendedTransaction.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewSuspendedTransaction_CellContentClick);
 			// 
 			// DESCRIPTION
 			// 
