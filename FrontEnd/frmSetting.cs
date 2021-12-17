@@ -32,5 +32,10 @@ namespace SecretCellar
         {
 
         }
+
+        private void tabDefaults_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

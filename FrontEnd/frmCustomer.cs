@@ -1,5 +1,6 @@
 ﻿using Shared;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -13,8 +14,12 @@ namespace SecretCellar
 
         public frmCustomer(Transaction transaction)
         {
-            customer = transaction;
             InitializeComponent();
+            cmb_State.ValueMember = "Initial";
+            cmb_State.DisplayMember = "StateName";
+            cmb_State.DataSource = DataAccess.StateList;
+
+            customer = transaction;
 
             customer_data_grid.DataSource = DataAccess.instance.GetCustomer().
                 Select(x => new{customerID = x.CustomerID, last_name = x.LastName, first_name = x.FirstName, phone = x.PhoneNumber, email = x.Email, business_name = x.BusinessName,
@@ -25,8 +30,6 @@ namespace SecretCellar
 
         private void customergrid_SelectionChanged(object sender, EventArgs e)
         {
-
-
             if (customer_data_grid.SelectedRows.Count > 0)
             {
                 Customer i = DataAccess.instance.GetCustomer(uint.Parse(customer_data_grid.SelectedRows[0].Cells["customerID"].Value.ToString()));
@@ -46,14 +49,14 @@ namespace SecretCellar
             txt_addr1.Text = cust.Address1;
             txt_addr2.Text = cust.Address2;
             txt_city.Text = cust.City;
-            txt_state.Text = cust.State;
+            cmb_State.SelectedValue  = cust.State;
             txt_zip.Text = cust.ZipCode;
         }
 
 
         private void frmCustomer_Load(object sender, EventArgs e)
         {
-
+            cmb_State.SelectedValue = DataAccess.instance.DefaultState;
         }
 
         private void customer_data_grid_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -170,7 +173,7 @@ Address:
                             Address1 = txt_addr1.Text.Trim(),
                             Address2 = txt_addr2.Text.Trim(),
                             City = txt_city.Text.Trim(),
-                            State = txt_state.Text.Trim(),
+                            State = (string)cmb_State.SelectedValue,
                             ZipCode = txt_zip.Text.Trim()
                         };
 
@@ -214,7 +217,7 @@ Address:
                     i.Address1 = txt_addr1.Text;
                     i.Address2 = txt_addr2.Text;
                     i.City = txt_city.Text;
-                    i.State = txt_state.Text;
+                    i.State = (string)cmb_State.SelectedValue;
                     i.ZipCode = txt_zip.Text;
 
 
@@ -238,6 +241,16 @@ Address:
                 //transaction.txt_current_cust.Text = customer.CustomerID;
                 this.Close();
             }
+
+            /*else
+            {
+                if(MessageBox.Show("Transaction Customer already set do you want to change customers? ","Customer Error", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    {
+                        addCustomer();
+                        this.DialogResult = DialogResult.OK;
+                    }
+               
+            }*/
 
         }
         private bool addCustomer()
@@ -265,7 +278,7 @@ Address:
             txt_addr1.Text = "";
             txt_addr2.Text = "";
             txt_city.Text = "";
-            txt_state.Text = "";
+            cmb_State.SelectedValue = DataAccess.instance.DefaultState;
             txt_zip.Text = "";
         }
 
