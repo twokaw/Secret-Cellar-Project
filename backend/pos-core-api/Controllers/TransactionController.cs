@@ -119,8 +119,6 @@ namespace WebApi.Controllers
             catch (Exception ex) { ErrorLogging.WriteToErrorLog(ex); return StatusCode(500, ex.Message); }
         }
 
-        
-
         /// <summary>
         /// Insert a new transaction 
         /// </summary>

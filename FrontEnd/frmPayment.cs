@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using Shared;
@@ -10,14 +11,17 @@ namespace SecretCellar
         public bool PrintReceipt { get; set; }
         private Transaction transaction = null;
         private Customer currentCustomer = null;
-
+        private bool TaxFree = false;
+        private List<PaymentMethod> paymentMethods;
         public frmPayment(Transaction transaction)
         {
             InitializeComponent();
+            paymentMethods = DataAccess.instance.GetPaymentMethods();
 
             this.transaction = transaction;
             txt_TenderTransTotal.Text = transaction.Total.ToString("C");
             txtCashAmt.Focus();
+            TaxFree = transaction.TaxExempt;
 
             if (transaction.CustomerID > 0)
             {
@@ -76,18 +80,29 @@ namespace SecretCellar
 
         private void UpdatePayment(string method, string number = null)
         {
+            if(transaction.Payments.Count == 1 
+               && (transaction.Payments[0].Method == "DONATE" || transaction.Payments[0].Method == "BREAKAGE"))
+            {
+                transaction.Payments.Clear();
+                transaction.TaxExempt = TaxFree;
+            }    
+
             if (double.TryParse(txtCashAmt.Text, out double amount))
                 transaction.AddPayment(new Payment { Method = method, Amount = amount, Number = number });
 
             RefreshGrid();
         }
+
         private void RemovePayments(string method = "")
         {
             transaction.Payments.Clear();
 
             if (!string.IsNullOrWhiteSpace(method) && double.TryParse(txt_TenderTransTotal.Text.Replace("$", ""), out double amount))
+            {
                 transaction.AddPayment(new Payment { Method = method, Amount = amount });
-
+                transaction.TaxExempt = method == "DONATE" || method == "BREAKAGE" || TaxFree;
+            }
+            
             RefreshGrid();
         }
 
@@ -136,7 +151,6 @@ namespace SecretCellar
                 Payment p = transaction.Payments.First(x => x.Method == TYPE && x.Amount == amt);
                 transaction.Payments.Remove(p);
 
-
                 //checks to see if the deletion is customer credit so that it doesn't add too much back to customer credit
                 if (TYPE == "CUSTOMER CREDIT") {
                     txt_credit_amount.Text = (Convert.ToDouble(txt_credit_amount.Text) + amt).ToString();
@@ -169,9 +183,7 @@ namespace SecretCellar
                     creditAmount = Math.Min(creditAmount, due);
             }
             else
-            {
                 creditAmount = Math.Min(due, Convert.ToDouble(txtCashAmt.Text.Trim()));
-            }
 
             txtCashAmt.Text = creditAmount.ToString();
             UpdatePayment("CUSTOMER CREDIT");

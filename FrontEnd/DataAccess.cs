@@ -273,6 +273,13 @@ namespace SecretCellar
             return resp.StatusCode == System.Net.HttpStatusCode.OK;
         }
 
+        public List<PaymentMethod> GetPaymentMethods()
+        {
+            Response resp = null;
+            string result = web.DataGet($"api/Transaction/PaymentMethods", resp);
+
+            return JsonConvert.DeserializeObject<List<PaymentMethod>>(result);
+        }
         #endregion
 
         #region Customer
