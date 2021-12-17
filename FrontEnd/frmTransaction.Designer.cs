@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmTransaction));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.DESCRIPTION = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -94,14 +94,14 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.DESCRIPTION,
@@ -114,14 +114,14 @@
             this.TOTAL,
             this.ItemID});
             this.dataGridView1.Location = new System.Drawing.Point(15, 142);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(1);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowHeadersWidth = 102;
             this.dataGridView1.RowTemplate.Height = 40;
             this.dataGridView1.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(1239, 380);
+            this.dataGridView1.Size = new System.Drawing.Size(1239, 352);
             this.dataGridView1.TabIndex = 2;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
@@ -197,8 +197,8 @@
             // 
             this.btnCustom.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnCustom.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCustom.Location = new System.Drawing.Point(144, 597);
-            this.btnCustom.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.btnCustom.Location = new System.Drawing.Point(144, 582);
+            this.btnCustom.Margin = new System.Windows.Forms.Padding(1);
             this.btnCustom.Name = "btnCustom";
             this.btnCustom.Size = new System.Drawing.Size(127, 55);
             this.btnCustom.TabIndex = 7;
@@ -210,8 +210,8 @@
             // 
             this.btnShipping.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnShipping.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnShipping.Location = new System.Drawing.Point(144, 671);
-            this.btnShipping.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.btnShipping.Location = new System.Drawing.Point(144, 656);
+            this.btnShipping.Margin = new System.Windows.Forms.Padding(1);
             this.btnShipping.Name = "btnShipping";
             this.btnShipping.Size = new System.Drawing.Size(127, 55);
             this.btnShipping.TabIndex = 8;
@@ -223,8 +223,8 @@
             // 
             this.btnEvents.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnEvents.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEvents.Location = new System.Drawing.Point(15, 671);
-            this.btnEvents.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.btnEvents.Location = new System.Drawing.Point(15, 656);
+            this.btnEvents.Margin = new System.Windows.Forms.Padding(1);
             this.btnEvents.Name = "btnEvents";
             this.btnEvents.Size = new System.Drawing.Size(127, 55);
             this.btnEvents.TabIndex = 7;
@@ -237,8 +237,8 @@
             // 
             this.btnDryClean.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnDryClean.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDryClean.Location = new System.Drawing.Point(144, 524);
-            this.btnDryClean.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.btnDryClean.Location = new System.Drawing.Point(144, 509);
+            this.btnDryClean.Margin = new System.Windows.Forms.Padding(1);
             this.btnDryClean.Name = "btnDryClean";
             this.btnDryClean.Size = new System.Drawing.Size(127, 55);
             this.btnDryClean.TabIndex = 4;
@@ -250,8 +250,8 @@
             // 
             this.btnDiscount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnDiscount.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDiscount.Location = new System.Drawing.Point(273, 671);
-            this.btnDiscount.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.btnDiscount.Location = new System.Drawing.Point(273, 656);
+            this.btnDiscount.Margin = new System.Windows.Forms.Padding(1);
             this.btnDiscount.Name = "btnDiscount";
             this.btnDiscount.Size = new System.Drawing.Size(127, 55);
             this.btnDiscount.TabIndex = 9;
@@ -263,8 +263,8 @@
             // 
             this.btnVoidTrx.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnVoidTrx.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnVoidTrx.Location = new System.Drawing.Point(273, 597);
-            this.btnVoidTrx.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.btnVoidTrx.Location = new System.Drawing.Point(273, 582);
+            this.btnVoidTrx.Margin = new System.Windows.Forms.Padding(1);
             this.btnVoidTrx.Name = "btnVoidTrx";
             this.btnVoidTrx.Size = new System.Drawing.Size(127, 55);
             this.btnVoidTrx.TabIndex = 10;
@@ -277,8 +277,8 @@
             // 
             this.btnDeleteItem.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnDeleteItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDeleteItem.Location = new System.Drawing.Point(273, 524);
-            this.btnDeleteItem.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.btnDeleteItem.Location = new System.Drawing.Point(273, 509);
+            this.btnDeleteItem.Margin = new System.Windows.Forms.Padding(1);
             this.btnDeleteItem.Name = "btnDeleteItem";
             this.btnDeleteItem.Size = new System.Drawing.Size(127, 55);
             this.btnDeleteItem.TabIndex = 5;
@@ -305,8 +305,8 @@
             this.panel1.Controls.Add(this.LB_Tax);
             this.panel1.Controls.Add(this.LB_SubTotal);
             this.panel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panel1.Location = new System.Drawing.Point(1050, 524);
-            this.panel1.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.panel1.Location = new System.Drawing.Point(1050, 509);
+            this.panel1.Margin = new System.Windows.Forms.Padding(1);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(204, 191);
             this.panel1.TabIndex = 13;
@@ -325,7 +325,7 @@
             // txt_itemTotal
             // 
             this.txt_itemTotal.Location = new System.Drawing.Point(103, 3);
-            this.txt_itemTotal.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.txt_itemTotal.Margin = new System.Windows.Forms.Padding(1);
             this.txt_itemTotal.Name = "txt_itemTotal";
             this.txt_itemTotal.ReadOnly = true;
             this.txt_itemTotal.Size = new System.Drawing.Size(98, 23);
@@ -347,7 +347,7 @@
             // txt_Ship
             // 
             this.txt_Ship.Location = new System.Drawing.Point(103, 128);
-            this.txt_Ship.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.txt_Ship.Margin = new System.Windows.Forms.Padding(1);
             this.txt_Ship.Name = "txt_Ship";
             this.txt_Ship.Size = new System.Drawing.Size(98, 23);
             this.txt_Ship.TabIndex = 10;
@@ -358,7 +358,7 @@
             // 
             this.txt_TransTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_TransTotal.Location = new System.Drawing.Point(103, 154);
-            this.txt_TransTotal.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.txt_TransTotal.Margin = new System.Windows.Forms.Padding(1);
             this.txt_TransTotal.Name = "txt_TransTotal";
             this.txt_TransTotal.ReadOnly = true;
             this.txt_TransTotal.Size = new System.Drawing.Size(98, 26);
@@ -370,7 +370,7 @@
             // txt_transTax
             // 
             this.txt_transTax.Location = new System.Drawing.Point(103, 78);
-            this.txt_transTax.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.txt_transTax.Margin = new System.Windows.Forms.Padding(1);
             this.txt_transTax.Name = "txt_transTax";
             this.txt_transTax.ReadOnly = true;
             this.txt_transTax.Size = new System.Drawing.Size(98, 23);
@@ -381,7 +381,7 @@
             // txt_transDiscount
             // 
             this.txt_transDiscount.Location = new System.Drawing.Point(103, 28);
-            this.txt_transDiscount.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.txt_transDiscount.Margin = new System.Windows.Forms.Padding(1);
             this.txt_transDiscount.Name = "txt_transDiscount";
             this.txt_transDiscount.ReadOnly = true;
             this.txt_transDiscount.Size = new System.Drawing.Size(98, 23);
@@ -392,7 +392,7 @@
             // txt_transBTLDPT
             // 
             this.txt_transBTLDPT.Location = new System.Drawing.Point(103, 103);
-            this.txt_transBTLDPT.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.txt_transBTLDPT.Margin = new System.Windows.Forms.Padding(1);
             this.txt_transBTLDPT.Name = "txt_transBTLDPT";
             this.txt_transBTLDPT.ReadOnly = true;
             this.txt_transBTLDPT.Size = new System.Drawing.Size(98, 23);
@@ -403,7 +403,7 @@
             // txt_transSubTotal
             // 
             this.txt_transSubTotal.Location = new System.Drawing.Point(103, 53);
-            this.txt_transSubTotal.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.txt_transSubTotal.Margin = new System.Windows.Forms.Padding(1);
             this.txt_transSubTotal.Name = "txt_transSubTotal";
             this.txt_transSubTotal.ReadOnly = true;
             this.txt_transSubTotal.Size = new System.Drawing.Size(98, 23);
@@ -470,7 +470,7 @@
             // 
             this.txtBarcode.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBarcode.Location = new System.Drawing.Point(114, 84);
-            this.txtBarcode.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.txtBarcode.Margin = new System.Windows.Forms.Padding(1);
             this.txtBarcode.MinimumSize = new System.Drawing.Size(247, 26);
             this.txtBarcode.Name = "txtBarcode";
             this.txtBarcode.Size = new System.Drawing.Size(247, 26);
@@ -494,7 +494,7 @@
             // 
             this.btnLookup.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLookup.Location = new System.Drawing.Point(373, 79);
-            this.btnLookup.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.btnLookup.Margin = new System.Windows.Forms.Padding(1);
             this.btnLookup.MaximumSize = new System.Drawing.Size(156, 36);
             this.btnLookup.Name = "btnLookup";
             this.btnLookup.Size = new System.Drawing.Size(117, 36);
@@ -508,8 +508,8 @@
             this.caseDiscount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.caseDiscount.AutoSize = true;
             this.caseDiscount.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.1F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.caseDiscount.Location = new System.Drawing.Point(870, 682);
-            this.caseDiscount.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.caseDiscount.Location = new System.Drawing.Point(870, 667);
+            this.caseDiscount.Margin = new System.Windows.Forms.Padding(1);
             this.caseDiscount.Name = "caseDiscount";
             this.caseDiscount.Size = new System.Drawing.Size(143, 17);
             this.caseDiscount.TabIndex = 12;
@@ -536,7 +536,7 @@
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
-            this.button1.Location = new System.Drawing.Point(15, 524);
+            this.button1.Location = new System.Drawing.Point(15, 509);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(127, 54);
             this.button1.TabIndex = 3;
@@ -549,7 +549,7 @@
             this.btnSuspendedTransactions.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSuspendedTransactions.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSuspendedTransactions.Location = new System.Drawing.Point(1012, 79);
-            this.btnSuspendedTransactions.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.btnSuspendedTransactions.Margin = new System.Windows.Forms.Padding(1);
             this.btnSuspendedTransactions.Name = "btnSuspendedTransactions";
             this.btnSuspendedTransactions.Size = new System.Drawing.Size(240, 36);
             this.btnSuspendedTransactions.TabIndex = 10;
@@ -562,7 +562,7 @@
             this.btnSuspendTransaction.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSuspendTransaction.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSuspendTransaction.Location = new System.Drawing.Point(889, 79);
-            this.btnSuspendTransaction.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.btnSuspendTransaction.Margin = new System.Windows.Forms.Padding(1);
             this.btnSuspendTransaction.Name = "btnSuspendTransaction";
             this.btnSuspendTransaction.Size = new System.Drawing.Size(121, 36);
             this.btnSuspendTransaction.TabIndex = 11;
@@ -593,7 +593,7 @@
             this.pb_settings.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pb_settings.Image = global::SecretCellar.Properties.Resources.Gears;
             this.pb_settings.Location = new System.Drawing.Point(18, 7);
-            this.pb_settings.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pb_settings.Margin = new System.Windows.Forms.Padding(4);
             this.pb_settings.Name = "pb_settings";
             this.pb_settings.Size = new System.Drawing.Size(72, 49);
             this.pb_settings.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -606,8 +606,8 @@
             this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(402, 524);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.pictureBox1.Location = new System.Drawing.Point(402, 509);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(1);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(431, 202);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -618,8 +618,8 @@
             // 
             this.btn_order.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btn_order.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_order.Location = new System.Drawing.Point(15, 597);
-            this.btn_order.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.btn_order.Location = new System.Drawing.Point(15, 582);
+            this.btn_order.Margin = new System.Windows.Forms.Padding(1);
             this.btn_order.Name = "btn_order";
             this.btn_order.Size = new System.Drawing.Size(127, 54);
             this.btn_order.TabIndex = 27;
@@ -637,7 +637,7 @@
             this.btnTender2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTender2.ImageIndex = 0;
             this.btnTender2.ImageList = this.ImgLstTenderButton;
-            this.btnTender2.Location = new System.Drawing.Point(834, 545);
+            this.btnTender2.Location = new System.Drawing.Point(834, 530);
             this.btnTender2.Margin = new System.Windows.Forms.Padding(0);
             this.btnTender2.Name = "btnTender2";
             this.btnTender2.Size = new System.Drawing.Size(215, 111);
@@ -687,7 +687,7 @@
             this.Controls.Add(this.dataGridView1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.Margin = new System.Windows.Forms.Padding(1);
             this.Name = "frmTransaction";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Secret Cellar POS";

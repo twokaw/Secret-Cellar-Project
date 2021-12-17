@@ -76,6 +76,10 @@ namespace SecretCellar {
 				}
 			}
 		}
-		
-	}
+
+        private void txtCashAmt_Enter(object sender, EventArgs e)
+        {
+			touchKeyPad1.Target = (TextBox)sender;
+		}
+    }
 }

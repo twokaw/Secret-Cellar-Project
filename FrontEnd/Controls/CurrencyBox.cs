@@ -11,6 +11,7 @@ namespace SecretCellar
             this.Text = "0.00";
             this.CursorPosition = this.TextLength;
         }
+
         protected override void OnKeyDown(KeyEventArgs e)
         {
             base.OnKeyDown(e);
@@ -44,6 +45,11 @@ namespace SecretCellar
 
         protected override void OnTextChanged(EventArgs e)
         {
+            if (!base.Text.Contains("."))
+                base.Text += ".00";
+            else if ("." == base.Text.Substring(base.Text.Length - 2, 1))
+                base.Text += "0";
+
             base.OnTextChanged(e);
 
             this.Text = FormatText(this.Text);
@@ -69,15 +75,17 @@ namespace SecretCellar
                 this.Clear();
 
             string value = this.Text;
-            
-            value = value.Insert(CursorPosition, $"{character}");
-            CursorPosition++;
+            if (this.TextLength < this.MaxLength)
+            {
+                value = value.Insert(CursorPosition, $"{character}");
+                CursorPosition++;
 
-            this.Text = FormatText(value);
+                this.Text = FormatText(value);
 
-            Console.WriteLine($"CursorPosition INSERT : {CursorPosition}");
-            this.SelectionStart = CursorPosition;
-            this.SelectionLength = 0;
+                Console.WriteLine($"CursorPosition INSERT : {CursorPosition}");
+                this.SelectionStart = CursorPosition;
+                this.SelectionLength = 0;
+            }
         }
 
         private void DeleteChar()

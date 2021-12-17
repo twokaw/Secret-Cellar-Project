@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows.Forms;
 using Shared;
 
 
@@ -34,5 +35,10 @@ namespace SecretCellar
         private void button_Cancel_Click(object sender, EventArgs e) {
             this.Close();
         }
-	}
+
+        private void txtCashAmt_Enter(object sender, EventArgs e)
+        {
+            touchKeyPad1.Target = (TextBox)sender;
+        }
+    }
 }

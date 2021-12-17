@@ -630,8 +630,8 @@ namespace pos_core_api.ORM
                     result.Add(new PaymentMethod
                     {
                         PaymentMethodId = reader.IsDBNull("PaymentMethodid") ? 0 : reader.GetUInt32("PaymentMethodid"),
-                        PayMethod = reader.IsDBNull("method") ? "" : reader.GetString("PaymentMethod"),
-                        PercentOffset = reader.IsDBNull("Amount") ? 0 : reader.GetDecimal("PercentOffset")
+                        PayMethod = reader.IsDBNull("PaymentMethod") ? "" : reader.GetString("PaymentMethod"),
+                        PercentOffset = reader.IsDBNull("PercentOffset") ? 0 : reader.GetDecimal("PercentOffset")
                     });
             }
             finally { db.CloseCommand(cmd); }
