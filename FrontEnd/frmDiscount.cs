@@ -215,5 +215,10 @@ namespace SecretCellar
         {
 
         }
+
+        private void frmDiscount_Load(object sender, EventArgs e)
+        {
+            txtPercentTotalSale.Focus();
+        }
     }
 }
