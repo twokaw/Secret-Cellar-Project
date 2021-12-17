@@ -34,17 +34,16 @@
 			this.btnAdd = new System.Windows.Forms.Button();
 			this.selectionListSuspendedTransactions = new System.Windows.Forms.ListBox();
 			this.dataGridViewSuspendedTransaction = new System.Windows.Forms.DataGridView();
+			this.btn_CloseWindow = new System.Windows.Forms.Button();
 			this.DESCRIPTION = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.QTY = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.PRICE = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.DISCOUNT = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.TAX = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.BOTTLE_DEPOSIT = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.TOTAL = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.btn_CloseWindow = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridViewSuspendedTransaction)).BeginInit();
 			this.SuspendLayout();
-			//
+			// 
 			// btnDelete
 			// 
 			this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -106,7 +105,6 @@
             this.QTY,
             this.PRICE,
             this.DISCOUNT,
-            this.TAX,
             this.BOTTLE_DEPOSIT,
             this.TOTAL});
 			this.dataGridViewSuspendedTransaction.Location = new System.Drawing.Point(185, 10);
@@ -121,65 +119,6 @@
 			this.dataGridViewSuspendedTransaction.TabIndex = 13;
 			this.dataGridViewSuspendedTransaction.TabStop = false;
 			// 
-			// DESCRIPTION
-			// 
-			this.DESCRIPTION.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-			this.DESCRIPTION.FillWeight = 205.876F;
-			this.DESCRIPTION.HeaderText = "DESCRIPTION";
-			this.DESCRIPTION.MinimumWidth = 12;
-			this.DESCRIPTION.Name = "DESCRIPTION";
-			// 
-			// QTY
-			// 
-			this.QTY.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-			this.QTY.FillWeight = 154.4118F;
-			this.QTY.HeaderText = "QTY";
-			this.QTY.MinimumWidth = 12;
-			this.QTY.Name = "QTY";
-			this.QTY.Width = 75;
-			// 
-			// PRICE
-			// 
-			this.PRICE.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-			this.PRICE.FillWeight = 18.80306F;
-			this.PRICE.HeaderText = "PRICE";
-			this.PRICE.MinimumWidth = 12;
-			this.PRICE.Name = "PRICE";
-			// 
-			// DISCOUNT
-			// 
-			this.DISCOUNT.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-			this.DISCOUNT.FillWeight = 37.25315F;
-			this.DISCOUNT.HeaderText = "DISCOUNT";
-			this.DISCOUNT.MinimumWidth = 25;
-			this.DISCOUNT.Name = "DISCOUNT";
-			// 
-			// TAX
-			// 
-			this.TAX.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-			this.TAX.FillWeight = 57.0944F;
-			this.TAX.HeaderText = "TAX";
-			this.TAX.MinimumWidth = 12;
-			this.TAX.Name = "TAX";
-			this.TAX.Width = 80;
-			// 
-			// BOTTLE_DEPOSIT
-			// 
-			this.BOTTLE_DEPOSIT.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-			this.BOTTLE_DEPOSIT.FillWeight = 88.47124F;
-			this.BOTTLE_DEPOSIT.HeaderText = "BOTTLE DEPOSIT";
-			this.BOTTLE_DEPOSIT.MinimumWidth = 12;
-			this.BOTTLE_DEPOSIT.Name = "BOTTLE_DEPOSIT";
-			this.BOTTLE_DEPOSIT.Width = 160;
-			// 
-			// TOTAL
-			// 
-			this.TOTAL.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-			this.TOTAL.FillWeight = 138.0905F;
-			this.TOTAL.HeaderText = "TOTAL";
-			this.TOTAL.MinimumWidth = 12;
-			this.TOTAL.Name = "TOTAL";
-			// 
 			// btn_CloseWindow
 			// 
 			this.btn_CloseWindow.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -191,6 +130,62 @@
 			this.btn_CloseWindow.Text = "CLOSE WINDOW";
 			this.btn_CloseWindow.UseVisualStyleBackColor = true;
 			this.btn_CloseWindow.Click += new System.EventHandler(this.btn_CloseWindow_Click);
+			// 
+			// DESCRIPTION
+			// 
+			this.DESCRIPTION.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+			this.DESCRIPTION.DataPropertyName = "description";
+			this.DESCRIPTION.FillWeight = 205.876F;
+			this.DESCRIPTION.HeaderText = "DESCRIPTION";
+			this.DESCRIPTION.MinimumWidth = 12;
+			this.DESCRIPTION.Name = "DESCRIPTION";
+			// 
+			// QTY
+			// 
+			this.QTY.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+			this.QTY.DataPropertyName = "qty";
+			this.QTY.FillWeight = 154.4118F;
+			this.QTY.HeaderText = "QTY";
+			this.QTY.MinimumWidth = 12;
+			this.QTY.Name = "QTY";
+			this.QTY.Width = 75;
+			// 
+			// PRICE
+			// 
+			this.PRICE.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+			this.PRICE.DataPropertyName = "price";
+			this.PRICE.FillWeight = 18.80306F;
+			this.PRICE.HeaderText = "PRICE";
+			this.PRICE.MinimumWidth = 12;
+			this.PRICE.Name = "PRICE";
+			// 
+			// DISCOUNT
+			// 
+			this.DISCOUNT.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+			this.DISCOUNT.DataPropertyName = "discount";
+			this.DISCOUNT.FillWeight = 37.25315F;
+			this.DISCOUNT.HeaderText = "DISCOUNT";
+			this.DISCOUNT.MinimumWidth = 25;
+			this.DISCOUNT.Name = "DISCOUNT";
+			// 
+			// BOTTLE_DEPOSIT
+			// 
+			this.BOTTLE_DEPOSIT.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+			this.BOTTLE_DEPOSIT.DataPropertyName = "bottleDeposit";
+			this.BOTTLE_DEPOSIT.FillWeight = 88.47124F;
+			this.BOTTLE_DEPOSIT.HeaderText = "BOTTLE DEPOSIT";
+			this.BOTTLE_DEPOSIT.MinimumWidth = 12;
+			this.BOTTLE_DEPOSIT.Name = "BOTTLE_DEPOSIT";
+			this.BOTTLE_DEPOSIT.Width = 160;
+			// 
+			// TOTAL
+			// 
+			this.TOTAL.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+			this.TOTAL.DataPropertyName = "total";
+			this.TOTAL.FillWeight = 138.0905F;
+			this.TOTAL.HeaderText = "TOTAL";
+			this.TOTAL.MinimumWidth = 12;
+			this.TOTAL.Name = "TOTAL";
 			// 
 			// frmSuspendedTransactions
 			// 
@@ -220,13 +215,12 @@
 		private System.Windows.Forms.Button btnAdd;
 		private System.Windows.Forms.ListBox selectionListSuspendedTransactions;
 		private System.Windows.Forms.DataGridView dataGridViewSuspendedTransaction;
+		private System.Windows.Forms.Button btn_CloseWindow;
 		private System.Windows.Forms.DataGridViewTextBoxColumn DESCRIPTION;
 		private System.Windows.Forms.DataGridViewTextBoxColumn QTY;
 		private System.Windows.Forms.DataGridViewTextBoxColumn PRICE;
 		private System.Windows.Forms.DataGridViewTextBoxColumn DISCOUNT;
-		private System.Windows.Forms.DataGridViewTextBoxColumn TAX;
 		private System.Windows.Forms.DataGridViewTextBoxColumn BOTTLE_DEPOSIT;
 		private System.Windows.Forms.DataGridViewTextBoxColumn TOTAL;
-		private System.Windows.Forms.Button btn_CloseWindow;
 	}
 }
