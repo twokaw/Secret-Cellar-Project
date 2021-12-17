@@ -273,7 +273,7 @@ Address:
             txt_phone.Text = "";
             txt_email.Text = "";
             txt_company.Text = "";
-            cbo_wholesale.SelectedIndex = 1;
+            cbo_wholesale.SelectedIndex = 0;
             txt_custDisc.Text = "";
             txt_addr1.Text = "";
             txt_addr2.Text = "";

@@ -29,19 +29,11 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmLookup));
             this.txtlookup = new System.Windows.Forms.TextBox();
             this.LookupView = new System.Windows.Forms.DataGridView();
-            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Class = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Barcode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Qty = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.minqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.orderqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.maxqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btn_cancel = new System.Windows.Forms.Button();
             this.btn_add = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -84,6 +76,15 @@
             this.label_CaseDiscount = new System.Windows.Forms.Label();
             this.chk_box_show_hidden = new System.Windows.Forms.CheckBox();
             this.label7 = new System.Windows.Forms.Label();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Class = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Barcode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Qty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.minqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.orderqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.maxqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.LookupView)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -135,6 +136,14 @@
             this.LookupView.MultiSelect = false;
             this.LookupView.Name = "LookupView";
             this.LookupView.ReadOnly = true;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.LookupView.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.LookupView.RowHeadersVisible = false;
             this.LookupView.RowHeadersWidth = 62;
             this.LookupView.RowTemplate.Height = 24;
@@ -143,87 +152,6 @@
             this.LookupView.TabIndex = 0;
             this.LookupView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.LookupView_CellContentClick);
             this.LookupView.SelectionChanged += new System.EventHandler(this.LookupView_SelectionChanged);
-            // 
-            // Id
-            // 
-            this.Id.DataPropertyName = "Id";
-            this.Id.HeaderText = "ItemId";
-            this.Id.MinimumWidth = 8;
-            this.Id.Name = "Id";
-            this.Id.ReadOnly = true;
-            this.Id.Visible = false;
-            // 
-            // Description
-            // 
-            this.Description.DataPropertyName = "Name";
-            this.Description.FillWeight = 200F;
-            this.Description.HeaderText = "Name";
-            this.Description.MinimumWidth = 8;
-            this.Description.Name = "Description";
-            this.Description.ReadOnly = true;
-            // 
-            // Class
-            // 
-            this.Class.DataPropertyName = "ItemType";
-            this.Class.HeaderText = "Class";
-            this.Class.MinimumWidth = 8;
-            this.Class.Name = "Class";
-            this.Class.ReadOnly = true;
-            // 
-            // Barcode
-            // 
-            this.Barcode.DataPropertyName = "Barcode";
-            this.Barcode.FillWeight = 150F;
-            this.Barcode.HeaderText = "Barcode";
-            this.Barcode.MinimumWidth = 8;
-            this.Barcode.Name = "Barcode";
-            this.Barcode.ReadOnly = true;
-            // 
-            // Qty
-            // 
-            this.Qty.DataPropertyName = "Qty";
-            this.Qty.HeaderText = "Qty";
-            this.Qty.MinimumWidth = 8;
-            this.Qty.Name = "Qty";
-            this.Qty.ReadOnly = true;
-            // 
-            // Price
-            // 
-            this.Price.DataPropertyName = "Price";
-            dataGridViewCellStyle2.Format = "C2";
-            dataGridViewCellStyle2.NullValue = null;
-            this.Price.DefaultCellStyle = dataGridViewCellStyle2;
-            this.Price.HeaderText = "Price";
-            this.Price.MinimumWidth = 8;
-            this.Price.Name = "Price";
-            this.Price.ReadOnly = true;
-            // 
-            // minqty
-            // 
-            this.minqty.DataPropertyName = "minqty";
-            this.minqty.FillWeight = 150F;
-            this.minqty.HeaderText = "Min Qty";
-            this.minqty.MinimumWidth = 8;
-            this.minqty.Name = "minqty";
-            this.minqty.ReadOnly = true;
-            // 
-            // orderqty
-            // 
-            this.orderqty.DataPropertyName = "orderqty";
-            this.orderqty.FillWeight = 175F;
-            this.orderqty.HeaderText = "Order Qty";
-            this.orderqty.MinimumWidth = 8;
-            this.orderqty.Name = "orderqty";
-            this.orderqty.ReadOnly = true;
-            // 
-            // maxqty
-            // 
-            this.maxqty.DataPropertyName = "maxqty";
-            this.maxqty.FillWeight = 155F;
-            this.maxqty.HeaderText = "Max Qty";
-            this.maxqty.MinimumWidth = 8;
-            this.maxqty.Name = "maxqty";
-            this.maxqty.ReadOnly = true;
             // 
             // btn_cancel
             // 
@@ -258,7 +186,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.Controls.Add(this.LookupView);
             this.panel1.Location = new System.Drawing.Point(20, 66);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(881, 592);
             this.panel1.TabIndex = 7;
@@ -268,7 +196,7 @@
             this.cbxTypeFilter.DisplayMember = "TypeName";
             this.cbxTypeFilter.FormattingEnabled = true;
             this.cbxTypeFilter.Location = new System.Drawing.Point(282, 23);
-            this.cbxTypeFilter.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbxTypeFilter.Margin = new System.Windows.Forms.Padding(4);
             this.cbxTypeFilter.Name = "cbxTypeFilter";
             this.cbxTypeFilter.Size = new System.Drawing.Size(180, 24);
             this.cbxTypeFilter.TabIndex = 2;
@@ -289,7 +217,7 @@
             this.cbxSupplyFilter.DisplayMember = "Name";
             this.cbxSupplyFilter.FormattingEnabled = true;
             this.cbxSupplyFilter.Location = new System.Drawing.Point(494, 23);
-            this.cbxSupplyFilter.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbxSupplyFilter.Margin = new System.Windows.Forms.Padding(4);
             this.cbxSupplyFilter.Name = "cbxSupplyFilter";
             this.cbxSupplyFilter.Size = new System.Drawing.Size(180, 24);
             this.cbxSupplyFilter.TabIndex = 3;
@@ -309,7 +237,7 @@
             // 
             this.cbxOnlyItemsWithInventory.AutoSize = true;
             this.cbxOnlyItemsWithInventory.Location = new System.Drawing.Point(691, 25);
-            this.cbxOnlyItemsWithInventory.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbxOnlyItemsWithInventory.Margin = new System.Windows.Forms.Padding(4);
             this.cbxOnlyItemsWithInventory.Name = "cbxOnlyItemsWithInventory";
             this.cbxOnlyItemsWithInventory.Size = new System.Drawing.Size(200, 20);
             this.cbxOnlyItemsWithInventory.TabIndex = 4;
@@ -481,7 +409,7 @@
             this.btn_new.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_new.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_new.Location = new System.Drawing.Point(0, 510);
-            this.btn_new.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_new.Margin = new System.Windows.Forms.Padding(4);
             this.btn_new.Name = "btn_new";
             this.btn_new.Size = new System.Drawing.Size(141, 37);
             this.btn_new.TabIndex = 20;
@@ -548,7 +476,7 @@
             this.panel2.Controls.Add(this.txt_qty);
             this.panel2.Controls.Add(this.label4);
             this.panel2.Location = new System.Drawing.Point(909, 53);
-            this.panel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(345, 613);
             this.panel2.TabIndex = 8;
@@ -568,7 +496,7 @@
             this.btn_clear_info.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_clear_info.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_clear_info.Location = new System.Drawing.Point(0, 465);
-            this.btn_clear_info.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_clear_info.Margin = new System.Windows.Forms.Padding(4);
             this.btn_clear_info.Name = "btn_clear_info";
             this.btn_clear_info.Size = new System.Drawing.Size(141, 37);
             this.btn_clear_info.TabIndex = 19;
@@ -580,7 +508,7 @@
             // 
             this.chk_hide_item.AutoSize = true;
             this.chk_hide_item.Location = new System.Drawing.Point(157, 6);
-            this.chk_hide_item.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chk_hide_item.Margin = new System.Windows.Forms.Padding(4);
             this.chk_hide_item.Name = "chk_hide_item";
             this.chk_hide_item.Size = new System.Drawing.Size(15, 14);
             this.chk_hide_item.TabIndex = 6;
@@ -698,7 +626,7 @@
             // 
             this.chk_box_show_hidden.AutoSize = true;
             this.chk_box_show_hidden.Location = new System.Drawing.Point(905, 25);
-            this.chk_box_show_hidden.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chk_box_show_hidden.Margin = new System.Windows.Forms.Padding(4);
             this.chk_box_show_hidden.Name = "chk_box_show_hidden";
             this.chk_box_show_hidden.Size = new System.Drawing.Size(118, 20);
             this.chk_box_show_hidden.TabIndex = 5;
@@ -715,6 +643,91 @@
             this.label7.Size = new System.Drawing.Size(230, 17);
             this.label7.TabIndex = 25;
             this.label7.Text = "Search:";
+            // 
+            // Id
+            // 
+            this.Id.DataPropertyName = "Id";
+            this.Id.FillWeight = 8F;
+            this.Id.HeaderText = "ItemId";
+            this.Id.MinimumWidth = 8;
+            this.Id.Name = "Id";
+            this.Id.ReadOnly = true;
+            this.Id.Visible = false;
+            // 
+            // Description
+            // 
+            this.Description.DataPropertyName = "Name";
+            this.Description.FillWeight = 223F;
+            this.Description.HeaderText = "Name";
+            this.Description.MinimumWidth = 223;
+            this.Description.Name = "Description";
+            this.Description.ReadOnly = true;
+            // 
+            // Class
+            // 
+            this.Class.DataPropertyName = "ItemType";
+            this.Class.FillWeight = 65F;
+            this.Class.HeaderText = "Class";
+            this.Class.MinimumWidth = 65;
+            this.Class.Name = "Class";
+            this.Class.ReadOnly = true;
+            // 
+            // Barcode
+            // 
+            this.Barcode.DataPropertyName = "Barcode";
+            this.Barcode.FillWeight = 120F;
+            this.Barcode.HeaderText = "Barcode";
+            this.Barcode.MinimumWidth = 120;
+            this.Barcode.Name = "Barcode";
+            this.Barcode.ReadOnly = true;
+            // 
+            // Qty
+            // 
+            this.Qty.DataPropertyName = "Qty";
+            this.Qty.FillWeight = 50F;
+            this.Qty.HeaderText = "Qty";
+            this.Qty.MinimumWidth = 50;
+            this.Qty.Name = "Qty";
+            this.Qty.ReadOnly = true;
+            // 
+            // Price
+            // 
+            this.Price.DataPropertyName = "Price";
+            dataGridViewCellStyle2.Format = "C2";
+            dataGridViewCellStyle2.NullValue = null;
+            this.Price.DefaultCellStyle = dataGridViewCellStyle2;
+            this.Price.FillWeight = 70F;
+            this.Price.HeaderText = "Price";
+            this.Price.MinimumWidth = 70;
+            this.Price.Name = "Price";
+            this.Price.ReadOnly = true;
+            // 
+            // minqty
+            // 
+            this.minqty.DataPropertyName = "minqty";
+            this.minqty.FillWeight = 65F;
+            this.minqty.HeaderText = "Min Qty";
+            this.minqty.MinimumWidth = 65;
+            this.minqty.Name = "minqty";
+            this.minqty.ReadOnly = true;
+            // 
+            // orderqty
+            // 
+            this.orderqty.DataPropertyName = "orderqty";
+            this.orderqty.FillWeight = 70F;
+            this.orderqty.HeaderText = "Order Qty";
+            this.orderqty.MinimumWidth = 70;
+            this.orderqty.Name = "orderqty";
+            this.orderqty.ReadOnly = true;
+            // 
+            // maxqty
+            // 
+            this.maxqty.DataPropertyName = "maxqty";
+            this.maxqty.FillWeight = 65F;
+            this.maxqty.HeaderText = "Max Qty";
+            this.maxqty.MinimumWidth = 65;
+            this.maxqty.Name = "maxqty";
+            this.maxqty.ReadOnly = true;
             // 
             // frmLookup
             // 
@@ -794,17 +807,17 @@
         private System.Windows.Forms.CheckBox chk_box_show_hidden;
         private System.Windows.Forms.CheckBox chk_hide_item;
         private System.Windows.Forms.Button btn_clear_info;
-		private System.Windows.Forms.DataGridViewTextBoxColumn Id;
-		private System.Windows.Forms.DataGridViewTextBoxColumn Description;
-		private System.Windows.Forms.DataGridViewTextBoxColumn Class;
-		private System.Windows.Forms.DataGridViewTextBoxColumn Barcode;
-		private System.Windows.Forms.DataGridViewTextBoxColumn Qty;
-		private System.Windows.Forms.DataGridViewTextBoxColumn Price;
-		private System.Windows.Forms.DataGridViewTextBoxColumn minqty;
-		private System.Windows.Forms.DataGridViewTextBoxColumn orderqty;
-		private System.Windows.Forms.DataGridViewTextBoxColumn maxqty;
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.Label label7;
 		private System.Windows.Forms.CheckedListBox checkListBox_Discounts;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Description;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Class;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Barcode;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Qty;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Price;
+        private System.Windows.Forms.DataGridViewTextBoxColumn minqty;
+        private System.Windows.Forms.DataGridViewTextBoxColumn orderqty;
+        private System.Windows.Forms.DataGridViewTextBoxColumn maxqty;
     }
 }
