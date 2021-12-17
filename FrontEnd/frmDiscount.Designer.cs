@@ -345,6 +345,7 @@
             this.touchKeyPad1.Name = "touchKeyPad1";
             this.touchKeyPad1.Size = new System.Drawing.Size(463, 368);
             this.touchKeyPad1.TabIndex = 6;
+            this.touchKeyPad1.TabStop = false;
             this.touchKeyPad1.Target = null;
             // 
             // frmDiscount
@@ -372,6 +373,7 @@
             this.Name = "frmDiscount";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Discount";
+            this.Load += new System.EventHandler(this.frmDiscount_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridSelectItems)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
