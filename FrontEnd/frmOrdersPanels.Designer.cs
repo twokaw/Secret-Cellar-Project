@@ -54,7 +54,7 @@ namespace SecretCellar {
             this.tabControl1.Controls.Add(this.tab_CustomerOrder);
             this.tabControl1.Controls.Add(this.tab_Fulfillment);
             this.tabControl1.Controls.Add(this.tab_History);
-            this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabControl1.Location = new System.Drawing.Point(26, 22);
             this.tabControl1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.tabControl1.Name = "tabControl1";
@@ -65,11 +65,11 @@ namespace SecretCellar {
             // tab_CustomerRequest
             // 
             this.tab_CustomerRequest.Controls.Add(this.panel_CustomerRequest1);
-            this.tab_CustomerRequest.Location = new System.Drawing.Point(4, 29);
+            this.tab_CustomerRequest.Location = new System.Drawing.Point(4, 34);
             this.tab_CustomerRequest.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.tab_CustomerRequest.Name = "tab_CustomerRequest";
             this.tab_CustomerRequest.Padding = new System.Windows.Forms.Padding(6, 6, 6, 6);
-            this.tab_CustomerRequest.Size = new System.Drawing.Size(1795, 776);
+            this.tab_CustomerRequest.Size = new System.Drawing.Size(1795, 771);
             this.tab_CustomerRequest.TabIndex = 0;
             this.tab_CustomerRequest.Text = "Customer Request";
             this.tab_CustomerRequest.UseVisualStyleBackColor = true;
@@ -82,17 +82,17 @@ namespace SecretCellar {
             this.panel_CustomerRequest1.Location = new System.Drawing.Point(6, 6);
             this.panel_CustomerRequest1.Margin = new System.Windows.Forms.Padding(9, 8, 9, 8);
             this.panel_CustomerRequest1.Name = "panel_CustomerRequest1";
-            this.panel_CustomerRequest1.Size = new System.Drawing.Size(1783, 764);
+            this.panel_CustomerRequest1.Size = new System.Drawing.Size(1780, 749);
             this.panel_CustomerRequest1.TabIndex = 0;
             // 
             // tab_SupplierOrder
             // 
             this.tab_SupplierOrder.Controls.Add(this.panel_SupplierOrder1);
-            this.tab_SupplierOrder.Location = new System.Drawing.Point(4, 29);
+            this.tab_SupplierOrder.Location = new System.Drawing.Point(4, 34);
             this.tab_SupplierOrder.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.tab_SupplierOrder.Name = "tab_SupplierOrder";
             this.tab_SupplierOrder.Padding = new System.Windows.Forms.Padding(6, 6, 6, 6);
-            this.tab_SupplierOrder.Size = new System.Drawing.Size(1795, 776);
+            this.tab_SupplierOrder.Size = new System.Drawing.Size(1795, 771);
             this.tab_SupplierOrder.TabIndex = 1;
             this.tab_SupplierOrder.Text = "Supplier Order";
             this.tab_SupplierOrder.UseVisualStyleBackColor = true;
@@ -104,17 +104,17 @@ namespace SecretCellar {
             this.panel_SupplierOrder1.Location = new System.Drawing.Point(6, 6);
             this.panel_SupplierOrder1.Margin = new System.Windows.Forms.Padding(9, 8, 9, 8);
             this.panel_SupplierOrder1.Name = "panel_SupplierOrder1";
-            this.panel_SupplierOrder1.Size = new System.Drawing.Size(1783, 764);
+            this.panel_SupplierOrder1.Size = new System.Drawing.Size(1780, 760);
             this.panel_SupplierOrder1.TabIndex = 0;
             // 
             // tab_CustomerOrder
             // 
             this.tab_CustomerOrder.Controls.Add(this.panel_CustomerOrder1);
-            this.tab_CustomerOrder.Location = new System.Drawing.Point(4, 29);
+            this.tab_CustomerOrder.Location = new System.Drawing.Point(4, 34);
             this.tab_CustomerOrder.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.tab_CustomerOrder.Name = "tab_CustomerOrder";
             this.tab_CustomerOrder.Padding = new System.Windows.Forms.Padding(6, 6, 6, 6);
-            this.tab_CustomerOrder.Size = new System.Drawing.Size(1795, 776);
+            this.tab_CustomerOrder.Size = new System.Drawing.Size(1795, 771);
             this.tab_CustomerOrder.TabIndex = 2;
             this.tab_CustomerOrder.Text = "Customer Order";
             this.tab_CustomerOrder.UseVisualStyleBackColor = true;
@@ -126,17 +126,17 @@ namespace SecretCellar {
             this.panel_CustomerOrder1.Location = new System.Drawing.Point(6, 6);
             this.panel_CustomerOrder1.Margin = new System.Windows.Forms.Padding(9, 8, 9, 8);
             this.panel_CustomerOrder1.Name = "panel_CustomerOrder1";
-            this.panel_CustomerOrder1.Size = new System.Drawing.Size(1783, 764);
+            this.panel_CustomerOrder1.Size = new System.Drawing.Size(1780, 760);
             this.panel_CustomerOrder1.TabIndex = 0;
             // 
             // tab_Fulfillment
             // 
             this.tab_Fulfillment.Controls.Add(this.panel_Fulfillment1);
-            this.tab_Fulfillment.Location = new System.Drawing.Point(4, 29);
+            this.tab_Fulfillment.Location = new System.Drawing.Point(4, 34);
             this.tab_Fulfillment.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.tab_Fulfillment.Name = "tab_Fulfillment";
             this.tab_Fulfillment.Padding = new System.Windows.Forms.Padding(6, 6, 6, 6);
-            this.tab_Fulfillment.Size = new System.Drawing.Size(1795, 776);
+            this.tab_Fulfillment.Size = new System.Drawing.Size(1795, 771);
             this.tab_Fulfillment.TabIndex = 3;
             this.tab_Fulfillment.Text = "Fulfillment";
             this.tab_Fulfillment.UseVisualStyleBackColor = true;
@@ -148,17 +148,17 @@ namespace SecretCellar {
             this.panel_Fulfillment1.Location = new System.Drawing.Point(6, 6);
             this.panel_Fulfillment1.Margin = new System.Windows.Forms.Padding(9, 8, 9, 8);
             this.panel_Fulfillment1.Name = "panel_Fulfillment1";
-            this.panel_Fulfillment1.Size = new System.Drawing.Size(1783, 764);
+            this.panel_Fulfillment1.Size = new System.Drawing.Size(1780, 760);
             this.panel_Fulfillment1.TabIndex = 0;
             // 
             // tab_History
             // 
             this.tab_History.Controls.Add(this.panel_History1);
-            this.tab_History.Location = new System.Drawing.Point(4, 29);
+            this.tab_History.Location = new System.Drawing.Point(4, 34);
             this.tab_History.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.tab_History.Name = "tab_History";
             this.tab_History.Padding = new System.Windows.Forms.Padding(6, 6, 6, 6);
-            this.tab_History.Size = new System.Drawing.Size(1795, 776);
+            this.tab_History.Size = new System.Drawing.Size(1795, 771);
             this.tab_History.TabIndex = 4;
             this.tab_History.Text = "History";
             this.tab_History.UseVisualStyleBackColor = true;
@@ -170,7 +170,7 @@ namespace SecretCellar {
             this.panel_History1.Location = new System.Drawing.Point(6, 6);
             this.panel_History1.Margin = new System.Windows.Forms.Padding(9, 8, 9, 8);
             this.panel_History1.Name = "panel_History1";
-            this.panel_History1.Size = new System.Drawing.Size(1783, 764);
+            this.panel_History1.Size = new System.Drawing.Size(1780, 760);
             this.panel_History1.TabIndex = 0;
             // 
             // btn_close
@@ -192,9 +192,10 @@ namespace SecretCellar {
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.ClientSize = new System.Drawing.Size(1853, 919);
+            this.ClientSize = new System.Drawing.Size(1852, 919);
             this.Controls.Add(this.btn_close);
             this.Controls.Add(this.tabControl1);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.Name = "frmOrdersPanels";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
