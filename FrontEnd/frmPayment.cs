@@ -91,8 +91,6 @@ namespace SecretCellar
             RefreshGrid();
         }
 
-
-
         private void RefreshGrid()
         {
             double amountPayed = 0;

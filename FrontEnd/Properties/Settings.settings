@@ -75,5 +75,8 @@ Shueyville, IA 52338
     <Setting Name="PrintCodeId" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
+    <Setting Name="DefaultState" Type="System.String" Scope="User">
+      <Value Profile="(Default)">IA</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

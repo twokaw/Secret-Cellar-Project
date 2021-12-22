@@ -802,9 +802,89 @@ namespace SecretCellar
                 MessageBox.Show(ex.Message);
             }
         }
+        #region State
+
+        public class State
+        {
+            public string Initial { get; set; }
+            public string StateName { get; set; }
+        }
+
+        public string DefaultState
+        {
+            get
+            {
+                return Properties.Settings.Default.DefaultState;
+            }
+
+            set
+            {
+                Properties.Settings.Default.DefaultState = value;
+                Properties.Settings.Default.Save();
+            }
+        }
+
+        public static readonly List<State> StateList = new List<State> {
+            new State {StateName="Alabama", Initial="AL"},
+            new State {StateName="Alaska", Initial="AK"},
+            new State {StateName="American Samoa", Initial="AS"},
+            new State {StateName="Arizona", Initial="AZ"},
+            new State {StateName="Arkansas", Initial="AR"},
+            new State {StateName="California", Initial="CA"},
+            new State {StateName="Colorado", Initial="CO"},
+            new State {StateName="Connecticut", Initial="CT"},
+            new State {StateName="Delaware", Initial="DE"},
+            new State {StateName="District of Columbia", Initial="DC"},
+            new State {StateName="Florida", Initial="FL"},
+            new State {StateName="Georgia", Initial="GA"},
+            new State {StateName="Guam", Initial="GU"},
+            new State {StateName="Hawaii", Initial="HI"},
+            new State {StateName="Idaho", Initial="ID"},
+            new State {StateName="Illinois", Initial="IL"},
+            new State {StateName="Indiana", Initial="IN"},
+            new State {StateName="Iowa", Initial="IA"},
+            new State {StateName="Kansas", Initial="KS"},
+            new State {StateName="Kentucky", Initial="KY"},
+            new State {StateName="Louisiana", Initial="LA"},
+            new State {StateName="Maine", Initial="ME"},
+            new State {StateName="Maryland", Initial="MD"},
+            new State {StateName="Massachusetts", Initial="MA"},
+            new State {StateName="Michigan", Initial="MI"},
+            new State {StateName="Minnesota", Initial="MN"},
+            new State {StateName="Mississippi", Initial="MS"},
+            new State {StateName="Missouri", Initial="MO"},
+            new State {StateName="Montana", Initial="MT"},
+            new State {StateName="Nebraska", Initial="NE"},
+            new State {StateName="Nevada", Initial="NV"},
+            new State {StateName="New Hampshire", Initial="NH"},
+            new State {StateName="New Jersey", Initial="NJ"},
+            new State {StateName="New Mexico", Initial="NM"},
+            new State {StateName="New York", Initial="NY"},
+            new State {StateName="North Carolina", Initial="NC"},
+            new State {StateName="North Dakota", Initial="ND"},
+            new State {StateName="Northern Mariana IS", Initial="MP"},
+            new State {StateName="Ohio", Initial="OH"},
+            new State {StateName="Oklahoma", Initial="OK"},
+            new State {StateName="Oregon", Initial="OR"},
+            new State {StateName="Pennsylvania", Initial="PA"},
+            new State {StateName="Puerto Rico", Initial="PR"},
+            new State {StateName="Rhode Island", Initial="RI"},
+            new State {StateName="South Carolina", Initial="SC"},
+            new State {StateName="South Dakota", Initial="SD"},
+            new State {StateName="Tennessee", Initial="TN"},
+            new State {StateName="Texas", Initial="TX"},
+            new State {StateName="Utah", Initial="UT"},
+            new State {StateName="Vermont", Initial="VT"},
+            new State {StateName="Virginia", Initial="VA"},
+            new State {StateName="Virgin Islands", Initial="VI"},
+            new State {StateName="Washington", Initial="WA"},
+            new State {StateName="West Virginia", Initial="WV"},
+            new State {StateName="Wisconsin", Initial="WI"},
+            new State {StateName="Wyoming", Initial="WY"} };
     }
+    #endregion 
 }
 
 
-    
+
 

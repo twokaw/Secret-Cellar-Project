@@ -268,5 +268,17 @@ namespace SecretCellar.Properties {
                 this["PrintCodeId"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("IA")]
+        public string DefaultState {
+            get {
+                return ((string)(this["DefaultState"]));
+            }
+            set {
+                this["DefaultState"] = value;
+            }
+        }
     }
 }
