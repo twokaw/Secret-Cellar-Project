@@ -229,7 +229,7 @@ namespace SecretCellar
                 if (quantity != 0) { textBox_Total.Text = "$" + quantity * price; }
             }
             else {
-                textBox_Total.Text = "$000";
+                textBox_Total.Text = "$0";
             }
         }
 
