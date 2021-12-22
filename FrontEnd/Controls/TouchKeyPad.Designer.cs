@@ -47,10 +47,10 @@ namespace SecretCellar
             // btn_clear
             // 
             this.btn_clear.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_clear.Location = new System.Drawing.Point(151, 208);
+            this.btn_clear.Location = new System.Drawing.Point(200, 275);
             this.btn_clear.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.btn_clear.Name = "btn_clear";
-            this.btn_clear.Size = new System.Drawing.Size(112, 38);
+            this.btn_clear.Size = new System.Drawing.Size(130, 54);
             this.btn_clear.TabIndex = 29;
             this.btn_clear.Text = "Clear";
             this.btn_clear.UseVisualStyleBackColor = true;
@@ -59,10 +59,10 @@ namespace SecretCellar
             // btn_delete
             // 
             this.btn_delete.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_delete.Location = new System.Drawing.Point(32, 208);
+            this.btn_delete.Location = new System.Drawing.Point(14, 273);
             this.btn_delete.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.btn_delete.Name = "btn_delete";
-            this.btn_delete.Size = new System.Drawing.Size(80, 38);
+            this.btn_delete.Size = new System.Drawing.Size(118, 54);
             this.btn_delete.TabIndex = 28;
             this.btn_delete.Text = "DEL";
             this.btn_delete.UseVisualStyleBackColor = true;
@@ -71,10 +71,10 @@ namespace SecretCellar
             // btn_0
             // 
             this.btn_0.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_0.Location = new System.Drawing.Point(9, 159);
+            this.btn_0.Location = new System.Drawing.Point(14, 211);
             this.btn_0.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.btn_0.Name = "btn_0";
-            this.btn_0.Size = new System.Drawing.Size(168, 38);
+            this.btn_0.Size = new System.Drawing.Size(204, 54);
             this.btn_0.TabIndex = 25;
             this.btn_0.Text = "0";
             this.btn_0.UseVisualStyleBackColor = true;
@@ -83,10 +83,10 @@ namespace SecretCellar
             // btn_9
             // 
             this.btn_9.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_9.Location = new System.Drawing.Point(183, 8);
+            this.btn_9.Location = new System.Drawing.Point(234, 8);
             this.btn_9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.btn_9.Name = "btn_9";
-            this.btn_9.Size = new System.Drawing.Size(80, 38);
+            this.btn_9.Size = new System.Drawing.Size(96, 54);
             this.btn_9.TabIndex = 24;
             this.btn_9.Text = "9";
             this.btn_9.UseVisualStyleBackColor = true;
@@ -95,10 +95,10 @@ namespace SecretCellar
             // btn_8
             // 
             this.btn_8.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_8.Location = new System.Drawing.Point(95, 8);
+            this.btn_8.Location = new System.Drawing.Point(123, 8);
             this.btn_8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.btn_8.Name = "btn_8";
-            this.btn_8.Size = new System.Drawing.Size(80, 38);
+            this.btn_8.Size = new System.Drawing.Size(96, 54);
             this.btn_8.TabIndex = 23;
             this.btn_8.Text = "8";
             this.btn_8.UseVisualStyleBackColor = true;
@@ -107,10 +107,10 @@ namespace SecretCellar
             // btn_7
             // 
             this.btn_7.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_7.Location = new System.Drawing.Point(9, 8);
+            this.btn_7.Location = new System.Drawing.Point(14, 8);
             this.btn_7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.btn_7.Name = "btn_7";
-            this.btn_7.Size = new System.Drawing.Size(80, 38);
+            this.btn_7.Size = new System.Drawing.Size(96, 54);
             this.btn_7.TabIndex = 22;
             this.btn_7.Text = "7";
             this.btn_7.UseVisualStyleBackColor = true;
@@ -119,10 +119,10 @@ namespace SecretCellar
             // btn_6
             // 
             this.btn_6.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_6.Location = new System.Drawing.Point(183, 57);
+            this.btn_6.Location = new System.Drawing.Point(234, 75);
             this.btn_6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.btn_6.Name = "btn_6";
-            this.btn_6.Size = new System.Drawing.Size(80, 38);
+            this.btn_6.Size = new System.Drawing.Size(96, 54);
             this.btn_6.TabIndex = 21;
             this.btn_6.Text = "6";
             this.btn_6.UseVisualStyleBackColor = true;
@@ -131,10 +131,10 @@ namespace SecretCellar
             // btn_5
             // 
             this.btn_5.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_5.Location = new System.Drawing.Point(95, 57);
+            this.btn_5.Location = new System.Drawing.Point(123, 75);
             this.btn_5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.btn_5.Name = "btn_5";
-            this.btn_5.Size = new System.Drawing.Size(80, 38);
+            this.btn_5.Size = new System.Drawing.Size(96, 54);
             this.btn_5.TabIndex = 20;
             this.btn_5.Text = "5";
             this.btn_5.UseVisualStyleBackColor = true;
@@ -143,10 +143,10 @@ namespace SecretCellar
             // btn_4
             // 
             this.btn_4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_4.Location = new System.Drawing.Point(9, 57);
+            this.btn_4.Location = new System.Drawing.Point(14, 75);
             this.btn_4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.btn_4.Name = "btn_4";
-            this.btn_4.Size = new System.Drawing.Size(80, 38);
+            this.btn_4.Size = new System.Drawing.Size(96, 54);
             this.btn_4.TabIndex = 19;
             this.btn_4.Text = "4";
             this.btn_4.UseVisualStyleBackColor = true;
@@ -155,10 +155,10 @@ namespace SecretCellar
             // btn_3
             // 
             this.btn_3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_3.Location = new System.Drawing.Point(183, 109);
+            this.btn_3.Location = new System.Drawing.Point(234, 143);
             this.btn_3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.btn_3.Name = "btn_3";
-            this.btn_3.Size = new System.Drawing.Size(80, 38);
+            this.btn_3.Size = new System.Drawing.Size(96, 54);
             this.btn_3.TabIndex = 18;
             this.btn_3.Text = "3";
             this.btn_3.UseVisualStyleBackColor = true;
@@ -167,10 +167,10 @@ namespace SecretCellar
             // btn_2
             // 
             this.btn_2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_2.Location = new System.Drawing.Point(95, 109);
+            this.btn_2.Location = new System.Drawing.Point(123, 143);
             this.btn_2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.btn_2.Name = "btn_2";
-            this.btn_2.Size = new System.Drawing.Size(80, 38);
+            this.btn_2.Size = new System.Drawing.Size(96, 54);
             this.btn_2.TabIndex = 17;
             this.btn_2.Text = "2";
             this.btn_2.UseVisualStyleBackColor = true;
@@ -179,10 +179,10 @@ namespace SecretCellar
             // btn_1
             // 
             this.btn_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_1.Location = new System.Drawing.Point(9, 109);
+            this.btn_1.Location = new System.Drawing.Point(14, 143);
             this.btn_1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.btn_1.Name = "btn_1";
-            this.btn_1.Size = new System.Drawing.Size(80, 38);
+            this.btn_1.Size = new System.Drawing.Size(96, 54);
             this.btn_1.TabIndex = 16;
             this.btn_1.Text = "1";
             this.btn_1.UseVisualStyleBackColor = true;
@@ -191,10 +191,10 @@ namespace SecretCellar
             // btn_00
             // 
             this.btn_00.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_00.Location = new System.Drawing.Point(185, 159);
+            this.btn_00.Location = new System.Drawing.Point(234, 211);
             this.btn_00.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.btn_00.Name = "btn_00";
-            this.btn_00.Size = new System.Drawing.Size(80, 38);
+            this.btn_00.Size = new System.Drawing.Size(96, 54);
             this.btn_00.TabIndex = 30;
             this.btn_00.Text = "00";
             this.btn_00.UseVisualStyleBackColor = true;
@@ -218,7 +218,7 @@ namespace SecretCellar
             this.Controls.Add(this.btn_2);
             this.Controls.Add(this.btn_1);
             this.Name = "TouchKeyPad";
-            this.Size = new System.Drawing.Size(277, 264);
+            this.Size = new System.Drawing.Size(350, 333);
             this.ResumeLayout(false);
 
         }
