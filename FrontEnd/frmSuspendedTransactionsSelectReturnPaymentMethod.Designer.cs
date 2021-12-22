@@ -35,10 +35,10 @@ namespace SecretCellar {
             // 
             this.label_Result.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label_Result.AutoSize = true;
-            this.label_Result.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_Result.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_Result.Location = new System.Drawing.Point(12, 22);
             this.label_Result.Name = "label_Result";
-            this.label_Result.Size = new System.Drawing.Size(59, 20);
+            this.label_Result.Size = new System.Drawing.Size(66, 20);
             this.label_Result.TabIndex = 0;
             this.label_Result.Text = " Result";
             // 
@@ -46,7 +46,7 @@ namespace SecretCellar {
             // 
             this.button_Credit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button_Credit.DialogResult = System.Windows.Forms.DialogResult.Yes;
-            this.button_Credit.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_Credit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_Credit.Location = new System.Drawing.Point(12, 60);
             this.button_Credit.Name = "button_Credit";
             this.button_Credit.Size = new System.Drawing.Size(180, 55);
@@ -58,7 +58,7 @@ namespace SecretCellar {
             // button_CloseWindow
             // 
             this.button_CloseWindow.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button_CloseWindow.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_CloseWindow.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_CloseWindow.Location = new System.Drawing.Point(12, 144);
             this.button_CloseWindow.Name = "button_CloseWindow";
             this.button_CloseWindow.Size = new System.Drawing.Size(180, 55);
@@ -71,7 +71,7 @@ namespace SecretCellar {
             // 
             this.button_Cash.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button_Cash.DialogResult = System.Windows.Forms.DialogResult.No;
-            this.button_Cash.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_Cash.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_Cash.Location = new System.Drawing.Point(214, 60);
             this.button_Cash.Name = "button_Cash";
             this.button_Cash.Size = new System.Drawing.Size(180, 55);

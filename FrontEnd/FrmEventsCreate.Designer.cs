@@ -55,11 +55,11 @@ namespace SecretCellar {
             // 
             // textBox_Quantity
             // 
-            this.textBox_Quantity.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F);
-            this.textBox_Quantity.Location = new System.Drawing.Point(364, 159);
+            this.textBox_Quantity.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox_Quantity.Location = new System.Drawing.Point(318, 159);
             this.textBox_Quantity.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_Quantity.Name = "textBox_Quantity";
-            this.textBox_Quantity.Size = new System.Drawing.Size(259, 38);
+            this.textBox_Quantity.Size = new System.Drawing.Size(305, 38);
             this.textBox_Quantity.TabIndex = 3;
             // 
             // label_Qty
@@ -70,7 +70,7 @@ namespace SecretCellar {
             this.label_Qty.AutoSize = true;
             this.label_Qty.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.label_Qty.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.25F);
-            this.label_Qty.Location = new System.Drawing.Point(171, 159);
+            this.label_Qty.Location = new System.Drawing.Point(141, 159);
             this.label_Qty.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_Qty.Name = "label_Qty";
             this.label_Qty.Size = new System.Drawing.Size(152, 39);
@@ -79,11 +79,11 @@ namespace SecretCellar {
             // 
             // textBox_Price
             // 
-            this.textBox_Price.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F);
-            this.textBox_Price.Location = new System.Drawing.Point(363, 297);
+            this.textBox_Price.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox_Price.Location = new System.Drawing.Point(318, 297);
             this.textBox_Price.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_Price.Name = "textBox_Price";
-            this.textBox_Price.Size = new System.Drawing.Size(259, 38);
+            this.textBox_Price.Size = new System.Drawing.Size(304, 38);
             this.textBox_Price.TabIndex = 6;
             this.textBox_Price.Text = "0.00";
             // 
@@ -95,7 +95,7 @@ namespace SecretCellar {
             this.label_Price.AutoSize = true;
             this.label_Price.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.label_Price.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.25F);
-            this.label_Price.Location = new System.Drawing.Point(218, 297);
+            this.label_Price.Location = new System.Drawing.Point(188, 297);
             this.label_Price.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_Price.Name = "label_Price";
             this.label_Price.Size = new System.Drawing.Size(104, 39);
@@ -110,7 +110,7 @@ namespace SecretCellar {
             this.label_Date.AutoSize = true;
             this.label_Date.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.label_Date.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.25F);
-            this.label_Date.Location = new System.Drawing.Point(130, 61);
+            this.label_Date.Location = new System.Drawing.Point(103, 61);
             this.label_Date.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_Date.Name = "label_Date";
             this.label_Date.Size = new System.Drawing.Size(194, 39);
@@ -125,7 +125,7 @@ namespace SecretCellar {
             this.label_Duration.AutoSize = true;
             this.label_Duration.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.label_Duration.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.25F);
-            this.label_Duration.Location = new System.Drawing.Point(168, 111);
+            this.label_Duration.Location = new System.Drawing.Point(140, 111);
             this.label_Duration.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_Duration.Name = "label_Duration";
             this.label_Duration.Size = new System.Drawing.Size(155, 39);
@@ -134,11 +134,11 @@ namespace SecretCellar {
             // 
             // textBox_Preorder
             // 
-            this.textBox_Preorder.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F);
-            this.textBox_Preorder.Location = new System.Drawing.Point(363, 205);
+            this.textBox_Preorder.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox_Preorder.Location = new System.Drawing.Point(318, 206);
             this.textBox_Preorder.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_Preorder.Name = "textBox_Preorder";
-            this.textBox_Preorder.Size = new System.Drawing.Size(259, 38);
+            this.textBox_Preorder.Size = new System.Drawing.Size(304, 38);
             this.textBox_Preorder.TabIndex = 4;
             this.textBox_Preorder.Text = "0.00";
             // 
@@ -150,7 +150,7 @@ namespace SecretCellar {
             this.label_Preorder.AutoSize = true;
             this.label_Preorder.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.label_Preorder.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.25F);
-            this.label_Preorder.Location = new System.Drawing.Point(164, 205);
+            this.label_Preorder.Location = new System.Drawing.Point(134, 205);
             this.label_Preorder.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_Preorder.Name = "label_Preorder";
             this.label_Preorder.Size = new System.Drawing.Size(158, 39);
@@ -159,11 +159,11 @@ namespace SecretCellar {
             // 
             // textBox_AtDoor
             // 
-            this.textBox_AtDoor.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F);
-            this.textBox_AtDoor.Location = new System.Drawing.Point(363, 251);
+            this.textBox_AtDoor.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox_AtDoor.Location = new System.Drawing.Point(318, 251);
             this.textBox_AtDoor.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_AtDoor.Name = "textBox_AtDoor";
-            this.textBox_AtDoor.Size = new System.Drawing.Size(259, 38);
+            this.textBox_AtDoor.Size = new System.Drawing.Size(304, 38);
             this.textBox_AtDoor.TabIndex = 5;
             this.textBox_AtDoor.Text = "0.00";
             // 
@@ -175,7 +175,7 @@ namespace SecretCellar {
             this.label_AtDoor.AutoSize = true;
             this.label_AtDoor.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.label_AtDoor.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.25F);
-            this.label_AtDoor.Location = new System.Drawing.Point(181, 251);
+            this.label_AtDoor.Location = new System.Drawing.Point(151, 251);
             this.label_AtDoor.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_AtDoor.Name = "label_AtDoor";
             this.label_AtDoor.Size = new System.Drawing.Size(141, 39);
@@ -185,7 +185,7 @@ namespace SecretCellar {
             // button_CreateEvent
             // 
             this.button_CreateEvent.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button_CreateEvent.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_CreateEvent.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_CreateEvent.Location = new System.Drawing.Point(443, 493);
             this.button_CreateEvent.Margin = new System.Windows.Forms.Padding(1);
             this.button_CreateEvent.Name = "button_CreateEvent";
@@ -198,7 +198,7 @@ namespace SecretCellar {
             // button_CloseWindow
             // 
             this.button_CloseWindow.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button_CloseWindow.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_CloseWindow.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_CloseWindow.Location = new System.Drawing.Point(10, 493);
             this.button_CloseWindow.Margin = new System.Windows.Forms.Padding(1);
             this.button_CloseWindow.Name = "button_CloseWindow";
@@ -210,27 +210,27 @@ namespace SecretCellar {
             // 
             // dateTimePicker_EventDate
             // 
-            this.dateTimePicker_EventDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePicker_EventDate.Location = new System.Drawing.Point(364, 72);
+            this.dateTimePicker_EventDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimePicker_EventDate.Location = new System.Drawing.Point(318, 72);
             this.dateTimePicker_EventDate.Name = "dateTimePicker_EventDate";
-            this.dateTimePicker_EventDate.Size = new System.Drawing.Size(259, 26);
+            this.dateTimePicker_EventDate.Size = new System.Drawing.Size(305, 26);
             this.dateTimePicker_EventDate.TabIndex = 1;
             // 
             // dateTimePicker_Duration
             // 
-            this.dateTimePicker_Duration.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePicker_Duration.Location = new System.Drawing.Point(363, 122);
+            this.dateTimePicker_Duration.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimePicker_Duration.Location = new System.Drawing.Point(318, 122);
             this.dateTimePicker_Duration.Name = "dateTimePicker_Duration";
-            this.dateTimePicker_Duration.Size = new System.Drawing.Size(259, 26);
+            this.dateTimePicker_Duration.Size = new System.Drawing.Size(304, 26);
             this.dateTimePicker_Duration.TabIndex = 2;
             // 
             // textBox_Name
             // 
-            this.textBox_Name.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F);
-            this.textBox_Name.Location = new System.Drawing.Point(364, 13);
+            this.textBox_Name.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox_Name.Location = new System.Drawing.Point(318, 13);
             this.textBox_Name.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_Name.Name = "textBox_Name";
-            this.textBox_Name.Size = new System.Drawing.Size(259, 38);
+            this.textBox_Name.Size = new System.Drawing.Size(305, 38);
             this.textBox_Name.TabIndex = 0;
             // 
             // label_Name
@@ -241,7 +241,7 @@ namespace SecretCellar {
             this.label_Name.AutoSize = true;
             this.label_Name.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.label_Name.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.25F);
-            this.label_Name.Location = new System.Drawing.Point(207, 10);
+            this.label_Name.Location = new System.Drawing.Point(181, 10);
             this.label_Name.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_Name.Name = "label_Name";
             this.label_Name.Size = new System.Drawing.Size(117, 39);
@@ -280,11 +280,11 @@ namespace SecretCellar {
             // 
             // textBox_SupplierPrice
             // 
-            this.textBox_SupplierPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F);
-            this.textBox_SupplierPrice.Location = new System.Drawing.Point(363, 343);
+            this.textBox_SupplierPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox_SupplierPrice.Location = new System.Drawing.Point(318, 343);
             this.textBox_SupplierPrice.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_SupplierPrice.Name = "textBox_SupplierPrice";
-            this.textBox_SupplierPrice.Size = new System.Drawing.Size(259, 38);
+            this.textBox_SupplierPrice.Size = new System.Drawing.Size(304, 38);
             this.textBox_SupplierPrice.TabIndex = 7;
             this.textBox_SupplierPrice.Text = "0.00";
             // 
@@ -296,7 +296,7 @@ namespace SecretCellar {
             this.label_SupplierPrice.AutoSize = true;
             this.label_SupplierPrice.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.label_SupplierPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.25F);
-            this.label_SupplierPrice.Location = new System.Drawing.Point(83, 340);
+            this.label_SupplierPrice.Location = new System.Drawing.Point(54, 340);
             this.label_SupplierPrice.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_SupplierPrice.Name = "label_SupplierPrice";
             this.label_SupplierPrice.Size = new System.Drawing.Size(239, 39);
@@ -329,7 +329,7 @@ namespace SecretCellar {
             this.label1.AutoSize = true;
             this.label1.Cursor = System.Windows.Forms.Cursors.Default;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(335, 257);
+            this.label1.Location = new System.Drawing.Point(289, 257);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(26, 29);
@@ -344,7 +344,7 @@ namespace SecretCellar {
             this.label2.AutoSize = true;
             this.label2.Cursor = System.Windows.Forms.Cursors.Default;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(335, 303);
+            this.label2.Location = new System.Drawing.Point(287, 303);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(26, 29);
@@ -359,7 +359,7 @@ namespace SecretCellar {
             this.label3.AutoSize = true;
             this.label3.Cursor = System.Windows.Forms.Cursors.Default;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(335, 349);
+            this.label3.Location = new System.Drawing.Point(286, 349);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(26, 29);
@@ -374,7 +374,7 @@ namespace SecretCellar {
             this.label4.AutoSize = true;
             this.label4.Cursor = System.Windows.Forms.Cursors.Default;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(335, 211);
+            this.label4.Location = new System.Drawing.Point(290, 214);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(26, 29);
