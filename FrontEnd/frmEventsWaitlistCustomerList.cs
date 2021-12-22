@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 using Shared;
 
@@ -68,13 +69,13 @@ namespace SecretCellar {
 
 		//REFRESH THE DATA GRID
 		private void UpdateCustomerGrid() {
-			dataGridView_CustomerList.Rows.Clear();
-
-			foreach (Customer customer in customers) {
-				if (textBox_CustomerName.Text == searchForCustomerText || (customer.FirstName + " " + customer.LastName).ToLower().Contains(textBox_CustomerName.Text.ToLower())) {
-					dataGridView_CustomerList.Rows.Add(customer.CustomerID, customer.FirstName + " " + customer.LastName);
-				}
-			}
+			dataGridView_CustomerList.DataSource = customers
+			.Select(x => new {
+				customerId = x.CustomerID,
+				customerName = x.FirstName + " " + x.LastName
+			})
+			.Where(x => textBox_CustomerName.Text == searchForCustomerText || x.customerName.ToLower().Contains(textBox_CustomerName.Text.ToLower()))
+			.ToList();
 		}
 		
 

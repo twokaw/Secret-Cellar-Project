@@ -24,119 +24,133 @@ namespace SecretCellar {
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent() {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmEventsAll));
-            this.dataGridView_Events = new System.Windows.Forms.DataGridView();
-            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Event = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Qty = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.button_CloseWindow = new System.Windows.Forms.Button();
-            this.button_DeleteEvent = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Events)).BeginInit();
-            this.SuspendLayout();
-            // 
-            // dataGridView_Events
-            // 
-            this.dataGridView_Events.AllowUserToAddRows = false;
-            this.dataGridView_Events.AllowUserToDeleteRows = false;
-            this.dataGridView_Events.AllowUserToResizeColumns = false;
-            this.dataGridView_Events.AllowUserToResizeRows = false;
-            this.dataGridView_Events.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView_Events.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView_Events.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmEventsAll));
+			this.dataGridView_Events = new System.Windows.Forms.DataGridView();
+			this.button_CloseWindow = new System.Windows.Forms.Button();
+			this.button_DeleteEvent = new System.Windows.Forms.Button();
+			this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.EventName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.PreorderPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.AtDoorPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Qty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			((System.ComponentModel.ISupportInitialize)(this.dataGridView_Events)).BeginInit();
+			this.SuspendLayout();
+			// 
+			// dataGridView_Events
+			// 
+			this.dataGridView_Events.AllowUserToAddRows = false;
+			this.dataGridView_Events.AllowUserToDeleteRows = false;
+			this.dataGridView_Events.AllowUserToResizeColumns = false;
+			this.dataGridView_Events.AllowUserToResizeRows = false;
+			this.dataGridView_Events.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+			this.dataGridView_Events.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.dataGridView_Events.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Id,
             this.Date,
-            this.Event,
-            this.Price,
+            this.EventName,
+            this.PreorderPrice,
+            this.AtDoorPrice,
             this.Qty});
-            this.dataGridView_Events.Location = new System.Drawing.Point(13, 13);
-            this.dataGridView_Events.Margin = new System.Windows.Forms.Padding(4);
-            this.dataGridView_Events.Name = "dataGridView_Events";
-            this.dataGridView_Events.ReadOnly = true;
-            this.dataGridView_Events.RowHeadersVisible = false;
-            this.dataGridView_Events.RowHeadersWidth = 62;
-            this.dataGridView_Events.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView_Events.Size = new System.Drawing.Size(547, 302);
-            this.dataGridView_Events.TabIndex = 0;
-            this.dataGridView_Events.TabStop = false;
-            this.dataGridView_Events.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_Events_CellDoubleClick);
-            // 
-            // Id
-            // 
-            this.Id.HeaderText = "Event Id";
-            this.Id.Name = "Id";
-            this.Id.ReadOnly = true;
-            // 
-            // Date
-            // 
-            this.Date.HeaderText = "Event Date";
-            this.Date.MinimumWidth = 8;
-            this.Date.Name = "Date";
-            this.Date.ReadOnly = true;
-            // 
-            // Event
-            // 
-            this.Event.HeaderText = "Event Name";
-            this.Event.MinimumWidth = 8;
-            this.Event.Name = "Event";
-            this.Event.ReadOnly = true;
-            // 
-            // Price
-            // 
-            this.Price.HeaderText = "Event Price";
-            this.Price.MinimumWidth = 8;
-            this.Price.Name = "Price";
-            this.Price.ReadOnly = true;
-            // 
-            // Qty
-            // 
-            this.Qty.HeaderText = "Quantity";
-            this.Qty.MinimumWidth = 8;
-            this.Qty.Name = "Qty";
-            this.Qty.ReadOnly = true;
-            // 
-            // button_CloseWindow
-            // 
-            this.button_CloseWindow.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_CloseWindow.Location = new System.Drawing.Point(13, 328);
-            this.button_CloseWindow.Margin = new System.Windows.Forms.Padding(1);
-            this.button_CloseWindow.Name = "button_CloseWindow";
-            this.button_CloseWindow.Size = new System.Drawing.Size(180, 55);
-            this.button_CloseWindow.TabIndex = 1;
-            this.button_CloseWindow.Text = "CLOSE WINDOW";
-            this.button_CloseWindow.UseVisualStyleBackColor = true;
-            this.button_CloseWindow.Click += new System.EventHandler(this.button_CloseWindow_Click);
-            // 
-            // button_DeleteEvent
-            // 
-            this.button_DeleteEvent.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_DeleteEvent.Location = new System.Drawing.Point(380, 328);
-            this.button_DeleteEvent.Margin = new System.Windows.Forms.Padding(1);
-            this.button_DeleteEvent.Name = "button_DeleteEvent";
-            this.button_DeleteEvent.Size = new System.Drawing.Size(180, 55);
-            this.button_DeleteEvent.TabIndex = 2;
-            this.button_DeleteEvent.Text = "DELETE EVENT";
-            this.button_DeleteEvent.UseVisualStyleBackColor = true;
-            this.button_DeleteEvent.Click += new System.EventHandler(this.button_DeleteEvent_Click);
-            // 
-            // frmEventsAll
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.ClientSize = new System.Drawing.Size(573, 393);
-            this.Controls.Add(this.button_DeleteEvent);
-            this.Controls.Add(this.button_CloseWindow);
-            this.Controls.Add(this.dataGridView_Events);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
-            this.Name = "frmEventsAll";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "All Events";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Events)).EndInit();
-            this.ResumeLayout(false);
+			this.dataGridView_Events.Location = new System.Drawing.Point(13, 13);
+			this.dataGridView_Events.Margin = new System.Windows.Forms.Padding(4);
+			this.dataGridView_Events.Name = "dataGridView_Events";
+			this.dataGridView_Events.ReadOnly = true;
+			this.dataGridView_Events.RowHeadersVisible = false;
+			this.dataGridView_Events.RowHeadersWidth = 62;
+			this.dataGridView_Events.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+			this.dataGridView_Events.Size = new System.Drawing.Size(547, 302);
+			this.dataGridView_Events.TabIndex = 0;
+			this.dataGridView_Events.TabStop = false;
+			this.dataGridView_Events.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_Events_CellDoubleClick);
+			// 
+			// button_CloseWindow
+			// 
+			this.button_CloseWindow.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.button_CloseWindow.Location = new System.Drawing.Point(13, 328);
+			this.button_CloseWindow.Margin = new System.Windows.Forms.Padding(1);
+			this.button_CloseWindow.Name = "button_CloseWindow";
+			this.button_CloseWindow.Size = new System.Drawing.Size(180, 55);
+			this.button_CloseWindow.TabIndex = 1;
+			this.button_CloseWindow.Text = "CLOSE WINDOW";
+			this.button_CloseWindow.UseVisualStyleBackColor = true;
+			this.button_CloseWindow.Click += new System.EventHandler(this.button_CloseWindow_Click);
+			// 
+			// button_DeleteEvent
+			// 
+			this.button_DeleteEvent.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.button_DeleteEvent.Location = new System.Drawing.Point(380, 328);
+			this.button_DeleteEvent.Margin = new System.Windows.Forms.Padding(1);
+			this.button_DeleteEvent.Name = "button_DeleteEvent";
+			this.button_DeleteEvent.Size = new System.Drawing.Size(180, 55);
+			this.button_DeleteEvent.TabIndex = 2;
+			this.button_DeleteEvent.Text = "DELETE EVENT";
+			this.button_DeleteEvent.UseVisualStyleBackColor = true;
+			this.button_DeleteEvent.Click += new System.EventHandler(this.button_DeleteEvent_Click);
+			// 
+			// Id
+			// 
+			this.Id.DataPropertyName = "eventId";
+			this.Id.HeaderText = "Event Id";
+			this.Id.Name = "Id";
+			this.Id.ReadOnly = true;
+			// 
+			// Date
+			// 
+			this.Date.DataPropertyName = "eventDate";
+			this.Date.HeaderText = "Event Date";
+			this.Date.MinimumWidth = 8;
+			this.Date.Name = "Date";
+			this.Date.ReadOnly = true;
+			// 
+			// EventName
+			// 
+			this.EventName.DataPropertyName = "eventName";
+			this.EventName.HeaderText = "Event Name";
+			this.EventName.MinimumWidth = 8;
+			this.EventName.Name = "EventName";
+			this.EventName.ReadOnly = true;
+			// 
+			// PreorderPrice
+			// 
+			this.PreorderPrice.DataPropertyName = "preorderPrice";
+			this.PreorderPrice.HeaderText = "Preorder Price";
+			this.PreorderPrice.Name = "PreorderPrice";
+			this.PreorderPrice.ReadOnly = true;
+			// 
+			// AtDoorPrice
+			// 
+			this.AtDoorPrice.DataPropertyName = "atDoorPrice";
+			this.AtDoorPrice.HeaderText = "At Door Price";
+			this.AtDoorPrice.MinimumWidth = 8;
+			this.AtDoorPrice.Name = "AtDoorPrice";
+			this.AtDoorPrice.ReadOnly = true;
+			// 
+			// Qty
+			// 
+			this.Qty.DataPropertyName = "eventQuantity";
+			this.Qty.HeaderText = "Quantity";
+			this.Qty.MinimumWidth = 8;
+			this.Qty.Name = "Qty";
+			this.Qty.ReadOnly = true;
+			// 
+			// frmEventsAll
+			// 
+			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+			this.ClientSize = new System.Drawing.Size(573, 393);
+			this.Controls.Add(this.button_DeleteEvent);
+			this.Controls.Add(this.button_CloseWindow);
+			this.Controls.Add(this.dataGridView_Events);
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+			this.MaximizeBox = false;
+			this.MinimizeBox = false;
+			this.Name = "frmEventsAll";
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+			this.Text = "All Events";
+			((System.ComponentModel.ISupportInitialize)(this.dataGridView_Events)).EndInit();
+			this.ResumeLayout(false);
 
 		}
 
@@ -147,8 +161,9 @@ namespace SecretCellar {
 		private System.Windows.Forms.Button button_DeleteEvent;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Id;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Date;
-		private System.Windows.Forms.DataGridViewTextBoxColumn Event;
-		private System.Windows.Forms.DataGridViewTextBoxColumn Price;
+		private System.Windows.Forms.DataGridViewTextBoxColumn EventName;
+		private System.Windows.Forms.DataGridViewTextBoxColumn PreorderPrice;
+		private System.Windows.Forms.DataGridViewTextBoxColumn AtDoorPrice;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Qty;
 	}
 }

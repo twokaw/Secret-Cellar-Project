@@ -3,10 +3,17 @@ using System.Windows.Forms;
 using Shared;
 
 
+
 namespace SecretCellar {
 	public partial class frmEventsCreate : Form {
 		public frmEventsCreate() {
 			InitializeComponent();
+
+			dateTimePicker_EventDate.Format = DateTimePickerFormat.Custom;
+			dateTimePicker_EventDate.CustomFormat = "MM/dd/yyyy hh:mm tt";
+
+			dateTimePicker_Duration.Format = DateTimePickerFormat.Custom;
+			dateTimePicker_Duration.CustomFormat = "MM/dd/yyyy hh:mm tt";
 		}
 
 		private void button_CloseWindow_Click(object sender, EventArgs e) {
@@ -109,31 +116,19 @@ namespace SecretCellar {
 			#endregion
 
 			//CHECK PRE ORDER
-			if (!IsEmpty(textBox_Preorder.Text) && !double.TryParse(textBox_Preorder.Text, out _)) {
-				hasNoErrors = false;
-				result += "Preorder field needs to be filled in like: 0.0.\n";
-			}
-			else if (IsEmpty(textBox_Preorder.Text)) {
+			if (IsEmpty(textBox_Preorder.Text)) {
 				hasNoErrors = false;
 				result += "Preorder field is not filled.\n";
 			}
 
 			//CHECK AT DOOR
-			if (!IsEmpty(textBox_AtDoor.Text) && !double.TryParse(textBox_AtDoor.Text, out _)) {
-				hasNoErrors = false;
-				result += "At Door field needs to be filled in like: 0.0.\n";
-			}
-			else if (IsEmpty(textBox_AtDoor.Text)) {
+			if (IsEmpty(textBox_AtDoor.Text)) {
 				hasNoErrors = false;
 				result += "At Door field is not filled.\n";
 			}
 
 			//CHECK PRICE
-			if (!IsEmpty(textBox_Price.Text) && !double.TryParse(textBox_Price.Text, out _)) {
-				hasNoErrors = false;
-				result += "Price field needs to be filled in like: 0.0.\n";
-			}
-			else if (IsEmpty(textBox_Price.Text)) {
+			if (IsEmpty(textBox_Price.Text)) {
 				hasNoErrors = false;
 				result += "Price field is not filled.\n";
 			}
