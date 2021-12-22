@@ -80,27 +80,11 @@ namespace SecretCellar
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
 		private void btnAdd_Click(object sender, EventArgs e) {
-			if (selectedSuspendedTransaction.Items.Count == 0 || selectedSuspendedTransaction == null) { return; }
-			
-			//CREATE A NEW TRANSACTION FROM THE SELECTED TRANSACTION
-			Transaction newTransaction = new Transaction(selectedSuspendedTransaction.InvoiceID,
-											selectedSuspendedTransaction.RegisterID,
-											selectedSuspendedTransaction.TransactionDateTime,
-											selectedSuspendedTransaction.Location,
-											selectedSuspendedTransaction.Items,
-											selectedSuspendedTransaction.Discount,
-											selectedSuspendedTransaction.TaxExempt,
-											selectedSuspendedTransaction.Payments,
-											selectedSuspendedTransaction.EmployeeID,
-											selectedSuspendedTransaction.CustomerID);
-				
-			//UPDATE THE CUSTOMER INFORMATION
-			Customer customer = DataAccess.instance.GetCustomer(newTransaction.CustomerID);
-			newTransaction.CustomerName = $"{customer.FirstName} {customer.LastName}";
+			if (selectedSuspendedTransaction == null || selectedSuspendedTransaction.Items.Count == 0) { return; }
 
 			//CLOSE THE WINDOW AND CALL THE IMPORT FUNCTION
 			this.Close();
-			TRANSACTION_FORM.importSuspendedTransaction(newTransaction);
+			TRANSACTION_FORM.importSuspendedTransaction(selectedSuspendedTransaction);
 		}
 
 
@@ -136,7 +120,7 @@ namespace SecretCellar
 			selectionListSuspendedTransactions.Items.Clear();
 
 			foreach (Transaction t in suspendedTransactionsList) {
-				if (t.InvoiceID == CURRENT_TRANSACTION.InvoiceID) { continue; }	//THIS CHECK IS SO THAT IT DOESN'T SHOW THE TRANSACTION IN THE LIST OF SUSPENDED TRANSACTIONS IF YOU'VE ADDED IT TO THE CURRENT TRANSACTION
+				if (t.InvoiceID == CURRENT_TRANSACTION.InvoiceID) { continue; }	//THIS CHECK IS SO THAT IT DOESN'T SHOW THE TRANSACTION IN THE LIST OF SUSPENDED TRANSACTIONS IF IT'S BEEN ADDED IT TO THE CURRENT TRANSACTION
 
 				Customer customer = DataAccess.instance.GetCustomer(t.CustomerID);
 
