@@ -24,10 +24,10 @@ namespace SecretCellar.Orders_Panels {
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent() {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.grpOrder = new System.Windows.Forms.GroupBox();
             this.btnAddOrder = new System.Windows.Forms.Button();
             this.btn_update_custorder = new System.Windows.Forms.Button();
@@ -63,10 +63,10 @@ namespace SecretCellar.Orders_Panels {
             this.grpOrder.Controls.Add(this.txt_orderqty_custorder);
             this.grpOrder.Controls.Add(this.lbl_qty_custorder);
             this.grpOrder.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grpOrder.Location = new System.Drawing.Point(673, 145);
-            this.grpOrder.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.grpOrder.Location = new System.Drawing.Point(713, 145);
+            this.grpOrder.Margin = new System.Windows.Forms.Padding(2);
             this.grpOrder.Name = "grpOrder";
-            this.grpOrder.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.grpOrder.Padding = new System.Windows.Forms.Padding(2);
             this.grpOrder.Size = new System.Drawing.Size(124, 177);
             this.grpOrder.TabIndex = 19;
             this.grpOrder.TabStop = false;
@@ -96,7 +96,7 @@ namespace SecretCellar.Orders_Panels {
             // 
             // txt_orderqty_custorder
             // 
-            this.txt_orderqty_custorder.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_orderqty_custorder.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_orderqty_custorder.Location = new System.Drawing.Point(11, 102);
             this.txt_orderqty_custorder.Name = "txt_orderqty_custorder";
             this.txt_orderqty_custorder.Size = new System.Drawing.Size(107, 26);
@@ -120,10 +120,10 @@ namespace SecretCellar.Orders_Panels {
             this.grpFavorites.Controls.Add(this.btnFavoritesRemove);
             this.grpFavorites.Controls.Add(this.btnFavoritesAdd);
             this.grpFavorites.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grpFavorites.Location = new System.Drawing.Point(673, 5);
-            this.grpFavorites.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.grpFavorites.Location = new System.Drawing.Point(713, 5);
+            this.grpFavorites.Margin = new System.Windows.Forms.Padding(2);
             this.grpFavorites.Name = "grpFavorites";
-            this.grpFavorites.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.grpFavorites.Padding = new System.Windows.Forms.Padding(2);
             this.grpFavorites.Size = new System.Drawing.Size(124, 137);
             this.grpFavorites.TabIndex = 18;
             this.grpFavorites.TabStop = false;
@@ -155,7 +155,7 @@ namespace SecretCellar.Orders_Panels {
             // 
             this.lbl_supp_custorder.AutoSize = true;
             this.lbl_supp_custorder.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_supp_custorder.Location = new System.Drawing.Point(348, 7);
+            this.lbl_supp_custorder.Location = new System.Drawing.Point(373, 8);
             this.lbl_supp_custorder.Name = "lbl_supp_custorder";
             this.lbl_supp_custorder.Size = new System.Drawing.Size(80, 20);
             this.lbl_supp_custorder.TabIndex = 17;
@@ -166,7 +166,7 @@ namespace SecretCellar.Orders_Panels {
             this.cbx_supp_custorder.DisplayMember = "Name";
             this.cbx_supp_custorder.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbx_supp_custorder.FormattingEnabled = true;
-            this.cbx_supp_custorder.Location = new System.Drawing.Point(425, 5);
+            this.cbx_supp_custorder.Location = new System.Drawing.Point(461, 5);
             this.cbx_supp_custorder.Name = "cbx_supp_custorder";
             this.cbx_supp_custorder.Size = new System.Drawing.Size(243, 28);
             this.cbx_supp_custorder.TabIndex = 16;
@@ -176,20 +176,20 @@ namespace SecretCellar.Orders_Panels {
             // 
             this.custOrder_datagrid.AllowUserToAddRows = false;
             this.custOrder_datagrid.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
-            this.custOrder_datagrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.custOrder_datagrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
             this.custOrder_datagrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.custOrder_datagrid.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.custOrder_datagrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.custOrder_datagrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.custOrder_datagrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.custOrder_datagrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.CustOrd_id,
@@ -203,20 +203,20 @@ namespace SecretCellar.Orders_Panels {
             this.custOrder_datagrid.MultiSelect = false;
             this.custOrder_datagrid.Name = "custOrder_datagrid";
             this.custOrder_datagrid.ReadOnly = true;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.custOrder_datagrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.custOrder_datagrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.custOrder_datagrid.RowHeadersVisible = false;
             this.custOrder_datagrid.RowHeadersWidth = 62;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.custOrder_datagrid.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.custOrder_datagrid.RowsDefaultCellStyle = dataGridViewCellStyle8;
             this.custOrder_datagrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.custOrder_datagrid.Size = new System.Drawing.Size(660, 284);
+            this.custOrder_datagrid.Size = new System.Drawing.Size(700, 284);
             this.custOrder_datagrid.TabIndex = 15;
             this.custOrder_datagrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.custOrder_datagrid_CellContentClick);
             // 
@@ -305,7 +305,7 @@ namespace SecretCellar.Orders_Panels {
             this.cbx_cust_custorder.DisplayMember = "FullName";
             this.cbx_cust_custorder.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbx_cust_custorder.FormattingEnabled = true;
-            this.cbx_cust_custorder.Location = new System.Drawing.Point(96, 5);
+            this.cbx_cust_custorder.Location = new System.Drawing.Point(107, 5);
             this.cbx_cust_custorder.Name = "cbx_cust_custorder";
             this.cbx_cust_custorder.Size = new System.Drawing.Size(243, 28);
             this.cbx_cust_custorder.TabIndex = 13;
@@ -322,18 +322,19 @@ namespace SecretCellar.Orders_Panels {
             this.panel1.Controls.Add(this.cbx_cust_custorder);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(796, 329);
+            this.panel1.Size = new System.Drawing.Size(836, 329);
             this.panel1.TabIndex = 20;
             // 
             // Panel_CustomerOrder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.Controls.Add(this.panel1);
             this.Name = "Panel_CustomerOrder";
-            this.Size = new System.Drawing.Size(796, 329);
+            this.Size = new System.Drawing.Size(836, 329);
             this.grpOrder.ResumeLayout(false);
             this.grpOrder.PerformLayout();
             this.grpFavorites.ResumeLayout(false);
