@@ -152,5 +152,10 @@ namespace SecretCellar
 
             refresh();
         }
+
+        private void frmReceivedOrders_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

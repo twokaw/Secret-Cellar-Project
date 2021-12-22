@@ -55,7 +55,7 @@ namespace SecretCellar {
             this.tabControl1.Controls.Add(this.tab_Fulfillment);
             this.tabControl1.Controls.Add(this.tab_History);
             this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabControl1.Location = new System.Drawing.Point(10, 15);
+            this.tabControl1.Location = new System.Drawing.Point(10, 13);
             this.tabControl1.Margin = new System.Windows.Forms.Padding(6);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -180,10 +180,10 @@ namespace SecretCellar {
             // 
             this.btn_close.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btn_close.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_close.Location = new System.Drawing.Point(313, 646);
+            this.btn_close.Location = new System.Drawing.Point(353, 643);
             this.btn_close.Margin = new System.Windows.Forms.Padding(6);
             this.btn_close.Name = "btn_close";
-            this.btn_close.Size = new System.Drawing.Size(325, 69);
+            this.btn_close.Size = new System.Drawing.Size(285, 54);
             this.btn_close.TabIndex = 8;
             this.btn_close.Text = "Close";
             this.btn_close.UseVisualStyleBackColor = true;
@@ -202,7 +202,7 @@ namespace SecretCellar {
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "frmOrdersPanels";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "frmOrdersPanels";
             this.tabControl1.ResumeLayout(false);
             this.tab_CustomerRequest.ResumeLayout(false);
