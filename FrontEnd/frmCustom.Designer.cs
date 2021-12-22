@@ -44,10 +44,10 @@
             this.txt_charge_am.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.txt_charge_am.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F);
-            this.txt_charge_am.Location = new System.Drawing.Point(244, 84);
-            this.txt_charge_am.Margin = new System.Windows.Forms.Padding(4);
+            this.txt_charge_am.Location = new System.Drawing.Point(271, 105);
+            this.txt_charge_am.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txt_charge_am.Name = "txt_charge_am";
-            this.txt_charge_am.Size = new System.Drawing.Size(115, 38);
+            this.txt_charge_am.Size = new System.Drawing.Size(127, 38);
             this.txt_charge_am.TabIndex = 1;
             this.txt_charge_am.Text = "0.00";
             // 
@@ -59,7 +59,7 @@
             this.lbl_custom.AutoSize = true;
             this.lbl_custom.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.lbl_custom.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.25F);
-            this.lbl_custom.Location = new System.Drawing.Point(64, 83);
+            this.lbl_custom.Location = new System.Drawing.Point(71, 104);
             this.lbl_custom.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_custom.Name = "lbl_custom";
             this.lbl_custom.Size = new System.Drawing.Size(138, 39);
@@ -71,10 +71,10 @@
             this.txt_descript.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.txt_descript.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F);
-            this.txt_descript.Location = new System.Drawing.Point(244, 21);
-            this.txt_descript.Margin = new System.Windows.Forms.Padding(4);
+            this.txt_descript.Location = new System.Drawing.Point(271, 26);
+            this.txt_descript.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txt_descript.Name = "txt_descript";
-            this.txt_descript.Size = new System.Drawing.Size(277, 38);
+            this.txt_descript.Size = new System.Drawing.Size(307, 38);
             this.txt_descript.TabIndex = 0;
             // 
             // lbl_Descript
@@ -85,7 +85,7 @@
             this.lbl_Descript.AutoSize = true;
             this.lbl_Descript.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.lbl_Descript.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.25F);
-            this.lbl_Descript.Location = new System.Drawing.Point(37, 18);
+            this.lbl_Descript.Location = new System.Drawing.Point(41, 22);
             this.lbl_Descript.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_Descript.Name = "lbl_Descript";
             this.lbl_Descript.Size = new System.Drawing.Size(197, 39);
@@ -95,9 +95,10 @@
             // button_AddCharge
             // 
             this.button_AddCharge.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_AddCharge.Location = new System.Drawing.Point(379, 565);
+            this.button_AddCharge.Location = new System.Drawing.Point(421, 706);
+            this.button_AddCharge.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button_AddCharge.Name = "button_AddCharge";
-            this.button_AddCharge.Size = new System.Drawing.Size(180, 55);
+            this.button_AddCharge.Size = new System.Drawing.Size(200, 69);
             this.button_AddCharge.TabIndex = 4;
             this.button_AddCharge.Text = "ADD CHARGE";
             this.button_AddCharge.UseVisualStyleBackColor = true;
@@ -106,9 +107,10 @@
             // button_Cancel
             // 
             this.button_Cancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_Cancel.Location = new System.Drawing.Point(22, 565);
+            this.button_Cancel.Location = new System.Drawing.Point(24, 706);
+            this.button_Cancel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button_Cancel.Name = "button_Cancel";
-            this.button_Cancel.Size = new System.Drawing.Size(180, 55);
+            this.button_Cancel.Size = new System.Drawing.Size(200, 69);
             this.button_Cancel.TabIndex = 3;
             this.button_Cancel.Text = "CANCEL";
             this.button_Cancel.UseVisualStyleBackColor = true;
@@ -122,7 +124,7 @@
             this.label4.AutoSize = true;
             this.label4.Cursor = System.Windows.Forms.Cursors.Default;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(215, 90);
+            this.label4.Location = new System.Drawing.Point(239, 112);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(26, 29);
@@ -131,21 +133,21 @@
             // 
             // touchKeyPad1
             // 
-            this.touchKeyPad1.Location = new System.Drawing.Point(71, 144);
-            this.touchKeyPad1.Margin = new System.Windows.Forms.Padding(4);
+            this.touchKeyPad1.Location = new System.Drawing.Point(79, 180);
+            this.touchKeyPad1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.touchKeyPad1.Name = "touchKeyPad1";
-            this.touchKeyPad1.Size = new System.Drawing.Size(450, 392);
+            this.touchKeyPad1.Size = new System.Drawing.Size(500, 490);
             this.touchKeyPad1.TabIndex = 61;
             this.touchKeyPad1.Target = null;
             // 
             // frmCustom
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.ClientSize = new System.Drawing.Size(601, 648);
+            this.ClientSize = new System.Drawing.Size(668, 810);
             this.Controls.Add(this.touchKeyPad1);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.button_Cancel);
@@ -156,7 +158,7 @@
             this.Controls.Add(this.lbl_custom);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmCustom";

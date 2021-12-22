@@ -638,5 +638,58 @@ namespace pos_core_api.ORM
 
             return result;
         }
+        public PaymentMethod GetPaymentMethod(uint id)
+        {
+            PaymentMethod result = null;
+            string itemSQLStatement = @"
+                SELECT PaymentMethodid, PaymentMethod, PercentOffset
+                FROM paymentMethod
+                WHERE PaymentMethodid = @id
+            ";
+
+            using MySqlCommand cmd = db.CreateCommand(itemSQLStatement);
+            cmd.Parameters.AddWithValue("id", id);
+
+            try
+            {
+                using MySqlDataReader reader = cmd.ExecuteReader();
+                if (reader.Read())
+                    result = new PaymentMethod
+                    {
+                        PaymentMethodId = reader.IsDBNull("PaymentMethodid") ? 0 : reader.GetUInt32("PaymentMethodid"),
+                        PayMethod = reader.IsDBNull("PaymentMethod") ? "" : reader.GetString("PaymentMethod"),
+                        PercentOffset = reader.IsDBNull("PercentOffset") ? 0 : reader.GetDecimal("PercentOffset")
+                    };
+            }
+            finally { db.CloseCommand(cmd); }
+
+            return result;
+        }
+
+        public PaymentMethod PutPaymentMethod(PaymentMethod paymentMethod)
+        {
+            if (null == paymentMethod || null == GetPaymentMethod(paymentMethod.PaymentMethodId))
+                return null;
+
+            string itemSQLStatement = @"
+                UPDATE paymentMethod
+                SET    PaymentMethod = @method, 
+                       PercentOffset = @offset
+                WHERE  PaymentMethodid = @id
+            ";
+
+            using MySqlCommand cmd = db.CreateCommand(itemSQLStatement);
+            cmd.Parameters.AddWithValue("method", paymentMethod.PayMethod);
+            cmd.Parameters.AddWithValue("offset", paymentMethod.PercentOffset);
+            cmd.Parameters.AddWithValue("id", paymentMethod.PaymentMethodId);
+
+            try
+            {
+                int rows = cmd.ExecuteNonQuery();
+            }
+            finally { db.CloseCommand(cmd); }
+
+            return GetPaymentMethod(paymentMethod.PaymentMethodId);
+        }
     }
 }

@@ -11,8 +11,6 @@ namespace SecretCellar
         public Transaction transaction = null;
         private List<int> selectedRows = new List<int>();
 
-
-
         public frmDiscount(Transaction items)
         {
             InitializeComponent();
@@ -20,10 +18,14 @@ namespace SecretCellar
             //txtPercentLineItem.Focus();
             //txtPercentTotalSale.Text = "";
             //txtPercentTotalSale.Text = "0";//(transaction.Discount * 100).ToString();
-            txtPercentTotalSale.Focus();
+            // txtPercentTotalSale.Focus();
             touchKeyPad1.Target = txtPercentTotalSale;
+            txtPercentTotalSale.Select();
             populate();
+        }
 
+        private void frmDiscount_Load(object sender, EventArgs e)
+        {
         }
 
         private void btnSelectItems_Click(object sender, EventArgs e)
@@ -211,9 +213,9 @@ namespace SecretCellar
             touchKeyPad1.Target = (TextBox)sender;
         }
 
-        private void lblPercentTotalSale_Click(object sender, EventArgs e)
+        private void txtPercentTotalSale_Leave(object sender, EventArgs e)
         {
-
+            Console.WriteLine("Left");
         }
     }
 }

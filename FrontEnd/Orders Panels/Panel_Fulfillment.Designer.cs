@@ -28,6 +28,7 @@ namespace SecretCellar.Orders_Panels {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.lbl_whole_cust = new System.Windows.Forms.Label();
             this.cbx_fullfill_cust = new System.Windows.Forms.ComboBox();
@@ -47,6 +48,7 @@ namespace SecretCellar.Orders_Panels {
             this.requestqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.due = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lbl_date = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.fullfill_datagrid)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -54,42 +56,41 @@ namespace SecretCellar.Orders_Panels {
             // dateTimePicker2
             // 
             this.dateTimePicker2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.dateTimePicker2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePicker2.Location = new System.Drawing.Point(872, 9);
-            this.dateTimePicker2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.dateTimePicker2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimePicker2.Location = new System.Drawing.Point(632, 4);
             this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(312, 26);
+            this.dateTimePicker2.Size = new System.Drawing.Size(309, 26);
             this.dateTimePicker2.TabIndex = 19;
             // 
             // lbl_whole_cust
             // 
             this.lbl_whole_cust.AutoSize = true;
-            this.lbl_whole_cust.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_whole_cust.Location = new System.Drawing.Point(10, 11);
-            this.lbl_whole_cust.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_whole_cust.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_whole_cust.Location = new System.Drawing.Point(7, 7);
             this.lbl_whole_cust.Name = "lbl_whole_cust";
-            this.lbl_whole_cust.Size = new System.Drawing.Size(96, 20);
+            this.lbl_whole_cust.Size = new System.Drawing.Size(91, 20);
             this.lbl_whole_cust.TabIndex = 14;
             this.lbl_whole_cust.Text = "Customer:";
             // 
             // cbx_fullfill_cust
             // 
-            this.cbx_fullfill_cust.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbx_fullfill_cust.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbx_fullfill_cust.FormattingEnabled = true;
-            this.cbx_fullfill_cust.Location = new System.Drawing.Point(114, 8);
-            this.cbx_fullfill_cust.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.cbx_fullfill_cust.Location = new System.Drawing.Point(104, 4);
             this.cbx_fullfill_cust.Name = "cbx_fullfill_cust";
-            this.cbx_fullfill_cust.Size = new System.Drawing.Size(388, 28);
+            this.cbx_fullfill_cust.Size = new System.Drawing.Size(260, 28);
             this.cbx_fullfill_cust.TabIndex = 13;
             this.cbx_fullfill_cust.SelectedValueChanged += new System.EventHandler(this.frefresh);
             // 
             // btn_deliver_selected
             // 
             this.btn_deliver_selected.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_deliver_selected.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btn_deliver_selected.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_deliver_selected.Location = new System.Drawing.Point(736, 435);
+            this.btn_deliver_selected.Location = new System.Drawing.Point(577, 507);
+            this.btn_deliver_selected.Margin = new System.Windows.Forms.Padding(2);
             this.btn_deliver_selected.Name = "btn_deliver_selected";
-            this.btn_deliver_selected.Size = new System.Drawing.Size(243, 55);
+            this.btn_deliver_selected.Size = new System.Drawing.Size(170, 36);
             this.btn_deliver_selected.TabIndex = 25;
             this.btn_deliver_selected.Text = "Deliver Selected";
             this.btn_deliver_selected.UseVisualStyleBackColor = true;
@@ -98,10 +99,12 @@ namespace SecretCellar.Orders_Panels {
             // btn_deliver_all
             // 
             this.btn_deliver_all.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_deliver_all.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btn_deliver_all.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_deliver_all.Location = new System.Drawing.Point(998, 435);
+            this.btn_deliver_all.Location = new System.Drawing.Point(787, 507);
+            this.btn_deliver_all.Margin = new System.Windows.Forms.Padding(2);
             this.btn_deliver_all.Name = "btn_deliver_all";
-            this.btn_deliver_all.Size = new System.Drawing.Size(186, 55);
+            this.btn_deliver_all.Size = new System.Drawing.Size(170, 36);
             this.btn_deliver_all.TabIndex = 24;
             this.btn_deliver_all.Text = "Deliver All";
             this.btn_deliver_all.UseVisualStyleBackColor = true;
@@ -110,11 +113,11 @@ namespace SecretCellar.Orders_Panels {
             // btn_whole_assign_update
             // 
             this.btn_whole_assign_update.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btn_whole_assign_update.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btn_whole_assign_update.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_whole_assign_update.Location = new System.Drawing.Point(238, 435);
-            this.btn_whole_assign_update.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btn_whole_assign_update.Location = new System.Drawing.Point(194, 508);
             this.btn_whole_assign_update.Name = "btn_whole_assign_update";
-            this.btn_whole_assign_update.Size = new System.Drawing.Size(255, 55);
+            this.btn_whole_assign_update.Size = new System.Drawing.Size(170, 36);
             this.btn_whole_assign_update.TabIndex = 23;
             this.btn_whole_assign_update.Text = "Delivered Update";
             this.btn_whole_assign_update.UseVisualStyleBackColor = true;
@@ -124,39 +127,39 @@ namespace SecretCellar.Orders_Panels {
             // 
             this.lbl_assignqty.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lbl_assignqty.AutoSize = true;
-            this.lbl_assignqty.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_assignqty.Location = new System.Drawing.Point(10, 442);
-            this.lbl_assignqty.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_assignqty.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_assignqty.Location = new System.Drawing.Point(10, 496);
             this.lbl_assignqty.Name = "lbl_assignqty";
-            this.lbl_assignqty.Size = new System.Drawing.Size(130, 20);
+            this.lbl_assignqty.Size = new System.Drawing.Size(121, 20);
             this.lbl_assignqty.TabIndex = 22;
             this.lbl_assignqty.Text = "Qty Delivered:";
             // 
             // txt_deliverqty
             // 
             this.txt_deliverqty.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.txt_deliverqty.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_deliverqty.Location = new System.Drawing.Point(15, 465);
-            this.txt_deliverqty.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txt_deliverqty.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_deliverqty.Location = new System.Drawing.Point(10, 517);
             this.txt_deliverqty.Name = "txt_deliverqty";
-            this.txt_deliverqty.Size = new System.Drawing.Size(200, 26);
+            this.txt_deliverqty.Size = new System.Drawing.Size(134, 26);
             this.txt_deliverqty.TabIndex = 21;
             // 
             // fullfill_datagrid
             // 
             this.fullfill_datagrid.AllowUserToAddRows = false;
             this.fullfill_datagrid.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.fullfill_datagrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.fullfill_datagrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.fullfill_datagrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.fullfill_datagrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.fullfill_datagrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.fullfill_datagrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.id,
@@ -168,32 +171,32 @@ namespace SecretCellar.Orders_Panels {
             this.price,
             this.requestqty,
             this.due});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.fullfill_datagrid.DefaultCellStyle = dataGridViewCellStyle2;
-            this.fullfill_datagrid.Location = new System.Drawing.Point(15, 46);
-            this.fullfill_datagrid.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.fullfill_datagrid.Name = "fullfill_datagrid";
-            this.fullfill_datagrid.ReadOnly = true;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.fullfill_datagrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.fullfill_datagrid.DefaultCellStyle = dataGridViewCellStyle3;
+            this.fullfill_datagrid.Location = new System.Drawing.Point(10, 32);
+            this.fullfill_datagrid.Name = "fullfill_datagrid";
+            this.fullfill_datagrid.ReadOnly = true;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.fullfill_datagrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.fullfill_datagrid.RowHeadersVisible = false;
             this.fullfill_datagrid.RowHeadersWidth = 62;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.fullfill_datagrid.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.fullfill_datagrid.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            this.fullfill_datagrid.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.fullfill_datagrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.fullfill_datagrid.Size = new System.Drawing.Size(1168, 380);
+            this.fullfill_datagrid.Size = new System.Drawing.Size(947, 457);
             this.fullfill_datagrid.TabIndex = 20;
             this.fullfill_datagrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.fullfill_datagrid_CellContentClick);
             // 
@@ -209,79 +212,87 @@ namespace SecretCellar.Orders_Panels {
             // 
             // barcode
             // 
+            this.barcode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.barcode.DataPropertyName = "barcode";
+            this.barcode.FillWeight = 150F;
             this.barcode.HeaderText = "Barcode";
-            this.barcode.MinimumWidth = 8;
+            this.barcode.MinimumWidth = 150;
             this.barcode.Name = "barcode";
             this.barcode.ReadOnly = true;
-            this.barcode.Width = 130;
             // 
             // name
             // 
+            this.name.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.name.DataPropertyName = "name";
+            this.name.FillWeight = 250F;
             this.name.HeaderText = "Name";
-            this.name.MinimumWidth = 8;
+            this.name.MinimumWidth = 250;
             this.name.Name = "name";
             this.name.ReadOnly = true;
-            this.name.Width = 240;
             // 
             // type
             // 
+            this.type.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.type.DataPropertyName = "type";
             this.type.HeaderText = "Type";
             this.type.MinimumWidth = 8;
             this.type.Name = "type";
             this.type.ReadOnly = true;
             this.type.Visible = false;
-            this.type.Width = 150;
             // 
             // qty
             // 
+            this.qty.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.qty.DataPropertyName = "qty";
+            this.qty.FillWeight = 85F;
             this.qty.HeaderText = "Qty";
-            this.qty.MinimumWidth = 8;
+            this.qty.MinimumWidth = 85;
             this.qty.Name = "qty";
             this.qty.ReadOnly = true;
-            this.qty.Width = 80;
             // 
             // orderqty
             // 
+            this.orderqty.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.orderqty.DataPropertyName = "orderqty";
+            this.orderqty.FillWeight = 90F;
             this.orderqty.HeaderText = "Order Qty";
-            this.orderqty.MinimumWidth = 8;
+            this.orderqty.MinimumWidth = 90;
             this.orderqty.Name = "orderqty";
             this.orderqty.ReadOnly = true;
-            this.orderqty.Width = 150;
             // 
             // price
             // 
+            this.price.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.price.DataPropertyName = "price";
+            this.price.FillWeight = 90F;
             this.price.HeaderText = "Price";
-            this.price.MinimumWidth = 8;
+            this.price.MinimumWidth = 90;
             this.price.Name = "price";
             this.price.ReadOnly = true;
-            this.price.Width = 90;
             // 
             // requestqty
             // 
+            this.requestqty.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.requestqty.DataPropertyName = "requestqty";
+            this.requestqty.FillWeight = 90F;
             this.requestqty.HeaderText = "Request Qty";
-            this.requestqty.MinimumWidth = 8;
+            this.requestqty.MinimumWidth = 90;
             this.requestqty.Name = "requestqty";
             this.requestqty.ReadOnly = true;
-            this.requestqty.Width = 80;
             // 
             // due
             // 
+            this.due.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.due.DataPropertyName = "due";
+            this.due.FillWeight = 90F;
             this.due.HeaderText = "Balance Due";
-            this.due.MinimumWidth = 8;
+            this.due.MinimumWidth = 90;
             this.due.Name = "due";
             this.due.ReadOnly = true;
-            this.due.Width = 150;
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.lbl_date);
             this.panel1.Controls.Add(this.btn_deliver_selected);
             this.panel1.Controls.Add(this.lbl_assignqty);
             this.panel1.Controls.Add(this.btn_deliver_all);
@@ -293,18 +304,30 @@ namespace SecretCellar.Orders_Panels {
             this.panel1.Controls.Add(this.cbx_fullfill_cust);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1200, 506);
+            this.panel1.Size = new System.Drawing.Size(969, 554);
             this.panel1.TabIndex = 26;
+            // 
+            // lbl_date
+            // 
+            this.lbl_date.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lbl_date.AutoSize = true;
+            this.lbl_date.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_date.Location = new System.Drawing.Point(552, 9);
+            this.lbl_date.Name = "lbl_date";
+            this.lbl_date.Size = new System.Drawing.Size(53, 20);
+            this.lbl_date.TabIndex = 26;
+            this.lbl_date.Text = "Date:";
             // 
             // Panel_Fulfillment
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.AutoSize = true;
             this.Controls.Add(this.panel1);
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "Panel_Fulfillment";
-            this.Size = new System.Drawing.Size(1200, 506);
+            this.Size = new System.Drawing.Size(969, 554);
             ((System.ComponentModel.ISupportInitialize)(this.fullfill_datagrid)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -322,6 +345,7 @@ namespace SecretCellar.Orders_Panels {
 		private System.Windows.Forms.Label lbl_assignqty;
 		private System.Windows.Forms.TextBox txt_deliverqty;
 		private System.Windows.Forms.DataGridView fullfill_datagrid;
+        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.DataGridViewTextBoxColumn id;
         private System.Windows.Forms.DataGridViewTextBoxColumn barcode;
         private System.Windows.Forms.DataGridViewTextBoxColumn name;
@@ -331,6 +355,6 @@ namespace SecretCellar.Orders_Panels {
         private System.Windows.Forms.DataGridViewTextBoxColumn price;
         private System.Windows.Forms.DataGridViewTextBoxColumn requestqty;
         private System.Windows.Forms.DataGridViewTextBoxColumn due;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label lbl_date;
     }
 }
