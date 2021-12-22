@@ -121,7 +121,7 @@ namespace SecretCellar {
                     || x.eventDate.Year == DateTime.Now.Year && x.eventDate.Month > DateTime.Now.Month
                     || x.eventDate.Year == DateTime.Now.Year && x.eventDate.Month == DateTime.Now.Month && x.eventDate.Day > DateTime.Now.Day
                     || x.eventDate.Year == DateTime.Now.Year && x.eventDate.Month == DateTime.Now.Month && x.eventDate.Day == DateTime.Now.Day && x.eventDate.Hour > DateTime.Now.Hour
-                    || x.eventDate.Year == DateTime.Now.Year && x.eventDate.Month == DateTime.Now.Month && x.eventDate.Day == DateTime.Now.Day && x.eventDate.Hour == DateTime.Now.Hour && x.eventDate.Minute > DateTime.Now.Minute)
+                    || x.eventDate.Year == DateTime.Now.Year && x.eventDate.Month == DateTime.Now.Month && x.eventDate.Day == DateTime.Now.Day && x.eventDate.Hour == DateTime.Now.Hour && x.eventDate.Minute >= DateTime.Now.Minute)
                 .OrderBy(x => x.eventDate)
                 .ToList();
             }
