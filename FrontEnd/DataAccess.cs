@@ -280,6 +280,14 @@ namespace SecretCellar
 
             return JsonConvert.DeserializeObject<List<PaymentMethod>>(result);
         }
+
+        public PaymentMethod SetPaymentMethods(PaymentMethod paymentMethod)
+        {
+            Response resp = null;
+            string result = web.DataPut($"api/Transaction/PaymentMethods", paymentMethod, resp);
+
+            return JsonConvert.DeserializeObject<PaymentMethod>(result);
+        }
         #endregion
 
         #region Customer

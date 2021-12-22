@@ -13,10 +13,12 @@ namespace SecretCellar.Settings_Panels
 {
     public partial class PanTax : UserControl
     {
+        readonly List<PaymentMethod> PayMethods;
         public PanTax()
         {
             InitializeComponent();
             lst_tax_list.DataSource = DataAccess.instance?.GetTax();
+            PayMethods = DataAccess.instance?.GetPaymentMethods();
             lst_tax_list.DisplayMember = "TaxName";
         }
 
@@ -68,10 +70,25 @@ namespace SecretCellar.Settings_Panels
             }
         }
 
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
+        private void txt_CashDiscount_KeyPress(object sender, KeyPressEventArgs e)
         {
+            e.Handled = !Char.IsDigit(e.KeyChar);
+        }
 
+        private void btnSetDiscount_Click(object sender, EventArgs e)
+        {
+            if (decimal.TryParse(txt_CashDiscount.Text, out decimal discount))
+            {
+                PaymentMethod p = PayMethods.FirstOrDefault(x => x.PayMethod == "CASH");
+
+                p.PercentOffset = discount;
+                DataAccess.instance.SetPaymentMethods(p);
+
+                p = PayMethods.FirstOrDefault(x => x.PayMethod == "CHECK");
+
+                p.PercentOffset = discount;
+                DataAccess.instance.SetPaymentMethods(p);
+            }
         }
     }
 }

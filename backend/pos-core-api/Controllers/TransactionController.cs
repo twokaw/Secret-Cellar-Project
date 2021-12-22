@@ -48,12 +48,24 @@ namespace WebApi.Controllers
 
         // Returns a list of all payment methods
         //Get: api/Transaction/PaymentMethods
-        [HttpGet("PaymentMethods/")]
+        [HttpGet("PaymentMethods")]
         public ActionResult GetPaymentMethods()
         {
             try
             {
                 return Ok(DataAccess.Instance.Transaction.GetPaymentMethods());
+            }
+            catch (Exception ex) { ErrorLogging.WriteToErrorLog(ex); return StatusCode(500, ex.Message); }
+        }
+
+        // Update paymentmenthod and Returns a list of all payment methods
+        //Put: api/Transaction/PaymentMethod
+        [HttpPut("PaymentMethods")]
+        public ActionResult PutPaymentMethod([FromBody] PaymentMethod paymentMethod)
+        {
+            try
+            {
+                return Ok(DataAccess.Instance.Transaction.PutPaymentMethod(paymentMethod));
             }
             catch (Exception ex) { ErrorLogging.WriteToErrorLog(ex); return StatusCode(500, ex.Message); }
         }
