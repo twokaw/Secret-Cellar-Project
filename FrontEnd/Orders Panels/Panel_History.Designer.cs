@@ -53,7 +53,7 @@ namespace SecretCellar.Orders_Panels {
             // textBox_CustomerName
             // 
             this.textBox_CustomerName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_CustomerName.Location = new System.Drawing.Point(3, 2);
+            this.textBox_CustomerName.Location = new System.Drawing.Point(128, 16);
             this.textBox_CustomerName.Name = "textBox_CustomerName";
             this.textBox_CustomerName.Size = new System.Drawing.Size(182, 26);
             this.textBox_CustomerName.TabIndex = 25;
@@ -66,7 +66,7 @@ namespace SecretCellar.Orders_Panels {
             // 
             this.btn_setDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_setDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_setDate.Location = new System.Drawing.Point(665, 15);
+            this.btn_setDate.Location = new System.Drawing.Point(741, 20);
             this.btn_setDate.Name = "btn_setDate";
             this.btn_setDate.Size = new System.Drawing.Size(151, 28);
             this.btn_setDate.TabIndex = 24;
@@ -76,9 +76,8 @@ namespace SecretCellar.Orders_Panels {
             // 
             // btn_setCust
             // 
-            this.btn_setCust.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btn_setCust.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_setCust.Location = new System.Drawing.Point(3, 264);
+            this.btn_setCust.Location = new System.Drawing.Point(135, 59);
             this.btn_setCust.Name = "btn_setCust";
             this.btn_setCust.Size = new System.Drawing.Size(168, 29);
             this.btn_setCust.TabIndex = 23;
@@ -90,7 +89,7 @@ namespace SecretCellar.Orders_Panels {
             // 
             this.lbl_orders.AutoSize = true;
             this.lbl_orders.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_orders.Location = new System.Drawing.Point(193, 60);
+            this.lbl_orders.Location = new System.Drawing.Point(368, 72);
             this.lbl_orders.Name = "lbl_orders";
             this.lbl_orders.Size = new System.Drawing.Size(104, 20);
             this.lbl_orders.TabIndex = 22;
@@ -100,7 +99,7 @@ namespace SecretCellar.Orders_Panels {
             // 
             this.btn_reset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_reset.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_reset.Location = new System.Drawing.Point(665, 264);
+            this.btn_reset.Location = new System.Drawing.Point(741, 290);
             this.btn_reset.Name = "btn_reset";
             this.btn_reset.Size = new System.Drawing.Size(151, 29);
             this.btn_reset.TabIndex = 21;
@@ -112,7 +111,7 @@ namespace SecretCellar.Orders_Panels {
             // 
             this.btn_print.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_print.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_print.Location = new System.Drawing.Point(665, 216);
+            this.btn_print.Location = new System.Drawing.Point(741, 183);
             this.btn_print.Name = "btn_print";
             this.btn_print.Size = new System.Drawing.Size(151, 29);
             this.btn_print.TabIndex = 20;
@@ -127,9 +126,9 @@ namespace SecretCellar.Orders_Panels {
             this.lstbox_customer.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lstbox_customer.FormattingEnabled = true;
             this.lstbox_customer.ItemHeight = 20;
-            this.lstbox_customer.Location = new System.Drawing.Point(3, 32);
+            this.lstbox_customer.Location = new System.Drawing.Point(96, 103);
             this.lstbox_customer.Name = "lstbox_customer";
-            this.lstbox_customer.Size = new System.Drawing.Size(182, 224);
+            this.lstbox_customer.Size = new System.Drawing.Size(244, 424);
             this.lstbox_customer.TabIndex = 19;
             // 
             // transaction_dataGrid
@@ -161,7 +160,7 @@ namespace SecretCellar.Orders_Panels {
             dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.transaction_dataGrid.DefaultCellStyle = dataGridViewCellStyle4;
-            this.transaction_dataGrid.Location = new System.Drawing.Point(196, 84);
+            this.transaction_dataGrid.Location = new System.Drawing.Point(366, 94);
             this.transaction_dataGrid.Name = "transaction_dataGrid";
             this.transaction_dataGrid.ReadOnly = true;
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -178,7 +177,7 @@ namespace SecretCellar.Orders_Panels {
             this.transaction_dataGrid.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.transaction_dataGrid.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.transaction_dataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.transaction_dataGrid.Size = new System.Drawing.Size(342, 209);
+            this.transaction_dataGrid.Size = new System.Drawing.Size(342, 434);
             this.transaction_dataGrid.TabIndex = 18;
             this.transaction_dataGrid.SelectionChanged += new System.EventHandler(this.transaction_dataGrid_SelectionChanged);
             // 
@@ -216,7 +215,7 @@ namespace SecretCellar.Orders_Panels {
             // 
             this.lbl_end.AutoSize = true;
             this.lbl_end.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_end.Location = new System.Drawing.Point(197, 33);
+            this.lbl_end.Location = new System.Drawing.Point(362, 41);
             this.lbl_end.Name = "lbl_end";
             this.lbl_end.Size = new System.Drawing.Size(46, 20);
             this.lbl_end.TabIndex = 17;
@@ -225,7 +224,7 @@ namespace SecretCellar.Orders_Panels {
             // end_dateTime
             // 
             this.end_dateTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.end_dateTime.Location = new System.Drawing.Point(247, 29);
+            this.end_dateTime.Location = new System.Drawing.Point(414, 37);
             this.end_dateTime.Name = "end_dateTime";
             this.end_dateTime.Size = new System.Drawing.Size(305, 26);
             this.end_dateTime.TabIndex = 16;
@@ -234,7 +233,7 @@ namespace SecretCellar.Orders_Panels {
             // 
             this.lbl_start.AutoSize = true;
             this.lbl_start.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_start.Location = new System.Drawing.Point(194, 6);
+            this.lbl_start.Location = new System.Drawing.Point(359, 14);
             this.lbl_start.Name = "lbl_start";
             this.lbl_start.Size = new System.Drawing.Size(54, 20);
             this.lbl_start.TabIndex = 15;
@@ -243,7 +242,7 @@ namespace SecretCellar.Orders_Panels {
             // start_dateTime
             // 
             this.start_dateTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.start_dateTime.Location = new System.Drawing.Point(248, 3);
+            this.start_dateTime.Location = new System.Drawing.Point(415, 11);
             this.start_dateTime.Name = "start_dateTime";
             this.start_dateTime.Size = new System.Drawing.Size(304, 26);
             this.start_dateTime.TabIndex = 14;
@@ -266,7 +265,7 @@ namespace SecretCellar.Orders_Panels {
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(836, 329);
+            this.panel1.Size = new System.Drawing.Size(969, 554);
             this.panel1.TabIndex = 26;
             // 
             // Panel_History
@@ -276,7 +275,7 @@ namespace SecretCellar.Orders_Panels {
             this.AutoSize = true;
             this.Controls.Add(this.panel1);
             this.Name = "Panel_History";
-            this.Size = new System.Drawing.Size(836, 329);
+            this.Size = new System.Drawing.Size(969, 554);
             ((System.ComponentModel.ISupportInitialize)(this.transaction_dataGrid)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

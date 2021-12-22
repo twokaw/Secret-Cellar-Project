@@ -65,7 +65,7 @@
             // button_AddCharge
             // 
             this.button_AddCharge.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_AddCharge.Location = new System.Drawing.Point(323, 651);
+            this.button_AddCharge.Location = new System.Drawing.Point(314, 616);
             this.button_AddCharge.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button_AddCharge.Name = "button_AddCharge";
             this.button_AddCharge.Size = new System.Drawing.Size(200, 69);
@@ -77,7 +77,7 @@
             // button_Cancel
             // 
             this.button_Cancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_Cancel.Location = new System.Drawing.Point(22, 651);
+            this.button_Cancel.Location = new System.Drawing.Point(35, 616);
             this.button_Cancel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button_Cancel.Name = "button_Cancel";
             this.button_Cancel.Size = new System.Drawing.Size(200, 69);
@@ -128,7 +128,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoSize = true;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.ClientSize = new System.Drawing.Size(561, 770);
+            this.ClientSize = new System.Drawing.Size(553, 729);
             this.Controls.Add(this.lbl_title);
             this.Controls.Add(this.touchKeyPad1);
             this.Controls.Add(this.label1);
@@ -142,7 +142,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmDryCleaning";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Add Dry Cleaning Charge";
             this.ResumeLayout(false);
             this.PerformLayout();

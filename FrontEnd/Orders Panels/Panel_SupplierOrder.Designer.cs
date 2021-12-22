@@ -62,7 +62,7 @@ namespace SecretCellar.Orders_Panels {
             // 
             this.btn_received.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_received.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_received.Location = new System.Drawing.Point(678, 290);
+            this.btn_received.Location = new System.Drawing.Point(811, 476);
             this.btn_received.Name = "btn_received";
             this.btn_received.Size = new System.Drawing.Size(154, 36);
             this.btn_received.TabIndex = 26;
@@ -74,7 +74,7 @@ namespace SecretCellar.Orders_Panels {
             // 
             this.btn_update.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_update.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_update.Location = new System.Drawing.Point(678, 192);
+            this.btn_update.Location = new System.Drawing.Point(811, 268);
             this.btn_update.Name = "btn_update";
             this.btn_update.Size = new System.Drawing.Size(154, 36);
             this.btn_update.TabIndex = 25;
@@ -86,7 +86,7 @@ namespace SecretCellar.Orders_Panels {
             // 
             this.txt_update_qty.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txt_update_qty.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_update_qty.Location = new System.Drawing.Point(678, 158);
+            this.txt_update_qty.Location = new System.Drawing.Point(811, 234);
             this.txt_update_qty.Name = "txt_update_qty";
             this.txt_update_qty.Size = new System.Drawing.Size(155, 26);
             this.txt_update_qty.TabIndex = 24;
@@ -96,7 +96,7 @@ namespace SecretCellar.Orders_Panels {
             this.lbl_qty.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lbl_qty.AutoSize = true;
             this.lbl_qty.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_qty.Location = new System.Drawing.Point(678, 128);
+            this.lbl_qty.Location = new System.Drawing.Point(811, 204);
             this.lbl_qty.Name = "lbl_qty";
             this.lbl_qty.Size = new System.Drawing.Size(126, 20);
             this.lbl_qty.TabIndex = 23;
@@ -106,7 +106,7 @@ namespace SecretCellar.Orders_Panels {
             // 
             this.lbl_order_date.AutoSize = true;
             this.lbl_order_date.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_order_date.Location = new System.Drawing.Point(4, 8);
+            this.lbl_order_date.Location = new System.Drawing.Point(4, 13);
             this.lbl_order_date.Name = "lbl_order_date";
             this.lbl_order_date.Size = new System.Drawing.Size(91, 18);
             this.lbl_order_date.TabIndex = 22;
@@ -116,7 +116,7 @@ namespace SecretCellar.Orders_Panels {
             // 
             this.dateTimePicker1.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimePicker1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePicker1.Location = new System.Drawing.Point(96, 6);
+            this.dateTimePicker1.Location = new System.Drawing.Point(96, 11);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(283, 24);
             this.dateTimePicker1.TabIndex = 21;
@@ -125,7 +125,7 @@ namespace SecretCellar.Orders_Panels {
             // 
             this.btn_print_supp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_print_supp.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_print_supp.Location = new System.Drawing.Point(682, 87);
+            this.btn_print_supp.Location = new System.Drawing.Point(815, 129);
             this.btn_print_supp.Name = "btn_print_supp";
             this.btn_print_supp.Size = new System.Drawing.Size(150, 36);
             this.btn_print_supp.TabIndex = 20;
@@ -138,7 +138,7 @@ namespace SecretCellar.Orders_Panels {
             this.lbl_supp_total.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lbl_supp_total.AutoSize = true;
             this.lbl_supp_total.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_supp_total.Location = new System.Drawing.Point(678, 232);
+            this.lbl_supp_total.Location = new System.Drawing.Point(811, 418);
             this.lbl_supp_total.Name = "lbl_supp_total";
             this.lbl_supp_total.Size = new System.Drawing.Size(49, 20);
             this.lbl_supp_total.TabIndex = 18;
@@ -148,7 +148,7 @@ namespace SecretCellar.Orders_Panels {
             // 
             this.lbl_supplier.AutoSize = true;
             this.lbl_supplier.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_supplier.Location = new System.Drawing.Point(388, 9);
+            this.lbl_supplier.Location = new System.Drawing.Point(427, 14);
             this.lbl_supplier.Name = "lbl_supplier";
             this.lbl_supplier.Size = new System.Drawing.Size(69, 18);
             this.lbl_supplier.TabIndex = 17;
@@ -158,7 +158,7 @@ namespace SecretCellar.Orders_Panels {
             // 
             this.cbx_supplier.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbx_supplier.FormattingEnabled = true;
-            this.cbx_supplier.Location = new System.Drawing.Point(460, 6);
+            this.cbx_supplier.Location = new System.Drawing.Point(499, 11);
             this.cbx_supplier.Name = "cbx_supplier";
             this.cbx_supplier.Size = new System.Drawing.Size(214, 25);
             this.cbx_supplier.TabIndex = 16;
@@ -202,7 +202,7 @@ namespace SecretCellar.Orders_Panels {
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.supp_dataGrid.DefaultCellStyle = dataGridViewCellStyle3;
-            this.supp_dataGrid.Location = new System.Drawing.Point(9, 36);
+            this.supp_dataGrid.Location = new System.Drawing.Point(9, 50);
             this.supp_dataGrid.Name = "supp_dataGrid";
             this.supp_dataGrid.ReadOnly = true;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -219,7 +219,7 @@ namespace SecretCellar.Orders_Panels {
             this.supp_dataGrid.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.supp_dataGrid.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.supp_dataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.supp_dataGrid.Size = new System.Drawing.Size(665, 289);
+            this.supp_dataGrid.Size = new System.Drawing.Size(798, 500);
             this.supp_dataGrid.TabIndex = 15;
             this.supp_dataGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.supp_dataGrid_CellContentClick);
             this.supp_dataGrid.SelectionChanged += new System.EventHandler(this.supp_dataGrid_SelectionChanged);
@@ -342,7 +342,7 @@ namespace SecretCellar.Orders_Panels {
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(836, 329);
+            this.panel1.Size = new System.Drawing.Size(969, 554);
             this.panel1.TabIndex = 27;
             // 
             // chk_OnlyRequired
@@ -350,7 +350,7 @@ namespace SecretCellar.Orders_Panels {
             this.chk_OnlyRequired.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.chk_OnlyRequired.AutoSize = true;
             this.chk_OnlyRequired.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chk_OnlyRequired.Location = new System.Drawing.Point(692, 47);
+            this.chk_OnlyRequired.Location = new System.Drawing.Point(825, 61);
             this.chk_OnlyRequired.Margin = new System.Windows.Forms.Padding(2);
             this.chk_OnlyRequired.Name = "chk_OnlyRequired";
             this.chk_OnlyRequired.Size = new System.Drawing.Size(133, 22);
@@ -364,7 +364,7 @@ namespace SecretCellar.Orders_Panels {
             this.chk_ShowHidden.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.chk_ShowHidden.AutoSize = true;
             this.chk_ShowHidden.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chk_ShowHidden.Location = new System.Drawing.Point(693, 10);
+            this.chk_ShowHidden.Location = new System.Drawing.Point(826, 13);
             this.chk_ShowHidden.Margin = new System.Windows.Forms.Padding(2);
             this.chk_ShowHidden.Name = "chk_ShowHidden";
             this.chk_ShowHidden.Size = new System.Drawing.Size(126, 22);
@@ -377,9 +377,9 @@ namespace SecretCellar.Orders_Panels {
             // 
             this.txt_supp_total.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.txt_supp_total.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_supp_total.Location = new System.Drawing.Point(682, 259);
+            this.txt_supp_total.Location = new System.Drawing.Point(815, 445);
             this.txt_supp_total.Name = "txt_supp_total";
-            this.txt_supp_total.Size = new System.Drawing.Size(153, 26);
+            this.txt_supp_total.Size = new System.Drawing.Size(150, 26);
             this.txt_supp_total.TabIndex = 19;
             this.txt_supp_total.Text = "0.00";
             // 
@@ -390,7 +390,7 @@ namespace SecretCellar.Orders_Panels {
             this.AutoSize = true;
             this.Controls.Add(this.panel1);
             this.Name = "Panel_SupplierOrder";
-            this.Size = new System.Drawing.Size(836, 329);
+            this.Size = new System.Drawing.Size(969, 554);
             this.Load += new System.EventHandler(this.Panel_SupplierOrder_Load);
             ((System.ComponentModel.ISupportInitialize)(this.supp_dataGrid)).EndInit();
             this.panel1.ResumeLayout(false);
