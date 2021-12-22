@@ -39,7 +39,7 @@
             // txtPin
             // 
             this.txtPin.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPin.Location = new System.Drawing.Point(206, 58);
+            this.txtPin.Location = new System.Drawing.Point(233, 58);
             this.txtPin.Margin = new System.Windows.Forms.Padding(1);
             this.txtPin.Name = "txtPin";
             this.txtPin.Size = new System.Drawing.Size(110, 26);
@@ -50,7 +50,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(202, 29);
+            this.label1.Location = new System.Drawing.Point(229, 29);
             this.label1.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(108, 19);
@@ -60,7 +60,7 @@
             // btnLogin
             // 
             this.btnLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLogin.Location = new System.Drawing.Point(214, 102);
+            this.btnLogin.Location = new System.Drawing.Point(241, 102);
             this.btnLogin.Margin = new System.Windows.Forms.Padding(1);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(101, 30);
@@ -74,7 +74,7 @@
             this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(254)))), ((int)(((byte)(254)))));
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.InitialImage")));
-            this.pictureBox1.Location = new System.Drawing.Point(-5, -6);
+            this.pictureBox1.Location = new System.Drawing.Point(9, -6);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(1);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(190, 168);
