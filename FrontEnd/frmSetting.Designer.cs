@@ -69,21 +69,21 @@ namespace SecretCellar
             this.tab_receipt.Controls.Add(this.tab_Reciept);
             this.tab_receipt.Controls.Add(this.tab_tax);
             this.tab_receipt.Controls.Add(this.tab_Defaults);
-            this.tab_receipt.Location = new System.Drawing.Point(9, 23);
-            this.tab_receipt.Margin = new System.Windows.Forms.Padding(6);
+            this.tab_receipt.Location = new System.Drawing.Point(7, 18);
+            this.tab_receipt.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.tab_receipt.Name = "tab_receipt";
             this.tab_receipt.SelectedIndex = 0;
-            this.tab_receipt.Size = new System.Drawing.Size(1239, 647);
+            this.tab_receipt.Size = new System.Drawing.Size(953, 518);
             this.tab_receipt.TabIndex = 0;
             // 
             // tab_Hardware
             // 
             this.tab_Hardware.Controls.Add(this.panHardware);
-            this.tab_Hardware.Location = new System.Drawing.Point(4, 34);
-            this.tab_Hardware.Margin = new System.Windows.Forms.Padding(6);
+            this.tab_Hardware.Location = new System.Drawing.Point(4, 29);
+            this.tab_Hardware.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.tab_Hardware.Name = "tab_Hardware";
-            this.tab_Hardware.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tab_Hardware.Size = new System.Drawing.Size(1231, 609);
+            this.tab_Hardware.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tab_Hardware.Size = new System.Drawing.Size(945, 485);
             this.tab_Hardware.TabIndex = 0;
             this.tab_Hardware.Text = "Hardware";
             this.tab_Hardware.UseVisualStyleBackColor = true;
@@ -91,20 +91,20 @@ namespace SecretCellar
             // panHardware
             // 
             this.panHardware.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panHardware.Location = new System.Drawing.Point(4, 5);
+            this.panHardware.Location = new System.Drawing.Point(3, 4);
             this.panHardware.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
             this.panHardware.Name = "panHardware";
-            this.panHardware.Size = new System.Drawing.Size(1223, 599);
+            this.panHardware.Size = new System.Drawing.Size(939, 477);
             this.panHardware.TabIndex = 0;
             // 
             // tab_Types
             // 
             this.tab_Types.Controls.Add(this.panTypes);
-            this.tab_Types.Location = new System.Drawing.Point(4, 34);
-            this.tab_Types.Margin = new System.Windows.Forms.Padding(6);
+            this.tab_Types.Location = new System.Drawing.Point(4, 29);
+            this.tab_Types.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.tab_Types.Name = "tab_Types";
-            this.tab_Types.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tab_Types.Size = new System.Drawing.Size(1231, 609);
+            this.tab_Types.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tab_Types.Size = new System.Drawing.Size(945, 485);
             this.tab_Types.TabIndex = 1;
             this.tab_Types.Text = "Types";
             this.tab_Types.UseVisualStyleBackColor = true;
@@ -113,19 +113,19 @@ namespace SecretCellar
             // 
             this.panTypes.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panTypes.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
-            this.panTypes.Location = new System.Drawing.Point(4, 5);
-            this.panTypes.Margin = new System.Windows.Forms.Padding(6);
+            this.panTypes.Location = new System.Drawing.Point(3, 4);
+            this.panTypes.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.panTypes.Name = "panTypes";
-            this.panTypes.Size = new System.Drawing.Size(1223, 599);
+            this.panTypes.Size = new System.Drawing.Size(939, 477);
             this.panTypes.TabIndex = 0;
             // 
             // tab_Appearance
             // 
             this.tab_Appearance.Controls.Add(this.panAppearance1);
-            this.tab_Appearance.Location = new System.Drawing.Point(4, 34);
+            this.tab_Appearance.Location = new System.Drawing.Point(4, 29);
             this.tab_Appearance.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
             this.tab_Appearance.Name = "tab_Appearance";
-            this.tab_Appearance.Size = new System.Drawing.Size(1231, 609);
+            this.tab_Appearance.Size = new System.Drawing.Size(945, 485);
             this.tab_Appearance.TabIndex = 2;
             this.tab_Appearance.Text = "Appearance";
             this.tab_Appearance.UseVisualStyleBackColor = true;
@@ -136,16 +136,16 @@ namespace SecretCellar
             this.panAppearance1.Location = new System.Drawing.Point(0, 0);
             this.panAppearance1.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
             this.panAppearance1.Name = "panAppearance1";
-            this.panAppearance1.Size = new System.Drawing.Size(1231, 609);
+            this.panAppearance1.Size = new System.Drawing.Size(945, 485);
             this.panAppearance1.TabIndex = 0;
             // 
             // tab_Reports
             // 
             this.tab_Reports.Controls.Add(this.panReports1);
-            this.tab_Reports.Location = new System.Drawing.Point(4, 34);
+            this.tab_Reports.Location = new System.Drawing.Point(4, 29);
             this.tab_Reports.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
             this.tab_Reports.Name = "tab_Reports";
-            this.tab_Reports.Size = new System.Drawing.Size(1231, 609);
+            this.tab_Reports.Size = new System.Drawing.Size(945, 485);
             this.tab_Reports.TabIndex = 3;
             this.tab_Reports.Text = "Reports";
             this.tab_Reports.UseVisualStyleBackColor = true;
@@ -156,18 +156,18 @@ namespace SecretCellar
             this.panReports1.Location = new System.Drawing.Point(0, 0);
             this.panReports1.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
             this.panReports1.Name = "panReports1";
-            this.panReports1.Size = new System.Drawing.Size(1231, 609);
+            this.panReports1.Size = new System.Drawing.Size(945, 485);
             this.panReports1.TabIndex = 0;
             this.panReports1.Load += new System.EventHandler(this.panReports1_Load);
             // 
             // tab_Reciept
             // 
             this.tab_Reciept.Controls.Add(this.panReceipt1);
-            this.tab_Reciept.Location = new System.Drawing.Point(4, 34);
-            this.tab_Reciept.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tab_Reciept.Location = new System.Drawing.Point(4, 29);
+            this.tab_Reciept.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tab_Reciept.Name = "tab_Reciept";
-            this.tab_Reciept.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tab_Reciept.Size = new System.Drawing.Size(1231, 609);
+            this.tab_Reciept.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tab_Reciept.Size = new System.Drawing.Size(945, 485);
             this.tab_Reciept.TabIndex = 4;
             this.tab_Reciept.Text = "Receipt";
             this.tab_Reciept.UseVisualStyleBackColor = true;
@@ -175,20 +175,20 @@ namespace SecretCellar
             // panReceipt1
             // 
             this.panReceipt1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panReceipt1.Location = new System.Drawing.Point(3, 2);
+            this.panReceipt1.Location = new System.Drawing.Point(2, 2);
             this.panReceipt1.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
             this.panReceipt1.Name = "panReceipt1";
-            this.panReceipt1.Size = new System.Drawing.Size(1225, 605);
+            this.panReceipt1.Size = new System.Drawing.Size(941, 481);
             this.panReceipt1.TabIndex = 0;
             // 
             // tab_tax
             // 
             this.tab_tax.Controls.Add(this.panTax1);
-            this.tab_tax.Location = new System.Drawing.Point(4, 34);
-            this.tab_tax.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tab_tax.Location = new System.Drawing.Point(4, 29);
+            this.tab_tax.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tab_tax.Name = "tab_tax";
-            this.tab_tax.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tab_tax.Size = new System.Drawing.Size(1231, 609);
+            this.tab_tax.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tab_tax.Size = new System.Drawing.Size(945, 485);
             this.tab_tax.TabIndex = 5;
             this.tab_tax.Text = "Tax";
             this.tab_tax.UseVisualStyleBackColor = true;
@@ -196,19 +196,20 @@ namespace SecretCellar
             // panTax1
             // 
             this.panTax1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panTax1.Location = new System.Drawing.Point(4, 5);
+            this.panTax1.Location = new System.Drawing.Point(3, 4);
             this.panTax1.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
             this.panTax1.Name = "panTax1";
-            this.panTax1.Size = new System.Drawing.Size(1223, 599);
+            this.panTax1.Size = new System.Drawing.Size(939, 477);
             this.panTax1.TabIndex = 0;
             // 
             // tab_Defaults
             // 
             this.tab_Defaults.Controls.Add(this.panDefaults1);
-            this.tab_Defaults.Location = new System.Drawing.Point(4, 34);
+            this.tab_Defaults.Location = new System.Drawing.Point(4, 29);
+            this.tab_Defaults.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tab_Defaults.Name = "tab_Defaults";
-            this.tab_Defaults.Padding = new System.Windows.Forms.Padding(3);
-            this.tab_Defaults.Size = new System.Drawing.Size(1231, 609);
+            this.tab_Defaults.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tab_Defaults.Size = new System.Drawing.Size(945, 485);
             this.tab_Defaults.TabIndex = 6;
             this.tab_Defaults.Text = "Defaults";
             this.tab_Defaults.UseVisualStyleBackColor = true;
@@ -217,20 +218,19 @@ namespace SecretCellar
             // panDefaults1
             // 
             this.panDefaults1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panDefaults1.Location = new System.Drawing.Point(3, 3);
-            this.panDefaults1.Margin = new System.Windows.Forms.Padding(4);
+            this.panDefaults1.Location = new System.Drawing.Point(2, 2);
             this.panDefaults1.Name = "panDefaults1";
-            this.panDefaults1.Size = new System.Drawing.Size(1225, 603);
+            this.panDefaults1.Size = new System.Drawing.Size(941, 481);
             this.panDefaults1.TabIndex = 0;
             // 
             // btn_commit
             // 
             this.btn_commit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_commit.AutoSize = true;
-            this.btn_commit.Location = new System.Drawing.Point(1105, 681);
-            this.btn_commit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btn_commit.Location = new System.Drawing.Point(850, 545);
+            this.btn_commit.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btn_commit.Name = "btn_commit";
-            this.btn_commit.Size = new System.Drawing.Size(143, 41);
+            this.btn_commit.Size = new System.Drawing.Size(110, 33);
             this.btn_commit.TabIndex = 4;
             this.btn_commit.Text = "Close";
             this.btn_commit.UseVisualStyleBackColor = true;
@@ -238,15 +238,15 @@ namespace SecretCellar
             // 
             // FrmSettings
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 25F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.ClientSize = new System.Drawing.Size(1265, 736);
+            this.ClientSize = new System.Drawing.Size(973, 589);
             this.Controls.Add(this.btn_commit);
             this.Controls.Add(this.tab_receipt);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FrmSettings";
