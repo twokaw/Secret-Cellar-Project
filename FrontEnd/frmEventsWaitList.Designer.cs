@@ -26,13 +26,13 @@ namespace SecretCellar {
 		private void InitializeComponent() {
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmEventsWaitlist));
 			this.dataGridView_Customers = new System.Windows.Forms.DataGridView();
+			this.button_Remove = new System.Windows.Forms.Button();
+			this.button_Close = new System.Windows.Forms.Button();
+			this.button_Add = new System.Windows.Forms.Button();
 			this.EventId = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.CustomerId = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.CustomerName = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.button_Remove = new System.Windows.Forms.Button();
-			this.button_Close = new System.Windows.Forms.Button();
-			this.button_Add = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView_Customers)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -58,30 +58,6 @@ namespace SecretCellar {
 			this.dataGridView_Customers.Size = new System.Drawing.Size(406, 200);
 			this.dataGridView_Customers.TabIndex = 0;
 			this.dataGridView_Customers.TabStop = false;
-			// 
-			// EventId
-			// 
-			this.EventId.HeaderText = "Event Id";
-			this.EventId.Name = "EventId";
-			this.EventId.ReadOnly = true;
-			// 
-			// CustomerId
-			// 
-			this.CustomerId.HeaderText = "Customer Id";
-			this.CustomerId.Name = "CustomerId";
-			this.CustomerId.ReadOnly = true;
-			// 
-			// CustomerName
-			// 
-			this.CustomerName.HeaderText = "Customer Name";
-			this.CustomerName.Name = "CustomerName";
-			this.CustomerName.ReadOnly = true;
-			// 
-			// Date
-			// 
-			this.Date.HeaderText = "Date Put On Waitlist";
-			this.Date.Name = "Date";
-			this.Date.ReadOnly = true;
 			// 
 			// button_Remove
 			// 
@@ -118,6 +94,34 @@ namespace SecretCellar {
 			this.button_Add.Text = "ADD TO WAITLIST...";
 			this.button_Add.UseVisualStyleBackColor = true;
 			this.button_Add.Click += new System.EventHandler(this.button_Add_Click);
+			// 
+			// EventId
+			// 
+			this.EventId.DataPropertyName = "eventId";
+			this.EventId.HeaderText = "Event Id";
+			this.EventId.Name = "EventId";
+			this.EventId.ReadOnly = true;
+			// 
+			// CustomerId
+			// 
+			this.CustomerId.DataPropertyName = "customerId";
+			this.CustomerId.HeaderText = "Customer Id";
+			this.CustomerId.Name = "CustomerId";
+			this.CustomerId.ReadOnly = true;
+			// 
+			// CustomerName
+			// 
+			this.CustomerName.DataPropertyName = "customerName";
+			this.CustomerName.HeaderText = "Customer Name";
+			this.CustomerName.Name = "CustomerName";
+			this.CustomerName.ReadOnly = true;
+			// 
+			// Date
+			// 
+			this.Date.DataPropertyName = "dateAdded";
+			this.Date.HeaderText = "Date Put On Waitlist";
+			this.Date.Name = "Date";
+			this.Date.ReadOnly = true;
 			// 
 			// frmEventsWaitlist
 			// 

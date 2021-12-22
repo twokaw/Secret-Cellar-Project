@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 using Shared;
 
@@ -27,7 +28,7 @@ namespace SecretCellar {
 		//REMOVE THE SELECTED CUSTOMER TO THE WAITLIST
 		private void button_Remove_Click(object sender, EventArgs e) {
 			if (_selectedEvent != null && dataGridView_Customers.SelectedRows.Count > 0) {
-				uint selectedCustomerId = uint.Parse(dataGridView_Customers.SelectedRows[0].Cells[CustomerId.Index].Value.ToString());
+				uint selectedCustomerId = uint.Parse(dataGridView_Customers.SelectedRows[0].Cells["CustomerId"].Value.ToString());
 
 				DataAccess.instance.DeleteEventWaitlistItem(_selectedEvent.Id, selectedCustomerId);
 				UpdateWaitListGrid();
@@ -81,19 +82,16 @@ namespace SecretCellar {
 		//UPDATE THE GRID
 		private void UpdateWaitListGrid() {
 			if (_selectedEvent != null) {
-				List<EventWaitlistItem> waitListItems = DataAccess.instance.GetEventsWaitlists();
-				
-				//CLEAR THE CUSTOMER GRID
-				dataGridView_Customers.Rows.Clear();
-
-				//ADD ALL THE CUSTOMERS THAT MATCH THE SELECTED EVENT
-				foreach (EventWaitlistItem waitlistItem in waitListItems) {
-					if (_selectedEvent.Id == waitlistItem.EventId) {
-						dataGridView_Customers.Rows.Add(waitlistItem.EventId, waitlistItem.CustomerId, waitlistItem.CustomerName, waitlistItem.DateAdded);
-					}
-				}
-
-				dataGridView_Customers.Sort(dataGridView_Customers.Columns[Date.Index], System.ComponentModel.ListSortDirection.Ascending);
+				dataGridView_Customers.DataSource = DataAccess.instance.GetEventsWaitlists()
+				.Select(x => new {
+					eventId = x.EventId,
+					customerId = x.CustomerId,
+					customerName = x.CustomerName,
+					dateAdded = x.DateAdded
+				})
+				.Where(x => _selectedEvent.Id == x.eventId)
+				.OrderBy(x => x.dateAdded)
+				.ToList();
 			}
 		}
 	}

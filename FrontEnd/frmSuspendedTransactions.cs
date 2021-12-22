@@ -1,170 +1,160 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Shared;
+
+
 
 namespace SecretCellar
 {
 	public partial class frmSuspendedTransactions : Form
 	{
-		private frmTransaction transactionForm;
-		private List<Transaction> suspendedTransactions;
-		private List<uint> suspendedTransactionsIdTracker;
-		private Transaction selectedTransaction;
+		private readonly frmTransaction TRANSACTION_FORM;
+		private readonly Transaction CURRENT_TRANSACTION;
+
+		private List<Transaction> suspendedTransactionsList;
+		private Transaction selectedSuspendedTransaction;
+		
 		
 
-		public frmSuspendedTransactions(frmTransaction formTransaction, Transaction transactionFromFormTransaction)
+		public frmSuspendedTransactions(frmTransaction formTransaction, Transaction currentTransaction)
 		{
 			InitializeComponent();
-			transactionForm = formTransaction;
-			suspendedTransactions = DataAccess.instance.GetSuspendedTransactions();
-			suspendedTransactionsIdTracker = new List<uint>();
+			TRANSACTION_FORM = formTransaction;
+			CURRENT_TRANSACTION = currentTransaction;
+			suspendedTransactionsList = DataAccess.instance.GetSuspendedTransactions();
 
-			//POPULATE THE LIST OF SUSPENDED TRANSACTIONS CUSTOMER NAMES
-			foreach (Transaction t in suspendedTransactions) {
-				if (t.InvoiceID != transactionFromFormTransaction.InvoiceID) {
-					//ADD THE TRANSACTION INVOICE ID TO THE TRACKER
-					suspendedTransactionsIdTracker.Add(t.InvoiceID);
-
-					//GET THE CUSTOMER OF THE SUSPENDED TRANSACTION
-					Customer customer = DataAccess.instance.GetCustomer(t.CustomerID);
-
-					//POPULATE THE CUSTOMER NAME IN THE LIST
-					if (customer != null && !customer.FirstName.Equals("") && !customer.LastName.Equals("")) {
-						selectionListSuspendedTransactions.Items.Add(customer.FirstName + " " + customer.LastName);
-					}
-					else {
-						selectionListSuspendedTransactions.Items.Add("No Name");
-					}
-				}
-			}
-
-			//DEFAULT SELECTED ITEM IN THE LIST OF SUSPENDED TRANSACTIONS TO 0
-			if (suspendedTransactions.Count > 0) {
-				selectionListSuspendedTransactions.SelectedIndex = 0;
-			}
+			PopulateListOfTransactions();
 		}
 
-		private void dataGridViewSuspendedTransaction_CellContentClick(object sender, DataGridViewCellEventArgs e) {
 
-		}
-
+		/// <summary>
+		/// On selection change.
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void selectionListSuspendedTransactions_SelectedIndexChanged(object sender, EventArgs e) {
-			//IF THERE IS AT LEAST ONE SUSPENDED TRANSACTION THEN CONTINUE
-			if (suspendedTransactions.Count > 0 && selectionListSuspendedTransactions.SelectedIndex > 0) {
-				this.dataGridViewSuspendedTransaction.Rows.Clear();
+			if (selectionListSuspendedTransactions.Items.Count == 0) { return; }
 
-				//GET THE TRANSACTION OF THE CURRENTLY SELECTED CUSTOMER VIA THE TRACKER
-				uint transactionId = suspendedTransactionsIdTracker.ElementAt(selectionListSuspendedTransactions.SelectedIndex);
-				selectedTransaction = DataAccess.instance.GetTransactions(transactionId);
+			uint transactionId = GetTransactionId(selectionListSuspendedTransactions.SelectedItem.ToString());
+			if (transactionId == 0) { return; }
 
-				//ADD EACH ROW IN THE TRANSACTION TO THE ROW IN THE VIEW
-				foreach (Item item in selectedTransaction.Items) {
-					int rowIndex = dataGridViewSuspendedTransaction.Rows.Add();
-
-					using (var currentRow = dataGridViewSuspendedTransaction.Rows[rowIndex]) {
-						currentRow.Cells[0].Value = item.Description;
-						currentRow.Cells[1].Value = item.NumSold;
-						currentRow.Cells[2].Value = (item.Price * (1 - item.Discount)).ToString("C");
-						currentRow.Cells[3].Value = item.Discount.ToString("P0");
-						currentRow.Cells[4].Value = "";
-						currentRow.Cells[5].Value = (item.NumSold * item.Bottles * .05).ToString("C");
-						currentRow.Cells[6].Value = (item.Price * item.NumSold * (1 - item.Discount)).ToString("C");
-					}
-				}
-			}
+			selectedSuspendedTransaction = DataAccess.instance.GetTransactions(transactionId);
+			PopulateGrid(selectedSuspendedTransaction.Items);
 		}
 
-		private void btnDelete_Click(object sender, EventArgs e)
-		{
-			if (selectionListSuspendedTransactions.Items.Count > 0 && selectedTransaction != null) {
-				int selectedIndex = selectionListSuspendedTransactions.SelectedIndex;
 
-				//ENSURE THAT THE TRANSACTION DOESN'T HAVE PAYMENTS STILL
-				if (selectedTransaction.Payments.Count > 0) {
-					DialogResult result = MessageBox.Show("Cannot delete transaction. There are still outstanding payments. Would you like to remove the payments?", "Error", MessageBoxButtons.YesNo);
+		/// <summary>
+		/// Delete the suspended transaction. If the transaction has a payment, a window will pop up to choose whether to push that payment to credit and open the cash drawer to pay out cash.
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void btnDelete_Click(object sender, EventArgs e) {
+			if (selectionListSuspendedTransactions.Items.Count == 0 || selectedSuspendedTransaction == null) { return; }
+			
+			//ENSURE THAT THE TRANSACTION DOESN'T HAVE PAYMENTS STILL
+			if (selectedSuspendedTransaction.Payments.Count > 0) {
+				DialogResult hasPaymentsMessageBox = MessageBox.Show("Cannot delete transaction. There are still outstanding payments. Would you like to remove the payments?", "Error", MessageBoxButtons.YesNo);
 
-					if (result == DialogResult.Yes) {
-						//SHOW THE FORM TO DISPLAY THE PAYMENTS AMOUNT AND SELECT THE PAYMENT RETURN METHOD
-						frmSuspendedTransactionsSelectReturnPaymentMethod selectReturnPaymentMethod = new frmSuspendedTransactionsSelectReturnPaymentMethod(selectedTransaction);
-						DialogResult returnPaymentResult = selectReturnPaymentMethod.ShowDialog();
+				if (hasPaymentsMessageBox != DialogResult.Yes) { return; }
 
-						//IF THE USER DIDN'T CLICK CASH OR CREDIT
-						if (returnPaymentResult != DialogResult.Yes && returnPaymentResult != DialogResult.No) {
-							return;
-						}
-					}
-					else {
-						return;
-					}
-				}
+				//SHOW THE FORM TO DISPLAY THE PAYMENTS AMOUNT AND SELECT THE PAYMENT RETURN METHOD
+				frmSuspendedTransactionsSelectReturnPaymentMethod selectReturnPaymentMethod = new frmSuspendedTransactionsSelectReturnPaymentMethod(selectedSuspendedTransaction);
+				DialogResult returnPaymentResult = selectReturnPaymentMethod.ShowDialog();
 
-				//DELETE THE TRANSACTION FROM THE DATABASE
-				DataAccess.instance.DeleteTransaction(selectedTransaction.InvoiceID);
-
-				//IF THE USER DELETES THE FIRST ITEM IN THE LIST
-				if (selectedIndex == 0 && selectionListSuspendedTransactions.Items.Count > 1) {
-					selectionListSuspendedTransactions.SelectedIndex += 1;
-				}
-
-				//IF THE USER DELETES THE LAST ITEM IN THE LIST
-				else if (selectedIndex == selectionListSuspendedTransactions.Items.Count - 1 && selectionListSuspendedTransactions.Items.Count > 1) {
-					selectionListSuspendedTransactions.SelectedIndex -= 1;
-				}
-
-				//IF THE USER DELETES AN ITEM IN THE MIDDLE
-				else if (selectedIndex > 0 && selectedIndex < selectionListSuspendedTransactions.Items.Count - 1) {
-					selectionListSuspendedTransactions.SelectedIndex -= 1;
-				}
-
-				//REMOVE THE TRANSACTION FROM THE TRACKER AND FROM THE LIST
-				suspendedTransactionsIdTracker.RemoveAt(selectedIndex);
-				selectionListSuspendedTransactions.Items.RemoveAt(selectedIndex);
+				//IF THE USER DIDN'T CLICK CASH OR CREDIT
+				if (returnPaymentResult != DialogResult.Yes && returnPaymentResult != DialogResult.No) { return; }
 			}
 
-			//CLEAR THE DATA GRID AND TRACKER IF THERE ARE NO ITEMS LEFT
-			if (selectionListSuspendedTransactions.Items.Count == 0) {
-				dataGridViewSuspendedTransaction.Rows.Clear();
-				suspendedTransactionsIdTracker.Clear();
-				selectedTransaction = null;
-			}
+			//DELETE THE TRANSACTION FROM THE DATABASE
+			DataAccess.instance.DeleteTransaction(selectedSuspendedTransaction.InvoiceID);
+
+			PopulateListOfTransactions();
 		}
 
-		private void btnAdd_Click(object sender, EventArgs e)
-		{
-			if (selectedTransaction != null && selectedTransaction.Items.Count > 0) {
-				//CREATE A NEW TRANSACTION FROM THE SELECTED TRANSACTION
-				Transaction newTransaction = new Transaction(selectedTransaction.InvoiceID,
-												selectedTransaction.RegisterID,
-												selectedTransaction.TransactionDateTime,
-												selectedTransaction.Location,
-												selectedTransaction.Items,
-												selectedTransaction.Discount,
-												selectedTransaction.TaxExempt,
-												selectedTransaction.Payments,
-												selectedTransaction.EmployeeID,
-												selectedTransaction.CustomerID);
-				
-				//UPDATE THE CUSTOMER INFORMATION
-				Customer customer = DataAccess.instance.GetCustomer(newTransaction.CustomerID);
-				newTransaction.CustomerName = customer.FirstName + " " + customer.LastName;
 
-				//CLOSE THE WINDOW AND CALL THE IMPORT FUNCTION
-				this.Close();
-				transactionForm.importSuspendedTransaction(newTransaction);
-			}
-		}
+		/// <summary>
+		/// Add the suspended transaction to the current transaction.
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void btnAdd_Click(object sender, EventArgs e) {
+			if (selectedSuspendedTransaction == null || selectedSuspendedTransaction.Items.Count == 0) { return; }
 
-		private void btn_CloseWindow_Click(object sender, EventArgs e) {
+			//CLOSE THE WINDOW AND CALL THE IMPORT FUNCTION
 			this.Close();
+			TRANSACTION_FORM.importSuspendedTransaction(selectedSuspendedTransaction);
 		}
 
+
+		/// <summary>
+		/// Close the form.
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void btn_CloseWindow_Click(object sender, EventArgs e) { this.Close(); }
+
+
+		/// <summary>
+		/// Gets the transaction id from the given string.
+		/// </summary>
+		/// <param name="transactionIdString"></param>
+		/// <returns>The transaction id or null if it can't get the id from the string.</returns>
+		private uint GetTransactionId(string transactionIdString) {
+			transactionIdString = transactionIdString.Substring(0, transactionIdString.IndexOf(" | "));
+
+			if (uint.TryParse(transactionIdString, out uint transactionId)) {
+				return transactionId;
+			}
+
+			return 0;
+		}
+
+
+		/// <summary>
+		/// Populates the list of transactions.
+		/// </summary>
+		private void PopulateListOfTransactions() {
+			suspendedTransactionsList = DataAccess.instance.GetSuspendedTransactions();
+			selectionListSuspendedTransactions.Items.Clear();
+
+			foreach (Transaction t in suspendedTransactionsList) {
+				if (t.InvoiceID == CURRENT_TRANSACTION.InvoiceID) { continue; }	//THIS CHECK IS SO THAT IT DOESN'T SHOW THE TRANSACTION IN THE LIST OF SUSPENDED TRANSACTIONS IF IT'S BEEN ADDED IT TO THE CURRENT TRANSACTION
+
+				Customer customer = DataAccess.instance.GetCustomer(t.CustomerID);
+
+				//POPULATE THE CUSTOMER NAME IN THE LIST
+				if (customer != null && !customer.FirstName.Equals("") && !customer.LastName.Equals("")) {
+					selectionListSuspendedTransactions.Items.Add($"{t.InvoiceID} | {customer.FirstName} {customer.LastName}");
+				}
+				else {
+					selectionListSuspendedTransactions.Items.Add($"{t.InvoiceID} | No Name");
+				}
+			}
+
+			//DEFAULT SELECTED ITEM IN THE LIST TO THE FIRST ONE
+			if (selectionListSuspendedTransactions.Items.Count == 0) { dataGridViewSuspendedTransaction.DataSource = null; return; }
+
+			selectionListSuspendedTransactions.SelectedIndex = 0;
+		}
+
+
+		/// <summary>
+		/// Populates the grid with the given items list.
+		/// </summary>
+		/// <param name="items"></param>
+		private void PopulateGrid(List<Item> items) {
+			dataGridViewSuspendedTransaction.DataSource = items
+			.Select(x => new {
+				description = x.Description,
+				qty = x.NumSold,
+				price = (x.Price * (1 - x.Discount)).ToString("C"),
+				discount = x.Discount.ToString("P0"),
+				bottleDeposit = (x.NumSold * x.Bottles * .05).ToString("C"),
+				total = (x.Price * x.NumSold * (1 - x.Discount)).ToString("C")
+			})
+			.ToList();
+		}
 	}
 }

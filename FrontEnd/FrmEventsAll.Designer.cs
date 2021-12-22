@@ -26,13 +26,14 @@ namespace SecretCellar {
 		private void InitializeComponent() {
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmEventsAll));
 			this.dataGridView_Events = new System.Windows.Forms.DataGridView();
-			this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Event = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Qty = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.button_CloseWindow = new System.Windows.Forms.Button();
 			this.button_DeleteEvent = new System.Windows.Forms.Button();
+			this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.EventName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.PreorderPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.AtDoorPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Qty = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView_Events)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -47,8 +48,9 @@ namespace SecretCellar {
 			this.dataGridView_Events.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Id,
             this.Date,
-            this.Event,
-            this.Price,
+            this.EventName,
+            this.PreorderPrice,
+            this.AtDoorPrice,
             this.Qty});
 			this.dataGridView_Events.Location = new System.Drawing.Point(13, 13);
 			this.dataGridView_Events.Margin = new System.Windows.Forms.Padding(4);
@@ -61,40 +63,6 @@ namespace SecretCellar {
 			this.dataGridView_Events.TabIndex = 0;
 			this.dataGridView_Events.TabStop = false;
 			this.dataGridView_Events.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_Events_CellDoubleClick);
-			// 
-			// Id
-			// 
-			this.Id.HeaderText = "Event Id";
-			this.Id.Name = "Id";
-			this.Id.ReadOnly = true;
-			// 
-			// Date
-			// 
-			this.Date.HeaderText = "Event Date";
-			this.Date.MinimumWidth = 8;
-			this.Date.Name = "Date";
-			this.Date.ReadOnly = true;
-			// 
-			// Event
-			// 
-			this.Event.HeaderText = "Event Name";
-			this.Event.MinimumWidth = 8;
-			this.Event.Name = "Event";
-			this.Event.ReadOnly = true;
-			// 
-			// Price
-			// 
-			this.Price.HeaderText = "Event Price";
-			this.Price.MinimumWidth = 8;
-			this.Price.Name = "Price";
-			this.Price.ReadOnly = true;
-			// 
-			// Qty
-			// 
-			this.Qty.HeaderText = "Quantity";
-			this.Qty.MinimumWidth = 8;
-			this.Qty.Name = "Qty";
-			this.Qty.ReadOnly = true;
 			// 
 			// button_CloseWindow
 			// 
@@ -119,6 +87,52 @@ namespace SecretCellar {
 			this.button_DeleteEvent.Text = "DELETE EVENT";
 			this.button_DeleteEvent.UseVisualStyleBackColor = true;
 			this.button_DeleteEvent.Click += new System.EventHandler(this.button_DeleteEvent_Click);
+			// 
+			// Id
+			// 
+			this.Id.DataPropertyName = "eventId";
+			this.Id.HeaderText = "Event Id";
+			this.Id.Name = "Id";
+			this.Id.ReadOnly = true;
+			// 
+			// Date
+			// 
+			this.Date.DataPropertyName = "eventDate";
+			this.Date.HeaderText = "Event Date";
+			this.Date.MinimumWidth = 8;
+			this.Date.Name = "Date";
+			this.Date.ReadOnly = true;
+			// 
+			// EventName
+			// 
+			this.EventName.DataPropertyName = "eventName";
+			this.EventName.HeaderText = "Event Name";
+			this.EventName.MinimumWidth = 8;
+			this.EventName.Name = "EventName";
+			this.EventName.ReadOnly = true;
+			// 
+			// PreorderPrice
+			// 
+			this.PreorderPrice.DataPropertyName = "preorderPrice";
+			this.PreorderPrice.HeaderText = "Preorder Price";
+			this.PreorderPrice.Name = "PreorderPrice";
+			this.PreorderPrice.ReadOnly = true;
+			// 
+			// AtDoorPrice
+			// 
+			this.AtDoorPrice.DataPropertyName = "atDoorPrice";
+			this.AtDoorPrice.HeaderText = "At Door Price";
+			this.AtDoorPrice.MinimumWidth = 8;
+			this.AtDoorPrice.Name = "AtDoorPrice";
+			this.AtDoorPrice.ReadOnly = true;
+			// 
+			// Qty
+			// 
+			this.Qty.DataPropertyName = "eventQuantity";
+			this.Qty.HeaderText = "Quantity";
+			this.Qty.MinimumWidth = 8;
+			this.Qty.Name = "Qty";
+			this.Qty.ReadOnly = true;
 			// 
 			// frmEventsAll
 			// 
@@ -147,8 +161,9 @@ namespace SecretCellar {
 		private System.Windows.Forms.Button button_DeleteEvent;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Id;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Date;
-		private System.Windows.Forms.DataGridViewTextBoxColumn Event;
-		private System.Windows.Forms.DataGridViewTextBoxColumn Price;
+		private System.Windows.Forms.DataGridViewTextBoxColumn EventName;
+		private System.Windows.Forms.DataGridViewTextBoxColumn PreorderPrice;
+		private System.Windows.Forms.DataGridViewTextBoxColumn AtDoorPrice;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Qty;
 	}
 }

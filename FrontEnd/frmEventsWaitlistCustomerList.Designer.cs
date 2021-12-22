@@ -26,11 +26,11 @@ namespace SecretCellar {
 		private void InitializeComponent() {
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmEventsWaitlistCustomerList));
 			this.dataGridView_CustomerList = new System.Windows.Forms.DataGridView();
-			this.Customer_Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Customer_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.textBox_CustomerName = new System.Windows.Forms.TextBox();
 			this.button_CloseWindow = new System.Windows.Forms.Button();
 			this.button_SelectCustomer = new System.Windows.Forms.Button();
+			this.Customer_Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Customer_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView_CustomerList)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -54,18 +54,6 @@ namespace SecretCellar {
 			this.dataGridView_CustomerList.TabIndex = 2;
 			this.dataGridView_CustomerList.TabStop = false;
 			this.dataGridView_CustomerList.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CustomerList_CellDoubleClick);
-			// 
-			// Customer_Id
-			// 
-			this.Customer_Id.HeaderText = "Customer Id";
-			this.Customer_Id.Name = "Customer_Id";
-			this.Customer_Id.ReadOnly = true;
-			// 
-			// Customer_Name
-			// 
-			this.Customer_Name.HeaderText = "Customer Name";
-			this.Customer_Name.Name = "Customer_Name";
-			this.Customer_Name.ReadOnly = true;
 			// 
 			// textBox_CustomerName
 			// 
@@ -104,6 +92,20 @@ namespace SecretCellar {
 			this.button_SelectCustomer.UseVisualStyleBackColor = true;
 			this.button_SelectCustomer.Click += new System.EventHandler(this.button_SelectCustomer_Click);
 			// 
+			// Customer_Id
+			// 
+			this.Customer_Id.DataPropertyName = "customerId";
+			this.Customer_Id.HeaderText = "Customer Id";
+			this.Customer_Id.Name = "Customer_Id";
+			this.Customer_Id.ReadOnly = true;
+			// 
+			// Customer_Name
+			// 
+			this.Customer_Name.DataPropertyName = "customerName";
+			this.Customer_Name.HeaderText = "Customer Name";
+			this.Customer_Name.Name = "Customer_Name";
+			this.Customer_Name.ReadOnly = true;
+			// 
 			// frmEventsWaitlistCustomerList
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -129,10 +131,10 @@ namespace SecretCellar {
 		#endregion
 
 		private System.Windows.Forms.DataGridView dataGridView_CustomerList;
-		private System.Windows.Forms.DataGridViewTextBoxColumn Customer_Id;
-		private System.Windows.Forms.DataGridViewTextBoxColumn Customer_Name;
 		private System.Windows.Forms.TextBox textBox_CustomerName;
 		private System.Windows.Forms.Button button_CloseWindow;
 		private System.Windows.Forms.Button button_SelectCustomer;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Customer_Id;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Customer_Name;
 	}
 }

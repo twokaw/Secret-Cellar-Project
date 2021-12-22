@@ -33,8 +33,10 @@
 			this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.Barcode = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Duration = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.Event = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.PreorderPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.AtDoorPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.Qty = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.dateTimePicker_Date = new System.Windows.Forms.DateTimePicker();
 			this.button_AddCharge = new System.Windows.Forms.Button();
@@ -45,7 +47,7 @@
 			this.label_Quantity = new System.Windows.Forms.Label();
 			this.label_Total = new System.Windows.Forms.Label();
 			this.textBox_Quantity = new System.Windows.Forms.TextBox();
-			this.textBox_Total = new System.Windows.Forms.TextBox();
+			this.textBox_Total = new SecretCellar.CurrencyBox();
 			this.button_EditEvent = new System.Windows.Forms.Button();
 			this.button_WaitList = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView_Events)).BeginInit();
@@ -63,8 +65,10 @@
             this.Id,
             this.Barcode,
             this.Date,
+            this.Duration,
             this.Event,
-            this.Price,
+            this.PreorderPrice,
+            this.AtDoorPrice,
             this.Qty});
 			this.dataGridView_Events.Location = new System.Drawing.Point(13, 87);
 			this.dataGridView_Events.Name = "dataGridView_Events";
@@ -79,39 +83,59 @@
 			// 
 			// Id
 			// 
+			this.Id.DataPropertyName = "eventId";
 			this.Id.HeaderText = "Event Id";
 			this.Id.Name = "Id";
 			this.Id.ReadOnly = true;
 			// 
 			// Barcode
 			// 
+			this.Barcode.DataPropertyName = "eventBarcode";
 			this.Barcode.HeaderText = "Event Barcode";
 			this.Barcode.Name = "Barcode";
 			this.Barcode.ReadOnly = true;
 			// 
 			// Date
 			// 
+			this.Date.DataPropertyName = "eventDate";
 			this.Date.HeaderText = "Event Date";
 			this.Date.MinimumWidth = 8;
 			this.Date.Name = "Date";
 			this.Date.ReadOnly = true;
 			// 
+			// Duration
+			// 
+			this.Duration.DataPropertyName = "eventDuration";
+			this.Duration.HeaderText = "Event Duration";
+			this.Duration.Name = "Duration";
+			this.Duration.ReadOnly = true;
+			// 
 			// Event
 			// 
+			this.Event.DataPropertyName = "eventName";
 			this.Event.HeaderText = "Event Name";
 			this.Event.MinimumWidth = 8;
 			this.Event.Name = "Event";
 			this.Event.ReadOnly = true;
 			// 
-			// Price
+			// PreorderPrice
 			// 
-			this.Price.HeaderText = "Event Price";
-			this.Price.MinimumWidth = 8;
-			this.Price.Name = "Price";
-			this.Price.ReadOnly = true;
+			this.PreorderPrice.DataPropertyName = "preorderPrice";
+			this.PreorderPrice.HeaderText = "Preorder Price";
+			this.PreorderPrice.Name = "PreorderPrice";
+			this.PreorderPrice.ReadOnly = true;
+			// 
+			// AtDoorPrice
+			// 
+			this.AtDoorPrice.DataPropertyName = "atDoorPrice";
+			this.AtDoorPrice.HeaderText = "At Door Price";
+			this.AtDoorPrice.MinimumWidth = 8;
+			this.AtDoorPrice.Name = "AtDoorPrice";
+			this.AtDoorPrice.ReadOnly = true;
 			// 
 			// Qty
 			// 
+			this.Qty.DataPropertyName = "quantity";
 			this.Qty.HeaderText = "Quantity";
 			this.Qty.MinimumWidth = 8;
 			this.Qty.Name = "Qty";
@@ -218,7 +242,8 @@
 			this.textBox_Total.Name = "textBox_Total";
 			this.textBox_Total.Size = new System.Drawing.Size(158, 38);
 			this.textBox_Total.TabIndex = 22;
-			this.textBox_Total.Text = "$0";
+			this.textBox_Total.Text = "0.00";
+			this.textBox_Total.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
 			// 
 			// button_EditEvent
 			// 
@@ -271,6 +296,7 @@
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "Events";
 			this.Load += new System.EventHandler(this.frmEvents_Load);
+			this.Shown += new System.EventHandler(this.frmEvents_Shown);
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView_Events)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
@@ -285,17 +311,19 @@
 		private System.Windows.Forms.Button button_AllEvents;
 		private System.Windows.Forms.Button button_CreateEvent;
 		private System.Windows.Forms.Button button_DeleteEvent;
-		private System.Windows.Forms.DataGridViewTextBoxColumn Id;
-		private System.Windows.Forms.DataGridViewTextBoxColumn Barcode;
-		private System.Windows.Forms.DataGridViewTextBoxColumn Date;
-		private System.Windows.Forms.DataGridViewTextBoxColumn Event;
-		private System.Windows.Forms.DataGridViewTextBoxColumn Price;
-		private System.Windows.Forms.DataGridViewTextBoxColumn Qty;
 		private System.Windows.Forms.Label label_Quantity;
 		private System.Windows.Forms.Label label_Total;
 		private System.Windows.Forms.TextBox textBox_Quantity;
-		private System.Windows.Forms.TextBox textBox_Total;
+		private SecretCellar.CurrencyBox textBox_Total;
 		private System.Windows.Forms.Button button_EditEvent;
 		private System.Windows.Forms.Button button_WaitList;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Id;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Barcode;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Date;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Duration;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Event;
+		private System.Windows.Forms.DataGridViewTextBoxColumn PreorderPrice;
+		private System.Windows.Forms.DataGridViewTextBoxColumn AtDoorPrice;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Qty;
 	}
 }

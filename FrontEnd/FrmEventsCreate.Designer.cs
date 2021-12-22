@@ -27,13 +27,13 @@ namespace SecretCellar {
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmEventsCreate));
 			this.textBox_Quantity = new System.Windows.Forms.TextBox();
 			this.label_Qty = new System.Windows.Forms.Label();
-			this.textBox_Price = new System.Windows.Forms.TextBox();
+			this.textBox_Price = new SecretCellar.CurrencyBox();
 			this.label_Price = new System.Windows.Forms.Label();
 			this.label_Date = new System.Windows.Forms.Label();
 			this.label_Duration = new System.Windows.Forms.Label();
-			this.textBox_Preorder = new System.Windows.Forms.TextBox();
+			this.textBox_Preorder = new SecretCellar.CurrencyBox();
 			this.label_Preorder = new System.Windows.Forms.Label();
-			this.textBox_AtDoor = new System.Windows.Forms.TextBox();
+			this.textBox_AtDoor = new SecretCellar.CurrencyBox();
 			this.label_AtDoor = new System.Windows.Forms.Label();
 			this.button_CreateEvent = new System.Windows.Forms.Button();
 			this.button_CloseWindow = new System.Windows.Forms.Button();
@@ -43,7 +43,7 @@ namespace SecretCellar {
 			this.label_Name = new System.Windows.Forms.Label();
 			this.label_NonTaxable = new System.Windows.Forms.Label();
 			this.label_NonTaxableLocal = new System.Windows.Forms.Label();
-			this.textBox_SupplierPrice = new System.Windows.Forms.TextBox();
+			this.textBox_SupplierPrice = new SecretCellar.CurrencyBox();
 			this.label_SupplierPrice = new System.Windows.Forms.Label();
 			this.checkBox_NonTaxable = new System.Windows.Forms.CheckBox();
 			this.checkBox_NonTaxableLocal = new System.Windows.Forms.CheckBox();
@@ -424,13 +424,13 @@ namespace SecretCellar {
 		#endregion
 		private System.Windows.Forms.TextBox textBox_Quantity;
 		private System.Windows.Forms.Label label_Qty;
-		private System.Windows.Forms.TextBox textBox_Price;
+		private SecretCellar.CurrencyBox textBox_Price;
 		private System.Windows.Forms.Label label_Price;
 		private System.Windows.Forms.Label label_Date;
 		private System.Windows.Forms.Label label_Duration;
-		private System.Windows.Forms.TextBox textBox_Preorder;
+		private SecretCellar.CurrencyBox textBox_Preorder;
 		private System.Windows.Forms.Label label_Preorder;
-		private System.Windows.Forms.TextBox textBox_AtDoor;
+		private SecretCellar.CurrencyBox textBox_AtDoor;
 		private System.Windows.Forms.Label label_AtDoor;
 		private System.Windows.Forms.Button button_CreateEvent;
 		private System.Windows.Forms.Button button_CloseWindow;
@@ -440,7 +440,7 @@ namespace SecretCellar {
 		private System.Windows.Forms.Label label_Name;
 		private System.Windows.Forms.Label label_NonTaxable;
 		private System.Windows.Forms.Label label_NonTaxableLocal;
-		private System.Windows.Forms.TextBox textBox_SupplierPrice;
+		private SecretCellar.CurrencyBox textBox_SupplierPrice;
 		private System.Windows.Forms.Label label_SupplierPrice;
 		private System.Windows.Forms.CheckBox checkBox_NonTaxable;
 		private System.Windows.Forms.CheckBox checkBox_NonTaxableLocal;
