@@ -30,8 +30,15 @@ namespace SecretCellar {
         private void dataGridView_Events_CellDoubleClick(object sender, DataGridViewCellEventArgs e) {
             if (isArchivedEvents) {
                 //TODO Create a form to display the data for the selected archived event.
+                //Useful info for events: Total sold, Preorders sold, Atdoors sold, Total profit, Preorder profit, atdoor profit
 
-			}
+
+                /*
+                 INSERT INTO `ALLOWANCE` (`EmployeeID`, `Year`, `Month`, `OverTime`,`Medical`,
+                 `Lunch`, `Bonus`, `Allowance`) values (10000001, 2014, 4, 10.00, 10.00,
+                 10.45, 10.10, 40.55) ON DUPLICATE KEY UPDATE `EmployeeID` = 10000001
+                 */
+            }
             else {
                 selectedDate = DateTime.Parse(dataGridView_Events.SelectedRows[0].Cells["Date"].Value.ToString());
                 this.Close();
@@ -55,8 +62,8 @@ namespace SecretCellar {
         private void button_PreviousEvents_Click(object sender, EventArgs e) {
             isArchivedEvents = !isArchivedEvents;
 
-            if (isArchivedEvents) { button_PreviousEvents.Text = "UPCOMING EVENTS"; label_Events.Text = "Previous Events"; }
-            else { button_PreviousEvents.Text = "PREVIOUS EVENTS"; label_Events.Text = "Upcoming Events"; }
+            if (isArchivedEvents) { button_PreviousEvents.Text = "LOAD UPCOMING EVENTS"; label_Events.Text = "Previous Events"; }
+            else { button_PreviousEvents.Text = "LOAD PREVIOUS EVENTS"; label_Events.Text = "Upcoming Events"; }
 
             UpdateEventGrid();
         }

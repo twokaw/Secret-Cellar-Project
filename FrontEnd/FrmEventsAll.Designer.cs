@@ -145,12 +145,12 @@ namespace SecretCellar {
 			// 
 			this.button_PreviousEvents.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.button_PreviousEvents.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.button_PreviousEvents.Location = new System.Drawing.Point(256, 328);
+			this.button_PreviousEvents.Location = new System.Drawing.Point(451, 9);
 			this.button_PreviousEvents.Margin = new System.Windows.Forms.Padding(1);
 			this.button_PreviousEvents.Name = "button_PreviousEvents";
-			this.button_PreviousEvents.Size = new System.Drawing.Size(180, 55);
+			this.button_PreviousEvents.Size = new System.Drawing.Size(226, 27);
 			this.button_PreviousEvents.TabIndex = 3;
-			this.button_PreviousEvents.Text = "PREVIOUS EVENTS";
+			this.button_PreviousEvents.Text = "LOAD PREVIOUS EVENTS";
 			this.button_PreviousEvents.UseVisualStyleBackColor = true;
 			this.button_PreviousEvents.Click += new System.EventHandler(this.button_PreviousEvents_Click);
 			// 
@@ -160,7 +160,7 @@ namespace SecretCellar {
 			this.label_Events.ForeColor = System.Drawing.SystemColors.ControlLightLight;
 			this.label_Events.Location = new System.Drawing.Point(9, 9);
 			this.label_Events.Name = "label_Events";
-			this.label_Events.Size = new System.Drawing.Size(664, 23);
+			this.label_Events.Size = new System.Drawing.Size(231, 23);
 			this.label_Events.TabIndex = 4;
 			this.label_Events.Text = "Upcoming Events";
 			// 
