@@ -52,7 +52,6 @@ namespace SecretCellar.Settings_Panels
             txt_local_tax.Text = "";
         }
 
-
         private void btn_new_Click(object sender, EventArgs e)
         {
             Console.WriteLine("text " + lst_tax_list.Text);
