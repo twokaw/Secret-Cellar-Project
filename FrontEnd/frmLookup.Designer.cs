@@ -37,15 +37,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmLookup));
             this.txtlookup = new System.Windows.Forms.TextBox();
             this.LookupView = new System.Windows.Forms.DataGridView();
-            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Class = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Barcode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Qty = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.minqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.orderqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.maxqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btn_cancel = new System.Windows.Forms.Button();
             this.btn_add = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -74,7 +65,6 @@
             this.Btl_Dep_Lb = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
-            this.btn_clear_info = new System.Windows.Forms.Button();
             this.chk_hide_item = new System.Windows.Forms.CheckBox();
             this.lbl_max_qty = new System.Windows.Forms.Label();
             this.lbl_order_qty = new System.Windows.Forms.Label();
@@ -86,8 +76,19 @@
             this.txt_markup = new System.Windows.Forms.TextBox();
             this.checkListBox_Discounts = new System.Windows.Forms.CheckedListBox();
             this.label_CaseDiscount = new System.Windows.Forms.Label();
+            this.btn_clear_info = new System.Windows.Forms.Button();
             this.chk_box_show_hidden = new System.Windows.Forms.CheckBox();
             this.label7 = new System.Windows.Forms.Label();
+            this.btn_close = new System.Windows.Forms.Button();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Class = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Barcode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Qty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.minqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.orderqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.maxqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.LookupView)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -113,6 +114,7 @@
             this.LookupView.AllowUserToResizeRows = false;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LookupView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.LookupView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
@@ -161,107 +163,22 @@
             this.LookupView.RowHeadersVisible = false;
             this.LookupView.RowHeadersWidth = 62;
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LookupView.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.LookupView.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.LookupView.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LookupView.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LookupView.RowTemplate.Height = 24;
             this.LookupView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.LookupView.Size = new System.Drawing.Size(619, 608);
+            this.LookupView.Size = new System.Drawing.Size(583, 536);
             this.LookupView.TabIndex = 0;
             this.LookupView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.LookupView_CellContentClick);
             this.LookupView.SelectionChanged += new System.EventHandler(this.LookupView_SelectionChanged);
-            // 
-            // Id
-            // 
-            this.Id.DataPropertyName = "Id";
-            this.Id.FillWeight = 8F;
-            this.Id.HeaderText = "ItemId";
-            this.Id.MinimumWidth = 8;
-            this.Id.Name = "Id";
-            this.Id.ReadOnly = true;
-            this.Id.Visible = false;
-            // 
-            // Description
-            // 
-            this.Description.DataPropertyName = "Name";
-            this.Description.FillWeight = 223F;
-            this.Description.HeaderText = "Name";
-            this.Description.MinimumWidth = 223;
-            this.Description.Name = "Description";
-            this.Description.ReadOnly = true;
-            // 
-            // Class
-            // 
-            this.Class.DataPropertyName = "ItemType";
-            this.Class.FillWeight = 65F;
-            this.Class.HeaderText = "Class";
-            this.Class.MinimumWidth = 65;
-            this.Class.Name = "Class";
-            this.Class.ReadOnly = true;
-            // 
-            // Barcode
-            // 
-            this.Barcode.DataPropertyName = "Barcode";
-            this.Barcode.FillWeight = 120F;
-            this.Barcode.HeaderText = "Barcode";
-            this.Barcode.MinimumWidth = 120;
-            this.Barcode.Name = "Barcode";
-            this.Barcode.ReadOnly = true;
-            // 
-            // Qty
-            // 
-            this.Qty.DataPropertyName = "Qty";
-            this.Qty.FillWeight = 50F;
-            this.Qty.HeaderText = "Qty";
-            this.Qty.MinimumWidth = 50;
-            this.Qty.Name = "Qty";
-            this.Qty.ReadOnly = true;
-            // 
-            // Price
-            // 
-            this.Price.DataPropertyName = "Price";
-            dataGridViewCellStyle3.Format = "C2";
-            dataGridViewCellStyle3.NullValue = null;
-            this.Price.DefaultCellStyle = dataGridViewCellStyle3;
-            this.Price.FillWeight = 70F;
-            this.Price.HeaderText = "Price";
-            this.Price.MinimumWidth = 70;
-            this.Price.Name = "Price";
-            this.Price.ReadOnly = true;
-            // 
-            // minqty
-            // 
-            this.minqty.DataPropertyName = "minqty";
-            this.minqty.FillWeight = 65F;
-            this.minqty.HeaderText = "Min Qty";
-            this.minqty.MinimumWidth = 65;
-            this.minqty.Name = "minqty";
-            this.minqty.ReadOnly = true;
-            // 
-            // orderqty
-            // 
-            this.orderqty.DataPropertyName = "orderqty";
-            this.orderqty.FillWeight = 70F;
-            this.orderqty.HeaderText = "Order Qty";
-            this.orderqty.MinimumWidth = 70;
-            this.orderqty.Name = "orderqty";
-            this.orderqty.ReadOnly = true;
-            // 
-            // maxqty
-            // 
-            this.maxqty.DataPropertyName = "maxqty";
-            this.maxqty.FillWeight = 65F;
-            this.maxqty.HeaderText = "Max Qty";
-            this.maxqty.MinimumWidth = 65;
-            this.maxqty.Name = "maxqty";
-            this.maxqty.ReadOnly = true;
             // 
             // btn_cancel
             // 
             this.btn_cancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btn_cancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_cancel.Location = new System.Drawing.Point(22, 721);
+            this.btn_cancel.Location = new System.Drawing.Point(22, 711);
             this.btn_cancel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_cancel.Name = "btn_cancel";
             this.btn_cancel.Size = new System.Drawing.Size(157, 46);
@@ -274,12 +191,12 @@
             // 
             this.btn_add.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_add.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_add.Location = new System.Drawing.Point(212, 577);
+            this.btn_add.Location = new System.Drawing.Point(212, 573);
             this.btn_add.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_add.Name = "btn_add";
             this.btn_add.Size = new System.Drawing.Size(157, 46);
             this.btn_add.TabIndex = 23;
-            this.btn_add.Text = "ADD ITEM";
+            this.btn_add.Text = "ADD TO CART";
             this.btn_add.UseVisualStyleBackColor = true;
             this.btn_add.Click += new System.EventHandler(this.btn_add_Click);
             // 
@@ -292,7 +209,7 @@
             this.panel1.Location = new System.Drawing.Point(22, 82);
             this.panel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(581, 610);
+            this.panel1.Size = new System.Drawing.Size(581, 538);
             this.panel1.TabIndex = 7;
             // 
             // cbxTypeFilter
@@ -403,7 +320,7 @@
             // 
             this.btn_update.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_update.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_update.Location = new System.Drawing.Point(0, 694);
+            this.btn_update.Location = new System.Drawing.Point(20, 572);
             this.btn_update.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_update.Name = "btn_update";
             this.btn_update.Size = new System.Drawing.Size(157, 46);
@@ -512,7 +429,7 @@
             // 
             this.btn_new.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_new.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_new.Location = new System.Drawing.Point(-1, 590);
+            this.btn_new.Location = new System.Drawing.Point(433, 641);
             this.btn_new.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btn_new.Name = "btn_new";
             this.btn_new.Size = new System.Drawing.Size(157, 46);
@@ -548,7 +465,6 @@
             this.panel2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel2.Controls.Add(this.label1);
-            this.panel2.Controls.Add(this.btn_clear_info);
             this.panel2.Controls.Add(this.chk_hide_item);
             this.panel2.Controls.Add(this.lbl_max_qty);
             this.panel2.Controls.Add(this.lbl_order_qty);
@@ -560,10 +476,10 @@
             this.panel2.Controls.Add(this.lbl_markup);
             this.panel2.Controls.Add(this.txt_markup);
             this.panel2.Controls.Add(this.checkListBox_Discounts);
+            this.panel2.Controls.Add(this.btn_update);
             this.panel2.Controls.Add(this.label_CaseDiscount);
             this.panel2.Controls.Add(this.Btl_Dep_Lb);
             this.panel2.Controls.Add(this.txtProd_Qty);
-            this.panel2.Controls.Add(this.btn_new);
             this.panel2.Controls.Add(this.lbl_netPrice);
             this.panel2.Controls.Add(this.txt_net_price);
             this.panel2.Controls.Add(this.Price_txt);
@@ -573,7 +489,6 @@
             this.panel2.Controls.Add(this.cbo_Supplier);
             this.panel2.Controls.Add(this.label5);
             this.panel2.Controls.Add(this.cboType);
-            this.panel2.Controls.Add(this.btn_update);
             this.panel2.Controls.Add(this.txtName);
             this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.label3);
@@ -583,31 +498,18 @@
             this.panel2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panel2.Name = "panel2";
             this.panel2.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.panel2.Size = new System.Drawing.Size(383, 636);
+            this.panel2.Size = new System.Drawing.Size(383, 626);
             this.panel2.TabIndex = 8;
             // 
             // label1
             // 
-            this.label1.Location = new System.Drawing.Point(28, 0);
+            this.label1.Location = new System.Drawing.Point(88, 0);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(116, 31);
+            this.label1.Size = new System.Drawing.Size(56, 31);
             this.label1.TabIndex = 27;
-            this.label1.Text = "Hidden:";
+            this.label1.Text = "Hide:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // btn_clear_info
-            // 
-            this.btn_clear_info.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_clear_info.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_clear_info.Location = new System.Drawing.Point(0, 536);
-            this.btn_clear_info.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btn_clear_info.Name = "btn_clear_info";
-            this.btn_clear_info.Size = new System.Drawing.Size(157, 46);
-            this.btn_clear_info.TabIndex = 19;
-            this.btn_clear_info.Text = "CLEAR";
-            this.btn_clear_info.UseVisualStyleBackColor = true;
-            this.btn_clear_info.Click += new System.EventHandler(this.btn_clear_info_Click);
             // 
             // chk_hide_item
             // 
@@ -727,6 +629,19 @@
             this.label_CaseDiscount.Text = "Discounts:";
             this.label_CaseDiscount.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // btn_clear_info
+            // 
+            this.btn_clear_info.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_clear_info.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_clear_info.Location = new System.Drawing.Point(259, 641);
+            this.btn_clear_info.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btn_clear_info.Name = "btn_clear_info";
+            this.btn_clear_info.Size = new System.Drawing.Size(157, 46);
+            this.btn_clear_info.TabIndex = 19;
+            this.btn_clear_info.Text = "CLEAR";
+            this.btn_clear_info.UseVisualStyleBackColor = true;
+            this.btn_clear_info.Click += new System.EventHandler(this.btn_clear_info_Click);
+            // 
             // chk_box_show_hidden
             // 
             this.chk_box_show_hidden.AutoSize = true;
@@ -749,6 +664,108 @@
             this.label7.TabIndex = 25;
             this.label7.Text = "Search:";
             // 
+            // btn_close
+            // 
+            this.btn_close.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_close.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_close.Location = new System.Drawing.Point(22, 641);
+            this.btn_close.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btn_close.Name = "btn_close";
+            this.btn_close.Size = new System.Drawing.Size(157, 46);
+            this.btn_close.TabIndex = 26;
+            this.btn_close.Text = "CLOSE";
+            this.btn_close.UseVisualStyleBackColor = true;
+            this.btn_close.Click += new System.EventHandler(this.btn_close_Click);
+            // 
+            // Id
+            // 
+            this.Id.DataPropertyName = "Id";
+            this.Id.FillWeight = 8F;
+            this.Id.HeaderText = "ItemId";
+            this.Id.MinimumWidth = 8;
+            this.Id.Name = "Id";
+            this.Id.ReadOnly = true;
+            this.Id.Visible = false;
+            // 
+            // Description
+            // 
+            this.Description.DataPropertyName = "Name";
+            this.Description.FillWeight = 223F;
+            this.Description.HeaderText = "Name";
+            this.Description.MinimumWidth = 223;
+            this.Description.Name = "Description";
+            this.Description.ReadOnly = true;
+            // 
+            // Class
+            // 
+            this.Class.DataPropertyName = "ItemType";
+            this.Class.FillWeight = 65F;
+            this.Class.HeaderText = "Class";
+            this.Class.MinimumWidth = 65;
+            this.Class.Name = "Class";
+            this.Class.ReadOnly = true;
+            this.Class.Visible = false;
+            // 
+            // Barcode
+            // 
+            this.Barcode.DataPropertyName = "Barcode";
+            this.Barcode.FillWeight = 130F;
+            this.Barcode.HeaderText = "Barcode";
+            this.Barcode.MinimumWidth = 130;
+            this.Barcode.Name = "Barcode";
+            this.Barcode.ReadOnly = true;
+            // 
+            // Qty
+            // 
+            this.Qty.DataPropertyName = "Qty";
+            this.Qty.FillWeight = 50F;
+            this.Qty.HeaderText = "Qty";
+            this.Qty.MinimumWidth = 50;
+            this.Qty.Name = "Qty";
+            this.Qty.ReadOnly = true;
+            // 
+            // Price
+            // 
+            this.Price.DataPropertyName = "Price";
+            dataGridViewCellStyle3.Format = "C2";
+            dataGridViewCellStyle3.NullValue = null;
+            this.Price.DefaultCellStyle = dataGridViewCellStyle3;
+            this.Price.FillWeight = 90F;
+            this.Price.HeaderText = "Price";
+            this.Price.MinimumWidth = 90;
+            this.Price.Name = "Price";
+            this.Price.ReadOnly = true;
+            // 
+            // minqty
+            // 
+            this.minqty.DataPropertyName = "minqty";
+            this.minqty.FillWeight = 65F;
+            this.minqty.HeaderText = "Min Qty";
+            this.minqty.MinimumWidth = 65;
+            this.minqty.Name = "minqty";
+            this.minqty.ReadOnly = true;
+            this.minqty.Visible = false;
+            // 
+            // orderqty
+            // 
+            this.orderqty.DataPropertyName = "orderqty";
+            this.orderqty.FillWeight = 70F;
+            this.orderqty.HeaderText = "Order Qty";
+            this.orderqty.MinimumWidth = 70;
+            this.orderqty.Name = "orderqty";
+            this.orderqty.ReadOnly = true;
+            this.orderqty.Visible = false;
+            // 
+            // maxqty
+            // 
+            this.maxqty.DataPropertyName = "maxqty";
+            this.maxqty.FillWeight = 65F;
+            this.maxqty.HeaderText = "Max Qty";
+            this.maxqty.MinimumWidth = 65;
+            this.maxqty.Name = "maxqty";
+            this.maxqty.ReadOnly = true;
+            this.maxqty.Visible = false;
+            // 
             // frmLookup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -756,8 +773,10 @@
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.ClientSize = new System.Drawing.Size(998, 719);
+            this.ClientSize = new System.Drawing.Size(998, 709);
+            this.Controls.Add(this.btn_close);
             this.Controls.Add(this.label7);
+            this.Controls.Add(this.btn_clear_info);
             this.Controls.Add(this.btn_cancel);
             this.Controls.Add(this.chk_box_show_hidden);
             this.Controls.Add(this.cbxOnlyItemsWithInventory);
@@ -768,6 +787,7 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.txtlookup);
+            this.Controls.Add(this.btn_new);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -829,6 +849,7 @@
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.Label label7;
 		private System.Windows.Forms.CheckedListBox checkListBox_Discounts;
+        private System.Windows.Forms.Button btn_close;
         private System.Windows.Forms.DataGridViewTextBoxColumn Id;
         private System.Windows.Forms.DataGridViewTextBoxColumn Description;
         private System.Windows.Forms.DataGridViewTextBoxColumn Class;

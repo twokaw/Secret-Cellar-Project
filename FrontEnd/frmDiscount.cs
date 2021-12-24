@@ -192,7 +192,6 @@ namespace SecretCellar
 		private void button_Clear_Click(object sender, EventArgs e) {
             txtFixedDiscount.Text = "0";
             txtPercentLineItem.Text = "0";
-            //txtPercentTotalSale.Text = "0"; //(possible update needed to reset percent total sale to 0)
             txtPercentTotalSale.Text = (transaction.Discount * 100).ToString();
             resetselectItemDiscount();
             //percent_discount();
