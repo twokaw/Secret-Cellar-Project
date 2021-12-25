@@ -195,7 +195,7 @@ namespace SecretCellar
             txtPercentTotalSale.Text = (transaction.Discount * 100).ToString();
             resetselectItemDiscount();
             //percent_discount();
-            txtFixedDiscount.Text = "";
+            //txtFixedDiscount.Text = "";
             txtFixedDiscount.Focus();
             populate();
         }

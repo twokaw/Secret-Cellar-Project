@@ -12,14 +12,16 @@ namespace SecretCellar
         private Transaction transaction = null;
         private Customer currentCustomer = null;
         private bool TaxFree = false;
-        private List<PaymentMethod> paymentMethods;
+        private List<PaymentMethod> payMethods;
         public frmPayment(Transaction transaction)
         {
             InitializeComponent();
-            paymentMethods = DataAccess.instance.GetPaymentMethods();
+            payMethods = DataAccess.instance.GetPaymentMethods();
 
             this.transaction = transaction;
             txt_TenderTransTotal.Text = transaction.Total.ToString("C");
+            txt_CashOnly.Text = (transaction.Total * (double)(1 - (payMethods.FirstOrDefault(x => x.PayMethod == "CASH").PercentOffset / 100))).ToString("C");
+
             txtCashAmt.Focus();
             TaxFree = transaction.TaxExempt;
 
@@ -113,7 +115,8 @@ namespace SecretCellar
             paymentType.Rows.Clear();
             txtCashAmt.Clear();
             txtNumber.Clear();
-              
+
+            bool cashonly = true;
             foreach (Payment p in transaction.Payments)
             {
                 int row = paymentType.Rows.Add();
@@ -124,19 +127,24 @@ namespace SecretCellar
                     r.Cells["TYPE"].Value = p.Method;
                     r.Cells["AMOUNT"].Value = p.Amount.ToString("C");
                     amountPayed += p.Amount;
+
+                   cashonly &= p.Method.ToUpper() == "CASH" || p.Method.ToUpper() == "CHECK";
                 }
             }
+            double total = Math.Round(transaction.Total, 2);
+            double totalCash = Math.Round(transaction.Total * (double)(1 - (payMethods.FirstOrDefault(x => x.PayMethod == "CASH").PercentOffset / 100)), 2);
 
-            if(amountPayed >= Math.Round(transaction.Total, 2))
+            if (amountPayed >= total ||
+               cashonly && amountPayed >= totalCash)
             {
                 btnCompleteSale.Enabled = true;
-                txtChange.Text = (amountPayed - transaction.Total).ToString("C");
+                txtChange.Text = (amountPayed - (cashonly ? totalCash : total)).ToString("C");
                 txtDue.Text = "$0.00";
             }
             else
             {
                 btnCompleteSale.Enabled = false;
-                txtDue.Text = (transaction.Total - amountPayed).ToString("C");
+                txtDue.Text = ((cashonly ? totalCash : total) - amountPayed).ToString("C");
                 txtChange.Text = "$0.00";
             }
             txtCashAmt.Focus();
