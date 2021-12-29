@@ -9,6 +9,7 @@ using System.Linq;
 namespace SecretCellar {
 	public partial class frmEventsAll : Form {
         public DateTime selectedDate = new DateTime(0001, 1, 1);
+        private bool isArchivedEvents = false;
 
 
 		public frmEventsAll() {
@@ -27,17 +28,53 @@ namespace SecretCellar {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void dataGridView_Events_CellDoubleClick(object sender, DataGridViewCellEventArgs e) {
-            selectedDate = DateTime.Parse(dataGridView_Events.SelectedRows[0].Cells["Date"].Value.ToString());
-            this.Close();
+            if (isArchivedEvents) {
+                //TODO Create a form to display the data for the selected archived event.
+                //Useful info for events: Total sold, Preorders sold, Atdoors sold, Total profit, Preorder profit, atdoor profit
+
+
+                /*
+                 INSERT INTO `ALLOWANCE` (`EmployeeID`, `Year`, `Month`, `OverTime`,`Medical`,
+                 `Lunch`, `Bonus`, `Allowance`) values (10000001, 2014, 4, 10.00, 10.00,
+                 10.45, 10.10, 40.55) ON DUPLICATE KEY UPDATE `EmployeeID` = 10000001
+                 */
+            }
+            else {
+                selectedDate = DateTime.Parse(dataGridView_Events.SelectedRows[0].Cells["Date"].Value.ToString());
+                this.Close();
+            }
         }
 
 
-        private void button_CloseWindow_Click(object sender, EventArgs e) {
-            this.Close();
-		}
+        /// <summary>
+        /// Close the window.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void button_CloseWindow_Click(object sender, EventArgs e) { this.Close(); }
 
 
-		private void button_DeleteEvent_Click(object sender, EventArgs e) {
+        /// <summary>
+        /// Switches the view to the previous events.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void button_PreviousEvents_Click(object sender, EventArgs e) {
+            isArchivedEvents = !isArchivedEvents;
+
+            if (isArchivedEvents) { button_PreviousEvents.Text = "LOAD UPCOMING EVENTS"; label_Events.Text = "Previous Events"; }
+            else { button_PreviousEvents.Text = "LOAD PREVIOUS EVENTS"; label_Events.Text = "Upcoming Events"; }
+
+            UpdateEventGrid();
+        }
+
+
+        /// <summary>
+        /// Deletes the selected event.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void button_DeleteEvent_Click(object sender, EventArgs e) {
             foreach (DataGridViewRow selectedRow in dataGridView_Events.SelectedRows) {
                 List<Event> listOfEvents = DataAccess.instance.GetEvent();
 
@@ -59,18 +96,44 @@ namespace SecretCellar {
         /// Refresh the grid
         /// </summary>
         private void UpdateEventGrid() {
-            dataGridView_Events.DataSource = DataAccess.instance.GetEvent()
-            .Select(x => new {
-                eventId = x.Id,
-                eventDate = x.EventDate,
-                eventName = x.Name,
-                preorderPrice = x.PreOrder.ToString("C"),
-                atDoorPrice = x.AtDoor.ToString("C"),
-                eventQuantity = x.Qty
-            })
-            .OrderBy(x => x.eventDate)
-            .ToList();
+            if (isArchivedEvents) {
+                dataGridView_Events.DataSource = DataAccess.instance.GetEvent()
+                .Select(x => new {
+                    eventId = x.Id,
+                    eventDate = x.EventDate,
+                    eventName = x.Name,
+                    preorderPrice = x.PreOrder.ToString("C"),
+                    atDoorPrice = x.AtDoor.ToString("C"),
+                    eventQuantity = x.Qty
+                })
+                .Where(x => x.eventDate.Year < DateTime.Now.Year
+                    || x.eventDate.Year == DateTime.Now.Year && x.eventDate.Month < DateTime.Now.Month
+                    || x.eventDate.Year == DateTime.Now.Year && x.eventDate.Month == DateTime.Now.Month && x.eventDate.Day < DateTime.Now.Day
+                    || x.eventDate.Year == DateTime.Now.Year && x.eventDate.Month == DateTime.Now.Month && x.eventDate.Day == DateTime.Now.Day && x.eventDate.Hour < DateTime.Now.Hour
+                    || x.eventDate.Year == DateTime.Now.Year && x.eventDate.Month == DateTime.Now.Month && x.eventDate.Day == DateTime.Now.Day && x.eventDate.Hour == DateTime.Now.Hour && x.eventDate.Minute < DateTime.Now.Minute)
+                .OrderBy(x => x.eventDate)
+                .ToList();
+            }
+            else {
+                dataGridView_Events.DataSource = DataAccess.instance.GetEvent()
+                .Select(x => new {
+                    eventId = x.Id,
+                    eventDate = x.EventDate,
+                    eventName = x.Name,
+                    preorderPrice = x.PreOrder.ToString("C"),
+                    atDoorPrice = x.AtDoor.ToString("C"),
+                    eventQuantity = x.Qty
+                })
+                .Where(x => x.eventDate.Year > DateTime.Now.Year
+                    || x.eventDate.Year == DateTime.Now.Year && x.eventDate.Month > DateTime.Now.Month
+                    || x.eventDate.Year == DateTime.Now.Year && x.eventDate.Month == DateTime.Now.Month && x.eventDate.Day > DateTime.Now.Day
+                    || x.eventDate.Year == DateTime.Now.Year && x.eventDate.Month == DateTime.Now.Month && x.eventDate.Day == DateTime.Now.Day && x.eventDate.Hour > DateTime.Now.Hour
+                    || x.eventDate.Year == DateTime.Now.Year && x.eventDate.Month == DateTime.Now.Month && x.eventDate.Day == DateTime.Now.Day && x.eventDate.Hour == DateTime.Now.Hour && x.eventDate.Minute >= DateTime.Now.Minute)
+                .OrderBy(x => x.eventDate)
+                .ToList();
+            }
         }
 
+		
 	}
 }
