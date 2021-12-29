@@ -38,7 +38,7 @@ namespace SecretCellar
         {
             Forms.Remove(this);
             if(Forms.Count == 0 )
-                CommonFont = new Font("Microsoft Sans Serif", 9, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                CommonFont = new Font("Microsoft Sans Serif", 12, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             Console.WriteLine($"Deconstructed: {Forms.Count}");
         }
 

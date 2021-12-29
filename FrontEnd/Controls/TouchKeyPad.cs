@@ -13,7 +13,7 @@ namespace SecretCellar
     public partial class TouchKeyPad : UserControl
     {
         public TextBox Target {get; set;}
-        private int CursorPosition = 0;
+        //private int CursorPosition = 0;
         public TouchKeyPad()
         {
             InitializeComponent();

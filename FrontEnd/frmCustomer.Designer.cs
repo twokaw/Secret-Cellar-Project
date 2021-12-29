@@ -30,9 +30,9 @@ namespace SecretCellar
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -46,6 +46,7 @@ namespace SecretCellar
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCustomer));
             this.pnl_change_info = new System.Windows.Forms.Panel();
             this.cmb_State = new System.Windows.Forms.ComboBox();
@@ -82,10 +83,10 @@ namespace SecretCellar
             this.first_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.phone = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.email = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Credit = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.business_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.isWholesale = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.customer_discount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Credit = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.addr1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.addr2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.city = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -132,7 +133,7 @@ namespace SecretCellar
             this.pnl_change_info.Controls.Add(this.lbl_email);
             this.pnl_change_info.Controls.Add(this.txt_email);
             this.pnl_change_info.Controls.Add(this.lbl_wholesale);
-            this.pnl_change_info.Location = new System.Drawing.Point(844, 76);
+            this.pnl_change_info.Location = new System.Drawing.Point(637, 76);
             this.pnl_change_info.Name = "pnl_change_info";
             this.pnl_change_info.Size = new System.Drawing.Size(353, 478);
             this.pnl_change_info.TabIndex = 0;
@@ -144,7 +145,7 @@ namespace SecretCellar
             this.cmb_State.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmb_State.FormattingEnabled = true;
             this.cmb_State.Location = new System.Drawing.Point(142, 306);
-            this.cmb_State.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cmb_State.Margin = new System.Windows.Forms.Padding(2);
             this.cmb_State.Name = "cmb_State";
             this.cmb_State.Size = new System.Drawing.Size(211, 28);
             this.cmb_State.TabIndex = 21;
@@ -153,7 +154,7 @@ namespace SecretCellar
             // 
             this.button_delete.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_delete.Location = new System.Drawing.Point(0, 383);
-            this.button_delete.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.button_delete.Margin = new System.Windows.Forms.Padding(1);
             this.button_delete.Name = "button_delete";
             this.button_delete.Size = new System.Drawing.Size(163, 37);
             this.button_delete.TabIndex = 48;
@@ -176,7 +177,7 @@ namespace SecretCellar
             this.button_UpdateCredit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.button_UpdateCredit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_UpdateCredit.Location = new System.Drawing.Point(185, 441);
-            this.button_UpdateCredit.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.button_UpdateCredit.Margin = new System.Windows.Forms.Padding(1);
             this.button_UpdateCredit.Name = "button_UpdateCredit";
             this.button_UpdateCredit.Size = new System.Drawing.Size(166, 37);
             this.button_UpdateCredit.TabIndex = 15;
@@ -189,7 +190,7 @@ namespace SecretCellar
             this.txt_zip.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txt_zip.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_zip.Location = new System.Drawing.Point(142, 336);
-            this.txt_zip.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txt_zip.Margin = new System.Windows.Forms.Padding(4);
             this.txt_zip.Name = "txt_zip";
             this.txt_zip.Size = new System.Drawing.Size(211, 26);
             this.txt_zip.TabIndex = 14;
@@ -221,7 +222,7 @@ namespace SecretCellar
             this.txt_city.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txt_city.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_city.Location = new System.Drawing.Point(142, 277);
-            this.txt_city.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txt_city.Margin = new System.Windows.Forms.Padding(4);
             this.txt_city.Name = "txt_city";
             this.txt_city.Size = new System.Drawing.Size(211, 26);
             this.txt_city.TabIndex = 12;
@@ -242,7 +243,7 @@ namespace SecretCellar
             this.txt_addr2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txt_addr2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_addr2.Location = new System.Drawing.Point(142, 249);
-            this.txt_addr2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txt_addr2.Margin = new System.Windows.Forms.Padding(4);
             this.txt_addr2.Name = "txt_addr2";
             this.txt_addr2.Size = new System.Drawing.Size(211, 26);
             this.txt_addr2.TabIndex = 11;
@@ -262,7 +263,7 @@ namespace SecretCellar
             // 
             this.btn_new.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_new.Location = new System.Drawing.Point(-1, 441);
-            this.btn_new.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.btn_new.Margin = new System.Windows.Forms.Padding(1);
             this.btn_new.Name = "btn_new";
             this.btn_new.Size = new System.Drawing.Size(163, 37);
             this.btn_new.TabIndex = 16;
@@ -275,7 +276,7 @@ namespace SecretCellar
             this.btn_update.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_update.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_update.Location = new System.Drawing.Point(185, 383);
-            this.btn_update.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.btn_update.Margin = new System.Windows.Forms.Padding(1);
             this.btn_update.Name = "btn_update";
             this.btn_update.Size = new System.Drawing.Size(167, 37);
             this.btn_update.TabIndex = 17;
@@ -288,7 +289,7 @@ namespace SecretCellar
             this.txt_addr1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txt_addr1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_addr1.Location = new System.Drawing.Point(142, 220);
-            this.txt_addr1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txt_addr1.Margin = new System.Windows.Forms.Padding(4);
             this.txt_addr1.Name = "txt_addr1";
             this.txt_addr1.Size = new System.Drawing.Size(211, 26);
             this.txt_addr1.TabIndex = 10;
@@ -309,7 +310,7 @@ namespace SecretCellar
             this.txt_company.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txt_company.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_company.Location = new System.Drawing.Point(142, 131);
-            this.txt_company.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txt_company.Margin = new System.Windows.Forms.Padding(4);
             this.txt_company.Name = "txt_company";
             this.txt_company.Size = new System.Drawing.Size(211, 26);
             this.txt_company.TabIndex = 7;
@@ -319,7 +320,7 @@ namespace SecretCellar
             this.txt_fname.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txt_fname.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_fname.Location = new System.Drawing.Point(142, 44);
-            this.txt_fname.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txt_fname.Margin = new System.Windows.Forms.Padding(4);
             this.txt_fname.Name = "txt_fname";
             this.txt_fname.Size = new System.Drawing.Size(211, 26);
             this.txt_fname.TabIndex = 4;
@@ -350,7 +351,7 @@ namespace SecretCellar
             this.txt_custDisc.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txt_custDisc.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_custDisc.Location = new System.Drawing.Point(142, 191);
-            this.txt_custDisc.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txt_custDisc.Margin = new System.Windows.Forms.Padding(4);
             this.txt_custDisc.Name = "txt_custDisc";
             this.txt_custDisc.Size = new System.Drawing.Size(211, 26);
             this.txt_custDisc.TabIndex = 9;
@@ -384,7 +385,7 @@ namespace SecretCellar
             "False",
             "True"});
             this.cbo_wholesale.Location = new System.Drawing.Point(142, 160);
-            this.cbo_wholesale.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbo_wholesale.Margin = new System.Windows.Forms.Padding(4);
             this.cbo_wholesale.Name = "cbo_wholesale";
             this.cbo_wholesale.Size = new System.Drawing.Size(211, 28);
             this.cbo_wholesale.TabIndex = 8;
@@ -395,7 +396,7 @@ namespace SecretCellar
             this.txt_lname.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txt_lname.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_lname.Location = new System.Drawing.Point(142, 15);
-            this.txt_lname.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txt_lname.Margin = new System.Windows.Forms.Padding(4);
             this.txt_lname.Name = "txt_lname";
             this.txt_lname.Size = new System.Drawing.Size(211, 26);
             this.txt_lname.TabIndex = 3;
@@ -427,7 +428,7 @@ namespace SecretCellar
             this.txt_email.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txt_email.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_email.Location = new System.Drawing.Point(142, 102);
-            this.txt_email.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txt_email.Margin = new System.Windows.Forms.Padding(4);
             this.txt_email.Name = "txt_email";
             this.txt_email.Size = new System.Drawing.Size(211, 26);
             this.txt_email.TabIndex = 6;
@@ -448,13 +449,17 @@ namespace SecretCellar
             this.customer_data_grid.AllowUserToAddRows = false;
             this.customer_data_grid.AllowUserToDeleteRows = false;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.customer_data_grid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.customer_data_grid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.customer_data_grid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.customer_data_grid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.customer_data_grid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.customerID,
@@ -462,10 +467,10 @@ namespace SecretCellar
             this.first_name,
             this.phone,
             this.email,
+            this.Credit,
             this.business_name,
             this.isWholesale,
             this.customer_discount,
-            this.Credit,
             this.addr1,
             this.addr2,
             this.city,
@@ -475,21 +480,23 @@ namespace SecretCellar
             this.customer_data_grid.MultiSelect = false;
             this.customer_data_grid.Name = "customer_data_grid";
             this.customer_data_grid.ReadOnly = true;
-            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle16.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle16.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle16.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.customer_data_grid.RowHeadersDefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle17.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle17.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle17.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.customer_data_grid.RowHeadersDefaultCellStyle = dataGridViewCellStyle17;
             this.customer_data_grid.RowHeadersVisible = false;
             this.customer_data_grid.RowHeadersWidth = 51;
-            dataGridViewCellStyle17.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.customer_data_grid.RowsDefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle18.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.customer_data_grid.RowsDefaultCellStyle = dataGridViewCellStyle18;
+            this.customer_data_grid.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.customer_data_grid.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.customer_data_grid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.customer_data_grid.Size = new System.Drawing.Size(821, 478);
+            this.customer_data_grid.Size = new System.Drawing.Size(621, 478);
             this.customer_data_grid.TabIndex = 20;
             this.customer_data_grid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.customer_data_grid_CellContentClick);
             this.customer_data_grid.SelectionChanged += new System.EventHandler(this.customergrid_SelectionChanged);
@@ -497,8 +504,8 @@ namespace SecretCellar
             // customerID
             // 
             this.customerID.DataPropertyName = "customerID";
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.customerID.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.customerID.DefaultCellStyle = dataGridViewCellStyle3;
             this.customerID.HeaderText = "Customer ID";
             this.customerID.MinimumWidth = 6;
             this.customerID.Name = "customerID";
@@ -509,8 +516,8 @@ namespace SecretCellar
             // last_name
             // 
             this.last_name.DataPropertyName = "last_name";
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.last_name.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.last_name.DefaultCellStyle = dataGridViewCellStyle4;
             this.last_name.FillWeight = 152.0467F;
             this.last_name.HeaderText = "Last";
             this.last_name.MinimumWidth = 6;
@@ -521,8 +528,8 @@ namespace SecretCellar
             // first_name
             // 
             this.first_name.DataPropertyName = "first_name";
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.first_name.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.first_name.DefaultCellStyle = dataGridViewCellStyle5;
             this.first_name.FillWeight = 139.7045F;
             this.first_name.HeaderText = "First";
             this.first_name.MinimumWidth = 6;
@@ -533,8 +540,8 @@ namespace SecretCellar
             // phone
             // 
             this.phone.DataPropertyName = "phone";
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.phone.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.phone.DefaultCellStyle = dataGridViewCellStyle6;
             this.phone.FillWeight = 128.5989F;
             this.phone.HeaderText = "Phone Number";
             this.phone.MinimumWidth = 6;
@@ -545,8 +552,8 @@ namespace SecretCellar
             // email
             // 
             this.email.DataPropertyName = "email";
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.email.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.email.DefaultCellStyle = dataGridViewCellStyle7;
             this.email.FillWeight = 118.5375F;
             this.email.HeaderText = "email";
             this.email.MinimumWidth = 6;
@@ -554,11 +561,23 @@ namespace SecretCellar
             this.email.ReadOnly = true;
             this.email.Width = 110;
             // 
+            // Credit
+            // 
+            this.Credit.DataPropertyName = "credit";
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Credit.DefaultCellStyle = dataGridViewCellStyle8;
+            this.Credit.FillWeight = 87.98868F;
+            this.Credit.HeaderText = "Credit Amount";
+            this.Credit.MinimumWidth = 6;
+            this.Credit.Name = "Credit";
+            this.Credit.ReadOnly = true;
+            this.Credit.Width = 90;
+            // 
             // business_name
             // 
             this.business_name.DataPropertyName = "business_name";
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.business_name.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.business_name.DefaultCellStyle = dataGridViewCellStyle9;
             this.business_name.FillWeight = 109.5908F;
             this.business_name.HeaderText = "Company";
             this.business_name.MinimumWidth = 6;
@@ -569,8 +588,8 @@ namespace SecretCellar
             // isWholesale
             // 
             this.isWholesale.DataPropertyName = "isWholesale";
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.isWholesale.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.isWholesale.DefaultCellStyle = dataGridViewCellStyle10;
             this.isWholesale.FillWeight = 101.5824F;
             this.isWholesale.HeaderText = "Wholesale";
             this.isWholesale.MinimumWidth = 6;
@@ -581,8 +600,8 @@ namespace SecretCellar
             // customer_discount
             // 
             this.customer_discount.DataPropertyName = "customerDiscount";
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.customer_discount.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.customer_discount.DefaultCellStyle = dataGridViewCellStyle11;
             this.customer_discount.FillWeight = 94.43167F;
             this.customer_discount.HeaderText = "Customer Discount";
             this.customer_discount.MinimumWidth = 6;
@@ -590,23 +609,11 @@ namespace SecretCellar
             this.customer_discount.ReadOnly = true;
             this.customer_discount.Width = 80;
             // 
-            // Credit
-            // 
-            this.Credit.DataPropertyName = "credit";
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Credit.DefaultCellStyle = dataGridViewCellStyle10;
-            this.Credit.FillWeight = 87.98868F;
-            this.Credit.HeaderText = "Credit Amount";
-            this.Credit.MinimumWidth = 6;
-            this.Credit.Name = "Credit";
-            this.Credit.ReadOnly = true;
-            this.Credit.Width = 90;
-            // 
             // addr1
             // 
             this.addr1.DataPropertyName = "addr1";
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.addr1.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.addr1.DefaultCellStyle = dataGridViewCellStyle12;
             this.addr1.FillWeight = 82.34385F;
             this.addr1.HeaderText = "Address 1";
             this.addr1.MinimumWidth = 6;
@@ -617,8 +624,8 @@ namespace SecretCellar
             // addr2
             // 
             this.addr2.DataPropertyName = "addr2";
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.addr2.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.addr2.DefaultCellStyle = dataGridViewCellStyle13;
             this.addr2.FillWeight = 77.3576F;
             this.addr2.HeaderText = "Address 2";
             this.addr2.MinimumWidth = 6;
@@ -629,8 +636,8 @@ namespace SecretCellar
             // city
             // 
             this.city.DataPropertyName = "city";
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.city.DefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.city.DefaultCellStyle = dataGridViewCellStyle14;
             this.city.FillWeight = 72.97629F;
             this.city.HeaderText = "City";
             this.city.MinimumWidth = 6;
@@ -641,8 +648,8 @@ namespace SecretCellar
             // state
             // 
             this.state.DataPropertyName = "state";
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.state.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.state.DefaultCellStyle = dataGridViewCellStyle15;
             this.state.FillWeight = 69.07449F;
             this.state.HeaderText = "State";
             this.state.MinimumWidth = 6;
@@ -653,8 +660,8 @@ namespace SecretCellar
             // zip
             // 
             this.zip.DataPropertyName = "zip";
-            dataGridViewCellStyle15.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.zip.DefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle16.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.zip.DefaultCellStyle = dataGridViewCellStyle16;
             this.zip.FillWeight = 65.76633F;
             this.zip.HeaderText = "Zip Code";
             this.zip.MinimumWidth = 6;
@@ -697,7 +704,7 @@ namespace SecretCellar
             // 
             this.btn_add.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_add.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_add.Location = new System.Drawing.Point(845, 580);
+            this.btn_add.Location = new System.Drawing.Point(638, 580);
             this.btn_add.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_add.Name = "btn_add";
             this.btn_add.Size = new System.Drawing.Size(352, 37);
@@ -723,8 +730,8 @@ namespace SecretCellar
             // 
             this.btn_clear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_clear.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_clear.Location = new System.Drawing.Point(928, 26);
-            this.btn_clear.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_clear.Location = new System.Drawing.Point(721, 26);
+            this.btn_clear.Margin = new System.Windows.Forms.Padding(4);
             this.btn_clear.Name = "btn_clear";
             this.btn_clear.Size = new System.Drawing.Size(269, 37);
             this.btn_clear.TabIndex = 2;
@@ -734,10 +741,10 @@ namespace SecretCellar
             // 
             // frmCustomer
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.ClientSize = new System.Drawing.Size(1214, 656);
+            this.ClientSize = new System.Drawing.Size(998, 656);
             this.Controls.Add(this.btn_clear);
             this.Controls.Add(this.btn_add);
             this.Controls.Add(this.btn_cancel);
@@ -799,20 +806,20 @@ namespace SecretCellar
 		private System.Windows.Forms.Button button_UpdateCredit;
         private System.Windows.Forms.MaskedTextBox txt_phone;
 		private System.Windows.Forms.Button button_delete;
+        private System.Windows.Forms.ComboBox cmb_State;
         private System.Windows.Forms.DataGridViewTextBoxColumn customerID;
         private System.Windows.Forms.DataGridViewTextBoxColumn last_name;
         private System.Windows.Forms.DataGridViewTextBoxColumn first_name;
         private System.Windows.Forms.DataGridViewTextBoxColumn phone;
         private System.Windows.Forms.DataGridViewTextBoxColumn email;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Credit;
         private System.Windows.Forms.DataGridViewTextBoxColumn business_name;
         private System.Windows.Forms.DataGridViewTextBoxColumn isWholesale;
         private System.Windows.Forms.DataGridViewTextBoxColumn customer_discount;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Credit;
         private System.Windows.Forms.DataGridViewTextBoxColumn addr1;
         private System.Windows.Forms.DataGridViewTextBoxColumn addr2;
         private System.Windows.Forms.DataGridViewTextBoxColumn city;
         private System.Windows.Forms.DataGridViewTextBoxColumn state;
         private System.Windows.Forms.DataGridViewTextBoxColumn zip;
-        private System.Windows.Forms.ComboBox cmb_State;
     }
 }
