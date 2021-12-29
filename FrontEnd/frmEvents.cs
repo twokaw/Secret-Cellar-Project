@@ -103,33 +103,30 @@ namespace SecretCellar
                 DataGridViewCellCollection selectedRow = dataGridView_Events.SelectedRows[0].Cells;
 
                 //TRY TO PARSE THE TEXT IN THE QUANTITY FIELD AS A UINT
-                if (uint.TryParse(textBox_Quantity.Text, out uint quantity)) {
+                if (!uint.TryParse(textBox_Quantity.Text, out uint quantity)) { MessageBox.Show("Quantity is not a valid number.", "Error"); return; }
 
-                    //IF THE QUANTITY TO ADD IS MORE THAN WHAT IS AVAILABLE, SHOW AN ERROR
-                    if (quantity > uint.Parse(selectedRow[Qty.Index].Value.ToString())) {
-                        MessageBox.Show("Quantity to add is more than what is available.", "Error");
-                        return;
-                    }
+                //IF THE QUANTITY TO ADD IS MORE THAN WHAT IS AVAILABLE, SHOW AN ERROR
+                if (quantity > uint.Parse(selectedRow["Qty"].Value.ToString())) {
+                    MessageBox.Show("Quantity to add is more than what is available.", "Error");
+                    return;
+                }
 
-                    //GET THE SELECTED ROW'S BARCODE AND CONVERT IT TO AN ITEM
-                    Item item = Transaction.ConvertInvtoItem(DataAccess.instance.GetItem(selectedRow["Barcode"].Value.ToString()), quantity);
+                //GET THE SELECTED ROW'S BARCODE AND CONVERT IT TO AN ITEM
+                Item item = Transaction.ConvertInvtoItem(DataAccess.instance.GetItem(selectedRow["Barcode"].Value.ToString()), quantity);
+                item.TypeID = DataAccess.instance.GetInventoryType("EVENT").TypeId;
 
-                    //UPDATE THE PRICE OF THE ITEM WITH THE SELECTED ROW'S PRICE
-                    if (dataGridView_Events.SelectedRows[0].Cells["PreorderPrice"].Style.ForeColor == Color.Red) {
-                        item.Price = double.Parse(selectedRow["PreorderPrice"].Value.ToString().Substring(1));
-                    }
-                    else {
-                        item.Price = double.Parse(selectedRow["AtDoorPrice"].Value.ToString().Substring(1));
-                    }
-
-                    //ADD THE ITEM TO THE TRANSACTION
-                    _transaction.Items.Add(item);
-
-                    this.Close();
+                //UPDATE THE PRICE OF THE ITEM WITH THE SELECTED ROW'S PRICE
+                if (dataGridView_Events.SelectedRows[0].Cells["PreorderPrice"].Style.ForeColor == Color.Red) {
+                    item.Price = double.Parse(selectedRow["PreorderPrice"].Value.ToString().Substring(1));
                 }
                 else {
-                    MessageBox.Show("Quantity is not a valid number.", "Error");
+                    item.Price = double.Parse(selectedRow["AtDoorPrice"].Value.ToString().Substring(1));
                 }
+
+                //ADD THE ITEM TO THE TRANSACTION
+                _transaction.Items.Add(item);
+
+                this.Close();
 			}
         }
 
@@ -229,10 +226,10 @@ namespace SecretCellar
                     price = double.Parse(dataGridView_Events.SelectedRows[0].Cells["AtDoorPrice"].Value.ToString().Substring(1));
                 }
 
-                if (quantity != 0) { textBox_Total.Text = "$" + quantity * price * 100; }
+                if (quantity != 0) { textBox_Total.Text = "$" + quantity * price; }
             }
             else {
-                textBox_Total.Text = "$000";
+                textBox_Total.Text = "$0";
             }
         }
 
