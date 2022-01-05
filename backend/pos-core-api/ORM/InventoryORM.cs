@@ -245,7 +245,7 @@ namespace pos_core_api.ORM
 
             cmd = db.CreateCommand(@"
                 INSERT INTO inventory_price 
-                (name, Inventory_Qty, Supplier_price) 
+                (inventoryID, Inventory_Qty, Supplier_price) 
                 VALUES 
                 (@id, @qty, @supplier_price);
             ");
