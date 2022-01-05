@@ -213,7 +213,7 @@ namespace pos_core_api.ORM
                 INSERT INTO inventory_description 
                 (name, supplierID, barcode, retail_price, typeID, bottle_deposit_qty, nontaxable, nontaxable_local, InvMax, InvMin, OrderQty, Hidden) 
                 VALUES 
-                (@name, @supplierID, @barcode, @Price, @typeID, @bottles, @nonTaxable, @nonTaxableLocal, @InvMax, OrderQty, @Hidden);
+                (@name, @supplierID, @barcode, @Price, @typeID, @bottles, @nonTaxable, @nonTaxableLocal, @InvMax, @InvMin, @OrderQty, @Hidden);
             ");
 
             //cmd.Parameters.Add(new MySqlParameter("id", inv.Id));

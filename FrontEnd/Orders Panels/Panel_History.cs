@@ -144,5 +144,10 @@ namespace SecretCellar.Orders_Panels {
               OrderBy(x => x.trans_id).
               ToList();
         }
-	}
+
+        private void lstbox_customer_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+    }
 }

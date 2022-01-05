@@ -1,12 +1,7 @@
 ﻿using Shared;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SecretCellar.Settings_Panels
@@ -15,10 +10,12 @@ namespace SecretCellar.Settings_Panels
     {
         private List<Discount> discounts = null;
         public Discount newDiscount = null;
+
         public PanTypes()
         {
             InitializeComponent();
         }
+
         private void PanTypes_Load(object sender, EventArgs e)
         {
             if(DataAccess.instance != null)
@@ -56,12 +53,11 @@ namespace SecretCellar.Settings_Panels
         {
             if (DataAccess.instance.GetInventoryType(txt_typename.Text) == null)
             {
-                InventoryType i = new InventoryType();
-                i.TypeName = txt_typename.Text.Trim();
-                i.IdTax = ((Tax)cbx_tax.SelectedItem).IdTax;
-                //i.BottleDeposit = Convert.ToDouble(txt_bottleDep.Text);
-                //i.SalesTax = Convert.ToDouble(txt_salesTax.Text);
-                //i.LocalSalesTax = Convert.ToDouble(txt_localTax.Text);
+                InventoryType i = new InventoryType
+                {
+                    TypeName = txt_typename.Text.Trim(),
+                    IdTax = ((Tax)cbx_tax.SelectedItem).IdTax
+                };
                 DataAccess.instance.UpdateInventoryType(i);
                 
                 //REFRESH LIST
@@ -75,17 +71,11 @@ namespace SecretCellar.Settings_Panels
             i.TypeName = txt_typename.Text.Trim();
             i.IdTax = ((Tax)cbx_tax.SelectedItem).IdTax;
             
-
             // TODO: Update Discount
             DataAccess.instance.UpdateInventoryType(i);
 
             //REFRESH LIST
             lstTypes.DataSource = DataAccess.instance?.GetInventoryType();
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
         }
 
         private void chk_lst_discount_SelectedIndexChanged(object sender, EventArgs e)
@@ -101,17 +91,16 @@ namespace SecretCellar.Settings_Panels
 
         private void btn_new_discount_Click(object sender, EventArgs e)
         {
-            if (txt_dis_name.Text.Replace(" ", "") == "") {
+            if (txt_dis_name.Text.Replace(" ", "") == "") 
                 MessageBox.Show("The discount name cannot be empty.", "Error");
-			}
-            else {
+            else 
+            {
                 newDiscount = new Discount
                 {
                     DiscountName = txt_dis_name.Text.Trim(),
                     Min = uint.Parse(txt_dis_min.Text),
                     Max = uint.Parse(txt_dis_min.Text),
                     Amount = Convert.ToDouble(txt_discount.Text)
-
                 };
                 //newDiscount.(new Discount { DiscountName = txt_dis_name.Text, Min = uint.Parse(txt_dis_min.Text), Max = uint.Parse(txt_dis_min.Text), Amount = Convert.ToDouble(txt_discount.Text)});
                 newDiscount.DiscountID = DataAccess.instance.UpdateDiscount(newDiscount);
@@ -121,21 +110,24 @@ namespace SecretCellar.Settings_Panels
 
         private void btn_update_discount_Click(object sender, EventArgs e)
         {
-            if (chk_lst_discount.SelectedItem != null) {
-                Discount d = discounts.First(x => x.DiscountName == chk_lst_discount.SelectedItem.ToString());
-                d.DiscountName = txt_dis_name.Text.Trim();
-                d.Min = uint.Parse(txt_dis_min.Text.Trim());
-                d.Max = uint.Parse(txt_dis_max.Text.Trim());
-                d.Amount = Convert.ToDouble(txt_discount.Text);
+            uint.TryParse(txt_dis_min.Text.Trim(), out uint discountMin);
+            uint.TryParse(txt_dis_max.Text.Trim(), out uint discountMax);
+            double.TryParse(txt_discount.Text, out double discountAmount);
 
-                /* if (newDiscount != null && newDiscount.DiscountID > 0)
-                 {
-                     newDiscount.Min = uint.Parse(txt_dis_min.Text),
-                     newDiscount.Max = uint.Parse(txt_dis_min.Text),
-                     newDiscount.Amount = Convert.ToDouble(txt_discount.Text)
-                 };*/
-                DataAccess.instance.UpdateDiscount(d);
-                populate();
+            if (chk_lst_discount.SelectedItem != null) 
+            {
+                Discount d = discounts.FirstOrDefault(x => x.DiscountName == chk_lst_discount.SelectedItem.ToString());
+                
+                if(d != null)
+                {
+                    d.DiscountName = txt_dis_name.Text.Trim();
+                    d.Min = discountMin;
+                    d.Max = discountMax;
+                    d.Amount = discountAmount;
+
+                    DataAccess.instance.UpdateDiscount(d);
+                    populate();
+                }
             }
         }
 
@@ -144,11 +136,8 @@ namespace SecretCellar.Settings_Panels
             if (chk_lst_discount.SelectedItem != null) {
                 Discount dis = discounts.First(x => x.DiscountName == chk_lst_discount.SelectedItem.ToString());
                 DataAccess.instance.DeleteDiscount(dis);
-                txt_dis_name.Text = "";
-                txt_dis_min.Text = "";
-                txt_dis_max.Text = "";
-                txt_discount.Text = "";
-                txt_dis_name.Focus();
+
+                clear();
                 populate();
             }
         }
@@ -162,12 +151,16 @@ namespace SecretCellar.Settings_Panels
 
         private void btn_clear_discount_Click(object sender, EventArgs e)
         {
+            clear();
+        }
+
+        private void clear()
+        {
             txt_dis_name.Text = "";
             txt_dis_min.Text = "";
             txt_dis_max.Text = "";
             txt_discount.Text = "";
             txt_dis_name.Focus();
         }
-
     }
 }

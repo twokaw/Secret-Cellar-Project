@@ -25,7 +25,6 @@ namespace SecretCellar.Settings_Panels
             if(DataAccess.instance != null)
             {
                 Printer currentPrinter = DataAccess.instance.GetPrinter((uint)Properties.Settings.Default.PrinterModelId);
-                // printerNames = DataAccess.instance.GetPrinter();
                 cbx_com_port.DataSource = System.IO.Ports.SerialPort.GetPortNames();
                 lst_print_model.DisplayMember = "Model";
                 Refresh(currentPrinter?.Make, currentPrinter?.Model);
@@ -86,11 +85,11 @@ namespace SecretCellar.Settings_Panels
 
         private void Refresh(string make, string model)
         {
+            printerNames = DataAccess.instance.GetPrinter();
+            cbx_manufact.DataSource = DataAccess.instance.GetPrinterMake();
+            cbx_manufact.SelectedItem = make ?? cbx_manufact.Items[0];
             if(make != null && model != null)
             {
-                printerNames = DataAccess.instance.GetPrinter();
-                cbx_manufact.DataSource = DataAccess.instance.GetPrinterMake();
-                cbx_manufact.SelectedItem = make ?? cbx_manufact.Items[0];
                 modelrefresh = true;
                 lst_print_model.DataSource = printerNames.Where(x => x.Make == cbx_manufact.SelectedItem.ToString()).ToList();
             
