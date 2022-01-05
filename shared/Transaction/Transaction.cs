@@ -106,7 +106,7 @@ namespace Shared
         public double ItemLocalTax(Item i)
         {
             if (!TaxExempt)
-                return (!i.NonTaxable) ? ItemPrice(i) * i.SalesTax : 0;
+                return (!i.NonTaxable) ? ItemPrice(i) * i.LocalSalesTax : 0;
             else
                 return 0;
         }
