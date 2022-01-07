@@ -36,6 +36,7 @@ namespace SecretCellar {
 			this.button_DeleteEvent = new System.Windows.Forms.Button();
 			this.button_PreviousEvents = new System.Windows.Forms.Button();
 			this.label_Events = new System.Windows.Forms.Label();
+			this.button_showPreviousEventData = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView_Events)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -150,7 +151,7 @@ namespace SecretCellar {
 			this.button_PreviousEvents.Name = "button_PreviousEvents";
 			this.button_PreviousEvents.Size = new System.Drawing.Size(226, 27);
 			this.button_PreviousEvents.TabIndex = 3;
-			this.button_PreviousEvents.Text = "LOAD PREVIOUS EVENTS";
+			this.button_PreviousEvents.Text = "SHOW PREVIOUS EVENTS";
 			this.button_PreviousEvents.UseVisualStyleBackColor = true;
 			this.button_PreviousEvents.Click += new System.EventHandler(this.button_PreviousEvents_Click);
 			// 
@@ -164,12 +165,26 @@ namespace SecretCellar {
 			this.label_Events.TabIndex = 4;
 			this.label_Events.Text = "Upcoming Events";
 			// 
+			// button_showPreviousEventData
+			// 
+			this.button_showPreviousEventData.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.button_showPreviousEventData.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.button_showPreviousEventData.Location = new System.Drawing.Point(255, 328);
+			this.button_showPreviousEventData.Margin = new System.Windows.Forms.Padding(1);
+			this.button_showPreviousEventData.Name = "button_showPreviousEventData";
+			this.button_showPreviousEventData.Size = new System.Drawing.Size(180, 55);
+			this.button_showPreviousEventData.TabIndex = 5;
+			this.button_showPreviousEventData.Text = "SHOW EVENT DATA";
+			this.button_showPreviousEventData.UseVisualStyleBackColor = true;
+			this.button_showPreviousEventData.Click += new System.EventHandler(this.button_showPreviousEventData_Click);
+			// 
 			// frmEventsAll
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
 			this.ClientSize = new System.Drawing.Size(690, 393);
+			this.Controls.Add(this.button_showPreviousEventData);
 			this.Controls.Add(this.label_Events);
 			this.Controls.Add(this.button_PreviousEvents);
 			this.Controls.Add(this.button_DeleteEvent);
@@ -199,5 +214,6 @@ namespace SecretCellar {
 		private System.Windows.Forms.DataGridViewTextBoxColumn Qty;
 		private System.Windows.Forms.Button button_PreviousEvents;
 		private System.Windows.Forms.Label label_Events;
+		private System.Windows.Forms.Button button_showPreviousEventData;
 	}
 }
