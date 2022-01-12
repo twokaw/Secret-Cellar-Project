@@ -48,13 +48,13 @@
             this.lblPercentLineItem = new System.Windows.Forms.Label();
             this.button_ApplyToItem = new System.Windows.Forms.Button();
             this.dataGridSelectItems = new System.Windows.Forms.DataGridView();
-            this.Discount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.RegularPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ItemDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ItemNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtPercentLineItem = new System.Windows.Forms.TextBox();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.ItemNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ItemDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RegularPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Discount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridSelectItems)).BeginInit();
@@ -295,42 +295,6 @@
             this.dataGridSelectItems.TabStop = false;
             this.dataGridSelectItems.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridSelectItems_CellContentClick);
             // 
-            // Discount
-            // 
-            this.Discount.HeaderText = "Discount";
-            this.Discount.MinimumWidth = 8;
-            this.Discount.Name = "Discount";
-            this.Discount.ReadOnly = true;
-            // 
-            // Price
-            // 
-            this.Price.HeaderText = "Discount Price";
-            this.Price.MinimumWidth = 8;
-            this.Price.Name = "Price";
-            this.Price.ReadOnly = true;
-            // 
-            // RegularPrice
-            // 
-            this.RegularPrice.HeaderText = "Regular Price";
-            this.RegularPrice.MinimumWidth = 8;
-            this.RegularPrice.Name = "RegularPrice";
-            // 
-            // ItemDescription
-            // 
-            this.ItemDescription.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ItemDescription.HeaderText = "Item Desc.";
-            this.ItemDescription.MinimumWidth = 8;
-            this.ItemDescription.Name = "ItemDescription";
-            this.ItemDescription.ReadOnly = true;
-            // 
-            // ItemNumber
-            // 
-            this.ItemNumber.HeaderText = "Item Number";
-            this.ItemNumber.MinimumWidth = 8;
-            this.ItemNumber.Name = "ItemNumber";
-            this.ItemNumber.ReadOnly = true;
-            this.ItemNumber.Visible = false;
-            // 
             // txtPercentLineItem
             // 
             this.txtPercentLineItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -358,6 +322,46 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(577, 371);
             this.panel3.TabIndex = 19;
+            // 
+            // ItemNumber
+            // 
+            this.ItemNumber.HeaderText = "Item Number";
+            this.ItemNumber.MinimumWidth = 8;
+            this.ItemNumber.Name = "ItemNumber";
+            this.ItemNumber.ReadOnly = true;
+            this.ItemNumber.Visible = false;
+            // 
+            // ItemDescription
+            // 
+            this.ItemDescription.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ItemDescription.FillWeight = 65F;
+            this.ItemDescription.HeaderText = "Item Desc.";
+            this.ItemDescription.MinimumWidth = 8;
+            this.ItemDescription.Name = "ItemDescription";
+            this.ItemDescription.ReadOnly = true;
+            // 
+            // RegularPrice
+            // 
+            this.RegularPrice.FillWeight = 25F;
+            this.RegularPrice.HeaderText = "Regular Price";
+            this.RegularPrice.MinimumWidth = 8;
+            this.RegularPrice.Name = "RegularPrice";
+            // 
+            // Price
+            // 
+            this.Price.FillWeight = 25F;
+            this.Price.HeaderText = "Discount Price";
+            this.Price.MinimumWidth = 8;
+            this.Price.Name = "Price";
+            this.Price.ReadOnly = true;
+            // 
+            // Discount
+            // 
+            this.Discount.FillWeight = 25F;
+            this.Discount.HeaderText = "Discount";
+            this.Discount.MinimumWidth = 8;
+            this.Discount.Name = "Discount";
+            this.Discount.ReadOnly = true;
             // 
             // frmDiscount
             // 
@@ -415,12 +419,12 @@
         private System.Windows.Forms.Label lblPercentLineItem;
         private System.Windows.Forms.Button button_ApplyToItem;
         private System.Windows.Forms.DataGridView dataGridSelectItems;
+        private System.Windows.Forms.TextBox txtPercentLineItem;
+        private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.DataGridViewTextBoxColumn ItemNumber;
         private System.Windows.Forms.DataGridViewTextBoxColumn ItemDescription;
         private System.Windows.Forms.DataGridViewTextBoxColumn RegularPrice;
         private System.Windows.Forms.DataGridViewTextBoxColumn Price;
         private System.Windows.Forms.DataGridViewTextBoxColumn Discount;
-        private System.Windows.Forms.TextBox txtPercentLineItem;
-        private System.Windows.Forms.Panel panel3;
     }
 }
