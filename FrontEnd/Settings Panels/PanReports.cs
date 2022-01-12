@@ -22,7 +22,7 @@ namespace SecretCellar.Settings_Panels
         }
         private void btn_Run_Click(object sender, EventArgs e)
         {
-            List<Transaction> transactions = DataAccess.instance.GetTransactions(dtp_start.Value, dtp_end.Value);
+            List<Transaction> transactions = DataAccess.instance.GetTransactions(dtp_start.Value.Date, dtp_end.Value.Date.AddDays(1));
             Dictionary<string, Sold> items = new Dictionary<string, Sold >();
             // Dictionary<string, double> vendorSales = new Dictionary<string, double>();
             Dictionary<string, double> typeSales = new Dictionary<string, double>();
@@ -34,7 +34,7 @@ namespace SecretCellar.Settings_Panels
             double tax = 0.0;
             double localtax = 0.0;
             Sold.maxlength = 0;
-
+            TxtSalesInvType.Text = "";
             foreach (Transaction t in transactions)
             {
                 totalSales += t.Total;
@@ -149,6 +149,11 @@ Bottle Deposit:{bottleDeposit:C}{"\r\n\r\n"}";
 
             return result;
             
+        }
+
+        private void TxtSalesInvType_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
