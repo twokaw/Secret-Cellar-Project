@@ -112,5 +112,19 @@ namespace pos_core_api.Controllers
                 return Ok();
             } catch (Exception ex) { ErrorLogging.WriteToErrorLog(ex); return StatusCode(500, ex.Message); }
         }
+
+        [HttpGet("PreviousEventData")]
+        public IActionResult GetPreviousEventData() {
+            try {
+                return Ok(DataAccess.Instance.Event.GetPreviousEventData());
+            } catch (Exception ex) { ErrorLogging.WriteToErrorLog(ex); return StatusCode(500, ex.Message); }
+        }
+
+        [HttpGet("PreviousEventData/{eventId}")]
+        public IActionResult GetPreviousEventData(uint eventId) {
+            try {
+                return Ok(DataAccess.Instance.Event.GetPreviousEventData(eventId));
+            } catch (Exception ex) { ErrorLogging.WriteToErrorLog(ex); return StatusCode(500, ex.Message); }
+        }
     }
 }

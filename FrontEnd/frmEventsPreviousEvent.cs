@@ -20,6 +20,15 @@ namespace SecretCellar {
 			if (previousEvent == null) { return; }
 
 			label_previousEventName.Text = previousEvent.Name;
+
+
+			List<PreviousEventData> s = DataAccess.instance.GetPreviousEventData();
+
+			foreach (PreviousEventData p in s) {
+				Console.WriteLine($"At Door Profit: {p.AtDoorProfit} | At Door Sold {p.AtDoorSold}");
+			}
+
+			
 		}
 
 

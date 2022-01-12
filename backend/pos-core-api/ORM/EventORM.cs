@@ -441,5 +441,63 @@ namespace pos_core_api.ORM
                 db.CloseCommand(cmd);
             }
         }
+
+        public List<PreviousEventData> GetPreviousEventData() {
+            List<PreviousEventData> output = new List<PreviousEventData>();
+
+            MySqlCommand cmd = db.CreateCommand(@"
+                SELECT *
+                FROM inventory.v_event;
+            ");
+
+            try {
+                using MySqlDataReader reader = cmd.ExecuteReader();
+                PreviousEventData outputItem = null;
+
+                while (reader.Read()) {
+                    outputItem = new PreviousEventData {
+                        AtDoorProfit = reader.IsDBNull("AtDoorProfit") ? 0 : reader.GetDouble("AtDoorProfit"),
+                        PreOrderProfit = reader.IsDBNull("PreOrderProfit") ? 0 : reader.GetDouble("PreOrderProfit"),
+                        AtDoorSold = reader.IsDBNull("AtDoorSold") ? 0 : reader.GetDouble("AtDoorSold"),
+                        PreOrderSold = reader.IsDBNull("PreOrderSold") ? 0 : reader.GetDouble("PreOrderSold")
+                    };
+
+                    outputItem = new PreviousEventData { AtDoorProfit=2, AtDoorSold=4, PreOrderProfit=1, PreOrderSold=2, TotalProfit=3, TotalSold=10 };
+
+                    output.Add(outputItem);
+                }
+            } finally { db.CloseCommand(cmd); }
+
+            return output;
+        }
+
+        public PreviousEventData GetPreviousEventData(uint eventId) {
+            List<PreviousEventData> output = new List<PreviousEventData>();
+
+            MySqlCommand cmd = db.CreateCommand(@"
+                SELECT *
+                FROM v_event
+                WHERE inventoryID = @eventId;
+            ");
+            cmd.Parameters.Add(new MySqlParameter("eventId", eventId));
+
+            try {
+                using MySqlDataReader reader = cmd.ExecuteReader();
+                PreviousEventData outputItem = null;
+
+                while (reader.Read()) {
+                    outputItem = new PreviousEventData {
+                        AtDoorProfit = reader.IsDBNull("AtDoorProfit") ? 0 : reader.GetDouble("AtDoorProfit"),
+                        PreOrderProfit = reader.IsDBNull("PreOrderProfit") ? 0 : reader.GetDouble("PreOrderProfit"),
+                        AtDoorSold = reader.IsDBNull("AtDoorSold") ? 0 : reader.GetDouble("AtDoorSold"),
+                        PreOrderSold = reader.IsDBNull("PreOrderSold") ? 0 : reader.GetDouble("PreOrderSold")
+                    };
+
+                    output.Add(outputItem);
+                }
+            } finally { db.CloseCommand(cmd); }
+
+            return output[0];
+        }
     }
 }
