@@ -124,6 +124,7 @@ namespace SecretCellar.Orders_Panels {
 						});
 					else {
 						coi.RequestQty = Convert.ToUInt32(txt_orderqty_custorder.Text);
+						coi.CustomerOrderItemID = cid;
 						DataAccess.instance.UpdateCustomerOrderItem(coi);
 					}
 

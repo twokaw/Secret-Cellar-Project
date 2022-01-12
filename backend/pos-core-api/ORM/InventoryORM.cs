@@ -213,7 +213,7 @@ namespace pos_core_api.ORM
                 INSERT INTO inventory_description 
                 (name, supplierID, barcode, retail_price, typeID, bottle_deposit_qty, nontaxable, nontaxable_local, InvMax, InvMin, OrderQty, Hidden) 
                 VALUES 
-                (@name, @supplierID, @barcode, @Price, @typeID, @bottles, @nonTaxable, @nonTaxableLocal, @InvMax, OrderQty, @Hidden);
+                (@name, @supplierID, @barcode, @Price, @typeID, @bottles, @nonTaxable, @nonTaxableLocal, @InvMax, @InvMin, @OrderQty, @Hidden);
             ");
 
             //cmd.Parameters.Add(new MySqlParameter("id", inv.Id));
@@ -245,7 +245,7 @@ namespace pos_core_api.ORM
 
             cmd = db.CreateCommand(@"
                 INSERT INTO inventory_price 
-                (name, Inventory_Qty, Supplier_price) 
+                (inventoryID, Inventory_Qty, Supplier_price) 
                 VALUES 
                 (@id, @qty, @supplier_price);
             ");
