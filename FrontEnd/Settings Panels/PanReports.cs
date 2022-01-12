@@ -35,6 +35,7 @@ namespace SecretCellar.Settings_Panels
             double localtax = 0.0;
             Sold.maxlength = 0;
             TxtSalesInvType.Text = "";
+
             foreach (Transaction t in transactions)
             {
                 totalSales += t.Total;

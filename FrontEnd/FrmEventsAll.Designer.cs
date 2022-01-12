@@ -30,16 +30,16 @@ namespace SecretCellar {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmEventsAll));
             this.dataGridView_Events = new System.Windows.Forms.DataGridView();
-            this.button_CloseWindow = new System.Windows.Forms.Button();
-            this.button_DeleteEvent = new System.Windows.Forms.Button();
-            this.button_PreviousEvents = new System.Windows.Forms.Button();
-            this.label_Events = new System.Windows.Forms.Label();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EventName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PreorderPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AtDoorPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Qty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.button_CloseWindow = new System.Windows.Forms.Button();
+            this.button_DeleteEvent = new System.Windows.Forms.Button();
+            this.button_PreviousEvents = new System.Windows.Forms.Button();
+            this.label_Events = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Events)).BeginInit();
             this.SuspendLayout();
             // 
@@ -82,8 +82,8 @@ namespace SecretCellar {
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridView_Events.DefaultCellStyle = dataGridViewCellStyle3;
-            this.dataGridView_Events.Location = new System.Drawing.Point(13, 36);
-            this.dataGridView_Events.Margin = new System.Windows.Forms.Padding(4);
+            this.dataGridView_Events.Location = new System.Drawing.Point(20, 55);
+            this.dataGridView_Events.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.dataGridView_Events.Name = "dataGridView_Events";
             this.dataGridView_Events.ReadOnly = true;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
@@ -99,59 +99,10 @@ namespace SecretCellar {
             this.dataGridView_Events.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.dataGridView_Events.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dataGridView_Events.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView_Events.Size = new System.Drawing.Size(664, 279);
+            this.dataGridView_Events.Size = new System.Drawing.Size(996, 429);
             this.dataGridView_Events.TabIndex = 0;
             this.dataGridView_Events.TabStop = false;
             this.dataGridView_Events.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_Events_CellDoubleClick);
-            // 
-            // button_CloseWindow
-            // 
-            this.button_CloseWindow.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button_CloseWindow.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_CloseWindow.Location = new System.Drawing.Point(13, 328);
-            this.button_CloseWindow.Margin = new System.Windows.Forms.Padding(1);
-            this.button_CloseWindow.Name = "button_CloseWindow";
-            this.button_CloseWindow.Size = new System.Drawing.Size(180, 55);
-            this.button_CloseWindow.TabIndex = 1;
-            this.button_CloseWindow.Text = "CLOSE WINDOW";
-            this.button_CloseWindow.UseVisualStyleBackColor = true;
-            this.button_CloseWindow.Click += new System.EventHandler(this.button_CloseWindow_Click);
-            // 
-            // button_DeleteEvent
-            // 
-            this.button_DeleteEvent.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button_DeleteEvent.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_DeleteEvent.Location = new System.Drawing.Point(497, 328);
-            this.button_DeleteEvent.Margin = new System.Windows.Forms.Padding(1);
-            this.button_DeleteEvent.Name = "button_DeleteEvent";
-            this.button_DeleteEvent.Size = new System.Drawing.Size(180, 55);
-            this.button_DeleteEvent.TabIndex = 2;
-            this.button_DeleteEvent.Text = "DELETE EVENT";
-            this.button_DeleteEvent.UseVisualStyleBackColor = true;
-            this.button_DeleteEvent.Click += new System.EventHandler(this.button_DeleteEvent_Click);
-            // 
-            // button_PreviousEvents
-            // 
-            this.button_PreviousEvents.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button_PreviousEvents.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_PreviousEvents.Location = new System.Drawing.Point(451, 9);
-            this.button_PreviousEvents.Margin = new System.Windows.Forms.Padding(1);
-            this.button_PreviousEvents.Name = "button_PreviousEvents";
-            this.button_PreviousEvents.Size = new System.Drawing.Size(226, 27);
-            this.button_PreviousEvents.TabIndex = 3;
-            this.button_PreviousEvents.Text = "LOAD PREVIOUS EVENTS";
-            this.button_PreviousEvents.UseVisualStyleBackColor = true;
-            this.button_PreviousEvents.Click += new System.EventHandler(this.button_PreviousEvents_Click);
-            // 
-            // label_Events
-            // 
-            this.label_Events.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_Events.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label_Events.Location = new System.Drawing.Point(9, 9);
-            this.label_Events.Name = "label_Events";
-            this.label_Events.Size = new System.Drawing.Size(231, 23);
-            this.label_Events.TabIndex = 4;
-            this.label_Events.Text = "Upcoming Events";
             // 
             // Id
             // 
@@ -213,18 +164,69 @@ namespace SecretCellar {
             this.Qty.Name = "Qty";
             this.Qty.ReadOnly = true;
             // 
+            // button_CloseWindow
+            // 
+            this.button_CloseWindow.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.button_CloseWindow.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_CloseWindow.Location = new System.Drawing.Point(20, 505);
+            this.button_CloseWindow.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button_CloseWindow.Name = "button_CloseWindow";
+            this.button_CloseWindow.Size = new System.Drawing.Size(270, 85);
+            this.button_CloseWindow.TabIndex = 1;
+            this.button_CloseWindow.Text = "CLOSE WINDOW";
+            this.button_CloseWindow.UseVisualStyleBackColor = true;
+            this.button_CloseWindow.Click += new System.EventHandler(this.button_CloseWindow_Click);
+            // 
+            // button_DeleteEvent
+            // 
+            this.button_DeleteEvent.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button_DeleteEvent.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_DeleteEvent.Location = new System.Drawing.Point(746, 505);
+            this.button_DeleteEvent.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button_DeleteEvent.Name = "button_DeleteEvent";
+            this.button_DeleteEvent.Size = new System.Drawing.Size(270, 85);
+            this.button_DeleteEvent.TabIndex = 2;
+            this.button_DeleteEvent.Text = "DELETE EVENT";
+            this.button_DeleteEvent.UseVisualStyleBackColor = true;
+            this.button_DeleteEvent.Click += new System.EventHandler(this.button_DeleteEvent_Click);
+            // 
+            // button_PreviousEvents
+            // 
+            this.button_PreviousEvents.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.button_PreviousEvents.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_PreviousEvents.Location = new System.Drawing.Point(676, 14);
+            this.button_PreviousEvents.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button_PreviousEvents.Name = "button_PreviousEvents";
+            this.button_PreviousEvents.Size = new System.Drawing.Size(339, 42);
+            this.button_PreviousEvents.TabIndex = 3;
+            this.button_PreviousEvents.Text = "LOAD PREVIOUS EVENTS";
+            this.button_PreviousEvents.UseVisualStyleBackColor = true;
+            this.button_PreviousEvents.Click += new System.EventHandler(this.button_PreviousEvents_Click);
+            // 
+            // label_Events
+            // 
+            this.label_Events.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_Events.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label_Events.Location = new System.Drawing.Point(14, 14);
+            this.label_Events.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label_Events.Name = "label_Events";
+            this.label_Events.Size = new System.Drawing.Size(346, 35);
+            this.label_Events.TabIndex = 4;
+            this.label_Events.Text = "Upcoming Events";
+            // 
             // frmEventsAll
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.ClientSize = new System.Drawing.Size(690, 393);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(231)))), ((int)(((byte)(206)))));
+            this.ClientSize = new System.Drawing.Size(1035, 605);
             this.Controls.Add(this.label_Events);
             this.Controls.Add(this.button_PreviousEvents);
             this.Controls.Add(this.button_DeleteEvent);
             this.Controls.Add(this.button_CloseWindow);
             this.Controls.Add(this.dataGridView_Events);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmEventsAll";
