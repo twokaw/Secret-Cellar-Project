@@ -32,11 +32,11 @@ namespace SecretCellar {
 			this.label_preorderProfitL = new System.Windows.Forms.Label();
 			this.label_atDoorProfitL = new System.Windows.Forms.Label();
 			this.label_totalSold = new System.Windows.Forms.Label();
-			this.label1 = new System.Windows.Forms.Label();
-			this.label2 = new System.Windows.Forms.Label();
-			this.label3 = new System.Windows.Forms.Label();
-			this.label4 = new System.Windows.Forms.Label();
-			this.label5 = new System.Windows.Forms.Label();
+			this.label_preorderSold = new System.Windows.Forms.Label();
+			this.label_atDoorSold = new System.Windows.Forms.Label();
+			this.label_totalProfit = new System.Windows.Forms.Label();
+			this.label_preorderProfit = new System.Windows.Forms.Label();
+			this.label_atDoorProfit = new System.Windows.Forms.Label();
 			this.label_horizontalRule = new System.Windows.Forms.Label();
 			this.SuspendLayout();
 			// 
@@ -133,63 +133,63 @@ namespace SecretCellar {
 			this.label_totalSold.TabIndex = 7;
 			this.label_totalSold.Text = "Total Sold";
 			// 
-			// label1
+			// label_preorderSold
 			// 
-			this.label1.AutoSize = true;
-			this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label1.ForeColor = System.Drawing.SystemColors.ControlLight;
-			this.label1.Location = new System.Drawing.Point(14, 181);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(80, 20);
-			this.label1.TabIndex = 8;
-			this.label1.Text = "Total Sold";
+			this.label_preorderSold.AutoSize = true;
+			this.label_preorderSold.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label_preorderSold.ForeColor = System.Drawing.SystemColors.ControlLight;
+			this.label_preorderSold.Location = new System.Drawing.Point(14, 181);
+			this.label_preorderSold.Name = "label_preorderSold";
+			this.label_preorderSold.Size = new System.Drawing.Size(113, 20);
+			this.label_preorderSold.TabIndex = 8;
+			this.label_preorderSold.Text = "Pre Order Sold";
 			// 
-			// label2
+			// label_atDoorSold
 			// 
-			this.label2.AutoSize = true;
-			this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label2.ForeColor = System.Drawing.SystemColors.ControlLight;
-			this.label2.Location = new System.Drawing.Point(14, 270);
-			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(80, 20);
-			this.label2.TabIndex = 9;
-			this.label2.Text = "Total Sold";
+			this.label_atDoorSold.AutoSize = true;
+			this.label_atDoorSold.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label_atDoorSold.ForeColor = System.Drawing.SystemColors.ControlLight;
+			this.label_atDoorSold.Location = new System.Drawing.Point(14, 270);
+			this.label_atDoorSold.Name = "label_atDoorSold";
+			this.label_atDoorSold.Size = new System.Drawing.Size(100, 20);
+			this.label_atDoorSold.TabIndex = 9;
+			this.label_atDoorSold.Text = "At Door Sold";
 			// 
-			// label3
+			// label_totalProfit
 			// 
-			this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.label3.AutoSize = true;
-			this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label3.ForeColor = System.Drawing.SystemColors.ControlLight;
-			this.label3.Location = new System.Drawing.Point(269, 92);
-			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(80, 20);
-			this.label3.TabIndex = 10;
-			this.label3.Text = "Total Sold";
+			this.label_totalProfit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.label_totalProfit.AutoSize = true;
+			this.label_totalProfit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label_totalProfit.ForeColor = System.Drawing.SystemColors.ControlLight;
+			this.label_totalProfit.Location = new System.Drawing.Point(269, 92);
+			this.label_totalProfit.Name = "label_totalProfit";
+			this.label_totalProfit.Size = new System.Drawing.Size(85, 20);
+			this.label_totalProfit.TabIndex = 10;
+			this.label_totalProfit.Text = "Total Profit";
 			// 
-			// label4
+			// label_preorderProfit
 			// 
-			this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.label4.AutoSize = true;
-			this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label4.ForeColor = System.Drawing.SystemColors.ControlLight;
-			this.label4.Location = new System.Drawing.Point(269, 181);
-			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(80, 20);
-			this.label4.TabIndex = 11;
-			this.label4.Text = "Total Sold";
+			this.label_preorderProfit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.label_preorderProfit.AutoSize = true;
+			this.label_preorderProfit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label_preorderProfit.ForeColor = System.Drawing.SystemColors.ControlLight;
+			this.label_preorderProfit.Location = new System.Drawing.Point(269, 181);
+			this.label_preorderProfit.Name = "label_preorderProfit";
+			this.label_preorderProfit.Size = new System.Drawing.Size(118, 20);
+			this.label_preorderProfit.TabIndex = 11;
+			this.label_preorderProfit.Text = "Pre Order Profit";
 			// 
-			// label5
+			// label_atDoorProfit
 			// 
-			this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.label5.AutoSize = true;
-			this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label5.ForeColor = System.Drawing.SystemColors.ControlLight;
-			this.label5.Location = new System.Drawing.Point(269, 270);
-			this.label5.Name = "label5";
-			this.label5.Size = new System.Drawing.Size(80, 20);
-			this.label5.TabIndex = 12;
-			this.label5.Text = "Total Sold";
+			this.label_atDoorProfit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.label_atDoorProfit.AutoSize = true;
+			this.label_atDoorProfit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label_atDoorProfit.ForeColor = System.Drawing.SystemColors.ControlLight;
+			this.label_atDoorProfit.Location = new System.Drawing.Point(269, 270);
+			this.label_atDoorProfit.Name = "label_atDoorProfit";
+			this.label_atDoorProfit.Size = new System.Drawing.Size(105, 20);
+			this.label_atDoorProfit.TabIndex = 12;
+			this.label_atDoorProfit.Text = "At Door Profit";
 			// 
 			// label_horizontalRule
 			// 
@@ -211,11 +211,11 @@ namespace SecretCellar {
 			this.ClientSize = new System.Drawing.Size(441, 309);
 			this.Controls.Add(this.label_previousEventName);
 			this.Controls.Add(this.label_horizontalRule);
-			this.Controls.Add(this.label5);
-			this.Controls.Add(this.label4);
-			this.Controls.Add(this.label3);
-			this.Controls.Add(this.label2);
-			this.Controls.Add(this.label1);
+			this.Controls.Add(this.label_atDoorProfit);
+			this.Controls.Add(this.label_preorderProfit);
+			this.Controls.Add(this.label_totalProfit);
+			this.Controls.Add(this.label_atDoorSold);
+			this.Controls.Add(this.label_preorderSold);
 			this.Controls.Add(this.label_totalSold);
 			this.Controls.Add(this.label_atDoorProfitL);
 			this.Controls.Add(this.label_preorderProfitL);
@@ -244,11 +244,11 @@ namespace SecretCellar {
 		private System.Windows.Forms.Label label_preorderProfitL;
 		private System.Windows.Forms.Label label_atDoorProfitL;
 		private System.Windows.Forms.Label label_totalSold;
-		private System.Windows.Forms.Label label1;
-		private System.Windows.Forms.Label label2;
-		private System.Windows.Forms.Label label3;
-		private System.Windows.Forms.Label label4;
-		private System.Windows.Forms.Label label5;
+		private System.Windows.Forms.Label label_preorderSold;
+		private System.Windows.Forms.Label label_atDoorSold;
+		private System.Windows.Forms.Label label_totalProfit;
+		private System.Windows.Forms.Label label_preorderProfit;
+		private System.Windows.Forms.Label label_atDoorProfit;
 		private System.Windows.Forms.Label label_horizontalRule;
 	}
 }

@@ -462,8 +462,6 @@ namespace pos_core_api.ORM
                         PreOrderSold = reader.IsDBNull("PreOrderSold") ? 0 : reader.GetDouble("PreOrderSold")
                     };
 
-                    outputItem = new PreviousEventData { AtDoorProfit=2, AtDoorSold=4, PreOrderProfit=1, PreOrderSold=2, TotalProfit=3, TotalSold=10 };
-
                     output.Add(outputItem);
                 }
             } finally { db.CloseCommand(cmd); }

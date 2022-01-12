@@ -21,14 +21,14 @@ namespace SecretCellar {
 
 			label_previousEventName.Text = previousEvent.Name;
 
+			PreviousEventData previousEventData = DataAccess.instance.GetPreviousEventData(eventId);
 
-			List<PreviousEventData> s = DataAccess.instance.GetPreviousEventData();
-
-			foreach (PreviousEventData p in s) {
-				Console.WriteLine($"At Door Profit: {p.AtDoorProfit} | At Door Sold {p.AtDoorSold}");
-			}
-
-			
+			label_totalProfit.Text = previousEventData.TotalProfit + "";
+			label_totalSold.Text = previousEventData.TotalSold + "";
+			label_atDoorProfit.Text = previousEventData.AtDoorProfit + "";
+			label_atDoorSold.Text = previousEventData.AtDoorSold + "";
+			label_preorderProfit.Text = previousEventData.PreOrderProfit + "";
+			label_preorderSold.Text = previousEventData.PreOrderSold + "";
 		}
 
 
