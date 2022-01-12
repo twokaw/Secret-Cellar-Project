@@ -31,13 +31,13 @@ namespace SecretCellar {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmEventsWaitlist));
             this.dataGridView_Customers = new System.Windows.Forms.DataGridView();
-            this.button_Remove = new System.Windows.Forms.Button();
-            this.button_Close = new System.Windows.Forms.Button();
-            this.button_Add = new System.Windows.Forms.Button();
             this.EventId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CustomerId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CustomerName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.button_Remove = new System.Windows.Forms.Button();
+            this.button_Close = new System.Windows.Forms.Button();
+            this.button_Add = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Customers)).BeginInit();
             this.SuspendLayout();
             // 
@@ -73,7 +73,8 @@ namespace SecretCellar {
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridView_Customers.DefaultCellStyle = dataGridViewCellStyle3;
-            this.dataGridView_Customers.Location = new System.Drawing.Point(12, 12);
+            this.dataGridView_Customers.Location = new System.Drawing.Point(18, 18);
+            this.dataGridView_Customers.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dataGridView_Customers.Name = "dataGridView_Customers";
             this.dataGridView_Customers.ReadOnly = true;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
@@ -92,45 +93,9 @@ namespace SecretCellar {
             this.dataGridView_Customers.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.dataGridView_Customers.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dataGridView_Customers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView_Customers.Size = new System.Drawing.Size(490, 200);
+            this.dataGridView_Customers.Size = new System.Drawing.Size(735, 300);
             this.dataGridView_Customers.TabIndex = 0;
             this.dataGridView_Customers.TabStop = false;
-            // 
-            // button_Remove
-            // 
-            this.button_Remove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button_Remove.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_Remove.Location = new System.Drawing.Point(12, 232);
-            this.button_Remove.Name = "button_Remove";
-            this.button_Remove.Size = new System.Drawing.Size(188, 55);
-            this.button_Remove.TabIndex = 1;
-            this.button_Remove.Text = "REMOVE FROM WAITLIST";
-            this.button_Remove.UseVisualStyleBackColor = true;
-            this.button_Remove.Click += new System.EventHandler(this.button_Remove_Click);
-            // 
-            // button_Close
-            // 
-            this.button_Close.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button_Close.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_Close.Location = new System.Drawing.Point(12, 304);
-            this.button_Close.Name = "button_Close";
-            this.button_Close.Size = new System.Drawing.Size(188, 55);
-            this.button_Close.TabIndex = 3;
-            this.button_Close.Text = "CLOSE WINDOW";
-            this.button_Close.UseVisualStyleBackColor = true;
-            this.button_Close.Click += new System.EventHandler(this.button_Close_Click);
-            // 
-            // button_Add
-            // 
-            this.button_Add.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button_Add.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_Add.Location = new System.Drawing.Point(314, 232);
-            this.button_Add.Name = "button_Add";
-            this.button_Add.Size = new System.Drawing.Size(188, 55);
-            this.button_Add.TabIndex = 2;
-            this.button_Add.Text = "ADD TO WAITLIST...";
-            this.button_Add.UseVisualStyleBackColor = true;
-            this.button_Add.Click += new System.EventHandler(this.button_Add_Click);
             // 
             // EventId
             // 
@@ -172,12 +137,51 @@ namespace SecretCellar {
             this.Date.Name = "Date";
             this.Date.ReadOnly = true;
             // 
+            // button_Remove
+            // 
+            this.button_Remove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.button_Remove.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_Remove.Location = new System.Drawing.Point(18, 348);
+            this.button_Remove.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_Remove.Name = "button_Remove";
+            this.button_Remove.Size = new System.Drawing.Size(282, 82);
+            this.button_Remove.TabIndex = 1;
+            this.button_Remove.Text = "REMOVE FROM WAITLIST";
+            this.button_Remove.UseVisualStyleBackColor = true;
+            this.button_Remove.Click += new System.EventHandler(this.button_Remove_Click);
+            // 
+            // button_Close
+            // 
+            this.button_Close.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.button_Close.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_Close.Location = new System.Drawing.Point(18, 456);
+            this.button_Close.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_Close.Name = "button_Close";
+            this.button_Close.Size = new System.Drawing.Size(282, 82);
+            this.button_Close.TabIndex = 3;
+            this.button_Close.Text = "CLOSE WINDOW";
+            this.button_Close.UseVisualStyleBackColor = true;
+            this.button_Close.Click += new System.EventHandler(this.button_Close_Click);
+            // 
+            // button_Add
+            // 
+            this.button_Add.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.button_Add.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_Add.Location = new System.Drawing.Point(471, 348);
+            this.button_Add.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_Add.Name = "button_Add";
+            this.button_Add.Size = new System.Drawing.Size(282, 82);
+            this.button_Add.TabIndex = 2;
+            this.button_Add.Text = "ADD TO WAITLIST...";
+            this.button_Add.UseVisualStyleBackColor = true;
+            this.button_Add.Click += new System.EventHandler(this.button_Add_Click);
+            // 
             // frmEventsWaitlist
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(144F, 144F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.ClientSize = new System.Drawing.Size(514, 368);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(231)))), ((int)(((byte)(206)))));
+            this.ClientSize = new System.Drawing.Size(771, 552);
             this.Controls.Add(this.button_Add);
             this.Controls.Add(this.button_Close);
             this.Controls.Add(this.button_Remove);
@@ -185,6 +189,7 @@ namespace SecretCellar {
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmEventsWaitlist";

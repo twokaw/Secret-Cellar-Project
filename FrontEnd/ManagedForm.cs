@@ -142,8 +142,8 @@ namespace SecretCellar
             // 
             // ManagedForm
             // 
-          //  this.Size = new System.Drawing.Size(1200, 900);
-          //  this.ClientSize = new System.Drawing.Size(284, 261);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(231)))), ((int)(((byte)(206)))));
+            this.ClientSize = new System.Drawing.Size(278, 244);
             this.Name = "ManagedForm";
             this.Load += new System.EventHandler(this.ManagedForm_Load);
             this.ResumeLayout(false);
