@@ -88,6 +88,7 @@ namespace SecretCellar
                        // discount_total = discount_total + Convert.ToDouble(row.Cells["RegularPrice"].Value.ToString().Replace("$", "").Replace("(", "").Replace(")", "")) - Convert.ToDouble(row.Cells["Price"].Value.ToString().Replace("$", "").Replace("(", "").Replace(")", "")); ;
                     }
                 }
+                txtPercentLineItem.Text = "";
                 populate();
                 //transaction.Discount = discount_total;
                 //transaction.Discount = discount_total + currentdis;
@@ -230,8 +231,8 @@ namespace SecretCellar
         }
 
 		private void button_Clear_Click(object sender, EventArgs e) {
-            txtFixedDiscount.Text = "0";
-            txtPercentLineItem.Text = "0";
+            txtFixedDiscount.Text = "";
+            txtPercentLineItem.Text = "";
             txtPercentTotalSale.Text = (transaction.Discount * 100).ToString();
             resetselectItemDiscount();
             //percent_discount();
