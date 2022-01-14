@@ -1,4 +1,6 @@
 ﻿
+using System.Drawing;
+
 namespace SecretCellar {
 	partial class frmEventsAll {
 		/// <summary>
@@ -26,6 +28,7 @@ namespace SecretCellar {
 		private void InitializeComponent() {
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmEventsAll));
 			this.dataGridView_Events = new System.Windows.Forms.DataGridView();
+			dataGridView_Events.ColumnHeadersDefaultCellStyle.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Bold);
 			this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.EventName = new System.Windows.Forms.DataGridViewTextBoxColumn();
