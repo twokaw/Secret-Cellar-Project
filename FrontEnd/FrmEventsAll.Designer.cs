@@ -158,7 +158,7 @@ namespace SecretCellar {
 			// label_Events
 			// 
 			this.label_Events.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label_Events.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+			this.label_Events.ForeColor = System.Drawing.SystemColors.ControlLight;
 			this.label_Events.Location = new System.Drawing.Point(9, 9);
 			this.label_Events.Name = "label_Events";
 			this.label_Events.Size = new System.Drawing.Size(231, 23);
@@ -182,7 +182,7 @@ namespace SecretCellar {
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(42)))), ((int)(((byte)(45)))));
 			this.ClientSize = new System.Drawing.Size(690, 393);
 			this.Controls.Add(this.button_showPreviousEventData);
 			this.Controls.Add(this.label_Events);
