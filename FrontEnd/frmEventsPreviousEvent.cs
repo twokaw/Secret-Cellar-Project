@@ -23,13 +23,21 @@ namespace SecretCellar {
 
 			PreviousEventData previousEventData = DataAccess.instance.GetPreviousEventData(eventId);
 
-			label_totalProfit.Text = previousEventData.TotalProfit + "";
-			label_totalSold.Text = previousEventData.TotalSold + "";
+			label_totalProfit.Text = previousEventData.AtDoorProfit + previousEventData.PreOrderProfit + "";
+			label_totalSold.Text = previousEventData.AtDoorSold + previousEventData.PreOrderSold + "";
 			label_atDoorProfit.Text = previousEventData.AtDoorProfit + "";
 			label_atDoorSold.Text = previousEventData.AtDoorSold + "";
 			label_preorderProfit.Text = previousEventData.PreOrderProfit + "";
 			label_preorderSold.Text = previousEventData.PreOrderSold + "";
 		}
+
+
+		/// <summary>
+		/// On close click.
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void button_close_Click(object sender, EventArgs e) { this.Close(); }
 
 
 		/// <summary>
@@ -48,6 +56,5 @@ namespace SecretCellar {
 
 			return null;
 		}
-
 	}
 }

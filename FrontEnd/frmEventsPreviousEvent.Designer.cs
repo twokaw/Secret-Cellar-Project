@@ -37,7 +37,7 @@ namespace SecretCellar {
 			this.label_totalProfit = new System.Windows.Forms.Label();
 			this.label_preorderProfit = new System.Windows.Forms.Label();
 			this.label_atDoorProfit = new System.Windows.Forms.Label();
-			this.label_horizontalRule = new System.Windows.Forms.Label();
+			this.button_close = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// label_previousEventName
@@ -191,26 +191,27 @@ namespace SecretCellar {
 			this.label_atDoorProfit.TabIndex = 12;
 			this.label_atDoorProfit.Text = "At Door Profit";
 			// 
-			// label_horizontalRule
+			// button_close
 			// 
-			this.label_horizontalRule.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.label_horizontalRule.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-			this.label_horizontalRule.Font = new System.Drawing.Font("Microsoft Sans Serif", 2F);
-			this.label_horizontalRule.Location = new System.Drawing.Point(-4, -23);
-			this.label_horizontalRule.Name = "label_horizontalRule";
-			this.label_horizontalRule.Size = new System.Drawing.Size(449, 79);
-			this.label_horizontalRule.TabIndex = 13;
-			this.label_horizontalRule.Text = " ";
+			this.button_close.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.button_close.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.button_close.Location = new System.Drawing.Point(8, 313);
+			this.button_close.Margin = new System.Windows.Forms.Padding(1);
+			this.button_close.Name = "button_close";
+			this.button_close.Size = new System.Drawing.Size(180, 55);
+			this.button_close.TabIndex = 13;
+			this.button_close.Text = "CLOSE WINDOW";
+			this.button_close.UseVisualStyleBackColor = true;
+			this.button_close.Click += new System.EventHandler(this.button_close_Click);
 			// 
 			// frmEventsPreviousEvent
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-			this.ClientSize = new System.Drawing.Size(441, 309);
+			this.ClientSize = new System.Drawing.Size(441, 378);
+			this.Controls.Add(this.button_close);
 			this.Controls.Add(this.label_previousEventName);
-			this.Controls.Add(this.label_horizontalRule);
 			this.Controls.Add(this.label_atDoorProfit);
 			this.Controls.Add(this.label_preorderProfit);
 			this.Controls.Add(this.label_totalProfit);
@@ -249,6 +250,6 @@ namespace SecretCellar {
 		private System.Windows.Forms.Label label_totalProfit;
 		private System.Windows.Forms.Label label_preorderProfit;
 		private System.Windows.Forms.Label label_atDoorProfit;
-		private System.Windows.Forms.Label label_horizontalRule;
+		private System.Windows.Forms.Button button_close;
 	}
 }
