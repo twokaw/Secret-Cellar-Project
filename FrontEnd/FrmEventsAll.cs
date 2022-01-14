@@ -17,6 +17,7 @@ namespace SecretCellar {
 
             //SET THE ID COLUMN TO HIDDEN SO THAT THE ID IS STILL ACCESSIBLE WHEN DELETING EVENTS
             dataGridView_Events.Columns["Id"].Visible = false;
+            button_showPreviousEventData.Visible = false;
 
             UpdateEventGrid();
         }
@@ -28,21 +29,8 @@ namespace SecretCellar {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void dataGridView_Events_CellDoubleClick(object sender, DataGridViewCellEventArgs e) {
-            if (isArchivedEvents) {
-                //TODO Create a form to display the data for the selected archived event.
-                //Useful info for events: Total sold, Preorders sold, Atdoors sold, Total profit, Preorder profit, atdoor profit
-
-
-                /*
-                 INSERT INTO `ALLOWANCE` (`EmployeeID`, `Year`, `Month`, `OverTime`,`Medical`,
-                 `Lunch`, `Bonus`, `Allowance`) values (10000001, 2014, 4, 10.00, 10.00,
-                 10.45, 10.10, 40.55) ON DUPLICATE KEY UPDATE `EmployeeID` = 10000001
-                 */
-            }
-            else {
-                selectedDate = DateTime.Parse(dataGridView_Events.SelectedRows[0].Cells["Date"].Value.ToString());
-                this.Close();
-            }
+            selectedDate = DateTime.Parse(dataGridView_Events.SelectedRows[0].Cells["Date"].Value.ToString());
+            this.Close();
         }
 
 
@@ -62,8 +50,16 @@ namespace SecretCellar {
         private void button_PreviousEvents_Click(object sender, EventArgs e) {
             isArchivedEvents = !isArchivedEvents;
 
-            if (isArchivedEvents) { button_PreviousEvents.Text = "LOAD UPCOMING EVENTS"; label_Events.Text = "Previous Events"; }
-            else { button_PreviousEvents.Text = "LOAD PREVIOUS EVENTS"; label_Events.Text = "Upcoming Events"; }
+            if (isArchivedEvents) {
+                button_PreviousEvents.Text = "SHOW UPCOMING EVENTS";
+                label_Events.Text = "Previous Events";
+                button_showPreviousEventData.Visible = true;
+            }
+            else {
+                button_PreviousEvents.Text = "SHOW PREVIOUS EVENTS";
+                label_Events.Text = "Upcoming Events";
+                button_showPreviousEventData.Visible = false;
+            }
 
             UpdateEventGrid();
         }
@@ -89,6 +85,21 @@ namespace SecretCellar {
             }
 
             UpdateEventGrid();
+        }
+
+
+        /// <summary>
+        /// Shows the selected previous event's data.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void button_showPreviousEventData_Click(object sender, EventArgs e) {
+            if (dataGridView_Events.SelectedRows.Count == 0) { return; }
+
+            string id = dataGridView_Events.SelectedRows[0].Cells["Id"].Value.ToString();
+
+            frmEventsPreviousEvent previousEventform = new frmEventsPreviousEvent(id);
+            previousEventform.ShowDialog();
         }
 
 

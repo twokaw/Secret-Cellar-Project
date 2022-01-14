@@ -294,6 +294,7 @@
     <Compile Include="NoteType.cs" />
     <Compile Include="Payment.cs" />
     <Compile Include="PaymentMethod.cs" />
+    <Compile Include="PreviousEventData.cs" />
     <Compile Include="Printer.cs" />
     <Compile Include="Report.cs" />
     <Compile Include="Tax.cs" />
