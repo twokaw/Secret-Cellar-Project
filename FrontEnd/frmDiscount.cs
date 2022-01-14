@@ -88,6 +88,7 @@ namespace SecretCellar
                        // discount_total = discount_total + Convert.ToDouble(row.Cells["RegularPrice"].Value.ToString().Replace("$", "").Replace("(", "").Replace(")", "")) - Convert.ToDouble(row.Cells["Price"].Value.ToString().Replace("$", "").Replace("(", "").Replace(")", "")); ;
                     }
                 }
+                txtPercentLineItem.Text = "";
                 populate();
                 //transaction.Discount = discount_total;
                 //transaction.Discount = discount_total + currentdis;
@@ -179,8 +180,48 @@ namespace SecretCellar
         }
 
 		private void btn_ApplyDiscount_Click(object sender, EventArgs e) {
-            transaction.Discount = Convert.ToDouble(txtPercentTotalSale.Text) / 100;
+
+            foreach (DataGridViewRow row in dataGridSelectItems.Rows)
+            {
+
+
+                //double disval = Convert.ToDouble(row.Cells["Price"].Value.ToString().Replace("$", "").Replace("(", "").Replace(")", ""));
+
+                if (!row.Cells["Price"].Value.ToString().Contains("("))
+                {
+
+                    Item i = transaction.Items.First((x) => x.Id == int.Parse(row.Cells["ItemNumber"].Value.ToString())); //&& (x.Price * (1 - x.Discount)).ToString("c") == row.Cells["Price"].Value.ToString());
+
+                    if (double.Parse(txtPercentTotalSale.Text) == 0)
+                    {
+                        i.Discount = 0;
+                    }
+
+                    else if (double.Parse(txtPercentTotalSale.Text) / 100 < i.Discount)
+                    {
+                        i.Discount = i.Discount - double.Parse(txtPercentTotalSale.Text) / 100;
+                    }
+
+                    else if(i.Discount > 0 && double.Parse(txtPercentTotalSale.Text) / 100 > i.Discount) 
+                    {
+                        i.Discount = (i.Discount - .01) + double.Parse(txtPercentTotalSale.Text) / 100;  //if you add + i.discount it will keep a running total of discount instead of resetting to 0 like it currently does
+                                                                                                         //row.Cells["Price"].Value = i.Price.ToString("c");
+                                                                                                         // row.Cells["Discount"].Value = i.Discount+((1-i.Discount)*transaction.Discount).ToString("p0");
+                    }
+
+                    else
+                    {
+                        i.Discount = i.Discount + double.Parse(txtPercentTotalSale.Text) / 100;  //if you add + i.discount it will keep a running total of discount instead of resetting to 0 like it currently does
+                                                                                                 //row.Cells["Price"].Value = i.Price.ToString("c");
+                                                                                                 // row.Cells["Discount"].Value = i.Discount+((1-i.Discount)*transaction.Discount).ToString("p0");
+                    }                                                              // discount_total = discount_total + Convert.ToDouble(row.Cells["RegularPrice"].Value.ToString().Replace("$", "").Replace("(", "").Replace(")", "")) - Convert.ToDouble(row.Cells["Price"].Value.ToString().Replace("$", "").Replace("(", "").Replace(")", "")); ;
+                }
+            }
             populate();
+
+            //original code
+            /*transaction.Discount = Convert.ToDouble(txtPercentTotalSale.Text) / 100;
+            populate();*/
         }
 
 		private void button_Coupon_Click(object sender, EventArgs e) {
@@ -190,8 +231,8 @@ namespace SecretCellar
         }
 
 		private void button_Clear_Click(object sender, EventArgs e) {
-            txtFixedDiscount.Text = "0";
-            txtPercentLineItem.Text = "0";
+            txtFixedDiscount.Text = "";
+            txtPercentLineItem.Text = "";
             txtPercentTotalSale.Text = (transaction.Discount * 100).ToString();
             resetselectItemDiscount();
             //percent_discount();
