@@ -159,8 +159,7 @@ namespace pos_core_api.ORM
         public void GetItems(Transaction transaction)
         {
             MySqlCommand cmd = db.CreateCommand(@"
-                SELECT receiptID, name, InventoryID, barcode, sold_qty, sold_price, supplier_price, 
-                        bottles, inventory_type_name, nontaxable, nontaxable_local, inventory_qty
+                SELECT *
                 FROM v_transaction_items
                 WHERE receiptID = @receiptID
                 ORDER BY InventoryID
@@ -185,7 +184,10 @@ namespace pos_core_api.ORM
                             Bottles = itemReader.IsDBNull("bottles") ? 0 : itemReader.GetUInt32("bottles"),
                             ItemType = itemReader.IsDBNull("inventory_type_name") ? "" : itemReader.GetString("inventory_type_name"),
                             NonTaxable = !itemReader.IsDBNull("nontaxable") && itemReader.GetBoolean("nontaxable"),
-                            NonTaxableLocal = !itemReader.IsDBNull("nontaxable_local") && itemReader.GetBoolean("nontaxable_local")
+                            NonTaxableLocal = !itemReader.IsDBNull("nontaxable_local") && itemReader.GetBoolean("nontaxable_local"),
+                            BottleDeposit = itemReader.IsDBNull("bottle_deposit") ? 0 : itemReader.GetDouble("bottle_deposit"),
+                            SalesTax  = itemReader.IsDBNull("sales_tax") ? 0 : itemReader.GetDouble("sales_tax"),
+                            LocalSalesTax = itemReader.IsDBNull("local_sales_tax") ? 0 : itemReader.GetDouble("local_sales_tax"),
                         };
                         item.NumSold = 0;
                         transaction.Items.Add(item);

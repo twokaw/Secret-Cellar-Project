@@ -37,12 +37,11 @@ namespace pos_core_api.ORM
         public uint Insert (Tax tax)
         {
             MySqlCommand cmd = db.CreateCommand(@"
-                INSERT INTO v_tax
-                (bottle_deposit, sales_tax, local_sales_tax, Tax_name
+                INSERT INTO tax
+                (bottle_deposit, sales_tax, local_sales_tax, Tax_name)
                 VALUES
                 (@bottle_deposit, @sales_tax, @local_sales_tax, @Tax_name)
             ");
-            cmd.Parameters.Add(new MySqlParameter("idTAX", tax.IdTax));
             cmd.Parameters.Add(new MySqlParameter("bottle_deposit", tax.BottleDeposit));
             cmd.Parameters.Add(new MySqlParameter("Tax_name", tax.TaxName));
             cmd.Parameters.Add(new MySqlParameter("sales_tax", tax.SalesTax));

@@ -89,5 +89,15 @@ namespace SecretCellar.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap round_red_close_button_5095 {
+            get {
+                object obj = ResourceManager.GetObject("round_red_close_button_5095", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

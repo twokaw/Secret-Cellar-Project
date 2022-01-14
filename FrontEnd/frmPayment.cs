@@ -46,7 +46,9 @@ namespace SecretCellar
 
         private void btnCompleteSale_Click(object sender, EventArgs e)
         {
-            
+            if (transaction.Payments[0].Method == "BREAKAGE")
+                transaction.Items.ForEach(x => x.Price = x.SupplierPrice);
+
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
