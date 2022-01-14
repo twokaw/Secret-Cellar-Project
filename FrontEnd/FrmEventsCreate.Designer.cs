@@ -27,13 +27,10 @@ namespace SecretCellar {
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmEventsCreate));
 			this.textBox_Quantity = new System.Windows.Forms.TextBox();
 			this.label_Qty = new System.Windows.Forms.Label();
-			this.textBox_Price = new SecretCellar.CurrencyBox();
 			this.label_Price = new System.Windows.Forms.Label();
 			this.label_Date = new System.Windows.Forms.Label();
 			this.label_Duration = new System.Windows.Forms.Label();
-			this.textBox_Preorder = new SecretCellar.CurrencyBox();
 			this.label_Preorder = new System.Windows.Forms.Label();
-			this.textBox_AtDoor = new SecretCellar.CurrencyBox();
 			this.label_AtDoor = new System.Windows.Forms.Label();
 			this.button_CreateEvent = new System.Windows.Forms.Button();
 			this.button_CloseWindow = new System.Windows.Forms.Button();
@@ -43,7 +40,6 @@ namespace SecretCellar {
 			this.label_Name = new System.Windows.Forms.Label();
 			this.label_NonTaxable = new System.Windows.Forms.Label();
 			this.label_NonTaxableLocal = new System.Windows.Forms.Label();
-			this.textBox_SupplierPrice = new SecretCellar.CurrencyBox();
 			this.label_SupplierPrice = new System.Windows.Forms.Label();
 			this.checkBox_NonTaxable = new System.Windows.Forms.CheckBox();
 			this.checkBox_NonTaxableLocal = new System.Windows.Forms.CheckBox();
@@ -51,6 +47,10 @@ namespace SecretCellar {
 			this.label2 = new System.Windows.Forms.Label();
 			this.label3 = new System.Windows.Forms.Label();
 			this.label4 = new System.Windows.Forms.Label();
+			this.textBox_SupplierPrice = new SecretCellar.CurrencyBox();
+			this.textBox_AtDoor = new SecretCellar.CurrencyBox();
+			this.textBox_Preorder = new SecretCellar.CurrencyBox();
+			this.textBox_Price = new SecretCellar.CurrencyBox();
 			this.SuspendLayout();
 			// 
 			// textBox_Quantity
@@ -71,22 +71,12 @@ namespace SecretCellar {
 			this.label_Qty.Cursor = System.Windows.Forms.Cursors.IBeam;
 			this.label_Qty.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.25F);
 			this.label_Qty.ForeColor = System.Drawing.SystemColors.ControlLight;
-			this.label_Qty.Location = new System.Drawing.Point(141, 159);
+			this.label_Qty.Location = new System.Drawing.Point(158, 156);
 			this.label_Qty.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.label_Qty.Name = "label_Qty";
 			this.label_Qty.Size = new System.Drawing.Size(152, 39);
 			this.label_Qty.TabIndex = 7;
 			this.label_Qty.Text = "Quantity:";
-			// 
-			// textBox_Price
-			// 
-			this.textBox_Price.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.textBox_Price.Location = new System.Drawing.Point(318, 297);
-			this.textBox_Price.Margin = new System.Windows.Forms.Padding(4);
-			this.textBox_Price.Name = "textBox_Price";
-			this.textBox_Price.Size = new System.Drawing.Size(304, 38);
-			this.textBox_Price.TabIndex = 6;
-			this.textBox_Price.Text = "0.00";
 			// 
 			// label_Price
 			// 
@@ -97,7 +87,7 @@ namespace SecretCellar {
 			this.label_Price.Cursor = System.Windows.Forms.Cursors.IBeam;
 			this.label_Price.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.25F);
 			this.label_Price.ForeColor = System.Drawing.SystemColors.ControlLight;
-			this.label_Price.Location = new System.Drawing.Point(188, 297);
+			this.label_Price.Location = new System.Drawing.Point(206, 292);
 			this.label_Price.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.label_Price.Name = "label_Price";
 			this.label_Price.Size = new System.Drawing.Size(104, 39);
@@ -113,7 +103,7 @@ namespace SecretCellar {
 			this.label_Date.Cursor = System.Windows.Forms.Cursors.IBeam;
 			this.label_Date.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.25F);
 			this.label_Date.ForeColor = System.Drawing.SystemColors.ControlLight;
-			this.label_Date.Location = new System.Drawing.Point(103, 61);
+			this.label_Date.Location = new System.Drawing.Point(116, 61);
 			this.label_Date.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.label_Date.Name = "label_Date";
 			this.label_Date.Size = new System.Drawing.Size(194, 39);
@@ -129,22 +119,12 @@ namespace SecretCellar {
 			this.label_Duration.Cursor = System.Windows.Forms.Cursors.IBeam;
 			this.label_Duration.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.25F);
 			this.label_Duration.ForeColor = System.Drawing.SystemColors.ControlLight;
-			this.label_Duration.Location = new System.Drawing.Point(140, 111);
+			this.label_Duration.Location = new System.Drawing.Point(155, 111);
 			this.label_Duration.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.label_Duration.Name = "label_Duration";
 			this.label_Duration.Size = new System.Drawing.Size(155, 39);
 			this.label_Duration.TabIndex = 15;
 			this.label_Duration.Text = "Duration:";
-			// 
-			// textBox_Preorder
-			// 
-			this.textBox_Preorder.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.textBox_Preorder.Location = new System.Drawing.Point(318, 206);
-			this.textBox_Preorder.Margin = new System.Windows.Forms.Padding(4);
-			this.textBox_Preorder.Name = "textBox_Preorder";
-			this.textBox_Preorder.Size = new System.Drawing.Size(304, 38);
-			this.textBox_Preorder.TabIndex = 4;
-			this.textBox_Preorder.Text = "0.00";
 			// 
 			// label_Preorder
 			// 
@@ -155,22 +135,12 @@ namespace SecretCellar {
 			this.label_Preorder.Cursor = System.Windows.Forms.Cursors.IBeam;
 			this.label_Preorder.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.25F);
 			this.label_Preorder.ForeColor = System.Drawing.SystemColors.ControlLight;
-			this.label_Preorder.Location = new System.Drawing.Point(134, 205);
+			this.label_Preorder.Location = new System.Drawing.Point(152, 203);
 			this.label_Preorder.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.label_Preorder.Name = "label_Preorder";
 			this.label_Preorder.Size = new System.Drawing.Size(158, 39);
 			this.label_Preorder.TabIndex = 17;
 			this.label_Preorder.Text = "Preorder:";
-			// 
-			// textBox_AtDoor
-			// 
-			this.textBox_AtDoor.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.textBox_AtDoor.Location = new System.Drawing.Point(318, 251);
-			this.textBox_AtDoor.Margin = new System.Windows.Forms.Padding(4);
-			this.textBox_AtDoor.Name = "textBox_AtDoor";
-			this.textBox_AtDoor.Size = new System.Drawing.Size(304, 38);
-			this.textBox_AtDoor.TabIndex = 5;
-			this.textBox_AtDoor.Text = "0.00";
 			// 
 			// label_AtDoor
 			// 
@@ -181,7 +151,7 @@ namespace SecretCellar {
 			this.label_AtDoor.Cursor = System.Windows.Forms.Cursors.IBeam;
 			this.label_AtDoor.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.25F);
 			this.label_AtDoor.ForeColor = System.Drawing.SystemColors.ControlLight;
-			this.label_AtDoor.Location = new System.Drawing.Point(151, 251);
+			this.label_AtDoor.Location = new System.Drawing.Point(169, 246);
 			this.label_AtDoor.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.label_AtDoor.Name = "label_AtDoor";
 			this.label_AtDoor.Size = new System.Drawing.Size(141, 39);
@@ -248,7 +218,7 @@ namespace SecretCellar {
 			this.label_Name.Cursor = System.Windows.Forms.Cursors.IBeam;
 			this.label_Name.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.25F);
 			this.label_Name.ForeColor = System.Drawing.SystemColors.ControlLight;
-			this.label_Name.Location = new System.Drawing.Point(181, 10);
+			this.label_Name.Location = new System.Drawing.Point(193, 10);
 			this.label_Name.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.label_Name.Name = "label_Name";
 			this.label_Name.Size = new System.Drawing.Size(117, 39);
@@ -264,7 +234,7 @@ namespace SecretCellar {
 			this.label_NonTaxable.Cursor = System.Windows.Forms.Cursors.IBeam;
 			this.label_NonTaxable.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.25F);
 			this.label_NonTaxable.ForeColor = System.Drawing.SystemColors.ControlLight;
-			this.label_NonTaxable.Location = new System.Drawing.Point(102, 385);
+			this.label_NonTaxable.Location = new System.Drawing.Point(90, 380);
 			this.label_NonTaxable.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.label_NonTaxable.Name = "label_NonTaxable";
 			this.label_NonTaxable.Size = new System.Drawing.Size(220, 39);
@@ -280,22 +250,12 @@ namespace SecretCellar {
 			this.label_NonTaxableLocal.Cursor = System.Windows.Forms.Cursors.IBeam;
 			this.label_NonTaxableLocal.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.25F);
 			this.label_NonTaxableLocal.ForeColor = System.Drawing.SystemColors.ControlLight;
-			this.label_NonTaxableLocal.Location = new System.Drawing.Point(11, 430);
+			this.label_NonTaxableLocal.Location = new System.Drawing.Point(3, 425);
 			this.label_NonTaxableLocal.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.label_NonTaxableLocal.Name = "label_NonTaxableLocal";
 			this.label_NonTaxableLocal.Size = new System.Drawing.Size(311, 39);
 			this.label_NonTaxableLocal.TabIndex = 29;
 			this.label_NonTaxableLocal.Text = "Non Taxable Local:";
-			// 
-			// textBox_SupplierPrice
-			// 
-			this.textBox_SupplierPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.textBox_SupplierPrice.Location = new System.Drawing.Point(318, 343);
-			this.textBox_SupplierPrice.Margin = new System.Windows.Forms.Padding(4);
-			this.textBox_SupplierPrice.Name = "textBox_SupplierPrice";
-			this.textBox_SupplierPrice.Size = new System.Drawing.Size(304, 38);
-			this.textBox_SupplierPrice.TabIndex = 7;
-			this.textBox_SupplierPrice.Text = "0.00";
 			// 
 			// label_SupplierPrice
 			// 
@@ -306,7 +266,7 @@ namespace SecretCellar {
 			this.label_SupplierPrice.Cursor = System.Windows.Forms.Cursors.IBeam;
 			this.label_SupplierPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.25F);
 			this.label_SupplierPrice.ForeColor = System.Drawing.SystemColors.ControlLight;
-			this.label_SupplierPrice.Location = new System.Drawing.Point(54, 340);
+			this.label_SupplierPrice.Location = new System.Drawing.Point(71, 338);
 			this.label_SupplierPrice.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.label_SupplierPrice.Name = "label_SupplierPrice";
 			this.label_SupplierPrice.Size = new System.Drawing.Size(239, 39);
@@ -340,7 +300,7 @@ namespace SecretCellar {
 			this.label1.Cursor = System.Windows.Forms.Cursors.Default;
 			this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.label1.ForeColor = System.Drawing.SystemColors.ControlLight;
-			this.label1.Location = new System.Drawing.Point(289, 257);
+			this.label1.Location = new System.Drawing.Point(317, 255);
 			this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(26, 29);
@@ -356,7 +316,7 @@ namespace SecretCellar {
 			this.label2.Cursor = System.Windows.Forms.Cursors.Default;
 			this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.label2.ForeColor = System.Drawing.SystemColors.ControlLight;
-			this.label2.Location = new System.Drawing.Point(287, 303);
+			this.label2.Location = new System.Drawing.Point(315, 301);
 			this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(26, 29);
@@ -372,7 +332,7 @@ namespace SecretCellar {
 			this.label3.Cursor = System.Windows.Forms.Cursors.Default;
 			this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.label3.ForeColor = System.Drawing.SystemColors.ControlLight;
-			this.label3.Location = new System.Drawing.Point(286, 349);
+			this.label3.Location = new System.Drawing.Point(314, 347);
 			this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(26, 29);
@@ -388,18 +348,58 @@ namespace SecretCellar {
 			this.label4.Cursor = System.Windows.Forms.Cursors.Default;
 			this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.label4.ForeColor = System.Drawing.SystemColors.ControlLight;
-			this.label4.Location = new System.Drawing.Point(290, 214);
+			this.label4.Location = new System.Drawing.Point(318, 212);
 			this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.label4.Name = "label4";
 			this.label4.Size = new System.Drawing.Size(26, 29);
 			this.label4.TabIndex = 35;
 			this.label4.Text = "$";
 			// 
+			// textBox_SupplierPrice
+			// 
+			this.textBox_SupplierPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.textBox_SupplierPrice.Location = new System.Drawing.Point(345, 343);
+			this.textBox_SupplierPrice.Margin = new System.Windows.Forms.Padding(4);
+			this.textBox_SupplierPrice.Name = "textBox_SupplierPrice";
+			this.textBox_SupplierPrice.Size = new System.Drawing.Size(277, 38);
+			this.textBox_SupplierPrice.TabIndex = 7;
+			this.textBox_SupplierPrice.Text = "0.00";
+			// 
+			// textBox_AtDoor
+			// 
+			this.textBox_AtDoor.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.textBox_AtDoor.Location = new System.Drawing.Point(345, 251);
+			this.textBox_AtDoor.Margin = new System.Windows.Forms.Padding(4);
+			this.textBox_AtDoor.Name = "textBox_AtDoor";
+			this.textBox_AtDoor.Size = new System.Drawing.Size(277, 38);
+			this.textBox_AtDoor.TabIndex = 5;
+			this.textBox_AtDoor.Text = "0.00";
+			// 
+			// textBox_Preorder
+			// 
+			this.textBox_Preorder.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.textBox_Preorder.Location = new System.Drawing.Point(345, 206);
+			this.textBox_Preorder.Margin = new System.Windows.Forms.Padding(4);
+			this.textBox_Preorder.Name = "textBox_Preorder";
+			this.textBox_Preorder.Size = new System.Drawing.Size(277, 38);
+			this.textBox_Preorder.TabIndex = 4;
+			this.textBox_Preorder.Text = "0.00";
+			// 
+			// textBox_Price
+			// 
+			this.textBox_Price.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.textBox_Price.Location = new System.Drawing.Point(345, 297);
+			this.textBox_Price.Margin = new System.Windows.Forms.Padding(4);
+			this.textBox_Price.Name = "textBox_Price";
+			this.textBox_Price.Size = new System.Drawing.Size(277, 38);
+			this.textBox_Price.TabIndex = 6;
+			this.textBox_Price.Text = "0.00";
+			// 
 			// frmEventsCreate
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(42)))), ((int)(((byte)(45)))));
+			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(63)))), ((int)(((byte)(67)))));
 			this.ClientSize = new System.Drawing.Size(633, 558);
 			this.Controls.Add(this.label4);
 			this.Controls.Add(this.label3);
