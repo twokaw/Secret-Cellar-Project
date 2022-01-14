@@ -49,9 +49,18 @@ namespace SecretCellar {
 			this.dataGridView_Events.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.dataGridView_Events.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-			this.dataGridView_Events.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.dataGridView_Events.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridView_Events.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView_Events.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.dataGridView_Events.ColumnHeadersHeight = 28;
+            this.dataGridView_Events.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.dataGridView_Events.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Id,
             this.Date,
             this.EventName,
@@ -206,14 +215,14 @@ namespace SecretCellar {
 		private System.Windows.Forms.DataGridView dataGridView_Events;
 		private System.Windows.Forms.Button button_CloseWindow;
 		private System.Windows.Forms.Button button_DeleteEvent;
-		private System.Windows.Forms.DataGridViewTextBoxColumn Id;
-		private System.Windows.Forms.DataGridViewTextBoxColumn Date;
-		private System.Windows.Forms.DataGridViewTextBoxColumn EventName;
-		private System.Windows.Forms.DataGridViewTextBoxColumn PreorderPrice;
-		private System.Windows.Forms.DataGridViewTextBoxColumn AtDoorPrice;
-		private System.Windows.Forms.DataGridViewTextBoxColumn Qty;
 		private System.Windows.Forms.Button button_PreviousEvents;
 		private System.Windows.Forms.Label label_Events;
 		private System.Windows.Forms.Button button_showPreviousEventData;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Date;
+        private System.Windows.Forms.DataGridViewTextBoxColumn EventName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PreorderPrice;
+        private System.Windows.Forms.DataGridViewTextBoxColumn AtDoorPrice;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Qty;
 	}
 }
