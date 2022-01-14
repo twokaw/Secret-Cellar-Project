@@ -60,7 +60,7 @@ namespace SecretCellar
                     r.Cells["ItemDescription"].Value = i.Description;
                     r.Cells["RegularPrice"].Value = i.Price.ToString("c");
                     r.Cells["Price"].Value = transaction.ItemPrice(i).ToString("c");
-                    r.Cells["Discount"].Value = ((1-i.Discount)*transaction.Discount+i.Discount).ToString("P0");
+                    r.Cells["Discount"].Value = (Math.Floor(transaction.ItemDiscount(i) * 100) / 100).ToString("P0"); // 1 ((1-i.Discount)*transaction.Discount+i.Discount).ToString("P0");
                 }
             }
         }

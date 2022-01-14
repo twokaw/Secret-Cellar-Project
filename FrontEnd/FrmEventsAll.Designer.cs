@@ -82,8 +82,8 @@ namespace SecretCellar {
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridView_Events.DefaultCellStyle = dataGridViewCellStyle3;
-            this.dataGridView_Events.Location = new System.Drawing.Point(20, 55);
-            this.dataGridView_Events.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.dataGridView_Events.Location = new System.Drawing.Point(20, 64);
+            this.dataGridView_Events.Margin = new System.Windows.Forms.Padding(6);
             this.dataGridView_Events.Name = "dataGridView_Events";
             this.dataGridView_Events.ReadOnly = true;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
@@ -99,7 +99,7 @@ namespace SecretCellar {
             this.dataGridView_Events.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.dataGridView_Events.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dataGridView_Events.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView_Events.Size = new System.Drawing.Size(996, 429);
+            this.dataGridView_Events.Size = new System.Drawing.Size(996, 420);
             this.dataGridView_Events.TabIndex = 0;
             this.dataGridView_Events.TabStop = false;
             this.dataGridView_Events.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_Events_CellDoubleClick);
@@ -169,7 +169,7 @@ namespace SecretCellar {
             this.button_CloseWindow.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.button_CloseWindow.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_CloseWindow.Location = new System.Drawing.Point(20, 505);
-            this.button_CloseWindow.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button_CloseWindow.Margin = new System.Windows.Forms.Padding(2);
             this.button_CloseWindow.Name = "button_CloseWindow";
             this.button_CloseWindow.Size = new System.Drawing.Size(270, 85);
             this.button_CloseWindow.TabIndex = 1;
@@ -182,7 +182,7 @@ namespace SecretCellar {
             this.button_DeleteEvent.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button_DeleteEvent.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_DeleteEvent.Location = new System.Drawing.Point(746, 505);
-            this.button_DeleteEvent.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button_DeleteEvent.Margin = new System.Windows.Forms.Padding(2);
             this.button_DeleteEvent.Name = "button_DeleteEvent";
             this.button_DeleteEvent.Size = new System.Drawing.Size(270, 85);
             this.button_DeleteEvent.TabIndex = 2;
@@ -195,7 +195,7 @@ namespace SecretCellar {
             this.button_PreviousEvents.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.button_PreviousEvents.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_PreviousEvents.Location = new System.Drawing.Point(676, 14);
-            this.button_PreviousEvents.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button_PreviousEvents.Margin = new System.Windows.Forms.Padding(2);
             this.button_PreviousEvents.Name = "button_PreviousEvents";
             this.button_PreviousEvents.Size = new System.Drawing.Size(339, 42);
             this.button_PreviousEvents.TabIndex = 3;
@@ -206,7 +206,7 @@ namespace SecretCellar {
             // label_Events
             // 
             this.label_Events.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_Events.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label_Events.ForeColor = System.Drawing.SystemColors.ControlText;
             this.label_Events.Location = new System.Drawing.Point(14, 14);
             this.label_Events.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_Events.Name = "label_Events";

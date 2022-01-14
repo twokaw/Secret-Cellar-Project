@@ -116,8 +116,8 @@ namespace SecretCellar {
             // checkBox_NonTaxableLocal
             // 
             this.checkBox_NonTaxableLocal.AutoSize = true;
-            this.checkBox_NonTaxableLocal.Location = new System.Drawing.Point(544, 669);
-            this.checkBox_NonTaxableLocal.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkBox_NonTaxableLocal.Location = new System.Drawing.Point(516, 667);
+            this.checkBox_NonTaxableLocal.Margin = new System.Windows.Forms.Padding(4);
             this.checkBox_NonTaxableLocal.Name = "checkBox_NonTaxableLocal";
             this.checkBox_NonTaxableLocal.Size = new System.Drawing.Size(22, 21);
             this.checkBox_NonTaxableLocal.TabIndex = 10;
@@ -127,8 +127,8 @@ namespace SecretCellar {
             // 
             this.checkBox_NonTaxable.AutoSize = true;
             this.checkBox_NonTaxable.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox_NonTaxable.Location = new System.Drawing.Point(544, 602);
-            this.checkBox_NonTaxable.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkBox_NonTaxable.Location = new System.Drawing.Point(516, 600);
+            this.checkBox_NonTaxable.Margin = new System.Windows.Forms.Padding(4);
             this.checkBox_NonTaxable.Name = "checkBox_NonTaxable";
             this.checkBox_NonTaxable.Size = new System.Drawing.Size(22, 21);
             this.checkBox_NonTaxable.TabIndex = 9;
@@ -138,7 +138,7 @@ namespace SecretCellar {
             // 
             this.textBox_SupplierPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox_SupplierPrice.Location = new System.Drawing.Point(516, 514);
-            this.textBox_SupplierPrice.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.textBox_SupplierPrice.Margin = new System.Windows.Forms.Padding(6);
             this.textBox_SupplierPrice.Name = "textBox_SupplierPrice";
             this.textBox_SupplierPrice.Size = new System.Drawing.Size(415, 53);
             this.textBox_SupplierPrice.TabIndex = 8;
@@ -193,7 +193,7 @@ namespace SecretCellar {
             // 
             this.textBox_Name.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox_Name.Location = new System.Drawing.Point(477, 20);
-            this.textBox_Name.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.textBox_Name.Margin = new System.Windows.Forms.Padding(6);
             this.textBox_Name.Name = "textBox_Name";
             this.textBox_Name.Size = new System.Drawing.Size(456, 53);
             this.textBox_Name.TabIndex = 1;
@@ -217,7 +217,7 @@ namespace SecretCellar {
             // 
             this.dateTimePicker_Duration.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimePicker_Duration.Location = new System.Drawing.Point(477, 183);
-            this.dateTimePicker_Duration.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dateTimePicker_Duration.Margin = new System.Windows.Forms.Padding(4);
             this.dateTimePicker_Duration.Name = "dateTimePicker_Duration";
             this.dateTimePicker_Duration.Size = new System.Drawing.Size(454, 35);
             this.dateTimePicker_Duration.TabIndex = 3;
@@ -226,7 +226,7 @@ namespace SecretCellar {
             // 
             this.dateTimePicker_EventDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimePicker_EventDate.Location = new System.Drawing.Point(477, 108);
-            this.dateTimePicker_EventDate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dateTimePicker_EventDate.Margin = new System.Windows.Forms.Padding(4);
             this.dateTimePicker_EventDate.Name = "dateTimePicker_EventDate";
             this.dateTimePicker_EventDate.Size = new System.Drawing.Size(456, 35);
             this.dateTimePicker_EventDate.TabIndex = 2;
@@ -236,7 +236,7 @@ namespace SecretCellar {
             this.button_CloseWindow.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.button_CloseWindow.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_CloseWindow.Location = new System.Drawing.Point(15, 740);
-            this.button_CloseWindow.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button_CloseWindow.Margin = new System.Windows.Forms.Padding(2);
             this.button_CloseWindow.Name = "button_CloseWindow";
             this.button_CloseWindow.Size = new System.Drawing.Size(270, 82);
             this.button_CloseWindow.TabIndex = 11;
@@ -249,7 +249,7 @@ namespace SecretCellar {
             this.button_UpdateEvent.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button_UpdateEvent.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_UpdateEvent.Location = new System.Drawing.Point(664, 740);
-            this.button_UpdateEvent.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button_UpdateEvent.Margin = new System.Windows.Forms.Padding(2);
             this.button_UpdateEvent.Name = "button_UpdateEvent";
             this.button_UpdateEvent.Size = new System.Drawing.Size(270, 82);
             this.button_UpdateEvent.TabIndex = 12;
@@ -261,7 +261,7 @@ namespace SecretCellar {
             // 
             this.textBox_AtDoor.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox_AtDoor.Location = new System.Drawing.Point(516, 376);
-            this.textBox_AtDoor.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.textBox_AtDoor.Margin = new System.Windows.Forms.Padding(6);
             this.textBox_AtDoor.Name = "textBox_AtDoor";
             this.textBox_AtDoor.Size = new System.Drawing.Size(415, 53);
             this.textBox_AtDoor.TabIndex = 6;
@@ -286,7 +286,7 @@ namespace SecretCellar {
             // 
             this.textBox_Preorder.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox_Preorder.Location = new System.Drawing.Point(516, 308);
-            this.textBox_Preorder.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.textBox_Preorder.Margin = new System.Windows.Forms.Padding(6);
             this.textBox_Preorder.Name = "textBox_Preorder";
             this.textBox_Preorder.Size = new System.Drawing.Size(415, 53);
             this.textBox_Preorder.TabIndex = 5;
@@ -341,7 +341,7 @@ namespace SecretCellar {
             // 
             this.textBox_Price.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox_Price.Location = new System.Drawing.Point(516, 446);
-            this.textBox_Price.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.textBox_Price.Margin = new System.Windows.Forms.Padding(6);
             this.textBox_Price.Name = "textBox_Price";
             this.textBox_Price.Size = new System.Drawing.Size(415, 53);
             this.textBox_Price.TabIndex = 7;
@@ -365,10 +365,10 @@ namespace SecretCellar {
             // textBox_Quantity
             // 
             this.textBox_Quantity.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_Quantity.Location = new System.Drawing.Point(477, 238);
-            this.textBox_Quantity.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.textBox_Quantity.Location = new System.Drawing.Point(516, 238);
+            this.textBox_Quantity.Margin = new System.Windows.Forms.Padding(6);
             this.textBox_Quantity.Name = "textBox_Quantity";
-            this.textBox_Quantity.Size = new System.Drawing.Size(456, 53);
+            this.textBox_Quantity.Size = new System.Drawing.Size(417, 53);
             this.textBox_Quantity.TabIndex = 4;
             // 
             // label_Qty
@@ -420,7 +420,7 @@ namespace SecretCellar {
             this.Controls.Add(this.label_Price);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmEventsEdit";
