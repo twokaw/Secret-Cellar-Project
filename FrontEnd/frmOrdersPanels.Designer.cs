@@ -55,135 +55,144 @@ namespace SecretCellar {
             this.tabControl1.Controls.Add(this.tab_Fulfillment);
             this.tabControl1.Controls.Add(this.tab_History);
             this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabControl1.Location = new System.Drawing.Point(10, 13);
-            this.tabControl1.Margin = new System.Windows.Forms.Padding(6);
+            this.tabControl1.Location = new System.Drawing.Point(15, 20);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(9);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(989, 619);
+            this.tabControl1.Size = new System.Drawing.Size(1484, 907);
             this.tabControl1.TabIndex = 0;
             // 
             // tab_CustomerRequest
             // 
             this.tab_CustomerRequest.Controls.Add(this.panel_CustomerRequest1);
-            this.tab_CustomerRequest.Location = new System.Drawing.Point(4, 29);
-            this.tab_CustomerRequest.Margin = new System.Windows.Forms.Padding(6);
+            this.tab_CustomerRequest.Location = new System.Drawing.Point(4, 38);
+            this.tab_CustomerRequest.Margin = new System.Windows.Forms.Padding(9);
             this.tab_CustomerRequest.Name = "tab_CustomerRequest";
-            this.tab_CustomerRequest.Padding = new System.Windows.Forms.Padding(6);
-            this.tab_CustomerRequest.Size = new System.Drawing.Size(981, 586);
+            this.tab_CustomerRequest.Padding = new System.Windows.Forms.Padding(9);
+            this.tab_CustomerRequest.Size = new System.Drawing.Size(1476, 865);
             this.tab_CustomerRequest.TabIndex = 0;
             this.tab_CustomerRequest.Text = "Customer Request";
             this.tab_CustomerRequest.UseVisualStyleBackColor = true;
+            this.tab_CustomerRequest.Click += new System.EventHandler(this.tab_CustomerRequest_Click);
             // 
             // panel_CustomerRequest1
             // 
             this.panel_CustomerRequest1.AutoSize = true;
             this.panel_CustomerRequest1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel_CustomerRequest1.Location = new System.Drawing.Point(6, 6);
-            this.panel_CustomerRequest1.Margin = new System.Windows.Forms.Padding(9, 8, 9, 8);
+            this.panel_CustomerRequest1.Location = new System.Drawing.Point(9, 9);
+            this.panel_CustomerRequest1.Margin = new System.Windows.Forms.Padding(14, 12, 14, 12);
             this.panel_CustomerRequest1.Name = "panel_CustomerRequest1";
-            this.panel_CustomerRequest1.Size = new System.Drawing.Size(969, 574);
+            this.panel_CustomerRequest1.Size = new System.Drawing.Size(1458, 847);
             this.panel_CustomerRequest1.TabIndex = 0;
             // 
             // tab_SupplierOrder
             // 
             this.tab_SupplierOrder.Controls.Add(this.panel_SupplierOrder1);
-            this.tab_SupplierOrder.Location = new System.Drawing.Point(4, 29);
-            this.tab_SupplierOrder.Margin = new System.Windows.Forms.Padding(6);
+            this.tab_SupplierOrder.Location = new System.Drawing.Point(4, 38);
+            this.tab_SupplierOrder.Margin = new System.Windows.Forms.Padding(9);
             this.tab_SupplierOrder.Name = "tab_SupplierOrder";
-            this.tab_SupplierOrder.Padding = new System.Windows.Forms.Padding(6);
-            this.tab_SupplierOrder.Size = new System.Drawing.Size(981, 586);
+            this.tab_SupplierOrder.Padding = new System.Windows.Forms.Padding(9);
+            this.tab_SupplierOrder.Size = new System.Drawing.Size(1476, 865);
             this.tab_SupplierOrder.TabIndex = 1;
             this.tab_SupplierOrder.Text = "Supplier Order";
             this.tab_SupplierOrder.UseVisualStyleBackColor = true;
+            this.tab_SupplierOrder.Click += new System.EventHandler(this.tab_SupplierOrder_Click);
             // 
             // panel_SupplierOrder1
             // 
             this.panel_SupplierOrder1.AutoSize = true;
             this.panel_SupplierOrder1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.panel_SupplierOrder1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel_SupplierOrder1.Location = new System.Drawing.Point(6, 6);
-            this.panel_SupplierOrder1.Margin = new System.Windows.Forms.Padding(9, 8, 9, 8);
+            this.panel_SupplierOrder1.Location = new System.Drawing.Point(9, 9);
+            this.panel_SupplierOrder1.Margin = new System.Windows.Forms.Padding(14, 12, 14, 12);
             this.panel_SupplierOrder1.Name = "panel_SupplierOrder1";
-            this.panel_SupplierOrder1.Size = new System.Drawing.Size(969, 574);
+            this.panel_SupplierOrder1.Size = new System.Drawing.Size(1458, 847);
             this.panel_SupplierOrder1.TabIndex = 0;
+            this.panel_SupplierOrder1.Load += new System.EventHandler(this.panel_SupplierOrder1_Load);
             // 
             // tab_CustomerOrder
             // 
             this.tab_CustomerOrder.Controls.Add(this.panel_CustomerOrder1);
-            this.tab_CustomerOrder.Location = new System.Drawing.Point(4, 29);
-            this.tab_CustomerOrder.Margin = new System.Windows.Forms.Padding(6);
+            this.tab_CustomerOrder.Location = new System.Drawing.Point(4, 38);
+            this.tab_CustomerOrder.Margin = new System.Windows.Forms.Padding(9);
             this.tab_CustomerOrder.Name = "tab_CustomerOrder";
-            this.tab_CustomerOrder.Padding = new System.Windows.Forms.Padding(6);
-            this.tab_CustomerOrder.Size = new System.Drawing.Size(981, 586);
+            this.tab_CustomerOrder.Padding = new System.Windows.Forms.Padding(9);
+            this.tab_CustomerOrder.Size = new System.Drawing.Size(1476, 886);
             this.tab_CustomerOrder.TabIndex = 2;
             this.tab_CustomerOrder.Text = "Customer Order";
             this.tab_CustomerOrder.UseVisualStyleBackColor = true;
+            this.tab_CustomerOrder.Click += new System.EventHandler(this.tab_CustomerOrder_Click);
             // 
             // panel_CustomerOrder1
             // 
             this.panel_CustomerOrder1.AutoSize = true;
             this.panel_CustomerOrder1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.panel_CustomerOrder1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel_CustomerOrder1.Location = new System.Drawing.Point(6, 6);
-            this.panel_CustomerOrder1.Margin = new System.Windows.Forms.Padding(9, 8, 9, 8);
+            this.panel_CustomerOrder1.Location = new System.Drawing.Point(9, 9);
+            this.panel_CustomerOrder1.Margin = new System.Windows.Forms.Padding(14, 12, 14, 12);
             this.panel_CustomerOrder1.Name = "panel_CustomerOrder1";
-            this.panel_CustomerOrder1.Size = new System.Drawing.Size(969, 574);
+            this.panel_CustomerOrder1.Size = new System.Drawing.Size(1458, 868);
             this.panel_CustomerOrder1.TabIndex = 0;
+            this.panel_CustomerOrder1.Load += new System.EventHandler(this.panel_CustomerOrder1_Load);
             // 
             // tab_Fulfillment
             // 
             this.tab_Fulfillment.Controls.Add(this.panel_Fulfillment1);
-            this.tab_Fulfillment.Location = new System.Drawing.Point(4, 29);
-            this.tab_Fulfillment.Margin = new System.Windows.Forms.Padding(6);
+            this.tab_Fulfillment.Location = new System.Drawing.Point(4, 38);
+            this.tab_Fulfillment.Margin = new System.Windows.Forms.Padding(9);
             this.tab_Fulfillment.Name = "tab_Fulfillment";
-            this.tab_Fulfillment.Padding = new System.Windows.Forms.Padding(6);
-            this.tab_Fulfillment.Size = new System.Drawing.Size(981, 586);
+            this.tab_Fulfillment.Padding = new System.Windows.Forms.Padding(9);
+            this.tab_Fulfillment.Size = new System.Drawing.Size(1476, 886);
             this.tab_Fulfillment.TabIndex = 3;
             this.tab_Fulfillment.Text = "Fulfillment";
             this.tab_Fulfillment.UseVisualStyleBackColor = true;
+            this.tab_Fulfillment.Click += new System.EventHandler(this.tab_Fulfillment_Click);
             // 
             // panel_Fulfillment1
             // 
             this.panel_Fulfillment1.AutoSize = true;
             this.panel_Fulfillment1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.panel_Fulfillment1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel_Fulfillment1.Location = new System.Drawing.Point(6, 6);
-            this.panel_Fulfillment1.Margin = new System.Windows.Forms.Padding(9, 8, 9, 8);
+            this.panel_Fulfillment1.Location = new System.Drawing.Point(9, 9);
+            this.panel_Fulfillment1.Margin = new System.Windows.Forms.Padding(14, 12, 14, 12);
             this.panel_Fulfillment1.Name = "panel_Fulfillment1";
-            this.panel_Fulfillment1.Size = new System.Drawing.Size(969, 574);
+            this.panel_Fulfillment1.Size = new System.Drawing.Size(1458, 868);
             this.panel_Fulfillment1.TabIndex = 0;
+            this.panel_Fulfillment1.Load += new System.EventHandler(this.panel_Fulfillment1_Load);
             // 
             // tab_History
             // 
             this.tab_History.Controls.Add(this.panel_History1);
-            this.tab_History.Location = new System.Drawing.Point(4, 29);
-            this.tab_History.Margin = new System.Windows.Forms.Padding(6);
+            this.tab_History.Location = new System.Drawing.Point(4, 38);
+            this.tab_History.Margin = new System.Windows.Forms.Padding(9);
             this.tab_History.Name = "tab_History";
-            this.tab_History.Padding = new System.Windows.Forms.Padding(6);
-            this.tab_History.Size = new System.Drawing.Size(981, 586);
+            this.tab_History.Padding = new System.Windows.Forms.Padding(9);
+            this.tab_History.Size = new System.Drawing.Size(1476, 886);
             this.tab_History.TabIndex = 4;
             this.tab_History.Text = "History";
             this.tab_History.UseVisualStyleBackColor = true;
+            this.tab_History.Click += new System.EventHandler(this.tab_History_Click);
             // 
             // panel_History1
             // 
             this.panel_History1.AutoSize = true;
             this.panel_History1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.panel_History1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel_History1.Location = new System.Drawing.Point(6, 6);
-            this.panel_History1.Margin = new System.Windows.Forms.Padding(9, 8, 9, 8);
+            this.panel_History1.Location = new System.Drawing.Point(9, 9);
+            this.panel_History1.Margin = new System.Windows.Forms.Padding(14, 12, 14, 12);
             this.panel_History1.Name = "panel_History1";
-            this.panel_History1.Size = new System.Drawing.Size(969, 574);
+            this.panel_History1.Size = new System.Drawing.Size(1458, 868);
             this.panel_History1.TabIndex = 0;
+            this.panel_History1.Load += new System.EventHandler(this.panel_History1_Load);
             // 
             // btn_close
             // 
             this.btn_close.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btn_close.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_close.Location = new System.Drawing.Point(353, 643);
-            this.btn_close.Margin = new System.Windows.Forms.Padding(6);
+            this.btn_close.Location = new System.Drawing.Point(15, 945);
+            this.btn_close.Margin = new System.Windows.Forms.Padding(9);
             this.btn_close.Name = "btn_close";
-            this.btn_close.Size = new System.Drawing.Size(285, 54);
+            this.btn_close.Size = new System.Drawing.Size(143, 81);
             this.btn_close.TabIndex = 8;
             this.btn_close.Text = "Close";
             this.btn_close.UseVisualStyleBackColor = true;
@@ -191,19 +200,20 @@ namespace SecretCellar {
             // 
             // frmOrdersPanels
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(144F, 144F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.ClientSize = new System.Drawing.Size(1008, 729);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(231)))), ((int)(((byte)(206)))));
+            this.ClientSize = new System.Drawing.Size(1512, 1044);
             this.Controls.Add(this.btn_close);
             this.Controls.Add(this.tabControl1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Margin = new System.Windows.Forms.Padding(6);
+            this.Margin = new System.Windows.Forms.Padding(9);
             this.Name = "frmOrdersPanels";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "frmOrdersPanels";
+            this.Load += new System.EventHandler(this.frmOrdersPanels_Load);
             this.tabControl1.ResumeLayout(false);
             this.tab_CustomerRequest.ResumeLayout(false);
             this.tab_CustomerRequest.PerformLayout();
