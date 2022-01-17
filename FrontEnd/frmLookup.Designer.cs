@@ -305,7 +305,7 @@
             // 
             this.cbxTypeFilter.DisplayMember = "TypeName";
             this.cbxTypeFilter.FormattingEnabled = true;
-            this.cbxTypeFilter.Location = new System.Drawing.Point(313, 29);
+            this.cbxTypeFilter.Location = new System.Drawing.Point(313, 28);
             this.cbxTypeFilter.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cbxTypeFilter.Name = "cbxTypeFilter";
             this.cbxTypeFilter.Size = new System.Drawing.Size(200, 28);
