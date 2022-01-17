@@ -57,7 +57,7 @@ namespace SecretCellar
                 using (var r = dataGridSelectItems.Rows[row])
                 {
                     r.Cells["ItemNumber"].Value = i.Id;
-                    r.Cells["ItemDescription"].Value = i.Description;
+                    r.Cells["ItemDescription"].Value = i.Name;
                     r.Cells["RegularPrice"].Value = i.Price.ToString("c");
                     r.Cells["Price"].Value = transaction.ItemPrice(i).ToString("c");
                     r.Cells["Discount"].Value = (Math.Floor(transaction.ItemDiscount(i) * 100) / 100).ToString("P0"); // 1 ((1-i.Discount)*transaction.Discount+i.Discount).ToString("P0");
@@ -88,7 +88,7 @@ namespace SecretCellar
                        // discount_total = discount_total + Convert.ToDouble(row.Cells["RegularPrice"].Value.ToString().Replace("$", "").Replace("(", "").Replace(")", "")) - Convert.ToDouble(row.Cells["Price"].Value.ToString().Replace("$", "").Replace("(", "").Replace(")", "")); ;
                     }
                 }
-                txtPercentLineItem.Text = "";
+                txtPercentLineItem.Text = transaction.Discount.ToString();
                 populate();
                 //transaction.Discount = discount_total;
                 //transaction.Discount = discount_total + currentdis;
