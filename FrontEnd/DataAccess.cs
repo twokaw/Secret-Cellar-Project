@@ -654,8 +654,15 @@ namespace SecretCellar
             catch (Exception e) { LogError(e, "DeleteEvent"); }
         }
 
+        public List<PreviousEventData> GetPreviousEventData() {
+            string result = web.DataGet("api/Event/PreviousEventData");
+            return JsonConvert.DeserializeObject<List<PreviousEventData>>(result);
+        }
 
-
+        public PreviousEventData GetPreviousEventData(uint eventId) {
+            string result = web.DataGet($"api/Event/PreviousEventData/{eventId}");
+            return JsonConvert.DeserializeObject<PreviousEventData>(result);
+        }
         #endregion
 
         #region Error logging
