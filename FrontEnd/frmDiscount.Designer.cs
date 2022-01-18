@@ -50,13 +50,13 @@
             this.lblPercentLineItem = new System.Windows.Forms.Label();
             this.button_ApplyToItem = new System.Windows.Forms.Button();
             this.dataGridSelectItems = new System.Windows.Forms.DataGridView();
-            this.txtPercentLineItem = new System.Windows.Forms.TextBox();
-            this.panel3 = new System.Windows.Forms.Panel();
             this.ItemNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ItemDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.RegularPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Discount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txtPercentLineItem = new System.Windows.Forms.TextBox();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridSelectItems)).BeginInit();
@@ -69,7 +69,7 @@
             this.btnExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExit.ForeColor = System.Drawing.Color.Red;
             this.btnExit.Location = new System.Drawing.Point(1250, 575);
-            this.btnExit.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.btnExit.Margin = new System.Windows.Forms.Padding(5);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(199, 75);
             this.btnExit.TabIndex = 7;
@@ -93,7 +93,7 @@
             // 
             this.txtPercentTotalSale.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPercentTotalSale.Location = new System.Drawing.Point(289, 34);
-            this.txtPercentTotalSale.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.txtPercentTotalSale.Margin = new System.Windows.Forms.Padding(5);
             this.txtPercentTotalSale.MaxLength = 2;
             this.txtPercentTotalSale.Name = "txtPercentTotalSale";
             this.txtPercentTotalSale.Size = new System.Drawing.Size(62, 38);
@@ -122,7 +122,7 @@
             this.panel1.Controls.Add(this.txtFixedDiscount);
             this.panel1.Controls.Add(this.lblFixedDiscount);
             this.panel1.Location = new System.Drawing.Point(11, 544);
-            this.panel1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.panel1.Margin = new System.Windows.Forms.Padding(5);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(583, 104);
             this.panel1.TabIndex = 17;
@@ -144,7 +144,7 @@
             // 
             this.txtFixedDiscount.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtFixedDiscount.Location = new System.Drawing.Point(289, 36);
-            this.txtFixedDiscount.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtFixedDiscount.Margin = new System.Windows.Forms.Padding(2);
             this.txtFixedDiscount.Name = "txtFixedDiscount";
             this.txtFixedDiscount.Size = new System.Drawing.Size(95, 38);
             this.txtFixedDiscount.TabIndex = 4;
@@ -160,7 +160,7 @@
             this.panel2.Controls.Add(this.btn_ApplyDiscount);
             this.panel2.Controls.Add(this.lblPercentTotalSale);
             this.panel2.Location = new System.Drawing.Point(11, 13);
-            this.panel2.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.panel2.Margin = new System.Windows.Forms.Padding(5);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(583, 107);
             this.panel2.TabIndex = 18;
@@ -182,7 +182,7 @@
             // 
             this.txt_discountTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_discountTotal.Location = new System.Drawing.Point(847, 518);
-            this.txt_discountTotal.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.txt_discountTotal.Margin = new System.Windows.Forms.Padding(5);
             this.txt_discountTotal.Name = "txt_discountTotal";
             this.txt_discountTotal.ReadOnly = true;
             this.txt_discountTotal.Size = new System.Drawing.Size(141, 38);
@@ -233,7 +233,7 @@
             // touchKeyPad1
             // 
             this.touchKeyPad1.Location = new System.Drawing.Point(613, 55);
-            this.touchKeyPad1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.touchKeyPad1.Margin = new System.Windows.Forms.Padding(5);
             this.touchKeyPad1.Name = "touchKeyPad1";
             this.touchKeyPad1.Size = new System.Drawing.Size(376, 369);
             this.touchKeyPad1.TabIndex = 6;
@@ -273,10 +273,13 @@
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(51)))), ((int)(((byte)(69)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Ivory;
             this.dataGridSelectItems.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridSelectItems.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.dataGridSelectItems.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridSelectItems.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(237)))), ((int)(((byte)(196)))));
             this.dataGridSelectItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridSelectItems.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ItemNumber,
@@ -288,61 +291,37 @@
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
             dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(51)))), ((int)(((byte)(69)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Ivory;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridSelectItems.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridSelectItems.Location = new System.Drawing.Point(12, 105);
-            this.dataGridSelectItems.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.dataGridSelectItems.Margin = new System.Windows.Forms.Padding(5);
             this.dataGridSelectItems.Name = "dataGridSelectItems";
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
             dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(51)))), ((int)(((byte)(69)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Ivory;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridSelectItems.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridSelectItems.RowHeadersVisible = false;
             this.dataGridSelectItems.RowHeadersWidth = 62;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(51)))), ((int)(((byte)(69)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Ivory;
             this.dataGridSelectItems.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridSelectItems.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.dataGridSelectItems.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dataGridSelectItems.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(51)))), ((int)(((byte)(69)))));
+            this.dataGridSelectItems.RowTemplate.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.Ivory;
             this.dataGridSelectItems.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridSelectItems.Size = new System.Drawing.Size(560, 249);
             this.dataGridSelectItems.TabIndex = 5;
             this.dataGridSelectItems.TabStop = false;
             this.dataGridSelectItems.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridSelectItems_CellContentClick);
-            // 
-            // txtPercentLineItem
-            // 
-            this.txtPercentLineItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPercentLineItem.Location = new System.Drawing.Point(289, 40);
-            this.txtPercentLineItem.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
-            this.txtPercentLineItem.MaxLength = 2;
-            this.txtPercentLineItem.Name = "txtPercentLineItem";
-            this.txtPercentLineItem.Size = new System.Drawing.Size(62, 38);
-            this.txtPercentLineItem.TabIndex = 2;
-            this.txtPercentLineItem.Enter += new System.EventHandler(this.txtCashAmt_Enter);
-            this.txtPercentLineItem.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.digit_only);
-            // 
-            // panel3
-            // 
-            this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel3.AutoSize = true;
-            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(201)))), ((int)(((byte)(176)))));
-            this.panel3.Controls.Add(this.txtPercentLineItem);
-            this.panel3.Controls.Add(this.dataGridSelectItems);
-            this.panel3.Controls.Add(this.button_ApplyToItem);
-            this.panel3.Controls.Add(this.lblPercentLineItem);
-            this.panel3.Location = new System.Drawing.Point(11, 144);
-            this.panel3.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(583, 371);
-            this.panel3.TabIndex = 19;
             // 
             // ItemNumber
             // 
@@ -384,6 +363,34 @@
             this.Discount.Name = "Discount";
             this.Discount.ReadOnly = true;
             // 
+            // txtPercentLineItem
+            // 
+            this.txtPercentLineItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPercentLineItem.Location = new System.Drawing.Point(289, 40);
+            this.txtPercentLineItem.Margin = new System.Windows.Forms.Padding(5);
+            this.txtPercentLineItem.MaxLength = 2;
+            this.txtPercentLineItem.Name = "txtPercentLineItem";
+            this.txtPercentLineItem.Size = new System.Drawing.Size(62, 38);
+            this.txtPercentLineItem.TabIndex = 2;
+            this.txtPercentLineItem.Enter += new System.EventHandler(this.txtCashAmt_Enter);
+            this.txtPercentLineItem.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.digit_only);
+            // 
+            // panel3
+            // 
+            this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel3.AutoSize = true;
+            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(201)))), ((int)(((byte)(176)))));
+            this.panel3.Controls.Add(this.txtPercentLineItem);
+            this.panel3.Controls.Add(this.dataGridSelectItems);
+            this.panel3.Controls.Add(this.button_ApplyToItem);
+            this.panel3.Controls.Add(this.lblPercentLineItem);
+            this.panel3.Location = new System.Drawing.Point(11, 144);
+            this.panel3.Margin = new System.Windows.Forms.Padding(5);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(583, 371);
+            this.panel3.TabIndex = 19;
+            // 
             // frmDiscount
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -403,7 +410,7 @@
             this.Controls.Add(this.btnExit);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.Margin = new System.Windows.Forms.Padding(5);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmDiscount";
