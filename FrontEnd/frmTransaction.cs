@@ -203,9 +203,9 @@ namespace SecretCellar
         {
             if (dataGridView1.SelectedRows.Count > 0)
             {
-                string desc = dataGridView1.SelectedRows[0].Cells["DESCRIPTION"].Value.ToString();
+                string name = dataGridView1.SelectedRows[0].Cells["DESCRIPTION"].Value.ToString();
                 uint qty = uint.Parse(dataGridView1.SelectedRows[0].Cells["QTY"].Value.ToString());
-                Item i = transaction.Items.First(x => x.Description == desc && x.NumSold == qty);
+                Item i = transaction.Items.First(x => x.Name == name && x.NumSold == qty);
                 transaction.Items.Remove(i);
                 RefreshDataGrid();
                 txtBarcode.Focus();
