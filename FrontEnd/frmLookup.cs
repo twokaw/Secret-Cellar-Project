@@ -13,6 +13,11 @@ namespace SecretCellar
         private List<InventoryType> types = null;
         private string descriptionAndBarcodeSearchText = "Enter Description/Barcode";
 
+        public void SubmitButtonText(string value = "Add to Cart")
+        {
+            btn_add.Text = value; 
+        }
+
         public frmLookup()
         {
             InitializeComponent();

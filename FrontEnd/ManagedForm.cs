@@ -37,8 +37,8 @@ namespace SecretCellar
         private void ManagedForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             Forms.Remove(this);
-            if(Forms.Count == 0 )
-                CommonFont = new Font("Microsoft Sans Serif", 12, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            //if(Forms.Count == 0 )
+            //    CommonFont = new Font("Microsoft Sans Serif", 12, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             Console.WriteLine($"Deconstructed: {Forms.Count}");
         }
 
@@ -62,7 +62,7 @@ namespace SecretCellar
 
         private static Font Default_Font()
         {
-            return Properties.Settings.Default.FontSet;
+            return new Font("Microsoft Sans Serif", 12, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0))); ;
         }
 
         public static Font CommonFontSetter
