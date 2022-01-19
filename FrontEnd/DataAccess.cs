@@ -53,9 +53,10 @@ namespace SecretCellar
             }
         }
 
-        public DialogResult ShowLookupForm(Transaction t)
+        public DialogResult ShowLookupForm(Transaction t, String submitText = "Add to Cart")
         {
             lookup.SetTransaction(t);
+            lookup.SubmitButtonText(submitText);
             return lookup.ShowDialog();
         }
         public DialogResult ShowOrdersForm()

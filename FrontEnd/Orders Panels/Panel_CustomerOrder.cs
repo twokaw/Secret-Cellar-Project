@@ -39,7 +39,7 @@ namespace SecretCellar.Orders_Panels {
 		private void btnFavoritesAdd_Click(object sender, EventArgs e) {
 			uint cid = ((Customer)cbx_cust_custorder.SelectedItem).CustomerID;
 			Transaction t = new Transaction();
-			DataAccess.instance.ShowLookupForm(t);
+			DataAccess.instance.ShowLookupForm(t, "Add to Favorites");
 
 			foreach (Item i in t.Items)
 				DataAccess.instance.AddCustomerFavorite(cid, i.Id);
