@@ -59,7 +59,7 @@ namespace SecretCellar.Orders_Panels {
                 //i.AllQty.Add(new InventoryQty { Qty = custorder.qty });
                 // i.OrderQty.Add(new CustomerOrder {RequestQty = coid.RequestQty, DeliveredDate = DateTime.Now, SupplierPrice = 0 });
                 if (uint.TryParse(txt_deliverqty.Text.Trim(), out uint dqty)) {
-                    coid.DeliverQty = dqty;
+                    coid.DeliverQty += dqty;
                     DataAccess.instance.UpdateCustomerOrderItem(coid);
                 }
                 else {
@@ -155,7 +155,8 @@ namespace SecretCellar.Orders_Panels {
         /// <summary>
         /// Refresh the datagrid by calling the RefreshFillment method that takes a customer id as a parameter.
         /// </summary>
-        private void RefreshFillment() {
+        public void RefreshFillment() {
+            inventory = DataAccess.instance.GetInventory();
             RefreshFillment(((CustomerOrder)cbx_fullfill_cust.SelectedItem).CustomerID);
         }
 

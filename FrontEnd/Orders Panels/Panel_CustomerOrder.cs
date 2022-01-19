@@ -156,12 +156,17 @@ namespace SecretCellar.Orders_Panels {
 			RefreshFavorite(cid);
 		}
 
-
+		public void RefreshFavorite()
+        {
+			uint? cid = ((Customer)cbx_cust_custorder.SelectedItem)?.CustomerID;
+			if(cid != null)
+				RefreshFavorite(cid.Value);
+		}
 		/// <summary>
 		/// Refresh the favorites list.
 		/// </summary>
 		/// <param name="customerId"></param>
-		private void RefreshFavorite(uint customerId) {
+		public void RefreshFavorite(uint customerId) {
 			List<CustomerFavorite> custFav = DataAccess.instance.GetCustomerFavorite(customerId).Favorites;
 			List<CustomerOrderItem> custItems = (DataAccess.instance.GetCustomerOrderforCustomer(customerId)?.Items ?? new List<CustomerOrderItem>()).Where(x => x.DeliverQty < x.RequestQty).ToList();
 

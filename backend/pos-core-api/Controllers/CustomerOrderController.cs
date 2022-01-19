@@ -72,8 +72,9 @@ namespace WebApi.Controllers
         {
             try
             {
-                if (DataAccess.Instance.CustomerOrder.Update(cust) > 0)
-                    return Ok();
+                long id = DataAccess.Instance.CustomerOrder.Update(cust);
+                if (id > 0)
+                    return Ok(id);
                 else
                     return NotFound();
             }
