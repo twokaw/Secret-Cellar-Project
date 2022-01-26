@@ -60,7 +60,7 @@ namespace SecretCellar.Orders_Panels {
                 // i.OrderQty.Add(new CustomerOrder {RequestQty = coid.RequestQty, DeliveredDate = DateTime.Now, SupplierPrice = 0 });
                 if (uint.TryParse(txt_deliverqty.Text.Trim(), out uint dqty)) {
                     coid.DeliverQty += dqty;
-                    DataAccess.instance.UpdateCustomerOrderItem(coid);
+                    DataAccess.instance.UpdateCustomerOrderItem(custorder.CustomerID, coid);
                 }
                 else {
                     txt_deliverqty.Focus();
@@ -122,7 +122,7 @@ namespace SecretCellar.Orders_Panels {
                 Inventory i = inventory.First(x => x.Id == uint.Parse(row.Cells["id"].Value.ToString()));
                 CustomerOrderItem coid = custorder.Items.FirstOrDefault(x => x.Id == i.Id);
                 coid.DeliverQty = uint.Parse(row.Cells["requestqty"].Value.ToString());
-                DataAccess.instance.UpdateCustomerOrderItem(coid);
+                DataAccess.instance.UpdateCustomerOrderItem(custorder.CustomerID, coid);
             }
 
             txt_deliverqty.Text = "";
@@ -143,7 +143,7 @@ namespace SecretCellar.Orders_Panels {
                 Inventory i = inventory.First(x => x.Id == uint.Parse(row.Cells["id"].Value.ToString()));
                 CustomerOrderItem coid = custorder.Items.FirstOrDefault(x => x.Id == i.Id);
                 coid.DeliverQty = uint.Parse(row.Cells["requestqty"].Value.ToString());
-                DataAccess.instance.UpdateCustomerOrderItem(coid);
+                DataAccess.instance.UpdateCustomerOrderItem(custorder.CustomerID, coid);
             }
 
             txt_deliverqty.Text = "";

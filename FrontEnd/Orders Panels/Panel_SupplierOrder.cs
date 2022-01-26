@@ -29,13 +29,13 @@ namespace SecretCellar.Orders_Panels {
             cbx_supplier.DisplayMember = "Name";
 
 
-            Refresh();
+            RefreshSupplier();
         }
 
         /////////
         //REFRESH
         /////////
-        public void Refresh()
+        public void RefreshSupplier()
         {
             inventory = DataAccess.instance?.GetInventory() ?? new List<Inventory>();
             uint id = ((Supplier)cbx_supplier?.SelectedItem)?.SupplierID ?? 0;
@@ -99,7 +99,7 @@ namespace SecretCellar.Orders_Panels {
                 DataAccess.instance.UpdateItem(i);
             }
             txt_update_qty.Text = "";
-            Refresh();
+            RefreshSupplier();
             //orderTotal();
         }
 
@@ -131,7 +131,7 @@ namespace SecretCellar.Orders_Panels {
         //ON CHANGING SUPPLIER
         //////////////////////
         private void cbx_supplier_SelectedIndexChanged(object sender, EventArgs e) {
-            Refresh();
+            RefreshSupplier();
         }
 
 
@@ -142,7 +142,7 @@ namespace SecretCellar.Orders_Panels {
             frmReceivedOrders receivedOrders = new frmReceivedOrders();
             receivedOrders.ShowDialog();
 
-            Refresh();
+            RefreshSupplier();
             txt_update_qty.Focus();
         }
 
@@ -169,12 +169,12 @@ namespace SecretCellar.Orders_Panels {
 
         private void chk_ShowHidden_CheckedChanged(object sender, EventArgs e)
         {
-            Refresh();
+            RefreshSupplier();
         }
 
         private void chk_OnlyRequired_CheckedChanged(object sender, EventArgs e)
         {
-            Refresh();
+            RefreshSupplier();
         }
     }
 }

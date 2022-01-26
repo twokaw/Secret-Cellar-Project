@@ -64,7 +64,6 @@ namespace SecretCellar.Orders_Panels {
 			}
 		}
 
-
 		/// <summary>
 		/// On click Add Order.
 		/// </summary>
@@ -90,7 +89,7 @@ namespace SecretCellar.Orders_Panels {
 						DataAccess.instance.NewCustomerOrderItem(co.CustomerID, new CustomerOrderItem { Id = i.Id, RequestQty = 1 });
 					else {
 						coi.RequestQty++;
-						DataAccess.instance.UpdateCustomerOrderItem(coi);
+						DataAccess.instance.UpdateCustomerOrderItem(co.CustomerID, coi);
 					}
 				}
 
@@ -99,7 +98,6 @@ namespace SecretCellar.Orders_Panels {
 
 			RefreshFavorite(t.CustomerID);
 		}
-
 
 		/// <summary>
 		/// On click update order.
@@ -117,7 +115,7 @@ namespace SecretCellar.Orders_Panels {
 						Id = iid
 					};
 
-					if (coi == null)
+					if (coi == null || coi.CustomerOrderItemID == 0)
 						DataAccess.instance.NewCustomerOrderItem(cid, new CustomerOrderItem {
 							Id = iid,
 							RequestQty = Convert.ToUInt32(txt_orderqty_custorder.Text)
@@ -125,7 +123,7 @@ namespace SecretCellar.Orders_Panels {
 					else {
 						coi.RequestQty = Convert.ToUInt32(txt_orderqty_custorder.Text);
 						coi.CustomerOrderItemID = cid;
-						DataAccess.instance.UpdateCustomerOrderItem(coi);
+						DataAccess.instance.UpdateCustomerOrderItem(cid, coi);
 					}
 
 					//DataAccess.instance.UpdateCustomerOrder(co);

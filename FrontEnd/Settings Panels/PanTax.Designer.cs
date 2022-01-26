@@ -56,9 +56,10 @@ namespace SecretCellar.Settings_Panels
             // 
             this.btn_update_tax.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_update_tax.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
-            this.btn_update_tax.Location = new System.Drawing.Point(221, 249);
+            this.btn_update_tax.Location = new System.Drawing.Point(332, 383);
+            this.btn_update_tax.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btn_update_tax.Name = "btn_update_tax";
-            this.btn_update_tax.Size = new System.Drawing.Size(133, 35);
+            this.btn_update_tax.Size = new System.Drawing.Size(200, 54);
             this.btn_update_tax.TabIndex = 8;
             this.btn_update_tax.Text = "Update";
             this.btn_update_tax.UseVisualStyleBackColor = true;
@@ -70,19 +71,21 @@ namespace SecretCellar.Settings_Panels
             | System.Windows.Forms.AnchorStyles.Left)));
             this.lst_tax_list.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
             this.lst_tax_list.FormattingEnabled = true;
-            this.lst_tax_list.ItemHeight = 16;
-            this.lst_tax_list.Location = new System.Drawing.Point(15, 42);
+            this.lst_tax_list.ItemHeight = 25;
+            this.lst_tax_list.Location = new System.Drawing.Point(22, 65);
+            this.lst_tax_list.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.lst_tax_list.Name = "lst_tax_list";
-            this.lst_tax_list.Size = new System.Drawing.Size(120, 228);
+            this.lst_tax_list.Size = new System.Drawing.Size(178, 329);
             this.lst_tax_list.TabIndex = 1;
             this.lst_tax_list.SelectedIndexChanged += new System.EventHandler(this.lst_tax_list_SelectedIndexChanged);
             // 
             // lbl_btl_deposit
             // 
             this.lbl_btl_deposit.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
-            this.lbl_btl_deposit.Location = new System.Drawing.Point(150, 110);
+            this.lbl_btl_deposit.Location = new System.Drawing.Point(225, 169);
+            this.lbl_btl_deposit.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_btl_deposit.Name = "lbl_btl_deposit";
-            this.lbl_btl_deposit.Size = new System.Drawing.Size(102, 16);
+            this.lbl_btl_deposit.Size = new System.Drawing.Size(153, 25);
             this.lbl_btl_deposit.TabIndex = 14;
             this.lbl_btl_deposit.Text = "Bottle Deposit:";
             this.lbl_btl_deposit.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -90,9 +93,10 @@ namespace SecretCellar.Settings_Panels
             // lbl_local_tax
             // 
             this.lbl_local_tax.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
-            this.lbl_local_tax.Location = new System.Drawing.Point(154, 84);
+            this.lbl_local_tax.Location = new System.Drawing.Point(231, 129);
+            this.lbl_local_tax.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_local_tax.Name = "lbl_local_tax";
-            this.lbl_local_tax.Size = new System.Drawing.Size(99, 18);
+            this.lbl_local_tax.Size = new System.Drawing.Size(148, 28);
             this.lbl_local_tax.TabIndex = 13;
             this.lbl_local_tax.Text = "Local Tax:";
             this.lbl_local_tax.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -100,9 +104,10 @@ namespace SecretCellar.Settings_Panels
             // lbl_sales_tax
             // 
             this.lbl_sales_tax.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
-            this.lbl_sales_tax.Location = new System.Drawing.Point(157, 57);
+            this.lbl_sales_tax.Location = new System.Drawing.Point(236, 88);
+            this.lbl_sales_tax.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_sales_tax.Name = "lbl_sales_tax";
-            this.lbl_sales_tax.Size = new System.Drawing.Size(95, 16);
+            this.lbl_sales_tax.Size = new System.Drawing.Size(142, 25);
             this.lbl_sales_tax.TabIndex = 12;
             this.lbl_sales_tax.Text = "Sales Tax:";
             this.lbl_sales_tax.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -110,25 +115,28 @@ namespace SecretCellar.Settings_Panels
             // txt_bottle_dep
             // 
             this.txt_bottle_dep.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
-            this.txt_bottle_dep.Location = new System.Drawing.Point(258, 110);
+            this.txt_bottle_dep.Location = new System.Drawing.Point(387, 169);
+            this.txt_bottle_dep.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txt_bottle_dep.Name = "txt_bottle_dep";
-            this.txt_bottle_dep.Size = new System.Drawing.Size(97, 22);
+            this.txt_bottle_dep.Size = new System.Drawing.Size(144, 30);
             this.txt_bottle_dep.TabIndex = 5;
             // 
             // txt_local_tax
             // 
             this.txt_local_tax.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
-            this.txt_local_tax.Location = new System.Drawing.Point(258, 82);
+            this.txt_local_tax.Location = new System.Drawing.Point(387, 126);
+            this.txt_local_tax.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txt_local_tax.Name = "txt_local_tax";
-            this.txt_local_tax.Size = new System.Drawing.Size(97, 22);
+            this.txt_local_tax.Size = new System.Drawing.Size(144, 30);
             this.txt_local_tax.TabIndex = 4;
             // 
             // txt_sales_tax
             // 
             this.txt_sales_tax.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
-            this.txt_sales_tax.Location = new System.Drawing.Point(258, 53);
+            this.txt_sales_tax.Location = new System.Drawing.Point(387, 82);
+            this.txt_sales_tax.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txt_sales_tax.Name = "txt_sales_tax";
-            this.txt_sales_tax.Size = new System.Drawing.Size(97, 22);
+            this.txt_sales_tax.Size = new System.Drawing.Size(144, 30);
             this.txt_sales_tax.TabIndex = 3;
             // 
             // panel1
@@ -139,22 +147,22 @@ namespace SecretCellar.Settings_Panels
             this.panel1.Controls.Add(this.groupBox1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(605, 320);
+            this.panel1.Size = new System.Drawing.Size(908, 492);
             this.panel1.TabIndex = 18;
             // 
             // groupBox2
             // 
+            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(201)))), ((int)(((byte)(176)))));
             this.groupBox2.Controls.Add(this.btnSetDiscount);
             this.groupBox2.Controls.Add(this.txt_CashDiscount);
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(390, 18);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox2.Location = new System.Drawing.Point(585, 28);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.groupBox2.Size = new System.Drawing.Size(206, 95);
+            this.groupBox2.Size = new System.Drawing.Size(309, 146);
             this.groupBox2.TabIndex = 25;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Cash Discount";
@@ -163,9 +171,10 @@ namespace SecretCellar.Settings_Panels
             // 
             this.btnSetDiscount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSetDiscount.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
-            this.btnSetDiscount.Location = new System.Drawing.Point(93, 31);
+            this.btnSetDiscount.Location = new System.Drawing.Point(140, 48);
+            this.btnSetDiscount.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnSetDiscount.Name = "btnSetDiscount";
-            this.btnSetDiscount.Size = new System.Drawing.Size(108, 35);
+            this.btnSetDiscount.Size = new System.Drawing.Size(162, 54);
             this.btnSetDiscount.TabIndex = 23;
             this.btnSetDiscount.Text = "Set Discount";
             this.btnSetDiscount.UseVisualStyleBackColor = true;
@@ -174,25 +183,28 @@ namespace SecretCellar.Settings_Panels
             // txt_CashDiscount
             // 
             this.txt_CashDiscount.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
-            this.txt_CashDiscount.Location = new System.Drawing.Point(11, 40);
+            this.txt_CashDiscount.Location = new System.Drawing.Point(16, 62);
+            this.txt_CashDiscount.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txt_CashDiscount.MaxLength = 2;
             this.txt_CashDiscount.Name = "txt_CashDiscount";
-            this.txt_CashDiscount.Size = new System.Drawing.Size(43, 22);
+            this.txt_CashDiscount.Size = new System.Drawing.Size(62, 30);
             this.txt_CashDiscount.TabIndex = 20;
             this.txt_CashDiscount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_CashDiscount_KeyPress);
             // 
             // label3
             // 
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
-            this.label3.Location = new System.Drawing.Point(55, 40);
+            this.label3.Location = new System.Drawing.Point(82, 62);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(24, 18);
+            this.label3.Size = new System.Drawing.Size(36, 28);
             this.label3.TabIndex = 22;
             this.label3.Text = "%";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // groupBox1
             // 
+            this.groupBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(201)))), ((int)(((byte)(176)))));
             this.groupBox1.Controls.Add(this.txt_tax_type_name);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.btn_new);
@@ -206,11 +218,9 @@ namespace SecretCellar.Settings_Panels
             this.groupBox1.Controls.Add(this.lbl_sales_tax);
             this.groupBox1.Controls.Add(this.lbl_local_tax);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(15, 12);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Location = new System.Drawing.Point(22, 18);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.groupBox1.Size = new System.Drawing.Size(362, 295);
+            this.groupBox1.Size = new System.Drawing.Size(543, 454);
             this.groupBox1.TabIndex = 24;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Tax Types";
@@ -218,17 +228,19 @@ namespace SecretCellar.Settings_Panels
             // txt_tax_type_name
             // 
             this.txt_tax_type_name.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
-            this.txt_tax_type_name.Location = new System.Drawing.Point(258, 26);
+            this.txt_tax_type_name.Location = new System.Drawing.Point(387, 40);
+            this.txt_tax_type_name.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txt_tax_type_name.Name = "txt_tax_type_name";
-            this.txt_tax_type_name.Size = new System.Drawing.Size(97, 22);
+            this.txt_tax_type_name.Size = new System.Drawing.Size(144, 30);
             this.txt_tax_type_name.TabIndex = 2;
             // 
             // label1
             // 
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
-            this.label1.Location = new System.Drawing.Point(157, 30);
+            this.label1.Location = new System.Drawing.Point(236, 46);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(95, 16);
+            this.label1.Size = new System.Drawing.Size(142, 25);
             this.label1.TabIndex = 19;
             this.label1.Text = "Tax Name:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -237,9 +249,10 @@ namespace SecretCellar.Settings_Panels
             // 
             this.btn_new.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_new.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
-            this.btn_new.Location = new System.Drawing.Point(221, 208);
+            this.btn_new.Location = new System.Drawing.Point(332, 320);
+            this.btn_new.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btn_new.Name = "btn_new";
-            this.btn_new.Size = new System.Drawing.Size(133, 35);
+            this.btn_new.Size = new System.Drawing.Size(200, 54);
             this.btn_new.TabIndex = 7;
             this.btn_new.Text = "New";
             this.btn_new.UseVisualStyleBackColor = true;
@@ -249,9 +262,10 @@ namespace SecretCellar.Settings_Panels
             // 
             this.btn_clear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_clear.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
-            this.btn_clear.Location = new System.Drawing.Point(221, 166);
+            this.btn_clear.Location = new System.Drawing.Point(332, 255);
+            this.btn_clear.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btn_clear.Name = "btn_clear";
-            this.btn_clear.Size = new System.Drawing.Size(133, 35);
+            this.btn_clear.Size = new System.Drawing.Size(200, 54);
             this.btn_clear.TabIndex = 6;
             this.btn_clear.Text = "Clear";
             this.btn_clear.UseVisualStyleBackColor = true;
@@ -259,12 +273,11 @@ namespace SecretCellar.Settings_Panels
             // 
             // PanTax
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.panel1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "PanTax";
-            this.Size = new System.Drawing.Size(605, 320);
+            this.Size = new System.Drawing.Size(908, 492);
             this.panel1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
