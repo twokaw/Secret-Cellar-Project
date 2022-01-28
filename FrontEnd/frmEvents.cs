@@ -131,10 +131,15 @@ namespace SecretCellar
         }
 
         private void button_DeleteEvent_Click(object sender, EventArgs e) {
-            if (dataGridView_Events.SelectedRows.Count > 0) { 
-                DataAccess.instance.DeleteEvent(_selectedEvent.Id);
-                UpdateEventGrid();
-            }
+            if (dataGridView_Events.SelectedRows.Count == 0) { return; }
+
+            List<EventWaitlistItem> eventWaitlistItems = DataAccess.instance.GetEventsWaitlists();
+            eventWaitlistItems = eventWaitlistItems.FindAll((item) => { return item.EventId == _selectedEvent.Id; });
+
+            if (eventWaitlistItems.Count > 0) { MessageBox.Show("Cannot delete an event while customers are on the waitlist for it.", "Error"); return; }
+
+            DataAccess.instance.DeleteEvent(_selectedEvent.Id);
+            UpdateEventGrid();
         }
 
         private void button_EditEvent_Click(object sender, EventArgs e) {
