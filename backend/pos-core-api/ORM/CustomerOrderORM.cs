@@ -158,6 +158,7 @@ namespace pos_core_api.ORM
         public long Insert(uint customerId, CustomerOrderItem cust)
         {
             CustomerOrder co = Get(customerId, false);
+
             if (co?.Items.FirstOrDefault(x => x.CustomerOrderItemID == cust.CustomerOrderItemID) != null)
                 return Update(cust);
             else
@@ -169,6 +170,12 @@ namespace pos_core_api.ORM
                     coi.DeliverQty += cust.DeliverQty;
                     return Update(coi);
                 }
+            }
+
+            if (cust.Price <= 0)
+            {
+                Inventory inv = DataAccess.Instance.Inventory.GetInv(cust.Id);
+                cust.Price = inv.Price;
             }
 
             MySqlCommand cmd = db.CreateCommand(@"
@@ -210,6 +217,13 @@ namespace pos_core_api.ORM
 
             if (temp == null)
                 throw new Exception("CustomerOrderItem is missing");
+
+            if(cust.Price <= 0)
+            {
+                Inventory inv = DataAccess.Instance.Inventory.GetInv(cust.Id);
+                if (inv.Price > 0)
+                    cust.Price = inv.Price;
+            }
 
             if (temp.Id != cust.Id
              || temp.RequestQty != cust.RequestQty
@@ -253,13 +267,12 @@ namespace pos_core_api.ORM
                     cmd = db.CreateCommand(@$"
                         DELETE FROM customerorderitem
                         WHERE CustomerOrderItemID = @OrderItemID
-                        AND DeliverQty >= RequestQty
+                        AND ABS(DeliverQty) >= ABS(RequestQty)
                         AND Paid = Price * DeliverQty
                     ");
-                    cmd.Parameters.Add(new MySqlParameter("CustomerOrderID", cust.CustomerOrderItemID));
+                    cmd.Parameters.Add(new MySqlParameter("OrderItemID", cust.CustomerOrderItemID));
                     try
                     {
-
                         cmd.ExecuteNonQuery();
                     }
                     finally

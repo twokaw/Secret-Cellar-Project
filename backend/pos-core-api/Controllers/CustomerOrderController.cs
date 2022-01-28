@@ -67,11 +67,15 @@ namespace WebApi.Controllers
             }
         }
 
-        [HttpPut]
-        public IActionResult Put([FromBody] CustomerOrderItem cust)
+        [HttpPut("{customerID}")]
+        public IActionResult Put(uint customerID, [FromBody] CustomerOrderItem cust)
         {
             try
             {
+                CustomerOrderItem temp = DataAccess.Instance.CustomerOrder.GetCustomerItem(cust.CustomerOrderItemID);
+                if (temp == null)
+                    return Post(customerID, cust);
+
                 long id = DataAccess.Instance.CustomerOrder.Update(cust);
                 if (id > 0)
                     return Ok(id);

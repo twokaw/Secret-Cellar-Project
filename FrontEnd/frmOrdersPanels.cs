@@ -11,7 +11,7 @@ namespace SecretCellar {
         {
             panel_Fulfillment1.RefreshFillment();
             panel_CustomerOrder1.RefreshFavorite();
-            panel_SupplierOrder1.Refresh();
+            panel_SupplierOrder1.RefreshSupplier();
         }
 		private void btn_close_Click(object sender, EventArgs e) {
 			this.Close();

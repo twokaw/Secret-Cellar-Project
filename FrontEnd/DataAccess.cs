@@ -470,10 +470,10 @@ namespace SecretCellar
                 return 0;
         }
 
-        public uint UpdateCustomerOrderItem(CustomerOrderItem customerOrderItem)
+        public uint UpdateCustomerOrderItem(uint customerID, CustomerOrderItem customerOrderItem)
         {
             Response resp = null;
-            string result = web.DataPut($"api/CustomerOrder", customerOrderItem, resp);
+            string result = web.DataPut($"api/CustomerOrder/{customerID}", customerOrderItem, resp);
             if (uint.TryParse(result, out uint id))
                 return id;
             else

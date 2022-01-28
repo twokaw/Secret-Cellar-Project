@@ -52,7 +52,7 @@ namespace SecretCellar.Orders_Panels {
         private void btn_delivered_update_Click(object sender, EventArgs e) {
             CustomerOrder custorder = DataAccess.instance.GetCustomerOrderforCustomer(((CustomerOrder)cbx_fullfill_cust.SelectedItem).CustomerID, false);
 
-            Inventory i = inventory.First(x => x.Id == uint.Parse(fullfill_datagrid.SelectedRows[0].Cells["Id"].Value.ToString()));
+            Inventory i = inventory.First(x => x.Id == uint.Parse(fullfill_datagrid.SelectedRows[0].Cells["id"].Value.ToString()));
             CustomerOrderItem coid = custorder.Items.FirstOrDefault(x => x.Id == i.Id);
 
             if (fullfill_datagrid.SelectedRows.Count > 0) {
@@ -60,7 +60,8 @@ namespace SecretCellar.Orders_Panels {
                 // i.OrderQty.Add(new CustomerOrder {RequestQty = coid.RequestQty, DeliveredDate = DateTime.Now, SupplierPrice = 0 });
                 if (uint.TryParse(txt_deliverqty.Text.Trim(), out uint dqty)) {
                     coid.DeliverQty += dqty;
-                    DataAccess.instance.UpdateCustomerOrderItem(coid);
+                    DataAccess.instance.UpdateCustomerOrderItem(custorder.CustomerID, coid);
+                    i.AllQty.Remove(new InventoryQty { Qty = Convert.ToUInt32(fullfill_datagrid.SelectedRows[0].Cells["qty"].Value.ToString()) - coid.DeliverQty });
                 }
                 else {
                     txt_deliverqty.Focus();
@@ -122,7 +123,7 @@ namespace SecretCellar.Orders_Panels {
                 Inventory i = inventory.First(x => x.Id == uint.Parse(row.Cells["id"].Value.ToString()));
                 CustomerOrderItem coid = custorder.Items.FirstOrDefault(x => x.Id == i.Id);
                 coid.DeliverQty = uint.Parse(row.Cells["requestqty"].Value.ToString());
-                DataAccess.instance.UpdateCustomerOrderItem(coid);
+                DataAccess.instance.UpdateCustomerOrderItem(custorder.CustomerID, coid);
             }
 
             txt_deliverqty.Text = "";
@@ -142,8 +143,10 @@ namespace SecretCellar.Orders_Panels {
             foreach (DataGridViewRow row in fullfill_datagrid.SelectedRows) {
                 Inventory i = inventory.First(x => x.Id == uint.Parse(row.Cells["id"].Value.ToString()));
                 CustomerOrderItem coid = custorder.Items.FirstOrDefault(x => x.Id == i.Id);
+                uint dqty = coid.DeliverQty;
                 coid.DeliverQty = uint.Parse(row.Cells["requestqty"].Value.ToString());
-                DataAccess.instance.UpdateCustomerOrderItem(coid);
+                DataAccess.instance.UpdateCustomerOrderItem(custorder.CustomerID, coid);
+                i.AllQty[0].Qty-= coid.DeliverQty;
             }
 
             txt_deliverqty.Text = "";
