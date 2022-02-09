@@ -136,7 +136,7 @@ namespace SecretCellar
             List<EventWaitlistItem> eventWaitlistItems = DataAccess.instance.GetEventsWaitlists();
             eventWaitlistItems = eventWaitlistItems.FindAll((item) => { return item.EventId == _selectedEvent.Id; });
 
-            if (eventWaitlistItems.Count > 0) { MessageBox.Show("Cannot delete an event while customers are on the waitlist for it.", "Error"); return; }
+            if (eventWaitlistItems.Count > 0) { MessageBox.Show($"Cannot delete '{_selectedEvent.Name}' while customers are on the waitlist for it.", "Error"); return; }
 
             DataAccess.instance.DeleteEvent(_selectedEvent.Id);
             UpdateEventGrid();
