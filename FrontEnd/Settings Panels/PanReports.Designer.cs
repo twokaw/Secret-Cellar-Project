@@ -73,6 +73,7 @@ namespace SecretCellar.Settings_Panels
             this.TxtSalesVendor.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.TxtSalesVendor.BackColor = System.Drawing.Color.White;
             this.TxtSalesVendor.Font = new System.Drawing.Font("Consolas", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtSalesVendor.Location = new System.Drawing.Point(494, 105);
             this.TxtSalesVendor.Multiline = true;
@@ -96,6 +97,7 @@ namespace SecretCellar.Settings_Panels
             this.TxtSalesInvType.AcceptsReturn = true;
             this.TxtSalesInvType.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.TxtSalesInvType.BackColor = System.Drawing.Color.White;
             this.TxtSalesInvType.Font = new System.Drawing.Font("Consolas", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtSalesInvType.Location = new System.Drawing.Point(294, 105);
             this.TxtSalesInvType.Multiline = true;
@@ -120,12 +122,13 @@ namespace SecretCellar.Settings_Panels
             this.TxtSalesTotals.AcceptsReturn = true;
             this.TxtSalesTotals.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.TxtSalesTotals.BackColor = System.Drawing.Color.White;
             this.TxtSalesTotals.Font = new System.Drawing.Font("Consolas", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtSalesTotals.Location = new System.Drawing.Point(12, 105);
             this.TxtSalesTotals.Multiline = true;
             this.TxtSalesTotals.Name = "TxtSalesTotals";
             this.TxtSalesTotals.ReadOnly = true;
-            this.TxtSalesTotals.Size = new System.Drawing.Size(267, 229);
+            this.TxtSalesTotals.Size = new System.Drawing.Size(266, 229);
             this.TxtSalesTotals.TabIndex = 3;
             // 
             // label5
@@ -142,7 +145,7 @@ namespace SecretCellar.Settings_Panels
             // 
             this.dtp_end.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
             this.dtp_end.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtp_end.Location = new System.Drawing.Point(499, 18);
+            this.dtp_end.Location = new System.Drawing.Point(500, 18);
             this.dtp_end.MinDate = new System.DateTime(2020, 1, 1, 0, 0, 0, 0);
             this.dtp_end.Name = "dtp_end";
             this.dtp_end.Size = new System.Drawing.Size(174, 30);
@@ -152,7 +155,7 @@ namespace SecretCellar.Settings_Panels
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
-            this.label4.Location = new System.Drawing.Point(143, 18);
+            this.label4.Location = new System.Drawing.Point(142, 18);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(65, 25);
             this.label4.TabIndex = 17;
@@ -170,6 +173,7 @@ namespace SecretCellar.Settings_Panels
             // 
             // panel1
             // 
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(231)))), ((int)(((byte)(206)))));
             this.panel1.Controls.Add(this.btn_Run);
             this.panel1.Controls.Add(this.label7);
             this.panel1.Controls.Add(this.label6);

@@ -37,6 +37,15 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmLookup));
             this.txtlookup = new System.Windows.Forms.TextBox();
             this.LookupView = new System.Windows.Forms.DataGridView();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Class = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Barcode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Qty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.minqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.orderqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.maxqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btn_cancel = new System.Windows.Forms.Button();
             this.btn_add = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -80,15 +89,6 @@
             this.chk_box_show_hidden = new System.Windows.Forms.CheckBox();
             this.label7 = new System.Windows.Forms.Label();
             this.btn_close = new System.Windows.Forms.Button();
-            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Class = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Barcode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Qty = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.minqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.orderqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.maxqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.LookupView)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -115,16 +115,19 @@
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(51)))), ((int)(((byte)(69)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Ivory;
             this.LookupView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.LookupView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.LookupView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.LookupView.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(237)))), ((int)(((byte)(196)))));
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Menu;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.LookupView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
@@ -141,10 +144,10 @@
             this.maxqty});
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(51)))), ((int)(((byte)(69)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Ivory;
             dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.LookupView.DefaultCellStyle = dataGridViewCellStyle4;
             this.LookupView.Location = new System.Drawing.Point(0, 0);
@@ -154,7 +157,7 @@
             this.LookupView.ReadOnly = true;
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -174,6 +177,95 @@
             this.LookupView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.LookupView_CellContentClick);
             this.LookupView.SelectionChanged += new System.EventHandler(this.LookupView_SelectionChanged);
             // 
+            // Id
+            // 
+            this.Id.DataPropertyName = "Id";
+            this.Id.FillWeight = 8F;
+            this.Id.HeaderText = "ItemId";
+            this.Id.MinimumWidth = 8;
+            this.Id.Name = "Id";
+            this.Id.ReadOnly = true;
+            this.Id.Visible = false;
+            // 
+            // Description
+            // 
+            this.Description.DataPropertyName = "Name";
+            this.Description.FillWeight = 223F;
+            this.Description.HeaderText = "Name";
+            this.Description.MinimumWidth = 223;
+            this.Description.Name = "Description";
+            this.Description.ReadOnly = true;
+            // 
+            // Class
+            // 
+            this.Class.DataPropertyName = "ItemType";
+            this.Class.FillWeight = 65F;
+            this.Class.HeaderText = "Class";
+            this.Class.MinimumWidth = 65;
+            this.Class.Name = "Class";
+            this.Class.ReadOnly = true;
+            this.Class.Visible = false;
+            // 
+            // Barcode
+            // 
+            this.Barcode.DataPropertyName = "Barcode";
+            this.Barcode.FillWeight = 130F;
+            this.Barcode.HeaderText = "Barcode";
+            this.Barcode.MinimumWidth = 130;
+            this.Barcode.Name = "Barcode";
+            this.Barcode.ReadOnly = true;
+            // 
+            // Qty
+            // 
+            this.Qty.DataPropertyName = "Qty";
+            this.Qty.FillWeight = 50F;
+            this.Qty.HeaderText = "Qty";
+            this.Qty.MinimumWidth = 50;
+            this.Qty.Name = "Qty";
+            this.Qty.ReadOnly = true;
+            // 
+            // Price
+            // 
+            this.Price.DataPropertyName = "Price";
+            dataGridViewCellStyle3.Format = "C2";
+            dataGridViewCellStyle3.NullValue = null;
+            this.Price.DefaultCellStyle = dataGridViewCellStyle3;
+            this.Price.FillWeight = 90F;
+            this.Price.HeaderText = "Price";
+            this.Price.MinimumWidth = 90;
+            this.Price.Name = "Price";
+            this.Price.ReadOnly = true;
+            // 
+            // minqty
+            // 
+            this.minqty.DataPropertyName = "minqty";
+            this.minqty.FillWeight = 65F;
+            this.minqty.HeaderText = "Min Qty";
+            this.minqty.MinimumWidth = 65;
+            this.minqty.Name = "minqty";
+            this.minqty.ReadOnly = true;
+            this.minqty.Visible = false;
+            // 
+            // orderqty
+            // 
+            this.orderqty.DataPropertyName = "orderqty";
+            this.orderqty.FillWeight = 70F;
+            this.orderqty.HeaderText = "Order Qty";
+            this.orderqty.MinimumWidth = 70;
+            this.orderqty.Name = "orderqty";
+            this.orderqty.ReadOnly = true;
+            this.orderqty.Visible = false;
+            // 
+            // maxqty
+            // 
+            this.maxqty.DataPropertyName = "maxqty";
+            this.maxqty.FillWeight = 65F;
+            this.maxqty.HeaderText = "Max Qty";
+            this.maxqty.MinimumWidth = 65;
+            this.maxqty.Name = "maxqty";
+            this.maxqty.ReadOnly = true;
+            this.maxqty.Visible = false;
+            // 
             // btn_cancel
             // 
             this.btn_cancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -190,13 +282,13 @@
             // btn_add
             // 
             this.btn_add.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_add.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_add.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_add.Location = new System.Drawing.Point(212, 573);
             this.btn_add.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_add.Name = "btn_add";
             this.btn_add.Size = new System.Drawing.Size(157, 46);
             this.btn_add.TabIndex = 23;
-            this.btn_add.Text = "ADD TO CART";
+            this.btn_add.Text = "Add to Cart";
             this.btn_add.UseVisualStyleBackColor = true;
             this.btn_add.Click += new System.EventHandler(this.btn_add_Click);
             // 
@@ -216,7 +308,7 @@
             // 
             this.cbxTypeFilter.DisplayMember = "TypeName";
             this.cbxTypeFilter.FormattingEnabled = true;
-            this.cbxTypeFilter.Location = new System.Drawing.Point(313, 29);
+            this.cbxTypeFilter.Location = new System.Drawing.Point(313, 28);
             this.cbxTypeFilter.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cbxTypeFilter.Name = "cbxTypeFilter";
             this.cbxTypeFilter.Size = new System.Drawing.Size(200, 28);
@@ -226,7 +318,7 @@
             // label6
             // 
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(310, 2);
+            this.label6.Location = new System.Drawing.Point(310, 5);
             this.label6.Margin = new System.Windows.Forms.Padding(0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(203, 21);
@@ -237,7 +329,7 @@
             // 
             this.cbxSupplyFilter.DisplayMember = "Name";
             this.cbxSupplyFilter.FormattingEnabled = true;
-            this.cbxSupplyFilter.Location = new System.Drawing.Point(549, 25);
+            this.cbxSupplyFilter.Location = new System.Drawing.Point(549, 28);
             this.cbxSupplyFilter.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cbxSupplyFilter.Name = "cbxSupplyFilter";
             this.cbxSupplyFilter.Size = new System.Drawing.Size(200, 28);
@@ -247,7 +339,7 @@
             // lblSupplyFilter
             // 
             this.lblSupplyFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSupplyFilter.Location = new System.Drawing.Point(546, 2);
+            this.lblSupplyFilter.Location = new System.Drawing.Point(546, 5);
             this.lblSupplyFilter.Margin = new System.Windows.Forms.Padding(0);
             this.lblSupplyFilter.Name = "lblSupplyFilter";
             this.lblSupplyFilter.Size = new System.Drawing.Size(203, 21);
@@ -319,13 +411,13 @@
             // btn_update
             // 
             this.btn_update.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_update.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_update.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_update.Location = new System.Drawing.Point(20, 572);
             this.btn_update.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_update.Name = "btn_update";
             this.btn_update.Size = new System.Drawing.Size(157, 46);
             this.btn_update.TabIndex = 21;
-            this.btn_update.Text = "UPDATE ITEM";
+            this.btn_update.Text = "Update Item";
             this.btn_update.UseVisualStyleBackColor = true;
             this.btn_update.Click += new System.EventHandler(this.btn_update_Click);
             // 
@@ -428,13 +520,13 @@
             // btn_new
             // 
             this.btn_new.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_new.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_new.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_new.Location = new System.Drawing.Point(433, 641);
             this.btn_new.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btn_new.Name = "btn_new";
             this.btn_new.Size = new System.Drawing.Size(157, 46);
             this.btn_new.TabIndex = 20;
-            this.btn_new.Text = "NEW ITEM";
+            this.btn_new.Text = "New Item";
             this.btn_new.UseVisualStyleBackColor = true;
             this.btn_new.Click += new System.EventHandler(this.btn_new_Click);
             // 
@@ -616,12 +708,12 @@
             this.checkListBox_Discounts.Margin = new System.Windows.Forms.Padding(0);
             this.checkListBox_Discounts.MaximumSize = new System.Drawing.Size(222, 500);
             this.checkListBox_Discounts.Name = "checkListBox_Discounts";
-            this.checkListBox_Discounts.Size = new System.Drawing.Size(207, 63);
+            this.checkListBox_Discounts.Size = new System.Drawing.Size(207, 21);
             this.checkListBox_Discounts.TabIndex = 20;
             // 
             // label_CaseDiscount
             // 
-            this.label_CaseDiscount.Location = new System.Drawing.Point(25, 489);
+            this.label_CaseDiscount.Location = new System.Drawing.Point(23, 489);
             this.label_CaseDiscount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_CaseDiscount.Name = "label_CaseDiscount";
             this.label_CaseDiscount.Size = new System.Drawing.Size(119, 31);
@@ -632,13 +724,13 @@
             // btn_clear_info
             // 
             this.btn_clear_info.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_clear_info.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_clear_info.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_clear_info.Location = new System.Drawing.Point(259, 641);
             this.btn_clear_info.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btn_clear_info.Name = "btn_clear_info";
             this.btn_clear_info.Size = new System.Drawing.Size(157, 46);
             this.btn_clear_info.TabIndex = 19;
-            this.btn_clear_info.Text = "CLEAR";
+            this.btn_clear_info.Text = "Clear";
             this.btn_clear_info.UseVisualStyleBackColor = true;
             this.btn_clear_info.Click += new System.EventHandler(this.btn_clear_info_Click);
             // 
@@ -657,7 +749,7 @@
             // label7
             // 
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(19, 2);
+            this.label7.Location = new System.Drawing.Point(19, 5);
             this.label7.Margin = new System.Windows.Forms.Padding(0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(256, 21);
@@ -667,104 +759,15 @@
             // btn_close
             // 
             this.btn_close.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_close.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_close.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_close.Location = new System.Drawing.Point(22, 641);
             this.btn_close.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btn_close.Name = "btn_close";
             this.btn_close.Size = new System.Drawing.Size(157, 46);
             this.btn_close.TabIndex = 26;
-            this.btn_close.Text = "CLOSE";
+            this.btn_close.Text = "Close";
             this.btn_close.UseVisualStyleBackColor = true;
             this.btn_close.Click += new System.EventHandler(this.btn_close_Click);
-            // 
-            // Id
-            // 
-            this.Id.DataPropertyName = "Id";
-            this.Id.FillWeight = 8F;
-            this.Id.HeaderText = "ItemId";
-            this.Id.MinimumWidth = 8;
-            this.Id.Name = "Id";
-            this.Id.ReadOnly = true;
-            this.Id.Visible = false;
-            // 
-            // Description
-            // 
-            this.Description.DataPropertyName = "Name";
-            this.Description.FillWeight = 223F;
-            this.Description.HeaderText = "Name";
-            this.Description.MinimumWidth = 223;
-            this.Description.Name = "Description";
-            this.Description.ReadOnly = true;
-            // 
-            // Class
-            // 
-            this.Class.DataPropertyName = "ItemType";
-            this.Class.FillWeight = 65F;
-            this.Class.HeaderText = "Class";
-            this.Class.MinimumWidth = 65;
-            this.Class.Name = "Class";
-            this.Class.ReadOnly = true;
-            this.Class.Visible = false;
-            // 
-            // Barcode
-            // 
-            this.Barcode.DataPropertyName = "Barcode";
-            this.Barcode.FillWeight = 130F;
-            this.Barcode.HeaderText = "Barcode";
-            this.Barcode.MinimumWidth = 130;
-            this.Barcode.Name = "Barcode";
-            this.Barcode.ReadOnly = true;
-            // 
-            // Qty
-            // 
-            this.Qty.DataPropertyName = "Qty";
-            this.Qty.FillWeight = 50F;
-            this.Qty.HeaderText = "Qty";
-            this.Qty.MinimumWidth = 50;
-            this.Qty.Name = "Qty";
-            this.Qty.ReadOnly = true;
-            // 
-            // Price
-            // 
-            this.Price.DataPropertyName = "Price";
-            dataGridViewCellStyle3.Format = "C2";
-            dataGridViewCellStyle3.NullValue = null;
-            this.Price.DefaultCellStyle = dataGridViewCellStyle3;
-            this.Price.FillWeight = 90F;
-            this.Price.HeaderText = "Price";
-            this.Price.MinimumWidth = 90;
-            this.Price.Name = "Price";
-            this.Price.ReadOnly = true;
-            // 
-            // minqty
-            // 
-            this.minqty.DataPropertyName = "minqty";
-            this.minqty.FillWeight = 65F;
-            this.minqty.HeaderText = "Min Qty";
-            this.minqty.MinimumWidth = 65;
-            this.minqty.Name = "minqty";
-            this.minqty.ReadOnly = true;
-            this.minqty.Visible = false;
-            // 
-            // orderqty
-            // 
-            this.orderqty.DataPropertyName = "orderqty";
-            this.orderqty.FillWeight = 70F;
-            this.orderqty.HeaderText = "Order Qty";
-            this.orderqty.MinimumWidth = 70;
-            this.orderqty.Name = "orderqty";
-            this.orderqty.ReadOnly = true;
-            this.orderqty.Visible = false;
-            // 
-            // maxqty
-            // 
-            this.maxqty.DataPropertyName = "maxqty";
-            this.maxqty.FillWeight = 65F;
-            this.maxqty.HeaderText = "Max Qty";
-            this.maxqty.MinimumWidth = 65;
-            this.maxqty.Name = "maxqty";
-            this.maxqty.ReadOnly = true;
-            this.maxqty.Visible = false;
             // 
             // frmLookup
             // 
@@ -772,8 +775,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.ClientSize = new System.Drawing.Size(998, 709);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(231)))), ((int)(((byte)(206)))));
+            this.ClientSize = new System.Drawing.Size(998, 707);
             this.Controls.Add(this.btn_close);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.btn_clear_info);

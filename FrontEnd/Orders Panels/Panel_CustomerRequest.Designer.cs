@@ -67,7 +67,7 @@ namespace SecretCellar.Orders_Panels {
             this.lst_customer.ItemHeight = 20;
             this.lst_customer.Location = new System.Drawing.Point(3, 44);
             this.lst_customer.Name = "lst_customer";
-            this.lst_customer.Size = new System.Drawing.Size(338, 224);
+            this.lst_customer.Size = new System.Drawing.Size(338, 264);
             this.lst_customer.TabIndex = 21;
             // 
             // btn_prod_delete
@@ -75,9 +75,9 @@ namespace SecretCellar.Orders_Panels {
             this.btn_prod_delete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btn_prod_delete.AutoSize = true;
             this.btn_prod_delete.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_prod_delete.Location = new System.Drawing.Point(366, 289);
+            this.btn_prod_delete.Location = new System.Drawing.Point(366, 280);
             this.btn_prod_delete.Name = "btn_prod_delete";
-            this.btn_prod_delete.Size = new System.Drawing.Size(119, 30);
+            this.btn_prod_delete.Size = new System.Drawing.Size(119, 39);
             this.btn_prod_delete.TabIndex = 20;
             this.btn_prod_delete.Text = "Remove";
             this.btn_prod_delete.UseVisualStyleBackColor = true;
@@ -88,9 +88,9 @@ namespace SecretCellar.Orders_Panels {
             this.btn_prod_add.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_prod_add.AutoSize = true;
             this.btn_prod_add.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_prod_add.Location = new System.Drawing.Point(705, 289);
+            this.btn_prod_add.Location = new System.Drawing.Point(705, 280);
             this.btn_prod_add.Name = "btn_prod_add";
-            this.btn_prod_add.Size = new System.Drawing.Size(123, 30);
+            this.btn_prod_add.Size = new System.Drawing.Size(123, 39);
             this.btn_prod_add.TabIndex = 19;
             this.btn_prod_add.Text = "Add";
             this.btn_prod_add.UseVisualStyleBackColor = true;
@@ -118,12 +118,16 @@ namespace SecretCellar.Orders_Panels {
             // 
             this.request_dataGrid.AllowUserToAddRows = false;
             this.request_dataGrid.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(51)))), ((int)(((byte)(69)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Ivory;
             this.request_dataGrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.request_dataGrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.request_dataGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.request_dataGrid.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(237)))), ((int)(((byte)(196)))));
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -143,8 +147,8 @@ namespace SecretCellar.Orders_Panels {
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(51)))), ((int)(((byte)(69)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Ivory;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.request_dataGrid.DefaultCellStyle = dataGridViewCellStyle3;
             this.request_dataGrid.Location = new System.Drawing.Point(367, 44);
@@ -154,17 +158,23 @@ namespace SecretCellar.Orders_Panels {
             dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(51)))), ((int)(((byte)(69)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Ivory;
             dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.request_dataGrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.request_dataGrid.RowHeadersVisible = false;
             this.request_dataGrid.RowHeadersWidth = 62;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(51)))), ((int)(((byte)(69)))));
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.Ivory;
             this.request_dataGrid.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            this.request_dataGrid.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.request_dataGrid.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.request_dataGrid.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(51)))), ((int)(((byte)(69)))));
+            this.request_dataGrid.RowTemplate.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.Ivory;
             this.request_dataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.request_dataGrid.Size = new System.Drawing.Size(460, 236);
+            this.request_dataGrid.Size = new System.Drawing.Size(460, 223);
             this.request_dataGrid.TabIndex = 16;
             this.request_dataGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.request_dataGrid_CellContentClick);
             // 
@@ -213,6 +223,7 @@ namespace SecretCellar.Orders_Panels {
             // 
             // panel1
             // 
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(231)))), ((int)(((byte)(206)))));
             this.panel1.Controls.Add(this.btn_prod_delete);
             this.panel1.Controls.Add(this.textBox_CustomerName);
             this.panel1.Controls.Add(this.btn_prod_add);
@@ -222,10 +233,11 @@ namespace SecretCellar.Orders_Panels {
             this.panel1.Controls.Add(this.request_dataGrid);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(836, 329);
             this.panel1.TabIndex = 23;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // Panel_CustomerRequest
             // 

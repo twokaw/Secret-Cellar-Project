@@ -37,8 +37,8 @@ namespace SecretCellar
         private void ManagedForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             Forms.Remove(this);
-            if(Forms.Count == 0 )
-                CommonFont = new Font("Microsoft Sans Serif", 12, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            //if(Forms.Count == 0 )
+            //    CommonFont = new Font("Microsoft Sans Serif", 12, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             Console.WriteLine($"Deconstructed: {Forms.Count}");
         }
 
@@ -62,7 +62,7 @@ namespace SecretCellar
 
         private static Font Default_Font()
         {
-            return Properties.Settings.Default.FontSet;
+            return new Font("Microsoft Sans Serif", 12, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0))); ;
         }
 
         public static Font CommonFontSetter
@@ -142,8 +142,8 @@ namespace SecretCellar
             // 
             // ManagedForm
             // 
-          //  this.Size = new System.Drawing.Size(1200, 900);
-          //  this.ClientSize = new System.Drawing.Size(284, 261);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(231)))), ((int)(((byte)(206)))));
+            this.ClientSize = new System.Drawing.Size(278, 244);
             this.Name = "ManagedForm";
             this.Load += new System.EventHandler(this.ManagedForm_Load);
             this.ResumeLayout(false);

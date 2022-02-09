@@ -57,6 +57,13 @@ namespace SecretCellar
             Receipt.DefaultLayout = receiptLayout;
             PurchaseOrder.LetterLayout = letterLayout;
             btnSuspendTransaction.Visible = false;
+           /*
+            foreach(DataGridViewColumn  col in dataGridView1.Columns)
+                col.CellStyle = new DataGridViewCellStyle { BackColor = Color.Purple, SelectionBackColor = Color.Purple , Font = new Font("Microsoft Sans Serif", 11f, FontStyle.Bold), Alignment = DataGridViewContentAlignment.MiddleCenter };
+           */
+
+            dataGridView1.ColumnHeadersDefaultCellStyle = new DataGridViewCellStyle { BackColor = Color.Purple, SelectionBackColor = Color.Purple, Font = new Font("Microsoft Sans Serif", 11f, FontStyle.Bold), Alignment = DataGridViewContentAlignment.MiddleCenter };
+            // dataGridView1.Refresh();
         }
 
         private void ReloadLogo()
@@ -132,13 +139,13 @@ namespace SecretCellar
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == 1)
+            if (e.ColumnIndex == 1 && e.RowIndex > -1)
             {
-                QuantityChange qtychange = new QuantityChange(int.Parse(dataGridView1.Rows[e.RowIndex].Cells["QTY"].Value.ToString()));
+                QuantityChange qtychange = new QuantityChange(int.Parse(dataGridView1?.Rows[e.RowIndex]?.Cells["QTY"]?.Value.ToString()));
 
                 if (qtychange.ShowDialog() == DialogResult.OK)
                 {
-                    Item i = transaction.Items.FirstOrDefault(x => x.Id == uint.Parse(dataGridView1.Rows[e.RowIndex].Cells["ItemID"].Value.ToString()));
+                    Item i = transaction.Items.FirstOrDefault(x => x.Id == uint.Parse(dataGridView1.Rows[e.RowIndex]?.Cells["ItemID"]?.Value.ToString()));
                     i.NumSold = (uint)qtychange.UpdatedQty;
                 }  
                 
@@ -163,8 +170,8 @@ namespace SecretCellar
                 using (var r = dataGridView1.Rows[row])
                 {
                     // Populate tranaction datagrid row
-                    r.Cells["Description"].Value = item.Description;
-                    r.Cells["Discount"].Value = item.Discount.ToString("P0");
+                    r.Cells["Description"].Value = item.Name;
+                    r.Cells["Discount"].Value = (Math.Floor(transaction.ItemDiscount(item) * 100) / 100).ToString("P0");  //item.Discount.ToString("P0");
                     r.Cells["List_Price"].Value = item.Price.ToString("C");
                     r.Cells["Sale_Price"].Value = (item.Price * (1 - item.Discount)).ToString("C");
                     r.Cells["Qty"].Value = item.NumSold;
@@ -196,9 +203,9 @@ namespace SecretCellar
         {
             if (dataGridView1.SelectedRows.Count > 0)
             {
-                string desc = dataGridView1.SelectedRows[0].Cells["DESCRIPTION"].Value.ToString();
+                string name = dataGridView1.SelectedRows[0].Cells["DESCRIPTION"].Value.ToString();
                 uint qty = uint.Parse(dataGridView1.SelectedRows[0].Cells["QTY"].Value.ToString());
-                Item i = transaction.Items.First(x => x.Description == desc && x.NumSold == qty);
+                Item i = transaction.Items.First(x => x.Name == name && x.NumSold == qty);
                 transaction.Items.Remove(i);
                 RefreshDataGrid();
                 txtBarcode.Focus();
@@ -420,5 +427,9 @@ namespace SecretCellar
             btnTender2.ImageIndex = 0;
         }
 
+        private void frmTransaction_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

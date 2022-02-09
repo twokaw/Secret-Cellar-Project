@@ -13,6 +13,11 @@ namespace SecretCellar
         private List<InventoryType> types = null;
         private string descriptionAndBarcodeSearchText = "Enter Description/Barcode";
 
+        public void SubmitButtonText(string value = "Add to Cart")
+        {
+            btn_add.Text = value; 
+        }
+
         public frmLookup()
         {
             InitializeComponent();
@@ -241,8 +246,8 @@ namespace SecretCellar
 
         private void btn_new_Click(object sender, EventArgs e)
         {
-            if (LookupView.SelectedRows.Count > 0)
-            {
+            //if (LookupView.SelectedRows.Count > 0)
+           // {
                 if (txtName.Text.Replace(" ", "") != "" && txtBarcode.Text.Replace(" ", "") != "") {
                     Inventory i = DataAccess.instance.GetInventory().FirstOrDefault(x => x.Barcode == txtBarcode.Text);
 
@@ -321,7 +326,7 @@ namespace SecretCellar
                 else {
                     MessageBox.Show("Name and Barcode cannot be empty.", "Error");
                 }
-            }
+           // }
         }
 
         private void cbxTypeFilter_SelectedIndexChanged(object sender, EventArgs e)

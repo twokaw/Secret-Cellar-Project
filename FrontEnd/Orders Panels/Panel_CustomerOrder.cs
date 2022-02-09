@@ -39,7 +39,7 @@ namespace SecretCellar.Orders_Panels {
 		private void btnFavoritesAdd_Click(object sender, EventArgs e) {
 			uint cid = ((Customer)cbx_cust_custorder.SelectedItem).CustomerID;
 			Transaction t = new Transaction();
-			DataAccess.instance.ShowLookupForm(t);
+			DataAccess.instance.ShowLookupForm(t, "Add to Favorites");
 
 			foreach (Item i in t.Items)
 				DataAccess.instance.AddCustomerFavorite(cid, i.Id);
@@ -63,7 +63,6 @@ namespace SecretCellar.Orders_Panels {
 				RefreshFavorite(cid);
 			}
 		}
-
 
 		/// <summary>
 		/// On click Add Order.
@@ -90,7 +89,7 @@ namespace SecretCellar.Orders_Panels {
 						DataAccess.instance.NewCustomerOrderItem(co.CustomerID, new CustomerOrderItem { Id = i.Id, RequestQty = 1 });
 					else {
 						coi.RequestQty++;
-						DataAccess.instance.UpdateCustomerOrderItem(coi);
+						DataAccess.instance.UpdateCustomerOrderItem(co.CustomerID, coi);
 					}
 				}
 
@@ -99,7 +98,6 @@ namespace SecretCellar.Orders_Panels {
 
 			RefreshFavorite(t.CustomerID);
 		}
-
 
 		/// <summary>
 		/// On click update order.
@@ -117,7 +115,7 @@ namespace SecretCellar.Orders_Panels {
 						Id = iid
 					};
 
-					if (coi == null)
+					if (coi == null || coi.CustomerOrderItemID == 0)
 						DataAccess.instance.NewCustomerOrderItem(cid, new CustomerOrderItem {
 							Id = iid,
 							RequestQty = Convert.ToUInt32(txt_orderqty_custorder.Text)
@@ -125,7 +123,7 @@ namespace SecretCellar.Orders_Panels {
 					else {
 						coi.RequestQty = Convert.ToUInt32(txt_orderqty_custorder.Text);
 						coi.CustomerOrderItemID = cid;
-						DataAccess.instance.UpdateCustomerOrderItem(coi);
+						DataAccess.instance.UpdateCustomerOrderItem(cid, coi);
 					}
 
 					//DataAccess.instance.UpdateCustomerOrder(co);
@@ -156,12 +154,17 @@ namespace SecretCellar.Orders_Panels {
 			RefreshFavorite(cid);
 		}
 
-
+		public void RefreshFavorite()
+        {
+			uint? cid = ((Customer)cbx_cust_custorder.SelectedItem)?.CustomerID;
+			if(cid != null)
+				RefreshFavorite(cid.Value);
+		}
 		/// <summary>
 		/// Refresh the favorites list.
 		/// </summary>
 		/// <param name="customerId"></param>
-		private void RefreshFavorite(uint customerId) {
+		public void RefreshFavorite(uint customerId) {
 			List<CustomerFavorite> custFav = DataAccess.instance.GetCustomerFavorite(customerId).Favorites;
 			List<CustomerOrderItem> custItems = (DataAccess.instance.GetCustomerOrderforCustomer(customerId)?.Items ?? new List<CustomerOrderItem>()).Where(x => x.DeliverQty < x.RequestQty).ToList();
 

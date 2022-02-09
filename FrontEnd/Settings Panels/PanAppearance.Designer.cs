@@ -46,6 +46,7 @@ namespace SecretCellar.Settings_Panels
             // 
             // panel1
             // 
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(231)))), ((int)(((byte)(206)))));
             this.panel1.Controls.Add(this.btn_commit);
             this.panel1.Controls.Add(this.btn_change_logo);
             this.panel1.Controls.Add(this.btn_change_image);
@@ -110,7 +111,7 @@ namespace SecretCellar.Settings_Panels
             this.btn_reset.Location = new System.Drawing.Point(768, 302);
             this.btn_reset.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btn_reset.Name = "btn_reset";
-            this.btn_reset.Size = new System.Drawing.Size(260, 54);
+            this.btn_reset.Size = new System.Drawing.Size(259, 54);
             this.btn_reset.TabIndex = 8;
             this.btn_reset.Text = "Default Settings";
             this.btn_reset.UseVisualStyleBackColor = true;
@@ -181,7 +182,7 @@ namespace SecretCellar.Settings_Panels
             this.listbox_logos.ItemHeight = 25;
             this.listbox_logos.Location = new System.Drawing.Point(478, 72);
             this.listbox_logos.Name = "listbox_logos";
-            this.listbox_logos.Size = new System.Drawing.Size(260, 254);
+            this.listbox_logos.Size = new System.Drawing.Size(260, 229);
             this.listbox_logos.TabIndex = 2;
             this.listbox_logos.SelectedIndexChanged += new System.EventHandler(this.listbox_logos_SelectedIndexChanged);
             // 

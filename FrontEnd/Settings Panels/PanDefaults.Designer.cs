@@ -38,12 +38,14 @@ namespace SecretCellar.Settings_Panels
             // panel1
             // 
             this.panel1.AutoSize = true;
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(231)))), ((int)(((byte)(206)))));
             this.panel1.Controls.Add(this.cmb_State);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(908, 492);
+            this.panel1.Size = new System.Drawing.Size(605, 320);
             this.panel1.TabIndex = 18;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
@@ -51,30 +53,31 @@ namespace SecretCellar.Settings_Panels
             // 
             this.cmb_State.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmb_State.FormattingEnabled = true;
-            this.cmb_State.Location = new System.Drawing.Point(218, 26);
+            this.cmb_State.Location = new System.Drawing.Point(145, 17);
+            this.cmb_State.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cmb_State.Name = "cmb_State";
-            this.cmb_State.Size = new System.Drawing.Size(221, 28);
+            this.cmb_State.Size = new System.Drawing.Size(149, 21);
             this.cmb_State.TabIndex = 20;
             this.cmb_State.SelectedIndexChanged += new System.EventHandler(this.cmb_State_SelectedIndexChanged);
             // 
             // label1
             // 
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
-            this.label1.Location = new System.Drawing.Point(23, 29);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(15, 19);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(188, 25);
+            this.label1.Size = new System.Drawing.Size(125, 16);
             this.label1.TabIndex = 19;
             this.label1.Text = "Default State:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // PanDefaults
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.panel1);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "PanDefaults";
-            this.Size = new System.Drawing.Size(908, 492);
+            this.Size = new System.Drawing.Size(605, 320);
             this.Load += new System.EventHandler(this.PanDefaults_Load);
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);

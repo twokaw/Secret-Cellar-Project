@@ -1,4 +1,6 @@
-﻿using System;
+﻿
+
+using System;
 using SecretCellar;
 using Shared;
 using System.Collections.Generic;
@@ -527,7 +529,7 @@ namespace SecretCellar
                     else
                     {
                         coi.RequestQty++;
-                        DataAccess.instance.UpdateCustomerOrderItem(coi);
+                        DataAccess.instance.UpdateCustomerOrderItem(co.CustomerID, coi);
                     }
                 }
 
@@ -551,6 +553,7 @@ namespace SecretCellar
 
         private void btn_update_custorder_Click(object sender, EventArgs e)
         {
+            /*
             if (custOrder_datagrid.SelectedRows.Count > 0)
             {
                 uint cid = ((Customer)cbx_cust_custorder.SelectedItem).CustomerID;
@@ -580,6 +583,7 @@ namespace SecretCellar
                     RefreshFavorite(cid);
                 }
             }
+            */
         }
 
         private void txt_orderqty_custorder_KeyPress(object sender, KeyPressEventArgs e)
@@ -600,7 +604,7 @@ namespace SecretCellar
 
             if (fullfill_datagrid.SelectedRows.Count > 0)
             {
-                
+                /*
 
                 //i.AllQty.Add(new InventoryQty { Qty = custorder.qty });
                // i.OrderQty.Add(new CustomerOrder {RequestQty = coid.RequestQty, DeliveredDate = DateTime.Now, SupplierPrice = 0 });
@@ -617,6 +621,7 @@ namespace SecretCellar
 
                     return;
                 }
+                */
             }
 
             txt_deliverqty.Text = "";
@@ -631,7 +636,7 @@ namespace SecretCellar
         private void btn_deliver_all_Click(object sender, EventArgs e)
         {
             CustomerOrder custorder = DataAccess.instance.GetCustomerOrderforCustomer(((CustomerOrder)cbx_fullfill_cust.SelectedItem).CustomerID, false);
-
+            /*
             foreach (DataGridViewRow row in fullfill_datagrid.Rows)
             {
                 Inventory i = inventory.First(x => x.Id == uint.Parse(row.Cells["fid"].Value.ToString()));
@@ -639,7 +644,7 @@ namespace SecretCellar
                 coid.DeliverQty = uint.Parse(row.Cells["RequstQty"].Value.ToString());
                 DataAccess.instance.UpdateCustomerOrderItem(coid);
             }
-
+            */
             txt_deliverqty.Text = "";
             refreshcust();
         }
@@ -648,7 +653,7 @@ namespace SecretCellar
         {
             CustomerOrder custorder = DataAccess.instance.GetCustomerOrderforCustomer(((CustomerOrder)cbx_fullfill_cust.SelectedItem).CustomerID, false);
 
-
+            /*
             foreach (DataGridViewRow row in fullfill_datagrid.SelectedRows)
             {
                 Inventory i = inventory.First(x => x.Id == uint.Parse(row.Cells["fid"].Value.ToString()));
@@ -660,6 +665,7 @@ namespace SecretCellar
             txt_deliverqty.Text = "";
             RefreshFillment(custorder.CustomerID);
             //refreshcust();
+            */
         }
 
         // fullfillment datagrid refresh on customer selection change

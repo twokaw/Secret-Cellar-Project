@@ -151,7 +151,7 @@ namespace SecretCellar.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Gray")]
+        [global::System.Configuration.DefaultSettingValueAttribute("247, 231, 206")]
         public global::System.Drawing.Color BackgroundColor {
             get {
                 return ((global::System.Drawing.Color)(this["BackgroundColor"]));
@@ -163,7 +163,7 @@ namespace SecretCellar.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Silver")]
+        [global::System.Configuration.DefaultSettingValueAttribute("238, 237, 196")]
         public global::System.Drawing.Color GridColor {
             get {
                 return ((global::System.Drawing.Color)(this["GridColor"]));
@@ -199,7 +199,7 @@ namespace SecretCellar.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Gray")]
+        [global::System.Configuration.DefaultSettingValueAttribute("247, 231, 206")]
         public global::System.Drawing.Color DefaultBackgroundColor {
             get {
                 return ((global::System.Drawing.Color)(this["DefaultBackgroundColor"]));
@@ -208,7 +208,7 @@ namespace SecretCellar.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Silver")]
+        [global::System.Configuration.DefaultSettingValueAttribute("238, 237, 196")]
         public global::System.Drawing.Color DefaultGridColor {
             get {
                 return ((global::System.Drawing.Color)(this["DefaultGridColor"]));

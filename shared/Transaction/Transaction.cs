@@ -70,6 +70,11 @@ namespace Shared
             return i.AdjustedTotal * ((i.AdjustedTotal > 0) ? (1 - Discount) : 1);
         }
 
+        public double ItemDiscount(Item i)
+        {
+            // Get item 
+            return (1 - i.Discount) * Discount + i.Discount ;
+        }
         public double Subtotal
         {
             get

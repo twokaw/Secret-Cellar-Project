@@ -133,10 +133,10 @@
             // 
             // touchKeyPad1
             // 
-            this.touchKeyPad1.Location = new System.Drawing.Point(102, 143);
+            this.touchKeyPad1.Location = new System.Drawing.Point(102, 136);
             this.touchKeyPad1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.touchKeyPad1.Name = "touchKeyPad1";
-            this.touchKeyPad1.Size = new System.Drawing.Size(348, 347);
+            this.touchKeyPad1.Size = new System.Drawing.Size(367, 363);
             this.touchKeyPad1.TabIndex = 61;
             this.touchKeyPad1.Target = null;
             // 
@@ -146,7 +146,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(231)))), ((int)(((byte)(206)))));
             this.ClientSize = new System.Drawing.Size(561, 627);
             this.Controls.Add(this.touchKeyPad1);
             this.Controls.Add(this.label4);

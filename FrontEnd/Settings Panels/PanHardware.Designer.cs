@@ -56,6 +56,7 @@ namespace SecretCellar.Settings_Panels
             // 
             // panel1
             // 
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(231)))), ((int)(((byte)(206)))));
             this.panel1.Controls.Add(this.btn_add_code);
             this.panel1.Controls.Add(this.lbl_print_model);
             this.panel1.Controls.Add(this.lst_print_model);
@@ -70,7 +71,7 @@ namespace SecretCellar.Settings_Panels
             this.panel1.Controls.Add(this.cbx_com_port);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(606, 320);
             this.panel1.TabIndex = 0;
@@ -80,7 +81,7 @@ namespace SecretCellar.Settings_Panels
             this.btn_add_code.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_add_code.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_add_code.Location = new System.Drawing.Point(249, 289);
-            this.btn_add_code.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.btn_add_code.Margin = new System.Windows.Forms.Padding(6);
             this.btn_add_code.Name = "btn_add_code";
             this.btn_add_code.Size = new System.Drawing.Size(151, 25);
             this.btn_add_code.TabIndex = 7;
@@ -128,10 +129,13 @@ namespace SecretCellar.Settings_Panels
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(51)))), ((int)(((byte)(69)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Ivory;
             this.grid_print_codes.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.grid_print_codes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.grid_print_codes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.grid_print_codes.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(237)))), ((int)(((byte)(196)))));
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -149,8 +153,8 @@ namespace SecretCellar.Settings_Panels
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(51)))), ((int)(((byte)(69)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Ivory;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.grid_print_codes.DefaultCellStyle = dataGridViewCellStyle3;
             this.grid_print_codes.Location = new System.Drawing.Point(247, 70);
@@ -160,15 +164,20 @@ namespace SecretCellar.Settings_Panels
             dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(51)))), ((int)(((byte)(69)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Ivory;
             dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.grid_print_codes.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.grid_print_codes.RowHeadersVisible = false;
             this.grid_print_codes.RowHeadersWidth = 62;
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(51)))), ((int)(((byte)(69)))));
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.Ivory;
             this.grid_print_codes.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            this.grid_print_codes.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.grid_print_codes.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grid_print_codes.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(51)))), ((int)(((byte)(69)))));
             this.grid_print_codes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grid_print_codes.Size = new System.Drawing.Size(349, 174);
             this.grid_print_codes.TabIndex = 5;
@@ -205,7 +214,7 @@ namespace SecretCellar.Settings_Panels
             this.btn_new_print.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btn_new_print.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_new_print.Location = new System.Drawing.Point(9, 289);
-            this.btn_new_print.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.btn_new_print.Margin = new System.Windows.Forms.Padding(6);
             this.btn_new_print.Name = "btn_new_print";
             this.btn_new_print.Size = new System.Drawing.Size(151, 25);
             this.btn_new_print.TabIndex = 6;
@@ -238,7 +247,7 @@ namespace SecretCellar.Settings_Panels
             this.btn_set_printer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_set_printer.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_set_printer.Location = new System.Drawing.Point(445, 289);
-            this.btn_set_printer.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.btn_set_printer.Margin = new System.Windows.Forms.Padding(6);
             this.btn_set_printer.Name = "btn_set_printer";
             this.btn_set_printer.Size = new System.Drawing.Size(151, 25);
             this.btn_set_printer.TabIndex = 8;
@@ -250,7 +259,7 @@ namespace SecretCellar.Settings_Panels
             // 
             this.btn_set_comm.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_set_comm.Location = new System.Drawing.Point(280, 6);
-            this.btn_set_comm.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.btn_set_comm.Margin = new System.Windows.Forms.Padding(6);
             this.btn_set_comm.Name = "btn_set_comm";
             this.btn_set_comm.Size = new System.Drawing.Size(151, 25);
             this.btn_set_comm.TabIndex = 2;
@@ -281,7 +290,7 @@ namespace SecretCellar.Settings_Panels
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.panel1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "PanHardware";
             this.Size = new System.Drawing.Size(606, 320);
             this.Load += new System.EventHandler(this.PanHardware_Load);

@@ -53,9 +53,10 @@ namespace SecretCellar
             }
         }
 
-        public DialogResult ShowLookupForm(Transaction t)
+        public DialogResult ShowLookupForm(Transaction t, String submitText = "Add to Cart")
         {
             lookup.SetTransaction(t);
+            lookup.SubmitButtonText(submitText);
             return lookup.ShowDialog();
         }
         public DialogResult ShowOrdersForm()
@@ -469,10 +470,10 @@ namespace SecretCellar
                 return 0;
         }
 
-        public uint UpdateCustomerOrderItem(CustomerOrderItem customerOrderItem)
+        public uint UpdateCustomerOrderItem(uint customerID, CustomerOrderItem customerOrderItem)
         {
             Response resp = null;
-            string result = web.DataPut($"api/CustomerOrder", customerOrderItem, resp);
+            string result = web.DataPut($"api/CustomerOrder/{customerID}", customerOrderItem, resp);
             if (uint.TryParse(result, out uint id))
                 return id;
             else
