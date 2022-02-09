@@ -71,17 +71,20 @@ namespace SecretCellar {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void button_DeleteEvent_Click(object sender, EventArgs e) {
-            foreach (DataGridViewRow selectedRow in dataGridView_Events.SelectedRows) {
-                List<Event> listOfEvents = DataAccess.instance.GetEvent();
+            if (dataGridView_Events.SelectedRows.Count == 0) { return; }
+            
+            List<Event> listOfEvents = DataAccess.instance.GetEvent();
+            List<EventWaitlistItem> eventWaitlistItems = DataAccess.instance.GetEventsWaitlists();
 
-                //LOOP THROUGH ALL OF THE EVENTS
-                foreach (Event currentEvent in listOfEvents) {
-                    //IF THE ID OF THE SELECTED EVENT MATCHES AN EVENT, THEN DELETE THE EVENT
-                    if (uint.Parse(selectedRow.Cells["Id"].Value.ToString()) == currentEvent.Id) {
-                        DataAccess.instance.DeleteEvent(currentEvent.Id);
-                        break;
-                    }
-                }
+            foreach (DataGridViewRow selectedRow in dataGridView_Events.SelectedRows) {
+                Event selectedEvent = listOfEvents.Find((ev) => { return uint.Parse(selectedRow.Cells["Id"].Value.ToString()) == ev.Id; });
+                if (selectedEvent == null) { continue; }  //SANITY CHECK
+
+                List<EventWaitlistItem> filteredList = eventWaitlistItems.FindAll((item) => { return item.EventId == selectedEvent.Id; });
+
+                if (filteredList.Count > 0) { MessageBox.Show($"Cannot delete '{selectedEvent.Name}' while customers are on the waitlist for it.", "Error"); continue; }
+
+                DataAccess.instance.DeleteEvent(selectedEvent.Id);
             }
 
             UpdateEventGrid();
@@ -144,7 +147,5 @@ namespace SecretCellar {
                 .ToList();
             }
         }
-
-		
 	}
 }
