@@ -7,6 +7,7 @@ namespace Shared
     {
         public uint InvoiceID { get; set; }
         public uint RegisterID { get; set; }
+        public bool Invoice { get; set; } = false;
         public DateTime TransactionDateTime { get; set; }
         public string Location { get; set; }
         public List<Item> Items { get; set; }
@@ -241,7 +242,8 @@ namespace Shared
             int count = 0;
             foreach (Discount dis in GetBulkDiscounts())
             {
-                count = Items.Count(i => i.Discounts.Where(x => x.DiscountID == dis.DiscountID && dis.Enabled ).Count() > 0 && i.Discount == 0.0);
+                count = Items.Count(i => i.Discounts.Where(x => x.DiscountID == dis.DiscountID && dis.Enabled )
+                             .Count() > 0 && i.Discount == 0.0);
                 if (count >= dis.Min && count <= dis.Max)
                 {
                     result.Add(dis);
@@ -255,8 +257,6 @@ namespace Shared
 
         public void EnableBulkDiscount(Discount discount, bool enabled)
         {
-            //  Items.ForEach(i => i.Discounts.ForEach(x => { if (x.DiscountID == discount.DiscountID) x.Enabled = enabled; }));
-
             foreach (Item i in Items)
                 foreach (Discount x in i.Discounts)
                     if (x.DiscountID == discount.DiscountID)
@@ -273,8 +273,8 @@ namespace Shared
         public void UpdateBulkDiscount()
         {
             List<Discount> d = GetQualifiedBulkDiscounts();
-
         }
+
         public void Add(Item item)
         {
             Item i = Items.FirstOrDefault(x => x.Id == item.Id);
@@ -357,6 +357,28 @@ namespace Shared
                 AllQty = inv.AllQty,
                 BottleDeposit = inv.BottleDeposit,
                 NumSold = numSold,
+                Price = inv.Price,
+                NonTaxable = inv.NonTaxable,
+                ItemType = inv.ItemType,
+                Bottles = inv.Bottles,
+                SalesTax = inv.SalesTax,
+                LocalSalesTax = inv.LocalSalesTax,
+                IdTax = inv.IdTax,
+                NonTaxableLocal = inv.NonTaxableLocal,
+                Discounts = inv.Discounts
+            };
+        }
+
+        public static Item ConvertInvtoItem(CustomerOrderItem inv)
+        {
+            return new Item
+            {
+                Name = inv.Name,
+                Id = inv.Id,
+                Barcode = inv.Barcode,
+                AllQty = inv.AllQty,
+                BottleDeposit = inv.BottleDeposit,
+                NumSold = inv.DeliverQty,
                 Price = inv.Price,
                 NonTaxable = inv.NonTaxable,
                 ItemType = inv.ItemType,

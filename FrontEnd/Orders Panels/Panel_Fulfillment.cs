@@ -138,6 +138,7 @@ namespace SecretCellar.Orders_Panels {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void btn_deliver_selected_Click(object sender, EventArgs e) {
+            
             CustomerOrder custorder = DataAccess.instance.GetCustomerOrderforCustomer(((CustomerOrder)cbx_fullfill_cust.SelectedItem).CustomerID, false);
 
             foreach (DataGridViewRow row in fullfill_datagrid.SelectedRows) {

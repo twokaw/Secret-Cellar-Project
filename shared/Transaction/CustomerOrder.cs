@@ -13,7 +13,6 @@ namespace Shared
         public DateTime DeliverDate { get; set; }
         public double Paid { get; set; }
         public DateTime PaidDate { get; set; }
-        
     }
 
     public class CustomerOrder : BaseCustomer

@@ -37,15 +37,29 @@ namespace WebApi.Controllers
         // Get call to be used when barcode on receipt is scanned
         //Get: api/Transaction/Suspended
         [HttpGet("Suspended/")]
-        public ActionResult GetSuspended()
+        public ActionResult GetSuspended(uint customerID = 0)
         {
             try
             {
-                return Ok(DataAccess.Instance.Transaction.GetSuspendedTransactions());
+                if(customerID > 0)
+                    return Ok(DataAccess.Instance.Transaction.GetSuspendedTransactions(customerID));
+                else
+                    return Ok(DataAccess.Instance.Transaction.GetSuspendedTransactions());
             }
             catch (Exception ex) { ErrorLogging.WriteToErrorLog(ex); return StatusCode(500, ex.Message); }
         }
 
+        // Get call to be used when barcode on receipt is scanned
+        //Get: api/Transaction/Suspended
+        [HttpGet("Suspended/Customer/{customerID}")]
+        public ActionResult GetCustomerSuspended(uint customerID)
+        {
+            try
+            {
+                return Ok(DataAccess.Instance.Transaction.GetSuspendedTransactions(customerID));
+            }
+            catch (Exception ex) { ErrorLogging.WriteToErrorLog(ex); return StatusCode(500, ex.Message); }
+        }
         // Returns a list of all payment methods
         //Get: api/Transaction/PaymentMethods
         [HttpGet("PaymentMethods")]
@@ -102,7 +116,6 @@ namespace WebApi.Controllers
             catch (Exception ex) { ErrorLogging.WriteToErrorLog(ex); return StatusCode(500, ex.Message); }
         }
         
-
         /// <summary>
         /// Delete transaction 
         /// </summary>
@@ -111,8 +124,6 @@ namespace WebApi.Controllers
         [HttpDelete("{receiptId}")]
         public IActionResult DeleteTransaction(uint receiptId)
         {
-
-
             try
             {
                 Transaction transaction = DataAccess.Instance.Transaction.GetTransaction(receiptId,false,true);

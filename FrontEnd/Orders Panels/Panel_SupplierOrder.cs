@@ -5,12 +5,9 @@ using System.Windows.Forms;
 using NCR_Printer;
 using Shared;
 
-
-
 namespace SecretCellar.Orders_Panels {
 	public partial class Panel_SupplierOrder : UserControl {
         private List<Inventory> inventory = null;
-        private List<Inventory> withQty = null;
         private List<Supplier> suppliers = null;
 
         public Panel_SupplierOrder() {
@@ -27,7 +24,6 @@ namespace SecretCellar.Orders_Panels {
 
             cbx_supplier.DataSource = suppliers;
             cbx_supplier.DisplayMember = "Name";
-
 
             RefreshSupplier();
         }
@@ -59,7 +55,6 @@ namespace SecretCellar.Orders_Panels {
             orderTotal();
         }
 
-
         /////////////
         //ORDER TOTAL
         /////////////
@@ -68,16 +63,14 @@ namespace SecretCellar.Orders_Panels {
                 double total = 0;
                 // All items with price * qty
 
-                foreach (DataGridViewRow row in supp_dataGrid.Rows) {
-                    if (row.Cells["orderqty"].Value.ToString() != null || uint.Parse(row.Cells["orderqty"].Value.ToString()) > 0) {
+                foreach (DataGridViewRow row in supp_dataGrid.Rows) 
+                    if (row.Cells["orderqty"].Value.ToString() != null || uint.Parse(row.Cells["orderqty"].Value.ToString()) > 0) 
                         total += Convert.ToDouble((uint.Parse(row.Cells["orderqty"].Value.ToString()) * (Convert.ToDouble(row.Cells["Price"].Value.ToString()))));
-                    }
-                }
+                    
                 txt_supp_total.Text = total.ToString("C");
                 txt_update_qty.Focus();
             }
         }
-
 
         ///////////
         //ON UPDATE
@@ -103,29 +96,23 @@ namespace SecretCellar.Orders_Panels {
             //orderTotal();
         }
 
-
         ///////////////////////
         //GET THE LIST OF ITEMS
         ///////////////////////
         public List<Inventory> listItems(Supplier orderSupplier) {
             inventory = DataAccess.instance.GetInventory();
-            withQty = inventory.Where(x => (orderSupplier.SupplierID == x.SupplierID || orderSupplier.SupplierID == 0) && x.RequiredQty > 0).
+            return  inventory.Where(x => (orderSupplier.SupplierID == x.SupplierID || orderSupplier.SupplierID == 0) && x.RequiredQty > 0).
             OrderBy(x => x.Name)
             .ToList();
-
-            return withQty;
         }
-
 
         ///////////////////////
         //ON PRINT BUTTON CLICK
         ///////////////////////
         private void btn_print_supp_Click(object sender, EventArgs e) {
             Supplier orderSupplier = (Supplier)cbx_supplier.SelectedItem;
-            withQty = listItems(orderSupplier);
-            new PurchaseOrder(orderSupplier, withQty).Print();
+            new PurchaseOrder(orderSupplier, listItems(orderSupplier)).Print();
         }
-
 
         //////////////////////
         //ON CHANGING SUPPLIER
@@ -133,7 +120,6 @@ namespace SecretCellar.Orders_Panels {
         private void cbx_supplier_SelectedIndexChanged(object sender, EventArgs e) {
             RefreshSupplier();
         }
-
 
         ///////////////////
         //ON RECEIVED CLICK
@@ -146,7 +132,6 @@ namespace SecretCellar.Orders_Panels {
             txt_update_qty.Focus();
         }
 
-
         /////////////////////////////////
         //ON CHANGING DATA GRID SELECTION
         /////////////////////////////////
@@ -155,16 +140,6 @@ namespace SecretCellar.Orders_Panels {
                 Inventory i = inventory.First(x => x.Id == uint.Parse(supp_dataGrid.SelectedRows[0].Cells["id"].Value.ToString()));
                 txt_update_qty.Text = i.OrderQty.ToString();
             }
-        }
-
-        private void Panel_SupplierOrder_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void supp_dataGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
 
         private void chk_ShowHidden_CheckedChanged(object sender, EventArgs e)

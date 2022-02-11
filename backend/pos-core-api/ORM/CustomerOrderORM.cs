@@ -51,16 +51,14 @@ namespace pos_core_api.ORM
 
         public CustomerOrder Get(uint customerID, bool includehistory)
         {
-
-
             MySqlCommand cmd = db.CreateCommand(@$"{(includehistory ? $"{CUSTOMERORDERSQL} WHERE " : $"{OUTSTANDINGCUSTOMERORDERSQL} AND ")}
               customerID = @custID
             ");
             cmd.Parameters.Add(new MySqlParameter("custID", customerID));
             MySqlDataReader reader = cmd.ExecuteReader();
+
             try
             {
-
                 List<CustomerOrder> output = FetchOrderCustomers(reader);
 
                 if (output.Count > 0)
@@ -129,8 +127,6 @@ namespace pos_core_api.ORM
 
         public CustomerOrder GetOrder(uint orderId, bool includehistory)
         {
-
-
             string sqlStatement = @$"{(includehistory ? $"{CUSTOMERORDERSQL} WHERE " : $"{OUTSTANDINGCUSTOMERORDERSQL} AND ")}
               CustomerOrderid = @orderId
             ";
@@ -138,9 +134,9 @@ namespace pos_core_api.ORM
             MySqlCommand cmd = db.CreateCommand(sqlStatement);
             cmd.Parameters.Add(new MySqlParameter("orderId", orderId));
             MySqlDataReader reader = cmd.ExecuteReader();
+
             try
             {
-
                 List<CustomerOrder> output = FetchOrderCustomers(reader);
 
                 if (output.Count > 0)
@@ -178,7 +174,9 @@ namespace pos_core_api.ORM
                 cust.Price = inv.Price;
             }
 
-            MySqlCommand cmd = db.CreateCommand(@"
+            DeliverQty(customerId, cust, null);
+
+           MySqlCommand cmd = db.CreateCommand(@"
                 INSERT INTO customerorderItem
                 (CustomerID, InventoryID, Paid, Price, PaidDate, DeliverDate, DeliverQty, RequestQty)
                 VALUES
@@ -197,9 +195,6 @@ namespace pos_core_api.ORM
             {
                 cmd.ExecuteNonQuery();
 
-                if (cust.DeliverQty > 0)
-                    transactionORM.DecrementInventoryQty(new Item { Id = cust.Id, NumSold = cust.DeliverQty });
-
                 return cmd.LastInsertedId;
             }
             finally
@@ -208,10 +203,39 @@ namespace pos_core_api.ORM
             }
         }
 
-        public long Update(CustomerOrderItem cust)
+        private void DeliverQty(uint customerId, CustomerOrderItem cust, Transaction transaction = null)
+        {
+            if (cust.DeliverQty > 0)
+            {
+                if(transaction == null)
+                    transaction = transactionORM.GetCustomerTransactions(customerId).FirstOrDefault(x => x.Invoice);
+
+                if (transaction == null)
+                {
+                    transaction = new Transaction()
+                    {
+                        CustomerID = customerId,
+                        Invoice = true
+                    };
+
+                    transaction.Items.Add(new Item(cust) { NumSold = cust.DeliverQty });
+                    transactionORM.InsertTransaction(transaction);
+                }
+                else
+                {
+                    Item i = transaction.Items.FirstOrDefault(x => x.Id == cust.Id) ?? new Item(cust) { NumSold = 0 };
+                    i.NumSold += cust.DeliverQty;
+                    transactionORM.UpdateItemQty(transaction.InvoiceID, i, true);
+                }
+
+                cust.RequestQty -= cust.DeliverQty;
+            }
+        }
+
+        public long Update(CustomerOrderItem cust, uint customerid = 0)
         {
             if (cust.CustomerOrderItemID == 0)
-                throw new Exception("Missing Customer Id");
+                throw new Exception("Missing CustomerOrder Id");
 
             CustomerOrderItem temp = GetCustomerItem(cust.CustomerOrderItemID);
 
@@ -223,6 +247,14 @@ namespace pos_core_api.ORM
                 Inventory inv = DataAccess.Instance.Inventory.GetInv(cust.Id);
                 if (inv.Price > 0)
                     cust.Price = inv.Price;
+            }
+
+            if(cust.DeliverQty > 0)
+            {
+                if (customerid == 0)
+                    customerid = GetCustomerID(cust.CustomerOrderItemID);
+
+                DeliverQty(customerid, cust);
             }
 
             if (temp.Id != cust.Id
@@ -317,6 +349,27 @@ namespace pos_core_api.ORM
                 db.CloseCommand(cmd);
             }
         }
+
+        private uint GetCustomerID(uint CustomerOrderItemId)
+        {
+            MySqlCommand cmd = db.CreateCommand(@"
+              SELECT customerID 
+              FROM CustomerOrderItem
+              WHERE CustomerOrderItemID = @custItemID;
+            ");
+            cmd.Parameters.AddWithValue("custItemID", CustomerOrderItemId);
+
+            try
+            {
+                using MySqlDataReader reader = cmd.ExecuteReader();
+                    return reader.IsDBNull("customerID") ? 0 : reader.GetUInt32("customerID");
+            }
+            finally
+            {
+                db.CloseCommand(cmd);
+            }
+        }
+
 
         private List<CustomerOrder> FetchOrderCustomers(MySqlDataReader reader)
         {

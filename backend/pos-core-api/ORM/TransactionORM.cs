@@ -15,10 +15,9 @@ namespace pos_core_api.ORM
         private readonly CustomerORM CustORM;
 
         private const string SQLGET = @"
-            SELECT receiptID, register, sold_datetime, customerID, empID, location, tax_exempt, discount, shipping
+            SELECT receiptID, register, sold_datetime, customerID, empID, location, tax_exempt, discount, shipping, invoice
             FROM transaction
         ";
-
 
         public TransactionORM(CustomerORM customerORM)
         {
@@ -73,9 +72,7 @@ namespace pos_core_api.ORM
 
         public List<Transaction> GetSuspendedTransactions(bool includeItems = true, bool includePayments = true)
         {
-            MySqlCommand cmd = db.CreateCommand(@$"
-                SELECT receiptID, register, sold_datetime, customerID, empID, location, tax_exempt, discount, shipping
-                FROM Transaction 
+            MySqlCommand cmd = db.CreateCommand(@$"{SQLGET}
                 JOIN v_suspendedtransaction
                 USING(ReceiptID);
             "); 
@@ -89,6 +86,26 @@ namespace pos_core_api.ORM
                 db.CloseCommand(cmd);
             }
         }
+
+        public List<Transaction> GetSuspendedTransactions(uint customerid, bool includeItems = true, bool includePayments = true)
+        {
+            MySqlCommand cmd = db.CreateCommand(@$"{SQLGET}
+                JOIN v_suspendedtransaction
+                USING(ReceiptID)
+                WHERE empid = @cid;
+            ");
+
+            cmd.Parameters.Add(new MySqlParameter("cid", customerid));
+            try
+            {
+                return GetTransactions(cmd, includeItems, includePayments);
+            }
+            finally
+            {
+                db.CloseCommand(cmd);
+            }
+        }
+
         public List<Transaction> GetCustomerTransactions(uint customerID, bool includeItems = true, bool includePayments = true)
         {
             return GetCustomerTransactions(customerID, DateTime.MinValue, DateTime.MinValue, includeItems, includePayments);
@@ -145,7 +162,8 @@ namespace pos_core_api.ORM
                     Location = reader.IsDBNull("location") ? "" : reader.GetString("location"),
                     TaxExempt = !reader.IsDBNull("tax_exempt") && reader.GetBoolean("tax_exempt"),
                     Discount = reader.IsDBNull("discount") ? 0.0 : reader.GetDouble("discount"),
-                    Shipping = reader.IsDBNull("shipping") ? 0.0 : reader.GetDouble("shipping")
+                    Shipping = reader.IsDBNull("shipping") ? 0.0 : reader.GetDouble("shipping"),
+                    Invoice = (int) (reader.IsDBNull("Invoice") ? 0 : reader.GetInt32("invoice"))  == 1
                 };
                 output.Add(transaction);
             }
@@ -187,7 +205,7 @@ namespace pos_core_api.ORM
                             NonTaxableLocal = !itemReader.IsDBNull("nontaxable_local") && itemReader.GetBoolean("nontaxable_local"),
                             BottleDeposit = itemReader.IsDBNull("bottle_deposit") ? 0 : itemReader.GetDouble("bottle_deposit"),
                             SalesTax  = itemReader.IsDBNull("sales_tax") ? 0 : itemReader.GetDouble("sales_tax"),
-                            LocalSalesTax = itemReader.IsDBNull("local_sales_tax") ? 0 : itemReader.GetDouble("local_sales_tax"),
+                            LocalSalesTax = itemReader.IsDBNull("local_sales_tax") ? 0 : itemReader.GetDouble("local_sales_tax")
                         };
                         item.NumSold = 0;
                         transaction.Items.Add(item);
@@ -275,9 +293,9 @@ namespace pos_core_api.ORM
         {
             MySqlCommand cmd = db.CreateCommand(@"
                 INSERT INTO transaction
-                (register,  sold_datetime,  customerID,  empID,  location,  tax_exempt,  discount, shipping)
+                (register,  sold_datetime,  customerID,  empID,  location,  tax_exempt,  discount, shipping, invoice)
                 VALUES
-                (@register, @sold_datetime, @customerID, @empID, @location, @tax_exempt, @discount, @shipping)
+                (@register, @sold_datetime, @customerID, @empID, @location, @tax_exempt, @discount, @shipping, @invoice)
             ");            
 
             cmd.Parameters.Add(new MySqlParameter("register", transaction.RegisterID));
@@ -288,6 +306,7 @@ namespace pos_core_api.ORM
             cmd.Parameters.Add(new MySqlParameter("tax_exempt", transaction.TaxExempt));
             cmd.Parameters.Add(new MySqlParameter("discount", transaction.Discount));
             cmd.Parameters.Add(new MySqlParameter("shipping", transaction.Shipping));
+            cmd.Parameters.Add(new MySqlParameter("invoice", transaction.Invoice ? 1 : 0));
 
             try
             {
@@ -316,7 +335,8 @@ namespace pos_core_api.ORM
                     location = @location,  
                     tax_exempt = @tax_exempt,  
                     discount = @discount, 
-                    shipping = @shipping
+                    shipping = @shipping, 
+                    invoice = @invoice
                 WHERE Receiptid = @InvoiceID
             ");
             cmd.Parameters.Add(new MySqlParameter("register", transaction.RegisterID));
@@ -327,6 +347,7 @@ namespace pos_core_api.ORM
             cmd.Parameters.Add(new MySqlParameter("tax_exempt", transaction.TaxExempt));
             cmd.Parameters.Add(new MySqlParameter("discount", transaction.Discount));
             cmd.Parameters.Add(new MySqlParameter("shipping", transaction.Shipping));
+            cmd.Parameters.Add(new MySqlParameter("invoice", transaction.Invoice ? 1 : 0));
             cmd.Parameters.Add(new MySqlParameter("InvoiceID", transaction.InvoiceID));      
             
             try
@@ -348,32 +369,7 @@ namespace pos_core_api.ORM
 
             // TODO: remove items that have been removed
             foreach (Item item in transaction.Items)
-            {
-
-                MySqlCommand cmd = db.CreateCommand (@"
-                     REPLACE INTO transaction_items
-                     ( receiptID,  inventoryID,  sold_price,  supplier_price,  sold_qty)
-                     VALUES
-                     (@receiptID, @inventoryID, @sold_price, @supplier_price, @sold_qty)
-                    ");
-                cmd.Parameters.Add(new MySqlParameter("receiptID", transaction.InvoiceID));
-                cmd.Parameters.Add(new MySqlParameter("inventoryID", item.Id));
-                cmd.Parameters.Add(new MySqlParameter("sold_price", item.Price));
-                cmd.Parameters.Add(new MySqlParameter("supplier_price", item.SupplierPrice));
-                cmd.Parameters.Add(new MySqlParameter("sold_qty", item.NumSold));
-
-                try
-                {
-                    cmd.ExecuteNonQuery();
-
-                    if(updateDecrementInvQty)
-                        DecrementInventoryQty(item);
-                }
-                finally
-                {
-                    db.CloseCommand(cmd);
-                }
-            }
+                UpdateItemQty(transaction.InvoiceID, item, updateDecrementInvQty);
         }
 
         public void InsertItems(Transaction transaction, bool updateDecrementInvQty, Transaction previousTransaction )
@@ -417,11 +413,37 @@ namespace pos_core_api.ORM
 
             cmd.Parameters.Add(new MySqlParameter("receiptID", receiptId));
             cmd.Parameters.Add(new MySqlParameter("inventoryID", itemId));
-            cmd.Parameters.Add(new MySqlParameter("sold_qty", qty));    
-            
+            cmd.Parameters.Add(new MySqlParameter("sold_qty", qty));
+
             try
             {
                 cmd.ExecuteNonQuery();
+            }
+            finally
+            {
+                db.CloseCommand(cmd);
+            }
+        }
+        public void UpdateItemQty(uint receiptId, Item item, bool updateDecrementInvQty)
+        {
+            MySqlCommand cmd = db.CreateCommand(@"
+                    REPLACE INTO transaction_items
+                    ( receiptID,  inventoryID,  sold_price,  supplier_price,  sold_qty)
+                    VALUES
+                    (@receiptID, @inventoryID, @sold_price, @supplier_price, @sold_qty)
+                ");
+            cmd.Parameters.Add(new MySqlParameter("receiptID", receiptId));
+            cmd.Parameters.Add(new MySqlParameter("inventoryID", item.Id));
+            cmd.Parameters.Add(new MySqlParameter("sold_price", item.Price));
+            cmd.Parameters.Add(new MySqlParameter("supplier_price", item.SupplierPrice));
+            cmd.Parameters.Add(new MySqlParameter("sold_qty", item.NumSold));
+
+            try
+            {
+                cmd.ExecuteNonQuery();
+
+                if (updateDecrementInvQty)
+                    DecrementInventoryQty(item);
             }
             finally
             {
@@ -550,7 +572,6 @@ namespace pos_core_api.ORM
                     WHERE ReceiptID = @ReceiptID;
                 ");
 
-                
                 try
                 {
                     cmd.Parameters.Add(new MySqlParameter("receiptID", transaction.InvoiceID));
@@ -580,7 +601,6 @@ namespace pos_core_api.ORM
                     WHERE payID = @payId
                 ");
 
-                
                 try
                 {
                     if (pay.Method == "CUSTOMER CREDIT")
