@@ -9,7 +9,6 @@ using System.Linq;
 namespace SecretCellar {
 	public partial class frmEventsAll : Form {
         public DateTime selectedDate = new DateTime(0001, 1, 1);
-        private bool isArchivedEvents = false;
 
 
 		public frmEventsAll() {
@@ -47,16 +46,12 @@ namespace SecretCellar {
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void button_PreviousEvents_Click(object sender, EventArgs e) {
-            isArchivedEvents = !isArchivedEvents;
-
-            if (isArchivedEvents) {
-                button_PreviousEvents.Text = "SHOW UPCOMING EVENTS";
+        private void checkBox_ShowPreviousEvents_CheckedChanged(object sender, EventArgs e) {
+            if (checkBox_ShowPreviousEvents.Checked) {
                 label_Events.Text = "Previous Events";
                 button_showPreviousEventData.Visible = true;
             }
             else {
-                button_PreviousEvents.Text = "SHOW PREVIOUS EVENTS";
                 label_Events.Text = "Upcoming Events";
                 button_showPreviousEventData.Visible = false;
             }
@@ -110,7 +105,7 @@ namespace SecretCellar {
         /// Refresh the grid
         /// </summary>
         private void UpdateEventGrid() {
-            if (isArchivedEvents) {
+            if (checkBox_ShowPreviousEvents.Checked) {
                 dataGridView_Events.DataSource = DataAccess.instance.GetEvent()
                 .Select(x => new {
                     eventId = x.Id,
