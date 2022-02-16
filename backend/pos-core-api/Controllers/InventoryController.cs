@@ -101,13 +101,10 @@ namespace WebApi.Controllers
         {
             try
             {
-                long lastID = -1;
-
                 if (DataAccess.Instance.Inventory.DoesBarcodeExist(inv.Barcode))
                     return BadRequest("Barcode already exist.");
-
-                DataAccess.Instance.Inventory.Insert(inv);
-                return StatusCode(201, lastID);
+                long id = DataAccess.Instance.Inventory.Insert(inv);
+                return Ok(id);
             }
             catch (Exception ex) { ErrorLogging.WriteToErrorLog(ex); return StatusCode(500, ex.Message); }
         }

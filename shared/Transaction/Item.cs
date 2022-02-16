@@ -51,7 +51,8 @@ namespace Shared
         public double Discount { get; set; }
         public double Coupon { get; set; }
 
-        public Item():base() { NumSold = 1; }
+        public Item() : base() { NumSold = 1; }
+        public Item(BaseItem item) : base(item) { NumSold = 1; }
 
         public Item(string Name,
                     uint Id,
