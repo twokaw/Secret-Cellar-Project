@@ -366,10 +366,9 @@ namespace pos_core_api.ORM
 
         public void InsertItems(Transaction transaction, bool updateDecrementInvQty)
         {
-
             // TODO: remove items that have been removed
             foreach (Item item in transaction.Items)
-                UpdateItemQty(transaction.InvoiceID, item, updateDecrementInvQty);
+                UpdateItemQty(transaction.InvoiceID, item, transaction.Invoice && updateDecrementInvQty);
         }
 
         public void InsertItems(Transaction transaction, bool updateDecrementInvQty, Transaction previousTransaction )
