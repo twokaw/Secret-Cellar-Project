@@ -50,45 +50,56 @@ namespace SecretCellar.Orders_Panels {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void btn_delivered_update_Click(object sender, EventArgs e) {
-            CustomerOrder custorder = DataAccess.instance.GetCustomerOrderforCustomer(((CustomerOrder)cbx_fullfill_cust.SelectedItem).CustomerID, false);
-
-            Inventory i = inventory.First(x => x.Id == uint.Parse(fullfill_datagrid.SelectedRows[0].Cells["id"].Value.ToString()));
-            CustomerOrderItem coid = custorder.Items.FirstOrDefault(x => x.Id == i.Id);
-
-            if (fullfill_datagrid.SelectedRows.Count > 0) {
-                //i.AllQty.Add(new InventoryQty { Qty = custorder.qty });
-                // i.OrderQty.Add(new CustomerOrder {RequestQty = coid.RequestQty, DeliveredDate = DateTime.Now, SupplierPrice = 0 });
-                if (uint.TryParse(txt_deliverqty.Text.Trim(), out uint dqty)) {
-                    coid.DeliverQty += dqty;
-                    DataAccess.instance.UpdateCustomerOrderItem(custorder.CustomerID, coid);
-                    i.AllQty.Remove(new InventoryQty { Qty = Convert.ToUInt32(fullfill_datagrid.SelectedRows[0].Cells["qty"].Value.ToString()) - coid.DeliverQty });
-                }
-                else {
-                    txt_deliverqty.Focus();
-                    txt_deliverqty.SelectAll();
-                    MessageBox.Show("Invalid Order Quantity");
-
-                    return;
-                }
-            }
-
-            /*
-            else if (uint.TryParse(txt_deliverqty.Text.Trim(), out uint order))
+            if (cbx_fullfill_cust.SelectedIndex >= 0)
             {
+                CustomerOrder custorder = DataAccess.instance.GetCustomerOrderforCustomer(((CustomerOrder)cbx_fullfill_cust.SelectedItem).CustomerID, false);
 
-                if (coid.RequestQty >= order)
+                Inventory i = inventory.First(x => x.Id == uint.Parse(fullfill_datagrid.SelectedRows[0].Cells["id"].Value.ToString()));
+                CustomerOrderItem coid = custorder.Items.FirstOrDefault(x => x.Id == i.Id);
+
+                if (fullfill_datagrid.SelectedRows.Count > 0)
                 {
-                    coid.RequestQty -= order;
+                    //i.AllQty.Add(new InventoryQty { Qty = custorder.qty });
+                    // i.OrderQty.Add(new CustomerOrder {RequestQty = coid.RequestQty, DeliveredDate = DateTime.Now, SupplierPrice = 0 });
+                    if (uint.TryParse(txt_deliverqty.Text.Trim(), out uint dqty))
+                    {
+                        coid.DeliverQty += dqty;
+                        DataAccess.instance.UpdateCustomerOrderItem(custorder.CustomerID, coid);
+                        i.AllQty.Remove(new InventoryQty { Qty = Convert.ToUInt32(fullfill_datagrid.SelectedRows[0].Cells["qty"].Value.ToString()) - coid.DeliverQty });
+                    }
+                    else
+                    {
+                        txt_deliverqty.Focus();
+                        txt_deliverqty.SelectAll();
+                        MessageBox.Show("Invalid Order Quantity");
+
+                        return;
+                    }
                 }
-                else
+
+                /*
+                else if (uint.TryParse(txt_deliverqty.Text.Trim(), out uint order))
                 {
-                    i.OrderQty = 0;
+
+                    if (coid.RequestQty >= order)
+                    {
+                        coid.RequestQty -= order;
+                    }
+                    else
+                    {
+                        i.OrderQty = 0;
+                    }
                 }
+                */
+
+                txt_deliverqty.Text = "";
+                refreshcust();
+
             }
-            */
-
-            txt_deliverqty.Text = "";
-            refreshcust();
+            else
+            {
+                MessageBox.Show("Please select an item to deliver");
+            }
             //RefreshFillment();
         }
 

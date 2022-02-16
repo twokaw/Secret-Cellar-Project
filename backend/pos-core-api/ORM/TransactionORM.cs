@@ -92,7 +92,7 @@ namespace pos_core_api.ORM
             MySqlCommand cmd = db.CreateCommand(@$"{SQLGET}
                 JOIN v_suspendedtransaction
                 USING(ReceiptID)
-                WHERE empid = @cid;
+                WHERE customerid = @cid;
             ");
 
             cmd.Parameters.Add(new MySqlParameter("cid", customerid));

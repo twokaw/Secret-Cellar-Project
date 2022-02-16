@@ -208,7 +208,7 @@ namespace pos_core_api.ORM
             if (cust.DeliverQty > 0)
             {
                 if(transaction == null)
-                    transaction = transactionORM.GetCustomerTransactions(customerId).FirstOrDefault(x => x.Invoice);
+                    transaction = transactionORM.GetSuspendedTransactions(customerId).FirstOrDefault(x => x.Invoice);
 
                 if (transaction == null)
                 {
@@ -241,7 +241,7 @@ namespace pos_core_api.ORM
 
             if (temp == null)
                 throw new Exception("CustomerOrderItem is missing");
-
+              
             if(cust.Price <= 0)
             {
                 Inventory inv = DataAccess.Instance.Inventory.GetInv(cust.Id);
@@ -276,7 +276,7 @@ namespace pos_core_api.ORM
 
                 cmd.Parameters.Add(new MySqlParameter("InventoryID", cust.Id));
                 cmd.Parameters.Add(new MySqlParameter("RequestQTY", cust.RequestQty));
-                cmd.Parameters.Add(new MySqlParameter("DeliverQTY", cust.DeliverQty));
+                cmd.Parameters.Add(new MySqlParameter("DeliverQTY", 0)); // Set deliver options to 0
                 cmd.Parameters.Add(new MySqlParameter("Deliverdate", cust.DeliverDate));
                 cmd.Parameters.Add(new MySqlParameter("OrderItemID", cust.CustomerOrderItemID));
                 cmd.Parameters.Add(new MySqlParameter("Price", cust.Price));
@@ -299,7 +299,7 @@ namespace pos_core_api.ORM
                     cmd = db.CreateCommand(@$"
                         DELETE FROM customerorderitem
                         WHERE CustomerOrderItemID = @OrderItemID
-                        AND ABS(DeliverQty) >= ABS(RequestQty)
+                        AND RequestQty <= 0
                         AND Paid = Price * DeliverQty
                     ");
                     cmd.Parameters.Add(new MySqlParameter("OrderItemID", cust.CustomerOrderItemID));
@@ -362,7 +362,10 @@ namespace pos_core_api.ORM
             try
             {
                 using MySqlDataReader reader = cmd.ExecuteReader();
+                if (reader.Read())
                     return reader.IsDBNull("customerID") ? 0 : reader.GetUInt32("customerID");
+                else
+                    return 0;
             }
             finally
             {
