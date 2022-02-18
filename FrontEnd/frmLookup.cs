@@ -321,12 +321,14 @@ namespace SecretCellar
                     //i.OrderQty = uint.Parse(txt_order_qty.Text.Trim());
 
                     i.Id = DataAccess.instance.InsertItem(i);
-                    RefreshInv();
+                    
                 }
                 else {
                     MessageBox.Show("Name and Barcode cannot be empty.", "Error");
                 }
-           // }
+
+            RefreshInv();
+            // }
         }
 
         private void cbxTypeFilter_SelectedIndexChanged(object sender, EventArgs e)
