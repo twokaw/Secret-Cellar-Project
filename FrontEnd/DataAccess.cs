@@ -46,6 +46,7 @@ namespace SecretCellar
                     lookup = new frmLookup();
                 else
                     lookup.RefreshInv();
+
                 if (orders== null)
                     orders = new frmOrdersPanels();
                 else
@@ -61,6 +62,8 @@ namespace SecretCellar
         }
         public DialogResult ShowOrdersForm()
         {
+            if (orders == null)
+                orders = new frmOrdersPanels();
             return orders.ShowDialog();
         }
 
@@ -73,17 +76,18 @@ namespace SecretCellar
 
         public bool InventoryChanged()
         { 
-            string hash = InvHash; 
-            InvHash = web.DataGet("api/inventory/hash");
-
-            return hash != InvHash;
+            return web.DataGet("api/inventory/hash") != InvHash;
         }
+
         object invLock = new object();
         public List<Inventory> GetInventory()
         {
             if(InventoryChanged() || Inventory == null)
-                 Inventory = (List<Inventory>)JsonConvert.DeserializeObject(web.DataGet("api/inventory"), typeof(List<Inventory>));
-            return Inventory;
+            {
+                Inventory = (List<Inventory>)JsonConvert.DeserializeObject(web.DataGet("api/inventory"), typeof(List<Inventory>));
+                InvHash = web.DataGet("api/inventory/hash");
+            }
+             return Inventory;
         }
 
         public Inventory GetItem(string barcode)

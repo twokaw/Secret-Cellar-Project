@@ -48,7 +48,8 @@ namespace SecretCellar.Orders_Panels {
                    minqty = x.InvMin,
                    maxqty = x.InvMax,
                    x.OrderQty,
-                   x.RequiredQty
+                   x.RequiredQty,
+                   x.RequestQty  
                }).
                OrderBy(x => x.Name).
                ToList();

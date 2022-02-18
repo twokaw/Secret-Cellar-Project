@@ -40,6 +40,10 @@ namespace SecretCellar.Orders_Panels {
             this.lbl_supplier = new System.Windows.Forms.Label();
             this.cbx_supplier = new System.Windows.Forms.ComboBox();
             this.supp_dataGrid = new System.Windows.Forms.DataGridView();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.chk_OnlyRequired = new System.Windows.Forms.CheckBox();
+            this.chk_ShowHidden = new System.Windows.Forms.CheckBox();
+            this.txt_supp_total = new SecretCellar.CurrencyBox();
             this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.barcode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -48,12 +52,9 @@ namespace SecretCellar.Orders_Panels {
             this.price = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.minqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.maxqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.requestqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.RequiredQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.orderqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.chk_OnlyRequired = new System.Windows.Forms.CheckBox();
-            this.chk_ShowHidden = new System.Windows.Forms.CheckBox();
-            this.txt_supp_total = new SecretCellar.CurrencyBox();
             ((System.ComponentModel.ISupportInitialize)(this.supp_dataGrid)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -63,11 +64,11 @@ namespace SecretCellar.Orders_Panels {
             this.btn_received.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_received.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_received.Location = new System.Drawing.Point(1229, 714);
-            this.btn_received.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_received.Margin = new System.Windows.Forms.Padding(4);
             this.btn_received.Name = "btn_received";
             this.btn_received.Size = new System.Drawing.Size(211, 54);
             this.btn_received.TabIndex = 26;
-            this.btn_received.Text = "Enter Received";
+            this.btn_received.Text = "Receive Order";
             this.btn_received.UseVisualStyleBackColor = true;
             this.btn_received.Click += new System.EventHandler(this.btn_received_Click);
             // 
@@ -76,7 +77,7 @@ namespace SecretCellar.Orders_Panels {
             this.btn_update.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_update.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_update.Location = new System.Drawing.Point(1229, 402);
-            this.btn_update.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_update.Margin = new System.Windows.Forms.Padding(4);
             this.btn_update.Name = "btn_update";
             this.btn_update.Size = new System.Drawing.Size(210, 54);
             this.btn_update.TabIndex = 25;
@@ -89,7 +90,7 @@ namespace SecretCellar.Orders_Panels {
             this.txt_update_qty.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txt_update_qty.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_update_qty.Location = new System.Drawing.Point(1229, 351);
-            this.txt_update_qty.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txt_update_qty.Margin = new System.Windows.Forms.Padding(4);
             this.txt_update_qty.Name = "txt_update_qty";
             this.txt_update_qty.Size = new System.Drawing.Size(211, 35);
             this.txt_update_qty.TabIndex = 24;
@@ -123,7 +124,7 @@ namespace SecretCellar.Orders_Panels {
             this.dateTimePicker1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dateTimePicker1.Location = new System.Drawing.Point(144, 16);
-            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(4);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(185, 33);
             this.dateTimePicker1.TabIndex = 21;
@@ -133,7 +134,7 @@ namespace SecretCellar.Orders_Panels {
             this.btn_print_supp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_print_supp.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_print_supp.Location = new System.Drawing.Point(1229, 194);
-            this.btn_print_supp.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_print_supp.Margin = new System.Windows.Forms.Padding(4);
             this.btn_print_supp.Name = "btn_print_supp";
             this.btn_print_supp.Size = new System.Drawing.Size(210, 54);
             this.btn_print_supp.TabIndex = 20;
@@ -169,7 +170,7 @@ namespace SecretCellar.Orders_Panels {
             this.cbx_supplier.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbx_supplier.FormattingEnabled = true;
             this.cbx_supplier.Location = new System.Drawing.Point(748, 16);
-            this.cbx_supplier.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbx_supplier.Margin = new System.Windows.Forms.Padding(4);
             this.cbx_supplier.Name = "cbx_supplier";
             this.cbx_supplier.Size = new System.Drawing.Size(319, 37);
             this.cbx_supplier.TabIndex = 16;
@@ -207,6 +208,7 @@ namespace SecretCellar.Orders_Panels {
             this.price,
             this.minqty,
             this.maxqty,
+            this.requestqty,
             this.RequiredQty,
             this.orderqty});
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
@@ -218,7 +220,7 @@ namespace SecretCellar.Orders_Panels {
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.supp_dataGrid.DefaultCellStyle = dataGridViewCellStyle3;
             this.supp_dataGrid.Location = new System.Drawing.Point(14, 75);
-            this.supp_dataGrid.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.supp_dataGrid.Margin = new System.Windows.Forms.Padding(4);
             this.supp_dataGrid.Name = "supp_dataGrid";
             this.supp_dataGrid.ReadOnly = true;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
@@ -244,104 +246,6 @@ namespace SecretCellar.Orders_Panels {
             this.supp_dataGrid.Size = new System.Drawing.Size(1197, 741);
             this.supp_dataGrid.TabIndex = 15;
             this.supp_dataGrid.SelectionChanged += new System.EventHandler(this.supp_dataGrid_SelectionChanged);
-            // 
-            // id
-            // 
-            this.id.DataPropertyName = "Id";
-            this.id.HeaderText = "Id";
-            this.id.MinimumWidth = 8;
-            this.id.Name = "id";
-            this.id.ReadOnly = true;
-            this.id.Visible = false;
-            // 
-            // barcode
-            // 
-            this.barcode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.barcode.DataPropertyName = "Barcode";
-            this.barcode.HeaderText = "Barcode";
-            this.barcode.MinimumWidth = 8;
-            this.barcode.Name = "barcode";
-            this.barcode.ReadOnly = true;
-            this.barcode.Visible = false;
-            // 
-            // name
-            // 
-            this.name.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.name.DataPropertyName = "Name";
-            this.name.FillWeight = 278.0632F;
-            this.name.HeaderText = "Name";
-            this.name.MinimumWidth = 100;
-            this.name.Name = "name";
-            this.name.ReadOnly = true;
-            // 
-            // ItemType
-            // 
-            this.ItemType.DataPropertyName = "ItemType";
-            this.ItemType.HeaderText = "Type";
-            this.ItemType.MinimumWidth = 8;
-            this.ItemType.Name = "ItemType";
-            this.ItemType.ReadOnly = true;
-            this.ItemType.Visible = false;
-            // 
-            // qty
-            // 
-            this.qty.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.qty.DataPropertyName = "Qty";
-            this.qty.FillWeight = 114F;
-            this.qty.HeaderText = "Qty";
-            this.qty.MinimumWidth = 65;
-            this.qty.Name = "qty";
-            this.qty.ReadOnly = true;
-            // 
-            // price
-            // 
-            this.price.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.price.DataPropertyName = "Price";
-            this.price.FillWeight = 65F;
-            this.price.HeaderText = "Price";
-            this.price.MinimumWidth = 65;
-            this.price.Name = "price";
-            this.price.ReadOnly = true;
-            // 
-            // minqty
-            // 
-            this.minqty.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.minqty.DataPropertyName = "minqty";
-            this.minqty.FillWeight = 65F;
-            this.minqty.HeaderText = "Min Qty";
-            this.minqty.MinimumWidth = 65;
-            this.minqty.Name = "minqty";
-            this.minqty.ReadOnly = true;
-            // 
-            // maxqty
-            // 
-            this.maxqty.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.maxqty.DataPropertyName = "maxqty";
-            this.maxqty.FillWeight = 65F;
-            this.maxqty.HeaderText = "Max Qty";
-            this.maxqty.MinimumWidth = 65;
-            this.maxqty.Name = "maxqty";
-            this.maxqty.ReadOnly = true;
-            // 
-            // RequiredQty
-            // 
-            this.RequiredQty.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.RequiredQty.DataPropertyName = "RequiredQty";
-            this.RequiredQty.FillWeight = 80F;
-            this.RequiredQty.HeaderText = "Required Qty";
-            this.RequiredQty.MinimumWidth = 80;
-            this.RequiredQty.Name = "RequiredQty";
-            this.RequiredQty.ReadOnly = true;
-            // 
-            // orderqty
-            // 
-            this.orderqty.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.orderqty.DataPropertyName = "orderqty";
-            this.orderqty.FillWeight = 75F;
-            this.orderqty.HeaderText = "Ordered Qty";
-            this.orderqty.MinimumWidth = 75;
-            this.orderqty.Name = "orderqty";
-            this.orderqty.ReadOnly = true;
             // 
             // panel1
             // 
@@ -397,11 +301,125 @@ namespace SecretCellar.Orders_Panels {
             this.txt_supp_total.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.txt_supp_total.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_supp_total.Location = new System.Drawing.Point(1229, 668);
-            this.txt_supp_total.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txt_supp_total.Margin = new System.Windows.Forms.Padding(4);
             this.txt_supp_total.Name = "txt_supp_total";
             this.txt_supp_total.Size = new System.Drawing.Size(210, 35);
             this.txt_supp_total.TabIndex = 19;
             this.txt_supp_total.Text = "0.00";
+            // 
+            // id
+            // 
+            this.id.DataPropertyName = "Id";
+            this.id.HeaderText = "Id";
+            this.id.MinimumWidth = 8;
+            this.id.Name = "id";
+            this.id.ReadOnly = true;
+            this.id.Visible = false;
+            // 
+            // barcode
+            // 
+            this.barcode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.barcode.DataPropertyName = "Barcode";
+            this.barcode.HeaderText = "Barcode";
+            this.barcode.MinimumWidth = 8;
+            this.barcode.Name = "barcode";
+            this.barcode.ReadOnly = true;
+            this.barcode.Visible = false;
+            // 
+            // name
+            // 
+            this.name.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.name.DataPropertyName = "Name";
+            this.name.FillWeight = 278.0632F;
+            this.name.HeaderText = "Name";
+            this.name.MinimumWidth = 100;
+            this.name.Name = "name";
+            this.name.ReadOnly = true;
+            // 
+            // ItemType
+            // 
+            this.ItemType.DataPropertyName = "ItemType";
+            this.ItemType.HeaderText = "Type";
+            this.ItemType.MinimumWidth = 8;
+            this.ItemType.Name = "ItemType";
+            this.ItemType.ReadOnly = true;
+            this.ItemType.Visible = false;
+            // 
+            // qty
+            // 
+            this.qty.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.qty.DataPropertyName = "Qty";
+            this.qty.FillWeight = 114F;
+            this.qty.HeaderText = "Qty";
+            this.qty.MinimumWidth = 65;
+            this.qty.Name = "qty";
+            this.qty.ReadOnly = true;
+            this.qty.Width = 88;
+            // 
+            // price
+            // 
+            this.price.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.price.DataPropertyName = "Price";
+            this.price.FillWeight = 65F;
+            this.price.HeaderText = "Price";
+            this.price.MinimumWidth = 65;
+            this.price.Name = "price";
+            this.price.ReadOnly = true;
+            this.price.Width = 110;
+            // 
+            // minqty
+            // 
+            this.minqty.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.minqty.DataPropertyName = "minqty";
+            this.minqty.FillWeight = 65F;
+            this.minqty.HeaderText = "Min";
+            this.minqty.MinimumWidth = 65;
+            this.minqty.Name = "minqty";
+            this.minqty.ReadOnly = true;
+            this.minqty.Width = 91;
+            // 
+            // maxqty
+            // 
+            this.maxqty.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.maxqty.DataPropertyName = "maxqty";
+            this.maxqty.FillWeight = 65F;
+            this.maxqty.HeaderText = "Max";
+            this.maxqty.MinimumWidth = 65;
+            this.maxqty.Name = "maxqty";
+            this.maxqty.ReadOnly = true;
+            this.maxqty.Width = 96;
+            // 
+            // requestqty
+            // 
+            this.requestqty.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.requestqty.DataPropertyName = "RequestQty";
+            this.requestqty.HeaderText = "Requested";
+            this.requestqty.MinimumWidth = 8;
+            this.requestqty.Name = "requestqty";
+            this.requestqty.ReadOnly = true;
+            this.requestqty.Width = 176;
+            // 
+            // RequiredQty
+            // 
+            this.RequiredQty.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.RequiredQty.DataPropertyName = "RequiredQty";
+            this.RequiredQty.FillWeight = 80F;
+            this.RequiredQty.HeaderText = "Required";
+            this.RequiredQty.MinimumWidth = 80;
+            this.RequiredQty.Name = "RequiredQty";
+            this.RequiredQty.ReadOnly = true;
+            this.RequiredQty.Width = 157;
+            // 
+            // orderqty
+            // 
+            this.orderqty.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.orderqty.DataPropertyName = "orderqty";
+            this.orderqty.FillWeight = 75F;
+            this.orderqty.HeaderText = "Ordered";
+            this.orderqty.MinimumWidth = 75;
+            this.orderqty.Name = "orderqty";
+            this.orderqty.ReadOnly = true;
+            this.orderqty.Width = 147;
             // 
             // Panel_SupplierOrder
             // 
@@ -409,7 +427,7 @@ namespace SecretCellar.Orders_Panels {
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoSize = true;
             this.Controls.Add(this.panel1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Panel_SupplierOrder";
             this.Size = new System.Drawing.Size(1454, 831);
             ((System.ComponentModel.ISupportInitialize)(this.supp_dataGrid)).EndInit();
@@ -444,6 +462,7 @@ namespace SecretCellar.Orders_Panels {
         private System.Windows.Forms.DataGridViewTextBoxColumn price;
         private System.Windows.Forms.DataGridViewTextBoxColumn minqty;
         private System.Windows.Forms.DataGridViewTextBoxColumn maxqty;
+        private System.Windows.Forms.DataGridViewTextBoxColumn requestqty;
         private System.Windows.Forms.DataGridViewTextBoxColumn RequiredQty;
         private System.Windows.Forms.DataGridViewTextBoxColumn orderqty;
     }
