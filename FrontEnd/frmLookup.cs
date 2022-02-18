@@ -414,6 +414,7 @@ namespace SecretCellar
 
         private void btn_close_Click(object sender, EventArgs e)
         {
+            txtlookup.Text = "";
             this.Close();
         }
     }
