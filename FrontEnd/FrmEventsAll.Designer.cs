@@ -39,9 +39,9 @@ namespace SecretCellar {
 			this.Qty = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.button_CloseWindow = new System.Windows.Forms.Button();
 			this.button_DeleteEvent = new System.Windows.Forms.Button();
-			this.button_PreviousEvents = new System.Windows.Forms.Button();
 			this.label_Events = new System.Windows.Forms.Label();
 			this.button_showPreviousEventData = new System.Windows.Forms.Button();
+			this.checkBox_ShowPreviousEvents = new System.Windows.Forms.CheckBox();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView_Events)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -169,19 +169,6 @@ namespace SecretCellar {
 			this.button_DeleteEvent.UseVisualStyleBackColor = true;
 			this.button_DeleteEvent.Click += new System.EventHandler(this.button_DeleteEvent_Click);
 			// 
-			// button_PreviousEvents
-			// 
-			this.button_PreviousEvents.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.button_PreviousEvents.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.button_PreviousEvents.Location = new System.Drawing.Point(437, 4);
-			this.button_PreviousEvents.Margin = new System.Windows.Forms.Padding(1);
-			this.button_PreviousEvents.Name = "button_PreviousEvents";
-			this.button_PreviousEvents.Size = new System.Drawing.Size(240, 32);
-			this.button_PreviousEvents.TabIndex = 3;
-			this.button_PreviousEvents.Text = "SHOW PREVIOUS EVENTS";
-			this.button_PreviousEvents.UseVisualStyleBackColor = true;
-			this.button_PreviousEvents.Click += new System.EventHandler(this.button_PreviousEvents_Click);
-			// 
 			// label_Events
 			// 
 			this.label_Events.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -205,18 +192,32 @@ namespace SecretCellar {
 			this.button_showPreviousEventData.UseVisualStyleBackColor = true;
 			this.button_showPreviousEventData.Click += new System.EventHandler(this.button_showPreviousEventData_Click);
 			// 
+			// checkBox_ShowPreviousEvents
+			// 
+			this.checkBox_ShowPreviousEvents.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.checkBox_ShowPreviousEvents.AutoSize = true;
+			this.checkBox_ShowPreviousEvents.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.checkBox_ShowPreviousEvents.Location = new System.Drawing.Point(528, 12);
+			this.checkBox_ShowPreviousEvents.Name = "checkBox_ShowPreviousEvents";
+			this.checkBox_ShowPreviousEvents.Size = new System.Drawing.Size(149, 22);
+			this.checkBox_ShowPreviousEvents.TabIndex = 6;
+			this.checkBox_ShowPreviousEvents.Text = "Previous Events";
+			this.checkBox_ShowPreviousEvents.UseVisualStyleBackColor = true;
+			this.checkBox_ShowPreviousEvents.CheckedChanged += new System.EventHandler(this.checkBox_ShowPreviousEvents_CheckedChanged);
+			// 
 			// frmEventsAll
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(231)))), ((int)(((byte)(206)))));
 			this.ClientSize = new System.Drawing.Size(690, 418);
+			this.Controls.Add(this.checkBox_ShowPreviousEvents);
 			this.Controls.Add(this.button_showPreviousEventData);
 			this.Controls.Add(this.label_Events);
-			this.Controls.Add(this.button_PreviousEvents);
 			this.Controls.Add(this.button_DeleteEvent);
 			this.Controls.Add(this.button_CloseWindow);
 			this.Controls.Add(this.dataGridView_Events);
+			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
@@ -225,6 +226,7 @@ namespace SecretCellar {
 			this.Text = "All Events";
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView_Events)).EndInit();
 			this.ResumeLayout(false);
+			this.PerformLayout();
 
 		}
 
@@ -233,7 +235,6 @@ namespace SecretCellar {
 		private System.Windows.Forms.DataGridView dataGridView_Events;
 		private System.Windows.Forms.Button button_CloseWindow;
 		private System.Windows.Forms.Button button_DeleteEvent;
-		private System.Windows.Forms.Button button_PreviousEvents;
 		private System.Windows.Forms.Label label_Events;
 		private System.Windows.Forms.Button button_showPreviousEventData;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Id;
@@ -242,5 +243,6 @@ namespace SecretCellar {
         private System.Windows.Forms.DataGridViewTextBoxColumn PreorderPrice;
         private System.Windows.Forms.DataGridViewTextBoxColumn AtDoorPrice;
         private System.Windows.Forms.DataGridViewTextBoxColumn Qty;
+		private System.Windows.Forms.CheckBox checkBox_ShowPreviousEvents;
 	}
 }
