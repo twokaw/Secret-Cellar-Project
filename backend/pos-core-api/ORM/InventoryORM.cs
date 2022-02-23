@@ -199,8 +199,6 @@ namespace pos_core_api.ORM
      
         public long Insert(Inventory inv)
         {
-            long lastID = -1;
-
             if (DoesBarcodeExist(inv.Barcode))
                 throw new Exception ("Barcode already exist.");
 
@@ -266,7 +264,7 @@ namespace pos_core_api.ORM
                 db.CloseCommand(cmd);
             }
 
-            return lastID;
+            return inv.Id;
         }
 
         public long Update(Inventory inv) {

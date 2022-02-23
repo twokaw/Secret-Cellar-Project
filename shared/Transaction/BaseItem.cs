@@ -49,7 +49,25 @@ namespace Shared
         }
 
         public List<InventoryQty> AllQty { get; set; } = new List<InventoryQty>();
-    }
 
+        public BaseItem() { }
+        public BaseItem(BaseItem item) {
+            this.Name = item.Name;
+            this.Id = item.Id;
+            this.Barcode = item.Barcode;
+            this.OrderQty = item.OrderQty;
+            this.RequestQty = item.RequestQty;
+            this.RequiredQty = item.RequiredQty;
+            this.Price = item.Price;
+            this.NonTaxable = item.NonTaxable;
+            this.NonTaxableLocal = item.NonTaxableLocal ;
+            this.TypeID = item.TypeID;
+            this.ItemType = item.ItemType;
+            this.Hidden = item.Hidden;
+            this.Bottles = item.Bottles;
+            this.Discounts.AddRange(item.Discounts);
+            this.AllQty.AddRange(item.AllQty);
+        }
+    }
 }
  

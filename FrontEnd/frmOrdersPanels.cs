@@ -17,51 +17,6 @@ namespace SecretCellar {
 			this.Close();
 		}
 
-        private void tab_CustomerRequest_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tab_SupplierOrder_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel_SupplierOrder1_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tab_CustomerOrder_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel_CustomerOrder1_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tab_Fulfillment_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel_Fulfillment1_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tab_History_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel_History1_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void frmOrdersPanels_Load(object sender, EventArgs e)
         {
 

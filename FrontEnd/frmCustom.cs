@@ -2,13 +2,11 @@
 using System.Windows.Forms;
 using Shared;
 
-
-
 namespace SecretCellar
 {
     public partial class frmCustom : ManagedForm
     {
-        private Transaction customItem = null;
+        private readonly Transaction customItem = null;
 
         public frmCustom(Transaction transaction)
         {
@@ -19,10 +17,11 @@ namespace SecretCellar
 
         }
 
-
-        ///////////////////////////////////
-        //ADD THE CHARGE TO THE TRANSACTION
-        ///////////////////////////////////
+        /// <summary>
+        /// ADD THE CHARGE TO THE TRANSACTION
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button_AddCharge_Click(object sender, EventArgs e) {
             if (double.TryParse(txt_charge_am.Text, out double d)) {
                 Item i = Transaction.ConvertInvtoItem(DataAccess.instance.GetItem("Custom"));
@@ -36,10 +35,11 @@ namespace SecretCellar
             this.Close();
         }
 
-
-        //////////////////
-        //CLOSE THE WINDOW
-        //////////////////
+        /// <summary>
+        /// Close Window
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button_Cancel_Click(object sender, EventArgs e) {
             this.Close();
 		}
@@ -49,5 +49,4 @@ namespace SecretCellar
             touchKeyPad1.Target = (TextBox)sender;
         }
     }
-
 }
