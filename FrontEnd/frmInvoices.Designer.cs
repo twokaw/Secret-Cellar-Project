@@ -40,7 +40,7 @@ namespace SecretCellar {
 			this.button_CloseWindow = new System.Windows.Forms.Button();
 			this.button_Finalize = new System.Windows.Forms.Button();
 			this.textBox_Filter = new System.Windows.Forms.TextBox();
-			this.button_ = new System.Windows.Forms.Button();
+			this.button_Print = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView_Invoices)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -216,16 +216,16 @@ namespace SecretCellar {
 			this.textBox_Filter.TabIndex = 1;
 			this.textBox_Filter.Text = "Filter...";
 			// 
-			// button_
+			// button_Print
 			// 
-			this.button_.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.button_.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.button_.Location = new System.Drawing.Point(12, 329);
-			this.button_.Name = "button_";
-			this.button_.Size = new System.Drawing.Size(198, 55);
-			this.button_.TabIndex = 4;
-			this.button_.Text = "View/Print";
-			this.button_.UseVisualStyleBackColor = true;
+			this.button_Print.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.button_Print.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.button_Print.Location = new System.Drawing.Point(12, 329);
+			this.button_Print.Name = "button_Print";
+			this.button_Print.Size = new System.Drawing.Size(198, 55);
+			this.button_Print.TabIndex = 4;
+			this.button_Print.Text = "View/Print";
+			this.button_Print.UseVisualStyleBackColor = true;
 			// 
 			// frmInvoices
 			// 
@@ -233,7 +233,7 @@ namespace SecretCellar {
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(231)))), ((int)(((byte)(206)))));
 			this.ClientSize = new System.Drawing.Size(961, 461);
-			this.Controls.Add(this.button_);
+			this.Controls.Add(this.button_Print);
 			this.Controls.Add(this.textBox_Filter);
 			this.Controls.Add(this.button_Finalize);
 			this.Controls.Add(this.button_CloseWindow);
@@ -243,6 +243,7 @@ namespace SecretCellar {
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
 			this.Name = "frmInvoices";
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Invoices";
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView_Invoices)).EndInit();
 			this.ResumeLayout(false);
@@ -263,6 +264,6 @@ namespace SecretCellar {
 		private System.Windows.Forms.Button button_CloseWindow;
 		private System.Windows.Forms.Button button_Finalize;
 		private System.Windows.Forms.TextBox textBox_Filter;
-		private System.Windows.Forms.Button button_;
+		private System.Windows.Forms.Button button_Print;
 	}
 }
