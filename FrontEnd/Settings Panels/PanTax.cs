@@ -104,7 +104,10 @@ namespace SecretCellar.Settings_Panels
         }
 
 		private void button_deleteTax_Click(object sender, EventArgs e) {
+            if (lst_tax_list.SelectedItem == null) { return; }
 
-		}
+            DataAccess.instance.DeleteTax(((Tax)lst_tax_list.SelectedItem).IdTax);
+            lst_tax_list.DataSource = DataAccess.instance?.GetTax();
+        }
 	}
 }

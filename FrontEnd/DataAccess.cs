@@ -185,6 +185,11 @@ namespace SecretCellar
             else
                 return 0;
         }
+
+        public void DeleteTax(uint taxID) {
+            try { web.DataDelete($"api/Tax/Delete/{taxID}"); }
+            catch (Exception e) { LogError(e, "DeleteTax"); }
+        }
         #endregion
 
         #region InventoryType
