@@ -15,7 +15,7 @@ namespace pos_core_api.ORM
         private readonly CustomerORM CustORM;
 
         private const string SQLGET = @"
-            SELECT receiptID, register, sold_datetime, customerID, empID, location, tax_exempt, discount, shipping, invoice
+            SELECT receiptID, register, sold_datetime, customerID, empID, location, tax_exempt, discount, shipping, tranTypeid
             FROM transaction
         ";
 
@@ -163,7 +163,7 @@ namespace pos_core_api.ORM
                     TaxExempt = !reader.IsDBNull("tax_exempt") && reader.GetBoolean("tax_exempt"),
                     Discount = reader.IsDBNull("discount") ? 0.0 : reader.GetDouble("discount"),
                     Shipping = reader.IsDBNull("shipping") ? 0.0 : reader.GetDouble("shipping"),
-                    Invoice = (int) (reader.IsDBNull("Invoice") ? 0 : reader.GetInt32("invoice"))  == 1
+                    TranType = (Transaction.TranactionType)(reader.IsDBNull("tranTypeid") ? 0 : reader.GetInt32("tranTypeid"))
                 };
                 output.Add(transaction);
             }
@@ -291,11 +291,15 @@ namespace pos_core_api.ORM
 
         public uint InsertTransaction(Transaction transaction, bool decrementItems = true)
         {
+
+            if (transaction.TranType == Transaction.TranactionType.Closed && transaction.Total > transaction.Payments.Sum(x => x.Amount))
+                transaction.TranType = Transaction.TranactionType.Suspended;
+
             MySqlCommand cmd = db.CreateCommand(@"
                 INSERT INTO transaction
-                (register,  sold_datetime,  customerID,  empID,  location,  tax_exempt,  discount, shipping, invoice)
+                (register,  sold_datetime,  customerID,  empID,  location,  tax_exempt,  discount, shipping, tranTypeid)
                 VALUES
-                (@register, @sold_datetime, @customerID, @empID, @location, @tax_exempt, @discount, @shipping, @invoice)
+                (@register, @sold_datetime, @customerID, @empID, @location, @tax_exempt, @discount, @shipping, @TranType)
             ");            
 
             cmd.Parameters.Add(new MySqlParameter("register", transaction.RegisterID));
@@ -306,7 +310,7 @@ namespace pos_core_api.ORM
             cmd.Parameters.Add(new MySqlParameter("tax_exempt", transaction.TaxExempt));
             cmd.Parameters.Add(new MySqlParameter("discount", transaction.Discount));
             cmd.Parameters.Add(new MySqlParameter("shipping", transaction.Shipping));
-            cmd.Parameters.Add(new MySqlParameter("invoice", transaction.Invoice ? 1 : 0));
+            cmd.Parameters.Add(new MySqlParameter("tranType", transaction.TranType ));
 
             try
             {
@@ -336,7 +340,7 @@ namespace pos_core_api.ORM
                     tax_exempt = @tax_exempt,  
                     discount = @discount, 
                     shipping = @shipping, 
-                    invoice = @invoice
+                    tranTypeid= @transType
                 WHERE Receiptid = @InvoiceID
             ");
             cmd.Parameters.Add(new MySqlParameter("register", transaction.RegisterID));
@@ -347,7 +351,7 @@ namespace pos_core_api.ORM
             cmd.Parameters.Add(new MySqlParameter("tax_exempt", transaction.TaxExempt));
             cmd.Parameters.Add(new MySqlParameter("discount", transaction.Discount));
             cmd.Parameters.Add(new MySqlParameter("shipping", transaction.Shipping));
-            cmd.Parameters.Add(new MySqlParameter("invoice", transaction.Invoice ? 1 : 0));
+            cmd.Parameters.Add(new MySqlParameter("transType", transaction.TranType));
             cmd.Parameters.Add(new MySqlParameter("InvoiceID", transaction.InvoiceID));      
             
             try
@@ -368,7 +372,10 @@ namespace pos_core_api.ORM
         {
             // TODO: remove items that have been removed
             foreach (Item item in transaction.Items)
-                UpdateItemQty(transaction.InvoiceID, item, transaction.Invoice && updateDecrementInvQty);
+                UpdateItemQty(transaction.InvoiceID, item, 
+                              transaction.TranType == Transaction.TranactionType.Invoice 
+                           || transaction.TranType == Transaction.TranactionType.Hold
+                           || updateDecrementInvQty);
         }
 
         public void InsertItems(Transaction transaction, bool updateDecrementInvQty, Transaction previousTransaction )
@@ -405,7 +412,7 @@ namespace pos_core_api.ORM
         {
             using MySqlCommand cmd = db.CreateCommand(@"
                 UPDATE transaction_items
-                SET sold_qty = GREATER(sold_qty, 0)
+                SET    sold_qty = GREATER(sold_qty, 0)
                 WHERE  receiptID = @receiptID
                 AND    inventoryID = @inventoryID
             ");

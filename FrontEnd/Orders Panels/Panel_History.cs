@@ -19,7 +19,7 @@ namespace SecretCellar.Orders_Panels {
             lstbox_customer.DisplayMember = "FullName";
 
             //POPULATE THE DATA GRID
-            if (DataAccess.instance != null) { populate(); }
+            if (DataAccess.instance != null && transaction_history != null) { populate(); }
         }
 
         /// <summary>
@@ -75,15 +75,20 @@ namespace SecretCellar.Orders_Panels {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void btn_setCust_Click(object sender, EventArgs e) {
-            transaction_dataGrid.DataSource = transaction_history.Where(x => ((Customer)lstbox_customer.SelectedItem).CustomerID == x.CustomerID).
-              Select(x => new {
-                  trans_id = x.InvoiceID,
-                  trans_date = x.TransactionDateTime.ToString("MM/dd/yyyy"),
-                  trans_total = x.Total.ToString("C"),
-
-              }).
-              OrderBy(x => x.trans_id).
-              ToList();
+            if (transaction_history == null)
+                transaction_dataGrid.Rows.Clear();
+            else
+            {
+                transaction_dataGrid.DataSource = transaction_history.Where(x => ((Customer)lstbox_customer.SelectedItem).CustomerID == x.CustomerID).
+                  Select(x => new
+                  {
+                      trans_id = x.InvoiceID,
+                      trans_date = x.TransactionDateTime.ToString("MM/dd/yyyy"),
+                      trans_total = x.Total.ToString("C")
+                  }).
+                  OrderBy(x => x.trans_id).
+                  ToList();
+            }
         }
 
 
