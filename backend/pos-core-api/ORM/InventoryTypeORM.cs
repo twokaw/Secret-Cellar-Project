@@ -104,12 +104,13 @@ namespace pos_core_api.ORM
         }
 
 
-        // DELETE: api/ApiWithActions/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        // DELETE: api/InventoryType/Delete/5
+        public bool Delete(uint id)
         {
-            using MySqlCommand cmd = db.CreateCommand(@"
-                DELETE FROM  inventory_type 
+            //if (Get(id) == null) { return false; }
+
+            MySqlCommand cmd = db.CreateCommand(@"
+                DELETE FROM inventory_type 
                 WHERE typeID = @typeID
             ");
 
@@ -123,6 +124,8 @@ namespace pos_core_api.ORM
             {
                 db.CloseCommand(cmd);
             }
+
+            return true;
         }
 
         private List<InventoryType> FetchType(MySqlDataReader reader)

@@ -111,18 +111,18 @@ namespace WebApi.Controllers
             catch (Exception ex) { ErrorLogging.WriteToErrorLog(ex); return StatusCode(500, ex.Message); }
         }
 
-        // DELETE: api/ApiWithActions/5
-        [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        // DELETE: api/InventoryType/Delete/5
+        [HttpDelete("Delete/{id}")]
+        public IActionResult Delete(uint id)
         {
             try
             {
-                int qty = DataAccess.Instance.InventoryType.GetTypeQty(id, "");
+                //int qty = DataAccess.Instance.InventoryType.GetTypeQty(id, "");
 
-                if(qty == -1)
-                    return BadRequest($"No type with the id '{id}'.");
-                else if (qty > 0)
-                    return BadRequest($"Can't delete Type id '{id}'.  It has {qty} inventory items assigned to it");
+                //if(qty == -1)
+                //    return BadRequest($"No type with the id '{id}'.");
+                //else if (qty > 0)
+                //    return BadRequest($"Can't delete Type id '{id}'.  It has {qty} inventory items assigned to it");
 
                 DataAccess.Instance.InventoryType.Delete(id);
                 return Ok("Type succesfully Deleted");

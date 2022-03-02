@@ -32,7 +32,6 @@ namespace SecretCellar.Settings_Panels
 
         private void lstTypes_SelectedIndexChanged(object sender, EventArgs e)
         {
-
             txt_bottleDep.Text = ((InventoryType)lstTypes.SelectedItem).BottleDeposit.ToString();
             txt_salesTax.Text = ((InventoryType)lstTypes.SelectedItem).SalesTax.ToString();
             txt_localTax.Text = ((InventoryType)lstTypes.SelectedItem).LocalSalesTax.ToString();
@@ -40,6 +39,14 @@ namespace SecretCellar.Settings_Panels
             
             for (int i = 0; i < chk_lst_discount.Items.Count; i++)
                 chk_lst_discount.SetItemChecked(i, ((InventoryType)lstTypes.SelectedItem).Discount.FirstOrDefault(x => x.DiscountName == chk_lst_discount.Items[i].ToString()) != null);
+
+            List<Inventory> inventoryList = DataAccess.instance.GetInventory();
+            List<Inventory> filteredInventoryList = inventoryList.FindAll((inventory) => inventory.TypeID == ((InventoryType)lstTypes.SelectedItem).TypeId);
+
+            textBox_itemsUsingInventory.Text = filteredInventoryList.Count + "";
+
+            if (filteredInventoryList.Count == 0) { button_deleteInventory.Enabled = true; }
+            else { button_deleteInventory.Enabled = false; }
         }
 
         private void btn_type_clear_Click(object sender, EventArgs e)
@@ -142,13 +149,6 @@ namespace SecretCellar.Settings_Panels
             }
         }
 
-        private void populate()
-        {
-            chk_lst_discount.Items.Clear();
-            discounts = DataAccess.instance.GetDiscount();
-            discounts?.ForEach(x => chk_lst_discount.Items.Add(x.DiscountName));
-        }
-
         private void btn_clear_discount_Click(object sender, EventArgs e)
         {
             clear();
@@ -161,6 +161,20 @@ namespace SecretCellar.Settings_Panels
             txt_dis_max.Text = "";
             txt_discount.Text = "";
             txt_dis_name.Focus();
+        }
+
+		private void button_deleteInventory_Click(object sender, EventArgs e) {
+            if (lstTypes.SelectedItem == null) { return; }
+
+            DataAccess.instance.DeleteInventoryType(((InventoryType)lstTypes.SelectedItem).TypeId);
+
+            lstTypes.DataSource = DataAccess.instance?.GetInventoryType();
+        }
+
+        private void populate() {
+            chk_lst_discount.Items.Clear();
+            discounts = DataAccess.instance.GetDiscount();
+            discounts?.ForEach(x => chk_lst_discount.Items.Add(x.DiscountName));
         }
     }
 }

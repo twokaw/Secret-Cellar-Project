@@ -185,6 +185,11 @@ namespace SecretCellar
             else
                 return 0;
         }
+
+        public void DeleteTax(uint taxID) {
+            try { web.DataDelete($"api/Tax/Delete/{taxID}"); }
+            catch (Exception e) { LogError(e, "DeleteTax"); }
+        }
         #endregion
 
         #region InventoryType
@@ -216,11 +221,10 @@ namespace SecretCellar
                 return 0;
         }
 
-        public uint DeleteInventoryType(uint typeId)
+        public void DeleteInventoryType(uint typeId)
         {
-            Response resp = null;
-            string result = web.DataPut($"api/InventoryType/{typeId}", resp);
-            return uint.TryParse(result, out uint id) ? id : 0;
+            try { web.DataDelete($"api/InventoryType/Delete/{typeId}"); }
+            catch (Exception e) { LogError(e, "DeleteInventoryType"); }
         }
         #endregion
 
