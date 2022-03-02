@@ -53,8 +53,8 @@ namespace WebApi.Controllers
             catch (Exception ex) { ErrorLogging.WriteToErrorLog(ex); return StatusCode(500, ex.Message); }
         }
 
-        //Put: api/Tax
-        [HttpDelete("{taxId}")]
+        //Delete: api/Tax
+        [HttpDelete("Delete/{taxId}")]
         public IActionResult Delete(uint taxId)
         {
             try

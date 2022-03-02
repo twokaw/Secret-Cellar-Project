@@ -22,6 +22,14 @@ namespace SecretCellar.Settings_Panels
             txt_bottle_dep.Text = ((Tax)lst_tax_list.SelectedItem).BottleDeposit.ToString();
             txt_sales_tax.Text = ((Tax)lst_tax_list.SelectedItem).SalesTax.ToString();
             txt_local_tax.Text = ((Tax)lst_tax_list.SelectedItem).LocalSalesTax.ToString();
+
+            List<Inventory> inventoryList = DataAccess.instance.GetInventory();
+            List<Inventory> filteredInventoryList = inventoryList.FindAll((inventory) => inventory.IdTax == ((Tax)lst_tax_list.SelectedItem).IdTax);
+
+            textBox_itemsUsingTax.Text = filteredInventoryList.Count + "";
+
+            if (filteredInventoryList.Count == 0) { button_deleteTax.Enabled = true; }
+            else { button_deleteTax.Enabled = false; }
         }
 
 
@@ -41,7 +49,6 @@ namespace SecretCellar.Settings_Panels
             DataAccess.instance.UpdateTax(i);
             lst_tax_list.DataSource = DataAccess.instance?.GetTax();
         }
-
 
         private void btn_clear_Click(object sender, EventArgs e)
         {
@@ -92,5 +99,12 @@ namespace SecretCellar.Settings_Panels
                 DataAccess.instance.SetPaymentMethods(p);
             }
         }
-    }
+
+		private void button_deleteTax_Click(object sender, EventArgs e) {
+            if (lst_tax_list.SelectedItem == null) { return; }
+
+            DataAccess.instance.DeleteTax(((Tax)lst_tax_list.SelectedItem).IdTax);
+            lst_tax_list.DataSource = DataAccess.instance?.GetTax();
+        }
+	}
 }
