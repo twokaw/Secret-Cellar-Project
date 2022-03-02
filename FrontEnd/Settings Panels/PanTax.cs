@@ -30,6 +30,9 @@ namespace SecretCellar.Settings_Panels
             List<Inventory> filteredInventoryList = inventoryList.FindAll((inventory) => inventory.IdTax == ((Tax)lst_tax_list.SelectedItem).IdTax);
 
             textBox_itemsUsingTax.Text = filteredInventoryList.Count + "";
+
+            if (filteredInventoryList.Count == 0) { button_deleteTax.Enabled = true; }
+            else { button_deleteTax.Enabled = false; }
         }
 
 
@@ -49,7 +52,6 @@ namespace SecretCellar.Settings_Panels
             DataAccess.instance.UpdateTax(i);
             lst_tax_list.DataSource = DataAccess.instance?.GetTax();
         }
-
 
         private void btn_clear_Click(object sender, EventArgs e)
         {
@@ -100,5 +102,9 @@ namespace SecretCellar.Settings_Panels
                 DataAccess.instance.SetPaymentMethods(p);
             }
         }
-    }
+
+		private void button_deleteTax_Click(object sender, EventArgs e) {
+
+		}
+	}
 }

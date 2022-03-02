@@ -38,6 +38,10 @@ namespace SecretCellar.Settings_Panels
 			this.txt_local_tax = new System.Windows.Forms.TextBox();
 			this.txt_sales_tax = new System.Windows.Forms.TextBox();
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.groupBox_deleteTax = new System.Windows.Forms.GroupBox();
+			this.label2 = new System.Windows.Forms.Label();
+			this.button_deleteTax = new System.Windows.Forms.Button();
+			this.textBox_itemsUsingTax = new System.Windows.Forms.TextBox();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
 			this.btnSetDiscount = new System.Windows.Forms.Button();
 			this.txt_CashDiscount = new System.Windows.Forms.TextBox();
@@ -47,14 +51,10 @@ namespace SecretCellar.Settings_Panels
 			this.label1 = new System.Windows.Forms.Label();
 			this.btn_new = new System.Windows.Forms.Button();
 			this.btn_clear = new System.Windows.Forms.Button();
-			this.groupBox_deleteTax = new System.Windows.Forms.GroupBox();
-			this.button_deleteTax = new System.Windows.Forms.Button();
-			this.textBox_itemsUsingTax = new System.Windows.Forms.TextBox();
-			this.label2 = new System.Windows.Forms.Label();
 			this.panel1.SuspendLayout();
+			this.groupBox_deleteTax.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			this.groupBox1.SuspendLayout();
-			this.groupBox_deleteTax.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// btn_update_tax
@@ -145,10 +145,62 @@ namespace SecretCellar.Settings_Panels
 			this.panel1.Controls.Add(this.groupBox1);
 			this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.panel1.Location = new System.Drawing.Point(0, 0);
-			this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.panel1.Margin = new System.Windows.Forms.Padding(2);
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(605, 320);
 			this.panel1.TabIndex = 18;
+			// 
+			// groupBox_deleteTax
+			// 
+			this.groupBox_deleteTax.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox_deleteTax.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(201)))), ((int)(((byte)(176)))));
+			this.groupBox_deleteTax.Controls.Add(this.label2);
+			this.groupBox_deleteTax.Controls.Add(this.button_deleteTax);
+			this.groupBox_deleteTax.Controls.Add(this.textBox_itemsUsingTax);
+			this.groupBox_deleteTax.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.groupBox_deleteTax.Location = new System.Drawing.Point(388, 140);
+			this.groupBox_deleteTax.Margin = new System.Windows.Forms.Padding(2);
+			this.groupBox_deleteTax.Name = "groupBox_deleteTax";
+			this.groupBox_deleteTax.Padding = new System.Windows.Forms.Padding(2);
+			this.groupBox_deleteTax.Size = new System.Drawing.Size(206, 167);
+			this.groupBox_deleteTax.TabIndex = 26;
+			this.groupBox_deleteTax.TabStop = false;
+			this.groupBox_deleteTax.Text = "Delete Tax";
+			// 
+			// label2
+			// 
+			this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
+			this.label2.Location = new System.Drawing.Point(5, 24);
+			this.label2.Name = "label2";
+			this.label2.Size = new System.Drawing.Size(81, 16);
+			this.label2.TabIndex = 24;
+			this.label2.Text = "Items Using Tax:";
+			this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			// 
+			// button_deleteTax
+			// 
+			this.button_deleteTax.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.button_deleteTax.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
+			this.button_deleteTax.Location = new System.Drawing.Point(93, 127);
+			this.button_deleteTax.Name = "button_deleteTax";
+			this.button_deleteTax.Size = new System.Drawing.Size(108, 35);
+			this.button_deleteTax.TabIndex = 23;
+			this.button_deleteTax.Text = "Delete Tax";
+			this.button_deleteTax.UseVisualStyleBackColor = true;
+			this.button_deleteTax.Click += new System.EventHandler(this.button_deleteTax_Click);
+			// 
+			// textBox_itemsUsingTax
+			// 
+			this.textBox_itemsUsingTax.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.textBox_itemsUsingTax.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
+			this.textBox_itemsUsingTax.Location = new System.Drawing.Point(92, 21);
+			this.textBox_itemsUsingTax.Name = "textBox_itemsUsingTax";
+			this.textBox_itemsUsingTax.ReadOnly = true;
+			this.textBox_itemsUsingTax.Size = new System.Drawing.Size(109, 22);
+			this.textBox_itemsUsingTax.TabIndex = 20;
 			// 
 			// groupBox2
 			// 
@@ -160,9 +212,9 @@ namespace SecretCellar.Settings_Panels
 			this.groupBox2.Controls.Add(this.label3);
 			this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.groupBox2.Location = new System.Drawing.Point(388, 12);
-			this.groupBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.groupBox2.Margin = new System.Windows.Forms.Padding(2);
 			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.groupBox2.Padding = new System.Windows.Forms.Padding(2);
 			this.groupBox2.Size = new System.Drawing.Size(206, 104);
 			this.groupBox2.TabIndex = 25;
 			this.groupBox2.TabStop = false;
@@ -221,9 +273,9 @@ namespace SecretCellar.Settings_Panels
 			this.groupBox1.Controls.Add(this.lbl_local_tax);
 			this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.groupBox1.Location = new System.Drawing.Point(15, 12);
-			this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
 			this.groupBox1.Size = new System.Drawing.Size(362, 295);
 			this.groupBox1.TabIndex = 24;
 			this.groupBox1.TabStop = false;
@@ -271,72 +323,21 @@ namespace SecretCellar.Settings_Panels
 			this.btn_clear.UseVisualStyleBackColor = true;
 			this.btn_clear.Click += new System.EventHandler(this.btn_clear_Click);
 			// 
-			// groupBox_deleteTax
-			// 
-			this.groupBox_deleteTax.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.groupBox_deleteTax.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(201)))), ((int)(((byte)(176)))));
-			this.groupBox_deleteTax.Controls.Add(this.label2);
-			this.groupBox_deleteTax.Controls.Add(this.button_deleteTax);
-			this.groupBox_deleteTax.Controls.Add(this.textBox_itemsUsingTax);
-			this.groupBox_deleteTax.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.groupBox_deleteTax.Location = new System.Drawing.Point(388, 140);
-			this.groupBox_deleteTax.Margin = new System.Windows.Forms.Padding(2);
-			this.groupBox_deleteTax.Name = "groupBox_deleteTax";
-			this.groupBox_deleteTax.Padding = new System.Windows.Forms.Padding(2);
-			this.groupBox_deleteTax.Size = new System.Drawing.Size(206, 167);
-			this.groupBox_deleteTax.TabIndex = 26;
-			this.groupBox_deleteTax.TabStop = false;
-			this.groupBox_deleteTax.Text = "Delete Tax";
-			// 
-			// button_deleteTax
-			// 
-			this.button_deleteTax.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.button_deleteTax.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
-			this.button_deleteTax.Location = new System.Drawing.Point(93, 127);
-			this.button_deleteTax.Name = "button_deleteTax";
-			this.button_deleteTax.Size = new System.Drawing.Size(108, 35);
-			this.button_deleteTax.TabIndex = 23;
-			this.button_deleteTax.Text = "Delete Tax";
-			this.button_deleteTax.UseVisualStyleBackColor = true;
-			// 
-			// textBox_itemsUsingTax
-			// 
-			this.textBox_itemsUsingTax.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.textBox_itemsUsingTax.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
-			this.textBox_itemsUsingTax.Location = new System.Drawing.Point(92, 21);
-			this.textBox_itemsUsingTax.Name = "textBox_itemsUsingTax";
-			this.textBox_itemsUsingTax.ReadOnly = true;
-			this.textBox_itemsUsingTax.Size = new System.Drawing.Size(109, 22);
-			this.textBox_itemsUsingTax.TabIndex = 20;
-			// 
-			// label2
-			// 
-			this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
-			this.label2.Location = new System.Drawing.Point(5, 24);
-			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(81, 16);
-			this.label2.TabIndex = 24;
-			this.label2.Text = "Items Using Tax:";
-			this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-			// 
 			// PanTax
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.Controls.Add(this.panel1);
-			this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.Margin = new System.Windows.Forms.Padding(2);
 			this.Name = "PanTax";
 			this.Size = new System.Drawing.Size(605, 320);
 			this.panel1.ResumeLayout(false);
+			this.groupBox_deleteTax.ResumeLayout(false);
+			this.groupBox_deleteTax.PerformLayout();
 			this.groupBox2.ResumeLayout(false);
 			this.groupBox2.PerformLayout();
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox1.PerformLayout();
-			this.groupBox_deleteTax.ResumeLayout(false);
-			this.groupBox_deleteTax.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
