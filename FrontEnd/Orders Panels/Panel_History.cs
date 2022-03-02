@@ -7,8 +7,8 @@ using System.Windows.Forms;
 
 namespace SecretCellar.Orders_Panels {
 	public partial class Panel_History : UserControl {
-        private string searchForCustomerText = "Search for customer";
-        private List<Transaction> transaction_history = null;
+        private readonly string searchForCustomerText = "Search for customer";
+        private readonly List<Transaction> transaction_history = null;
         Transaction SelectTransaction = null;
 
         public Panel_History() {
@@ -19,7 +19,7 @@ namespace SecretCellar.Orders_Panels {
             lstbox_customer.DisplayMember = "FullName";
 
             //POPULATE THE DATA GRID
-            if (DataAccess.instance != null && transaction_history != null) { populate(); }
+            if (DataAccess.instance != null && transaction_history != null) { Populate(); }
         }
 
         /// <summary>
@@ -67,7 +67,7 @@ namespace SecretCellar.Orders_Panels {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void btn_reset_Click(object sender, EventArgs e) {
-            populate();
+            Populate();
         }
         /// <summary>
         /// ON SET CUSTOMER CLICK
@@ -75,22 +75,7 @@ namespace SecretCellar.Orders_Panels {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void btn_setCust_Click(object sender, EventArgs e) {
-            if (transaction_history == null)
-                transaction_dataGrid.Rows.Clear();
-            else
-            {
-                transaction_dataGrid.DataSource = transaction_history.Where(x => ((Customer)lstbox_customer.SelectedItem).CustomerID == x.CustomerID).
-                  Select(x => new
-                  {
-                      trans_id = x.InvoiceID,
-                      trans_date = x.TransactionDateTime.ToString("MM/dd/yyyy"),
-                      trans_total = x.Total.ToString("C")
-                  }).
-                  OrderBy(x => x.trans_id).
-                  ToList();
-            }
         }
-
 
         /// <summary>
         /// ON PRINT CLICK
@@ -107,9 +92,7 @@ namespace SecretCellar.Orders_Panels {
 
             /*Receipt.DefaultLayout.Logo = DataAccess.instance.ImportLogo();
             new Receipt(SelectTransaction).Print();*/
-
         }
-
 
         /// <summary>
         /// ON SET DATE CLICK
@@ -117,17 +100,8 @@ namespace SecretCellar.Orders_Panels {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void btn_setDate_Click(object sender, EventArgs e) {
-            transaction_dataGrid.DataSource = transaction_history.Where(x => x.TransactionDateTime > start_dateTime.Value && x.TransactionDateTime < end_dateTime.Value).
-             Select(x => new {
-                 trans_id = x.InvoiceID,
-                 trans_date = x.TransactionDateTime.ToString("MM/dd/yyyy"),
-                 trans_total = x.Total.ToString("C"),
-
-             }).
-             OrderBy(x => x.trans_id).
-             ToList();
+            Populate();
         }
-
 
         /// <summary>
         /// ON DATA GRID SELECTION CHANGE
@@ -136,28 +110,36 @@ namespace SecretCellar.Orders_Panels {
         /// <param name="e"></param>
         private void transaction_dataGrid_SelectionChanged(object sender, EventArgs e) {
             if (transaction_dataGrid.SelectedRows.Count > 0) {
-                Transaction t = transaction_history.First(x => x.InvoiceID == uint.Parse(transaction_dataGrid.SelectedRows[0].Cells["trans_id"].Value.ToString()));
-                SelectTransaction = t;
+                SelectTransaction = transaction_history.First(x => x.InvoiceID == uint.Parse(transaction_dataGrid.SelectedRows[0].Cells["trans_id"].Value.ToString()));
             }
+        }
+
+        private void lstbox_customer_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Populate();
         }
                 
         /// <summary>
         /// REFRESH THE DATA GRID
         /// </summary>
-        private void populate() {
-            transaction_dataGrid.DataSource = transaction_history.
-              Select(x => new {
-                  trans_id = x.InvoiceID,
-                  trans_date = x.TransactionDateTime.ToString("MM/dd/yyyy"),
-                  trans_total = x.Total.ToString("C"),
-              }).
-              OrderBy(x => x.trans_id).
-              ToList();
-        }
-
-        private void lstbox_customer_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
+        private void Populate() {
+            if (transaction_history == null)
+                transaction_dataGrid.Rows.Clear();
+            else
+            {
+                transaction_dataGrid.DataSource = transaction_history
+                   .Where(x => x.CustomerID == ((Customer)lstbox_customer.SelectedItem).CustomerID
+                            && x.TransactionDateTime > start_dateTime.Value 
+                            && x.TransactionDateTime < end_dateTime.Value)
+                   .Select(x => new
+                    {
+                      trans_id = x.InvoiceID,
+                      trans_date = x.TransactionDateTime.ToString("MM/dd/yyyy"),
+                      trans_total = x.Total.ToString("C")
+                    })
+                   .OrderBy(x => x.trans_id)
+                   .ToList();
+            }
         }
     }
 }
