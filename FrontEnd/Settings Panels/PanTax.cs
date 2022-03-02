@@ -23,9 +23,6 @@ namespace SecretCellar.Settings_Panels
             txt_sales_tax.Text = ((Tax)lst_tax_list.SelectedItem).SalesTax.ToString();
             txt_local_tax.Text = ((Tax)lst_tax_list.SelectedItem).LocalSalesTax.ToString();
 
-            List<Tax> taxes = DataAccess.instance?.GetTax();
-            Tax currentTax = taxes.Find((tax) => tax.IdTax == ((Tax)lst_tax_list.SelectedItem).IdTax);
-
             List<Inventory> inventoryList = DataAccess.instance.GetInventory();
             List<Inventory> filteredInventoryList = inventoryList.FindAll((inventory) => inventory.IdTax == ((Tax)lst_tax_list.SelectedItem).IdTax);
 
