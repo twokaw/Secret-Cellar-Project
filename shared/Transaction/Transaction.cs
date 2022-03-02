@@ -3,11 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 namespace Shared
 {
+
+
     public class Transaction
     {
+        public enum TranactionType
+        {
+            Closed = 0,
+            Suspended = 1,
+            Invoice = 2,
+            Hold = 3
+        }
+
         public uint InvoiceID { get; set; }
         public uint RegisterID { get; set; }
-        public bool Invoice { get; set; } = false;
+        public TranactionType TranType { get; set; } = TranactionType.Closed;
         public DateTime TransactionDateTime { get; set; }
         public string Location { get; set; }
         public List<Item> Items { get; set; }
