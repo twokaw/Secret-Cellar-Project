@@ -341,6 +341,9 @@ namespace SecretCellar
 
         private void btnSuspendTransaction_Click(object sender, EventArgs e)
         {
+            if (transaction.TranType == Transaction.TranactionType.Closed)
+                transaction.TranType = Transaction.TranactionType.Suspended;
+
             //PROCESS THE TRANSACTION TO SUSPEND IT
             DataAccess.instance.ProcessTransaction(transaction);
 

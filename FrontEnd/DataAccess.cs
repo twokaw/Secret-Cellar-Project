@@ -38,7 +38,7 @@ namespace SecretCellar
 
         public void RefreshCache()
         {
-            if (InventoryChanged())
+             if (InventoryChanged())
             {
 
                 GetInventory();

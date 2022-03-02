@@ -208,14 +208,14 @@ namespace pos_core_api.ORM
             if (cust.DeliverQty > 0)
             {
                 if(transaction == null)
-                    transaction = transactionORM.GetSuspendedTransactions(customerId).FirstOrDefault(x => x.Invoice);
+                    transaction = transactionORM.GetSuspendedTransactions(customerId).FirstOrDefault(x => x.TranType == Transaction.TranactionType.Invoice);
 
                 if (transaction == null)
                 {
                     transaction = new Transaction()
                     {
                         CustomerID = customerId,
-                        Invoice = true
+                        TranType = Transaction.TranactionType.Invoice 
                     };
 
                     transaction.Items.Add(new Item(cust) { NumSold = cust.DeliverQty });
