@@ -69,7 +69,6 @@
             this.Price_txt = new System.Windows.Forms.Label();
             this.txt_net_price = new SecretCellar.CurrencyBox();
             this.lbl_netPrice = new System.Windows.Forms.Label();
-            this.btn_new = new System.Windows.Forms.Button();
             this.txtProd_Qty = new System.Windows.Forms.TextBox();
             this.Btl_Dep_Lb = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -118,9 +117,6 @@
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(51)))), ((int)(((byte)(69)))));
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Ivory;
             this.LookupView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.LookupView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.LookupView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.LookupView.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(237)))), ((int)(((byte)(196)))));
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
@@ -150,6 +146,7 @@
             dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Ivory;
             dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.LookupView.DefaultCellStyle = dataGridViewCellStyle4;
+            this.LookupView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LookupView.Location = new System.Drawing.Point(0, 0);
             this.LookupView.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.LookupView.MultiSelect = false;
@@ -172,7 +169,7 @@
             this.LookupView.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LookupView.RowTemplate.Height = 24;
             this.LookupView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.LookupView.Size = new System.Drawing.Size(583, 536);
+            this.LookupView.Size = new System.Drawing.Size(581, 538);
             this.LookupView.TabIndex = 0;
             this.LookupView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.LookupView_CellContentClick);
             this.LookupView.SelectionChanged += new System.EventHandler(this.LookupView_SelectionChanged);
@@ -517,19 +514,6 @@
             this.lbl_netPrice.Text = "My Price:";
             this.lbl_netPrice.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // btn_new
-            // 
-            this.btn_new.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_new.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_new.Location = new System.Drawing.Point(433, 641);
-            this.btn_new.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btn_new.Name = "btn_new";
-            this.btn_new.Size = new System.Drawing.Size(157, 46);
-            this.btn_new.TabIndex = 20;
-            this.btn_new.Text = "New Item";
-            this.btn_new.UseVisualStyleBackColor = true;
-            this.btn_new.Click += new System.EventHandler(this.btn_new_Click);
-            // 
             // txtProd_Qty
             // 
             this.txtProd_Qty.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -725,7 +709,7 @@
             // 
             this.btn_clear_info.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_clear_info.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_clear_info.Location = new System.Drawing.Point(259, 641);
+            this.btn_clear_info.Location = new System.Drawing.Point(436, 642);
             this.btn_clear_info.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btn_clear_info.Name = "btn_clear_info";
             this.btn_clear_info.Size = new System.Drawing.Size(157, 46);
@@ -790,7 +774,6 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.txtlookup);
-            this.Controls.Add(this.btn_new);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -833,7 +816,6 @@
 		private System.Windows.Forms.Label Price_txt;
 		private SecretCellar.CurrencyBox txt_net_price;
 		private System.Windows.Forms.Label lbl_netPrice;
-		private System.Windows.Forms.Button btn_new;
 		private System.Windows.Forms.TextBox txtProd_Qty;
 		private System.Windows.Forms.Label Btl_Dep_Lb;
 		private System.Windows.Forms.Panel panel2;

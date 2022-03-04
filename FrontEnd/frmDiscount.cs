@@ -60,7 +60,7 @@ namespace SecretCellar
                     r.Cells["ItemDescription"].Value = i.Name;
                     r.Cells["RegularPrice"].Value = i.Price.ToString("c");
                     r.Cells["Price"].Value = transaction.ItemPrice(i).ToString("c");
-                    r.Cells["Discount"].Value = (Math.Floor(transaction.ItemDiscount(i) * 100) / 100).ToString("P0"); // 1 ((1-i.Discount)*transaction.Discount+i.Discount).ToString("P0");
+                    r.Cells["Discount"].Value = transaction.ItemDiscount(i).ToString("P0");//(Math.Floor(transaction.ItemDiscount(i) * 100) / 100).ToString("P0"); // 1 ((1-i.Discount)*transaction.Discount+i.Discount).ToString("P0");
                 }
             }
         }
@@ -82,13 +82,39 @@ namespace SecretCellar
                     {
 
                         Item i = transaction.Items.First((x) => x.Id == int.Parse(row.Cells["ItemNumber"].Value.ToString())); //&& (x.Price * (1 - x.Discount)).ToString("c") == row.Cells["Price"].Value.ToString());
-                        i.Discount = double.Parse(txtPercentLineItem.Text) / 100;  //if you add + i.discount it will keep a running total of discount instead of resetting to 0 like it currently does
-                        //row.Cells["Price"].Value = i.Price.ToString("c");
-                       // row.Cells["Discount"].Value = i.Discount+((1-i.Discount)*transaction.Discount).ToString("p0");
-                       // discount_total = discount_total + Convert.ToDouble(row.Cells["RegularPrice"].Value.ToString().Replace("$", "").Replace("(", "").Replace(")", "")) - Convert.ToDouble(row.Cells["Price"].Value.ToString().Replace("$", "").Replace("(", "").Replace(")", "")); ;
+                                                                                                                              //i.Discount = double.Parse(txtPercentLineItem.Text) / 100;  //if you add + i.discount it will keep a running total of discount instead of resetting to 0 like it currently does
+                                                                                                                              //row.Cells["Price"].Value = i.Price.ToString("c");
+                        i.Discount = double.Parse(txtPercentLineItem.Text) / 100;
+
+                        // row.Cells["Discount"].Value = i.Discount+((1-i.Discount)*transaction.Discount).ToString("p0");
+                        /*                                                                                                      // discount_total = discount_total + Convert.ToDouble(row.Cells["RegularPrice"].Value.ToString().Replace("$", "").Replace("(", "").Replace(")", "")) - Convert.ToDouble(row.Cells["Price"].Value.ToString().Replace("$", "").Replace("(", "").Replace(")", "")); ;
+                        if (double.Parse(txtPercentLineItem.Text) == 0)
+                        {
+                            i.Discount = 0;
+                        }
+
+                        else if (double.Parse(txtPercentLineItem.Text) / 100 < i.Discount)
+                        {
+                            i.Discount = i.Discount + double.Parse(txtPercentLineItem.Text) / 100;
+                        }
+
+                        else if (i.Discount > 0 && double.Parse(txtPercentLineItem.Text) / 100 > i.Discount)
+                        {
+                            i.Discount = (i.Discount - .01) + double.Parse(txtPercentLineItem.Text) / 100;  //if you add + i.discount it will keep a running total of discount instead of resetting to 0 like it currently does
+                                                                                                             //row.Cells["Price"].Value = i.Price.ToString("c");
+                                                                                                             // row.Cells["Discount"].Value = i.Discount+((1-i.Discount)*transaction.Discount).ToString("p0");
+                        }
+
+                        else
+                        {
+                            i.Discount = i.Discount + double.Parse(txtPercentLineItem.Text) / 100;  //if you add + i.discount it will keep a running total of discount instead of resetting to 0 like it currently does
+                                                                                                     //row.Cells["Price"].Value = i.Price.ToString("c");
+                                                                                                     // row.Cells["Discount"].Value = i.Discount+((1-i.Discount)*transaction.Discount).ToString("p0");
+                        }*/
                     }
+
                 }
-                txtPercentLineItem.Text = transaction.Discount.ToString();
+                txtPercentLineItem.Text = "";
                 populate();
                 //transaction.Discount = discount_total;
                 //transaction.Discount = discount_total + currentdis;
@@ -180,7 +206,7 @@ namespace SecretCellar
         }
 
 		private void btn_ApplyDiscount_Click(object sender, EventArgs e) {
-
+            /*
             foreach (DataGridViewRow row in dataGridSelectItems.Rows)
             {
 
@@ -216,12 +242,15 @@ namespace SecretCellar
                                                                                                  // row.Cells["Discount"].Value = i.Discount+((1-i.Discount)*transaction.Discount).ToString("p0");
                     }                                                              // discount_total = discount_total + Convert.ToDouble(row.Cells["RegularPrice"].Value.ToString().Replace("$", "").Replace("(", "").Replace(")", "")) - Convert.ToDouble(row.Cells["Price"].Value.ToString().Replace("$", "").Replace("(", "").Replace(")", "")); ;
                 }
-            }
-            populate();
+            }*/
+            
+            //populate();
+
 
             //original code
-            /*transaction.Discount = Convert.ToDouble(txtPercentTotalSale.Text) / 100;
-            populate();*/
+            transaction.Discount = Convert.ToDouble(txtPercentTotalSale.Text) / 100;
+            populate();
+            txtPercentTotalSale.Text = "";
         }
 
 		private void button_Coupon_Click(object sender, EventArgs e) {
@@ -231,10 +260,12 @@ namespace SecretCellar
         }
 
 		private void button_Clear_Click(object sender, EventArgs e) {
-            txtFixedDiscount.Text = "";
-            txtPercentLineItem.Text = "";
-            txtPercentTotalSale.Text = (transaction.Discount * 100).ToString();
-            resetselectItemDiscount();
+            if (MessageBox.Show("Do you want to reset line discount to zero", "Confirm Zero", MessageBoxButtons.YesNo)== DialogResult.Yes){
+                txtFixedDiscount.Text = "";
+                txtPercentLineItem.Text = "";
+                txtPercentTotalSale.Text = (transaction.Discount * 100).ToString();
+                resetselectItemDiscount();
+            }
             //percent_discount();
             //txtFixedDiscount.Text = "";
             txtFixedDiscount.Focus();
