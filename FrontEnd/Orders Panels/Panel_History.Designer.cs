@@ -32,7 +32,6 @@ namespace SecretCellar.Orders_Panels {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.textBox_CustomerName = new System.Windows.Forms.TextBox();
             this.btn_setDate = new System.Windows.Forms.Button();
-            this.btn_setCust = new System.Windows.Forms.Button();
             this.lbl_orders = new System.Windows.Forms.Label();
             this.btn_reset = new System.Windows.Forms.Button();
             this.btn_print = new System.Windows.Forms.Button();
@@ -53,8 +52,8 @@ namespace SecretCellar.Orders_Panels {
             // textBox_CustomerName
             // 
             this.textBox_CustomerName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_CustomerName.Location = new System.Drawing.Point(26, 20);
-            this.textBox_CustomerName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_CustomerName.Location = new System.Drawing.Point(26, 105);
+            this.textBox_CustomerName.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_CustomerName.Name = "textBox_CustomerName";
             this.textBox_CustomerName.Size = new System.Drawing.Size(364, 35);
             this.textBox_CustomerName.TabIndex = 25;
@@ -68,25 +67,13 @@ namespace SecretCellar.Orders_Panels {
             this.btn_setDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_setDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_setDate.Location = new System.Drawing.Point(1202, 24);
-            this.btn_setDate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_setDate.Margin = new System.Windows.Forms.Padding(4);
             this.btn_setDate.Name = "btn_setDate";
             this.btn_setDate.Size = new System.Drawing.Size(226, 42);
             this.btn_setDate.TabIndex = 24;
             this.btn_setDate.Text = "Set Date Range";
             this.btn_setDate.UseVisualStyleBackColor = true;
             this.btn_setDate.Click += new System.EventHandler(this.btn_setDate_Click);
-            // 
-            // btn_setCust
-            // 
-            this.btn_setCust.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_setCust.Location = new System.Drawing.Point(83, 72);
-            this.btn_setCust.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.btn_setCust.Name = "btn_setCust";
-            this.btn_setCust.Size = new System.Drawing.Size(252, 44);
-            this.btn_setCust.TabIndex = 23;
-            this.btn_setCust.Text = "Set Customer";
-            this.btn_setCust.UseVisualStyleBackColor = true;
-            this.btn_setCust.Click += new System.EventHandler(this.btn_setCust_Click);
             // 
             // lbl_orders
             // 
@@ -104,7 +91,7 @@ namespace SecretCellar.Orders_Panels {
             this.btn_reset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_reset.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_reset.Location = new System.Drawing.Point(1202, 429);
-            this.btn_reset.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_reset.Margin = new System.Windows.Forms.Padding(4);
             this.btn_reset.Name = "btn_reset";
             this.btn_reset.Size = new System.Drawing.Size(226, 44);
             this.btn_reset.TabIndex = 21;
@@ -117,7 +104,7 @@ namespace SecretCellar.Orders_Panels {
             this.btn_print.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_print.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_print.Location = new System.Drawing.Point(1202, 154);
-            this.btn_print.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_print.Margin = new System.Windows.Forms.Padding(4);
             this.btn_print.Name = "btn_print";
             this.btn_print.Size = new System.Drawing.Size(226, 44);
             this.btn_print.TabIndex = 20;
@@ -132,10 +119,10 @@ namespace SecretCellar.Orders_Panels {
             this.lstbox_customer.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lstbox_customer.FormattingEnabled = true;
             this.lstbox_customer.ItemHeight = 29;
-            this.lstbox_customer.Location = new System.Drawing.Point(26, 134);
-            this.lstbox_customer.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.lstbox_customer.Location = new System.Drawing.Point(26, 163);
+            this.lstbox_customer.Margin = new System.Windows.Forms.Padding(4);
             this.lstbox_customer.Name = "lstbox_customer";
-            this.lstbox_customer.Size = new System.Drawing.Size(364, 642);
+            this.lstbox_customer.Size = new System.Drawing.Size(364, 613);
             this.lstbox_customer.TabIndex = 19;
             this.lstbox_customer.SelectedIndexChanged += new System.EventHandler(this.lstbox_customer_SelectedIndexChanged);
             // 
@@ -174,7 +161,7 @@ namespace SecretCellar.Orders_Panels {
             dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.transaction_dataGrid.DefaultCellStyle = dataGridViewCellStyle4;
             this.transaction_dataGrid.Location = new System.Drawing.Point(428, 105);
-            this.transaction_dataGrid.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.transaction_dataGrid.Margin = new System.Windows.Forms.Padding(4);
             this.transaction_dataGrid.Name = "transaction_dataGrid";
             this.transaction_dataGrid.ReadOnly = true;
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
@@ -247,7 +234,7 @@ namespace SecretCellar.Orders_Panels {
             this.end_dateTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.end_dateTime.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.end_dateTime.Location = new System.Drawing.Point(850, 16);
-            this.end_dateTime.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.end_dateTime.Margin = new System.Windows.Forms.Padding(4);
             this.end_dateTime.MaxDate = new System.DateTime(3000, 12, 31, 0, 0, 0, 0);
             this.end_dateTime.MinDate = new System.DateTime(2010, 1, 1, 0, 0, 0, 0);
             this.end_dateTime.Name = "end_dateTime";
@@ -271,7 +258,7 @@ namespace SecretCellar.Orders_Panels {
             this.start_dateTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.start_dateTime.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.start_dateTime.Location = new System.Drawing.Point(501, 16);
-            this.start_dateTime.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.start_dateTime.Margin = new System.Windows.Forms.Padding(4);
             this.start_dateTime.MaxDate = new System.DateTime(3000, 12, 31, 0, 0, 0, 0);
             this.start_dateTime.MinDate = new System.DateTime(2010, 1, 1, 0, 0, 0, 0);
             this.start_dateTime.Name = "start_dateTime";
@@ -288,7 +275,6 @@ namespace SecretCellar.Orders_Panels {
             this.panel1.Controls.Add(this.start_dateTime);
             this.panel1.Controls.Add(this.btn_setDate);
             this.panel1.Controls.Add(this.lbl_start);
-            this.panel1.Controls.Add(this.btn_setCust);
             this.panel1.Controls.Add(this.end_dateTime);
             this.panel1.Controls.Add(this.lbl_orders);
             this.panel1.Controls.Add(this.lbl_end);
@@ -307,7 +293,7 @@ namespace SecretCellar.Orders_Panels {
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoSize = true;
             this.Controls.Add(this.panel1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Panel_History";
             this.Size = new System.Drawing.Size(1454, 831);
             ((System.ComponentModel.ISupportInitialize)(this.transaction_dataGrid)).EndInit();
@@ -321,7 +307,6 @@ namespace SecretCellar.Orders_Panels {
 
 		private System.Windows.Forms.TextBox textBox_CustomerName;
 		private System.Windows.Forms.Button btn_setDate;
-		private System.Windows.Forms.Button btn_setCust;
 		private System.Windows.Forms.Label lbl_orders;
 		private System.Windows.Forms.Button btn_reset;
 		private System.Windows.Forms.Button btn_print;
