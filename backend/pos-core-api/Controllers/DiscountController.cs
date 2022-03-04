@@ -59,7 +59,7 @@ namespace WebApi.Controllers
 
         //Put: api/Discount
         [HttpPut("{discountId}/{typeId}")]
-        public IActionResult Put(uint discountId, int typeId)
+        public IActionResult Put(uint discountId, uint typeId)
         {
             try
             {
@@ -70,7 +70,7 @@ namespace WebApi.Controllers
 
         //Put: api/Discount
         [HttpDelete("{discountId}/{typeId}")]
-        public IActionResult Delete(uint discountId, int typeId)
+        public IActionResult Delete(uint discountId, uint typeId)
         {
             try
             {

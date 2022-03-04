@@ -173,7 +173,7 @@ namespace pos_core_api.ORM
             }         
         }
 
-        public bool Update(uint discountId, int typeId)
+        public bool Update(uint discountId, uint typeId)
         {
             if (Get(discountId) == null || DataAccess.Instance.InventoryType.Get(typeId) == null)
                 return false;
@@ -200,7 +200,7 @@ namespace pos_core_api.ORM
 
             return true;
         }
-        public void Delete(uint discountId, int typeId)
+        public void Delete(uint discountId, uint typeId)
         {
             MySqlCommand cmd = db.CreateCommand(@"
                 DELETE FROM discount_type
