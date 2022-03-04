@@ -95,6 +95,8 @@ namespace SecretCellar
 
         private void LookupView_SelectionChanged(object sender, EventArgs e)
         {
+            btn_update.Text = "Update Item";
+
             if (LookupView.SelectedRows.Count > 0)
             {
                 Inventory i = DataAccess.instance.GetInventory().First(x => x.Id == uint.Parse(LookupView.SelectedRows[0].Cells["id"].Value.ToString()));
@@ -125,7 +127,9 @@ namespace SecretCellar
 
         private void btn_update_Click(object sender, EventArgs e)
         {
-            if (LookupView.SelectedRows.Count > 0)
+            if (btn_update.Text == "New Item")
+                New_item();
+            else if (LookupView.SelectedRows.Count > 0)
             {
                 if (txtName.Text.Replace(" ", "") != "" && txtBarcode.Text.Replace(" ", "") != "") {
                     Inventory i = DataAccess.instance.GetInventory().First(x => x.Id == uint.Parse(LookupView.SelectedRows[0].Cells["id"].Value.ToString()));
@@ -240,11 +244,12 @@ namespace SecretCellar
                 else {
                     MessageBox.Show("Name and Barcode cannot be empty.", "Error");
 				}
+
             }
         }
 
 
-        private void btn_new_Click(object sender, EventArgs e)
+        private void New_item()
         {
             //if (LookupView.SelectedRows.Count > 0)
            // {
@@ -353,6 +358,7 @@ namespace SecretCellar
 
         private void btn_clear_info_Click(object sender, EventArgs e)
         {
+            btn_update.Text = "New Item";
             txtName.Text = "";
             cboType.SelectedIndex = 1;
             txtBarcode.Text = "";

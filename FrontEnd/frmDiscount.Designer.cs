@@ -199,7 +199,7 @@
             this.total_lbl.Name = "total_lbl";
             this.total_lbl.Size = new System.Drawing.Size(231, 42);
             this.total_lbl.TabIndex = 21;
-            this.total_lbl.Text = "Total Discount $";
+            this.total_lbl.Text = "Total Discount :";
             this.total_lbl.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // button_Clear
@@ -289,7 +289,7 @@
             this.Discount});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(51)))), ((int)(((byte)(69)))));
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Ivory;
@@ -298,9 +298,10 @@
             this.dataGridSelectItems.Location = new System.Drawing.Point(12, 105);
             this.dataGridSelectItems.Margin = new System.Windows.Forms.Padding(5);
             this.dataGridSelectItems.Name = "dataGridSelectItems";
+            this.dataGridSelectItems.ReadOnly = true;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(51)))), ((int)(((byte)(69)))));
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Ivory;
@@ -346,6 +347,7 @@
             this.RegularPrice.HeaderText = "Regular Price";
             this.RegularPrice.MinimumWidth = 8;
             this.RegularPrice.Name = "RegularPrice";
+            this.RegularPrice.ReadOnly = true;
             // 
             // Price
             // 
