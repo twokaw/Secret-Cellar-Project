@@ -2,6 +2,9 @@
 using Shared;
 using pos_core_api.ORM;
 using System;
+using System.Collections.Generic;
+
+
 
 namespace WebApi.Controllers
 {
@@ -57,6 +60,11 @@ namespace WebApi.Controllers
         [HttpDelete("Delete/{taxId}")]
         public IActionResult Delete(uint taxId)
         {
+            List<Inventory> inventories = DataAccess.Instance.Inventory.GetInv();
+            inventories = inventories.FindAll((inventory) => inventory.IdTax == taxId);
+
+            if (inventories.Count > 0) { return BadRequest("Tax cannot be deleted, it has items that use it."); }
+
             try
             {
                 if (DataAccess.Instance.Tax.Get(taxId) == null)
