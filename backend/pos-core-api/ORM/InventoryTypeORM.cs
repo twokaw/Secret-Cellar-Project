@@ -16,6 +16,7 @@ namespace pos_core_api.ORM
         /// </summary>
         readonly DbConn db = new DbConn();
 
+
         /// <summary>
         /// Get call that returns all the item types that are stored in the database.
         /// </summary>
@@ -39,12 +40,13 @@ namespace pos_core_api.ORM
             return types;
         }
 
+
         /// <summary>
         /// Get call that returns one item type specified by the type name. 
         /// </summary>
         /// <param name="typeName"></param>
         /// <returns>An object of the requested type.</returns>
-        public InventoryType Get(int typeId)
+        public InventoryType Get(uint typeId)
         {
             List<InventoryType> types = null;
 
@@ -70,6 +72,7 @@ namespace pos_core_api.ORM
             else
                 return null;
         }
+
 
         /// <summary>
         /// Get call that returns one item type specified by the type name. 
@@ -104,10 +107,15 @@ namespace pos_core_api.ORM
         }
 
 
+        /// <summary>
+        /// Deletes the inventory type with the given id.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         // DELETE: api/InventoryType/Delete/5
         public bool Delete(uint id)
         {
-            //if (Get(id) == null) { return false; }
+            if (Get(id) == null) { return false; }
 
             MySqlCommand cmd = db.CreateCommand(@"
                 DELETE FROM inventory_type 
@@ -127,6 +135,7 @@ namespace pos_core_api.ORM
 
             return true;
         }
+
 
         private List<InventoryType> FetchType(MySqlDataReader reader)
         {
@@ -167,11 +176,12 @@ namespace pos_core_api.ORM
             return output;
         }
 
+        /// <summary>
         /// The function checks the database to validate whether a type already exist given the name of that type.
         /// </summary>
         /// <param name="typeName"></param>
-        /// <returns>true if the type already exists</returns>
-        public int GetTypeQty(int id, string name)
+        /// <returns>-1 if there is no type found otherwise returns the quantity of the inventory type</returns>
+        public int GetTypeQty(bool shouldUseId, uint id, string name)
         {
             string sql = @"
                 SELECT COUNT(inventoryID) inv
@@ -192,7 +202,7 @@ namespace pos_core_api.ORM
                 sql = sql.Replace("-- name --", "");
             }
 
-            if (id > 0)
+            if (shouldUseId)
             {
                 cmd.Parameters.Add(new MySqlParameter("typeId", id));
                 sql = sql.Replace("-- typeid --", "");
@@ -210,6 +220,7 @@ namespace pos_core_api.ORM
             }
             finally { db.CloseCommand(cmd); }
         }
+
 
         /// <summary>
         /// Update the type's discount
@@ -242,6 +253,7 @@ namespace pos_core_api.ORM
             }
         }
 
+
         public uint Insert(InventoryType invType)
         {
             using MySqlCommand cmd = db.CreateCommand(@"
@@ -271,6 +283,7 @@ namespace pos_core_api.ORM
 
             return invType.TypeId;
         }
+
 
         public void Update(InventoryType invType)
         { 
