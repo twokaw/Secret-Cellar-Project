@@ -63,16 +63,16 @@ namespace WebApi.Controllers
             List<Inventory> inventories = DataAccess.Instance.Inventory.GetInv();
             inventories = inventories.FindAll((inventory) => inventory.IdTax == taxId);
 
-            if (inventories.Count > 0) { return BadRequest("Tax cannot be deleted, it has items that use it."); }
+            if (inventories.Count > 0) { return StatusCode(400, "Tax cannot be deleted, it has items that use it."); }
 
             try
             {
                 if (DataAccess.Instance.Tax.Get(taxId) == null)
-                    return Ok("Tax info does not exist in database");
+                    return StatusCode(400, "Tax info does not exist in the database.");
                 else
                     DataAccess.Instance.Tax.Delete(taxId);
 
-                return Ok("Tax Id deleted"); 
+                return StatusCode(200, "Tax deleted."); 
             }
             catch (Exception ex) { ErrorLogging.WriteToErrorLog(ex); return StatusCode(500, ex.Message); }
         }
