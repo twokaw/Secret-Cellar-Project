@@ -112,6 +112,7 @@ namespace SecretCellar
                 txt_min_qty.Text = i.InvMin.ToString();
                 txt_max_qty.Text = i.InvMax.ToString();
                 txt_order_qty.Text = i.OrderQty.ToString();
+                txt_OrderIncrement.Text = i.OrderIncrement.ToString();
                 chk_hide_item.Checked = i.Hidden;
 
                 //CLEAR ALL THE DISCOUNTS THAT ARE IN THE DISCOUNTS LIST ALREADY
@@ -223,15 +224,23 @@ namespace SecretCellar
                     }
 
                     if (uint.TryParse(txt_order_qty.Text.Trim(), out uint order)) i.OrderQty = order;
-                    else {
-                        txt_min_qty.Focus();
-                        txtPrice.SelectAll();
+                    else
+                    {
+                        txt_order_qty.Focus();
+                        txt_order_qty.SelectAll();
                         MessageBox.Show("Invalid Order Quantity");
                         return;
                     }
-                    //i.InvMin = uint.Parse(txt_min_qty.Text.Trim());
-                    //i.InvMax = uint.Parse(txt_max_qty.Text.Trim());
-                    //i.OrderQty = uint.Parse(txt_order_qty.Text.Trim());
+
+                    if (uint.TryParse(txt_OrderIncrement.Text.Trim(), out uint orderIncrement)) i.OrderIncrement = orderIncrement;
+                    else
+                    {
+                        txt_OrderIncrement.Focus();
+                        txt_OrderIncrement.SelectAll();
+                        MessageBox.Show("Invalid Order Increment");
+                        return;
+                    }
+
                     i.Hidden = chk_hide_item.Checked;
 
                     i.ItemType = cboType.Text;
@@ -244,10 +253,8 @@ namespace SecretCellar
                 else {
                     MessageBox.Show("Name and Barcode cannot be empty.", "Error");
 				}
-
             }
         }
-
 
         private void New_item()
         {
@@ -322,10 +329,17 @@ namespace SecretCellar
                         return;
                     }
 
-                    //i.InvMax = uint.Parse(txt_max_qty.Text.Trim());
-                    //i.OrderQty = uint.Parse(txt_order_qty.Text.Trim());
 
-                    i.Id = DataAccess.instance.InsertItem(i);
+                    if (uint.TryParse(txt_OrderIncrement.Text.Trim(), out uint orderIncrement)) i.OrderIncrement = orderIncrement;
+                    else
+                    {
+                        txt_OrderIncrement.Focus();
+                        txt_OrderIncrement.SelectAll();
+                        MessageBox.Show("Invalid Order Increment");
+                        return;
+                    }
+
+                i.Id = DataAccess.instance.InsertItem(i);
                     
                 }
                 else {
@@ -370,6 +384,7 @@ namespace SecretCellar
             txt_min_qty.Text = "";
             txt_order_qty.Text = "";
             txt_max_qty.Text = "";
+            txt_OrderIncrement.Text = "";
             chk_hide_item.Checked = false;
             txtName.Focus();
         }
@@ -424,6 +439,22 @@ namespace SecretCellar
         {
             txtlookup.Text = "";
             this.Close();
+        }
+
+        private void cboType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            InventoryType it = (InventoryType)cboType.SelectedItem;
+            if (string.IsNullOrWhiteSpace(txt_min_qty.Text))
+                txt_min_qty.Text = it.Min_qty.ToString();
+
+            if (string.IsNullOrWhiteSpace(txt_max_qty.Text))
+                txt_max_qty.Text = it.Max_qty.ToString();
+
+            if (string.IsNullOrWhiteSpace(txt_OrderIncrement.Text))
+                txt_OrderIncrement.Text = it.OrderIncrement.ToString();
+
+            if (string.IsNullOrWhiteSpace(txtProd_Qty.Text))
+                txtProd_Qty.Text = it.Bottles.ToString();
         }
     }
 }

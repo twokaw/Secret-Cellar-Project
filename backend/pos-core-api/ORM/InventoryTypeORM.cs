@@ -158,6 +158,7 @@ namespace pos_core_api.ORM
                         Bottles = reader.IsDBNull("bottles") ? 0 : reader.GetUInt32("bottles"),
                         Min_qty = reader.IsDBNull("min_qty") ? 0 : reader.GetUInt32("min_qty"),
                         Max_qty = reader.IsDBNull("max_qty") ? 0 : reader.GetUInt32("max_qty"),
+                        OrderIncrement = reader.IsDBNull("Increment_qty") ? 0 : reader.GetUInt32("Increment_qty"),
                         BottleDeposit = reader.IsDBNull("bottle_deposit") ? 0.00 : reader.GetDouble("bottle_deposit"),
                         SalesTax = reader.IsDBNull("sales_tax") ? 0.00 : reader.GetDouble("sales_tax"),
                         LocalSalesTax = reader.IsDBNull("local_sales_tax") ? 0.00 : reader.GetDouble("local_sales_tax"),
