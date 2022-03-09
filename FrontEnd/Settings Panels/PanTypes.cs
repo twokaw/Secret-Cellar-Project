@@ -32,11 +32,16 @@ namespace SecretCellar.Settings_Panels
 
         private void lstTypes_SelectedIndexChanged(object sender, EventArgs e)
         {
-            txt_bottleDep.Text = ((InventoryType)lstTypes.SelectedItem).BottleDeposit.ToString();
-            txt_salesTax.Text = ((InventoryType)lstTypes.SelectedItem).SalesTax.ToString();
-            txt_localTax.Text = ((InventoryType)lstTypes.SelectedItem).LocalSalesTax.ToString();
-            txt_typename.Text = ((InventoryType)lstTypes.SelectedItem).TypeName;
-            
+            InventoryType it = (InventoryType)lstTypes.SelectedItem;
+
+            txt_bottleDep.Text = it.BottleDeposit.ToString();
+            txt_salesTax.Text = it.SalesTax.ToString();
+            txt_localTax.Text = it.LocalSalesTax.ToString();
+            txt_typename.Text = it.TypeName.ToString();
+            txt_MinQty.Text = it.Min_qty.ToString();
+            txt_MaxQty.Text = it.Max_qty.ToString();
+            txt_Bottles.Text = it.Bottles.ToString();
+
             for (int i = 0; i < chk_lst_discount.Items.Count; i++)
                 chk_lst_discount.SetItemChecked(i, ((InventoryType)lstTypes.SelectedItem).Discount.FirstOrDefault(x => x.DiscountName == chk_lst_discount.Items[i].ToString()) != null);
 
@@ -45,8 +50,7 @@ namespace SecretCellar.Settings_Panels
 
             textBox_itemsUsingInventory.Text = filteredInventoryList.Count + "";
 
-            if (filteredInventoryList.Count == 0) { button_deleteInventory.Enabled = true; }
-            else { button_deleteInventory.Enabled = false; }
+            button_deleteInventory.Enabled = (filteredInventoryList.Count != 0);
         }
 
         private void btn_type_clear_Click(object sender, EventArgs e)
