@@ -42,7 +42,7 @@ namespace SecretCellar.Settings_Panels
             txt_MaxQty.Text = it.Max_qty.ToString();
             txt_Bottles.Text = it.Bottles.ToString();
             txt_orderIncrement.Text = it.OrderIncrement.ToString();
-
+            cbx_tax.Text = it.TaxName;
             for (int i = 0; i < chk_lst_discount.Items.Count; i++)
                 chk_lst_discount.SetItemChecked(i, ((InventoryType)lstTypes.SelectedItem).Discount.FirstOrDefault(x => x.DiscountName == chk_lst_discount.Items[i].ToString()) != null);
 
