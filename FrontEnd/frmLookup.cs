@@ -96,6 +96,7 @@ namespace SecretCellar
         private void LookupView_SelectionChanged(object sender, EventArgs e)
         {
             btn_update.Text = "Update Item";
+            ToggleDeleteButton();
 
             if (LookupView.SelectedRows.Count > 0)
             {
@@ -425,5 +426,39 @@ namespace SecretCellar
             txtlookup.Text = "";
             this.Close();
         }
-    }
+
+		private void button_DeleteItem_Click(object sender, EventArgs e) {
+            if (LookupView.SelectedRows.Count > 0) {
+                string barcode = LookupView.SelectedRows[0].Cells["Barcode"].Value.ToString();
+                Inventory item = DataAccess.instance.GetItem(barcode);
+
+
+			}
+		}
+
+
+        /// <summary>
+        /// Looks through all the suspended transactions's item's to see if any of the id's match the selected item's id.
+        /// If it does, it disables the delete button.
+        /// </summary>
+        private void ToggleDeleteButton() {
+            if (LookupView.SelectedRows.Count == 0) { return; }
+
+            bool selectedItemIsInSuspendedTransaction = false;
+            List<Transaction> suspendedTransactions = DataAccess.instance.GetSuspendedTransactions();
+
+            foreach (Transaction suspendedTransaction in suspendedTransactions) {
+                foreach (Item item in suspendedTransaction.Items) {
+                    uint selectedItemId = uint.Parse(LookupView.SelectedRows[0].Cells["Id"].Value.ToString());
+
+                    if (item.Id == selectedItemId) { selectedItemIsInSuspendedTransaction = true; break; }
+                }
+
+                if (selectedItemIsInSuspendedTransaction) { break; }
+            }
+
+            if (selectedItemIsInSuspendedTransaction) { button_DeleteItem.Enabled = false; }
+            else { button_DeleteItem.Enabled = true; }
+        }
+	}
 }
