@@ -152,7 +152,7 @@ namespace SecretCellar {
 			this.button_CloseWindow.Name = "button_CloseWindow";
 			this.button_CloseWindow.Size = new System.Drawing.Size(180, 55);
 			this.button_CloseWindow.TabIndex = 1;
-			this.button_CloseWindow.Text = "CLOSE WINDOW";
+			this.button_CloseWindow.Text = "Close Window";
 			this.button_CloseWindow.UseVisualStyleBackColor = true;
 			this.button_CloseWindow.Click += new System.EventHandler(this.button_CloseWindow_Click);
 			// 
@@ -165,7 +165,7 @@ namespace SecretCellar {
 			this.button_DeleteEvent.Name = "button_DeleteEvent";
 			this.button_DeleteEvent.Size = new System.Drawing.Size(180, 55);
 			this.button_DeleteEvent.TabIndex = 2;
-			this.button_DeleteEvent.Text = "DELETE EVENT";
+			this.button_DeleteEvent.Text = "Delete Event";
 			this.button_DeleteEvent.UseVisualStyleBackColor = true;
 			this.button_DeleteEvent.Click += new System.EventHandler(this.button_DeleteEvent_Click);
 			// 
@@ -188,7 +188,7 @@ namespace SecretCellar {
 			this.button_showPreviousEventData.Name = "button_showPreviousEventData";
 			this.button_showPreviousEventData.Size = new System.Drawing.Size(180, 55);
 			this.button_showPreviousEventData.TabIndex = 5;
-			this.button_showPreviousEventData.Text = "SHOW EVENT DATA";
+			this.button_showPreviousEventData.Text = "Show Event Data";
 			this.button_showPreviousEventData.UseVisualStyleBackColor = true;
 			this.button_showPreviousEventData.Click += new System.EventHandler(this.button_showPreviousEventData_Click);
 			// 
