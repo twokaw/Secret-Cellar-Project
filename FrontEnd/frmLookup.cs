@@ -96,6 +96,7 @@ namespace SecretCellar
         private void LookupView_SelectionChanged(object sender, EventArgs e)
         {
             btn_update.Text = "Update Item";
+            ToggleDeleteButton();
 
             if (LookupView.SelectedRows.Count > 0)
             {
@@ -112,7 +113,6 @@ namespace SecretCellar
                 txt_min_qty.Text = i.InvMin.ToString();
                 txt_max_qty.Text = i.InvMax.ToString();
                 txt_order_qty.Text = i.OrderQty.ToString();
-                txt_OrderIncrement.Text = i.OrderIncrement.ToString();
                 chk_hide_item.Checked = i.Hidden;
 
                 //CLEAR ALL THE DISCOUNTS THAT ARE IN THE DISCOUNTS LIST ALREADY
@@ -224,23 +224,15 @@ namespace SecretCellar
                     }
 
                     if (uint.TryParse(txt_order_qty.Text.Trim(), out uint order)) i.OrderQty = order;
-                    else
-                    {
-                        txt_order_qty.Focus();
-                        txt_order_qty.SelectAll();
+                    else {
+                        txt_min_qty.Focus();
+                        txtPrice.SelectAll();
                         MessageBox.Show("Invalid Order Quantity");
                         return;
                     }
-
-                    if (uint.TryParse(txt_OrderIncrement.Text.Trim(), out uint orderIncrement)) i.OrderIncrement = orderIncrement;
-                    else
-                    {
-                        txt_OrderIncrement.Focus();
-                        txt_OrderIncrement.SelectAll();
-                        MessageBox.Show("Invalid Order Increment");
-                        return;
-                    }
-
+                    //i.InvMin = uint.Parse(txt_min_qty.Text.Trim());
+                    //i.InvMax = uint.Parse(txt_max_qty.Text.Trim());
+                    //i.OrderQty = uint.Parse(txt_order_qty.Text.Trim());
                     i.Hidden = chk_hide_item.Checked;
 
                     i.ItemType = cboType.Text;
@@ -253,8 +245,10 @@ namespace SecretCellar
                 else {
                     MessageBox.Show("Name and Barcode cannot be empty.", "Error");
 				}
+
             }
         }
+
 
         private void New_item()
         {
@@ -329,17 +323,10 @@ namespace SecretCellar
                         return;
                     }
 
+                    //i.InvMax = uint.Parse(txt_max_qty.Text.Trim());
+                    //i.OrderQty = uint.Parse(txt_order_qty.Text.Trim());
 
-                    if (uint.TryParse(txt_OrderIncrement.Text.Trim(), out uint orderIncrement)) i.OrderIncrement = orderIncrement;
-                    else
-                    {
-                        txt_OrderIncrement.Focus();
-                        txt_OrderIncrement.SelectAll();
-                        MessageBox.Show("Invalid Order Increment");
-                        return;
-                    }
-
-                i.Id = DataAccess.instance.InsertItem(i);
+                    i.Id = DataAccess.instance.InsertItem(i);
                     
                 }
                 else {
@@ -384,7 +371,6 @@ namespace SecretCellar
             txt_min_qty.Text = "";
             txt_order_qty.Text = "";
             txt_max_qty.Text = "";
-            txt_OrderIncrement.Text = "";
             chk_hide_item.Checked = false;
             txtName.Focus();
         }
@@ -441,20 +427,38 @@ namespace SecretCellar
             this.Close();
         }
 
-        private void cboType_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            InventoryType it = (InventoryType)cboType.SelectedItem;
-            if (string.IsNullOrWhiteSpace(txt_min_qty.Text))
-                txt_min_qty.Text = it.Min_qty.ToString();
+		private void button_DeleteItem_Click(object sender, EventArgs e) {
+            if (LookupView.SelectedRows.Count > 0) {
+                string barcode = LookupView.SelectedRows[0].Cells["Barcode"].Value.ToString();
+                Inventory item = DataAccess.instance.GetItem(barcode);
 
-            if (string.IsNullOrWhiteSpace(txt_max_qty.Text))
-                txt_max_qty.Text = it.Max_qty.ToString();
 
-            if (string.IsNullOrWhiteSpace(txt_OrderIncrement.Text))
-                txt_OrderIncrement.Text = it.OrderIncrement.ToString();
+			}
+		}
 
-            if (string.IsNullOrWhiteSpace(txtProd_Qty.Text))
-                txtProd_Qty.Text = it.Bottles.ToString();
+
+        /// <summary>
+        /// Looks through all the suspended transactions's item's to see if any of the id's match the selected item's id.
+        /// If it does, it disables the delete button.
+        /// </summary>
+        private void ToggleDeleteButton() {
+            if (LookupView.SelectedRows.Count == 0) { return; }
+
+            bool selectedItemIsInSuspendedTransaction = false;
+            List<Transaction> suspendedTransactions = DataAccess.instance.GetSuspendedTransactions();
+
+            foreach (Transaction suspendedTransaction in suspendedTransactions) {
+                foreach (Item item in suspendedTransaction.Items) {
+                    uint selectedItemId = uint.Parse(LookupView.SelectedRows[0].Cells["Id"].Value.ToString());
+
+                    if (item.Id == selectedItemId) { selectedItemIsInSuspendedTransaction = true; break; }
+                }
+
+                if (selectedItemIsInSuspendedTransaction) { break; }
+            }
+
+            if (selectedItemIsInSuspendedTransaction) { button_DeleteItem.Enabled = false; }
+            else { button_DeleteItem.Enabled = true; }
         }
-    }
+	}
 }
