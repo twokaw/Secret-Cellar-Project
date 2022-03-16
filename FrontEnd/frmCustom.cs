@@ -27,7 +27,7 @@ namespace SecretCellar
                 Item i = Transaction.ConvertInvtoItem(DataAccess.instance.GetItem("Custom"));
                 i.Price = d;
                 i.Name = txt_descript.Text;
-                i.NumSold = 1;
+                i.QtySold = 1;
 
                 customItem.Items.Add(i);
             }

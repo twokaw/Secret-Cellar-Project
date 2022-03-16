@@ -31,9 +31,7 @@ namespace SecretCellar.Orders_Panels {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.textBox_CustomerName = new System.Windows.Forms.TextBox();
-            this.btn_setDate = new System.Windows.Forms.Button();
             this.lbl_orders = new System.Windows.Forms.Label();
-            this.btn_reset = new System.Windows.Forms.Button();
             this.btn_print = new System.Windows.Forms.Button();
             this.lstbox_customer = new System.Windows.Forms.ListBox();
             this.transaction_dataGrid = new System.Windows.Forms.DataGridView();
@@ -45,6 +43,8 @@ namespace SecretCellar.Orders_Panels {
             this.lbl_start = new System.Windows.Forms.Label();
             this.start_dateTime = new System.Windows.Forms.DateTimePicker();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.btn_Returns = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.transaction_dataGrid)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -62,19 +62,6 @@ namespace SecretCellar.Orders_Panels {
             this.textBox_CustomerName.Enter += new System.EventHandler(this.textBox_CustomerName_Enter);
             this.textBox_CustomerName.Leave += new System.EventHandler(this.textBox_CustomerName_Leave);
             // 
-            // btn_setDate
-            // 
-            this.btn_setDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_setDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_setDate.Location = new System.Drawing.Point(1202, 24);
-            this.btn_setDate.Margin = new System.Windows.Forms.Padding(4);
-            this.btn_setDate.Name = "btn_setDate";
-            this.btn_setDate.Size = new System.Drawing.Size(226, 42);
-            this.btn_setDate.TabIndex = 24;
-            this.btn_setDate.Text = "Set Date Range";
-            this.btn_setDate.UseVisualStyleBackColor = true;
-            this.btn_setDate.Click += new System.EventHandler(this.btn_setDate_Click);
-            // 
             // lbl_orders
             // 
             this.lbl_orders.AutoSize = true;
@@ -86,24 +73,11 @@ namespace SecretCellar.Orders_Panels {
             this.lbl_orders.TabIndex = 22;
             this.lbl_orders.Text = "Past Orders";
             // 
-            // btn_reset
-            // 
-            this.btn_reset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_reset.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_reset.Location = new System.Drawing.Point(1202, 429);
-            this.btn_reset.Margin = new System.Windows.Forms.Padding(4);
-            this.btn_reset.Name = "btn_reset";
-            this.btn_reset.Size = new System.Drawing.Size(226, 44);
-            this.btn_reset.TabIndex = 21;
-            this.btn_reset.Text = "Reset";
-            this.btn_reset.UseVisualStyleBackColor = true;
-            this.btn_reset.Click += new System.EventHandler(this.btn_reset_Click);
-            // 
             // btn_print
             // 
             this.btn_print.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_print.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_print.Location = new System.Drawing.Point(1202, 154);
+            this.btn_print.Location = new System.Drawing.Point(1202, 105);
             this.btn_print.Margin = new System.Windows.Forms.Padding(4);
             this.btn_print.Name = "btn_print";
             this.btn_print.Size = new System.Drawing.Size(226, 44);
@@ -240,6 +214,7 @@ namespace SecretCellar.Orders_Panels {
             this.end_dateTime.Name = "end_dateTime";
             this.end_dateTime.Size = new System.Drawing.Size(242, 35);
             this.end_dateTime.TabIndex = 16;
+            this.end_dateTime.ValueChanged += new System.EventHandler(this.end_dateTime_ValueChanged);
             // 
             // lbl_start
             // 
@@ -266,19 +241,20 @@ namespace SecretCellar.Orders_Panels {
             this.start_dateTime.Size = new System.Drawing.Size(241, 35);
             this.start_dateTime.TabIndex = 14;
             this.start_dateTime.Value = new System.DateTime(2021, 12, 29, 0, 0, 0, 0);
+            this.start_dateTime.ValueChanged += new System.EventHandler(this.start_dateTime_ValueChanged);
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(231)))), ((int)(((byte)(206)))));
+            this.panel1.Controls.Add(this.btn_Returns);
+            this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.lstbox_customer);
             this.panel1.Controls.Add(this.textBox_CustomerName);
             this.panel1.Controls.Add(this.start_dateTime);
-            this.panel1.Controls.Add(this.btn_setDate);
             this.panel1.Controls.Add(this.lbl_start);
             this.panel1.Controls.Add(this.end_dateTime);
             this.panel1.Controls.Add(this.lbl_orders);
             this.panel1.Controls.Add(this.lbl_end);
-            this.panel1.Controls.Add(this.btn_reset);
             this.panel1.Controls.Add(this.transaction_dataGrid);
             this.panel1.Controls.Add(this.btn_print);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -286,6 +262,29 @@ namespace SecretCellar.Orders_Panels {
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1454, 831);
             this.panel1.TabIndex = 26;
+            // 
+            // label1
+            // 
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(26, 72);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(364, 29);
+            this.label1.TabIndex = 26;
+            this.label1.Text = "Enter Customer or Receipt Id";
+            // 
+            // btn_Returns
+            // 
+            this.btn_Returns.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_Returns.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_Returns.Location = new System.Drawing.Point(1202, 213);
+            this.btn_Returns.Margin = new System.Windows.Forms.Padding(4);
+            this.btn_Returns.Name = "btn_Returns";
+            this.btn_Returns.Size = new System.Drawing.Size(226, 44);
+            this.btn_Returns.TabIndex = 27;
+            this.btn_Returns.Text = "Returns";
+            this.btn_Returns.UseVisualStyleBackColor = true;
+            this.btn_Returns.Click += new System.EventHandler(this.btn_Returns_Click);
             // 
             // Panel_History
             // 
@@ -306,9 +305,7 @@ namespace SecretCellar.Orders_Panels {
 		#endregion
 
 		private System.Windows.Forms.TextBox textBox_CustomerName;
-		private System.Windows.Forms.Button btn_setDate;
 		private System.Windows.Forms.Label lbl_orders;
-		private System.Windows.Forms.Button btn_reset;
 		private System.Windows.Forms.Button btn_print;
 		private System.Windows.Forms.ListBox lstbox_customer;
 		private System.Windows.Forms.DataGridView transaction_dataGrid;
@@ -320,5 +317,7 @@ namespace SecretCellar.Orders_Panels {
         private System.Windows.Forms.DataGridViewTextBoxColumn trans_date;
         private System.Windows.Forms.DataGridViewTextBoxColumn trans_total;
         internal System.Windows.Forms.DateTimePicker start_dateTime;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btn_Returns;
     }
 }

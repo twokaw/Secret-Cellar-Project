@@ -10,8 +10,8 @@ namespace pos_core_api.ORM
 {
     public class CustomerOrderORM
     {
-        private readonly DbConn db = new DbConn();
-        private TransactionORM transactionORM;
+        private readonly DbConn db = new();
+        private readonly TransactionORM transactionORM;
         private const string CUSTOMERORDERSQL = @"
         SELECT *
         FROM  v_CustomerOrder
@@ -218,13 +218,13 @@ namespace pos_core_api.ORM
                         TranType = Transaction.TranactionType.Invoice 
                     };
 
-                    transaction.Items.Add(new Item(cust) { NumSold = cust.DeliverQty });
+                    transaction.Items.Add(new Item(cust) { QtySold = cust.DeliverQty });
                     transactionORM.InsertTransaction(transaction);
                 }
                 else
                 {
-                    Item i = transaction.Items.FirstOrDefault(x => x.Id == cust.Id) ?? new Item(cust) { NumSold = 0 };
-                    i.NumSold += cust.DeliverQty;
+                    Item i = transaction.Items.FirstOrDefault(x => x.Id == cust.Id) ?? new Item(cust) { QtySold = 0 };
+                    i.QtySold += cust.DeliverQty;
                     transactionORM.UpdateItemQty(transaction.InvoiceID, i, true);
                 }
 
@@ -287,7 +287,7 @@ namespace pos_core_api.ORM
                     cmd.ExecuteNonQuery();
 
                     if (cust.DeliverQty != temp.DeliverQty)
-                        transactionORM.DecrementInventoryQty(new Item { Id = cust.Id, NumSold = cust.DeliverQty - temp.DeliverQty });
+                        transactionORM.DecrementInventoryQty(new Item { Id = cust.Id, QtySold = cust.DeliverQty - temp.DeliverQty });
                 }
                 finally
                 {
