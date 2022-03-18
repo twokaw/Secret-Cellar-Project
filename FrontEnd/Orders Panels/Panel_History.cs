@@ -105,8 +105,21 @@ namespace SecretCellar.Orders_Panels {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void transaction_dataGrid_SelectionChanged(object sender, EventArgs e) {
-            if (transaction_dataGrid.SelectedRows.Count > 0) {
+            if (transaction_dataGrid.SelectedRows.Count > 0) 
+            {
                 SelectTransaction = transaction_history.First(x => x.InvoiceID == uint.Parse(transaction_dataGrid.SelectedRows[0].Cells["trans_id"].Value.ToString()));
+
+                var items = SelectTransaction.Items
+                 .Select(x => new
+                 {
+                     part_Id = x.Id,
+                     part_Name = x.Name,
+                     part_Qty = x.NumSold,
+                     part_price = x.Price
+                 })
+                   .ToList();
+
+                dgv_Items.DataSource = items;
             }
         }
 
@@ -128,7 +141,7 @@ namespace SecretCellar.Orders_Panels {
                    .Select(x => new
                    {
                        trans_id = x.InvoiceID,
-                       trans_date = x.TransactionDateTime.ToString("MM/dd/yyyy"),
+                       trans_date = x.TransactionDateTime.ToString("MM/dd/yy"),
                        trans_total = x.Total.ToString("C")
                    })
                    .OrderBy(x => x.trans_id)
@@ -143,7 +156,7 @@ namespace SecretCellar.Orders_Panels {
                    .Select(x => new
                     {
                       trans_id = x.InvoiceID,
-                      trans_date = x.TransactionDateTime.ToString("MM/dd/yyyy"),
+                      trans_date = x.TransactionDateTime.ToString("MM/dd/yy"),
                       trans_total = x.Total.ToString("C")
                     })
                    .OrderBy(x => x.trans_id)
@@ -162,6 +175,11 @@ namespace SecretCellar.Orders_Panels {
         }
 
         private void btn_Returns_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void transaction_dataGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
