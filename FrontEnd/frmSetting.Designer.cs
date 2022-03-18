@@ -62,15 +62,15 @@ namespace SecretCellar
             this.tab_receipt.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.tab_receipt.Controls.Add(this.tab_Reports);
             this.tab_receipt.Controls.Add(this.tab_Hardware);
             this.tab_receipt.Controls.Add(this.tab_Types);
             this.tab_receipt.Controls.Add(this.tab_Appearance);
-            this.tab_receipt.Controls.Add(this.tab_Reports);
             this.tab_receipt.Controls.Add(this.tab_Reciept);
             this.tab_receipt.Controls.Add(this.tab_tax);
             this.tab_receipt.Controls.Add(this.tab_Defaults);
             this.tab_receipt.Location = new System.Drawing.Point(10, 27);
-            this.tab_receipt.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.tab_receipt.Margin = new System.Windows.Forms.Padding(8);
             this.tab_receipt.Name = "tab_receipt";
             this.tab_receipt.SelectedIndex = 0;
             this.tab_receipt.Size = new System.Drawing.Size(1430, 777);
@@ -80,7 +80,7 @@ namespace SecretCellar
             // 
             this.tab_Hardware.Controls.Add(this.panHardware);
             this.tab_Hardware.Location = new System.Drawing.Point(4, 38);
-            this.tab_Hardware.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.tab_Hardware.Margin = new System.Windows.Forms.Padding(8);
             this.tab_Hardware.Name = "tab_Hardware";
             this.tab_Hardware.Padding = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.tab_Hardware.Size = new System.Drawing.Size(1422, 735);
@@ -101,7 +101,7 @@ namespace SecretCellar
             // 
             this.tab_Types.Controls.Add(this.panTypes);
             this.tab_Types.Location = new System.Drawing.Point(4, 38);
-            this.tab_Types.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.tab_Types.Margin = new System.Windows.Forms.Padding(8);
             this.tab_Types.Name = "tab_Types";
             this.tab_Types.Padding = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.tab_Types.Size = new System.Drawing.Size(1422, 735);
@@ -114,7 +114,7 @@ namespace SecretCellar
             this.panTypes.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panTypes.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
             this.panTypes.Location = new System.Drawing.Point(4, 6);
-            this.panTypes.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.panTypes.Margin = new System.Windows.Forms.Padding(8);
             this.panTypes.Name = "panTypes";
             this.panTypes.Size = new System.Drawing.Size(1414, 723);
             this.panTypes.TabIndex = 0;
@@ -165,7 +165,7 @@ namespace SecretCellar
             this.tab_Reciept.Controls.Add(this.panReceipt1);
             this.tab_Reciept.Location = new System.Drawing.Point(4, 38);
             this.tab_Reciept.Name = "tab_Reciept";
-            this.tab_Reciept.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tab_Reciept.Padding = new System.Windows.Forms.Padding(3);
             this.tab_Reciept.Size = new System.Drawing.Size(1422, 735);
             this.tab_Reciept.TabIndex = 4;
             this.tab_Reciept.Text = "Receipt";
@@ -206,7 +206,7 @@ namespace SecretCellar
             this.tab_Defaults.Controls.Add(this.panDefaults1);
             this.tab_Defaults.Location = new System.Drawing.Point(4, 38);
             this.tab_Defaults.Name = "tab_Defaults";
-            this.tab_Defaults.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tab_Defaults.Padding = new System.Windows.Forms.Padding(3);
             this.tab_Defaults.Size = new System.Drawing.Size(1422, 735);
             this.tab_Defaults.TabIndex = 6;
             this.tab_Defaults.Text = "Defaults";
@@ -217,7 +217,7 @@ namespace SecretCellar
             // 
             this.panDefaults1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panDefaults1.Location = new System.Drawing.Point(3, 3);
-            this.panDefaults1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panDefaults1.Margin = new System.Windows.Forms.Padding(4);
             this.panDefaults1.Name = "panDefaults1";
             this.panDefaults1.Size = new System.Drawing.Size(1416, 729);
             this.panDefaults1.TabIndex = 0;

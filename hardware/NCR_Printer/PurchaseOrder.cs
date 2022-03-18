@@ -12,11 +12,9 @@ namespace NCR_Printer
     public class PurchaseOrder : PrintDoc
     {
         public static PrintLayout LetterLayout {get; set;}
-        private Supplier supplier;
-        private List<Inventory> inventory;
-        string total;
-        //Margins margins = new Margins(100, 100, 100, 100);
-        public PurchaseOrder(Supplier supplier, List<Inventory> inventories , PrintLayout letter,Margins margins) : base(letter)
+        private readonly Supplier supplier;
+        private readonly List<Inventory> inventory;
+        public PurchaseOrder(Supplier supplier, List<Inventory> inventories , PrintLayout letter, Margins margins) : base(letter)
         {
             
 
@@ -24,10 +22,10 @@ namespace NCR_Printer
                 LetterLayout = letter;
                 this.supplier = supplier;
                 this.inventory = inventories;
-                this.margins = new Margins(100, 100, 100, 100);
+                this.margins = margins;
         }
 
-        public PurchaseOrder(Supplier supplier, List<Inventory> inventories) : this(supplier, inventories, LetterLayout,new Margins (100,100,100,100)){}
+        public PurchaseOrder(Supplier supplier, List<Inventory> inventories) : this(supplier, inventories, LetterLayout, new Margins (100,100,100,100)){}
 
 
         public override void PrintPage(object sender, PrintPageEventArgs e)
@@ -36,7 +34,7 @@ namespace NCR_Printer
             
             SetupPage(e);
             float y = cursor.Y;
-            Font potitle = new System.Drawing.Font("Arial", 12, FontStyle.Bold);
+            Font potitle = new Font("Arial", 12, FontStyle.Bold);
             PrintImage(Layout.Logo, (float)0.4,TextAlignment.Left);
             this.cursor.Y = (cursor.Y - y)/2;
             PrintText($"Purchase Order", potitle, true, TextAlignment.Center);
@@ -67,14 +65,10 @@ namespace NCR_Printer
 
             //PrintText($"{bcode,6} {name,35} {price,40}{oqty,25}{qtyrec,40}");
             
-            PrintText(bcode,5);
-           
-            PrintText(name,200);
-            
-            PrintText(price,550);
-           
-            PrintText(oqty,650);
-            
+            PrintText(bcode,5);           
+            PrintText(name,200);            
+            PrintText(price,550);           
+            PrintText(oqty,650);            
             PrintText(qtyrec,750,true);
             //PrintText($"\t\t\t\t\t Barcode  \t\t\t\t\t Name  \t\t\t\t\t Price  \t\t\t\t\t Order Qty  \t\t\t\t\t Qty Received",true);
             double total = 0;
@@ -83,8 +77,6 @@ namespace NCR_Printer
 
             foreach (Inventory item in inventory)
             {
-
-                
                 PrintText(item.Barcode, 5);
                 PrintText(item.Name, 200);
                 PrintText(item.Price.ToString(), 550);
