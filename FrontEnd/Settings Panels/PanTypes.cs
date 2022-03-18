@@ -51,7 +51,7 @@ namespace SecretCellar.Settings_Panels
 
             textBox_itemsUsingInventory.Text = filteredInventoryList.Count + "";
 
-            button_deleteInventory.Enabled = (filteredInventoryList.Count != 0);
+            button_deleteInventory.Enabled = (filteredInventoryList.Count == 0);
         }
 
         private void btn_type_clear_Click(object sender, EventArgs e)
