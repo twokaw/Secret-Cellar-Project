@@ -432,13 +432,13 @@ namespace SecretCellar
                 string barcode = LookupView.SelectedRows[0].Cells["Barcode"].Value.ToString();
                 Inventory item = DataAccess.instance.GetItem(barcode);
 
-
+                DataAccess.instance.DeleteItem(item);
 			}
 		}
 
 
         /// <summary>
-        /// Looks through all the suspended transactions's item's to see if any of the id's match the selected item's id.
+        /// Looks through all the suspended transactions's items to see if any of the id's match the selected item's id.
         /// If it does, it disables the delete button.
         /// </summary>
         private void ToggleDeleteButton() {
