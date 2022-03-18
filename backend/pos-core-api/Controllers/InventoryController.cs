@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Shared;
 using pos_core_api.ORM;
+using System.Collections.Generic;
 
 namespace WebApi.Controllers
 {
@@ -135,10 +136,18 @@ namespace WebApi.Controllers
         [HttpDelete("{Invid}")]
         public IActionResult Delete(uint Invid)
         {
+            List<Transaction> suspendedTransactions = DataAccess.Instance.Transaction.GetSuspendedTransactions();
+
+            foreach (Transaction suspendedTransaction in suspendedTransactions) {
+                foreach (Item item in suspendedTransaction.Items) {
+                    if (item.Id == Invid) { return StatusCode(400, "Inventory item cannot be deleted, it exists in a transaction."); }
+                }
+            }
+
             try
             {
                 DataAccess.Instance.Inventory.Delete(Invid);
-                return Ok("Item succesfully Deleted.");
+                return Ok("Item succesfully deleted.");
             }
             catch (Exception ex) { ErrorLogging.WriteToErrorLog(ex); return StatusCode(500, ex.Message); }
         }
