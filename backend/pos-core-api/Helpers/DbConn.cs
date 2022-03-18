@@ -13,7 +13,7 @@ namespace WebApi.Helpers
 
         private List<MySqlCommand> Cmds = new List<MySqlCommand>();
         private readonly MySqlConnection conn;
-        private static readonly string defaultConnectionString = "Server=localhost;Port=3306;Database=inventory;Uid=invuser;Pwd=testinv!;";
+        private static readonly string defaultConnectionString = EncryptionClass.EncryptString("Server=localhost;Port=3306;Database=inventory;Uid=invuser;Pwd=testinv!;");
         private static string connString = null;
 
         public DbConn()
@@ -27,11 +27,10 @@ namespace WebApi.Helpers
             {
                 using IResourceWriter writer = new ResourceWriter("myResources.resources");
 
-                // TODO: Encrypt connection string
                 // Adds resources to the resource writer.
                 writer.AddResource("ConnectionString", conString);
                 */
-            Resources.SetValue("ConnectionString", conString);
+            Resources.SetValue("ConnectionString", EncryptionClass.EncryptString(conString));
             connString = conString;
             /*
             // Writes the resources to the file or stream, and closes it.
@@ -74,7 +73,10 @@ namespace WebApi.Helpers
                 if (connString == null) 
                     connString = defaultConnectionString;
                 */
-                connString = Resources.GetValue("ConnectionString", defaultConnectionString);
+                //SetConnectionString was run one time only to set the default connection string
+                //SetConnectionString(EncryptionClass.DecryptString(defaultConnectionString));
+
+                connString = EncryptionClass.DecryptString(Resources.GetValue("ConnectionString", defaultConnectionString));
             }
 
             return connString;
