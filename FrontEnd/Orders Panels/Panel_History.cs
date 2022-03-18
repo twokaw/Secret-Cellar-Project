@@ -52,7 +52,12 @@ namespace SecretCellar.Orders_Panels {
         /// <param name="sender"></param>
         /// <param name="e"></param>
 		private void textBox_CustomerName_TextChanged(object sender, EventArgs e) {
-			lstbox_customer.DataSource = DataAccess.instance.GetCustomer(textBox_CustomerName.Text);
+
+            if(int.TryParse(textBox_CustomerName.Text, out int receiptnumber))
+                Populate();
+            else
+			    lstbox_customer.DataSource = DataAccess.instance.GetCustomer(textBox_CustomerName.Text);
+            // if()
 			/*Select(x => new {
                 customerID = x.CustomerID,
                 cust_name = $"{x.LastName}, {x.FirstName}"
@@ -60,15 +65,6 @@ namespace SecretCellar.Orders_Panels {
               ToList();*/
 		}
 
-
-        /// <summary>
-        /// REFRESH THE DATA GRID
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btn_reset_Click(object sender, EventArgs e) {
-            Populate();
-        }
         /// <summary>
         /// ON SET CUSTOMER CLICK
         /// </summary>
@@ -109,8 +105,21 @@ namespace SecretCellar.Orders_Panels {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void transaction_dataGrid_SelectionChanged(object sender, EventArgs e) {
-            if (transaction_dataGrid.SelectedRows.Count > 0) {
+            if (transaction_dataGrid.SelectedRows.Count > 0) 
+            {
                 SelectTransaction = transaction_history.First(x => x.InvoiceID == uint.Parse(transaction_dataGrid.SelectedRows[0].Cells["trans_id"].Value.ToString()));
+
+                var items = SelectTransaction.Items
+                 .Select(x => new
+                 {
+                     part_Id = x.Id,
+                     part_Name = x.Name,
+                     part_Qty = x.NumSold,
+                     part_price = x.Price
+                 })
+                   .ToList();
+
+                dgv_Items.DataSource = items;
             }
         }
 
@@ -125,6 +134,19 @@ namespace SecretCellar.Orders_Panels {
         private void Populate() {
             if (transaction_history == null)
                 transaction_dataGrid.Rows.Clear();
+            else if(int.TryParse(textBox_CustomerName.Text, out int receiptnumber))
+            {
+                transaction_dataGrid.DataSource = transaction_history
+                   .Where(x => x.InvoiceID == receiptnumber)
+                   .Select(x => new
+                   {
+                       trans_id = x.InvoiceID,
+                       trans_date = x.TransactionDateTime.ToString("MM/dd/yy"),
+                       trans_total = x.Total.ToString("C")
+                   })
+                   .OrderBy(x => x.trans_id)
+                   .ToList();
+            }
             else
             {
                 transaction_dataGrid.DataSource = transaction_history
@@ -134,12 +156,32 @@ namespace SecretCellar.Orders_Panels {
                    .Select(x => new
                     {
                       trans_id = x.InvoiceID,
-                      trans_date = x.TransactionDateTime.ToString("MM/dd/yyyy"),
+                      trans_date = x.TransactionDateTime.ToString("MM/dd/yy"),
                       trans_total = x.Total.ToString("C")
                     })
                    .OrderBy(x => x.trans_id)
                    .ToList();
             }
+        }
+
+        private void end_dateTime_ValueChanged(object sender, EventArgs e)
+        {
+            Populate();
+        }
+
+        private void start_dateTime_ValueChanged(object sender, EventArgs e)
+        {
+            Populate();
+        }
+
+        private void btn_Returns_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void transaction_dataGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

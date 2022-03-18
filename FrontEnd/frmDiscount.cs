@@ -162,7 +162,7 @@ namespace SecretCellar
         public void coupons_discount()
         {
             if (double.TryParse(txtFixedDiscount.Text, out double d))
-                transaction.Items.Add(new Item() { Price = -d, Name = "Coupon", NumSold = 1});
+                transaction.Items.Add(new Item() { Price = -d, Name = "Coupon", QtySold = 1});
         }
 
         public void resetselectItemDiscount()

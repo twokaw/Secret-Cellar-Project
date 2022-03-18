@@ -292,7 +292,11 @@ namespace Shared
             if (i == null)
                 Items.Add(item);
             else
-                i.NumSold += item.NumSold;
+            {
+                i.QtySold += item.QtySold;
+                i.QtyRefunded += item.QtyRefunded;
+            }
+                
 
             UpdateBulkDiscount();
         }
@@ -318,7 +322,7 @@ namespace Shared
             {
                 if (i != null && i.NumSold != qty)
                 {
-                    i.NumSold = qty;
+                    i.QtySold = qty;
                     result = true;
                 }
                 else if (i == null)
@@ -326,7 +330,7 @@ namespace Shared
                     i =item;
                     if (i != null)
                     {
-                        i.NumSold = qty;
+                        i.QtySold = qty;
                         Items.Add(i);
                         result = true;
                     }
@@ -346,7 +350,7 @@ namespace Shared
                 Barcode = inv.Barcode,
                 AllQty = inv.AllQty,
                 BottleDeposit = inv.BottleDeposit,
-                NumSold = 1,
+                QtySold = 1,
                 Price = inv.Price,
                 NonTaxable = inv.NonTaxable,
                 ItemType = inv.ItemType,
@@ -366,7 +370,7 @@ namespace Shared
                 Barcode = inv.Barcode,
                 AllQty = inv.AllQty,
                 BottleDeposit = inv.BottleDeposit,
-                NumSold = numSold,
+                QtySold = numSold,
                 Price = inv.Price,
                 NonTaxable = inv.NonTaxable,
                 ItemType = inv.ItemType,
@@ -388,7 +392,7 @@ namespace Shared
                 Barcode = inv.Barcode,
                 AllQty = inv.AllQty,
                 BottleDeposit = inv.BottleDeposit,
-                NumSold = inv.DeliverQty,
+                QtySold = inv.DeliverQty,
                 Price = inv.Price,
                 NonTaxable = inv.NonTaxable,
                 ItemType = inv.ItemType,
