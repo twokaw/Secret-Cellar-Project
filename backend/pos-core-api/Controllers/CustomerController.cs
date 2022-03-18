@@ -171,6 +171,11 @@ namespace WebApi.Controllers
         [HttpDelete("{custID}")]
         public IActionResult Delete(uint custID)
         {
+            List<Transaction> suspendedTransactions = DataAccess.Instance.Transaction.GetSuspendedTransactions();
+            List<Transaction> filteredSuspendedTransactions = suspendedTransactions.FindAll((transaction) => { return transaction.CustomerID == custID; });
+
+            if (filteredSuspendedTransactions.Count > 0) { return StatusCode(400, "Customer cannot be deleted, he/she exists in a transaction."); }
+
             try
             {
                 DataAccess.Instance.Customer.Delete(custID);

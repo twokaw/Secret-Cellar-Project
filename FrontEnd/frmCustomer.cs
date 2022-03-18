@@ -33,6 +33,11 @@ namespace SecretCellar
             if (customer_data_grid.SelectedRows.Count > 0)
             {
                 Customer i = DataAccess.instance.GetCustomer(uint.Parse(customer_data_grid.SelectedRows[0].Cells["customerID"].Value.ToString()));
+
+                List<Transaction> suspendedTransactions = DataAccess.instance.GetSuspendedTransactions();
+                List<Transaction> filteredSuspendedTransactions = suspendedTransactions.FindAll((transaction) => { return transaction.CustomerID == i.CustomerID; });
+                button_delete.Enabled = filteredSuspendedTransactions.Count == 0;
+
                 SelectCustomer(i);
             }
         }
@@ -57,16 +62,6 @@ namespace SecretCellar
         private void frmCustomer_Load(object sender, EventArgs e)
         {
             cmb_State.SelectedValue = DataAccess.instance.DefaultState;
-        }
-
-        private void customer_data_grid_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void pnl_change_info_Paint(object sender, PaintEventArgs e)
-        {
-
         }
 
         private void chkbox_wholesale_CheckedChanged(object sender, EventArgs e)
@@ -105,11 +100,6 @@ namespace SecretCellar
             this.DialogResult = DialogResult.Cancel;
             this.Close();
             
-        }
-
-        private void cbo_wholesale_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void txt_customer_TextChanged(object sender, EventArgs e)
