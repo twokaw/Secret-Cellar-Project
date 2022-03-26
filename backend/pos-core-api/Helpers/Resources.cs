@@ -20,7 +20,6 @@ namespace pos_core_api.Helpers
             {
                 using IResourceWriter writer = new ResourceWriter(asset);
                 {
-                    // TODO: Encrypt connection string
                     // Adds resources to the resource writer.
                     writer.AddResource(key, value);
                     writer.Close();  
