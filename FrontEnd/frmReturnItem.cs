@@ -17,7 +17,7 @@ namespace SecretCellar
         {
             get
             {
-                return double.Parse(LblRefund.Text);
+                return double.Parse(LblRefund.Text.Replace("$", ""));
             }
             set
             {
@@ -28,7 +28,7 @@ namespace SecretCellar
         {
             get
             {
-                return double.Parse(LblTotalRefund.Text);
+                return double.Parse(LblTotalRefund.Text.Replace("$", ""));
             }
             set
             {
@@ -67,7 +67,7 @@ namespace SecretCellar
         {
             get
             {
-                return double.Parse(TxtFee.Text);
+                return double.Parse(TxtFee.Text.Replace("$", ""));
             }
             set
             {
@@ -91,7 +91,8 @@ namespace SecretCellar
             LblItem.Text = item.Name;
             LblPrice.Text = $"{item.Price:C}";
             LblTotalRefund.Text = $"{RefundPrice:C}";
-            RefundQty = item.Qty;
+            LblQty.Text = item.Qty.ToString();
+            RefundQty = 1;
             TxtQty.Enabled = item.Qty > 1;
         }
 

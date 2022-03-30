@@ -43,10 +43,10 @@ namespace SecretCellar
             this.label5 = new System.Windows.Forms.Label();
             this.BtnOk = new System.Windows.Forms.Button();
             this.BtnCancel = new System.Windows.Forms.Button();
-            this.TxtFee = new SecretCellar.CurrencyBox();
             this.LblRefund = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.ChkRestock = new System.Windows.Forms.CheckBox();
+            this.TxtFee = new SecretCellar.CurrencyBox();
             this.SuspendLayout();
             // 
             // label1
@@ -193,16 +193,6 @@ namespace SecretCellar
             this.BtnCancel.Text = "Cancel";
             this.BtnCancel.UseVisualStyleBackColor = true;
             // 
-            // TxtFee
-            // 
-            this.TxtFee.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtFee.Location = new System.Drawing.Point(170, 126);
-            this.TxtFee.Name = "TxtFee";
-            this.TxtFee.Size = new System.Drawing.Size(123, 35);
-            this.TxtFee.TabIndex = 18;
-            this.TxtFee.Text = "0.00";
-            this.TxtFee.TextChanged += new System.EventHandler(this.TxtFee_TextChanged);
-            // 
             // LblRefund
             // 
             this.LblRefund.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
@@ -239,10 +229,21 @@ namespace SecretCellar
             this.ChkRestock.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.ChkRestock.UseVisualStyleBackColor = true;
             // 
+            // TxtFee
+            // 
+            this.TxtFee.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtFee.Location = new System.Drawing.Point(170, 126);
+            this.TxtFee.Name = "TxtFee";
+            this.TxtFee.Size = new System.Drawing.Size(123, 35);
+            this.TxtFee.TabIndex = 18;
+            this.TxtFee.Text = "0.00";
+            this.TxtFee.TextChanged += new System.EventHandler(this.TxtFee_TextChanged);
+            // 
             // frmReturnItem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(231)))), ((int)(((byte)(206)))));
             this.ClientSize = new System.Drawing.Size(633, 408);
             this.Controls.Add(this.ChkRestock);
             this.Controls.Add(this.label3);

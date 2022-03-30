@@ -178,8 +178,8 @@ namespace SecretCellar.Orders_Panels {
         {
             uint id = uint.Parse(dgv_Items.SelectedRows[0].Cells[0].Value.ToString());
             Item i = SelectTransaction.Items.FirstOrDefault(x => x.Id == id);
-
-            frmReturnItem returnItem = new frmReturnItem(i, SelectTransaction.ItemPriceTotal(i));
+            double item_total = SelectTransaction.ItemPriceTotal(i)/i.Qty;
+            frmReturnItem returnItem = new frmReturnItem(i, item_total);
             // MessageBox.Show($"Transaction: {id} \n Return {i.Name} \n Price: {i.Price} \n Refund Price: {SelectTransaction.ItemPriceTotal(i):C}");
 
             if(returnItem.ShowDialog() == DialogResult.OK)
