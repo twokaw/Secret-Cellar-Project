@@ -85,6 +85,7 @@ namespace SecretCellar.Settings_Panels
             }
         }
 
+
         private void btn_update_type_Click(object sender, EventArgs e)
         {
             InventoryType i = (InventoryType)lstTypes.SelectedItem;
