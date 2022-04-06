@@ -197,7 +197,7 @@
             this.txt_TenderTransTotal.TabStop = false;
             this.txt_TenderTransTotal.Text = "0.00";
             this.txt_TenderTransTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txt_TenderTransTotal.TextChanged += new System.EventHandler(this.txt_TransTotal_TextChanged);
+           
             // 
             // txtDue
             // 

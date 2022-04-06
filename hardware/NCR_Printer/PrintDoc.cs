@@ -74,7 +74,6 @@ namespace NCR_Printer
                 cursor = new RectangleF(e.PageBounds.X, e.PageBounds.Y, e.PageBounds.Width, Layout.TextFont.Height);
         }
 
-        // TODO : Scale image width to rectangle
         public void PrintImage(Image img)
         {
             RectangleF m = new RectangleF(0, cursor.Y, cursor.Width, (float)img.Height / (float)img.Width * cursor.Width);

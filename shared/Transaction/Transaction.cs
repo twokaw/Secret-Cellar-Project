@@ -250,15 +250,12 @@ namespace Shared
             List<Discount> result = new List<Discount>();
 
             int count = 0;
-            foreach (Discount dis in GetBulkDiscounts())
+            foreach (Discount dis in GetBulkDiscounts().Where(x => x.Enabled))
             {
-                count = Items.Count(i => i.Discounts.Where(x => x.DiscountID == dis.DiscountID && dis.Enabled )
-                             .Count() > 0 && i.Discount == 0.0);
+                count = Items.Count(i => i.Discounts.Any(x => x.DiscountID == dis.DiscountID) && i.Discount == 0.0);
                 if (count >= dis.Min && count <= dis.Max)
                 {
                     result.Add(dis);
-                 // TODO: talk to lauren about how discounts should stack
-                 //   Items.ForEach(i => i.Discounts.Where(x => x.)
                 }
             }
 

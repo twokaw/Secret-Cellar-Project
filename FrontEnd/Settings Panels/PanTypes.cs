@@ -85,6 +85,7 @@ namespace SecretCellar.Settings_Panels
             }
         }
 
+
         private void btn_update_type_Click(object sender, EventArgs e)
         {
             InventoryType i = (InventoryType)lstTypes.SelectedItem;
@@ -94,8 +95,17 @@ namespace SecretCellar.Settings_Panels
             i.Min_qty = uint.Parse(txt_MinQty.Text.Trim());
             i.OrderIncrement = uint.Parse(txt_orderIncrement.Text.Trim());
             i.IdTax = ((Tax)cbx_tax.SelectedItem).IdTax;
-            
-            // TODO: Update Discount
+
+            for (int j = 0; j < chk_lst_discount.Items.Count; j++)
+            {
+                Discount d = i.Discount.FirstOrDefault(x => x.DiscountName == (string)chk_lst_discount.Items[j]);
+
+                if (chk_lst_discount.GetItemChecked(j) && d == null)
+                    i.Discount.Add(discounts.First(x => x.DiscountName == (string)chk_lst_discount.Items[j]));
+                else if (!chk_lst_discount.GetItemChecked(j) && d != null)
+                    i.Discount.Remove(d);
+            }
+
             DataAccess.instance.UpdateInventoryType(i);
 
             //REFRESH LIST

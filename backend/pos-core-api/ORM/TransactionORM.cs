@@ -371,7 +371,6 @@ namespace pos_core_api.ORM
 
         public void InsertItems(Transaction transaction, bool updateDecrementInvQty)
         {
-            // TODO: remove items that have been removed
             foreach (Item item in transaction.Items)
                 UpdateItemQty(transaction.InvoiceID, item, 
                               transaction.TranType == Transaction.TranactionType.Invoice 
@@ -400,7 +399,7 @@ namespace pos_core_api.ORM
                     cmd.ExecuteNonQuery();
 
                     // if (updateDecrementInvQty)
-                    //    DecrementInventoryQty(item); // TODO: add increment qty
+                    //    DecrementInventoryQty(item);
                 }
                 finally
                 {
