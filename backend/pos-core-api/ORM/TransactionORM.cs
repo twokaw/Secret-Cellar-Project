@@ -412,8 +412,8 @@ namespace pos_core_api.ORM
         {
             using MySqlCommand cmd = db.CreateCommand(@"
                 UPDATE transaction_items
-                SET    sold_qty     = GREATER(@sold_qty, 0),
-                       Refunded_Qty = GREATER(@Refunded_Qty, 0)
+                SET    sold_qty     = GREATEST(@sold_qty, 0),
+                       Refunded_Qty = GREATEST(@Refunded_Qty, 0)
                 WHERE  receiptID = @receiptID
                 AND    inventoryID = @inventoryID
             ");

@@ -40,15 +40,13 @@ namespace SecretCellar
         {
             get
             {
-                return uint.Parse(TxtQty.Text);
+                return uint.Parse($"0{TxtQty.Text}");
             }
             set
             {
-                if (TxtQty.Text != $"{value}")
-                {
-                    TxtQty.Text = $"{value}";
-                    UpdateTotalPrice();
-                }
+                value = Math.Min(value, uint.Parse(LblQty.Text));
+                TxtQty.Text = (value > 0)?$"{value}": "";
+                UpdateTotalPrice();
             }
         }
         public bool Restock
@@ -71,11 +69,8 @@ namespace SecretCellar
             }
             set
             {
-                if(TxtFee.Text != $"{value:C}")
-                {
-                    TxtFee.Text = $"{value:C}";
-                    UpdateTotalPrice();
-                }
+                TxtFee.Text = $"{value:C}";
+                UpdateTotalPrice();
             }
         }
         private void UpdateTotalPrice()
@@ -91,25 +86,39 @@ namespace SecretCellar
             LblItem.Text = item.Name;
             LblPrice.Text = $"{item.Price:C}";
             LblTotalRefund.Text = $"{RefundPrice:C}";
-            LblQty.Text = item.Qty.ToString();
+            LblQty.Text = $"{item.NumSold}";
             RefundQty = 1;
             TxtQty.Enabled = item.Qty > 1;
         }
 
         private void TxtQty_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsDigit(e.KeyChar))
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
                 e.Handled = true;
         }
 
         private void TxtQty_TextChanged(object sender, EventArgs e)
         {
-            RefundQty = uint.Parse(TxtQty.Text);
+            if (TxtQty.Text == "")
+                RefundQty = 0;
+            else
+                RefundQty = uint.Parse(TxtQty.Text);
         }
 
         private void TxtFee_TextChanged(object sender, EventArgs e)
         {
-            RestockFee = uint.Parse(TxtFee.Text);
+
+            RestockFee = double.Parse(TxtFee.Text.Replace("$", ""));
+        }
+
+        private void TxtFee_Enter(object sender, EventArgs e)
+        {
+            TxtFee.SelectAll();
+        }
+
+        private void TxtQty_Enter(object sender, EventArgs e)
+        {
+            TxtQty.SelectAll();
         }
     }
 }

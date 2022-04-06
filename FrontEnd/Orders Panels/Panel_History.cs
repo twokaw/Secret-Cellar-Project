@@ -8,7 +8,7 @@ using System.Windows.Forms;
 namespace SecretCellar.Orders_Panels {
 	public partial class Panel_History : UserControl {
         private readonly string searchForCustomerText = "Search for customer";
-        private readonly List<Transaction> transaction_history = null;
+        private List<Transaction> transaction_history = null;
         Transaction SelectTransaction = null;
 
         public Panel_History() {
@@ -132,6 +132,10 @@ namespace SecretCellar.Orders_Panels {
         /// REFRESH THE DATA GRID
         /// </summary>
         private void Populate() {
+
+
+            transaction_history = DataAccess.instance?.GetTransactions();
+
             if (transaction_history == null)
                 transaction_dataGrid.Rows.Clear();
             else if(int.TryParse(textBox_CustomerName.Text, out int receiptnumber))
@@ -150,7 +154,8 @@ namespace SecretCellar.Orders_Panels {
             else
             {
                 transaction_dataGrid.DataSource = transaction_history
-                   .Where(x => x.CustomerID == ((Customer)lstbox_customer.SelectedItem).CustomerID
+                   .Where(x => (x.CustomerID == ((Customer)lstbox_customer.SelectedItem).CustomerID 
+                            ||  ((Customer)lstbox_customer.SelectedItem).CustomerID == 0)
                             && x.TransactionDateTime > start_dateTime.Value 
                             && x.TransactionDateTime < end_dateTime.Value)
                    .Select(x => new
@@ -178,18 +183,26 @@ namespace SecretCellar.Orders_Panels {
         {
             uint id = uint.Parse(dgv_Items.SelectedRows[0].Cells[0].Value.ToString());
             Item i = SelectTransaction.Items.FirstOrDefault(x => x.Id == id);
-            double item_total = SelectTransaction.ItemPriceTotal(i)/i.Qty;
+            double item_total = SelectTransaction.ItemPriceTotal(i) / i.NumSold;
             frmReturnItem returnItem = new frmReturnItem(i, item_total);
             // MessageBox.Show($"Transaction: {id} \n Return {i.Name} \n Price: {i.Price} \n Refund Price: {SelectTransaction.ItemPriceTotal(i):C}");
 
-            if(returnItem.ShowDialog() == DialogResult.OK)
+            if(returnItem.ShowDialog() == DialogResult.OK  && returnItem.RefundQty > 0)
+            {
                 DataAccess.instance.ReturnItem(SelectTransaction.InvoiceID, id, returnItem.RefundQty,  returnItem.Restock);
 
+                MessageBox.Show($"Refund for {returnItem.RefundQty} {i.Name } \n\nRefund amount: {returnItem.TotalRefundPrice:C}");
+                LblLastRefund.Text = $"Refund amount: { returnItem.TotalRefundPrice:C}";
+                DataAccess.instance.OpenCashDrawer();
+
+                Populate();
+            }
         }
 
-        private void transaction_dataGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void Panel_History_VisibleChanged(object sender, EventArgs e)
         {
-
+            LblLastRefund.Text = "";
+            Populate();
         }
     }
 }

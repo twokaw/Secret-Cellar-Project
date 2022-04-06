@@ -46,7 +46,7 @@ namespace SecretCellar
 
         private void btnCompleteSale_Click(object sender, EventArgs e)
         {
-            if (transaction.Payments[0].Method == "BREAKAGE")
+            if (transaction.Payments.Count > 0 && transaction.Payments[0].Method == "BREAKAGE")
                 transaction.Items.ForEach(x => x.Price = x.SupplierPrice);
 
             this.DialogResult = DialogResult.OK;
@@ -114,7 +114,7 @@ namespace SecretCellar
             txtCashAmt.Clear();
             txtNumber.Clear();
 
-            bool cashonly = true;
+            bool cashonly = transaction.Payments.Count > 0;
             foreach (Payment p in transaction.Payments)
             {
                 int row = paymentType.Rows.Add();
@@ -129,6 +129,9 @@ namespace SecretCellar
                    cashonly &= p.Method.ToUpper() == "CASH" || p.Method.ToUpper() == "CHECK";
                 }
             }
+
+
+
             double total = Math.Round(transaction.Total, 2);
             double totalCash = Math.Round(transaction.Total * (double)(1 - (payMethods.FirstOrDefault(x => x.PayMethod == "CASH").PercentOffset / 100)), 2);
 
