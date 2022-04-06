@@ -53,11 +53,7 @@ namespace SecretCellar
             this.Close();
         }
 
-        //possibly a duplicate and not needed
-        private void txt_TransTotal_TextChanged(object sender, EventArgs e)
-        {
-            txt_TenderTransTotal.Text = transaction.Total.ToString("C");
-        }
+       
 
         private void NumberOnly(object sender, KeyPressEventArgs e)
         {
