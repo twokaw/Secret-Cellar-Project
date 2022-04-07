@@ -146,7 +146,7 @@ namespace SecretCellar
                 if (qtychange.ShowDialog() == DialogResult.OK)
                 {
                     Item i = transaction.Items.FirstOrDefault(x => x.Id == uint.Parse(dataGridView1.Rows[e.RowIndex]?.Cells["ItemID"]?.Value.ToString()));
-                    i.NumSold = (uint)qtychange.UpdatedQty;
+                    i.QtySold = (uint)qtychange.UpdatedQty;
                 }  
                 
                 RefreshDataGrid();

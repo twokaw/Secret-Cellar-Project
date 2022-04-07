@@ -287,6 +287,13 @@ namespace SecretCellar
 
             return resp.StatusCode == System.Net.HttpStatusCode.OK;
         }
+        public bool ReturnItem(uint invoiceId, uint itemId, uint returnQty, bool restock)
+        {
+            Response resp = null;
+            web.DataDelete($"api/Transaction/item/{invoiceId}?itemId={itemId}&qty={returnQty}&returnqty=true&restock={restock}", resp);
+
+            return resp.StatusCode == System.Net.HttpStatusCode.OK;
+        }
 
         public List<PaymentMethod> GetPaymentMethods()
         {

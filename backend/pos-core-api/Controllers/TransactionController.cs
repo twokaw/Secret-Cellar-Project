@@ -171,7 +171,7 @@ namespace WebApi.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpDelete("item/{receiptId}")]
-        public IActionResult DeleteItem(uint receiptId, uint itemid, int qty = -1, bool returnQty = false)
+        public IActionResult DeleteItem(uint receiptId, uint itemid, int qty = -1, bool returnQty = false, bool restock = false)
         {
 
             try
@@ -198,9 +198,14 @@ namespace WebApi.Controllers
                 qty = (qty == -1) ? (int)item.NumSold : qty;
 
                 if (returnQty)
-                    DataAccess.Instance.Transaction.AddInventoryQty(item, qty);
-
-                DataAccess.Instance.Transaction.UpdateItemQty(receiptId, itemid, (int)(item.NumSold - qty));
+                {
+                    DataAccess.Instance.Transaction.UpdateItemQty(receiptId, itemid, item.QtySold, (uint)(item.QtyRefunded + qty));
+                    
+                    if(restock)
+                        DataAccess.Instance.Transaction.AddInventoryQty(item, qty);
+                }
+                else
+                    DataAccess.Instance.Transaction.UpdateItemQty(receiptId, itemid, (uint)(item.NumSold - qty), item.QtyRefunded);    
 
                 // Return the refund qty * ((price * Tax * localTax) + bottle deposit * bottles)
                 return Ok((qty  

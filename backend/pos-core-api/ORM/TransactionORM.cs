@@ -146,7 +146,7 @@ namespace pos_core_api.ORM
         public List<Transaction> GetTransactions(MySqlCommand cmd, bool includeItems, bool includePayments)
         {
             Transaction transaction;
-            List<Transaction> output = new List<Transaction>();
+            List<Transaction> output = new();
 
             using MySqlDataReader reader = cmd.ExecuteReader();
 
@@ -207,11 +207,12 @@ namespace pos_core_api.ORM
                             SalesTax  = itemReader.IsDBNull("sales_tax") ? 0 : itemReader.GetDouble("sales_tax"),
                             LocalSalesTax = itemReader.IsDBNull("local_sales_tax") ? 0 : itemReader.GetDouble("local_sales_tax")
                         };
-                        item.NumSold = 0;
+                        item.QtySold = 0;
                         transaction.Items.Add(item);
                     }
 
-                    item.NumSold += itemReader.IsDBNull("sold_qty") ? 0 : itemReader.GetUInt32("sold_qty");
+                    item.QtySold += itemReader.IsDBNull("sold_qty") ? 0 : itemReader.GetUInt32("sold_qty");
+                    item.QtyRefunded  += itemReader.IsDBNull("refunded_qty") ? 0 : itemReader.GetUInt32("refunded_qty");
 
                     item.AllQty.Add(new InventoryQty
                     {
@@ -370,7 +371,6 @@ namespace pos_core_api.ORM
 
         public void InsertItems(Transaction transaction, bool updateDecrementInvQty)
         {
-            // TODO: remove items that have been removed
             foreach (Item item in transaction.Items)
                 UpdateItemQty(transaction.InvoiceID, item, 
                               transaction.TranType == Transaction.TranactionType.Invoice 
@@ -399,7 +399,7 @@ namespace pos_core_api.ORM
                     cmd.ExecuteNonQuery();
 
                     // if (updateDecrementInvQty)
-                    //    DecrementInventoryQty(item); // TODO: add increment qty
+                    //    DecrementInventoryQty(item);
                 }
                 finally
                 {
@@ -408,11 +408,12 @@ namespace pos_core_api.ORM
             }
         }
 
-        public void UpdateItemQty(uint receiptId, uint itemId, int qty)
+        public void UpdateItemQty(uint receiptId, uint itemId, uint qty, uint qtyRefunded)
         {
             using MySqlCommand cmd = db.CreateCommand(@"
                 UPDATE transaction_items
-                SET    sold_qty = GREATER(sold_qty, 0)
+                SET    sold_qty     = GREATER(@sold_qty, 0),
+                       Refunded_Qty = GREATER(@Refunded_Qty, 0)
                 WHERE  receiptID = @receiptID
                 AND    inventoryID = @inventoryID
             ");
@@ -420,6 +421,7 @@ namespace pos_core_api.ORM
             cmd.Parameters.Add(new MySqlParameter("receiptID", receiptId));
             cmd.Parameters.Add(new MySqlParameter("inventoryID", itemId));
             cmd.Parameters.Add(new MySqlParameter("sold_qty", qty));
+            cmd.Parameters.Add(new MySqlParameter("Refunded_qty", qtyRefunded));
 
             try
             {
@@ -433,16 +435,17 @@ namespace pos_core_api.ORM
         public void UpdateItemQty(uint receiptId, Item item, bool updateDecrementInvQty)
         {
             MySqlCommand cmd = db.CreateCommand(@"
-                    REPLACE INTO transaction_items
-                    ( receiptID,  inventoryID,  sold_price,  supplier_price,  sold_qty)
-                    VALUES
-                    (@receiptID, @inventoryID, @sold_price, @supplier_price, @sold_qty)
-                ");
+                REPLACE INTO transaction_items
+                ( receiptID,  inventoryID,  sold_price,  supplier_price,  sold_qty, Refunded_Qty)
+                VALUES
+                (@receiptID, @inventoryID, @sold_price, @supplier_price, @sold_qty, @Refunded_Qty)
+            ");
             cmd.Parameters.Add(new MySqlParameter("receiptID", receiptId));
             cmd.Parameters.Add(new MySqlParameter("inventoryID", item.Id));
             cmd.Parameters.Add(new MySqlParameter("sold_price", item.Price));
             cmd.Parameters.Add(new MySqlParameter("supplier_price", item.SupplierPrice));
-            cmd.Parameters.Add(new MySqlParameter("sold_qty", item.NumSold));
+            cmd.Parameters.Add(new MySqlParameter("sold_qty", item.QtySold));
+            cmd.Parameters.Add(new MySqlParameter("refunded_Qty", item.QtyRefunded));
 
             try
             {
@@ -518,7 +521,7 @@ namespace pos_core_api.ORM
                 WHERE PayID = @PayID
             ";
 
-            //  TODO: Remove playments that are removed
+            //  TODO: Remove payments that are removed
 
             
             foreach (Payment pay in transaction.Payments)
@@ -634,7 +637,6 @@ namespace pos_core_api.ORM
             return GetTransaction(invoiceId, false, false)?.CustomerID ?? 0;
         }
 
-
         public bool FullyPaid(Transaction transaction)
         {
             double payments = 0;
@@ -644,7 +646,7 @@ namespace pos_core_api.ORM
         }
         public List<PaymentMethod> GetPaymentMethods()
         {
-            List<PaymentMethod> result = new List<PaymentMethod>();
+            List<PaymentMethod> result = new();
             string itemSQLStatement = @"
                 SELECT PaymentMethodid, PaymentMethod, PercentOffset
                 FROM paymentMethod

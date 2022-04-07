@@ -250,15 +250,12 @@ namespace Shared
             List<Discount> result = new List<Discount>();
 
             int count = 0;
-            foreach (Discount dis in GetBulkDiscounts())
+            foreach (Discount dis in GetBulkDiscounts().Where(x => x.Enabled))
             {
-                count = Items.Count(i => i.Discounts.Where(x => x.DiscountID == dis.DiscountID && dis.Enabled )
-                             .Count() > 0 && i.Discount == 0.0);
+                count = Items.Count(i => i.Discounts.Any(x => x.DiscountID == dis.DiscountID) && i.Discount == 0.0);
                 if (count >= dis.Min && count <= dis.Max)
                 {
                     result.Add(dis);
-                 // TODO: talk to lauren about how discounts should stack
-                 //   Items.ForEach(i => i.Discounts.Where(x => x.)
                 }
             }
 
@@ -292,7 +289,11 @@ namespace Shared
             if (i == null)
                 Items.Add(item);
             else
-                i.NumSold += item.NumSold;
+            {
+                i.QtySold += item.QtySold;
+                i.QtyRefunded += item.QtyRefunded;
+            }
+                
 
             UpdateBulkDiscount();
         }
@@ -318,7 +319,7 @@ namespace Shared
             {
                 if (i != null && i.NumSold != qty)
                 {
-                    i.NumSold = qty;
+                    i.QtySold = qty;
                     result = true;
                 }
                 else if (i == null)
@@ -326,7 +327,7 @@ namespace Shared
                     i =item;
                     if (i != null)
                     {
-                        i.NumSold = qty;
+                        i.QtySold = qty;
                         Items.Add(i);
                         result = true;
                     }
@@ -346,7 +347,7 @@ namespace Shared
                 Barcode = inv.Barcode,
                 AllQty = inv.AllQty,
                 BottleDeposit = inv.BottleDeposit,
-                NumSold = 1,
+                QtySold = 1,
                 Price = inv.Price,
                 NonTaxable = inv.NonTaxable,
                 ItemType = inv.ItemType,
@@ -366,7 +367,7 @@ namespace Shared
                 Barcode = inv.Barcode,
                 AllQty = inv.AllQty,
                 BottleDeposit = inv.BottleDeposit,
-                NumSold = numSold,
+                QtySold = numSold,
                 Price = inv.Price,
                 NonTaxable = inv.NonTaxable,
                 ItemType = inv.ItemType,
@@ -388,7 +389,7 @@ namespace Shared
                 Barcode = inv.Barcode,
                 AllQty = inv.AllQty,
                 BottleDeposit = inv.BottleDeposit,
-                NumSold = inv.DeliverQty,
+                QtySold = inv.DeliverQty,
                 Price = inv.Price,
                 NonTaxable = inv.NonTaxable,
                 ItemType = inv.ItemType,
