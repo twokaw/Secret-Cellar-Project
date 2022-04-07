@@ -67,11 +67,44 @@ namespace SecretCellar {
 		/// Populates the list invoices.
 		/// </summary>
 		private void PopulateListOfInvoices() {
-			List<Transaction> suspendedTransactions = DataAccess.instance.GetSuspendedTransactions();
-			List<Transaction> invoices = suspendedTransactions.FindAll((transaction) => { return transaction.TranType == Transaction.TranactionType.Invoice; });
+			List<Transaction> transactions = DataAccess.instance.GetTransactions();
 
-			dataGridView_Invoices.DataSource = invoices;
+			foreach (Transaction invoice in transactions) {
+				Console.WriteLine(invoice.InvoiceID + " " + invoice.TranType);
+			}
+
+			List<Transaction> invoices = transactions.FindAll((transaction) => { return transaction.TranType == Transaction.TranactionType.Invoice; });
+
+			foreach (Transaction invoice in invoices) {
+				selectionList_Invoices.Items.Add($"{invoice.InvoiceID} | {invoice.CustomerName}");
+			}
 		}
 
+
+		private void button_Finalize_Click(object sender, EventArgs e) {
+
+		}
+
+
+		private void CreateDummyTransaction() {
+			Transaction transaction = new Transaction {
+				TranType = Transaction.TranactionType.Invoice,
+				CustomerID = DataAccess.instance.GetCustomer()[1].CustomerID
+			};
+
+			Inventory inv = DataAccess.instance.GetItem("4099100139907");
+			Inventory inv2 = DataAccess.instance.GetItem("086785470801");
+			Inventory inv3 = DataAccess.instance.GetItem("811538010115");
+
+			Item item = new Item(inv.Name, inv.Id, inv.Barcode, inv.Qty, 0, inv.Price, false, inv.ItemType, inv.Bottles, 0, 0);
+			Item item2 = new Item(inv2.Name, inv2.Id, inv2.Barcode, inv2.Qty, 0, inv2.Price, false, inv2.ItemType, inv2.Bottles, 0, 0);
+			Item item3 = new Item(inv3.Name, inv3.Id, inv3.Barcode, inv3.Qty, 0, inv3.Price, false, inv3.ItemType, inv3.Bottles, 0, 0);
+
+			transaction.Items.Add(item);
+			transaction.Items.Add(item2);
+			transaction.Items.Add(item3);
+
+			DataAccess.instance.ProcessTransaction(transaction);
+		}
 	}
 }
