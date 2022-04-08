@@ -152,14 +152,41 @@ namespace SecretCellar.Orders_Panels {
             
             CustomerOrder custorder = DataAccess.instance.GetCustomerOrderforCustomer(((CustomerOrder)cbx_fullfill_cust.SelectedItem).CustomerID, false);
 
-            foreach (DataGridViewRow row in fullfill_datagrid.SelectedRows) {
+            List<CustomerOrderItem> items = new List<CustomerOrderItem>();
+
+            foreach (DataGridViewRow row in fullfill_datagrid.SelectedRows)
+            {
                 Inventory i = inventory.First(x => x.Id == uint.Parse(row.Cells["id"].Value.ToString()));
                 CustomerOrderItem coid = custorder.Items.FirstOrDefault(x => x.Id == i.Id);
-                uint dqty = coid.DeliverQty;
-                coid.DeliverQty = uint.Parse(row.Cells["requestqty"].Value.ToString());
-                DataAccess.instance.UpdateCustomerOrderItem(custorder.CustomerID, coid);
-                i.AllQty[0].Qty-= coid.DeliverQty;
+
+                uint requestQty = uint.Parse(row.Cells["requestqty"].Value.ToString());
+                
+                if (i.AllQty.Count() == 0 || uint.Parse(row.Cells["requestqty"].Value.ToString()) > i.AllQty[0].Qty)
+                {
+                    uint onhand = i.AllQty.Count() == 0 ? 0 : i.AllQty[0].Qty;
+                    switch (MessageBox.Show(this, $"Insufficient quantity to fullfil the order\n"
+                                        + $"Inventory: {onhand}\n"
+                                        + $"Request Qty: {requestQty}\n\n"
+                                        + $"Yes : Fulfill the full amount ({requestQty}) \n"
+                                        + $"No  : Fulfill inventory amount ({onhand}) \n"
+                                        + $"Cancel : Cancel Fulfillment",
+                                    "Insufficient quantity",
+                                    MessageBoxButtons.YesNoCancel))
+                    {
+                        case DialogResult.No:
+                            requestQty = onhand;
+                            break;
+                        case DialogResult.Cancel:
+                            return;
+                    }
+                }
+
+                coid.DeliverQty = requestQty;
+                items.Add(coid);
             }
+
+            foreach (CustomerOrderItem coi in items) 
+                DataAccess.instance.UpdateCustomerOrderItem(custorder.CustomerID, coi);
 
             txt_deliverqty.Text = "";
             RefreshFillment(custorder.CustomerID);

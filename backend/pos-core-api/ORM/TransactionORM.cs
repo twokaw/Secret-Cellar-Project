@@ -50,6 +50,31 @@ namespace pos_core_api.ORM
             }
         }
 
+        public List<Transaction> GetTransactions(List<Transaction.TranactionType> TranTypes, DateTime start, DateTime end, bool includeItems = true, bool includePayments = true)
+        {
+            MySqlCommand cmd = db.CreateCommand(SQLGET);
+
+            if (start > DateTime.MinValue)
+            {
+                cmd.Parameters.Add(new MySqlParameter("start", start));
+                cmd.CommandText += " WHERE sold_datetime >= @start";
+
+                if (end >= start)
+                {
+                    cmd.CommandText += " AND sold_datetime <= @end";
+                    cmd.Parameters.Add(new MySqlParameter("end", end));
+                }
+            }
+            try
+            {
+                return GetTransactions(cmd, includeItems, includePayments);
+            }
+            finally
+            {
+                db.CloseCommand(cmd);
+            }
+        }
+
         public Transaction GetTransaction(uint invoiceID, bool includeItems = true, bool includePayments = true)
         {
             MySqlCommand cmd = db.CreateCommand(@$"
@@ -520,9 +545,6 @@ namespace pos_core_api.ORM
                      Amount = @Amount
                 WHERE PayID = @PayID
             ";
-
-            //  TODO: Remove payments that are removed
-
             
             foreach (Payment pay in transaction.Payments)
             {
