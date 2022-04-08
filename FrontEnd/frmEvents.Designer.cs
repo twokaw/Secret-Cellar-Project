@@ -66,6 +66,8 @@
 			dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
 			dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.dataGridView_Events.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+			this.dataGridView_Events.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.dataGridView_Events.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
 			this.dataGridView_Events.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(237)))), ((int)(((byte)(196)))));
 			dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
@@ -111,7 +113,7 @@
 			this.dataGridView_Events.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
 			this.dataGridView_Events.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.dataGridView_Events.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-			this.dataGridView_Events.Size = new System.Drawing.Size(937, 353);
+			this.dataGridView_Events.Size = new System.Drawing.Size(899, 353);
 			this.dataGridView_Events.TabIndex = 2;
 			this.dataGridView_Events.TabStop = false;
 			this.dataGridView_Events.SelectionChanged += new System.EventHandler(this.dataGridView_Events_SelectionChanged);
@@ -178,21 +180,24 @@
 			// 
 			// dateTimePicker_Date
 			// 
+			this.dateTimePicker_Date.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.dateTimePicker_Date.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.dateTimePicker_Date.Location = new System.Drawing.Point(14, 22);
 			this.dateTimePicker_Date.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.dateTimePicker_Date.Name = "dateTimePicker_Date";
-			this.dateTimePicker_Date.Size = new System.Drawing.Size(660, 44);
+			this.dateTimePicker_Date.Size = new System.Drawing.Size(622, 44);
 			this.dateTimePicker_Date.TabIndex = 0;
 			this.dateTimePicker_Date.ValueChanged += new System.EventHandler(this.dateTimePicker_Date_ValueChanged);
 			// 
 			// button_AddCharge
 			// 
+			this.button_AddCharge.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.button_AddCharge.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.button_AddCharge.Location = new System.Drawing.Point(751, 632);
+			this.button_AddCharge.Location = new System.Drawing.Point(733, 610);
 			this.button_AddCharge.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.button_AddCharge.Name = "button_AddCharge";
-			this.button_AddCharge.Size = new System.Drawing.Size(200, 69);
+			this.button_AddCharge.Size = new System.Drawing.Size(180, 55);
 			this.button_AddCharge.TabIndex = 9;
 			this.button_AddCharge.Text = "Add Charge";
 			this.button_AddCharge.UseVisualStyleBackColor = true;
@@ -200,11 +205,12 @@
 			// 
 			// button_CloseWindow
 			// 
+			this.button_CloseWindow.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.button_CloseWindow.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.button_CloseWindow.Location = new System.Drawing.Point(14, 632);
+			this.button_CloseWindow.Location = new System.Drawing.Point(14, 610);
 			this.button_CloseWindow.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.button_CloseWindow.Name = "button_CloseWindow";
-			this.button_CloseWindow.Size = new System.Drawing.Size(200, 69);
+			this.button_CloseWindow.Size = new System.Drawing.Size(180, 55);
 			this.button_CloseWindow.TabIndex = 8;
 			this.button_CloseWindow.Text = "Close Window";
 			this.button_CloseWindow.UseVisualStyleBackColor = true;
@@ -212,11 +218,12 @@
 			// 
 			// button_AllEvents
 			// 
+			this.button_AllEvents.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.button_AllEvents.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.button_AllEvents.Location = new System.Drawing.Point(751, 16);
+			this.button_AllEvents.Location = new System.Drawing.Point(733, 22);
 			this.button_AllEvents.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.button_AllEvents.Name = "button_AllEvents";
-			this.button_AllEvents.Size = new System.Drawing.Size(200, 69);
+			this.button_AllEvents.Size = new System.Drawing.Size(180, 55);
 			this.button_AllEvents.TabIndex = 1;
 			this.button_AllEvents.Text = "All Events";
 			this.button_AllEvents.UseVisualStyleBackColor = true;
@@ -225,10 +232,10 @@
 			// button_CreateEvent
 			// 
 			this.button_CreateEvent.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.button_CreateEvent.Location = new System.Drawing.Point(14, 545);
+			this.button_CreateEvent.Location = new System.Drawing.Point(14, 541);
 			this.button_CreateEvent.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.button_CreateEvent.Name = "button_CreateEvent";
-			this.button_CreateEvent.Size = new System.Drawing.Size(200, 69);
+			this.button_CreateEvent.Size = new System.Drawing.Size(180, 55);
 			this.button_CreateEvent.TabIndex = 4;
 			this.button_CreateEvent.Text = "Create New Event";
 			this.button_CreateEvent.UseVisualStyleBackColor = true;
@@ -237,10 +244,10 @@
 			// button_DeleteEvent
 			// 
 			this.button_DeleteEvent.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.button_DeleteEvent.Location = new System.Drawing.Point(259, 545);
+			this.button_DeleteEvent.Location = new System.Drawing.Point(254, 541);
 			this.button_DeleteEvent.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.button_DeleteEvent.Name = "button_DeleteEvent";
-			this.button_DeleteEvent.Size = new System.Drawing.Size(200, 69);
+			this.button_DeleteEvent.Size = new System.Drawing.Size(180, 55);
 			this.button_DeleteEvent.TabIndex = 5;
 			this.button_DeleteEvent.Text = "Delete Event";
 			this.button_DeleteEvent.UseVisualStyleBackColor = true;
@@ -259,10 +266,11 @@
 			// 
 			// label_Total
 			// 
+			this.label_Total.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.label_Total.AutoSize = true;
 			this.label_Total.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.label_Total.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-			this.label_Total.Location = new System.Drawing.Point(641, 483);
+			this.label_Total.Location = new System.Drawing.Point(603, 483);
 			this.label_Total.Name = "label_Total";
 			this.label_Total.Size = new System.Drawing.Size(110, 39);
 			this.label_Total.TabIndex = 20;
@@ -280,9 +288,10 @@
 			// 
 			// textBox_Total
 			// 
+			this.textBox_Total.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.textBox_Total.Enabled = false;
 			this.textBox_Total.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.textBox_Total.Location = new System.Drawing.Point(776, 483);
+			this.textBox_Total.Location = new System.Drawing.Point(738, 483);
 			this.textBox_Total.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.textBox_Total.Name = "textBox_Total";
 			this.textBox_Total.Size = new System.Drawing.Size(175, 38);
@@ -292,11 +301,12 @@
 			// 
 			// button_EditEvent
 			// 
+			this.button_EditEvent.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.button_EditEvent.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.button_EditEvent.Location = new System.Drawing.Point(503, 545);
+			this.button_EditEvent.Location = new System.Drawing.Point(491, 541);
 			this.button_EditEvent.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.button_EditEvent.Name = "button_EditEvent";
-			this.button_EditEvent.Size = new System.Drawing.Size(200, 69);
+			this.button_EditEvent.Size = new System.Drawing.Size(180, 55);
 			this.button_EditEvent.TabIndex = 6;
 			this.button_EditEvent.Text = "Edit Event";
 			this.button_EditEvent.UseVisualStyleBackColor = true;
@@ -304,11 +314,12 @@
 			// 
 			// button_WaitList
 			// 
+			this.button_WaitList.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.button_WaitList.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.button_WaitList.Location = new System.Drawing.Point(751, 545);
+			this.button_WaitList.Location = new System.Drawing.Point(733, 541);
 			this.button_WaitList.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.button_WaitList.Name = "button_WaitList";
-			this.button_WaitList.Size = new System.Drawing.Size(200, 69);
+			this.button_WaitList.Size = new System.Drawing.Size(180, 55);
 			this.button_WaitList.TabIndex = 7;
 			this.button_WaitList.Text = "Event Waitlist";
 			this.button_WaitList.UseVisualStyleBackColor = true;
@@ -320,7 +331,7 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
 			this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(231)))), ((int)(((byte)(206)))));
-			this.ClientSize = new System.Drawing.Size(966, 709);
+			this.ClientSize = new System.Drawing.Size(928, 678);
 			this.Controls.Add(this.button_WaitList);
 			this.Controls.Add(this.button_EditEvent);
 			this.Controls.Add(this.textBox_Total);
