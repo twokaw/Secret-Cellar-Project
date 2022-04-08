@@ -311,7 +311,7 @@ namespace pos_core_api.ORM
             cmd.Parameters.Add(new MySqlParameter("tax_exempt", transaction.TaxExempt));
             cmd.Parameters.Add(new MySqlParameter("discount", transaction.Discount));
             cmd.Parameters.Add(new MySqlParameter("shipping", transaction.Shipping));
-            cmd.Parameters.Add(new MySqlParameter("tranType", transaction.TranType ));
+            cmd.Parameters.Add(new MySqlParameter("tranType", transaction.TranType));
 
             try
             {
