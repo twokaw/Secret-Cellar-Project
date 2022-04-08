@@ -311,7 +311,7 @@ namespace pos_core_api.ORM
             cmd.Parameters.Add(new MySqlParameter("tax_exempt", transaction.TaxExempt));
             cmd.Parameters.Add(new MySqlParameter("discount", transaction.Discount));
             cmd.Parameters.Add(new MySqlParameter("shipping", transaction.Shipping));
-            cmd.Parameters.Add(new MySqlParameter("tranType", transaction.TranType ));
+            cmd.Parameters.Add(new MySqlParameter("tranType", transaction.TranType));
 
             try
             {
@@ -412,8 +412,8 @@ namespace pos_core_api.ORM
         {
             using MySqlCommand cmd = db.CreateCommand(@"
                 UPDATE transaction_items
-                SET    sold_qty     = GREATER(@sold_qty, 0),
-                       Refunded_Qty = GREATER(@Refunded_Qty, 0)
+                SET    sold_qty     = GREATEST(@sold_qty, 0),
+                       Refunded_Qty = GREATEST(@Refunded_Qty, 0)
                 WHERE  receiptID = @receiptID
                 AND    inventoryID = @inventoryID
             ");

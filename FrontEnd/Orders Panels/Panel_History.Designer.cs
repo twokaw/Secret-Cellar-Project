@@ -41,22 +41,23 @@ namespace SecretCellar.Orders_Panels {
             this.btn_print = new System.Windows.Forms.Button();
             this.lstbox_customer = new System.Windows.Forms.ListBox();
             this.transaction_dataGrid = new System.Windows.Forms.DataGridView();
+            this.trans_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.trans_date = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.trans_total = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lbl_end = new System.Windows.Forms.Label();
             this.end_dateTime = new System.Windows.Forms.DateTimePicker();
             this.lbl_start = new System.Windows.Forms.Label();
             this.start_dateTime = new System.Windows.Forms.DateTimePicker();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btn_Returns = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.trans_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.trans_date = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.trans_total = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgv_Items = new System.Windows.Forms.DataGridView();
+            this.LblLastRefund = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.dgv_Items = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxPartId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxPartName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxPartQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btn_Returns = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.transaction_dataGrid)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_Items)).BeginInit();
@@ -173,8 +174,38 @@ namespace SecretCellar.Orders_Panels {
             this.transaction_dataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.transaction_dataGrid.Size = new System.Drawing.Size(490, 700);
             this.transaction_dataGrid.TabIndex = 18;
-            this.transaction_dataGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.transaction_dataGrid_CellContentClick);
             this.transaction_dataGrid.SelectionChanged += new System.EventHandler(this.transaction_dataGrid_SelectionChanged);
+            // 
+            // trans_id
+            // 
+            this.trans_id.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.trans_id.DataPropertyName = "trans_id";
+            this.trans_id.HeaderText = "Id";
+            this.trans_id.MinimumWidth = 100;
+            this.trans_id.Name = "trans_id";
+            this.trans_id.ReadOnly = true;
+            // 
+            // trans_date
+            // 
+            this.trans_date.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.trans_date.DataPropertyName = "trans_date";
+            this.trans_date.HeaderText = "Date";
+            this.trans_date.MinimumWidth = 100;
+            this.trans_date.Name = "trans_date";
+            this.trans_date.ReadOnly = true;
+            this.trans_date.Width = 103;
+            // 
+            // trans_total
+            // 
+            this.trans_total.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.trans_total.DataPropertyName = "trans_total";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.trans_total.DefaultCellStyle = dataGridViewCellStyle3;
+            this.trans_total.FillWeight = 81.47208F;
+            this.trans_total.HeaderText = "Total";
+            this.trans_total.MinimumWidth = 80;
+            this.trans_total.Name = "trans_total";
+            this.trans_total.ReadOnly = true;
             // 
             // lbl_end
             // 
@@ -230,6 +261,7 @@ namespace SecretCellar.Orders_Panels {
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(231)))), ((int)(((byte)(206)))));
+            this.panel1.Controls.Add(this.LblLastRefund);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.dgv_Items);
             this.panel1.Controls.Add(this.btn_Returns);
@@ -249,59 +281,28 @@ namespace SecretCellar.Orders_Panels {
             this.panel1.Size = new System.Drawing.Size(1454, 831);
             this.panel1.TabIndex = 26;
             // 
-            // btn_Returns
+            // LblLastRefund
             // 
-            this.btn_Returns.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_Returns.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_Returns.Location = new System.Drawing.Point(1199, 761);
-            this.btn_Returns.Margin = new System.Windows.Forms.Padding(4);
-            this.btn_Returns.Name = "btn_Returns";
-            this.btn_Returns.Size = new System.Drawing.Size(226, 44);
-            this.btn_Returns.TabIndex = 27;
-            this.btn_Returns.Text = "Return";
-            this.btn_Returns.UseVisualStyleBackColor = true;
-            this.btn_Returns.Click += new System.EventHandler(this.btn_Returns_Click);
+            this.LblLastRefund.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblLastRefund.ForeColor = System.Drawing.Color.DarkRed;
+            this.LblLastRefund.Location = new System.Drawing.Point(863, 714);
+            this.LblLastRefund.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblLastRefund.Name = "LblLastRefund";
+            this.LblLastRefund.Size = new System.Drawing.Size(572, 36);
+            this.LblLastRefund.TabIndex = 30;
             // 
-            // label1
+            // label2
             // 
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(31, 65);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(301, 36);
-            this.label1.TabIndex = 26;
-            this.label1.Text = "Customer or Receipt Id";
-            // 
-            // trans_id
-            // 
-            this.trans_id.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.trans_id.DataPropertyName = "trans_id";
-            this.trans_id.HeaderText = "Id";
-            this.trans_id.MinimumWidth = 100;
-            this.trans_id.Name = "trans_id";
-            this.trans_id.ReadOnly = true;
-            // 
-            // trans_date
-            // 
-            this.trans_date.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.trans_date.DataPropertyName = "trans_date";
-            this.trans_date.HeaderText = "Date";
-            this.trans_date.MinimumWidth = 100;
-            this.trans_date.Name = "trans_date";
-            this.trans_date.ReadOnly = true;
-            this.trans_date.Width = 103;
-            // 
-            // trans_total
-            // 
-            this.trans_total.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.trans_total.DataPropertyName = "trans_total";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.trans_total.DefaultCellStyle = dataGridViewCellStyle3;
-            this.trans_total.FillWeight = 81.47208F;
-            this.trans_total.HeaderText = "Total";
-            this.trans_total.MinimumWidth = 80;
-            this.trans_total.Name = "trans_total";
-            this.trans_total.ReadOnly = true;
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(855, 72);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(580, 29);
+            this.label2.TabIndex = 29;
+            this.label2.Text = "Order Items";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // dgv_Items
             // 
@@ -362,21 +363,8 @@ namespace SecretCellar.Orders_Panels {
             this.dgv_Items.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(51)))), ((int)(((byte)(69)))));
             this.dgv_Items.RowTemplate.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.Ivory;
             this.dgv_Items.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv_Items.Size = new System.Drawing.Size(575, 641);
+            this.dgv_Items.Size = new System.Drawing.Size(575, 596);
             this.dgv_Items.TabIndex = 28;
-            // 
-            // label2
-            // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(855, 72);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(580, 29);
-            this.label2.TabIndex = 29;
-            this.label2.Text = "Order Items";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // dataGridViewTextBoxPartId
             // 
@@ -387,6 +375,7 @@ namespace SecretCellar.Orders_Panels {
             this.dataGridViewTextBoxPartId.Name = "dataGridViewTextBoxPartId";
             this.dataGridViewTextBoxPartId.ReadOnly = true;
             this.dataGridViewTextBoxPartId.Visible = false;
+            this.dataGridViewTextBoxPartId.Width = 150;
             // 
             // dataGridViewTextBoxPartName
             // 
@@ -420,6 +409,29 @@ namespace SecretCellar.Orders_Panels {
             this.dataGridViewTextBoxPartQty.ReadOnly = true;
             this.dataGridViewTextBoxPartQty.Width = 88;
             // 
+            // btn_Returns
+            // 
+            this.btn_Returns.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_Returns.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_Returns.Location = new System.Drawing.Point(1199, 761);
+            this.btn_Returns.Margin = new System.Windows.Forms.Padding(4);
+            this.btn_Returns.Name = "btn_Returns";
+            this.btn_Returns.Size = new System.Drawing.Size(226, 44);
+            this.btn_Returns.TabIndex = 27;
+            this.btn_Returns.Text = "Return";
+            this.btn_Returns.UseVisualStyleBackColor = true;
+            this.btn_Returns.Click += new System.EventHandler(this.btn_Returns_Click);
+            // 
+            // label1
+            // 
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(31, 65);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(301, 36);
+            this.label1.TabIndex = 26;
+            this.label1.Text = "Customer or Receipt Id";
+            // 
             // Panel_History
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(144F, 144F);
@@ -429,6 +441,7 @@ namespace SecretCellar.Orders_Panels {
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Panel_History";
             this.Size = new System.Drawing.Size(1454, 831);
+            this.VisibleChanged += new System.EventHandler(this.Panel_History_VisibleChanged);
             ((System.ComponentModel.ISupportInitialize)(this.transaction_dataGrid)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -460,5 +473,6 @@ namespace SecretCellar.Orders_Panels {
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxPartName;
         private System.Windows.Forms.DataGridViewTextBoxColumn Price;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxPartQty;
+        private System.Windows.Forms.Label LblLastRefund;
     }
 }

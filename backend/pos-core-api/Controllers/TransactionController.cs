@@ -179,7 +179,7 @@ namespace WebApi.Controllers
                 if (qty == 0)
                     return BadRequest("Invalid Qty: 0");
 
-                Transaction transaction = DataAccess.Instance.Transaction.GetTransaction(receiptId, false, false);
+                Transaction transaction = DataAccess.Instance.Transaction.GetTransaction(receiptId, true, false);
 
                 if (transaction == null)
                     return BadRequest("Missing Transaction");

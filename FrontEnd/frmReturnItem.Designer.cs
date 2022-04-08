@@ -113,6 +113,7 @@ namespace SecretCellar
             this.TxtQty.TabIndex = 2;
             this.TxtQty.Text = "1";
             this.TxtQty.TextChanged += new System.EventHandler(this.TxtQty_TextChanged);
+            this.TxtQty.Enter += new System.EventHandler(this.TxtQty_Enter);
             this.TxtQty.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtQty_KeyPress);
             // 
             // LblQty
@@ -238,6 +239,7 @@ namespace SecretCellar
             this.TxtFee.TabIndex = 18;
             this.TxtFee.Text = "0.00";
             this.TxtFee.TextChanged += new System.EventHandler(this.TxtFee_TextChanged);
+            this.TxtFee.Enter += new System.EventHandler(this.TxtFee_Enter);
             // 
             // frmReturnItem
             // 
@@ -264,10 +266,10 @@ namespace SecretCellar
             this.Controls.Add(this.label1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmReturnItem";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Return";
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
 
         #endregion
