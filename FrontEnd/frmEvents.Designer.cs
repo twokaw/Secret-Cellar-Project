@@ -270,7 +270,7 @@
 			this.label_Total.AutoSize = true;
 			this.label_Total.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.label_Total.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-			this.label_Total.Location = new System.Drawing.Point(603, 483);
+			this.label_Total.Location = new System.Drawing.Point(622, 483);
 			this.label_Total.Name = "label_Total";
 			this.label_Total.Size = new System.Drawing.Size(110, 39);
 			this.label_Total.TabIndex = 20;
@@ -279,7 +279,7 @@
 			// textBox_Quantity
 			// 
 			this.textBox_Quantity.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.textBox_Quantity.Location = new System.Drawing.Point(294, 483);
+			this.textBox_Quantity.Location = new System.Drawing.Point(310, 483);
 			this.textBox_Quantity.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.textBox_Quantity.Name = "textBox_Quantity";
 			this.textBox_Quantity.Size = new System.Drawing.Size(175, 38);
