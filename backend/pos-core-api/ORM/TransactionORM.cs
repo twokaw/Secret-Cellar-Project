@@ -50,6 +50,31 @@ namespace pos_core_api.ORM
             }
         }
 
+        public List<Transaction> GetTransactions(List<Transaction.TranactionType> TranTypes, DateTime start, DateTime end, bool includeItems = true, bool includePayments = true)
+        {
+            MySqlCommand cmd = db.CreateCommand(SQLGET);
+
+            if (start > DateTime.MinValue)
+            {
+                cmd.Parameters.Add(new MySqlParameter("start", start));
+                cmd.CommandText += " WHERE sold_datetime >= @start";
+
+                if (end >= start)
+                {
+                    cmd.CommandText += " AND sold_datetime <= @end";
+                    cmd.Parameters.Add(new MySqlParameter("end", end));
+                }
+            }
+            try
+            {
+                return GetTransactions(cmd, includeItems, includePayments);
+            }
+            finally
+            {
+                db.CloseCommand(cmd);
+            }
+        }
+
         public Transaction GetTransaction(uint invoiceID, bool includeItems = true, bool includePayments = true)
         {
             MySqlCommand cmd = db.CreateCommand(@$"
@@ -311,7 +336,7 @@ namespace pos_core_api.ORM
             cmd.Parameters.Add(new MySqlParameter("tax_exempt", transaction.TaxExempt));
             cmd.Parameters.Add(new MySqlParameter("discount", transaction.Discount));
             cmd.Parameters.Add(new MySqlParameter("shipping", transaction.Shipping));
-            cmd.Parameters.Add(new MySqlParameter("tranType", transaction.TranType ));
+            cmd.Parameters.Add(new MySqlParameter("tranType", transaction.TranType));
 
             try
             {
@@ -412,8 +437,8 @@ namespace pos_core_api.ORM
         {
             using MySqlCommand cmd = db.CreateCommand(@"
                 UPDATE transaction_items
-                SET    sold_qty     = GREATER(@sold_qty, 0),
-                       Refunded_Qty = GREATER(@Refunded_Qty, 0)
+                SET    sold_qty     = GREATEST(@sold_qty, 0),
+                       Refunded_Qty = GREATEST(@Refunded_Qty, 0)
                 WHERE  receiptID = @receiptID
                 AND    inventoryID = @inventoryID
             ");
@@ -520,9 +545,6 @@ namespace pos_core_api.ORM
                      Amount = @Amount
                 WHERE PayID = @PayID
             ";
-
-            //  TODO: Remove payments that are removed
-
             
             foreach (Payment pay in transaction.Payments)
             {

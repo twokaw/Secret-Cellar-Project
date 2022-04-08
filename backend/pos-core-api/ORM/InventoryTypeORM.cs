@@ -14,7 +14,7 @@ namespace pos_core_api.ORM
         /// <summary>
         /// Initializes a new database connection to be used in this controller.
         /// </summary>
-        readonly DbConn db = new DbConn();
+        readonly DbConn db = new();
 
 
         /// <summary>
@@ -23,12 +23,11 @@ namespace pos_core_api.ORM
         /// <returns>list of type objects.</returns>
         public List<InventoryType> Get()
         {
-            List<InventoryType> types = new List<InventoryType>();
+            List<InventoryType> types = new();
             MySqlCommand cmd = db.CreateCommand("SELECT * FROM V_type");
 
             try
             {
-                
                 using MySqlDataReader reader = cmd.ExecuteReader();
                 types = FetchType(reader);
             }
