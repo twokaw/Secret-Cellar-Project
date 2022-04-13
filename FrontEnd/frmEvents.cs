@@ -98,36 +98,44 @@ namespace SecretCellar
         }
 
         private void button_AddCharge_Click(object sender, EventArgs e) {
-            if (dataGridView_Events.SelectedRows.Count > 0) {
-                //GET THE FIRST SELECTED ROW
-                DataGridViewCellCollection selectedRow = dataGridView_Events.SelectedRows[0].Cells;
+            if (dataGridView_Events.SelectedRows.Count == 0) { return; }
+            
+            //GET THE FIRST SELECTED ROW
+            DataGridViewCellCollection selectedRow = dataGridView_Events.SelectedRows[0].Cells;
 
-                //TRY TO PARSE THE TEXT IN THE QUANTITY FIELD AS A UINT
-                if (!uint.TryParse(textBox_Quantity.Text, out uint quantity)) { MessageBox.Show("Quantity is not a valid number.", "Error"); return; }
+            //TRY TO PARSE THE TEXT IN THE QUANTITY FIELD AS A UINT
+            if (!uint.TryParse(textBox_Quantity.Text, out uint quantity)) { MessageBox.Show("Quantity is not a valid number.", "Error"); return; }
 
-                //IF THE QUANTITY TO ADD IS MORE THAN WHAT IS AVAILABLE, SHOW AN ERROR
-                if (quantity > uint.Parse(selectedRow["Qty"].Value.ToString())) {
-                    MessageBox.Show("Quantity to add is more than what is available.", "Error");
-                    return;
-                }
+            if (!uint.TryParse(selectedRow["Id"].Value.ToString(), out uint selectedEventId)) { MessageBox.Show("Event Id is invalid", "Error"); return; }
 
-                //GET THE SELECTED ROW'S BARCODE AND CONVERT IT TO AN ITEM
-                Item item = Transaction.ConvertInvtoItem(DataAccess.instance.GetItem(selectedRow["Barcode"].Value.ToString()), quantity);
-                item.TypeID = DataAccess.instance.GetInventoryType("EVENT").TypeId;
+            PreviousEventData selectedEvent = DataAccess.instance.GetPreviousEventData(selectedEventId);
 
-                //UPDATE THE PRICE OF THE ITEM WITH THE SELECTED ROW'S PRICE
-                if (dataGridView_Events.SelectedRows[0].Cells["PreorderPrice"].Style.ForeColor == Color.Red) {
-                    item.Price = double.Parse(selectedRow["PreorderPrice"].Value.ToString().Substring(1));
-                }
-                else {
-                    item.Price = double.Parse(selectedRow["AtDoorPrice"].Value.ToString().Substring(1));
-                }
+            if (!uint.TryParse(selectedRow["Qty"].Value.ToString(), out uint selectedEventQuantity)) { MessageBox.Show("Event Quantity is invalid", "Error"); return; }
 
-                //ADD THE ITEM TO THE TRANSACTION
-                _transaction.Items.Add(item);
+            double amountLeft = selectedEventQuantity - (selectedEvent.PreOrderSold + selectedEvent.AtDoorSold);
 
-                this.Close();
-			}
+            //IF THE QUANTITY TO ADD IS MORE THAN WHAT IS AVAILABLE, SHOW AN ERROR
+            if (quantity > amountLeft) {
+                MessageBox.Show($"Quantity to add is more than what is available. There are only {amountLeft} available.", "Error");
+                return;
+            }
+
+            //GET THE SELECTED ROW'S BARCODE AND CONVERT IT TO AN ITEM
+            Item item = Transaction.ConvertInvtoItem(DataAccess.instance.GetItem(selectedRow["Barcode"].Value.ToString()), quantity);
+            item.TypeID = DataAccess.instance.GetInventoryType("EVENT").TypeId;
+
+            //UPDATE THE PRICE OF THE ITEM WITH THE SELECTED ROW'S PRICE
+            if (dataGridView_Events.SelectedRows[0].Cells["PreorderPrice"].Style.ForeColor == Color.Red) {
+                item.Price = double.Parse(selectedRow["PreorderPrice"].Value.ToString().Substring(1));
+            }
+            else {
+                item.Price = double.Parse(selectedRow["AtDoorPrice"].Value.ToString().Substring(1));
+            }
+
+            //ADD THE ITEM TO THE TRANSACTION
+            _transaction.Items.Add(item);
+
+            this.Close();
         }
 
         private void button_DeleteEvent_Click(object sender, EventArgs e) {
