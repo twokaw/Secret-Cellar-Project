@@ -50,7 +50,7 @@ namespace SecretCellar.Orders_Panels {
             // 
             this.textBox_CustomerName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox_CustomerName.Location = new System.Drawing.Point(13, 10);
-            this.textBox_CustomerName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_CustomerName.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_CustomerName.Name = "textBox_CustomerName";
             this.textBox_CustomerName.Size = new System.Drawing.Size(496, 35);
             this.textBox_CustomerName.TabIndex = 22;
@@ -67,7 +67,7 @@ namespace SecretCellar.Orders_Panels {
             this.lst_customer.FormattingEnabled = true;
             this.lst_customer.ItemHeight = 29;
             this.lst_customer.Location = new System.Drawing.Point(13, 66);
-            this.lst_customer.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.lst_customer.Margin = new System.Windows.Forms.Padding(4);
             this.lst_customer.Name = "lst_customer";
             this.lst_customer.Size = new System.Drawing.Size(496, 352);
             this.lst_customer.TabIndex = 21;
@@ -78,7 +78,7 @@ namespace SecretCellar.Orders_Panels {
             this.btn_prod_delete.AutoSize = true;
             this.btn_prod_delete.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_prod_delete.Location = new System.Drawing.Point(549, 420);
-            this.btn_prod_delete.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_prod_delete.Margin = new System.Windows.Forms.Padding(4);
             this.btn_prod_delete.Name = "btn_prod_delete";
             this.btn_prod_delete.Size = new System.Drawing.Size(178, 58);
             this.btn_prod_delete.TabIndex = 20;
@@ -92,7 +92,7 @@ namespace SecretCellar.Orders_Panels {
             this.btn_prod_add.AutoSize = true;
             this.btn_prod_add.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_prod_add.Location = new System.Drawing.Point(1058, 420);
-            this.btn_prod_add.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_prod_add.Margin = new System.Windows.Forms.Padding(4);
             this.btn_prod_add.Name = "btn_prod_add";
             this.btn_prod_add.Size = new System.Drawing.Size(184, 58);
             this.btn_prod_add.TabIndex = 19;
@@ -104,7 +104,7 @@ namespace SecretCellar.Orders_Panels {
             // 
             this.txt_prod_name.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_prod_name.Location = new System.Drawing.Point(742, 15);
-            this.txt_prod_name.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txt_prod_name.Margin = new System.Windows.Forms.Padding(4);
             this.txt_prod_name.Name = "txt_prod_name";
             this.txt_prod_name.Size = new System.Drawing.Size(498, 35);
             this.txt_prod_name.TabIndex = 18;
@@ -124,6 +124,7 @@ namespace SecretCellar.Orders_Panels {
             // 
             this.request_dataGrid.AllowUserToAddRows = false;
             this.request_dataGrid.AllowUserToDeleteRows = false;
+            this.request_dataGrid.AllowUserToResizeRows = false;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(51)))), ((int)(((byte)(69)))));
@@ -133,6 +134,7 @@ namespace SecretCellar.Orders_Panels {
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.request_dataGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.request_dataGrid.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.request_dataGrid.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(237)))), ((int)(((byte)(196)))));
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
@@ -158,7 +160,7 @@ namespace SecretCellar.Orders_Panels {
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.request_dataGrid.DefaultCellStyle = dataGridViewCellStyle3;
             this.request_dataGrid.Location = new System.Drawing.Point(550, 66);
-            this.request_dataGrid.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.request_dataGrid.Margin = new System.Windows.Forms.Padding(4);
             this.request_dataGrid.Name = "request_dataGrid";
             this.request_dataGrid.ReadOnly = true;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
@@ -251,7 +253,7 @@ namespace SecretCellar.Orders_Panels {
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoSize = true;
             this.Controls.Add(this.panel1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Panel_CustomerRequest";
             this.Size = new System.Drawing.Size(1254, 494);
             ((System.ComponentModel.ISupportInitialize)(this.request_dataGrid)).EndInit();

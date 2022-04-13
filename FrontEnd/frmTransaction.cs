@@ -434,5 +434,10 @@ namespace SecretCellar
         {
             Application.Exit();
         }
+
+        private void txtBarcode_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

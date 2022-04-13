@@ -205,7 +205,7 @@ namespace pos_core_api.ORM
                 SELECT *
                 FROM v_transaction_items
                 WHERE receiptID = @receiptID
-                ORDER BY InventoryID
+                ORDER BY InventoryID, sold_price
             ");
 
             cmd.Parameters.Add(new MySqlParameter("receiptID", transaction.InvoiceID));
@@ -216,7 +216,7 @@ namespace pos_core_api.ORM
                 Item item = null;
                 while (itemReader.Read())
                 {
-                    if (item?.Id != itemReader.GetUInt32("inventoryid"))
+                    if (item?.Id != itemReader.GetUInt32("inventoryid") || item?.Price != itemReader.GetUInt32("sold_price"))
                     {
                         item = new Item()
                         {
