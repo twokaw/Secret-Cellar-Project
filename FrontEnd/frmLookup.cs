@@ -359,18 +359,18 @@ namespace SecretCellar
 
         private void btn_clear_info_Click(object sender, EventArgs e)
         {
-            btn_update.Text = "New Item";
+            btn_update.Text = "";
             txtName.Text = "";
             cboType.SelectedIndex = 1;
             txtBarcode.Text = "";
             cbo_Supplier.SelectedIndex = 1;
-            txt_qty.Text = "";
+            txt_qty.Text = "0";
             txtPrice.Text = "";
             txt_net_price.Text = "";
-            txtProd_Qty.Text = "";
-            txt_min_qty.Text = "";
-            txt_order_qty.Text = "";
-            txt_max_qty.Text = "";
+            txtProd_Qty.Text = "0";
+            txt_min_qty.Text = "0";
+            txt_order_qty.Text = "0";
+            txt_max_qty.Text = "0";
             chk_hide_item.Checked = false;
             txtName.Focus();
         }

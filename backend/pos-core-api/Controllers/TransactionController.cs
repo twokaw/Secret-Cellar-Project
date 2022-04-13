@@ -171,7 +171,7 @@ namespace WebApi.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpDelete("item/{receiptId}")]
-        public IActionResult DeleteItem(uint receiptId, uint itemid, int qty = -1, bool returnQty = false, bool restock = false)
+        public IActionResult DeleteItem(uint receiptId, uint itemid, int qty = -1, bool returnQty = false, bool restock = false, double restockFee = 0.0)
         {
 
             try
@@ -194,6 +194,17 @@ namespace WebApi.Controllers
 
                 if (item.NumSold < qty)
                     return BadRequest($"Insuffiencent receipt Qty {item.NumSold} < {qty}");
+
+                if (restockFee > 0.0)
+                {
+                    Transaction prevTrans = DataAccess.Instance.Transaction.GetTransaction(receiptId, true, false);
+
+                    Inventory i = DataAccess.Instance.Inventory.GetInv("RestockFee");
+                    i.Price = restockFee;
+
+                    transaction.Add(i);
+                    DataAccess.Instance.Transaction.UpdateTransaction(transaction, prevTrans);
+                }
 
                 qty = (qty == -1) ? (int)item.NumSold : qty;
 

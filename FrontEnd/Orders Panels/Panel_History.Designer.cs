@@ -118,6 +118,7 @@ namespace SecretCellar.Orders_Panels {
             // 
             this.transaction_dataGrid.AllowUserToAddRows = false;
             this.transaction_dataGrid.AllowUserToDeleteRows = false;
+            this.transaction_dataGrid.AllowUserToResizeRows = false;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -126,6 +127,7 @@ namespace SecretCellar.Orders_Panels {
             this.transaction_dataGrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.transaction_dataGrid.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.transaction_dataGrid.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.transaction_dataGrid.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(237)))), ((int)(((byte)(196)))));
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
@@ -150,6 +152,7 @@ namespace SecretCellar.Orders_Panels {
             this.transaction_dataGrid.DefaultCellStyle = dataGridViewCellStyle4;
             this.transaction_dataGrid.Location = new System.Drawing.Point(352, 105);
             this.transaction_dataGrid.Margin = new System.Windows.Forms.Padding(4);
+            this.transaction_dataGrid.MultiSelect = false;
             this.transaction_dataGrid.Name = "transaction_dataGrid";
             this.transaction_dataGrid.ReadOnly = true;
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
@@ -308,6 +311,7 @@ namespace SecretCellar.Orders_Panels {
             // 
             this.dgv_Items.AllowUserToAddRows = false;
             this.dgv_Items.AllowUserToDeleteRows = false;
+            this.dgv_Items.AllowUserToResizeRows = false;
             dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
             dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -316,6 +320,7 @@ namespace SecretCellar.Orders_Panels {
             this.dgv_Items.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
             this.dgv_Items.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.dgv_Items.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgv_Items.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(237)))), ((int)(((byte)(196)))));
             dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
