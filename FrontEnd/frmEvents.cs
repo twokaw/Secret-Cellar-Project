@@ -106,17 +106,11 @@ namespace SecretCellar
             //TRY TO PARSE THE TEXT IN THE QUANTITY FIELD AS A UINT
             if (!uint.TryParse(textBox_Quantity.Text, out uint quantity)) { MessageBox.Show("Quantity is not a valid number.", "Error"); return; }
 
-            if (!uint.TryParse(selectedRow["Id"].Value.ToString(), out uint selectedEventId)) { MessageBox.Show("Event Id is invalid", "Error"); return; }
-
-            PreviousEventData selectedEvent = DataAccess.instance.GetPreviousEventData(selectedEventId);
-
+            //IF THE QUANTITY TO ADD IS MORE THAN WHAT IS AVAILABLE, SHOW AN ERROR
             if (!uint.TryParse(selectedRow["Qty"].Value.ToString(), out uint selectedEventQuantity)) { MessageBox.Show("Event Quantity is invalid", "Error"); return; }
 
-            double amountLeft = selectedEventQuantity - (selectedEvent.PreOrderSold + selectedEvent.AtDoorSold);
-
-            //IF THE QUANTITY TO ADD IS MORE THAN WHAT IS AVAILABLE, SHOW AN ERROR
-            if (quantity > amountLeft) {
-                MessageBox.Show($"Quantity to add is more than what is available. There are only {amountLeft} available.", "Error");
+            if (quantity > selectedEventQuantity) {
+                MessageBox.Show($"Quantity to add is more than what is available.", "Error");
                 return;
             }
 
@@ -178,7 +172,7 @@ namespace SecretCellar
                 eventName = x.Name,
                 preorderPrice = x.PreOrder.ToString("C"),
                 atDoorPrice = x.AtDoor.ToString("C"),
-                quantity = x.Qty
+                quantity = x.Qty - (DataAccess.instance.GetPreviousEventData(x.Id).PreOrderSold + DataAccess.instance.GetPreviousEventData(x.Id).AtDoorSold)
             })
             .Where(x => x.eventDate.Year <= dateTimePicker_Date.Value.Year
                     && dateTimePicker_Date.Value.Year <= x.eventDuration.Year
