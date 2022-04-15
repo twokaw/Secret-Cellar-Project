@@ -10,7 +10,7 @@ namespace pos_core_api.ORM
 {
     public class InventoryORM
     {
-        readonly DbConn db = new DbConn();
+        readonly DbConn db = new();
 
         /// <summary>
         /// Method that checks if the barcode already exist.
@@ -121,7 +121,7 @@ namespace pos_core_api.ORM
 
         public List<Inventory> FetchInventory(MySqlDataReader reader)
         {
-            List<Inventory> output = new List<Inventory>();
+            List<Inventory> output = new();
 
             Inventory outputItem = null;
             while (reader.Read())
@@ -146,7 +146,7 @@ namespace pos_core_api.ORM
                             ItemType = reader.IsDBNull("inventory_type_name") ? "" : reader.GetString("inventory_type_name"),
                             BottleDeposit = reader.IsDBNull("bottle_deposit") ? 0 : reader.GetDouble("bottle_deposit"),
                             IdTax = reader.IsDBNull("idTax") ? 0 : reader.GetUInt32("idTax"),
-                            Hidden = reader.IsDBNull("hidden") ? false : reader.GetBoolean("hidden"),
+                            Hidden = !reader.IsDBNull("hidden") && reader.GetBoolean("hidden"),
                             SalesTax = reader.IsDBNull("sales_tax") ? 0 : reader.GetDouble("sales_tax"),
                             LocalSalesTax = reader.IsDBNull("local_sales_tax") ? 0 : reader.GetDouble("local_sales_tax"),
                             InvMax = reader.IsDBNull("InvMax") ? 0 : reader.GetUInt32("InvMax"),

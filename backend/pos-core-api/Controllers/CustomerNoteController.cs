@@ -12,7 +12,7 @@ namespace WebApi.Controllers
     public class CustomerNoteController : ControllerBase
     {
 
-        private DataAccess da = new DataAccess();
+        private readonly DataAccess da = new ();
         // Get: api/CustomerNote
         [HttpGet]
         public IActionResult Get(uint typeID)
