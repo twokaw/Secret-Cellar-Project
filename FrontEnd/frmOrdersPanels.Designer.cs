@@ -24,6 +24,7 @@ namespace SecretCellar {
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent() {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmOrdersPanels));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tab_CustomerRequest = new System.Windows.Forms.TabPage();
             this.panel_CustomerRequest1 = new SecretCellar.Orders_Panels.Panel_CustomerRequest();
@@ -199,6 +200,7 @@ namespace SecretCellar {
             this.ClientSize = new System.Drawing.Size(1512, 1044);
             this.Controls.Add(this.btn_close);
             this.Controls.Add(this.tabControl1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(9);
             this.Name = "frmOrdersPanels";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;

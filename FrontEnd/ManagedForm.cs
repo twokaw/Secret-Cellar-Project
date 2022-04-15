@@ -138,12 +138,14 @@ namespace SecretCellar
 
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ManagedForm));
             this.SuspendLayout();
             // 
             // ManagedForm
             // 
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(231)))), ((int)(((byte)(206)))));
             this.ClientSize = new System.Drawing.Size(278, 244);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ManagedForm";
             this.Load += new System.EventHandler(this.ManagedForm_Load);
             this.ResumeLayout(false);
