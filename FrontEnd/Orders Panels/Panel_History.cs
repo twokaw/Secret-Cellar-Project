@@ -115,7 +115,7 @@ namespace SecretCellar.Orders_Panels {
                      part_Id = x.Id,
                      part_Name = x.Name,
                      part_Qty = x.NumSold,
-                     part_price = x.Price
+                     part_price = x.Price.ToString("C")
                  })
                    .ToList();
 
@@ -189,7 +189,7 @@ namespace SecretCellar.Orders_Panels {
 
             if(returnItem.ShowDialog() == DialogResult.OK  && returnItem.RefundQty > 0)
             {
-                DataAccess.instance.ReturnItem(SelectTransaction.InvoiceID, id, returnItem.RefundQty,  returnItem.Restock);
+                DataAccess.instance.ReturnItem(SelectTransaction.InvoiceID, id, returnItem.RefundQty,  returnItem.Restock, returnItem.RestockFee);
 
                 MessageBox.Show($"Refund for {returnItem.RefundQty} {i.Name } \n\nRefund amount: {returnItem.TotalRefundPrice:C}");
                 LblLastRefund.Text = $"Refund amount: { returnItem.TotalRefundPrice:C}";

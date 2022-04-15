@@ -184,6 +184,7 @@ namespace SecretCellar.Orders_Panels {
             // 
             this.custOrder_datagrid.AllowUserToAddRows = false;
             this.custOrder_datagrid.AllowUserToDeleteRows = false;
+            this.custOrder_datagrid.AllowUserToResizeRows = false;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(51)))), ((int)(((byte)(69)))));

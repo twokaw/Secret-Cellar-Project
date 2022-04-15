@@ -287,10 +287,11 @@ namespace SecretCellar
 
             return resp?.StatusCode == System.Net.HttpStatusCode.OK;
         }
-        public bool ReturnItem(uint invoiceId, uint itemId, uint returnQty, bool restock)
+
+        public bool ReturnItem(uint invoiceId, uint itemId, uint returnQty, bool restock, double restockFee)
         {
             Response resp = null;
-            web.DataDelete($"api/Transaction/item/{invoiceId}?itemId={itemId}&qty={returnQty}&returnqty=true&restock={restock}", resp);
+            web.DataDelete($"api/Transaction/item/{invoiceId}?itemId={itemId}&qty={returnQty}&returnqty=true&restock={restock}&restockFee={restockFee}", resp);
 
             return resp?.StatusCode == System.Net.HttpStatusCode.OK;
         }

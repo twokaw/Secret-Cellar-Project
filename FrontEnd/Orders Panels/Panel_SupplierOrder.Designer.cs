@@ -40,10 +40,6 @@ namespace SecretCellar.Orders_Panels {
             this.lbl_supplier = new System.Windows.Forms.Label();
             this.cbx_supplier = new System.Windows.Forms.ComboBox();
             this.supp_dataGrid = new System.Windows.Forms.DataGridView();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.chk_OnlyRequired = new System.Windows.Forms.CheckBox();
-            this.chk_ShowHidden = new System.Windows.Forms.CheckBox();
-            this.txt_supp_total = new SecretCellar.CurrencyBox();
             this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.barcode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -55,6 +51,10 @@ namespace SecretCellar.Orders_Panels {
             this.requestqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.RequiredQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.orderqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.chk_OnlyRequired = new System.Windows.Forms.CheckBox();
+            this.chk_ShowHidden = new System.Windows.Forms.CheckBox();
+            this.txt_supp_total = new SecretCellar.CurrencyBox();
             ((System.ComponentModel.ISupportInitialize)(this.supp_dataGrid)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -180,6 +180,7 @@ namespace SecretCellar.Orders_Panels {
             // 
             this.supp_dataGrid.AllowUserToAddRows = false;
             this.supp_dataGrid.AllowUserToDeleteRows = false;
+            this.supp_dataGrid.AllowUserToResizeRows = false;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(51)))), ((int)(((byte)(69)))));
@@ -189,6 +190,7 @@ namespace SecretCellar.Orders_Panels {
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.supp_dataGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.supp_dataGrid.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.supp_dataGrid.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(237)))), ((int)(((byte)(196)))));
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
@@ -246,66 +248,6 @@ namespace SecretCellar.Orders_Panels {
             this.supp_dataGrid.Size = new System.Drawing.Size(1197, 741);
             this.supp_dataGrid.TabIndex = 15;
             this.supp_dataGrid.SelectionChanged += new System.EventHandler(this.supp_dataGrid_SelectionChanged);
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(231)))), ((int)(((byte)(206)))));
-            this.panel1.Controls.Add(this.chk_OnlyRequired);
-            this.panel1.Controls.Add(this.chk_ShowHidden);
-            this.panel1.Controls.Add(this.lbl_qty);
-            this.panel1.Controls.Add(this.btn_received);
-            this.panel1.Controls.Add(this.lbl_supp_total);
-            this.panel1.Controls.Add(this.btn_update);
-            this.panel1.Controls.Add(this.supp_dataGrid);
-            this.panel1.Controls.Add(this.txt_update_qty);
-            this.panel1.Controls.Add(this.cbx_supplier);
-            this.panel1.Controls.Add(this.lbl_order_date);
-            this.panel1.Controls.Add(this.lbl_supplier);
-            this.panel1.Controls.Add(this.dateTimePicker1);
-            this.panel1.Controls.Add(this.txt_supp_total);
-            this.panel1.Controls.Add(this.btn_print_supp);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1454, 831);
-            this.panel1.TabIndex = 27;
-            // 
-            // chk_OnlyRequired
-            // 
-            this.chk_OnlyRequired.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.chk_OnlyRequired.AutoSize = true;
-            this.chk_OnlyRequired.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chk_OnlyRequired.Location = new System.Drawing.Point(1247, 92);
-            this.chk_OnlyRequired.Name = "chk_OnlyRequired";
-            this.chk_OnlyRequired.Size = new System.Drawing.Size(190, 30);
-            this.chk_OnlyRequired.TabIndex = 28;
-            this.chk_OnlyRequired.Text = "Only Required";
-            this.chk_OnlyRequired.UseVisualStyleBackColor = true;
-            this.chk_OnlyRequired.CheckedChanged += new System.EventHandler(this.chk_OnlyRequired_CheckedChanged);
-            // 
-            // chk_ShowHidden
-            // 
-            this.chk_ShowHidden.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.chk_ShowHidden.AutoSize = true;
-            this.chk_ShowHidden.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chk_ShowHidden.Location = new System.Drawing.Point(1249, 20);
-            this.chk_ShowHidden.Name = "chk_ShowHidden";
-            this.chk_ShowHidden.Size = new System.Drawing.Size(179, 30);
-            this.chk_ShowHidden.TabIndex = 27;
-            this.chk_ShowHidden.Text = "Show Hidden";
-            this.chk_ShowHidden.UseVisualStyleBackColor = true;
-            this.chk_ShowHidden.CheckedChanged += new System.EventHandler(this.chk_ShowHidden_CheckedChanged);
-            // 
-            // txt_supp_total
-            // 
-            this.txt_supp_total.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.txt_supp_total.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_supp_total.Location = new System.Drawing.Point(1229, 668);
-            this.txt_supp_total.Margin = new System.Windows.Forms.Padding(4);
-            this.txt_supp_total.Name = "txt_supp_total";
-            this.txt_supp_total.Size = new System.Drawing.Size(210, 35);
-            this.txt_supp_total.TabIndex = 19;
-            this.txt_supp_total.Text = "0.00";
             // 
             // id
             // 
@@ -420,6 +362,66 @@ namespace SecretCellar.Orders_Panels {
             this.orderqty.Name = "orderqty";
             this.orderqty.ReadOnly = true;
             this.orderqty.Width = 147;
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(231)))), ((int)(((byte)(206)))));
+            this.panel1.Controls.Add(this.chk_OnlyRequired);
+            this.panel1.Controls.Add(this.chk_ShowHidden);
+            this.panel1.Controls.Add(this.lbl_qty);
+            this.panel1.Controls.Add(this.btn_received);
+            this.panel1.Controls.Add(this.lbl_supp_total);
+            this.panel1.Controls.Add(this.btn_update);
+            this.panel1.Controls.Add(this.supp_dataGrid);
+            this.panel1.Controls.Add(this.txt_update_qty);
+            this.panel1.Controls.Add(this.cbx_supplier);
+            this.panel1.Controls.Add(this.lbl_order_date);
+            this.panel1.Controls.Add(this.lbl_supplier);
+            this.panel1.Controls.Add(this.dateTimePicker1);
+            this.panel1.Controls.Add(this.txt_supp_total);
+            this.panel1.Controls.Add(this.btn_print_supp);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1454, 831);
+            this.panel1.TabIndex = 27;
+            // 
+            // chk_OnlyRequired
+            // 
+            this.chk_OnlyRequired.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.chk_OnlyRequired.AutoSize = true;
+            this.chk_OnlyRequired.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chk_OnlyRequired.Location = new System.Drawing.Point(1247, 92);
+            this.chk_OnlyRequired.Name = "chk_OnlyRequired";
+            this.chk_OnlyRequired.Size = new System.Drawing.Size(190, 30);
+            this.chk_OnlyRequired.TabIndex = 28;
+            this.chk_OnlyRequired.Text = "Only Required";
+            this.chk_OnlyRequired.UseVisualStyleBackColor = true;
+            this.chk_OnlyRequired.CheckedChanged += new System.EventHandler(this.chk_OnlyRequired_CheckedChanged);
+            // 
+            // chk_ShowHidden
+            // 
+            this.chk_ShowHidden.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.chk_ShowHidden.AutoSize = true;
+            this.chk_ShowHidden.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chk_ShowHidden.Location = new System.Drawing.Point(1249, 20);
+            this.chk_ShowHidden.Name = "chk_ShowHidden";
+            this.chk_ShowHidden.Size = new System.Drawing.Size(179, 30);
+            this.chk_ShowHidden.TabIndex = 27;
+            this.chk_ShowHidden.Text = "Show Hidden";
+            this.chk_ShowHidden.UseVisualStyleBackColor = true;
+            this.chk_ShowHidden.CheckedChanged += new System.EventHandler(this.chk_ShowHidden_CheckedChanged);
+            // 
+            // txt_supp_total
+            // 
+            this.txt_supp_total.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.txt_supp_total.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_supp_total.Location = new System.Drawing.Point(1229, 668);
+            this.txt_supp_total.Margin = new System.Windows.Forms.Padding(4);
+            this.txt_supp_total.Name = "txt_supp_total";
+            this.txt_supp_total.Size = new System.Drawing.Size(210, 35);
+            this.txt_supp_total.TabIndex = 19;
+            this.txt_supp_total.Text = "0.00";
             // 
             // Panel_SupplierOrder
             // 
