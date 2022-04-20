@@ -872,7 +872,6 @@ DROP TABLE IF EXISTS `employee`;
 CREATE TABLE `employee` (
   `emp_id` int NOT NULL AUTO_INCREMENT,
   `pin_number` int NOT NULL,
-  `admin` tinyint DEFAULT '0',
   `first_name` varchar(40) DEFAULT NULL,
   `last_name` varchar(40) NOT NULL,
   `email` varchar(100) DEFAULT NULL,
@@ -882,6 +881,7 @@ CREATE TABLE `employee` (
   `state` varchar(2) DEFAULT NULL,
   `zip` varchar(10) DEFAULT NULL,
   `phone` varchar(15) DEFAULT NULL,
+  `typeID` int NOT NULL,
   PRIMARY KEY (`emp_id`),
   UNIQUE KEY `emp_id_UNIQUE` (`emp_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -893,7 +893,7 @@ CREATE TABLE `employee` (
 
 LOCK TABLES `employee` WRITE;
 /*!40000 ALTER TABLE `employee` DISABLE KEYS */;
-INSERT INTO `employee` VALUES (0,1997613874,0,'Employee','',NULL,NULL,NULL,NULL,NULL,NULL,NULL),(1,123,1,'Lauren','Chalupsky-Cannon',NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `employee` VALUES (0,1997613874,'Employee','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,3),(1,123,'Lauren','Chalupsky-Cannon',NULL,NULL,NULL,NULL,NULL,NULL,NULL,1);
 /*!40000 ALTER TABLE `employee` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -941,6 +941,79 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+
+--
+-- Table structure for table `employeerole`
+--
+
+DROP TABLE IF EXISTS `employeerole`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `employeerole` (
+  `roleId` int NOT NULL AUTO_INCREMENT,
+  `roleName` varchar(255) NOT NULL,
+  `roleDescription` varchar(1000) DEFAULT NULL,
+  PRIMARY KEY (`roleId`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `employeerole`
+--
+
+LOCK TABLES `employeerole` WRITE;
+/*!40000 ALTER TABLE `employeerole` DISABLE KEYS */;
+INSERT INTO `employeerole` VALUES (1,'Lookup','Lookup give you the ability to lookup unknown items'),(2,'Employee Admin','Employee Admin give you the ability to add, delete, modify and change permissions for any employee'),(3,'Cash Drawer','Cash drawer give the ability to open the cash drawer at any time'),(4,'Orders','Orders gives you access to Customer and Vendor orders'),(5,'Event','Event gives you the ability to modify events'),(6,'Shipping','Shipping give you the ability to add shipping to an order'),(7,'Custom','Custom gives you the ability to add a custom item to a transaction'),(8,'Discount','Discount gives you the ability to add discounts to a transaction'),(9,'Customer','Customer give you the ability to add and edit customers'),(10,'Settings','Settings gives you access to hardware changes and other preferences');
+/*!40000 ALTER TABLE `employeerole` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `employeetype`
+--
+
+DROP TABLE IF EXISTS `employeetype`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `employeetype` (
+  `typeId` int NOT NULL AUTO_INCREMENT,
+  `typeName` varchar(255) NOT NULL,
+  PRIMARY KEY (`typeId`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `employeetype`
+--
+
+LOCK TABLES `employeetype` WRITE;
+/*!40000 ALTER TABLE `employeetype` DISABLE KEYS */;
+INSERT INTO `employeetype` VALUES (1,'admin'),(2,'manager'),(3,'cashier');
+/*!40000 ALTER TABLE `employeetype` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `employeetyperole`
+--
+
+DROP TABLE IF EXISTS `employeetyperole`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `employeetyperole` (
+  `typeId` int NOT NULL,
+  `roleId` int NOT NULL,
+  PRIMARY KEY (`typeId`,`roleId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `employeetyperole`
+--
+
+LOCK TABLES `employeetyperole` WRITE;
+/*!40000 ALTER TABLE `employeetyperole` DISABLE KEYS */;
+INSERT INTO `employeetyperole` VALUES (1,1),(1,2),(1,3),(1,4),(1,5),(1,6),(1,7),(1,8),(1,9),(1,10),(2,1),(2,2),(2,3),(2,4),(2,5),(2,6),(2,7),(2,8),(2,9),(2,10),(3,1),(3,2),(3,3),(3,4),(3,5),(3,6),(3,7),(3,8),(3,9),(3,10);
+/*!40000 ALTER TABLE `employeetyperole` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `event_waitlist`
@@ -1891,7 +1964,7 @@ CREATE TABLE `tablelastchanged` (
 
 LOCK TABLES `tablelastchanged` WRITE;
 /*!40000 ALTER TABLE `tablelastchanged` DISABLE KEYS */;
-INSERT INTO `tablelastchanged` VALUES (1,'2021-10-28 20:53:44.282790','Customer'),(2,'2022-01-18 18:19:47.682908','customerfavorite'),(3,'2021-11-04 22:54:30.875010','customernote'),(4,'2022-04-19 10:09:47.851481','customerorder'),(5,'2021-10-26 22:00:04.000000','customerorderhist'),(6,'2022-04-07 20:12:53.263323','customerorderitem'),(7,'2022-04-07 20:12:53.263323','customerorderitemhist'),(8,'2022-03-29 18:43:44.448582','discount'),(9,'2022-04-19 10:09:46.564359','discount_inventory'),(10,'2022-03-29 18:43:12.548936','discount_type'),(11,'2021-10-26 22:00:04.000000','employee'),(12,'2022-04-07 20:45:57.900933','events'),(13,'2022-04-19 10:09:46.546613','inventory_description'),(14,'2022-04-19 10:09:46.552064','inventory_price'),(15,'2021-10-26 22:00:04.000000','inventory_quantity'),(16,'2022-03-29 18:43:12.707558','inventory_type'),(17,'2021-10-26 22:00:04.000000','notetype'),(18,'2022-01-11 19:26:32.367966','paymentmethod'),(19,'2022-04-07 20:47:44.383596','payments'),(20,'2021-10-26 22:00:04.000000','printercode'),(21,'2021-10-26 22:00:04.000000','printermake'),(22,'2021-10-26 22:00:04.000000','printermodel'),(23,'2021-10-26 22:00:04.000000','printermodelcode'),(24,'2021-10-26 22:00:04.000000','supplier'),(25,'2022-01-04 18:41:20.362895','tax'),(26,'2021-10-26 22:00:04.000000','tax_hist'),(27,'2022-04-12 20:39:38.660979','transaction'),(28,'2022-04-12 20:39:38.680096','transaction_items');
+INSERT INTO `tablelastchanged` VALUES (1,'2021-10-28 20:53:44.282790','Customer'),(2,'2022-01-18 18:19:47.682908','customerfavorite'),(3,'2021-11-04 22:54:30.875010','customernote'),(4,'2022-04-19 10:09:47.851481','customerorder'),(5,'2021-10-26 22:00:04.000000','customerorderhist'),(6,'2022-04-07 20:12:53.263323','customerorderitem'),(7,'2022-04-07 20:12:53.263323','customerorderitemhist'),(8,'2022-03-29 18:43:44.448582','discount'),(9,'2022-04-19 10:09:46.564359','discount_inventory'),(10,'2022-03-29 18:43:12.548936','discount_type'),(11,'2022-04-19 19:04:54.206513','employee'),(12,'2022-04-07 20:45:57.900933','events'),(13,'2022-04-19 10:09:46.546613','inventory_description'),(14,'2022-04-19 10:09:46.552064','inventory_price'),(15,'2021-10-26 22:00:04.000000','inventory_quantity'),(16,'2022-03-29 18:43:12.707558','inventory_type'),(17,'2021-10-26 22:00:04.000000','notetype'),(18,'2022-01-11 19:26:32.367966','paymentmethod'),(19,'2022-04-07 20:47:44.383596','payments'),(20,'2021-10-26 22:00:04.000000','printercode'),(21,'2021-10-26 22:00:04.000000','printermake'),(22,'2021-10-26 22:00:04.000000','printermodel'),(23,'2021-10-26 22:00:04.000000','printermodelcode'),(24,'2021-10-26 22:00:04.000000','supplier'),(25,'2022-01-04 18:41:20.362895','tax'),(26,'2021-10-26 22:00:04.000000','tax_hist'),(27,'2022-04-12 20:39:38.660979','transaction'),(28,'2022-04-12 20:39:38.680096','transaction_items');
 /*!40000 ALTER TABLE `tablelastchanged` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2225,34 +2298,6 @@ INSERT INTO `trantype` VALUES (0,'Closed'),(1,'Suspended'),(2,'Invoice'),(3,'Hol
 UNLOCK TABLES;
 
 --
--- Table structure for table `users`
---
-
-DROP TABLE IF EXISTS `users`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `users` (
-  `userId` int NOT NULL AUTO_INCREMENT,
-  `user_lName` varchar(255) DEFAULT NULL,
-  `user_fName` varchar(255) DEFAULT NULL,
-  `user_empNum` int DEFAULT NULL,
-  `user_Pwd` varchar(255) DEFAULT NULL,
-  `user_email` varchar(255) DEFAULT NULL,
-  `user_manager` tinyint(1) DEFAULT NULL,
-  PRIMARY KEY (`userId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `users`
---
-
-LOCK TABLES `users` WRITE;
-/*!40000 ALTER TABLE `users` DISABLE KEYS */;
-/*!40000 ALTER TABLE `users` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Temporary view structure for view `v_customer`
 --
 
@@ -2394,6 +2439,33 @@ SET @saved_cs_client     = @@character_set_client;
  1 AS `minQty`,
  1 AS `maxQty`,
  1 AS `Discount`*/;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Temporary view structure for view `v_employee`
+--
+
+DROP TABLE IF EXISTS `v_employee`;
+/*!50001 DROP VIEW IF EXISTS `v_employee`*/;
+SET @saved_cs_client     = @@character_set_client;
+/*!50503 SET character_set_client = utf8mb4 */;
+/*!50001 CREATE VIEW `v_employee` AS SELECT 
+ 1 AS `roleId`,
+ 1 AS `typeID`,
+ 1 AS `emp_id`,
+ 1 AS `pin_number`,
+ 1 AS `first_name`,
+ 1 AS `last_name`,
+ 1 AS `email`,
+ 1 AS `addr1`,
+ 1 AS `addr2`,
+ 1 AS `city`,
+ 1 AS `state`,
+ 1 AS `zip`,
+ 1 AS `phone`,
+ 1 AS `typeName`,
+ 1 AS `roleName`,
+ 1 AS `roleDescription`*/;
 SET character_set_client = @saved_cs_client;
 
 --
@@ -2767,6 +2839,24 @@ DELIMITER ;
 /*!50001 SET collation_connection      = @saved_col_connection */;
 
 --
+-- Final view structure for view `v_employee`
+--
+
+/*!50001 DROP VIEW IF EXISTS `v_employee`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `v_employee` AS select `employeetyperole`.`roleId` AS `roleId`,`employee`.`typeID` AS `typeID`,`employee`.`emp_id` AS `emp_id`,`employee`.`pin_number` AS `pin_number`,`employee`.`first_name` AS `first_name`,`employee`.`last_name` AS `last_name`,`employee`.`email` AS `email`,`employee`.`addr1` AS `addr1`,`employee`.`addr2` AS `addr2`,`employee`.`city` AS `city`,`employee`.`state` AS `state`,`employee`.`zip` AS `zip`,`employee`.`phone` AS `phone`,`employeetype`.`typeName` AS `typeName`,`employeerole`.`roleName` AS `roleName`,`employeerole`.`roleDescription` AS `roleDescription` from (((`employee` left join `employeetype` on((`employee`.`typeID` = `employeetype`.`typeId`))) left join `employeetyperole` on((`employee`.`typeID` = `employeetyperole`.`typeId`))) left join `employeerole` on((`employeetyperole`.`roleId` = `employeerole`.`roleId`))) order by `employee`.`emp_id` */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
 -- Final view structure for view `v_event`
 --
 
@@ -2919,4 +3009,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-04-19 10:16:33
+-- Dump completed on 2022-04-19 20:04:02
