@@ -8,11 +8,11 @@ namespace pos_core_api.ORM
 {
     public class TaxORM
     {
-        private readonly DbConn db = new DbConn();
+        private readonly DbConn db = new();
 
         public List<Tax> Get()
         {
-            List<Tax> output = new List<Tax>();
+            List<Tax> output = new();
             
 
             string sqlStatement = "SELECT * FROM v_tax";
@@ -170,7 +170,7 @@ namespace pos_core_api.ORM
             return outputItem;
         }
 
-        private Tax FetchTax(MySqlDataReader reader)
+        private static Tax FetchTax(MySqlDataReader reader)
         {
             return new Tax
             {

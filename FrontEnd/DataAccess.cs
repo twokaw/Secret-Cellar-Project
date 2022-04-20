@@ -79,7 +79,6 @@ namespace SecretCellar
             return web.DataGet("api/inventory/hash") != InvHash;
         }
 
-        object invLock = new object();
         public List<Inventory> GetInventory()
         {
             if(InventoryChanged() || Inventory == null)

@@ -8,46 +8,41 @@ namespace pos_core_api.ORM
 {
     public class PrinterORM
     {
-        private readonly DbConn db = new DbConn();
+        private readonly DbConn db = new();
 
         public List<Printer> Get()
         {
-            List<Printer> output = new List<Printer>();
+            List<Printer> output = new();
             Printer outputItem = null;
-            MySqlDataReader reader = null;
-
-                MySqlCommand cmd = db.CreateCommand(@"
-                 SELECT *
-                 FROM v_printer
-                ");
+            MySqlCommand cmd = db.CreateCommand(@"
+                SELECT *
+                FROM v_printer
+            ");
             try
             {
-
-
-
-                using (reader = cmd.ExecuteReader())
-                    while (reader.Read())
+                using MySqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    if (outputItem == null || outputItem.ModelId != reader.GetUInt32("Modelid"))
                     {
-                        if (outputItem == null || outputItem.ModelId != reader.GetUInt32("Modelid"))
+                        outputItem = new Printer
                         {
-                            outputItem = new Printer
-                            {
-                                MakeId = reader.IsDBNull("MakeID") ? 0 : reader.GetUInt32("MakeID"),
-                                ModelId = reader.IsDBNull("Modelid") ? 0 : reader.GetUInt32("Modelid"),
-                                Make = reader.IsDBNull("MakeName") ? "" : reader.GetString("MakeName"),
-                                Model = reader.IsDBNull("ModelName") ? "" : reader.GetString("ModelName")
-                            };
-                            output.Add(outputItem);
-                        }
+                            MakeId = reader.IsDBNull("MakeID") ? 0 : reader.GetUInt32("MakeID"),
+                            ModelId = reader.IsDBNull("Modelid") ? 0 : reader.GetUInt32("Modelid"),
+                            Make = reader.IsDBNull("MakeName") ? "" : reader.GetString("MakeName"),
+                            Model = reader.IsDBNull("ModelName") ? "" : reader.GetString("ModelName")
+                        };
+                        output.Add(outputItem);
+                    }
 
-                        outputItem.Codes.Add(new PrinterCode
-                        {
-                            CodeId = reader.IsDBNull("Codeid") ? 0 : reader.GetUInt32("codeid"),
-                            Drawer = reader.IsDBNull("Drawer") ? "" : reader.GetString("Drawer"),
-                            Cutter = reader.IsDBNull("Cutter") ? "" : reader.GetString("Cutter"),
-                            PartialCutter = reader.IsDBNull("PartialCutter") ? "" : reader.GetString("PartialCutter")
-                        });
-                    }  
+                    outputItem.Codes.Add(new PrinterCode
+                    {
+                        CodeId = reader.IsDBNull("Codeid") ? 0 : reader.GetUInt32("codeid"),
+                        Drawer = reader.IsDBNull("Drawer") ? "" : reader.GetString("Drawer"),
+                        Cutter = reader.IsDBNull("Cutter") ? "" : reader.GetString("Cutter"),
+                        PartialCutter = reader.IsDBNull("PartialCutter") ? "" : reader.GetString("PartialCutter")
+                    });
+                }
             }
             finally
             {
@@ -181,7 +176,7 @@ namespace pos_core_api.ORM
 
         public List<string> GetMake()
         {
-            List<string> result = new List<string>();
+            List<string> result = new();
 
             MySqlCommand cmd = db.CreateCommand(@"
                 SELECT  PrinterMakeName
