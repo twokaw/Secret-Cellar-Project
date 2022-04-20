@@ -165,13 +165,13 @@ namespace SecretCellar.Orders_Panels {
                 {
                     uint onhand = i.AllQty.Count() == 0 ? 0 : i.AllQty[0].Qty;
                     switch (MessageBox.Show(this, $"Insufficient quantity to fullfil the order\n"
-                                        + $"Inventory: {onhand}\n"
-                                        + $"Request Qty: {requestQty}\n\n"
-                                        + $"Yes : Fulfill the full amount ({requestQty}) \n"
-                                        + $"No  : Fulfill inventory amount ({onhand}) \n"
-                                        + $"Cancel : Cancel Fulfillment",
-                                    "Insufficient quantity",
-                                    MessageBoxButtons.YesNoCancel))
+                                                + $"Inventory: {onhand}\n"
+                                                + $"Request Qty: {requestQty}\n\n"
+                                                + $"Yes : Fulfill the full amount ({requestQty}) \n"
+                                                + $"No  : Fulfill inventory amount ({onhand}) \n"
+                                                + $"Cancel : Cancel Fulfillment",
+                                                   "Insufficient quantity",
+                                                MessageBoxButtons.YesNoCancel))
                     {
                         case DialogResult.No:
                             requestQty = onhand;

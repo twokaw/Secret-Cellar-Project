@@ -5,7 +5,6 @@ namespace Shared
     {
         public uint EmpID { get; set; }
         public uint PinNumber { get; set; }
-        public bool IsAdmin { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
@@ -15,5 +14,6 @@ namespace Shared
         public string State { get; set; }
         public string ZipCode { get; set; }
         public string PhoneNumber { get; set; }
+        public EmployeeTypeModel EmployeeType { get; set; } 
     }
 }
