@@ -160,7 +160,7 @@ namespace pos_core_api.ORM
             }
         }
 
-        public void Remove Roles(EmployeeTypeModel empType)
+        public void RemoveRoles(EmployeeTypeModel empType)
         {
 
             EmployeeTypeModel prev = Get(empType.TypeID);

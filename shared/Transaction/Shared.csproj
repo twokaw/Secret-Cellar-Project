@@ -302,7 +302,6 @@
     <Compile Include="Customer.cs" />
     <Compile Include="Discount.cs" />
     <Compile Include="EmployeeModel.cs" />
-    <Compile Include="EmployeeUpdateModel.cs" />
     <Compile Include="Inventory.cs" />
     <Compile Include="InventoryType.cs" />
     <Compile Include="Item.cs" />
