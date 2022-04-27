@@ -264,7 +264,7 @@ namespace SecretCellar {
 
 		#endregion
 
-		private System.Windows.Forms.DataGridView dataGridView_Invoice;
+		private System.Windows.Forms.DataGridView dataGridView_Invoices;
 		private System.Windows.Forms.DataGridViewTextBoxColumn DESCRIPTION;
 		private System.Windows.Forms.DataGridViewTextBoxColumn QTY;
 		private System.Windows.Forms.DataGridViewTextBoxColumn PRICE;
