@@ -20,7 +20,7 @@ namespace pos_core_api.ORM
             InvType = invTypeORM ;
         }
 
-        readonly DbConn db = new DbConn();
+        readonly DbConn db = new();
 
         /// <summary>
         /// Method that checks if the barcode already exist.
@@ -59,7 +59,7 @@ namespace pos_core_api.ORM
 
         public List<Event> Get()
         {
-            List<Event> output = new List<Event>();
+            List<Event> output = new();
             
             //change to view that does sum
             MySqlCommand cmd = db.CreateCommand(@"
@@ -325,9 +325,9 @@ namespace pos_core_api.ORM
         }
 
 
-        private List<Event> FetchEvent(MySqlDataReader reader)
+        private static List<Event> FetchEvent(MySqlDataReader reader)
         {
-            List<Event> output = new List<Event>();
+            List<Event> output = new();
 
             Event outputItem = null;
             while (reader.Read())
@@ -375,7 +375,7 @@ namespace pos_core_api.ORM
         }
 
         public List<EventWaitlistItem> GetEventsWaitlists() {
-            List<EventWaitlistItem> output = new List<EventWaitlistItem>();
+            List<EventWaitlistItem> output = new();
 
             MySqlCommand cmd = db.CreateCommand(@"
                 SELECT *
@@ -443,7 +443,7 @@ namespace pos_core_api.ORM
         }
 
         public List<PreviousEventData> GetPreviousEventData() {
-            List<PreviousEventData> output = new List<PreviousEventData>();
+            List<PreviousEventData> output = new();
 
             MySqlCommand cmd = db.CreateCommand(@"
                 SELECT *
@@ -470,7 +470,7 @@ namespace pos_core_api.ORM
         }
 
         public PreviousEventData GetPreviousEventData(uint eventId) {
-            List<PreviousEventData> output = new List<PreviousEventData>();
+            List<PreviousEventData> output = new();
 
             MySqlCommand cmd = db.CreateCommand(@"
                 SELECT *

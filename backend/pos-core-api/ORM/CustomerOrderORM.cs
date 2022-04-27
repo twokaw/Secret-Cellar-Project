@@ -374,9 +374,9 @@ namespace pos_core_api.ORM
         }
 
 
-        private List<CustomerOrder> FetchOrderCustomers(MySqlDataReader reader)
+        private static List<CustomerOrder> FetchOrderCustomers(MySqlDataReader reader)
         {
-            List<CustomerOrder> output = new List<CustomerOrder>();
+            List<CustomerOrder> output = new();
             CustomerOrder temp = null;
             while (reader.Read())
             {

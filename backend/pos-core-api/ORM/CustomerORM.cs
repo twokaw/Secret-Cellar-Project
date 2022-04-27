@@ -9,7 +9,7 @@ namespace pos_core_api.ORM
 {
     public class CustomerORM
     {
-        readonly DbConn db = new DbConn();
+        readonly DbConn db = new ();
 
         const string CUSTOMERSQL = @"
               SELECT customerID, customer_discount, first_name, last_name,
@@ -103,7 +103,7 @@ namespace pos_core_api.ORM
               FROM v_customerfavorite
             ";
 
-            MySqlCommand cmd = new  MySqlCommand(sqlStatement);
+            MySqlCommand cmd = new(sqlStatement);
             MySqlDataReader reader = cmd.ExecuteReader();
             try
             {
@@ -118,8 +118,6 @@ namespace pos_core_api.ORM
 
         public CustomerFavorites GetCustomerFavorites(uint customerID)
         {
-            
-
             string sqlStatement = @"
               SELECT InventoryID,
                      CustomerID,
@@ -328,9 +326,9 @@ namespace pos_core_api.ORM
                 db.CloseCommand(cmd);
             }
         }
-        private List<Customer> FetchCustomers(MySqlDataReader reader)
+        private static List<Customer> FetchCustomers(MySqlDataReader reader)
         {
-            List<Customer> output = new List<Customer>();
+            List<Customer> output = new();
 
             while (reader.Read())
             {
@@ -357,9 +355,9 @@ namespace pos_core_api.ORM
             return output;
         }
 
-        private List<CustomerFavorites> FetchCustomersFavorite(MySqlDataReader reader)
+        private static List<CustomerFavorites> FetchCustomersFavorite(MySqlDataReader reader)
         {
-            List<CustomerFavorites> output = new List<CustomerFavorites>();
+            List<CustomerFavorites> output = new();
             CustomerFavorites lastcustomer = null;
             uint tempLastid;
             while (reader.Read())

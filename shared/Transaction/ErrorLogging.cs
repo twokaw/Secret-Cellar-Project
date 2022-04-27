@@ -5,7 +5,9 @@ namespace Shared
 {
     public class ErrorLogging
     {
-        public static string Path{get;set; }
+        private static string path;
+
+        public static string Path { get => path; set => path = value; }
         public static void WriteToErrorLog(string msg, string stkTrace, string title)
         {
             if (!(System.IO.Directory.Exists(Path + "\\Errors\\")))
