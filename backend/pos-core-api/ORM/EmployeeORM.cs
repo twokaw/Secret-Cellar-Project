@@ -24,9 +24,22 @@ namespace pos_core_api.ORM
             return Get(cmd);
         }
 
-        public EmployeeModel Get(String employeeID)
+        public EmployeeModel Get(string userName)
         {
-          //  EmployeeModel outputItem;
+            //  EmployeeModel outputItem;
+
+            MySqlCommand cmd = db.CreateCommand(@"
+              SELECT * 
+              FROM v_employee 
+              WHERE user_name = @userName
+            ");
+            cmd.Parameters.Add(new MySqlParameter("userName", userName));
+
+            return Get(cmd)?[0];
+        }
+        public EmployeeModel Get(int employeeID)
+        {
+            //  EmployeeModel outputItem;
 
             MySqlCommand cmd = db.CreateCommand(@"
               SELECT * 
@@ -34,9 +47,9 @@ namespace pos_core_api.ORM
               WHERE emp_id = @empID
             ");
             cmd.Parameters.Add(new MySqlParameter("empID", employeeID));
-            
+
             return Get(cmd)?[0];
-       }
+        }
 
         // POST: api/Employee
         public long Insert(EmployeeModel emp)
@@ -44,21 +57,22 @@ namespace pos_core_api.ORM
             MySqlCommand cmd = db.CreateCommand(@"
                 SET SQL_MODE = '';
                 INSERT INTO employee 
-                (pin_number, typeID, first_name, last_name, email, addr1, addr2, city, state, zip, phone)
+                (pin_number, typeID, user_name, first_name, last_name, email, addr1, addr2, city, state, zip, phone)
                 VALUES 
-                (@pinNumber, @typeID, @firstName, @lastName, @email, @addr1, @addr2, @city, @state, @zip, @phone)
+                (@pinNumber, @typeID, @username, @firstName, @lastName, @email, @addr1, @addr2, @city, @state, @zip, @phone)
             ");
             cmd.Parameters.Add(new MySqlParameter("pinNumber", emp.PinNumber));
             cmd.Parameters.Add(new MySqlParameter("typeid", emp.EmployeeType.TypeID));
-            cmd.Parameters.Add(new MySqlParameter("firstName", emp.FirstName));
-            cmd.Parameters.Add(new MySqlParameter("lastName", emp.LastName));
-            cmd.Parameters.Add(new MySqlParameter("email", emp.Email));
-            cmd.Parameters.Add(new MySqlParameter("addr1", emp.Address1));
-            cmd.Parameters.Add(new MySqlParameter("addr2", emp.Address2));
-            cmd.Parameters.Add(new MySqlParameter("city", emp.City));
-            cmd.Parameters.Add(new MySqlParameter("state", emp.State));
-            cmd.Parameters.Add(new MySqlParameter("zip", emp.ZipCode));
-            cmd.Parameters.Add(new MySqlParameter("phone", emp.PhoneNumber));
+            cmd.Parameters.Add(new MySqlParameter("userName", emp.UserName.Trim()));
+            cmd.Parameters.Add(new MySqlParameter("firstName", emp.FirstName.Trim()));
+            cmd.Parameters.Add(new MySqlParameter("lastName", emp.LastName.Trim()));
+            cmd.Parameters.Add(new MySqlParameter("email", emp.Email.Trim()));
+            cmd.Parameters.Add(new MySqlParameter("addr1", emp.Address1.Trim()));
+            cmd.Parameters.Add(new MySqlParameter("addr2", emp.Address2.Trim()));
+            cmd.Parameters.Add(new MySqlParameter("city", emp.City.Trim()));
+            cmd.Parameters.Add(new MySqlParameter("state", emp.State.Trim()));
+            cmd.Parameters.Add(new MySqlParameter("zip", emp.ZipCode.Trim()));
+            cmd.Parameters.Add(new MySqlParameter("phone", emp.PhoneNumber.Trim()));
 
             try
             {
@@ -76,7 +90,7 @@ namespace pos_core_api.ORM
         {
             MySqlCommand cmd = db.CreateCommand(@"
                 UPDATE employee 
-                SET pin_number = @pinNumber, typeid = @typeid, 
+                SET pin_number = @pinNumber, typeid = @typeid, user_name = @userName, 
                     first_name = @firstName, last_name = @lastName, 
                     email = @email, addr1 = @addr1, addr2 = @addr2, 
                     city = @city, state = @state, zip = @zip, phone = @phone 
@@ -85,15 +99,16 @@ namespace pos_core_api.ORM
 
             cmd.Parameters.Add(new MySqlParameter("pinNumber", emp.PinNumber));
             cmd.Parameters.Add(new MySqlParameter("typeid", emp.EmployeeType.TypeID));
-            cmd.Parameters.Add(new MySqlParameter("firstName", emp.FirstName));
-            cmd.Parameters.Add(new MySqlParameter("lastName", emp.LastName));
-            cmd.Parameters.Add(new MySqlParameter("email", emp.Email));
-            cmd.Parameters.Add(new MySqlParameter("addr1", emp.Address1));
-            cmd.Parameters.Add(new MySqlParameter("addr2", emp.Address2));
-            cmd.Parameters.Add(new MySqlParameter("city", emp.City));
-            cmd.Parameters.Add(new MySqlParameter("state", emp.State));
-            cmd.Parameters.Add(new MySqlParameter("zip", emp.ZipCode));
-            cmd.Parameters.Add(new MySqlParameter("phone", emp.PhoneNumber));
+            cmd.Parameters.Add(new MySqlParameter("userName", emp.UserName.Trim()));
+            cmd.Parameters.Add(new MySqlParameter("firstName", emp.FirstName.Trim()));
+            cmd.Parameters.Add(new MySqlParameter("lastName", emp.LastName.Trim()));
+            cmd.Parameters.Add(new MySqlParameter("email", emp.Email.Trim()));
+            cmd.Parameters.Add(new MySqlParameter("addr1", emp.Address1.Trim()));
+            cmd.Parameters.Add(new MySqlParameter("addr2", emp.Address2.Trim()));
+            cmd.Parameters.Add(new MySqlParameter("city", emp.City.Trim()));
+            cmd.Parameters.Add(new MySqlParameter("state", emp.State.Trim()));
+            cmd.Parameters.Add(new MySqlParameter("zip", emp.ZipCode.Trim()));
+            cmd.Parameters.Add(new MySqlParameter("phone", emp.PhoneNumber.Trim()));
             cmd.Parameters.Add(new MySqlParameter("empID", emp.EmpID));      
 
             try
@@ -164,6 +179,7 @@ namespace pos_core_api.ORM
                         {
                             EmpID = empid,
                             PinNumber = reader.IsDBNull("pin_number") ? 0 : reader.GetUInt32("pin_number"),
+                            UserName = reader.IsDBNull("user_name") ? "" : reader.GetString("user_name"),
                             FirstName = reader.IsDBNull("first_name") ? "" : reader.GetString("first_name"),
                             LastName = reader.IsDBNull("last_name") ? "" : reader.GetString("last_name"),
                             Email = reader.IsDBNull("email") ? "" : reader.GetString("email"),

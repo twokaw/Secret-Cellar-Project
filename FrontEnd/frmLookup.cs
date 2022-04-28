@@ -129,7 +129,10 @@ namespace SecretCellar
         private void btn_update_Click(object sender, EventArgs e)
         {
             if (btn_update.Text == "New Item")
+            {
                 New_item();
+                btn_update.Text = "Update Item";
+            }
             else if (LookupView.SelectedRows.Count > 0)
             {
                 if (txtName.Text.Replace(" ", "") != "" && txtBarcode.Text.Replace(" ", "") != "") {
@@ -359,7 +362,7 @@ namespace SecretCellar
 
         private void btn_clear_info_Click(object sender, EventArgs e)
         {
-            btn_update.Text = "";
+            btn_update.Text = "New Item";
             txtName.Text = "";
             cboType.SelectedIndex = 1;
             txtBarcode.Text = "";
@@ -418,7 +421,8 @@ namespace SecretCellar
 
         private void LookupView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
+            if(btn_update.Text != "Update Item")
+                LookupView_SelectionChanged(sender, null);
         }
 
         private void btn_close_Click(object sender, EventArgs e)

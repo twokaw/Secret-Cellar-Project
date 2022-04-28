@@ -135,6 +135,11 @@ namespace SecretCellar
             string result = web.DataGet($"api/Employee/{EmpID}");
             return (EmployeeModel)JsonConvert.DeserializeObject(result, typeof(EmployeeModel));
         }
+        public EmployeeModel GetEmployee(string userName)
+        {
+            string result = web.DataGet($"api/Employee?username={userName}");
+            return (EmployeeModel)JsonConvert.DeserializeObject(result, typeof(EmployeeModel));
+        }
         #endregion
 
         #region Suppliers

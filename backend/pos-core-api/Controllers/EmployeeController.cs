@@ -12,11 +12,15 @@ namespace WebApi.Controllers
 
         // Get: api/employee
         [HttpGet]
-        public IActionResult Get()
+        public IActionResult Get(string username = null)
         {
             try
             {
-                return Ok(DataAccess.Instance.Employee.Get());
+                if(string.IsNullOrWhiteSpace (username ))
+                    return Ok(DataAccess.Instance.Employee.Get());
+                else
+                    return Ok(DataAccess.Instance.Employee.Get(username));
+
             }
             catch(Exception ex)
             {
@@ -26,7 +30,7 @@ namespace WebApi.Controllers
 
         // GET: api/Employee/ID
         [HttpGet("{employeeID}")]
-        public IActionResult Get(String employeeID)
+        public IActionResult GetEmpId(int employeeID)
         {
             try
             {
