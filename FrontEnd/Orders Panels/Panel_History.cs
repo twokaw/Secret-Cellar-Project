@@ -119,6 +119,10 @@ namespace SecretCellar.Orders_Panels {
                  })
                    .ToList();
 
+                if (SelectTransaction.TranType == Transaction.TranactionType.Suspended)
+                    LblLastRefund.Text = "Suspended";
+                else
+                    LblLastRefund.Text = "";
                 dgv_Items.DataSource = items;
             }
         }
@@ -132,8 +136,6 @@ namespace SecretCellar.Orders_Panels {
         /// REFRESH THE DATA GRID
         /// </summary>
         private void Populate() {
-
-
             transaction_history = DataAccess.instance?.GetTransactions();
 
             if (transaction_history == null)
@@ -181,21 +183,25 @@ namespace SecretCellar.Orders_Panels {
 
         private void btn_Returns_Click(object sender, EventArgs e)
         {
-            uint id = uint.Parse(dgv_Items.SelectedRows[0].Cells[0].Value.ToString());
-            Item i = SelectTransaction.Items.FirstOrDefault(x => x.Id == id);
-            double item_total = SelectTransaction.ItemPriceTotal(i) / i.NumSold;
-            frmReturnItem returnItem = new frmReturnItem(i, item_total);
-            // MessageBox.Show($"Transaction: {id} \n Return {i.Name} \n Price: {i.Price} \n Refund Price: {SelectTransaction.ItemPriceTotal(i):C}");
-
-            if(returnItem.ShowDialog() == DialogResult.OK  && returnItem.RefundQty > 0)
+            if (SelectTransaction.TranType == Transaction.TranactionType.Suspended)
+                MessageBox.Show("Suspended transactions may not return return items");
+            else
             {
-                DataAccess.instance.ReturnItem(SelectTransaction.InvoiceID, id, returnItem.RefundQty,  returnItem.Restock, returnItem.RestockFee);
+                uint id = uint.Parse(dgv_Items.SelectedRows[0].Cells[0].Value.ToString());
+                Item i = SelectTransaction.Items.FirstOrDefault(x => x.Id == id);
+                double item_total = SelectTransaction.ItemPriceTotal(i) / i.NumSold;
+                frmReturnItem returnItem = new frmReturnItem(i, item_total);
 
-                MessageBox.Show($"Refund for {returnItem.RefundQty} {i.Name } \n\nRefund amount: {returnItem.TotalRefundPrice:C}");
-                LblLastRefund.Text = $"Refund amount: { returnItem.TotalRefundPrice:C}";
-                DataAccess.instance.OpenCashDrawer();
+                if(returnItem.ShowDialog() == DialogResult.OK && returnItem.RefundQty > 0)
+                {
+                    DataAccess.instance.ReturnItem(SelectTransaction.InvoiceID, id, returnItem.RefundQty,  returnItem.Restock, returnItem.RestockFee);
 
-                Populate();
+                    MessageBox.Show($"Refund for {returnItem.RefundQty} {i.Name } \n\nRefund amount: {returnItem.TotalRefundPrice:C}");
+                    LblLastRefund.Text = $"Refund amount: { returnItem.TotalRefundPrice:C}";
+                    DataAccess.instance.OpenCashDrawer();
+
+                    Populate();
+                }
             }
         }
 
@@ -203,6 +209,11 @@ namespace SecretCellar.Orders_Panels {
         {
             LblLastRefund.Text = "";
             Populate();
+        }
+
+        private void transaction_dataGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

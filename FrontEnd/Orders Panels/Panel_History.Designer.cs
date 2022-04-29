@@ -177,6 +177,7 @@ namespace SecretCellar.Orders_Panels {
             this.transaction_dataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.transaction_dataGrid.Size = new System.Drawing.Size(490, 700);
             this.transaction_dataGrid.TabIndex = 18;
+            this.transaction_dataGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.transaction_dataGrid_CellContentClick);
             this.transaction_dataGrid.SelectionChanged += new System.EventHandler(this.transaction_dataGrid_SelectionChanged);
             // 
             // trans_id
