@@ -172,7 +172,7 @@ namespace SecretCellar
                 eventName = x.Name,
                 preorderPrice = x.PreOrder.ToString("C"),
                 atDoorPrice = x.AtDoor.ToString("C"),
-                quantity = x.Qty - (DataAccess.instance.GetPreviousEventData(x.Id).PreOrderSold + DataAccess.instance.GetPreviousEventData(x.Id).AtDoorSold)
+                quantity = x.Qty    //quantity = x.Qty - (DataAccess.instance.GetPreviousEventData(x.Id).PreOrderSold + DataAccess.instance.GetPreviousEventData(x.Id).AtDoorSold)
             })
             .Where(x => x.eventDate.Year <= dateTimePicker_Date.Value.Year
                     && dateTimePicker_Date.Value.Year <= x.eventDuration.Year
