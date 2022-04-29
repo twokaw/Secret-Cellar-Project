@@ -154,7 +154,8 @@ namespace pos_core_api.ORM
                             OrderIncrement = reader.GetUInt32("OrderIncrement"),
                             OrderQty = reader.IsDBNull("OrderQty") ? 0 : reader.GetUInt32("OrderQty"),
                             RequestQty = reader.IsDBNull("RequestQty") ? 0 : reader.GetUInt32("RequestQty"),
-                            RequiredQty = reader.IsDBNull("RequiredQty") ? 0 : reader.GetUInt32("RequiredQty")
+                            RequiredQty = reader.IsDBNull("RequiredQty") ? 0 : reader.GetUInt32("RequiredQty"),
+                            SuspendedQty = reader.IsDBNull("SuspendedQty") ? 0 : reader.GetUInt32("SuspendedQty")
                         };
                         output.Add(outputItem);
                     }
