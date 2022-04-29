@@ -19,6 +19,7 @@ namespace SecretCellar
         public static DataAccess instance;
         private Image logo;
         private static readonly List<PictureBox> pictureBoxes = new List<PictureBox>();
+        public static EmployeeModel currentUser { get; set; }
         public DataAccess(string connectionString)
         {
             instance = new DataAccess();
@@ -139,6 +140,13 @@ namespace SecretCellar
         {
             string result = web.DataGet($"api/Employee?username={userName}");
             return (EmployeeModel)JsonConvert.DeserializeObject(result, typeof(EmployeeModel));
+        }
+
+        
+        public EmployeeModel LoginUser(string userName)
+        {
+            currentUser = GetEmployee(userName);
+            return currentUser;
         }
         #endregion
 
