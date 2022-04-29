@@ -37,7 +37,7 @@ namespace SecretCellar
             text = text.Trim();
 
             if (!string.IsNullOrWhiteSpace (text))
-                user = DataAccess.instance.GetEmployee(text);
+                user = DataAccess.instance.LoginUser(text);
 
             if (user == null)
                 MessageBox.Show("Invalid user name");

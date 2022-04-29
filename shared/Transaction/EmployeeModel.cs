@@ -16,5 +16,9 @@ namespace Shared
         public string ZipCode { get; set; }
         public string PhoneNumber { get; set; }
         public EmployeeTypeModel EmployeeType { get; set; } 
+        public override string ToString() {
+            return $"{FirstName} {LastName}";
+        }
+
     }
 }
