@@ -42,7 +42,7 @@ namespace WebApi.Controllers
         }
 
         // GET: api/Customer/Phone/{phone}
-        [HttpGet("Phone/{phone}")]
+        [HttpGet("Phone")]
         public IActionResult Get(string phone)
         {
             try

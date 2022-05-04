@@ -57,16 +57,16 @@ namespace WebApi.Controllers
         /// <param name="typeName"></param>
         /// <returns>An object of the requested type.</returns>
         // GET: api/InventoryType/typeName
-        [HttpGet("Name/{typeName}", Name = "GetTypeByName")]
-        public IActionResult GetName(string typeName)
+        [HttpGet("Name")]
+        public IActionResult GetName(string name)
         {
             try
             {
-                InventoryType it = DataAccess.Instance.InventoryType.Get(typeName);
+                InventoryType it = DataAccess.Instance.InventoryType.Get(name);
                 if (it != null)
                     return Ok(it);
                 else
-                    return NotFound($"{typeName} not found");
+                    return NotFound($"{name} not found");
             }
             catch (Exception ex) { ErrorLogging.WriteToErrorLog(ex); return StatusCode(500, ex.Message); }
         }

@@ -24,7 +24,7 @@ namespace pos_core_api.Controllers
         }
 
         // GET: ConfigController/Details/5
-        [HttpGet("{key}")]
+        [HttpGet()]
         public ActionResult Get(string key)
         {
             try
@@ -35,7 +35,7 @@ namespace pos_core_api.Controllers
         }
 
         // POST: ConfigController/Create
-        [HttpPost("{key}")]
+        [HttpPost()]
         public ActionResult Post(string key, [FromBody] string value)
         {
             try

@@ -43,7 +43,7 @@ namespace pos_core_api.Controllers
         /// A single inventory item that matches the barcode. 
         /// </returns>
         // GET: api/Inventory/barcode
-        [HttpGet("{barcode}", Name = "GetEventBarcode")]
+        [HttpGet()]
         public IActionResult Get(string barcode)
         {
             Event output;
