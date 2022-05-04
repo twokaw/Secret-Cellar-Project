@@ -1,4 +1,6 @@
 ﻿
+using System;
+
 namespace Shared
 {
     public class EmployeeModel
@@ -19,6 +21,8 @@ namespace Shared
         public override string ToString() {
             return $"{FirstName} {LastName}";
         }
+        public DateTime StartDate { get; set; }
+        public DateTime? EndDate { get; set; }
 
     }
 }
