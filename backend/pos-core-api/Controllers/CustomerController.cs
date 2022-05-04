@@ -12,12 +12,14 @@ namespace WebApi.Controllers
     {
         // Get: api/Customer
         [HttpGet]
-        public IActionResult Get()
+        public IActionResult Get(string phone = null)
         {
             try
             {
-                List<Customer> output = DataAccess.Instance.Customer.Get();
-                return Ok(output);
+                if (phone == null)
+                    return Ok(DataAccess.Instance.Customer.Get());
+                else
+                    return Ok(DataAccess.Instance.Customer.Get(phone));
             }
             catch(Exception ex)
             {
@@ -33,21 +35,6 @@ namespace WebApi.Controllers
             try
             {
                 return Ok(DataAccess.Instance.Customer.Get(customerID));
-            }
-            catch (Exception ex)
-            {
-                ErrorLogging.WriteToErrorLog(ex);
-                return StatusCode(500, ex.Message);
-            }
-        }
-
-        // GET: api/Customer/Phone/{phone}
-        [HttpGet("Phone")]
-        public IActionResult Get(string phone)
-        {
-            try
-            {
-                return Ok(DataAccess.Instance.Customer.Get(phone));
             }
             catch (Exception ex)
             {

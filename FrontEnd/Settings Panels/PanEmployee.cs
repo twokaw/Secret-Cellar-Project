@@ -17,5 +17,9 @@ namespace SecretCellar.Settings_Panels
             InitializeComponent();
         }
 
+        private void employee_panel_MouseMove(object sender, MouseEventArgs e)
+        {
+            Console.WriteLine($"{e.X}, {e.Y}");
+        }
     }
 }
