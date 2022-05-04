@@ -12,24 +12,16 @@ namespace pos_core_api.Controllers
     [ApiController]
     public class ConfigController : ControllerBase
     {
-        // GET: ConfigController/Create
-        [HttpGet]
-        public IActionResult Get()
-        {
-            try
-            {
-                return Ok(Resources.GetValues());
-            }
-            catch (Exception ex) { ErrorLogging.WriteToErrorLog(ex); return StatusCode(500, ex.Message); }
-        }
-
         // GET: ConfigController/Details/5
         [HttpGet()]
-        public ActionResult Get(string key)
+        public ActionResult Get(string key = null)
         {
             try
             {
-                return Ok(Resources.GetValue(key));
+                if(key == null)
+                    return Ok(Resources.GetValues());
+                else
+                    return Ok(Resources.GetValue(key));
             }
             catch (Exception ex) { ErrorLogging.WriteToErrorLog(ex); return StatusCode(500, ex.Message); }
         }
