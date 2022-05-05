@@ -136,7 +136,8 @@ namespace SecretCellar.Settings_Panels
 
         private void panel3_VisibleChanged(object sender, EventArgs e)
         {
-            getDiscounts();
+            if (DataAccess.instance != null)
+                getDiscounts();
         }
 
         private void getDiscounts()
