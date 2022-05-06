@@ -19,11 +19,22 @@ namespace WebApi.Controllers
         /// </returns>
         // GET: api/Inventory
         [HttpGet]
-        public IActionResult Get()
-        { 
+        public IActionResult Get(string barcode = null)
+        {
+
             try
             {
-                return Ok(DataAccess.Instance.Inventory.GetInv());
+                if(barcode == null)
+                    return Ok(DataAccess.Instance.Inventory.GetInv());
+                else
+                {
+                    Inventory output = DataAccess.Instance.Inventory.GetInv(barcode);
+
+                    if (output == null)
+                        return BadRequest($"That item with the barcode '{barcode}' does not exist.");
+                    else
+                        return Ok(output);
+                }
             }
             catch (Exception ex) { ErrorLogging.WriteToErrorLog(ex); return StatusCode(500, ex.Message); }
         }
@@ -76,7 +87,7 @@ namespace WebApi.Controllers
         /// A single inventory item that matches the barcode. 
         /// </returns>
         // GET: api/Inventory/barcode
-        [HttpGet("{barcode}", Name = "GetInventoryBarcode")]
+       /* [HttpGet()]
         public IActionResult Get(string barcode)
         {
             try
@@ -90,7 +101,7 @@ namespace WebApi.Controllers
             }
             catch (Exception ex) { ErrorLogging.WriteToErrorLog(ex); return StatusCode(500, ex.Message); }
         }
-
+       */
         /// <summary>
         /// Creates a new inventory item and stores it in the inventory description table.
         /// </summary>

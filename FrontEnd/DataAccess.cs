@@ -94,7 +94,7 @@ namespace SecretCellar
         {
             if (!string.IsNullOrWhiteSpace(barcode))
             {
-                string result = web.DataGet($"api/inventory/{barcode}");
+                string result = web.DataGet($"api/inventory?barcode={barcode}");
                 return (Inventory)JsonConvert.DeserializeObject(result, typeof(Inventory));
             }
             return null;
@@ -219,7 +219,7 @@ namespace SecretCellar
 
         public InventoryType GetInventoryType(string name)
         {
-            string result = web.DataGet($"api/InventoryType/name/{name}");
+            string result = web.DataGet($"api/InventoryType/name?name={name}");
             return JsonConvert.DeserializeObject<InventoryType>(result);
         }
 
@@ -647,7 +647,7 @@ namespace SecretCellar
         }
         public Event GetEvent(string barcode)
         {
-            string result = web.DataGet($"api/Event/{barcode}");
+            string result = web.DataGet($"api/Event?barcode={barcode}");
             return JsonConvert.DeserializeObject<Event>(result);
         }
 

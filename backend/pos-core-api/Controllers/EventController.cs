@@ -10,11 +10,14 @@ namespace pos_core_api.Controllers
     public class EventController : ControllerBase
     {
         [HttpGet(Name = "Get Events")]
-        public IActionResult Get()
+        public IActionResult Get(string barcode = null)
         {
             try
             {
-                return Ok(DataAccess.Instance.Event.Get());
+                if (barcode == null)
+                    return Ok(DataAccess.Instance.Event.Get());
+                else
+                    return Ok(DataAccess.Instance.Event.Get(barcode));
             }
             catch (Exception ex) { ErrorLogging.WriteToErrorLog(ex); return StatusCode(500, ex.Message); }
         }
@@ -33,31 +36,6 @@ namespace pos_core_api.Controllers
             }
             catch (Exception ex) { ErrorLogging.WriteToErrorLog(ex); return StatusCode(500, ex.Message); }
 
-        }
-
-        /// <summary>
-        /// Returns a single item that matches the barcode that is sent. 
-        /// </summary>
-        /// <param name="barcode"></param>
-        /// <returns>
-        /// A single inventory item that matches the barcode. 
-        /// </returns>
-        // GET: api/Inventory/barcode
-        [HttpGet("{barcode}", Name = "GetEventBarcode")]
-        public IActionResult Get(string barcode)
-        {
-            Event output;
-
-            try
-            {
-                output = DataAccess.Instance.Event.Get(barcode);
-            }
-            catch (Exception ex) { ErrorLogging.WriteToErrorLog(ex); return StatusCode(500, ex.Message); }
-
-            if (output == null)
-                return BadRequest($"That item with the barcode '{barcode}' does not exist.");
-            else
-                return Ok(output);
         }
 
         [HttpPost]

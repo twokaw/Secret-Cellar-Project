@@ -9,7 +9,6 @@ namespace WebApi.Controllers
     [ApiController]
     public class SupplierController : ControllerBase
     {
-
         /// <summary>
         /// A get all request that retrieves all the suppliers. 
         /// </summary>
@@ -17,29 +16,15 @@ namespace WebApi.Controllers
         /// Returns a list of supplier. 
         /// </returns>
         // GET: api/Supplier
-        [HttpGet]
-        public IActionResult Get()
+        [HttpGet()]
+        public IActionResult Get(string name = null)
         {
             try
             {
-                return Ok(DataAccess.Instance.Supplier.Get());
-            }
-            catch (Exception ex) { ErrorLogging.WriteToErrorLog(ex); return StatusCode(500, ex.Message); }
-        }
-
-        /// <summary>
-        /// A get all request that retrieves all the suppliers. 
-        /// </summary>
-        /// <returns>
-        /// Returns a list of supplier. 
-        /// </returns>
-        // GET: api/Supplier
-        [HttpGet("{name}", Name = "Get Supplier by name")]
-        public IActionResult Get(string name)
-        {
-            try
-            {
-                return Ok(DataAccess.Instance.Supplier.Get(name));
+                if(name == null)
+                    return Ok(DataAccess.Instance.Supplier.Get());
+                else
+                    return Ok(DataAccess.Instance.Supplier.Get(name));
             }
             catch (Exception ex) { ErrorLogging.WriteToErrorLog(ex); return StatusCode(500, ex.Message); }
         }

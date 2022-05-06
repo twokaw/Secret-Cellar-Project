@@ -93,7 +93,7 @@ namespace pos_core_api.ORM
                 SET pin_number = @pinNumber, typeid = @typeid, user_name = @userName, 
                     first_name = @firstName, last_name = @lastName, 
                     email = @email, addr1 = @addr1, addr2 = @addr2, 
-                    city = @city, state = @state, zip = @zip, phone = @phone 
+                    city = @city, state = @state, zip = @zip, phone = @phone, end_date = @end_date 
                 WHERE emp_id = @empID
             ");
 
@@ -109,7 +109,8 @@ namespace pos_core_api.ORM
             cmd.Parameters.Add(new MySqlParameter("state", emp.State.Trim()));
             cmd.Parameters.Add(new MySqlParameter("zip", emp.ZipCode.Trim()));
             cmd.Parameters.Add(new MySqlParameter("phone", emp.PhoneNumber.Trim()));
-            cmd.Parameters.Add(new MySqlParameter("empID", emp.EmpID));      
+            cmd.Parameters.Add(new MySqlParameter("empID", emp.EmpID));
+            cmd.Parameters.Add(new MySqlParameter("end_date", emp.EndDate));
 
             try
             {
@@ -189,6 +190,8 @@ namespace pos_core_api.ORM
                             State = reader.IsDBNull("state") ? "" : reader.GetString("state"),
                             ZipCode = reader.IsDBNull("zip") ? "" : reader.GetString("zip"),
                             PhoneNumber = reader.IsDBNull("phone") ? "" : reader.GetString("phone"),
+                            StartDate = reader.IsDBNull("start_date") ? DateTime.MinValue : reader.GetDateTime("start_date"),
+                            EndDate = reader.IsDBNull("end_date") ? null : reader.GetDateTime("end_date"),
                             EmployeeType = new EmployeeTypeModel() 
                             { 
                                 TypeID = reader.IsDBNull("TypeID") ? 0 : reader.GetUInt32("TypeID"),
