@@ -73,17 +73,7 @@ namespace SecretCellar
 
         private void frmTransaction_Load(object sender, EventArgs e)
         {
-            this.Visible = false;
-            frmLogin login = new frmLogin();
-            if (login.ShowDialog() == DialogResult.OK)
-            {
-                this.Visible = true;
-            }
-            else
-            {
-                this.Dispose();
-            }
-
+            UserLogin();
             lbl_twentyone.Text = "21 AS OF: " + DateTime.Now.AddYears(-21).ToString("MM/dd/yy");
             lbl_twentyone.Font = new Font("Microsoft Sans Serif", 16, FontStyle.Bold);
         }
@@ -438,6 +428,26 @@ namespace SecretCellar
         private void txtBarcode_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void btn_signout_Click(object sender, EventArgs e)
+        {
+            UserLogin();
+        }
+
+        public void UserLogin()
+        {
+            this.Visible = false;
+            frmLogin login = new frmLogin();
+            if (login.ShowDialog() == DialogResult.OK)
+            {
+                lbl_emp_logged_on.Text = DataAccess.currentUser.ToString();
+                this.Visible = true;
+            }
+            else
+            {
+                this.Dispose();
+            }
         }
     }
 }

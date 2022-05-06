@@ -34,17 +34,13 @@ namespace SecretCellar
         private void Validate_user(string text)
         {
             EmployeeModel user = null;
-            if (text == "")
-            {
-                user = DataAccess.instance.GetEmployee(0);
-            }
-            else if (int.TryParse(text, out int pin))
-            {
-                user = DataAccess.instance.GetEmployee(pin);
-            }
+            text = text.Trim();
+
+            if (!string.IsNullOrWhiteSpace (text))
+                user = DataAccess.instance.LoginUser(text);
 
             if (user == null)
-                MessageBox.Show("Invalid Pin");
+                MessageBox.Show("Invalid user name");
             else
             {
                 this.DialogResult = DialogResult.OK;

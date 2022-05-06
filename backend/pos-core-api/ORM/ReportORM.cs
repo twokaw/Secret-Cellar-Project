@@ -8,7 +8,7 @@ namespace pos_core_api.ORM
 {
     public class ReportORM
     {
-        readonly DbConn db = new DbConn();
+        readonly DbConn db = new();
 
       
 
