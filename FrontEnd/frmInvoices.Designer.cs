@@ -31,17 +31,17 @@ namespace SecretCellar {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmInvoices));
             this.dataGridView_Invoices = new System.Windows.Forms.DataGridView();
-            this.selectionList_Invoices = new System.Windows.Forms.ListBox();
-            this.button_CloseWindow = new System.Windows.Forms.Button();
-            this.button_Finalize = new System.Windows.Forms.Button();
-            this.textBox_Filter = new System.Windows.Forms.TextBox();
-            this.button_Print = new System.Windows.Forms.Button();
             this.DESCRIPTION = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.QTY = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PRICE = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DISCOUNT = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BOTTLE_DEPOSIT = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TOTAL = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.selectionList_Invoices = new System.Windows.Forms.ListBox();
+            this.button_CloseWindow = new System.Windows.Forms.Button();
+            this.button_Finalize = new System.Windows.Forms.Button();
+            this.textBox_Filter = new System.Windows.Forms.TextBox();
+            this.button_Print = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Invoices)).BeginInit();
             this.SuspendLayout();
             // 
@@ -88,7 +88,7 @@ namespace SecretCellar {
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridView_Invoices.DefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView_Invoices.Location = new System.Drawing.Point(225, 10);
-            this.dataGridView_Invoices.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.dataGridView_Invoices.Margin = new System.Windows.Forms.Padding(1);
             this.dataGridView_Invoices.Name = "dataGridView_Invoices";
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
@@ -115,62 +115,6 @@ namespace SecretCellar {
             this.dataGridView_Invoices.Size = new System.Drawing.Size(726, 441);
             this.dataGridView_Invoices.TabIndex = 6;
             this.dataGridView_Invoices.TabStop = false;
-            // 
-            // selectionList_Invoices
-            // 
-            this.selectionList_Invoices.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.selectionList_Invoices.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.selectionList_Invoices.FormattingEnabled = true;
-            this.selectionList_Invoices.ItemHeight = 18;
-            this.selectionList_Invoices.Location = new System.Drawing.Point(12, 47);
-            this.selectionList_Invoices.Name = "selectionList_Invoices";
-            this.selectionList_Invoices.Size = new System.Drawing.Size(198, 184);
-            this.selectionList_Invoices.TabIndex = 2;
-            // 
-            // button_CloseWindow
-            // 
-            this.button_CloseWindow.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button_CloseWindow.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_CloseWindow.Location = new System.Drawing.Point(12, 396);
-            this.button_CloseWindow.Name = "button_CloseWindow";
-            this.button_CloseWindow.Size = new System.Drawing.Size(198, 55);
-            this.button_CloseWindow.TabIndex = 5;
-            this.button_CloseWindow.Text = "Close";
-            this.button_CloseWindow.UseVisualStyleBackColor = true;
-            this.button_CloseWindow.Click += new System.EventHandler(this.btn_CloseWindow_Click);
-            // 
-            // button_Finalize
-            // 
-            this.button_Finalize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button_Finalize.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_Finalize.Location = new System.Drawing.Point(12, 268);
-            this.button_Finalize.Name = "button_Finalize";
-            this.button_Finalize.Size = new System.Drawing.Size(198, 55);
-            this.button_Finalize.TabIndex = 3;
-            this.button_Finalize.Text = "Finalize";
-            this.button_Finalize.UseVisualStyleBackColor = true;
-            // 
-            // textBox_Filter
-            // 
-            this.textBox_Filter.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_Filter.Location = new System.Drawing.Point(12, 12);
-            this.textBox_Filter.Name = "textBox_Filter";
-            this.textBox_Filter.Size = new System.Drawing.Size(198, 29);
-            this.textBox_Filter.TabIndex = 1;
-            this.textBox_Filter.Text = "Filter...";
-            // 
-            // button_Print
-            // 
-            this.button_Print.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button_Print.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_Print.Location = new System.Drawing.Point(12, 329);
-            this.button_Print.Name = "button_Print";
-            this.button_Print.Size = new System.Drawing.Size(198, 55);
-            this.button_Print.TabIndex = 4;
-            this.button_Print.Text = "View/Print";
-            this.button_Print.UseVisualStyleBackColor = true;
             // 
             // DESCRIPTION
             // 
@@ -230,6 +174,63 @@ namespace SecretCellar {
             this.TOTAL.MinimumWidth = 12;
             this.TOTAL.Name = "TOTAL";
             this.TOTAL.Width = 89;
+            // 
+            // selectionList_Invoices
+            // 
+            this.selectionList_Invoices.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.selectionList_Invoices.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.selectionList_Invoices.FormattingEnabled = true;
+            this.selectionList_Invoices.ItemHeight = 18;
+            this.selectionList_Invoices.Location = new System.Drawing.Point(12, 47);
+            this.selectionList_Invoices.Name = "selectionList_Invoices";
+            this.selectionList_Invoices.Size = new System.Drawing.Size(198, 184);
+            this.selectionList_Invoices.TabIndex = 2;
+            // 
+            // button_CloseWindow
+            // 
+            this.button_CloseWindow.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.button_CloseWindow.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_CloseWindow.Location = new System.Drawing.Point(12, 396);
+            this.button_CloseWindow.Name = "button_CloseWindow";
+            this.button_CloseWindow.Size = new System.Drawing.Size(198, 55);
+            this.button_CloseWindow.TabIndex = 5;
+            this.button_CloseWindow.Text = "Close";
+            this.button_CloseWindow.UseVisualStyleBackColor = true;
+            this.button_CloseWindow.Click += new System.EventHandler(this.btn_CloseWindow_Click);
+            // 
+            // button_Finalize
+            // 
+            this.button_Finalize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.button_Finalize.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_Finalize.Location = new System.Drawing.Point(12, 268);
+            this.button_Finalize.Name = "button_Finalize";
+            this.button_Finalize.Size = new System.Drawing.Size(198, 55);
+            this.button_Finalize.TabIndex = 3;
+            this.button_Finalize.Text = "Finalize";
+            this.button_Finalize.UseVisualStyleBackColor = true;
+            this.button_Finalize.Click += new System.EventHandler(this.button_Finalize_Click);
+            // 
+            // textBox_Filter
+            // 
+            this.textBox_Filter.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox_Filter.Location = new System.Drawing.Point(12, 12);
+            this.textBox_Filter.Name = "textBox_Filter";
+            this.textBox_Filter.Size = new System.Drawing.Size(198, 29);
+            this.textBox_Filter.TabIndex = 1;
+            this.textBox_Filter.Text = "Filter...";
+            // 
+            // button_Print
+            // 
+            this.button_Print.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.button_Print.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_Print.Location = new System.Drawing.Point(12, 329);
+            this.button_Print.Name = "button_Print";
+            this.button_Print.Size = new System.Drawing.Size(198, 55);
+            this.button_Print.TabIndex = 4;
+            this.button_Print.Text = "View/Print";
+            this.button_Print.UseVisualStyleBackColor = true;
             // 
             // frmInvoices
             // 
