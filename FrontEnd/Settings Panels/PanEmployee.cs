@@ -14,11 +14,16 @@ namespace SecretCellar.Settings_Panels
     public partial class PanEmployee : UserControl
     {
         private List<EmployeeTypeModel> employeeTypes = null;
+        private List<EmployeeRoleModel> employeeRoles = null;
         public PanEmployee()
         {
             InitializeComponent();
             PopulateEmp();
+
             GetEmployeeTypes();
+            GetEmployeeRoles();
+            //cbx_types.;
+            //cbx_types.EmployeeModel.AddRange((string[])typeName.Select(x => x.TypeName).ToArray());
             //types = DataAccess.instance.EmployeeType();
         }
        
@@ -26,7 +31,14 @@ namespace SecretCellar.Settings_Panels
         private void PopulateEmp() => lst_employee.DataSource = DataAccess.instance.GetEmployee();
         private void GetEmployeeTypes()
         {
-            cbc_types.DataSource = DataAccess.instance.GetEmployeeTypes();
+            employeeTypes = DataAccess.instance.GetEmployeeTypes();
+            cbx_types.DataSource = employeeTypes;
+        }
+
+        private void GetEmployeeRoles()
+        {
+            employeeRoles = DataAccess.instance.GetEmployeeRoles();
+            lstbx_roles.DataSource = employeeRoles;
         }
 
         private void lst_employee_SelectedIndexChanged(object sender, EventArgs e)
@@ -42,7 +54,7 @@ namespace SecretCellar.Settings_Panels
             txt_phone.Text = ((EmployeeModel)lst_employee.SelectedItem).PhoneNumber;
             txt_startdate.Text = ((EmployeeModel)lst_employee.SelectedItem).StartDate.ToString();
             txt_enddate.Text = ((EmployeeModel)lst_employee.SelectedItem).EndDate.ToString();
-            cbc_types.Text = ((EmployeeModel)lst_employee.SelectedItem).EmployeeType.ToString();
+            cbx_types.Text = ((EmployeeModel)lst_employee.SelectedItem).EmployeeType.ToString();
 
         }
     }

@@ -30,7 +30,7 @@
         {
             this.lbl_employee = new System.Windows.Forms.Label();
             this.employee_panel = new System.Windows.Forms.Panel();
-            this.cbc_types = new System.Windows.Forms.ComboBox();
+            this.cbx_types = new System.Windows.Forms.ComboBox();
             this.lstbx_roles = new System.Windows.Forms.CheckedListBox();
             this.txt_enddate = new System.Windows.Forms.TextBox();
             this.txt_startdate = new System.Windows.Forms.TextBox();
@@ -74,7 +74,7 @@
             // 
             // employee_panel
             // 
-            this.employee_panel.Controls.Add(this.cbc_types);
+            this.employee_panel.Controls.Add(this.cbx_types);
             this.employee_panel.Controls.Add(this.lstbx_roles);
             this.employee_panel.Controls.Add(this.txt_enddate);
             this.employee_panel.Controls.Add(this.txt_startdate);
@@ -110,15 +110,15 @@
             this.employee_panel.Size = new System.Drawing.Size(636, 309);
             this.employee_panel.TabIndex = 1;
             // 
-            // cbc_types
+            // cbx_types
             // 
-            this.cbc_types.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.cbc_types.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbc_types.FormattingEnabled = true;
-            this.cbc_types.Location = new System.Drawing.Point(526, 44);
-            this.cbc_types.Name = "cbc_types";
-            this.cbc_types.Size = new System.Drawing.Size(100, 24);
-            this.cbc_types.TabIndex = 30;
+            this.cbx_types.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbx_types.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbx_types.FormattingEnabled = true;
+            this.cbx_types.Location = new System.Drawing.Point(526, 44);
+            this.cbx_types.Name = "cbx_types";
+            this.cbx_types.Size = new System.Drawing.Size(100, 24);
+            this.cbx_types.TabIndex = 30;
             // 
             // lstbx_roles
             // 
@@ -448,6 +448,6 @@
         private System.Windows.Forms.TextBox txt_city;
         private System.Windows.Forms.TextBox txt_address2;
         private System.Windows.Forms.TextBox txt_address1;
-        private System.Windows.Forms.ComboBox cbc_types;
+        private System.Windows.Forms.ComboBox cbx_types;
     }
 }
