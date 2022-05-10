@@ -377,8 +377,8 @@ namespace SecretCellar
         public List<Customer> GetCustomer(string cust_name)
         {
             return GetCustomer()
-                .Where(x => (x.LastName.IndexOf(cust_name, StringComparison.OrdinalIgnoreCase) >= 0) || 
-                             x.FirstName.IndexOf(cust_name, StringComparison.OrdinalIgnoreCase) >= 0 ||
+                .Where(x => (x.LastName.IndexOf(cust_name,    StringComparison.OrdinalIgnoreCase) >= 0) || 
+                             x.FirstName.IndexOf(cust_name,   StringComparison.OrdinalIgnoreCase) >= 0 ||
                              x.PhoneNumber.IndexOf(cust_name, StringComparison.OrdinalIgnoreCase) >= 0)
                 .OrderBy(x => x.LastName)
                 .ToList();
@@ -523,6 +523,15 @@ namespace SecretCellar
                 return 0;
         }
 
+        public uint UpdateCustomerOrderItem(uint customerID, uint tranactionID, CustomerOrderItem customerOrderItem)
+        {
+            Response resp = null;
+            string result = web.DataPut($"api/CustomerOrder/{customerID}?tranactionid={tranactionID}", customerOrderItem, resp);
+            if (uint.TryParse(result, out uint id))
+                return id;
+            else
+                return 0;
+        }
         public uint UpdateCustomerOrderItem(uint customerID, CustomerOrderItem customerOrderItem)
         {
             Response resp = null;
@@ -532,6 +541,7 @@ namespace SecretCellar
             else
                 return 0;
         }
+
         public void DeleteCustomerOrderItem(uint custOrdID)
         {
             try { web.DataDelete($"api/CustomerOrder/{custOrdID}"); }
