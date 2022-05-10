@@ -131,6 +131,12 @@ namespace SecretCellar
         #endregion
 
         #region Employee
+
+        public List<EmployeeModel> GetEmployee()
+        {
+            string result = web.DataGet($"api/Employee");
+            return (List<EmployeeModel>)JsonConvert.DeserializeObject(result, typeof(List<EmployeeModel>));
+        }
         public EmployeeModel GetEmployee(int EmpID)
         {
             string result = web.DataGet($"api/Employee/{EmpID}");
@@ -149,6 +155,19 @@ namespace SecretCellar
             return currentUser;
         }
         #endregion
+        #region EmployeeType
+        public List<EmployeeTypeModel> GetEmployeeTypes()
+        {
+            string result = web.DataGet("api/EmployeeType");
+            return (List<EmployeeTypeModel>)JsonConvert.DeserializeObject(result, typeof(List<EmployeeTypeModel>));
+        }
+        public List<EmployeeRoleModel> GetEmployeeRoles()
+        {
+            string result = web.DataGet("api/EmployeeType/Role");
+            return (List<EmployeeRoleModel>)JsonConvert.DeserializeObject(result, typeof(List<EmployeeRoleModel>));
+        }
+        #endregion
+
 
         #region Suppliers
         public List<Supplier> GetSuppliers()
