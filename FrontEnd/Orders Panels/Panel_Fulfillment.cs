@@ -11,7 +11,7 @@ namespace SecretCellar.Orders_Panels {
 	public partial class Panel_Fulfillment : UserControl {
         private List<Inventory> inventory = null;
 
-
+        private readonly Dictionary<uint, Transaction> transactions = new Dictionary<uint, Transaction>();
 
         public Panel_Fulfillment() {
 			InitializeComponent();
@@ -59,12 +59,13 @@ namespace SecretCellar.Orders_Panels {
 
                 if (fullfill_datagrid.SelectedRows.Count > 0)
                 {
+                    uint tId = GetInvoiceID (custorder.CustomerID );
                     //i.AllQty.Add(new InventoryQty { Qty = custorder.qty });
                     // i.OrderQty.Add(new CustomerOrder {RequestQty = coid.RequestQty, DeliveredDate = DateTime.Now, SupplierPrice = 0 });
                     if (uint.TryParse(txt_deliverqty.Text.Trim(), out uint dqty))
                     {
                         coid.DeliverQty += dqty;
-                        DataAccess.instance.UpdateCustomerOrderItem(custorder.CustomerID, coid);
+                        DataAccess.instance.UpdateCustomerOrderItem(custorder.CustomerID, tId, coid);
                         i.AllQty.Remove(new InventoryQty { Qty = Convert.ToUInt32(fullfill_datagrid.SelectedRows[0].Cells["qty"].Value.ToString()) - coid.DeliverQty });
                     }
                     else
@@ -130,16 +131,33 @@ namespace SecretCellar.Orders_Panels {
         private void btn_deliver_all_Click(object sender, EventArgs e) {
             CustomerOrder custorder = DataAccess.instance.GetCustomerOrderforCustomer(((CustomerOrder)cbx_fullfill_cust.SelectedItem).CustomerID, false);
 
+            uint tId = GetInvoiceID(custorder.CustomerID);
             foreach (DataGridViewRow row in fullfill_datagrid.Rows) {
                 Inventory i = inventory.First(x => x.Id == uint.Parse(row.Cells["id"].Value.ToString()));
                 CustomerOrderItem coid = custorder.Items.FirstOrDefault(x => x.Id == i.Id);
                 coid.DeliverQty = uint.Parse(row.Cells["requestqty"].Value.ToString());
-                DataAccess.instance.UpdateCustomerOrderItem(custorder.CustomerID, coid);
+                DataAccess.instance.UpdateCustomerOrderItem(custorder.CustomerID, tId, coid);
             }
 
             txt_deliverqty.Text = "";
             refreshcust();
             //RefreshFillment();
+        }
+
+        private uint GetInvoiceID(uint customerId)
+        {
+            if (!transactions.ContainsKey(customerId) 
+            || DialogResult.No == MessageBox.Show(this, "Would you like to use the current Invoice (Yes) or create a new one (No)", "User Current Invoice", MessageBoxButtons.YesNo))
+            {
+                transactions.Add(customerId, new Transaction()
+                {
+                    TranType = Transaction.TranactionType.Invoice
+                });
+
+                transactions[customerId].InvoiceID = DataAccess.instance.ProcessTransaction(transactions[customerId]);
+            }
+
+            return transactions[customerId].InvoiceID;
         }
 
 
@@ -150,6 +168,7 @@ namespace SecretCellar.Orders_Panels {
         /// <param name="e"></param>
         private void btn_deliver_selected_Click(object sender, EventArgs e) {
             
+
             CustomerOrder custorder = DataAccess.instance.GetCustomerOrderforCustomer(((CustomerOrder)cbx_fullfill_cust.SelectedItem).CustomerID, false);
 
             List<CustomerOrderItem> items = new List<CustomerOrderItem>();
@@ -185,8 +204,10 @@ namespace SecretCellar.Orders_Panels {
                 items.Add(coid);
             }
 
+            uint tId = GetInvoiceID(custorder.CustomerID);
+    
             foreach (CustomerOrderItem coi in items) 
-                DataAccess.instance.UpdateCustomerOrderItem(custorder.CustomerID, coi);
+                DataAccess.instance.UpdateCustomerOrderItem(custorder.CustomerID, tId, coi );
 
             txt_deliverqty.Text = "";
             RefreshFillment(custorder.CustomerID);
