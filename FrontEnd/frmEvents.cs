@@ -98,36 +98,38 @@ namespace SecretCellar
         }
 
         private void button_AddCharge_Click(object sender, EventArgs e) {
-            if (dataGridView_Events.SelectedRows.Count > 0) {
-                //GET THE FIRST SELECTED ROW
-                DataGridViewCellCollection selectedRow = dataGridView_Events.SelectedRows[0].Cells;
+            if (dataGridView_Events.SelectedRows.Count == 0) { return; }
+            
+            //GET THE FIRST SELECTED ROW
+            DataGridViewCellCollection selectedRow = dataGridView_Events.SelectedRows[0].Cells;
 
-                //TRY TO PARSE THE TEXT IN THE QUANTITY FIELD AS A UINT
-                if (!uint.TryParse(textBox_Quantity.Text, out uint quantity)) { MessageBox.Show("Quantity is not a valid number.", "Error"); return; }
+            //TRY TO PARSE THE TEXT IN THE QUANTITY FIELD AS A UINT
+            if (!uint.TryParse(textBox_Quantity.Text, out uint quantity)) { MessageBox.Show("Quantity is not a valid number.", "Error"); return; }
 
-                //IF THE QUANTITY TO ADD IS MORE THAN WHAT IS AVAILABLE, SHOW AN ERROR
-                if (quantity > uint.Parse(selectedRow["Qty"].Value.ToString())) {
-                    MessageBox.Show("Quantity to add is more than what is available.", "Error");
-                    return;
-                }
+            //IF THE QUANTITY TO ADD IS MORE THAN WHAT IS AVAILABLE, SHOW AN ERROR
+            if (!uint.TryParse(selectedRow["Qty"].Value.ToString(), out uint selectedEventQuantity)) { MessageBox.Show("Event Quantity is invalid", "Error"); return; }
 
-                //GET THE SELECTED ROW'S BARCODE AND CONVERT IT TO AN ITEM
-                Item item = Transaction.ConvertInvtoItem(DataAccess.instance.GetItem(selectedRow["Barcode"].Value.ToString()), quantity);
-                item.TypeID = DataAccess.instance.GetInventoryType("EVENT").TypeId;
+            if (quantity > selectedEventQuantity) {
+                MessageBox.Show($"Quantity to add is more than what is available.", "Error");
+                return;
+            }
 
-                //UPDATE THE PRICE OF THE ITEM WITH THE SELECTED ROW'S PRICE
-                if (dataGridView_Events.SelectedRows[0].Cells["PreorderPrice"].Style.ForeColor == Color.Red) {
-                    item.Price = double.Parse(selectedRow["PreorderPrice"].Value.ToString().Substring(1));
-                }
-                else {
-                    item.Price = double.Parse(selectedRow["AtDoorPrice"].Value.ToString().Substring(1));
-                }
+            //GET THE SELECTED ROW'S BARCODE AND CONVERT IT TO AN ITEM
+            Item item = Transaction.ConvertInvtoItem(DataAccess.instance.GetItem(selectedRow["Barcode"].Value.ToString()), quantity);
+            item.TypeID = DataAccess.instance.GetInventoryType("EVENT").TypeId;
 
-                //ADD THE ITEM TO THE TRANSACTION
-                _transaction.Items.Add(item);
+            //UPDATE THE PRICE OF THE ITEM WITH THE SELECTED ROW'S PRICE
+            if (dataGridView_Events.SelectedRows[0].Cells["PreorderPrice"].Style.ForeColor == Color.Red) {
+                item.Price = double.Parse(selectedRow["PreorderPrice"].Value.ToString().Substring(1));
+            }
+            else {
+                item.Price = double.Parse(selectedRow["AtDoorPrice"].Value.ToString().Substring(1));
+            }
 
-                this.Close();
-			}
+            //ADD THE ITEM TO THE TRANSACTION
+            _transaction.Items.Add(item);
+
+            this.Close();
         }
 
         private void button_DeleteEvent_Click(object sender, EventArgs e) {
@@ -170,7 +172,7 @@ namespace SecretCellar
                 eventName = x.Name,
                 preorderPrice = x.PreOrder.ToString("C"),
                 atDoorPrice = x.AtDoor.ToString("C"),
-                quantity = x.Qty
+                quantity = x.Qty    //quantity = x.Qty - (DataAccess.instance.GetPreviousEventData(x.Id).PreOrderSold + DataAccess.instance.GetPreviousEventData(x.Id).AtDoorSold)
             })
             .Where(x => x.eventDate.Year <= dateTimePicker_Date.Value.Year
                     && dateTimePicker_Date.Value.Year <= x.eventDuration.Year
