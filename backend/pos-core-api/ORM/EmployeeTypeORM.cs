@@ -19,9 +19,11 @@ namespace pos_core_api.ORM
             
             string sqlStatement = @"
               SELECT * 
-              FROM employee_type
-              LEFT JOIN Employee_role
-              USING(typeid)
+              FROM employeetype
+              join employeetyperole 
+              using(typeid)
+              LEFT JOIN Employeerole
+              USING(roleid)
             ";
 
             MySqlCommand cmd = db.CreateCommand(sqlStatement);
@@ -139,7 +141,7 @@ namespace pos_core_api.ORM
         {
             List<EmployeeRoleModel> empRoles = new List<EmployeeRoleModel>();
             MySqlCommand cmd = db.CreateCommand(@"
-                select * from employee_role            
+                select * from employeerole            
             ");
             MySqlDataReader reader = cmd.ExecuteReader();
             try
@@ -258,7 +260,7 @@ namespace pos_core_api.ORM
             {
                 while (reader.Read())
                 {
-                    typeid = reader.GetUInt32("emp_id");
+                    typeid = reader.GetUInt32("typeid");
 
                     if (empType is null || empType.TypeID != typeid)
                     {
