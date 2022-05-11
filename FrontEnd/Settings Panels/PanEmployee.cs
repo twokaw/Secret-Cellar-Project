@@ -54,7 +54,9 @@ namespace SecretCellar.Settings_Panels
             txt_phone.Text = ((EmployeeModel)lst_employee.SelectedItem).PhoneNumber;
             txt_startdate.Text = ((EmployeeModel)lst_employee.SelectedItem).StartDate.ToString();
             txt_enddate.Text = ((EmployeeModel)lst_employee.SelectedItem).EndDate.ToString();
-            cbx_types.Text = ((EmployeeModel)lst_employee.SelectedItem).EmployeeType.ToString();
+            cbx_types.SelectedItem = ((EmployeeModel)lst_employee.SelectedItem).EmployeeType;
+            foreach (var role in lstbx_roles.Items)
+                role.Equals.Should().BeTrue();
 
         }
     }
