@@ -18,10 +18,11 @@ namespace SecretCellar.Settings_Panels
         public PanEmployee()
         {
             InitializeComponent();
-            PopulateEmp();
-
             GetEmployeeTypes();
             GetEmployeeRoles();
+            PopulateEmp();
+
+            
             //cbx_types.;
             //cbx_types.EmployeeModel.AddRange((string[])typeName.Select(x => x.TypeName).ToArray());
             //types = DataAccess.instance.EmployeeType();
@@ -54,9 +55,12 @@ namespace SecretCellar.Settings_Panels
             txt_phone.Text = ((EmployeeModel)lst_employee.SelectedItem).PhoneNumber;
             txt_startdate.Text = ((EmployeeModel)lst_employee.SelectedItem).StartDate.ToString();
             txt_enddate.Text = ((EmployeeModel)lst_employee.SelectedItem).EndDate.ToString();
-            cbx_types.SelectedItem = ((EmployeeModel)lst_employee.SelectedItem).EmployeeType;
-            foreach (var role in lstbx_roles.Items)
-                role.Equals.Should().BeTrue();
+            cbx_types.SelectedItem = employeeTypes.FirstOrDefault(x => x.TypeID == ((EmployeeModel)lst_employee.SelectedItem).EmployeeType.TypeID);
+            for (int i = 0; i < lstbx_roles.Items.Count; i++)
+            {
+                lstbx_roles.SetItemChecked(i, ((EmployeeModel)lst_employee.SelectedItem).EmployeeType.Roles.Any(x => x.RoleID == ((EmployeeRoleModel)lstbx_roles.Items[i]).RoleID ));
+            }
+                
 
         }
     }
