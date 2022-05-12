@@ -523,15 +523,6 @@ namespace SecretCellar
                 return 0;
         }
 
-        public uint UpdateCustomerOrderItem(uint customerID, uint tranactionID, CustomerOrderItem customerOrderItem)
-        {
-            Response resp = null;
-            string result = web.DataPut($"api/CustomerOrder/{customerID}?tranactionid={tranactionID}", customerOrderItem, resp);
-            if (uint.TryParse(result, out uint id))
-                return id;
-            else
-                return 0;
-        }
         public uint UpdateCustomerOrderItem(uint customerID, CustomerOrderItem customerOrderItem)
         {
             Response resp = null;
@@ -541,6 +532,17 @@ namespace SecretCellar
             else
                 return 0;
         }
+        
+        public uint UpdateCustomerOrderItem(uint customerID, uint transactionId, CustomerOrderItem customerOrderItem)
+        {
+            Response resp = null;
+            string result = web.DataPut($"api/CustomerOrder/{customerID}?transactionId={transactionId}", customerOrderItem, resp);
+            if (uint.TryParse(result, out uint id))
+                return id;
+            else
+                return 0;
+        }
+        
 
         public void DeleteCustomerOrderItem(uint custOrdID)
         {
