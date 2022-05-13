@@ -10,7 +10,6 @@ namespace WebApi.Controllers
     [ApiController]
     public class InventoryController : ControllerBase
     {
-
         /// <summary>
         /// A get all request that retrieves all the items in the inventory. 
         /// </summary>
@@ -21,7 +20,6 @@ namespace WebApi.Controllers
         [HttpGet]
         public IActionResult Get(string barcode = null)
         {
-
             try
             {
                 if(barcode == null)
@@ -59,7 +57,6 @@ namespace WebApi.Controllers
                     return Ok(output);
             }
             catch (Exception ex) { ErrorLogging.WriteToErrorLog(ex); return StatusCode(500, ex.Message); }
-
         }
 
         /// <summary>
@@ -80,29 +77,6 @@ namespace WebApi.Controllers
         }
 
         /// <summary>
-        /// Returns a single item that matches the barcode that is sent. 
-        /// </summary>
-        /// <param name="barcode"></param>
-        /// <returns>
-        /// A single inventory item that matches the barcode. 
-        /// </returns>
-        // GET: api/Inventory/barcode
-       /* [HttpGet()]
-        public IActionResult Get(string barcode)
-        {
-            try
-            {
-                Inventory output = DataAccess.Instance.Inventory.GetInv(barcode);
-
-                if (output == null) 
-                    return BadRequest($"That item with the barcode '{barcode}' does not exist.");
-                else
-                    return Ok(output);
-            }
-            catch (Exception ex) { ErrorLogging.WriteToErrorLog(ex); return StatusCode(500, ex.Message); }
-        }
-       */
-        /// <summary>
         /// Creates a new inventory item and stores it in the inventory description table.
         /// </summary>
         /// <param name="inv"></param>
@@ -120,7 +94,6 @@ namespace WebApi.Controllers
             }
             catch (Exception ex) { ErrorLogging.WriteToErrorLog(ex); return StatusCode(500, ex.Message); }
         }
-
 
         //Create a post method for adding items to the inventory_price.
         /// <summary>
@@ -149,11 +122,9 @@ namespace WebApi.Controllers
         {
             List<Transaction> suspendedTransactions = DataAccess.Instance.Transaction.GetSuspendedTransactions();
 
-            foreach (Transaction suspendedTransaction in suspendedTransactions) {
-                foreach (Item item in suspendedTransaction.Items) {
+            foreach (Transaction suspendedTransaction in suspendedTransactions) 
+                foreach (Item item in suspendedTransaction.Items) 
                     if (item.Id == Invid) { return StatusCode(400, "Inventory item cannot be deleted, it exists in a transaction."); }
-                }
-            }
 
             try
             {

@@ -232,7 +232,7 @@ namespace pos_core_api.ORM
             }
         }
 
-        public long Update(CustomerOrderItem cust, uint customerid = 0)
+        public long Update(CustomerOrderItem cust, uint customerid = 0, Transaction transaction = null)
         {
             if (cust.CustomerOrderItemID == 0)
                 throw new Exception("Missing CustomerOrder Id");
@@ -287,7 +287,30 @@ namespace pos_core_api.ORM
                     cmd.ExecuteNonQuery();
 
                     if (cust.DeliverQty != temp.DeliverQty)
-                        transactionORM.DecrementInventoryQty(new Item { Id = cust.Id, QtySold = cust.DeliverQty - temp.DeliverQty });
+                    {
+                        Item item = new() { Id = cust.Id, QtySold = cust.DeliverQty - temp.DeliverQty };
+                        if (transaction == null)
+                        {
+                            transaction = new Transaction()
+                            {
+                                TranType = Transaction.TranactionType.Invoice,
+                                CustomerID = cust.Id
+                            };
+                            transaction.Items.Add(item);
+                            DataAccess.Instance.Transaction.InsertTransaction(transaction, false);
+                        }
+                        else
+                        {
+                            Item existingItem = transaction.Items.FirstOrDefault(x => x.Id == item.Id);
+                            if (existingItem != null)
+                                existingItem.QtySold += cust.DeliverQty - temp.DeliverQty;
+                            else
+                                transaction.Items.Add(item);
+                            DataAccess.Instance.Transaction.UpdateTransaction(transaction);
+                        }
+                        transactionORM.DecrementInventoryQty(item);
+                    }
+                       
                 }
                 finally
                 {
@@ -296,6 +319,7 @@ namespace pos_core_api.ORM
 
                 if (cust.RequestQty <= cust.DeliverQty)
                 {
+
                     cmd = db.CreateCommand(@$"
                         DELETE FROM customerorderitem
                         WHERE CustomerOrderItemID = @OrderItemID
