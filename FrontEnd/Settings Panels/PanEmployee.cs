@@ -18,9 +18,12 @@ namespace SecretCellar.Settings_Panels
         public PanEmployee()
         {
             InitializeComponent();
-            GetEmployeeTypes();
-            GetEmployeeRoles();
-            PopulateEmp();
+            if (DataAccess.instance != null)
+            {
+                GetEmployeeTypes();
+                GetEmployeeRoles();
+                PopulateEmp();
+            }
 
             
             //cbx_types.;
