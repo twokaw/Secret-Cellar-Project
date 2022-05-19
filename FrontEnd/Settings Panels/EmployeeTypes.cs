@@ -22,8 +22,10 @@ namespace SecretCellar.Settings_Panels
             {
                 GetEmployeeRoles();
                 GetEmployeeTypes();
-                
+                txt_typeName.Text = cbx_empTypes.SelectedItem.ToString();
             }
+
+            
         }
             private void GetEmployeeTypes()
             {

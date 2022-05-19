@@ -32,7 +32,7 @@
             this.chk_lstbx_Roles = new System.Windows.Forms.CheckedListBox();
             this.lbl_emp_name = new System.Windows.Forms.Label();
             this.btn_clear = new System.Windows.Forms.Button();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txt_typeName = new System.Windows.Forms.TextBox();
             this.btn_update = new System.Windows.Forms.Button();
             this.btn_new = new System.Windows.Forms.Button();
             this.txt_roleDescription = new System.Windows.Forms.TextBox();
@@ -48,7 +48,7 @@
             this.PanempTypes.Controls.Add(this.chk_lstbx_Roles);
             this.PanempTypes.Controls.Add(this.lbl_emp_name);
             this.PanempTypes.Controls.Add(this.btn_clear);
-            this.PanempTypes.Controls.Add(this.textBox2);
+            this.PanempTypes.Controls.Add(this.txt_typeName);
             this.PanempTypes.Controls.Add(this.btn_update);
             this.PanempTypes.Controls.Add(this.btn_new);
             this.PanempTypes.Controls.Add(this.txt_roleDescription);
@@ -95,13 +95,13 @@
             this.btn_clear.Text = "Clear";
             this.btn_clear.UseVisualStyleBackColor = true;
             // 
-            // textBox2
+            // txt_typeName
             // 
-            this.textBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.textBox2.Location = new System.Drawing.Point(26, 213);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(136, 26);
-            this.textBox2.TabIndex = 8;
+            this.txt_typeName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.txt_typeName.Location = new System.Drawing.Point(26, 213);
+            this.txt_typeName.Name = "txt_typeName";
+            this.txt_typeName.Size = new System.Drawing.Size(136, 26);
+            this.txt_typeName.TabIndex = 8;
             // 
             // btn_update
             // 
@@ -200,7 +200,7 @@
         private System.Windows.Forms.Button btn_update;
         private System.Windows.Forms.Button btn_new;
         private System.Windows.Forms.Button btn_clear;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txt_typeName;
         private System.Windows.Forms.Label lbl_emp_name;
         private System.Windows.Forms.CheckedListBox chk_lstbx_Roles;
     }
