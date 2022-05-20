@@ -187,6 +187,7 @@ namespace SecretCellar {
             this.selectionList_Invoices.Name = "selectionList_Invoices";
             this.selectionList_Invoices.Size = new System.Drawing.Size(198, 184);
             this.selectionList_Invoices.TabIndex = 2;
+            this.selectionList_Invoices.SelectedIndexChanged += new System.EventHandler(this.selectionList_Invoices_SelectedIndexChanged);
             // 
             // button_CloseWindow
             // 
@@ -220,6 +221,8 @@ namespace SecretCellar {
             this.textBox_Filter.Size = new System.Drawing.Size(198, 29);
             this.textBox_Filter.TabIndex = 1;
             this.textBox_Filter.Text = "Filter...";
+            this.textBox_Filter.Enter += new System.EventHandler(this.textBox_Filter_Enter);
+            this.textBox_Filter.Leave += new System.EventHandler(this.textBox_Filter_Leave);
             // 
             // button_Print
             // 

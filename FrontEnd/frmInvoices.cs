@@ -59,7 +59,8 @@ namespace SecretCellar {
 		private void selectionList_Invoices_SelectedIndexChanged(object sender, EventArgs e) {
 			if (selectionList_Invoices.SelectedItems.Count == 0) { return; }
 
-
+			uint invoiceId = uint.Parse(selectionList_Invoices.SelectedItem.ToString().Split(new string[] { " | " }, StringSplitOptions.None)[0]);
+			Console.WriteLine(invoiceId);
 		}
 
 
@@ -68,11 +69,6 @@ namespace SecretCellar {
 		/// </summary>
 		private void PopulateListOfInvoices() {
 			List<Transaction> transactions = DataAccess.instance.GetTransactions();
-
-			foreach (Transaction invoice in transactions) {
-				Console.WriteLine(invoice.InvoiceID + " " + invoice.TranType);
-			}
-
 			List<Transaction> invoices = transactions.FindAll((transaction) => { return transaction.TranType == Transaction.TranactionType.Invoice; });
 
 			foreach (Transaction invoice in invoices) {
