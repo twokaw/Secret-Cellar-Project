@@ -55,7 +55,22 @@ namespace SecretCellar.Settings_Panels
 
         private void btn_update_Click(object sender, EventArgs e)
         {
-
+            bool x = false;
+            for (int i = 0; i < chk_lstbx_Roles.Items.Count; i++)
+            {
+                x = ((EmployeeTypeModel)cbx_empTypes.SelectedItem).Roles.Any(y => y.RoleID == ((EmployeeRoleModel)chk_lstbx_Roles.Items[i]).RoleID);
+                if(x != chk_lstbx_Roles.GetItemChecked(i))
+                {
+                    if(x)
+                    {
+                        ((EmployeeTypeModel)cbx_empTypes.SelectedItem).Roles.RemoveAll(y => y.RoleID == ((EmployeeRoleModel)chk_lstbx_Roles.Items[i]).RoleID);
+                    }
+                    else
+                    {
+                        ((EmployeeTypeModel)cbx_empTypes.SelectedItem).Roles.Add((EmployeeRoleModel)chk_lstbx_Roles.Items[i]);
+                    }
+                }
+            }
         }
 
         private void btn_clear_Click(object sender, EventArgs e)
@@ -70,7 +85,25 @@ namespace SecretCellar.Settings_Panels
 
         private void btn_new_Click(object sender, EventArgs e)
         {
+            bool rolechecked = false;
+            EmployeeTypeModel emp = new EmployeeTypeModel();
+            emp.TypeName = txt_typeName.Text;
 
+            /*
+                for (int i = 0; i < chk_lstbx_Roles.Items.Count; i++)
+                {
+                    rolechecked = ((EmployeeTypeModel)cbx_empTypes.SelectedItem).Roles.Any(y => y.RoleID == ((EmployeeRoleModel)chk_lstbx_Roles.Items[i]).RoleID);
+                    if (rolechecked != chk_lstbx_Roles.GetItemChecked(i))
+                    {
+                        if (!rolechecked)
+                        {
+                            ((EmployeeTypeModel)cbx_empTypes.SelectedItem).Roles.Add((EmployeeRoleModel)chk_lstbx_Roles.Items[i]);
+
+                        }
+
+                    }
+
+                } */
         }
     }
     }
