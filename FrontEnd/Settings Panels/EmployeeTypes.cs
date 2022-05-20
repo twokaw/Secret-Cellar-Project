@@ -22,8 +22,9 @@ namespace SecretCellar.Settings_Panels
             {
                 GetEmployeeRoles();
                 GetEmployeeTypes();
-                
             }
+
+            
         }
             private void GetEmployeeTypes()
             {
@@ -44,11 +45,32 @@ namespace SecretCellar.Settings_Panels
             {
                 chk_lstbx_Roles.SetItemChecked(i, ((EmployeeTypeModel)cbx_empTypes.SelectedItem).Roles.Any(x => x.RoleID == ((EmployeeRoleModel)chk_lstbx_Roles.Items[i]).RoleID));
             }
+            txt_typeName.Text = cbx_empTypes.SelectedItem.ToString();
         }
 
         private void chk_lstbx_Roles_SelectedIndexChanged(object sender, EventArgs e)
         {
             txt_roleDescription.Text = ((EmployeeRoleModel)chk_lstbx_Roles.SelectedItem).RoleDescription;
+        }
+
+        private void btn_update_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_clear_Click(object sender, EventArgs e)
+        {
+            txt_typeName.Clear();
+            for (int i = 0; i < chk_lstbx_Roles.Items.Count; i++)
+            {
+                chk_lstbx_Roles.SetItemCheckState(i, CheckState.Unchecked);
+            }
+            txt_typeName.Focus();
+        }
+
+        private void btn_new_Click(object sender, EventArgs e)
+        {
+
         }
     }
     }
