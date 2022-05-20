@@ -188,7 +188,7 @@ namespace pos_core_api.ORM
                     TaxExempt = !reader.IsDBNull("tax_exempt") && reader.GetBoolean("tax_exempt"),
                     Discount = reader.IsDBNull("discount") ? 0.0 : reader.GetDouble("discount"),
                     Shipping = reader.IsDBNull("shipping") ? 0.0 : reader.GetDouble("shipping"),
-                    TranType = (Transaction.TranactionType)(reader.IsDBNull("tranTypeid") ? 0 : reader.GetInt32("tranTypeid"))
+                    TranType = (Transaction.TranactionType)(reader.IsDBNull("tranTypeid") ? 0 : reader.GetByte("tranTypeid"))
                 };
                 output.Add(transaction);
             }
