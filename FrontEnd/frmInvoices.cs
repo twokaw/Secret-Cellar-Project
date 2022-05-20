@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 using Shared;
 
@@ -9,45 +10,30 @@ using Shared;
 namespace SecretCellar {
 	public partial class frmInvoices : Form {
 		private readonly string _defaultFilterString = "Filter...";
+		private List<Transaction> _invoices = new List<Transaction>();
 
 
 
 		public frmInvoices() {
 			InitializeComponent();
 
+			List<Transaction> transactions = DataAccess.instance.GetTransactions();
+			_invoices = transactions.FindAll((transaction) => { return transaction.TranType == Transaction.TranactionType.Invoice; });
+
 			PopulateListOfInvoices();
 		}
 
 
-		/// <summary>
-		/// On filter focus.
-		/// </summary>
-		/// <param name="sender"></param>
-		/// <param name="e"></param>
 		private void textBox_Filter_Enter(object sender, EventArgs e) {
 			if (textBox_Filter.Text != _defaultFilterString) { return; }
 
 			textBox_Filter.Text = "";
 		}
-
-
-		/// <summary>
-		/// On filter unfocus.
-		/// </summary>
-		/// <param name="sender"></param>
-		/// <param name="e"></param>
 		private void textBox_Filter_Leave(object sender, EventArgs e) {
-			if (textBox_Filter.Text != "".Replace(" ", "")) { return; }
+			if (textBox_Filter.Text.Replace(" ", "") != "") { return; }
 
 			textBox_Filter.Text = _defaultFilterString;
 		}
-
-
-		/// <summary>
-		/// Closes the form.
-		/// </summary>
-		/// <param name="sender"></param>
-		/// <param name="e"></param>
 		private void btn_CloseWindow_Click(object sender, EventArgs e) { this.Close(); }
 
 
@@ -60,7 +46,15 @@ namespace SecretCellar {
 			if (selectionList_Invoices.SelectedItems.Count == 0) { return; }
 
 			uint invoiceId = uint.Parse(selectionList_Invoices.SelectedItem.ToString().Split(new string[] { " | " }, StringSplitOptions.None)[0]);
-			Console.WriteLine(invoiceId);
+			Transaction currentInvoice = _invoices.Find((invoice) => { return invoice.InvoiceID == invoiceId; });
+
+			if (currentInvoice == null) return;
+
+			dataGridView_InvoiceData.DataSource = currentInvoice.Items.Select(x => new {
+				ItemName = x.Name,
+				Quantity = x.Qty,
+				Price = x.Price
+			}).ToList();
 		}
 
 
@@ -68,10 +62,7 @@ namespace SecretCellar {
 		/// Populates the list invoices.
 		/// </summary>
 		private void PopulateListOfInvoices() {
-			List<Transaction> transactions = DataAccess.instance.GetTransactions();
-			List<Transaction> invoices = transactions.FindAll((transaction) => { return transaction.TranType == Transaction.TranactionType.Invoice; });
-
-			foreach (Transaction invoice in invoices) {
+			foreach (Transaction invoice in _invoices) {
 				selectionList_Invoices.Items.Add($"{invoice.InvoiceID} | {invoice.CustomerName}");
 			}
 		}

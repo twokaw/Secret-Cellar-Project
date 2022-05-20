@@ -30,39 +30,36 @@ namespace SecretCellar {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmInvoices));
-            this.dataGridView_Invoices = new System.Windows.Forms.DataGridView();
-            this.DESCRIPTION = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.QTY = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PRICE = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DISCOUNT = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BOTTLE_DEPOSIT = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TOTAL = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridView_InvoiceData = new System.Windows.Forms.DataGridView();
             this.selectionList_Invoices = new System.Windows.Forms.ListBox();
             this.button_CloseWindow = new System.Windows.Forms.Button();
             this.button_Finalize = new System.Windows.Forms.Button();
             this.textBox_Filter = new System.Windows.Forms.TextBox();
             this.button_Print = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Invoices)).BeginInit();
+            this.ItemName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_InvoiceData)).BeginInit();
             this.SuspendLayout();
             // 
-            // dataGridView_Invoices
+            // dataGridView_InvoiceData
             // 
-            this.dataGridView_Invoices.AllowUserToAddRows = false;
-            this.dataGridView_Invoices.AllowUserToDeleteRows = false;
-            this.dataGridView_Invoices.AllowUserToResizeColumns = false;
-            this.dataGridView_Invoices.AllowUserToResizeRows = false;
+            this.dataGridView_InvoiceData.AllowUserToAddRows = false;
+            this.dataGridView_InvoiceData.AllowUserToDeleteRows = false;
+            this.dataGridView_InvoiceData.AllowUserToResizeColumns = false;
+            this.dataGridView_InvoiceData.AllowUserToResizeRows = false;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(51)))), ((int)(((byte)(69)))));
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Ivory;
-            this.dataGridView_Invoices.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.dataGridView_Invoices.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.dataGridView_InvoiceData.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.dataGridView_InvoiceData.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridView_Invoices.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.dataGridView_Invoices.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            this.dataGridView_Invoices.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(237)))), ((int)(((byte)(196)))));
+            this.dataGridView_InvoiceData.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView_InvoiceData.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dataGridView_InvoiceData.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(237)))), ((int)(((byte)(196)))));
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -70,15 +67,12 @@ namespace SecretCellar {
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView_Invoices.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.dataGridView_Invoices.ColumnHeadersHeight = 48;
-            this.dataGridView_Invoices.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.DESCRIPTION,
-            this.QTY,
-            this.PRICE,
-            this.DISCOUNT,
-            this.BOTTLE_DEPOSIT,
-            this.TOTAL});
+            this.dataGridView_InvoiceData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.dataGridView_InvoiceData.ColumnHeadersHeight = 48;
+            this.dataGridView_InvoiceData.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ItemName,
+            this.Quantity,
+            this.Price});
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -86,10 +80,10 @@ namespace SecretCellar {
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(51)))), ((int)(((byte)(69)))));
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Ivory;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView_Invoices.DefaultCellStyle = dataGridViewCellStyle3;
-            this.dataGridView_Invoices.Location = new System.Drawing.Point(225, 10);
-            this.dataGridView_Invoices.Margin = new System.Windows.Forms.Padding(1);
-            this.dataGridView_Invoices.Name = "dataGridView_Invoices";
+            this.dataGridView_InvoiceData.DefaultCellStyle = dataGridViewCellStyle3;
+            this.dataGridView_InvoiceData.Location = new System.Drawing.Point(225, 10);
+            this.dataGridView_InvoiceData.Margin = new System.Windows.Forms.Padding(1);
+            this.dataGridView_InvoiceData.Name = "dataGridView_InvoiceData";
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -97,83 +91,24 @@ namespace SecretCellar {
             dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(51)))), ((int)(((byte)(69)))));
             dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Ivory;
             dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView_Invoices.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
-            this.dataGridView_Invoices.RowHeadersVisible = false;
-            this.dataGridView_Invoices.RowHeadersWidth = 102;
+            this.dataGridView_InvoiceData.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            this.dataGridView_InvoiceData.RowHeadersVisible = false;
+            this.dataGridView_InvoiceData.RowHeadersWidth = 102;
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(51)))), ((int)(((byte)(69)))));
             dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.Ivory;
-            this.dataGridView_Invoices.RowsDefaultCellStyle = dataGridViewCellStyle5;
-            this.dataGridView_Invoices.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dataGridView_Invoices.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dataGridView_Invoices.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(51)))), ((int)(((byte)(69)))));
-            this.dataGridView_Invoices.RowTemplate.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.Ivory;
-            this.dataGridView_Invoices.RowTemplate.Height = 40;
-            this.dataGridView_Invoices.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.dataGridView_Invoices.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView_Invoices.Size = new System.Drawing.Size(726, 441);
-            this.dataGridView_Invoices.TabIndex = 6;
-            this.dataGridView_Invoices.TabStop = false;
-            // 
-            // DESCRIPTION
-            // 
-            this.DESCRIPTION.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.DESCRIPTION.DataPropertyName = "description";
-            this.DESCRIPTION.FillWeight = 205.876F;
-            this.DESCRIPTION.HeaderText = "DESCRIPTION";
-            this.DESCRIPTION.MinimumWidth = 12;
-            this.DESCRIPTION.Name = "DESCRIPTION";
-            // 
-            // QTY
-            // 
-            this.QTY.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.QTY.DataPropertyName = "qty";
-            this.QTY.FillWeight = 154.4118F;
-            this.QTY.HeaderText = "QTY";
-            this.QTY.MinimumWidth = 12;
-            this.QTY.Name = "QTY";
-            this.QTY.Width = 69;
-            // 
-            // PRICE
-            // 
-            this.PRICE.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.PRICE.DataPropertyName = "price";
-            this.PRICE.FillWeight = 18.80306F;
-            this.PRICE.HeaderText = "PRICE";
-            this.PRICE.MinimumWidth = 12;
-            this.PRICE.Name = "PRICE";
-            this.PRICE.Width = 88;
-            // 
-            // DISCOUNT
-            // 
-            this.DISCOUNT.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.DISCOUNT.DataPropertyName = "discount";
-            this.DISCOUNT.FillWeight = 37.25315F;
-            this.DISCOUNT.HeaderText = "DISCOUNT";
-            this.DISCOUNT.MinimumWidth = 25;
-            this.DISCOUNT.Name = "DISCOUNT";
-            this.DISCOUNT.Width = 125;
-            // 
-            // BOTTLE_DEPOSIT
-            // 
-            this.BOTTLE_DEPOSIT.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.BOTTLE_DEPOSIT.DataPropertyName = "bottleDeposit";
-            this.BOTTLE_DEPOSIT.FillWeight = 88.47124F;
-            this.BOTTLE_DEPOSIT.HeaderText = "BOTTLE DEPOSIT";
-            this.BOTTLE_DEPOSIT.MinimumWidth = 12;
-            this.BOTTLE_DEPOSIT.Name = "BOTTLE_DEPOSIT";
-            this.BOTTLE_DEPOSIT.Width = 167;
-            // 
-            // TOTAL
-            // 
-            this.TOTAL.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.TOTAL.DataPropertyName = "total";
-            this.TOTAL.FillWeight = 138.0905F;
-            this.TOTAL.HeaderText = "TOTAL";
-            this.TOTAL.MinimumWidth = 12;
-            this.TOTAL.Name = "TOTAL";
-            this.TOTAL.Width = 89;
+            this.dataGridView_InvoiceData.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            this.dataGridView_InvoiceData.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridView_InvoiceData.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dataGridView_InvoiceData.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(51)))), ((int)(((byte)(69)))));
+            this.dataGridView_InvoiceData.RowTemplate.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.Ivory;
+            this.dataGridView_InvoiceData.RowTemplate.Height = 40;
+            this.dataGridView_InvoiceData.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.dataGridView_InvoiceData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView_InvoiceData.Size = new System.Drawing.Size(726, 441);
+            this.dataGridView_InvoiceData.TabIndex = 6;
+            this.dataGridView_InvoiceData.TabStop = false;
             // 
             // selectionList_Invoices
             // 
@@ -235,6 +170,24 @@ namespace SecretCellar {
             this.button_Print.Text = "View/Print";
             this.button_Print.UseVisualStyleBackColor = true;
             // 
+            // ItemName
+            // 
+            this.ItemName.DataPropertyName = "ItemName";
+            this.ItemName.HeaderText = "Name";
+            this.ItemName.Name = "ItemName";
+            // 
+            // Quantity
+            // 
+            this.Quantity.DataPropertyName = "quantity";
+            this.Quantity.HeaderText = "Quantity";
+            this.Quantity.Name = "Quantity";
+            // 
+            // Price
+            // 
+            this.Price.DataPropertyName = "price";
+            this.Price.HeaderText = "Price";
+            this.Price.Name = "Price";
+            // 
             // frmInvoices
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -246,7 +199,7 @@ namespace SecretCellar {
             this.Controls.Add(this.button_Finalize);
             this.Controls.Add(this.button_CloseWindow);
             this.Controls.Add(this.selectionList_Invoices);
-            this.Controls.Add(this.dataGridView_Invoices);
+            this.Controls.Add(this.dataGridView_InvoiceData);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -254,7 +207,7 @@ namespace SecretCellar {
             this.Name = "frmInvoices";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Invoices";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Invoices)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_InvoiceData)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -262,17 +215,14 @@ namespace SecretCellar {
 
 		#endregion
 
-		private System.Windows.Forms.DataGridView dataGridView_Invoices;
+		private System.Windows.Forms.DataGridView dataGridView_InvoiceData;
 		private System.Windows.Forms.ListBox selectionList_Invoices;
 		private System.Windows.Forms.Button button_CloseWindow;
 		private System.Windows.Forms.Button button_Finalize;
 		private System.Windows.Forms.TextBox textBox_Filter;
 		private System.Windows.Forms.Button button_Print;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DESCRIPTION;
-        private System.Windows.Forms.DataGridViewTextBoxColumn QTY;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PRICE;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DISCOUNT;
-        private System.Windows.Forms.DataGridViewTextBoxColumn BOTTLE_DEPOSIT;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TOTAL;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ItemName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Quantity;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Price;
     }
 }
