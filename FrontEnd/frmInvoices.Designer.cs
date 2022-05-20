@@ -37,8 +37,10 @@ namespace SecretCellar {
             this.textBox_Filter = new System.Windows.Forms.TextBox();
             this.button_Print = new System.Windows.Forms.Button();
             this.ItemName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.currencyBox_Total = new SecretCellar.CurrencyBox();
+            this.label_Total = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_InvoiceData)).BeginInit();
             this.SuspendLayout();
             // 
@@ -71,8 +73,8 @@ namespace SecretCellar {
             this.dataGridView_InvoiceData.ColumnHeadersHeight = 48;
             this.dataGridView_InvoiceData.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ItemName,
-            this.Quantity,
-            this.Price});
+            this.Price,
+            this.Quantity});
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -106,7 +108,7 @@ namespace SecretCellar {
             this.dataGridView_InvoiceData.RowTemplate.Height = 40;
             this.dataGridView_InvoiceData.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.dataGridView_InvoiceData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView_InvoiceData.Size = new System.Drawing.Size(726, 441);
+            this.dataGridView_InvoiceData.Size = new System.Drawing.Size(726, 374);
             this.dataGridView_InvoiceData.TabIndex = 6;
             this.dataGridView_InvoiceData.TabStop = false;
             // 
@@ -176,17 +178,37 @@ namespace SecretCellar {
             this.ItemName.HeaderText = "Name";
             this.ItemName.Name = "ItemName";
             // 
+            // Price
+            // 
+            this.Price.DataPropertyName = "price";
+            this.Price.HeaderText = "Price";
+            this.Price.Name = "Price";
+            // 
             // Quantity
             // 
             this.Quantity.DataPropertyName = "quantity";
             this.Quantity.HeaderText = "Quantity";
             this.Quantity.Name = "Quantity";
             // 
-            // Price
+            // currencyBox_Total
             // 
-            this.Price.DataPropertyName = "price";
-            this.Price.HeaderText = "Price";
-            this.Price.Name = "Price";
+            this.currencyBox_Total.Enabled = false;
+            this.currencyBox_Total.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.currencyBox_Total.Location = new System.Drawing.Point(813, 420);
+            this.currencyBox_Total.Name = "currencyBox_Total";
+            this.currencyBox_Total.Size = new System.Drawing.Size(138, 29);
+            this.currencyBox_Total.TabIndex = 8;
+            this.currencyBox_Total.Text = "0.00";
+            // 
+            // label_Total
+            // 
+            this.label_Total.AutoSize = true;
+            this.label_Total.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_Total.Location = new System.Drawing.Point(809, 393);
+            this.label_Total.Name = "label_Total";
+            this.label_Total.Size = new System.Drawing.Size(56, 24);
+            this.label_Total.TabIndex = 9;
+            this.label_Total.Text = "Total";
             // 
             // frmInvoices
             // 
@@ -194,6 +216,8 @@ namespace SecretCellar {
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(231)))), ((int)(((byte)(206)))));
             this.ClientSize = new System.Drawing.Size(961, 461);
+            this.Controls.Add(this.label_Total);
+            this.Controls.Add(this.currencyBox_Total);
             this.Controls.Add(this.button_Print);
             this.Controls.Add(this.textBox_Filter);
             this.Controls.Add(this.button_Finalize);
@@ -221,8 +245,10 @@ namespace SecretCellar {
 		private System.Windows.Forms.Button button_Finalize;
 		private System.Windows.Forms.TextBox textBox_Filter;
 		private System.Windows.Forms.Button button_Print;
+        private CurrencyBox currencyBox_Total;
         private System.Windows.Forms.DataGridViewTextBoxColumn ItemName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Quantity;
         private System.Windows.Forms.DataGridViewTextBoxColumn Price;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Quantity;
+        private System.Windows.Forms.Label label_Total;
     }
 }

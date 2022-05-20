@@ -52,9 +52,17 @@ namespace SecretCellar {
 
 			dataGridView_InvoiceData.DataSource = currentInvoice.Items.Select(x => new {
 				ItemName = x.Name,
-				Quantity = x.Qty,
-				Price = x.Price
+				Price = x.Price,
+				Quantity = x.Qty
 			}).ToList();
+
+			double total = 0;
+
+			currentInvoice.Items.ForEach(item => {
+				total += item.Price * item.Qty;
+			});
+
+			currencyBox_Total.Text = total.ToString();
 		}
 
 
