@@ -56,9 +56,12 @@
             this.lbl_empID = new System.Windows.Forms.Label();
             this.lbl_roles = new System.Windows.Forms.Label();
             this.lbl_Types = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btn_update = new System.Windows.Forms.Button();
             this.btn_add = new System.Windows.Forms.Button();
             this.lst_employee = new System.Windows.Forms.ListBox();
+            this.txt_email = new System.Windows.Forms.TextBox();
+            this.lbl_email = new System.Windows.Forms.Label();
+            this.btn_end = new System.Windows.Forms.Button();
             this.employee_panel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -74,6 +77,9 @@
             // 
             // employee_panel
             // 
+            this.employee_panel.Controls.Add(this.btn_end);
+            this.employee_panel.Controls.Add(this.lbl_email);
+            this.employee_panel.Controls.Add(this.txt_email);
             this.employee_panel.Controls.Add(this.cbx_types);
             this.employee_panel.Controls.Add(this.lstbx_roles);
             this.employee_panel.Controls.Add(this.txt_enddate);
@@ -100,22 +106,23 @@
             this.employee_panel.Controls.Add(this.lbl_empID);
             this.employee_panel.Controls.Add(this.lbl_roles);
             this.employee_panel.Controls.Add(this.lbl_Types);
-            this.employee_panel.Controls.Add(this.button1);
+            this.employee_panel.Controls.Add(this.btn_update);
             this.employee_panel.Controls.Add(this.btn_add);
             this.employee_panel.Controls.Add(this.lst_employee);
             this.employee_panel.Controls.Add(this.lbl_employee);
             this.employee_panel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.employee_panel.Location = new System.Drawing.Point(0, 0);
             this.employee_panel.Name = "employee_panel";
-            this.employee_panel.Size = new System.Drawing.Size(636, 309);
+            this.employee_panel.Size = new System.Drawing.Size(674, 342);
             this.employee_panel.TabIndex = 1;
             // 
             // cbx_types
             // 
             this.cbx_types.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbx_types.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbx_types.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbx_types.FormattingEnabled = true;
-            this.cbx_types.Location = new System.Drawing.Point(526, 44);
+            this.cbx_types.Location = new System.Drawing.Point(564, 42);
             this.cbx_types.Name = "cbx_types";
             this.cbx_types.Size = new System.Drawing.Size(100, 24);
             this.cbx_types.TabIndex = 30;
@@ -125,8 +132,9 @@
             this.lstbx_roles.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lstbx_roles.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lstbx_roles.FormattingEnabled = true;
-            this.lstbx_roles.Location = new System.Drawing.Point(526, 109);
+            this.lstbx_roles.Location = new System.Drawing.Point(564, 107);
             this.lstbx_roles.Name = "lstbx_roles";
+            this.lstbx_roles.SelectionMode = System.Windows.Forms.SelectionMode.None;
             this.lstbx_roles.Size = new System.Drawing.Size(101, 89);
             this.lstbx_roles.TabIndex = 29;
             // 
@@ -135,9 +143,9 @@
             this.txt_enddate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txt_enddate.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_enddate.Location = new System.Drawing.Point(321, 263);
+            this.txt_enddate.Location = new System.Drawing.Point(321, 280);
             this.txt_enddate.Name = "txt_enddate";
-            this.txt_enddate.Size = new System.Drawing.Size(194, 24);
+            this.txt_enddate.Size = new System.Drawing.Size(232, 24);
             this.txt_enddate.TabIndex = 28;
             // 
             // txt_startdate
@@ -145,9 +153,9 @@
             this.txt_startdate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txt_startdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_startdate.Location = new System.Drawing.Point(321, 235);
+            this.txt_startdate.Location = new System.Drawing.Point(321, 253);
             this.txt_startdate.Name = "txt_startdate";
-            this.txt_startdate.Size = new System.Drawing.Size(194, 24);
+            this.txt_startdate.Size = new System.Drawing.Size(232, 24);
             this.txt_startdate.TabIndex = 27;
             // 
             // txt_phone
@@ -155,9 +163,9 @@
             this.txt_phone.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txt_phone.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_phone.Location = new System.Drawing.Point(321, 207);
+            this.txt_phone.Location = new System.Drawing.Point(321, 199);
             this.txt_phone.Name = "txt_phone";
-            this.txt_phone.Size = new System.Drawing.Size(194, 24);
+            this.txt_phone.Size = new System.Drawing.Size(232, 24);
             this.txt_phone.TabIndex = 26;
             // 
             // txt_zipcode
@@ -165,15 +173,15 @@
             this.txt_zipcode.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txt_zipcode.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_zipcode.Location = new System.Drawing.Point(428, 179);
+            this.txt_zipcode.Location = new System.Drawing.Point(428, 171);
             this.txt_zipcode.Name = "txt_zipcode";
-            this.txt_zipcode.Size = new System.Drawing.Size(87, 24);
+            this.txt_zipcode.Size = new System.Drawing.Size(125, 24);
             this.txt_zipcode.TabIndex = 25;
             // 
             // txt_state
             // 
             this.txt_state.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_state.Location = new System.Drawing.Point(321, 179);
+            this.txt_state.Location = new System.Drawing.Point(321, 171);
             this.txt_state.Name = "txt_state";
             this.txt_state.Size = new System.Drawing.Size(53, 24);
             this.txt_state.TabIndex = 24;
@@ -183,9 +191,9 @@
             this.txt_city.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txt_city.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_city.Location = new System.Drawing.Point(321, 151);
+            this.txt_city.Location = new System.Drawing.Point(321, 143);
             this.txt_city.Name = "txt_city";
-            this.txt_city.Size = new System.Drawing.Size(194, 24);
+            this.txt_city.Size = new System.Drawing.Size(232, 24);
             this.txt_city.TabIndex = 23;
             // 
             // txt_address2
@@ -193,9 +201,9 @@
             this.txt_address2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txt_address2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_address2.Location = new System.Drawing.Point(321, 123);
+            this.txt_address2.Location = new System.Drawing.Point(321, 115);
             this.txt_address2.Name = "txt_address2";
-            this.txt_address2.Size = new System.Drawing.Size(194, 24);
+            this.txt_address2.Size = new System.Drawing.Size(232, 24);
             this.txt_address2.TabIndex = 22;
             // 
             // txt_address1
@@ -203,9 +211,9 @@
             this.txt_address1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txt_address1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_address1.Location = new System.Drawing.Point(321, 96);
+            this.txt_address1.Location = new System.Drawing.Point(321, 88);
             this.txt_address1.Name = "txt_address1";
-            this.txt_address1.Size = new System.Drawing.Size(194, 24);
+            this.txt_address1.Size = new System.Drawing.Size(232, 24);
             this.txt_address1.TabIndex = 21;
             // 
             // txt_lname
@@ -213,9 +221,9 @@
             this.txt_lname.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txt_lname.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_lname.Location = new System.Drawing.Point(321, 68);
+            this.txt_lname.Location = new System.Drawing.Point(321, 60);
             this.txt_lname.Name = "txt_lname";
-            this.txt_lname.Size = new System.Drawing.Size(194, 24);
+            this.txt_lname.Size = new System.Drawing.Size(232, 24);
             this.txt_lname.TabIndex = 20;
             // 
             // txt_fname
@@ -223,9 +231,9 @@
             this.txt_fname.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txt_fname.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_fname.Location = new System.Drawing.Point(321, 40);
+            this.txt_fname.Location = new System.Drawing.Point(321, 32);
             this.txt_fname.Name = "txt_fname";
-            this.txt_fname.Size = new System.Drawing.Size(194, 24);
+            this.txt_fname.Size = new System.Drawing.Size(232, 24);
             this.txt_fname.TabIndex = 19;
             // 
             // txt_empID
@@ -233,15 +241,16 @@
             this.txt_empID.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txt_empID.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_empID.Location = new System.Drawing.Point(321, 12);
+            this.txt_empID.Location = new System.Drawing.Point(321, 4);
             this.txt_empID.Name = "txt_empID";
-            this.txt_empID.Size = new System.Drawing.Size(194, 24);
+            this.txt_empID.ReadOnly = true;
+            this.txt_empID.Size = new System.Drawing.Size(232, 24);
             this.txt_empID.TabIndex = 18;
             // 
             // lbl_enddate
             // 
             this.lbl_enddate.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_enddate.Location = new System.Drawing.Point(202, 263);
+            this.lbl_enddate.Location = new System.Drawing.Point(202, 281);
             this.lbl_enddate.Name = "lbl_enddate";
             this.lbl_enddate.Size = new System.Drawing.Size(113, 20);
             this.lbl_enddate.TabIndex = 17;
@@ -251,7 +260,7 @@
             // lbl_start
             // 
             this.lbl_start.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_start.Location = new System.Drawing.Point(202, 235);
+            this.lbl_start.Location = new System.Drawing.Point(202, 253);
             this.lbl_start.Name = "lbl_start";
             this.lbl_start.Size = new System.Drawing.Size(113, 20);
             this.lbl_start.TabIndex = 16;
@@ -261,7 +270,7 @@
             // lbl_phone
             // 
             this.lbl_phone.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_phone.Location = new System.Drawing.Point(202, 207);
+            this.lbl_phone.Location = new System.Drawing.Point(202, 199);
             this.lbl_phone.Name = "lbl_phone";
             this.lbl_phone.Size = new System.Drawing.Size(113, 20);
             this.lbl_phone.TabIndex = 15;
@@ -272,7 +281,7 @@
             // 
             this.lbl_zipcode.AutoSize = true;
             this.lbl_zipcode.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_zipcode.Location = new System.Drawing.Point(385, 179);
+            this.lbl_zipcode.Location = new System.Drawing.Point(385, 171);
             this.lbl_zipcode.Name = "lbl_zipcode";
             this.lbl_zipcode.Size = new System.Drawing.Size(36, 18);
             this.lbl_zipcode.TabIndex = 14;
@@ -281,7 +290,7 @@
             // lbl_state
             // 
             this.lbl_state.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_state.Location = new System.Drawing.Point(202, 179);
+            this.lbl_state.Location = new System.Drawing.Point(202, 171);
             this.lbl_state.Name = "lbl_state";
             this.lbl_state.Size = new System.Drawing.Size(113, 20);
             this.lbl_state.TabIndex = 13;
@@ -291,7 +300,7 @@
             // lbl_city
             // 
             this.lbl_city.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_city.Location = new System.Drawing.Point(202, 151);
+            this.lbl_city.Location = new System.Drawing.Point(202, 143);
             this.lbl_city.Name = "lbl_city";
             this.lbl_city.Size = new System.Drawing.Size(113, 20);
             this.lbl_city.TabIndex = 12;
@@ -301,7 +310,7 @@
             // lbl_address2
             // 
             this.lbl_address2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_address2.Location = new System.Drawing.Point(202, 123);
+            this.lbl_address2.Location = new System.Drawing.Point(202, 115);
             this.lbl_address2.Name = "lbl_address2";
             this.lbl_address2.Size = new System.Drawing.Size(113, 20);
             this.lbl_address2.TabIndex = 11;
@@ -311,7 +320,7 @@
             // lbl_address1
             // 
             this.lbl_address1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_address1.Location = new System.Drawing.Point(202, 96);
+            this.lbl_address1.Location = new System.Drawing.Point(202, 88);
             this.lbl_address1.Name = "lbl_address1";
             this.lbl_address1.Size = new System.Drawing.Size(113, 20);
             this.lbl_address1.TabIndex = 10;
@@ -321,7 +330,7 @@
             // lbl_lname
             // 
             this.lbl_lname.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_lname.Location = new System.Drawing.Point(202, 68);
+            this.lbl_lname.Location = new System.Drawing.Point(202, 60);
             this.lbl_lname.Name = "lbl_lname";
             this.lbl_lname.Size = new System.Drawing.Size(113, 20);
             this.lbl_lname.TabIndex = 9;
@@ -331,7 +340,7 @@
             // lbl_fname
             // 
             this.lbl_fname.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_fname.Location = new System.Drawing.Point(202, 40);
+            this.lbl_fname.Location = new System.Drawing.Point(202, 32);
             this.lbl_fname.Name = "lbl_fname";
             this.lbl_fname.Size = new System.Drawing.Size(113, 20);
             this.lbl_fname.TabIndex = 8;
@@ -341,7 +350,7 @@
             // lbl_empID
             // 
             this.lbl_empID.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_empID.Location = new System.Drawing.Point(202, 12);
+            this.lbl_empID.Location = new System.Drawing.Point(202, 4);
             this.lbl_empID.Name = "lbl_empID";
             this.lbl_empID.Size = new System.Drawing.Size(113, 20);
             this.lbl_empID.TabIndex = 7;
@@ -353,7 +362,7 @@
             this.lbl_roles.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lbl_roles.AutoSize = true;
             this.lbl_roles.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_roles.Location = new System.Drawing.Point(539, 81);
+            this.lbl_roles.Location = new System.Drawing.Point(577, 81);
             this.lbl_roles.Name = "lbl_roles";
             this.lbl_roles.Size = new System.Drawing.Size(72, 25);
             this.lbl_roles.TabIndex = 6;
@@ -364,33 +373,35 @@
             this.lbl_Types.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lbl_Types.AutoSize = true;
             this.lbl_Types.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_Types.Location = new System.Drawing.Point(535, 11);
+            this.lbl_Types.Location = new System.Drawing.Point(573, 11);
             this.lbl_Types.Name = "lbl_Types";
             this.lbl_Types.Size = new System.Drawing.Size(76, 25);
             this.lbl_Types.TabIndex = 5;
             this.lbl_Types.Text = "Types";
             // 
-            // button1
+            // btn_update
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(533, 271);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(96, 30);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "Update";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btn_update.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_update.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_update.Location = new System.Drawing.Point(571, 235);
+            this.btn_update.Name = "btn_update";
+            this.btn_update.Size = new System.Drawing.Size(96, 30);
+            this.btn_update.TabIndex = 3;
+            this.btn_update.Text = "Update";
+            this.btn_update.UseVisualStyleBackColor = true;
+            this.btn_update.Click += new System.EventHandler(this.btn_update_Click);
             // 
             // btn_add
             // 
             this.btn_add.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_add.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_add.Location = new System.Drawing.Point(532, 237);
+            this.btn_add.Location = new System.Drawing.Point(570, 202);
             this.btn_add.Name = "btn_add";
             this.btn_add.Size = new System.Drawing.Size(96, 30);
             this.btn_add.TabIndex = 2;
             this.btn_add.Text = "Add";
             this.btn_add.UseVisualStyleBackColor = true;
+            this.btn_add.Click += new System.EventHandler(this.btn_add_Click);
             // 
             // lst_employee
             // 
@@ -401,6 +412,38 @@
             this.lst_employee.TabIndex = 1;
             this.lst_employee.SelectedIndexChanged += new System.EventHandler(this.lst_employee_SelectedIndexChanged);
             // 
+            // txt_email
+            // 
+            this.txt_email.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txt_email.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_email.Location = new System.Drawing.Point(321, 226);
+            this.txt_email.Name = "txt_email";
+            this.txt_email.Size = new System.Drawing.Size(232, 24);
+            this.txt_email.TabIndex = 31;
+            // 
+            // lbl_email
+            // 
+            this.lbl_email.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_email.Location = new System.Drawing.Point(204, 227);
+            this.lbl_email.Name = "lbl_email";
+            this.lbl_email.Size = new System.Drawing.Size(113, 20);
+            this.lbl_email.TabIndex = 32;
+            this.lbl_email.Text = "E-mail";
+            this.lbl_email.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // btn_end
+            // 
+            this.btn_end.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_end.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_end.Location = new System.Drawing.Point(569, 271);
+            this.btn_end.Name = "btn_end";
+            this.btn_end.Size = new System.Drawing.Size(96, 30);
+            this.btn_end.TabIndex = 33;
+            this.btn_end.Text = "Disable";
+            this.btn_end.UseVisualStyleBackColor = true;
+            this.btn_end.Click += new System.EventHandler(this.btn_end_Click);
+            // 
             // PanEmployee
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -409,7 +452,7 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(201)))), ((int)(((byte)(176)))));
             this.Controls.Add(this.employee_panel);
             this.Name = "PanEmployee";
-            this.Size = new System.Drawing.Size(636, 309);
+            this.Size = new System.Drawing.Size(674, 342);
             this.employee_panel.ResumeLayout(false);
             this.employee_panel.PerformLayout();
             this.ResumeLayout(false);
@@ -436,7 +479,7 @@
         private System.Windows.Forms.Label lbl_empID;
         private System.Windows.Forms.Label lbl_roles;
         private System.Windows.Forms.Label lbl_Types;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btn_update;
         private System.Windows.Forms.Button btn_add;
         private System.Windows.Forms.ListBox lst_employee;
         private System.Windows.Forms.CheckedListBox lstbx_roles;
@@ -449,5 +492,8 @@
         private System.Windows.Forms.TextBox txt_address2;
         private System.Windows.Forms.TextBox txt_address1;
         private System.Windows.Forms.ComboBox cbx_types;
+        private System.Windows.Forms.Label lbl_email;
+        private System.Windows.Forms.TextBox txt_email;
+        private System.Windows.Forms.Button btn_end;
     }
 }

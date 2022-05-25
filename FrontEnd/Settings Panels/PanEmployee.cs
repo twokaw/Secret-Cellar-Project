@@ -56,8 +56,8 @@ namespace SecretCellar.Settings_Panels
             txt_state.Text = ((EmployeeModel)lst_employee.SelectedItem).State;
             txt_zipcode.Text = ((EmployeeModel)lst_employee.SelectedItem).ZipCode;
             txt_phone.Text = ((EmployeeModel)lst_employee.SelectedItem).PhoneNumber;
-            txt_startdate.Text = ((EmployeeModel)lst_employee.SelectedItem).StartDate.ToString();
-            txt_enddate.Text = ((EmployeeModel)lst_employee.SelectedItem).EndDate.ToString();
+            txt_startdate.Text = ((EmployeeModel)lst_employee.SelectedItem).StartDate.ToString("MM/dd/yyyy");
+            txt_enddate.Text = ((EmployeeModel)lst_employee.SelectedItem).EndDate?.ToString("MM/dd/yyyy");
             cbx_types.SelectedItem = employeeTypes.FirstOrDefault(x => x.TypeID == ((EmployeeModel)lst_employee.SelectedItem).EmployeeType.TypeID);
             for (int i = 0; i < lstbx_roles.Items.Count; i++)
             {
@@ -65,6 +65,40 @@ namespace SecretCellar.Settings_Panels
             }
                 
 
+        }
+
+        private void btn_add_Click(object sender, EventArgs e)
+        {
+            EmployeeModel newEmp = new EmployeeModel();
+            newEmp.FirstName = txt_fname.Text;
+            newEmp.LastName = txt_lname.Text;
+            newEmp.Address1 = txt_address1.Text;
+            newEmp.Address2 = txt_address2.Text;
+            newEmp.City = txt_city.Text;
+            newEmp.State = txt_state.Text;
+            newEmp.ZipCode= txt_zipcode.Text;
+            newEmp.Email = txt_email.Text;
+            newEmp.StartDate = (DateTime.TryParse(txt_startdate.Text, out DateTime startdate) ?startdate : DateTime.Now);
+
+        }
+
+        private void btn_update_Click(object sender, EventArgs e)
+        {
+            EmployeeModel updateEmp = (EmployeeModel)lst_employee.SelectedItem;
+            updateEmp.FirstName = txt_fname.Text;
+            updateEmp.LastName = txt_lname.Text;
+            updateEmp.Address1 = txt_address1.Text;
+            updateEmp.Address2 = txt_address2.Text;
+            updateEmp.City = txt_city.Text;
+            updateEmp.State = txt_state.Text;
+            updateEmp.ZipCode = txt_zipcode.Text;
+            updateEmp.Email = txt_email.Text;
+        }
+
+        private void btn_end_Click(object sender, EventArgs e)
+        {
+            EmployeeModel disableEmp = (EmployeeModel)lst_employee.SelectedItem;
+            disableEmp.EndDate = DateTime.Now;
         }
     }
 }
