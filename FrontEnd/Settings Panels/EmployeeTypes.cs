@@ -22,7 +22,6 @@ namespace SecretCellar.Settings_Panels
             {
                 GetEmployeeRoles();
                 GetEmployeeTypes();
-                txt_typeName.Text = cbx_empTypes.SelectedItem.ToString();
             }
 
             
@@ -46,11 +45,60 @@ namespace SecretCellar.Settings_Panels
             {
                 chk_lstbx_Roles.SetItemChecked(i, ((EmployeeTypeModel)cbx_empTypes.SelectedItem).Roles.Any(x => x.RoleID == ((EmployeeRoleModel)chk_lstbx_Roles.Items[i]).RoleID));
             }
+            txt_typeName.Text = cbx_empTypes.SelectedItem.ToString();
         }
 
         private void chk_lstbx_Roles_SelectedIndexChanged(object sender, EventArgs e)
         {
             txt_roleDescription.Text = ((EmployeeRoleModel)chk_lstbx_Roles.SelectedItem).RoleDescription;
+        }
+
+        private void btn_update_Click(object sender, EventArgs e)
+        {
+            bool x = false;
+            for (int i = 0; i < chk_lstbx_Roles.Items.Count; i++)
+            {
+                x = ((EmployeeTypeModel)cbx_empTypes.SelectedItem).Roles.Any(y => y.RoleID == ((EmployeeRoleModel)chk_lstbx_Roles.Items[i]).RoleID);
+                if(x != chk_lstbx_Roles.GetItemChecked(i))
+                {
+                    if(x)
+                    {
+                        ((EmployeeTypeModel)cbx_empTypes.SelectedItem).Roles.RemoveAll(y => y.RoleID == ((EmployeeRoleModel)chk_lstbx_Roles.Items[i]).RoleID);
+                    }
+                    else
+                    {
+                        ((EmployeeTypeModel)cbx_empTypes.SelectedItem).Roles.Add((EmployeeRoleModel)chk_lstbx_Roles.Items[i]);
+                    }
+                }
+            }
+            //DataAccess.instance.U
+        }
+
+        private void btn_clear_Click(object sender, EventArgs e)
+        {
+            txt_typeName.Clear();
+            for (int i = 0; i < chk_lstbx_Roles.Items.Count; i++)
+            {
+                chk_lstbx_Roles.SetItemCheckState(i, CheckState.Unchecked);
+            }
+            txt_typeName.Focus();
+        }
+
+        private void btn_new_Click(object sender, EventArgs e)
+        {
+            EmployeeTypeModel emp = new EmployeeTypeModel();
+            emp.TypeName = txt_typeName.Text;
+
+            
+                for (int i = 0; i < chk_lstbx_Roles.Items.Count; i++)
+                {
+                    
+                    if ( chk_lstbx_Roles.GetItemChecked(i))
+                    {
+                            emp.Roles.Add((EmployeeRoleModel)chk_lstbx_Roles.Items[i]);
+                    }
+
+                }
         }
     }
     }

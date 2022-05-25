@@ -94,6 +94,7 @@
             this.btn_clear.TabIndex = 9;
             this.btn_clear.Text = "Clear";
             this.btn_clear.UseVisualStyleBackColor = true;
+            this.btn_clear.Click += new System.EventHandler(this.btn_clear_Click);
             // 
             // txt_typeName
             // 
@@ -112,6 +113,7 @@
             this.btn_update.TabIndex = 7;
             this.btn_update.Text = "Update";
             this.btn_update.UseVisualStyleBackColor = true;
+            this.btn_update.Click += new System.EventHandler(this.btn_update_Click);
             // 
             // btn_new
             // 
@@ -123,6 +125,7 @@
             this.btn_new.TabIndex = 6;
             this.btn_new.Text = "New";
             this.btn_new.UseVisualStyleBackColor = true;
+            this.btn_new.Click += new System.EventHandler(this.btn_new_Click);
             // 
             // txt_roleDescription
             // 
