@@ -166,6 +166,30 @@ namespace SecretCellar
             string result = web.DataGet("api/EmployeeType/Role");
             return (List<EmployeeRoleModel>)JsonConvert.DeserializeObject(result, typeof(List<EmployeeRoleModel>));
         }
+
+        public EmployeeTypeModel InsertEmployeeType(EmployeeTypeModel empType)
+        {
+            string result = web.DataPost("api/EmployeeType", empType);
+            return (EmployeeTypeModel)JsonConvert.DeserializeObject(result, typeof(EmployeeModel));
+        }
+
+        public EmployeeTypeModel UpdateEmployeeType(EmployeeTypeModel empType)
+        {
+            string result = web.DataPut("api/EmployeeType", empType);
+            return (EmployeeTypeModel)JsonConvert.DeserializeObject(result, typeof(EmployeeModel));
+        }
+
+        public EmployeeTypeModel InsertEmployeeRole(EmployeeRoleModel empRole)
+        {
+            string result = web.DataPost("api/EmployeeType/Role", empRole);
+            return (EmployeeTypeModel)JsonConvert.DeserializeObject(result, typeof(EmployeeModel));
+        }
+
+        public EmployeeTypeModel UpdateEmployeeRole(EmployeeRoleModel empRole)
+        {
+            string result = web.DataPut("api/EmployeeType/Role", empRole);
+            return (EmployeeTypeModel)JsonConvert.DeserializeObject(result, typeof(EmployeeModel));
+        }
         #endregion
 
 

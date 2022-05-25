@@ -286,7 +286,7 @@
             // 
             this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDelete.Location = new System.Drawing.Point(14, 57);
-            this.btnDelete.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(8);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(320, 68);
             this.btnDelete.TabIndex = 9;
@@ -389,7 +389,7 @@
             // 
             this.btn_RemoveAllPayments.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_RemoveAllPayments.Location = new System.Drawing.Point(14, 153);
-            this.btn_RemoveAllPayments.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.btn_RemoveAllPayments.Margin = new System.Windows.Forms.Padding(8);
             this.btn_RemoveAllPayments.Name = "btn_RemoveAllPayments";
             this.btn_RemoveAllPayments.Size = new System.Drawing.Size(320, 68);
             this.btn_RemoveAllPayments.TabIndex = 43;
@@ -422,7 +422,7 @@
             // touchKeyPad1
             // 
             this.touchKeyPad1.Location = new System.Drawing.Point(987, 212);
-            this.touchKeyPad1.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.touchKeyPad1.Margin = new System.Windows.Forms.Padding(8);
             this.touchKeyPad1.Name = "touchKeyPad1";
             this.touchKeyPad1.Size = new System.Drawing.Size(582, 538);
             this.touchKeyPad1.TabIndex = 46;
