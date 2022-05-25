@@ -24,6 +24,7 @@ namespace SecretCellar {
 		}
 
 
+		private void btn_CloseWindow_Click(object sender, EventArgs e) { this.Close(); }
 		private void textBox_Filter_Enter(object sender, EventArgs e) {
 			if (textBox_Filter.Text != _defaultFilterString) { return; }
 
@@ -34,7 +35,7 @@ namespace SecretCellar {
 
 			textBox_Filter.Text = _defaultFilterString;
 		}
-		private void btn_CloseWindow_Click(object sender, EventArgs e) { this.Close(); }
+		private void textBox_Filter_TextChanged(object sender, EventArgs e) { PopulateListOfInvoices(); }
 
 
 		/// <summary>
@@ -56,6 +57,16 @@ namespace SecretCellar {
 				Quantity = x.Qty
 			}).ToList();
 
+			//ADD PAYMENTS
+			double payments = 0;
+
+			currentInvoice.Payments.ForEach(payment => {
+				payments += payment.Amount;
+			});
+
+			currencyBox_MoneyDown.Text = payments.ToString();
+
+			//ADD TOTAL
 			double total = 0;
 
 			currentInvoice.Items.ForEach(item => {
@@ -70,12 +81,23 @@ namespace SecretCellar {
 		/// Populates the list invoices.
 		/// </summary>
 		private void PopulateListOfInvoices() {
+			selectionList_Invoices.Items.Clear();
+
 			foreach (Transaction invoice in _invoices) {
-				selectionList_Invoices.Items.Add($"{invoice.InvoiceID} | {invoice.CustomerName}");
+				string invoiceTitle = $"{invoice.InvoiceID} | {(!string.IsNullOrWhiteSpace(invoice.CustomerName) ? invoice.CustomerName : "No Name")}";
+
+				if (textBox_Filter.Text == "" || textBox_Filter.Text == _defaultFilterString || invoiceTitle.ToLower().Contains(textBox_Filter.Text.ToLower())) {
+					selectionList_Invoices.Items.Add(invoiceTitle);
+				}
 			}
 		}
 
 
+		/// <summary>
+		/// Finalizes the invoice.
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void button_Finalize_Click(object sender, EventArgs e) {
 
 		}
@@ -101,5 +123,7 @@ namespace SecretCellar {
 
 			DataAccess.instance.ProcessTransaction(transaction);
 		}
-	}
+
+        
+    }
 }
