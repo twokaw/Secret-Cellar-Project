@@ -378,6 +378,11 @@ namespace SecretCellar
             RefreshDataGrid();
         }
 
+        private void button_Invoices_Click(object sender, EventArgs e) {
+            frmInvoices frmInvoices = new frmInvoices();
+            frmInvoices.ShowDialog();
+        }
+
         private void caseDiscount_CheckedChanged(object sender, EventArgs e)
         {
             if (caseDiscount.Checked == true)
