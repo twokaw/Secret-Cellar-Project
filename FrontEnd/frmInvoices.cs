@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 using Shared;
 
@@ -9,46 +10,32 @@ using Shared;
 namespace SecretCellar {
 	public partial class frmInvoices : Form {
 		private readonly string _defaultFilterString = "Filter...";
+		private List<Transaction> _invoices = new List<Transaction>();
 
 
 
 		public frmInvoices() {
 			InitializeComponent();
 
+			List<Transaction> transactions = DataAccess.instance.GetTransactions();
+			_invoices = transactions.FindAll((transaction) => { return transaction.TranType == Transaction.TranactionType.Invoice; });
+
 			PopulateListOfInvoices();
 		}
 
 
-		/// <summary>
-		/// On filter focus.
-		/// </summary>
-		/// <param name="sender"></param>
-		/// <param name="e"></param>
+		private void btn_CloseWindow_Click(object sender, EventArgs e) { this.Close(); }
 		private void textBox_Filter_Enter(object sender, EventArgs e) {
 			if (textBox_Filter.Text != _defaultFilterString) { return; }
 
 			textBox_Filter.Text = "";
 		}
-
-
-		/// <summary>
-		/// On filter unfocus.
-		/// </summary>
-		/// <param name="sender"></param>
-		/// <param name="e"></param>
 		private void textBox_Filter_Leave(object sender, EventArgs e) {
-			if (textBox_Filter.Text != "".Replace(" ", "")) { return; }
+			if (textBox_Filter.Text.Replace(" ", "") != "") { return; }
 
 			textBox_Filter.Text = _defaultFilterString;
 		}
-
-
-		/// <summary>
-		/// Closes the form.
-		/// </summary>
-		/// <param name="sender"></param>
-		/// <param name="e"></param>
-		private void btn_CloseWindow_Click(object sender, EventArgs e) { this.Close(); }
+		private void textBox_Filter_TextChanged(object sender, EventArgs e) { PopulateListOfInvoices(); }
 
 
 		/// <summary>
@@ -59,7 +46,34 @@ namespace SecretCellar {
 		private void selectionList_Invoices_SelectedIndexChanged(object sender, EventArgs e) {
 			if (selectionList_Invoices.SelectedItems.Count == 0) { return; }
 
+			uint invoiceId = uint.Parse(selectionList_Invoices.SelectedItem.ToString().Split(new string[] { " | " }, StringSplitOptions.None)[0]);
+			Transaction currentInvoice = _invoices.Find((invoice) => { return invoice.InvoiceID == invoiceId; });
 
+			if (currentInvoice == null) return;
+
+			dataGridView_InvoiceData.DataSource = currentInvoice.Items.Select(x => new {
+				ItemName = x.Name,
+				Price = x.Price,
+				Quantity = x.Qty
+			}).ToList();
+
+			//ADD PAYMENTS
+			double payments = 0;
+
+			currentInvoice.Payments.ForEach(payment => {
+				payments += payment.Amount;
+			});
+
+			currencyBox_MoneyDown.Text = payments.ToString();
+
+			//ADD TOTAL
+			double total = 0;
+
+			currentInvoice.Items.ForEach(item => {
+				total += item.Price * item.Qty;
+			});
+
+			currencyBox_Total.Text = total.ToString();
 		}
 
 
@@ -67,22 +81,33 @@ namespace SecretCellar {
 		/// Populates the list invoices.
 		/// </summary>
 		private void PopulateListOfInvoices() {
-			List<Transaction> transactions = DataAccess.instance.GetTransactions();
+			selectionList_Invoices.Items.Clear();
 
-			foreach (Transaction invoice in transactions) {
-				Console.WriteLine(invoice.InvoiceID + " " + invoice.TranType);
-			}
+			foreach (Transaction invoice in _invoices) {
+				string invoiceTitle = $"{invoice.InvoiceID} | {(!string.IsNullOrWhiteSpace(invoice.CustomerName) ? invoice.CustomerName : "No Name")}";
 
-			List<Transaction> invoices = transactions.FindAll((transaction) => { return transaction.TranType == Transaction.TranactionType.Invoice; });
-
-			foreach (Transaction invoice in invoices) {
-				selectionList_Invoices.Items.Add($"{invoice.InvoiceID} | {invoice.CustomerName}");
+				if (textBox_Filter.Text == "" || textBox_Filter.Text == _defaultFilterString || invoiceTitle.ToLower().Contains(textBox_Filter.Text.ToLower())) {
+					selectionList_Invoices.Items.Add(invoiceTitle);
+				}
 			}
 		}
 
 
+		/// <summary>
+		/// Finalizes the invoice.
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void button_Finalize_Click(object sender, EventArgs e) {
+			
+		}
 
+
+		//DEBUG METHODS
+		private void MakePayment(uint id, double paymentAmount) {
+			Transaction t = DataAccess.instance.GetTransactions(id);
+			t.Payments.Add(new Payment { Method = "Cash", Amount = paymentAmount, Number = null });
+			DataAccess.instance.ProcessTransaction(t);
 		}
 
 
@@ -106,5 +131,5 @@ namespace SecretCellar {
 
 			DataAccess.instance.ProcessTransaction(transaction);
 		}
-	}
+    }
 }
