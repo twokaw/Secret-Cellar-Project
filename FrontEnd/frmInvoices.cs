@@ -99,7 +99,15 @@ namespace SecretCellar {
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
 		private void button_Finalize_Click(object sender, EventArgs e) {
+			
+		}
 
+
+		//DEBUG METHODS
+		private void MakePayment(uint id, double paymentAmount) {
+			Transaction t = DataAccess.instance.GetTransactions(id);
+			t.Payments.Add(new Payment { Method = "Cash", Amount = paymentAmount, Number = null });
+			DataAccess.instance.ProcessTransaction(t);
 		}
 
 
@@ -123,7 +131,5 @@ namespace SecretCellar {
 
 			DataAccess.instance.ProcessTransaction(transaction);
 		}
-
-        
     }
 }
