@@ -30,6 +30,8 @@
         {
             this.lbl_employee = new System.Windows.Forms.Label();
             this.employee_panel = new System.Windows.Forms.Panel();
+            this.btn_clear = new System.Windows.Forms.Button();
+            this.chk_box_past_emp = new System.Windows.Forms.CheckBox();
             this.btn_end = new System.Windows.Forms.Button();
             this.lbl_email = new System.Windows.Forms.Label();
             this.txt_email = new System.Windows.Forms.TextBox();
@@ -62,7 +64,6 @@
             this.btn_update = new System.Windows.Forms.Button();
             this.btn_add = new System.Windows.Forms.Button();
             this.lst_employee = new System.Windows.Forms.ListBox();
-            this.chk_box_past_emp = new System.Windows.Forms.CheckBox();
             this.employee_panel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -78,6 +79,7 @@
             // 
             // employee_panel
             // 
+            this.employee_panel.Controls.Add(this.btn_clear);
             this.employee_panel.Controls.Add(this.chk_box_past_emp);
             this.employee_panel.Controls.Add(this.btn_end);
             this.employee_panel.Controls.Add(this.lbl_email);
@@ -118,11 +120,34 @@
             this.employee_panel.Size = new System.Drawing.Size(674, 342);
             this.employee_panel.TabIndex = 1;
             // 
+            // btn_clear
+            // 
+            this.btn_clear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_clear.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_clear.Location = new System.Drawing.Point(568, 189);
+            this.btn_clear.Name = "btn_clear";
+            this.btn_clear.Size = new System.Drawing.Size(96, 30);
+            this.btn_clear.TabIndex = 35;
+            this.btn_clear.Text = "Clear";
+            this.btn_clear.UseVisualStyleBackColor = true;
+            this.btn_clear.Click += new System.EventHandler(this.btn_clear_Click);
+            // 
+            // chk_box_past_emp
+            // 
+            this.chk_box_past_emp.AutoSize = true;
+            this.chk_box_past_emp.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chk_box_past_emp.Location = new System.Drawing.Point(220, 307);
+            this.chk_box_past_emp.Name = "chk_box_past_emp";
+            this.chk_box_past_emp.Size = new System.Drawing.Size(140, 22);
+            this.chk_box_past_emp.TabIndex = 34;
+            this.chk_box_past_emp.Text = "Past Employee";
+            this.chk_box_past_emp.UseVisualStyleBackColor = true;
+            // 
             // btn_end
             // 
             this.btn_end.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_end.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_end.Location = new System.Drawing.Point(569, 271);
+            this.btn_end.Location = new System.Drawing.Point(567, 293);
             this.btn_end.Name = "btn_end";
             this.btn_end.Size = new System.Drawing.Size(96, 30);
             this.btn_end.TabIndex = 33;
@@ -156,17 +181,18 @@
             this.cbx_types.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbx_types.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbx_types.FormattingEnabled = true;
-            this.cbx_types.Location = new System.Drawing.Point(564, 42);
+            this.cbx_types.Location = new System.Drawing.Point(564, 37);
             this.cbx_types.Name = "cbx_types";
             this.cbx_types.Size = new System.Drawing.Size(100, 24);
             this.cbx_types.TabIndex = 30;
+            this.cbx_types.SelectedIndexChanged += new System.EventHandler(this.cbx_typesSelectedIndexChanged);
             // 
             // lstbx_roles
             // 
             this.lstbx_roles.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lstbx_roles.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lstbx_roles.FormattingEnabled = true;
-            this.lstbx_roles.Location = new System.Drawing.Point(564, 107);
+            this.lstbx_roles.Location = new System.Drawing.Point(564, 96);
             this.lstbx_roles.Name = "lstbx_roles";
             this.lstbx_roles.SelectionMode = System.Windows.Forms.SelectionMode.None;
             this.lstbx_roles.Size = new System.Drawing.Size(101, 89);
@@ -396,7 +422,7 @@
             this.lbl_roles.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lbl_roles.AutoSize = true;
             this.lbl_roles.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_roles.Location = new System.Drawing.Point(577, 81);
+            this.lbl_roles.Location = new System.Drawing.Point(577, 66);
             this.lbl_roles.Name = "lbl_roles";
             this.lbl_roles.Size = new System.Drawing.Size(72, 25);
             this.lbl_roles.TabIndex = 6;
@@ -407,7 +433,7 @@
             this.lbl_Types.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lbl_Types.AutoSize = true;
             this.lbl_Types.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_Types.Location = new System.Drawing.Point(573, 11);
+            this.lbl_Types.Location = new System.Drawing.Point(573, 6);
             this.lbl_Types.Name = "lbl_Types";
             this.lbl_Types.Size = new System.Drawing.Size(76, 25);
             this.lbl_Types.TabIndex = 5;
@@ -417,7 +443,7 @@
             // 
             this.btn_update.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_update.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_update.Location = new System.Drawing.Point(571, 235);
+            this.btn_update.Location = new System.Drawing.Point(569, 258);
             this.btn_update.Name = "btn_update";
             this.btn_update.Size = new System.Drawing.Size(96, 30);
             this.btn_update.TabIndex = 3;
@@ -429,7 +455,7 @@
             // 
             this.btn_add.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_add.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_add.Location = new System.Drawing.Point(570, 202);
+            this.btn_add.Location = new System.Drawing.Point(568, 225);
             this.btn_add.Name = "btn_add";
             this.btn_add.Size = new System.Drawing.Size(96, 30);
             this.btn_add.TabIndex = 2;
@@ -445,17 +471,6 @@
             this.lst_employee.Size = new System.Drawing.Size(184, 251);
             this.lst_employee.TabIndex = 1;
             this.lst_employee.SelectedIndexChanged += new System.EventHandler(this.lst_employee_SelectedIndexChanged);
-            // 
-            // chk_box_past_emp
-            // 
-            this.chk_box_past_emp.AutoSize = true;
-            this.chk_box_past_emp.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chk_box_past_emp.Location = new System.Drawing.Point(220, 307);
-            this.chk_box_past_emp.Name = "chk_box_past_emp";
-            this.chk_box_past_emp.Size = new System.Drawing.Size(140, 22);
-            this.chk_box_past_emp.TabIndex = 34;
-            this.chk_box_past_emp.Text = "Past Employee";
-            this.chk_box_past_emp.UseVisualStyleBackColor = true;
             // 
             // PanEmployee
             // 
@@ -509,5 +524,6 @@
         private System.Windows.Forms.TextBox txt_email;
         private System.Windows.Forms.Button btn_end;
         private System.Windows.Forms.CheckBox chk_box_past_emp;
+        private System.Windows.Forms.Button btn_clear;
     }
 }

@@ -25,12 +25,7 @@ namespace SecretCellar.Settings_Panels
                 PopulateEmp();
                 EndButtonText();
             }
-           
 
-
-            //cbx_types.;
-            //cbx_types.EmployeeModel.AddRange((string[])typeName.Select(x => x.TypeName).ToArray());
-            //types = DataAccess.instance.EmployeeType();
         }
        
 
@@ -70,6 +65,7 @@ namespace SecretCellar.Settings_Panels
             txt_state.Text = ((EmployeeModel)lst_employee.SelectedItem).State;
             txt_zipcode.Text = ((EmployeeModel)lst_employee.SelectedItem).ZipCode;
             txt_phone.Text = ((EmployeeModel)lst_employee.SelectedItem).PhoneNumber;
+            txt_email.Text = ((EmployeeModel)lst_employee.SelectedItem).Email;
             txt_startdate.Text = ((EmployeeModel)lst_employee.SelectedItem).StartDate.ToString("MM/dd/yyyy");
             txt_enddate.Text = ((EmployeeModel)lst_employee.SelectedItem).EndDate?.ToString("MM/dd/yyyy");
             btn_end.Text = ((EmployeeModel)lst_employee.SelectedItem).EndDate == null?"Disabled":"Enabled";
@@ -80,6 +76,15 @@ namespace SecretCellar.Settings_Panels
             }
                 
 
+        }
+
+        private void cbx_typesSelectedIndexChanged(object sender, EventArgs e)
+        {
+            for (int i = 0; i < lstbx_roles.Items.Count; i++)
+            {
+                lstbx_roles.SetItemChecked(i, ((EmployeeTypeModel)cbx_types.SelectedItem).Roles.Any(x => x.RoleID == ((EmployeeRoleModel)lstbx_roles.Items[i]).RoleID));
+            }
+            
         }
 
         private void btn_add_Click(object sender, EventArgs e)
@@ -118,6 +123,22 @@ namespace SecretCellar.Settings_Panels
             if(disableEmp.EndDate != null) { disableEmp.EndDate = null; }
             else { disableEmp.EndDate = DateTime.Now; }
             DataAccess.instance.UpdateEmployee(disableEmp);
+        }
+
+        private void btn_clear_Click(object sender, EventArgs e)
+        {
+            txt_empID.Text = "";
+            txt_fname.Text = "";
+            txt_lname.Text = "";
+            txt_address1.Text = "";
+            txt_address2.Text = "";
+            txt_city.Text = "";
+            txt_state.Text = "";
+            txt_zipcode.Text = "";
+            txt_phone.Text = "";
+            txt_email.Text = "";
+            txt_startdate.Text = "";
+            txt_fname.Focus();
         }
     }
 }
