@@ -71,7 +71,7 @@ namespace SecretCellar.Settings_Panels
                     }
                 }
             }
-            //DataAccess.instance.U
+            DataAccess.instance.UpdateEmployeeType((EmployeeTypeModel)cbx_empTypes.SelectedItem);
         }
 
         private void btn_clear_Click(object sender, EventArgs e)
@@ -99,6 +99,7 @@ namespace SecretCellar.Settings_Panels
                     }
 
                 }
+            DataAccess.instance.InsertEmployeeType(emp);
         }
     }
     }

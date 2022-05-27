@@ -30,6 +30,9 @@
         {
             this.lbl_employee = new System.Windows.Forms.Label();
             this.employee_panel = new System.Windows.Forms.Panel();
+            this.btn_end = new System.Windows.Forms.Button();
+            this.lbl_email = new System.Windows.Forms.Label();
+            this.txt_email = new System.Windows.Forms.TextBox();
             this.cbx_types = new System.Windows.Forms.ComboBox();
             this.lstbx_roles = new System.Windows.Forms.CheckedListBox();
             this.txt_enddate = new System.Windows.Forms.TextBox();
@@ -59,9 +62,7 @@
             this.btn_update = new System.Windows.Forms.Button();
             this.btn_add = new System.Windows.Forms.Button();
             this.lst_employee = new System.Windows.Forms.ListBox();
-            this.txt_email = new System.Windows.Forms.TextBox();
-            this.lbl_email = new System.Windows.Forms.Label();
-            this.btn_end = new System.Windows.Forms.Button();
+            this.chk_box_past_emp = new System.Windows.Forms.CheckBox();
             this.employee_panel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -77,6 +78,7 @@
             // 
             // employee_panel
             // 
+            this.employee_panel.Controls.Add(this.chk_box_past_emp);
             this.employee_panel.Controls.Add(this.btn_end);
             this.employee_panel.Controls.Add(this.lbl_email);
             this.employee_panel.Controls.Add(this.txt_email);
@@ -115,6 +117,38 @@
             this.employee_panel.Name = "employee_panel";
             this.employee_panel.Size = new System.Drawing.Size(674, 342);
             this.employee_panel.TabIndex = 1;
+            // 
+            // btn_end
+            // 
+            this.btn_end.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_end.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_end.Location = new System.Drawing.Point(569, 271);
+            this.btn_end.Name = "btn_end";
+            this.btn_end.Size = new System.Drawing.Size(96, 30);
+            this.btn_end.TabIndex = 33;
+            this.btn_end.Text = "Disable";
+            this.btn_end.UseVisualStyleBackColor = true;
+            this.btn_end.Click += new System.EventHandler(this.btn_end_Click);
+            // 
+            // lbl_email
+            // 
+            this.lbl_email.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_email.Location = new System.Drawing.Point(204, 227);
+            this.lbl_email.Name = "lbl_email";
+            this.lbl_email.Size = new System.Drawing.Size(113, 20);
+            this.lbl_email.TabIndex = 32;
+            this.lbl_email.Text = "E-mail";
+            this.lbl_email.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // txt_email
+            // 
+            this.txt_email.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txt_email.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_email.Location = new System.Drawing.Point(321, 226);
+            this.txt_email.Name = "txt_email";
+            this.txt_email.Size = new System.Drawing.Size(232, 24);
+            this.txt_email.TabIndex = 31;
             // 
             // cbx_types
             // 
@@ -412,37 +446,16 @@
             this.lst_employee.TabIndex = 1;
             this.lst_employee.SelectedIndexChanged += new System.EventHandler(this.lst_employee_SelectedIndexChanged);
             // 
-            // txt_email
+            // chk_box_past_emp
             // 
-            this.txt_email.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txt_email.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_email.Location = new System.Drawing.Point(321, 226);
-            this.txt_email.Name = "txt_email";
-            this.txt_email.Size = new System.Drawing.Size(232, 24);
-            this.txt_email.TabIndex = 31;
-            // 
-            // lbl_email
-            // 
-            this.lbl_email.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_email.Location = new System.Drawing.Point(204, 227);
-            this.lbl_email.Name = "lbl_email";
-            this.lbl_email.Size = new System.Drawing.Size(113, 20);
-            this.lbl_email.TabIndex = 32;
-            this.lbl_email.Text = "E-mail";
-            this.lbl_email.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // btn_end
-            // 
-            this.btn_end.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_end.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_end.Location = new System.Drawing.Point(569, 271);
-            this.btn_end.Name = "btn_end";
-            this.btn_end.Size = new System.Drawing.Size(96, 30);
-            this.btn_end.TabIndex = 33;
-            this.btn_end.Text = "Disable";
-            this.btn_end.UseVisualStyleBackColor = true;
-            this.btn_end.Click += new System.EventHandler(this.btn_end_Click);
+            this.chk_box_past_emp.AutoSize = true;
+            this.chk_box_past_emp.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chk_box_past_emp.Location = new System.Drawing.Point(220, 307);
+            this.chk_box_past_emp.Name = "chk_box_past_emp";
+            this.chk_box_past_emp.Size = new System.Drawing.Size(140, 22);
+            this.chk_box_past_emp.TabIndex = 34;
+            this.chk_box_past_emp.Text = "Past Employee";
+            this.chk_box_past_emp.UseVisualStyleBackColor = true;
             // 
             // PanEmployee
             // 
@@ -495,5 +508,6 @@
         private System.Windows.Forms.Label lbl_email;
         private System.Windows.Forms.TextBox txt_email;
         private System.Windows.Forms.Button btn_end;
+        private System.Windows.Forms.CheckBox chk_box_past_emp;
     }
 }

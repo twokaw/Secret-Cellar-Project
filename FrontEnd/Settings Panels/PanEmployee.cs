@@ -23,9 +23,11 @@ namespace SecretCellar.Settings_Panels
                 GetEmployeeTypes();
                 GetEmployeeRoles();
                 PopulateEmp();
+                EndButtonText();
             }
+           
 
-            
+
             //cbx_types.;
             //cbx_types.EmployeeModel.AddRange((string[])typeName.Select(x => x.TypeName).ToArray());
             //types = DataAccess.instance.EmployeeType();
@@ -44,6 +46,18 @@ namespace SecretCellar.Settings_Panels
             employeeRoles = DataAccess.instance.GetEmployeeRoles();
             lstbx_roles.DataSource = employeeRoles;
         }
+        public void EndButtonText()
+        {
+            if(chk_box_past_emp.CheckState == CheckState.Unchecked)
+                {
+                btn_end.Text = "Disabled";
+                }
+            else
+            {
+                btn_end.Text = "Enable";
+            }
+        }
+            
 
         private void lst_employee_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -58,6 +72,7 @@ namespace SecretCellar.Settings_Panels
             txt_phone.Text = ((EmployeeModel)lst_employee.SelectedItem).PhoneNumber;
             txt_startdate.Text = ((EmployeeModel)lst_employee.SelectedItem).StartDate.ToString("MM/dd/yyyy");
             txt_enddate.Text = ((EmployeeModel)lst_employee.SelectedItem).EndDate?.ToString("MM/dd/yyyy");
+            btn_end.Text = ((EmployeeModel)lst_employee.SelectedItem).EndDate == null?"Disabled":"Enabled";
             cbx_types.SelectedItem = employeeTypes.FirstOrDefault(x => x.TypeID == ((EmployeeModel)lst_employee.SelectedItem).EmployeeType.TypeID);
             for (int i = 0; i < lstbx_roles.Items.Count; i++)
             {
@@ -79,6 +94,7 @@ namespace SecretCellar.Settings_Panels
             newEmp.ZipCode= txt_zipcode.Text;
             newEmp.Email = txt_email.Text;
             newEmp.StartDate = (DateTime.TryParse(txt_startdate.Text, out DateTime startdate) ?startdate : DateTime.Now);
+            
 
         }
 
@@ -93,12 +109,15 @@ namespace SecretCellar.Settings_Panels
             updateEmp.State = txt_state.Text;
             updateEmp.ZipCode = txt_zipcode.Text;
             updateEmp.Email = txt_email.Text;
+            DataAccess.instance.UpdateEmployee(updateEmp);
         }
 
         private void btn_end_Click(object sender, EventArgs e)
         {
             EmployeeModel disableEmp = (EmployeeModel)lst_employee.SelectedItem;
-            disableEmp.EndDate = DateTime.Now;
+            if(disableEmp.EndDate != null) { disableEmp.EndDate = null; }
+            else { disableEmp.EndDate = DateTime.Now; }
+            DataAccess.instance.UpdateEmployee(disableEmp);
         }
     }
 }
