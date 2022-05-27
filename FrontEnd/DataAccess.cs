@@ -131,6 +131,12 @@ namespace SecretCellar
         #endregion
 
         #region Employee
+
+        public List<EmployeeModel> GetEmployee()
+        {
+            string result = web.DataGet($"api/Employee");
+            return (List<EmployeeModel>)JsonConvert.DeserializeObject(result, typeof(List<EmployeeModel>));
+        }
         public EmployeeModel GetEmployee(int EmpID)
         {
             string result = web.DataGet($"api/Employee/{EmpID}");
@@ -149,6 +155,19 @@ namespace SecretCellar
             return currentUser;
         }
         #endregion
+        #region EmployeeType
+        public List<EmployeeTypeModel> GetEmployeeTypes()
+        {
+            string result = web.DataGet("api/EmployeeType");
+            return (List<EmployeeTypeModel>)JsonConvert.DeserializeObject(result, typeof(List<EmployeeTypeModel>));
+        }
+        public List<EmployeeRoleModel> GetEmployeeRoles()
+        {
+            string result = web.DataGet("api/EmployeeType/Role");
+            return (List<EmployeeRoleModel>)JsonConvert.DeserializeObject(result, typeof(List<EmployeeRoleModel>));
+        }
+        #endregion
+
 
         #region Suppliers
         public List<Supplier> GetSuppliers()
@@ -358,8 +377,8 @@ namespace SecretCellar
         public List<Customer> GetCustomer(string cust_name)
         {
             return GetCustomer()
-                .Where(x => (x.LastName.IndexOf(cust_name, StringComparison.OrdinalIgnoreCase) >= 0) || 
-                             x.FirstName.IndexOf(cust_name, StringComparison.OrdinalIgnoreCase) >= 0 ||
+                .Where(x => (x.LastName.IndexOf(cust_name,    StringComparison.OrdinalIgnoreCase) >= 0) || 
+                             x.FirstName.IndexOf(cust_name,   StringComparison.OrdinalIgnoreCase) >= 0 ||
                              x.PhoneNumber.IndexOf(cust_name, StringComparison.OrdinalIgnoreCase) >= 0)
                 .OrderBy(x => x.LastName)
                 .ToList();
@@ -513,6 +532,18 @@ namespace SecretCellar
             else
                 return 0;
         }
+        
+        public uint UpdateCustomerOrderItem(uint customerID, uint transactionId, CustomerOrderItem customerOrderItem)
+        {
+            Response resp = null;
+            string result = web.DataPut($"api/CustomerOrder/{customerID}?transactionId={transactionId}", customerOrderItem, resp);
+            if (uint.TryParse(result, out uint id))
+                return id;
+            else
+                return 0;
+        }
+        
+
         public void DeleteCustomerOrderItem(uint custOrdID)
         {
             try { web.DataDelete($"api/CustomerOrder/{custOrdID}"); }

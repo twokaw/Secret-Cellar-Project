@@ -25,8 +25,6 @@ namespace SecretCellar.Settings_Panels
                 cbx_tax.DataSource = DataAccess.instance?.GetTax();
                 lstTypes.DisplayMember = "TypeName";
                 cbx_tax.DisplayMember = "TaxName";
-            
-                
             }
         }
 
@@ -142,7 +140,7 @@ namespace SecretCellar.Settings_Panels
         private void getDiscounts()
         {
             chk_lst_discount.Items.Clear();
-            discounts = DataAccess.instance.GetDiscount();
+            discounts = DataAccess.instance?.GetDiscount();
             discounts?.ForEach(x => chk_lst_discount.Items.Add(x.DiscountName));
         }
     }

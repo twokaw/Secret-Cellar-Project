@@ -19,9 +19,11 @@ namespace pos_core_api.ORM
             
             string sqlStatement = @"
               SELECT * 
-              FROM employee_type
-              LEFT JOIN Employee_role
-              USING(typeid)
+              FROM employeetype
+              join employeetyperole 
+              using(typeid)
+              LEFT JOIN Employeerole
+              USING(roleid)
             ";
 
             MySqlCommand cmd = db.CreateCommand(sqlStatement);
@@ -135,7 +137,27 @@ namespace pos_core_api.ORM
                 db.CloseCommand(cmd);
             }
         }
+        public List<EmployeeRoleModel> GetRoles()
+        {
+            List<EmployeeRoleModel> empRoles = new List<EmployeeRoleModel>();
+            MySqlCommand cmd = db.CreateCommand(@"
+                select * from employeerole            
+            ");
+            MySqlDataReader reader = cmd.ExecuteReader();
+            try
+            {
+                while (reader.Read())
+                    empRoles.Add(new EmployeeRoleModel() 
+                    {
+                        RoleID = reader.IsDBNull("roleID")? 0 : reader.GetUInt32("roleID"),
+                        RoleName = reader.IsDBNull("roleName")?"" : reader.GetString("roleName"),
+                        RoleDescription = reader.IsDBNull("roleDescription")? "" : reader.GetString("roleDescription")         
+                    });
 
+            }
+            finally { reader.Close(); }
+            return empRoles;
+        }
         public void UpdateTypeRoles(EmployeeTypeModel empType)
         {
 
@@ -238,7 +260,7 @@ namespace pos_core_api.ORM
             {
                 while (reader.Read())
                 {
-                    typeid = reader.GetUInt32("emp_id");
+                    typeid = reader.GetUInt32("typeid");
 
                     if (empType is null || empType.TypeID != typeid)
                     {

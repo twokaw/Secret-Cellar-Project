@@ -39,7 +39,7 @@ namespace pos_core_api.ORM
                     cmd.CommandText += " AND sold_datetime <= @end";
                     cmd.Parameters.Add(new MySqlParameter("end", end));
                 }
-            }  
+            }
             try
             {
                 return GetTransactions(cmd, includeItems, includePayments);
@@ -81,8 +81,8 @@ namespace pos_core_api.ORM
                 {SQLGET}
                 WHERE receiptID = @invoiceID;
             ");
-            cmd.Parameters.Add(new MySqlParameter("invoiceID", invoiceID));    
-            
+            cmd.Parameters.Add(new MySqlParameter("invoiceID", invoiceID));
+
             try
             {
                 List<Transaction> transaction = GetTransactions(cmd, includeItems, includePayments);
@@ -100,8 +100,8 @@ namespace pos_core_api.ORM
             MySqlCommand cmd = db.CreateCommand(@$"{SQLGET}
                 JOIN v_suspendedtransaction
                 USING(ReceiptID);
-            "); 
-            
+            ");
+
             try
             {
                 return GetTransactions(cmd, includeItems, includePayments);
@@ -154,8 +154,8 @@ namespace pos_core_api.ORM
                 }
             }
 
-            cmd.Parameters.Add(new MySqlParameter("customerID", customerID)); 
-            
+            cmd.Parameters.Add(new MySqlParameter("customerID", customerID));
+
             try
             {
                 List<Transaction> transaction = GetTransactions(cmd, includeItems, includePayments);
@@ -229,7 +229,7 @@ namespace pos_core_api.ORM
                             NonTaxable = !itemReader.IsDBNull("nontaxable") && itemReader.GetBoolean("nontaxable"),
                             NonTaxableLocal = !itemReader.IsDBNull("nontaxable_local") && itemReader.GetBoolean("nontaxable_local"),
                             BottleDeposit = itemReader.IsDBNull("bottle_deposit") ? 0 : itemReader.GetDouble("bottle_deposit"),
-                            SalesTax  = itemReader.IsDBNull("sales_tax") ? 0 : itemReader.GetDouble("sales_tax"),
+                            SalesTax = itemReader.IsDBNull("sales_tax") ? 0 : itemReader.GetDouble("sales_tax"),
                             LocalSalesTax = itemReader.IsDBNull("local_sales_tax") ? 0 : itemReader.GetDouble("local_sales_tax")
                         };
                         item.QtySold = 0;
@@ -237,7 +237,7 @@ namespace pos_core_api.ORM
                     }
 
                     item.QtySold += itemReader.IsDBNull("sold_qty") ? 0 : itemReader.GetUInt32("sold_qty");
-                    item.QtyRefunded  += itemReader.IsDBNull("refunded_qty") ? 0 : itemReader.GetUInt32("refunded_qty");
+                    item.QtyRefunded += itemReader.IsDBNull("refunded_qty") ? 0 : itemReader.GetUInt32("refunded_qty");
 
                     item.AllQty.Add(new InventoryQty
                     {
@@ -291,7 +291,7 @@ namespace pos_core_api.ORM
                 WHERE payID = @payId
             ");
             cmd.Parameters.Add(new MySqlParameter("payId", payId));
-            
+
             try
             {
                 using MySqlDataReader itemReader = cmd.ExecuteReader();
@@ -326,7 +326,7 @@ namespace pos_core_api.ORM
                 (register,  sold_datetime,  customerID,  empID,  location,  tax_exempt,  discount, shipping, tranTypeid)
                 VALUES
                 (@register, @sold_datetime, @customerID, @empID, @location, @tax_exempt, @discount, @shipping, @TranType)
-            ");            
+            ");
 
             cmd.Parameters.Add(new MySqlParameter("register", transaction.RegisterID));
             cmd.Parameters.Add(new MySqlParameter("sold_datetime", transaction.TransactionDateTime));
@@ -352,6 +352,11 @@ namespace pos_core_api.ORM
             InsertPayments(transaction);
 
             return transaction.InvoiceID;
+        }
+
+        public uint UpdateTransaction(Transaction transaction)
+        {
+            return UpdateTransaction(transaction, GetTransaction(transaction.InvoiceID));
         }
 
         public uint UpdateTransaction(Transaction transaction, Transaction previousTransaction)

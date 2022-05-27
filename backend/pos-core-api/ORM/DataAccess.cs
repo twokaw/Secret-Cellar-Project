@@ -108,6 +108,18 @@ namespace pos_core_api.ORM
             }
         }
 
+        private static EmployeeTypeORM employeeTypeORM = null;
+        public EmployeeTypeORM EmployeeType
+        {
+            get
+            {
+                if (employeeTypeORM == null)
+                    employeeTypeORM = new EmployeeTypeORM();
+
+                return employeeTypeORM;
+            }
+        }
+
         private static EmployeeORM employeeORM = null;
         public EmployeeORM Employee
         {
@@ -119,7 +131,6 @@ namespace pos_core_api.ORM
                 return employeeORM;
             }
         }
-
         private static InventoryTypeORM inventoryTypeORM = null;
         public InventoryTypeORM InventoryType
         {

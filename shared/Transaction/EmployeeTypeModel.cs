@@ -11,11 +11,13 @@ namespace Shared
         public uint TypeID { get; set; }
         public string TypeName { get; set; }
         public List<EmployeeRoleModel> Roles { get; set; } = new List<EmployeeRoleModel>();
+        public override string ToString() => TypeName;
     }
     public class EmployeeRoleModel
     {
         public uint RoleID { get; set; }
         public string RoleName { get; set; }
         public string RoleDescription { get; set; }
+        public override string ToString() => RoleName;
     }
 }

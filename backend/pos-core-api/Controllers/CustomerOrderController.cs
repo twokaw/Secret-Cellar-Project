@@ -68,7 +68,7 @@ namespace WebApi.Controllers
         }
 
         [HttpPut("{customerID}")]
-        public IActionResult Put(uint customerID, [FromBody] CustomerOrderItem cust)
+        public IActionResult Put(uint customerID, uint transactionId, [FromBody] CustomerOrderItem cust)
         {
             try
             {
@@ -76,7 +76,13 @@ namespace WebApi.Controllers
                 if (temp == null)
                     return Post(customerID, cust);
 
-                long id = DataAccess.Instance.CustomerOrder.Update(cust);
+                Transaction transaction = null;
+
+                if (transactionId > 0)
+                    transaction = DataAccess.Instance.Transaction.GetTransaction(transactionId);
+
+                long id = DataAccess.Instance.CustomerOrder.Update(cust, customerID, transaction);
+
                 if (id > 0)
                     return Ok(id);
                 else
