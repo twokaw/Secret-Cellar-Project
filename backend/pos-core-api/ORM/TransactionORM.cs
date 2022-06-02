@@ -296,7 +296,7 @@ namespace pos_core_api.ORM
                         Method = itemReader.IsDBNull("method") ? "" : itemReader.GetString("method"),
                         PayId = itemReader.IsDBNull("payid") ? 0 : itemReader.GetUInt32("payid"),
                         Number = itemReader.IsDBNull("Number") ? "" : itemReader.GetString("Number"),
-                        Amount = itemReader.IsDBNull("Amount") ? 0 : itemReader.GetDouble("Amount")
+                        Amount = itemReader.IsDBNull("Amount") ? 0 : itemReader.GetDouble("Amount"),
                         PaymentMethodId = itemReader.IsDBNull("PaymentMethodId") ? 0 : itemReader.GetUInt32("PaymentMethodId")
                     });
                 }
