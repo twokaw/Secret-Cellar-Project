@@ -541,20 +541,14 @@ namespace SecretCellar
         {
             Response resp = null;
             string result = web.DataPost($"api/CustomerOrder/{customerID}", customerOrder, resp);
-            if (uint.TryParse(result, out uint id))
-                return id;
-            else
-                return 0;
+            return uint.TryParse(result, out uint id) ? id : 0;
         }
 
         public uint UpdateCustomerOrderItem(uint customerID, CustomerOrderItem customerOrderItem)
         {
             Response resp = null;
             string result = web.DataPut($"api/CustomerOrder/{customerID}", customerOrderItem, resp);
-            if (uint.TryParse(result, out uint id))
-                return id;
-            else
-                return 0;
+            return uint.TryParse(result, out uint id) ? id : 0;
         }
         
         public uint UpdateCustomerOrderItem(uint customerID, uint transactionId, CustomerOrderItem customerOrderItem)

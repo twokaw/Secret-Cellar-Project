@@ -271,8 +271,12 @@ namespace SecretCellar.Orders_Panels {
         private void cbx_fullfill_cust_SelectedIndexChanged(object sender, EventArgs e)
         {
            */
-            uint cid = ((CustomerOrder)cbx_fullfill_cust.SelectedItem).CustomerID;
-            RefreshFillment(cid);
+            if(cbx_fullfill_cust.Items.Count > 0)
+            {
+                uint cid = ((CustomerOrder)cbx_fullfill_cust.SelectedItem).CustomerID;
+                RefreshFillment(cid);
+
+            }
         }
 
         private void fullfill_datagrid_CellContentClick(object sender, DataGridViewCellEventArgs e)

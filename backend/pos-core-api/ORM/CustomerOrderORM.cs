@@ -89,7 +89,7 @@ namespace pos_core_api.ORM
                 if (cmd.ExecuteNonQuery() > 0)
                     return new CustomerOrder()
                     {
-                        CustomerID = (uint)cmd.LastInsertedId
+                        CustomerID = customerID 
                     };
                 else throw new Exception("Failed to create orderid");
             }

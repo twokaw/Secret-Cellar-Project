@@ -29,7 +29,7 @@ namespace WebApi.Controllers
         }
 
         // GET: api/Employee/ID
-        [HttpGet("{employeeID}")]
+        [HttpGet("{employeeID:int}")]
         public IActionResult GetEmpId(int employeeID)
         {
             try
@@ -50,7 +50,7 @@ namespace WebApi.Controllers
             catch (Exception ex) { ErrorLogging.WriteToErrorLog(ex); return StatusCode(500, ex.Message); }
         }
 
-        // PUT: api/Employee/{EmpID}
+        // PUT: api/Employee
         [HttpPut]
         public IActionResult Put([FromBody] EmployeeModel emp)
         {
@@ -63,7 +63,7 @@ namespace WebApi.Controllers
         }
 
         // Delete: api/Employee/{EmpID}
-        [HttpDelete("{empID}")]
+        [HttpDelete("{empID:int}")]
         public IActionResult Delete(uint empID)
         {
             try

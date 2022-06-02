@@ -19,7 +19,7 @@ namespace pos_core_api.ORM
             FROM transaction
         ";
         private const string SQLGETPAYMENTS = @"
-                SELECT p.PayId, pm.Paymentmethod Method, p.Number, p.Amount, PaymentMethodId
+                SELECT  p.receiptID, p.PayId, pm.Paymentmethod Method, p.Number, p.Amount, PaymentMethodId
                 FROM payments p
                 JOIN Paymentmethod pm
                 USING (PaymentMethodId)
@@ -532,9 +532,9 @@ namespace pos_core_api.ORM
             MySqlCommand cmd;
             string insert = @"
                 INSERT INTO Payments
-                ( ReceiptID,  Method,  Number,  Amount)
+                ( ReceiptID,  Method,  Number,  Amount, PaymentMethodID)
                 VALUES
-                (@ReceiptID, @Method, @Number, @Amount)
+                (@ReceiptID, @Method, @Number, @Amount, (SELECT PaymentMethodid FROM Paymenthod WHERE PaymentMethod = @Method ))
             ";
 
             string update = @"
@@ -542,7 +542,8 @@ namespace pos_core_api.ORM
                 SET  ReceiptID = @ReceiptID,
                      Method = @Method,
                      Number = @Number,
-                     Amount = @Amount
+                     Amount = @Amount,
+                     PaymentMehtodID = (SELECT PaymentMethodid FROM Paymenthod WHERE PaymentMethod = @Method )
                 WHERE PayID = @PayID
             ";
             

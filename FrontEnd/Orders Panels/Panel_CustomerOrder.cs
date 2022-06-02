@@ -169,6 +169,7 @@ namespace SecretCellar.Orders_Panels {
 			List<CustomerOrderItem> custItems = (DataAccess.instance.GetCustomerOrderforCustomer(customerId)?.Items ?? new List<CustomerOrderItem>()).Where(x => x.DeliverQty < x.RequestQty).ToList();
 
 			custOrder_datagrid.DataSource = DataAccess.instance.GetInventory()
+				// 
 				.GroupJoin(custFav, i => i.Id, f => f.InventoryID, (i, f) => new {
 					Inv = i,
 					Fav = f.SingleOrDefault()

@@ -15,7 +15,7 @@ namespace pos_core_api.ORM
 
         // Get: api/employee
         public List<EmployeeTypeModel> Get()
-        {   
+        {
             string sqlStatement = @"
               SELECT * 
               FROM employeetype
@@ -26,7 +26,7 @@ namespace pos_core_api.ORM
             ";
 
             MySqlCommand cmd = db.CreateCommand(sqlStatement);
-           
+
             return Get(cmd);
         }
 
@@ -44,29 +44,53 @@ namespace pos_core_api.ORM
             return list.Count > 0 ? Get(cmd)[0] : null;
         }
 
+        public EmployeeTypeModel Get(string typeName)
+        {
+            MySqlCommand cmd = db.CreateCommand(@"
+              SELECT * 
+              FROM employeeType 
+              WHERE TypeName = @TypeName
+            ");
+            cmd.Parameters.Add(new MySqlParameter("TypeName", typeName));
+
+            List<EmployeeTypeModel> list = Get(cmd);
+
+            return list.Count > 0 ? Get(cmd)[0] : null;
+        }
+
         public uint Insert(EmployeeTypeModel empTyp)
         {
-            uint id;
-            MySqlCommand cmd = db.CreateCommand(@"
-                INSERT INTO employeeType 
-                (TypeName)
-                VALUES 
-                (@TypeName)
-            ");
-
-            cmd.Parameters.Add(new MySqlParameter("TypeName", empTyp.TypeName));
-
-            try
+            EmployeeTypeModel checkEmp = Get(empTyp.TypeName);
+            if (checkEmp != null)
             {
-                cmd.ExecuteNonQuery();
-                id = Convert.ToUInt32(cmd.LastInsertedId);
-
-                empTyp.Roles.ForEach(x => AddRole(id, x.RoleID));
-                return id;
+                empTyp.TypeID = checkEmp.TypeID;
+                Update(empTyp);
+                return empTyp.TypeID;
             }
-            finally
+            else
             {
-                db.CloseCommand(cmd);
+                uint id;
+                MySqlCommand cmd = db.CreateCommand(@"
+                    INSERT INTO employeeType 
+                    (TypeName)
+                    VALUES 
+                    (@TypeName)
+                ");
+
+                cmd.Parameters.Add(new MySqlParameter("TypeName", empTyp.TypeName));
+
+                try
+                {
+                    cmd.ExecuteNonQuery();
+                    id = Convert.ToUInt32(cmd.LastInsertedId);
+
+                    empTyp.Roles.ForEach(x => AddRole(id, x.RoleID));
+                    return id;
+                }
+                finally
+                {
+                    db.CloseCommand(cmd);
+                }
             }
         }
 
