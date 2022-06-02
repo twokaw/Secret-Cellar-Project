@@ -147,6 +147,19 @@ namespace SecretCellar
             string result = web.DataGet($"api/Employee?username={userName}");
             return (EmployeeModel)JsonConvert.DeserializeObject(result, typeof(EmployeeModel));
         }
+        public bool UpdateEmployee(EmployeeModel emp)
+        {
+            try
+            {
+                web.DataPut("api/Employee",emp);
+            }
+            catch
+            {
+                return false;
+            }
+            
+            return true;
+        }
 
         
         public EmployeeModel LoginUser(string userName)
@@ -167,10 +180,10 @@ namespace SecretCellar
             return (List<EmployeeRoleModel>)JsonConvert.DeserializeObject(result, typeof(List<EmployeeRoleModel>));
         }
 
-        public EmployeeTypeModel InsertEmployeeType(EmployeeTypeModel empType)
+        public uint InsertEmployeeType(EmployeeTypeModel empType)
         {
             string result = web.DataPost("api/EmployeeType", empType);
-            return (EmployeeTypeModel)JsonConvert.DeserializeObject(result, typeof(EmployeeModel));
+            return uint.TryParse(result, out uint Id)? Id : 0; 
         }
 
         public EmployeeTypeModel UpdateEmployeeType(EmployeeTypeModel empType)
