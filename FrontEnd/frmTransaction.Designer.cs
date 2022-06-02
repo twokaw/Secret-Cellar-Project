@@ -84,6 +84,7 @@
             this.ImgLstTenderButton = new System.Windows.Forms.ImageList(this.components);
             this.btn_signout = new System.Windows.Forms.Button();
             this.lbl_emp_logged_on = new System.Windows.Forms.Label();
+            this.button_Invoices = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pb_settings)).BeginInit();
@@ -134,7 +135,7 @@
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Ivory;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle3;
-            this.dataGridView1.Location = new System.Drawing.Point(5, 138);
+            this.dataGridView1.Location = new System.Drawing.Point(5, 159);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(1);
             this.dataGridView1.Name = "dataGridView1";
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
@@ -156,7 +157,7 @@
             this.dataGridView1.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.ShowEditingIcon = false;
-            this.dataGridView1.Size = new System.Drawing.Size(996, 257);
+            this.dataGridView1.Size = new System.Drawing.Size(996, 236);
             this.dataGridView1.TabIndex = 2;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
@@ -740,6 +741,19 @@
             this.lbl_emp_logged_on.Text = "label1";
             this.lbl_emp_logged_on.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
+            // button_Invoices
+            // 
+            this.button_Invoices.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button_Invoices.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_Invoices.Location = new System.Drawing.Point(872, 112);
+            this.button_Invoices.Margin = new System.Windows.Forms.Padding(1);
+            this.button_Invoices.Name = "button_Invoices";
+            this.button_Invoices.Size = new System.Drawing.Size(123, 45);
+            this.button_Invoices.TabIndex = 33;
+            this.button_Invoices.Text = "Invoices";
+            this.button_Invoices.UseVisualStyleBackColor = true;
+            this.button_Invoices.Click += new System.EventHandler(this.button_Invoices_Click);
+            // 
             // frmTransaction
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -748,6 +762,7 @@
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(231)))), ((int)(((byte)(206)))));
             this.ClientSize = new System.Drawing.Size(1008, 707);
+            this.Controls.Add(this.button_Invoices);
             this.Controls.Add(this.lbl_emp_logged_on);
             this.Controls.Add(this.btn_signout);
             this.Controls.Add(this.btnTender2);
@@ -841,5 +856,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ItemID;
         private System.Windows.Forms.Button btn_signout;
         private System.Windows.Forms.Label lbl_emp_logged_on;
+        private System.Windows.Forms.Button button_Invoices;
     }
 }
