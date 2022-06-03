@@ -451,14 +451,17 @@ namespace SecretCellar
             bool selectedItemIsInSuspendedTransaction = false;
             List<Transaction> suspendedTransactions = DataAccess.instance.GetSuspendedTransactions();
 
-            foreach (Transaction suspendedTransaction in suspendedTransactions) {
-                foreach (Item item in suspendedTransaction.Items) {
-                    uint selectedItemId = uint.Parse(LookupView.SelectedRows[0].Cells["Id"].Value.ToString());
+            if(suspendedTransactions != null)
+            {
+                foreach (Transaction suspendedTransaction in suspendedTransactions) {
+                    foreach (Item item in suspendedTransaction.Items) {
+                        uint selectedItemId = uint.Parse(LookupView.SelectedRows[0].Cells["Id"].Value.ToString());
 
-                    if (item.Id == selectedItemId) { selectedItemIsInSuspendedTransaction = true; break; }
+                        if (item.Id == selectedItemId) { selectedItemIsInSuspendedTransaction = true; break; }
+                    }
+
+                    if (selectedItemIsInSuspendedTransaction) { break; }
                 }
-
-                if (selectedItemIsInSuspendedTransaction) { break; }
             }
 
             if (selectedItemIsInSuspendedTransaction) { button_DeleteItem.Enabled = false; }

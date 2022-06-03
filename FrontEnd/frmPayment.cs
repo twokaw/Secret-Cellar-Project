@@ -88,7 +88,11 @@ namespace SecretCellar
             }    
 
             if (double.TryParse(txtCashAmt.Text, out double amount))
+            {
+                
                 transaction.AddPayment(new Payment { Method = method, Amount = amount, Number = number });
+            }
+            else if(method == "CHECK")
 
             RefreshGrid();
         }
