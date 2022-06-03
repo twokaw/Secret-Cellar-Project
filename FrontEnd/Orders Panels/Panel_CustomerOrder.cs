@@ -164,44 +164,48 @@ namespace SecretCellar.Orders_Panels {
 		/// <param name="customerId"></param>
 		public void RefreshFavorite(uint customerId)
 		{
-			List<Supplier> suppliers = DataAccess.instance?.GetSuppliers();
-			List<CustomerFavorite> custFav = DataAccess.instance.GetCustomerFavorite(customerId).Favorites;
-			List<CustomerOrderItem> custItems = (DataAccess.instance.GetCustomerOrderforCustomer(customerId)?.Items ?? new List<CustomerOrderItem>()).Where(x => x.DeliverQty < x.RequestQty).ToList();
+			if(customerId != 0)
+            {
+				List<Supplier> suppliers = DataAccess.instance?.GetSuppliers();
+				List<CustomerFavorite> custFav = DataAccess.instance.GetCustomerFavorite(customerId).Favorites;
+				List<CustomerOrderItem> custItems = (DataAccess.instance.GetCustomerOrderforCustomer(customerId)?.Items ?? new List<CustomerOrderItem>()).Where(x => x.DeliverQty < x.RequestQty).ToList();
 
-			custOrder_datagrid.DataSource = DataAccess.instance.GetInventory()
-				// 
-				.GroupJoin(custFav, i => i.Id, f => f.InventoryID, (i, f) => new {
-					Inv = i,
-					Fav = f.SingleOrDefault()
-				})
-				//.Where(x => x.Fav.InventoryID != 0 && !x.Inv.Hidden)
-				.GroupJoin(custItems, i => i.Inv.Id, o => o.Id, (i, o) => new {
-					i.Inv,
-					i.Fav,
-					Ord = o.SingleOrDefault()
-				})
+				custOrder_datagrid.DataSource = DataAccess.instance.GetInventory()
+					// Join in Favorites
+					.GroupJoin(custFav, i => i.Id, f => f.InventoryID, (i, f) => new {
+						Inv = i,
+						Fav = f.SingleOrDefault()
+					})
+					//.Where(x => x.Fav.InventoryID != 0 && !x.Inv.Hidden)
+					.GroupJoin(custItems, i => i.Inv.Id, o => o.Id, (i, o) => new {
+						i.Inv,
+						i.Fav,
+						Ord = o.SingleOrDefault()
+					})
 				
-				//.Where(x => x.Fav.InventoryID != 0 && !x.Inv.Hidden)
-				.GroupJoin(suppliers, i => i.Inv.SupplierID, o => o.SupplierID, (i, o) => new {
-					i.Inv,
-					i.Fav,
-					i.Ord,
-					Sup = o.SingleOrDefault()
-				}) 
-				.Where(x => x.Fav != null && (!x.Inv.Hidden || x.Ord != null) &&
-							(cbx_supp_custorder.Text == "" ||
-							 cbx_supp_custorder.Text == x.Sup.Name))
-				.Select(x => new {
-					x.Inv.Id,
-					x.Inv.Name,
-					x.Inv.Qty,
-					x.Inv.OrderQty,
-					Supplier = x.Sup?.Name,
-					Requsted = x.Ord?.RequestQty,
-					x.Inv.Price,
-					Lastused = x.Fav?.Lastused.ToString("MM/dd/yy")
-				})
-				.ToList();
+					//.Where(x => x.Fav.InventoryID != 0 && !x.Inv.Hidden)
+					.GroupJoin(suppliers, i => i.Inv.SupplierID, o => o.SupplierID, (i, o) => new {
+						i.Inv,
+						i.Fav,
+						i.Ord,
+						Sup = o.SingleOrDefault()
+					}) 
+					.Where(x => (x.Fav != null || x.Ord != null) && (!x.Inv.Hidden ) &&
+								(cbx_supp_custorder.Text == "" ||
+								 cbx_supp_custorder.Text == x.Sup.Name))
+					.Select(x => new {
+						x.Inv.Id,
+						x.Inv.Name,
+						x.Inv.Qty,
+						x.Inv.OrderQty,
+						Supplier = x.Sup?.Name,
+						Requsted = x.Ord?.RequestQty,
+						x.Inv.Price,
+						Lastused = x.Fav?.Lastused.ToString("MM/dd/yy")
+					})
+					.ToList();
+
+            }
 		}
     }
 }
