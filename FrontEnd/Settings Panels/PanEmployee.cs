@@ -140,5 +140,19 @@ namespace SecretCellar.Settings_Panels
             txt_startdate.Text = "";
             txt_fname.Focus();
         }
+
+        private void chk_box_past_emp_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chk_box_past_emp.Checked)
+            {
+                lst_employee.DataSource = DataAccess.instance.GetEmployee().Where(x => x.EndDate != null).ToList();
+                
+            }
+            else
+            {
+                PopulateEmp();
+            }
+            EndButtonText();
+        }
     }
 }
