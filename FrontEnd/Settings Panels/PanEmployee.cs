@@ -24,12 +24,25 @@ namespace SecretCellar.Settings_Panels
                 GetEmployeeRoles();
                 PopulateEmp();
                 EndButtonText();
+                
             }
 
         }
        
 
-        private void PopulateEmp() => lst_employee.DataSource = DataAccess.instance.GetEmployee();
+        private void PopulateEmp()
+        {
+            if (chk_box_past_emp.Checked)
+            {
+                lst_employee.DataSource = DataAccess.instance.GetEmployee().Where(x => x.EndDate != null).ToList();
+
+            }
+            else 
+            {
+                lst_employee.DataSource = DataAccess.instance.GetEmployee().Where(x => x.EndDate == null).ToList();
+            }
+
+        } 
         private void GetEmployeeTypes()
         {
             employeeTypes = DataAccess.instance.GetEmployeeTypes();
@@ -97,9 +110,15 @@ namespace SecretCellar.Settings_Panels
             newEmp.City = txt_city.Text;
             newEmp.State = txt_state.Text;
             newEmp.ZipCode= txt_zipcode.Text;
+            newEmp.PhoneNumber = txt_phone.Text;
             newEmp.Email = txt_email.Text;
             newEmp.StartDate = (DateTime.TryParse(txt_startdate.Text, out DateTime startdate) ?startdate : DateTime.Now);
-            
+            newEmp.EmployeeType = (EmployeeTypeModel)cbx_types.SelectedItem;
+            newEmp.UserName = (txt_lname.Text.Trim(), txt_fname.Text.Trim()).ToString();
+            DataAccess.instance.InsertEmployee(newEmp);
+            PopulateEmp();
+
+
 
         }
 
@@ -115,14 +134,19 @@ namespace SecretCellar.Settings_Panels
             updateEmp.ZipCode = txt_zipcode.Text;
             updateEmp.Email = txt_email.Text;
             DataAccess.instance.UpdateEmployee(updateEmp);
+            PopulateEmp();
         }
 
         private void btn_end_Click(object sender, EventArgs e)
         {
-            EmployeeModel disableEmp = (EmployeeModel)lst_employee.SelectedItem;
-            if(disableEmp.EndDate != null) { disableEmp.EndDate = null; }
-            else { disableEmp.EndDate = DateTime.Now; }
-            DataAccess.instance.UpdateEmployee(disableEmp);
+            EmployeeModel Emp = (EmployeeModel)lst_employee.SelectedItem;
+         
+            Emp.EndDate = btn_end.Text != "Enable" ? (DateTime?)DateTime.Now : null;
+
+            DataAccess.instance.UpdateEmployee(Emp);
+            PopulateEmp();
+
+
         }
 
         private void btn_clear_Click(object sender, EventArgs e)
@@ -143,16 +167,12 @@ namespace SecretCellar.Settings_Panels
 
         private void chk_box_past_emp_CheckedChanged(object sender, EventArgs e)
         {
-            if (chk_box_past_emp.Checked)
-            {
-                lst_employee.DataSource = DataAccess.instance.GetEmployee().Where(x => x.EndDate != null).ToList();
-                
-            }
-            else
-            {
-                PopulateEmp();
-            }
+           
+            PopulateEmp();
+            
             EndButtonText();
         }
+
+      
     }
 }

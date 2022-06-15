@@ -124,7 +124,6 @@ namespace pos_core_api.ORM
                 db.CloseCommand(cmd);
             }
         }
-
         public CustomerOrder GetOrder(uint orderId, bool includehistory)
         {
             string sqlStatement = @$"{(includehistory ? $"{CUSTOMERORDERSQL} WHERE " : $"{OUTSTANDINGCUSTOMERORDERSQL} AND ")}
