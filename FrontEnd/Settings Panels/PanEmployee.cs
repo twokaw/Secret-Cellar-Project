@@ -24,12 +24,25 @@ namespace SecretCellar.Settings_Panels
                 GetEmployeeRoles();
                 PopulateEmp();
                 EndButtonText();
+                
             }
 
         }
        
 
-        private void PopulateEmp() => lst_employee.DataSource = DataAccess.instance.GetEmployee();
+        private void PopulateEmp()
+        {
+            if (chk_box_past_emp.Checked)
+            {
+                lst_employee.DataSource = DataAccess.instance.GetEmployee().Where(x => x.EndDate != null).ToList();
+
+            }
+            else 
+            {
+                lst_employee.DataSource = DataAccess.instance.GetEmployee().Where(x => x.EndDate == null).ToList();
+            }
+
+        } 
         private void GetEmployeeTypes()
         {
             employeeTypes = DataAccess.instance.GetEmployeeTypes();
@@ -119,10 +132,14 @@ namespace SecretCellar.Settings_Panels
 
         private void btn_end_Click(object sender, EventArgs e)
         {
-            EmployeeModel disableEmp = (EmployeeModel)lst_employee.SelectedItem;
-            if(disableEmp.EndDate != null) { disableEmp.EndDate = null; }
-            else { disableEmp.EndDate = DateTime.Now; }
-            DataAccess.instance.UpdateEmployee(disableEmp);
+            EmployeeModel Emp = (EmployeeModel)lst_employee.SelectedItem;
+         
+            Emp.EndDate = btn_end.Text != "Enable" ? (DateTime?)DateTime.Now : null;
+
+            DataAccess.instance.UpdateEmployee(Emp);
+            PopulateEmp();
+
+
         }
 
         private void btn_clear_Click(object sender, EventArgs e)
@@ -143,16 +160,12 @@ namespace SecretCellar.Settings_Panels
 
         private void chk_box_past_emp_CheckedChanged(object sender, EventArgs e)
         {
-            if (chk_box_past_emp.Checked)
-            {
-                lst_employee.DataSource = DataAccess.instance.GetEmployee().Where(x => x.EndDate != null).ToList();
-                
-            }
-            else
-            {
-                PopulateEmp();
-            }
+           
+            PopulateEmp();
+            
             EndButtonText();
         }
+
+      
     }
 }
