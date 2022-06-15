@@ -358,7 +358,7 @@ namespace SecretCellar
             RefreshDataGrid();
         }
 
-        public void importSuspendedTransaction(Transaction suspendedTransaction)
+        public void ImportTransaction(Transaction newTransaction)
         {
             //CLEAR WHATEVER WAS IN THE TRANSACTION ALREADY
             dataGridView1.Rows.Clear();
@@ -373,13 +373,13 @@ namespace SecretCellar
             txt_TransTotal.Text = "$0.00";
             txt_Ship.Text = "$0.00";
 
-            transaction = suspendedTransaction;
+            transaction = newTransaction;
 
             RefreshDataGrid();
         }
 
         private void button_Invoices_Click(object sender, EventArgs e) {
-            frmInvoices frmInvoices = new frmInvoices();
+            frmInvoices frmInvoices = new frmInvoices(this);
             frmInvoices.ShowDialog();
         }
 

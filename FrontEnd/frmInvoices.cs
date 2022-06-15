@@ -11,14 +11,13 @@ namespace SecretCellar {
 	public partial class frmInvoices : Form {
 		private readonly string _defaultFilterString = "Filter...";
 		private List<Transaction> _invoices = new List<Transaction>();
+		private readonly frmTransaction _frmTransaction;
 
 
-
-		public frmInvoices() {
+		public frmInvoices(frmTransaction frmTransaction) {
 			InitializeComponent();
 
-			List<Transaction> transactions = DataAccess.instance.GetTransactions();
-			_invoices = transactions.FindAll((transaction) => { return transaction.TranType == Transaction.TranactionType.Invoice; });
+			_frmTransaction = frmTransaction;
 
 			PopulateListOfInvoices();
 		}
@@ -81,6 +80,9 @@ namespace SecretCellar {
 		/// Populates the list invoices.
 		/// </summary>
 		private void PopulateListOfInvoices() {
+			List<Transaction> transactions = DataAccess.instance.GetTransactions();
+			_invoices = transactions.FindAll((transaction) => { return transaction.TranType == Transaction.TranactionType.Invoice; });
+
 			selectionList_Invoices.Items.Clear();
 
 			foreach (Transaction invoice in _invoices) {
@@ -90,6 +92,8 @@ namespace SecretCellar {
 					selectionList_Invoices.Items.Add(invoiceTitle);
 				}
 			}
+
+			if (selectionList_Invoices.Items.Count > 0) selectionList_Invoices.SelectedIndex = 0;
 		}
 
 
@@ -99,7 +103,24 @@ namespace SecretCellar {
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
 		private void button_Finalize_Click(object sender, EventArgs e) {
+			if (selectionList_Invoices.SelectedItem == null) return;
+
+			string selectedTransactionIdString = selectionList_Invoices.SelectedItem.ToString().Split(new string[] { " | " }, StringSplitOptions.None)[0];
 			
+			if (uint.TryParse(selectedTransactionIdString, out uint transactionId)) {
+				Transaction selectedTransaction = DataAccess.instance.GetTransactions(transactionId);
+
+				if (selectedTransaction != null) {
+					frmPayment frmPayment = new frmPayment(selectedTransaction);
+
+					frmPayment.FormClosed += (objectSender, eventArgs) => { DataAccess.instance.ProcessTransaction(selectedTransaction); };	//This probably needs to be removed from the formClosed delegate.
+
+					frmPayment.ShowDialog();
+
+				}
+			}
+
+			PopulateListOfInvoices();
 		}
 
 

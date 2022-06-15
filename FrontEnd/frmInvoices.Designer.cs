@@ -166,7 +166,7 @@ namespace SecretCellar {
             this.button_Finalize.Name = "button_Finalize";
             this.button_Finalize.Size = new System.Drawing.Size(198, 55);
             this.button_Finalize.TabIndex = 3;
-            this.button_Finalize.Text = "Finalize";
+            this.button_Finalize.Text = "Update Payment";
             this.button_Finalize.UseVisualStyleBackColor = true;
             this.button_Finalize.Click += new System.EventHandler(this.button_Finalize_Click);
             // 
