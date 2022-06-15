@@ -175,8 +175,22 @@ namespace SecretCellar
             
             return true;
         }
+        public bool InsertEmployee(EmployeeModel emp)
+        {
+            try
+            {
+                web.DataPost("api/Employee", emp);
+            }
+            catch
+            {
+                return false;
+            }
 
-        
+            return true;
+        }
+
+
+
         public EmployeeModel LoginUser(string userName)
         {
             currentUser = GetEmployee(userName);

@@ -110,9 +110,15 @@ namespace SecretCellar.Settings_Panels
             newEmp.City = txt_city.Text;
             newEmp.State = txt_state.Text;
             newEmp.ZipCode= txt_zipcode.Text;
+            newEmp.PhoneNumber = txt_phone.Text;
             newEmp.Email = txt_email.Text;
             newEmp.StartDate = (DateTime.TryParse(txt_startdate.Text, out DateTime startdate) ?startdate : DateTime.Now);
-            
+            newEmp.EmployeeType = (EmployeeTypeModel)cbx_types.SelectedItem;
+            newEmp.UserName = (txt_lname.Text.Trim(), txt_fname.Text.Trim()).ToString();
+            DataAccess.instance.InsertEmployee(newEmp);
+            PopulateEmp();
+
+
 
         }
 
@@ -128,6 +134,7 @@ namespace SecretCellar.Settings_Panels
             updateEmp.ZipCode = txt_zipcode.Text;
             updateEmp.Email = txt_email.Text;
             DataAccess.instance.UpdateEmployee(updateEmp);
+            PopulateEmp();
         }
 
         private void btn_end_Click(object sender, EventArgs e)
