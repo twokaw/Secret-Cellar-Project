@@ -39,7 +39,7 @@ namespace SecretCellar
 
         public void RefreshCache()
         {
-             if (InventoryChanged())
+            if (InventoryChanged())
             {
 
                 GetInventory();
@@ -53,6 +53,21 @@ namespace SecretCellar
                 else
                     orders.refreshInv();
             }
+            /*
+            if (OrderChanged())
+            {
+                GetInventory();
+                if (lookup == null)
+                    lookup = new frmLookup();
+                else
+                    lookup.RefreshInv();
+
+                if (orders == null)
+                    orders = new frmOrdersPanels();
+                else
+                    orders.refreshInv();
+            }
+            */
         }
 
         public DialogResult ShowLookupForm(Transaction t, String submitText = "Add to Cart")
