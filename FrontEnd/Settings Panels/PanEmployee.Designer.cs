@@ -30,6 +30,8 @@
         {
             this.lbl_employee = new System.Windows.Forms.Label();
             this.employee_panel = new System.Windows.Forms.Panel();
+            this.txt_pin = new System.Windows.Forms.TextBox();
+            this.lbl_pin = new System.Windows.Forms.Label();
             this.btn_clear = new System.Windows.Forms.Button();
             this.chk_box_past_emp = new System.Windows.Forms.CheckBox();
             this.btn_end = new System.Windows.Forms.Button();
@@ -79,6 +81,8 @@
             // 
             // employee_panel
             // 
+            this.employee_panel.Controls.Add(this.txt_pin);
+            this.employee_panel.Controls.Add(this.lbl_pin);
             this.employee_panel.Controls.Add(this.btn_clear);
             this.employee_panel.Controls.Add(this.chk_box_past_emp);
             this.employee_panel.Controls.Add(this.btn_end);
@@ -117,14 +121,34 @@
             this.employee_panel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.employee_panel.Location = new System.Drawing.Point(0, 0);
             this.employee_panel.Name = "employee_panel";
-            this.employee_panel.Size = new System.Drawing.Size(674, 342);
+            this.employee_panel.Size = new System.Drawing.Size(674, 362);
             this.employee_panel.TabIndex = 1;
+            // 
+            // txt_pin
+            // 
+            this.txt_pin.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txt_pin.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_pin.Location = new System.Drawing.Point(321, 225);
+            this.txt_pin.Name = "txt_pin";
+            this.txt_pin.Size = new System.Drawing.Size(232, 24);
+            this.txt_pin.TabIndex = 37;
+            // 
+            // lbl_pin
+            // 
+            this.lbl_pin.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_pin.Location = new System.Drawing.Point(202, 226);
+            this.lbl_pin.Name = "lbl_pin";
+            this.lbl_pin.Size = new System.Drawing.Size(113, 20);
+            this.lbl_pin.TabIndex = 36;
+            this.lbl_pin.Text = "Pin Number";
+            this.lbl_pin.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // btn_clear
             // 
             this.btn_clear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_clear.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_clear.Location = new System.Drawing.Point(568, 189);
+            this.btn_clear.Location = new System.Drawing.Point(568, 187);
             this.btn_clear.Name = "btn_clear";
             this.btn_clear.Size = new System.Drawing.Size(96, 30);
             this.btn_clear.TabIndex = 35;
@@ -136,7 +160,7 @@
             // 
             this.chk_box_past_emp.AutoSize = true;
             this.chk_box_past_emp.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chk_box_past_emp.Location = new System.Drawing.Point(220, 307);
+            this.chk_box_past_emp.Location = new System.Drawing.Point(220, 302);
             this.chk_box_past_emp.Name = "chk_box_past_emp";
             this.chk_box_past_emp.Size = new System.Drawing.Size(140, 22);
             this.chk_box_past_emp.TabIndex = 34;
@@ -148,7 +172,7 @@
             // 
             this.btn_end.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_end.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_end.Location = new System.Drawing.Point(567, 293);
+            this.btn_end.Location = new System.Drawing.Point(567, 288);
             this.btn_end.Name = "btn_end";
             this.btn_end.Size = new System.Drawing.Size(96, 30);
             this.btn_end.TabIndex = 33;
@@ -159,7 +183,7 @@
             // lbl_email
             // 
             this.lbl_email.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_email.Location = new System.Drawing.Point(204, 227);
+            this.lbl_email.Location = new System.Drawing.Point(204, 201);
             this.lbl_email.Name = "lbl_email";
             this.lbl_email.Size = new System.Drawing.Size(113, 20);
             this.lbl_email.TabIndex = 32;
@@ -171,7 +195,7 @@
             this.txt_email.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txt_email.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_email.Location = new System.Drawing.Point(321, 226);
+            this.txt_email.Location = new System.Drawing.Point(321, 200);
             this.txt_email.Name = "txt_email";
             this.txt_email.Size = new System.Drawing.Size(232, 24);
             this.txt_email.TabIndex = 31;
@@ -204,7 +228,7 @@
             this.txt_enddate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txt_enddate.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_enddate.Location = new System.Drawing.Point(321, 280);
+            this.txt_enddate.Location = new System.Drawing.Point(321, 275);
             this.txt_enddate.Name = "txt_enddate";
             this.txt_enddate.Size = new System.Drawing.Size(232, 24);
             this.txt_enddate.TabIndex = 28;
@@ -214,7 +238,7 @@
             this.txt_startdate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txt_startdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_startdate.Location = new System.Drawing.Point(321, 253);
+            this.txt_startdate.Location = new System.Drawing.Point(321, 250);
             this.txt_startdate.Name = "txt_startdate";
             this.txt_startdate.Size = new System.Drawing.Size(232, 24);
             this.txt_startdate.TabIndex = 27;
@@ -224,7 +248,7 @@
             this.txt_phone.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txt_phone.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_phone.Location = new System.Drawing.Point(321, 199);
+            this.txt_phone.Location = new System.Drawing.Point(321, 175);
             this.txt_phone.Name = "txt_phone";
             this.txt_phone.Size = new System.Drawing.Size(232, 24);
             this.txt_phone.TabIndex = 26;
@@ -234,7 +258,7 @@
             this.txt_zipcode.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txt_zipcode.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_zipcode.Location = new System.Drawing.Point(428, 171);
+            this.txt_zipcode.Location = new System.Drawing.Point(428, 150);
             this.txt_zipcode.Name = "txt_zipcode";
             this.txt_zipcode.Size = new System.Drawing.Size(125, 24);
             this.txt_zipcode.TabIndex = 25;
@@ -242,7 +266,7 @@
             // txt_state
             // 
             this.txt_state.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_state.Location = new System.Drawing.Point(321, 171);
+            this.txt_state.Location = new System.Drawing.Point(321, 150);
             this.txt_state.Name = "txt_state";
             this.txt_state.Size = new System.Drawing.Size(53, 24);
             this.txt_state.TabIndex = 24;
@@ -252,7 +276,7 @@
             this.txt_city.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txt_city.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_city.Location = new System.Drawing.Point(321, 143);
+            this.txt_city.Location = new System.Drawing.Point(321, 125);
             this.txt_city.Name = "txt_city";
             this.txt_city.Size = new System.Drawing.Size(232, 24);
             this.txt_city.TabIndex = 23;
@@ -262,7 +286,7 @@
             this.txt_address2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txt_address2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_address2.Location = new System.Drawing.Point(321, 115);
+            this.txt_address2.Location = new System.Drawing.Point(321, 100);
             this.txt_address2.Name = "txt_address2";
             this.txt_address2.Size = new System.Drawing.Size(232, 24);
             this.txt_address2.TabIndex = 22;
@@ -272,7 +296,7 @@
             this.txt_address1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txt_address1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_address1.Location = new System.Drawing.Point(321, 88);
+            this.txt_address1.Location = new System.Drawing.Point(321, 76);
             this.txt_address1.Name = "txt_address1";
             this.txt_address1.Size = new System.Drawing.Size(232, 24);
             this.txt_address1.TabIndex = 21;
@@ -282,7 +306,7 @@
             this.txt_lname.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txt_lname.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_lname.Location = new System.Drawing.Point(321, 60);
+            this.txt_lname.Location = new System.Drawing.Point(321, 52);
             this.txt_lname.Name = "txt_lname";
             this.txt_lname.Size = new System.Drawing.Size(232, 24);
             this.txt_lname.TabIndex = 20;
@@ -292,7 +316,7 @@
             this.txt_fname.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txt_fname.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_fname.Location = new System.Drawing.Point(321, 32);
+            this.txt_fname.Location = new System.Drawing.Point(321, 28);
             this.txt_fname.Name = "txt_fname";
             this.txt_fname.Size = new System.Drawing.Size(232, 24);
             this.txt_fname.TabIndex = 19;
@@ -311,7 +335,7 @@
             // lbl_enddate
             // 
             this.lbl_enddate.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_enddate.Location = new System.Drawing.Point(202, 281);
+            this.lbl_enddate.Location = new System.Drawing.Point(202, 276);
             this.lbl_enddate.Name = "lbl_enddate";
             this.lbl_enddate.Size = new System.Drawing.Size(113, 20);
             this.lbl_enddate.TabIndex = 17;
@@ -321,7 +345,7 @@
             // lbl_start
             // 
             this.lbl_start.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_start.Location = new System.Drawing.Point(202, 253);
+            this.lbl_start.Location = new System.Drawing.Point(202, 250);
             this.lbl_start.Name = "lbl_start";
             this.lbl_start.Size = new System.Drawing.Size(113, 20);
             this.lbl_start.TabIndex = 16;
@@ -331,7 +355,7 @@
             // lbl_phone
             // 
             this.lbl_phone.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_phone.Location = new System.Drawing.Point(202, 199);
+            this.lbl_phone.Location = new System.Drawing.Point(202, 175);
             this.lbl_phone.Name = "lbl_phone";
             this.lbl_phone.Size = new System.Drawing.Size(113, 20);
             this.lbl_phone.TabIndex = 15;
@@ -342,7 +366,7 @@
             // 
             this.lbl_zipcode.AutoSize = true;
             this.lbl_zipcode.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_zipcode.Location = new System.Drawing.Point(385, 171);
+            this.lbl_zipcode.Location = new System.Drawing.Point(385, 150);
             this.lbl_zipcode.Name = "lbl_zipcode";
             this.lbl_zipcode.Size = new System.Drawing.Size(36, 18);
             this.lbl_zipcode.TabIndex = 14;
@@ -351,7 +375,7 @@
             // lbl_state
             // 
             this.lbl_state.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_state.Location = new System.Drawing.Point(202, 171);
+            this.lbl_state.Location = new System.Drawing.Point(202, 150);
             this.lbl_state.Name = "lbl_state";
             this.lbl_state.Size = new System.Drawing.Size(113, 20);
             this.lbl_state.TabIndex = 13;
@@ -361,7 +385,7 @@
             // lbl_city
             // 
             this.lbl_city.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_city.Location = new System.Drawing.Point(202, 143);
+            this.lbl_city.Location = new System.Drawing.Point(202, 125);
             this.lbl_city.Name = "lbl_city";
             this.lbl_city.Size = new System.Drawing.Size(113, 20);
             this.lbl_city.TabIndex = 12;
@@ -371,7 +395,7 @@
             // lbl_address2
             // 
             this.lbl_address2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_address2.Location = new System.Drawing.Point(202, 115);
+            this.lbl_address2.Location = new System.Drawing.Point(202, 100);
             this.lbl_address2.Name = "lbl_address2";
             this.lbl_address2.Size = new System.Drawing.Size(113, 20);
             this.lbl_address2.TabIndex = 11;
@@ -381,7 +405,7 @@
             // lbl_address1
             // 
             this.lbl_address1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_address1.Location = new System.Drawing.Point(202, 88);
+            this.lbl_address1.Location = new System.Drawing.Point(202, 76);
             this.lbl_address1.Name = "lbl_address1";
             this.lbl_address1.Size = new System.Drawing.Size(113, 20);
             this.lbl_address1.TabIndex = 10;
@@ -391,7 +415,7 @@
             // lbl_lname
             // 
             this.lbl_lname.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_lname.Location = new System.Drawing.Point(202, 60);
+            this.lbl_lname.Location = new System.Drawing.Point(202, 52);
             this.lbl_lname.Name = "lbl_lname";
             this.lbl_lname.Size = new System.Drawing.Size(113, 20);
             this.lbl_lname.TabIndex = 9;
@@ -401,7 +425,7 @@
             // lbl_fname
             // 
             this.lbl_fname.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_fname.Location = new System.Drawing.Point(202, 32);
+            this.lbl_fname.Location = new System.Drawing.Point(202, 28);
             this.lbl_fname.Name = "lbl_fname";
             this.lbl_fname.Size = new System.Drawing.Size(113, 20);
             this.lbl_fname.TabIndex = 8;
@@ -444,7 +468,7 @@
             // 
             this.btn_update.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_update.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_update.Location = new System.Drawing.Point(569, 258);
+            this.btn_update.Location = new System.Drawing.Point(569, 254);
             this.btn_update.Name = "btn_update";
             this.btn_update.Size = new System.Drawing.Size(96, 30);
             this.btn_update.TabIndex = 3;
@@ -456,7 +480,7 @@
             // 
             this.btn_add.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_add.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_add.Location = new System.Drawing.Point(568, 225);
+            this.btn_add.Location = new System.Drawing.Point(568, 221);
             this.btn_add.Name = "btn_add";
             this.btn_add.Size = new System.Drawing.Size(96, 30);
             this.btn_add.TabIndex = 2;
@@ -481,7 +505,7 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(201)))), ((int)(((byte)(176)))));
             this.Controls.Add(this.employee_panel);
             this.Name = "PanEmployee";
-            this.Size = new System.Drawing.Size(674, 342);
+            this.Size = new System.Drawing.Size(674, 362);
             this.employee_panel.ResumeLayout(false);
             this.employee_panel.PerformLayout();
             this.ResumeLayout(false);
@@ -526,5 +550,7 @@
         private System.Windows.Forms.Button btn_end;
         private System.Windows.Forms.CheckBox chk_box_past_emp;
         private System.Windows.Forms.Button btn_clear;
+        private System.Windows.Forms.TextBox txt_pin;
+        private System.Windows.Forms.Label lbl_pin;
     }
 }
