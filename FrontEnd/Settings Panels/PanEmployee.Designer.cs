@@ -121,7 +121,7 @@
             this.employee_panel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.employee_panel.Location = new System.Drawing.Point(0, 0);
             this.employee_panel.Name = "employee_panel";
-            this.employee_panel.Size = new System.Drawing.Size(674, 362);
+            this.employee_panel.Size = new System.Drawing.Size(674, 342);
             this.employee_panel.TabIndex = 1;
             // 
             // txt_pin
@@ -505,7 +505,7 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(201)))), ((int)(((byte)(176)))));
             this.Controls.Add(this.employee_panel);
             this.Name = "PanEmployee";
-            this.Size = new System.Drawing.Size(674, 362);
+            this.Size = new System.Drawing.Size(674, 342);
             this.employee_panel.ResumeLayout(false);
             this.employee_panel.PerformLayout();
             this.ResumeLayout(false);
