@@ -30,14 +30,14 @@ namespace pos_core_api.ORM
             return Get(cmd);
         }
 
-        public EmployeeTypeModel Get(uint employeeID)
+        public EmployeeTypeModel Get(uint typeId)
         {
             MySqlCommand cmd = db.CreateCommand(@"
               SELECT * 
               FROM employeeType 
-              WHERE emp_id = @empID
+              WHERE typeid = @typeid
             ");
-            cmd.Parameters.Add(new MySqlParameter("empID", employeeID));
+            cmd.Parameters.Add(new MySqlParameter("typeid", typeId));
 
             List<EmployeeTypeModel> list = Get(cmd);
 
