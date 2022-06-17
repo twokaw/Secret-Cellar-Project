@@ -10,14 +10,18 @@ using Shared;
 namespace SecretCellar {
 	public partial class frmInvoices : Form {
 		private readonly string _defaultFilterString = "Filter...";
-		private List<Transaction> _invoices = new List<Transaction>();
 		private readonly frmTransaction _frmTransaction;
+
+		private List<Transaction> _invoices = new List<Transaction>();
+		private Transaction _selectedTransaction = null;
+
 
 
 		public frmInvoices(frmTransaction frmTransaction) {
 			InitializeComponent();
 
 			_frmTransaction = frmTransaction;
+			_invoices = GetInvoicesFromDatabase();
 
 			PopulateListOfInvoices();
 		}
@@ -43,14 +47,14 @@ namespace SecretCellar {
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
 		private void selectionList_Invoices_SelectedIndexChanged(object sender, EventArgs e) {
-			if (selectionList_Invoices.SelectedItems.Count == 0) { return; }
+			if (selectionList_Invoices.SelectedItem == null) { return; }
 
 			uint invoiceId = uint.Parse(selectionList_Invoices.SelectedItem.ToString().Split(new string[] { " | " }, StringSplitOptions.None)[0]);
-			Transaction currentInvoice = _invoices.Find((invoice) => { return invoice.InvoiceID == invoiceId; });
+			_selectedTransaction = _invoices.Find((invoice) => { return invoice.InvoiceID == invoiceId; });
 
-			if (currentInvoice == null) return;
+			if (_selectedTransaction == null) { return; }
 
-			dataGridView_InvoiceData.DataSource = currentInvoice.Items.Select(x => new {
+			dataGridView_InvoiceData.DataSource = _selectedTransaction.Items.Select(x => new {
 				ItemName = x.Name,
 				Price = x.Price,
 				Quantity = x.Qty
@@ -59,7 +63,7 @@ namespace SecretCellar {
 			//ADD PAYMENTS
 			double payments = 0;
 
-			currentInvoice.Payments.ForEach(payment => {
+			_selectedTransaction.Payments.ForEach(payment => {
 				payments += payment.Amount;
 			});
 
@@ -68,7 +72,7 @@ namespace SecretCellar {
 			//ADD TOTAL
 			double total = 0;
 
-			currentInvoice.Items.ForEach(item => {
+			_selectedTransaction.Items.ForEach(item => {
 				total += item.Price * item.Qty;
 			});
 
@@ -77,12 +81,27 @@ namespace SecretCellar {
 
 
 		/// <summary>
+		/// Finalizes the invoice.
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void button_Finalize_Click(object sender, EventArgs e) {
+			if (_selectedTransaction == null) return;
+
+			frmPayment frmPayment = new frmPayment(_selectedTransaction);
+			frmPayment.FormClosed += ProcessTransaction;
+			frmPayment.ShowDialog();
+			frmPayment.FormClosed -= ProcessTransaction;
+
+			_invoices = GetInvoicesFromDatabase();
+			PopulateListOfInvoices();
+		}
+
+
+		/// <summary>
 		/// Populates the list invoices.
 		/// </summary>
 		private void PopulateListOfInvoices() {
-			List<Transaction> transactions = DataAccess.instance.GetTransactions();
-			_invoices = transactions.FindAll((transaction) => { return transaction.TranType == Transaction.TranactionType.Invoice; });
-
 			selectionList_Invoices.Items.Clear();
 
 			foreach (Transaction invoice in _invoices) {
@@ -94,33 +113,25 @@ namespace SecretCellar {
 			}
 
 			if (selectionList_Invoices.Items.Count > 0) selectionList_Invoices.SelectedIndex = 0;
+			else { _selectedTransaction = null; selectionList_Invoices.SelectedIndex = -1; }
 		}
 
 
 		/// <summary>
-		/// Finalizes the invoice.
+		/// Processes the transcation. This method is only useful so that it can be unsubscribed from the frmPayment's FormClosed event delegate. 
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
-		private void button_Finalize_Click(object sender, EventArgs e) {
-			if (selectionList_Invoices.SelectedItem == null) return;
+		private void ProcessTransaction(object sender, EventArgs e) { DataAccess.instance.ProcessTransaction(_selectedTransaction); }
 
-			string selectedTransactionIdString = selectionList_Invoices.SelectedItem.ToString().Split(new string[] { " | " }, StringSplitOptions.None)[0];
-			
-			if (uint.TryParse(selectedTransactionIdString, out uint transactionId)) {
-				Transaction selectedTransaction = DataAccess.instance.GetTransactions(transactionId);
 
-				if (selectedTransaction != null) {
-					frmPayment frmPayment = new frmPayment(selectedTransaction);
-
-					frmPayment.FormClosed += (objectSender, eventArgs) => { DataAccess.instance.ProcessTransaction(selectedTransaction); };	//This probably needs to be removed from the formClosed delegate.
-
-					frmPayment.ShowDialog();
-
-				}
-			}
-
-			PopulateListOfInvoices();
+		/// <summary>
+		/// Gets the invoices from the database.
+		/// </summary>
+		/// <returns></returns>
+		private List<Transaction> GetInvoicesFromDatabase() {
+			List<Transaction> transactions = DataAccess.instance.GetTransactions();
+			return transactions.FindAll((transaction) => { return transaction.TranType == Transaction.TranactionType.Invoice; });
 		}
 
 
