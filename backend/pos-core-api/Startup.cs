@@ -35,7 +35,7 @@ namespace WebApi
             services.AddCors();
             services.AddControllers();
            
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
+           // services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
             
             if(UseSwagger )
                 services.AddSwaggerGen(c =>

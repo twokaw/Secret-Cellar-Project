@@ -12,36 +12,33 @@ namespace pos_core_api.ORM
     public class EmployeeTypeORM
     {
         readonly DbConn db = new();
+        private const string EMPLOYEETYPESQL = @"
+              SELECT *
+              FROM employeetype
+              join employeetyperole
+              using(typeid)
+              LEFT JOIN Employeerole
+              USING(roleid)";
 
         // Get: api/employee
         public List<EmployeeTypeModel> Get()
         {
-            string sqlStatement = @"
-              SELECT * 
-              FROM employeetype
-              join employeetyperole 
-              using(typeid)
-              LEFT JOIN Employeerole
-              USING(roleid)
-            ";
-
-            MySqlCommand cmd = db.CreateCommand(sqlStatement);
+            MySqlCommand cmd = db.CreateCommand(EMPLOYEETYPESQL);
 
             return Get(cmd);
         }
 
         public EmployeeTypeModel Get(uint typeId)
         {
-            MySqlCommand cmd = db.CreateCommand(@"
-              SELECT * 
-              FROM employeeType 
+            MySqlCommand cmd = db.CreateCommand(@$"
+              {EMPLOYEETYPESQL}
               WHERE typeid = @typeid
             ");
             cmd.Parameters.Add(new MySqlParameter("typeid", typeId));
 
             List<EmployeeTypeModel> list = Get(cmd);
 
-            return list.Count > 0 ? Get(cmd)[0] : null;
+            return list.Count > 0 ?list[0] : null;
         }
 
         public EmployeeTypeModel Get(string typeName)
