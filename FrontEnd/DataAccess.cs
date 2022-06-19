@@ -48,7 +48,7 @@ namespace SecretCellar
                 else
                     lookup.RefreshInv();
 
-                if (orders== null)
+                if (orders == null)
                     orders = new frmOrdersPanels();
                 else
                     orders.refreshInv();
