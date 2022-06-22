@@ -229,6 +229,11 @@ namespace SecretCellar.Orders_Panels {
         /// </summary>
         /// <param name="customerId"></param>
         private void RefreshFillment(uint customerId) {
+
+            uint custid = ((CustomerOrder)cbx_fullfill_cust.SelectedItem).CustomerID;
+            List<CustomerOrder> items = DataAccess.instance?.GetCustomerOrder();  
+            cbx_fullfill_cust.DataSource = items;
+            cbx_fullfill_cust.SelectedItem = items.FirstOrDefault(x=>x.CustomerID == custid);
             List<CustomerOrderItem> custItems = (DataAccess.instance.GetCustomerOrderforCustomer(customerId)?.Items ?? new List<CustomerOrderItem>())./*Where(x => x.DeliverQty < x.RequestQty).*/ToList();
 
             fullfill_datagrid.DataSource = inventory
