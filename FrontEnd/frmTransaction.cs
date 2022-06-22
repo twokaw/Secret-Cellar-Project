@@ -454,5 +454,10 @@ namespace SecretCellar
                 this.Dispose();
             }
         }
+
+        private void btn_cashDrawer_Click(object sender, EventArgs e)
+        {
+            DataAccess.instance.OpenCashDrawer();
+        }
     }
 }
