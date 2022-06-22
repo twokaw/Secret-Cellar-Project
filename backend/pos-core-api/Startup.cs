@@ -35,7 +35,7 @@ namespace WebApi
             services.AddCors();
             services.AddControllers();
            
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
+           // services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
             
             if(UseSwagger )
                 services.AddSwaggerGen(c =>
@@ -71,7 +71,6 @@ namespace WebApi
 
             // configure DI for application services
             services.AddScoped<IUserService, UserService>();
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

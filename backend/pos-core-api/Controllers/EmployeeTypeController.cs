@@ -61,6 +61,7 @@ namespace pos_core_api.Controllers
             {
                 return BadRequest(ex.Message);
             }
+        
         }
 
         [HttpPost("role")]

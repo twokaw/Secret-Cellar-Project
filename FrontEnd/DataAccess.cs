@@ -48,7 +48,7 @@ namespace SecretCellar
                 else
                     lookup.RefreshInv();
 
-                if (orders== null)
+                if (orders == null)
                     orders = new frmOrdersPanels();
                 else
                     orders.refreshInv();
@@ -218,7 +218,7 @@ namespace SecretCellar
         public EmployeeTypeModel UpdateEmployeeType(EmployeeTypeModel empType)
         {
             string result = web.DataPut("api/EmployeeType", empType);
-            return (EmployeeTypeModel)JsonConvert.DeserializeObject(result, typeof(EmployeeModel));
+            return (EmployeeTypeModel)JsonConvert.DeserializeObject(result, typeof(EmployeeTypeModel));
         }
 
         public EmployeeTypeModel InsertEmployeeRole(EmployeeRoleModel empRole)

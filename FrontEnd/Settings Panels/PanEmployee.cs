@@ -142,16 +142,16 @@ namespace SecretCellar.Settings_Panels
                 MessageBox.Show("Pin Can Not Be Left Blank");
                 return;
             }
-            else if(!uint.TryParse(txt_pin.Text, out uint pin))
+            else if(!uint.TryParse(txt_pin.Text, out uint pin) || pin < 100 || pin > 999999999)
             {
                 txt_pin.Focus();
                 txt_pin.SelectAll();
-                MessageBox.Show("Invalid Pin Must Be A Number");
+                MessageBox.Show("Invalid Pin Must Be A Number between 3 and 9 digits");
                 return;
             }
             else
             {
-                newEmp.PinNumber = uint.Parse(txt_pin.Text);
+                newEmp.PinNumber = pin;
             }
             newEmp.StartDate = (DateTime.TryParse(txt_startdate.Text, out DateTime startdate) ?startdate : DateTime.Now);
             newEmp.EmployeeType = (EmployeeTypeModel)cbx_types.SelectedItem;
@@ -175,7 +175,18 @@ namespace SecretCellar.Settings_Panels
             updateEmp.ZipCode = txt_zipcode.Text;
             updateEmp.Email = txt_email.Text;
             //TODO when updating pin want to trow an error if not a number 
-            updateEmp.PinNumber = uint.TryParse(txt_pin.Text, out uint pin)? pin : (uint)0000;
+            if (!uint.TryParse(txt_pin.Text, out uint pin) || pin < 100 || pin > 999999999)
+            {
+                txt_pin.Focus();
+                txt_pin.SelectAll();
+                MessageBox.Show("Invalid Pin Must Be A Number between 3 and 9 digits");
+                return;
+            }
+            else
+            {
+                updateEmp.PinNumber = pin;
+            }
+            
             DataAccess.instance.UpdateEmployee(updateEmp);
             PopulateEmp();
         }
