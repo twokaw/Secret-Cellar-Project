@@ -89,7 +89,7 @@ namespace pos_core_api.ORM
                 if (cmd.ExecuteNonQuery() > 0)
                     return new CustomerOrder()
                     {
-                        CustomerID = (uint)cmd.LastInsertedId
+                        CustomerID = customerID 
                     };
                 else throw new Exception("Failed to create orderid");
             }
@@ -124,7 +124,6 @@ namespace pos_core_api.ORM
                 db.CloseCommand(cmd);
             }
         }
-
         public CustomerOrder GetOrder(uint orderId, bool includehistory)
         {
             string sqlStatement = @$"{(includehistory ? $"{CUSTOMERORDERSQL} WHERE " : $"{OUTSTANDINGCUSTOMERORDERSQL} AND ")}

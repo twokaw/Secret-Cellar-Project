@@ -23,15 +23,16 @@ namespace WebApi.Services
 
     public class UserService : IUserService
     {
-        readonly DbConn db = new DbConn();
-        private readonly List<User> _users = new List<User>();
+        readonly DbConn db = new();
+        private readonly List<User> _users = new();
         private void GetCredentials()
         {
-            
-
-            string sqlStatement = "SELECT emp_id, pin_number, admin FROM employee";
-
-            MySqlCommand cmd = db.CreateCommand(sqlStatement);
+            MySqlCommand cmd = db.CreateCommand(@"
+                SELECT emp_id, pin_number, IF(typeName = 'admin', 1, 0) admin
+                FROM employee
+                JOIN employeetype 
+                USING(typeid) 
+            ");
             MySqlDataReader reader = cmd.ExecuteReader();
 
             try

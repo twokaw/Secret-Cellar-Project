@@ -5,96 +5,123 @@ using Shared;
 using WebApi.Helpers;
 using MySql.Data.MySqlClient;
 using System.Data;
+using System.Linq;
 
 namespace pos_core_api.ORM
 {
     public class EmployeeTypeORM
     {
         readonly DbConn db = new();
+        private const string EMPLOYEETYPESQL = @"
+              SELECT *
+              FROM employeetype
+              join employeetyperole
+              using(typeid)
+              LEFT JOIN Employeerole
+              USING(roleid)";
 
         // Get: api/employee
         public List<EmployeeTypeModel> Get()
         {
-            List<EmployeeModel> output = new();
-            
-            string sqlStatement = @"
-              SELECT * 
-              FROM employeetype
-              join employeetyperole 
-              using(typeid)
-              LEFT JOIN Employeerole
-              USING(roleid)
-            ";
+            MySqlCommand cmd = db.CreateCommand(EMPLOYEETYPESQL);
 
-            MySqlCommand cmd = db.CreateCommand(sqlStatement);
-           
             return Get(cmd);
         }
 
-        public EmployeeTypeModel Get(uint employeeID)
+        public EmployeeTypeModel Get(uint typeId)
         {
-          //  EmployeeModel outputItem;
+            MySqlCommand cmd = db.CreateCommand(@$"
+              {EMPLOYEETYPESQL}
+              WHERE typeid = @typeid
+            ");
+            cmd.Parameters.Add(new MySqlParameter("typeid", typeId));
 
+            List<EmployeeTypeModel> list = Get(cmd);
+
+            return list.Count > 0 ?list[0] : null;
+        }
+
+        public EmployeeTypeModel Get(string typeName)
+        {
             MySqlCommand cmd = db.CreateCommand(@"
               SELECT * 
-              FROM employee 
-              WHERE emp_id = @empID
+              FROM employeeType 
+              WHERE TypeName = @TypeName
             ");
-            cmd.Parameters.Add(new MySqlParameter("empID", employeeID));
+            cmd.Parameters.Add(new MySqlParameter("TypeName", typeName));
 
-            return Get(cmd)[0];
+            List<EmployeeTypeModel> list = Get(cmd);
+
+            return list.Count > 0 ? Get(cmd)[0] : null;
         }
 
         public uint Insert(EmployeeTypeModel empTyp)
         {
-            uint id;
-            MySqlCommand cmd = db.CreateCommand(@"
-                INSERT INTO employeeType 
-                (TypeName)
-                VALUES 
-                (@TypeName)
-            ");
-
-            cmd.Parameters.Add(new MySqlParameter("TypeName", empTyp.TypeName));
-
-            try
+            EmployeeTypeModel checkEmp = Get(empTyp.TypeName);
+            if (checkEmp != null)
             {
-                cmd.ExecuteNonQuery();
-                id = Convert.ToUInt32(cmd.LastInsertedId);
-
-                empTyp.Roles.ForEach(x => AddRole(id, x.RoleID));
-                return id;
+                empTyp.TypeID = checkEmp.TypeID;
+                Update(empTyp);
+                return empTyp.TypeID;
             }
-            finally
+            else
             {
-                db.CloseCommand(cmd);
+                uint id;
+                MySqlCommand cmd = db.CreateCommand(@"
+                    INSERT INTO employeeType 
+                    (TypeName)
+                    VALUES 
+                    (@TypeName)
+                ");
+
+                cmd.Parameters.Add(new MySqlParameter("TypeName", empTyp.TypeName));
+
+                try
+                {
+                    cmd.ExecuteNonQuery();
+                    id = Convert.ToUInt32(cmd.LastInsertedId);
+
+                    empTyp.Roles.ForEach(x => AddRole(id, x.RoleID));
+                    return id;
+                }
+                finally
+                {
+                    db.CloseCommand(cmd);
+                }
             }
         }
 
-        public uint InsertRole(string roleName, string roleDescription)
+        public uint InsertRole(EmployeeRoleModel role)
         {
-            MySqlCommand cmd = db.CreateCommand(@"
-                INSERT INTO employeeRole 
-                (RoleName, RoleDecription)
-                VALUES 
-                (@RoleName, RoleDecription)
-            ");
+            EmployeeRoleModel oldrole = GetRole(role.RoleName);
 
-            cmd.Parameters.Add(new MySqlParameter("RoleName", roleName));
-            cmd.Parameters.Add(new MySqlParameter("RoleDescription", roleDescription));
+            if (oldrole == null)
+            {
+                MySqlCommand cmd = db.CreateCommand(@"
+                    INSERT INTO employeeRole 
+                    (RoleName, RoleDescription)
+                    VALUES 
+                    (@RoleName, @RoleDescription)
+                ");
 
-            try
-            {
-                cmd.ExecuteNonQuery();
-                return Convert.ToUInt32(cmd.LastInsertedId);
+                cmd.Parameters.Add(new MySqlParameter("RoleName", role.RoleName));
+                cmd.Parameters.Add(new MySqlParameter("RoleDescription", role.RoleDescription));
+
+                try
+                {
+                    cmd.ExecuteNonQuery();
+                    return Convert.ToUInt32(cmd.LastInsertedId);
+                }
+                finally
+                {
+                    db.CloseCommand(cmd);
+                }
             }
-            finally
-            {
-                db.CloseCommand(cmd);
-            }
+            else
+                return oldrole.RoleID;
         }
 
-        public long AddRole(uint empId, uint roleId)
+        public long AddRole(uint typeId, uint roleId)
         {
             MySqlCommand cmd = db.CreateCommand(@"
                 INSERT INTO employeeTypeRole
@@ -103,7 +130,7 @@ namespace pos_core_api.ORM
                 (@TypeId, @RoleId)
             ");
 
-            cmd.Parameters.Add(new MySqlParameter("TypeId", empId));
+            cmd.Parameters.Add(new MySqlParameter("TypeId", typeId));
             cmd.Parameters.Add(new MySqlParameter("RoleId", roleId));
 
             try
@@ -117,8 +144,10 @@ namespace pos_core_api.ORM
             }
         }
 
-        public void Update( EmployeeTypeModel empType)
+        public EmployeeTypeModel Update( EmployeeTypeModel empType)
         {
+            EmployeeTypeModel prev = Get(empType.TypeID);
+
             MySqlCommand cmd = db.CreateCommand(@"
                 UPDATE employeetype 
                 SET typeName = @typeName
@@ -136,41 +165,106 @@ namespace pos_core_api.ORM
             {
                 db.CloseCommand(cmd);
             }
+
+            foreach (EmployeeRoleModel role in empType.Roles)
+                if (!prev.Roles.Any(x => x.RoleID == role.RoleID))
+                    AddRole(empType.TypeID, role.RoleID);
+
+            foreach (EmployeeRoleModel role in prev.Roles)
+                if (!empType.Roles.Any(x => x.RoleID == role.RoleID))
+                    RemoveRole(empType.TypeID, role.RoleID);
+            
+            return empType;
         }
+
         public List<EmployeeRoleModel> GetRoles()
         {
             List<EmployeeRoleModel> empRoles = new List<EmployeeRoleModel>();
             MySqlCommand cmd = db.CreateCommand(@"
-                select * from employeerole            
+                SELECT * 
+                FROM employeerole         
             ");
+            return FetchRoles(cmd);
+        }
+
+        public EmployeeRoleModel GetRole(int roleId)
+        {
+            MySqlCommand cmd = db.CreateCommand(@"
+                SELECT * 
+                FROM employeerole            
+                WHERE rolename = @roleID
+            ");
+            cmd.Parameters.AddWithValue("RoleID", roleId);
+            List<EmployeeRoleModel> empRoles = FetchRoles(cmd);
+            return (empRoles.Count > 0) ? empRoles[0] : null;
+        }
+
+        public EmployeeRoleModel GetRole(string roleName)
+        {
+            MySqlCommand cmd = db.CreateCommand(@"
+                SELECT * 
+                FROM employeerole            
+                WHERE roleName = @roleName
+            ");
+            cmd.Parameters.AddWithValue("roleName", roleName);
+            List<EmployeeRoleModel> empRoles = FetchRoles(cmd);
+            return (empRoles.Count > 0) ? empRoles[0] : null;
+        }
+
+        public List<EmployeeRoleModel> FetchRoles(MySqlCommand cmd)
+        {
+            List<EmployeeRoleModel> empRoles = new List<EmployeeRoleModel>();
             MySqlDataReader reader = cmd.ExecuteReader();
             try
             {
                 while (reader.Read())
-                    empRoles.Add(new EmployeeRoleModel() 
+                    empRoles.Add(new EmployeeRoleModel()
                     {
-                        RoleID = reader.IsDBNull("roleID")? 0 : reader.GetUInt32("roleID"),
-                        RoleName = reader.IsDBNull("roleName")?"" : reader.GetString("roleName"),
-                        RoleDescription = reader.IsDBNull("roleDescription")? "" : reader.GetString("roleDescription")         
+                        RoleID = reader.IsDBNull("roleID") ? 0 : reader.GetUInt32("roleID"),
+                        RoleName = reader.IsDBNull("roleName") ? "" : reader.GetString("roleName"),
+                        RoleDescription = reader.IsDBNull("roleDescription") ? "" : reader.GetString("roleDescription")
                     });
 
             }
             finally { reader.Close(); }
             return empRoles;
         }
-        public void UpdateTypeRoles(EmployeeTypeModel empType)
+
+        public EmployeeRoleModel UpdateRole(EmployeeRoleModel empRole)
         {
 
-            EmployeeTypeModel prev = Get(empType.TypeID);
-
             MySqlCommand cmd = db.CreateCommand(@"
-                 employeetypeRole 
-                SET typeName = @typeName
-                WHERE typeid = @typeID
+                UPDATE employeeRole 
+                SET RoleName = @Rolename,
+                    RoleDescription = @RoleDescription
+                WHERE roleid = @roleID
             ");
 
-            cmd.Parameters.Add(new MySqlParameter("typeID", empType.TypeID));
-            cmd.Parameters.Add(new MySqlParameter("typeName", empType.TypeName));
+            cmd.Parameters.Add(new MySqlParameter("roleID", empRole.RoleID ));
+            cmd.Parameters.Add(new MySqlParameter("roleName", empRole.RoleName));
+            cmd.Parameters.Add(new MySqlParameter("roleDescription", empRole.RoleDescription));
+
+            try
+            {
+                cmd.ExecuteNonQuery();
+            }
+            finally
+            {
+                db.CloseCommand(cmd);
+            }
+
+            return empRole;
+        }
+        public void RemoveRole(uint typeId, uint roleId)
+        {
+            MySqlCommand cmd = db.CreateCommand(@"
+                DELETE FROM  employeeTypeRole
+                WHERE TypeId = @TypeId
+                AND   RoleId = @RoleId
+            ");
+
+            cmd.Parameters.Add(new MySqlParameter("TypeId", typeId));
+            cmd.Parameters.Add(new MySqlParameter("RoleId", roleId));
 
             try
             {
@@ -182,29 +276,6 @@ namespace pos_core_api.ORM
             }
         }
 
-        public void RemoveRoles(EmployeeTypeModel empType)
-        {
-
-            EmployeeTypeModel prev = Get(empType.TypeID);
-
-            MySqlCommand cmd = db.CreateCommand(@"
-                INSERT employeetypeRole 
-                (TypeId, RoleId)
-                (@typeid, @RoleID)
-            ");
-
-            cmd.Parameters.Add(new MySqlParameter("typeID", empType.TypeID));
-            cmd.Parameters.Add(new MySqlParameter("RoleID", empType.TypeName));
-
-            try
-            {
-                cmd.ExecuteNonQuery();
-            }
-            finally
-            {
-                db.CloseCommand(cmd);
-            }
-        }
         public void Delete(uint typeId)
         {
             MySqlCommand cmd = db.CreateCommand(@"

@@ -39,7 +39,7 @@ namespace SecretCellar
 
         public void RefreshCache()
         {
-             if (InventoryChanged())
+            if (InventoryChanged())
             {
 
                 GetInventory();
@@ -48,11 +48,26 @@ namespace SecretCellar
                 else
                     lookup.RefreshInv();
 
-                if (orders== null)
+                if (orders == null)
                     orders = new frmOrdersPanels();
                 else
                     orders.refreshInv();
             }
+            /*
+            if (OrderChanged())
+            {
+                GetInventory();
+                if (lookup == null)
+                    lookup = new frmLookup();
+                else
+                    lookup.RefreshInv();
+
+                if (orders == null)
+                    orders = new frmOrdersPanels();
+                else
+                    orders.refreshInv();
+            }
+            */
         }
 
         public DialogResult ShowLookupForm(Transaction t, String submitText = "Add to Cart")
@@ -147,8 +162,35 @@ namespace SecretCellar
             string result = web.DataGet($"api/Employee?username={userName}");
             return (EmployeeModel)JsonConvert.DeserializeObject(result, typeof(EmployeeModel));
         }
+        public bool UpdateEmployee(EmployeeModel emp)
+        {
+            try
+            {
+                web.DataPut("api/Employee",emp);
+            }
+            catch
+            {
+                return false;
+            }
+            
+            return true;
+        }
+        public bool InsertEmployee(EmployeeModel emp)
+        {
+            try
+            {
+                web.DataPost("api/Employee", emp);
+            }
+            catch
+            {
+                return false;
+            }
 
-        
+            return true;
+        }
+
+
+
         public EmployeeModel LoginUser(string userName)
         {
             currentUser = GetEmployee(userName);
@@ -165,6 +207,30 @@ namespace SecretCellar
         {
             string result = web.DataGet("api/EmployeeType/Role");
             return (List<EmployeeRoleModel>)JsonConvert.DeserializeObject(result, typeof(List<EmployeeRoleModel>));
+        }
+
+        public uint InsertEmployeeType(EmployeeTypeModel empType)
+        {
+            string result = web.DataPost("api/EmployeeType", empType);
+            return uint.TryParse(result, out uint Id)? Id : 0; 
+        }
+
+        public EmployeeTypeModel UpdateEmployeeType(EmployeeTypeModel empType)
+        {
+            string result = web.DataPut("api/EmployeeType", empType);
+            return (EmployeeTypeModel)JsonConvert.DeserializeObject(result, typeof(EmployeeTypeModel));
+        }
+
+        public EmployeeTypeModel InsertEmployeeRole(EmployeeRoleModel empRole)
+        {
+            string result = web.DataPost("api/EmployeeType/Role", empRole);
+            return (EmployeeTypeModel)JsonConvert.DeserializeObject(result, typeof(EmployeeModel));
+        }
+
+        public EmployeeTypeModel UpdateEmployeeRole(EmployeeRoleModel empRole)
+        {
+            string result = web.DataPut("api/EmployeeType/Role", empRole);
+            return (EmployeeTypeModel)JsonConvert.DeserializeObject(result, typeof(EmployeeModel));
         }
         #endregion
 
@@ -517,20 +583,14 @@ namespace SecretCellar
         {
             Response resp = null;
             string result = web.DataPost($"api/CustomerOrder/{customerID}", customerOrder, resp);
-            if (uint.TryParse(result, out uint id))
-                return id;
-            else
-                return 0;
+            return uint.TryParse(result, out uint id) ? id : 0;
         }
 
         public uint UpdateCustomerOrderItem(uint customerID, CustomerOrderItem customerOrderItem)
         {
             Response resp = null;
             string result = web.DataPut($"api/CustomerOrder/{customerID}", customerOrderItem, resp);
-            if (uint.TryParse(result, out uint id))
-                return id;
-            else
-                return 0;
+            return uint.TryParse(result, out uint id) ? id : 0;
         }
         
         public uint UpdateCustomerOrderItem(uint customerID, uint transactionId, CustomerOrderItem customerOrderItem)

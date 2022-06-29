@@ -18,6 +18,12 @@ namespace pos_core_api.ORM
             SELECT receiptID, register, sold_datetime, customerID, empID, location, tax_exempt, discount, shipping, tranTypeid
             FROM transaction
         ";
+        private const string SQLGETPAYMENTS = @"
+                SELECT  p.receiptID, p.PayId, pm.Paymentmethod Method, p.Number, p.Amount, PaymentMethodId
+                FROM payments p
+                JOIN Paymentmethod pm
+                USING (PaymentMethodId)
+        ";
 
         public TransactionORM(CustomerORM customerORM)
         {
@@ -255,25 +261,43 @@ namespace pos_core_api.ORM
 
         public void GetPayments(Transaction transaction)
         {
-            MySqlCommand cmd = db.CreateCommand(@"
-                SELECT PayId, Method, Number, Amount
-                FROM payments
-                WHERE receiptID = @receiptID
+            MySqlCommand cmd = db.CreateCommand(@$"{SQLGETPAYMENTS}
+                WHERE p.receiptID = @receiptID
             ");
             cmd.Parameters.Add(new MySqlParameter("receiptID", transaction.InvoiceID));
 
+            transaction.Payments = FetchPayment(cmd);
+        }
+
+        public Payment GetPayment(uint payId)
+        {
+            MySqlCommand cmd = db.CreateCommand(@$"
+                {SQLGETPAYMENTS}
+                WHERE payID = @payId
+            ");
+            cmd.Parameters.Add(new MySqlParameter("payId", payId));
+
+            List<Payment> payments = FetchPayment(cmd);
+            return (payments.Count > 0) ? payments[0]: null;
+        }
+
+
+        public List<Payment> FetchPayment(MySqlCommand cmd)
+        {
+            List<Payment> payments = new();
             try
             {
                 using MySqlDataReader itemReader = cmd.ExecuteReader();
                 while (itemReader.Read())
                 {
-                    transaction.Payments.Add(new Payment
+                    payments.Add(new Payment
                     {
-                        ReciptId = transaction.InvoiceID,
+                        ReciptId = itemReader.IsDBNull("receiptID") ? 0 : itemReader.GetUInt32("receiptID"),
                         Method = itemReader.IsDBNull("method") ? "" : itemReader.GetString("method"),
                         PayId = itemReader.IsDBNull("payid") ? 0 : itemReader.GetUInt32("payid"),
                         Number = itemReader.IsDBNull("Number") ? "" : itemReader.GetString("Number"),
-                        Amount = itemReader.IsDBNull("Amount") ? 0 : itemReader.GetDouble("Amount")
+                        Amount = itemReader.IsDBNull("Amount") ? 0 : itemReader.GetDouble("Amount"),
+                        PaymentMethodId = itemReader.IsDBNull("PaymentMethodId") ? 0 : itemReader.GetUInt32("PaymentMethodId")
                     });
                 }
             }
@@ -281,39 +305,10 @@ namespace pos_core_api.ORM
             {
                 db.CloseCommand(cmd);
             }
+            return payments;
         }
 
-        public Payment GetPayment(uint payId)
-        {
-            MySqlCommand cmd = db.CreateCommand(@"
-                SELECT receiptID, PayId, Method, Number, Amount
-                FROM payments
-                WHERE payID = @payId
-            ");
-            cmd.Parameters.Add(new MySqlParameter("payId", payId));
 
-            try
-            {
-                using MySqlDataReader itemReader = cmd.ExecuteReader();
-                if (itemReader.Read())
-                {
-                    return new Payment
-                    {
-                        ReciptId = itemReader.IsDBNull("receiptID") ? 0 : itemReader.GetUInt32("receiptID"),
-                        Method = itemReader.IsDBNull("method") ? "" : itemReader.GetString("method"),
-                        PayId = itemReader.IsDBNull("payid") ? 0 : itemReader.GetUInt32("payid"),
-                        Number = itemReader.IsDBNull("Number") ? "" : itemReader.GetString("Number"),
-                        Amount = itemReader.IsDBNull("Amount") ? 0 : itemReader.GetUInt32("Amount")
-                    };
-                }
-                else
-                    return null;
-            }
-            finally
-            {
-                db.CloseCommand(cmd);
-            }
-        }
 
         public uint InsertTransaction(Transaction transaction, bool decrementItems = true)
         {
@@ -537,9 +532,9 @@ namespace pos_core_api.ORM
             MySqlCommand cmd;
             string insert = @"
                 INSERT INTO Payments
-                ( ReceiptID,  Method,  Number,  Amount)
+                ( ReceiptID,  Method,  Number,  Amount, PaymentMethodID)
                 VALUES
-                (@ReceiptID, @Method, @Number, @Amount)
+                (@ReceiptID, @Method, @Number, @Amount, (SELECT PaymentMethodid FROM Paymenthod WHERE PaymentMethod = @Method ))
             ";
 
             string update = @"
@@ -547,7 +542,8 @@ namespace pos_core_api.ORM
                 SET  ReceiptID = @ReceiptID,
                      Method = @Method,
                      Number = @Number,
-                     Amount = @Amount
+                     Amount = @Amount,
+                     PaymentMehtodID = (SELECT PaymentMethodid FROM Paymenthod WHERE PaymentMethod = @Method )
                 WHERE PayID = @PayID
             ";
             
@@ -675,11 +671,30 @@ namespace pos_core_api.ORM
         {
             List<PaymentMethod> result = new();
             string itemSQLStatement = @"
-                SELECT PaymentMethodid, PaymentMethod, PercentOffset
+                SELECT PaymentMethodid, PaymentMethod, PercentOffset, allowchange
                 FROM paymentMethod
             ";
             
+            MySqlCommand cmd = db.CreateCommand(itemSQLStatement);
+
+            return FetchPaymentMethod(cmd);
+        }
+        public PaymentMethod GetPaymentMethod(uint id)
+        {
+            string itemSQLStatement = @"
+                SELECT PaymentMethodid, PaymentMethod, PercentOffset
+                FROM paymentMethod
+                WHERE PaymentMethodid = @id
+            ";
+
             using MySqlCommand cmd = db.CreateCommand(itemSQLStatement);
+            List<PaymentMethod> result = FetchPaymentMethod(cmd);
+            return result.Count > 0 ? result[0] : null;
+        }
+
+        private List<PaymentMethod> FetchPaymentMethod(MySqlCommand cmd)
+        {
+            List<PaymentMethod> result = new();
             try
             {
                 using MySqlDataReader reader = cmd.ExecuteReader();
@@ -688,40 +703,15 @@ namespace pos_core_api.ORM
                     {
                         PaymentMethodId = reader.IsDBNull("PaymentMethodid") ? 0 : reader.GetUInt32("PaymentMethodid"),
                         PayMethod = reader.IsDBNull("PaymentMethod") ? "" : reader.GetString("PaymentMethod"),
-                        PercentOffset = reader.IsDBNull("PercentOffset") ? 0 : reader.GetDecimal("PercentOffset")
+                        PercentOffset = reader.IsDBNull("PercentOffset") ? 0 : reader.GetDecimal("PercentOffset"),
+                        AllowChange = !reader.IsDBNull("Allowchange") && reader.GetBoolean("allowchange")
                     });
             }
             finally { db.CloseCommand(cmd); }
 
             return result;
         }
-        public PaymentMethod GetPaymentMethod(uint id)
-        {
-            PaymentMethod result = null;
-            string itemSQLStatement = @"
-                SELECT PaymentMethodid, PaymentMethod, PercentOffset
-                FROM paymentMethod
-                WHERE PaymentMethodid = @id
-            ";
 
-            using MySqlCommand cmd = db.CreateCommand(itemSQLStatement);
-            cmd.Parameters.AddWithValue("id", id);
-
-            try
-            {
-                using MySqlDataReader reader = cmd.ExecuteReader();
-                if (reader.Read())
-                    result = new PaymentMethod
-                    {
-                        PaymentMethodId = reader.IsDBNull("PaymentMethodid") ? 0 : reader.GetUInt32("PaymentMethodid"),
-                        PayMethod = reader.IsDBNull("PaymentMethod") ? "" : reader.GetString("PaymentMethod"),
-                        PercentOffset = reader.IsDBNull("PercentOffset") ? 0 : reader.GetDecimal("PercentOffset")
-                    };
-            }
-            finally { db.CloseCommand(cmd); }
-
-            return result;
-        }
 
         public PaymentMethod PutPaymentMethod(PaymentMethod paymentMethod)
         {
@@ -731,13 +721,15 @@ namespace pos_core_api.ORM
             string itemSQLStatement = @"
                 UPDATE paymentMethod
                 SET    PaymentMethod = @method, 
-                       PercentOffset = @offset
+                       PercentOffset = @offset, 
+                       AllowChange = @allowchange
                 WHERE  PaymentMethodid = @id
             ";
 
             using MySqlCommand cmd = db.CreateCommand(itemSQLStatement);
             cmd.Parameters.AddWithValue("method", paymentMethod.PayMethod);
             cmd.Parameters.AddWithValue("offset", paymentMethod.PercentOffset);
+            cmd.Parameters.AddWithValue("allowchange", paymentMethod.AllowChange);
             cmd.Parameters.AddWithValue("id", paymentMethod.PaymentMethodId);
 
             try

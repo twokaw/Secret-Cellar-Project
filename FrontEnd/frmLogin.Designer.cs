@@ -39,21 +39,20 @@
             // txtPin
             // 
             this.txtPin.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPin.Location = new System.Drawing.Point(350, 87);
-            this.txtPin.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtPin.Location = new System.Drawing.Point(351, 87);
+            this.txtPin.Margin = new System.Windows.Forms.Padding(2);
             this.txtPin.Name = "txtPin";
-            this.txtPin.Size = new System.Drawing.Size(163, 36);
+            this.txtPin.Size = new System.Drawing.Size(172, 36);
             this.txtPin.TabIndex = 0;
             this.txtPin.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtPin_KeyUp);
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(344, 44);
+            this.label1.Location = new System.Drawing.Point(351, 43);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(162, 29);
+            this.label1.Size = new System.Drawing.Size(172, 42);
             this.label1.TabIndex = 1;
             this.label1.Text = "Employee ID";
             // 
@@ -61,7 +60,7 @@
             // 
             this.btnLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLogin.Location = new System.Drawing.Point(362, 153);
-            this.btnLogin.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnLogin.Margin = new System.Windows.Forms.Padding(2);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(152, 45);
             this.btnLogin.TabIndex = 2;
@@ -94,7 +93,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtPin);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmLogin";

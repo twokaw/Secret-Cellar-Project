@@ -85,6 +85,7 @@
             this.btn_signout = new System.Windows.Forms.Button();
             this.lbl_emp_logged_on = new System.Windows.Forms.Label();
             this.button_Invoices = new System.Windows.Forms.Button();
+            this.btn_cashDrawer = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pb_settings)).BeginInit();
@@ -135,7 +136,7 @@
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Ivory;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle3;
-            this.dataGridView1.Location = new System.Drawing.Point(5, 159);
+            this.dataGridView1.Location = new System.Drawing.Point(5, 174);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(1);
             this.dataGridView1.Name = "dataGridView1";
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
@@ -241,41 +242,47 @@
             // btnCustom
             // 
             this.btnCustom.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnCustom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(40)))), ((int)(((byte)(42)))));
             this.btnCustom.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCustom.Location = new System.Drawing.Point(155, 511);
+            this.btnCustom.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnCustom.Location = new System.Drawing.Point(569, 71);
             this.btnCustom.Margin = new System.Windows.Forms.Padding(1);
             this.btnCustom.Name = "btnCustom";
-            this.btnCustom.Size = new System.Drawing.Size(141, 69);
+            this.btnCustom.Size = new System.Drawing.Size(130, 48);
             this.btnCustom.TabIndex = 7;
             this.btnCustom.Text = "Custom";
-            this.btnCustom.UseVisualStyleBackColor = true;
+            this.btnCustom.UseVisualStyleBackColor = false;
             this.btnCustom.Click += new System.EventHandler(this.btnCustom_Click);
             // 
             // btnShipping
             // 
             this.btnShipping.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnShipping.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(62)))), ((int)(((byte)(33)))));
             this.btnShipping.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnShipping.Location = new System.Drawing.Point(155, 603);
+            this.btnShipping.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnShipping.Location = new System.Drawing.Point(156, 603);
             this.btnShipping.Margin = new System.Windows.Forms.Padding(1);
             this.btnShipping.Name = "btnShipping";
             this.btnShipping.Size = new System.Drawing.Size(141, 69);
             this.btnShipping.TabIndex = 8;
             this.btnShipping.Text = "Shipping";
-            this.btnShipping.UseVisualStyleBackColor = true;
+            this.btnShipping.UseVisualStyleBackColor = false;
             this.btnShipping.Click += new System.EventHandler(this.btnShipping_Click);
             // 
             // btnEvents
             // 
             this.btnEvents.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnEvents.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(40)))), ((int)(((byte)(42)))));
             this.btnEvents.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEvents.Location = new System.Drawing.Point(12, 603);
+            this.btnEvents.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnEvents.Location = new System.Drawing.Point(8, 603);
             this.btnEvents.Margin = new System.Windows.Forms.Padding(1);
             this.btnEvents.Name = "btnEvents";
             this.btnEvents.Size = new System.Drawing.Size(141, 69);
             this.btnEvents.TabIndex = 7;
             this.btnEvents.TabStop = false;
             this.btnEvents.Text = "Events";
-            this.btnEvents.UseVisualStyleBackColor = true;
+            this.btnEvents.UseVisualStyleBackColor = false;
             this.btnEvents.Click += new System.EventHandler(this.btnEvents_Click);
             // 
             // btnDryClean
@@ -284,7 +291,7 @@
             this.btnDryClean.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(62)))), ((int)(((byte)(33)))));
             this.btnDryClean.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDryClean.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnDryClean.Location = new System.Drawing.Point(155, 419);
+            this.btnDryClean.Location = new System.Drawing.Point(156, 419);
             this.btnDryClean.Margin = new System.Windows.Forms.Padding(1);
             this.btnDryClean.Name = "btnDryClean";
             this.btnDryClean.Size = new System.Drawing.Size(141, 69);
@@ -299,7 +306,7 @@
             this.btnDiscount.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(51)))), ((int)(((byte)(69)))));
             this.btnDiscount.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDiscount.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnDiscount.Location = new System.Drawing.Point(298, 603);
+            this.btnDiscount.Location = new System.Drawing.Point(156, 511);
             this.btnDiscount.Margin = new System.Windows.Forms.Padding(1);
             this.btnDiscount.Name = "btnDiscount";
             this.btnDiscount.Size = new System.Drawing.Size(141, 69);
@@ -314,7 +321,7 @@
             this.btnVoidTrx.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(0)))), ((int)(((byte)(32)))));
             this.btnVoidTrx.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnVoidTrx.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnVoidTrx.Location = new System.Drawing.Point(298, 511);
+            this.btnVoidTrx.Location = new System.Drawing.Point(303, 511);
             this.btnVoidTrx.Margin = new System.Windows.Forms.Padding(1);
             this.btnVoidTrx.Name = "btnVoidTrx";
             this.btnVoidTrx.Size = new System.Drawing.Size(141, 69);
@@ -330,7 +337,7 @@
             this.btnDeleteItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(16)))), ((int)(((byte)(22)))));
             this.btnDeleteItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDeleteItem.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnDeleteItem.Location = new System.Drawing.Point(298, 419);
+            this.btnDeleteItem.Location = new System.Drawing.Point(304, 419);
             this.btnDeleteItem.Margin = new System.Windows.Forms.Padding(1);
             this.btnDeleteItem.Name = "btnDeleteItem";
             this.btnDeleteItem.Size = new System.Drawing.Size(141, 69);
@@ -552,15 +559,17 @@
             // 
             // btnLookup
             // 
+            this.btnLookup.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(0)))), ((int)(((byte)(32)))));
             this.btnLookup.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLookup.Location = new System.Drawing.Point(414, 65);
+            this.btnLookup.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnLookup.Location = new System.Drawing.Point(414, 74);
             this.btnLookup.Margin = new System.Windows.Forms.Padding(1);
             this.btnLookup.MaximumSize = new System.Drawing.Size(173, 45);
             this.btnLookup.Name = "btnLookup";
             this.btnLookup.Size = new System.Drawing.Size(130, 45);
             this.btnLookup.TabIndex = 1;
             this.btnLookup.Text = "Lookup";
-            this.btnLookup.UseVisualStyleBackColor = true;
+            this.btnLookup.UseVisualStyleBackColor = false;
             this.btnLookup.Click += new System.EventHandler(this.btnLookup_Click);
             // 
             // caseDiscount
@@ -611,10 +620,10 @@
             // 
             this.btnSuspendedTransactions.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSuspendedTransactions.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSuspendedTransactions.Location = new System.Drawing.Point(728, 65);
+            this.btnSuspendedTransactions.Location = new System.Drawing.Point(854, 71);
             this.btnSuspendedTransactions.Margin = new System.Windows.Forms.Padding(1);
             this.btnSuspendedTransactions.Name = "btnSuspendedTransactions";
-            this.btnSuspendedTransactions.Size = new System.Drawing.Size(267, 45);
+            this.btnSuspendedTransactions.Size = new System.Drawing.Size(141, 45);
             this.btnSuspendedTransactions.TabIndex = 10;
             this.btnSuspendedTransactions.Text = "Suspended Transactions";
             this.btnSuspendedTransactions.UseVisualStyleBackColor = true;
@@ -623,14 +632,16 @@
             // btnSuspendTransaction
             // 
             this.btnSuspendTransaction.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSuspendTransaction.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(0)))), ((int)(((byte)(32)))));
             this.btnSuspendTransaction.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSuspendTransaction.Location = new System.Drawing.Point(581, 65);
+            this.btnSuspendTransaction.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnSuspendTransaction.Location = new System.Drawing.Point(720, 71);
             this.btnSuspendTransaction.Margin = new System.Windows.Forms.Padding(1);
             this.btnSuspendTransaction.Name = "btnSuspendTransaction";
-            this.btnSuspendTransaction.Size = new System.Drawing.Size(134, 45);
+            this.btnSuspendTransaction.Size = new System.Drawing.Size(120, 48);
             this.btnSuspendTransaction.TabIndex = 11;
             this.btnSuspendTransaction.Text = "Suspend";
-            this.btnSuspendTransaction.UseVisualStyleBackColor = true;
+            this.btnSuspendTransaction.UseVisualStyleBackColor = false;
             this.btnSuspendTransaction.Click += new System.EventHandler(this.btnSuspendTransaction_Click);
             // 
             // txt_current_cust
@@ -681,14 +692,16 @@
             // btn_order
             // 
             this.btn_order.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btn_order.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(40)))), ((int)(((byte)(42)))));
             this.btn_order.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_order.Location = new System.Drawing.Point(12, 511);
+            this.btn_order.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btn_order.Location = new System.Drawing.Point(11, 511);
             this.btn_order.Margin = new System.Windows.Forms.Padding(1);
             this.btn_order.Name = "btn_order";
-            this.btn_order.Size = new System.Drawing.Size(141, 68);
+            this.btn_order.Size = new System.Drawing.Size(142, 68);
             this.btn_order.TabIndex = 27;
             this.btn_order.Text = "Order";
-            this.btn_order.UseVisualStyleBackColor = true;
+            this.btn_order.UseVisualStyleBackColor = false;
             this.btn_order.Click += new System.EventHandler(this.btn_order_Click);
             // 
             // btnTender2
@@ -701,7 +714,7 @@
             this.btnTender2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTender2.ImageIndex = 0;
             this.btnTender2.ImageList = this.ImgLstTenderButton;
-            this.btnTender2.Location = new System.Drawing.Point(545, 588);
+            this.btnTender2.Location = new System.Drawing.Point(574, 588);
             this.btnTender2.Margin = new System.Windows.Forms.Padding(0);
             this.btnTender2.Name = "btnTender2";
             this.btnTender2.Size = new System.Drawing.Size(199, 99);
@@ -745,14 +758,29 @@
             // 
             this.button_Invoices.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.button_Invoices.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_Invoices.Location = new System.Drawing.Point(872, 112);
+            this.button_Invoices.Location = new System.Drawing.Point(854, 120);
             this.button_Invoices.Margin = new System.Windows.Forms.Padding(1);
             this.button_Invoices.Name = "button_Invoices";
-            this.button_Invoices.Size = new System.Drawing.Size(123, 45);
+            this.button_Invoices.Size = new System.Drawing.Size(141, 45);
             this.button_Invoices.TabIndex = 33;
             this.button_Invoices.Text = "Invoices";
             this.button_Invoices.UseVisualStyleBackColor = true;
             this.button_Invoices.Click += new System.EventHandler(this.button_Invoices_Click);
+            // 
+            // btn_cashDrawer
+            // 
+            this.btn_cashDrawer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btn_cashDrawer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(51)))), ((int)(((byte)(69)))));
+            this.btn_cashDrawer.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_cashDrawer.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btn_cashDrawer.Location = new System.Drawing.Point(303, 603);
+            this.btn_cashDrawer.Margin = new System.Windows.Forms.Padding(1);
+            this.btn_cashDrawer.Name = "btn_cashDrawer";
+            this.btn_cashDrawer.Size = new System.Drawing.Size(141, 69);
+            this.btn_cashDrawer.TabIndex = 34;
+            this.btn_cashDrawer.Text = "Cash Drawer";
+            this.btn_cashDrawer.UseVisualStyleBackColor = false;
+            this.btn_cashDrawer.Click += new System.EventHandler(this.btn_cashDrawer_Click);
             // 
             // frmTransaction
             // 
@@ -762,6 +790,7 @@
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(231)))), ((int)(((byte)(206)))));
             this.ClientSize = new System.Drawing.Size(1008, 707);
+            this.Controls.Add(this.btn_cashDrawer);
             this.Controls.Add(this.button_Invoices);
             this.Controls.Add(this.lbl_emp_logged_on);
             this.Controls.Add(this.btn_signout);
@@ -857,5 +886,6 @@
         private System.Windows.Forms.Button btn_signout;
         private System.Windows.Forms.Label lbl_emp_logged_on;
         private System.Windows.Forms.Button button_Invoices;
+        private System.Windows.Forms.Button btn_cashDrawer;
     }
 }

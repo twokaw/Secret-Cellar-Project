@@ -63,16 +63,16 @@ namespace pos_core_api.ORM
             ");
             cmd.Parameters.Add(new MySqlParameter("pinNumber", emp.PinNumber));
             cmd.Parameters.Add(new MySqlParameter("typeid", emp.EmployeeType.TypeID));
-            cmd.Parameters.Add(new MySqlParameter("userName", emp.UserName.Trim()));
+            cmd.Parameters.Add(new MySqlParameter("userName", emp.UserName?.Trim()));
             cmd.Parameters.Add(new MySqlParameter("firstName", emp.FirstName.Trim()));
-            cmd.Parameters.Add(new MySqlParameter("lastName", emp.LastName.Trim()));
-            cmd.Parameters.Add(new MySqlParameter("email", emp.Email.Trim()));
-            cmd.Parameters.Add(new MySqlParameter("addr1", emp.Address1.Trim()));
-            cmd.Parameters.Add(new MySqlParameter("addr2", emp.Address2.Trim()));
-            cmd.Parameters.Add(new MySqlParameter("city", emp.City.Trim()));
-            cmd.Parameters.Add(new MySqlParameter("state", emp.State.Trim()));
-            cmd.Parameters.Add(new MySqlParameter("zip", emp.ZipCode.Trim()));
-            cmd.Parameters.Add(new MySqlParameter("phone", emp.PhoneNumber.Trim()));
+            cmd.Parameters.Add(new MySqlParameter("lastName", emp.LastName?.Trim()));
+            cmd.Parameters.Add(new MySqlParameter("email", emp.Email?.Trim()));
+            cmd.Parameters.Add(new MySqlParameter("addr1", emp.Address1?.Trim()));
+            cmd.Parameters.Add(new MySqlParameter("addr2", emp.Address2?.Trim()));
+            cmd.Parameters.Add(new MySqlParameter("city", emp.City?.Trim()));
+            cmd.Parameters.Add(new MySqlParameter("state", emp.State?.Trim()));
+            cmd.Parameters.Add(new MySqlParameter("zip", emp.ZipCode?.Trim()));
+            cmd.Parameters.Add(new MySqlParameter("phone", emp.PhoneNumber?.Trim()));
 
             try
             {
@@ -99,16 +99,16 @@ namespace pos_core_api.ORM
 
             cmd.Parameters.Add(new MySqlParameter("pinNumber", emp.PinNumber));
             cmd.Parameters.Add(new MySqlParameter("typeid", emp.EmployeeType.TypeID));
-            cmd.Parameters.Add(new MySqlParameter("userName", emp.UserName.Trim()));
-            cmd.Parameters.Add(new MySqlParameter("firstName", emp.FirstName.Trim()));
-            cmd.Parameters.Add(new MySqlParameter("lastName", emp.LastName.Trim()));
-            cmd.Parameters.Add(new MySqlParameter("email", emp.Email.Trim()));
-            cmd.Parameters.Add(new MySqlParameter("addr1", emp.Address1.Trim()));
-            cmd.Parameters.Add(new MySqlParameter("addr2", emp.Address2.Trim()));
-            cmd.Parameters.Add(new MySqlParameter("city", emp.City.Trim()));
-            cmd.Parameters.Add(new MySqlParameter("state", emp.State.Trim()));
-            cmd.Parameters.Add(new MySqlParameter("zip", emp.ZipCode.Trim()));
-            cmd.Parameters.Add(new MySqlParameter("phone", emp.PhoneNumber.Trim()));
+            cmd.Parameters.Add(new MySqlParameter("userName", emp.UserName?.Trim()));
+            cmd.Parameters.Add(new MySqlParameter("firstName", emp.FirstName?.Trim()));
+            cmd.Parameters.Add(new MySqlParameter("lastName", emp.LastName?.Trim()));
+            cmd.Parameters.Add(new MySqlParameter("email", emp.Email?.Trim()));
+            cmd.Parameters.Add(new MySqlParameter("addr1", emp.Address1?.Trim()));
+            cmd.Parameters.Add(new MySqlParameter("addr2", emp.Address2?.Trim()));
+            cmd.Parameters.Add(new MySqlParameter("city", emp.City?.Trim()));
+            cmd.Parameters.Add(new MySqlParameter("state", emp.State?.Trim()));
+            cmd.Parameters.Add(new MySqlParameter("zip", emp.ZipCode?.Trim()));
+            cmd.Parameters.Add(new MySqlParameter("phone", emp.PhoneNumber?.Trim()));
             cmd.Parameters.Add(new MySqlParameter("empID", emp.EmpID));
             cmd.Parameters.Add(new MySqlParameter("end_date", emp.EndDate));
 
