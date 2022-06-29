@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using NCR_Printer;
 using Shared;
 
 
@@ -95,6 +96,16 @@ namespace SecretCellar {
 
 			_invoices = GetInvoicesFromDatabase();
 			PopulateListOfInvoices();
+		}
+
+
+		//
+		private void button_Print_Click(object sender, EventArgs e) {
+			PrintPreviewDialog printPreview = new PrintPreviewDialog();
+			Invoice invoiceDocument = new Invoice(_selectedTransaction, PurchaseOrder.LetterLayout);
+			//rct.PrintImage(DataAccess.instance.ImportLogo());
+			printPreview.Document = invoiceDocument.GetPrintPreviewDocument();
+			printPreview.ShowDialog();
 		}
 
 

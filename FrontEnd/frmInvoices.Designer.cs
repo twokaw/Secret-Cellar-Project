@@ -192,6 +192,7 @@ namespace SecretCellar {
             this.button_Print.TabIndex = 4;
             this.button_Print.Text = "View/Print";
             this.button_Print.UseVisualStyleBackColor = true;
+            this.button_Print.Click += new System.EventHandler(this.button_Print_Click);
             // 
             // label_Total
             // 

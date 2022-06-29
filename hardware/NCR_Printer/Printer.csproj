@@ -139,6 +139,7 @@
     <Compile Include="CashDrawer.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Invoice.cs" />
     <Compile Include="PrintDoc.cs" />
     <Compile Include="PrintLayout.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
