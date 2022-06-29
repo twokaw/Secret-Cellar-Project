@@ -241,11 +241,10 @@
             // 
             // btnCustom
             // 
-            this.btnCustom.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnCustom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(40)))), ((int)(((byte)(42)))));
             this.btnCustom.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCustom.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnCustom.Location = new System.Drawing.Point(569, 71);
+            this.btnCustom.Location = new System.Drawing.Point(156, 116);
             this.btnCustom.Margin = new System.Windows.Forms.Padding(1);
             this.btnCustom.Name = "btnCustom";
             this.btnCustom.Size = new System.Drawing.Size(130, 48);
@@ -535,11 +534,10 @@
             // txtBarcode
             // 
             this.txtBarcode.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBarcode.Location = new System.Drawing.Point(126, 84);
+            this.txtBarcode.Location = new System.Drawing.Point(105, 84);
             this.txtBarcode.Margin = new System.Windows.Forms.Padding(1);
-            this.txtBarcode.MinimumSize = new System.Drawing.Size(274, 26);
             this.txtBarcode.Name = "txtBarcode";
-            this.txtBarcode.Size = new System.Drawing.Size(274, 26);
+            this.txtBarcode.Size = new System.Drawing.Size(260, 26);
             this.txtBarcode.TabIndex = 0;
             this.txtBarcode.TextChanged += new System.EventHandler(this.txtBarcode_TextChanged);
             this.txtBarcode.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtBarcode_KeyUp);
@@ -548,10 +546,10 @@
             // 
             this.lbl_BARCODE.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_BARCODE.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.lbl_BARCODE.Location = new System.Drawing.Point(13, 77);
+            this.lbl_BARCODE.Location = new System.Drawing.Point(6, 77);
             this.lbl_BARCODE.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.lbl_BARCODE.Name = "lbl_BARCODE";
-            this.lbl_BARCODE.Size = new System.Drawing.Size(111, 40);
+            this.lbl_BARCODE.Size = new System.Drawing.Size(84, 40);
             this.lbl_BARCODE.TabIndex = 17;
             this.lbl_BARCODE.Text = "Barcode:";
             this.lbl_BARCODE.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -562,7 +560,7 @@
             this.btnLookup.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(0)))), ((int)(((byte)(32)))));
             this.btnLookup.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLookup.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnLookup.Location = new System.Drawing.Point(414, 74);
+            this.btnLookup.Location = new System.Drawing.Point(8, 118);
             this.btnLookup.Margin = new System.Windows.Forms.Padding(1);
             this.btnLookup.MaximumSize = new System.Drawing.Size(173, 45);
             this.btnLookup.Name = "btnLookup";
@@ -620,7 +618,7 @@
             // 
             this.btnSuspendedTransactions.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSuspendedTransactions.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSuspendedTransactions.Location = new System.Drawing.Point(854, 71);
+            this.btnSuspendedTransactions.Location = new System.Drawing.Point(860, 116);
             this.btnSuspendedTransactions.Margin = new System.Windows.Forms.Padding(1);
             this.btnSuspendedTransactions.Name = "btnSuspendedTransactions";
             this.btnSuspendedTransactions.Size = new System.Drawing.Size(141, 45);
@@ -635,7 +633,7 @@
             this.btnSuspendTransaction.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(0)))), ((int)(((byte)(32)))));
             this.btnSuspendTransaction.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSuspendTransaction.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnSuspendTransaction.Location = new System.Drawing.Point(720, 71);
+            this.btnSuspendTransaction.Location = new System.Drawing.Point(726, 117);
             this.btnSuspendTransaction.Margin = new System.Windows.Forms.Padding(1);
             this.btnSuspendTransaction.Name = "btnSuspendTransaction";
             this.btnSuspendTransaction.Size = new System.Drawing.Size(120, 48);
@@ -747,21 +745,21 @@
             // lbl_emp_logged_on
             // 
             this.lbl_emp_logged_on.AutoSize = true;
-            this.lbl_emp_logged_on.Location = new System.Drawing.Point(929, 41);
+            this.lbl_emp_logged_on.Location = new System.Drawing.Point(920, 49);
             this.lbl_emp_logged_on.Name = "lbl_emp_logged_on";
-            this.lbl_emp_logged_on.Size = new System.Drawing.Size(57, 20);
+            this.lbl_emp_logged_on.Size = new System.Drawing.Size(71, 20);
             this.lbl_emp_logged_on.TabIndex = 32;
-            this.lbl_emp_logged_on.Text = "label1";
+            this.lbl_emp_logged_on.Text = "lbl_emp";
             this.lbl_emp_logged_on.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // button_Invoices
             // 
             this.button_Invoices.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.button_Invoices.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_Invoices.Location = new System.Drawing.Point(854, 120);
+            this.button_Invoices.Location = new System.Drawing.Point(583, 119);
             this.button_Invoices.Margin = new System.Windows.Forms.Padding(1);
             this.button_Invoices.Name = "button_Invoices";
-            this.button_Invoices.Size = new System.Drawing.Size(141, 45);
+            this.button_Invoices.Size = new System.Drawing.Size(127, 45);
             this.button_Invoices.TabIndex = 33;
             this.button_Invoices.Text = "Invoices";
             this.button_Invoices.UseVisualStyleBackColor = true;
