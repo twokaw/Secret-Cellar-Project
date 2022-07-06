@@ -33,7 +33,7 @@ namespace NCR_Printer {
 
             //INVOICE ID AND CUSTOMER NAME
             PrintText($"ID: {_invoice.InvoiceID}", 0);
-            PrintText($"{_invoice.CustomerName}", 80);
+            PrintText($"{_invoice.CustomerName}", 200);
 
             //DATE AND TIME
             cursor.X = 0;
