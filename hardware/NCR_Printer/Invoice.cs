@@ -32,7 +32,7 @@ namespace NCR_Printer {
             PrintText("", true);
 
             //INVOICE ID AND CUSTOMER NAME
-            PrintText($"ID: {_invoice.InvoiceID}", 0);
+            PrintText($"ID: {_invoice.InvoiceID}", 5);
             PrintText($"{_invoice.CustomerName}", 200);
 
             //DATE AND TIME
@@ -65,8 +65,25 @@ namespace NCR_Printer {
 
             cursor.X = 0;
             PrintHorizontalLine();
+
             cursor.X = 0;
-            PrintText($"{total:C}", true, TextAlignment.Right);
+            PrintText($"Total: {total:C}", true, TextAlignment.Right);
+
+            double amountPaid = 0;
+            
+            foreach(Payment payment in _invoice.Payments) {
+                amountPaid += payment.Amount;
+            }            
+            
+            cursor.X = 0;
+            PrintText($"Total Payment: {amountPaid:C}", true, TextAlignment.Right);
+
+            double remaining = total-amountPaid;
+
+            if (remaining > 0) {
+                cursor.X = 0;
+                PrintText($"Remaining: {remaining:C}", true, TextAlignment.Right);
+            }
         }
     }
 }
