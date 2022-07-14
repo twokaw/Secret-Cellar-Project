@@ -84,7 +84,7 @@ namespace SecretCellar
 
 			//CLOSE THE WINDOW AND CALL THE IMPORT FUNCTION
 			this.Close();
-			TRANSACTION_FORM.importSuspendedTransaction(selectedSuspendedTransaction);
+			TRANSACTION_FORM.ImportTransaction(selectedSuspendedTransaction);
 		}
 
 

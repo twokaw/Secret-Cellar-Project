@@ -111,7 +111,7 @@ namespace SecretCellar {
             this.dataGridView_InvoiceData.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.dataGridView_InvoiceData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView_InvoiceData.Size = new System.Drawing.Size(726, 382);
-            this.dataGridView_InvoiceData.TabIndex = 6;
+            this.dataGridView_InvoiceData.TabIndex = 4;
             this.dataGridView_InvoiceData.TabStop = false;
             // 
             // ItemName
@@ -143,7 +143,7 @@ namespace SecretCellar {
             this.selectionList_Invoices.Location = new System.Drawing.Point(12, 47);
             this.selectionList_Invoices.Name = "selectionList_Invoices";
             this.selectionList_Invoices.Size = new System.Drawing.Size(198, 220);
-            this.selectionList_Invoices.TabIndex = 2;
+            this.selectionList_Invoices.TabIndex = 0;
             this.selectionList_Invoices.SelectedIndexChanged += new System.EventHandler(this.selectionList_Invoices_SelectedIndexChanged);
             // 
             // button_CloseWindow
@@ -153,7 +153,7 @@ namespace SecretCellar {
             this.button_CloseWindow.Location = new System.Drawing.Point(12, 396);
             this.button_CloseWindow.Name = "button_CloseWindow";
             this.button_CloseWindow.Size = new System.Drawing.Size(198, 55);
-            this.button_CloseWindow.TabIndex = 5;
+            this.button_CloseWindow.TabIndex = 3;
             this.button_CloseWindow.Text = "Close";
             this.button_CloseWindow.UseVisualStyleBackColor = true;
             this.button_CloseWindow.Click += new System.EventHandler(this.btn_CloseWindow_Click);
@@ -165,8 +165,8 @@ namespace SecretCellar {
             this.button_Finalize.Location = new System.Drawing.Point(12, 274);
             this.button_Finalize.Name = "button_Finalize";
             this.button_Finalize.Size = new System.Drawing.Size(198, 55);
-            this.button_Finalize.TabIndex = 3;
-            this.button_Finalize.Text = "Finalize";
+            this.button_Finalize.TabIndex = 1;
+            this.button_Finalize.Text = "Update Payment";
             this.button_Finalize.UseVisualStyleBackColor = true;
             this.button_Finalize.Click += new System.EventHandler(this.button_Finalize_Click);
             // 
@@ -176,7 +176,7 @@ namespace SecretCellar {
             this.textBox_Filter.Location = new System.Drawing.Point(12, 12);
             this.textBox_Filter.Name = "textBox_Filter";
             this.textBox_Filter.Size = new System.Drawing.Size(198, 29);
-            this.textBox_Filter.TabIndex = 1;
+            this.textBox_Filter.TabIndex = 5;
             this.textBox_Filter.Text = "Filter...";
             this.textBox_Filter.TextChanged += new System.EventHandler(this.textBox_Filter_TextChanged);
             this.textBox_Filter.Enter += new System.EventHandler(this.textBox_Filter_Enter);
@@ -189,9 +189,10 @@ namespace SecretCellar {
             this.button_Print.Location = new System.Drawing.Point(12, 335);
             this.button_Print.Name = "button_Print";
             this.button_Print.Size = new System.Drawing.Size(198, 55);
-            this.button_Print.TabIndex = 4;
+            this.button_Print.TabIndex = 2;
             this.button_Print.Text = "View/Print";
             this.button_Print.UseVisualStyleBackColor = true;
+            this.button_Print.Click += new System.EventHandler(this.button_Print_Click);
             // 
             // label_Total
             // 
