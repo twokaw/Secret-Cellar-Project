@@ -91,10 +91,17 @@ namespace SecretCellar
             {
                 
                 transaction.AddPayment(new Payment { Method = method, Amount = amount, Number = number });
+                RefreshGrid();
             }
-            else if(method == "CHECK")
-
-            RefreshGrid();
+            else if((method == "CHECK" || method == "CREDIT CARD") && double.TryParse(txtCashAmt.Text, out double balance))
+            {
+                transaction.AddPayment(new Payment { Method = method, Amount = balance, Number = number });
+                RefreshGrid();
+            }
+            else
+            {
+                txtCashAmt.Focus();
+            }
         }
 
         private void RemovePayments(string method = "")
