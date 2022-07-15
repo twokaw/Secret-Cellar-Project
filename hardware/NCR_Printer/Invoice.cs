@@ -37,7 +37,7 @@ namespace NCR_Printer {
 
             //DATE AND TIME
             cursor.X = 0;
-            PrintText($"{DateTime.Now:M/dd/yy}", true, TextAlignment.Right);
+            PrintText($"{DateTime.Now:M/dd/yy}", -5, true, TextAlignment.Right);
             PrintHorizontalLine();
 
             //TABLE HEADERS
@@ -46,7 +46,7 @@ namespace NCR_Printer {
             PrintText("Price", titleFont, 550);
             PrintText("Number Sold", titleFont, 630);
             cursor.X = 0;
-            PrintText("Total", titleFont, true, TextAlignment.Right);
+            PrintText("Total", titleFont, -5, true, TextAlignment.Right);
 
             double total = 0;
             cursor.X = 0;
@@ -59,7 +59,7 @@ namespace NCR_Printer {
                 PrintText(item.Price.ToString(), 550);
                 PrintText(item.NumSold.ToString(), 630);
                 cursor.X = 0;
-                PrintText((item.Price * item.NumSold).ToString(), true, TextAlignment.Right);
+                PrintText((item.Price * item.NumSold).ToString(), -5, true, TextAlignment.Right);
                 total += item.Price * item.NumSold;
             }
 
@@ -76,7 +76,8 @@ namespace NCR_Printer {
             }            
             
             cursor.X = 0;
-            PrintText($"Total Payment: {amountPaid:C}", true, TextAlignment.Right);
+            PrintText($"Total Payment: ", titleFont, Layout.Width-200);
+            PrintText($"{amountPaid:C}", Layout.Width-50, true);
 
             double remaining = total-amountPaid;
 
