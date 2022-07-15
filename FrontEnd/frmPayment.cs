@@ -87,15 +87,21 @@ namespace SecretCellar
                 transaction.TaxExempt = TaxFree;
             }    
 
-            if (double.TryParse(txtCashAmt.Text, out double amount))
+            if (double.TryParse(txtCashAmt.Text, out double amount) && amount > 0.0)
             {
-                
                 transaction.AddPayment(new Payment { Method = method, Amount = amount, Number = number });
                 RefreshGrid();
             }
-            else if((method == "CHECK" || method == "CREDIT CARD") && double.TryParse(txtCashAmt.Text, out double balance))
+            else if ((method == "CREDIT CARD"
+                  || method == "CHECK" && !IsCashonly(true))
+                  && double.TryParse(txtDue.Text.Replace("$", ""), out double cardbalance) && cardbalance > 0.0)
             {
-                transaction.AddPayment(new Payment { Method = method, Amount = balance, Number = number });
+                transaction.AddPayment(new Payment { Method = method, Amount = cardbalance, Number = number });
+                RefreshGrid();
+            }
+            else if (method == "CHECK" && double.TryParse(txt_CashOnly.Text.Replace("$", ""), out double cashBalance) && cashBalance > 0.0)
+            {
+                transaction.AddPayment(new Payment { Method = method, Amount = cashBalance, Number = number });
                 RefreshGrid();
             }
             else
@@ -215,6 +221,25 @@ namespace SecretCellar
         private void txtCashAmt_Enter(object sender, EventArgs e)
         {
             touchKeyPad1.Target = (TextBox)sender;
+        }
+
+        private bool IsCashonly(bool cashonly = false)
+        {
+            cashonly |= transaction.Payments.Count > 0;
+            foreach (Payment p in transaction.Payments)
+            {
+                int row = paymentType.Rows.Add();
+                
+                using (var r = paymentType.Rows[row])
+                {
+                    // Populate Payment datagrid row
+                    r.Cells["TYPE"].Value = p.Method;
+                    r.Cells["AMOUNT"].Value = p.Amount.ToString("C");
+
+                   cashonly &= p.Method.ToUpper() == "CASH" || p.Method.ToUpper() == "CHECK";
+                }
+            }
+            return cashonly;
         }
     }
 }
