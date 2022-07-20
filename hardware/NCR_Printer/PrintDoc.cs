@@ -151,6 +151,11 @@ namespace NCR_Printer
             PrintHeaderFooter(text, g, Layout.TextFont, brush, GetAlign(align), LineSpacing);
         }
 
+        public SizeF MeasureString(string text, Font font, StringFormat align)
+        {
+           return g.MeasureString(text, font, (int)cursor.Width, align);
+        }
+
         // Print the header/footer text with the given alignment at the cursor and return an advanced cursor.
         // This handles newline characters and wrapping of arbitrary length lines.
         public void PrintHeaderFooter(string text, Graphics g, Font font, Brush brush, StringFormat align, float lSpacing)
