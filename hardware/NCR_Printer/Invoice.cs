@@ -20,7 +20,7 @@ namespace NCR_Printer {
             SetupPage(e);
             float y = cursor.Y;
             Font titleFont = new Font("Arial", 12, FontStyle.Bold);
-            
+
             //HEADER
             PrintImage(Layout.Logo, (float)0.4, TextAlignment.Left);
             this.cursor.Y = (cursor.Y - y) / 2;
