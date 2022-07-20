@@ -52,8 +52,6 @@ namespace NCR_Printer
         }
         public PrintDocument GetPrintPreviewDocument()
         {
-            PrintPage(null, new PrintPageEventArgs(null, new Rectangle(), new Rectangle(), null));
-
             // Preview receipt
             PrintDocument rcpt = new PrintDocument();
             rcpt.DefaultPageSettings.PaperSize = new PaperSize(Layout.PageType, Layout.Width, (Layout.Height == 0)?(int) Math.Ceiling( cursor.Location.Y):Layout.Height );
@@ -151,9 +149,18 @@ namespace NCR_Printer
             PrintHeaderFooter(text, g, Layout.TextFont, brush, GetAlign(align), LineSpacing);
         }
 
-        public SizeF MeasureString(string text, Font font, StringFormat align)
+        public SizeF MeasureString(string text)
         {
-           return g.MeasureString(text, font, (int)cursor.Width, align);
+            return g.MeasureString(text, Layout.TextFont, (int)cursor.Width);
+        }
+
+        public SizeF MeasureString(string text, StringFormat stringFormat)
+        {
+            return g.MeasureString(text, Layout.TextFont, (int)cursor.Width, stringFormat);
+        }
+        public SizeF MeasureString(string text, Font font, StringFormat stringFormat)
+        {
+            return g.MeasureString(text, font, (int)cursor.Width, stringFormat);
         }
 
         // Print the header/footer text with the given alignment at the cursor and return an advanced cursor.
