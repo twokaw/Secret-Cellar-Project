@@ -146,7 +146,8 @@ namespace SecretCellar
         #endregion
 
         #region Employee
-
+        public bool EmployeeAccess(string role) => currentUser.EmployeeType.Roles.Exists(x => x.RoleName == role);
+        public bool EmployeeAccess(int roleID) => currentUser.EmployeeType.Roles.Exists(x => x.RoleID == roleID);
         public List<EmployeeModel> GetEmployee()
         {
             string result = web.DataGet($"api/Employee");

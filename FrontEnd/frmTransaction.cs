@@ -74,6 +74,7 @@ namespace SecretCellar
         private void frmTransaction_Load(object sender, EventArgs e)
         {
             UserLogin();
+
             lbl_twentyone.Text = "21 AS OF: " + DateTime.Now.AddYears(-21).ToString("MM/dd/yy");
             lbl_twentyone.Font = new Font("Microsoft Sans Serif", 16, FontStyle.Bold);
         }
@@ -447,12 +448,49 @@ namespace SecretCellar
             if (login.ShowDialog() == DialogResult.OK)
             {
                 lbl_emp_logged_on.Text = DataAccess.currentUser.ToString();
+                ApplyUserAccess();
                 this.Visible = true;
             }
             else
             {
                 this.Dispose();
             }
+        }
+
+        private void ApplyUserAccess()
+        {
+            // Lookup -- Lookup give you the ability to lookup items
+            /* Enable Lookup button */
+
+            // Employee Admin -- Employee Admin give you the ability to add, delete, modify and change permissions for any employee
+            /* This is in the Setting Form */
+
+            // Cash Drawer -- Cash drawer give the ability to open the cash drawer at any time
+            btn_cashDrawer.Enabled = DataAccess.instance.EmployeeAccess("Cash Drawer");
+
+            // Orders --  Orders gives you access to Customer and Vendor orders
+            /* Enable Orders Button */
+
+            // Event -- Event gives you the ability to modify events
+            /* Enable buttons in the event Form */
+
+            // Shipping  -- Shipping give you the ability to add shipping to an order
+            /* Enable Shipping button */
+
+            // Custom -- Custom gives you the ability to add a custom item to a transaction
+            /* Enable Custom button */
+
+            // Discount - Discount gives you the ability to add discounts to a transaction
+            /* Enable Discount button */
+
+            // Customer -- Customer give you the ability to add and edit customers
+            /* This is in the Setting Form */
+
+            // Settings -- Settings gives you access to hardware changes and other preferences
+            /* Enable Setting button */
+
+            // Invoice -- Ability to create Invoices
+            /* Is in the Orders Form and the Invoices Form */
         }
 
         private void btn_cashDrawer_Click(object sender, EventArgs e)
