@@ -17,15 +17,16 @@ namespace WebApi
 {
     public class Startup
     {
+        public IConfiguration Configuration { get; }
+        public bool UseSwagger = true;
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
-            UseSwagger = bool.Parse ( Resources.GetValue("UseSwagger", UseSwagger.ToString()));
-            Resources.SetValue("UseSwagger", UseSwagger.ToString());
+            UseSwagger = bool.Parse(Resources.GetValue("UseSwagger", UseSwagger.ToString()));
+            Resources.SetValue("UseSwagger", value: UseSwagger.ToString());
         }
 
-        public IConfiguration Configuration { get; }
-        public bool UseSwagger = true;
 
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940

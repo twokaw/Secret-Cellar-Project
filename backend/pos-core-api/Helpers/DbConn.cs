@@ -11,75 +11,41 @@ namespace WebApi.Helpers
     public class DbConn
     {
 
-        private List<MySqlCommand> Cmds = new List<MySqlCommand>();
+      //  private List<MySqlCommand> Cmds = new();
         private readonly MySqlConnection conn;
-        private static readonly string defaultConnectionString = EncryptionClass.EncryptString("Server=localhost;Port=3306;Database=inventory;Uid=invuser;Pwd=testinv!;");
+        private static readonly string  DefaultConnection = EncryptionClass.EncryptString("Server=localhost;Port=3306;Database=inventory;Uid=invuser;Pwd=testinv!;");
         private static string connString = null;
+
+        public static string ConnectionString
+        {
+            get
+            {
+                if(connString == null )
+                {
+                    connString = Resources.GetValue("ConnectionString", DefaultConnection);
+                }
+                return EncryptionClass.DecryptString(connString);
+            }
+            set
+            {
+                connString = value;
+                SaveConnectionString();
+            }
+        }
+
+        public static void SetConnectionString(string unencryptedConnectionString)
+        {
+            connString = EncryptionClass.EncryptString(unencryptedConnectionString);
+        }
 
         public DbConn()
         {
-            conn = new MySqlConnection(GetConnectionString());
+            conn = new MySqlConnection(ConnectionString);
         }
 
-        public void SetConnectionString(string conString)
-        {/*
-            try
-            {
-                using IResourceWriter writer = new ResourceWriter("myResources.resources");
-
-                // Adds resources to the resource writer.
-                writer.AddResource("ConnectionString", conString);
-                */
-            Resources.SetValue("ConnectionString", EncryptionClass.EncryptString(conString));
-            connString = conString;
-            /*
-            // Writes the resources to the file or stream, and closes it.
-            writer.Close();
-            connString = conString;
-        }
-        catch (Exception ex) { ErrorLogging.WriteToErrorLog(ex); }
-            */
-        }
-
-        public string GetConnectionString()
+        public static void SaveConnectionString()
         {
-
-            if(connString == null)
-            {
-                /*
-                try
-                {
-                    // try to read the resource file
-                    ResourceReader rw = new ResourceReader("myResources.resources");
-
-                    IDictionaryEnumerator dict = rw.GetEnumerator();
-
-                    while(dict.MoveNext())
-                        if(dict.Key.ToString() == "ConnectionString")
-                        {
-                            connString = dict.Value.ToString();
-                            break;
-                        }
-                }
-                catch (Exception ex)
-                {
-                    ErrorLogging.WriteToErrorLog(ex);
-
-                    // if reading the file fails, then create a new file
-                    SetConnectionString(defaultConnectionString);
-                }
-
-                // if that fails then use the default connection string
-                if (connString == null) 
-                    connString = defaultConnectionString;
-                */
-                //SetConnectionString was run one time only to set the default connection string
-                //SetConnectionString(EncryptionClass.DecryptString(defaultConnectionString));
-
-                connString = EncryptionClass.DecryptString(Resources.GetValue("ConnectionString", defaultConnectionString));
-            }
-
-            return connString;
+            Resources.SetValue("ConnectionString", ConnectionString);
         }
 
         public void OpenConnection(MySqlConnection conn)
@@ -109,7 +75,7 @@ namespace WebApi.Helpers
 
         public MySqlCommand CreateCommand(string sql = "")
         {
-            MySqlConnection db = new MySqlConnection(GetConnectionString());
+            MySqlConnection db = new(ConnectionString);
 
             OpenConnection(db);
             MySqlCommand cmd = db.CreateCommand();
