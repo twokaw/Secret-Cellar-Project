@@ -58,7 +58,7 @@ namespace NCR_Printer {
                 PrintText(item.Price.ToString(), 550);
                 PrintText(item.NumSold.ToString(), 630);
                 cursor.X = 0;
-                PrintText((item.Price * item.NumSold).ToString(), -5, true, TextAlignment.Right);
+                PrintText($"{item.Price * item.NumSold:C}", -5, true, TextAlignment.Right);
                 total += item.Price * item.NumSold;
             }
 
@@ -66,19 +66,22 @@ namespace NCR_Printer {
             PrintHorizontalLine();
 
             cursor.X = 0;
-            PrintText($"Total: {total:C}", -5, true, TextAlignment.Right);
+            PrintText($"Total: ", titleFont, -MeasureString($"{total:C}").Width-10, false, TextAlignment.Right);
+            PrintText($"{total:C}", -5, true, TextAlignment.Right);
 
             double amountPaid = GetAmountPaid();
             cursor.X = 0;
             
-            //PrintText($"Total Payment: ", titleFont, Layout.Width-MeasureString($"{amountPaid:C}", Layout.TextFont, StringFormat.GenericDefault).Width-50);
+            
+            PrintText($"Total Payment: ", titleFont, -MeasureString($"{amountPaid:C}").Width-10, false, TextAlignment.Right);
             PrintText($"{amountPaid:C}", -5, true, TextAlignment.Right);
             
             double remaining = total-amountPaid;
 
             if (remaining > 0) {
                 cursor.X = 0;
-                PrintText($"Remaining: {remaining:C}", -5, true, TextAlignment.Right);
+                PrintText($"Remaining: ", titleFont, -MeasureString($"{remaining:C}").Width-10, false, TextAlignment.Right);
+                PrintText($"{remaining:C}", -5, true, TextAlignment.Right);
             }
         }
 
