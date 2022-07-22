@@ -86,20 +86,23 @@ namespace SecretCellar {
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
-		private void button_Finalize_Click(object sender, EventArgs e) {
+		private void button_UpdatePayment_Click(object sender, EventArgs e) {
 			if (_selectedTransaction == null) return;
 
 			frmPayment frmPayment = new frmPayment(_selectedTransaction);
-			frmPayment.FormClosed += ProcessTransaction;
 			frmPayment.ShowDialog();
-			frmPayment.FormClosed -= ProcessTransaction;
 
+			DataAccess.instance.ProcessTransaction(_selectedTransaction);
 			_invoices = GetInvoicesFromDatabase();
 			PopulateListOfInvoices();
 		}
 
 
-		//
+		/// <summary>
+		/// Displays the print preview for the selected invoice.
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void button_Print_Click(object sender, EventArgs e) {
 			PrintPreviewDialog printPreview = new PrintPreviewDialog();
 			Invoice invoiceDocument = new Invoice(_selectedTransaction, PurchaseOrder.LetterLayout);
@@ -126,14 +129,6 @@ namespace SecretCellar {
 			if (selectionList_Invoices.Items.Count > 0) selectionList_Invoices.SelectedIndex = 0;
 			else { _selectedTransaction = null; selectionList_Invoices.SelectedIndex = -1; }
 		}
-
-
-		/// <summary>
-		/// Processes the transcation. This method is only useful so that it can be unsubscribed from the frmPayment's FormClosed event delegate. 
-		/// </summary>
-		/// <param name="sender"></param>
-		/// <param name="e"></param>
-		private void ProcessTransaction(object sender, EventArgs e) { DataAccess.instance.ProcessTransaction(_selectedTransaction); }
 
 
 		/// <summary>

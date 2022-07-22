@@ -22,9 +22,9 @@ namespace NCR_Printer {
             Font titleFont = new Font("Arial", 12, FontStyle.Bold);
 
             //HEADER
-            PrintImage(Layout.Logo, (float)0.4, TextAlignment.Left);
+            PrintImage(Layout.Logo, (float)0.3, TextAlignment.Left);
             this.cursor.Y = (cursor.Y - y) / 2;
-            PrintText($"Invoice", titleFont, true, TextAlignment.Center);
+            PrintText($"Invoice #{_invoice.InvoiceID}", titleFont, true, TextAlignment.Center);
             PrintText("", true);
             PrintHeaderFooter(Layout.Header);
 
@@ -32,12 +32,11 @@ namespace NCR_Printer {
             PrintText("", true);
 
             //INVOICE ID AND CUSTOMER NAME
-            PrintText($"ID: {_invoice.InvoiceID}", 5);
-            PrintText($"{_invoice.CustomerName}", 200);
+            PrintText($"{_invoice.CustomerName}", 5);
 
             //DATE AND TIME
             cursor.X = 0;
-            PrintText($"{DateTime.Now:M/dd/yy}", true, TextAlignment.Right);
+            PrintText($"{DateTime.Now:M/dd/yy}", -5, true, TextAlignment.Right);
             PrintHorizontalLine();
 
             //TABLE HEADERS
@@ -46,7 +45,7 @@ namespace NCR_Printer {
             PrintText("Price", titleFont, 550);
             PrintText("Number Sold", titleFont, 630);
             cursor.X = 0;
-            PrintText("Total", titleFont, true, TextAlignment.Right);
+            PrintText("Total", titleFont, -5, true, TextAlignment.Right);
 
             double total = 0;
             cursor.X = 0;
@@ -59,7 +58,7 @@ namespace NCR_Printer {
                 PrintText(item.Price.ToString(), 550);
                 PrintText(item.NumSold.ToString(), 630);
                 cursor.X = 0;
-                PrintText((item.Price * item.NumSold).ToString(), true, TextAlignment.Right);
+                PrintText($"{item.Price * item.NumSold:C}", -5, true, TextAlignment.Right);
                 total += item.Price * item.NumSold;
             }
 
@@ -67,23 +66,37 @@ namespace NCR_Printer {
             PrintHorizontalLine();
 
             cursor.X = 0;
-            PrintText($"Total: {total:C}", true, TextAlignment.Right);
+            PrintText($"Total: ", titleFont, -MeasureString($"{total:C}").Width-10, false, TextAlignment.Right);
+            PrintText($"{total:C}", -5, true, TextAlignment.Right);
 
-            double amountPaid = 0;
-            
-            foreach(Payment payment in _invoice.Payments) {
-                amountPaid += payment.Amount;
-            }            
-            
+            double amountPaid = GetAmountPaid();
             cursor.X = 0;
-            PrintText($"Total Payment: {amountPaid:C}", true, TextAlignment.Right);
-
+            
+            PrintText($"Total Payment: ", titleFont, -MeasureString($"{amountPaid:C}").Width-10, false, TextAlignment.Right);
+            PrintText($"{amountPaid:C}", -5, true, TextAlignment.Right);
+            
             double remaining = total-amountPaid;
 
             if (remaining > 0) {
                 cursor.X = 0;
-                PrintText($"Remaining: {remaining:C}", true, TextAlignment.Right);
+                PrintText($"Remaining: ", titleFont, -MeasureString($"{remaining:C}").Width-10, false, TextAlignment.Right);
+                PrintText($"{remaining:C}", -5, true, TextAlignment.Right);
             }
+        }
+
+
+        /// <summary>
+        /// Gets the amount paid for the invoice.
+        /// </summary>
+        /// <returns></returns>
+        private double GetAmountPaid() {
+            double amountPaid = 0;
+
+            foreach (Payment payment in _invoice.Payments) {
+                amountPaid += payment.Amount;
+            }
+
+            return amountPaid;
         }
     }
 }

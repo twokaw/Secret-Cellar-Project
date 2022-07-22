@@ -36,7 +36,7 @@ namespace SecretCellar {
             this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.selectionList_Invoices = new System.Windows.Forms.ListBox();
             this.button_CloseWindow = new System.Windows.Forms.Button();
-            this.button_Finalize = new System.Windows.Forms.Button();
+            this.button_UpdatePayment = new System.Windows.Forms.Button();
             this.textBox_Filter = new System.Windows.Forms.TextBox();
             this.button_Print = new System.Windows.Forms.Button();
             this.label_Total = new System.Windows.Forms.Label();
@@ -158,17 +158,17 @@ namespace SecretCellar {
             this.button_CloseWindow.UseVisualStyleBackColor = true;
             this.button_CloseWindow.Click += new System.EventHandler(this.btn_CloseWindow_Click);
             // 
-            // button_Finalize
+            // button_UpdatePayment
             // 
-            this.button_Finalize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button_Finalize.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_Finalize.Location = new System.Drawing.Point(12, 274);
-            this.button_Finalize.Name = "button_Finalize";
-            this.button_Finalize.Size = new System.Drawing.Size(198, 55);
-            this.button_Finalize.TabIndex = 1;
-            this.button_Finalize.Text = "Update Payment";
-            this.button_Finalize.UseVisualStyleBackColor = true;
-            this.button_Finalize.Click += new System.EventHandler(this.button_Finalize_Click);
+            this.button_UpdatePayment.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.button_UpdatePayment.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_UpdatePayment.Location = new System.Drawing.Point(12, 274);
+            this.button_UpdatePayment.Name = "button_UpdatePayment";
+            this.button_UpdatePayment.Size = new System.Drawing.Size(198, 55);
+            this.button_UpdatePayment.TabIndex = 1;
+            this.button_UpdatePayment.Text = "Update Payment";
+            this.button_UpdatePayment.UseVisualStyleBackColor = true;
+            this.button_UpdatePayment.Click += new System.EventHandler(this.button_UpdatePayment_Click);
             // 
             // textBox_Filter
             // 
@@ -246,7 +246,7 @@ namespace SecretCellar {
             this.Controls.Add(this.currencyBox_Total);
             this.Controls.Add(this.button_Print);
             this.Controls.Add(this.textBox_Filter);
-            this.Controls.Add(this.button_Finalize);
+            this.Controls.Add(this.button_UpdatePayment);
             this.Controls.Add(this.button_CloseWindow);
             this.Controls.Add(this.selectionList_Invoices);
             this.Controls.Add(this.dataGridView_InvoiceData);
@@ -268,7 +268,7 @@ namespace SecretCellar {
 		private System.Windows.Forms.DataGridView dataGridView_InvoiceData;
 		private System.Windows.Forms.ListBox selectionList_Invoices;
 		private System.Windows.Forms.Button button_CloseWindow;
-		private System.Windows.Forms.Button button_Finalize;
+		private System.Windows.Forms.Button button_UpdatePayment;
 		private System.Windows.Forms.TextBox textBox_Filter;
 		private System.Windows.Forms.Button button_Print;
         private CurrencyBox currencyBox_Total;
