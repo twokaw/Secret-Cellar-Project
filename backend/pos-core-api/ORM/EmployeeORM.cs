@@ -176,7 +176,7 @@ namespace pos_core_api.ORM
 
                     if (emp is null || emp.EmpID != empid)
                     {
-                        emp =  new EmployeeModel
+                        emp = new EmployeeModel
                         {
                             EmpID = empid,
                             PinNumber = reader.IsDBNull("pin_number") ? 0 : reader.GetUInt32("pin_number"),

@@ -118,6 +118,9 @@
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(51)))), ((int)(((byte)(69)))));
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Ivory;
             this.LookupView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.LookupView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.LookupView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.LookupView.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(237)))), ((int)(((byte)(196)))));
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
@@ -147,7 +150,6 @@
             dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Ivory;
             dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.LookupView.DefaultCellStyle = dataGridViewCellStyle4;
-            this.LookupView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LookupView.Location = new System.Drawing.Point(0, 0);
             this.LookupView.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.LookupView.MultiSelect = false;
@@ -346,6 +348,7 @@
             // 
             // cbxOnlyItemsWithInventory
             // 
+            this.cbxOnlyItemsWithInventory.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cbxOnlyItemsWithInventory.AutoSize = true;
             this.cbxOnlyItemsWithInventory.Location = new System.Drawing.Point(1150, 12);
             this.cbxOnlyItemsWithInventory.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
@@ -358,10 +361,11 @@
             // 
             // label4
             // 
-            this.label4.Location = new System.Drawing.Point(42, 108);
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label4.Location = new System.Drawing.Point(6, 108);
             this.label4.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(174, 46);
+            this.label4.Size = new System.Drawing.Size(225, 46);
             this.label4.TabIndex = 4;
             this.label4.Text = "Type:";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -370,7 +374,7 @@
             // 
             this.txt_qty.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txt_qty.Location = new System.Drawing.Point(243, 285);
+            this.txt_qty.Location = new System.Drawing.Point(243, 292);
             this.txt_qty.Margin = new System.Windows.Forms.Padding(0);
             this.txt_qty.Name = "txt_qty";
             this.txt_qty.Size = new System.Drawing.Size(307, 35);
@@ -378,20 +382,22 @@
             // 
             // label3
             // 
-            this.label3.Location = new System.Drawing.Point(42, 285);
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label3.Location = new System.Drawing.Point(6, 285);
             this.label3.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(174, 46);
+            this.label3.Size = new System.Drawing.Size(225, 46);
             this.label3.TabIndex = 2;
             this.label3.Text = "Qty:";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label2
             // 
-            this.label2.Location = new System.Drawing.Point(42, 51);
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label2.Location = new System.Drawing.Point(6, 51);
             this.label2.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(174, 46);
+            this.label2.Size = new System.Drawing.Size(225, 46);
             this.label2.TabIndex = 0;
             this.label2.Text = "Name:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -400,7 +406,7 @@
             // 
             this.txtName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtName.Location = new System.Drawing.Point(243, 52);
+            this.txtName.Location = new System.Drawing.Point(243, 59);
             this.txtName.Margin = new System.Windows.Forms.Padding(0);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(307, 35);
@@ -408,7 +414,7 @@
             // 
             // btn_update
             // 
-            this.btn_update.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_update.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_update.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_update.Location = new System.Drawing.Point(30, 858);
             this.btn_update.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -425,7 +431,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cboType.DisplayMember = "TypeName";
             this.cboType.FormattingEnabled = true;
-            this.cboType.Location = new System.Drawing.Point(243, 108);
+            this.cboType.Location = new System.Drawing.Point(243, 115);
             this.cboType.Margin = new System.Windows.Forms.Padding(0);
             this.cboType.Name = "cboType";
             this.cboType.Size = new System.Drawing.Size(307, 37);
@@ -433,10 +439,11 @@
             // 
             // label5
             // 
-            this.label5.Location = new System.Drawing.Point(42, 225);
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label5.Location = new System.Drawing.Point(6, 225);
             this.label5.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(174, 46);
+            this.label5.Size = new System.Drawing.Size(225, 46);
             this.label5.TabIndex = 7;
             this.label5.Text = "Supplier:";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -447,7 +454,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cbo_Supplier.DisplayMember = "Name";
             this.cbo_Supplier.FormattingEnabled = true;
-            this.cbo_Supplier.Location = new System.Drawing.Point(243, 225);
+            this.cbo_Supplier.Location = new System.Drawing.Point(243, 232);
             this.cbo_Supplier.Margin = new System.Windows.Forms.Padding(0);
             this.cbo_Supplier.Name = "cbo_Supplier";
             this.cbo_Supplier.Size = new System.Drawing.Size(307, 37);
@@ -457,7 +464,7 @@
             // 
             this.txtBarcode.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBarcode.Location = new System.Drawing.Point(243, 168);
+            this.txtBarcode.Location = new System.Drawing.Point(243, 175);
             this.txtBarcode.Margin = new System.Windows.Forms.Padding(0);
             this.txtBarcode.Name = "txtBarcode";
             this.txtBarcode.Size = new System.Drawing.Size(307, 35);
@@ -465,10 +472,11 @@
             // 
             // barcode_label
             // 
-            this.barcode_label.Location = new System.Drawing.Point(42, 168);
+            this.barcode_label.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.barcode_label.Location = new System.Drawing.Point(6, 168);
             this.barcode_label.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.barcode_label.Name = "barcode_label";
-            this.barcode_label.Size = new System.Drawing.Size(174, 46);
+            this.barcode_label.Size = new System.Drawing.Size(225, 46);
             this.barcode_label.TabIndex = 10;
             this.barcode_label.Text = "Barcode:";
             this.barcode_label.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -477,7 +485,7 @@
             // 
             this.txtPrice.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtPrice.Location = new System.Drawing.Point(243, 342);
+            this.txtPrice.Location = new System.Drawing.Point(243, 349);
             this.txtPrice.Margin = new System.Windows.Forms.Padding(0);
             this.txtPrice.Name = "txtPrice";
             this.txtPrice.Size = new System.Drawing.Size(307, 35);
@@ -486,10 +494,11 @@
             // 
             // Price_txt
             // 
-            this.Price_txt.Location = new System.Drawing.Point(42, 342);
+            this.Price_txt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.Price_txt.Location = new System.Drawing.Point(6, 342);
             this.Price_txt.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.Price_txt.Name = "Price_txt";
-            this.Price_txt.Size = new System.Drawing.Size(174, 46);
+            this.Price_txt.Size = new System.Drawing.Size(225, 46);
             this.Price_txt.TabIndex = 12;
             this.Price_txt.Text = "Price:";
             this.Price_txt.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -498,7 +507,7 @@
             // 
             this.txt_net_price.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txt_net_price.Location = new System.Drawing.Point(243, 453);
+            this.txt_net_price.Location = new System.Drawing.Point(243, 460);
             this.txt_net_price.Margin = new System.Windows.Forms.Padding(0);
             this.txt_net_price.Name = "txt_net_price";
             this.txt_net_price.Size = new System.Drawing.Size(307, 35);
@@ -507,10 +516,11 @@
             // 
             // lbl_netPrice
             // 
-            this.lbl_netPrice.Location = new System.Drawing.Point(42, 453);
+            this.lbl_netPrice.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lbl_netPrice.Location = new System.Drawing.Point(6, 453);
             this.lbl_netPrice.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lbl_netPrice.Name = "lbl_netPrice";
-            this.lbl_netPrice.Size = new System.Drawing.Size(174, 46);
+            this.lbl_netPrice.Size = new System.Drawing.Size(225, 46);
             this.lbl_netPrice.TabIndex = 14;
             this.lbl_netPrice.Text = "My Price:";
             this.lbl_netPrice.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -519,7 +529,7 @@
             // 
             this.txtProd_Qty.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtProd_Qty.Location = new System.Drawing.Point(243, 510);
+            this.txtProd_Qty.Location = new System.Drawing.Point(243, 517);
             this.txtProd_Qty.Margin = new System.Windows.Forms.Padding(0);
             this.txtProd_Qty.Name = "txtProd_Qty";
             this.txtProd_Qty.Size = new System.Drawing.Size(307, 35);
@@ -527,10 +537,11 @@
             // 
             // Btl_Dep_Lb
             // 
-            this.Btl_Dep_Lb.Location = new System.Drawing.Point(42, 510);
+            this.Btl_Dep_Lb.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.Btl_Dep_Lb.Location = new System.Drawing.Point(6, 510);
             this.Btl_Dep_Lb.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.Btl_Dep_Lb.Name = "Btl_Dep_Lb";
-            this.Btl_Dep_Lb.Size = new System.Drawing.Size(174, 46);
+            this.Btl_Dep_Lb.Size = new System.Drawing.Size(225, 46);
             this.Btl_Dep_Lb.TabIndex = 17;
             this.Btl_Dep_Lb.Text = "Bottle Qty:";
             this.Btl_Dep_Lb.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -580,10 +591,11 @@
             // 
             // label1
             // 
-            this.label1.Location = new System.Drawing.Point(132, 0);
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.Location = new System.Drawing.Point(30, 0);
             this.label1.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(84, 46);
+            this.label1.Size = new System.Drawing.Size(201, 46);
             this.label1.TabIndex = 27;
             this.label1.Text = "Hide:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -600,20 +612,22 @@
             // 
             // lbl_max_qty
             // 
-            this.lbl_max_qty.Location = new System.Drawing.Point(42, 678);
+            this.lbl_max_qty.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lbl_max_qty.Location = new System.Drawing.Point(6, 678);
             this.lbl_max_qty.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lbl_max_qty.Name = "lbl_max_qty";
-            this.lbl_max_qty.Size = new System.Drawing.Size(174, 46);
+            this.lbl_max_qty.Size = new System.Drawing.Size(225, 46);
             this.lbl_max_qty.TabIndex = 26;
             this.lbl_max_qty.Text = "Max Qty:";
             this.lbl_max_qty.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // lbl_order_qty
             // 
-            this.lbl_order_qty.Location = new System.Drawing.Point(42, 622);
+            this.lbl_order_qty.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lbl_order_qty.Location = new System.Drawing.Point(6, 622);
             this.lbl_order_qty.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lbl_order_qty.Name = "lbl_order_qty";
-            this.lbl_order_qty.Size = new System.Drawing.Size(174, 46);
+            this.lbl_order_qty.Size = new System.Drawing.Size(225, 46);
             this.lbl_order_qty.TabIndex = 26;
             this.lbl_order_qty.Text = "Order Qty:";
             this.lbl_order_qty.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -622,7 +636,7 @@
             // 
             this.txt_max_qty.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txt_max_qty.Location = new System.Drawing.Point(243, 678);
+            this.txt_max_qty.Location = new System.Drawing.Point(243, 685);
             this.txt_max_qty.Margin = new System.Windows.Forms.Padding(0);
             this.txt_max_qty.Name = "txt_max_qty";
             this.txt_max_qty.Size = new System.Drawing.Size(307, 35);
@@ -632,7 +646,7 @@
             // 
             this.txt_order_qty.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txt_order_qty.Location = new System.Drawing.Point(243, 622);
+            this.txt_order_qty.Location = new System.Drawing.Point(243, 629);
             this.txt_order_qty.Margin = new System.Windows.Forms.Padding(0);
             this.txt_order_qty.Name = "txt_order_qty";
             this.txt_order_qty.ReadOnly = true;
@@ -642,10 +656,11 @@
             // 
             // lbl_min
             // 
-            this.lbl_min.Location = new System.Drawing.Point(42, 567);
+            this.lbl_min.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lbl_min.Location = new System.Drawing.Point(6, 567);
             this.lbl_min.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lbl_min.Name = "lbl_min";
-            this.lbl_min.Size = new System.Drawing.Size(174, 46);
+            this.lbl_min.Size = new System.Drawing.Size(225, 46);
             this.lbl_min.TabIndex = 24;
             this.lbl_min.Text = "Min Qty:";
             this.lbl_min.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -654,7 +669,7 @@
             // 
             this.txt_min_qty.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txt_min_qty.Location = new System.Drawing.Point(243, 567);
+            this.txt_min_qty.Location = new System.Drawing.Point(243, 574);
             this.txt_min_qty.Margin = new System.Windows.Forms.Padding(0);
             this.txt_min_qty.Name = "txt_min_qty";
             this.txt_min_qty.Size = new System.Drawing.Size(307, 35);
@@ -662,10 +677,11 @@
             // 
             // lbl_markup
             // 
-            this.lbl_markup.Location = new System.Drawing.Point(42, 396);
+            this.lbl_markup.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lbl_markup.Location = new System.Drawing.Point(6, 396);
             this.lbl_markup.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lbl_markup.Name = "lbl_markup";
-            this.lbl_markup.Size = new System.Drawing.Size(174, 46);
+            this.lbl_markup.Size = new System.Drawing.Size(225, 46);
             this.lbl_markup.TabIndex = 22;
             this.lbl_markup.Text = "Markup %:";
             this.lbl_markup.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -674,7 +690,7 @@
             // 
             this.txt_markup.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txt_markup.Location = new System.Drawing.Point(243, 398);
+            this.txt_markup.Location = new System.Drawing.Point(243, 405);
             this.txt_markup.Margin = new System.Windows.Forms.Padding(0);
             this.txt_markup.Name = "txt_markup";
             this.txt_markup.ReadOnly = true;
@@ -684,31 +700,33 @@
             // 
             // checkListBox_Discounts
             // 
-            this.checkListBox_Discounts.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.checkListBox_Discounts.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.checkListBox_Discounts.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.checkListBox_Discounts.Enabled = false;
             this.checkListBox_Discounts.FormattingEnabled = true;
-            this.checkListBox_Discounts.Location = new System.Drawing.Point(243, 747);
+            this.checkListBox_Discounts.Location = new System.Drawing.Point(243, 746);
             this.checkListBox_Discounts.Margin = new System.Windows.Forms.Padding(0);
             this.checkListBox_Discounts.MaximumSize = new System.Drawing.Size(333, 750);
             this.checkListBox_Discounts.Name = "checkListBox_Discounts";
-            this.checkListBox_Discounts.Size = new System.Drawing.Size(310, 32);
+            this.checkListBox_Discounts.Size = new System.Drawing.Size(310, 96);
             this.checkListBox_Discounts.TabIndex = 20;
             // 
             // label_CaseDiscount
             // 
-            this.label_CaseDiscount.Location = new System.Drawing.Point(34, 734);
+            this.label_CaseDiscount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label_CaseDiscount.Location = new System.Drawing.Point(6, 734);
             this.label_CaseDiscount.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label_CaseDiscount.Name = "label_CaseDiscount";
-            this.label_CaseDiscount.Size = new System.Drawing.Size(178, 46);
+            this.label_CaseDiscount.Size = new System.Drawing.Size(225, 46);
             this.label_CaseDiscount.TabIndex = 18;
             this.label_CaseDiscount.Text = "Discounts:";
             this.label_CaseDiscount.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // btn_clear_info
             // 
-            this.btn_clear_info.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_clear_info.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btn_clear_info.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_clear_info.Location = new System.Drawing.Point(669, 963);
             this.btn_clear_info.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
@@ -721,6 +739,7 @@
             // 
             // chk_box_show_hidden
             // 
+            this.chk_box_show_hidden.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.chk_box_show_hidden.AutoSize = true;
             this.chk_box_show_hidden.Location = new System.Drawing.Point(1284, 54);
             this.chk_box_show_hidden.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
@@ -743,7 +762,7 @@
             // 
             // btn_close
             // 
-            this.btn_close.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_close.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btn_close.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_close.Location = new System.Drawing.Point(48, 963);
             this.btn_close.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
@@ -756,7 +775,7 @@
             // 
             // button_DeleteItem
             // 
-            this.button_DeleteItem.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button_DeleteItem.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.button_DeleteItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_DeleteItem.Location = new System.Drawing.Point(356, 963);
             this.button_DeleteItem.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
