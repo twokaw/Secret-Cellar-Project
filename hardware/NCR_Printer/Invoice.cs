@@ -22,7 +22,7 @@ namespace NCR_Printer {
             Font titleFont = new Font("Arial", 12, FontStyle.Bold);
 
             //HEADER
-            PrintImage(Layout.Logo, (float)0.4, TextAlignment.Left);
+            PrintImage(Layout.Logo, (float)0.3, TextAlignment.Left);
             this.cursor.Y = (cursor.Y - y) / 2;
             PrintText($"Invoice #{_invoice.InvoiceID}", titleFont, true, TextAlignment.Center);
             PrintText("", true);
@@ -71,7 +71,6 @@ namespace NCR_Printer {
 
             double amountPaid = GetAmountPaid();
             cursor.X = 0;
-            
             
             PrintText($"Total Payment: ", titleFont, -MeasureString($"{amountPaid:C}").Width-10, false, TextAlignment.Right);
             PrintText($"{amountPaid:C}", -5, true, TextAlignment.Right);
