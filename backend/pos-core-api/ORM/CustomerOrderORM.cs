@@ -74,8 +74,6 @@ namespace pos_core_api.ORM
         }
         public CustomerOrder CreateOrder(uint customerID)
         {
-
-
             MySqlCommand cmd = db.CreateCommand(@"
               INSERT INTO customerorder
               (CustomerID, RequestDate)
@@ -91,7 +89,8 @@ namespace pos_core_api.ORM
                     {
                         CustomerID = customerID 
                     };
-                else throw new Exception("Failed to create orderid");
+                else 
+                    throw new Exception("Failed to create orderid");
             }
             finally
             {
@@ -101,8 +100,6 @@ namespace pos_core_api.ORM
 
         public CustomerOrderItem GetCustomerItem(uint customerOrderItemID)
         {
-
-
             string sqlStatement = $"{CUSTOMERORDERSQL} WHERE CustomerOrderItemID = @customerOrderItemID";
 
             MySqlCommand cmd = db.CreateCommand(sqlStatement);
@@ -110,7 +107,6 @@ namespace pos_core_api.ORM
             MySqlDataReader reader = cmd.ExecuteReader();
             try
             {
-
                 List<CustomerOrder> output = FetchOrderCustomers(reader);
 
                 if (output.Count > 0 && output[0].Items.Count > 0)
