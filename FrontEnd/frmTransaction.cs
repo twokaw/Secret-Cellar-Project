@@ -460,7 +460,7 @@ namespace SecretCellar
         private void ApplyUserAccess()
         {
             // Lookup -- Lookup give you the ability to lookup items
-            /* Enable Lookup button */
+            btnLookup.Enabled = DataAccess.instance.EmployeeAccess("Lookup");
 
             // Employee Admin -- Employee Admin give you the ability to add, delete, modify and change permissions for any employee
             /* This is in the Setting Form */
@@ -469,25 +469,25 @@ namespace SecretCellar
             btn_cashDrawer.Enabled = DataAccess.instance.EmployeeAccess("Cash Drawer");
 
             // Orders --  Orders gives you access to Customer and Vendor orders
-            /* Enable Orders Button */
+            btn_order.Enabled = DataAccess.instance.EmployeeAccess("Orders");
 
             // Event -- Event gives you the ability to modify events
-            /* Enable buttons in the event Form */
+            btnEvents.Enabled = DataAccess.instance.EmployeeAccess("Event");
 
             // Shipping  -- Shipping give you the ability to add shipping to an order
-            /* Enable Shipping button */
+            btnShipping.Enabled = DataAccess.instance.EmployeeAccess("Shipping");
 
             // Custom -- Custom gives you the ability to add a custom item to a transaction
-            /* Enable Custom button */
+            btnCustom.Enabled = DataAccess.instance.EmployeeAccess("Custom");
 
             // Discount - Discount gives you the ability to add discounts to a transaction
-            /* Enable Discount button */
+            btnDiscount.Enabled = DataAccess.instance.EmployeeAccess("Discount");
 
             // Customer -- Customer give you the ability to add and edit customers
             /* This is in the Setting Form */
 
             // Settings -- Settings gives you access to hardware changes and other preferences
-            /* Enable Setting button */
+            pb_settings.Enabled = DataAccess.instance.EmployeeAccess("Settings");
 
             // Invoice -- Ability to create Invoices
             /* Is in the Orders Form and the Invoices Form */
