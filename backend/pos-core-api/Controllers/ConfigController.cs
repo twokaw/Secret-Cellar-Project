@@ -23,7 +23,11 @@ namespace pos_core_api.Controllers
                 else
                     return Ok(Resources.GetValue(key));
             }
-            catch (Exception ex) { ErrorLogging.WriteToErrorLog(ex); return StatusCode(500, ex.Message); }
+            catch (Exception ex) 
+            { 
+                ErrorLogging.WriteToErrorLog(ex); 
+                return StatusCode(500, ex.Message); 
+            }
         }
 
         // POST: ConfigController/Create

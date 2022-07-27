@@ -11,6 +11,9 @@ namespace pos_core_api.ORM.Test
     {
         public void Delete(uint custNoteID)
         {
+            if (custNoteID < 0)
+                throw new Exception(nameof(custNoteID));
+
             throw new NotImplementedException();
         }
 

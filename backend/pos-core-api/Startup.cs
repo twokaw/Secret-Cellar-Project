@@ -23,8 +23,11 @@ namespace WebApi
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
-            UseSwagger = bool.Parse(Resources.GetValue("UseSwagger", UseSwagger.ToString()));
-            Resources.SetValue("UseSwagger", value: UseSwagger.ToString());
+            
+            if(bool.TryParse(Resources.GetValue("UseSwagger"), out bool useSwagger))
+                UseSwagger = useSwagger;
+            else
+                Resources.SetValue("UseSwagger", UseSwagger.ToString());
         }
 
 

@@ -45,6 +45,7 @@ namespace pos_core_api.ORM
                 return customerORM;
             }
         }
+
         private static ICustomerNoteORM customerNoteORM = null;
 
 

@@ -22,7 +22,12 @@ namespace WebApi.Helpers
             {
                 if(connString == null )
                 {
-                    connString = Resources.GetValue("ConnectionString", DefaultConnection);
+                    connString = Resources.GetValue("ConnectionString", "-1");
+                    if (connString == "-1")
+                    {
+                        connString = DefaultConnection;
+                        SaveConnectionString();
+                    }
                 }
                 return EncryptionClass.DecryptString(connString);
             }
@@ -45,7 +50,7 @@ namespace WebApi.Helpers
 
         public static void SaveConnectionString()
         {
-            Resources.SetValue("ConnectionString", ConnectionString);
+            Resources.SetValue("ConnectionString", connString);
         }
 
         public void OpenConnection(MySqlConnection conn)
