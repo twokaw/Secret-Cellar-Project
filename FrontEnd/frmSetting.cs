@@ -18,24 +18,24 @@ namespace SecretCellar
             InitializeComponent();
         }
 
-        private void FrmSetting_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void btn_commit_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
-        private void panReports1_Load(object sender, EventArgs e)
+        private void FrmSettings_Activated(object sender, EventArgs e)
+        {
+            ApplyUserAccess();
+        }
+
+        private void FrmSettings_Load(object sender, EventArgs e)
         {
 
         }
-
-        private void tabDefaults_Click(object sender, EventArgs e)
+        private void ApplyUserAccess()
         {
-
+            panEmployee1.Visible = DataAccess.instance.EmployeeAccess("Employee Admin");
+            lb_Employee_Disabled.Visible = !DataAccess.instance.EmployeeAccess("Employee Admin");
         }
     }
 }

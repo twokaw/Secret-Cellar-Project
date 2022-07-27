@@ -18,10 +18,23 @@ namespace pos_core_api.Helpers
         {
             try
             {
+                bool found = false;
+                Dictionary<string, string> settings = GetValues();
                 using IResourceWriter writer = new ResourceWriter(asset);
                 {
-                    // Adds resources to the resource writer.
-                    writer.AddResource(key, value);
+
+                    foreach(KeyValuePair<string, string> kvp in settings)
+                        if(kvp.Key == key)
+                            writer.AddResource(key, value);
+                        else
+                        {
+                            writer.AddResource(kvp.Key, kvp.Value);
+                            found = true;
+                        }
+
+                    if(!found)
+                        writer.AddResource(key, value);
+
                     writer.Close();  
                 }
             }
