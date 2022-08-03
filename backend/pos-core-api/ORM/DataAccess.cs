@@ -6,7 +6,7 @@ namespace pos_core_api.ORM
     public class DataAccess
     {
 
-        public static readonly DataAccess Instance = new DataAccess();
+        public static readonly DataAccess Instance = new();
 
         /*
         public static DataAccess Instance 

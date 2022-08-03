@@ -2,9 +2,6 @@
 using pos_core_api.Helpers;
 using Shared;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace pos_core_api.Controllers
 {
@@ -18,19 +15,19 @@ namespace pos_core_api.Controllers
         {
             try
             {
-                if(key == null)
+                if (key == null)
                     return Ok(Resources.GetValues());
                 else
                     return Ok(Resources.GetValue(key));
             }
-            catch (Exception ex) 
-            { 
-                ErrorLogging.WriteToErrorLog(ex); 
-                return StatusCode(500, ex.Message); 
+            catch (Exception ex)
+            {
+                ErrorLogging.WriteToErrorLog(ex);
+                return StatusCode(500, ex.Message);
             }
         }
 
-        // POST: ConfigController/Create
+        // POST: ConfigController
         [HttpPost()]
         public ActionResult Post(string key, [FromBody] string value)
         {
@@ -39,7 +36,11 @@ namespace pos_core_api.Controllers
                 Resources.SetValue(key, value);
                 return Ok();
             }
-            catch (Exception ex) { ErrorLogging.WriteToErrorLog(ex); return StatusCode(500, ex.Message); }
+            catch (Exception ex) 
+            { 
+                ErrorLogging.WriteToErrorLog(ex); 
+                return StatusCode(500, ex.Message); 
+            }
         }
     }
 }
