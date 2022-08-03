@@ -10,10 +10,8 @@ namespace pos_core_api.Helpers
     {
         public static string DefaultAsset { get; set; } = "myResources.resources";
 
-        public static void SetValue(string key, string value)
-        {
-            SetValue(DefaultAsset, key, value);
-        }
+        public static void SetValue(string key, string value) => SetValue(DefaultAsset, key, value);
+        
         public static void SetValue(string asset, string key, string value)
         {
             try
@@ -25,15 +23,15 @@ namespace pos_core_api.Helpers
 
                     foreach(KeyValuePair<string, string> kvp in settings)
                         if(kvp.Key == key)
-                            writer.AddResource(key, value);
-                        else
                         {
-                            writer.AddResource(kvp.Key, kvp.Value);
+                            writer.AddResource(EncryptionClass.EncryptString(key), EncryptionClass.EncryptString(value));
                             found = true;
                         }
+                        else
+                            writer.AddResource(EncryptionClass.EncryptString(kvp.Key), EncryptionClass.EncryptString(kvp.Value));
 
                     if(!found)
-                        writer.AddResource(key, value);
+                        writer.AddResource(EncryptionClass.EncryptString(key), EncryptionClass.EncryptString(value));
 
                     writer.Close();  
                 }
@@ -41,24 +39,41 @@ namespace pos_core_api.Helpers
             catch (Exception ex) { ErrorLogging.WriteToErrorLog(ex); }
         }
 
-        public static Dictionary<string, string> GetValues()
+        public static void DeleteKey(string key) => DeleteKey(DefaultAsset, key);
+
+        public static void DeleteKey(string asset, string key)
         {
-            return GetValues(DefaultAsset);
+            try
+            {
+                Dictionary<string, string> settings = GetValues();
+                using IResourceWriter writer = new ResourceWriter(asset);
+                {
+                    foreach (KeyValuePair<string, string> kvp in settings)
+                        if (kvp.Key != key)
+                            writer.AddResource(EncryptionClass.EncryptString(kvp.Key), EncryptionClass.EncryptString(kvp.Value));
+
+
+                    writer.Close();
+                }
+            }
+            catch (Exception ex) { ErrorLogging.WriteToErrorLog(ex); }
         }
+
+        public static Dictionary<string, string> GetValues() => GetValues(DefaultAsset);
 
         public static Dictionary<string, string> GetValues(string asset)
         {
-            Dictionary<string, string> result = new Dictionary<string, string>();
+            Dictionary<string, string> result = new();
 
             try
             {
                 // try to read the resource file
-                using ResourceReader rw = new ResourceReader(asset);
+                using ResourceReader rw = new(asset);
                 {
                     IDictionaryEnumerator dict = rw.GetEnumerator();
 
                     while (dict.MoveNext())
-                        result.Add(dict.Key.ToString(), dict.Value.ToString());                        
+                        result.Add(EncryptionClass.DecryptString(dict.Key.ToString()), EncryptionClass.DecryptString(dict.Value.ToString()));
                 }
                 rw.Close();
             }
@@ -70,10 +85,7 @@ namespace pos_core_api.Helpers
             return result;
         }
 
-        public static string GetValue(string key, string defaultValue = "")
-        {
-            return GetValue(DefaultAsset, key, defaultValue);
-        }
+        public static string GetValue(string key, string defaultValue = "") => GetValue(DefaultAsset, key, defaultValue);
 
         public static string GetValue(string asset, string key, string defaultValue)
         {
@@ -83,14 +95,14 @@ namespace pos_core_api.Helpers
                 try
                 {
                     // try to read the resource file
-                    using ResourceReader rw = new ResourceReader(asset);
+                    using ResourceReader rw = new (asset);
                     {
                         IDictionaryEnumerator dict = rw.GetEnumerator();
 
                         while (dict.MoveNext())
-                            if (dict.Key.ToString() == key)
+                            if (EncryptionClass.DecryptString(dict.Key.ToString()) == key)
                             {
-                               result = dict.Value.ToString();
+                               result = EncryptionClass.DecryptString(dict.Value.ToString());
                                break;
                             }
                         rw.Close();
