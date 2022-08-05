@@ -36,7 +36,7 @@ namespace NCR_Printer {
 
             //DATE AND TIME
             cursor.X = 0;
-            PrintText($"{DateTime.Now:M/dd/yy}", -5, true, TextAlignment.Right);
+            PrintText($"{DateTime.Now:M/dd/yy}", -25, true, TextAlignment.Right);
             PrintHorizontalLine();
 
             //TABLE HEADERS
@@ -45,7 +45,7 @@ namespace NCR_Printer {
             PrintText("Price", titleFont, 550);
             PrintText("Number Sold", titleFont, 630);
             cursor.X = 0;
-            PrintText("Total", titleFont, -5, true, TextAlignment.Right);
+            PrintText("Total", titleFont, -25, true, TextAlignment.Right);
 
             double total = 0;
             cursor.X = 0;
@@ -58,7 +58,7 @@ namespace NCR_Printer {
                 PrintText(item.Price.ToString(), 550);
                 PrintText(item.NumSold.ToString(), 630);
                 cursor.X = 0;
-                PrintText($"{item.Price * item.NumSold:C}", -5, true, TextAlignment.Right);
+                PrintText($"{item.Price * item.NumSold:C}", -25, true, TextAlignment.Right);
                 total += item.Price * item.NumSold;
             }
 
@@ -66,21 +66,21 @@ namespace NCR_Printer {
             PrintHorizontalLine();
 
             cursor.X = 0;
-            PrintText($"Total: ", titleFont, -MeasureString($"{total:C}").Width-10, false, TextAlignment.Right);
-            PrintText($"{total:C}", -5, true, TextAlignment.Right);
+            PrintText($"Total: ", titleFont, -MeasureString($"{total:C}").Width-30, false, TextAlignment.Right);
+            PrintText($"{total:C}", -25, true, TextAlignment.Right);
 
             double amountPaid = GetAmountPaid();
             cursor.X = 0;
             
-            PrintText($"Total Payment: ", titleFont, -MeasureString($"{amountPaid:C}").Width-10, false, TextAlignment.Right);
-            PrintText($"{amountPaid:C}", -5, true, TextAlignment.Right);
+            PrintText($"Total Payment: ", titleFont, -MeasureString($"{amountPaid:C}").Width-30, false, TextAlignment.Right);
+            PrintText($"{amountPaid:C}", -25, true, TextAlignment.Right);
             
             double remaining = total-amountPaid;
 
             if (remaining > 0) {
                 cursor.X = 0;
-                PrintText($"Remaining: ", titleFont, -MeasureString($"{remaining:C}").Width-10, false, TextAlignment.Right);
-                PrintText($"{remaining:C}", -5, true, TextAlignment.Right);
+                PrintText($"Remaining: ", titleFont, -MeasureString($"{remaining:C}").Width-30, false, TextAlignment.Right);
+                PrintText($"{remaining:C}", -25, true, TextAlignment.Right);
             }
         }
 
