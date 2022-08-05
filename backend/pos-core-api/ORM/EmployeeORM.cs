@@ -78,7 +78,7 @@ namespace pos_core_api.ORM
             {
                 cmd.ExecuteNonQuery();
 
-                return 0;
+                return cmd.LastInsertedId;
             }
             finally 
             {
@@ -124,6 +124,9 @@ namespace pos_core_api.ORM
 
         public void Delete(uint EmpID)
         {
+            // Disable instead of delete
+            // Verify no transaction were made
+            // Change the tranasction to generic user
             MySqlCommand cmd = db.CreateCommand(@"
               DELETE FROM employee 
               WHERE emp_id = @EmpID
@@ -140,6 +143,7 @@ namespace pos_core_api.ORM
             }
         }
 
+        /* Obsolete
         public bool DoesEmployeeExist(uint empID)
         {
             MySqlCommand cmd = db.CreateCommand(@"
@@ -158,7 +162,7 @@ namespace pos_core_api.ORM
                 db.CloseCommand(cmd);
             }
         }
-
+        */
 
         // Helper: get SQL 
         private List<EmployeeModel> Get(MySqlCommand cmd)
@@ -176,7 +180,7 @@ namespace pos_core_api.ORM
 
                     if (emp is null || emp.EmpID != empid)
                     {
-                        emp =  new EmployeeModel
+                        emp = new EmployeeModel
                         {
                             EmpID = empid,
                             PinNumber = reader.IsDBNull("pin_number") ? 0 : reader.GetUInt32("pin_number"),
@@ -213,8 +217,9 @@ namespace pos_core_api.ORM
             finally
             {
                 reader.Close();
+                db.CloseCommand(cmd);
             }
-            db.CloseCommand(cmd);
+            
             return output;
         }
     }

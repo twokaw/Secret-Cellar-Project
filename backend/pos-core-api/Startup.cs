@@ -19,12 +19,29 @@ namespace WebApi
     {
         public IConfiguration Configuration { get; }
         public bool UseSwagger = true;
+        private const string DefaultConnection = "Server=localhost;Port=3306;Database=inventory;Uid=invuser;Pwd=testinv!;";
 
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
-            UseSwagger = bool.Parse(Resources.GetValue("UseSwagger", UseSwagger.ToString()));
-            Resources.SetValue("UseSwagger", value: UseSwagger.ToString());
+            string ActiveConnection = Resources.GetValue("ActiveConnection", "");
+
+            if (ActiveConnection == "")
+            {
+                ActiveConnection = "ConnectionString";
+                Resources.SetValue("ActiveConnection", "ConnectionString");
+                Resources.SetValue(ActiveConnection, DefaultConnection);
+            }
+
+            DbConn.ConnectionString = Resources.GetValue(ActiveConnection, "-1");
+
+            if (DbConn.ConnectionString == "-1")
+                DbConn.ConnectionString = DefaultConnection;
+
+            if (bool.TryParse(Resources.GetValue("UseSwagger"), out bool useSwagger))
+                UseSwagger = useSwagger;
+            else
+                Resources.SetValue("UseSwagger", UseSwagger.ToString());
         }
 
 
@@ -33,7 +50,6 @@ namespace WebApi
         public void ConfigureServices(IServiceCollection services)
         {
             Shared.ErrorLogging.Path = Directory.GetCurrentDirectory();
-            services.AddCors();
             services.AddControllers();
            
            // services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);

@@ -13,30 +13,8 @@ namespace WebApi.Helpers
 
       //  private List<MySqlCommand> Cmds = new();
         private readonly MySqlConnection conn;
-        private static readonly string  DefaultConnection = EncryptionClass.EncryptString("Server=localhost;Port=3306;Database=inventory;Uid=invuser;Pwd=testinv!;");
-        private static string connString = null;
 
-        public static string ConnectionString
-        {
-            get
-            {
-                if(connString == null )
-                {
-                    connString = Resources.GetValue("ConnectionString", DefaultConnection);
-                }
-                return EncryptionClass.DecryptString(connString);
-            }
-            set
-            {
-                connString = value;
-                SaveConnectionString();
-            }
-        }
-
-        public static void SetConnectionString(string unencryptedConnectionString)
-        {
-            connString = EncryptionClass.EncryptString(unencryptedConnectionString);
-        }
+        public static string ConnectionString { get; set; }
 
         public DbConn()
         {
