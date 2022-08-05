@@ -79,12 +79,6 @@ namespace SecretCellar
             this.txt_email = new System.Windows.Forms.TextBox();
             this.lbl_wholesale = new System.Windows.Forms.Label();
             this.customer_data_grid = new System.Windows.Forms.DataGridView();
-            this.lbl_customer = new System.Windows.Forms.Label();
-            this.txt_customer = new System.Windows.Forms.TextBox();
-            this.chkbox_wholesale = new System.Windows.Forms.CheckBox();
-            this.btn_add = new System.Windows.Forms.Button();
-            this.btn_cancel = new System.Windows.Forms.Button();
-            this.btn_clear = new System.Windows.Forms.Button();
             this.customerID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.last_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.first_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -99,6 +93,12 @@ namespace SecretCellar
             this.city = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.state = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.zip = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lbl_customer = new System.Windows.Forms.Label();
+            this.txt_customer = new System.Windows.Forms.TextBox();
+            this.chkbox_wholesale = new System.Windows.Forms.CheckBox();
+            this.btn_add = new System.Windows.Forms.Button();
+            this.btn_cancel = new System.Windows.Forms.Button();
+            this.btn_clear = new System.Windows.Forms.Button();
             this.pnl_change_info.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.customer_data_grid)).BeginInit();
             this.SuspendLayout();
@@ -145,7 +145,7 @@ namespace SecretCellar
             this.cmb_State.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmb_State.FormattingEnabled = true;
             this.cmb_State.Location = new System.Drawing.Point(142, 306);
-            this.cmb_State.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cmb_State.Margin = new System.Windows.Forms.Padding(2);
             this.cmb_State.Name = "cmb_State";
             this.cmb_State.Size = new System.Drawing.Size(211, 28);
             this.cmb_State.TabIndex = 21;
@@ -154,7 +154,7 @@ namespace SecretCellar
             // 
             this.button_delete.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_delete.Location = new System.Drawing.Point(13, 387);
-            this.button_delete.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.button_delete.Margin = new System.Windows.Forms.Padding(1);
             this.button_delete.Name = "button_delete";
             this.button_delete.Size = new System.Drawing.Size(150, 37);
             this.button_delete.TabIndex = 48;
@@ -177,7 +177,7 @@ namespace SecretCellar
             this.button_UpdateCredit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.button_UpdateCredit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_UpdateCredit.Location = new System.Drawing.Point(176, 445);
-            this.button_UpdateCredit.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.button_UpdateCredit.Margin = new System.Windows.Forms.Padding(1);
             this.button_UpdateCredit.Name = "button_UpdateCredit";
             this.button_UpdateCredit.Size = new System.Drawing.Size(166, 37);
             this.button_UpdateCredit.TabIndex = 15;
@@ -190,7 +190,7 @@ namespace SecretCellar
             this.txt_zip.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txt_zip.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_zip.Location = new System.Drawing.Point(142, 336);
-            this.txt_zip.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txt_zip.Margin = new System.Windows.Forms.Padding(4);
             this.txt_zip.Name = "txt_zip";
             this.txt_zip.Size = new System.Drawing.Size(211, 26);
             this.txt_zip.TabIndex = 14;
@@ -222,7 +222,7 @@ namespace SecretCellar
             this.txt_city.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txt_city.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_city.Location = new System.Drawing.Point(142, 277);
-            this.txt_city.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txt_city.Margin = new System.Windows.Forms.Padding(4);
             this.txt_city.Name = "txt_city";
             this.txt_city.Size = new System.Drawing.Size(211, 26);
             this.txt_city.TabIndex = 12;
@@ -243,7 +243,7 @@ namespace SecretCellar
             this.txt_addr2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txt_addr2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_addr2.Location = new System.Drawing.Point(142, 249);
-            this.txt_addr2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txt_addr2.Margin = new System.Windows.Forms.Padding(4);
             this.txt_addr2.Name = "txt_addr2";
             this.txt_addr2.Size = new System.Drawing.Size(211, 26);
             this.txt_addr2.TabIndex = 11;
@@ -263,7 +263,7 @@ namespace SecretCellar
             // 
             this.btn_new.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_new.Location = new System.Drawing.Point(12, 445);
-            this.btn_new.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.btn_new.Margin = new System.Windows.Forms.Padding(1);
             this.btn_new.Name = "btn_new";
             this.btn_new.Size = new System.Drawing.Size(151, 37);
             this.btn_new.TabIndex = 16;
@@ -276,7 +276,7 @@ namespace SecretCellar
             this.btn_update.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_update.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_update.Location = new System.Drawing.Point(176, 387);
-            this.btn_update.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.btn_update.Margin = new System.Windows.Forms.Padding(1);
             this.btn_update.Name = "btn_update";
             this.btn_update.Size = new System.Drawing.Size(167, 37);
             this.btn_update.TabIndex = 17;
@@ -289,7 +289,7 @@ namespace SecretCellar
             this.txt_addr1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txt_addr1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_addr1.Location = new System.Drawing.Point(142, 220);
-            this.txt_addr1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txt_addr1.Margin = new System.Windows.Forms.Padding(4);
             this.txt_addr1.Name = "txt_addr1";
             this.txt_addr1.Size = new System.Drawing.Size(211, 26);
             this.txt_addr1.TabIndex = 10;
@@ -310,7 +310,7 @@ namespace SecretCellar
             this.txt_company.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txt_company.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_company.Location = new System.Drawing.Point(142, 131);
-            this.txt_company.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txt_company.Margin = new System.Windows.Forms.Padding(4);
             this.txt_company.Name = "txt_company";
             this.txt_company.Size = new System.Drawing.Size(211, 26);
             this.txt_company.TabIndex = 7;
@@ -320,7 +320,7 @@ namespace SecretCellar
             this.txt_fname.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txt_fname.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_fname.Location = new System.Drawing.Point(142, 44);
-            this.txt_fname.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txt_fname.Margin = new System.Windows.Forms.Padding(4);
             this.txt_fname.Name = "txt_fname";
             this.txt_fname.Size = new System.Drawing.Size(211, 26);
             this.txt_fname.TabIndex = 4;
@@ -351,7 +351,7 @@ namespace SecretCellar
             this.txt_custDisc.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txt_custDisc.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_custDisc.Location = new System.Drawing.Point(142, 191);
-            this.txt_custDisc.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txt_custDisc.Margin = new System.Windows.Forms.Padding(4);
             this.txt_custDisc.Name = "txt_custDisc";
             this.txt_custDisc.Size = new System.Drawing.Size(211, 26);
             this.txt_custDisc.TabIndex = 9;
@@ -385,7 +385,7 @@ namespace SecretCellar
             "False",
             "True"});
             this.cbo_wholesale.Location = new System.Drawing.Point(142, 160);
-            this.cbo_wholesale.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbo_wholesale.Margin = new System.Windows.Forms.Padding(4);
             this.cbo_wholesale.Name = "cbo_wholesale";
             this.cbo_wholesale.Size = new System.Drawing.Size(211, 28);
             this.cbo_wholesale.TabIndex = 8;
@@ -395,7 +395,7 @@ namespace SecretCellar
             this.txt_lname.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txt_lname.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_lname.Location = new System.Drawing.Point(142, 15);
-            this.txt_lname.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txt_lname.Margin = new System.Windows.Forms.Padding(4);
             this.txt_lname.Name = "txt_lname";
             this.txt_lname.Size = new System.Drawing.Size(211, 26);
             this.txt_lname.TabIndex = 3;
@@ -427,7 +427,7 @@ namespace SecretCellar
             this.txt_email.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txt_email.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_email.Location = new System.Drawing.Point(142, 102);
-            this.txt_email.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txt_email.Margin = new System.Windows.Forms.Padding(4);
             this.txt_email.Name = "txt_email";
             this.txt_email.Size = new System.Drawing.Size(211, 26);
             this.txt_email.TabIndex = 6;
@@ -512,77 +512,8 @@ namespace SecretCellar
             this.customer_data_grid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.customer_data_grid.Size = new System.Drawing.Size(621, 499);
             this.customer_data_grid.TabIndex = 20;
+            this.customer_data_grid.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.customer_data_grid_ColumnHeaderMouseClick);
             this.customer_data_grid.SelectionChanged += new System.EventHandler(this.customergrid_SelectionChanged);
-            // 
-            // lbl_customer
-            // 
-            this.lbl_customer.AutoSize = true;
-            this.lbl_customer.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_customer.Location = new System.Drawing.Point(13, 21);
-            this.lbl_customer.Name = "lbl_customer";
-            this.lbl_customer.Size = new System.Drawing.Size(137, 20);
-            this.lbl_customer.TabIndex = 2;
-            this.lbl_customer.Text = "Customer Name";
-            // 
-            // txt_customer
-            // 
-            this.txt_customer.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_customer.Location = new System.Drawing.Point(158, 20);
-            this.txt_customer.Name = "txt_customer";
-            this.txt_customer.Size = new System.Drawing.Size(248, 26);
-            this.txt_customer.TabIndex = 0;
-            this.txt_customer.TextChanged += new System.EventHandler(this.txt_customer_TextChanged);
-            // 
-            // chkbox_wholesale
-            // 
-            this.chkbox_wholesale.AutoSize = true;
-            this.chkbox_wholesale.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkbox_wholesale.Location = new System.Drawing.Point(466, 21);
-            this.chkbox_wholesale.Name = "chkbox_wholesale";
-            this.chkbox_wholesale.Size = new System.Drawing.Size(233, 24);
-            this.chkbox_wholesale.TabIndex = 1;
-            this.chkbox_wholesale.Text = "Wholesale Customer Only";
-            this.chkbox_wholesale.UseVisualStyleBackColor = true;
-            this.chkbox_wholesale.CheckedChanged += new System.EventHandler(this.chkbox_wholesale_CheckedChanged);
-            // 
-            // btn_add
-            // 
-            this.btn_add.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_add.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_add.Location = new System.Drawing.Point(639, 565);
-            this.btn_add.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btn_add.Name = "btn_add";
-            this.btn_add.Size = new System.Drawing.Size(352, 37);
-            this.btn_add.TabIndex = 18;
-            this.btn_add.Text = "Set Transaction Customer";
-            this.btn_add.UseVisualStyleBackColor = true;
-            this.btn_add.Click += new System.EventHandler(this.btn_add_Click);
-            // 
-            // btn_cancel
-            // 
-            this.btn_cancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btn_cancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_cancel.Location = new System.Drawing.Point(9, 565);
-            this.btn_cancel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btn_cancel.Name = "btn_cancel";
-            this.btn_cancel.Size = new System.Drawing.Size(133, 37);
-            this.btn_cancel.TabIndex = 19;
-            this.btn_cancel.Text = "Close";
-            this.btn_cancel.UseVisualStyleBackColor = true;
-            this.btn_cancel.Click += new System.EventHandler(this.btn_cancel_Click);
-            // 
-            // btn_clear
-            // 
-            this.btn_clear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_clear.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_clear.Location = new System.Drawing.Point(721, 11);
-            this.btn_clear.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.btn_clear.Name = "btn_clear";
-            this.btn_clear.Size = new System.Drawing.Size(269, 37);
-            this.btn_clear.TabIndex = 2;
-            this.btn_clear.Text = "Clear Customer Info";
-            this.btn_clear.UseVisualStyleBackColor = true;
-            this.btn_clear.Click += new System.EventHandler(this.btn_clear_Click);
             // 
             // customerID
             // 
@@ -751,6 +682,76 @@ namespace SecretCellar
             this.zip.Name = "zip";
             this.zip.ReadOnly = true;
             this.zip.Width = 50;
+            // 
+            // lbl_customer
+            // 
+            this.lbl_customer.AutoSize = true;
+            this.lbl_customer.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_customer.Location = new System.Drawing.Point(13, 21);
+            this.lbl_customer.Name = "lbl_customer";
+            this.lbl_customer.Size = new System.Drawing.Size(137, 20);
+            this.lbl_customer.TabIndex = 2;
+            this.lbl_customer.Text = "Customer Name";
+            // 
+            // txt_customer
+            // 
+            this.txt_customer.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_customer.Location = new System.Drawing.Point(158, 20);
+            this.txt_customer.Name = "txt_customer";
+            this.txt_customer.Size = new System.Drawing.Size(248, 26);
+            this.txt_customer.TabIndex = 0;
+            this.txt_customer.TextChanged += new System.EventHandler(this.txt_customer_TextChanged);
+            // 
+            // chkbox_wholesale
+            // 
+            this.chkbox_wholesale.AutoSize = true;
+            this.chkbox_wholesale.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkbox_wholesale.Location = new System.Drawing.Point(466, 21);
+            this.chkbox_wholesale.Name = "chkbox_wholesale";
+            this.chkbox_wholesale.Size = new System.Drawing.Size(233, 24);
+            this.chkbox_wholesale.TabIndex = 1;
+            this.chkbox_wholesale.Text = "Wholesale Customer Only";
+            this.chkbox_wholesale.UseVisualStyleBackColor = true;
+            this.chkbox_wholesale.CheckedChanged += new System.EventHandler(this.chkbox_wholesale_CheckedChanged);
+            // 
+            // btn_add
+            // 
+            this.btn_add.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_add.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_add.Location = new System.Drawing.Point(639, 565);
+            this.btn_add.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btn_add.Name = "btn_add";
+            this.btn_add.Size = new System.Drawing.Size(352, 37);
+            this.btn_add.TabIndex = 18;
+            this.btn_add.Text = "Set Transaction Customer";
+            this.btn_add.UseVisualStyleBackColor = true;
+            this.btn_add.Click += new System.EventHandler(this.btn_add_Click);
+            // 
+            // btn_cancel
+            // 
+            this.btn_cancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btn_cancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_cancel.Location = new System.Drawing.Point(9, 565);
+            this.btn_cancel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btn_cancel.Name = "btn_cancel";
+            this.btn_cancel.Size = new System.Drawing.Size(133, 37);
+            this.btn_cancel.TabIndex = 19;
+            this.btn_cancel.Text = "Close";
+            this.btn_cancel.UseVisualStyleBackColor = true;
+            this.btn_cancel.Click += new System.EventHandler(this.btn_cancel_Click);
+            // 
+            // btn_clear
+            // 
+            this.btn_clear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_clear.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_clear.Location = new System.Drawing.Point(721, 11);
+            this.btn_clear.Margin = new System.Windows.Forms.Padding(4);
+            this.btn_clear.Name = "btn_clear";
+            this.btn_clear.Size = new System.Drawing.Size(269, 37);
+            this.btn_clear.TabIndex = 2;
+            this.btn_clear.Text = "Clear Customer Info";
+            this.btn_clear.UseVisualStyleBackColor = true;
+            this.btn_clear.Click += new System.EventHandler(this.btn_clear_Click);
             // 
             // frmCustomer
             // 

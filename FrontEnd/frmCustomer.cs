@@ -294,5 +294,9 @@ Address:
                 refresh();
 			}
         }
-	}
+
+        private void customer_data_grid_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e) {
+            Console.WriteLine(customer_data_grid.Columns[e.ColumnIndex].Name);
+        }
+    }
 }
