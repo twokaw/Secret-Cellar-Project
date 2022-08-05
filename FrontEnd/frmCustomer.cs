@@ -10,7 +10,7 @@ namespace SecretCellar
 {
     public partial class frmCustomer : Form
     {
-        private Transaction customer = null;
+        private Transaction _importedTransaction = null;
 
         public frmCustomer(Transaction transaction)
         {
@@ -19,7 +19,7 @@ namespace SecretCellar
             cmb_State.DisplayMember = "StateName";
             cmb_State.DataSource = DataAccess.StateList;
 
-            customer = transaction;
+            _importedTransaction = transaction;
 
             customer_data_grid.DataSource = DataAccess.instance.GetCustomer().
                 Select(x => new{customerID = x.CustomerID, last_name = x.LastName, first_name = x.FirstName, phone = x.PhoneNumber, email = x.Email, business_name = x.BusinessName,
@@ -37,6 +37,8 @@ namespace SecretCellar
                 List<Transaction> suspendedTransactions = DataAccess.instance.GetSuspendedTransactions();
                 List<Transaction> filteredSuspendedTransactions = suspendedTransactions.FindAll((transaction) => { return transaction.CustomerID == i.CustomerID; });
                 button_delete.Enabled = filteredSuspendedTransactions.Count == 0;
+                button_UpdateCredit.Enabled = i.CustomerID != 0;
+                btn_update.Enabled = i.CustomerID != 0;
 
                 SelectCustomer(i);
             }
@@ -248,8 +250,8 @@ Address:
             if (customer_data_grid.SelectedRows.Count > 0)
             {
                 Customer i = DataAccess.instance.GetCustomer(uint.Parse(customer_data_grid.SelectedRows[0].Cells["customerID"].Value.ToString()));
+                _importedTransaction.CustomerID = i.CustomerID;
 
-                customer.CustomerID = i.CustomerID;
                 return true;
             }
             

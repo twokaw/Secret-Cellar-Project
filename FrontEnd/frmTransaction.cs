@@ -22,7 +22,7 @@ namespace SecretCellar
             txtBarcode.Focus();
             ReloadLogo();
             //this.Size = new System.Drawing.Size(1366, 768);
-            txt_current_cust.Text = "";
+            label_currentCustomerValue.Text = "N/A";
 
             string path = Properties.Settings.Default.FontPath;
             if (path.Length > 0 && path[0] == '.')
@@ -116,7 +116,7 @@ namespace SecretCellar
 
                     //transaction complete, clear the form
                     transaction = new Transaction();
-                    txt_current_cust.Text = "";
+                    label_currentCustomerValue.Text = "N/A";
                     RefreshDataGrid();
                     txtBarcode.Focus();
                 }
@@ -183,10 +183,12 @@ namespace SecretCellar
             txt_TransTotal.Text = transaction.Total.ToString("C");
             txt_Ship.Text = transaction.Shipping.ToString("C");
 
-            if (transaction.CustomerID > 0)
-            {
-                Customer currentCustomer = DataAccess.instance.GetCustomer(transaction.CustomerID);
-                txt_current_cust.Text = $"{currentCustomer.LastName}, {currentCustomer.FirstName}";
+            if (transaction.CustomerID >= 0) {
+                if (transaction.CustomerID == 0) { label_currentCustomerValue.Text = "N/A"; }
+                else {
+                    Customer currentCustomer = DataAccess.instance.GetCustomer(transaction.CustomerID);
+                    label_currentCustomerValue.Text = $"{currentCustomer.LastName}, {currentCustomer.FirstName}";
+                }
             }
         }
 
@@ -272,7 +274,7 @@ namespace SecretCellar
             DataAccess.instance.DeleteTransaction(transactionId);
 
             transaction = new Transaction();
-            txt_current_cust.Text = "";
+            label_currentCustomerValue.Text = "N/A";
             RefreshDataGrid();
             txtBarcode.Focus();
         }
@@ -355,7 +357,7 @@ namespace SecretCellar
             dataGridView1_RowsRemoved(this, e);
 
             //CLEAR THE CURRENT CUSTOMER
-            txt_current_cust.Text = "";
+            label_currentCustomerValue.Text = "N/A";
             RefreshDataGrid();
         }
 
