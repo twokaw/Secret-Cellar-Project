@@ -11,6 +11,9 @@ namespace SecretCellar
     public partial class frmCustomer : Form
     {
         private Transaction _importedTransaction = null;
+        private string _currentSortedColumnName = "";
+
+
 
         public frmCustomer(Transaction transaction)
         {
@@ -296,7 +299,61 @@ Address:
         }
 
         private void customer_data_grid_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e) {
-            Console.WriteLine(customer_data_grid.Columns[e.ColumnIndex].Name);
+            string columnName = customer_data_grid.Columns[e.ColumnIndex].Name;
+            Console.WriteLine(columnName);
+
+            var customerList = DataAccess.instance.GetCustomer(txt_customer.Text)
+                .Select(x => new {
+                    customerID = x.CustomerID,
+                    last_name = x.LastName,
+                    first_name = x.FirstName,
+                    phone = x.PhoneNumber,
+                    email = x.Email,
+                    business_name = x.BusinessName,
+                    isWholesale = x.IsWholesale,
+                    customerDiscount = x.CustomerDiscount,
+                    addr1 = x.Address1,
+                    addr2 = x.Address2,
+                    city = x.City,
+                    state = x.State,
+                    zip = x.ZipCode,
+                    Credit = x.Credit
+                })
+                .OrderBy(x => {
+                    switch (columnName) {
+                        case "last_name": { return x.last_name; }
+                        case "first_name": { return x.first_name; }
+                        case "phone": { return x.phone; }
+                        case "email": { return x.email; }
+                        case "Credit": { return x.Credit + ""; }
+                        case "business_name": { return x.business_name; }
+                        case "isWholesale": { return x.isWholesale + ""; }
+                        case "customer_discount": { return x.customerDiscount + ""; }
+                        case "addr1": { return x.addr1; }
+                        case "addr2": { return x.addr2; }
+                        case "city": { return x.city; }
+                        case "state": { return x.state; }
+                        case "zip": { return x.zip; }
+                        default: { return x.last_name; }
+                    }
+                })
+                .ToList();
+
+            //TODO Need to manually add each item from the CURRENT datagrid source.
+            // The code works now but it can only reverse once, it doesn't "reverse" again which would just be printing the results in order.
+
+            //REVERSE LIST
+            if (columnName == _currentSortedColumnName) {
+                Console.WriteLine("revered");
+                customerList.Reverse();
+            }
+
+            //SORT LIST
+            else {
+                _currentSortedColumnName = columnName;
+            }
+
+            customer_data_grid.DataSource = customerList;
         }
     }
 }
