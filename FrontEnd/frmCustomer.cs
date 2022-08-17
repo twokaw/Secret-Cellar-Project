@@ -11,7 +11,7 @@ namespace SecretCellar
     public partial class frmCustomer : Form
     {
         private Transaction _importedTransaction = null;
-        private string _currentSortedColumnName = "";
+        private string _lastSortedColumnName = "";
 
 
 
@@ -300,25 +300,38 @@ Address:
 
         private void customer_data_grid_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e) {
             string columnName = customer_data_grid.Columns[e.ColumnIndex].Name;
-            Console.WriteLine(columnName);
+            int currentColumn = customer_data_grid.FirstDisplayedScrollingColumnIndex;
+            List<Customer> customers = new List<Customer>();
 
-            var customerList = DataAccess.instance.GetCustomer(txt_customer.Text)
-                .Select(x => new {
-                    customerID = x.CustomerID,
-                    last_name = x.LastName,
-                    first_name = x.FirstName,
-                    phone = x.PhoneNumber,
-                    email = x.Email,
-                    business_name = x.BusinessName,
-                    isWholesale = x.IsWholesale,
-                    customerDiscount = x.CustomerDiscount,
-                    addr1 = x.Address1,
-                    addr2 = x.Address2,
-                    city = x.City,
-                    state = x.State,
-                    zip = x.ZipCode,
-                    Credit = x.Credit
-                })
+            foreach (DataGridViewRow row in customer_data_grid.Rows) {
+                if (uint.TryParse(row.Cells[0].Value.ToString(), out uint customerId)) {
+                    Customer customer = DataAccess.instance.GetCustomer(customerId);
+                    customers.Add(customer);
+                }
+            }
+
+            var customersFiltered = customers.Select(x => new {
+                customerID = x.CustomerID,
+                last_name = x.LastName,
+                first_name = x.FirstName,
+                phone = x.PhoneNumber,
+                email = x.Email,
+                business_name = x.BusinessName,
+                isWholesale = x.IsWholesale,
+                customerDiscount = x.CustomerDiscount,
+                addr1 = x.Address1,
+                addr2 = x.Address2,
+                city = x.City,
+                state = x.State,
+                zip = x.ZipCode,
+                Credit = x.Credit
+            });
+
+            if (columnName == _lastSortedColumnName) {
+                customersFiltered = customersFiltered.Reverse().ToList();
+            }
+            else {
+                customersFiltered = customersFiltered
                 .OrderBy(x => {
                     switch (columnName) {
                         case "last_name": { return x.last_name; }
@@ -338,22 +351,11 @@ Address:
                     }
                 })
                 .ToList();
-
-            //TODO Need to manually add each item from the CURRENT datagrid source.
-            // The code works now but it can only reverse once, it doesn't "reverse" again which would just be printing the results in order.
-
-            //REVERSE LIST
-            if (columnName == _currentSortedColumnName) {
-                Console.WriteLine("revered");
-                customerList.Reverse();
             }
 
-            //SORT LIST
-            else {
-                _currentSortedColumnName = columnName;
-            }
-
-            customer_data_grid.DataSource = customerList;
+            customer_data_grid.DataSource = customersFiltered;
+            _lastSortedColumnName = columnName;
+            customer_data_grid.FirstDisplayedScrollingColumnIndex = currentColumn;
         }
     }
 }
