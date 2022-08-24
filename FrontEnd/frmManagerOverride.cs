@@ -40,6 +40,8 @@ namespace SecretCellar {
                 
                 if (employee == null || employee.EmployeeType.TypeName != "admin") {
                     MessageBox.Show("Employee is not an admin.", "Error");
+                    textBox_ManagerPassword.Text = "";
+                    textBox_ManagerPassword.Focus();
                     return;
                 }
                 
@@ -48,7 +50,13 @@ namespace SecretCellar {
             }
             else {
                 MessageBox.Show("Entered id is not in the correct format.", "Error");
+                textBox_ManagerPassword.Text = "";
+                textBox_ManagerPassword.Focus();
             }
+        }
+
+        private void frmManagerOverride_Load(object sender, EventArgs e) {
+
         }
     }
 }

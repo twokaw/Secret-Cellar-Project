@@ -85,9 +85,13 @@
             this.Controls.Add(this.button_Cancel);
             this.Controls.Add(this.textBox_ManagerPassword);
             this.Controls.Add(this.label_ManagerPassword);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmManagerOverride";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Manager Override";
+            this.Load += new System.EventHandler(this.frmManagerOverride_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
