@@ -138,47 +138,47 @@ namespace SecretCellar
         {
             if (customer_data_grid.SelectedRows.Count > 0)
             {
-                Customer i = DataAccess.instance.GetCustomer().FirstOrDefault(x => x.LastName == txt_lname.Text.Trim() && x.FirstName == txt_fname.Text.Trim());
+                if (frmManagerOverride.DidOverride()) {
+                    Customer i = DataAccess.instance.GetCustomer().FirstOrDefault(x => x.LastName == txt_lname.Text.Trim() && x.FirstName == txt_fname.Text.Trim());
 
-                if (i != null)
-                {
-                    if(MessageBox.Show($@"Customer already exists.  Would you like to edit this customer?
+                    if (i != null) {
+                        if (MessageBox.Show($@"Customer already exists.  Would you like to edit this customer?
 Last Name: {i.LastName}
 First Name: {i.FirstName}
 E-mail: {i.Email}
 BusinessName: {i.BusinessName}
 Address: 
-                    {i.Address1}{(string.IsNullOrWhiteSpace ( i.Address2) ? "": $",{i.Address2}")} 
-  {i.City}, {i.State} {i.ZipCode}","Customer Exists", MessageBoxButtons.YesNo) == DialogResult.Yes)
-                    {
-                        SelectCustomer(i);
-                        return;
-                    }
-                }
-                else {
-                    if (txt_lname.Text.Replace(" ", "") != "" && txt_fname.Text.Replace(" ", "") != "") {
-                        i = new Customer {
-                            LastName = txt_lname.Text.Trim(),
-                            FirstName = txt_fname.Text.Trim(),
-                            Email = txt_email.Text.Trim(),
-                            BusinessName = txt_company.Text.Trim(),
-                            IsWholesale = cbo_wholesale.SelectedIndex != 0,
-                            CustomerDiscount = double.TryParse(txt_custDisc.Text, out double disc) ? disc : 0,
-                            PhoneNumber = txt_phone.Text,
-                            Address1 = txt_addr1.Text.Trim(),
-                            Address2 = txt_addr2.Text.Trim(),
-                            City = txt_city.Text.Trim(),
-                            State = (string)cmb_State.SelectedValue,
-                            ZipCode = txt_zip.Text.Trim()
-                        };
-
-                        i.CustomerID = DataAccess.instance.NewCustomer(i);
-                        refresh();
+                    {i.Address1}{(string.IsNullOrWhiteSpace(i.Address2) ? "" : $",{i.Address2}")} 
+  {i.City}, {i.State} {i.ZipCode}", "Customer Exists", MessageBoxButtons.YesNo) == DialogResult.Yes) {
+                            SelectCustomer(i);
+                            return;
+                        }
                     }
                     else {
-                        MessageBox.Show("First and Last name cannot be empty.", "Error");
-					}
-				}
+                        if (txt_lname.Text.Replace(" ", "") != "" && txt_fname.Text.Replace(" ", "") != "") {
+                            i = new Customer {
+                                LastName = txt_lname.Text.Trim(),
+                                FirstName = txt_fname.Text.Trim(),
+                                Email = txt_email.Text.Trim(),
+                                BusinessName = txt_company.Text.Trim(),
+                                IsWholesale = cbo_wholesale.SelectedIndex != 0,
+                                CustomerDiscount = double.TryParse(txt_custDisc.Text, out double disc) ? disc : 0,
+                                PhoneNumber = txt_phone.Text,
+                                Address1 = txt_addr1.Text.Trim(),
+                                Address2 = txt_addr2.Text.Trim(),
+                                City = txt_city.Text.Trim(),
+                                State = (string)cmb_State.SelectedValue,
+                                ZipCode = txt_zip.Text.Trim()
+                            };
+
+                            i.CustomerID = DataAccess.instance.NewCustomer(i);
+                            refresh();
+                        }
+                        else {
+                            MessageBox.Show("First and Last name cannot be empty.", "Error");
+                        }
+                    }
+                }
             }
         }
 
@@ -187,39 +187,41 @@ Address:
             if (customer_data_grid.SelectedRows.Count > 0)
             {
                 if (txt_lname.Text.Replace(" ", "") != "" && txt_fname.Text.Replace(" ", "") != "") {
-                    Customer i = DataAccess.instance.GetCustomer(uint.Parse(customer_data_grid.SelectedRows[0].Cells["customerID"].Value.ToString()));
+                    if (frmManagerOverride.DidOverride()) {
+                        Customer i = DataAccess.instance.GetCustomer(uint.Parse(customer_data_grid.SelectedRows[0].Cells["customerID"].Value.ToString()));
 
-                    i.LastName = txt_lname.Text;
-                    i.FirstName = txt_fname.Text;
-                    i.Email = txt_email.Text;
-                    i.BusinessName = txt_company.Text;
-                    // i.IsWholesale = (bool)cbo_wholesale.SelectedValue; following if statement does work
-                    if (cbo_wholesale.SelectedIndex == 1) {
-                        i.IsWholesale = true;
+                        i.LastName = txt_lname.Text;
+                        i.FirstName = txt_fname.Text;
+                        i.Email = txt_email.Text;
+                        i.BusinessName = txt_company.Text;
+                        // i.IsWholesale = (bool)cbo_wholesale.SelectedValue; following if statement does work
+                        if (cbo_wholesale.SelectedIndex == 1) {
+                            i.IsWholesale = true;
+                        }
+                        else {
+                            i.IsWholesale = false;
+                        }
+
+                        if (txt_custDisc.Text == null) {
+                            i.CustomerDiscount = 0;
+                        }
+                        else {
+                            i.CustomerDiscount = Convert.ToUInt32(txt_custDisc.Text);
+                        }
+
+                        i.PhoneNumber = txt_phone.Text;
+                        i.Address1 = txt_addr1.Text;
+                        i.Address2 = txt_addr2.Text;
+                        i.City = txt_city.Text;
+                        i.State = (string)cmb_State.SelectedValue;
+                        i.ZipCode = txt_zip.Text;
+
+
+                        i.CustomerID = DataAccess.instance.UpdateCustomer(i);
+                        //  customers.Add(i);
+                        //  dataAccess.UpdateCustomer(i);
+                        refresh();
                     }
-                    else {
-                        i.IsWholesale = false;
-                    }
-
-                    if (txt_custDisc.Text == null) {
-                        i.CustomerDiscount = 0;
-                    }
-                    else {
-                        i.CustomerDiscount = Convert.ToUInt32(txt_custDisc.Text);
-                    }
-
-                    i.PhoneNumber = txt_phone.Text;
-                    i.Address1 = txt_addr1.Text;
-                    i.Address2 = txt_addr2.Text;
-                    i.City = txt_city.Text;
-                    i.State = (string)cmb_State.SelectedValue;
-                    i.ZipCode = txt_zip.Text;
-
-
-                    i.CustomerID = DataAccess.instance.UpdateCustomer(i);
-                    //  customers.Add(i);
-                    //  dataAccess.UpdateCustomer(i);
-                    refresh();
                 }
                 else {
                     MessageBox.Show("First and Last name cannot be empty.", "Error");
@@ -286,11 +288,11 @@ Address:
 
 		private void button_delete_Click(object sender, EventArgs e) {
             if (customer_data_grid.SelectedRows.Count > 0) {
-                Customer customer = DataAccess.instance.GetCustomer(uint.Parse(customer_data_grid.SelectedRows[0].Cells["customerID"].Value.ToString()));
-
-                DataAccess.instance.DeleteCustomer(customer);
-
-                refresh();
+                if (frmManagerOverride.DidOverride()) {
+                    Customer customer = DataAccess.instance.GetCustomer(uint.Parse(customer_data_grid.SelectedRows[0].Cells["customerID"].Value.ToString()));
+                    DataAccess.instance.DeleteCustomer(customer);
+                    refresh();
+                }
 			}
         }
 
