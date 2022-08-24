@@ -14,6 +14,7 @@ namespace SecretCellar
     {
         private Transaction transaction = new Transaction();
 
+        private Customer CurrentCustomer = null;
         private Image logo = null;
 
         public frmTransaction()
@@ -75,7 +76,7 @@ namespace SecretCellar
         {
             UserLogin();
 
-            lbl_twentyone.Text = "21 AS OF: " + DateTime.Now.AddYears(-21).ToString("MM/dd/yy");
+            lbl_twentyone.Text = $"21 AS OF: {DateTime.Now.AddYears(-21):MM/dd/yy}";
             lbl_twentyone.Font = new Font("Microsoft Sans Serif", 16, FontStyle.Bold);
         }
 
@@ -88,38 +89,49 @@ namespace SecretCellar
         }
         private void Tender()
         {
-            if (transaction.Items.Count == 0)
-                DataAccess.instance.OpenCashDrawer();
-            else
+            frmPayment payment = new frmPayment(transaction);
+            if (payment.ShowDialog() == DialogResult.OK)
             {
-                frmPayment payment = new frmPayment(transaction);
-                if (payment.ShowDialog() == DialogResult.OK)
+                try
                 {
-                    try
-                    {
-                        DataAccess.instance.ProcessTransaction(transaction);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show($"Error writing to the database\n Error: \n {ex.Message}");
-                        DataAccess.instance.LogError(ex, "btnTender_Click", "Error writing to the database");
-                    }
-
-                    if (transaction.Payments.FirstOrDefault(x => x.Method == "CASH" || x.Method == "CHECK") != null)
-                        DataAccess.instance.OpenCashDrawer();
-
-                    if (payment.PrintReceipt)
-                    {
-                        Receipt.DefaultLayout.Logo = DataAccess.instance.ImportLogo();
-                        new Receipt(transaction).Print();
-                    }
-
-                    //transaction complete, clear the form
-                    transaction = new Transaction();
-                    label_currentCustomerValue.Text = "N/A";
-                    RefreshDataGrid();
-                    txtBarcode.Focus();
+                    DataAccess.instance.ProcessTransaction(transaction);
                 }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error writing to the database\n Error:\n {ex.Message}");
+                    DataAccess.instance.LogError(ex, "btnTender_Click", "Error writing to the database");
+                }
+
+                if (transaction.Payments.FirstOrDefault(x => x.Method == "CASH" || x.Method == "CHECK") != null || payment.Change > 0.0 && !transaction.ChangetoCredit )
+                    DataAccess.instance.OpenCashDrawer();
+
+                Customer customer = null;
+                if(transaction.CustomerID > 0)
+                     customer = DataAccess.instance.GetCustomer(transaction.CustomerID);
+
+                if (payment.Change > 0.0)
+                {
+                    if (transaction.ChangetoCredit)
+                    { 
+                        customer.Credit += payment.Change;
+                        DataAccess.instance.UpdateCustomer(customer);
+                    }
+                    else
+                        MessageBox.Show($"Change due to customer:\n\n {payment.Change:C}", "Change" );
+                }
+
+                if (payment.PrintReceipt)
+                {
+                    Receipt.DefaultLayout.Logo = DataAccess.instance.ImportLogo();
+                    new Receipt(transaction, customer).Print();
+                }
+
+                CurrentCustomer = null;
+                //transaction complete, clear the form
+                transaction = new Transaction();
+                label_currentCustomerValue.Text = "N/A";
+                RefreshDataGrid();
+                txtBarcode.Focus();
             }
         }
 
@@ -147,8 +159,6 @@ namespace SecretCellar
                 txtBarcode.Focus();
             }
         }
-
-     
 
         private void RefreshDataGrid()
         {
@@ -186,8 +196,10 @@ namespace SecretCellar
             if (transaction.CustomerID >= 0) {
                 if (transaction.CustomerID == 0) { label_currentCustomerValue.Text = "N/A"; }
                 else {
-                    Customer currentCustomer = DataAccess.instance.GetCustomer(transaction.CustomerID);
-                    label_currentCustomerValue.Text = $"{currentCustomer.LastName}, {currentCustomer.FirstName}";
+                    if((CurrentCustomer?.CustomerID ?? -1.0) != transaction.CustomerID)
+                        CurrentCustomer = DataAccess.instance.GetCustomer(transaction.CustomerID);
+
+                    label_currentCustomerValue.Text = $"{CurrentCustomer.LastName}, {CurrentCustomer.FirstName}";
                 }
             }
         }
@@ -388,9 +400,9 @@ namespace SecretCellar
 
         private void caseDiscount_CheckedChanged(object sender, EventArgs e)
         {
-            if (caseDiscount.Checked == true)
+            if (caseDiscount.Checked)
             {
-                System.Windows.Forms.MessageBox.Show("Case Discounts Applied!");
+                MessageBox.Show("Case Discounts Applied!");
             }
         }
 

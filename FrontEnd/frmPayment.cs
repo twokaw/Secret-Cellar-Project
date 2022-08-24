@@ -13,6 +13,9 @@ namespace SecretCellar
         private Customer currentCustomer = null;
         private bool TaxFree = false;
         private List<PaymentMethod> payMethods;
+        public double AmountPayed { get; set; } = 0.0;
+        public double Change { get; set; } = 0.0;
+
         public frmPayment(Transaction transaction)
         {
             InitializeComponent();
@@ -31,9 +34,13 @@ namespace SecretCellar
                 txt_customer.Text = $"{currentCustomer.LastName}, {currentCustomer.FirstName}";
                 txt_credit_amount.Text = $"{currentCustomer.Credit}";
                 btn_cust_credit.Enabled = true;
+                chk_ChangetoCredit.Enabled = true;
             }
             else
+            {
                 btn_cust_credit.Enabled = false;
+                chk_ChangetoCredit.Enabled = false;
+            }
 
             RefreshGrid();
         }
@@ -49,11 +56,11 @@ namespace SecretCellar
             if (transaction.Payments.Count > 0 && transaction.Payments[0].Method == "BREAKAGE")
                 transaction.Items.ForEach(x => x.Price = x.SupplierPrice);
 
+            transaction.ChangetoCredit = chk_ChangetoCredit.Checked;
+
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
-
-       
 
         private void NumberOnly(object sender, KeyPressEventArgs e)
         {
@@ -125,8 +132,6 @@ namespace SecretCellar
 
         private void RefreshGrid()
         {
-            double amountPayed = 0;
-
             paymentType.Rows.Clear();
             txtCashAmt.Clear();
             txtNumber.Clear();
@@ -141,28 +146,28 @@ namespace SecretCellar
                     // Populate Payment datagrid row
                     r.Cells["TYPE"].Value = p.Method;
                     r.Cells["AMOUNT"].Value = p.Amount.ToString("C");
-                    amountPayed += p.Amount;
+                    AmountPayed += p.Amount;
 
                    cashonly &= p.Method.ToUpper() == "CASH" || p.Method.ToUpper() == "CHECK";
                 }
             }
 
-
-
             double total = Math.Round(transaction.Total, 2);
             double totalCash = Math.Round(transaction.Total * (double)(1 - (payMethods.FirstOrDefault(x => x.PayMethod == "CASH").PercentOffset / 100)), 2);
 
-            if (amountPayed >= total ||
-               cashonly && amountPayed >= totalCash)
+            if (AmountPayed >= total ||
+               cashonly && AmountPayed >= totalCash)
             {
                 btnCompleteSale.Enabled = true;
-                txtChange.Text = (amountPayed - (cashonly ? totalCash : total)).ToString("C");
+
+                Change = AmountPayed - (cashonly ? totalCash : total);
+                txtChange.Text = $"{Change:C}";
                 txtDue.Text = "$0.00";
             }
             else
             {
                 btnCompleteSale.Enabled = false;
-                txtDue.Text = ((cashonly ? totalCash : total) - amountPayed).ToString("C");
+                txtDue.Text = ((cashonly ? totalCash : total) - AmountPayed).ToString("C");
                 txtChange.Text = "$0.00";
             }
             txtCashAmt.Focus();

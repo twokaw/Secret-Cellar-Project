@@ -63,6 +63,7 @@
             this.touchKeyPad1 = new SecretCellar.TouchKeyPad();
             this.txt_CashOnly = new SecretCellar.CurrencyBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.chk_ChangetoCredit = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.paymentType)).BeginInit();
             this.gb_NoPayment.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -173,7 +174,7 @@
             // btnCompleteSale
             // 
             this.btnCompleteSale.Enabled = false;
-            this.btnCompleteSale.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCompleteSale.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold);
             this.btnCompleteSale.Location = new System.Drawing.Point(1023, 904);
             this.btnCompleteSale.Name = "btnCompleteSale";
             this.btnCompleteSale.Size = new System.Drawing.Size(496, 99);
@@ -297,7 +298,7 @@
             // chk_printReceipt
             // 
             this.chk_printReceipt.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chk_printReceipt.Location = new System.Drawing.Point(714, 904);
+            this.chk_printReceipt.Location = new System.Drawing.Point(584, 896);
             this.chk_printReceipt.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.chk_printReceipt.Name = "chk_printReceipt";
             this.chk_printReceipt.Size = new System.Drawing.Size(225, 57);
@@ -451,12 +452,24 @@
             this.label1.Text = "Cash Total:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // chk_ChangetoCredit
+            // 
+            this.chk_ChangetoCredit.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chk_ChangetoCredit.Location = new System.Drawing.Point(584, 959);
+            this.chk_ChangetoCredit.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.chk_ChangetoCredit.Name = "chk_ChangetoCredit";
+            this.chk_ChangetoCredit.Size = new System.Drawing.Size(425, 57);
+            this.chk_ChangetoCredit.TabIndex = 49;
+            this.chk_ChangetoCredit.Text = "Change to Customer Credit";
+            this.chk_ChangetoCredit.UseVisualStyleBackColor = true;
+            // 
             // frmPayment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(144F, 144F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(231)))), ((int)(((byte)(206)))));
             this.ClientSize = new System.Drawing.Size(1540, 1028);
+            this.Controls.Add(this.chk_ChangetoCredit);
             this.Controls.Add(this.txt_CashOnly);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.touchKeyPad1);
@@ -536,5 +549,6 @@
         private SecretCellar.TouchKeyPad touchKeyPad1;
         private CurrencyBox txt_CashOnly;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.CheckBox chk_ChangetoCredit;
     }
 }
