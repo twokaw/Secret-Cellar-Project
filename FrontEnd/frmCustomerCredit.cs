@@ -40,9 +40,11 @@ namespace SecretCellar {
 		}
 
 		private void button_Confirm_Click(object sender, EventArgs e) {
-			customer.Credit = newCredit;
-			DataAccess.instance.UpdateCustomer(customer);
-			this.Close();
+			if (frmManagerOverride.DidOverride()) {
+				customer.Credit = newCredit;
+				DataAccess.instance.UpdateCustomer(customer);
+				Close();
+            }
 		}
 
 		private void updateCredit(string method) {

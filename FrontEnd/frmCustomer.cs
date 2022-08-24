@@ -279,13 +279,9 @@ Address:
 
 		private void button_UpdateCredit_Click(object sender, EventArgs e) {
             Customer customer = DataAccess.instance.GetCustomer(uint.Parse(customer_data_grid.SelectedRows[0].Cells["customerID"].Value.ToString()));
-
             frmCustomerCredit frmCustomerCredit = new frmCustomerCredit(customer);
-            DialogResult result = frmCustomerCredit.ShowDialog();
-
-            if (result.Equals(DialogResult.OK)) {
-                refresh();
-			}
+            frmCustomerCredit.ShowDialog();
+            refresh();
         }
 
 		private void button_delete_Click(object sender, EventArgs e) {
