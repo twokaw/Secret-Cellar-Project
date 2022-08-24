@@ -1,13 +1,25 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Windows.Forms;
-
+using Shared;
 
 
 namespace SecretCellar {
     public partial class frmManagerOverride : Form {
         public frmManagerOverride() { InitializeComponent(); }
         
+
+        /// <summary>
+        /// If the current user is an admin then it returns true, otherwise creates a new frmManagerOverride and shows the form. 
+        /// If the result equals OK then it returns true, otherwise it returns false.
+        /// </summary>
+        /// <returns></returns>
+        public static bool DidOverride() {
+            if (DataAccess.currentUser.EmployeeType.TypeName == "admin") return true;
+
+            frmManagerOverride managerOverride = new frmManagerOverride();
+            return managerOverride.ShowDialog() == DialogResult.OK;
+        }
+
 
         /// <summary>
         /// Cancels the manager override.
@@ -23,10 +35,20 @@ namespace SecretCellar {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void button_Confirm_Click(object sender, EventArgs e) {
-            Console.WriteLine(label_ManagerPassword.Text);
-
-
-
+            if (int.TryParse(textBox_ManagerPassword.Text, out int pin)) {
+                EmployeeModel employee = DataAccess.instance.GetEmployee().Find(emp => { return emp.PinNumber == pin; });
+                
+                if (employee == null || employee.EmployeeType.TypeName != "admin") {
+                    MessageBox.Show("Employee is not an admin.", "Error");
+                    return;
+                }
+                
+                DialogResult = DialogResult.OK;
+                Close();
+            }
+            else {
+                MessageBox.Show("Entered id is not in the correct format.", "Error");
+            }
         }
     }
 }

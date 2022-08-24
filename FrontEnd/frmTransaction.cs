@@ -88,8 +88,9 @@ namespace SecretCellar
         }
         private void Tender()
         {
-            if (transaction.Items.Count == 0)
-                DataAccess.instance.OpenCashDrawer();
+            if (transaction.Items.Count == 0) {
+                if (frmManagerOverride.DidOverride()) DataAccess.instance.OpenCashDrawer();
+            }
             else
             {
                 frmPayment payment = new frmPayment(transaction);
