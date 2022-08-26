@@ -5,18 +5,23 @@ using Shared;
 
 namespace SecretCellar {
     public partial class frmManagerOverride : Form {
-        public frmManagerOverride() { InitializeComponent(); }
-        
+        public frmManagerOverride(string title) {
+            InitializeComponent();
+            Text = title;
+        }
+
+
 
         /// <summary>
         /// If the current user is an admin then it returns true, otherwise creates a new frmManagerOverride and shows the form. 
         /// If the result equals OK then it returns true, otherwise it returns false.
         /// </summary>
+        /// <param name="title"></param>
         /// <returns></returns>
-        public static bool DidOverride() {
+        public static bool DidOverride(string title) {
             if (DataAccess.currentUser.EmployeeType.TypeName == "admin") return true;
 
-            frmManagerOverride managerOverride = new frmManagerOverride();
+            frmManagerOverride managerOverride = new frmManagerOverride(title);
             return managerOverride.ShowDialog() == DialogResult.OK;
         }
 

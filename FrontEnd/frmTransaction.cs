@@ -89,7 +89,7 @@ namespace SecretCellar
         private void Tender()
         {
             if (transaction.Items.Count == 0) {
-                if (frmManagerOverride.DidOverride()) DataAccess.instance.OpenCashDrawer();
+                if (frmManagerOverride.DidOverride("Open Cash Drawer")) DataAccess.instance.OpenCashDrawer();
             }
             else
             {
@@ -259,15 +259,23 @@ namespace SecretCellar
             txtBarcode.Focus();
         }
 
-        private void btnVoidTrx_Click(object sender, EventArgs e)
-        {
+        private void btnVoidTrx_Click(object sender, EventArgs e) {
             //ENSURE THAT THE TRANSACTION DOESN'T HAVE PAYMENTS STILL
-            if (transaction.Payments.Count > 0)
-            {
+            if (transaction.Payments.Count > 0) {
                 MessageBox.Show("Cannot void transaction. There are still outstanding payments.", "Error");
                 return;
             }
 
+            if (transaction.TranType == Transaction.TranactionType.Suspended) {
+                if (frmManagerOverride.DidOverride("Void Suspended Transaction")) VoidTransaction();
+            }
+            else {
+                VoidTransaction();
+            }
+        }
+
+
+        private void VoidTransaction() {
             //PROCESS THE TRANSACTION IN CASE THE USER DELETED ANY PAYMENTS
             uint transactionId = DataAccess.instance.ProcessTransaction(transaction);
 
@@ -279,6 +287,7 @@ namespace SecretCellar
             RefreshDataGrid();
             txtBarcode.Focus();
         }
+
 
         private void dataGridView1_Click(object sender, EventArgs e)
         {

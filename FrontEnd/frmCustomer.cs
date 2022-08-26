@@ -138,7 +138,7 @@ namespace SecretCellar
         {
             if (customer_data_grid.SelectedRows.Count > 0)
             {
-                if (frmManagerOverride.DidOverride()) {
+                if (frmManagerOverride.DidOverride("Create New Customer")) {
                     Customer i = DataAccess.instance.GetCustomer().FirstOrDefault(x => x.LastName == txt_lname.Text.Trim() && x.FirstName == txt_fname.Text.Trim());
 
                     if (i != null) {
@@ -187,7 +187,7 @@ Address:
             if (customer_data_grid.SelectedRows.Count > 0)
             {
                 if (txt_lname.Text.Replace(" ", "") != "" && txt_fname.Text.Replace(" ", "") != "") {
-                    if (frmManagerOverride.DidOverride()) {
+                    if (frmManagerOverride.DidOverride("Update Customer")) {
                         Customer i = DataAccess.instance.GetCustomer(uint.Parse(customer_data_grid.SelectedRows[0].Cells["customerID"].Value.ToString()));
 
                         i.LastName = txt_lname.Text;
@@ -288,7 +288,7 @@ Address:
 
 		private void button_delete_Click(object sender, EventArgs e) {
             if (customer_data_grid.SelectedRows.Count > 0) {
-                if (frmManagerOverride.DidOverride()) {
+                if (frmManagerOverride.DidOverride("Delete Customer")) {
                     Customer customer = DataAccess.instance.GetCustomer(uint.Parse(customer_data_grid.SelectedRows[0].Cells["customerID"].Value.ToString()));
                     DataAccess.instance.DeleteCustomer(customer);
                     refresh();
