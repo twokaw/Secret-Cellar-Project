@@ -13,6 +13,9 @@ namespace SecretCellar
         private Customer currentCustomer = null;
         private bool TaxFree = false;
         private List<PaymentMethod> payMethods;
+        public double AmountPayed { get; set; } = 0.0;
+        public double Change { get; set; } = 0.0;
+
         public frmPayment(Transaction transaction)
         {
             InitializeComponent();
@@ -31,9 +34,13 @@ namespace SecretCellar
                 txt_customer.Text = $"{currentCustomer.LastName}, {currentCustomer.FirstName}";
                 txt_credit_amount.Text = $"{currentCustomer.Credit}";
                 btn_cust_credit.Enabled = true;
+                chk_ChangetoCredit.Enabled = true;
             }
             else
+            {
                 btn_cust_credit.Enabled = false;
+                chk_ChangetoCredit.Enabled = false;
+            }
 
             RefreshGrid();
         }
@@ -49,11 +56,12 @@ namespace SecretCellar
             if (transaction.Payments.Count > 0 && transaction.Payments[0].Method == "BREAKAGE")
                 transaction.Items.ForEach(x => x.Price = x.SupplierPrice);
 
+            transaction.ChangetoCredit = chk_ChangetoCredit.Checked;
+
+         //   DataAccess.instance.UpdateCustomer(currentCustomer);
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
-
-       
 
         private void NumberOnly(object sender, KeyPressEventArgs e)
         {
@@ -87,7 +95,7 @@ namespace SecretCellar
                 transaction.TaxExempt = TaxFree;
             }    
 
-            if (double.TryParse(txtCashAmt.Text, out double amount) && amount > 0.0)
+            if (double.TryParse(txtCashAmt.Text.Replace("$", ""), out double amount) && amount > 0.0)
             {
                 transaction.AddPayment(new Payment { Method = method, Amount = amount, Number = number });
                 RefreshGrid();
@@ -112,25 +120,28 @@ namespace SecretCellar
 
         private void RemovePayments(string method = "")
         {
+
+            double credit = double.Parse(txt_credit_amount.Text.Replace("$", ""));
+            foreach (Payment p in transaction.Payments)
+                if (p.Method == "CUSTOMER CREDIT")
+                    credit += p.Amount;
+            txt_credit_amount.Text = $"{credit}";
+            currentCustomer.Credit = credit;
+
+            paymentType.Rows.Clear();
             transaction.Payments.Clear();
 
-            if (!string.IsNullOrWhiteSpace(method) && double.TryParse(txt_TenderTransTotal.Text.Replace("$", ""), out double amount))
-            {
-                transaction.AddPayment(new Payment { Method = method, Amount = amount });
-                transaction.TaxExempt = method == "DONATE" || method == "BREAKAGE" || TaxFree;
-            }
+            transaction.TaxExempt = TaxFree;
             
             RefreshGrid();
         }
 
         private void RefreshGrid()
         {
-            double amountPayed = 0;
-
             paymentType.Rows.Clear();
             txtCashAmt.Clear();
             txtNumber.Clear();
-
+            AmountPayed = 0;
             bool cashonly = transaction.Payments.Count > 0;
             foreach (Payment p in transaction.Payments)
             {
@@ -141,28 +152,28 @@ namespace SecretCellar
                     // Populate Payment datagrid row
                     r.Cells["TYPE"].Value = p.Method;
                     r.Cells["AMOUNT"].Value = p.Amount.ToString("C");
-                    amountPayed += p.Amount;
+                    AmountPayed += p.Amount;
 
                    cashonly &= p.Method.ToUpper() == "CASH" || p.Method.ToUpper() == "CHECK";
                 }
             }
 
-
-
             double total = Math.Round(transaction.Total, 2);
             double totalCash = Math.Round(transaction.Total * (double)(1 - (payMethods.FirstOrDefault(x => x.PayMethod == "CASH").PercentOffset / 100)), 2);
 
-            if (amountPayed >= total ||
-               cashonly && amountPayed >= totalCash)
+            if (AmountPayed >= total ||
+               cashonly && AmountPayed >= totalCash)
             {
                 btnCompleteSale.Enabled = true;
-                txtChange.Text = (amountPayed - (cashonly ? totalCash : total)).ToString("C");
+
+                Change = AmountPayed - (cashonly ? totalCash : total);
+                txtChange.Text = $"{Change:C}";
                 txtDue.Text = "$0.00";
             }
             else
             {
                 btnCompleteSale.Enabled = false;
-                txtDue.Text = ((cashonly ? totalCash : total) - amountPayed).ToString("C");
+                txtDue.Text = ((cashonly ? totalCash : total) - AmountPayed).ToString("C");
                 txtChange.Text = "$0.00";
             }
             txtCashAmt.Focus();
@@ -179,8 +190,10 @@ namespace SecretCellar
 
                 //checks to see if the deletion is customer credit so that it doesn't add too much back to customer credit
                 if (TYPE == "CUSTOMER CREDIT") {
-                    txt_credit_amount.Text = (Convert.ToDouble(txt_credit_amount.Text) + amt).ToString();
-                    currentCustomer.Credit = Convert.ToDouble(txt_credit_amount.Text);
+                    double credit = double.Parse(txt_credit_amount.Text.Replace("$", ""));
+                    credit += amt;
+                    txt_credit_amount.Text = $"{credit}";
+                    currentCustomer.Credit = credit;
                 }
 
                 RefreshGrid();
@@ -194,28 +207,25 @@ namespace SecretCellar
 
         private void btn_cust_credit_Click(object sender, EventArgs e)
         {
-            double creditAmount = Convert.ToDouble(txt_credit_amount.Text);
+            double creditAmount = Convert.ToDouble(txt_credit_amount.Text.Replace("$", ""));
             double due = (Convert.ToDouble(txtDue.Text.Replace("$","")));
+            double payAmount = 0.0;
 
-            if (txtCashAmt.Text == "")
+            if  (!double.TryParse(txtCashAmt.Text.Replace("$", ""), out payAmount) || payAmount == 0.0)
             {
-                if (creditAmount <= 0) {
-                    if (MessageBox.Show("Do you want to Create a Negative Credit?", "Create Balance", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
-                        creditAmount = due;
-                    else
-                        return;
-                }
+                if (creditAmount <= 0) 
+                    payAmount = due;
                 else
-                    creditAmount = Math.Min(creditAmount, due);
+                    payAmount = Math.Min(creditAmount, due);
             }
-            else
-                creditAmount = Math.Min(due, Convert.ToDouble(txtCashAmt.Text.Trim()));
+            if(payAmount > creditAmount 
+                && MessageBox.Show("Do you want to create a Negative Credit?", "Create Balance", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.No)
+                return;
+            txtCashAmt.Text = $"{payAmount :c}";
+            UpdatePayment("CUSTOMER CREDIT", $"{payAmount}");
 
-            txtCashAmt.Text = creditAmount.ToString();
-            UpdatePayment("CUSTOMER CREDIT");
-
-            txt_credit_amount.Text =  (Convert.ToDouble(txt_credit_amount.Text.Trim())- creditAmount).ToString();
-            currentCustomer.Credit = Convert.ToDouble(txt_credit_amount.Text);
+            txt_credit_amount.Text = $"{creditAmount - payAmount}";
+            currentCustomer.Credit = Convert.ToDouble(txt_credit_amount.Text.Substring(1));
         }
 
         private void txtCashAmt_Enter(object sender, EventArgs e)
