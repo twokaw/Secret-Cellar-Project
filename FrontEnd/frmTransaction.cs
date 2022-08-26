@@ -127,9 +127,11 @@ namespace SecretCellar
                 }
 
                 CurrentCustomer = null;
+                lbl_CreditValue.Visible = false;
+                lbl_Credit.Visible = false;
                 //transaction complete, clear the form
                 transaction = new Transaction();
-                label_currentCustomerValue.Text = "N/A";
+                label_currentCustomerValue.Text = "d";
                 RefreshDataGrid();
                 txtBarcode.Focus();
             }
@@ -153,6 +155,7 @@ namespace SecretCellar
                 }  
                 
                 RefreshDataGrid();
+                txtBarcode.Focus();
             }
             else
             {
@@ -194,12 +197,23 @@ namespace SecretCellar
             txt_Ship.Text = transaction.Shipping.ToString("C");
 
             if (transaction.CustomerID >= 0) {
-                if (transaction.CustomerID == 0) { label_currentCustomerValue.Text = "N/A"; }
+                if (transaction.CustomerID == 0) { 
+                    label_currentCustomerValue.Text = "N/A";
+                    lbl_Credit.Visible = false;
+                    lbl_CreditValue.Visible = false;
+                }
                 else {
                     if((CurrentCustomer?.CustomerID ?? -1.0) != transaction.CustomerID)
                         CurrentCustomer = DataAccess.instance.GetCustomer(transaction.CustomerID);
 
                     label_currentCustomerValue.Text = $"{CurrentCustomer.LastName}, {CurrentCustomer.FirstName}";
+
+                    lbl_CreditValue.Visible = CurrentCustomer.Credit > 0.0;
+                    lbl_Credit.Visible = CurrentCustomer.Credit > 0.0;
+                    if (CurrentCustomer.Credit > 0.0)
+                    {
+                        lbl_CreditValue.Text = $"{CurrentCustomer.Credit:c2}";
+                    }
                 }
             }
         }

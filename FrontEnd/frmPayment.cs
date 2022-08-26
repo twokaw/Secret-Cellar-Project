@@ -58,6 +58,7 @@ namespace SecretCellar
 
             transaction.ChangetoCredit = chk_ChangetoCredit.Checked;
 
+         //   DataAccess.instance.UpdateCustomer(currentCustomer);
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
@@ -94,7 +95,7 @@ namespace SecretCellar
                 transaction.TaxExempt = TaxFree;
             }    
 
-            if (double.TryParse(txtCashAmt.Text, out double amount) && amount > 0.0)
+            if (double.TryParse(txtCashAmt.Text.Replace("$", ""), out double amount) && amount > 0.0)
             {
                 transaction.AddPayment(new Payment { Method = method, Amount = amount, Number = number });
                 RefreshGrid();
@@ -119,13 +120,18 @@ namespace SecretCellar
 
         private void RemovePayments(string method = "")
         {
+
+            double credit = double.Parse(txt_credit_amount.Text.Replace("$", ""));
+            foreach (Payment p in transaction.Payments)
+                if (p.Method == "CUSTOMER CREDIT")
+                    credit += p.Amount;
+            txt_credit_amount.Text = $"{credit}";
+            currentCustomer.Credit = credit;
+
+            paymentType.Rows.Clear();
             transaction.Payments.Clear();
 
-            if (!string.IsNullOrWhiteSpace(method) && double.TryParse(txt_TenderTransTotal.Text.Replace("$", ""), out double amount))
-            {
-                transaction.AddPayment(new Payment { Method = method, Amount = amount });
-                transaction.TaxExempt = method == "DONATE" || method == "BREAKAGE" || TaxFree;
-            }
+            transaction.TaxExempt = TaxFree;
             
             RefreshGrid();
         }
@@ -135,7 +141,7 @@ namespace SecretCellar
             paymentType.Rows.Clear();
             txtCashAmt.Clear();
             txtNumber.Clear();
-
+            AmountPayed = 0;
             bool cashonly = transaction.Payments.Count > 0;
             foreach (Payment p in transaction.Payments)
             {
@@ -184,8 +190,10 @@ namespace SecretCellar
 
                 //checks to see if the deletion is customer credit so that it doesn't add too much back to customer credit
                 if (TYPE == "CUSTOMER CREDIT") {
-                    txt_credit_amount.Text = (Convert.ToDouble(txt_credit_amount.Text) + amt).ToString();
-                    currentCustomer.Credit = Convert.ToDouble(txt_credit_amount.Text);
+                    double credit = double.Parse(txt_credit_amount.Text.Replace("$", ""));
+                    credit += amt;
+                    txt_credit_amount.Text = $"{credit}";
+                    currentCustomer.Credit = credit;
                 }
 
                 RefreshGrid();
@@ -199,28 +207,25 @@ namespace SecretCellar
 
         private void btn_cust_credit_Click(object sender, EventArgs e)
         {
-            double creditAmount = Convert.ToDouble(txt_credit_amount.Text);
+            double creditAmount = Convert.ToDouble(txt_credit_amount.Text.Replace("$", ""));
             double due = (Convert.ToDouble(txtDue.Text.Replace("$","")));
+            double payAmount = 0.0;
 
-            if (txtCashAmt.Text == "")
+            if  (!double.TryParse(txtCashAmt.Text.Replace("$", ""), out payAmount) || payAmount == 0.0)
             {
-                if (creditAmount <= 0) {
-                    if (MessageBox.Show("Do you want to Create a Negative Credit?", "Create Balance", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
-                        creditAmount = due;
-                    else
-                        return;
-                }
+                if (creditAmount <= 0) 
+                    payAmount = due;
                 else
-                    creditAmount = Math.Min(creditAmount, due);
+                    payAmount = Math.Min(creditAmount, due);
             }
-            else
-                creditAmount = Math.Min(due, Convert.ToDouble(txtCashAmt.Text.Trim()));
+            if(payAmount > creditAmount 
+                && MessageBox.Show("Do you want to create a Negative Credit?", "Create Balance", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.No)
+                return;
+            txtCashAmt.Text = $"{payAmount :c}";
+            UpdatePayment("CUSTOMER CREDIT", $"{payAmount}");
 
-            txtCashAmt.Text = creditAmount.ToString();
-            UpdatePayment("CUSTOMER CREDIT");
-
-            txt_credit_amount.Text =  (Convert.ToDouble(txt_credit_amount.Text.Trim())- creditAmount).ToString();
-            currentCustomer.Credit = Convert.ToDouble(txt_credit_amount.Text);
+            txt_credit_amount.Text = $"{creditAmount - payAmount}";
+            currentCustomer.Credit = Convert.ToDouble(txt_credit_amount.Text.Substring(1));
         }
 
         private void txtCashAmt_Enter(object sender, EventArgs e)
