@@ -507,7 +507,7 @@ namespace SecretCellar
 
         private void btn_cashDrawer_Click(object sender, EventArgs e)
         {
-            DataAccess.instance.OpenCashDrawer();
+            if (frmManagerOverride.DidOverride("Open Cash Drawer")) DataAccess.instance.OpenCashDrawer();
         }
     }
 }
