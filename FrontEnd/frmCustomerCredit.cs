@@ -15,7 +15,6 @@ namespace SecretCellar {
 			newCredit = customer.Credit;
 			oldCredit = customer.Credit;
 
-			this.label_CustomersCredit.Text = "Current Credit:";
 			this.label_CustomersCreditValue.Text = $"{newCredit:c2}";
 		}
 
@@ -40,9 +39,11 @@ namespace SecretCellar {
 		}
 
 		private void button_Confirm_Click(object sender, EventArgs e) {
-			customer.Credit = newCredit;
-			DataAccess.instance.UpdateCustomer(customer);
-			this.Close();
+			if (frmManagerOverride.DidOverride("Update Credit")) {
+				customer.Credit = newCredit;
+				DataAccess.instance.UpdateCustomer(customer);
+				Close();
+            }
 		}
 
 		private void updateCredit(string method) {

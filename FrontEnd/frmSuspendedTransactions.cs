@@ -61,16 +61,20 @@ namespace SecretCellar
 
 				//SHOW THE FORM TO DISPLAY THE PAYMENTS AMOUNT AND SELECT THE PAYMENT RETURN METHOD
 				frmSuspendedTransactionsSelectReturnPaymentMethod selectReturnPaymentMethod = new frmSuspendedTransactionsSelectReturnPaymentMethod(selectedSuspendedTransaction);
-				DialogResult returnPaymentResult = selectReturnPaymentMethod.ShowDialog();
+				selectReturnPaymentMethod.ShowDialog();
 
-				//IF THE USER DIDN'T CLICK CASH OR CREDIT
-				if (returnPaymentResult != DialogResult.Yes && returnPaymentResult != DialogResult.No) { return; }
+				if (selectReturnPaymentMethod.DidDeleteTransaction) {
+					PopulateListOfTransactions();
+                }
 			}
+			else {
+				if (frmManagerOverride.DidOverride("Delete Transaction")) {
+					//DELETE THE TRANSACTION FROM THE DATABASE
+					DataAccess.instance.DeleteTransaction(selectedSuspendedTransaction.InvoiceID);
 
-			//DELETE THE TRANSACTION FROM THE DATABASE
-			DataAccess.instance.DeleteTransaction(selectedSuspendedTransaction.InvoiceID);
-
-			PopulateListOfTransactions();
+					PopulateListOfTransactions();
+				}
+			}
 		}
 
 

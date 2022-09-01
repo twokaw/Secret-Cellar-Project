@@ -87,54 +87,60 @@ namespace SecretCellar
             RefreshDataGrid();// opens form associated with discount instantiation
             txtBarcode.Focus();
         }
+
         private void Tender()
         {
-            frmPayment payment = new frmPayment(transaction);
-            if (payment.ShowDialog() == DialogResult.OK)
-            {
-                try
-                {
-                    DataAccess.instance.ProcessTransaction(transaction);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"Error writing to the database\n Error:\n {ex.Message}");
-                    DataAccess.instance.LogError(ex, "btnTender_Click", "Error writing to the database");
-                }
-
-                if (transaction.Payments.FirstOrDefault(x => x.Method == "CASH" || x.Method == "CHECK") != null || payment.Change > 0.0 && !transaction.ChangetoCredit )
-                    DataAccess.instance.OpenCashDrawer();
-
-                Customer customer = null;
-                if(transaction.CustomerID > 0)
-                     customer = DataAccess.instance.GetCustomer(transaction.CustomerID);
-
-                if (payment.Change > 0.0)
-                {
-                    if (transaction.ChangetoCredit)
-                    { 
-                        customer.Credit += payment.Change;
-                        DataAccess.instance.UpdateCustomer(customer);
-                    }
-                    else
-                        MessageBox.Show($"Change due to customer:\n\n {payment.Change:C}", "Change" );
-                }
-
-                if (payment.PrintReceipt)
-                {
-                    Receipt.DefaultLayout.Logo = DataAccess.instance.ImportLogo();
-                    new Receipt(transaction, customer).Print();
-                }
-
-                CurrentCustomer = null;
-                lbl_CreditValue.Visible = false;
-                lbl_Credit.Visible = false;
-                //transaction complete, clear the form
-                transaction = new Transaction();
-                label_currentCustomerValue.Text = "d";
-                RefreshDataGrid();
-                txtBarcode.Focus();
+            if (transaction.Items.Count == 0) {
+                if (frmManagerOverride.DidOverride("Open Cash Drawer")) DataAccess.instance.OpenCashDrawer();
             }
+            else {
+				frmPayment payment = new frmPayment(transaction);
+				
+				if (payment.ShowDialog() == DialogResult.OK) {
+					try
+					{
+						DataAccess.instance.ProcessTransaction(transaction);
+					}
+					catch (Exception ex)
+					{
+						MessageBox.Show($"Error writing to the database\n Error:\n {ex.Message}");
+						DataAccess.instance.LogError(ex, "btnTender_Click", "Error writing to the database");
+					}
+
+					if (transaction.Payments.FirstOrDefault(x => x.Method == "CASH" || x.Method == "CHECK") != null || payment.Change > 0.0 && !transaction.ChangetoCredit )
+						DataAccess.instance.OpenCashDrawer();
+
+					Customer customer = null;
+					if(transaction.CustomerID > 0)
+						customer = DataAccess.instance.GetCustomer(transaction.CustomerID);
+
+					if (payment.Change > 0.0)
+					{
+						if (transaction.ChangetoCredit)
+						{ 
+							customer.Credit += payment.Change;
+							DataAccess.instance.UpdateCustomer(customer);
+						}
+						else
+							MessageBox.Show($"Change due to customer:\n\n {payment.Change:C}", "Change" );
+					}
+
+					if (payment.PrintReceipt)
+					{
+						Receipt.DefaultLayout.Logo = DataAccess.instance.ImportLogo();
+						new Receipt(transaction, customer).Print();
+					}
+
+					CurrentCustomer = null;
+					lbl_CreditValue.Visible = false;
+					lbl_Credit.Visible = false;
+					//transaction complete, clear the form
+					transaction = new Transaction();
+					label_currentCustomerValue.Text = "d";
+					RefreshDataGrid();
+					txtBarcode.Focus();
+				}
+			}
         }
 
         private void btnTender2_Click(object sender, EventArgs e)
@@ -284,15 +290,23 @@ namespace SecretCellar
             txtBarcode.Focus();
         }
 
-        private void btnVoidTrx_Click(object sender, EventArgs e)
-        {
+        private void btnVoidTrx_Click(object sender, EventArgs e) {
             //ENSURE THAT THE TRANSACTION DOESN'T HAVE PAYMENTS STILL
-            if (transaction.Payments.Count > 0)
-            {
+            if (transaction.Payments.Count > 0) {
                 MessageBox.Show("Cannot void transaction. There are still outstanding payments.", "Error");
                 return;
             }
 
+            if (transaction.TranType == Transaction.TranactionType.Suspended) {
+                if (frmManagerOverride.DidOverride("Void Suspended Transaction")) VoidTransaction();
+            }
+            else {
+                VoidTransaction();
+            }
+        }
+
+
+        private void VoidTransaction() {
             //PROCESS THE TRANSACTION IN CASE THE USER DELETED ANY PAYMENTS
             uint transactionId = DataAccess.instance.ProcessTransaction(transaction);
 
@@ -304,6 +318,7 @@ namespace SecretCellar
             RefreshDataGrid();
             txtBarcode.Focus();
         }
+
 
         private void dataGridView1_Click(object sender, EventArgs e)
         {
@@ -523,7 +538,7 @@ namespace SecretCellar
 
         private void btn_cashDrawer_Click(object sender, EventArgs e)
         {
-            DataAccess.instance.OpenCashDrawer();
+            if (frmManagerOverride.DidOverride("Open Cash Drawer")) DataAccess.instance.OpenCashDrawer();
         }
     }
 }
