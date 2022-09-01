@@ -2,11 +2,10 @@
 using System.Windows.Forms;
 using Shared;
 
-
-
 namespace SecretCellar {
 	public partial class frmCustomerCredit : Form {
 		Customer customer = null;
+		double oldCredit = 0;
 		double newCredit = 0;
 
 		public frmCustomerCredit(Customer c) {
@@ -14,9 +13,10 @@ namespace SecretCellar {
 
 			customer = c;
 			newCredit = customer.Credit;
+			oldCredit = customer.Credit;
 
 			this.label_CustomersCredit.Text = "Current Credit:";
-			this.label_CustomersCreditValue.Text = "$" + newCredit;
+			this.label_CustomersCreditValue.Text = $"{newCredit:c2}";
 		}
 
 		private void button_SubtractCredit_Click(object sender, EventArgs e) {
@@ -48,13 +48,13 @@ namespace SecretCellar {
 		}
 
 		private void updateCredit(string method) {
-			double value;
-
 			if (method.Equals("reset")) {
-				newCredit = 0;
-				this.label_CustomersCreditValue.Text = "$" + newCredit;
+				newCredit = oldCredit;
+				this.label_CustomersCreditValue.Text = $"{newCredit:c2}";
+				
+				button_Confirm.Enabled = false;
 			}
-			else if (double.TryParse(textBox_NewCreditAmount.Text, out value)) {
+			else if (double.TryParse(textBox_NewCreditAmount.Text, out double value)) {
 				switch(method) {
 					case "add":
 						newCredit += value;
@@ -67,7 +67,8 @@ namespace SecretCellar {
 						break;
 				}
 
-				this.label_CustomersCreditValue.Text = "$" + newCredit;
+				button_Confirm.Enabled = true;
+				label_CustomersCreditValue.Text = $"{newCredit:c2}";
 			}
 			else {
 				if (textBox_NewCreditAmount.Text.Replace(" ", "").Equals("")) {

@@ -10,11 +10,15 @@ namespace NCR_Printer
 
         private readonly Transaction transaction;
 
-        public Receipt(Transaction trans):this(trans, DefaultLayout) { }
+        private readonly Customer customer = null;
 
-        public Receipt(Transaction trans, PrintLayout layout): base(layout)
+        public Receipt(Transaction trans) : this(trans, null, DefaultLayout) { }
+        public Receipt(Transaction trans, Customer cust) : this(trans, cust, DefaultLayout) { }
+
+        public Receipt(Transaction trans, Customer cust, PrintLayout layout) : base(layout)
         {
-            Layout = layout;
+            Layout = layout ?? DefaultLayout;
+            customer = cust;
             transaction = trans;
             if (DefaultLayout == null)
                 DefaultLayout = layout;
@@ -114,10 +118,19 @@ namespace NCR_Printer
             }
 
             if(payment > transaction.Total)
-                PrintText($"         Change: {payment - transaction.Total:C}");
+            {
+                if(transaction.ChangetoCredit )
+                    PrintText($" Added to Credit: {payment - transaction.Total:C}");
+                else
+                    PrintText($"         Change: {payment - transaction.Total:C}");
+            }    
+                
+            if(customer != null && customer.Credit > 0)
+                PrintText($"    Credit Balance: {customer.Credit:C}");
+
 
             //Print footer
-           PrintHeaderFooter($"{Layout.Footer}\n\n ");
+            PrintHeaderFooter($"{Layout.Footer}\n\n ");
         }
     }
 }

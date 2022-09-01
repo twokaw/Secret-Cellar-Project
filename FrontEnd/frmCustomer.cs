@@ -26,7 +26,7 @@ namespace SecretCellar
 
             customer_data_grid.DataSource = DataAccess.instance.GetCustomer().
                 Select(x => new{customerID = x.CustomerID, last_name = x.LastName, first_name = x.FirstName, phone = x.PhoneNumber, email = x.Email, business_name = x.BusinessName,
-                isWholesale = x.IsWholesale, customerDiscount = x.CustomerDiscount, addr1 = x.Address1, addr2 = x.Address2, city = x.City, state = x.State, zip =x.ZipCode, Credit = x.Credit}).
+                isWholesale = x.IsWholesale, customerDiscount = x.CustomerDiscount, addr1 = x.Address1, addr2 = x.Address2, city = x.City, state = x.State, zip =x.ZipCode, Credit = $"{x.Credit:c}"}).
                 OrderBy(x => x.last_name).
                 ToList();
         }
@@ -114,8 +114,13 @@ namespace SecretCellar
 
         private void refresh()
         {
+            uint rowcustId = 0;
+            if (customer_data_grid.DataSource != null && customer_data_grid.SelectedRows.Count > 0)
+                rowcustId = uint.Parse(customer_data_grid.SelectedRows[0].Cells["customerID"].Value.ToString());
+
             customer_data_grid.DataSource = DataAccess.instance.GetCustomer(txt_customer.Text).
-              Select(x => new {
+              Select(x => new
+              {
                   customerID = x.CustomerID,
                   last_name = x.LastName,
                   first_name = x.FirstName,
@@ -129,9 +134,18 @@ namespace SecretCellar
                   city = x.City,
                   state = x.State,
                   zip = x.ZipCode,
-                  Credit = x.Credit}).
-                OrderBy(x => x.last_name).
-                ToList();
+                  Credit = $"{x.Credit:c}"
+              }).
+              OrderBy(y => y.last_name).
+              ToList();
+
+
+            foreach (DataGridViewRow row in customer_data_grid.Rows)
+                if (row.Cells["customerID"].Value.ToString().Contains($"{rowcustId}"))
+                {
+                    row.Selected = true;
+                    break;
+                }
         }
 
         private void btn_new_Click(object sender, EventArgs e)
@@ -235,21 +249,10 @@ Address:
             if (addCustomer())
             {
                 this.DialogResult = DialogResult.OK;
-                //transaction.txt_current_cust.Text = customer.CustomerID;
                 this.Close();
             }
-
-            /*else
-            {
-                if(MessageBox.Show("Transaction Customer already set do you want to change customers? ","Customer Error", MessageBoxButtons.YesNo) == DialogResult.Yes)
-                    {
-                        addCustomer();
-                        this.DialogResult = DialogResult.OK;
-                    }
-               
-            }*/
-
         }
+
         private bool addCustomer()
         {
             if (customer_data_grid.SelectedRows.Count > 0)
@@ -280,6 +283,7 @@ Address:
         }
 
 		private void button_UpdateCredit_Click(object sender, EventArgs e) {
+
             Customer customer = DataAccess.instance.GetCustomer(uint.Parse(customer_data_grid.SelectedRows[0].Cells["customerID"].Value.ToString()));
             frmCustomerCredit frmCustomerCredit = new frmCustomerCredit(customer);
             frmCustomerCredit.ShowDialog();

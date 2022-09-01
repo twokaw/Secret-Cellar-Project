@@ -311,7 +311,7 @@ namespace pos_core_api.ORM
         {
             MySqlCommand cmd = db.CreateCommand(@"
                 UPDATE customer 
-                SET Credit = IFNULL(Credit, 0) - @amount
+                SET Credit = IFNULL(Credit, 0) + @amount
                 WHERE customerID = @CustID
             ");
             cmd.Parameters.Add(new MySqlParameter("custID", custID));

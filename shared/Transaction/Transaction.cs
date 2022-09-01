@@ -21,6 +21,7 @@ namespace Shared
         public DateTime TransactionDateTime { get; set; }
         public string Location { get; set; }
         public List<Item> Items { get; set; }
+        public bool ChangetoCredit { get; set; }
         public double ItemTotal
         {
             get
