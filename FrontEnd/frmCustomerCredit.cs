@@ -15,7 +15,6 @@ namespace SecretCellar {
 			newCredit = customer.Credit;
 			oldCredit = customer.Credit;
 
-			this.label_CustomersCredit.Text = "Current Credit:";
 			this.label_CustomersCreditValue.Text = $"{newCredit:c2}";
 		}
 
