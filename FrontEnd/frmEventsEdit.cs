@@ -38,43 +38,45 @@ namespace SecretCellar {
 
 		private void button_UpdateEvent_Click(object sender, EventArgs e) {
 			if (HasNoErrors()) {
-				uint quantity = 9999;
-				double supplierPrice = 0.0;
+				if (frmManagerOverride.DidOverride("Update Event")) {
+					uint quantity = 9999;
+					double supplierPrice = 0.0;
 
-				//CHECK IF QUANTITY IS FILLED
-				if (uint.TryParse(textBox_Quantity.Text, out uint uintValue)) {
-					quantity = uintValue;
+					//CHECK IF QUANTITY IS FILLED
+					if (uint.TryParse(textBox_Quantity.Text, out uint uintValue)) {
+						quantity = uintValue;
+					}
+
+					//CHECK IF SUPPLIER PRICE IS FILLED
+					if (double.TryParse(textBox_SupplierPrice.Text, out double doubleValue)) {
+						supplierPrice = doubleValue;
+					}
+
+					//CREATE A NEW EVENT WITH THE QUANTITY AND SUPPLIER PRICE UPDATED
+					_eventToEdit = new Event(quantity, supplierPrice);
+
+					//SET THE ID OF THE NEW EVENT TO THE EVENT THAT'S BEING EDITED
+					_eventToEdit.Id = _id;
+
+					//UPDATE THE VALUES OF THE NEW EVENT
+					_eventToEdit.Name = textBox_Name.Text;
+					_eventToEdit.EventDate = dateTimePicker_EventDate.Value;
+					_eventToEdit.Duration = dateTimePicker_Duration.Value;
+					_eventToEdit.PreOrder = Double.Parse(textBox_Preorder.Text);
+					_eventToEdit.AtDoor = Double.Parse(textBox_AtDoor.Text);
+					_eventToEdit.Price = Double.Parse(textBox_Price.Text);
+					_eventToEdit.NonTaxable = checkBox_NonTaxable.Checked;
+					_eventToEdit.NonTaxableLocal = checkBox_NonTaxableLocal.Checked;
+
+					_eventToEdit.TypeID = 26;
+					_eventToEdit.IdTax = 4;
+
+					//CREATE THE EVENT IN THE DATABASE
+					DataAccess.instance.UpdateEvent(_eventToEdit);
+
+					//CLOSE THE WINDOW
+					this.Close();
 				}
-
-				//CHECK IF SUPPLIER PRICE IS FILLED
-				if (double.TryParse(textBox_SupplierPrice.Text, out double doubleValue)) {
-					supplierPrice = doubleValue;
-				}
-
-				//CREATE A NEW EVENT WITH THE QUANTITY AND SUPPLIER PRICE UPDATED
-				_eventToEdit = new Event(quantity, supplierPrice);
-
-				//SET THE ID OF THE NEW EVENT TO THE EVENT THAT'S BEING EDITED
-				_eventToEdit.Id = _id;
-
-				//UPDATE THE VALUES OF THE NEW EVENT
-				_eventToEdit.Name = textBox_Name.Text;
-				_eventToEdit.EventDate = dateTimePicker_EventDate.Value;
-				_eventToEdit.Duration = dateTimePicker_Duration.Value;
-				_eventToEdit.PreOrder = Double.Parse(textBox_Preorder.Text);
-				_eventToEdit.AtDoor = Double.Parse(textBox_AtDoor.Text);
-				_eventToEdit.Price = Double.Parse(textBox_Price.Text);
-				_eventToEdit.NonTaxable = checkBox_NonTaxable.Checked;
-				_eventToEdit.NonTaxableLocal = checkBox_NonTaxableLocal.Checked;
-
-				_eventToEdit.TypeID = 26;
-				_eventToEdit.IdTax = 4;
-
-				//CREATE THE EVENT IN THE DATABASE
-				DataAccess.instance.UpdateEvent(_eventToEdit);
-
-				//CLOSE THE WINDOW
-				this.Close();
 			}
 		}
 
