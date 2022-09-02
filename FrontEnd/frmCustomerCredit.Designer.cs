@@ -69,7 +69,7 @@ namespace SecretCellar {
             // 
             this.button_CloseWindow.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.button_CloseWindow.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_CloseWindow.Location = new System.Drawing.Point(15, 134);
+            this.button_CloseWindow.Location = new System.Drawing.Point(15, 123);
             this.button_CloseWindow.Margin = new System.Windows.Forms.Padding(6);
             this.button_CloseWindow.Name = "button_CloseWindow";
             this.button_CloseWindow.Size = new System.Drawing.Size(140, 40);
@@ -82,7 +82,7 @@ namespace SecretCellar {
             // 
             this.button_ResetCredit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.button_ResetCredit.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_ResetCredit.Location = new System.Drawing.Point(15, 74);
+            this.button_ResetCredit.Location = new System.Drawing.Point(15, 71);
             this.button_ResetCredit.Margin = new System.Windows.Forms.Padding(6);
             this.button_ResetCredit.Name = "button_ResetCredit";
             this.button_ResetCredit.Size = new System.Drawing.Size(140, 40);
@@ -105,7 +105,7 @@ namespace SecretCellar {
             // 
             this.button_ForceChange.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button_ForceChange.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_ForceChange.Location = new System.Drawing.Point(216, 74);
+            this.button_ForceChange.Location = new System.Drawing.Point(216, 71);
             this.button_ForceChange.Margin = new System.Windows.Forms.Padding(6);
             this.button_ForceChange.Name = "button_ForceChange";
             this.button_ForceChange.Size = new System.Drawing.Size(140, 40);
@@ -120,7 +120,7 @@ namespace SecretCellar {
             this.button_Confirm.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.button_Confirm.Enabled = false;
             this.button_Confirm.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_Confirm.Location = new System.Drawing.Point(297, 134);
+            this.button_Confirm.Location = new System.Drawing.Point(216, 123);
             this.button_Confirm.Margin = new System.Windows.Forms.Padding(6);
             this.button_Confirm.Name = "button_Confirm";
             this.button_Confirm.Size = new System.Drawing.Size(140, 40);
@@ -183,7 +183,7 @@ namespace SecretCellar {
             this.panel1.Location = new System.Drawing.Point(15, 462);
             this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(373, 121);
+            this.panel1.Size = new System.Drawing.Size(373, 177);
             this.panel1.TabIndex = 60;
             // 
             // frmCustomerCredit
@@ -191,7 +191,7 @@ namespace SecretCellar {
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(231)))), ((int)(((byte)(206)))));
-            this.ClientSize = new System.Drawing.Size(403, 593);
+            this.ClientSize = new System.Drawing.Size(406, 667);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.lbl_enterAmt);
             this.Controls.Add(this.touchKeyPad1);
