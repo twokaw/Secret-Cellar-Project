@@ -30,6 +30,11 @@ namespace SecretCellar.Settings_Panels
         }
        
 
+        public void HandleToggleButtons(bool shouldButtonsBeEnabled) {
+            //TODO Add code here
+        }
+
+
         private void PopulateEmp()
         {
             if (chk_box_past_emp.Checked)
@@ -54,7 +59,7 @@ namespace SecretCellar.Settings_Panels
             employeeRoles = DataAccess.instance.GetEmployeeRoles();
             lstbx_roles.DataSource = employeeRoles;
         }
-        public void EndButtonText()
+        private void EndButtonText()
         {
             if(chk_box_past_emp.CheckState == CheckState.Unchecked)
                 {
