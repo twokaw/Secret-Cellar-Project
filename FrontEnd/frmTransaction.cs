@@ -483,7 +483,7 @@ namespace SecretCellar
             if (login.ShowDialog() == DialogResult.OK)
             {
                 lbl_emp_logged_on.Text = DataAccess.currentUser.ToString();
-                ApplyUserAccess();
+                //ApplyUserAccess(); //Don't need to disable buttons since manager override exists.
                 this.Visible = true;
             }
             else
