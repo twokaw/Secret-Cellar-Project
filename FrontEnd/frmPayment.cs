@@ -31,8 +31,8 @@ namespace SecretCellar
             if (transaction.CustomerID > 0)
             {
                 currentCustomer = DataAccess.instance.GetCustomer(transaction.CustomerID);
-                txt_customer.Text = $"{currentCustomer.LastName}, {currentCustomer.FirstName}";
-                txt_credit_amount.Text = $"{currentCustomer.Credit}";
+                txt_customer.Text = currentCustomer.FullName;
+                txt_credit_amount.Text = $"{currentCustomer.Credit:C}";
                 btn_cust_credit.Enabled = true;
                 chk_ChangetoCredit.Enabled = true;
             }
