@@ -42,6 +42,7 @@
             this.txtPin.Location = new System.Drawing.Point(351, 87);
             this.txtPin.Margin = new System.Windows.Forms.Padding(2);
             this.txtPin.Name = "txtPin";
+            this.txtPin.PasswordChar = '*';
             this.txtPin.Size = new System.Drawing.Size(172, 36);
             this.txtPin.TabIndex = 0;
             this.txtPin.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtPin_KeyUp);

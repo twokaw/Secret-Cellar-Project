@@ -44,10 +44,10 @@ namespace SecretCellar {
             // 
             this.button_AddCredit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.button_AddCredit.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_AddCredit.Location = new System.Drawing.Point(216, 19);
-            this.button_AddCredit.Margin = new System.Windows.Forms.Padding(6);
+            this.button_AddCredit.Location = new System.Drawing.Point(315, 22);
+            this.button_AddCredit.Margin = new System.Windows.Forms.Padding(9, 9, 9, 9);
             this.button_AddCredit.Name = "button_AddCredit";
-            this.button_AddCredit.Size = new System.Drawing.Size(140, 40);
+            this.button_AddCredit.Size = new System.Drawing.Size(210, 60);
             this.button_AddCredit.TabIndex = 2;
             this.button_AddCredit.Text = "Add";
             this.button_AddCredit.UseVisualStyleBackColor = true;
@@ -56,10 +56,10 @@ namespace SecretCellar {
             // button_SubtractCredit
             // 
             this.button_SubtractCredit.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_SubtractCredit.Location = new System.Drawing.Point(15, 19);
-            this.button_SubtractCredit.Margin = new System.Windows.Forms.Padding(6);
+            this.button_SubtractCredit.Location = new System.Drawing.Point(13, 22);
+            this.button_SubtractCredit.Margin = new System.Windows.Forms.Padding(9, 9, 9, 9);
             this.button_SubtractCredit.Name = "button_SubtractCredit";
-            this.button_SubtractCredit.Size = new System.Drawing.Size(140, 40);
+            this.button_SubtractCredit.Size = new System.Drawing.Size(210, 60);
             this.button_SubtractCredit.TabIndex = 1;
             this.button_SubtractCredit.Text = "Subtract";
             this.button_SubtractCredit.UseVisualStyleBackColor = true;
@@ -69,10 +69,10 @@ namespace SecretCellar {
             // 
             this.button_CloseWindow.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.button_CloseWindow.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_CloseWindow.Location = new System.Drawing.Point(15, 134);
-            this.button_CloseWindow.Margin = new System.Windows.Forms.Padding(6);
+            this.button_CloseWindow.Location = new System.Drawing.Point(35, 882);
+            this.button_CloseWindow.Margin = new System.Windows.Forms.Padding(9, 9, 9, 9);
             this.button_CloseWindow.Name = "button_CloseWindow";
-            this.button_CloseWindow.Size = new System.Drawing.Size(140, 40);
+            this.button_CloseWindow.Size = new System.Drawing.Size(210, 60);
             this.button_CloseWindow.TabIndex = 6;
             this.button_CloseWindow.Text = "Cancel";
             this.button_CloseWindow.UseVisualStyleBackColor = true;
@@ -82,10 +82,10 @@ namespace SecretCellar {
             // 
             this.button_ResetCredit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.button_ResetCredit.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_ResetCredit.Location = new System.Drawing.Point(15, 74);
-            this.button_ResetCredit.Margin = new System.Windows.Forms.Padding(6);
+            this.button_ResetCredit.Location = new System.Drawing.Point(13, 105);
+            this.button_ResetCredit.Margin = new System.Windows.Forms.Padding(9, 9, 9, 9);
             this.button_ResetCredit.Name = "button_ResetCredit";
-            this.button_ResetCredit.Size = new System.Drawing.Size(140, 40);
+            this.button_ResetCredit.Size = new System.Drawing.Size(210, 60);
             this.button_ResetCredit.TabIndex = 3;
             this.button_ResetCredit.Text = "Reset";
             this.button_ResetCredit.UseVisualStyleBackColor = true;
@@ -95,9 +95,10 @@ namespace SecretCellar {
             // 
             this.label_NewCreditAmount.AutoSize = true;
             this.label_NewCreditAmount.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_NewCreditAmount.Location = new System.Drawing.Point(39, 19);
+            this.label_NewCreditAmount.Location = new System.Drawing.Point(49, 22);
+            this.label_NewCreditAmount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_NewCreditAmount.Name = "label_NewCreditAmount";
-            this.label_NewCreditAmount.Size = new System.Drawing.Size(146, 24);
+            this.label_NewCreditAmount.Size = new System.Drawing.Size(214, 32);
             this.label_NewCreditAmount.TabIndex = 55;
             this.label_NewCreditAmount.Text = "Current Credit:";
             // 
@@ -105,10 +106,10 @@ namespace SecretCellar {
             // 
             this.button_ForceChange.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button_ForceChange.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_ForceChange.Location = new System.Drawing.Point(216, 74);
-            this.button_ForceChange.Margin = new System.Windows.Forms.Padding(6);
+            this.button_ForceChange.Location = new System.Drawing.Point(315, 105);
+            this.button_ForceChange.Margin = new System.Windows.Forms.Padding(9, 9, 9, 9);
             this.button_ForceChange.Name = "button_ForceChange";
-            this.button_ForceChange.Size = new System.Drawing.Size(140, 40);
+            this.button_ForceChange.Size = new System.Drawing.Size(210, 60);
             this.button_ForceChange.TabIndex = 4;
             this.button_ForceChange.Text = "Set";
             this.button_ForceChange.UseVisualStyleBackColor = true;
@@ -120,10 +121,10 @@ namespace SecretCellar {
             this.button_Confirm.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.button_Confirm.Enabled = false;
             this.button_Confirm.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_Confirm.Location = new System.Drawing.Point(297, 134);
-            this.button_Confirm.Margin = new System.Windows.Forms.Padding(6);
+            this.button_Confirm.Location = new System.Drawing.Point(337, 882);
+            this.button_Confirm.Margin = new System.Windows.Forms.Padding(9, 9, 9, 9);
             this.button_Confirm.Name = "button_Confirm";
-            this.button_Confirm.Size = new System.Drawing.Size(140, 40);
+            this.button_Confirm.Size = new System.Drawing.Size(210, 60);
             this.button_Confirm.TabIndex = 7;
             this.button_Confirm.Text = "Confirm";
             this.button_Confirm.UseVisualStyleBackColor = true;
@@ -133,9 +134,10 @@ namespace SecretCellar {
             // 
             this.label_CustomersCreditValue.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label_CustomersCreditValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_CustomersCreditValue.Location = new System.Drawing.Point(195, 12);
+            this.label_CustomersCreditValue.Location = new System.Drawing.Point(283, 12);
+            this.label_CustomersCreditValue.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_CustomersCreditValue.Name = "label_CustomersCreditValue";
-            this.label_CustomersCreditValue.Size = new System.Drawing.Size(157, 32);
+            this.label_CustomersCreditValue.Size = new System.Drawing.Size(234, 47);
             this.label_CustomersCreditValue.TabIndex = 57;
             this.label_CustomersCreditValue.Text = "Credit Value";
             this.label_CustomersCreditValue.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -144,28 +146,29 @@ namespace SecretCellar {
             // 
             this.lbl_enterAmt.AutoSize = true;
             this.lbl_enterAmt.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_enterAmt.Location = new System.Drawing.Point(22, 55);
+            this.lbl_enterAmt.Location = new System.Drawing.Point(24, 76);
+            this.lbl_enterAmt.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_enterAmt.Name = "lbl_enterAmt";
-            this.lbl_enterAmt.Size = new System.Drawing.Size(167, 24);
+            this.lbl_enterAmt.Size = new System.Drawing.Size(241, 32);
             this.lbl_enterAmt.TabIndex = 59;
             this.lbl_enterAmt.Text = "Change Amount:";
             // 
             // touchKeyPad1
             // 
-            this.touchKeyPad1.Location = new System.Drawing.Point(15, 98);
-            this.touchKeyPad1.Margin = new System.Windows.Forms.Padding(6);
+            this.touchKeyPad1.Location = new System.Drawing.Point(13, 141);
+            this.touchKeyPad1.Margin = new System.Windows.Forms.Padding(9, 9, 9, 9);
             this.touchKeyPad1.Name = "touchKeyPad1";
-            this.touchKeyPad1.Size = new System.Drawing.Size(373, 367);
+            this.touchKeyPad1.Size = new System.Drawing.Size(560, 550);
             this.touchKeyPad1.TabIndex = 58;
             this.touchKeyPad1.Target = null;
             // 
             // textBox_NewCreditAmount
             // 
             this.textBox_NewCreditAmount.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_NewCreditAmount.Location = new System.Drawing.Point(196, 48);
-            this.textBox_NewCreditAmount.Margin = new System.Windows.Forms.Padding(4);
+            this.textBox_NewCreditAmount.Location = new System.Drawing.Point(285, 66);
+            this.textBox_NewCreditAmount.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.textBox_NewCreditAmount.Name = "textBox_NewCreditAmount";
-            this.textBox_NewCreditAmount.Size = new System.Drawing.Size(157, 35);
+            this.textBox_NewCreditAmount.Size = new System.Drawing.Size(234, 48);
             this.textBox_NewCreditAmount.TabIndex = 0;
             this.textBox_NewCreditAmount.Text = "0.00";
             this.textBox_NewCreditAmount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -174,24 +177,23 @@ namespace SecretCellar {
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(201)))), ((int)(((byte)(176)))));
-            this.panel1.Controls.Add(this.button_Confirm);
             this.panel1.Controls.Add(this.button_ForceChange);
             this.panel1.Controls.Add(this.button_ResetCredit);
-            this.panel1.Controls.Add(this.button_CloseWindow);
             this.panel1.Controls.Add(this.button_SubtractCredit);
             this.panel1.Controls.Add(this.button_AddCredit);
-            this.panel1.Location = new System.Drawing.Point(15, 462);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2);
+            this.panel1.Location = new System.Drawing.Point(13, 687);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(373, 121);
+            this.panel1.Size = new System.Drawing.Size(560, 182);
             this.panel1.TabIndex = 60;
             // 
             // frmCustomerCredit
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(144F, 144F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(231)))), ((int)(((byte)(206)))));
-            this.ClientSize = new System.Drawing.Size(403, 593);
+            this.ClientSize = new System.Drawing.Size(587, 956);
+            this.Controls.Add(this.button_Confirm);
+            this.Controls.Add(this.button_CloseWindow);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.lbl_enterAmt);
             this.Controls.Add(this.touchKeyPad1);
@@ -200,7 +202,7 @@ namespace SecretCellar {
             this.Controls.Add(this.textBox_NewCreditAmount);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4);
+            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmCustomerCredit";
