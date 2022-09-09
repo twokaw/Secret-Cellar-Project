@@ -13,29 +13,26 @@ namespace SecretCellar
 {
     public partial class FrmSettings : ManagedForm
     {
-        public FrmSettings()
-        {
+        public FrmSettings() {
             InitializeComponent();
-        }
 
-        private void btn_commit_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        private void FrmSettings_Activated(object sender, EventArgs e)
-        {
             ApplyUserAccess();
         }
 
-        private void FrmSettings_Load(object sender, EventArgs e)
-        {
+        private void btn_commit_Click(object sender, EventArgs e) { Close(); }
 
-        }
-        private void ApplyUserAccess()
-        {
-            panEmployee1.Visible = DataAccess.instance.EmployeeAccess("Employee Admin");
-            lb_Employee_Disabled.Visible = !DataAccess.instance.EmployeeAccess("Employee Admin");
+        private void ApplyUserAccess() {
+            bool canAccessSettings = DataAccess.instance.EmployeeAccess("Settings");
+            panReports1.Visible = canAccessSettings;
+            panHardware.Visible = canAccessSettings;
+            panTypes.Visible = canAccessSettings;
+            panDiscount1.Visible = canAccessSettings;
+            panAppearance1.Visible = canAccessSettings;
+            panReceipt1.Visible = canAccessSettings;
+            panTax1.Visible = canAccessSettings;
+            panDefaults1.Visible = canAccessSettings;
+            panEmployeeTypes1.Visible = canAccessSettings;
+            panEmployee1.HandleToggleButtons(canAccessSettings);
         }
     }
 }

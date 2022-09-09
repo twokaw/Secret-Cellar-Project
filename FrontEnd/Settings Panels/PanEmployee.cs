@@ -30,6 +30,19 @@ namespace SecretCellar.Settings_Panels
         }
        
 
+        /// <summary>
+        /// Enables/Disables the buttons based on the given boolean.
+        /// </summary>
+        /// <param name="shouldButtonsBeEnabled"></param>
+        public void HandleToggleButtons(bool shouldButtonsBeEnabled) {
+            btn_clear.Enabled = shouldButtonsBeEnabled;
+            btn_add.Enabled = shouldButtonsBeEnabled;
+            btn_update.Enabled = shouldButtonsBeEnabled;
+            btn_end.Enabled = shouldButtonsBeEnabled;
+            cbx_types.Enabled = shouldButtonsBeEnabled;
+        }
+
+
         private void PopulateEmp()
         {
             if (chk_box_past_emp.Checked)
@@ -54,7 +67,7 @@ namespace SecretCellar.Settings_Panels
             employeeRoles = DataAccess.instance.GetEmployeeRoles();
             lstbx_roles.DataSource = employeeRoles;
         }
-        public void EndButtonText()
+        private void EndButtonText()
         {
             if(chk_box_past_emp.CheckState == CheckState.Unchecked)
                 {
