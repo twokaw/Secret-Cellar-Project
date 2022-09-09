@@ -30,8 +30,16 @@ namespace SecretCellar.Settings_Panels
         }
        
 
+        /// <summary>
+        /// Enables/Disables the buttons based on the given boolean.
+        /// </summary>
+        /// <param name="shouldButtonsBeEnabled"></param>
         public void HandleToggleButtons(bool shouldButtonsBeEnabled) {
-            //TODO Add code here
+            btn_clear.Enabled = shouldButtonsBeEnabled;
+            btn_add.Enabled = shouldButtonsBeEnabled;
+            btn_update.Enabled = shouldButtonsBeEnabled;
+            btn_end.Enabled = shouldButtonsBeEnabled;
+            cbx_types.Enabled = shouldButtonsBeEnabled;
         }
 
 
