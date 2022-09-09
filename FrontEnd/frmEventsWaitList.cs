@@ -28,10 +28,12 @@ namespace SecretCellar {
 		//REMOVE THE SELECTED CUSTOMER TO THE WAITLIST
 		private void button_Remove_Click(object sender, EventArgs e) {
 			if (_selectedEvent != null && dataGridView_Customers.SelectedRows.Count > 0) {
-				uint selectedCustomerId = uint.Parse(dataGridView_Customers.SelectedRows[0].Cells["CustomerId"].Value.ToString());
+				if (frmManagerOverride.DidOverride("Remove Customer From Waitlist")) {
+					uint selectedCustomerId = uint.Parse(dataGridView_Customers.SelectedRows[0].Cells["CustomerId"].Value.ToString());
 
-				DataAccess.instance.DeleteEventWaitlistItem(_selectedEvent.Id, selectedCustomerId);
-				UpdateWaitListGrid();
+					DataAccess.instance.DeleteEventWaitlistItem(_selectedEvent.Id, selectedCustomerId);
+					UpdateWaitListGrid();
+				}
 			}
 		}
 
@@ -51,16 +53,19 @@ namespace SecretCellar {
 					foreach (EventWaitlistItem waitlistItem in waitListItems) {
 						if (_selectedEvent.Id == waitlistItem.EventId && customerList.selectedCustomer.CustomerID == waitlistItem.CustomerId) {
 							isInWaitlist = true;
+							break;
 						}
 					}
 
 					if (!isInWaitlist) {
-						DataAccess.instance.AddEventWaitlistItem(new EventWaitlistItem(_selectedEvent.Id,
+						if (frmManagerOverride.DidOverride("Add Customer To Waitlist")) {
+							DataAccess.instance.AddEventWaitlistItem(new EventWaitlistItem(_selectedEvent.Id,
 																					   customerList.selectedCustomer.CustomerID,
 																					   customerList.selectedCustomer.FirstName + " " + customerList.selectedCustomer.LastName,
 																					   DateTime.Now
 																					   ));
-						UpdateWaitListGrid();
+							UpdateWaitListGrid();
+						}
 					}
 					else {
 						MessageBox.Show("Customer is already in this waitlist", "Error");

@@ -22,39 +22,41 @@ namespace SecretCellar {
 
 		private void button_CreateEvent_Click(object sender, EventArgs e) {
 			if (HasNoErrors()) {
-				uint quantity = 9999;
-				double supplierPrice = 0.0;
+				if (frmManagerOverride.DidOverride("Create Event")) {
+					uint quantity = 9999;
+					double supplierPrice = 0.0;
 
-				//CHECK IF QUANTITY IS FILLED
-				if (uint.TryParse(textBox_Quantity.Text, out uint uintValue)) {
-					quantity = uintValue;
+					//CHECK IF QUANTITY IS FILLED
+					if (uint.TryParse(textBox_Quantity.Text, out uint uintValue)) {
+						quantity = uintValue;
+					}
+
+					//CHECK IF SUPPLIER PRICE IS FILLED
+					if (double.TryParse(textBox_SupplierPrice.Text, out double doubleValue)) {
+						supplierPrice = doubleValue;
+					}
+
+					//CREATE THE EVENT
+					Event newEvent = new Event(quantity, supplierPrice);
+
+					newEvent.Name = textBox_Name.Text;
+					newEvent.EventDate = dateTimePicker_EventDate.Value;
+					newEvent.Duration = dateTimePicker_Duration.Value;
+					newEvent.PreOrder = double.Parse(textBox_Preorder.Text);
+					newEvent.AtDoor = double.Parse(textBox_AtDoor.Text);
+					newEvent.Price = double.Parse(textBox_Price.Text);
+					newEvent.NonTaxable = checkBox_NonTaxable.Checked;
+					newEvent.NonTaxableLocal = checkBox_NonTaxableLocal.Checked;
+
+					newEvent.TypeID = 26;
+					newEvent.IdTax = 4;
+
+					//CREATE THE EVENT IN THE DATABASE
+					DataAccess.instance.CreateEvent(newEvent);
+
+					//CLOSE THE WINDOW
+					this.Close();
 				}
-
-				//CHECK IF SUPPLIER PRICE IS FILLED
-				if (double.TryParse(textBox_SupplierPrice.Text, out double doubleValue)) {
-					supplierPrice = doubleValue;
-				}
-
-				//CREATE THE EVENT
-				Event newEvent = new Event(quantity, supplierPrice);
-
-				newEvent.Name = textBox_Name.Text;
-				newEvent.EventDate = dateTimePicker_EventDate.Value;
-				newEvent.Duration = dateTimePicker_Duration.Value;
-				newEvent.PreOrder = double.Parse(textBox_Preorder.Text);
-				newEvent.AtDoor = double.Parse(textBox_AtDoor.Text);
-				newEvent.Price = double.Parse(textBox_Price.Text);
-				newEvent.NonTaxable = checkBox_NonTaxable.Checked;
-				newEvent.NonTaxableLocal = checkBox_NonTaxableLocal.Checked;
-
-				newEvent.TypeID = 26;
-				newEvent.IdTax = 4;
-
-				//CREATE THE EVENT IN THE DATABASE
-				DataAccess.instance.CreateEvent(newEvent);
-
-				//CLOSE THE WINDOW
-				this.Close();
 			}
 		}
 

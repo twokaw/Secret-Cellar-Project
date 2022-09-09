@@ -52,50 +52,48 @@ namespace SecretCellar.Orders_Panels {
         private void btn_delivered_update_Click(object sender, EventArgs e) {
             if (cbx_fullfill_cust.SelectedIndex >= 0)
             {
-                CustomerOrder custorder = DataAccess.instance.GetCustomerOrderforCustomer(((CustomerOrder)cbx_fullfill_cust.SelectedItem).CustomerID, false);
+                if (frmManagerOverride.DidOverride("Update Delivered")) {
+                    CustomerOrder custorder = DataAccess.instance.GetCustomerOrderforCustomer(((CustomerOrder)cbx_fullfill_cust.SelectedItem).CustomerID, false);
 
-                Inventory i = inventory.First(x => x.Id == uint.Parse(fullfill_datagrid.SelectedRows[0].Cells["id"].Value.ToString()));
-                CustomerOrderItem coid = custorder.Items.FirstOrDefault(x => x.Id == i.Id);
+                    Inventory i = inventory.First(x => x.Id == uint.Parse(fullfill_datagrid.SelectedRows[0].Cells["id"].Value.ToString()));
+                    CustomerOrderItem coid = custorder.Items.FirstOrDefault(x => x.Id == i.Id);
 
-                if (fullfill_datagrid.SelectedRows.Count > 0)
-                {
-                    uint tId = GetInvoiceID (custorder.CustomerID );
-                    //i.AllQty.Add(new InventoryQty { Qty = custorder.qty });
-                    // i.OrderQty.Add(new CustomerOrder {RequestQty = coid.RequestQty, DeliveredDate = DateTime.Now, SupplierPrice = 0 });
-                    if (uint.TryParse(txt_deliverqty.Text.Trim(), out uint dqty))
-                    {
-                        coid.DeliverQty += dqty;
-                        DataAccess.instance.UpdateCustomerOrderItem(custorder.CustomerID, tId, coid);
-                        i.AllQty.Remove(new InventoryQty { Qty = Convert.ToUInt32(fullfill_datagrid.SelectedRows[0].Cells["qty"].Value.ToString()) - coid.DeliverQty });
+                    if (fullfill_datagrid.SelectedRows.Count > 0) {
+                        uint tId = GetInvoiceID(custorder.CustomerID);
+                        //i.AllQty.Add(new InventoryQty { Qty = custorder.qty });
+                        // i.OrderQty.Add(new CustomerOrder {RequestQty = coid.RequestQty, DeliveredDate = DateTime.Now, SupplierPrice = 0 });
+                        if (uint.TryParse(txt_deliverqty.Text.Trim(), out uint dqty)) {
+                            coid.DeliverQty += dqty;
+                            DataAccess.instance.UpdateCustomerOrderItem(custorder.CustomerID, tId, coid);
+                            i.AllQty.Remove(new InventoryQty { Qty = Convert.ToUInt32(fullfill_datagrid.SelectedRows[0].Cells["qty"].Value.ToString()) - coid.DeliverQty });
+                        }
+                        else {
+                            txt_deliverqty.Focus();
+                            txt_deliverqty.SelectAll();
+                            MessageBox.Show("Invalid Order Quantity");
+
+                            return;
+                        }
                     }
-                    else
-                    {
-                        txt_deliverqty.Focus();
-                        txt_deliverqty.SelectAll();
-                        MessageBox.Show("Invalid Order Quantity");
 
-                        return;
+                    /*
+                    else if (uint.TryParse(txt_deliverqty.Text.Trim(), out uint order))
+                    {
+
+                        if (coid.RequestQty >= order)
+                        {
+                            coid.RequestQty -= order;
+                        }
+                        else
+                        {
+                            i.OrderQty = 0;
+                        }
                     }
+                    */
+
+                    txt_deliverqty.Text = "";
+                    refreshcust();
                 }
-
-                /*
-                else if (uint.TryParse(txt_deliverqty.Text.Trim(), out uint order))
-                {
-
-                    if (coid.RequestQty >= order)
-                    {
-                        coid.RequestQty -= order;
-                    }
-                    else
-                    {
-                        i.OrderQty = 0;
-                    }
-                }
-                */
-
-                txt_deliverqty.Text = "";
-                refreshcust();
-
             }
             else
             {
@@ -129,19 +127,21 @@ namespace SecretCellar.Orders_Panels {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void btn_deliver_all_Click(object sender, EventArgs e) {
-            CustomerOrder custorder = DataAccess.instance.GetCustomerOrderforCustomer(((CustomerOrder)cbx_fullfill_cust.SelectedItem).CustomerID, false);
+            if (frmManagerOverride.DidOverride("Deliver All")) {
+                CustomerOrder custorder = DataAccess.instance.GetCustomerOrderforCustomer(((CustomerOrder)cbx_fullfill_cust.SelectedItem).CustomerID, false);
 
-            uint tId = GetInvoiceID(custorder.CustomerID);
-            foreach (DataGridViewRow row in fullfill_datagrid.Rows) {
-                Inventory i = inventory.First(x => x.Id == uint.Parse(row.Cells["id"].Value.ToString()));
-                CustomerOrderItem coid = custorder.Items.FirstOrDefault(x => x.Id == i.Id);
-                coid.DeliverQty = uint.Parse(row.Cells["requestqty"].Value.ToString());
-                DataAccess.instance.UpdateCustomerOrderItem(custorder.CustomerID, tId, coid);
+                uint tId = GetInvoiceID(custorder.CustomerID);
+                foreach (DataGridViewRow row in fullfill_datagrid.Rows) {
+                    Inventory i = inventory.First(x => x.Id == uint.Parse(row.Cells["id"].Value.ToString()));
+                    CustomerOrderItem coid = custorder.Items.FirstOrDefault(x => x.Id == i.Id);
+                    coid.DeliverQty = uint.Parse(row.Cells["requestqty"].Value.ToString());
+                    DataAccess.instance.UpdateCustomerOrderItem(custorder.CustomerID, tId, coid);
+                }
+
+                txt_deliverqty.Text = "";
+                refreshcust();
+                //RefreshFillment();
             }
-
-            txt_deliverqty.Text = "";
-            refreshcust();
-            //RefreshFillment();
         }
 
         private uint GetInvoiceID(uint customerId)
@@ -167,51 +167,48 @@ namespace SecretCellar.Orders_Panels {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void btn_deliver_selected_Click(object sender, EventArgs e) {
-            
+            if (frmManagerOverride.DidOverride("Deliver Selected")) {
+                CustomerOrder custorder = DataAccess.instance.GetCustomerOrderforCustomer(((CustomerOrder)cbx_fullfill_cust.SelectedItem).CustomerID, false);
 
-            CustomerOrder custorder = DataAccess.instance.GetCustomerOrderforCustomer(((CustomerOrder)cbx_fullfill_cust.SelectedItem).CustomerID, false);
+                List<CustomerOrderItem> items = new List<CustomerOrderItem>();
 
-            List<CustomerOrderItem> items = new List<CustomerOrderItem>();
+                foreach (DataGridViewRow row in fullfill_datagrid.SelectedRows) {
+                    Inventory i = inventory.First(x => x.Id == uint.Parse(row.Cells["id"].Value.ToString()));
+                    CustomerOrderItem coid = custorder.Items.FirstOrDefault(x => x.Id == i.Id);
 
-            foreach (DataGridViewRow row in fullfill_datagrid.SelectedRows)
-            {
-                Inventory i = inventory.First(x => x.Id == uint.Parse(row.Cells["id"].Value.ToString()));
-                CustomerOrderItem coid = custorder.Items.FirstOrDefault(x => x.Id == i.Id);
+                    uint requestQty = uint.Parse(row.Cells["requestqty"].Value.ToString());
 
-                uint requestQty = uint.Parse(row.Cells["requestqty"].Value.ToString());
-                
-                if (i.AllQty.Count() == 0 || uint.Parse(row.Cells["requestqty"].Value.ToString()) > i.AllQty[0].Qty)
-                {
-                    uint onhand = i.AllQty.Count() == 0 ? 0 : i.AllQty[0].Qty;
-                    switch (MessageBox.Show(this, $"Insufficient quantity to fullfil the order\n"
-                                                + $"Inventory: {onhand}\n"
-                                                + $"Request Qty: {requestQty}\n\n"
-                                                + $"Yes : Fulfill the full amount ({requestQty}) \n"
-                                                + $"No  : Fulfill inventory amount ({onhand}) \n"
-                                                + $"Cancel : Cancel Fulfillment",
-                                                   "Insufficient quantity",
-                                                MessageBoxButtons.YesNoCancel))
-                    {
-                        case DialogResult.No:
-                            requestQty = onhand;
-                            break;
-                        case DialogResult.Cancel:
-                            return;
+                    if (i.AllQty.Count() == 0 || uint.Parse(row.Cells["requestqty"].Value.ToString()) > i.AllQty[0].Qty) {
+                        uint onhand = i.AllQty.Count() == 0 ? 0 : i.AllQty[0].Qty;
+                        switch (MessageBox.Show(this, $"Insufficient quantity to fullfil the order\n"
+                                                    + $"Inventory: {onhand}\n"
+                                                    + $"Request Qty: {requestQty}\n\n"
+                                                    + $"Yes : Fulfill the full amount ({requestQty}) \n"
+                                                    + $"No  : Fulfill inventory amount ({onhand}) \n"
+                                                    + $"Cancel : Cancel Fulfillment",
+                                                       "Insufficient quantity",
+                                                    MessageBoxButtons.YesNoCancel)) {
+                            case DialogResult.No:
+                                requestQty = onhand;
+                                break;
+                            case DialogResult.Cancel:
+                                return;
+                        }
                     }
+
+                    coid.DeliverQty = requestQty;
+                    items.Add(coid);
                 }
 
-                coid.DeliverQty = requestQty;
-                items.Add(coid);
+                uint tId = GetInvoiceID(custorder.CustomerID);
+
+                foreach (CustomerOrderItem coi in items)
+                    DataAccess.instance.UpdateCustomerOrderItem(custorder.CustomerID, tId, coi);
+
+                txt_deliverqty.Text = "";
+                RefreshFillment(custorder.CustomerID);
+                //refreshcust();
             }
-
-            uint tId = GetInvoiceID(custorder.CustomerID);
-    
-            foreach (CustomerOrderItem coi in items) 
-                DataAccess.instance.UpdateCustomerOrderItem(custorder.CustomerID, tId, coi );
-
-            txt_deliverqty.Text = "";
-            RefreshFillment(custorder.CustomerID);
-            //refreshcust();
         }
 
 

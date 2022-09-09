@@ -90,57 +90,49 @@ namespace SecretCellar
 
         private void Tender()
         {
-            if (transaction.Items.Count == 0) {
-                if (frmManagerOverride.DidOverride("Open Cash Drawer")) DataAccess.instance.OpenCashDrawer();
+            if (transaction.Items.Count > 0) {
+                frmPayment payment = new frmPayment(transaction);
+
+                if (payment.ShowDialog() == DialogResult.OK) {
+                    try {
+                        DataAccess.instance.ProcessTransaction(transaction);
+                    }
+                    catch (Exception ex) {
+                        MessageBox.Show($"Error writing to the database\n Error:\n {ex.Message}");
+                        DataAccess.instance.LogError(ex, "btnTender_Click", "Error writing to the database");
+                    }
+
+                    if (transaction.Payments.FirstOrDefault(x => x.Method == "CASH" || x.Method == "CHECK") != null || payment.Change > 0.0 && !transaction.ChangetoCredit)
+                        DataAccess.instance.OpenCashDrawer();
+
+                    Customer customer = null;
+                    if (transaction.CustomerID > 0)
+                        customer = DataAccess.instance.GetCustomer(transaction.CustomerID);
+
+                    if (payment.Change > 0.0) {
+                        if (transaction.ChangetoCredit) {
+                            customer.Credit += payment.Change;
+                            DataAccess.instance.UpdateCustomer(customer);
+                        }
+                        else
+                            MessageBox.Show($"Change due to customer:\n\n {payment.Change:C}", "Change");
+                    }
+
+                    if (payment.PrintReceipt) {
+                        Receipt.DefaultLayout.Logo = DataAccess.instance.ImportLogo();
+                        new Receipt(transaction, customer).Print();
+                    }
+
+                    CurrentCustomer = null;
+                    lbl_CreditValue.Visible = false;
+                    lbl_Credit.Visible = false;
+                    //transaction complete, clear the form
+                    transaction = new Transaction();
+                    label_currentCustomerValue.Text = "d";
+                    RefreshDataGrid();
+                    txtBarcode.Focus();
+                }
             }
-            else {
-				frmPayment payment = new frmPayment(transaction);
-				
-				if (payment.ShowDialog() == DialogResult.OK) {
-					try
-					{
-						DataAccess.instance.ProcessTransaction(transaction);
-					}
-					catch (Exception ex)
-					{
-						MessageBox.Show($"Error writing to the database\n Error:\n {ex.Message}");
-						DataAccess.instance.LogError(ex, "btnTender_Click", "Error writing to the database");
-					}
-
-					if (transaction.Payments.FirstOrDefault(x => x.Method == "CASH" || x.Method == "CHECK") != null || payment.Change > 0.0 && !transaction.ChangetoCredit )
-						DataAccess.instance.OpenCashDrawer();
-
-					Customer customer = null;
-					if(transaction.CustomerID > 0)
-						customer = DataAccess.instance.GetCustomer(transaction.CustomerID);
-
-					if (payment.Change > 0.0)
-					{
-						if (transaction.ChangetoCredit)
-						{ 
-							customer.Credit += payment.Change;
-							DataAccess.instance.UpdateCustomer(customer);
-						}
-						else
-							MessageBox.Show($"Change due to customer:\n\n {payment.Change:C}", "Change" );
-					}
-
-					if (payment.PrintReceipt)
-					{
-						Receipt.DefaultLayout.Logo = DataAccess.instance.ImportLogo();
-						new Receipt(transaction, customer).Print();
-					}
-
-					CurrentCustomer = null;
-					lbl_CreditValue.Visible = false;
-					lbl_Credit.Visible = false;
-					//transaction complete, clear the form
-					transaction = new Transaction();
-					label_currentCustomerValue.Text = "d";
-					RefreshDataGrid();
-					txtBarcode.Focus();
-				}
-			}
         }
 
         private void btnTender2_Click(object sender, EventArgs e)
@@ -491,7 +483,7 @@ namespace SecretCellar
             if (login.ShowDialog() == DialogResult.OK)
             {
                 lbl_emp_logged_on.Text = DataAccess.currentUser.ToString();
-                ApplyUserAccess();
+                //ApplyUserAccess(); //Don't need to disable buttons since manager override exists.
                 this.Visible = true;
             }
             else

@@ -69,8 +69,8 @@ namespace SecretCellar {
             // 
             this.button_CloseWindow.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.button_CloseWindow.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_CloseWindow.Location = new System.Drawing.Point(35, 882);
-            this.button_CloseWindow.Margin = new System.Windows.Forms.Padding(9, 9, 9, 9);
+            this.button_CloseWindow.Location = new System.Drawing.Point(15, 123);
+            this.button_CloseWindow.Margin = new System.Windows.Forms.Padding(6);
             this.button_CloseWindow.Name = "button_CloseWindow";
             this.button_CloseWindow.Size = new System.Drawing.Size(210, 60);
             this.button_CloseWindow.TabIndex = 6;
@@ -82,8 +82,8 @@ namespace SecretCellar {
             // 
             this.button_ResetCredit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.button_ResetCredit.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_ResetCredit.Location = new System.Drawing.Point(13, 105);
-            this.button_ResetCredit.Margin = new System.Windows.Forms.Padding(9, 9, 9, 9);
+            this.button_ResetCredit.Location = new System.Drawing.Point(15, 71);
+            this.button_ResetCredit.Margin = new System.Windows.Forms.Padding(6);
             this.button_ResetCredit.Name = "button_ResetCredit";
             this.button_ResetCredit.Size = new System.Drawing.Size(210, 60);
             this.button_ResetCredit.TabIndex = 3;
@@ -106,8 +106,8 @@ namespace SecretCellar {
             // 
             this.button_ForceChange.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button_ForceChange.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_ForceChange.Location = new System.Drawing.Point(315, 105);
-            this.button_ForceChange.Margin = new System.Windows.Forms.Padding(9, 9, 9, 9);
+            this.button_ForceChange.Location = new System.Drawing.Point(216, 71);
+            this.button_ForceChange.Margin = new System.Windows.Forms.Padding(6);
             this.button_ForceChange.Name = "button_ForceChange";
             this.button_ForceChange.Size = new System.Drawing.Size(210, 60);
             this.button_ForceChange.TabIndex = 4;
@@ -121,8 +121,8 @@ namespace SecretCellar {
             this.button_Confirm.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.button_Confirm.Enabled = false;
             this.button_Confirm.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_Confirm.Location = new System.Drawing.Point(337, 882);
-            this.button_Confirm.Margin = new System.Windows.Forms.Padding(9, 9, 9, 9);
+            this.button_Confirm.Location = new System.Drawing.Point(216, 123);
+            this.button_Confirm.Margin = new System.Windows.Forms.Padding(6);
             this.button_Confirm.Name = "button_Confirm";
             this.button_Confirm.Size = new System.Drawing.Size(210, 60);
             this.button_Confirm.TabIndex = 7;
@@ -183,7 +183,7 @@ namespace SecretCellar {
             this.panel1.Controls.Add(this.button_AddCredit);
             this.panel1.Location = new System.Drawing.Point(13, 687);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(560, 182);
+            this.panel1.Size = new System.Drawing.Size(373, 177);
             this.panel1.TabIndex = 60;
             // 
             // frmCustomerCredit
@@ -191,9 +191,7 @@ namespace SecretCellar {
             this.AutoScaleDimensions = new System.Drawing.SizeF(144F, 144F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(231)))), ((int)(((byte)(206)))));
-            this.ClientSize = new System.Drawing.Size(587, 956);
-            this.Controls.Add(this.button_Confirm);
-            this.Controls.Add(this.button_CloseWindow);
+            this.ClientSize = new System.Drawing.Size(406, 667);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.lbl_enterAmt);
             this.Controls.Add(this.touchKeyPad1);

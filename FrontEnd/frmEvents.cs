@@ -140,8 +140,10 @@ namespace SecretCellar
 
             if (eventWaitlistItems.Count > 0) { MessageBox.Show($"Cannot delete '{_selectedEvent.Name}' while customers are on the waitlist for it.", "Error"); return; }
 
-            DataAccess.instance.DeleteEvent(_selectedEvent.Id);
-            UpdateEventGrid();
+            if (frmManagerOverride.DidOverride("Delete Event")) {
+                DataAccess.instance.DeleteEvent(_selectedEvent.Id);
+                UpdateEventGrid();
+            }
         }
 
         private void button_EditEvent_Click(object sender, EventArgs e) {
