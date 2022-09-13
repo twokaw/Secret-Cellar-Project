@@ -24,8 +24,24 @@ namespace SecretCellar.Settings_Panels
                 GetEmployeeRoles();
                 PopulateEmp();
                 EndButtonText();
+                
             }
+
         }
+       
+
+        /// <summary>
+        /// Enables/Disables the buttons based on the given boolean.
+        /// </summary>
+        /// <param name="shouldButtonsBeEnabled"></param>
+        public void HandleToggleButtons(bool shouldButtonsBeEnabled) {
+            btn_clear.Enabled = shouldButtonsBeEnabled;
+            btn_add.Enabled = shouldButtonsBeEnabled;
+            btn_update.Enabled = shouldButtonsBeEnabled;
+            btn_end.Enabled = shouldButtonsBeEnabled;
+            cbx_types.Enabled = shouldButtonsBeEnabled;
+        }
+
 
         private void PopulateEmp()
         {
@@ -38,6 +54,7 @@ namespace SecretCellar.Settings_Panels
             {
                 lst_employee.DataSource = DataAccess.instance.GetEmployee().Where(x => x.EndDate == null).ToList();
             }
+
         } 
         private void GetEmployeeTypes()
         {
@@ -50,8 +67,7 @@ namespace SecretCellar.Settings_Panels
             employeeRoles = DataAccess.instance.GetEmployeeRoles();
             lstbx_roles.DataSource = employeeRoles;
         }
-
-        public void EndButtonText()
+        private void EndButtonText()
         {
             if(chk_box_past_emp.CheckState == CheckState.Unchecked)
                 {
@@ -62,6 +78,7 @@ namespace SecretCellar.Settings_Panels
                 btn_end.Text = "Enable";
             }
         }
+            
 
         private void lst_employee_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -131,7 +148,6 @@ namespace SecretCellar.Settings_Panels
             newEmp.ZipCode= txt_zipcode.Text;
             newEmp.PhoneNumber = txt_phone.Text;
             newEmp.Email = txt_email.Text;
-
             if (string.IsNullOrEmpty(txt_pin.Text))
             {
                 txt_pin.Focus();
@@ -150,12 +166,14 @@ namespace SecretCellar.Settings_Panels
             {
                 newEmp.PinNumber = pin;
             }
-
             newEmp.StartDate = (DateTime.TryParse(txt_startdate.Text, out DateTime startdate) ?startdate : DateTime.Now);
             newEmp.EmployeeType = (EmployeeTypeModel)cbx_types.SelectedItem;
             newEmp.UserName = (txt_lname.Text.Trim(), txt_fname.Text.Trim()).ToString();
             DataAccess.instance.InsertEmployee(newEmp);
             PopulateEmp();
+
+
+
         }
 
         private void btn_update_Click(object sender, EventArgs e)
@@ -169,7 +187,6 @@ namespace SecretCellar.Settings_Panels
             updateEmp.State = txt_state.Text;
             updateEmp.ZipCode = txt_zipcode.Text;
             updateEmp.Email = txt_email.Text;
-
             //TODO when updating pin want to trow an error if not a number 
             if (!uint.TryParse(txt_pin.Text, out uint pin) || pin < 100 || pin > 999999999)
             {
@@ -195,6 +212,8 @@ namespace SecretCellar.Settings_Panels
 
             DataAccess.instance.UpdateEmployee(Emp);
             PopulateEmp();
+
+
         }
 
         private void btn_clear_Click(object sender, EventArgs e)
@@ -215,9 +234,12 @@ namespace SecretCellar.Settings_Panels
 
         private void chk_box_past_emp_CheckedChanged(object sender, EventArgs e)
         {
+           
             PopulateEmp();
             
             EndButtonText();
         }
+
+      
     }
 }
