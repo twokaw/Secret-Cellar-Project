@@ -139,6 +139,7 @@ namespace pos_core_api.ORM
                             SupplierID = reader.IsDBNull("supplierID") ? 0 : reader.GetUInt32("supplierID"),
                             Barcode = reader.IsDBNull("barcode") ? "" : reader.GetString("barcode"),
                             Price = reader.IsDBNull("retail_price") ? 0.00 : reader.GetDouble("retail_price"),
+                            DiscountPrice = reader.IsDBNull("discount_price") ? 0.00 : reader.GetDouble("discount_price"),
                             TypeID = reader.IsDBNull("typeID") ? 0 : reader.GetUInt32("typeID"),
                             Bottles = reader.IsDBNull("bottles") ? 0 : reader.GetUInt32("bottles"),
                             NonTaxable = !reader.IsDBNull("nontaxable") && (0 != reader.GetInt16("nontaxable")),
@@ -210,9 +211,9 @@ namespace pos_core_api.ORM
 
             MySqlCommand cmd = db.CreateCommand(@"
                 INSERT INTO inventory_description 
-                (name, supplierID, barcode, retail_price, typeID, bottle_deposit_qty, nontaxable, nontaxable_local, InvMax, InvMin, OrderQty, Hidden) 
+                (name, supplierID, barcode, retail_price, discount_price, typeID, bottle_deposit_qty, nontaxable, nontaxable_local, InvMax, InvMin, OrderQty, Hidden) 
                 VALUES 
-                (@name, @supplierID, @barcode, @Price, @typeID, @bottles, @nonTaxable, @nonTaxableLocal, @InvMax, @InvMin, @OrderQty, @Hidden);
+                (@name, @supplierID, @barcode, @Price, @discount_price, @typeID, @bottles, @nonTaxable, @nonTaxableLocal, @InvMax, @InvMin, @OrderQty, @Hidden);
             ");
 
             //cmd.Parameters.Add(new MySqlParameter("id", inv.Id));
@@ -220,6 +221,7 @@ namespace pos_core_api.ORM
             cmd.Parameters.Add(new MySqlParameter("supplierID", inv.SupplierID));
             cmd.Parameters.Add(new MySqlParameter("barcode", inv.Barcode.Trim().ToUpper()));
             cmd.Parameters.Add(new MySqlParameter("Price", inv.Price));
+            cmd.Parameters.Add(new MySqlParameter("discount_price", inv.DiscountPrice));
             cmd.Parameters.Add(new MySqlParameter("typeID", inv.TypeID));
             cmd.Parameters.Add(new MySqlParameter("bottles", inv.Bottles));
             cmd.Parameters.Add(new MySqlParameter("nonTaxable", inv.NonTaxable));
@@ -283,8 +285,11 @@ namespace pos_core_api.ORM
 
             MySqlCommand cmd = db.CreateCommand(@"
                 UPDATE inventory_description 
-                SET name = @name, supplierID = @supplierID, 
-                    barcode = @barcode, retail_price = @Price, 
+                SET name = @name,
+                    supplierID = @supplierID, 
+                    barcode = @barcode,
+                    retail_price = @Price,
+                    discount_price = @discount_price,
                     typeID = @typeID, 
                     bottle_deposit_qty = @bottleDepositQty,
                     nontaxable = @nonTaxable, 
@@ -301,6 +306,7 @@ namespace pos_core_api.ORM
             cmd.Parameters.Add(new MySqlParameter("supplierID", inv.SupplierID));
             cmd.Parameters.Add(new MySqlParameter("barcode", inv.Barcode));
             cmd.Parameters.Add(new MySqlParameter("Price", inv.Price));
+            cmd.Parameters.Add(new MySqlParameter("discount_price", inv.DiscountPrice));
             cmd.Parameters.Add(new MySqlParameter("typeID", inv.TypeID));
             cmd.Parameters.Add(new MySqlParameter("bottleDepositQty", inv.Bottles));
             cmd.Parameters.Add(new MySqlParameter("nonTaxable", inv.NonTaxable));
