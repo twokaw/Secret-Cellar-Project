@@ -23,7 +23,8 @@ namespace Shared
         public uint RequiredQty { get; set; }
 
         // Price in dollars
-        public double Price { get; set; }   
+        public double Price { get; set; }
+        public double DiscountPrice { get; set; }
         public bool NonTaxable { get; set; }
         public bool NonTaxableLocal { get; set; }
         public uint TypeID { get; set; }
