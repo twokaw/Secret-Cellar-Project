@@ -171,13 +171,15 @@ namespace SecretCellar
                 int row = dataGridView1.Rows.Add();
                 using (var r = dataGridView1.Rows[row])
                 {
+                    double price = item.DiscountPrice > 0 ? item.DiscountPrice : item.Price;
+
                     // Populate tranaction datagrid row
                     r.Cells["Description"].Value = item.Name;
                     r.Cells["Discount"].Value = (Math.Floor(transaction.ItemDiscount(item) * 100) / 100).ToString("P0");  //item.Discount.ToString("P0");
-                    r.Cells["List_Price"].Value = item.Price.ToString("C");
-                    r.Cells["Sale_Price"].Value = (item.Price * (1 - item.Discount)).ToString("C");
+                    r.Cells["List_Price"].Value = price.ToString("C");
+                    r.Cells["Sale_Price"].Value = (price * (1 - item.Discount)).ToString("C");
                     r.Cells["Qty"].Value = item.NumSold;
-                    r.Cells["Total"].Value = (item.Price * item.NumSold * (1 - item.Discount)).ToString("C");
+                    r.Cells["Total"].Value = (price * item.NumSold * (1 - item.Discount)).ToString("C");
                     r.Cells["BOTTLE_DEPOSIT"].Value = (item.NumSold * item.Bottles * .05).ToString("C");
                     r.Cells["ItemID"].Value = item.Id;
 
