@@ -13,13 +13,9 @@ namespace SecretCellar
         private List<InventoryType> types = null;
         private string descriptionAndBarcodeSearchText = "Enter Description/Barcode";
 
-        public void SubmitButtonText(string value = "Add to Cart")
-        {
-            btn_add.Text = value; 
-        }
+        
 
-        public frmLookup()
-        {
+        public frmLookup() {
             InitializeComponent();
             suppliers = DataAccess.instance.GetSuppliers();
             types = DataAccess.instance.GetInventoryType();
@@ -35,15 +31,13 @@ namespace SecretCellar
             cbxTypeFilter.Items.AddRange((string[])types.Select(x => x.TypeName).ToArray());
         }
 
-        public frmLookup(Transaction transaction) : base()
-        {
-            SetTransaction(transaction);
-        }
 
-        public void SetTransaction(Transaction transaction)
-        {
-            currentTransaction = transaction;
-        }
+        public void SubmitButtonText(string value = "Add to Cart") { btn_add.Text = value; }
+
+
+        public frmLookup(Transaction transaction) : base() { SetTransaction(transaction); }
+        public void SetTransaction(Transaction transaction) { currentTransaction = transaction; }
+
 
         private void btn_add_Click(object sender, EventArgs e)
         {
@@ -54,6 +48,7 @@ namespace SecretCellar
                 this.Close();
             }
         }
+
 
         private void button_Broken_Click(object sender, EventArgs e) {
             if (LookupView.SelectedRows.Count > 0) {
@@ -70,11 +65,13 @@ namespace SecretCellar
             }
         }
 
+
         private void btn_Cancel_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;
             this.Close();
         }
+
 
         private bool addCharge()
         {
@@ -88,10 +85,9 @@ namespace SecretCellar
             return false;
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-            RefreshInv();
-        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e) { RefreshInv(); }
+
 
         private void LookupView_SelectionChanged(object sender, EventArgs e)
         {
@@ -106,6 +102,7 @@ namespace SecretCellar
                 cboType.Text = types.First(x => x.TypeId == i.TypeID).TypeName;
                 txtBarcode.Text = i.Barcode;
                 txtPrice.Text = i.Price.ToString();
+                textBox_discountPrice.Text = i.DiscountPrice.ToString();
                 cbo_Supplier.Text = suppliers.First(x => x.SupplierID == i.SupplierID).Name;
                 txt_net_price.Text = i.SupplierPrice.ToString();
                 txtProd_Qty.Text = i.Bottles.ToString();
@@ -125,6 +122,7 @@ namespace SecretCellar
                 }
             }
         }
+
 
         private void btn_update_Click(object sender, EventArgs e)
         {
@@ -205,6 +203,15 @@ namespace SecretCellar
                             MessageBox.Show("Invalid Price");
                             return;
                         }
+
+                        if (double.TryParse(textBox_discountPrice.Text, out double discountPrice)) i.DiscountPrice = discountPrice;
+                        else {
+                            txtPrice.Focus();
+                            txtPrice.SelectAll();
+                            MessageBox.Show("Invalid Discount Price");
+                            return;
+                        }
+
                         if (uint.TryParse(txtProd_Qty.Text, out uint product)) i.Bottles = product;
                         else {
                             txtProd_Qty.Focus();
@@ -302,6 +309,15 @@ namespace SecretCellar
                         MessageBox.Show("Invalid Price");
                         return;
                     }
+
+                    if (double.TryParse(textBox_discountPrice.Text, out double discountPrice)) i.DiscountPrice = discountPrice;
+                    else {
+                        txtPrice.Focus();
+                        txtPrice.SelectAll();
+                        MessageBox.Show("Invalid Discount Price");
+                        return;
+                    }
+
                     if (uint.TryParse(txtProd_Qty.Text, out uint product)) i.Bottles = product;
                     else {
                         txtProd_Qty.Focus();
@@ -343,25 +359,11 @@ namespace SecretCellar
             // }
         }
 
-        private void cbxTypeFilter_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            RefreshInv();
-        }
 
-        private void cbxSupplyFilter_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            RefreshInv();
-        }
-
-        private void cbxOnlyItemsWithInventory_CheckedChanged(object sender, EventArgs e)
-        {
-            RefreshInv();
-		}
-
-        private void chk_box_show_hidden_CheckedChanged(object sender, EventArgs e)
-        {
-            RefreshInv();
-        }
+        private void cbxTypeFilter_SelectedIndexChanged(object sender, EventArgs e) { RefreshInv(); }
+        private void cbxSupplyFilter_SelectedIndexChanged(object sender, EventArgs e) { RefreshInv(); }
+        private void cbxOnlyItemsWithInventory_CheckedChanged(object sender, EventArgs e) { RefreshInv(); }
+        private void chk_box_show_hidden_CheckedChanged(object sender, EventArgs e) { RefreshInv(); }
 
         private void btn_clear_info_Click(object sender, EventArgs e)
         {
@@ -372,6 +374,7 @@ namespace SecretCellar
             cbo_Supplier.SelectedIndex = 1;
             txt_qty.Text = "0";
             txtPrice.Text = "";
+            textBox_discountPrice.Text = "";
             txt_net_price.Text = "";
             txtProd_Qty.Text = "0";
             txt_min_qty.Text = "0";
@@ -429,11 +432,13 @@ namespace SecretCellar
                 LookupView_SelectionChanged(sender, null);
         }
 
+
         private void btn_close_Click(object sender, EventArgs e)
         {
             txtlookup.Text = "";
             this.Close();
         }
+
 
 		private void button_DeleteItem_Click(object sender, EventArgs e) {
             if (LookupView.SelectedRows.Count > 0) {
