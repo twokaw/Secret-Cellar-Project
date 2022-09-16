@@ -415,8 +415,7 @@ namespace SecretCellar
                        ItemType = x.ItemType,
                        Qty = x.Qty,
                        Barcode = x.Barcode,
-                       Price = x.Price,
-                       discount_price = x.DiscountPrice,
+                       Price = x.DiscountPrice > 0? x.DiscountPrice : x.Price,
                        minqty = x.InvMin,
                        maxqty = x.InvMax,
                        orderqty = x.OrderQty
