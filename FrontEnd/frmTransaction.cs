@@ -2,7 +2,6 @@
 using Shared;
 using System;
 using System.Drawing;
-using System.Drawing.Printing;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -90,7 +89,7 @@ namespace SecretCellar
 
         private void Tender()
         {
-            if (transaction.Items.Count > 0) {
+            if (transaction.Items.Count > 0 || CurrentCustomer != null) {
                 frmPayment payment = new frmPayment(transaction);
 
                 if (payment.ShowDialog() == DialogResult.OK) {
@@ -206,11 +205,12 @@ namespace SecretCellar
 
                     label_currentCustomerValue.Text = $"{CurrentCustomer.LastName}, {CurrentCustomer.FirstName}";
 
-                    lbl_CreditValue.Visible = CurrentCustomer.Credit > 0.0;
-                    lbl_Credit.Visible = CurrentCustomer.Credit > 0.0;
-                    if (CurrentCustomer.Credit > 0.0)
+                    lbl_CreditValue.Visible = CurrentCustomer.Credit != 0.0;
+                    lbl_Credit.Visible = CurrentCustomer.Credit != 0.0;
+                    if (CurrentCustomer.Credit != 0.0)
                     {
                         lbl_CreditValue.Text = $"{CurrentCustomer.Credit:c2}";
+                        lbl_CreditValue.ForeColor = (CurrentCustomer.Credit < 0.0) ? Color.DarkRed : Color.Blue;
                     }
                 }
             }

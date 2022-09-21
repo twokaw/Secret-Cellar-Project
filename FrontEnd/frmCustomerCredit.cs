@@ -38,22 +38,16 @@ namespace SecretCellar {
 			this.Close();
 		}
 
-		private void button_Confirm_Click(object sender, EventArgs e) {
-			if (frmManagerOverride.DidOverride("Update Credit")) {
-				customer.Credit = newCredit;
-				DataAccess.instance.UpdateCustomer(customer);
-				Close();
-            }
-		}
-
 		private void updateCredit(string method) {
+			double value = textBox_NewCreditAmount.Value;
+
 			if (method.Equals("reset")) {
 				newCredit = oldCredit;
 				this.label_CustomersCreditValue.Text = $"{newCredit:c2}";
 				
 				button_Confirm.Enabled = false;
 			}
-			else if (double.TryParse(textBox_NewCreditAmount.Text, out double value)) {
+			else {
 				switch(method) {
 					case "add":
 						newCredit += value;
@@ -69,19 +63,26 @@ namespace SecretCellar {
 				button_Confirm.Enabled = true;
 				label_CustomersCreditValue.Text = $"{newCredit:c2}";
 			}
-			else {
-				if (textBox_NewCreditAmount.Text.Replace(" ", "").Equals("")) {
-					MessageBox.Show("Value cannot be empty.", "Error");
-				}
-				else {
-					MessageBox.Show("Value can only be numbers.", "Error");
-				}
-			}
 		}
 
         private void txtCashAmt_Enter(object sender, EventArgs e)
         {
 			touchKeyPad1.Target = (TextBox)sender;
+		}
+
+        private void buttonCancel_Click(object sender, EventArgs e)
+        {
+			this.Close();
+        }
+
+        private void buttonConfirm_Click(object sender, EventArgs e)
+		{
+			if (frmManagerOverride.DidOverride("Update Credit"))
+			{
+				customer.Credit = newCredit;
+				DataAccess.instance.UpdateCustomer(customer);
+				Close();
+			}
 		}
     }
 }
