@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Drawing.Printing;
 using Shared;
 
@@ -64,7 +65,17 @@ namespace NCR_Printer
             {
                 string itemLine = $"{item.NumSold} - {item.Name}";
                 PrintText($"{itemLine.Substring(0, Math.Min(itemLine.Length, Layout.DesctiptionWidth - item.DiscountText.Length))}{item.DiscountText}", false);
-                PrintText($"{item.Price:C}", true, TextAlignment.Right);
+
+                bool isDiscounted = item.DiscountPrice > 0;
+                
+                if (isDiscounted) {
+                    Font strikethroughFont = new Font("Arial", 11, FontStyle.Strikeout);
+                    PrintText($"{item.Price:C}", strikethroughFont, true, TextAlignment.Right);
+                    PrintText($"Discounted: {item.DiscountPrice:C}", 0, true, TextAlignment.Right);
+                }
+                else {
+                    PrintText($"{item.Price:C}", true, TextAlignment.Right);
+                }
             }
 
             // Print Separator
