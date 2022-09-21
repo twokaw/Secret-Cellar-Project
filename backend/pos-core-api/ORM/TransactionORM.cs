@@ -467,7 +467,7 @@ namespace pos_core_api.ORM
             ");
             cmd.Parameters.Add(new MySqlParameter("receiptID", receiptId));
             cmd.Parameters.Add(new MySqlParameter("inventoryID", item.Id));
-            cmd.Parameters.Add(new MySqlParameter("sold_price", item.Price));
+            cmd.Parameters.Add(new MySqlParameter("sold_price", item.DiscountPrice > 0? item.DiscountPrice : item.Price));
             cmd.Parameters.Add(new MySqlParameter("supplier_price", item.SupplierPrice));
             cmd.Parameters.Add(new MySqlParameter("sold_qty", item.QtySold));
             cmd.Parameters.Add(new MySqlParameter("refunded_Qty", item.QtyRefunded));
