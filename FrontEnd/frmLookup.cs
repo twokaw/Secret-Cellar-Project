@@ -102,7 +102,7 @@ namespace SecretCellar
                 cboType.Text = types.First(x => x.TypeId == i.TypeID).TypeName;
                 txtBarcode.Text = i.Barcode;
                 txtPrice.Text = i.Price.ToString();
-                textBox_discountPrice.Text = i.DiscountPrice.ToString();
+                currencyBox_discountPrice.Text = i.DiscountPrice.ToString();
                 cbo_Supplier.Text = suppliers.First(x => x.SupplierID == i.SupplierID).Name;
                 txt_net_price.Text = i.SupplierPrice.ToString();
                 txtProd_Qty.Text = i.Bottles.ToString();
@@ -204,7 +204,7 @@ namespace SecretCellar
                             return;
                         }
 
-                        if (double.TryParse(textBox_discountPrice.Text, out double discountPrice)) i.DiscountPrice = discountPrice;
+                        if (double.TryParse(currencyBox_discountPrice.Text, out double discountPrice)) i.DiscountPrice = discountPrice;
                         else {
                             txtPrice.Focus();
                             txtPrice.SelectAll();
@@ -310,7 +310,7 @@ namespace SecretCellar
                         return;
                     }
 
-                    if (double.TryParse(textBox_discountPrice.Text, out double discountPrice)) i.DiscountPrice = discountPrice;
+                    if (double.TryParse(currencyBox_discountPrice.Text, out double discountPrice)) i.DiscountPrice = discountPrice;
                     else {
                         txtPrice.Focus();
                         txtPrice.SelectAll();
@@ -374,7 +374,7 @@ namespace SecretCellar
             cbo_Supplier.SelectedIndex = 1;
             txt_qty.Text = "0";
             txtPrice.Text = "";
-            textBox_discountPrice.Text = "";
+            currencyBox_discountPrice.Text = "";
             txt_net_price.Text = "";
             txtProd_Qty.Text = "0";
             txt_min_qty.Text = "0";
