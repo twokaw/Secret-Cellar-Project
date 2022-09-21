@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace SecretCellar
@@ -134,6 +135,7 @@ namespace SecretCellar
 
         private string FormatText(double value)
         {
+            this.ForeColor = (value < 0) ? Color.DarkRed : Color.Black;
             return $"{value:C}";
         }
         private static readonly char[] NEGATIVE = "+()".ToCharArray();
@@ -160,6 +162,7 @@ namespace SecretCellar
                 value = "$";
             }
 
+            this.ForeColor = (val < 0) ? Color.DarkRed : Color.Black;
             return value;
         }
         private double ToNumber()

@@ -532,9 +532,9 @@ namespace pos_core_api.ORM
             MySqlCommand cmd;
             string insert = @"
                 INSERT INTO Payments
-                ( ReceiptID,  Method,  Number,  Amount, PaymentMethodID)
+                ( ReceiptID,  Method,  Number,  Amount, PaymentMethodId)
                 VALUES
-                (@ReceiptID, @Method, @Number, @Amount, (SELECT PaymentMethodid FROM Paymenthod WHERE PaymentMethod = @Method ))
+                (@ReceiptID, @Method, @Number, @Amount, (SELECT PaymentMethodId FROM Paymentmethod WHERE PaymentMethod = @Method ))
             ";
 
             string update = @"
@@ -543,7 +543,7 @@ namespace pos_core_api.ORM
                      Method = @Method,
                      Number = @Number,
                      Amount = @Amount,
-                     PaymentMehtodID = (SELECT PaymentMethodid FROM Paymenthod WHERE PaymentMethod = @Method )
+                     PaymentMethodid = (SELECT PaymentMethodid FROM Paymentmethod WHERE PaymentMethod = @Method )
                 WHERE PayID = @PayID
             ";
             

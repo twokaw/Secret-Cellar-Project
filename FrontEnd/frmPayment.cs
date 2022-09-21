@@ -95,22 +95,24 @@ namespace SecretCellar
             double payAmount = txtCashAmt.Value;
 
             if (payAmount == 0.0)
-                payAmount = txt_credit_amount.Value;
+                payAmount = Math.Abs(txt_credit_amount.Value)* -1; 
+            else
+                payAmount = Math.Abs(payAmount) * -1;
 
             txtCashAmt.Value = payAmount;
             UpdatePayment("TAB PAYMENT");
 
-            txt_credit_amount.Value += payAmount;
+            txt_credit_amount.Value -= payAmount;
             currentCustomer.Credit  = txt_credit_amount.Value;
         }
 
         private void btn_cust_credit_Click(object sender, EventArgs e)
         {
-            double creditAmount = Convert.ToDouble(txt_credit_amount.Text.Replace("$", ""));
-            double due = (Convert.ToDouble(txtDue.Text.Replace("$","")));
-            double payAmount = 0.0;
+            double creditAmount = txt_credit_amount.Value ;
+            double due = txtDue.Value;
+            double payAmount = txtCashAmt.Value;
 
-            if  (!double.TryParse(txtCashAmt.Text.Replace("$", ""), out payAmount) || payAmount == 0.0)
+            if  (payAmount == 0.0)
             {
                 if (creditAmount <= 0) 
                     payAmount = due;
@@ -136,9 +138,14 @@ namespace SecretCellar
             {
                 transaction.Payments.Clear();
                 transaction.TaxExempt = TaxFree;
-            }    
-
-            if (double.TryParse(txtCashAmt.Text.Replace("$", ""), out double amount) && amount > 0.0)
+            }
+            double amount = txtCashAmt.Value;
+            if (amount < 0.0)
+            {
+                transaction.AddPayment(new Payment { Method = method, Amount = amount, Number = number });
+                RefreshGrid();
+            }
+            else if ( amount > 0.0)
             {
                 transaction.AddPayment(new Payment { Method = method, Amount = amount, Number = number });
                 RefreshGrid();
