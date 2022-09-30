@@ -74,12 +74,8 @@
             this.lbl_twentyone = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.btnSuspendedTransactions = new System.Windows.Forms.Button();
-            this.btnSuspendTransaction = new System.Windows.Forms.Button();
             this.lbl_current_cust = new System.Windows.Forms.Label();
-            this.pb_settings = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btn_order = new System.Windows.Forms.Button();
-            this.btnTender2 = new System.Windows.Forms.Button();
             this.ImgLstTenderButton = new System.Windows.Forms.ImageList(this.components);
             this.btn_signout = new System.Windows.Forms.Button();
             this.lbl_emp_logged_on = new System.Windows.Forms.Label();
@@ -88,8 +84,14 @@
             this.label_currentCustomerValue = new System.Windows.Forms.Label();
             this.lbl_CreditValue = new System.Windows.Forms.Label();
             this.lbl_Credit = new System.Windows.Forms.Label();
+            this.pic_transaction = new System.Windows.Forms.PictureBox();
+            this.pic_susp = new System.Windows.Forms.PictureBox();
+            this.pb_settings = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pic_transaction)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pic_susp)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb_settings)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -386,6 +388,7 @@
             // txt_itemTotal
             // 
             this.txt_itemTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_itemTotal.ForeColor = System.Drawing.Color.Black;
             this.txt_itemTotal.Location = new System.Drawing.Point(171, 6);
             this.txt_itemTotal.Margin = new System.Windows.Forms.Padding(2);
             this.txt_itemTotal.Name = "txt_itemTotal";
@@ -393,7 +396,8 @@
             this.txt_itemTotal.Size = new System.Drawing.Size(160, 35);
             this.txt_itemTotal.TabIndex = 12;
             this.txt_itemTotal.TabStop = false;
-            this.txt_itemTotal.Text = "0.00";
+            this.txt_itemTotal.Text = "$0.00";
+            this.txt_itemTotal.Value = 0D;
             // 
             // lblShip
             // 
@@ -409,17 +413,20 @@
             // txt_Ship
             // 
             this.txt_Ship.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_Ship.ForeColor = System.Drawing.Color.Black;
             this.txt_Ship.Location = new System.Drawing.Point(171, 240);
             this.txt_Ship.Margin = new System.Windows.Forms.Padding(2);
             this.txt_Ship.Name = "txt_Ship";
             this.txt_Ship.Size = new System.Drawing.Size(160, 35);
             this.txt_Ship.TabIndex = 10;
             this.txt_Ship.TabStop = false;
-            this.txt_Ship.Text = "0.00";
+            this.txt_Ship.Text = "$0.00";
+            this.txt_Ship.Value = 0D;
             // 
             // txt_TransTotal
             // 
             this.txt_TransTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_TransTotal.ForeColor = System.Drawing.Color.Black;
             this.txt_TransTotal.Location = new System.Drawing.Point(171, 288);
             this.txt_TransTotal.Margin = new System.Windows.Forms.Padding(2);
             this.txt_TransTotal.Name = "txt_TransTotal";
@@ -427,12 +434,13 @@
             this.txt_TransTotal.Size = new System.Drawing.Size(160, 40);
             this.txt_TransTotal.TabIndex = 9;
             this.txt_TransTotal.TabStop = false;
-            this.txt_TransTotal.Text = "0.00";
-            this.txt_TransTotal.TextChanged += new System.EventHandler(this.txt_TransTotal_TextChanged);
+            this.txt_TransTotal.Text = "$0.00";
+            this.txt_TransTotal.Value = 0D;
             // 
             // txt_transTax
             // 
             this.txt_transTax.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_transTax.ForeColor = System.Drawing.Color.Black;
             this.txt_transTax.Location = new System.Drawing.Point(171, 147);
             this.txt_transTax.Margin = new System.Windows.Forms.Padding(2);
             this.txt_transTax.Name = "txt_transTax";
@@ -440,11 +448,13 @@
             this.txt_transTax.Size = new System.Drawing.Size(160, 35);
             this.txt_transTax.TabIndex = 8;
             this.txt_transTax.TabStop = false;
-            this.txt_transTax.Text = "0.00";
+            this.txt_transTax.Text = "$0.00";
+            this.txt_transTax.Value = 0D;
             // 
             // txt_transDiscount
             // 
             this.txt_transDiscount.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_transDiscount.ForeColor = System.Drawing.Color.Black;
             this.txt_transDiscount.Location = new System.Drawing.Point(171, 52);
             this.txt_transDiscount.Margin = new System.Windows.Forms.Padding(2);
             this.txt_transDiscount.Name = "txt_transDiscount";
@@ -452,11 +462,13 @@
             this.txt_transDiscount.Size = new System.Drawing.Size(160, 35);
             this.txt_transDiscount.TabIndex = 7;
             this.txt_transDiscount.TabStop = false;
-            this.txt_transDiscount.Text = "0.00";
+            this.txt_transDiscount.Text = "$0.00";
+            this.txt_transDiscount.Value = 0D;
             // 
             // txt_transBTLDPT
             // 
             this.txt_transBTLDPT.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_transBTLDPT.ForeColor = System.Drawing.Color.Black;
             this.txt_transBTLDPT.Location = new System.Drawing.Point(171, 194);
             this.txt_transBTLDPT.Margin = new System.Windows.Forms.Padding(2);
             this.txt_transBTLDPT.Name = "txt_transBTLDPT";
@@ -464,11 +476,13 @@
             this.txt_transBTLDPT.Size = new System.Drawing.Size(160, 35);
             this.txt_transBTLDPT.TabIndex = 6;
             this.txt_transBTLDPT.TabStop = false;
-            this.txt_transBTLDPT.Text = "0.00";
+            this.txt_transBTLDPT.Text = "$0.00";
+            this.txt_transBTLDPT.Value = 0D;
             // 
             // txt_transSubTotal
             // 
             this.txt_transSubTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_transSubTotal.ForeColor = System.Drawing.Color.Black;
             this.txt_transSubTotal.Location = new System.Drawing.Point(171, 99);
             this.txt_transSubTotal.Margin = new System.Windows.Forms.Padding(2);
             this.txt_transSubTotal.Name = "txt_transSubTotal";
@@ -476,7 +490,8 @@
             this.txt_transSubTotal.Size = new System.Drawing.Size(160, 35);
             this.txt_transSubTotal.TabIndex = 5;
             this.txt_transSubTotal.TabStop = false;
-            this.txt_transSubTotal.Text = "0.00";
+            this.txt_transSubTotal.Text = "$0.00";
+            this.txt_transSubTotal.Value = 0D;
             // 
             // LB_Discount
             // 
@@ -541,7 +556,6 @@
             this.txtBarcode.Name = "txtBarcode";
             this.txtBarcode.Size = new System.Drawing.Size(388, 35);
             this.txtBarcode.TabIndex = 0;
-            this.txtBarcode.TextChanged += new System.EventHandler(this.txtBarcode_TextChanged);
             this.txtBarcode.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtBarcode_KeyUp);
             // 
             // lbl_BARCODE
@@ -555,7 +569,6 @@
             this.lbl_BARCODE.TabIndex = 17;
             this.lbl_BARCODE.Text = "Barcode:";
             this.lbl_BARCODE.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lbl_BARCODE.Click += new System.EventHandler(this.lbl_BARCODE_Click);
             // 
             // btnLookup
             // 
@@ -630,21 +643,6 @@
             this.btnSuspendedTransactions.UseVisualStyleBackColor = true;
             this.btnSuspendedTransactions.Click += new System.EventHandler(this.btnSuspendedTransactions_Click);
             // 
-            // btnSuspendTransaction
-            // 
-            this.btnSuspendTransaction.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSuspendTransaction.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(0)))), ((int)(((byte)(32)))));
-            this.btnSuspendTransaction.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSuspendTransaction.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnSuspendTransaction.Location = new System.Drawing.Point(1089, 176);
-            this.btnSuspendTransaction.Margin = new System.Windows.Forms.Padding(2);
-            this.btnSuspendTransaction.Name = "btnSuspendTransaction";
-            this.btnSuspendTransaction.Size = new System.Drawing.Size(180, 72);
-            this.btnSuspendTransaction.TabIndex = 11;
-            this.btnSuspendTransaction.Text = "Suspend";
-            this.btnSuspendTransaction.UseVisualStyleBackColor = false;
-            this.btnSuspendTransaction.Click += new System.EventHandler(this.btnSuspendTransaction_Click);
-            // 
             // lbl_current_cust
             // 
             this.lbl_current_cust.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -656,32 +654,6 @@
             this.lbl_current_cust.Size = new System.Drawing.Size(132, 29);
             this.lbl_current_cust.TabIndex = 26;
             this.lbl_current_cust.Text = "Customer:";
-            // 
-            // pb_settings
-            // 
-            this.pb_settings.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pb_settings.Image = global::SecretCellar.Properties.Resources.Gears;
-            this.pb_settings.Location = new System.Drawing.Point(30, 14);
-            this.pb_settings.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
-            this.pb_settings.Name = "pb_settings";
-            this.pb_settings.Size = new System.Drawing.Size(105, 76);
-            this.pb_settings.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pb_settings.TabIndex = 20;
-            this.pb_settings.TabStop = false;
-            this.pb_settings.Click += new System.EventHandler(this.pb_settings_Click);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(705, 624);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(411, 244);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 18;
-            this.pictureBox1.TabStop = false;
             // 
             // btn_order
             // 
@@ -698,32 +670,14 @@
             this.btn_order.UseVisualStyleBackColor = false;
             this.btn_order.Click += new System.EventHandler(this.btn_order_Click);
             // 
-            // btnTender2
-            // 
-            this.btnTender2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnTender2.BackColor = System.Drawing.Color.Transparent;
-            this.btnTender2.FlatAppearance.BorderSize = 0;
-            this.btnTender2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.btnTender2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.btnTender2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnTender2.ImageIndex = 0;
-            this.btnTender2.ImageList = this.ImgLstTenderButton;
-            this.btnTender2.Location = new System.Drawing.Point(861, 882);
-            this.btnTender2.Margin = new System.Windows.Forms.Padding(0);
-            this.btnTender2.Name = "btnTender2";
-            this.btnTender2.Size = new System.Drawing.Size(298, 148);
-            this.btnTender2.TabIndex = 28;
-            this.btnTender2.UseVisualStyleBackColor = false;
-            this.btnTender2.Click += new System.EventHandler(this.btnTender2_Click);
-            this.btnTender2.MouseLeave += new System.EventHandler(this.btnTender2_MouseLeave);
-            this.btnTender2.MouseHover += new System.EventHandler(this.btnTender2_MouseHover);
-            // 
             // ImgLstTenderButton
             // 
             this.ImgLstTenderButton.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("ImgLstTenderButton.ImageStream")));
             this.ImgLstTenderButton.TransparentColor = System.Drawing.Color.Transparent;
             this.ImgLstTenderButton.Images.SetKeyName(0, "Tender Button.png");
             this.ImgLstTenderButton.Images.SetKeyName(1, "Tender Button hover.png");
+            this.ImgLstTenderButton.Images.SetKeyName(2, "Suspend Button.png");
+            this.ImgLstTenderButton.Images.SetKeyName(3, "Suspend Button Hover.png");
             // 
             // btn_signout
             // 
@@ -753,7 +707,7 @@
             // 
             this.button_Invoices.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.button_Invoices.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_Invoices.Location = new System.Drawing.Point(874, 178);
+            this.button_Invoices.Location = new System.Drawing.Point(1084, 174);
             this.button_Invoices.Margin = new System.Windows.Forms.Padding(2);
             this.button_Invoices.Name = "button_Invoices";
             this.button_Invoices.Size = new System.Drawing.Size(190, 68);
@@ -811,6 +765,60 @@
             this.lbl_Credit.Text = "Credit:";
             this.lbl_Credit.Visible = false;
             // 
+            // pic_transaction
+            // 
+            this.pic_transaction.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.pic_transaction.Image = global::SecretCellar.Properties.Resources.Tender_Button;
+            this.pic_transaction.Location = new System.Drawing.Point(913, 883);
+            this.pic_transaction.Name = "pic_transaction";
+            this.pic_transaction.Size = new System.Drawing.Size(235, 165);
+            this.pic_transaction.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pic_transaction.TabIndex = 40;
+            this.pic_transaction.TabStop = false;
+            this.pic_transaction.Click += new System.EventHandler(this.pic_transaction_Click);
+            this.pic_transaction.MouseLeave += new System.EventHandler(this.pic_transaction_MouseLeave);
+            this.pic_transaction.MouseHover += new System.EventHandler(this.pic_transaction_MouseHover);
+            // 
+            // pic_susp
+            // 
+            this.pic_susp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.pic_susp.Image = global::SecretCellar.Properties.Resources.Suspend_Button;
+            this.pic_susp.Location = new System.Drawing.Point(684, 911);
+            this.pic_susp.Name = "pic_susp";
+            this.pic_susp.Size = new System.Drawing.Size(194, 113);
+            this.pic_susp.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pic_susp.TabIndex = 39;
+            this.pic_susp.TabStop = false;
+            this.pic_susp.Click += new System.EventHandler(this.pic_susp_Click);
+            this.pic_susp.MouseLeave += new System.EventHandler(this.pic_susp_MouseLeave);
+            this.pic_susp.MouseHover += new System.EventHandler(this.pic_susp_MouseHover);
+            // 
+            // pb_settings
+            // 
+            this.pb_settings.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pb_settings.Image = global::SecretCellar.Properties.Resources.Gears;
+            this.pb_settings.Location = new System.Drawing.Point(30, 14);
+            this.pb_settings.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
+            this.pb_settings.Name = "pb_settings";
+            this.pb_settings.Size = new System.Drawing.Size(105, 76);
+            this.pb_settings.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pb_settings.TabIndex = 20;
+            this.pb_settings.TabStop = false;
+            this.pb_settings.Click += new System.EventHandler(this.pb_settings_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(705, 624);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(411, 244);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 18;
+            this.pictureBox1.TabStop = false;
+            // 
             // frmTransaction
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(144F, 144F);
@@ -819,6 +827,8 @@
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(231)))), ((int)(((byte)(206)))));
             this.ClientSize = new System.Drawing.Size(1512, 1060);
+            this.Controls.Add(this.pic_transaction);
+            this.Controls.Add(this.pic_susp);
             this.Controls.Add(this.lbl_CreditValue);
             this.Controls.Add(this.lbl_Credit);
             this.Controls.Add(this.label_currentCustomerValue);
@@ -826,11 +836,9 @@
             this.Controls.Add(this.button_Invoices);
             this.Controls.Add(this.lbl_emp_logged_on);
             this.Controls.Add(this.btn_signout);
-            this.Controls.Add(this.btnTender2);
             this.Controls.Add(this.btn_order);
             this.Controls.Add(this.lbl_current_cust);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.btnSuspendTransaction);
             this.Controls.Add(this.btnSuspendedTransactions);
             this.Controls.Add(this.lbl_twentyone);
             this.Controls.Add(this.caseDiscount);
@@ -859,6 +867,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pic_transaction)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pic_susp)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb_settings)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
@@ -897,12 +907,10 @@
         private System.Windows.Forms.PictureBox pb_settings;
         private System.Windows.Forms.CheckBox caseDiscount;
 		private System.Windows.Forms.Button btnSuspendedTransactions;
-		private System.Windows.Forms.Button btnSuspendTransaction;
         private System.Windows.Forms.Label lbl_twentyone;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label lbl_current_cust;
         private System.Windows.Forms.Button btn_order;
-        private System.Windows.Forms.Button btnTender2;
         private System.Windows.Forms.ImageList ImgLstTenderButton;
         private System.Windows.Forms.DataGridViewTextBoxColumn DESCRIPTION;
         private System.Windows.Forms.DataGridViewTextBoxColumn QTY;
@@ -920,5 +928,7 @@
         private System.Windows.Forms.Label label_currentCustomerValue;
         private System.Windows.Forms.Label lbl_CreditValue;
         private System.Windows.Forms.Label lbl_Credit;
+        private System.Windows.Forms.PictureBox pic_susp;
+        private System.Windows.Forms.PictureBox pic_transaction;
     }
 }

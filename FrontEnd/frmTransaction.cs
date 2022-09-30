@@ -56,7 +56,7 @@ namespace SecretCellar
        
             Receipt.DefaultLayout = receiptLayout;
             PurchaseOrder.LetterLayout = letterLayout;
-            btnSuspendTransaction.Visible = false;
+            pic_susp.Visible = false;
            /*
             foreach(DataGridViewColumn  col in dataGridView1.Columns)
                 col.CellStyle = new DataGridViewCellStyle { BackColor = Color.Purple, SelectionBackColor = Color.Purple , Font = new Font("Microsoft Sans Serif", 11f, FontStyle.Bold), Alignment = DataGridViewContentAlignment.MiddleCenter };
@@ -132,11 +132,6 @@ namespace SecretCellar
                     txtBarcode.Focus();
                 }
             }
-        }
-
-        private void btnTender2_Click(object sender, EventArgs e)
-        {
-            Tender();
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -260,10 +255,6 @@ namespace SecretCellar
             RefreshDataGrid();
         }
 
-        private void txt_TransTotal_TextChanged(object sender, EventArgs e)
-        {
-        }
-
         private void btnEvents_Click(object sender, EventArgs e)
         {
             frmEvents events = new frmEvents(transaction);
@@ -297,7 +288,6 @@ namespace SecretCellar
             }
         }
 
-
         private void VoidTransaction() {
             //PROCESS THE TRANSACTION IN CASE THE USER DELETED ANY PAYMENTS
             uint transactionId = DataAccess.instance.ProcessTransaction(transaction);
@@ -322,7 +312,7 @@ namespace SecretCellar
             //IF THE COUNT IS BIGGER THAN 0 SHOW THE SUSPEND TRANSACTION BUTTON
             if (transaction.Items.Count > 0)
             {
-                btnSuspendTransaction.Visible = true;
+                pic_susp.Visible = true;
             }
         }
 
@@ -331,7 +321,7 @@ namespace SecretCellar
             //IF THE COUNT EQUALS 0 HIDE THE SUSPEND TRANSACTION BUTTON
             if (transaction.Items.Count == 0)
             {
-                btnSuspendTransaction.Visible = false;
+                pic_susp.Visible = false;
             }
         }
 
@@ -427,12 +417,6 @@ namespace SecretCellar
             }
         }
 
-        private void lbl_BARCODE_Click(object sender, EventArgs e)
-        {
-        }
-
-
-
         private void button1_Click(object sender, EventArgs e)
         {
             frmCustomer customer = new frmCustomer(transaction); //instantiates frmCustomer using Lookup
@@ -451,24 +435,9 @@ namespace SecretCellar
             DataAccess.instance.ShowOrdersForm();
         }
 
-        private void btnTender2_MouseHover(object sender, EventArgs e)
-        {
-            btnTender2.ImageIndex = 1;
-        }
-
-        private void btnTender2_MouseLeave(object sender, EventArgs e)
-        {
-            btnTender2.ImageIndex = 0;
-        }
-
         private void frmTransaction_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
-        }
-
-        private void txtBarcode_TextChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void btn_signout_Click(object sender, EventArgs e)
@@ -531,6 +500,45 @@ namespace SecretCellar
         private void btn_cashDrawer_Click(object sender, EventArgs e)
         {
             if (frmManagerOverride.DidOverride("Open Cash Drawer")) DataAccess.instance.OpenCashDrawer();
+        }
+
+        private void btnSuspend_Click(object sender, EventArgs e)
+        {
+            frmSuspendedTransactions suspendedTransactions = new frmSuspendedTransactions(this, transaction);
+            suspendedTransactions.ShowDialog();
+        }
+
+        private void pic_susp_Click(object sender, EventArgs e)
+        {
+            frmSuspendedTransactions suspendedTransactions = new frmSuspendedTransactions(this, transaction);
+            suspendedTransactions.ShowDialog();
+
+        }
+
+        private void pic_susp_MouseHover(object sender, EventArgs e)
+        {
+            pic_susp.Image = ImgLstTenderButton.Images[3];
+        }
+
+        private void pic_susp_MouseLeave(object sender, EventArgs e)
+        {
+            pic_susp.Image = ImgLstTenderButton.Images[2];
+
+        }
+
+        private void pic_transaction_Click(object sender, EventArgs e)
+        {
+            Tender();
+        }
+
+        private void pic_transaction_MouseHover(object sender, EventArgs e)
+        {
+            pic_transaction.Image = ImgLstTenderButton.Images[1];  
+        }
+
+        private void pic_transaction_MouseLeave(object sender, EventArgs e)
+        {
+            pic_transaction.Image = ImgLstTenderButton.Images[0]; 
         }
     }
 }
