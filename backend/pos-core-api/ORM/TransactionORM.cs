@@ -230,6 +230,7 @@ namespace pos_core_api.ORM
                             Id = itemReader.GetUInt32("inventoryid"),
                             Barcode = itemReader.IsDBNull("barcode") ? "" : itemReader.GetString("barcode"),
                             Price = itemReader.IsDBNull("sold_price") ? 0.0 : itemReader.GetDouble("sold_price"),
+                            DiscountPrice = itemReader.IsDBNull("discount_price") ? 0.0 : itemReader.GetDouble("discount_price"),
                             Bottles = itemReader.IsDBNull("bottles") ? 0 : itemReader.GetUInt32("bottles"),
                             ItemType = itemReader.IsDBNull("inventory_type_name") ? "" : itemReader.GetString("inventory_type_name"),
                             NonTaxable = !itemReader.IsDBNull("nontaxable") && itemReader.GetBoolean("nontaxable"),
@@ -461,13 +462,14 @@ namespace pos_core_api.ORM
         {
             MySqlCommand cmd = db.CreateCommand(@"
                 REPLACE INTO transaction_items
-                ( receiptID,  inventoryID,  sold_price,  supplier_price,  sold_qty, Refunded_Qty)
+                ( receiptID,  inventoryID,  sold_price, discount_price,  supplier_price,  sold_qty, Refunded_Qty)
                 VALUES
-                (@receiptID, @inventoryID, @sold_price, @supplier_price, @sold_qty, @Refunded_Qty)
+                (@receiptID, @inventoryID, @sold_price, @discount_price, @supplier_price, @sold_qty, @Refunded_Qty)
             ");
             cmd.Parameters.Add(new MySqlParameter("receiptID", receiptId));
             cmd.Parameters.Add(new MySqlParameter("inventoryID", item.Id));
             cmd.Parameters.Add(new MySqlParameter("sold_price", item.DiscountPrice > 0? item.DiscountPrice : item.Price));
+            cmd.Parameters.Add(new MySqlParameter("discount_price", item.DiscountPrice));
             cmd.Parameters.Add(new MySqlParameter("supplier_price", item.SupplierPrice));
             cmd.Parameters.Add(new MySqlParameter("sold_qty", item.QtySold));
             cmd.Parameters.Add(new MySqlParameter("refunded_Qty", item.QtyRefunded));
