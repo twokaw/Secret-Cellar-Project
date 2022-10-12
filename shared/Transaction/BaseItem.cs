@@ -61,6 +61,7 @@ namespace Shared
             this.RequestQty = item.RequestQty;
             this.RequiredQty = item.RequiredQty;
             this.Price = item.Price;
+            this.DiscountPrice = item.DiscountPrice;
             this.NonTaxable = item.NonTaxable;
             this.NonTaxableLocal = item.NonTaxableLocal ;
             this.TypeID = item.TypeID;

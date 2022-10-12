@@ -26,7 +26,16 @@ namespace Shared
         {
             get
             {
-                return (Price > 0) ? Price * NumSold * Discount : -Price;
+                double price;
+
+                if (DiscountPrice > 0) {
+                    price = DiscountPrice * NumSold * Discount;
+                }
+                else {
+                    price = (Price > 0) ? Price * NumSold * Discount : -Price;
+                }
+
+                return price;
             }
         }
 
@@ -34,7 +43,16 @@ namespace Shared
         {
             get
             {
-                return (Price > 0) ? Price * NumSold : 0;
+                double price;
+
+                if (DiscountPrice > 0) {
+                    price = DiscountPrice * NumSold;
+                }
+                else {
+                    price = (Price > 0) ? Price * NumSold : 0;
+                }
+
+                return price;
             }
         }
 
@@ -42,7 +60,16 @@ namespace Shared
         {
             get
             {
-                return Price * NumSold * ((Price > 0) ? (1 - Discount) : 1);
+                double price;
+
+                if (DiscountPrice > 0) {
+                    price = DiscountPrice * NumSold * (1 - Discount);
+                }
+                else {
+                    price = Price * NumSold * ((Price > 0) ? (1 - Discount) : 1);
+                }
+
+                return price;
             }
         }
 
@@ -68,6 +95,7 @@ namespace Shared
                     uint Qty,
                     uint NumSold,
                     double Price,
+                    double DiscountPrice,
                     bool NonTaxable,
                     string ItemType,
                     uint Bottles,
@@ -79,6 +107,7 @@ namespace Shared
             this.Id = Id;
             this.Name = Name;
             this.Price = Price;
+            this.DiscountPrice = DiscountPrice;
             this.NonTaxable = NonTaxable;
             this.ItemType = ItemType;
             this.Bottles = Bottles;
