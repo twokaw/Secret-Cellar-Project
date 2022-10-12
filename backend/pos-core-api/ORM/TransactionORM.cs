@@ -545,7 +545,7 @@ namespace pos_core_api.ORM
                      Method = @Method,
                      Number = @Number,
                      Amount = @Amount,
-                     PaymentMethodid = (SELECT PaymentMethodid FROM Paymentmethod WHERE PaymentMethod = @Method )
+                     PaymentMethodid = (SELECT PaymentMethodid FROM Paymentmethod WHERE PaymentMethod = @Method ) 
                 WHERE PayID = @PayID
             ";
             
