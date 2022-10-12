@@ -103,7 +103,9 @@ namespace SecretCellar
                 txtBarcode.Text = i.Barcode;
                 txtPrice.Text = i.Price.ToString();
                 currencyBox_discountPrice.Text = i.DiscountPrice.ToString();
-                cbo_Supplier.Text = suppliers.First(x => x.SupplierID == i.SupplierID).Name;
+
+                Supplier supplier = suppliers.FirstOrDefault(x => x.SupplierID == i.SupplierID);
+                cbo_Supplier.Text = supplier != null? supplier.Name : "";
                 txt_net_price.Text = i.SupplierPrice.ToString();
                 txtProd_Qty.Text = i.Bottles.ToString();
                 txt_markup.Text = ((i.Price - i.SupplierPrice) / i.SupplierPrice).ToString("P");
