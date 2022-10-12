@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace SecretCellar
@@ -10,6 +11,19 @@ namespace SecretCellar
             this.TextAlign = HorizontalAlignment.Left;
             this.Text = "0.00";
             this.CursorPosition = this.TextLength;
+        }
+
+
+        public double Value
+        {
+            get
+            {
+                return ToNumber();
+            }
+            set 
+            {
+                this.Text = FormatText(value);
+            }
         }
 
         protected override void OnKeyDown(KeyEventArgs e)
@@ -45,14 +59,19 @@ namespace SecretCellar
 
         protected override void OnTextChanged(EventArgs e)
         {
-            if (!base.Text.Contains("."))
-                base.Text += ".00";
-            else if ("." == base.Text.Substring(base.Text.Length - 2, 1))
-                base.Text += "0";
+            string newText = base.Text;
+            if (!newText.Contains("."))
+                newText += ".00";
+            else if ("." == newText.Substring(newText.Length - 2, 1))
+                newText += "0";
 
+            newText = FormatText(newText);
             base.OnTextChanged(e);
 
-            this.Text = FormatText(this.Text);
+            if (base.Text != newText)
+            {
+                this.Text = FormatText(newText);
+            }
 
             
             //CursorPosition = TextLength;
@@ -80,7 +99,7 @@ namespace SecretCellar
                 value = value.Insert(CursorPosition, $"{character}");
                 CursorPosition++;
 
-                this.Text = FormatText(value);
+                this.Text = FormatText(ToNumber(value) * 10);
 
                 Console.WriteLine($"CursorPosition INSERT : {CursorPosition}");
                 this.SelectionStart = CursorPosition;
@@ -113,16 +132,57 @@ namespace SecretCellar
                 this.SelectionLength = 0;
             }
         }
-        
+
+        private string FormatText(double value)
+        {
+            this.ForeColor = (value < 0) ? Color.DarkRed : Color.Black;
+            return $"{value:C}";
+        }
+        private static readonly char[] NEGATIVE = "+()".ToCharArray();
         private string FormatText(string value)
         {
-            value = value.Replace(".", "").TrimStart('0');
-            value = value.PadLeft(3, '0');
-            value = value.Insert(value.Length - 2, ".");
-            Console.WriteLine($"CursorPosition preFormat : {CursorPosition}");
-            CursorPosition = Math.Min(value.Length, CursorPosition);
-            Console.WriteLine($"CursorPosition Format : {CursorPosition}");
+            value = value.Replace("$", "");
+            double val = 1;
+            if (value.IndexOfAny(NEGATIVE) != -1)
+                val = -1;
+
+            if (double.TryParse(value.Replace("(", "").Replace(")", "").Replace("-", ""), out double baseValue))
+            {
+                value = $"{val * baseValue:C}";
+                CursorPosition = Math.Min(value.Length, CursorPosition);
+            }
+            else if (val < 0)
+            {
+                CursorPosition = 2;
+                value= "$()";
+            }
+            else 
+            {
+                CursorPosition = 1;
+                value = "$";
+            }
+
+            this.ForeColor = (val < 0) ? Color.DarkRed : Color.Black;
             return value;
         }
+        private double ToNumber()
+        {
+           return ToNumber(this.Text);
+        }
+        private double ToNumber(string val)
+        {
+            double res = 0.0;
+            val = val.Replace("$", "");
+            if (val.Contains("("))
+            {
+                if(double.TryParse(val.Replace("(", "").Replace(")", ""), out  res))
+                    res *= -1;
+            }
+            else
+                _ = double.TryParse(val, out res);
+
+            return res;
+        }
     }
+
 }

@@ -19,60 +19,22 @@ namespace SecretCellar
             InitializeComponent();
         }
 
-        private void btn_0_Click(object sender, EventArgs e)
-        {
-            insertText("0");
-        }
-
         private void btn_00_Click(object sender, EventArgs e)
         {
-            insertText("00");
+            insertText(0);
+            insertText(0);
         }
 
-        private void btn_1_Click(object sender, EventArgs e)
-        {
-            insertText("1");
-        }
-
-        private void btn_2_Click(object sender, EventArgs e)
-        {
-            insertText("2");
-        }
-
-        private void btn_3_Click(object sender, EventArgs e)
-        {
-            insertText("3");
-        }
-
-        private void btn_4_Click(object sender, EventArgs e)
-        {
-            insertText("4");
-        }
-
-        private void btn_5_Click(object sender, EventArgs e)
-        {
-            insertText("5");
-        }
-
-        private void btn_6_Click(object sender, EventArgs e)
-        {
-            insertText("6");
-        }
-
-        private void btn_7_Click(object sender, EventArgs e)
-        {
-            insertText("7");
-        }
-
-        private void btn_8_Click(object sender, EventArgs e)
-        {
-            insertText("8");
-        }
-
-        private void btn_9_Click(object sender, EventArgs e)
-        {
-            insertText("9");
-        }
+        private void btn_0_Click(object sender, EventArgs e) { insertText(0); }
+        private void btn_1_Click(object sender, EventArgs e) { insertText(1); }
+        private void btn_2_Click(object sender, EventArgs e) { insertText(2); }
+        private void btn_3_Click(object sender, EventArgs e) { insertText(3); }
+        private void btn_4_Click(object sender, EventArgs e) { insertText(4); }
+        private void btn_5_Click(object sender, EventArgs e) { insertText(5); }
+        private void btn_6_Click(object sender, EventArgs e) { insertText(6); }
+        private void btn_7_Click(object sender, EventArgs e) { insertText(7); }
+        private void btn_8_Click(object sender, EventArgs e) { insertText(8); }
+        private void btn_9_Click(object sender, EventArgs e) { insertText(9); }
 
         private void btn_delete_Click(object sender, EventArgs e)
         {
@@ -143,12 +105,43 @@ namespace SecretCellar
             Target.Clear();
         }
 
-        private void insertText(string text)
+        //private void insertText(string text)
+        //{
+        //    Target.Focus();
+
+        //    if (Target.GetType() == typeof(CurrencyBox))
+        //    {
+        //        if()
+        //    }
+        //        if()
+        //        ((CurrencyBox)Target).Value += ((CurrencyBox)Target).Value * 10 + int.Parse(text);
+        //    else
+        //    //if (Target.TextLength == Target.SelectionLength) Target.Clear();
+        //    if (Target.TextLength + text.Length <= Target.MaxLength)
+        //        Target.AppendText(text);
+        //}
+        private void insertText(int value)
         {
             Target.Focus();
-            //if (Target.TextLength == Target.SelectionLength) Target.Clear();
-            if(Target.TextLength + text.Length <= Target.MaxLength )
-                Target.AppendText(text);
+
+            if (value == -1)
+                if (Target.GetType() == typeof(CurrencyBox))
+                    ((CurrencyBox)Target).Value *= -1;
+                else
+                {
+                    if (Target.Text.Contains("-"))
+                        Target.Text = Target.Text.Replace("-", "");
+                    else
+                        Target.Text = $"-{Target.Text}";
+                }
+            else if (Target.GetType() == typeof(CurrencyBox))
+                ((CurrencyBox)Target).Value = ((CurrencyBox)Target).Value * 10 + ((double)value)/100;
+            else
+            {
+                string text = value.ToString().Trim();
+                if (Target.TextLength + text.Length <= Target.MaxLength)
+                    Target.AppendText(text);
+            }
         }
     }
 }

@@ -16,14 +16,11 @@ namespace SecretCellar {
 		private List<Transaction> _invoices = new List<Transaction>();
 		private Transaction _selectedTransaction = null;
 
-
-
 		public frmInvoices(frmTransaction frmTransaction) {
 			InitializeComponent();
 
 			_frmTransaction = frmTransaction;
-			_invoices = GetInvoicesFromDatabase();
-
+			GetInvoicesFromDatabase();
 			PopulateListOfInvoices();
 		}
 
@@ -116,10 +113,12 @@ namespace SecretCellar {
 		/// Populates the list invoices.
 		/// </summary>
 		private void PopulateListOfInvoices() {
-			selectionList_Invoices.Items.Clear();
 
+			List<Customer>  customerList = DataAccess.instance.GetCustomer();
+			selectionList_Invoices.Items.Clear();
+			string invoiceTitle;
 			foreach (Transaction invoice in _invoices) {
-				string invoiceTitle = $"{invoice.InvoiceID} | {(!string.IsNullOrWhiteSpace(invoice.CustomerName) ? invoice.CustomerName : "No Name")}";
+				invoiceTitle = $"{invoice.InvoiceID} | {(!string.IsNullOrWhiteSpace(invoice.CustomerName) ? invoice.CustomerName : "No Name")}";
 
 				if (textBox_Filter.Text == "" || textBox_Filter.Text == _defaultFilterString || invoiceTitle.ToLower().Contains(textBox_Filter.Text.ToLower())) {
 					selectionList_Invoices.Items.Add(invoiceTitle);
@@ -136,8 +135,12 @@ namespace SecretCellar {
 		/// </summary>
 		/// <returns></returns>
 		private List<Transaction> GetInvoicesFromDatabase() {
-			List<Transaction> transactions = DataAccess.instance.GetTransactions();
-			return transactions.FindAll((transaction) => { return transaction.TranType == Transaction.TranactionType.Invoice; });
+
+			List<Customer> customerList = DataAccess.instance.GetCustomer();
+			_invoices = DataAccess.instance.GetTransactions().FindAll((transaction) => { return transaction.TranType == Transaction.TranactionType.Invoice; });
+
+			_invoices.ForEach(x => x.CustomerName = customerList.FirstOrDefault(y => y.CustomerID == x.CustomerID)?.FullName);
+			return _invoices;
 		}
 
 
