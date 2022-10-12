@@ -242,16 +242,23 @@ namespace SecretCellar
 
         private void txtBarcode_KeyUp(object sender, KeyEventArgs e)
         {
-            if (e.KeyData == Keys.Enter && !string.IsNullOrWhiteSpace(txtBarcode.Text))
-            {
-                Inventory i = DataAccess.instance.GetItem(txtBarcode.Text.Trim());
-                if (i != null)
-                {
-                    transaction.Add(i);
+            if (e.KeyData == Keys.Enter && !string.IsNullOrWhiteSpace(txtBarcode.Text)) {
+                Customer customer = DataAccess.instance.GetCustomerByPhone(txtBarcode.Text.Trim());
+
+                if (customer != null) {
+                    transaction.CustomerID = customer.CustomerID;
                     RefreshDataGrid();
                 }
-                else
-                    MessageBox.Show("Barcode not found");
+                else {
+                    Inventory i = DataAccess.instance.GetItem(txtBarcode.Text.Trim());
+                    if (i != null) {
+                        transaction.Add(i);
+                        RefreshDataGrid();
+                    }
+                    else
+                        MessageBox.Show("Barcode not found");
+                }
+
                 txtBarcode.Clear();
             }
         }
