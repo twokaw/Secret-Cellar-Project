@@ -136,7 +136,7 @@ namespace NCR_Printer
                     PrintText($"         Change: {payment - transaction.Total:C}");
             }    
                 
-            if(customer != null && customer.Credit > 0)
+            if(customer != null && customer.Credit != 0)
                 PrintText($"    Credit Balance: {customer.Credit:C}");
 
 

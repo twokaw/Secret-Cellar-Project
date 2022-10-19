@@ -48,6 +48,7 @@ namespace SecretCellar
             txt_credit_amount.Visible = showCustomer;
             btn_cust_credit.Enabled = showCustomer;
             chk_ChangetoCredit.Enabled = showCustomer;
+            chk_ChangetoCredit.Checked = transaction.Items.Count == 0;
 
             RefreshGrid();
         }
