@@ -1,4 +1,5 @@
 ﻿
+using System;
 using System.Linq;
 
 namespace Shared
@@ -35,7 +36,7 @@ namespace Shared
                     price = (Price > 0) ? Price * NumSold * Discount : -Price;
                 }
 
-                return price;
+                return Math.Round(price, 2, MidpointRounding.AwayFromZero);
             }
         }
 
@@ -52,7 +53,7 @@ namespace Shared
                     price = (Price > 0) ? Price * NumSold : 0;
                 }
 
-                return price;
+                return Math.Round(price, 2, MidpointRounding.AwayFromZero);
             }
         }
 
@@ -62,14 +63,13 @@ namespace Shared
             {
                 double price;
 
-                if (DiscountPrice > 0) {
-                    price = DiscountPrice * NumSold * (1 - Discount);
-                }
-                else {
+                if (DiscountPrice > 0) 
+                    price = DiscountPrice * NumSold * (1 - Discount);                
+                else 
                     price = Price * NumSold * ((Price > 0) ? (1 - Discount) : 1);
-                }
+                
 
-                return price;
+                return Math.Round(price, 2, MidpointRounding.AwayFromZero);
             }
         }
 

@@ -4,7 +4,6 @@ using System.Linq;
 namespace Shared
 {
 
-
     public class Transaction
     {
         public enum TranactionType
@@ -30,7 +29,7 @@ namespace Shared
                 // All items with price * qty
                 Items.ForEach(x => sub += x.SubTotal );
 
-                return sub;
+                return Math.Round(sub, 2, MidpointRounding.AwayFromZero);
             }
         }
 
@@ -49,7 +48,7 @@ namespace Shared
 
                 Items.ForEach(x => sub += x.DiscountTotal + ((x.AdjustedTotal > 0) ? (x.AdjustedTotal * Discount) : 0));
 
-                return sub;
+                return Math.Round(sub, 2, MidpointRounding.AwayFromZero);
             }
         }
 
@@ -61,7 +60,7 @@ namespace Shared
 
                 if (!TaxExempt)
                     Items.ForEach(x => tax += (!x.NonTaxableLocal ) ? ItemPrice(x) * x.LocalSalesTax : 0);
-                return tax;
+                return Math.Round(tax, 2, MidpointRounding.AwayFromZero);
             }
         }
         public double Bottle_deposit
@@ -72,20 +71,20 @@ namespace Shared
 
                 Items.ForEach(x => tax += x.Bottles * x.NumSold * x.BottleDeposit);
 
-                return tax;
+                return Math.Round(tax, 2, MidpointRounding.AwayFromZero);
             }
         }
 
         public double ItemPrice(Item i)
         {
             // Get item 
-            return i.AdjustedTotal * ((i.AdjustedTotal > 0) ? (1 - Discount) : 1);
+            return Math.Round(i.AdjustedTotal * ((i.AdjustedTotal > 0) ? (1 - Discount) : 1), 2, MidpointRounding.AwayFromZero);
         }
 
         public double ItemDiscount(Item i)
         {
             // Get item 
-            return (1 - i.Discount) * Discount + i.Discount ;
+            return Math.Round((1 - i.Discount) * Discount + i.Discount, 2, MidpointRounding.AwayFromZero) ;
         }
         public double Subtotal
         {
@@ -96,7 +95,7 @@ namespace Shared
                 if (!TaxExempt)
                     Items.ForEach(x => value += ItemPrice(x));
 
-                return value;
+                return Math.Round(value, 2, MidpointRounding.AwayFromZero);
             }
         }
 
@@ -115,7 +114,7 @@ namespace Shared
         public double ItemTax(Item i)
         {
             if (!TaxExempt)
-                return (!i.NonTaxable) ? ItemPrice(i) * i.SalesTax : 0;
+                return Math.Round((!i.NonTaxable) ? ItemPrice(i) * i.SalesTax : 0, 2, MidpointRounding.AwayFromZero);
             else
                 return 0;
         }
@@ -123,7 +122,7 @@ namespace Shared
         public double ItemLocalTax(Item i)
         {
             if (!TaxExempt)
-                return (!i.NonTaxable) ? ItemPrice(i) * i.LocalSalesTax : 0;
+                return Math.Round((!i.NonTaxable) ? ItemPrice(i) * i.LocalSalesTax : 0, 2, MidpointRounding.AwayFromZero);
             else
                 return 0;
         }
@@ -131,14 +130,14 @@ namespace Shared
 
         public double ItemPriceTotal(Item i)
         {
-            return ItemTax(i) + ItemLocalTax(i) + ItemPrice(i) + i.BottleDeposit;
+            return Math.Round(ItemTax(i) + ItemLocalTax(i) + ItemPrice(i) + i.BottleDeposit, 2, MidpointRounding.AwayFromZero);
         }
 
         public double Total
         {
             get
             {
-                return Subtotal + Tax + LocalTax + Bottle_deposit + Shipping ;
+                return Math.Round(Subtotal + Tax + LocalTax + Bottle_deposit + Shipping, 2, MidpointRounding.AwayFromZero);
             }
         }
         public bool TaxExempt { get; set; }
@@ -173,7 +172,7 @@ namespace Shared
 
             double TotalPayment = 0;
             Payments.ForEach(x => TotalPayment += x.Amount);
-            return TotalPayment;
+            return Math.Round(TotalPayment, 2, MidpointRounding.AwayFromZero);
         }
         public string PayNum
         {
@@ -278,10 +277,6 @@ namespace Shared
         }
 
 
-        public void UpdateBulkDiscount()
-        {
-            List<Discount> d = GetQualifiedBulkDiscounts();
-        }
 
         public void Add(Item item)
         {
@@ -294,9 +289,8 @@ namespace Shared
                 i.QtySold += item.QtySold;
                 i.QtyRefunded += item.QtyRefunded;
             }
-                
 
-            UpdateBulkDiscount();
+            GetQualifiedBulkDiscounts();
         }
 
         public void Add(Inventory inv) { Add(ConvertInvtoItem(inv)); }
