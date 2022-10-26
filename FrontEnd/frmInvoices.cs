@@ -66,15 +66,7 @@ namespace SecretCellar {
 			});
 
 			currencyBox_MoneyDown.Text = payments.ToString();
-
-			//ADD TOTAL
-			double total = 0;
-
-			_selectedTransaction.Items.ForEach(item => {
-				total += item.Price * item.Qty;
-			});
-
-			currencyBox_Total.Text = total.ToString();
+			currencyBox_Total.Text = _selectedTransaction.Total.ToString();
 		}
 
 
@@ -103,7 +95,6 @@ namespace SecretCellar {
 		private void button_Print_Click(object sender, EventArgs e) {
 			PrintPreviewDialog printPreview = new PrintPreviewDialog();
 			Invoice invoiceDocument = new Invoice(_selectedTransaction, PurchaseOrder.LetterLayout);
-			//rct.PrintImage(DataAccess.instance.ImportLogo());
 			printPreview.Document = invoiceDocument.GetPrintPreviewDocument();
 			printPreview.ShowDialog();
 		}
@@ -113,10 +104,9 @@ namespace SecretCellar {
 		/// Populates the list invoices.
 		/// </summary>
 		private void PopulateListOfInvoices() {
-
-			List<Customer>  customerList = DataAccess.instance.GetCustomer();
 			selectionList_Invoices.Items.Clear();
 			string invoiceTitle;
+
 			foreach (Transaction invoice in _invoices) {
 				invoiceTitle = $"{invoice.InvoiceID} | {(!string.IsNullOrWhiteSpace(invoice.CustomerName) ? invoice.CustomerName : "No Name")}";
 
@@ -135,7 +125,6 @@ namespace SecretCellar {
 		/// </summary>
 		/// <returns></returns>
 		private List<Transaction> GetInvoicesFromDatabase() {
-
 			List<Customer> customerList = DataAccess.instance.GetCustomer();
 			_invoices = DataAccess.instance.GetTransactions().FindAll((transaction) => { return transaction.TranType == Transaction.TranactionType.Invoice; });
 
