@@ -12,7 +12,8 @@ namespace Shared
             Closed = 0,
             Suspended = 1,
             Invoice = 2,
-            Hold = 3
+            Hold = 3,
+            ClosedInvoice = 4
         }
 
         public uint InvoiceID { get; set; }

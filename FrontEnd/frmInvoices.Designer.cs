@@ -41,9 +41,9 @@ namespace SecretCellar {
             this.button_Print = new System.Windows.Forms.Button();
             this.label_Total = new System.Windows.Forms.Label();
             this.label_MoneyDown = new System.Windows.Forms.Label();
+            this.checkBox_ClosedInvoices = new System.Windows.Forms.CheckBox();
             this.currencyBox_MoneyDown = new SecretCellar.CurrencyBox();
             this.currencyBox_Total = new SecretCellar.CurrencyBox();
-            this.checkBox_closedInvoices = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_InvoiceData)).BeginInit();
             this.SuspendLayout();
             // 
@@ -111,7 +111,7 @@ namespace SecretCellar {
             this.dataGridView_InvoiceData.RowTemplate.Height = 40;
             this.dataGridView_InvoiceData.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.dataGridView_InvoiceData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView_InvoiceData.Size = new System.Drawing.Size(726, 382);
+            this.dataGridView_InvoiceData.Size = new System.Drawing.Size(753, 382);
             this.dataGridView_InvoiceData.TabIndex = 4;
             this.dataGridView_InvoiceData.TabStop = false;
             // 
@@ -140,9 +140,9 @@ namespace SecretCellar {
             this.selectionList_Invoices.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.selectionList_Invoices.FormattingEnabled = true;
             this.selectionList_Invoices.ItemHeight = 18;
-            this.selectionList_Invoices.Location = new System.Drawing.Point(12, 47);
+            this.selectionList_Invoices.Location = new System.Drawing.Point(12, 83);
             this.selectionList_Invoices.Name = "selectionList_Invoices";
-            this.selectionList_Invoices.Size = new System.Drawing.Size(198, 220);
+            this.selectionList_Invoices.Size = new System.Drawing.Size(198, 310);
             this.selectionList_Invoices.TabIndex = 0;
             this.selectionList_Invoices.SelectedIndexChanged += new System.EventHandler(this.selectionList_Invoices_SelectedIndexChanged);
             // 
@@ -160,9 +160,9 @@ namespace SecretCellar {
             // 
             // button_UpdatePayment
             // 
-            this.button_UpdatePayment.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.button_UpdatePayment.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button_UpdatePayment.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_UpdatePayment.Location = new System.Drawing.Point(12, 274);
+            this.button_UpdatePayment.Location = new System.Drawing.Point(429, 396);
             this.button_UpdatePayment.Name = "button_UpdatePayment";
             this.button_UpdatePayment.Size = new System.Drawing.Size(198, 55);
             this.button_UpdatePayment.TabIndex = 1;
@@ -173,7 +173,7 @@ namespace SecretCellar {
             // textBox_Filter
             // 
             this.textBox_Filter.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_Filter.Location = new System.Drawing.Point(12, 12);
+            this.textBox_Filter.Location = new System.Drawing.Point(12, 44);
             this.textBox_Filter.Name = "textBox_Filter";
             this.textBox_Filter.Size = new System.Drawing.Size(198, 29);
             this.textBox_Filter.TabIndex = 5;
@@ -184,9 +184,9 @@ namespace SecretCellar {
             // 
             // button_Print
             // 
-            this.button_Print.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.button_Print.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button_Print.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_Print.Location = new System.Drawing.Point(12, 335);
+            this.button_Print.Location = new System.Drawing.Point(225, 396);
             this.button_Print.Name = "button_Print";
             this.button_Print.Size = new System.Drawing.Size(198, 55);
             this.button_Print.TabIndex = 2;
@@ -199,7 +199,7 @@ namespace SecretCellar {
             this.label_Total.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label_Total.AutoSize = true;
             this.label_Total.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_Total.Location = new System.Drawing.Point(809, 396);
+            this.label_Total.Location = new System.Drawing.Point(836, 396);
             this.label_Total.Name = "label_Total";
             this.label_Total.Size = new System.Drawing.Size(56, 24);
             this.label_Total.TabIndex = 9;
@@ -210,11 +210,24 @@ namespace SecretCellar {
             this.label_MoneyDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label_MoneyDown.AutoSize = true;
             this.label_MoneyDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_MoneyDown.Location = new System.Drawing.Point(638, 396);
+            this.label_MoneyDown.Location = new System.Drawing.Point(665, 396);
             this.label_MoneyDown.Name = "label_MoneyDown";
             this.label_MoneyDown.Size = new System.Drawing.Size(132, 24);
             this.label_MoneyDown.TabIndex = 11;
             this.label_MoneyDown.Text = "Money Down";
+            // 
+            // checkBox_ClosedInvoices
+            // 
+            this.checkBox_ClosedInvoices.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.checkBox_ClosedInvoices.AutoSize = true;
+            this.checkBox_ClosedInvoices.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBox_ClosedInvoices.Location = new System.Drawing.Point(12, 10);
+            this.checkBox_ClosedInvoices.Name = "checkBox_ClosedInvoices";
+            this.checkBox_ClosedInvoices.Size = new System.Drawing.Size(177, 28);
+            this.checkBox_ClosedInvoices.TabIndex = 12;
+            this.checkBox_ClosedInvoices.Text = "Closed Invoices";
+            this.checkBox_ClosedInvoices.UseVisualStyleBackColor = true;
+            this.checkBox_ClosedInvoices.CheckedChanged += new System.EventHandler(this.checkBox_ClosedInvoices_CheckedChanged);
             // 
             // currencyBox_MoneyDown
             // 
@@ -222,7 +235,7 @@ namespace SecretCellar {
             this.currencyBox_MoneyDown.Enabled = false;
             this.currencyBox_MoneyDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.currencyBox_MoneyDown.ForeColor = System.Drawing.Color.Black;
-            this.currencyBox_MoneyDown.Location = new System.Drawing.Point(642, 422);
+            this.currencyBox_MoneyDown.Location = new System.Drawing.Point(669, 422);
             this.currencyBox_MoneyDown.Name = "currencyBox_MoneyDown";
             this.currencyBox_MoneyDown.Size = new System.Drawing.Size(138, 29);
             this.currencyBox_MoneyDown.TabIndex = 10;
@@ -235,32 +248,20 @@ namespace SecretCellar {
             this.currencyBox_Total.Enabled = false;
             this.currencyBox_Total.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.currencyBox_Total.ForeColor = System.Drawing.Color.Black;
-            this.currencyBox_Total.Location = new System.Drawing.Point(813, 422);
+            this.currencyBox_Total.Location = new System.Drawing.Point(840, 422);
             this.currencyBox_Total.Name = "currencyBox_Total";
             this.currencyBox_Total.Size = new System.Drawing.Size(138, 29);
             this.currencyBox_Total.TabIndex = 8;
             this.currencyBox_Total.Text = "$0.00";
             this.currencyBox_Total.Value = 0D;
             // 
-            // checkBox_closedInvoices
-            // 
-            this.checkBox_closedInvoices.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.checkBox_closedInvoices.AutoSize = true;
-            this.checkBox_closedInvoices.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox_closedInvoices.Location = new System.Drawing.Point(225, 409);
-            this.checkBox_closedInvoices.Name = "checkBox_closedInvoices";
-            this.checkBox_closedInvoices.Size = new System.Drawing.Size(177, 28);
-            this.checkBox_closedInvoices.TabIndex = 12;
-            this.checkBox_closedInvoices.Text = "Closed Invoices";
-            this.checkBox_closedInvoices.UseVisualStyleBackColor = true;
-            // 
             // frmInvoices
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(231)))), ((int)(((byte)(206)))));
-            this.ClientSize = new System.Drawing.Size(961, 461);
-            this.Controls.Add(this.checkBox_closedInvoices);
+            this.ClientSize = new System.Drawing.Size(988, 461);
+            this.Controls.Add(this.checkBox_ClosedInvoices);
             this.Controls.Add(this.label_MoneyDown);
             this.Controls.Add(this.currencyBox_MoneyDown);
             this.Controls.Add(this.label_Total);
@@ -299,6 +300,6 @@ namespace SecretCellar {
         private System.Windows.Forms.Label label_Total;
         private CurrencyBox currencyBox_MoneyDown;
         private System.Windows.Forms.Label label_MoneyDown;
-        private System.Windows.Forms.CheckBox checkBox_closedInvoices;
+        private System.Windows.Forms.CheckBox checkBox_ClosedInvoices;
     }
 }

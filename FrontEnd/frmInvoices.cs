@@ -101,18 +101,30 @@ namespace SecretCellar {
 
 
 		/// <summary>
-		/// Populates the list invoices.
+		/// Toggles between showing the active invoices and the completed invoices.
 		/// </summary>
-		private void PopulateListOfInvoices() {
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+        private void checkBox_ClosedInvoices_CheckedChanged(object sender, EventArgs e) { PopulateListOfInvoices(checkBox_ClosedInvoices.Checked); }
+
+
+        /// <summary>
+		/// Populates the list of invoices.
+		/// </summary>
+		/// <param name="isShowingClosedInvoices"></param>
+        private void PopulateListOfInvoices(bool isShowingClosedInvoices = false) {
 			selectionList_Invoices.Items.Clear();
 			string invoiceTitle;
 
 			foreach (Transaction invoice in _invoices) {
-				invoiceTitle = $"{invoice.InvoiceID} | {(!string.IsNullOrWhiteSpace(invoice.CustomerName) ? invoice.CustomerName : "No Name")}";
+				if ((isShowingClosedInvoices && invoice.TranType == Transaction.TranactionType.ClosedInvoice)
+				|| (!isShowingClosedInvoices && invoice.TranType == Transaction.TranactionType.Invoice)) {
+                    invoiceTitle = $"{invoice.InvoiceID} | {(!string.IsNullOrWhiteSpace(invoice.CustomerName) ? invoice.CustomerName : "No Name")}";
 
-				if (textBox_Filter.Text == "" || textBox_Filter.Text == _defaultFilterString || invoiceTitle.ToLower().Contains(textBox_Filter.Text.ToLower())) {
-					selectionList_Invoices.Items.Add(invoiceTitle);
-				}
+                    if (textBox_Filter.Text == "" || textBox_Filter.Text == _defaultFilterString || invoiceTitle.ToLower().Contains(textBox_Filter.Text.ToLower())) {
+                        selectionList_Invoices.Items.Add(invoiceTitle);
+                    }
+                }
 			}
 
 			if (selectionList_Invoices.Items.Count > 0) selectionList_Invoices.SelectedIndex = 0;
@@ -126,7 +138,7 @@ namespace SecretCellar {
 		/// <returns></returns>
 		private List<Transaction> GetInvoicesFromDatabase() {
 			List<Customer> customerList = DataAccess.instance.GetCustomer();
-			_invoices = DataAccess.instance.GetTransactions().FindAll((transaction) => { return transaction.TranType == Transaction.TranactionType.Invoice; });
+			_invoices = DataAccess.instance.GetTransactions().FindAll((transaction) => { return transaction.TranType == Transaction.TranactionType.Invoice || transaction.TranType == Transaction.TranactionType.ClosedInvoice; });
 
 			_invoices.ForEach(x => x.CustomerName = customerList.FirstOrDefault(y => y.CustomerID == x.CustomerID)?.FullName);
 			return _invoices;
@@ -161,5 +173,5 @@ namespace SecretCellar {
 
 			DataAccess.instance.ProcessTransaction(transaction);
 		}
-    }
+	}
 }
