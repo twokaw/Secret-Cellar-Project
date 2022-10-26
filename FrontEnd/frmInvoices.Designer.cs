@@ -43,6 +43,7 @@ namespace SecretCellar {
             this.label_MoneyDown = new System.Windows.Forms.Label();
             this.currencyBox_MoneyDown = new SecretCellar.CurrencyBox();
             this.currencyBox_Total = new SecretCellar.CurrencyBox();
+            this.checkBox_closedInvoices = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_InvoiceData)).BeginInit();
             this.SuspendLayout();
             // 
@@ -134,9 +135,8 @@ namespace SecretCellar {
             // 
             // selectionList_Invoices
             // 
-            this.selectionList_Invoices.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.selectionList_Invoices.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.selectionList_Invoices.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.selectionList_Invoices.FormattingEnabled = true;
             this.selectionList_Invoices.ItemHeight = 18;
@@ -196,6 +196,7 @@ namespace SecretCellar {
             // 
             // label_Total
             // 
+            this.label_Total.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label_Total.AutoSize = true;
             this.label_Total.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_Total.Location = new System.Drawing.Point(809, 396);
@@ -206,6 +207,7 @@ namespace SecretCellar {
             // 
             // label_MoneyDown
             // 
+            this.label_MoneyDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label_MoneyDown.AutoSize = true;
             this.label_MoneyDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_MoneyDown.Location = new System.Drawing.Point(638, 396);
@@ -216,23 +218,41 @@ namespace SecretCellar {
             // 
             // currencyBox_MoneyDown
             // 
+            this.currencyBox_MoneyDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.currencyBox_MoneyDown.Enabled = false;
             this.currencyBox_MoneyDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.currencyBox_MoneyDown.ForeColor = System.Drawing.Color.Black;
             this.currencyBox_MoneyDown.Location = new System.Drawing.Point(642, 422);
             this.currencyBox_MoneyDown.Name = "currencyBox_MoneyDown";
             this.currencyBox_MoneyDown.Size = new System.Drawing.Size(138, 29);
             this.currencyBox_MoneyDown.TabIndex = 10;
-            this.currencyBox_MoneyDown.Text = "0.00";
+            this.currencyBox_MoneyDown.Text = "$0.00";
+            this.currencyBox_MoneyDown.Value = 0D;
             // 
             // currencyBox_Total
             // 
+            this.currencyBox_Total.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.currencyBox_Total.Enabled = false;
             this.currencyBox_Total.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.currencyBox_Total.ForeColor = System.Drawing.Color.Black;
             this.currencyBox_Total.Location = new System.Drawing.Point(813, 422);
             this.currencyBox_Total.Name = "currencyBox_Total";
             this.currencyBox_Total.Size = new System.Drawing.Size(138, 29);
             this.currencyBox_Total.TabIndex = 8;
-            this.currencyBox_Total.Text = "0.00";
+            this.currencyBox_Total.Text = "$0.00";
+            this.currencyBox_Total.Value = 0D;
+            // 
+            // checkBox_closedInvoices
+            // 
+            this.checkBox_closedInvoices.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.checkBox_closedInvoices.AutoSize = true;
+            this.checkBox_closedInvoices.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBox_closedInvoices.Location = new System.Drawing.Point(225, 409);
+            this.checkBox_closedInvoices.Name = "checkBox_closedInvoices";
+            this.checkBox_closedInvoices.Size = new System.Drawing.Size(177, 28);
+            this.checkBox_closedInvoices.TabIndex = 12;
+            this.checkBox_closedInvoices.Text = "Closed Invoices";
+            this.checkBox_closedInvoices.UseVisualStyleBackColor = true;
             // 
             // frmInvoices
             // 
@@ -240,6 +260,7 @@ namespace SecretCellar {
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(231)))), ((int)(((byte)(206)))));
             this.ClientSize = new System.Drawing.Size(961, 461);
+            this.Controls.Add(this.checkBox_closedInvoices);
             this.Controls.Add(this.label_MoneyDown);
             this.Controls.Add(this.currencyBox_MoneyDown);
             this.Controls.Add(this.label_Total);
@@ -278,5 +299,6 @@ namespace SecretCellar {
         private System.Windows.Forms.Label label_Total;
         private CurrencyBox currencyBox_MoneyDown;
         private System.Windows.Forms.Label label_MoneyDown;
+        private System.Windows.Forms.CheckBox checkBox_closedInvoices;
     }
 }
