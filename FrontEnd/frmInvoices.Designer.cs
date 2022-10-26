@@ -111,7 +111,7 @@ namespace SecretCellar {
             this.dataGridView_InvoiceData.RowTemplate.Height = 40;
             this.dataGridView_InvoiceData.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.dataGridView_InvoiceData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView_InvoiceData.Size = new System.Drawing.Size(753, 382);
+            this.dataGridView_InvoiceData.Size = new System.Drawing.Size(753, 365);
             this.dataGridView_InvoiceData.TabIndex = 4;
             this.dataGridView_InvoiceData.TabStop = false;
             // 
@@ -142,7 +142,7 @@ namespace SecretCellar {
             this.selectionList_Invoices.ItemHeight = 18;
             this.selectionList_Invoices.Location = new System.Drawing.Point(12, 83);
             this.selectionList_Invoices.Name = "selectionList_Invoices";
-            this.selectionList_Invoices.Size = new System.Drawing.Size(198, 310);
+            this.selectionList_Invoices.Size = new System.Drawing.Size(198, 292);
             this.selectionList_Invoices.TabIndex = 0;
             this.selectionList_Invoices.SelectedIndexChanged += new System.EventHandler(this.selectionList_Invoices_SelectedIndexChanged);
             // 
