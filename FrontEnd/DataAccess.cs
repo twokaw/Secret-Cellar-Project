@@ -453,7 +453,7 @@ namespace SecretCellar
 
         public Customer GetCustomerByPhone(string phone)
         {
-            return  GetCustomer().FirstOrDefault(x => x.PhoneNumber == phone);
+            return  GetCustomer().FirstOrDefault(x => x.PhoneNumber.Replace("-", "") == phone);
         }
 
         public uint UpdateCustomer(Customer customer)
