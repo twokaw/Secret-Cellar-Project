@@ -105,15 +105,15 @@ namespace SecretCellar {
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
-        private void checkBox_ClosedInvoices_CheckedChanged(object sender, EventArgs e) { PopulateListOfInvoices(checkBox_ClosedInvoices.Checked); }
+        private void checkBox_ClosedInvoices_CheckedChanged(object sender, EventArgs e) { PopulateListOfInvoices(); }
 
 
         /// <summary>
 		/// Populates the list of invoices.
 		/// </summary>
-		/// <param name="isShowingClosedInvoices"></param>
-        private void PopulateListOfInvoices(bool isShowingClosedInvoices = false) {
-			selectionList_Invoices.Items.Clear();
+        private void PopulateListOfInvoices() {
+			bool isShowingClosedInvoices = checkBox_ClosedInvoices.Checked;
+            selectionList_Invoices.Items.Clear();
 			string invoiceTitle;
 
 			foreach (Transaction invoice in _invoices) {
