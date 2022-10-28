@@ -674,7 +674,13 @@ namespace pos_core_api.ORM
             double payments = 0;
             transaction.Payments.ForEach(x => payments += x.Amount);
 
-            return transaction.Total <= payments;
+            if (transaction.PayMethod != "CREDIT")
+                return Math.Round(transaction.Total 
+                                * (double)(1 - (GetPaymentMethods().FirstOrDefault(x => x.PayMethod == "CASH").PercentOffset / 100)), 
+                                  2, 
+                                  MidpointRounding.AwayFromZero) <= payments;
+            else
+                return transaction.Total <= payments;
         }
         public List<PaymentMethod> GetPaymentMethods()
         {
