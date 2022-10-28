@@ -149,9 +149,9 @@ namespace pos_core_api.ORM
         public long Insert(uint customerId, CustomerOrderItem cust)
         {
             CustomerOrder co = Get(customerId, false);
-
-            if (co?.Items.FirstOrDefault(x => x.CustomerOrderItemID == cust.CustomerOrderItemID) != null)
-                return Update(cust);
+            CustomerOrderItem ci = co?.Items.FirstOrDefault(x => x.CustomerOrderItemID == cust.CustomerOrderItemID);
+            if (ci != null)
+                return Update(cust, customerId);
             else
             {
                 CustomerOrderItem coi = co?.Items.FirstOrDefault(x => x.Id == cust.Id && x.Price == cust.Price);
@@ -159,7 +159,7 @@ namespace pos_core_api.ORM
                 {
                     coi.RequestQty += cust.RequestQty;
                     coi.DeliverQty += cust.DeliverQty;
-                    return Update(coi);
+                    return Update(coi, customerId);
                 }
             }
 
@@ -198,8 +198,16 @@ namespace pos_core_api.ORM
             }
         }
 
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="customerId"></param>
+        /// <param name="cust"></param>
+        /// <param name="transaction"></param>
         private void DeliverQty(uint customerId, CustomerOrderItem cust, Transaction transaction = null)
         {
+
             if (cust.DeliverQty > 0)
             {
                 if(transaction == null)
@@ -227,7 +235,7 @@ namespace pos_core_api.ORM
             }
         }
 
-        public long Update(CustomerOrderItem cust, uint customerid = 0, Transaction transaction = null)
+        public long Update(CustomerOrderItem cust, uint customerid, Transaction transaction = null)
         {
             if (cust.CustomerOrderItemID == 0)
                 throw new Exception("Missing CustomerOrder Id");
