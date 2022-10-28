@@ -357,6 +357,13 @@ namespace pos_core_api.ORM
 
         public uint UpdateTransaction(Transaction transaction, Transaction previousTransaction)
         {
+            if (FullyPaid(transaction)) {
+                if (transaction.TranType == Transaction.TranactionType.Suspended)
+                    transaction.TranType = Transaction.TranactionType.Closed;
+                else if (transaction.TranType == Transaction.TranactionType.Invoice)
+                    transaction.TranType = Transaction.TranactionType.ClosedInvoice;
+            }
+
             MySqlCommand cmd = db.CreateCommand(@"
                 UPDATE transaction
                 SET register = @register,  
@@ -391,14 +398,6 @@ namespace pos_core_api.ORM
             }
             InsertItems(transaction, FullyPaid(transaction), previousTransaction);
             InsertPayments(transaction, previousTransaction);
-
-            if (FullyPaid(transaction))
-            {
-                if(transaction.TranType == Transaction.TranactionType.Suspended)
-                    transaction.TranType = Transaction.TranactionType.Closed;
-                else if (transaction.TranType == Transaction.TranactionType.Invoice)
-                    transaction.TranType = Transaction.TranactionType.Closed;
-            }
 
             return transaction.InvoiceID;
         }
