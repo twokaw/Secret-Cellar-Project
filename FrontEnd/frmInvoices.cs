@@ -103,7 +103,10 @@ namespace SecretCellar {
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
-        private void checkBox_ClosedInvoices_CheckedChanged(object sender, EventArgs e) { PopulateListOfInvoices(); }
+        private void checkBox_ClosedInvoices_CheckedChanged(object sender, EventArgs e) {
+			PopulateListOfInvoices();
+            button_UpdatePayment.Enabled = !checkBox_ClosedInvoices.Checked;
+        }
 
 
         /// <summary>
