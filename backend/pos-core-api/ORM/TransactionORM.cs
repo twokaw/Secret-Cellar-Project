@@ -392,6 +392,14 @@ namespace pos_core_api.ORM
             InsertItems(transaction, FullyPaid(transaction), previousTransaction);
             InsertPayments(transaction, previousTransaction);
 
+            if (FullyPaid(transaction))
+            {
+                if(transaction.TranType == Transaction.TranactionType.Suspended)
+                    transaction.TranType = Transaction.TranactionType.Closed;
+                else if (transaction.TranType == Transaction.TranactionType.Invoice)
+                    transaction.TranType = Transaction.TranactionType.Closed;
+            }
+
             return transaction.InvoiceID;
         }
 
@@ -744,3 +752,4 @@ namespace pos_core_api.ORM
         }
     }
 }
+
