@@ -20,7 +20,6 @@ namespace SecretCellar {
 			InitializeComponent();
 
 			_frmTransaction = frmTransaction;
-			GetInvoicesFromDatabase();
 			PopulateListOfInvoices();
 		}
 
@@ -66,15 +65,7 @@ namespace SecretCellar {
 			});
 
 			currencyBox_MoneyDown.Text = payments.ToString();
-
-			//ADD TOTAL
-			double total = 0;
-
-			_selectedTransaction.Items.ForEach(item => {
-				total += item.Price * item.Qty;
-			});
-
-			currencyBox_Total.Text = total.ToString();
+			currencyBox_Total.Text = _selectedTransaction.Total.ToString();
 		}
 
 
@@ -89,8 +80,7 @@ namespace SecretCellar {
 			frmPayment frmPayment = new frmPayment(_selectedTransaction);
 			frmPayment.ShowDialog();
 
-			DataAccess.instance.ProcessTransaction(_selectedTransaction);
-			_invoices = GetInvoicesFromDatabase();
+            DataAccess.instance.ProcessTransaction(_selectedTransaction);
 			PopulateListOfInvoices();
 		}
 
@@ -103,44 +93,45 @@ namespace SecretCellar {
 		private void button_Print_Click(object sender, EventArgs e) {
 			PrintPreviewDialog printPreview = new PrintPreviewDialog();
 			Invoice invoiceDocument = new Invoice(_selectedTransaction, PurchaseOrder.LetterLayout);
-			//rct.PrintImage(DataAccess.instance.ImportLogo());
 			printPreview.Document = invoiceDocument.GetPrintPreviewDocument();
 			printPreview.ShowDialog();
 		}
 
 
 		/// <summary>
-		/// Populates the list invoices.
+		/// Toggles between showing the active invoices and the completed invoices.
 		/// </summary>
-		private void PopulateListOfInvoices() {
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+        private void checkBox_ClosedInvoices_CheckedChanged(object sender, EventArgs e) { PopulateListOfInvoices(); }
 
-			List<Customer>  customerList = DataAccess.instance.GetCustomer();
-			selectionList_Invoices.Items.Clear();
+
+        /// <summary>
+		/// Gets the invoices from the database and then populates the list of invoices.
+		/// </summary>
+        private void PopulateListOfInvoices() {
+            List<Customer> customerList = DataAccess.instance.GetCustomer();
+            _invoices = DataAccess.instance.GetTransactions().FindAll((transaction) => { return transaction.TranType == Transaction.TranactionType.Invoice || transaction.TranType == Transaction.TranactionType.ClosedInvoice; });
+
+            _invoices.ForEach(x => x.CustomerName = customerList.FirstOrDefault(y => y.CustomerID == x.CustomerID)?.FullName);
+
+            bool isShowingClosedInvoices = checkBox_ClosedInvoices.Checked;
+            selectionList_Invoices.Items.Clear();
 			string invoiceTitle;
-			foreach (Transaction invoice in _invoices) {
-				invoiceTitle = $"{invoice.InvoiceID} | {(!string.IsNullOrWhiteSpace(invoice.CustomerName) ? invoice.CustomerName : "No Name")}";
 
-				if (textBox_Filter.Text == "" || textBox_Filter.Text == _defaultFilterString || invoiceTitle.ToLower().Contains(textBox_Filter.Text.ToLower())) {
-					selectionList_Invoices.Items.Add(invoiceTitle);
-				}
+			foreach (Transaction invoice in _invoices) {
+				if ((isShowingClosedInvoices && invoice.TranType == Transaction.TranactionType.ClosedInvoice)
+				|| (!isShowingClosedInvoices && invoice.TranType == Transaction.TranactionType.Invoice)) {
+                    invoiceTitle = $"{invoice.InvoiceID} | {(!string.IsNullOrWhiteSpace(invoice.CustomerName) ? invoice.CustomerName : "No Name")}";
+
+                    if (textBox_Filter.Text == "" || textBox_Filter.Text == _defaultFilterString || invoiceTitle.ToLower().Contains(textBox_Filter.Text.ToLower())) {
+                        selectionList_Invoices.Items.Add(invoiceTitle);
+                    }
+                }
 			}
 
 			if (selectionList_Invoices.Items.Count > 0) selectionList_Invoices.SelectedIndex = 0;
 			else { _selectedTransaction = null; selectionList_Invoices.SelectedIndex = -1; }
-		}
-
-
-		/// <summary>
-		/// Gets the invoices from the database.
-		/// </summary>
-		/// <returns></returns>
-		private List<Transaction> GetInvoicesFromDatabase() {
-
-			List<Customer> customerList = DataAccess.instance.GetCustomer();
-			_invoices = DataAccess.instance.GetTransactions().FindAll((transaction) => { return transaction.TranType == Transaction.TranactionType.Invoice; });
-
-			_invoices.ForEach(x => x.CustomerName = customerList.FirstOrDefault(y => y.CustomerID == x.CustomerID)?.FullName);
-			return _invoices;
 		}
 
 
@@ -172,5 +163,5 @@ namespace SecretCellar {
 
 			DataAccess.instance.ProcessTransaction(transaction);
 		}
-    }
+	}
 }
