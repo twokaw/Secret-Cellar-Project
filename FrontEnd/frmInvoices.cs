@@ -20,7 +20,6 @@ namespace SecretCellar {
 			InitializeComponent();
 
 			_frmTransaction = frmTransaction;
-			GetInvoicesFromDatabase();
 			PopulateListOfInvoices();
 		}
 
@@ -81,8 +80,7 @@ namespace SecretCellar {
 			frmPayment frmPayment = new frmPayment(_selectedTransaction);
 			frmPayment.ShowDialog();
 
-			DataAccess.instance.ProcessTransaction(_selectedTransaction);
-			_invoices = GetInvoicesFromDatabase();
+            DataAccess.instance.ProcessTransaction(_selectedTransaction);
 			PopulateListOfInvoices();
 		}
 
@@ -109,10 +107,15 @@ namespace SecretCellar {
 
 
         /// <summary>
-		/// Populates the list of invoices.
+		/// Gets the invoices from the database and then populates the list of invoices.
 		/// </summary>
         private void PopulateListOfInvoices() {
-			bool isShowingClosedInvoices = checkBox_ClosedInvoices.Checked;
+            List<Customer> customerList = DataAccess.instance.GetCustomer();
+            _invoices = DataAccess.instance.GetTransactions().FindAll((transaction) => { return transaction.TranType == Transaction.TranactionType.Invoice || transaction.TranType == Transaction.TranactionType.ClosedInvoice; });
+
+            _invoices.ForEach(x => x.CustomerName = customerList.FirstOrDefault(y => y.CustomerID == x.CustomerID)?.FullName);
+
+            bool isShowingClosedInvoices = checkBox_ClosedInvoices.Checked;
             selectionList_Invoices.Items.Clear();
 			string invoiceTitle;
 
@@ -129,19 +132,6 @@ namespace SecretCellar {
 
 			if (selectionList_Invoices.Items.Count > 0) selectionList_Invoices.SelectedIndex = 0;
 			else { _selectedTransaction = null; selectionList_Invoices.SelectedIndex = -1; }
-		}
-
-
-		/// <summary>
-		/// Gets the invoices from the database.
-		/// </summary>
-		/// <returns></returns>
-		private List<Transaction> GetInvoicesFromDatabase() {
-			List<Customer> customerList = DataAccess.instance.GetCustomer();
-			_invoices = DataAccess.instance.GetTransactions().FindAll((transaction) => { return transaction.TranType == Transaction.TranactionType.Invoice || transaction.TranType == Transaction.TranactionType.ClosedInvoice; });
-
-			_invoices.ForEach(x => x.CustomerName = customerList.FirstOrDefault(y => y.CustomerID == x.CustomerID)?.FullName);
-			return _invoices;
 		}
 
 
