@@ -94,7 +94,7 @@ namespace SecretCellar
                 this.Clear();
 
             string value = this.Text;
-            if (this.TextLength < this.MaxLength)
+            if (Char.IsDigit(character) &&  this.TextLength < this.MaxLength)
             {
                 value = value.Insert(CursorPosition, $"{character}");
                 CursorPosition++;
