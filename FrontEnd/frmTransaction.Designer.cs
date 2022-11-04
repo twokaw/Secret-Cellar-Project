@@ -636,10 +636,10 @@
             this.btnSuspendedTransactions.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(40)))), ((int)(((byte)(42)))));
             this.btnSuspendedTransactions.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSuspendedTransactions.ForeColor = System.Drawing.Color.White;
-            this.btnSuspendedTransactions.Location = new System.Drawing.Point(1290, 174);
+            this.btnSuspendedTransactions.Location = new System.Drawing.Point(1290, 165);
             this.btnSuspendedTransactions.Margin = new System.Windows.Forms.Padding(2);
             this.btnSuspendedTransactions.Name = "btnSuspendedTransactions";
-            this.btnSuspendedTransactions.Size = new System.Drawing.Size(212, 68);
+            this.btnSuspendedTransactions.Size = new System.Drawing.Size(212, 77);
             this.btnSuspendedTransactions.TabIndex = 10;
             this.btnSuspendedTransactions.Text = "Suspended Transactions";
             this.btnSuspendedTransactions.UseVisualStyleBackColor = false;
@@ -711,10 +711,10 @@
             this.button_Invoices.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(40)))), ((int)(((byte)(42)))));
             this.button_Invoices.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_Invoices.ForeColor = System.Drawing.Color.White;
-            this.button_Invoices.Location = new System.Drawing.Point(1084, 174);
+            this.button_Invoices.Location = new System.Drawing.Point(1084, 165);
             this.button_Invoices.Margin = new System.Windows.Forms.Padding(2);
             this.button_Invoices.Name = "button_Invoices";
-            this.button_Invoices.Size = new System.Drawing.Size(190, 68);
+            this.button_Invoices.Size = new System.Drawing.Size(190, 77);
             this.button_Invoices.TabIndex = 33;
             this.button_Invoices.Text = "Invoices";
             this.button_Invoices.UseVisualStyleBackColor = false;
@@ -741,9 +741,8 @@
             this.label_currentCustomerValue.Location = new System.Drawing.Point(302, 33);
             this.label_currentCustomerValue.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_currentCustomerValue.Name = "label_currentCustomerValue";
-            this.label_currentCustomerValue.Size = new System.Drawing.Size(56, 29);
+            this.label_currentCustomerValue.Size = new System.Drawing.Size(0, 29);
             this.label_currentCustomerValue.TabIndex = 35;
-            this.label_currentCustomerValue.Text = "N/A";
             // 
             // lbl_CreditValue
             // 
