@@ -40,6 +40,8 @@ namespace SecretCellar.Settings_Panels
             btn_update.Enabled = shouldButtonsBeEnabled;
             btn_end.Enabled = shouldButtonsBeEnabled;
             cbx_types.Enabled = shouldButtonsBeEnabled;
+            txt_Login.Visible = shouldButtonsBeEnabled;
+            lbl_Login.Visible = shouldButtonsBeEnabled;
         }
 
 
