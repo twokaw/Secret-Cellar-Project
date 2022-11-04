@@ -64,7 +64,7 @@ namespace SecretCellar
             if (transaction.Payments.Count > 0 && transaction.Payments[0].Method == "BREAKAGE")
                 transaction.Items.ForEach(x => x.Price = x.SupplierPrice);
 
-            transaction.ChangetoCredit = chk_ChangetoCredit.Checked;
+            transaction.ChangetoCredit = chk_ChangetoCredit.Checked;  
 
          //   DataAccess.instance.UpdateCustomer(currentCustomer);
             this.DialogResult = DialogResult.OK;
