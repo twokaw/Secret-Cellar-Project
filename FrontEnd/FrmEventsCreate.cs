@@ -42,9 +42,9 @@ namespace SecretCellar {
 					newEvent.Name = textBox_Name.Text;
 					newEvent.EventDate = dateTimePicker_EventDate.Value;
 					newEvent.Duration = dateTimePicker_Duration.Value;
-					newEvent.PreOrder = double.Parse(textBox_Preorder.Text);
-					newEvent.AtDoor = double.Parse(textBox_AtDoor.Text);
-					newEvent.Price = double.Parse(textBox_Price.Text);
+					newEvent.PreOrder = textBox_Preorder.Value;
+					newEvent.AtDoor = textBox_AtDoor.Value;
+					newEvent.Price = textBox_Price.Value;
 					newEvent.NonTaxable = checkBox_NonTaxable.Checked;
 					newEvent.NonTaxableLocal = checkBox_NonTaxableLocal.Checked;
 

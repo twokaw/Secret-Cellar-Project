@@ -227,9 +227,9 @@ namespace SecretCellar
         }
 
         private void btnDryClean_Click(object sender, EventArgs e)
-        {
-            frmDryCleaning dryCleaning = new frmDryCleaning(transaction);
-
+        {   
+           // frmDryCleaning dryCleaning = new frmDryCleaning(transaction);
+            frmCustom dryCleaning = new frmCustom(transaction, "SERVICE", "Dry Cleaning");
             dryCleaning.ShowDialog();
             RefreshDataGrid();
             txtBarcode.Focus();
@@ -275,7 +275,8 @@ namespace SecretCellar
 
         private void btnShipping_Click(object sender, EventArgs e)
         {
-            frmShipping shipping = new frmShipping(transaction);
+            frmCustom shipping = new frmCustom(transaction, "SERVICE", "Dry Cleaning");
+           // frmShipping shipping = new frmShipping(transaction);
 
             shipping.ShowDialog();
             RefreshDataGrid();
