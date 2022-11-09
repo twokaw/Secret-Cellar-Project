@@ -77,7 +77,7 @@
             this.txt_descript.Location = new System.Drawing.Point(320, 39);
             this.txt_descript.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
             this.txt_descript.Name = "txt_descript";
-            this.txt_descript.Size = new System.Drawing.Size(458, 53);
+            this.txt_descript.Size = new System.Drawing.Size(425, 53);
             this.txt_descript.TabIndex = 0;
             // 
             // lbl_Descript
@@ -97,31 +97,31 @@
             // 
             // button_AddCharge
             // 
-            this.button_AddCharge.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_AddCharge.Location = new System.Drawing.Point(516, 846);
+            this.button_AddCharge.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_AddCharge.Location = new System.Drawing.Point(445, 846);
             this.button_AddCharge.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.button_AddCharge.Name = "button_AddCharge";
             this.button_AddCharge.Size = new System.Drawing.Size(300, 104);
             this.button_AddCharge.TabIndex = 4;
-            this.button_AddCharge.Text = "ADD CHARGE";
+            this.button_AddCharge.Text = "Add Charge";
             this.button_AddCharge.UseVisualStyleBackColor = true;
             this.button_AddCharge.Click += new System.EventHandler(this.button_AddCharge_Click);
             // 
             // button_Cancel
             // 
-            this.button_Cancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_Cancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_Cancel.Location = new System.Drawing.Point(21, 846);
             this.button_Cancel.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.button_Cancel.Name = "button_Cancel";
             this.button_Cancel.Size = new System.Drawing.Size(300, 104);
             this.button_Cancel.TabIndex = 3;
-            this.button_Cancel.Text = "CANCEL";
+            this.button_Cancel.Text = "Cancel";
             this.button_Cancel.UseVisualStyleBackColor = true;
             this.button_Cancel.Click += new System.EventHandler(this.button_Cancel_Click);
             // 
             // touchKeyPad1
             // 
-            this.touchKeyPad1.Location = new System.Drawing.Point(153, 288);
+            this.touchKeyPad1.Location = new System.Drawing.Point(109, 277);
             this.touchKeyPad1.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
             this.touchKeyPad1.Name = "touchKeyPad1";
             this.touchKeyPad1.Size = new System.Drawing.Size(550, 544);
@@ -150,7 +150,7 @@
             this.cboType.FormattingEnabled = true;
             this.cboType.Location = new System.Drawing.Point(320, 135);
             this.cboType.Name = "cboType";
-            this.cboType.Size = new System.Drawing.Size(458, 54);
+            this.cboType.Size = new System.Drawing.Size(425, 54);
             this.cboType.TabIndex = 64;
             // 
             // frmCustom
@@ -160,7 +160,7 @@
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(231)))), ((int)(((byte)(206)))));
-            this.ClientSize = new System.Drawing.Size(836, 973);
+            this.ClientSize = new System.Drawing.Size(764, 973);
             this.Controls.Add(this.cboType);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.touchKeyPad1);
@@ -177,7 +177,7 @@
             this.MinimizeBox = false;
             this.Name = "frmCustom";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Add Custom Item";
+            this.Text = "Add Item";
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -34,6 +34,14 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmEvents));
             this.dataGridView_Events = new System.Windows.Forms.DataGridView();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Barcode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Duration = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Event = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PreorderPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AtDoorPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Qty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateTimePicker_Date = new System.Windows.Forms.DateTimePicker();
             this.button_AddCharge = new System.Windows.Forms.Button();
             this.button_CloseWindow = new System.Windows.Forms.Button();
@@ -46,14 +54,6 @@
             this.textBox_Total = new SecretCellar.CurrencyBox();
             this.button_EditEvent = new System.Windows.Forms.Button();
             this.button_WaitList = new System.Windows.Forms.Button();
-            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Barcode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Duration = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Event = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PreorderPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AtDoorPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Qty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Events)).BeginInit();
             this.SuspendLayout();
             // 
@@ -96,8 +96,8 @@
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridView_Events.DefaultCellStyle = dataGridViewCellStyle3;
-            this.dataGridView_Events.Location = new System.Drawing.Point(14, 109);
-            this.dataGridView_Events.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.dataGridView_Events.Location = new System.Drawing.Point(21, 109);
+            this.dataGridView_Events.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.dataGridView_Events.Name = "dataGridView_Events";
             this.dataGridView_Events.ReadOnly = true;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
@@ -113,166 +113,16 @@
             this.dataGridView_Events.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.dataGridView_Events.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dataGridView_Events.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView_Events.Size = new System.Drawing.Size(899, 353);
+            this.dataGridView_Events.Size = new System.Drawing.Size(1348, 585);
             this.dataGridView_Events.TabIndex = 2;
             this.dataGridView_Events.TabStop = false;
             this.dataGridView_Events.SelectionChanged += new System.EventHandler(this.dataGridView_Events_SelectionChanged);
-            // 
-            // dateTimePicker_Date
-            // 
-            this.dateTimePicker_Date.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dateTimePicker_Date.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePicker_Date.Location = new System.Drawing.Point(14, 22);
-            this.dateTimePicker_Date.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.dateTimePicker_Date.Name = "dateTimePicker_Date";
-            this.dateTimePicker_Date.Size = new System.Drawing.Size(622, 44);
-            this.dateTimePicker_Date.TabIndex = 0;
-            this.dateTimePicker_Date.ValueChanged += new System.EventHandler(this.dateTimePicker_Date_ValueChanged);
-            // 
-            // button_AddCharge
-            // 
-            this.button_AddCharge.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button_AddCharge.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_AddCharge.Location = new System.Drawing.Point(733, 618);
-            this.button_AddCharge.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.button_AddCharge.Name = "button_AddCharge";
-            this.button_AddCharge.Size = new System.Drawing.Size(180, 55);
-            this.button_AddCharge.TabIndex = 9;
-            this.button_AddCharge.Text = "Add Charge";
-            this.button_AddCharge.UseVisualStyleBackColor = true;
-            this.button_AddCharge.Click += new System.EventHandler(this.button_AddCharge_Click);
-            // 
-            // button_CloseWindow
-            // 
-            this.button_CloseWindow.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button_CloseWindow.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_CloseWindow.Location = new System.Drawing.Point(14, 618);
-            this.button_CloseWindow.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.button_CloseWindow.Name = "button_CloseWindow";
-            this.button_CloseWindow.Size = new System.Drawing.Size(180, 55);
-            this.button_CloseWindow.TabIndex = 8;
-            this.button_CloseWindow.Text = "Close Window";
-            this.button_CloseWindow.UseVisualStyleBackColor = true;
-            this.button_CloseWindow.Click += new System.EventHandler(this.button_CloseWindow_Click);
-            // 
-            // button_AllEvents
-            // 
-            this.button_AllEvents.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button_AllEvents.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_AllEvents.Location = new System.Drawing.Point(733, 22);
-            this.button_AllEvents.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.button_AllEvents.Name = "button_AllEvents";
-            this.button_AllEvents.Size = new System.Drawing.Size(180, 55);
-            this.button_AllEvents.TabIndex = 1;
-            this.button_AllEvents.Text = "All Events";
-            this.button_AllEvents.UseVisualStyleBackColor = true;
-            this.button_AllEvents.Click += new System.EventHandler(this.button_AllEvents_Click);
-            // 
-            // button_CreateEvent
-            // 
-            this.button_CreateEvent.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button_CreateEvent.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_CreateEvent.Location = new System.Drawing.Point(14, 549);
-            this.button_CreateEvent.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.button_CreateEvent.Name = "button_CreateEvent";
-            this.button_CreateEvent.Size = new System.Drawing.Size(180, 55);
-            this.button_CreateEvent.TabIndex = 4;
-            this.button_CreateEvent.Text = "Create New Event";
-            this.button_CreateEvent.UseVisualStyleBackColor = true;
-            this.button_CreateEvent.Click += new System.EventHandler(this.button_CreateEvent_Click);
-            // 
-            // button_DeleteEvent
-            // 
-            this.button_DeleteEvent.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button_DeleteEvent.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_DeleteEvent.Location = new System.Drawing.Point(254, 549);
-            this.button_DeleteEvent.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.button_DeleteEvent.Name = "button_DeleteEvent";
-            this.button_DeleteEvent.Size = new System.Drawing.Size(180, 55);
-            this.button_DeleteEvent.TabIndex = 5;
-            this.button_DeleteEvent.Text = "Delete Event";
-            this.button_DeleteEvent.UseVisualStyleBackColor = true;
-            this.button_DeleteEvent.Click += new System.EventHandler(this.button_DeleteEvent_Click);
-            // 
-            // label_Quantity
-            // 
-            this.label_Quantity.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label_Quantity.AutoSize = true;
-            this.label_Quantity.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_Quantity.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label_Quantity.Location = new System.Drawing.Point(9, 487);
-            this.label_Quantity.Name = "label_Quantity";
-            this.label_Quantity.Size = new System.Drawing.Size(207, 29);
-            this.label_Quantity.TabIndex = 19;
-            this.label_Quantity.Text = "Quantity To Add:";
-            // 
-            // label_Total
-            // 
-            this.label_Total.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.label_Total.AutoSize = true;
-            this.label_Total.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_Total.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label_Total.Location = new System.Drawing.Point(652, 484);
-            this.label_Total.Name = "label_Total";
-            this.label_Total.Size = new System.Drawing.Size(80, 29);
-            this.label_Total.TabIndex = 20;
-            this.label_Total.Text = "Total:";
-            // 
-            // textBox_Quantity
-            // 
-            this.textBox_Quantity.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.textBox_Quantity.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_Quantity.Location = new System.Drawing.Point(225, 481);
-            this.textBox_Quantity.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBox_Quantity.Name = "textBox_Quantity";
-            this.textBox_Quantity.Size = new System.Drawing.Size(175, 38);
-            this.textBox_Quantity.TabIndex = 3;
-            this.textBox_Quantity.TextChanged += new System.EventHandler(this.textBox_Quantity_TextChanged);
-            // 
-            // textBox_Total
-            // 
-            this.textBox_Total.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox_Total.Enabled = false;
-            this.textBox_Total.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_Total.Location = new System.Drawing.Point(738, 478);
-            this.textBox_Total.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBox_Total.Name = "textBox_Total";
-            this.textBox_Total.Size = new System.Drawing.Size(175, 38);
-            this.textBox_Total.TabIndex = 22;
-            this.textBox_Total.Text = "0.00";
-            this.textBox_Total.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // button_EditEvent
-            // 
-            this.button_EditEvent.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button_EditEvent.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_EditEvent.Location = new System.Drawing.Point(491, 549);
-            this.button_EditEvent.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.button_EditEvent.Name = "button_EditEvent";
-            this.button_EditEvent.Size = new System.Drawing.Size(180, 55);
-            this.button_EditEvent.TabIndex = 6;
-            this.button_EditEvent.Text = "Edit Event";
-            this.button_EditEvent.UseVisualStyleBackColor = true;
-            this.button_EditEvent.Click += new System.EventHandler(this.button_EditEvent_Click);
-            // 
-            // button_WaitList
-            // 
-            this.button_WaitList.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button_WaitList.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_WaitList.Location = new System.Drawing.Point(733, 549);
-            this.button_WaitList.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.button_WaitList.Name = "button_WaitList";
-            this.button_WaitList.Size = new System.Drawing.Size(180, 55);
-            this.button_WaitList.TabIndex = 7;
-            this.button_WaitList.Text = "Event Waitlist";
-            this.button_WaitList.UseVisualStyleBackColor = true;
-            this.button_WaitList.Click += new System.EventHandler(this.button_WaitList_Click);
             // 
             // Id
             // 
             this.Id.DataPropertyName = "eventId";
             this.Id.HeaderText = "Event Id";
+            this.Id.MinimumWidth = 8;
             this.Id.Name = "Id";
             this.Id.ReadOnly = true;
             // 
@@ -280,6 +130,7 @@
             // 
             this.Barcode.DataPropertyName = "eventBarcode";
             this.Barcode.HeaderText = "Event Barcode";
+            this.Barcode.MinimumWidth = 8;
             this.Barcode.Name = "Barcode";
             this.Barcode.ReadOnly = true;
             // 
@@ -295,6 +146,7 @@
             // 
             this.Duration.DataPropertyName = "eventDuration";
             this.Duration.HeaderText = "Event Duration";
+            this.Duration.MinimumWidth = 8;
             this.Duration.Name = "Duration";
             this.Duration.ReadOnly = true;
             // 
@@ -310,6 +162,7 @@
             // 
             this.PreorderPrice.DataPropertyName = "preorderPrice";
             this.PreorderPrice.HeaderText = "Preorder Price";
+            this.PreorderPrice.MinimumWidth = 8;
             this.PreorderPrice.Name = "PreorderPrice";
             this.PreorderPrice.ReadOnly = true;
             // 
@@ -329,13 +182,168 @@
             this.Qty.Name = "Qty";
             this.Qty.ReadOnly = true;
             // 
+            // dateTimePicker_Date
+            // 
+            this.dateTimePicker_Date.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dateTimePicker_Date.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimePicker_Date.Location = new System.Drawing.Point(21, 33);
+            this.dateTimePicker_Date.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.dateTimePicker_Date.Name = "dateTimePicker_Date";
+            this.dateTimePicker_Date.Size = new System.Drawing.Size(931, 62);
+            this.dateTimePicker_Date.TabIndex = 0;
+            this.dateTimePicker_Date.ValueChanged += new System.EventHandler(this.dateTimePicker_Date_ValueChanged);
+            // 
+            // button_AddCharge
+            // 
+            this.button_AddCharge.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button_AddCharge.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_AddCharge.Location = new System.Drawing.Point(1100, 927);
+            this.button_AddCharge.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.button_AddCharge.Name = "button_AddCharge";
+            this.button_AddCharge.Size = new System.Drawing.Size(270, 82);
+            this.button_AddCharge.TabIndex = 9;
+            this.button_AddCharge.Text = "Add Charge";
+            this.button_AddCharge.UseVisualStyleBackColor = true;
+            this.button_AddCharge.Click += new System.EventHandler(this.button_AddCharge_Click);
+            // 
+            // button_CloseWindow
+            // 
+            this.button_CloseWindow.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.button_CloseWindow.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_CloseWindow.Location = new System.Drawing.Point(21, 927);
+            this.button_CloseWindow.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.button_CloseWindow.Name = "button_CloseWindow";
+            this.button_CloseWindow.Size = new System.Drawing.Size(270, 82);
+            this.button_CloseWindow.TabIndex = 8;
+            this.button_CloseWindow.Text = "Close";
+            this.button_CloseWindow.UseVisualStyleBackColor = true;
+            this.button_CloseWindow.Click += new System.EventHandler(this.button_CloseWindow_Click);
+            // 
+            // button_AllEvents
+            // 
+            this.button_AllEvents.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button_AllEvents.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_AllEvents.Location = new System.Drawing.Point(1100, 15);
+            this.button_AllEvents.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.button_AllEvents.Name = "button_AllEvents";
+            this.button_AllEvents.Size = new System.Drawing.Size(270, 82);
+            this.button_AllEvents.TabIndex = 1;
+            this.button_AllEvents.Text = "All Events";
+            this.button_AllEvents.UseVisualStyleBackColor = true;
+            this.button_AllEvents.Click += new System.EventHandler(this.button_AllEvents_Click);
+            // 
+            // button_CreateEvent
+            // 
+            this.button_CreateEvent.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.button_CreateEvent.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_CreateEvent.Location = new System.Drawing.Point(21, 824);
+            this.button_CreateEvent.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.button_CreateEvent.Name = "button_CreateEvent";
+            this.button_CreateEvent.Size = new System.Drawing.Size(270, 82);
+            this.button_CreateEvent.TabIndex = 4;
+            this.button_CreateEvent.Text = "Create New";
+            this.button_CreateEvent.UseVisualStyleBackColor = true;
+            this.button_CreateEvent.Click += new System.EventHandler(this.button_CreateEvent_Click);
+            // 
+            // button_DeleteEvent
+            // 
+            this.button_DeleteEvent.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.button_DeleteEvent.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_DeleteEvent.Location = new System.Drawing.Point(381, 824);
+            this.button_DeleteEvent.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.button_DeleteEvent.Name = "button_DeleteEvent";
+            this.button_DeleteEvent.Size = new System.Drawing.Size(270, 82);
+            this.button_DeleteEvent.TabIndex = 5;
+            this.button_DeleteEvent.Text = "Delete";
+            this.button_DeleteEvent.UseVisualStyleBackColor = true;
+            this.button_DeleteEvent.Click += new System.EventHandler(this.button_DeleteEvent_Click);
+            // 
+            // label_Quantity
+            // 
+            this.label_Quantity.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label_Quantity.AutoSize = true;
+            this.label_Quantity.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_Quantity.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label_Quantity.Location = new System.Drawing.Point(14, 730);
+            this.label_Quantity.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label_Quantity.Name = "label_Quantity";
+            this.label_Quantity.Size = new System.Drawing.Size(303, 40);
+            this.label_Quantity.TabIndex = 19;
+            this.label_Quantity.Text = "Quantity To Add:";
+            // 
+            // label_Total
+            // 
+            this.label_Total.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label_Total.AutoSize = true;
+            this.label_Total.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_Total.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label_Total.Location = new System.Drawing.Point(978, 726);
+            this.label_Total.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label_Total.Name = "label_Total";
+            this.label_Total.Size = new System.Drawing.Size(113, 40);
+            this.label_Total.TabIndex = 20;
+            this.label_Total.Text = "Total:";
+            // 
+            // textBox_Quantity
+            // 
+            this.textBox_Quantity.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.textBox_Quantity.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox_Quantity.Location = new System.Drawing.Point(338, 722);
+            this.textBox_Quantity.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.textBox_Quantity.Name = "textBox_Quantity";
+            this.textBox_Quantity.Size = new System.Drawing.Size(260, 53);
+            this.textBox_Quantity.TabIndex = 3;
+            this.textBox_Quantity.TextChanged += new System.EventHandler(this.textBox_Quantity_TextChanged);
+            // 
+            // textBox_Total
+            // 
+            this.textBox_Total.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox_Total.Enabled = false;
+            this.textBox_Total.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox_Total.ForeColor = System.Drawing.Color.Black;
+            this.textBox_Total.Location = new System.Drawing.Point(1107, 717);
+            this.textBox_Total.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.textBox_Total.Name = "textBox_Total";
+            this.textBox_Total.Size = new System.Drawing.Size(260, 53);
+            this.textBox_Total.TabIndex = 22;
+            this.textBox_Total.Text = "$0.00";
+            this.textBox_Total.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.textBox_Total.Value = 0D;
+            // 
+            // button_EditEvent
+            // 
+            this.button_EditEvent.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button_EditEvent.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_EditEvent.Location = new System.Drawing.Point(736, 824);
+            this.button_EditEvent.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.button_EditEvent.Name = "button_EditEvent";
+            this.button_EditEvent.Size = new System.Drawing.Size(270, 82);
+            this.button_EditEvent.TabIndex = 6;
+            this.button_EditEvent.Text = "Edit";
+            this.button_EditEvent.UseVisualStyleBackColor = true;
+            this.button_EditEvent.Click += new System.EventHandler(this.button_EditEvent_Click);
+            // 
+            // button_WaitList
+            // 
+            this.button_WaitList.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button_WaitList.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_WaitList.Location = new System.Drawing.Point(1100, 824);
+            this.button_WaitList.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.button_WaitList.Name = "button_WaitList";
+            this.button_WaitList.Size = new System.Drawing.Size(270, 82);
+            this.button_WaitList.TabIndex = 7;
+            this.button_WaitList.Text = "Waitlist";
+            this.button_WaitList.UseVisualStyleBackColor = true;
+            this.button_WaitList.Click += new System.EventHandler(this.button_WaitList_Click);
+            // 
             // frmEvents
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(144F, 144F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(231)))), ((int)(((byte)(206)))));
-            this.ClientSize = new System.Drawing.Size(928, 686);
+            this.ClientSize = new System.Drawing.Size(1392, 1029);
             this.Controls.Add(this.button_WaitList);
             this.Controls.Add(this.button_EditEvent);
             this.Controls.Add(this.textBox_Total);
@@ -351,7 +359,7 @@
             this.Controls.Add(this.dataGridView_Events);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmEvents";
