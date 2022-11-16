@@ -31,13 +31,11 @@ namespace SecretCellar
             cbxTypeFilter.Items.AddRange((string[])types.Select(x => x.TypeName).ToArray());
         }
 
-
         public void SubmitButtonText(string value = "Add to Cart") { btn_add.Text = value; }
 
-
         public frmLookup(Transaction transaction) : base() { SetTransaction(transaction); }
+        
         public void SetTransaction(Transaction transaction) { currentTransaction = transaction; }
-
 
         private void btn_add_Click(object sender, EventArgs e)
         {
@@ -48,7 +46,6 @@ namespace SecretCellar
                 this.Close();
             }
         }
-
 
         private void button_Broken_Click(object sender, EventArgs e) {
             if (LookupView.SelectedRows.Count > 0) {
