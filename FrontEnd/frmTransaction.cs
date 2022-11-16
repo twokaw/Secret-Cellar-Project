@@ -337,11 +337,11 @@ namespace SecretCellar
 
         private void btnPropane_Click(object sender, EventArgs e)
         {
-            frmPropane propane = new frmPropane(transaction);
+            //frmPropane propane = new frmPropane(transaction);
 
-            propane.ShowDialog();
-            RefreshDataGrid();
-            txtBarcode.Focus();
+            //propane.ShowDialog();
+            //RefreshDataGrid();
+            //txtBarcode.Focus();
         }
 
         private void btnCustom_Click(object sender, EventArgs e)
