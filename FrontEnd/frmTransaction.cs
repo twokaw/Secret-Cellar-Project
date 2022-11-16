@@ -364,8 +364,7 @@ namespace SecretCellar
             suspendedTransactions.ShowDialog();
         }
 
-        private void btnSuspendTransaction_Click(object sender, EventArgs e)
-        {
+        private void SuspendTransaction() {
             if (transaction.TranType == Transaction.TranactionType.Closed)
                 transaction.TranType = Transaction.TranactionType.Suspended;
 
@@ -386,12 +385,13 @@ namespace SecretCellar
             txt_Ship.Text = "$0.00";
 
             //HIDE THE SUSPEND TRANSACTION BUTTON
-            dataGridView1_RowsRemoved(this, e);
+            pic_susp.Visible = false;
 
             //CLEAR THE CURRENT CUSTOMER
             label_currentCustomerValue.Text = "N/A";
             RefreshDataGrid();
         }
+
 
         public void ImportTransaction(Transaction newTransaction)
         {
@@ -519,9 +519,7 @@ namespace SecretCellar
 
         private void pic_susp_Click(object sender, EventArgs e)
         {
-            frmSuspendedTransactions suspendedTransactions = new frmSuspendedTransactions(this, transaction);
-            suspendedTransactions.ShowDialog();
-
+            SuspendTransaction();
         }
 
         private void pic_susp_MouseHover(object sender, EventArgs e)
