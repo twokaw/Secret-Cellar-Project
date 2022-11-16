@@ -277,8 +277,6 @@ namespace Shared
                     x.Enabled = enabled;
         }
 
-
-
         public void Add(Item item)
         {
             Item i = Items.FirstOrDefault(x => x.Id == item.Id && x.Price == item.Price);

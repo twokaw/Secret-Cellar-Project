@@ -238,7 +238,7 @@ namespace pos_core_api.ORM
 
             inv.Discount.ForEach(x => sql += @$"                   
                     INSERT INTO Discount_Type
-                    (discountID, InventoryID) 
+                    (discountID, typeID) 
                     VALUES 
                     ({x.DiscountID}, @TypeID);
                 ");

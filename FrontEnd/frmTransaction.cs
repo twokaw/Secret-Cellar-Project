@@ -127,6 +127,7 @@ namespace SecretCellar
                     lbl_Credit.Visible = false;
                     //transaction complete, clear the form
                     transaction = new Transaction();
+                    transaction.EnableBulkDiscount(caseDiscount.Checked);
                     label_currentCustomerValue.Text = "d";
                     RefreshDataGrid();
                     txtBarcode.Focus();
@@ -196,14 +197,15 @@ namespace SecretCellar
                     lbl_Credit.Visible = false;
                     lbl_CreditValue.Visible = false;
                 }
-                else {
+                else 
+                {
                     if((CurrentCustomer?.CustomerID ?? -1.0) != transaction.CustomerID)
                         CurrentCustomer = DataAccess.instance.GetCustomer(transaction.CustomerID);
 
                     label_currentCustomerValue.Text = $"{CurrentCustomer.LastName}, {CurrentCustomer.FirstName}";
-
                     lbl_CreditValue.Visible = CurrentCustomer.Credit != 0.0;
                     lbl_Credit.Visible = CurrentCustomer.Credit != 0.0;
+
                     if (CurrentCustomer.Credit != 0.0)
                     {
                         lbl_CreditValue.Text = $"{CurrentCustomer.Credit:c2}";
@@ -276,7 +278,6 @@ namespace SecretCellar
         private void btnShipping_Click(object sender, EventArgs e)
         {
             frmCustom shipping = new frmCustom(transaction, "SERVICE", "Dry Cleaning");
-           // frmShipping shipping = new frmShipping(transaction);
 
             shipping.ShowDialog();
             RefreshDataGrid();
@@ -285,15 +286,19 @@ namespace SecretCellar
 
         private void btnVoidTrx_Click(object sender, EventArgs e) {
             //ENSURE THAT THE TRANSACTION DOESN'T HAVE PAYMENTS STILL
-            if (transaction.Payments.Count > 0) {
+            if (transaction.Payments.Count > 0) 
+            {
                 MessageBox.Show("Cannot void transaction. There are still outstanding payments.", "Error");
                 return;
             }
 
-            if (transaction.TranType == Transaction.TranactionType.Suspended) {
-                if (frmManagerOverride.DidOverride("Void Suspended Transaction")) VoidTransaction();
+            if (transaction.TranType == Transaction.TranactionType.Suspended) 
+            {
+                if (frmManagerOverride.DidOverride("Void Suspended Transaction")) 
+                    VoidTransaction();
             }
-            else {
+            else 
+            {
                 VoidTransaction();
             }
         }
@@ -333,15 +338,6 @@ namespace SecretCellar
             {
                 pic_susp.Visible = false;
             }
-        }
-
-        private void btnPropane_Click(object sender, EventArgs e)
-        {
-            frmPropane propane = new frmPropane(transaction);
-
-            propane.ShowDialog();
-            RefreshDataGrid();
-            txtBarcode.Focus();
         }
 
         private void btnCustom_Click(object sender, EventArgs e)
@@ -421,10 +417,8 @@ namespace SecretCellar
 
         private void caseDiscount_CheckedChanged(object sender, EventArgs e)
         {
-            if (caseDiscount.Checked)
-            {
-                MessageBox.Show("Case Discounts Applied!");
-            }
+            transaction.EnableBulkDiscount(caseDiscount.Checked);
+            RefreshDataGrid();
         }
 
         private void button1_Click(object sender, EventArgs e)

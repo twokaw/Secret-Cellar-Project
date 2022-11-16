@@ -197,8 +197,8 @@
             // button_AddCharge
             // 
             this.button_AddCharge.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button_AddCharge.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_AddCharge.Location = new System.Drawing.Point(1100, 927);
+            this.button_AddCharge.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_AddCharge.Location = new System.Drawing.Point(1100, 890);
             this.button_AddCharge.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.button_AddCharge.Name = "button_AddCharge";
             this.button_AddCharge.Size = new System.Drawing.Size(270, 82);
@@ -210,8 +210,8 @@
             // button_CloseWindow
             // 
             this.button_CloseWindow.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button_CloseWindow.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_CloseWindow.Location = new System.Drawing.Point(21, 927);
+            this.button_CloseWindow.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_CloseWindow.Location = new System.Drawing.Point(21, 890);
             this.button_CloseWindow.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.button_CloseWindow.Name = "button_CloseWindow";
             this.button_CloseWindow.Size = new System.Drawing.Size(270, 82);
@@ -236,8 +236,8 @@
             // button_CreateEvent
             // 
             this.button_CreateEvent.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button_CreateEvent.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_CreateEvent.Location = new System.Drawing.Point(21, 824);
+            this.button_CreateEvent.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_CreateEvent.Location = new System.Drawing.Point(21, 787);
             this.button_CreateEvent.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.button_CreateEvent.Name = "button_CreateEvent";
             this.button_CreateEvent.Size = new System.Drawing.Size(270, 82);
@@ -249,8 +249,8 @@
             // button_DeleteEvent
             // 
             this.button_DeleteEvent.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button_DeleteEvent.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_DeleteEvent.Location = new System.Drawing.Point(381, 824);
+            this.button_DeleteEvent.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_DeleteEvent.Location = new System.Drawing.Point(381, 787);
             this.button_DeleteEvent.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.button_DeleteEvent.Name = "button_DeleteEvent";
             this.button_DeleteEvent.Size = new System.Drawing.Size(270, 82);
@@ -265,7 +265,7 @@
             this.label_Quantity.AutoSize = true;
             this.label_Quantity.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_Quantity.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label_Quantity.Location = new System.Drawing.Point(14, 730);
+            this.label_Quantity.Location = new System.Drawing.Point(14, 727);
             this.label_Quantity.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_Quantity.Name = "label_Quantity";
             this.label_Quantity.Size = new System.Drawing.Size(303, 40);
@@ -278,7 +278,7 @@
             this.label_Total.AutoSize = true;
             this.label_Total.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_Total.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label_Total.Location = new System.Drawing.Point(978, 726);
+            this.label_Total.Location = new System.Drawing.Point(978, 723);
             this.label_Total.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_Total.Name = "label_Total";
             this.label_Total.Size = new System.Drawing.Size(113, 40);
@@ -289,7 +289,7 @@
             // 
             this.textBox_Quantity.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.textBox_Quantity.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_Quantity.Location = new System.Drawing.Point(338, 722);
+            this.textBox_Quantity.Location = new System.Drawing.Point(338, 719);
             this.textBox_Quantity.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.textBox_Quantity.Name = "textBox_Quantity";
             this.textBox_Quantity.Size = new System.Drawing.Size(260, 53);
@@ -302,7 +302,7 @@
             this.textBox_Total.Enabled = false;
             this.textBox_Total.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox_Total.ForeColor = System.Drawing.Color.Black;
-            this.textBox_Total.Location = new System.Drawing.Point(1107, 717);
+            this.textBox_Total.Location = new System.Drawing.Point(1107, 714);
             this.textBox_Total.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.textBox_Total.Name = "textBox_Total";
             this.textBox_Total.Size = new System.Drawing.Size(260, 53);
@@ -314,8 +314,8 @@
             // button_EditEvent
             // 
             this.button_EditEvent.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button_EditEvent.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_EditEvent.Location = new System.Drawing.Point(736, 824);
+            this.button_EditEvent.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_EditEvent.Location = new System.Drawing.Point(736, 787);
             this.button_EditEvent.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.button_EditEvent.Name = "button_EditEvent";
             this.button_EditEvent.Size = new System.Drawing.Size(270, 82);
@@ -327,8 +327,8 @@
             // button_WaitList
             // 
             this.button_WaitList.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button_WaitList.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_WaitList.Location = new System.Drawing.Point(1100, 824);
+            this.button_WaitList.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_WaitList.Location = new System.Drawing.Point(1100, 787);
             this.button_WaitList.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.button_WaitList.Name = "button_WaitList";
             this.button_WaitList.Size = new System.Drawing.Size(270, 82);
@@ -343,7 +343,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(231)))), ((int)(((byte)(206)))));
-            this.ClientSize = new System.Drawing.Size(1392, 1029);
+            this.ClientSize = new System.Drawing.Size(1392, 987);
             this.Controls.Add(this.button_WaitList);
             this.Controls.Add(this.button_EditEvent);
             this.Controls.Add(this.textBox_Total);

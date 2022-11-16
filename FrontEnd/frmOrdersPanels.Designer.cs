@@ -79,6 +79,7 @@ namespace SecretCellar {
             // 
             this.panel_CustomerRequest1.AutoSize = true;
             this.panel_CustomerRequest1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel_CustomerRequest1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panel_CustomerRequest1.Location = new System.Drawing.Point(9, 9);
             this.panel_CustomerRequest1.Margin = new System.Windows.Forms.Padding(14, 12, 14, 12);
             this.panel_CustomerRequest1.Name = "panel_CustomerRequest1";
@@ -180,7 +181,7 @@ namespace SecretCellar {
             // btn_close
             // 
             this.btn_close.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btn_close.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_close.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_close.Location = new System.Drawing.Point(15, 945);
             this.btn_close.Margin = new System.Windows.Forms.Padding(9);
             this.btn_close.Name = "btn_close";
