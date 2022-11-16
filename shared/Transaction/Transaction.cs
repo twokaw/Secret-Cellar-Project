@@ -47,7 +47,11 @@ namespace Shared
                 // 
                 //   Coupons are negative, to get the discount they will need to be negated to make them po
 
-                Items.ForEach(x => sub += x.DiscountTotal + ((x.AdjustedTotal > 0) ? (x.AdjustedTotal * Discount) : 0));
+                Items.ForEach(x => {
+                    if (x.DiscountPrice > 0) return;
+
+                    sub += x.DiscountTotal + ((x.AdjustedTotal > 0) ? (x.AdjustedTotal * Discount) : 0);
+                });
 
                 return Math.Round(sub, 2, MidpointRounding.AwayFromZero);
             }
