@@ -64,7 +64,7 @@ namespace Shared
                 double price;
 
                 if (DiscountPrice > 0) 
-                    price = DiscountPrice * NumSold * (1 - Discount);                
+                    price = DiscountPrice * NumSold;                
                 else 
                     price = Price * NumSold * ((Price > 0) ? (1 - Discount) : 1);
                 
