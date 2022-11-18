@@ -154,7 +154,7 @@ namespace SecretCellar
 				description = x.Description,
 				qty = x.NumSold,
 				price = (x.Price * (1 - x.Discount)).ToString("C"),
-				discount = x.Discount.ToString("P0"),
+				discount = x.DiscountPrice.ToString("C"),
 				bottleDeposit = (x.NumSold * x.Bottles * .05).ToString("C"),
 				total = (x.Price * x.NumSold * (1 - x.Discount)).ToString("C")
 			})
