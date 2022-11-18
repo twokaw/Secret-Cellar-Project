@@ -173,7 +173,7 @@
             // 
             this.DESCRIPTION.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.DESCRIPTION.DataPropertyName = "description";
-            this.DESCRIPTION.FillWeight = 205.876F;
+            this.DESCRIPTION.FillWeight = 200F;
             this.DESCRIPTION.HeaderText = "Description";
             this.DESCRIPTION.MinimumWidth = 12;
             this.DESCRIPTION.Name = "DESCRIPTION";
@@ -182,7 +182,7 @@
             // 
             this.QTY.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.QTY.DataPropertyName = "qty";
-            this.QTY.FillWeight = 154.4118F;
+            this.QTY.FillWeight = 25F;
             this.QTY.HeaderText = "Qty";
             this.QTY.MinimumWidth = 12;
             this.QTY.Name = "QTY";
@@ -192,41 +192,37 @@
             // 
             this.PRICE.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.PRICE.DataPropertyName = "price";
-            this.PRICE.FillWeight = 18.80306F;
+            this.PRICE.FillWeight = 25F;
             this.PRICE.HeaderText = "Price";
             this.PRICE.MinimumWidth = 12;
             this.PRICE.Name = "PRICE";
-            this.PRICE.Width = 150;
             // 
             // DISCOUNT
             // 
             this.DISCOUNT.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.DISCOUNT.DataPropertyName = "discount";
-            this.DISCOUNT.FillWeight = 37.25315F;
+            this.DISCOUNT.FillWeight = 25F;
             this.DISCOUNT.HeaderText = "Discount Price";
             this.DISCOUNT.MinimumWidth = 25;
             this.DISCOUNT.Name = "DISCOUNT";
-            this.DISCOUNT.Width = 150;
             // 
             // BOTTLE_DEPOSIT
             // 
             this.BOTTLE_DEPOSIT.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.BOTTLE_DEPOSIT.DataPropertyName = "bottleDeposit";
-            this.BOTTLE_DEPOSIT.FillWeight = 88.47124F;
+            this.BOTTLE_DEPOSIT.FillWeight = 25F;
             this.BOTTLE_DEPOSIT.HeaderText = "Bottle Deposit";
             this.BOTTLE_DEPOSIT.MinimumWidth = 12;
             this.BOTTLE_DEPOSIT.Name = "BOTTLE_DEPOSIT";
-            this.BOTTLE_DEPOSIT.Width = 160;
             // 
             // TOTAL
             // 
             this.TOTAL.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.TOTAL.DataPropertyName = "total";
-            this.TOTAL.FillWeight = 138.0905F;
+            this.TOTAL.FillWeight = 25F;
             this.TOTAL.HeaderText = "Total";
             this.TOTAL.MinimumWidth = 12;
             this.TOTAL.Name = "TOTAL";
-            this.TOTAL.Width = 150;
             // 
             // frmSuspendedTransactions
             // 
