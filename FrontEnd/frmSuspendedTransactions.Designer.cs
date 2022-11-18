@@ -38,13 +38,13 @@
             this.btnAdd = new System.Windows.Forms.Button();
             this.selectionListSuspendedTransactions = new System.Windows.Forms.ListBox();
             this.dataGridViewSuspendedTransaction = new System.Windows.Forms.DataGridView();
+            this.btn_CloseWindow = new System.Windows.Forms.Button();
             this.DESCRIPTION = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.QTY = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PRICE = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DISCOUNT = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BOTTLE_DEPOSIT = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TOTAL = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btn_CloseWindow = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSuspendedTransaction)).BeginInit();
             this.SuspendLayout();
             // 
@@ -52,10 +52,9 @@
             // 
             this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDelete.Location = new System.Drawing.Point(945, 419);
-            this.btnDelete.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnDelete.Location = new System.Drawing.Point(630, 279);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(270, 82);
+            this.btnDelete.Size = new System.Drawing.Size(180, 55);
             this.btnDelete.TabIndex = 2;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
@@ -65,10 +64,9 @@
             // 
             this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAdd.Location = new System.Drawing.Point(1224, 419);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAdd.Location = new System.Drawing.Point(816, 279);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(270, 82);
+            this.btnAdd.Size = new System.Drawing.Size(180, 55);
             this.btnAdd.TabIndex = 3;
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = true;
@@ -81,11 +79,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.selectionListSuspendedTransactions.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.selectionListSuspendedTransactions.FormattingEnabled = true;
-            this.selectionListSuspendedTransactions.ItemHeight = 29;
-            this.selectionListSuspendedTransactions.Location = new System.Drawing.Point(18, 15);
-            this.selectionListSuspendedTransactions.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.selectionListSuspendedTransactions.ItemHeight = 18;
+            this.selectionListSuspendedTransactions.Location = new System.Drawing.Point(12, 10);
             this.selectionListSuspendedTransactions.Name = "selectionListSuspendedTransactions";
-            this.selectionListSuspendedTransactions.Size = new System.Drawing.Size(238, 381);
+            this.selectionListSuspendedTransactions.Size = new System.Drawing.Size(160, 238);
             this.selectionListSuspendedTransactions.TabIndex = 0;
             this.selectionListSuspendedTransactions.SelectedIndexChanged += new System.EventHandler(this.selectionListSuspendedTransactions_SelectedIndexChanged);
             // 
@@ -131,8 +128,8 @@
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Ivory;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridViewSuspendedTransaction.DefaultCellStyle = dataGridViewCellStyle3;
-            this.dataGridViewSuspendedTransaction.Location = new System.Drawing.Point(278, 15);
-            this.dataGridViewSuspendedTransaction.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dataGridViewSuspendedTransaction.Location = new System.Drawing.Point(185, 10);
+            this.dataGridViewSuspendedTransaction.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.dataGridViewSuspendedTransaction.Name = "dataGridViewSuspendedTransaction";
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
@@ -156,15 +153,27 @@
             this.dataGridViewSuspendedTransaction.RowTemplate.Height = 40;
             this.dataGridViewSuspendedTransaction.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.dataGridViewSuspendedTransaction.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewSuspendedTransaction.Size = new System.Drawing.Size(1216, 385);
+            this.dataGridViewSuspendedTransaction.Size = new System.Drawing.Size(811, 257);
             this.dataGridViewSuspendedTransaction.TabIndex = 13;
             this.dataGridViewSuspendedTransaction.TabStop = false;
+            // 
+            // btn_CloseWindow
+            // 
+            this.btn_CloseWindow.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_CloseWindow.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_CloseWindow.Location = new System.Drawing.Point(9, 279);
+            this.btn_CloseWindow.Name = "btn_CloseWindow";
+            this.btn_CloseWindow.Size = new System.Drawing.Size(135, 55);
+            this.btn_CloseWindow.TabIndex = 1;
+            this.btn_CloseWindow.Text = "Close";
+            this.btn_CloseWindow.UseVisualStyleBackColor = true;
+            this.btn_CloseWindow.Click += new System.EventHandler(this.btn_CloseWindow_Click);
             // 
             // DESCRIPTION
             // 
             this.DESCRIPTION.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.DESCRIPTION.DataPropertyName = "description";
-            this.DESCRIPTION.FillWeight = 205.876F;
+            this.DESCRIPTION.FillWeight = 200F;
             this.DESCRIPTION.HeaderText = "Description";
             this.DESCRIPTION.MinimumWidth = 12;
             this.DESCRIPTION.Name = "DESCRIPTION";
@@ -173,7 +182,7 @@
             // 
             this.QTY.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.QTY.DataPropertyName = "qty";
-            this.QTY.FillWeight = 154.4118F;
+            this.QTY.FillWeight = 25F;
             this.QTY.HeaderText = "Qty";
             this.QTY.MinimumWidth = 12;
             this.QTY.Name = "QTY";
@@ -183,61 +192,44 @@
             // 
             this.PRICE.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.PRICE.DataPropertyName = "price";
-            this.PRICE.FillWeight = 18.80306F;
+            this.PRICE.FillWeight = 25F;
             this.PRICE.HeaderText = "Price";
             this.PRICE.MinimumWidth = 12;
             this.PRICE.Name = "PRICE";
-            this.PRICE.Width = 150;
             // 
             // DISCOUNT
             // 
             this.DISCOUNT.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.DISCOUNT.DataPropertyName = "discount";
-            this.DISCOUNT.FillWeight = 37.25315F;
-            this.DISCOUNT.HeaderText = "Discount";
+            this.DISCOUNT.FillWeight = 25F;
+            this.DISCOUNT.HeaderText = "Discount Price";
             this.DISCOUNT.MinimumWidth = 25;
             this.DISCOUNT.Name = "DISCOUNT";
-            this.DISCOUNT.Width = 150;
             // 
             // BOTTLE_DEPOSIT
             // 
             this.BOTTLE_DEPOSIT.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.BOTTLE_DEPOSIT.DataPropertyName = "bottleDeposit";
-            this.BOTTLE_DEPOSIT.FillWeight = 88.47124F;
+            this.BOTTLE_DEPOSIT.FillWeight = 25F;
             this.BOTTLE_DEPOSIT.HeaderText = "Bottle Deposit";
             this.BOTTLE_DEPOSIT.MinimumWidth = 12;
             this.BOTTLE_DEPOSIT.Name = "BOTTLE_DEPOSIT";
-            this.BOTTLE_DEPOSIT.Width = 160;
             // 
             // TOTAL
             // 
             this.TOTAL.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.TOTAL.DataPropertyName = "total";
-            this.TOTAL.FillWeight = 138.0905F;
+            this.TOTAL.FillWeight = 25F;
             this.TOTAL.HeaderText = "Total";
             this.TOTAL.MinimumWidth = 12;
             this.TOTAL.Name = "TOTAL";
-            this.TOTAL.Width = 150;
-            // 
-            // btn_CloseWindow
-            // 
-            this.btn_CloseWindow.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_CloseWindow.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_CloseWindow.Location = new System.Drawing.Point(13, 419);
-            this.btn_CloseWindow.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.btn_CloseWindow.Name = "btn_CloseWindow";
-            this.btn_CloseWindow.Size = new System.Drawing.Size(202, 82);
-            this.btn_CloseWindow.TabIndex = 1;
-            this.btn_CloseWindow.Text = "Close";
-            this.btn_CloseWindow.UseVisualStyleBackColor = true;
-            this.btn_CloseWindow.Click += new System.EventHandler(this.btn_CloseWindow_Click);
             // 
             // frmSuspendedTransactions
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(144F, 144F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(231)))), ((int)(((byte)(206)))));
-            this.ClientSize = new System.Drawing.Size(1512, 514);
+            this.ClientSize = new System.Drawing.Size(1008, 343);
             this.Controls.Add(this.btn_CloseWindow);
             this.Controls.Add(this.dataGridViewSuspendedTransaction);
             this.Controls.Add(this.selectionListSuspendedTransactions);
@@ -245,7 +237,6 @@
             this.Controls.Add(this.btnDelete);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmSuspendedTransactions";

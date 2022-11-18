@@ -150,13 +150,18 @@ namespace SecretCellar
 		/// <param name="items"></param>
 		private void PopulateGrid(List<Item> items) {
 			dataGridViewSuspendedTransaction.DataSource = items
-			.Select(x => new {
-				description = x.Description,
-				qty = x.NumSold,
-				price = (x.Price * (1 - x.Discount)).ToString("C"),
-				discount = x.Discount.ToString("P0"),
-				bottleDeposit = (x.NumSold * x.Bottles * .05).ToString("C"),
-				total = (x.Price * x.NumSold * (1 - x.Discount)).ToString("C")
+			.Select(x => {
+				double bottleDeposit = (x.NumSold * x.Bottles * .05);
+                double itemPrice = x.DiscountPrice > 0 ? x.DiscountPrice : (x.Price * (1 - x.Discount));
+
+                return new {
+					description = x.Description,
+					qty = x.NumSold,
+					price = x.Price.ToString("C"),
+					discount = x.DiscountPrice.ToString("C"),
+					bottleDeposit = bottleDeposit.ToString("C"),
+					total = (itemPrice * x.NumSold + bottleDeposit).ToString("C")
+				};
 			})
 			.ToList();
 		}

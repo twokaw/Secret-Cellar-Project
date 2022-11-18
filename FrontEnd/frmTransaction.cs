@@ -162,17 +162,20 @@ namespace SecretCellar
             double transactionBottleDeposit = 0.0;
             foreach (Item item in transaction.Items)
             {
+                double bottleDeposit = (item.NumSold * item.Bottles * .05);
+                double itemPrice = item.DiscountPrice > 0 ? item.DiscountPrice : (item.Price * (1 - item.Discount));
+
                 int row = dataGridView1.Rows.Add();
                 using (var r = dataGridView1.Rows[row])
                 {
                     // Populate tranaction datagrid row
                     r.Cells["Description"].Value = item.Name;
                     r.Cells["Discount"].Value = item.DiscountPrice > 0 ? "0%" : (Math.Floor(transaction.ItemDiscount(item) * 100) / 100).ToString("P0");  //item.Discount.ToString("P0");
-                    r.Cells["List_Price"].Value = item.DiscountPrice > 0 ? item.DiscountPrice.ToString("C") : item.Price.ToString("C");
-                    r.Cells["Sale_Price"].Value = item.DiscountPrice > 0 ? item.DiscountPrice.ToString("C") : (item.Price * (1 - item.Discount)).ToString("C");
+                    r.Cells["List_Price"].Value = item.Price.ToString("C");
+                    r.Cells["Sale_Price"].Value = itemPrice.ToString("C");
                     r.Cells["Qty"].Value = item.NumSold;
-                    r.Cells["Total"].Value = item.DiscountPrice > 0 ? (item.DiscountPrice * item.NumSold).ToString("C") : (item.Price * item.NumSold * (1 - item.Discount)).ToString("C");
-                    r.Cells["BOTTLE_DEPOSIT"].Value = (item.NumSold * item.Bottles * .05).ToString("C");
+                    r.Cells["Total"].Value = (itemPrice * item.NumSold + bottleDeposit).ToString("C");
+                    r.Cells["BOTTLE_DEPOSIT"].Value = bottleDeposit.ToString("C");
                     r.Cells["ItemID"].Value = item.Id;
 
                     transactionBottleDeposit += item.NumSold * item.Bottles * .05;
