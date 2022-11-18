@@ -42,6 +42,7 @@ namespace pos_core_api.ORM
             MySqlCommand cmd = db.CreateCommand(@"
                 SELECT *
                 FROM v_inventory 
+                ORDER BY inventoryID, DiscountID
             ");   
             
             try
@@ -61,6 +62,7 @@ namespace pos_core_api.ORM
                 SELECT *
                 FROM v_inventory 
                 WHERE Inventoryid = @id
+                ORDER BY inventoryID, DiscountID
             ");
 
             cmd.Parameters.Add(new MySqlParameter("id", id));
@@ -82,6 +84,7 @@ namespace pos_core_api.ORM
                 SELECT *
                 FROM v_inventory 
                 WHERE barcode = @bar
+                ORDER BY inventoryID, DiscountID
             ");
 
             cmd.Parameters.Add(new MySqlParameter("bar", barcode));

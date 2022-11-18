@@ -34,9 +34,10 @@
             // 
             this.label_ManagerPassword.AutoSize = true;
             this.label_ManagerPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_ManagerPassword.Location = new System.Drawing.Point(12, 30);
+            this.label_ManagerPassword.Location = new System.Drawing.Point(13, 36);
+            this.label_ManagerPassword.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_ManagerPassword.Name = "label_ManagerPassword";
-            this.label_ManagerPassword.Size = new System.Drawing.Size(134, 25);
+            this.label_ManagerPassword.Size = new System.Drawing.Size(198, 37);
             this.label_ManagerPassword.TabIndex = 0;
             this.label_ManagerPassword.Text = "Manager Pin";
             // 
@@ -44,21 +45,23 @@
             // 
             this.textBox_ManagerPassword.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox_ManagerPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_ManagerPassword.Location = new System.Drawing.Point(17, 58);
+            this.textBox_ManagerPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox_ManagerPassword.Location = new System.Drawing.Point(13, 91);
+            this.textBox_ManagerPassword.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBox_ManagerPassword.Name = "textBox_ManagerPassword";
             this.textBox_ManagerPassword.PasswordChar = '*';
-            this.textBox_ManagerPassword.Size = new System.Drawing.Size(243, 24);
+            this.textBox_ManagerPassword.Size = new System.Drawing.Size(370, 39);
             this.textBox_ManagerPassword.TabIndex = 1;
             // 
             // button_Cancel
             // 
             this.button_Cancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.button_Cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.button_Cancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_Cancel.Location = new System.Drawing.Point(17, 107);
+            this.button_Cancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_Cancel.Location = new System.Drawing.Point(13, 163);
+            this.button_Cancel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button_Cancel.Name = "button_Cancel";
-            this.button_Cancel.Size = new System.Drawing.Size(87, 44);
+            this.button_Cancel.Size = new System.Drawing.Size(173, 68);
             this.button_Cancel.TabIndex = 2;
             this.button_Cancel.Text = "Cancel";
             this.button_Cancel.UseVisualStyleBackColor = true;
@@ -67,10 +70,11 @@
             // button_Confirm
             // 
             this.button_Confirm.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button_Confirm.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_Confirm.Location = new System.Drawing.Point(173, 107);
+            this.button_Confirm.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_Confirm.Location = new System.Drawing.Point(206, 163);
+            this.button_Confirm.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button_Confirm.Name = "button_Confirm";
-            this.button_Confirm.Size = new System.Drawing.Size(87, 44);
+            this.button_Confirm.Size = new System.Drawing.Size(177, 68);
             this.button_Confirm.TabIndex = 3;
             this.button_Confirm.Text = "Confirm";
             this.button_Confirm.UseVisualStyleBackColor = true;
@@ -78,16 +82,17 @@
             // 
             // frmManagerOverride
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(231)))), ((int)(((byte)(206)))));
-            this.ClientSize = new System.Drawing.Size(272, 163);
+            this.ClientSize = new System.Drawing.Size(396, 249);
             this.Controls.Add(this.button_Confirm);
             this.Controls.Add(this.button_Cancel);
             this.Controls.Add(this.textBox_ManagerPassword);
             this.Controls.Add(this.label_ManagerPassword);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmManagerOverride";

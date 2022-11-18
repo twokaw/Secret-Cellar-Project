@@ -74,7 +74,7 @@
             // 
             // LB_EnterAmt
             // 
-            this.LB_EnterAmt.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LB_EnterAmt.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LB_EnterAmt.Location = new System.Drawing.Point(8, 15);
             this.LB_EnterAmt.Name = "LB_EnterAmt";
             this.LB_EnterAmt.Size = new System.Drawing.Size(322, 38);
@@ -83,11 +83,11 @@
             // 
             // txtCashAmt
             // 
-            this.txtCashAmt.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCashAmt.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCashAmt.ForeColor = System.Drawing.Color.Black;
-            this.txtCashAmt.Location = new System.Drawing.Point(14, 50);
+            this.txtCashAmt.Location = new System.Drawing.Point(12, 56);
             this.txtCashAmt.Name = "txtCashAmt";
-            this.txtCashAmt.Size = new System.Drawing.Size(314, 39);
+            this.txtCashAmt.Size = new System.Drawing.Size(314, 44);
             this.txtCashAmt.TabIndex = 1;
             this.txtCashAmt.Text = "$0.00";
             this.txtCashAmt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -97,10 +97,10 @@
             // 
             // btnMainMenu
             // 
-            this.btnMainMenu.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMainMenu.Location = new System.Drawing.Point(19, 935);
+            this.btnMainMenu.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMainMenu.Location = new System.Drawing.Point(19, 941);
             this.btnMainMenu.Name = "btnMainMenu";
-            this.btnMainMenu.Size = new System.Drawing.Size(225, 68);
+            this.btnMainMenu.Size = new System.Drawing.Size(179, 99);
             this.btnMainMenu.TabIndex = 10;
             this.btnMainMenu.Text = "Close";
             this.btnMainMenu.UseVisualStyleBackColor = true;
@@ -125,7 +125,7 @@
             this.paymentType.RowHeadersWidth = 102;
             this.paymentType.RowTemplate.Height = 28;
             this.paymentType.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.paymentType.Size = new System.Drawing.Size(605, 393);
+            this.paymentType.Size = new System.Drawing.Size(605, 417);
             this.paymentType.TabIndex = 8;
             // 
             // TYPE
@@ -179,8 +179,8 @@
             // btnCompleteSale
             // 
             this.btnCompleteSale.Enabled = false;
-            this.btnCompleteSale.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold);
-            this.btnCompleteSale.Location = new System.Drawing.Point(936, 904);
+            this.btnCompleteSale.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCompleteSale.Location = new System.Drawing.Point(936, 941);
             this.btnCompleteSale.Name = "btnCompleteSale";
             this.btnCompleteSale.Size = new System.Drawing.Size(384, 99);
             this.btnCompleteSale.TabIndex = 12;
@@ -218,7 +218,7 @@
             // 
             // btn_Cash
             // 
-            this.btn_Cash.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_Cash.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_Cash.Location = new System.Drawing.Point(13, 126);
             this.btn_Cash.Name = "btn_Cash";
             this.btn_Cash.Size = new System.Drawing.Size(166, 68);
@@ -229,7 +229,7 @@
             // 
             // btn_Check
             // 
-            this.btn_Check.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_Check.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_Check.Location = new System.Drawing.Point(196, 126);
             this.btn_Check.Name = "btn_Check";
             this.btn_Check.Size = new System.Drawing.Size(166, 68);
@@ -240,10 +240,10 @@
             // 
             // btn_Credit
             // 
-            this.btn_Credit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_Credit.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_Credit.Location = new System.Drawing.Point(379, 126);
             this.btn_Credit.Name = "btn_Credit";
-            this.btn_Credit.Size = new System.Drawing.Size(166, 68);
+            this.btn_Credit.Size = new System.Drawing.Size(183, 68);
             this.btn_Credit.TabIndex = 5;
             this.btn_Credit.Text = "Credit Card";
             this.btn_Credit.UseVisualStyleBackColor = true;
@@ -251,8 +251,8 @@
             // 
             // btn_GiftCard
             // 
-            this.btn_GiftCard.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_GiftCard.Location = new System.Drawing.Point(565, 126);
+            this.btn_GiftCard.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_GiftCard.Location = new System.Drawing.Point(587, 126);
             this.btn_GiftCard.Name = "btn_GiftCard";
             this.btn_GiftCard.Size = new System.Drawing.Size(166, 68);
             this.btn_GiftCard.TabIndex = 6;
@@ -276,10 +276,10 @@
             // 
             // txtNumber
             // 
-            this.txtNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNumber.Location = new System.Drawing.Point(380, 50);
+            this.txtNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNumber.Location = new System.Drawing.Point(374, 56);
             this.txtNumber.Name = "txtNumber";
-            this.txtNumber.Size = new System.Drawing.Size(198, 39);
+            this.txtNumber.Size = new System.Drawing.Size(198, 44);
             this.txtNumber.TabIndex = 2;
             this.txtNumber.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtNumber.Enter += new System.EventHandler(this.txtCashAmt_Enter);
@@ -287,32 +287,32 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(374, 15);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(113, 29);
+            this.label2.Size = new System.Drawing.Size(148, 37);
             this.label2.TabIndex = 34;
             this.label2.Text = "Number:";
             // 
             // btnDelete
             // 
-            this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDelete.Location = new System.Drawing.Point(17, 57);
             this.btnDelete.Margin = new System.Windows.Forms.Padding(8);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(226, 68);
             this.btnDelete.TabIndex = 9;
-            this.btnDelete.Text = "Remove Selected";
+            this.btnDelete.Text = "Selected";
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // chk_printReceipt
             // 
-            this.chk_printReceipt.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chk_printReceipt.Location = new System.Drawing.Point(493, 896);
+            this.chk_printReceipt.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chk_printReceipt.Location = new System.Drawing.Point(447, 933);
             this.chk_printReceipt.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.chk_printReceipt.Name = "chk_printReceipt";
-            this.chk_printReceipt.Size = new System.Drawing.Size(225, 57);
+            this.chk_printReceipt.Size = new System.Drawing.Size(271, 57);
             this.chk_printReceipt.TabIndex = 11;
             this.chk_printReceipt.Text = "Print Receipt";
             this.chk_printReceipt.UseVisualStyleBackColor = true;
@@ -320,9 +320,9 @@
             // 
             // lbl_credit
             // 
-            this.lbl_credit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_credit.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_credit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lbl_credit.Location = new System.Drawing.Point(1132, 0);
+            this.lbl_credit.Location = new System.Drawing.Point(1132, 15);
             this.lbl_credit.Name = "lbl_credit";
             this.lbl_credit.Size = new System.Drawing.Size(137, 46);
             this.lbl_credit.TabIndex = 38;
@@ -332,12 +332,12 @@
             // txt_credit_amount
             // 
             this.txt_credit_amount.BackColor = System.Drawing.SystemColors.Control;
-            this.txt_credit_amount.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_credit_amount.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_credit_amount.ForeColor = System.Drawing.Color.Black;
-            this.txt_credit_amount.Location = new System.Drawing.Point(1140, 50);
+            this.txt_credit_amount.Location = new System.Drawing.Point(1139, 64);
             this.txt_credit_amount.Name = "txt_credit_amount";
             this.txt_credit_amount.ReadOnly = true;
-            this.txt_credit_amount.Size = new System.Drawing.Size(128, 39);
+            this.txt_credit_amount.Size = new System.Drawing.Size(149, 44);
             this.txt_credit_amount.TabIndex = 37;
             this.txt_credit_amount.TabStop = false;
             this.txt_credit_amount.Text = "$0.00";
@@ -346,9 +346,9 @@
             // 
             // lbl_customer
             // 
-            this.lbl_customer.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_customer.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_customer.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.lbl_customer.Location = new System.Drawing.Point(799, 0);
+            this.lbl_customer.Location = new System.Drawing.Point(799, 15);
             this.lbl_customer.Name = "lbl_customer";
             this.lbl_customer.Size = new System.Drawing.Size(166, 45);
             this.lbl_customer.TabIndex = 40;
@@ -358,17 +358,18 @@
             // txt_customer
             // 
             this.txt_customer.BackColor = System.Drawing.SystemColors.Control;
-            this.txt_customer.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_customer.Location = new System.Drawing.Point(801, 50);
+            this.txt_customer.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_customer.Location = new System.Drawing.Point(801, 63);
             this.txt_customer.Name = "txt_customer";
             this.txt_customer.ReadOnly = true;
-            this.txt_customer.Size = new System.Drawing.Size(303, 39);
+            this.txt_customer.Size = new System.Drawing.Size(303, 44);
             this.txt_customer.TabIndex = 39;
             this.txt_customer.TabStop = false;
             // 
             // btn_cust_credit
             // 
-            this.btn_cust_credit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_cust_credit.Cursor = System.Windows.Forms.Cursors.SizeAll;
+            this.btn_cust_credit.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_cust_credit.Location = new System.Drawing.Point(801, 124);
             this.btn_cust_credit.Name = "btn_cust_credit";
             this.btn_cust_credit.Size = new System.Drawing.Size(254, 68);
@@ -379,7 +380,7 @@
             // 
             // btnBreakage
             // 
-            this.btnBreakage.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBreakage.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBreakage.Location = new System.Drawing.Point(40, 56);
             this.btnBreakage.Name = "btnBreakage";
             this.btnBreakage.Size = new System.Drawing.Size(226, 68);
@@ -390,7 +391,7 @@
             // 
             // btnDonation
             // 
-            this.btnDonation.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDonation.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDonation.Location = new System.Drawing.Point(40, 152);
             this.btnDonation.Name = "btnDonation";
             this.btnDonation.Size = new System.Drawing.Size(226, 68);
@@ -401,13 +402,13 @@
             // 
             // btn_RemoveAllPayments
             // 
-            this.btn_RemoveAllPayments.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_RemoveAllPayments.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_RemoveAllPayments.Location = new System.Drawing.Point(17, 153);
             this.btn_RemoveAllPayments.Margin = new System.Windows.Forms.Padding(8);
             this.btn_RemoveAllPayments.Name = "btn_RemoveAllPayments";
             this.btn_RemoveAllPayments.Size = new System.Drawing.Size(226, 68);
             this.btn_RemoveAllPayments.TabIndex = 43;
-            this.btn_RemoveAllPayments.Text = "Remove All";
+            this.btn_RemoveAllPayments.Text = "All";
             this.btn_RemoveAllPayments.UseVisualStyleBackColor = true;
             this.btn_RemoveAllPayments.Click += new System.EventHandler(this.btn_RemoveAllPayments_Click);
             // 
@@ -415,7 +416,8 @@
             // 
             this.gb_NoPayment.Controls.Add(this.btnDonation);
             this.gb_NoPayment.Controls.Add(this.btnBreakage);
-            this.gb_NoPayment.Location = new System.Drawing.Point(14, 622);
+            this.gb_NoPayment.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gb_NoPayment.Location = new System.Drawing.Point(15, 649);
             this.gb_NoPayment.Name = "gb_NoPayment";
             this.gb_NoPayment.Size = new System.Drawing.Size(314, 250);
             this.gb_NoPayment.TabIndex = 44;
@@ -426,9 +428,10 @@
             // 
             this.groupBox1.Controls.Add(this.btnDelete);
             this.groupBox1.Controls.Add(this.btn_RemoveAllPayments);
-            this.groupBox1.Location = new System.Drawing.Point(368, 622);
+            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.Location = new System.Drawing.Point(358, 649);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(264, 254);
+            this.groupBox1.Size = new System.Drawing.Size(275, 254);
             this.groupBox1.TabIndex = 45;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Remove Payment";
@@ -469,11 +472,11 @@
             // 
             // chk_ChangetoCredit
             // 
-            this.chk_ChangetoCredit.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chk_ChangetoCredit.Location = new System.Drawing.Point(493, 959);
+            this.chk_ChangetoCredit.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chk_ChangetoCredit.Location = new System.Drawing.Point(447, 996);
             this.chk_ChangetoCredit.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.chk_ChangetoCredit.Name = "chk_ChangetoCredit";
-            this.chk_ChangetoCredit.Size = new System.Drawing.Size(425, 57);
+            this.chk_ChangetoCredit.Size = new System.Drawing.Size(471, 57);
             this.chk_ChangetoCredit.TabIndex = 49;
             this.chk_ChangetoCredit.Text = "Change to Customer Credit";
             this.chk_ChangetoCredit.UseVisualStyleBackColor = true;
@@ -491,12 +494,12 @@
             this.panel1.Controls.Add(this.LB_ChangeDue);
             this.panel1.Location = new System.Drawing.Point(659, 759);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(661, 122);
+            this.panel1.Size = new System.Drawing.Size(661, 146);
             this.panel1.TabIndex = 50;
             // 
             // btn_PayTab
             // 
-            this.btn_PayTab.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_PayTab.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_PayTab.ForeColor = System.Drawing.Color.DarkRed;
             this.btn_PayTab.Location = new System.Drawing.Point(1075, 124);
             this.btn_PayTab.Name = "btn_PayTab";
@@ -511,7 +514,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(144F, 144F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(231)))), ((int)(((byte)(206)))));
-            this.ClientSize = new System.Drawing.Size(1340, 1028);
+            this.ClientSize = new System.Drawing.Size(1340, 1183);
             this.Controls.Add(this.btn_PayTab);
             this.Controls.Add(this.chk_ChangetoCredit);
             this.Controls.Add(this.touchKeyPad1);
@@ -535,6 +538,7 @@
             this.Controls.Add(this.LB_EnterAmt);
             this.Controls.Add(this.txtCashAmt);
             this.Controls.Add(this.panel1);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;

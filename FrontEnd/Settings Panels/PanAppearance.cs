@@ -56,6 +56,17 @@ namespace SecretCellar.Settings_Panels
                 ManagedForm.DataGridViewBackColor = colorPicker.Color;
         }
 
+        private void btn_Font_Color_Click(object sender, EventArgs e)
+        {
+            ColorDialog colorPicker = new ColorDialog
+            {
+                Color = ManagedForm.DataGridViewBackColor
+            };
+
+            if (colorPicker.ShowDialog() == DialogResult.OK)
+                ManagedForm.DataGridViewBackColor = colorPicker.Color;
+        }
+
         private void btn_font_settings_Click(object sender, EventArgs e)
         {
             FontDialog fontDlg = new FontDialog();
@@ -124,11 +135,6 @@ namespace SecretCellar.Settings_Panels
             Properties.Settings.Default.GridColor = ManagedForm.DataGridViewBackColor;
             Properties.Settings.Default.FontSet = ManagedForm.CommonFontSetter;
             Properties.Settings.Default.Save();
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
         }
     }
 }

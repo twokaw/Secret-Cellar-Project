@@ -70,7 +70,8 @@ namespace SecretCellar {
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridView_CustomerList.DefaultCellStyle = dataGridViewCellStyle3;
-            this.dataGridView_CustomerList.Location = new System.Drawing.Point(12, 49);
+            this.dataGridView_CustomerList.Location = new System.Drawing.Point(18, 74);
+            this.dataGridView_CustomerList.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dataGridView_CustomerList.Name = "dataGridView_CustomerList";
             this.dataGridView_CustomerList.ReadOnly = true;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
@@ -82,10 +83,11 @@ namespace SecretCellar {
             dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridView_CustomerList.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridView_CustomerList.RowHeadersVisible = false;
+            this.dataGridView_CustomerList.RowHeadersWidth = 62;
             this.dataGridView_CustomerList.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.dataGridView_CustomerList.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dataGridView_CustomerList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView_CustomerList.Size = new System.Drawing.Size(373, 200);
+            this.dataGridView_CustomerList.Size = new System.Drawing.Size(560, 300);
             this.dataGridView_CustomerList.TabIndex = 2;
             this.dataGridView_CustomerList.TabStop = false;
             this.dataGridView_CustomerList.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CustomerList_CellDoubleClick);
@@ -94,6 +96,7 @@ namespace SecretCellar {
             // 
             this.Customer_Id.DataPropertyName = "customerId";
             this.Customer_Id.HeaderText = "Customer Id";
+            this.Customer_Id.MinimumWidth = 8;
             this.Customer_Id.Name = "Customer_Id";
             this.Customer_Id.ReadOnly = true;
             // 
@@ -101,15 +104,17 @@ namespace SecretCellar {
             // 
             this.Customer_Name.DataPropertyName = "customerName";
             this.Customer_Name.HeaderText = "Customer Name";
+            this.Customer_Name.MinimumWidth = 8;
             this.Customer_Name.Name = "Customer_Name";
             this.Customer_Name.ReadOnly = true;
             // 
             // textBox_CustomerName
             // 
             this.textBox_CustomerName.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_CustomerName.Location = new System.Drawing.Point(12, 12);
+            this.textBox_CustomerName.Location = new System.Drawing.Point(18, 18);
+            this.textBox_CustomerName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBox_CustomerName.Name = "textBox_CustomerName";
-            this.textBox_CustomerName.Size = new System.Drawing.Size(373, 24);
+            this.textBox_CustomerName.Size = new System.Drawing.Size(558, 33);
             this.textBox_CustomerName.TabIndex = 2;
             this.textBox_CustomerName.Text = "Search for customer";
             this.textBox_CustomerName.TextChanged += new System.EventHandler(this.textBox_CustomerName_TextChanged);
@@ -120,12 +125,12 @@ namespace SecretCellar {
             // 
             this.button_CloseWindow.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.button_CloseWindow.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_CloseWindow.Location = new System.Drawing.Point(10, 295);
-            this.button_CloseWindow.Margin = new System.Windows.Forms.Padding(1);
+            this.button_CloseWindow.Location = new System.Drawing.Point(15, 442);
+            this.button_CloseWindow.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button_CloseWindow.Name = "button_CloseWindow";
-            this.button_CloseWindow.Size = new System.Drawing.Size(180, 55);
+            this.button_CloseWindow.Size = new System.Drawing.Size(270, 82);
             this.button_CloseWindow.TabIndex = 1;
-            this.button_CloseWindow.Text = "Close Window";
+            this.button_CloseWindow.Text = "Close";
             this.button_CloseWindow.UseVisualStyleBackColor = true;
             this.button_CloseWindow.Click += new System.EventHandler(this.button_CloseWindow_Click);
             // 
@@ -133,27 +138,28 @@ namespace SecretCellar {
             // 
             this.button_SelectCustomer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button_SelectCustomer.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_SelectCustomer.Location = new System.Drawing.Point(207, 295);
-            this.button_SelectCustomer.Margin = new System.Windows.Forms.Padding(1);
+            this.button_SelectCustomer.Location = new System.Drawing.Point(310, 442);
+            this.button_SelectCustomer.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button_SelectCustomer.Name = "button_SelectCustomer";
-            this.button_SelectCustomer.Size = new System.Drawing.Size(180, 55);
+            this.button_SelectCustomer.Size = new System.Drawing.Size(270, 82);
             this.button_SelectCustomer.TabIndex = 3;
-            this.button_SelectCustomer.Text = "Select Customer";
+            this.button_SelectCustomer.Text = "Select";
             this.button_SelectCustomer.UseVisualStyleBackColor = true;
             this.button_SelectCustomer.Click += new System.EventHandler(this.button_SelectCustomer_Click);
             // 
             // frmEventsWaitlistCustomerList
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(144F, 144F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(231)))), ((int)(((byte)(206)))));
-            this.ClientSize = new System.Drawing.Size(397, 360);
+            this.ClientSize = new System.Drawing.Size(596, 540);
             this.Controls.Add(this.button_CloseWindow);
             this.Controls.Add(this.button_SelectCustomer);
             this.Controls.Add(this.textBox_CustomerName);
             this.Controls.Add(this.dataGridView_CustomerList);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmEventsWaitlistCustomerList";

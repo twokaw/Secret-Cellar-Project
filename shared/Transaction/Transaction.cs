@@ -29,7 +29,12 @@ namespace Shared
                 double sub = 0;
                 // All items with price * qty
                 Items.ForEach(x => sub += x.SubTotal );
-
+                /*
+                foreach(Item x in Items)
+                {
+                    sub += x.SubTotal;
+                }
+                */
                 return Math.Round(sub, 2, MidpointRounding.AwayFromZero);
             }
         }
@@ -91,7 +96,7 @@ namespace Shared
         public double ItemDiscount(Item i)
         {
             // Get item 
-            return Math.Round((1 - i.Discount) * Discount + i.Discount, 2, MidpointRounding.AwayFromZero) ;
+            return Math.Round((1 - i.CalculatedDiscount) * Discount + i.CalculatedDiscount, 2, MidpointRounding.AwayFromZero) ;
         }
         public double Subtotal
         {
@@ -256,15 +261,21 @@ namespace Shared
         {
             List<Discount> result = new List<Discount>();
 
-            int count = 0;
             foreach (Discount dis in GetBulkDiscounts().Where(x => x.Enabled))
             {
-                count = Items.Count(i => i.Discounts.Any(x => x.DiscountID == dis.DiscountID) && i.Discount == 0.0);
-                if (count >= dis.Min && count <= dis.Max)
-                {
+                uint count = 0;
+
+                foreach (Item i in Items)
+                    if (i.Discounts.Any(x => x.DiscountID == dis.DiscountID) && i.Discount == 0.0)
+                        count += i.NumSold;
+
+                if (count >= dis.Min && (count <= dis.Max || dis.Max == 0))
                     result.Add(dis);
-                }
             }
+
+            foreach (Item i in Items)
+                foreach(Discount d in i.Discounts)
+                    d.Active  = result.Any(x => x.DiscountID == d.DiscountID) && i.Discount == 0.0;
 
             return result;
         }
@@ -276,14 +287,15 @@ namespace Shared
                     if (x.DiscountID == discount.DiscountID)
                         x.Enabled = enabled;
         }
+
         public void EnableBulkDiscount(bool enabled)
         {
             foreach (Item i in Items)
                 foreach (Discount x in i.Discounts)
                     x.Enabled = enabled;
+
+            GetQualifiedBulkDiscounts();
         }
-
-
 
         public void Add(Item item)
         {

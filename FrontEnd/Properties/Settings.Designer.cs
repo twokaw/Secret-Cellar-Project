@@ -197,21 +197,27 @@ namespace SecretCellar.Properties {
             }
         }
         
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("247, 231, 206")]
         public global::System.Drawing.Color DefaultBackgroundColor {
             get {
                 return ((global::System.Drawing.Color)(this["DefaultBackgroundColor"]));
             }
+            set {
+                this["DefaultBackgroundColor"] = value;
+            }
         }
         
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("238, 237, 196")]
         public global::System.Drawing.Color DefaultGridColor {
             get {
                 return ((global::System.Drawing.Color)(this["DefaultGridColor"]));
+            }
+            set {
+                this["DefaultGridColor"] = value;
             }
         }
         
@@ -239,9 +245,9 @@ namespace SecretCellar.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("Bold")]
-        public string DefualtFontStyle {
+        public string DefaultFontStyle {
             get {
-                return ((string)(this["DefualtFontStyle"]));
+                return ((string)(this["DefaultFontStyle"]));
             }
         }
         
@@ -278,6 +284,72 @@ namespace SecretCellar.Properties {
             }
             set {
                 this["DefaultState"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Black")]
+        public global::System.Drawing.Color DefaultFontColor {
+            get {
+                return ((global::System.Drawing.Color)(this["DefaultFontColor"]));
+            }
+            set {
+                this["DefaultFontColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Black")]
+        public global::System.Drawing.Color FontColor {
+            get {
+                return ((global::System.Drawing.Color)(this["FontColor"]));
+            }
+            set {
+                this["FontColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Maroon")]
+        public global::System.Drawing.Color ButtonColor {
+            get {
+                return ((global::System.Drawing.Color)(this["ButtonColor"]));
+            }
+            set {
+                this["ButtonColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("White")]
+        public global::System.Drawing.Color ButtonFontColor {
+            get {
+                return ((global::System.Drawing.Color)(this["ButtonFontColor"]));
+            }
+            set {
+                this["ButtonFontColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Maroon")]
+        public global::System.Drawing.Color DefaultButtonColor {
+            get {
+                return ((global::System.Drawing.Color)(this["DefaultButtonColor"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("White")]
+        public global::System.Drawing.Color DefaultButtonFontColor {
+            get {
+                return ((global::System.Drawing.Color)(this["DefaultButtonFontColor"]));
             }
         }
     }

@@ -8,6 +8,9 @@ namespace SecretCellar
 {
     public partial class ManagedForm : Form
     {
+        private static Color ButtonFontColor = DefaultButtonFontColor();
+        private static Color ButtonBackColor = DefaultButtonColor();
+        private static Color FontColor = DefaultFontColor();
         private static Color CommonBackColor = DefaultColor();
         private static Font CommonFont = Default_Font();
         private static DataGridViewCellStyle CommonCell = Default_Cell_Style();
@@ -47,6 +50,21 @@ namespace SecretCellar
             return Properties.Settings.Default.BackgroundColor;
         }
 
+        private static Color DefaultFontColor()
+        {
+            return Properties.Settings.Default.FontColor;
+        }
+
+        private static Color DefaultButtonColor()
+        {
+            return Properties.Settings.Default.DefaultButtonColor;
+        }
+
+        private static Color DefaultButtonFontColor()
+        {
+            return Properties.Settings.Default.DefaultButtonFontColor;
+        }
+
         public static Color MainWindowColor
         {
             get
@@ -55,14 +73,14 @@ namespace SecretCellar
             }
             set
             {
-            CommonBackColor = value;
-            Forms.ForEach(x => x.BackColor = CommonBackColor);
+                CommonBackColor = value;
+                Forms.ForEach(x => x.BackColor = CommonBackColor);
             }
         }
 
         private static Font Default_Font()
         {
-            return new Font("Microsoft Sans Serif", 12, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0))); ;
+            return new Font("Microsoft Sans Serif", 12, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
         }
 
         public static Font CommonFontSetter
@@ -77,11 +95,11 @@ namespace SecretCellar
                 foreach (ManagedForm f in Forms)
                 {
                     f.Font = CommonFont;
-                   
-                    foreach (Control c in f.Controls) {
+
+                    foreach (Control c in f.Controls)
+                    {
                         c.Font = CommonFont;
                     }
-                    
                 }
             }
         }
@@ -129,6 +147,7 @@ namespace SecretCellar
                 }
             }
         }
+
         public static void reset_Default_Properties()
         {   
                 MainWindowColor = Properties.Settings.Default.DefaultBackgroundColor;
@@ -147,13 +166,7 @@ namespace SecretCellar
             this.ClientSize = new System.Drawing.Size(278, 244);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ManagedForm";
-            this.Load += new System.EventHandler(this.ManagedForm_Load);
             this.ResumeLayout(false);
-
-        }
-
-        private void ManagedForm_Load(object sender, EventArgs e)
-        {
 
         }
     }
