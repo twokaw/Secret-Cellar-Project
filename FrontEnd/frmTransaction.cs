@@ -145,6 +145,7 @@ namespace SecretCellar
                 {
                     Item i = transaction.Items.FirstOrDefault(x => x.Id == uint.Parse(dataGridView1.Rows[e.RowIndex]?.Cells["ItemID"]?.Value.ToString()));
                     i.QtySold = (uint)qtychange.UpdatedQty;
+                    transaction.GetQualifiedBulkDiscounts();
                 }  
                 
                 RefreshDataGrid();
@@ -224,6 +225,7 @@ namespace SecretCellar
                 uint qty = uint.Parse(dataGridView1.SelectedRows[0].Cells["QTY"].Value.ToString());
                 Item i = transaction.Items.First(x => x.Name == name && x.NumSold == qty);
                 transaction.Items.Remove(i);
+                transaction.GetQualifiedBulkDiscounts();
                 RefreshDataGrid();
                 txtBarcode.Focus();
             }
@@ -419,6 +421,7 @@ namespace SecretCellar
         private void caseDiscount_CheckedChanged(object sender, EventArgs e)
         {
             transaction.EnableBulkDiscount(caseDiscount.Checked);
+
             RefreshDataGrid();
         }
 

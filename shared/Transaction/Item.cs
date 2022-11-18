@@ -19,7 +19,7 @@ namespace Shared
         {
             get
             {
-                return $"{((Discount > 0) ? $" *{Discount:P0} OFF*" : "")} {string.Join(" ", Discounts.Where(x => x.Enabled).Select(x => x.DiscountName))}";
+                return $"{((Discount > 0) ? $" *{CalculatedDiscount:P0} OFF*" : "")} {string.Join(" ", Discounts.Where(x => x.Enabled && x.Active).Select(x => x.DiscountName))}";
             }
         }
 
@@ -28,13 +28,10 @@ namespace Shared
             get
             {
                 double price;
-
-                if (DiscountPrice > 0) {
+                if (DiscountPrice > 0)
                     price = (Price - DiscountPrice) * NumSold;
-                }
-                else {
-                    price = (Price > 0) ? Price * NumSold * Discount : -Price;
-                }
+                else
+                    price = (Price > 0) ? Price * NumSold * CalculatedDiscount : -Price;
 
                 return Math.Round(price, 2, MidpointRounding.AwayFromZero);
             }
@@ -46,12 +43,10 @@ namespace Shared
             {
                 double price;
 
-                if (DiscountPrice > 0) {
+                if (DiscountPrice > 0) 
                     price = DiscountPrice * NumSold;
-                }
-                else {
+                else 
                     price = (Price > 0) ? Price * NumSold : 0;
-                }
 
                 return Math.Round(price, 2, MidpointRounding.AwayFromZero);
             }
@@ -66,7 +61,7 @@ namespace Shared
                 if (DiscountPrice > 0) 
                     price = DiscountPrice * NumSold;                
                 else 
-                    price = Price * NumSold * ((Price > 0) ? (1 - Discount) : 1);
+                    price = Price * NumSold * ((Price > 0) ? (1 - CalculatedDiscount) : 1);
                 
 
                 return Math.Round(price, 2, MidpointRounding.AwayFromZero);
@@ -82,8 +77,14 @@ namespace Shared
         }
         public uint QtySold { get; set; } = 0;
         public uint QtyRefunded { get; set; } = 0;
-        public bool DecrementInventory { get; set; } = true; 
+        public bool DecrementInventory { get; set; } = true;
         public double Discount { get; set; }
+        public double CalculatedDiscount {
+            get
+            {
+                return Math.Max(Discount, BulkDiscount);
+            }
+        }
         public double Coupon { get; set; }
 
         public Item() : base() { QtySold = 1; }

@@ -32,6 +32,20 @@ namespace Shared
         public bool Hidden { get; set; }
         public uint Bottles { get; set; }
         public List<Discount> Discounts { get; set; } = new List<Discount>();
+
+        public double BulkDiscount {
+            get 
+            {
+                double result = 0.0;
+
+                foreach (Discount dis in Discounts.FindAll(x => x.Active))
+                    result = Math.Max(result, dis.Amount);
+
+                return result;
+            }
+        }
+
+
         public double SupplierPrice {
             get
             {
