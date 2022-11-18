@@ -83,7 +83,7 @@ namespace Shared
         public double ItemPrice(Item i)
         {
             // Get item 
-            if (i.DiscountPrice > 0) return i.DiscountPrice;
+            if (i.DiscountPrice > 0) return i.AdjustedTotal;
 
             return Math.Round(i.AdjustedTotal * ((i.AdjustedTotal > 0) ? (1 - Discount) : 1), 2, MidpointRounding.AwayFromZero);
         }
