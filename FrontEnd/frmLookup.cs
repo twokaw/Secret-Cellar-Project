@@ -149,7 +149,7 @@ namespace SecretCellar
                             return;
                         }
 
-                        if (!double.TryParse(txt_net_price.Text, out double netprice)) {
+                        if (!double.TryParse(txt_net_price.Value.ToString(), out double netprice)) {
                             txt_net_price.Focus();
                             txt_net_price.SelectAll();
                             MessageBox.Show("Invalid Supply Price");
@@ -195,7 +195,7 @@ namespace SecretCellar
                             }
                         }
 
-                        if (double.TryParse(txtPrice.Text, out double price)) i.Price = price;
+                        if (double.TryParse(txtPrice.Value.ToString(), out double price)) i.Price = price;
                         else {
                             txtPrice.Focus();
                             txtPrice.SelectAll();
@@ -203,7 +203,7 @@ namespace SecretCellar
                             return;
                         }
 
-                        if (double.TryParse(currencyBox_discountPrice.Text, out double discountPrice)) i.DiscountPrice = discountPrice;
+                        if (double.TryParse(currencyBox_discountPrice.Value.ToString(), out double discountPrice)) i.DiscountPrice = discountPrice;
                         else {
                             txtPrice.Focus();
                             txtPrice.SelectAll();

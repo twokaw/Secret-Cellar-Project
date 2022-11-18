@@ -59,31 +59,27 @@ namespace SecretCellar
                     r.Cells["ItemNumber"].Value = i.Id;
                     r.Cells["ItemDescription"].Value = i.Name;
                     r.Cells["RegularPrice"].Value = i.Price.ToString("c");
-                    r.Cells["Price"].Value = transaction.ItemPrice(i).ToString("c");
-                    r.Cells["Discount"].Value = transaction.ItemDiscount(i).ToString("P0");//(Math.Floor(transaction.ItemDiscount(i) * 100) / 100).ToString("P0"); // 1 ((1-i.Discount)*transaction.Discount+i.Discount).ToString("P0");
+                    r.Cells["SalePrice"].Value = i.DiscountPrice.ToString("c");
+                    r.Cells["Price"].Value = i.DiscountPrice > 0 ? i.DiscountPrice.ToString("c") : transaction.ItemPrice(i).ToString("c");
+                    r.Cells["Discount"].Value = i.DiscountPrice > 0? "0%" : transaction.ItemDiscount(i).ToString("P0");//(Math.Floor(transaction.ItemDiscount(i) * 100) / 100).ToString("P0"); // 1 ((1-i.Discount)*transaction.Discount+i.Discount).ToString("P0");
                 }
             }
         }
 
-        public void selectItemDiscount()
-        {
+        public void selectItemDiscount() {
             //double currentdis = transaction.Discount;
             // dataGridSelectItems.SelectedRows for selected items
-            if (txtPercentLineItem.Text != "")
-            {
+            if (txtPercentLineItem.Text != "") {
                 //double discount_total = 0;
-                foreach (DataGridViewRow row in dataGridSelectItems.SelectedRows)
-                {
-
-
+                foreach (DataGridViewRow row in dataGridSelectItems.SelectedRows) {
                     //double disval = Convert.ToDouble(row.Cells["Price"].Value.ToString().Replace("$", "").Replace("(", "").Replace(")", ""));
 
-                    if (!row.Cells["Price"].Value.ToString().Contains("("))
-                    {
-
+                    if (!row.Cells["Price"].Value.ToString().Contains("(")) {
                         Item i = transaction.Items.First((x) => x.Id == int.Parse(row.Cells["ItemNumber"].Value.ToString())); //&& (x.Price * (1 - x.Discount)).ToString("c") == row.Cells["Price"].Value.ToString());
                                                                                                                               //i.Discount = double.Parse(txtPercentLineItem.Text) / 100;  //if you add + i.discount it will keep a running total of discount instead of resetting to 0 like it currently does
                                                                                                                               //row.Cells["Price"].Value = i.Price.ToString("c");
+                        if (i.DiscountPrice > 0) continue;
+                        
                         i.Discount = double.Parse(txtPercentLineItem.Text) / 100;
 
                         // row.Cells["Discount"].Value = i.Discount+((1-i.Discount)*transaction.Discount).ToString("p0");
@@ -138,16 +134,13 @@ namespace SecretCellar
 
             */
             double discount_total = 0;
-            foreach (DataGridViewRow row in dataGridSelectItems.Rows)
-            {
-
-
+            foreach (DataGridViewRow row in dataGridSelectItems.Rows) {
                 double disval = Convert.ToDouble(txtPercentTotalSale.Text);//Convert.ToDouble(row.Cells["Price"].Value.ToString().Replace("$", "").Replace("(", "").Replace(")", ""));
 
-                if (disval > 0 && !row.Cells["Price"].Value.ToString().Contains("("))
-                {
-
+                if (disval > 0 && !row.Cells["Price"].Value.ToString().Contains("(")) {
                     Item i = transaction.Items.First((x) => x.Id == int.Parse(row.Cells["ItemNumber"].Value.ToString()) && (x.Price * (1 - x.Discount)).ToString("c") == row.Cells["Price"].Value.ToString());
+                    if (i.DiscountPrice > 0) continue;
+
                     i.Discount = disval/100;//(double.Parse(txtPercentLineItem.Text) / 100) + i.Discount;
                     row.Cells["Price"].Value = (i.Price - (i.Price * i.Discount)).ToString("c");
                     row.Cells["Discount"].Value = i.Discount.ToString("p0");
@@ -161,7 +154,7 @@ namespace SecretCellar
 
         public void coupons_discount()
         {
-            if (double.TryParse(txtFixedDiscount.Text, out double d))
+            if (double.TryParse(txtFixedDiscount.Value.ToString(), out double d))
                 transaction.Items.Add(new Item() { Price = -d, Name = "Coupon", QtySold = 1});
         }
 

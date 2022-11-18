@@ -1,4 +1,4 @@
-﻿using NCR_Printer;
+using NCR_Printer;
 using Shared;
 using System;
 using System.Drawing;
@@ -166,15 +166,13 @@ namespace SecretCellar
                 int row = dataGridView1.Rows.Add();
                 using (var r = dataGridView1.Rows[row])
                 {
-                    double price = item.DiscountPrice > 0 ? item.DiscountPrice : item.Price;
-
                     // Populate tranaction datagrid row
                     r.Cells["Description"].Value = item.Name;
-                    r.Cells["Discount"].Value = (Math.Floor(transaction.ItemDiscount(item) * 100) / 100).ToString("P0");  //item.Discount.ToString("P0");
-                    r.Cells["List_Price"].Value = price.ToString("C");
-                    r.Cells["Sale_Price"].Value = (price * (1 - item.Discount)).ToString("C");
+                    r.Cells["Discount"].Value = item.DiscountPrice > 0 ? "0%" : (Math.Floor(transaction.ItemDiscount(item) * 100) / 100).ToString("P0");  //item.Discount.ToString("P0");
+                    r.Cells["List_Price"].Value = item.DiscountPrice > 0 ? item.DiscountPrice.ToString("C") : item.Price.ToString("C");
+                    r.Cells["Sale_Price"].Value = item.DiscountPrice > 0 ? item.DiscountPrice.ToString("C") : (item.Price * (1 - item.Discount)).ToString("C");
                     r.Cells["Qty"].Value = item.NumSold;
-                    r.Cells["Total"].Value = (price * item.NumSold * (1 - item.Discount)).ToString("C");
+                    r.Cells["Total"].Value = item.DiscountPrice > 0 ? (item.DiscountPrice * item.NumSold).ToString("C") : (item.Price * item.NumSold * (1 - item.Discount)).ToString("C");
                     r.Cells["BOTTLE_DEPOSIT"].Value = (item.NumSold * item.Bottles * .05).ToString("C");
                     r.Cells["ItemID"].Value = item.Id;
 
@@ -361,8 +359,7 @@ namespace SecretCellar
             suspendedTransactions.ShowDialog();
         }
 
-        private void btnSuspendTransaction_Click(object sender, EventArgs e)
-        {
+        private void SuspendTransaction() {
             if (transaction.TranType == Transaction.TranactionType.Closed)
                 transaction.TranType = Transaction.TranactionType.Suspended;
 
@@ -383,12 +380,13 @@ namespace SecretCellar
             txt_Ship.Text = "$0.00";
 
             //HIDE THE SUSPEND TRANSACTION BUTTON
-            dataGridView1_RowsRemoved(this, e);
+            pic_susp.Visible = false;
 
             //CLEAR THE CURRENT CUSTOMER
             label_currentCustomerValue.Text = "N/A";
             RefreshDataGrid();
         }
+
 
         public void ImportTransaction(Transaction newTransaction)
         {
@@ -514,9 +512,7 @@ namespace SecretCellar
 
         private void pic_susp_Click(object sender, EventArgs e)
         {
-            frmSuspendedTransactions suspendedTransactions = new frmSuspendedTransactions(this, transaction);
-            suspendedTransactions.ShowDialog();
-
+            SuspendTransaction();
         }
 
         private void pic_susp_MouseHover(object sender, EventArgs e)
