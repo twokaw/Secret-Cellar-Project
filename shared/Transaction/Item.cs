@@ -30,7 +30,7 @@ namespace Shared
                 double price;
 
                 if (DiscountPrice > 0) {
-                    price = DiscountPrice * NumSold * Discount;
+                    price = (Price - DiscountPrice) * NumSold;
                 }
                 else {
                     price = (Price > 0) ? Price * NumSold * Discount : -Price;
