@@ -135,7 +135,6 @@ namespace pos_core_api.ORM
             return true;
         }
 
-
         private List<InventoryType> FetchType(MySqlDataReader reader)
         {
             List<InventoryType> output = new List<InventoryType>();
@@ -263,13 +262,17 @@ namespace pos_core_api.ORM
                 SET SQL_MODE = '';
 
                 INSERT INTO inventory_type
-                (typeID, Inventory_Type_name, idTax)
+                ( typeID, Inventory_Type_name, idTax, min_qty, max_qty, Increment_Qty)
                 VALUES 
-                (@typeID, @inventoryType, @idTax)
+                (@typeID,@Inventory_Type_name,@idTax,@min_qty,@max_qty,@Increment_Qty)
             ");
 
             cmd.Parameters.Add(new MySqlParameter("typeID", invType.TypeId));
-            cmd.Parameters.Add(new MySqlParameter("inventoryType", invType.TypeName));
+            cmd.Parameters.Add(new MySqlParameter("Inventory_Type_name", invType.TypeName));
+            cmd.Parameters.Add(new MySqlParameter("Bottles", invType.Bottles));
+            cmd.Parameters.Add(new MySqlParameter("Min_qty", invType.Min_qty));
+            cmd.Parameters.Add(new MySqlParameter("Max_Qty", invType.Max_qty));
+            cmd.Parameters.Add(new MySqlParameter("Increment_Qty", invType.OrderIncrement));
             cmd.Parameters.Add(new MySqlParameter("idTax", invType.IdTax));
 
             try
@@ -295,11 +298,19 @@ namespace pos_core_api.ORM
             MySqlCommand cmd = db.CreateCommand(@"
                 UPDATE inventory_type 
                 SET inventory_type_name = @inventoryType, 
-                    idTax = @idTax
+                    idTax = @idTax, 
+                    bottles = @Bottles,
+                    min_qty = @min_qty,
+                    max_qty = @max_qty,
+                    Increment_Qty = @Increment_Qty
                 WHERE typeID = @typeID");
 
             cmd.Parameters.Add(new MySqlParameter("typeID", invType.TypeId));
             cmd.Parameters.Add(new MySqlParameter("inventoryType", invType.TypeName));
+            cmd.Parameters.Add(new MySqlParameter("Bottles", invType.Bottles));
+            cmd.Parameters.Add(new MySqlParameter("Min_qty", invType.Min_qty));
+            cmd.Parameters.Add(new MySqlParameter("Max_Qty", invType.Max_qty));
+            cmd.Parameters.Add(new MySqlParameter("Increment_Qty", invType.OrderIncrement));
             cmd.Parameters.Add(new MySqlParameter("idTax", invType.IdTax));
 
             try
