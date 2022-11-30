@@ -33,6 +33,7 @@ namespace SecretCellar.Settings_Panels
             double netSales = 0.0;
             double tax = 0.0;
             double localtax = 0.0;
+            string Itemtype;
             Sold.maxlength = 0;
             TxtSalesInvType.Text = "";
 
@@ -41,10 +42,12 @@ namespace SecretCellar.Settings_Panels
                 totalSales += t.Total;
 
                 foreach (Payment p in t.Payments)
+                {
                     if (paymentTypes.ContainsKey(p.Method))
                         paymentTypes[p.Method] += p.Amount;
                     else
                         paymentTypes.Add(p.Method, p.Amount);
+                }
 
                 foreach (Item i in t.Items)
                 {
@@ -55,10 +58,15 @@ namespace SecretCellar.Settings_Panels
                     localtax += t.ItemLocalTax(i);
                     costSales += i.SupplierPrice;
 
-                    if (!typeSales.ContainsKey(i.ItemType))
-                        typeSales.Add(i.ItemType, t.ItemPriceTotal(i));
+                    Itemtype = i.ItemType;
+                    if (t.TaxExempt)
+                        Itemtype += " Wholesale";
+
+
+                    if (!typeSales.ContainsKey(Itemtype))
+                        typeSales.Add(Itemtype, t.ItemPriceTotal(i));
                     else
-                        typeSales[i.ItemType] += t.ItemPriceTotal(i);
+                        typeSales[Itemtype] += t.ItemPriceTotal(i);
 
                     if (items.Keys.Contains(i.Barcode))
                     {
