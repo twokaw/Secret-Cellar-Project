@@ -1,6 +1,7 @@
 using NCR_Printer;
 using Shared;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -161,10 +162,16 @@ namespace SecretCellar
         {
             dataGridView1.Rows.Clear();
 
+            List<InventoryType> types = DataAccess.instance.GetInventoryType();
+            List<Tax> taxes = DataAccess.instance.GetTax();
             double transactionBottleDeposit = 0.0;
+
             foreach (Item item in transaction.Items)
             {
-                double bottleDeposit = (item.NumSold * item.Bottles * .05);
+                InventoryType inventoryType = types.Find((t) => item.TypeID == t.TypeId);
+                Tax tax = taxes.Find((t) => { return inventoryType.IdTax == t.IdTax; });
+
+                double bottleDeposit = (item.NumSold * item.Bottles * tax.BottleDeposit);
                 double itemPrice = item.DiscountPrice > 0 ? item.DiscountPrice : (item.Price * (1 - item.Discount));
 
                 int row = dataGridView1.Rows.Add();
@@ -180,7 +187,7 @@ namespace SecretCellar
                     r.Cells["BOTTLE_DEPOSIT"].Value = bottleDeposit.ToString("C");
                     r.Cells["ItemID"].Value = item.Id;
 
-                    transactionBottleDeposit += item.NumSold * item.Bottles * .05;
+                    transactionBottleDeposit += item.NumSold * item.Bottles * tax.BottleDeposit;
                 }
             }
 
