@@ -542,7 +542,6 @@ namespace SecretCellar
         private void pic_susp_MouseLeave(object sender, EventArgs e)
         {
             pic_susp.Image = ImgLstTenderButton.Images[2];
-
         }
 
         private void pic_transaction_Click(object sender, EventArgs e)
