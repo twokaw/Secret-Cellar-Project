@@ -86,7 +86,8 @@ namespace SecretCellar
         #region Inventory
         public void DeleteItem(Inventory inv)
         {
-            web.DataDelete($"api/inventory/{inv.Id}");
+            if (inv != null)
+                web.DataDelete($"api/inventory/{inv.Id}");
             RefreshCache();
         }
 
@@ -189,8 +190,6 @@ namespace SecretCellar
 
             return true;
         }
-
-
 
         public EmployeeModel LoginUser(string userName)
         {

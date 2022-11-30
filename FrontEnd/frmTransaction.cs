@@ -12,7 +12,7 @@ namespace SecretCellar
 {
     public partial class frmTransaction : ManagedForm
     {
-        private Transaction transaction = new Transaction();
+        private Transaction transaction;
 
         private Customer CurrentCustomer = null;
         private Image logo = null;
@@ -23,7 +23,7 @@ namespace SecretCellar
             txtBarcode.Focus();
             ReloadLogo();
             //this.Size = new System.Drawing.Size(1366, 768);
-            label_currentCustomerValue.Text = "N/A";
+            label_currentCustomerValue.Text = "";
 
             string path = Properties.Settings.Default.FontPath;
             if (path.Length > 0 && path[0] == '.')
@@ -78,6 +78,7 @@ namespace SecretCellar
 
             lbl_twentyone.Text = $"21 AS OF: {DateTime.Now.AddYears(-21):MM/dd/yy}";
             lbl_twentyone.Font = new Font("Microsoft Sans Serif", 16, FontStyle.Bold);
+            transaction = CreateTransaction();
         }
 
         private void btnDiscount_Click(object sender, EventArgs e)
@@ -127,8 +128,8 @@ namespace SecretCellar
                     lbl_CreditValue.Visible = false;
                     lbl_Credit.Visible = false;
                     //transaction complete, clear the form
-                    transaction = new Transaction();
-                    transaction.EnableBulkDiscount(caseDiscount.Checked);
+                    transaction = CreateTransaction();
+                    transaction.EnableBulkDiscount = caseDiscount.Checked;
                     label_currentCustomerValue.Text = "d";
                     RefreshDataGrid();
                     txtBarcode.Focus();
@@ -320,8 +321,8 @@ namespace SecretCellar
             //DELETE THE TRANSACTION FROM THE DATABASE
             DataAccess.instance.DeleteTransaction(transactionId);
 
-            transaction = new Transaction();
-            label_currentCustomerValue.Text = "N/A";
+            transaction = CreateTransaction();
+            label_currentCustomerValue.Text = "";
             RefreshDataGrid();
             txtBarcode.Focus();
         }
@@ -380,7 +381,7 @@ namespace SecretCellar
 
             //CLEAR THE CURRENT TRANSACTION AND THE dataGridView1 SINCE THEY'RE NOW SUSPENDED
             dataGridView1.Rows.Clear();
-            transaction = new Transaction();
+            transaction = CreateTransaction();
 
             //RESET ALL THE TOTALS
             txt_transSubTotal.Text = "$0.00";
@@ -395,7 +396,7 @@ namespace SecretCellar
             pic_susp.Visible = false;
 
             //CLEAR THE CURRENT CUSTOMER
-            label_currentCustomerValue.Text = "N/A";
+            label_currentCustomerValue.Text = "";
             RefreshDataGrid();
         }
 
@@ -427,7 +428,7 @@ namespace SecretCellar
 
         private void caseDiscount_CheckedChanged(object sender, EventArgs e)
         {
-            transaction.EnableBulkDiscount(caseDiscount.Checked);
+            transaction.EnableBulkDiscount = caseDiscount.Checked;
 
             RefreshDataGrid();
         }
@@ -552,6 +553,14 @@ namespace SecretCellar
         private void pic_transaction_MouseLeave(object sender, EventArgs e)
         {
             pic_transaction.Image = ImgLstTenderButton.Images[0]; 
+        }
+
+        private Transaction CreateTransaction()
+        {
+            return new Transaction()
+            {
+                EnableBulkDiscount = caseDiscount.Checked
+            };
         }
     }
 }

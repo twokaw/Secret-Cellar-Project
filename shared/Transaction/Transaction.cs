@@ -280,26 +280,31 @@ namespace Shared
             return result;
         }
 
-        public void EnableBulkDiscount(Discount discount, bool enabled)
-        {
-            foreach (Item i in Items)
-                foreach (Discount x in i.Discounts)
-                    if (x.DiscountID == discount.DiscountID)
-                        x.Enabled = enabled;
-        }
+        private bool EnableBulk = false;
 
-        public void EnableBulkDiscount(bool enabled)
+        public bool EnableBulkDiscount
         {
-            foreach (Item i in Items)
-                foreach (Discount x in i.Discounts)
-                    x.Enabled = enabled;
+            get
+            {
+                return EnableBulk;
+            }
+            set
+            {
+                EnableBulk = value;
 
-            GetQualifiedBulkDiscounts();
+                foreach (Item i in Items)
+                    foreach (Discount x in i.Discounts)
+                        x.Enabled = EnableBulk;
+                GetQualifiedBulkDiscounts();
+            }
         }
 
         public void Add(Item item)
         {
             Item i = Items.FirstOrDefault(x => x.Id == item.Id && x.Price == item.Price);
+
+            foreach (Discount x in item.Discounts)
+                x.Enabled = EnableBulkDiscount;
 
             if (i == null)
                 Items.Add(item);
