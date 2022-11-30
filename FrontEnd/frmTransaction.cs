@@ -169,10 +169,15 @@ namespace SecretCellar
 
             foreach (Item item in transaction.Items)
             {
-                InventoryType inventoryType = types.Find((t) => item.TypeID == t.TypeId);
-                Tax tax = taxes.Find((t) => { return inventoryType.IdTax == t.IdTax; });
+                InventoryType inventoryType = types.Find((t) => item.ItemType == t.TypeName);
+                Tax tax = null;
 
-                double bottleDeposit = (item.NumSold * item.Bottles * tax.BottleDeposit);
+                if (inventoryType != null) {
+                    tax = taxes.Find((t) => { return inventoryType.IdTax == t.IdTax; });
+                }
+
+                double taxBottleDeposit = tax != null ? tax.BottleDeposit : 0;
+                double bottleDeposit = (item.NumSold * item.Bottles * taxBottleDeposit);
                 double itemPrice = item.DiscountPrice > 0 ? item.DiscountPrice : (item.Price * (1 - item.Discount));
 
                 int row = dataGridView1.Rows.Add();
@@ -188,7 +193,7 @@ namespace SecretCellar
                     r.Cells["BOTTLE_DEPOSIT"].Value = bottleDeposit.ToString("C");
                     r.Cells["ItemID"].Value = item.Id;
 
-                    transactionBottleDeposit += item.NumSold * item.Bottles * tax.BottleDeposit;
+                    transactionBottleDeposit += item.NumSold * item.Bottles * taxBottleDeposit;
                 }
             }
 
