@@ -445,6 +445,7 @@ namespace SecretCellar
                     Inventory item = DataAccess.instance.GetItem(barcode);
 
                     DataAccess.instance.DeleteItem(item);
+                    RefreshInv();
                 }
                 
 			}
