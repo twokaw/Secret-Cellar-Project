@@ -59,11 +59,8 @@ namespace SecretCellar.Settings_Panels
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btn_color_Click(object sender, EventArgs e) {
-            ColorDialog colorPicker = new ColorDialog { Color = Color.Gray };
+        private void btn_panelColor_Click(object sender, EventArgs e) {
 
-            if (colorPicker.ShowDialog() == DialogResult.OK)
-                ManagedForm.PanelColor = colorPicker.Color;
         }
 
 
@@ -117,18 +114,6 @@ namespace SecretCellar.Settings_Panels
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btn_font_settings_Click(object sender, EventArgs e) {
-            FontDialog fontDlg = new FontDialog();
-            fontDlg.ShowDialog();
-            ManagedForm.FontStyle = fontDlg.Font;
-        }
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void btn_Font_Color_Click(object sender, EventArgs e) {
             ColorDialog colorPicker = new ColorDialog { Color = ManagedForm.DataGridViewBackColor };
 
@@ -142,7 +127,7 @@ namespace SecretCellar.Settings_Panels
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btn_reset_Click(object sender, EventArgs e) {
+        private void btn_defaultSettings_Click(object sender, EventArgs e) {
             Properties.Settings.Default.BackgroundColor = Properties.Settings.Default.DefaultBackgroundColor;
             Properties.Settings.Default.GridColor = Properties.Settings.Default.DefaultGridColor;
             Properties.Settings.Default.FontSet = Properties.Settings.Default.DefaultFont;
