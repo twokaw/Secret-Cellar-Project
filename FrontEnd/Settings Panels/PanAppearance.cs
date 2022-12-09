@@ -11,7 +11,7 @@ using System.Windows.Forms;
 namespace SecretCellar.Settings_Panels
 {
     public partial class PanAppearance : UserControl {
-        private ToolTip ProgramTips = new ToolTip();
+        private ToolTip _programTips = new ToolTip();
 
 
         public PanAppearance() {
@@ -22,13 +22,13 @@ namespace SecretCellar.Settings_Panels
                 listbox_logos.SelectedItem = listbox_logos.Items.IndexOf(DataAccess.instance?.LogoName());
 
             // Set up the delays for the ToolTip.
-            ProgramTips.AutoPopDelay = 10000;
-            ProgramTips.InitialDelay = 1000;
-            ProgramTips.ReshowDelay = 500;
+            _programTips.AutoPopDelay = 10000;
+            _programTips.InitialDelay = 1000;
+            _programTips.ReshowDelay = 500;
             // Force the ToolTip text to be displayed whether or not the form is active.
-            ProgramTips.ShowAlways = true;
+            _programTips.ShowAlways = true;
             // Set up the ToolTip text for the Button and Checkbox.
-            ProgramTips.SetToolTip(this.btn_commit, "Click commit to make changes permanent otherwise will reset on program close");
+            _programTips.SetToolTip(this.btn_commit, "Click commit to save changes.");
             //ProgramTips.SetToolTip(this.checkBox1, "My checkBox1");
             //pic_logo.Image = DataAccess.instance.GetImage();
         }
@@ -54,12 +54,7 @@ namespace SecretCellar.Settings_Panels
         }
 
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btn_panelColor_Click(object sender, EventArgs e) {
+        private void btn_defaultColor_Click(object sender, EventArgs e) {
 
         }
 
@@ -70,10 +65,10 @@ namespace SecretCellar.Settings_Panels
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void btn_panel_color_Click(object sender, EventArgs e) {
-            ColorDialog colorPicker = new ColorDialog { Color = ManagedForm.DataGridViewBackColor };
+            ColorDialog colorPicker = new ColorDialog { Color = ManagedForm.DataGridViewColor };
 
             if (colorPicker.ShowDialog() == DialogResult.OK)
-                ManagedForm.DataGridViewBackColor = colorPicker.Color;
+                ManagedForm.PanelColor = colorPicker.Color;
         }
 
 
@@ -83,14 +78,14 @@ namespace SecretCellar.Settings_Panels
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void btn_row_color_Click(object sender, EventArgs e) {
-            DataGridViewCellStyle cs = ManagedForm.DefaultCellStyle;
+            DataGridViewCellStyle cs = ManagedForm.CellStyle;
             ColorDialog gridcolor = new ColorDialog { Color = cs.BackColor };
 
             if (gridcolor.ShowDialog() == DialogResult.OK) {
                 cs.BackColor = gridcolor.Color;
                 cs.SelectionBackColor = Color.FromArgb(cs.BackColor.A, Math.Max(cs.BackColor.R - 25, 0), Math.Max(cs.BackColor.G - 25, 0), Math.Max(cs.BackColor.B - 25, 0));
                 //ManagedForm.SetDefaultCellStyle(cs);
-                ManagedForm.DataGridViewBackColor = cs.BackColor;
+                ManagedForm.DataGridViewColor = cs.BackColor;
             }
         }
 
@@ -115,7 +110,7 @@ namespace SecretCellar.Settings_Panels
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void btn_Font_Color_Click(object sender, EventArgs e) {
-            ColorDialog colorPicker = new ColorDialog { Color = ManagedForm.DataGridViewBackColor };
+            ColorDialog colorPicker = new ColorDialog { Color = ManagedForm.DataGridViewColor };
 
             if (colorPicker.ShowDialog() == DialogResult.OK)
                 ManagedForm.FontColor = colorPicker.Color;
@@ -127,13 +122,7 @@ namespace SecretCellar.Settings_Panels
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btn_defaultSettings_Click(object sender, EventArgs e) {
-            Properties.Settings.Default.BackgroundColor = Properties.Settings.Default.DefaultBackgroundColor;
-            Properties.Settings.Default.GridColor = Properties.Settings.Default.DefaultGridColor;
-            Properties.Settings.Default.FontSet = Properties.Settings.Default.DefaultFont;
-            ManagedForm.reset_Default_Properties();
-            Properties.Settings.Default.Save();
-        }
+        private void btn_defaultSettings_Click(object sender, EventArgs e) { ManagedForm.SetPropertiesToDefault(); }
 
 
         /// <summary>
@@ -143,7 +132,7 @@ namespace SecretCellar.Settings_Panels
         /// <param name="e"></param>
         private void btn_commit_Click(object sender, EventArgs e) {
             Properties.Settings.Default.BackgroundColor = ManagedForm.PanelColor;
-            Properties.Settings.Default.GridColor = ManagedForm.DataGridViewBackColor;
+            Properties.Settings.Default.GridColor = ManagedForm.DataGridViewColor;
             Properties.Settings.Default.FontSet = ManagedForm.FontStyle;
             Properties.Settings.Default.Save();
         }

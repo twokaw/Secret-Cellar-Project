@@ -164,7 +164,7 @@ namespace SecretCellar.Settings_Panels
             this.btn_defaultColor.TabIndex = 4;
             this.btn_defaultColor.Text = "Default Color";
             this.btn_defaultColor.UseVisualStyleBackColor = true;
-            this.btn_defaultColor.Click += new System.EventHandler(this.btn_panelColor_Click);
+            this.btn_defaultColor.Click += new System.EventHandler(this.btn_defaultColor_Click);
             // 
             // listbox_logos
             // 
