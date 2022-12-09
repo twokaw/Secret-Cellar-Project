@@ -87,14 +87,22 @@ namespace SecretCellar
             get { return _buttonColor; }
             set {
                 _buttonColor = value;
-                //TODO Loop through forms and set values.
+                foreach (ManagedForm form in _forms) {
+                    foreach (Control control in form.Controls.OfType<Button>()) {
+                        control.BackColor = _buttonColor;
+                    }
+                }
             }
         }
         public static Color ButtonFontColor {
             get { return _buttonFontColor; }
             set {
                 _buttonFontColor = value;
-                //TODO Loop through forms and set values.
+                foreach (ManagedForm form in _forms) {
+                    foreach (Control control in form.Controls.OfType<Button>()) {
+                        control.ForeColor = _buttonFontColor;
+                    }
+                }
             }
         }
         public static Color DataGridViewColor {
