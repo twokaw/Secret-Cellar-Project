@@ -14,9 +14,9 @@ namespace SecretCellar.Settings_Panels
             public string Value { get; set; }
         }
 
-        private string SalesTotal;
-        private string SalesTypes;
-        private string SalesItems;
+        private string SalesTotal = "";
+        private string SalesTypes = "";
+        private string SalesItems = "";
         public PanReports()
         {
             InitializeComponent();
@@ -114,26 +114,22 @@ Bottle Deposit:{bottleDeposit:C}{"\r\n\r\n"}";
             foreach (KeyValuePair<string, double> kv in typeSales)
             {
                 SalesTotal += $"{$"{kv.Key}:",-7}\t{kv.Value:C}\r\n";
-                row.Add(new Tuple { Name = kv.Key, Value = $"{kv.Value:C}" });
+                row.Add(new Tuple { Name = Char.ToUpper(kv.Key[0]) + kv.Key.Substring(1).ToLower(), Value = $"{kv.Value:C}" });
             }
             DgvTotal.DataSource = row;
-         //   TxtSalesTotals.Text = SalesTotal;
 
             SalesTypes = "";
             List <Tuple> sales = new List<Tuple>();
             foreach (KeyValuePair<string, double> kv in paymentTypes)
             {
                 SalesTypes += $"{$"{kv.Key}:",-7}\t{kv.Value:C}\r\n";
-                sales.Add(new Tuple { Name = kv.Key, Value = kv.Value.ToString("C") });
+                sales.Add(new Tuple { Name = Char.ToUpper(kv.Key[0]) + kv.Key.Substring(1).ToLower(), Value = kv.Value.ToString("C") });
             }
 
             SalesItems = string.Join("\r\n", items.Values);
 
             dgvTypes.DataSource = sales;
             DgvItems.DataSource = items.Values.ToList();
-
-            //    TxtSalesVendor.Text = SalesTypes;
-         //   TxtSalesVendor.Text = SalesItems;
         }
 
         public List<Inventory> Inv = null;

@@ -42,8 +42,6 @@ namespace SecretCellar.Settings_Panels
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DgvTotal = new System.Windows.Forms.DataGridView();
-            this.NameTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TotalValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BtnInventoryCopy = new System.Windows.Forms.Button();
             this.BtnInvTypeCopy = new System.Windows.Forms.Button();
             this.BtnTotalCopy = new System.Windows.Forms.Button();
@@ -51,6 +49,8 @@ namespace SecretCellar.Settings_Panels
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NameTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TotalValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTypes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DgvTotal)).BeginInit();
@@ -73,9 +73,9 @@ namespace SecretCellar.Settings_Panels
             this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
-            this.label7.Location = new System.Drawing.Point(500, 68);
+            this.label7.Location = new System.Drawing.Point(558, 68);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(251, 34);
+            this.label7.Size = new System.Drawing.Size(193, 34);
             this.label7.TabIndex = 25;
             this.label7.Text = "Inventory";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -83,9 +83,9 @@ namespace SecretCellar.Settings_Panels
             // label6
             // 
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
-            this.label6.Location = new System.Drawing.Point(255, 68);
+            this.label6.Location = new System.Drawing.Point(288, 64);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(163, 34);
+            this.label6.Size = new System.Drawing.Size(186, 34);
             this.label6.TabIndex = 23;
             this.label6.Text = "Inventory Type";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -95,7 +95,7 @@ namespace SecretCellar.Settings_Panels
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
             this.label8.Location = new System.Drawing.Point(12, 67);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(154, 34);
+            this.label8.Size = new System.Drawing.Size(195, 34);
             this.label8.TabIndex = 21;
             this.label8.Text = "Total";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -173,14 +173,14 @@ namespace SecretCellar.Settings_Panels
             this.dgvTypes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
             this.dataGridViewTextBoxColumn2});
-            this.dgvTypes.Location = new System.Drawing.Point(255, 104);
+            this.dgvTypes.Location = new System.Drawing.Point(288, 105);
             this.dgvTypes.Name = "dgvTypes";
             this.dgvTypes.ReadOnly = true;
             this.dgvTypes.RowHeadersVisible = false;
             this.dgvTypes.RowHeadersWidth = 62;
             this.dgvTypes.RowTemplate.Height = 28;
             this.dgvTypes.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.dgvTypes.Size = new System.Drawing.Size(226, 229);
+            this.dgvTypes.Size = new System.Drawing.Size(264, 229);
             this.dgvTypes.TabIndex = 30;
             // 
             // dataGridViewTextBoxColumn1
@@ -211,39 +211,21 @@ namespace SecretCellar.Settings_Panels
             this.DgvTotal.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.NameTotal,
             this.TotalValue});
-            this.DgvTotal.Location = new System.Drawing.Point(12, 104);
+            this.DgvTotal.Location = new System.Drawing.Point(12, 105);
             this.DgvTotal.Name = "DgvTotal";
             this.DgvTotal.ReadOnly = true;
             this.DgvTotal.RowHeadersVisible = false;
             this.DgvTotal.RowHeadersWidth = 62;
             this.DgvTotal.RowTemplate.Height = 28;
             this.DgvTotal.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.DgvTotal.Size = new System.Drawing.Size(227, 229);
+            this.DgvTotal.Size = new System.Drawing.Size(270, 229);
             this.DgvTotal.TabIndex = 29;
-            // 
-            // NameTotal
-            // 
-            this.NameTotal.DataPropertyName = "Name";
-            this.NameTotal.HeaderText = "Name";
-            this.NameTotal.MinimumWidth = 8;
-            this.NameTotal.Name = "NameTotal";
-            this.NameTotal.ReadOnly = true;
-            this.NameTotal.Width = 130;
-            // 
-            // TotalValue
-            // 
-            this.TotalValue.DataPropertyName = "Value";
-            this.TotalValue.HeaderText = "Total";
-            this.TotalValue.MinimumWidth = 8;
-            this.TotalValue.Name = "TotalValue";
-            this.TotalValue.ReadOnly = true;
-            this.TotalValue.Width = 150;
             // 
             // BtnInventoryCopy
             // 
             this.BtnInventoryCopy.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.BtnInventoryCopy.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
-            this.BtnInventoryCopy.Location = new System.Drawing.Point(748, 61);
+            this.BtnInventoryCopy.Location = new System.Drawing.Point(748, 64);
             this.BtnInventoryCopy.Name = "BtnInventoryCopy";
             this.BtnInventoryCopy.Size = new System.Drawing.Size(72, 38);
             this.BtnInventoryCopy.TabIndex = 28;
@@ -254,7 +236,7 @@ namespace SecretCellar.Settings_Panels
             // BtnInvTypeCopy
             // 
             this.BtnInvTypeCopy.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
-            this.BtnInvTypeCopy.Location = new System.Drawing.Point(416, 61);
+            this.BtnInvTypeCopy.Location = new System.Drawing.Point(480, 65);
             this.BtnInvTypeCopy.Name = "BtnInvTypeCopy";
             this.BtnInvTypeCopy.Size = new System.Drawing.Size(72, 38);
             this.BtnInvTypeCopy.TabIndex = 27;
@@ -265,7 +247,7 @@ namespace SecretCellar.Settings_Panels
             // BtnTotalCopy
             // 
             this.BtnTotalCopy.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
-            this.BtnTotalCopy.Location = new System.Drawing.Point(162, 61);
+            this.BtnTotalCopy.Location = new System.Drawing.Point(210, 63);
             this.BtnTotalCopy.Name = "BtnTotalCopy";
             this.BtnTotalCopy.Size = new System.Drawing.Size(72, 38);
             this.BtnTotalCopy.TabIndex = 26;
@@ -285,14 +267,14 @@ namespace SecretCellar.Settings_Panels
             this.dataGridViewTextBoxColumn3,
             this.dataGridViewTextBoxColumn4,
             this.Price});
-            this.DgvItems.Location = new System.Drawing.Point(499, 105);
+            this.DgvItems.Location = new System.Drawing.Point(558, 105);
             this.DgvItems.Name = "DgvItems";
             this.DgvItems.ReadOnly = true;
             this.DgvItems.RowHeadersVisible = false;
             this.DgvItems.RowHeadersWidth = 62;
             this.DgvItems.RowTemplate.Height = 28;
             this.DgvItems.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.DgvItems.Size = new System.Drawing.Size(321, 229);
+            this.DgvItems.Size = new System.Drawing.Size(262, 229);
             this.DgvItems.TabIndex = 31;
             // 
             // dataGridViewTextBoxColumn3
@@ -321,6 +303,24 @@ namespace SecretCellar.Settings_Panels
             this.Price.MinimumWidth = 8;
             this.Price.Name = "Price";
             this.Price.ReadOnly = true;
+            // 
+            // NameTotal
+            // 
+            this.NameTotal.DataPropertyName = "Name";
+            this.NameTotal.HeaderText = "Name";
+            this.NameTotal.MinimumWidth = 8;
+            this.NameTotal.Name = "NameTotal";
+            this.NameTotal.ReadOnly = true;
+            this.NameTotal.Width = 167;
+            // 
+            // TotalValue
+            // 
+            this.TotalValue.DataPropertyName = "Value";
+            this.TotalValue.HeaderText = "Total";
+            this.TotalValue.MinimumWidth = 8;
+            this.TotalValue.Name = "TotalValue";
+            this.TotalValue.ReadOnly = true;
+            this.TotalValue.Width = 113;
             // 
             // PanReports
             // 
@@ -356,11 +356,11 @@ namespace SecretCellar.Settings_Panels
         private System.Windows.Forms.DataGridView dgvTypes;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn NameTotal;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TotalValue;
         private System.Windows.Forms.DataGridView DgvItems;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Price;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NameTotal;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TotalValue;
     }
 }
