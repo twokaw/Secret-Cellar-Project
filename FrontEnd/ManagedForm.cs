@@ -46,21 +46,6 @@ namespace SecretCellar
         
 
         //PUBLIC ACCESSORS
-        public static DataGridViewCellStyle CellStyle {
-            get { return _cellStyle; }
-        }
-        public static Color DataGridViewColor {
-            get { return _dataGridViewColor; }
-
-            set {
-                _dataGridViewColor = value;
-                foreach (ManagedForm f in _forms) {
-                    foreach (DataGridView c in f.Controls.OfType<DataGridView>()) {
-                        c.BackgroundColor = value;
-                    }
-                }
-            }
-        }
         public static Color PanelColor {
             get { return _panelColor; }
 
@@ -97,6 +82,35 @@ namespace SecretCellar
                     }
                 }
             }
+        }
+        public static Color ButtonColor {
+            get { return _buttonColor; }
+            set {
+                _buttonColor = value;
+                //TODO Loop through forms and set values.
+            }
+        }
+        public static Color ButtonFontColor {
+            get { return _buttonFontColor; }
+            set {
+                _buttonFontColor = value;
+                //TODO Loop through forms and set values.
+            }
+        }
+        public static Color DataGridViewColor {
+            get { return _dataGridViewColor; }
+
+            set {
+                _dataGridViewColor = value;
+                foreach (ManagedForm f in _forms) {
+                    foreach (DataGridView c in f.Controls.OfType<DataGridView>()) {
+                        c.BackgroundColor = value;
+                    }
+                }
+            }
+        }
+        public static DataGridViewCellStyle CellStyle {
+            get { return _cellStyle; }
         }
 
 
@@ -137,7 +151,7 @@ namespace SecretCellar
 
 
         /// <summary>
-        /// Sets the properties to default.
+        /// Sets the properties to default then updates the forms.
         /// </summary>
         public static void SetPropertiesToDefault() {
             _defaultPanelColor = Properties.Settings.Default.DefaultBackgroundColor;
@@ -148,6 +162,12 @@ namespace SecretCellar
             _defaultDataGridViewColor = Properties.Settings.Default.DefaultGridColor;
 
             Properties.Settings.Default.Save();
+
+            PanelColor = _defaultPanelColor;
+            FontColor = _defaultFontColor;
+            ButtonColor = _defaultButtonColor;
+            ButtonFontColor = _defaultButtonFontColor;
+            DataGridViewColor = _defaultDataGridViewColor;
         }
 
 
