@@ -90,20 +90,6 @@ namespace SecretCellar.Settings_Panels
         }
 
 
-        /*
-         * This is just for me to be able to see what fields I have access to.
-         * TODO Delete this
-        private static Color ButtonFontColor = DefaultButtonFontColor();
-        private static Color ButtonBackColor = DefaultButtonColor();
-        private static Color FontColor = DefaultFontColor();
-        private static Color CommonBackColor = DefaultColor();
-        private static Font CommonFont = Default_Font();
-        private static DataGridViewCellStyle CommonCell = Default_Cell_Style();
-        private static readonly List<ManagedForm> Forms = new List<ManagedForm>();
-        private static Color CommonDataGridViewColor = Default_DataGridView_Color();
-        */
-
-
         /// <summary>
         /// 
         /// </summary>
@@ -131,6 +117,8 @@ namespace SecretCellar.Settings_Panels
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void btn_commit_Click(object sender, EventArgs e) {
+            //TODO Call ManagedForm's default properties here.
+            //TODO Also add buttons in the form to update button color and button font color.
             Properties.Settings.Default.BackgroundColor = ManagedForm.PanelColor;
             Properties.Settings.Default.GridColor = ManagedForm.DataGridViewColor;
             Properties.Settings.Default.FontSet = ManagedForm.FontStyle;

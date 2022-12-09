@@ -18,6 +18,7 @@ namespace SecretCellar
         private static readonly List<ManagedForm> _forms = new List<ManagedForm>();
         
         //DEFAULT VALUES
+        //TODO Make these public so I can access them in PanAppearance's Commit method.
         private static Color _defaultPanelColor {
             get { return Properties.Settings.Default.BackgroundColor; }
             set { Properties.Settings.Default.BackgroundColor = value; }
