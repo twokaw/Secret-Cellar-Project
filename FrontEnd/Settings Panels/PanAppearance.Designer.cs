@@ -163,6 +163,7 @@ namespace SecretCellar.Settings_Panels
             this.button_gridBackColor.TabIndex = 17;
             this.button_gridBackColor.Text = "Grid Back Color";
             this.button_gridBackColor.UseVisualStyleBackColor = true;
+            this.button_gridBackColor.Click += new System.EventHandler(this.button_gridBackColor_Click);
             // 
             // button_gridAlternateRowColor
             // 
@@ -173,6 +174,7 @@ namespace SecretCellar.Settings_Panels
             this.button_gridAlternateRowColor.TabIndex = 16;
             this.button_gridAlternateRowColor.Text = "Grid Alternate Row Color";
             this.button_gridAlternateRowColor.UseVisualStyleBackColor = true;
+            this.button_gridAlternateRowColor.Click += new System.EventHandler(this.button_gridAlternateRowColor_Click);
             // 
             // btn_Font_Color
             // 
@@ -184,6 +186,7 @@ namespace SecretCellar.Settings_Panels
             this.btn_Font_Color.TabIndex = 15;
             this.btn_Font_Color.Text = "Font Color";
             this.btn_Font_Color.UseVisualStyleBackColor = true;
+            this.btn_Font_Color.Click += new System.EventHandler(this.btn_Font_Color_Click);
             // 
             // btn_row_color
             // 
@@ -194,6 +197,7 @@ namespace SecretCellar.Settings_Panels
             this.btn_row_color.TabIndex = 14;
             this.btn_row_color.Text = "Grid Row Color";
             this.btn_row_color.UseVisualStyleBackColor = true;
+            this.btn_row_color.Click += new System.EventHandler(this.btn_row_color_Click);
             // 
             // btn_panel_color
             // 
@@ -205,6 +209,7 @@ namespace SecretCellar.Settings_Panels
             this.btn_panel_color.TabIndex = 13;
             this.btn_panel_color.Text = "Panel Color";
             this.btn_panel_color.UseVisualStyleBackColor = true;
+            this.btn_panel_color.Click += new System.EventHandler(this.btn_panel_color_Click);
             // 
             // PanAppearance
             // 

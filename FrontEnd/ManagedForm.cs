@@ -8,18 +8,10 @@ namespace SecretCellar
 {
     public partial class ManagedForm : Form
     {
-        private static Color _panelColor = _defaultPanelColor;
-        private static Color _buttonFontColor = _defaultButtonFontColor;
-        private static Color _buttonColor = _defaultButtonColor;
-        private static Font _font = _defaultFont;
-        private static Color _fontColor = _defaultFontColor;
-        private static Color _dataGridViewColor = _defaultDataGridViewColor;
-        private static Color _dataGridViewRowColor = _defaultDataGridViewRowColor;
-        private static Color _dataGridViewAlternateRowColor = _defaultDataGridViewAlternateRowColor;
-        private static DataGridViewCellStyle _cellStyle = _defaultCellStyle;
         private static readonly List<ManagedForm> _forms = new List<ManagedForm>();
-        
+
         //DEFAULT VALUES
+        //TODO Possibly can remove these and move the get methods of these into the PUBLIC ACCESSORS' get methods.
         public static Color _defaultPanelColor {
             get { return Properties.Settings.Default.BackgroundColor; }
             set { Properties.Settings.Default.BackgroundColor = value; }
@@ -52,37 +44,43 @@ namespace SecretCellar
             get { return Properties.Settings.Default.GridAlternateRowColor; }
             set { Properties.Settings.Default.GridAlternateRowColor = value; }
         }
-        public static DataGridViewCellStyle _defaultCellStyle { get { return new DataGridViewCellStyle(); } }
+        public static DataGridViewCellStyle _defaultCellStyle {
+            get {
+                //TODO Grab the row, alternate row, and the background color and set it to this style before returning it.
+                return new DataGridViewCellStyle();
+            }
+        }
         
 
         //PUBLIC ACCESSORS
+        
         public static Color PanelColor {
-            get { return _panelColor; }
+            get { return _defaultPanelColor; }
 
             set {
-                _panelColor = value;
-                _forms.ForEach(x => x.BackColor = _panelColor);
+                _defaultPanelColor = value;
+                _forms.ForEach(x => x.BackColor = _defaultPanelColor);
             }
         }
         public static Font FontStyle {
-            get { return _font; }
+            get { return _defaultFont; }
 
             set {
-                _font = value;
+                _defaultFont = value;
                 foreach (ManagedForm f in _forms) {
-                    f.Font = _font;
+                    f.Font = _defaultFont;
 
                     foreach (Control c in f.Controls) {
-                        c.Font = _font;
+                        c.Font = _defaultFont;
                     }
                 }
             }
         }
         public static Color FontColor {
-            get { return _fontColor; }
+            get { return _defaultFontColor; }
 
             set {
-                _fontColor = value;
+                _defaultFontColor = value;
 
                 foreach (ManagedForm form in _forms) {
                     form.ForeColor = FontColor;
@@ -94,32 +92,32 @@ namespace SecretCellar
             }
         }
         public static Color ButtonColor {
-            get { return _buttonColor; }
+            get { return _defaultButtonColor; }
             set {
-                _buttonColor = value;
+                _defaultButtonColor = value;
                 foreach (ManagedForm form in _forms) {
                     foreach (Control control in form.Controls.OfType<Button>()) {
-                        control.BackColor = _buttonColor;
+                        control.BackColor = _defaultButtonColor;
                     }
                 }
             }
         }
         public static Color ButtonFontColor {
-            get { return _buttonFontColor; }
+            get { return _defaultButtonFontColor; }
             set {
-                _buttonFontColor = value;
+                _defaultButtonFontColor = value;
                 foreach (ManagedForm form in _forms) {
                     foreach (Control control in form.Controls.OfType<Button>()) {
-                        control.ForeColor = _buttonFontColor;
+                        control.ForeColor = _defaultButtonFontColor;
                     }
                 }
             }
         }
         public static Color DataGridViewColor {
-            get { return _dataGridViewColor; }
+            get { return _defaultDataGridViewColor; }
 
             set {
-                _dataGridViewColor = value;
+                _defaultDataGridViewColor = value;
                 foreach (ManagedForm f in _forms) {
                     foreach (DataGridView c in f.Controls.OfType<DataGridView>()) {
                         c.BackgroundColor = value;
@@ -128,10 +126,10 @@ namespace SecretCellar
             }
         }
         public static Color DataGridViewRowColor {
-            get { return _dataGridViewRowColor; }
+            get { return _defaultDataGridViewRowColor; }
 
             set {
-                _dataGridViewColor = value;
+                _defaultDataGridViewRowColor = value;
                 foreach (ManagedForm f in _forms) {
                     foreach (DataGridView c in f.Controls.OfType<DataGridView>()) {
                         c.RowsDefaultCellStyle.BackColor = value;
@@ -140,10 +138,10 @@ namespace SecretCellar
             }
         }
         public static Color DataGridViewAlternateRowColor {
-            get { return _dataGridViewAlternateRowColor; }
+            get { return _defaultDataGridViewAlternateRowColor; }
 
             set {
-                _dataGridViewColor = value;
+                _defaultDataGridViewAlternateRowColor = value;
                 foreach (ManagedForm f in _forms) {
                     foreach (DataGridView c in f.Controls.OfType<DataGridView>()) {
                         c.AlternatingRowsDefaultCellStyle.BackColor = value;
@@ -152,20 +150,20 @@ namespace SecretCellar
             }
         }
         public static DataGridViewCellStyle CellStyle {
-            get { return _cellStyle; }
+            get { return _defaultCellStyle; }
         }
 
 
         public ManagedForm() {
             _forms.Add(this);
             Console.WriteLine($"Constructed: {_forms.Count}");
-            base.BackColor = _panelColor;
+            base.BackColor = _defaultPanelColor;
 
             foreach (DataGridView c in base.Controls) {
-                c.DefaultCellStyle = _cellStyle;
+                c.DefaultCellStyle = _defaultCellStyle;
             }
 
-            base.Font = _font;
+            base.Font = _defaultFont;
             base.FormClosed += ManagedForm_FormClosed;
         }
 
@@ -175,20 +173,6 @@ namespace SecretCellar
             //if(Forms.Count == 0 )
             //    CommonFont = new Font("Microsoft Sans Serif", 12, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             Console.WriteLine($"Deconstructed: {_forms.Count}");
-        }
-
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="cell_style"></param>
-        public static void SetDefaultCellStyle(DataGridViewCellStyle cell_style) {
-            _cellStyle = cell_style;
-            foreach (ManagedForm f in _forms) {
-                foreach (DataGridView c in f.Controls.OfType<DataGridView>()) {
-                    c.DefaultCellStyle = _cellStyle;
-                }
-            }
         }
 
 
