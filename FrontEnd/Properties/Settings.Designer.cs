@@ -400,5 +400,29 @@ namespace SecretCellar.Properties {
                 this["GridAlternateRowColor"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("247, 231, 206")]
+        public global::System.Drawing.Color PanelColor {
+            get {
+                return ((global::System.Drawing.Color)(this["PanelColor"]));
+            }
+            set {
+                this["PanelColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("247, 231, 206")]
+        public global::System.Drawing.Color DefaultPanelColor {
+            get {
+                return ((global::System.Drawing.Color)(this["DefaultPanelColor"]));
+            }
+            set {
+                this["DefaultPanelColor"] = value;
+            }
+        }
     }
 }

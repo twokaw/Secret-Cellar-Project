@@ -108,5 +108,11 @@ Shueyville, IA 52338
     <Setting Name="GridAlternateRowColor" Type="System.Drawing.Color" Scope="User">
       <Value Profile="(Default)">255, 225, 225</Value>
     </Setting>
+    <Setting Name="PanelColor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">247, 231, 206</Value>
+    </Setting>
+    <Setting Name="DefaultPanelColor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">247, 231, 206</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
