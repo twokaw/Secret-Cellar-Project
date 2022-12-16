@@ -39,7 +39,7 @@ namespace SecretCellar.Settings_Panels
 
 
         /// <summary>
-        /// 
+        /// Opens a file dialog to import the given image.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -54,13 +54,8 @@ namespace SecretCellar.Settings_Panels
         }
 
 
-        private void btn_defaultColor_Click(object sender, EventArgs e) {
-
-        }
-
-
         /// <summary>
-        /// 
+        /// Opens a color picker dialog to change the panel color.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -73,7 +68,7 @@ namespace SecretCellar.Settings_Panels
 
 
         /// <summary>
-        /// 
+        /// Opens a color picker dialog to change the data grid row color.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -91,7 +86,7 @@ namespace SecretCellar.Settings_Panels
 
 
         /// <summary>
-        /// 
+        /// Opens a color picker dialog to change the font color.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -104,7 +99,7 @@ namespace SecretCellar.Settings_Panels
 
 
         /// <summary>
-        /// 
+        /// Sets the settings back to default.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -112,7 +107,7 @@ namespace SecretCellar.Settings_Panels
 
 
         /// <summary>
-        /// 
+        /// Saves the colors to the properties.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>

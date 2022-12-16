@@ -37,7 +37,6 @@ namespace SecretCellar.Settings_Panels
             this.btn_defaultSettings = new System.Windows.Forms.Button();
             this.btn_row_color = new System.Windows.Forms.Button();
             this.btn_panel_color = new System.Windows.Forms.Button();
-            this.btn_defaultColor = new System.Windows.Forms.Button();
             this.listbox_logos = new System.Windows.Forms.ListBox();
             this.pic_logo = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
@@ -54,7 +53,6 @@ namespace SecretCellar.Settings_Panels
             this.panel1.Controls.Add(this.btn_defaultSettings);
             this.panel1.Controls.Add(this.btn_row_color);
             this.panel1.Controls.Add(this.btn_panel_color);
-            this.panel1.Controls.Add(this.btn_defaultColor);
             this.panel1.Controls.Add(this.listbox_logos);
             this.panel1.Controls.Add(this.pic_logo);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -69,7 +67,7 @@ namespace SecretCellar.Settings_Panels
             this.btn_Font_Color.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_Font_Color.AutoSize = true;
             this.btn_Font_Color.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_Font_Color.Location = new System.Drawing.Point(560, 142);
+            this.btn_Font_Color.Location = new System.Drawing.Point(560, 98);
             this.btn_Font_Color.Name = "btn_Font_Color";
             this.btn_Font_Color.Size = new System.Drawing.Size(125, 38);
             this.btn_Font_Color.TabIndex = 10;
@@ -132,7 +130,7 @@ namespace SecretCellar.Settings_Panels
             this.btn_row_color.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_row_color.AutoSize = true;
             this.btn_row_color.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_row_color.Location = new System.Drawing.Point(560, 98);
+            this.btn_row_color.Location = new System.Drawing.Point(560, 54);
             this.btn_row_color.Name = "btn_row_color";
             this.btn_row_color.Size = new System.Drawing.Size(125, 38);
             this.btn_row_color.TabIndex = 7;
@@ -145,26 +143,13 @@ namespace SecretCellar.Settings_Panels
             this.btn_panel_color.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_panel_color.AutoSize = true;
             this.btn_panel_color.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_panel_color.Location = new System.Drawing.Point(560, 54);
+            this.btn_panel_color.Location = new System.Drawing.Point(560, 10);
             this.btn_panel_color.Name = "btn_panel_color";
             this.btn_panel_color.Size = new System.Drawing.Size(125, 38);
             this.btn_panel_color.TabIndex = 5;
             this.btn_panel_color.Text = "Panel Color";
             this.btn_panel_color.UseVisualStyleBackColor = true;
             this.btn_panel_color.Click += new System.EventHandler(this.btn_panel_color_Click);
-            // 
-            // btn_defaultColor
-            // 
-            this.btn_defaultColor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_defaultColor.AutoSize = true;
-            this.btn_defaultColor.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_defaultColor.Location = new System.Drawing.Point(560, 10);
-            this.btn_defaultColor.Name = "btn_defaultColor";
-            this.btn_defaultColor.Size = new System.Drawing.Size(125, 38);
-            this.btn_defaultColor.TabIndex = 4;
-            this.btn_defaultColor.Text = "Default Color";
-            this.btn_defaultColor.UseVisualStyleBackColor = true;
-            this.btn_defaultColor.Click += new System.EventHandler(this.btn_defaultColor_Click);
             // 
             // listbox_logos
             // 
@@ -216,7 +201,6 @@ namespace SecretCellar.Settings_Panels
         private System.Windows.Forms.Button btn_defaultSettings;
         private System.Windows.Forms.Button btn_row_color;
         private System.Windows.Forms.Button btn_panel_color;
-        private System.Windows.Forms.Button btn_defaultColor;
         private System.Windows.Forms.Button btn_change_logo;
         private System.Windows.Forms.Button btn_change_image;
         private System.Windows.Forms.Button btn_commit;
