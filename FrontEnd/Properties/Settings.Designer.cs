@@ -12,7 +12,7 @@ namespace SecretCellar.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.1.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.3.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -350,6 +350,54 @@ namespace SecretCellar.Properties {
         public global::System.Drawing.Color DefaultButtonFontColor {
             get {
                 return ((global::System.Drawing.Color)(this["DefaultButtonFontColor"]));
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("110, 51, 69")]
+        public global::System.Drawing.Color DefaultGridRowColor {
+            get {
+                return ((global::System.Drawing.Color)(this["DefaultGridRowColor"]));
+            }
+            set {
+                this["DefaultGridRowColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("255, 225, 225")]
+        public global::System.Drawing.Color DefaultGridAlternateRowColor {
+            get {
+                return ((global::System.Drawing.Color)(this["DefaultGridAlternateRowColor"]));
+            }
+            set {
+                this["DefaultGridAlternateRowColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("110, 51, 69")]
+        public global::System.Drawing.Color GridRowColor {
+            get {
+                return ((global::System.Drawing.Color)(this["GridRowColor"]));
+            }
+            set {
+                this["GridRowColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("255, 225, 225")]
+        public global::System.Drawing.Color GridAlternateRowColor {
+            get {
+                return ((global::System.Drawing.Color)(this["GridAlternateRowColor"]));
+            }
+            set {
+                this["GridAlternateRowColor"] = value;
             }
         }
     }

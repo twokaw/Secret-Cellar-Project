@@ -39,6 +39,8 @@ namespace SecretCellar.Settings_Panels
             this.btn_panel_color = new System.Windows.Forms.Button();
             this.listbox_logos = new System.Windows.Forms.ListBox();
             this.pic_logo = new System.Windows.Forms.PictureBox();
+            this.button_gridAlternateRowColor = new System.Windows.Forms.Button();
+            this.button_gridBackColor = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pic_logo)).BeginInit();
             this.SuspendLayout();
@@ -46,6 +48,8 @@ namespace SecretCellar.Settings_Panels
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(231)))), ((int)(((byte)(206)))));
+            this.panel1.Controls.Add(this.button_gridBackColor);
+            this.panel1.Controls.Add(this.button_gridAlternateRowColor);
             this.panel1.Controls.Add(this.btn_Font_Color);
             this.panel1.Controls.Add(this.btn_commit);
             this.panel1.Controls.Add(this.btn_change_logo);
@@ -67,7 +71,7 @@ namespace SecretCellar.Settings_Panels
             this.btn_Font_Color.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_Font_Color.AutoSize = true;
             this.btn_Font_Color.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_Font_Color.Location = new System.Drawing.Point(560, 98);
+            this.btn_Font_Color.Location = new System.Drawing.Point(560, 10);
             this.btn_Font_Color.Name = "btn_Font_Color";
             this.btn_Font_Color.Size = new System.Drawing.Size(125, 38);
             this.btn_Font_Color.TabIndex = 10;
@@ -80,7 +84,7 @@ namespace SecretCellar.Settings_Panels
             this.btn_commit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_commit.AutoSize = true;
             this.btn_commit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_commit.Location = new System.Drawing.Point(560, 231);
+            this.btn_commit.Location = new System.Drawing.Point(560, 224);
             this.btn_commit.Name = "btn_commit";
             this.btn_commit.Size = new System.Drawing.Size(125, 38);
             this.btn_commit.TabIndex = 9;
@@ -92,7 +96,7 @@ namespace SecretCellar.Settings_Panels
             // 
             this.btn_change_logo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_change_logo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_change_logo.Location = new System.Drawing.Point(320, 229);
+            this.btn_change_logo.Location = new System.Drawing.Point(20, 54);
             this.btn_change_logo.Margin = new System.Windows.Forms.Padding(2);
             this.btn_change_logo.Name = "btn_change_logo";
             this.btn_change_logo.Size = new System.Drawing.Size(174, 38);
@@ -117,7 +121,7 @@ namespace SecretCellar.Settings_Panels
             // 
             this.btn_defaultSettings.AutoSize = true;
             this.btn_defaultSettings.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_defaultSettings.Location = new System.Drawing.Point(173, 10);
+            this.btn_defaultSettings.Location = new System.Drawing.Point(231, 10);
             this.btn_defaultSettings.Name = "btn_defaultSettings";
             this.btn_defaultSettings.Size = new System.Drawing.Size(175, 38);
             this.btn_defaultSettings.TabIndex = 8;
@@ -128,13 +132,12 @@ namespace SecretCellar.Settings_Panels
             // btn_row_color
             // 
             this.btn_row_color.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_row_color.AutoSize = true;
-            this.btn_row_color.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_row_color.Location = new System.Drawing.Point(560, 54);
+            this.btn_row_color.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_row_color.Location = new System.Drawing.Point(424, 54);
             this.btn_row_color.Name = "btn_row_color";
             this.btn_row_color.Size = new System.Drawing.Size(125, 38);
             this.btn_row_color.TabIndex = 7;
-            this.btn_row_color.Text = "Row Color";
+            this.btn_row_color.Text = "Grid Row Color";
             this.btn_row_color.UseVisualStyleBackColor = true;
             this.btn_row_color.Click += new System.EventHandler(this.btn_row_color_Click);
             // 
@@ -143,7 +146,7 @@ namespace SecretCellar.Settings_Panels
             this.btn_panel_color.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_panel_color.AutoSize = true;
             this.btn_panel_color.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_panel_color.Location = new System.Drawing.Point(560, 10);
+            this.btn_panel_color.Location = new System.Drawing.Point(424, 10);
             this.btn_panel_color.Name = "btn_panel_color";
             this.btn_panel_color.Size = new System.Drawing.Size(125, 38);
             this.btn_panel_color.TabIndex = 5;
@@ -158,7 +161,7 @@ namespace SecretCellar.Settings_Panels
             this.listbox_logos.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
             this.listbox_logos.FormattingEnabled = true;
             this.listbox_logos.ItemHeight = 16;
-            this.listbox_logos.Location = new System.Drawing.Point(320, 54);
+            this.listbox_logos.Location = new System.Drawing.Point(231, 98);
             this.listbox_logos.Margin = new System.Windows.Forms.Padding(2);
             this.listbox_logos.Name = "listbox_logos";
             this.listbox_logos.Size = new System.Drawing.Size(175, 164);
@@ -170,13 +173,37 @@ namespace SecretCellar.Settings_Panels
             this.pic_logo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.pic_logo.Location = new System.Drawing.Point(20, 53);
+            this.pic_logo.Location = new System.Drawing.Point(20, 98);
             this.pic_logo.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.pic_logo.Name = "pic_logo";
-            this.pic_logo.Size = new System.Drawing.Size(281, 214);
+            this.pic_logo.Size = new System.Drawing.Size(198, 169);
             this.pic_logo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pic_logo.TabIndex = 7;
             this.pic_logo.TabStop = false;
+            // 
+            // button_gridAlternateRowColor
+            // 
+            this.button_gridAlternateRowColor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button_gridAlternateRowColor.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_gridAlternateRowColor.Location = new System.Drawing.Point(560, 54);
+            this.button_gridAlternateRowColor.Name = "button_gridAlternateRowColor";
+            this.button_gridAlternateRowColor.Size = new System.Drawing.Size(125, 38);
+            this.button_gridAlternateRowColor.TabIndex = 11;
+            this.button_gridAlternateRowColor.Text = "Grid Alternate Row Color";
+            this.button_gridAlternateRowColor.UseVisualStyleBackColor = true;
+            this.button_gridAlternateRowColor.Click += new System.EventHandler(this.button_gridAlternateRowColor_Click);
+            // 
+            // button_gridBackColor
+            // 
+            this.button_gridBackColor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button_gridBackColor.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_gridBackColor.Location = new System.Drawing.Point(424, 98);
+            this.button_gridBackColor.Name = "button_gridBackColor";
+            this.button_gridBackColor.Size = new System.Drawing.Size(125, 38);
+            this.button_gridBackColor.TabIndex = 12;
+            this.button_gridBackColor.Text = "Grid Back Color";
+            this.button_gridBackColor.UseVisualStyleBackColor = true;
+            this.button_gridBackColor.Click += new System.EventHandler(this.button_gridBackColor_Click);
             // 
             // PanAppearance
             // 
@@ -205,5 +232,7 @@ namespace SecretCellar.Settings_Panels
         private System.Windows.Forms.Button btn_change_image;
         private System.Windows.Forms.Button btn_commit;
         private System.Windows.Forms.Button btn_Font_Color;
+        private System.Windows.Forms.Button button_gridBackColor;
+        private System.Windows.Forms.Button button_gridAlternateRowColor;
     }
 }

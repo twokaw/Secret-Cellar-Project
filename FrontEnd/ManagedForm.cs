@@ -9,11 +9,13 @@ namespace SecretCellar
     public partial class ManagedForm : Form
     {
         private static Color _panelColor = _defaultPanelColor;
-        private static Color _dataGridViewColor = _defaultDataGridViewColor;
         private static Color _buttonFontColor = _defaultButtonFontColor;
         private static Color _buttonColor = _defaultButtonColor;
         private static Font _font = _defaultFont;
         private static Color _fontColor = _defaultFontColor;
+        private static Color _dataGridViewColor = _defaultDataGridViewColor;
+        private static Color _dataGridViewRowColor = _defaultDataGridViewRowColor;
+        private static Color _dataGridViewAlternateRowColor = _defaultDataGridViewAlternateRowColor;
         private static DataGridViewCellStyle _cellStyle = _defaultCellStyle;
         private static readonly List<ManagedForm> _forms = new List<ManagedForm>();
         
@@ -41,6 +43,14 @@ namespace SecretCellar
         public static Color _defaultDataGridViewColor {
             get { return Properties.Settings.Default.GridColor; }
             set { Properties.Settings.Default.GridColor = value; }
+        }
+        public static Color _defaultDataGridViewRowColor {
+            get { return Properties.Settings.Default.GridRowColor; }
+            set { Properties.Settings.Default.GridRowColor = value; }
+        }
+        public static Color _defaultDataGridViewAlternateRowColor {
+            get { return Properties.Settings.Default.GridAlternateRowColor; }
+            set { Properties.Settings.Default.GridAlternateRowColor = value; }
         }
         public static DataGridViewCellStyle _defaultCellStyle { get { return new DataGridViewCellStyle(); } }
         
@@ -117,6 +127,30 @@ namespace SecretCellar
                 }
             }
         }
+        public static Color DataGridViewRowColor {
+            get { return _dataGridViewRowColor; }
+
+            set {
+                _dataGridViewColor = value;
+                foreach (ManagedForm f in _forms) {
+                    foreach (DataGridView c in f.Controls.OfType<DataGridView>()) {
+                        c.RowsDefaultCellStyle.BackColor = value;
+                    }
+                }
+            }
+        }
+        public static Color DataGridViewAlternateRowColor {
+            get { return _dataGridViewAlternateRowColor; }
+
+            set {
+                _dataGridViewColor = value;
+                foreach (ManagedForm f in _forms) {
+                    foreach (DataGridView c in f.Controls.OfType<DataGridView>()) {
+                        c.AlternatingRowsDefaultCellStyle.BackColor = value;
+                    }
+                }
+            }
+        }
         public static DataGridViewCellStyle CellStyle {
             get { return _cellStyle; }
         }
@@ -168,6 +202,8 @@ namespace SecretCellar
             _defaultButtonColor = Properties.Settings.Default.DefaultButtonColor;
             _defaultButtonFontColor = Properties.Settings.Default.DefaultButtonFontColor;
             _defaultDataGridViewColor = Properties.Settings.Default.DefaultGridColor;
+            _defaultDataGridViewRowColor = Properties.Settings.Default.DefaultGridRowColor;
+            _defaultDataGridViewAlternateRowColor = Properties.Settings.Default.DefaultGridAlternateRowColor;
 
             Properties.Settings.Default.Save();
 
@@ -176,6 +212,8 @@ namespace SecretCellar
             ButtonColor = _defaultButtonColor;
             ButtonFontColor = _defaultButtonFontColor;
             DataGridViewColor = _defaultDataGridViewColor;
+            DataGridViewRowColor = _defaultDataGridViewRowColor;
+            DataGridViewAlternateRowColor = _defaultDataGridViewAlternateRowColor;
         }
 
 
