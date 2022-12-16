@@ -79,7 +79,6 @@ namespace SecretCellar.Settings_Panels
             if (gridcolor.ShowDialog() == DialogResult.OK) {
                 cs.BackColor = gridcolor.Color;
                 cs.SelectionBackColor = Color.FromArgb(cs.BackColor.A, Math.Max(cs.BackColor.R - 25, 0), Math.Max(cs.BackColor.G - 25, 0), Math.Max(cs.BackColor.B - 25, 0));
-                //ManagedForm.SetDefaultCellStyle(cs);
                 ManagedForm.DataGridViewColor = cs.BackColor;
             }
         }
@@ -112,11 +111,12 @@ namespace SecretCellar.Settings_Panels
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void btn_commit_Click(object sender, EventArgs e) {
-            //TODO Call ManagedForm's default properties here.
-            //TODO Also add buttons in the form to update button color and button font color.
-            Properties.Settings.Default.BackgroundColor = ManagedForm.PanelColor;
-            Properties.Settings.Default.GridColor = ManagedForm.DataGridViewColor;
-            Properties.Settings.Default.FontSet = ManagedForm.FontStyle;
+            ManagedForm._defaultPanelColor = ManagedForm.PanelColor;
+            ManagedForm._defaultFontColor = ManagedForm.FontColor;
+            ManagedForm._defaultButtonColor = ManagedForm.ButtonColor;
+            ManagedForm._defaultButtonFontColor = ManagedForm.ButtonFontColor;
+            ManagedForm._defaultDataGridViewColor = ManagedForm.DataGridViewColor;
+
             Properties.Settings.Default.Save();
         }
     }

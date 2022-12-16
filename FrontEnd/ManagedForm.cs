@@ -18,32 +18,31 @@ namespace SecretCellar
         private static readonly List<ManagedForm> _forms = new List<ManagedForm>();
         
         //DEFAULT VALUES
-        //TODO Make these public so I can access them in PanAppearance's Commit method.
-        private static Color _defaultPanelColor {
+        public static Color _defaultPanelColor {
             get { return Properties.Settings.Default.BackgroundColor; }
             set { Properties.Settings.Default.BackgroundColor = value; }
         }
-        private static Font _defaultFont {
+        public static Font _defaultFont {
             get { return new Font("Microsoft Sans Serif", 12, System.Drawing.FontStyle.Bold, GraphicsUnit.Point, ((byte)(0))); }
             set { Properties.Settings.Default.FontSet = value; }
         }
-        private static Color _defaultFontColor {
+        public static Color _defaultFontColor {
             get { return Properties.Settings.Default.FontColor; }
             set { Properties.Settings.Default.FontColor = value; }
         }
-        private static Color _defaultButtonColor {
+        public static Color _defaultButtonColor {
             get { return Properties.Settings.Default.ButtonColor; }
             set { Properties.Settings.Default.ButtonColor = value; }
         }
-        private static Color _defaultButtonFontColor {
+        public static Color _defaultButtonFontColor {
             get { return Properties.Settings.Default.ButtonFontColor; }
             set { Properties.Settings.Default.ButtonFontColor = value; }
         }
-        private static Color _defaultDataGridViewColor {
+        public static Color _defaultDataGridViewColor {
             get { return Properties.Settings.Default.GridColor; }
             set { Properties.Settings.Default.GridColor = value; }
         }
-        private static DataGridViewCellStyle _defaultCellStyle { get { return new DataGridViewCellStyle(); } }
+        public static DataGridViewCellStyle _defaultCellStyle { get { return new DataGridViewCellStyle(); } }
         
 
         //PUBLIC ACCESSORS
