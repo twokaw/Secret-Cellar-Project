@@ -7,7 +7,7 @@ using Shared;
 
 
 namespace SecretCellar {
-	public partial class frmEventsWaitlistCustomerList : Form {
+	public partial class frmEventsWaitlistCustomerList : ManagedForm {
 		public Customer selectedCustomer;
 		private List<Customer> customers;
 		private string searchForCustomerText = "Search for customer";

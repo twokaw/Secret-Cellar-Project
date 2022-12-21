@@ -8,8 +8,7 @@ using Shared;
 
 namespace SecretCellar
 {
-	public partial class frmSuspendedTransactions : Form
-	{
+	public partial class frmSuspendedTransactions : ManagedForm {
 		private readonly frmTransaction TRANSACTION_FORM;
 		private readonly Transaction CURRENT_TRANSACTION;
 

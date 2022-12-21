@@ -6,7 +6,7 @@ using Shared;
 
 
 namespace SecretCellar {
-	public partial class frmEventsWaitlist : Form {
+	public partial class frmEventsWaitlist : ManagedForm {
 		private Event _selectedEvent;
 
 
