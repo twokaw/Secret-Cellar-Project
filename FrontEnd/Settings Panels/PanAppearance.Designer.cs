@@ -30,21 +30,22 @@ namespace SecretCellar.Settings_Panels
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.btn_panel_color = new System.Windows.Forms.Button();
+            this.btn_Font_Color = new System.Windows.Forms.Button();
+            this.button_gridBackColor = new System.Windows.Forms.Button();
+            this.btn_row_color = new System.Windows.Forms.Button();
+            this.button_gridAlternateRowColor = new System.Windows.Forms.Button();
             this.btn_commit = new System.Windows.Forms.Button();
             this.btn_change_logo = new System.Windows.Forms.Button();
             this.btn_change_image = new System.Windows.Forms.Button();
             this.btn_defaultSettings = new System.Windows.Forms.Button();
             this.listbox_logos = new System.Windows.Forms.ListBox();
             this.pic_logo = new System.Windows.Forms.PictureBox();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.button_gridBackColor = new System.Windows.Forms.Button();
-            this.button_gridAlternateRowColor = new System.Windows.Forms.Button();
-            this.btn_Font_Color = new System.Windows.Forms.Button();
-            this.btn_row_color = new System.Windows.Forms.Button();
-            this.btn_panel_color = new System.Windows.Forms.Button();
+            this.button_backgroundColor = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pic_logo)).BeginInit();
             this.flowLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pic_logo)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -63,6 +64,79 @@ namespace SecretCellar.Settings_Panels
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(700, 280);
             this.panel1.TabIndex = 0;
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.flowLayoutPanel1.AutoScroll = true;
+            this.flowLayoutPanel1.Controls.Add(this.button_backgroundColor);
+            this.flowLayoutPanel1.Controls.Add(this.btn_panel_color);
+            this.flowLayoutPanel1.Controls.Add(this.btn_Font_Color);
+            this.flowLayoutPanel1.Controls.Add(this.button_gridBackColor);
+            this.flowLayoutPanel1.Controls.Add(this.btn_row_color);
+            this.flowLayoutPanel1.Controls.Add(this.button_gridAlternateRowColor);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(411, 10);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(274, 212);
+            this.flowLayoutPanel1.TabIndex = 13;
+            // 
+            // btn_panel_color
+            // 
+            this.btn_panel_color.AutoSize = true;
+            this.btn_panel_color.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_panel_color.Location = new System.Drawing.Point(134, 3);
+            this.btn_panel_color.Name = "btn_panel_color";
+            this.btn_panel_color.Size = new System.Drawing.Size(125, 38);
+            this.btn_panel_color.TabIndex = 13;
+            this.btn_panel_color.Text = "Panel Color";
+            this.btn_panel_color.UseVisualStyleBackColor = true;
+            this.btn_panel_color.Click += new System.EventHandler(this.btn_panel_color_Click);
+            // 
+            // btn_Font_Color
+            // 
+            this.btn_Font_Color.AutoSize = true;
+            this.btn_Font_Color.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_Font_Color.Location = new System.Drawing.Point(3, 47);
+            this.btn_Font_Color.Name = "btn_Font_Color";
+            this.btn_Font_Color.Size = new System.Drawing.Size(125, 38);
+            this.btn_Font_Color.TabIndex = 15;
+            this.btn_Font_Color.Text = "Font Color";
+            this.btn_Font_Color.UseVisualStyleBackColor = true;
+            this.btn_Font_Color.Click += new System.EventHandler(this.btn_Font_Color_Click);
+            // 
+            // button_gridBackColor
+            // 
+            this.button_gridBackColor.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_gridBackColor.Location = new System.Drawing.Point(134, 47);
+            this.button_gridBackColor.Name = "button_gridBackColor";
+            this.button_gridBackColor.Size = new System.Drawing.Size(125, 38);
+            this.button_gridBackColor.TabIndex = 17;
+            this.button_gridBackColor.Text = "Grid Back Color";
+            this.button_gridBackColor.UseVisualStyleBackColor = true;
+            this.button_gridBackColor.Click += new System.EventHandler(this.button_gridBackColor_Click);
+            // 
+            // btn_row_color
+            // 
+            this.btn_row_color.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_row_color.Location = new System.Drawing.Point(3, 91);
+            this.btn_row_color.Name = "btn_row_color";
+            this.btn_row_color.Size = new System.Drawing.Size(125, 38);
+            this.btn_row_color.TabIndex = 14;
+            this.btn_row_color.Text = "Grid Row Color";
+            this.btn_row_color.UseVisualStyleBackColor = true;
+            this.btn_row_color.Click += new System.EventHandler(this.btn_row_color_Click);
+            // 
+            // button_gridAlternateRowColor
+            // 
+            this.button_gridAlternateRowColor.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_gridAlternateRowColor.Location = new System.Drawing.Point(134, 91);
+            this.button_gridAlternateRowColor.Name = "button_gridAlternateRowColor";
+            this.button_gridAlternateRowColor.Size = new System.Drawing.Size(125, 38);
+            this.button_gridAlternateRowColor.TabIndex = 16;
+            this.button_gridAlternateRowColor.Text = "Grid Alternate Row Color";
+            this.button_gridAlternateRowColor.UseVisualStyleBackColor = true;
+            this.button_gridAlternateRowColor.Click += new System.EventHandler(this.button_gridAlternateRowColor_Click);
             // 
             // btn_commit
             // 
@@ -139,77 +213,17 @@ namespace SecretCellar.Settings_Panels
             this.pic_logo.TabIndex = 7;
             this.pic_logo.TabStop = false;
             // 
-            // flowLayoutPanel1
+            // button_backgroundColor
             // 
-            this.flowLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.flowLayoutPanel1.AutoScroll = true;
-            this.flowLayoutPanel1.Controls.Add(this.btn_panel_color);
-            this.flowLayoutPanel1.Controls.Add(this.btn_Font_Color);
-            this.flowLayoutPanel1.Controls.Add(this.button_gridBackColor);
-            this.flowLayoutPanel1.Controls.Add(this.btn_row_color);
-            this.flowLayoutPanel1.Controls.Add(this.button_gridAlternateRowColor);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(411, 10);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(274, 212);
-            this.flowLayoutPanel1.TabIndex = 13;
-            // 
-            // button_gridBackColor
-            // 
-            this.button_gridBackColor.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_gridBackColor.Location = new System.Drawing.Point(3, 91);
-            this.button_gridBackColor.Name = "button_gridBackColor";
-            this.button_gridBackColor.Size = new System.Drawing.Size(125, 38);
-            this.button_gridBackColor.TabIndex = 17;
-            this.button_gridBackColor.Text = "Grid Back Color";
-            this.button_gridBackColor.UseVisualStyleBackColor = true;
-            this.button_gridBackColor.Click += new System.EventHandler(this.button_gridBackColor_Click);
-            // 
-            // button_gridAlternateRowColor
-            // 
-            this.button_gridAlternateRowColor.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_gridAlternateRowColor.Location = new System.Drawing.Point(3, 179);
-            this.button_gridAlternateRowColor.Name = "button_gridAlternateRowColor";
-            this.button_gridAlternateRowColor.Size = new System.Drawing.Size(125, 38);
-            this.button_gridAlternateRowColor.TabIndex = 16;
-            this.button_gridAlternateRowColor.Text = "Grid Alternate Row Color";
-            this.button_gridAlternateRowColor.UseVisualStyleBackColor = true;
-            this.button_gridAlternateRowColor.Click += new System.EventHandler(this.button_gridAlternateRowColor_Click);
-            // 
-            // btn_Font_Color
-            // 
-            this.btn_Font_Color.AutoSize = true;
-            this.btn_Font_Color.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_Font_Color.Location = new System.Drawing.Point(3, 47);
-            this.btn_Font_Color.Name = "btn_Font_Color";
-            this.btn_Font_Color.Size = new System.Drawing.Size(125, 38);
-            this.btn_Font_Color.TabIndex = 15;
-            this.btn_Font_Color.Text = "Font Color";
-            this.btn_Font_Color.UseVisualStyleBackColor = true;
-            this.btn_Font_Color.Click += new System.EventHandler(this.btn_Font_Color_Click);
-            // 
-            // btn_row_color
-            // 
-            this.btn_row_color.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_row_color.Location = new System.Drawing.Point(3, 135);
-            this.btn_row_color.Name = "btn_row_color";
-            this.btn_row_color.Size = new System.Drawing.Size(125, 38);
-            this.btn_row_color.TabIndex = 14;
-            this.btn_row_color.Text = "Grid Row Color";
-            this.btn_row_color.UseVisualStyleBackColor = true;
-            this.btn_row_color.Click += new System.EventHandler(this.btn_row_color_Click);
-            // 
-            // btn_panel_color
-            // 
-            this.btn_panel_color.AutoSize = true;
-            this.btn_panel_color.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_panel_color.Location = new System.Drawing.Point(3, 3);
-            this.btn_panel_color.Name = "btn_panel_color";
-            this.btn_panel_color.Size = new System.Drawing.Size(125, 38);
-            this.btn_panel_color.TabIndex = 13;
-            this.btn_panel_color.Text = "Panel Color";
-            this.btn_panel_color.UseVisualStyleBackColor = true;
-            this.btn_panel_color.Click += new System.EventHandler(this.btn_panel_color_Click);
+            this.button_backgroundColor.AutoSize = true;
+            this.button_backgroundColor.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_backgroundColor.Location = new System.Drawing.Point(3, 3);
+            this.button_backgroundColor.Name = "button_backgroundColor";
+            this.button_backgroundColor.Size = new System.Drawing.Size(125, 38);
+            this.button_backgroundColor.TabIndex = 18;
+            this.button_backgroundColor.Text = "Background Color";
+            this.button_backgroundColor.UseVisualStyleBackColor = true;
+            this.button_backgroundColor.Click += new System.EventHandler(this.button_backgroundColor_Click);
             // 
             // PanAppearance
             // 
@@ -221,9 +235,9 @@ namespace SecretCellar.Settings_Panels
             this.Size = new System.Drawing.Size(700, 280);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pic_logo)).EndInit();
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pic_logo)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -243,5 +257,6 @@ namespace SecretCellar.Settings_Panels
         private System.Windows.Forms.Button btn_Font_Color;
         private System.Windows.Forms.Button btn_row_color;
         private System.Windows.Forms.Button btn_panel_color;
+        private System.Windows.Forms.Button button_backgroundColor;
     }
 }

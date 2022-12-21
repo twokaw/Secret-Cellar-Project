@@ -55,6 +55,19 @@ namespace SecretCellar.Settings_Panels
 
 
         /// <summary>
+        /// Opens a color picker dialog to change the background color.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void button_backgroundColor_Click(object sender, EventArgs e) {
+            ColorDialog colorPicker = new ColorDialog { Color = ManagedForm.DataGridViewColor };
+
+            if (colorPicker.ShowDialog() == DialogResult.OK)
+                ManagedForm.BackgroundColor = colorPicker.Color;
+        }
+
+
+        /// <summary>
         /// Opens a color picker dialog to change the panel color.
         /// </summary>
         /// <param name="sender"></param>

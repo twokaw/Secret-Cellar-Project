@@ -10,12 +10,24 @@ namespace SecretCellar
     {
         private static readonly List<ManagedForm> _forms = new List<ManagedForm>();
 
-        public static Color PanelColor {
+        public static Color BackgroundColor {
             get { return Properties.Settings.Default.BackgroundColor; }
             set {
                 Properties.Settings.Default.BackgroundColor = value;
 
                 _forms.ForEach(x => x.BackColor = value);
+            }
+        }
+        public static Color PanelColor {
+            get { return Properties.Settings.Default.PanelColor; }
+            set {
+                Properties.Settings.Default.PanelColor = value;
+
+                foreach (ManagedForm f in _forms) {
+                    foreach (Panel panel in f.Controls.OfType<Panel>()) {
+                        panel.BackColor = value;
+                    }
+                }
             }
         }
         public static Font FontStyle {
@@ -117,7 +129,7 @@ namespace SecretCellar
         public ManagedForm() {
             _forms.Add(this);
             Console.WriteLine($"Constructed: {_forms.Count}");
-            base.BackColor = PanelColor;
+            base.BackColor = BackgroundColor;
 
             foreach (DataGridView c in base.Controls) {
                 c.DefaultCellStyle = CellStyle;
@@ -140,7 +152,8 @@ namespace SecretCellar
         /// Sets the properties to default then updates the forms.
         /// </summary>
         public static void SetPropertiesToDefault() {
-            PanelColor = Properties.Settings.Default.DefaultBackgroundColor;
+            BackgroundColor = Properties.Settings.Default.DefaultBackgroundColor;
+            PanelColor = Properties.Settings.Default.DefaultPanelColor;
             //FontStyle = Properties.Settings.Default.DefaultFont;
             FontColor = Properties.Settings.Default.DefaultFontColor;
             ButtonColor = Properties.Settings.Default.DefaultButtonColor;
