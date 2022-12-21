@@ -48,7 +48,6 @@
             this.maxqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btn_cancel = new System.Windows.Forms.Button();
             this.btn_add = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.cbxTypeFilter = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.cbxSupplyFilter = new System.Windows.Forms.ComboBox();
@@ -92,17 +91,16 @@
             this.btn_close = new System.Windows.Forms.Button();
             this.button_DeleteItem = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.LookupView)).BeginInit();
-            this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtlookup
             // 
             this.txtlookup.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtlookup.Location = new System.Drawing.Point(34, 49);
+            this.txtlookup.Location = new System.Drawing.Point(13, 54);
             this.txtlookup.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtlookup.Name = "txtlookup";
-            this.txtlookup.Size = new System.Drawing.Size(376, 39);
+            this.txtlookup.Size = new System.Drawing.Size(405, 39);
             this.txtlookup.TabIndex = 1;
             this.txtlookup.WordWrap = false;
             this.txtlookup.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
@@ -153,7 +151,7 @@
             dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Ivory;
             dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.LookupView.DefaultCellStyle = dataGridViewCellStyle4;
-            this.LookupView.Location = new System.Drawing.Point(0, -20);
+            this.LookupView.Location = new System.Drawing.Point(13, 103);
             this.LookupView.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.LookupView.MultiSelect = false;
             this.LookupView.Name = "LookupView";
@@ -175,7 +173,7 @@
             this.LookupView.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LookupView.RowTemplate.Height = 24;
             this.LookupView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.LookupView.Size = new System.Drawing.Size(906, 820);
+            this.LookupView.Size = new System.Drawing.Size(906, 842);
             this.LookupView.TabIndex = 0;
             this.LookupView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.LookupView_CellContentClick);
             this.LookupView.SelectionChanged += new System.EventHandler(this.LookupView_SelectionChanged);
@@ -295,24 +293,12 @@
             this.btn_add.UseVisualStyleBackColor = true;
             this.btn_add.Click += new System.EventHandler(this.btn_add_Click);
             // 
-            // panel1
-            // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.Controls.Add(this.LookupView);
-            this.panel1.Location = new System.Drawing.Point(12, 123);
-            this.panel1.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(906, 800);
-            this.panel1.TabIndex = 7;
-            // 
             // cbxTypeFilter
             // 
             this.cbxTypeFilter.DisplayMember = "TypeName";
             this.cbxTypeFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbxTypeFilter.FormattingEnabled = true;
-            this.cbxTypeFilter.Location = new System.Drawing.Point(471, 47);
+            this.cbxTypeFilter.Location = new System.Drawing.Point(471, 53);
             this.cbxTypeFilter.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
             this.cbxTypeFilter.Name = "cbxTypeFilter";
             this.cbxTypeFilter.Size = new System.Drawing.Size(298, 40);
@@ -334,7 +320,7 @@
             this.cbxSupplyFilter.DisplayMember = "Name";
             this.cbxSupplyFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbxSupplyFilter.FormattingEnabled = true;
-            this.cbxSupplyFilter.Location = new System.Drawing.Point(825, 47);
+            this.cbxSupplyFilter.Location = new System.Drawing.Point(825, 53);
             this.cbxSupplyFilter.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
             this.cbxSupplyFilter.Name = "cbxSupplyFilter";
             this.cbxSupplyFilter.Size = new System.Drawing.Size(298, 40);
@@ -739,7 +725,6 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.checkListBox_Discounts.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.checkListBox_Discounts.Enabled = false;
             this.checkListBox_Discounts.FormattingEnabled = true;
             this.checkListBox_Discounts.Location = new System.Drawing.Point(243, 746);
             this.checkListBox_Discounts.Margin = new System.Windows.Forms.Padding(0);
@@ -763,7 +748,7 @@
             // 
             this.btn_clear_info.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btn_clear_info.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_clear_info.Location = new System.Drawing.Point(669, 956);
+            this.btn_clear_info.Location = new System.Drawing.Point(668, 958);
             this.btn_clear_info.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
             this.btn_clear_info.Name = "btn_clear_info";
             this.btn_clear_info.Size = new System.Drawing.Size(236, 69);
@@ -788,7 +773,7 @@
             // label7
             // 
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(28, 8);
+            this.label7.Location = new System.Drawing.Point(7, 12);
             this.label7.Margin = new System.Windows.Forms.Padding(0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(384, 32);
@@ -799,7 +784,7 @@
             // 
             this.btn_close.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btn_close.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_close.Location = new System.Drawing.Point(48, 956);
+            this.btn_close.Location = new System.Drawing.Point(26, 958);
             this.btn_close.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
             this.btn_close.Name = "btn_close";
             this.btn_close.Size = new System.Drawing.Size(236, 69);
@@ -812,7 +797,7 @@
             // 
             this.button_DeleteItem.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.button_DeleteItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_DeleteItem.Location = new System.Drawing.Point(356, 956);
+            this.button_DeleteItem.Location = new System.Drawing.Point(335, 958);
             this.button_DeleteItem.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
             this.button_DeleteItem.Name = "button_DeleteItem";
             this.button_DeleteItem.Size = new System.Drawing.Size(236, 69);
@@ -829,6 +814,7 @@
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(231)))), ((int)(((byte)(206)))));
             this.ClientSize = new System.Drawing.Size(1512, 1053);
+            this.Controls.Add(this.LookupView);
             this.Controls.Add(this.button_DeleteItem);
             this.Controls.Add(this.btn_close);
             this.Controls.Add(this.label7);
@@ -841,7 +827,6 @@
             this.Controls.Add(this.label6);
             this.Controls.Add(this.cbxTypeFilter);
             this.Controls.Add(this.panel2);
-            this.Controls.Add(this.panel1);
             this.Controls.Add(this.txtlookup);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -850,7 +835,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Item lookup";
             ((System.ComponentModel.ISupportInitialize)(this.LookupView)).EndInit();
-            this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.ResumeLayout(false);
@@ -864,7 +848,6 @@
         private System.Windows.Forms.DataGridView LookupView;
         private System.Windows.Forms.Button btn_cancel;
         private System.Windows.Forms.Button btn_add;
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.ComboBox cbxTypeFilter;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox cbxSupplyFilter;
