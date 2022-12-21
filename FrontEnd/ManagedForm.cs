@@ -135,7 +135,7 @@ namespace SecretCellar
                 c.DefaultCellStyle = CellStyle;
             }
 
-            base.Font = DefaultFont;
+            base.Font = FontStyle;
             base.FormClosed += ManagedForm_FormClosed;
         }
 
