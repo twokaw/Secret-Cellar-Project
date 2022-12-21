@@ -144,16 +144,6 @@ namespace SecretCellar.Settings_Panels
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btn_commit_Click(object sender, EventArgs e) {
-            ManagedForm._defaultPanelColor = ManagedForm.PanelColor;
-            ManagedForm._defaultFontColor = ManagedForm.FontColor;
-            ManagedForm._defaultButtonColor = ManagedForm.ButtonColor;
-            ManagedForm._defaultButtonFontColor = ManagedForm.ButtonFontColor;
-            ManagedForm._defaultDataGridViewColor = ManagedForm.DataGridViewColor;
-            ManagedForm._defaultDataGridViewRowColor = ManagedForm.DataGridViewRowColor;
-            ManagedForm._defaultDataGridViewAlternateRowColor = ManagedForm.DataGridViewAlternateRowColor;
-
-            Properties.Settings.Default.Save();
-        }
+        private void btn_commit_Click(object sender, EventArgs e) { Properties.Settings.Default.Save(); }
     }
 }
