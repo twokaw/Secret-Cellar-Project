@@ -31,20 +31,30 @@ namespace SecretCellar.Settings_Panels
         {
             this.btn_Run = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
-            this.TxtSalesVendor = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.TxtSalesInvType = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.TxtSalesTotals = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.dtp_end = new System.Windows.Forms.DateTimePicker();
             this.label4 = new System.Windows.Forms.Label();
             this.dtp_start = new System.Windows.Forms.DateTimePicker();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.BtnTotalCopy = new System.Windows.Forms.Button();
-            this.BtnInvTypeCopy = new System.Windows.Forms.Button();
+            this.dgvTypes = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DgvTotal = new System.Windows.Forms.DataGridView();
             this.BtnInventoryCopy = new System.Windows.Forms.Button();
+            this.BtnInvTypeCopy = new System.Windows.Forms.Button();
+            this.BtnTotalCopy = new System.Windows.Forms.Button();
+            this.DgvItems = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NameTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TotalValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvTypes)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DgvTotal)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DgvItems)).BeginInit();
             this.SuspendLayout();
             // 
             // btn_Run
@@ -63,76 +73,32 @@ namespace SecretCellar.Settings_Panels
             this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
-            this.label7.Location = new System.Drawing.Point(494, 68);
+            this.label7.Location = new System.Drawing.Point(558, 68);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(257, 34);
+            this.label7.Size = new System.Drawing.Size(193, 34);
             this.label7.TabIndex = 25;
             this.label7.Text = "Inventory";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // TxtSalesVendor
-            // 
-            this.TxtSalesVendor.AcceptsReturn = true;
-            this.TxtSalesVendor.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.TxtSalesVendor.BackColor = System.Drawing.Color.White;
-            this.TxtSalesVendor.Font = new System.Drawing.Font("Consolas", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtSalesVendor.Location = new System.Drawing.Point(494, 105);
-            this.TxtSalesVendor.Multiline = true;
-            this.TxtSalesVendor.Name = "TxtSalesVendor";
-            this.TxtSalesVendor.ReadOnly = true;
-            this.TxtSalesVendor.Size = new System.Drawing.Size(326, 229);
-            this.TxtSalesVendor.TabIndex = 5;
-            // 
             // label6
             // 
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
-            this.label6.Location = new System.Drawing.Point(240, 68);
+            this.label6.Location = new System.Drawing.Point(288, 64);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(178, 34);
+            this.label6.Size = new System.Drawing.Size(186, 34);
             this.label6.TabIndex = 23;
             this.label6.Text = "Inventory Type";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // TxtSalesInvType
-            // 
-            this.TxtSalesInvType.AcceptsReturn = true;
-            this.TxtSalesInvType.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.TxtSalesInvType.BackColor = System.Drawing.Color.White;
-            this.TxtSalesInvType.Font = new System.Drawing.Font("Consolas", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtSalesInvType.Location = new System.Drawing.Point(240, 105);
-            this.TxtSalesInvType.Multiline = true;
-            this.TxtSalesInvType.Name = "TxtSalesInvType";
-            this.TxtSalesInvType.ReadOnly = true;
-            this.TxtSalesInvType.Size = new System.Drawing.Size(248, 229);
-            this.TxtSalesInvType.TabIndex = 4;
-            this.TxtSalesInvType.TextChanged += new System.EventHandler(this.TxtSalesInvType_TextChanged);
             // 
             // label8
             // 
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
             this.label8.Location = new System.Drawing.Point(12, 67);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(154, 34);
+            this.label8.Size = new System.Drawing.Size(195, 34);
             this.label8.TabIndex = 21;
             this.label8.Text = "Total";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // TxtSalesTotals
-            // 
-            this.TxtSalesTotals.AcceptsReturn = true;
-            this.TxtSalesTotals.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.TxtSalesTotals.BackColor = System.Drawing.Color.White;
-            this.TxtSalesTotals.Font = new System.Drawing.Font("Consolas", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtSalesTotals.Location = new System.Drawing.Point(12, 105);
-            this.TxtSalesTotals.Multiline = true;
-            this.TxtSalesTotals.Name = "TxtSalesTotals";
-            this.TxtSalesTotals.ReadOnly = true;
-            this.TxtSalesTotals.Size = new System.Drawing.Size(222, 229);
-            this.TxtSalesTotals.TabIndex = 3;
             // 
             // label5
             // 
@@ -177,16 +143,16 @@ namespace SecretCellar.Settings_Panels
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(231)))), ((int)(((byte)(206)))));
+            this.panel1.Controls.Add(this.DgvItems);
+            this.panel1.Controls.Add(this.dgvTypes);
+            this.panel1.Controls.Add(this.DgvTotal);
             this.panel1.Controls.Add(this.BtnInventoryCopy);
             this.panel1.Controls.Add(this.BtnInvTypeCopy);
             this.panel1.Controls.Add(this.BtnTotalCopy);
             this.panel1.Controls.Add(this.btn_Run);
             this.panel1.Controls.Add(this.label7);
             this.panel1.Controls.Add(this.label6);
-            this.panel1.Controls.Add(this.TxtSalesVendor);
-            this.panel1.Controls.Add(this.TxtSalesInvType);
             this.panel1.Controls.Add(this.label8);
-            this.panel1.Controls.Add(this.TxtSalesTotals);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.dtp_end);
             this.panel1.Controls.Add(this.label4);
@@ -197,35 +163,164 @@ namespace SecretCellar.Settings_Panels
             this.panel1.Size = new System.Drawing.Size(832, 345);
             this.panel1.TabIndex = 29;
             // 
-            // BtnTotalCopy
+            // dgvTypes
             // 
-            this.BtnTotalCopy.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
-            this.BtnTotalCopy.Location = new System.Drawing.Point(162, 61);
-            this.BtnTotalCopy.Name = "BtnTotalCopy";
-            this.BtnTotalCopy.Size = new System.Drawing.Size(72, 38);
-            this.BtnTotalCopy.TabIndex = 26;
-            this.BtnTotalCopy.Text = "Copy";
-            this.BtnTotalCopy.UseVisualStyleBackColor = true;
+            this.dgvTypes.AllowUserToAddRows = false;
+            this.dgvTypes.AllowUserToDeleteRows = false;
+            this.dgvTypes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.dgvTypes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvTypes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2});
+            this.dgvTypes.Location = new System.Drawing.Point(288, 105);
+            this.dgvTypes.Name = "dgvTypes";
+            this.dgvTypes.ReadOnly = true;
+            this.dgvTypes.RowHeadersVisible = false;
+            this.dgvTypes.RowHeadersWidth = 62;
+            this.dgvTypes.RowTemplate.Height = 28;
+            this.dgvTypes.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.dgvTypes.Size = new System.Drawing.Size(264, 229);
+            this.dgvTypes.TabIndex = 30;
             // 
-            // BtnInvTypeCopy
+            // dataGridViewTextBoxColumn1
             // 
-            this.BtnInvTypeCopy.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
-            this.BtnInvTypeCopy.Location = new System.Drawing.Point(416, 61);
-            this.BtnInvTypeCopy.Name = "BtnInvTypeCopy";
-            this.BtnInvTypeCopy.Size = new System.Drawing.Size(72, 38);
-            this.BtnInvTypeCopy.TabIndex = 27;
-            this.BtnInvTypeCopy.Text = "Copy";
-            this.BtnInvTypeCopy.UseVisualStyleBackColor = true;
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "Name";
+            this.dataGridViewTextBoxColumn1.HeaderText = "Name";
+            this.dataGridViewTextBoxColumn1.MinimumWidth = 8;
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Width = 130;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "Value";
+            this.dataGridViewTextBoxColumn2.HeaderText = "Total";
+            this.dataGridViewTextBoxColumn2.MinimumWidth = 8;
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.Width = 150;
+            // 
+            // DgvTotal
+            // 
+            this.DgvTotal.AllowUserToAddRows = false;
+            this.DgvTotal.AllowUserToDeleteRows = false;
+            this.DgvTotal.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.DgvTotal.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DgvTotal.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.NameTotal,
+            this.TotalValue});
+            this.DgvTotal.Location = new System.Drawing.Point(12, 105);
+            this.DgvTotal.Name = "DgvTotal";
+            this.DgvTotal.ReadOnly = true;
+            this.DgvTotal.RowHeadersVisible = false;
+            this.DgvTotal.RowHeadersWidth = 62;
+            this.DgvTotal.RowTemplate.Height = 28;
+            this.DgvTotal.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.DgvTotal.Size = new System.Drawing.Size(270, 229);
+            this.DgvTotal.TabIndex = 29;
             // 
             // BtnInventoryCopy
             // 
+            this.BtnInventoryCopy.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.BtnInventoryCopy.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
-            this.BtnInventoryCopy.Location = new System.Drawing.Point(748, 61);
+            this.BtnInventoryCopy.Location = new System.Drawing.Point(748, 64);
             this.BtnInventoryCopy.Name = "BtnInventoryCopy";
             this.BtnInventoryCopy.Size = new System.Drawing.Size(72, 38);
             this.BtnInventoryCopy.TabIndex = 28;
             this.BtnInventoryCopy.Text = "Copy";
             this.BtnInventoryCopy.UseVisualStyleBackColor = true;
+            this.BtnInventoryCopy.Click += new System.EventHandler(this.BtnInventoryCopy_Click);
+            // 
+            // BtnInvTypeCopy
+            // 
+            this.BtnInvTypeCopy.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
+            this.BtnInvTypeCopy.Location = new System.Drawing.Point(480, 65);
+            this.BtnInvTypeCopy.Name = "BtnInvTypeCopy";
+            this.BtnInvTypeCopy.Size = new System.Drawing.Size(72, 38);
+            this.BtnInvTypeCopy.TabIndex = 27;
+            this.BtnInvTypeCopy.Text = "Copy";
+            this.BtnInvTypeCopy.UseVisualStyleBackColor = true;
+            this.BtnInvTypeCopy.Click += new System.EventHandler(this.BtnInvTypeCopy_Click);
+            // 
+            // BtnTotalCopy
+            // 
+            this.BtnTotalCopy.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
+            this.BtnTotalCopy.Location = new System.Drawing.Point(210, 63);
+            this.BtnTotalCopy.Name = "BtnTotalCopy";
+            this.BtnTotalCopy.Size = new System.Drawing.Size(72, 38);
+            this.BtnTotalCopy.TabIndex = 26;
+            this.BtnTotalCopy.Text = "Copy";
+            this.BtnTotalCopy.UseVisualStyleBackColor = true;
+            this.BtnTotalCopy.Click += new System.EventHandler(this.BtnTotalCopy_Click);
+            // 
+            // DgvItems
+            // 
+            this.DgvItems.AllowUserToAddRows = false;
+            this.DgvItems.AllowUserToDeleteRows = false;
+            this.DgvItems.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.DgvItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DgvItems.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn3,
+            this.dataGridViewTextBoxColumn4,
+            this.Price});
+            this.DgvItems.Location = new System.Drawing.Point(558, 105);
+            this.DgvItems.Name = "DgvItems";
+            this.DgvItems.ReadOnly = true;
+            this.DgvItems.RowHeadersVisible = false;
+            this.DgvItems.RowHeadersWidth = 62;
+            this.DgvItems.RowTemplate.Height = 28;
+            this.DgvItems.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.DgvItems.Size = new System.Drawing.Size(262, 229);
+            this.DgvItems.TabIndex = 31;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "Name";
+            this.dataGridViewTextBoxColumn3.HeaderText = "Name";
+            this.dataGridViewTextBoxColumn3.MinimumWidth = 8;
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.DataPropertyName = "Qty";
+            this.dataGridViewTextBoxColumn4.FillWeight = 50F;
+            this.dataGridViewTextBoxColumn4.HeaderText = "Qty";
+            this.dataGridViewTextBoxColumn4.MinimumWidth = 8;
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            this.dataGridViewTextBoxColumn4.Width = 50;
+            // 
+            // Price
+            // 
+            this.Price.DataPropertyName = "Price";
+            this.Price.HeaderText = "Price";
+            this.Price.MinimumWidth = 8;
+            this.Price.Name = "Price";
+            this.Price.ReadOnly = true;
+            // 
+            // NameTotal
+            // 
+            this.NameTotal.DataPropertyName = "Name";
+            this.NameTotal.HeaderText = "Name";
+            this.NameTotal.MinimumWidth = 8;
+            this.NameTotal.Name = "NameTotal";
+            this.NameTotal.ReadOnly = true;
+            this.NameTotal.Width = 167;
+            // 
+            // TotalValue
+            // 
+            this.TotalValue.DataPropertyName = "Value";
+            this.TotalValue.HeaderText = "Total";
+            this.TotalValue.MinimumWidth = 8;
+            this.TotalValue.Name = "TotalValue";
+            this.TotalValue.ReadOnly = true;
+            this.TotalValue.Width = 113;
             // 
             // PanReports
             // 
@@ -236,6 +331,9 @@ namespace SecretCellar.Settings_Panels
             this.Size = new System.Drawing.Size(832, 345);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvTypes)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DgvTotal)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DgvItems)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -244,11 +342,8 @@ namespace SecretCellar.Settings_Panels
 
         private System.Windows.Forms.Button btn_Run;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox TxtSalesVendor;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox TxtSalesInvType;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox TxtSalesTotals;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.DateTimePicker dtp_end;
         private System.Windows.Forms.Label label4;
@@ -257,5 +352,15 @@ namespace SecretCellar.Settings_Panels
         private System.Windows.Forms.Button BtnInventoryCopy;
         private System.Windows.Forms.Button BtnInvTypeCopy;
         private System.Windows.Forms.Button BtnTotalCopy;
+        private System.Windows.Forms.DataGridView DgvTotal;
+        private System.Windows.Forms.DataGridView dgvTypes;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridView DgvItems;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Price;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NameTotal;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TotalValue;
     }
 }

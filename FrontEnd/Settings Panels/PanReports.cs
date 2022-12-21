@@ -8,17 +8,26 @@ namespace SecretCellar.Settings_Panels
 {
     public partial class PanReports : UserControl
     {
+        private class Tuple
+        {
+            public string Name { get; set; }
+            public string Value { get; set; }
+        }
+
+        private string SalesTotal = "";
+        private string SalesTypes = "";
+        private string SalesItems = "";
         public PanReports()
         {
             InitializeComponent();
         }
 
         private class Sold {
-            public static int maxlength = 0 ;
-            public string name;
-            public uint Qty; 
-            public double Price;
-            public override string ToString() { return $"{name.PadRight(maxlength)}\t{Qty}\t{Price:C}"; }
+            public static int maxlength { get; set; } = 0 ;
+            public string Name { get; set; }
+            public uint Qty { get; set; }
+            public double Price { get; set; }
+            public override string ToString() { return $"{Name.PadRight(maxlength)}\t{Qty}\t{Price:C}"; }
         }
         private void btn_Run_Click(object sender, EventArgs e)
         {
@@ -35,7 +44,6 @@ namespace SecretCellar.Settings_Panels
             double localtax = 0.0;
             string Itemtype;
             Sold.maxlength = 0;
-            TxtSalesInvType.Text = "";
 
             foreach (Transaction t in transactions)
             {
@@ -51,6 +59,7 @@ namespace SecretCellar.Settings_Panels
 
                 foreach (Item i in t.Items)
                 {
+
                     totalSales += t.ItemPriceTotal(i);
                     bottleDeposit += t.Bottle_deposit;
                     netSales += t.ItemPrice(i) - i.SupplierPrice;
@@ -78,7 +87,7 @@ namespace SecretCellar.Settings_Panels
                         Sold.maxlength = Math.Max(Sold.maxlength, i.Name.Length);
                         items.Add(i.Barcode, new Sold
                         {
-                            name = i.Name,
+                            Name = i.Name,
                             Price = i.AdjustedTotal,
                             Qty = i.NumSold
                         });
@@ -86,20 +95,41 @@ namespace SecretCellar.Settings_Panels
                 }
             }
 
-            TxtSalesTotals.Text = $@"Total Sales:   {totalSales:C}
+            SalesTotal = $@"Total Sales:   {totalSales:C}
 Net Sales:     {netSales:C}
 Sales Tax:     {tax:C}
 Local Tax:     {localtax:C}
 Gross Cost:    {costSales:C}
 Bottle Deposit:{bottleDeposit:C}{"\r\n\r\n"}";
 
+            List<Tuple> row = new List<Tuple>();
+            row.Add(new Tuple { Name = "Total Sales", Value = $"{totalSales:C}" });
+            row.Add(new Tuple { Name = "Net Sales", Value = $"{netSales:C}" });
+            row.Add(new Tuple { Name = "Sales Tax", Value = $"{tax:C}" });
+            row.Add(new Tuple { Name = "Local Tax", Value = $"{localtax:C}" });
+            row.Add(new Tuple { Name = "Gross Cost", Value = $"{costSales:C}" });
+            row.Add(new Tuple { Name = "Bottle Deposit", Value = $"{bottleDeposit:C}" });
+
+            SalesTotal = "";
             foreach (KeyValuePair<string, double> kv in typeSales)
-                TxtSalesInvType.Text  += $"{$"{kv.Key}:",-7}\t{kv.Value:C}\r\n";
+            {
+                SalesTotal += $"{$"{kv.Key}:",-7}\t{kv.Value:C}\r\n";
+                row.Add(new Tuple { Name = Char.ToUpper(kv.Key[0]) + kv.Key.Substring(1).ToLower(), Value = $"{kv.Value:C}" });
+            }
+            DgvTotal.DataSource = row;
 
+            SalesTypes = "";
+            List <Tuple> sales = new List<Tuple>();
             foreach (KeyValuePair<string, double> kv in paymentTypes)
-                TxtSalesTotals.Text += $"{$"{kv.Key}:",-7}\t{kv.Value:C}\r\n";
+            {
+                SalesTypes += $"{$"{kv.Key}:",-7}\t{kv.Value:C}\r\n";
+                sales.Add(new Tuple { Name = Char.ToUpper(kv.Key[0]) + kv.Key.Substring(1).ToLower(), Value = kv.Value.ToString("C") });
+            }
 
-            TxtSalesVendor.Text = string.Join("\r\n", items.Values);
+            SalesItems = string.Join("\r\n", items.Values);
+
+            dgvTypes.DataSource = sales;
+            DgvItems.DataSource = items.Values.ToList();
         }
 
         public List<Inventory> Inv = null;
@@ -128,6 +158,7 @@ Bottle Deposit:{bottleDeposit:C}{"\r\n\r\n"}";
             {
                 Inv = DataAccess.instance.GetInventory();
             }
+
             TypeSummary v;
             foreach (Inventory i in Inv)
             {
@@ -160,9 +191,19 @@ Bottle Deposit:{bottleDeposit:C}{"\r\n\r\n"}";
             
         }
 
-        private void TxtSalesInvType_TextChanged(object sender, EventArgs e)
+        private void BtnInventoryCopy_Click(object sender, EventArgs e)
         {
+            Clipboard.SetText(SalesItems);
+        }
 
+        private void BtnTotalCopy_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetText(SalesTotal);
+        }
+
+        private void BtnInvTypeCopy_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetText(SalesTypes); 
         }
     }
 }
