@@ -375,23 +375,124 @@ namespace pos_core_api.ORM
 
         private void UpdateDiscount(Inventory inv)
         {
-            //Inserting into inventory_description
-            string sql = @"                   
-                DELETE FROM Discount_Inventory 
-                WHERE InventoryID = @InventoryID;
-            ";
-
-            inv.Discounts.ForEach(x => sql += @$"                   
-                INSERT INTO Discount_Inventory
-                (discountID, InventoryID) 
-                VALUES 
-                ({x.DiscountID}, @InventoryID);
+            uint discountId;
+            MySqlCommand cmd = db.CreateCommand(@"                   
+              SELECT i.discountid, i.inventoryid, i.typeid, dt.discountid type_discount, di.discountid inv_discount, enabled
+              FROM 
+               (
+                 SELECT Discountid, inventoryid, typeid 
+                 FROM   inventory_description
+                 CROSS JOIN
+                  (
+                    SELECT Discountid
+                    FROM discount
+                  ) d
+                 WHERE inventoryid = @invid
+               ) i
+               LEFT JOIN discount_type dt
+               ON i.Typeid = dt.typeid AND i.discountid = dt.discountid
+ 
+               LEFT JOIN discount_inventory di
+               ON i.inventoryID = di.inventoryid AND i.Discountid = di.discountid;
             ");
 
-            MySqlCommand cmd = db.CreateCommand(sql);
+            cmd.Parameters.Add(new MySqlParameter("invid", inv.Id));
 
-            cmd = db.CreateCommand(sql);
-            cmd.Parameters.Add(new MySqlParameter("InventoryID", inv.Id));
+            try
+            {
+                using MySqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    discountId  = reader.GetUInt32("discountid");
+
+                    Discount d = inv.Discounts.FirstOrDefault(x => x.DiscountID == discountId);
+                    if (d == null)
+                    {
+                        if (!reader.IsDBNull("type_discount"))
+                        {
+                            if (reader.IsDBNull("inv_discount"))
+                                InsertInvDiscount(inv.Id, discountId, false);
+                            else if (reader.GetUInt32("enabled") != 0)
+                                UpdateInvDiscount(inv.Id, discountId, false);
+                        }
+                        else if (!reader.IsDBNull("inv_discount"))
+                            DeleteInvDiscount(inv.Id, discountId);
+                    }
+                    else
+                    {
+                        if (reader.IsDBNull("type_discount"))
+                        {
+                            if(reader.IsDBNull("inv_discount"))
+                                InsertInvDiscount(inv.Id, discountId, true);
+                            else if(reader.GetUInt32("enabled") == 0)
+                                UpdateInvDiscount(inv.Id, discountId, true);
+                        }
+                        else if (!reader.IsDBNull("inv_discount") && reader.GetUInt32("enabled") == 0)
+                            DeleteInvDiscount(inv.Id, discountId);
+                    }
+                }
+            }
+            finally
+            {
+                db.CloseCommand(cmd);
+            }
+        }
+
+        private void DeleteInvDiscount(uint id, uint discountId)
+        {
+            MySqlCommand cmd = db.CreateCommand(@"                   
+                DELETE FROM discount_inventory 
+                WHERE Inventoryid = @inventoryid
+                AND   Discountid  = @discountid;
+            ");
+
+            cmd.Parameters.Add(new MySqlParameter("inventoryid", id));
+            cmd.Parameters.Add(new MySqlParameter("discountid", discountId));
+
+            try
+            {
+                cmd.ExecuteNonQuery();
+            }
+            finally
+            {
+                db.CloseCommand(cmd);
+            }
+        }
+
+        private void InsertInvDiscount(uint id, uint discountId, bool enabled)
+        {
+            MySqlCommand cmd = db.CreateCommand(@"                   
+                INSERT INTO discount_inventory 
+                 ( Inventoryid,  Discountid,  enabled)
+                VALUES
+                 (@inventoryid, @discountid, @enabled);
+            ");
+
+            cmd.Parameters.Add(new MySqlParameter("inventoryid", id));
+            cmd.Parameters.Add(new MySqlParameter("discountid", discountId));
+            cmd.Parameters.Add(new MySqlParameter("enabled", enabled ? 1 : 0));
+
+            try
+            {
+                cmd.ExecuteNonQuery();
+            }
+            finally
+            {
+                db.CloseCommand(cmd);
+            }
+        }
+        private void UpdateInvDiscount(uint id, uint discountId, bool enabled)
+        {
+            MySqlCommand cmd = db.CreateCommand(@"                   
+                UPDATE discount_inventory 
+                SET    enabled = :enabled
+                WHERE  inventoryid = @inventoryid
+                AND    discountid =  @discountid;
+            ");
+
+            cmd.Parameters.Add(new MySqlParameter("inventoryid", id));
+            cmd.Parameters.Add(new MySqlParameter("discountid", discountId));
+            cmd.Parameters.Add(new MySqlParameter("enabled", enabled ? 1 : 0));
 
             try
             {

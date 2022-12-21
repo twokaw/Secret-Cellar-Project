@@ -11,14 +11,15 @@ namespace SecretCellar
         private Transaction currentTransaction = null;
         private List<Supplier> suppliers = null;
         private List<InventoryType> types = null;
+        private List<Discount> discounts = null;
         private string descriptionAndBarcodeSearchText = "Enter Description/Barcode";
-
-        
+        private bool refreshingItems = false;
 
         public frmLookup() {
             InitializeComponent();
             suppliers = DataAccess.instance.GetSuppliers();
             types = DataAccess.instance.GetInventoryType();
+            discounts = DataAccess.instance.GetDiscount();
             txtlookup.Focus();
 
             RefreshInv();
@@ -29,6 +30,13 @@ namespace SecretCellar
             cbxSupplyFilter.Items.AddRange((string[])suppliers.Select(x => x.Name).ToArray());
             cbxTypeFilter.Items.Add("");
             cbxTypeFilter.Items.AddRange((string[])types.Select(x => x.TypeName).ToArray());
+
+
+            foreach (Discount discount in discounts)
+            {
+                checkListBox_Discounts.Items.Add(discount.DiscountName);
+                checkListBox_Discounts.SetItemChecked(checkListBox_Discounts.Items.Count - 1, false);
+            }
         }
 
         public void SubmitButtonText(string value = "Add to Cart") { btn_add.Text = value; }
@@ -91,7 +99,7 @@ namespace SecretCellar
             btn_update.Text = "Update Item";
             ToggleDeleteButton();
 
-            if (LookupView.SelectedRows.Count > 0)
+            if (!refreshingItems && LookupView.SelectedRows.Count > 0 )
             {
                 Inventory i = DataAccess.instance.GetInventory().First(x => x.Id == uint.Parse(LookupView.SelectedRows[0].Cells["id"].Value.ToString()));
                 txtName.Text = i.Name;
@@ -111,13 +119,23 @@ namespace SecretCellar
                 txt_order_qty.Text = i.OrderQty.ToString();
                 chk_hide_item.Checked = i.Hidden;
 
-                //CLEAR ALL THE DISCOUNTS THAT ARE IN THE DISCOUNTS LIST ALREADY
+                // CLEAR ALL THE DISCOUNTS THAT ARE IN THE DISCOUNTS LIST ALREADY
                 checkListBox_Discounts.Items.Clear();
 
+                InventoryType type;
                 //ADD EACH DISCOUNT OF THE MATCHED INVENTORY TYPE TO THE CHECK BOX LIST AND SET IT TO TRUE
-                foreach (Discount discount in types.FirstOrDefault(x => x.TypeName == i.ItemType)?.Discount) {
+                foreach (Discount discount in discounts)
+                {
                     checkListBox_Discounts.Items.Add(discount.DiscountName);
-                    checkListBox_Discounts.SetItemChecked(checkListBox_Discounts.Items.Count - 1, true);
+
+                    if(i.Discounts.Exists(x=>x.DiscountName == discount.DiscountName))
+                        checkListBox_Discounts.SetItemChecked(checkListBox_Discounts.Items.Count - 1, true);
+                    /*
+                    type = types.FirstOrDefault(x => x.TypeName == i.ItemType);
+
+                    if (type?.Discount.FirstOrDefault(x => x.DiscountName == discount.DiscountName) != null)
+                        checkListBox_Discounts.SetItemChecked(checkListBox_Discounts.Items.Count - 1, true);
+                    */
                 }
             }
         }
@@ -250,13 +268,19 @@ namespace SecretCellar
                         i.ItemType = cboType.Text;
                         i.TypeID = types.First(x => x.TypeName == cboType.Text).TypeId;
                         i.SupplierID = suppliers.First(x => x.Name == cbo_Supplier.Text).SupplierID;
+
+                        i.Discounts.Clear();
+
+                        foreach(string disc in checkListBox_Discounts.CheckedItems)
+                            i.Discounts.Add(discounts.First(x => x.DiscountName == disc));
+                        
                         DataAccess.instance.UpdateItem(i);
 
                         RefreshInv();
                     }
                 }
                 else {
-                    MessageBox.Show("Name and Barcode cannot be empty.", "Error");
+                     MessageBox.Show("Name and Barcode cannot be empty.", "Error");
 				}
             }
         }
@@ -396,32 +420,37 @@ namespace SecretCellar
         }
 
         public void RefreshInv() {
-            int quantity;
-
-            if (cbxOnlyItemsWithInventory.Checked) { quantity = 0; }
-            else { quantity = -1; }
             if (LookupView != null)
-                LookupView.DataSource = DataAccess.instance.GetInventory().Where(x => (x.Name.IndexOf(txtlookup.Text, StringComparison.OrdinalIgnoreCase) >= 0
-                                                            || x.Barcode.IndexOf(txtlookup.Text, StringComparison.OrdinalIgnoreCase) >= 0
-                                                            || txtlookup.Text == descriptionAndBarcodeSearchText
-                                                            || txtlookup.Text == "")
-                && (cbxTypeFilter.Text == "" || cbxTypeFilter.Text == x.ItemType)
-                && (cbxSupplyFilter.Text == "" || suppliers.First(s => s.Name == cbxSupplyFilter.Text).SupplierID == x.SupplierID)
-                && x.Hidden == chk_box_show_hidden.Checked).
-                   Select(x => new {
-                       Name = x.Name,
-                       Id = x.Id,
-                       ItemType = x.ItemType,
-                       Qty = x.Qty,
-                       Barcode = x.Barcode,
-                       Price = x.DiscountPrice > 0? x.DiscountPrice : x.Price,
-                       minqty = x.InvMin,
-                       maxqty = x.InvMax,
-                       orderqty = x.OrderQty
-                   }).
-                   Where(x => x.Qty > quantity).
-                   OrderBy(x => x.Name).
-                   ToList();
+            {
+                refreshingItems = true;
+                int quantity = cbxOnlyItemsWithInventory.Checked ? 0 : -1;
+
+                LookupView.DataSource = DataAccess.instance.GetInventory()
+                    .Where(x => (x.Name.IndexOf(txtlookup.Text, StringComparison.OrdinalIgnoreCase) >= 0
+                              || x.Barcode.IndexOf(txtlookup.Text, StringComparison.OrdinalIgnoreCase) >= 0
+                              || txtlookup.Text == descriptionAndBarcodeSearchText
+                              || txtlookup.Text == "")
+                    && (cbxTypeFilter.Text == "" || cbxTypeFilter.Text == x.ItemType)
+                    && (cbxSupplyFilter.Text == "" || suppliers.First(s => s.Name == cbxSupplyFilter.Text).SupplierID == x.SupplierID)
+                    && x.Hidden == chk_box_show_hidden.Checked).
+                       Select(x => new
+                       {
+                           x.Name,
+                           x.Id,
+                           x.ItemType,
+                           x.Qty,
+                           x.Barcode,
+                           Price = x.DiscountPrice > 0 ? x.DiscountPrice : x.Price,
+                           x.InvMin,
+                           x.InvMax,
+                           x.OrderQty
+                       }).
+                       Where(x => x.Qty > quantity).
+                       OrderBy(x => x.Name).
+                       ToList();
+
+                refreshingItems = false;
+            }
         }
 
         private void LookupView_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -430,26 +459,21 @@ namespace SecretCellar
                 LookupView_SelectionChanged(sender, null);
         }
 
-
         private void btn_close_Click(object sender, EventArgs e)
         {
             txtlookup.Text = "";
             this.Close();
         }
 
-
 		private void button_DeleteItem_Click(object sender, EventArgs e) {
-            if (LookupView.SelectedRows.Count > 0) {
-                if (frmManagerOverride.DidOverride("Delete Item")) {
-                    string barcode = LookupView.SelectedRows[0].Cells["Barcode"].Value.ToString();
-                    Inventory item = DataAccess.instance.GetItem(barcode);
+            if (LookupView.SelectedRows.Count > 0 
+            && frmManagerOverride.DidOverride("Delete Item")) {
+                string barcode = LookupView.SelectedRows[0].Cells["Barcode"].Value.ToString();
+                Inventory item = DataAccess.instance.GetItem(barcode);
 
-                    DataAccess.instance.DeleteItem(item);
-                }
-                
-			}
+                DataAccess.instance.DeleteItem(item);
+            }
 		}
-
 
         /// <summary>
         /// Looks through all the suspended transactions's items to see if any of the id's match the selected item's id.
@@ -463,14 +487,16 @@ namespace SecretCellar
 
             if(suspendedTransactions != null)
             {
-                foreach (Transaction suspendedTransaction in suspendedTransactions) {
-                    foreach (Item item in suspendedTransaction.Items) {
+                foreach (Transaction suspendedTransaction in suspendedTransactions) 
+                {
+                    foreach (Item item in suspendedTransaction.Items) 
+                    {
                         uint selectedItemId = uint.Parse(LookupView.SelectedRows[0].Cells["Id"].Value.ToString());
 
                         if (item.Id == selectedItemId) { selectedItemIsInSuspendedTransaction = true; break; }
                     }
 
-                    if (selectedItemIsInSuspendedTransaction) { break; }
+                    if (selectedItemIsInSuspendedTransaction) break; 
                 }
             }
 
