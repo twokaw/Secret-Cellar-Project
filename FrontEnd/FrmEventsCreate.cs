@@ -5,7 +5,7 @@ using Shared;
 
 
 namespace SecretCellar {
-	public partial class frmEventsCreate : Form {
+	public partial class frmEventsCreate : ManagedForm {
 		public frmEventsCreate() {
 			InitializeComponent();
 

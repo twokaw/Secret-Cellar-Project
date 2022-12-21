@@ -4,7 +4,7 @@ using Shared;
 
 
 namespace SecretCellar {
-    public partial class frmManagerOverride : Form {
+    public partial class frmManagerOverride : ManagedForm {
         public frmManagerOverride(string title) {
             InitializeComponent();
             Text = title;

@@ -5,7 +5,7 @@ using Shared;
 
 
 namespace SecretCellar {
-	public partial class frmEventsEdit : Form {
+	public partial class frmEventsEdit : ManagedForm {
 		private Event _eventToEdit;
 		private uint _id = 0;
 

@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 
 namespace SecretCellar {
-	public partial class frmEventsPreviousEvent : Form {
+	public partial class frmEventsPreviousEvent : ManagedForm {
 		List<Event> events = new List<Event>();
 
 
