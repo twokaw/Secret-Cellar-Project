@@ -8,155 +8,163 @@ namespace SecretCellar
 {
     public partial class ManagedForm : Form
     {
-        private static Color ButtonFontColor = DefaultButtonFontColor();
-        private static Color ButtonBackColor = DefaultButtonColor();
-        private static Color FontColor = DefaultFontColor();
-        private static Color CommonBackColor = DefaultColor();
-        private static Font CommonFont = Default_Font();
-        private static DataGridViewCellStyle CommonCell = Default_Cell_Style();
-        private static readonly List<ManagedForm> Forms = new List<ManagedForm>();
-        private static Color CommonDataGridViewColor = Default_DataGridView_Color();
+        private static readonly List<ManagedForm> _forms = new List<ManagedForm>();
 
-        public static DataGridViewCellStyle DefaultCellStyle
-        {
-            get
-            {
-                return CommonCell;
+        public static Color BackgroundColor {
+            get { return Properties.Settings.Default.BackgroundColor; }
+            set {
+                Properties.Settings.Default.BackgroundColor = value;
+
+                _forms.ForEach(x => x.BackColor = value);
             }
         }
-        public ManagedForm()
-        {
-            Forms.Add(this);
-            Console.WriteLine($"Constructed: {Forms.Count}");
-            base.BackColor = CommonBackColor;
-            foreach (DataGridView c in base.Controls)
-            {
-                c.DefaultCellStyle = CommonCell;
+        public static Color PanelColor {
+            get { return Properties.Settings.Default.PanelColor; }
+            set {
+                Properties.Settings.Default.PanelColor = value;
+
+                foreach (ManagedForm f in _forms) {
+                    foreach (Panel panel in f.Controls.OfType<Panel>()) {
+                        panel.BackColor = value;
+                    }
+                }
             }
-            base.Font = CommonFont;
+        }
+        public static Font FontStyle {
+            get { return new Font("Microsoft Sans Serif", 12, System.Drawing.FontStyle.Bold, GraphicsUnit.Point, (byte)0); }
+            set {
+                Properties.Settings.Default.FontSet = value;
+
+                foreach (ManagedForm f in _forms) {
+                    f.Font = value;
+
+                    foreach (Control c in f.Controls) {
+                        c.Font = value;
+                    }
+                }
+            }
+        }
+        public static Color FontColor {
+            get { return Properties.Settings.Default.FontColor; }
+            set {
+                Properties.Settings.Default.FontColor = value;
+
+                foreach (ManagedForm form in _forms) {
+                    form.ForeColor = value;
+
+                    foreach (Control control in form.Controls) {
+                        control.ForeColor = value;
+                    }
+                }
+            }
+        }
+        public static Color ButtonColor {
+            get { return Properties.Settings.Default.ButtonColor; }
+            set {
+                Properties.Settings.Default.ButtonColor = value;
+
+                foreach (ManagedForm form in _forms) {
+                    foreach (Control control in form.Controls.OfType<Button>()) {
+                        control.BackColor = value;
+                    }
+                }
+            }
+        }
+        public static Color ButtonFontColor {
+            get { return Properties.Settings.Default.ButtonFontColor; }
+            set {
+                Properties.Settings.Default.ButtonFontColor = value;
+
+                foreach (ManagedForm form in _forms) {
+                    foreach (Control control in form.Controls.OfType<Button>()) {
+                        control.ForeColor = value;
+                    }
+                }
+            }
+        }
+        public static Color DataGridViewColor {
+            get { return Properties.Settings.Default.GridColor; }
+            set {
+                Properties.Settings.Default.GridColor = value;
+
+                foreach (ManagedForm f in _forms) {
+                    foreach (DataGridView c in f.Controls.OfType<DataGridView>()) {
+                        c.BackgroundColor = value;
+                    }
+                }
+            }
+        }
+        public static Color DataGridViewRowColor {
+            get { return Properties.Settings.Default.GridRowColor; }
+            set {
+                Properties.Settings.Default.GridRowColor = value;
+
+                foreach (ManagedForm f in _forms) {
+                    foreach (DataGridView c in f.Controls.OfType<DataGridView>()) {
+                        c.RowsDefaultCellStyle.BackColor = value;
+                    }
+                }
+            }
+        }
+        public static Color DataGridViewAlternateRowColor {
+            get { return Properties.Settings.Default.GridAlternateRowColor; }
+            set {
+                Properties.Settings.Default.GridAlternateRowColor = value;
+
+                foreach (ManagedForm f in _forms) {
+                    foreach (DataGridView c in f.Controls.OfType<DataGridView>()) {
+                        c.AlternatingRowsDefaultCellStyle.BackColor = value;
+                    }
+                }
+            }
+        }
+        public static DataGridViewCellStyle CellStyle {
+            get {
+                //TODO Grab the row, alternate row, and the background color and set it to this style before returning it.
+                return new DataGridViewCellStyle();
+            }
+        }
+
+
+        public ManagedForm() {
+            _forms.Add(this);
+            Console.WriteLine($"Constructed: {_forms.Count}");
+            base.BackColor = BackgroundColor;
+
+            foreach (DataGridView c in base.Controls) {
+                c.DefaultCellStyle = CellStyle;
+            }
+
+            base.Font = FontStyle;
             base.FormClosed += ManagedForm_FormClosed;
         }
 
-        private void ManagedForm_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            Forms.Remove(this);
+
+        private void ManagedForm_FormClosed(object sender, FormClosedEventArgs e) {
+            _forms.Remove(this);
             //if(Forms.Count == 0 )
             //    CommonFont = new Font("Microsoft Sans Serif", 12, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            Console.WriteLine($"Deconstructed: {Forms.Count}");
+            Console.WriteLine($"Deconstructed: {_forms.Count}");
         }
 
-        private static Color DefaultColor()
-        {
-            return Properties.Settings.Default.BackgroundColor;
+
+        /// <summary>
+        /// Sets the properties to default then updates the forms.
+        /// </summary>
+        public static void SetPropertiesToDefault() {
+            BackgroundColor = Properties.Settings.Default.DefaultBackgroundColor;
+            PanelColor = Properties.Settings.Default.DefaultPanelColor;
+            //FontStyle = Properties.Settings.Default.DefaultFont;
+            FontColor = Properties.Settings.Default.DefaultFontColor;
+            ButtonColor = Properties.Settings.Default.DefaultButtonColor;
+            ButtonFontColor = Properties.Settings.Default.DefaultButtonFontColor;
+            DataGridViewColor = Properties.Settings.Default.DefaultGridColor;
+            DataGridViewRowColor = Properties.Settings.Default.DefaultGridRowColor;
+            DataGridViewAlternateRowColor = Properties.Settings.Default.DefaultGridAlternateRowColor;
         }
 
-        private static Color DefaultFontColor()
-        {
-            return Properties.Settings.Default.FontColor;
-        }
 
-        private static Color DefaultButtonColor()
-        {
-            return Properties.Settings.Default.DefaultButtonColor;
-        }
-
-        private static Color DefaultButtonFontColor()
-        {
-            return Properties.Settings.Default.DefaultButtonFontColor;
-        }
-
-        public static Color MainWindowColor
-        {
-            get
-            {
-                return CommonBackColor;
-            }
-            set
-            {
-                CommonBackColor = value;
-                Forms.ForEach(x => x.BackColor = CommonBackColor);
-            }
-        }
-
-        private static Font Default_Font()
-        {
-            return new Font("Microsoft Sans Serif", 12, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-        }
-
-        public static Font CommonFontSetter
-        {
-            get
-                {
-                return CommonFont;
-            }
-            set
-            {
-                CommonFont = value;
-                foreach (ManagedForm f in Forms)
-                {
-                    f.Font = CommonFont;
-
-                    foreach (Control c in f.Controls)
-                    {
-                        c.Font = CommonFont;
-                    }
-                }
-            }
-        }
-        private static DataGridViewCellStyle Default_Cell_Style()
-        {
-            return new DataGridViewCellStyle();
-        }
-        public static void SetDefaultCellStyle(DataGridViewCellStyle cell_style)
-        {
-
-            CommonCell = cell_style;
-            foreach (ManagedForm f in Forms)
-            {
-
-
-                foreach (DataGridView c in f.Controls.OfType<DataGridView>())
-                {
-                    c.DefaultCellStyle = CommonCell;
-                }
-
-            }
-        }
-
-        public static Color Default_DataGridView_Color()
-        {
-            return Properties.Settings.Default.GridColor;
-        }
-        public static Color DataGridViewBackColor
-        {
-            get
-            {
-                return CommonDataGridViewColor;
-            }
-            set
-            {
-                CommonDataGridViewColor = value;
-                foreach (ManagedForm f in Forms)
-                {
-
-                    foreach (DataGridView c in f.Controls.OfType<DataGridView>())
-                    {
-                        c.BackgroundColor = value;
-                    }
-
-                }
-            }
-        }
-
-        public static void reset_Default_Properties()
-        {   
-                MainWindowColor = Properties.Settings.Default.DefaultBackgroundColor;
-                DataGridViewBackColor = Properties.Settings.Default.DefaultGridColor;
-                CommonFontSetter = Properties.Settings.Default.DefaultFont;
-        }
-
-        private void InitializeComponent()
-        {
+        private void InitializeComponent() {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ManagedForm));
             this.SuspendLayout();
             // 

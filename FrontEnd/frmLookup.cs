@@ -467,13 +467,15 @@ namespace SecretCellar
 
 		private void button_DeleteItem_Click(object sender, EventArgs e) {
             if (LookupView.SelectedRows.Count > 0 
-            && frmManagerOverride.DidOverride("Delete Item")) {
+            && frmManagerOverride.DidOverride("Delete Item")) 
+            {
                 string barcode = LookupView.SelectedRows[0].Cells["Barcode"].Value.ToString();
                 Inventory item = DataAccess.instance.GetItem(barcode);
 
                 DataAccess.instance.DeleteItem(item);
-            }
-		}
+                RefreshInv();
+            }   
+        }
 
         /// <summary>
         /// Looks through all the suspended transactions's items to see if any of the id's match the selected item's id.

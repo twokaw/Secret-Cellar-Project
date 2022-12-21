@@ -7,7 +7,7 @@ using System.Linq;
 
 
 namespace SecretCellar {
-	public partial class frmEventsAll : Form {
+	public partial class frmEventsAll : ManagedForm {
         public DateTime selectedDate = new DateTime(0001, 1, 1);
 
 

@@ -9,7 +9,7 @@ using Shared;
 
 
 namespace SecretCellar {
-	public partial class frmInvoices : Form {
+	public partial class frmInvoices : ManagedForm {
 		private readonly string _defaultFilterString = "Filter...";
 		private readonly frmTransaction _frmTransaction;
 

@@ -8,8 +8,7 @@ using Shared;
 
 namespace SecretCellar
 {
-	public partial class frmSuspendedTransactions : Form
-	{
+	public partial class frmSuspendedTransactions : ManagedForm {
 		private readonly frmTransaction TRANSACTION_FORM;
 		private readonly Transaction CURRENT_TRANSACTION;
 
@@ -149,9 +148,20 @@ namespace SecretCellar
 		/// </summary>
 		/// <param name="items"></param>
 		private void PopulateGrid(List<Item> items) {
-			dataGridViewSuspendedTransaction.DataSource = items
+            List<InventoryType> types = DataAccess.instance.GetInventoryType();
+            List<Tax> taxes = DataAccess.instance.GetTax();
+
+            dataGridViewSuspendedTransaction.DataSource = items
 			.Select(x => {
-				double bottleDeposit = (x.NumSold * x.Bottles * .05);
+                InventoryType inventoryType = types.Find((t) => x.ItemType == t.TypeName);
+                Tax tax = null;
+
+                if (inventoryType != null) {
+                    tax = taxes.Find((t) => { return inventoryType.IdTax == t.IdTax; });
+                }
+
+                double taxBottleDeposit = tax != null ? tax.BottleDeposit : 0;
+                double bottleDeposit = x.NumSold * x.Bottles * taxBottleDeposit;
                 double itemPrice = x.DiscountPrice > 0 ? x.DiscountPrice : (x.Price * (1 - x.Discount));
 
                 return new {

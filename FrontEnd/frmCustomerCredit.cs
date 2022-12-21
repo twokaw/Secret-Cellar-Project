@@ -3,7 +3,7 @@ using System.Windows.Forms;
 using Shared;
 
 namespace SecretCellar {
-	public partial class frmCustomerCredit : Form {
+	public partial class frmCustomerCredit : ManagedForm {
 		Customer customer = null;
 		double oldCredit = 0;
 		double newCredit = 0;

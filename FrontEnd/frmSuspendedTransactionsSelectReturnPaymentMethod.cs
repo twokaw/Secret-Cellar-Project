@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SecretCellar {
-	public partial class frmSuspendedTransactionsSelectReturnPaymentMethod : Form {
+	public partial class frmSuspendedTransactionsSelectReturnPaymentMethod : ManagedForm {
 		private Shared.Transaction transaction = null;
 		private double paymentsTotal = 0;
 		private bool _didDeleteTransaction = false;

@@ -51,7 +51,7 @@ namespace SecretCellar {
             this.label_previousEventName.Location = new System.Drawing.Point(3, 14);
             this.label_previousEventName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_previousEventName.Name = "label_previousEventName";
-            this.label_previousEventName.Size = new System.Drawing.Size(138, 47);
+            this.label_previousEventName.Size = new System.Drawing.Size(92, 31);
             this.label_previousEventName.TabIndex = 0;
             this.label_previousEventName.Text = "label1";
             // 
@@ -60,10 +60,10 @@ namespace SecretCellar {
             this.label_totalSoldL.AutoSize = true;
             this.label_totalSoldL.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_totalSoldL.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label_totalSoldL.Location = new System.Drawing.Point(18, 103);
+            this.label_totalSoldL.Location = new System.Drawing.Point(20, 77);
             this.label_totalSoldL.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_totalSoldL.Name = "label_totalSoldL";
-            this.label_totalSoldL.Size = new System.Drawing.Size(172, 37);
+            this.label_totalSoldL.Size = new System.Drawing.Size(119, 25);
             this.label_totalSoldL.TabIndex = 1;
             this.label_totalSoldL.Text = "Total Sold";
             // 
@@ -72,10 +72,10 @@ namespace SecretCellar {
             this.label_preorderSoldL.AutoSize = true;
             this.label_preorderSoldL.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_preorderSoldL.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label_preorderSoldL.Location = new System.Drawing.Point(18, 240);
+            this.label_preorderSoldL.Location = new System.Drawing.Point(20, 187);
             this.label_preorderSoldL.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_preorderSoldL.Name = "label_preorderSoldL";
-            this.label_preorderSoldL.Size = new System.Drawing.Size(244, 37);
+            this.label_preorderSoldL.Size = new System.Drawing.Size(168, 25);
             this.label_preorderSoldL.TabIndex = 2;
             this.label_preorderSoldL.Text = "Pre Order Sold";
             // 
@@ -84,10 +84,10 @@ namespace SecretCellar {
             this.label_atDoorSoldL.AutoSize = true;
             this.label_atDoorSoldL.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_atDoorSoldL.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label_atDoorSoldL.Location = new System.Drawing.Point(18, 377);
+            this.label_atDoorSoldL.Location = new System.Drawing.Point(20, 297);
             this.label_atDoorSoldL.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_atDoorSoldL.Name = "label_atDoorSoldL";
-            this.label_atDoorSoldL.Size = new System.Drawing.Size(212, 37);
+            this.label_atDoorSoldL.Size = new System.Drawing.Size(145, 25);
             this.label_atDoorSoldL.TabIndex = 3;
             this.label_atDoorSoldL.Text = "At Door Sold";
             // 
@@ -97,10 +97,10 @@ namespace SecretCellar {
             this.label_totalProfitL.AutoSize = true;
             this.label_totalProfitL.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_totalProfitL.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label_totalProfitL.Location = new System.Drawing.Point(394, 103);
+            this.label_totalProfitL.Location = new System.Drawing.Point(258, 77);
             this.label_totalProfitL.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_totalProfitL.Name = "label_totalProfitL";
-            this.label_totalProfitL.Size = new System.Drawing.Size(185, 37);
+            this.label_totalProfitL.Size = new System.Drawing.Size(128, 25);
             this.label_totalProfitL.TabIndex = 4;
             this.label_totalProfitL.Text = "Total Profit";
             // 
@@ -110,10 +110,10 @@ namespace SecretCellar {
             this.label_preorderProfitL.AutoSize = true;
             this.label_preorderProfitL.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_preorderProfitL.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label_preorderProfitL.Location = new System.Drawing.Point(394, 240);
+            this.label_preorderProfitL.Location = new System.Drawing.Point(258, 187);
             this.label_preorderProfitL.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_preorderProfitL.Name = "label_preorderProfitL";
-            this.label_preorderProfitL.Size = new System.Drawing.Size(257, 37);
+            this.label_preorderProfitL.Size = new System.Drawing.Size(177, 25);
             this.label_preorderProfitL.TabIndex = 5;
             this.label_preorderProfitL.Text = "Pre Order Profit";
             // 
@@ -123,10 +123,10 @@ namespace SecretCellar {
             this.label_atDoorProfitL.AutoSize = true;
             this.label_atDoorProfitL.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_atDoorProfitL.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label_atDoorProfitL.Location = new System.Drawing.Point(394, 377);
+            this.label_atDoorProfitL.Location = new System.Drawing.Point(258, 297);
             this.label_atDoorProfitL.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_atDoorProfitL.Name = "label_atDoorProfitL";
-            this.label_atDoorProfitL.Size = new System.Drawing.Size(225, 37);
+            this.label_atDoorProfitL.Size = new System.Drawing.Size(154, 25);
             this.label_atDoorProfitL.TabIndex = 6;
             this.label_atDoorProfitL.Text = "At Door Profit";
             // 
@@ -135,10 +135,10 @@ namespace SecretCellar {
             this.label_totalSold.AutoSize = true;
             this.label_totalSold.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_totalSold.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label_totalSold.Location = new System.Drawing.Point(21, 142);
+            this.label_totalSold.Location = new System.Drawing.Point(23, 116);
             this.label_totalSold.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_totalSold.Name = "label_totalSold";
-            this.label_totalSold.Size = new System.Drawing.Size(134, 29);
+            this.label_totalSold.Size = new System.Drawing.Size(90, 20);
             this.label_totalSold.TabIndex = 7;
             this.label_totalSold.Text = "Total Sold";
             // 
@@ -147,10 +147,10 @@ namespace SecretCellar {
             this.label_preorderSold.AutoSize = true;
             this.label_preorderSold.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_preorderSold.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label_preorderSold.Location = new System.Drawing.Point(21, 278);
+            this.label_preorderSold.Location = new System.Drawing.Point(23, 225);
             this.label_preorderSold.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_preorderSold.Name = "label_preorderSold";
-            this.label_preorderSold.Size = new System.Drawing.Size(190, 29);
+            this.label_preorderSold.Size = new System.Drawing.Size(127, 20);
             this.label_preorderSold.TabIndex = 8;
             this.label_preorderSold.Text = "Pre Order Sold";
             // 
@@ -159,10 +159,10 @@ namespace SecretCellar {
             this.label_atDoorSold.AutoSize = true;
             this.label_atDoorSold.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_atDoorSold.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label_atDoorSold.Location = new System.Drawing.Point(21, 415);
+            this.label_atDoorSold.Location = new System.Drawing.Point(23, 335);
             this.label_atDoorSold.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_atDoorSold.Name = "label_atDoorSold";
-            this.label_atDoorSold.Size = new System.Drawing.Size(161, 29);
+            this.label_atDoorSold.Size = new System.Drawing.Size(112, 20);
             this.label_atDoorSold.TabIndex = 9;
             this.label_atDoorSold.Text = "At Door Sold";
             // 
@@ -172,10 +172,10 @@ namespace SecretCellar {
             this.label_totalProfit.AutoSize = true;
             this.label_totalProfit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_totalProfit.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label_totalProfit.Location = new System.Drawing.Point(396, 142);
+            this.label_totalProfit.Location = new System.Drawing.Point(260, 116);
             this.label_totalProfit.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_totalProfit.Name = "label_totalProfit";
-            this.label_totalProfit.Size = new System.Drawing.Size(142, 29);
+            this.label_totalProfit.Size = new System.Drawing.Size(97, 20);
             this.label_totalProfit.TabIndex = 10;
             this.label_totalProfit.Text = "Total Profit";
             // 
@@ -185,10 +185,10 @@ namespace SecretCellar {
             this.label_preorderProfit.AutoSize = true;
             this.label_preorderProfit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_preorderProfit.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label_preorderProfit.Location = new System.Drawing.Point(396, 278);
+            this.label_preorderProfit.Location = new System.Drawing.Point(260, 225);
             this.label_preorderProfit.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_preorderProfit.Name = "label_preorderProfit";
-            this.label_preorderProfit.Size = new System.Drawing.Size(198, 29);
+            this.label_preorderProfit.Size = new System.Drawing.Size(134, 20);
             this.label_preorderProfit.TabIndex = 11;
             this.label_preorderProfit.Text = "Pre Order Profit";
             // 
@@ -198,10 +198,10 @@ namespace SecretCellar {
             this.label_atDoorProfit.AutoSize = true;
             this.label_atDoorProfit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_atDoorProfit.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label_atDoorProfit.Location = new System.Drawing.Point(396, 415);
+            this.label_atDoorProfit.Location = new System.Drawing.Point(260, 335);
             this.label_atDoorProfit.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_atDoorProfit.Name = "label_atDoorProfit";
-            this.label_atDoorProfit.Size = new System.Drawing.Size(169, 29);
+            this.label_atDoorProfit.Size = new System.Drawing.Size(119, 20);
             this.label_atDoorProfit.TabIndex = 12;
             this.label_atDoorProfit.Text = "At Door Profit";
             // 
@@ -209,10 +209,10 @@ namespace SecretCellar {
             // 
             this.button_close.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.button_close.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_close.Location = new System.Drawing.Point(12, 482);
-            this.button_close.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button_close.Location = new System.Drawing.Point(13, 388);
+            this.button_close.Margin = new System.Windows.Forms.Padding(2);
             this.button_close.Name = "button_close";
-            this.button_close.Size = new System.Drawing.Size(270, 85);
+            this.button_close.Size = new System.Drawing.Size(152, 54);
             this.button_close.TabIndex = 13;
             this.button_close.Text = "Close Window";
             this.button_close.UseVisualStyleBackColor = true;
@@ -220,10 +220,10 @@ namespace SecretCellar {
             // 
             // frmEventsPreviousEvent
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(231)))), ((int)(((byte)(206)))));
-            this.ClientSize = new System.Drawing.Size(662, 582);
+            this.ClientSize = new System.Drawing.Size(483, 457);
             this.Controls.Add(this.button_close);
             this.Controls.Add(this.label_previousEventName);
             this.Controls.Add(this.label_atDoorProfit);
