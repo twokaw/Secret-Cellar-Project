@@ -51,7 +51,7 @@
             this.btnDiscount = new System.Windows.Forms.Button();
             this.btnVoidTrx = new System.Windows.Forms.Button();
             this.btnDeleteItem = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel_1 = new System.Windows.Forms.Panel();
             this.lbl_item_total = new System.Windows.Forms.Label();
             this.txt_itemTotal = new SecretCellar.CurrencyBox();
             this.lblShip = new System.Windows.Forms.Label();
@@ -88,7 +88,7 @@
             this.pb_settings = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            this.panel1.SuspendLayout();
+            this.panel_1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pic_transaction)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pic_susp)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb_settings)).BeginInit();
@@ -346,30 +346,30 @@
             this.btnDeleteItem.UseVisualStyleBackColor = false;
             this.btnDeleteItem.Click += new System.EventHandler(this.btnDeleteItem_Click);
             // 
-            // panel1
+            // panel_1
             // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.lbl_item_total);
-            this.panel1.Controls.Add(this.txt_itemTotal);
-            this.panel1.Controls.Add(this.lblShip);
-            this.panel1.Controls.Add(this.txt_Ship);
-            this.panel1.Controls.Add(this.txt_TransTotal);
-            this.panel1.Controls.Add(this.txt_transTax);
-            this.panel1.Controls.Add(this.txt_transDiscount);
-            this.panel1.Controls.Add(this.txt_transBTLDPT);
-            this.panel1.Controls.Add(this.txt_transSubTotal);
-            this.panel1.Controls.Add(this.LB_Discount);
-            this.panel1.Controls.Add(this.LB_TOTAL);
-            this.panel1.Controls.Add(this.LB_BTLDPT);
-            this.panel1.Controls.Add(this.LB_Tax);
-            this.panel1.Controls.Add(this.LB_SubTotal);
-            this.panel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panel1.Location = new System.Drawing.Point(1162, 668);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(338, 356);
-            this.panel1.TabIndex = 13;
+            this.panel_1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel_1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel_1.Controls.Add(this.lbl_item_total);
+            this.panel_1.Controls.Add(this.txt_itemTotal);
+            this.panel_1.Controls.Add(this.lblShip);
+            this.panel_1.Controls.Add(this.txt_Ship);
+            this.panel_1.Controls.Add(this.txt_TransTotal);
+            this.panel_1.Controls.Add(this.txt_transTax);
+            this.panel_1.Controls.Add(this.txt_transDiscount);
+            this.panel_1.Controls.Add(this.txt_transBTLDPT);
+            this.panel_1.Controls.Add(this.txt_transSubTotal);
+            this.panel_1.Controls.Add(this.LB_Discount);
+            this.panel_1.Controls.Add(this.LB_TOTAL);
+            this.panel_1.Controls.Add(this.LB_BTLDPT);
+            this.panel_1.Controls.Add(this.LB_Tax);
+            this.panel_1.Controls.Add(this.LB_SubTotal);
+            this.panel_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.panel_1.Location = new System.Drawing.Point(1162, 668);
+            this.panel_1.Margin = new System.Windows.Forms.Padding(2);
+            this.panel_1.Name = "panel_1";
+            this.panel_1.Size = new System.Drawing.Size(338, 356);
+            this.panel_1.TabIndex = 13;
             // 
             // lbl_item_total
             // 
@@ -849,7 +849,7 @@
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.lbl_BARCODE);
             this.Controls.Add(this.txtBarcode);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.panel_1);
             this.Controls.Add(this.btnDiscount);
             this.Controls.Add(this.btnVoidTrx);
             this.Controls.Add(this.btnDeleteItem);
@@ -867,8 +867,8 @@
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmTransaction_FormClosed);
             this.Load += new System.EventHandler(this.frmTransaction_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.panel_1.ResumeLayout(false);
+            this.panel_1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pic_transaction)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pic_susp)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb_settings)).EndInit();
@@ -887,7 +887,7 @@
         private System.Windows.Forms.Button btnDiscount;
         private System.Windows.Forms.Button btnVoidTrx;
         private System.Windows.Forms.Button btnDeleteItem;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel_1;
         private System.Windows.Forms.Label LB_TOTAL;
         private System.Windows.Forms.Label LB_BTLDPT;
         private System.Windows.Forms.Label LB_Tax;
