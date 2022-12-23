@@ -30,6 +30,7 @@ namespace SecretCellar
                 }
             }
         }
+        
         public static Font FontStyle {
             get { return new Font("Microsoft Sans Serif", 12, System.Drawing.FontStyle.Bold, GraphicsUnit.Point, (byte)0); }
             set {
@@ -44,6 +45,7 @@ namespace SecretCellar
                 }
             }
         }
+        
         public static Color FontColor {
             get { return Properties.Settings.Default.FontColor; }
             set {
@@ -126,17 +128,13 @@ namespace SecretCellar
         }
 
 
-        public ManagedForm() {
+        public ManagedForm()
+        {
+
             _forms.Add(this);
             Console.WriteLine($"Constructed: {_forms.Count}");
-            base.BackColor = BackgroundColor;
-
-            foreach (DataGridView c in base.Controls) {
-                c.DefaultCellStyle = CellStyle;
-            }
-
-            base.Font = FontStyle;
             base.FormClosed += ManagedForm_FormClosed;
+            base.Load += ManagedForm_Load;
         }
 
 
@@ -170,11 +168,43 @@ namespace SecretCellar
             // 
             // ManagedForm
             // 
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(231)))), ((int)(((byte)(206)))));
             this.ClientSize = new System.Drawing.Size(278, 244);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ManagedForm";
+            this.Load += new System.EventHandler(this.ManagedForm_Load);
             this.ResumeLayout(false);
+
+        }
+
+        private void ManagedForm_Load(object sender, EventArgs e)
+        {
+
+            base.BackColor = BackgroundColor;
+            base.Font = FontStyle;
+
+            base.ForeColor = FontColor;
+
+            foreach (Control c in base.Controls)
+            {
+                c.Font = FontStyle;
+                
+                if (c.GetType() == typeof(DataGridView))
+                {
+                    ((DataGridView)c).BackgroundColor = DataGridViewColor;
+                    ((DataGridView)c).DefaultCellStyle = CellStyle;
+                    ((DataGridView)c).RowsDefaultCellStyle.BackColor = DataGridViewRowColor;
+                    ((DataGridView)c).AlternatingRowsDefaultCellStyle.BackColor = DataGridViewAlternateRowColor;
+                }
+
+                else if (c.GetType() == typeof(Panel))
+                    ((Panel)c).BackColor = PanelColor;
+
+                else if (c.GetType() == typeof(Button))
+                {
+                    c.BackColor = ButtonColor;
+                    c.ForeColor = ButtonFontColor;
+                }
+            }
 
         }
     }
