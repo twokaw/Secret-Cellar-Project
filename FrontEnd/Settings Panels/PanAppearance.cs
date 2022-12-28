@@ -104,7 +104,6 @@ namespace SecretCellar.Settings_Panels
 
             if (gridcolor.ShowDialog() == DialogResult.OK) {
                 cs.BackColor = gridcolor.Color;
-                cs.SelectionBackColor = Color.FromArgb(cs.BackColor.A, Math.Max(cs.BackColor.R - 25, 0), Math.Max(cs.BackColor.G - 25, 0), Math.Max(cs.BackColor.B - 25, 0));
                 ManagedForm.DataGridViewRowColor = cs.BackColor;
             }
         }
@@ -116,12 +115,11 @@ namespace SecretCellar.Settings_Panels
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void button_gridAlternateRowColor_Click(object sender, EventArgs e) {
-            DataGridViewCellStyle cs = ManagedForm.CellStyle;
+            DataGridViewCellStyle cs = ManagedForm.CellAlternateRowStyle;
             ColorDialog gridcolor = new ColorDialog { Color = cs.BackColor };
 
             if (gridcolor.ShowDialog() == DialogResult.OK) {
                 cs.BackColor = gridcolor.Color;
-                cs.SelectionBackColor = Color.FromArgb(cs.BackColor.A, Math.Max(cs.BackColor.R - 25, 0), Math.Max(cs.BackColor.G - 25, 0), Math.Max(cs.BackColor.B - 25, 0));
                 ManagedForm.DataGridViewAlternateRowColor = cs.BackColor;
             }
         }

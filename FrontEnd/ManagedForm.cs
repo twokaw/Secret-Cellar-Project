@@ -9,6 +9,9 @@ namespace SecretCellar
     public partial class ManagedForm : Form
     {
         private static readonly List<ManagedForm> _forms = new List<ManagedForm>();
+        private static readonly Color _lightBlue = Color.FromArgb(255, 51, 153, 255);
+        private static readonly Color _white = Color.FromArgb(255, 255, 255, 255);
+
 
         public static Color BackgroundColor {
             get { return Properties.Settings.Default.BackgroundColor; }
@@ -108,6 +111,18 @@ namespace SecretCellar
                 }
             }
         }
+        public static Color DataGridViewRowFontColor {
+            get { return Properties.Settings.Default.GridRowFontColor; }
+            set {
+                Properties.Settings.Default.GridRowFontColor = value;
+
+                foreach (ManagedForm f in _forms) {
+                    foreach (DataGridView c in f.Controls.OfType<DataGridView>()) {
+                        c.RowsDefaultCellStyle.ForeColor = value;
+                    }
+                }
+            }
+        }
         public static Color DataGridViewAlternateRowColor {
             get { return Properties.Settings.Default.GridAlternateRowColor; }
             set {
@@ -120,17 +135,42 @@ namespace SecretCellar
                 }
             }
         }
+        public static Color DataGridViewAlternateRowFontColor {
+            get { return Properties.Settings.Default.GridAlternateRowFontColor; }
+            set {
+                Properties.Settings.Default.GridAlternateRowFontColor = value;
+
+                foreach (ManagedForm f in _forms) {
+                    foreach (DataGridView c in f.Controls.OfType<DataGridView>()) {
+                        c.AlternatingRowsDefaultCellStyle.ForeColor = value;
+                    }
+                }
+            }
+        }
         public static DataGridViewCellStyle CellStyle {
             get {
-                //TODO Grab the row, alternate row, and the background color and set it to this style before returning it.
-                return new DataGridViewCellStyle();
+                return new DataGridViewCellStyle {
+                    BackColor = DataGridViewColor,
+                    ForeColor = DataGridViewRowColor,
+                    SelectionBackColor = _lightBlue,
+                    SelectionForeColor = _white
+                };
+            }
+        }
+        public static DataGridViewCellStyle CellAlternateRowStyle {
+            get {
+                return new DataGridViewCellStyle {
+                    BackColor = DataGridViewColor,
+                    ForeColor = DataGridViewAlternateRowColor,
+                    SelectionBackColor = _lightBlue,
+                    SelectionForeColor = _white
+                };
             }
         }
 
 
         public ManagedForm()
         {
-
             _forms.Add(this);
             Console.WriteLine($"Constructed: {_forms.Count}");
             base.FormClosed += ManagedForm_FormClosed;
@@ -147,7 +187,7 @@ namespace SecretCellar
 
 
         /// <summary>
-        /// Sets the properties to default then updates the forms.
+        /// Sets the properties to default.
         /// </summary>
         public static void SetPropertiesToDefault() {
             BackgroundColor = Properties.Settings.Default.DefaultBackgroundColor;
@@ -162,23 +202,8 @@ namespace SecretCellar
         }
 
 
-        private void InitializeComponent() {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ManagedForm));
-            this.SuspendLayout();
-            // 
-            // ManagedForm
-            // 
-            this.ClientSize = new System.Drawing.Size(278, 244);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "ManagedForm";
-            this.Load += new System.EventHandler(this.ManagedForm_Load);
-            this.ResumeLayout(false);
-
-        }
-
         private void ManagedForm_Load(object sender, EventArgs e)
         {
-
             base.BackColor = BackgroundColor;
             base.Font = FontStyle;
 
@@ -190,10 +215,16 @@ namespace SecretCellar
                 
                 if (c.GetType() == typeof(DataGridView))
                 {
-                    ((DataGridView)c).BackgroundColor = DataGridViewColor;
                     ((DataGridView)c).DefaultCellStyle = CellStyle;
+                    ((DataGridView)c).RowsDefaultCellStyle = CellStyle;
+                    ((DataGridView)c).AlternatingRowsDefaultCellStyle = CellAlternateRowStyle;
+                    ((DataGridView)c).BackgroundColor = DataGridViewColor;
                     ((DataGridView)c).RowsDefaultCellStyle.BackColor = DataGridViewRowColor;
+                    ((DataGridView)c).RowsDefaultCellStyle.ForeColor = DataGridViewRowFontColor;
+                    ((DataGridView)c).RowsDefaultCellStyle.SelectionForeColor = _white;
                     ((DataGridView)c).AlternatingRowsDefaultCellStyle.BackColor = DataGridViewAlternateRowColor;
+                    ((DataGridView)c).AlternatingRowsDefaultCellStyle.ForeColor = DataGridViewAlternateRowFontColor;
+                    ((DataGridView)c).AlternatingRowsDefaultCellStyle.SelectionForeColor = _white;
                 }
 
                 else if (c.GetType() == typeof(Panel))
