@@ -198,7 +198,9 @@ namespace SecretCellar
             ButtonFontColor = Properties.Settings.Default.DefaultButtonFontColor;
             DataGridViewColor = Properties.Settings.Default.DefaultGridColor;
             DataGridViewRowColor = Properties.Settings.Default.DefaultGridRowColor;
+            DataGridViewRowFontColor = Properties.Settings.Default.DefaultGridRowFontColor;
             DataGridViewAlternateRowColor = Properties.Settings.Default.DefaultGridAlternateRowColor;
+            DataGridViewAlternateRowFontColor = Properties.Settings.Default.DefaultGridAlternateRowFontColor;
         }
 
 
