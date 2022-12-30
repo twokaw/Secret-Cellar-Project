@@ -16,7 +16,8 @@ namespace pos_core_api.ORM
         public List<EmployeeModel> Get()
         {            
             string sqlStatement = @"
-              SELECT * FROM v_employee
+              SELECT *
+              FROM v_employee
             ";
 
             MySqlCommand cmd = db.CreateCommand(sqlStatement);
@@ -129,7 +130,7 @@ namespace pos_core_api.ORM
             // Change the tranasction to generic user
             MySqlCommand cmd = db.CreateCommand(@"
               DELETE FROM employee 
-              WHERE emp_id = @EmpID
+              WHERE emp_id = @empid
             ");
             cmd.Parameters.Add(new MySqlParameter("EmpID", EmpID));            
 

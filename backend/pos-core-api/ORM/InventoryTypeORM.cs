@@ -24,7 +24,7 @@ namespace pos_core_api.ORM
         public List<InventoryType> Get()
         {
             List<InventoryType> types = new();
-            MySqlCommand cmd = db.CreateCommand("SELECT * FROM V_type");
+            MySqlCommand cmd = db.CreateCommand("SELECT * FROM v_type");
 
             try
             {
@@ -118,7 +118,7 @@ namespace pos_core_api.ORM
 
             MySqlCommand cmd = db.CreateCommand(@"
                 DELETE FROM inventory_type 
-                WHERE typeID = @typeID
+                WHERE typeid = @typeid
             ");
 
             cmd.Parameters.Add(new MySqlParameter("typeID", id));
@@ -135,9 +135,9 @@ namespace pos_core_api.ORM
             return true;
         }
 
-        private List<InventoryType> FetchType(MySqlDataReader reader)
+        private static List<InventoryType> FetchType(MySqlDataReader reader)
         {
-            List<InventoryType> output = new List<InventoryType>();
+            List<InventoryType> output = new();
 
             InventoryType outputItem = null;
 
@@ -186,7 +186,7 @@ namespace pos_core_api.ORM
         public int GetTypeQty(bool shouldUseId, uint id, string name)
         {
             string sql = @"
-                SELECT COUNT(inventoryID) inv
+                SELECT COUNT(inventoryid) inv
                 FROM inventory_type
                 LEFT JOIN inventory_description
                 USING(typeID)
@@ -236,10 +236,10 @@ namespace pos_core_api.ORM
             ";
 
             inv.Discount.ForEach(x => sql += @$"                   
-                    INSERT INTO Discount_Type
-                    (discountID, typeID) 
+                    INSERT INTO discount_type
+                    (discountid, typeid) 
                     VALUES 
-                    ({x.DiscountID}, @TypeID);
+                    ({x.DiscountID}, @typeid);
                 ");
 
             MySqlCommand cmd = db.CreateCommand(sql);
@@ -262,9 +262,9 @@ namespace pos_core_api.ORM
                 SET SQL_MODE = '';
 
                 INSERT INTO inventory_type
-                ( typeID, Inventory_Type_name, idTax, min_qty, max_qty, Increment_Qty)
+                ( typeid, inventory_type_name, idtax, min_qty, max_qty, increment_qty)
                 VALUES 
-                (@typeID,@Inventory_Type_name,@idTax,@min_qty,@max_qty,@Increment_Qty)
+                (@typeid,@inventory_type_name,@idtax,@min_qty,@max_qty,@increment_qty)
             ");
 
             cmd.Parameters.Add(new MySqlParameter("typeID", invType.TypeId));
@@ -297,13 +297,14 @@ namespace pos_core_api.ORM
 
             MySqlCommand cmd = db.CreateCommand(@"
                 UPDATE inventory_type 
-                SET inventory_type_name = @inventoryType, 
-                    idTax = @idTax, 
-                    bottles = @Bottles,
+                SET inventory_type_name = @inventorytype, 
+                    idtax = @idtax, 
+                    bottles = @bottles,
                     min_qty = @min_qty,
                     max_qty = @max_qty,
-                    Increment_Qty = @Increment_Qty
-                WHERE typeID = @typeID");
+                    increment_qty = @increment_qty
+                WHERE typeid = @typeid
+            ");
 
             cmd.Parameters.Add(new MySqlParameter("typeID", invType.TypeId));
             cmd.Parameters.Add(new MySqlParameter("inventoryType", invType.TypeName));

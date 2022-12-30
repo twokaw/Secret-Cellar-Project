@@ -16,9 +16,9 @@ namespace pos_core_api.ORM
         {
             MySqlCommand cmd = db.CreateCommand(@"
                 INSERT INTO customer 
-                (customer_discount, first_name, last_name, business_name, email, isWholesale, addr1, addr2, city, state, zip, phone)
+                (customer_discount, first_name, last_name, business_name, email, iswholesale, addr1, addr2, city, state, zip, phone)
                 VALUES 
-                (@customerDiscount, @firstName, @lastName, @businessName, @email, @isWholesale, @addr1, @addr2, @city, @state, @zip, @phone)
+                (@customerdiscount, @firstname, @lastname, @businessname, @email, @iswholesale, @addr1, @addr2, @city, @state, @zip, @phone)
             ");
             cmd.Parameters.Add(new MySqlParameter("customerDiscount", cust.CustomerDiscount));
             cmd.Parameters.Add(new MySqlParameter("firstName", cust.FirstName));
@@ -48,13 +48,13 @@ namespace pos_core_api.ORM
         {
             MySqlCommand cmd = db.CreateCommand(@"
                 UPDATE customer 
-                SET customer_discount = @customerDiscount, first_name = @firstName,
-                    last_name = @lastName, business_name = @businessName,
-                    email = @email, isWholesale = @isWholesale,
+                SET customer_discount = @customerdiscount, first_name = @firstname,
+                    last_name = @lastname, business_name = @businessname,
+                    email = @email, iswholesale = @iswholesale,
                     addr1 = @addr1, addr2 = @addr2, 
                     city = @city, state = @state, 
                     zip = @zip, phone = @phone 
-                WHERE customerID = @custID
+                WHERE customerid = @custid
             ");
             cmd.Parameters.Add(new MySqlParameter("customerDiscount", cust.CustomerDiscount));
             cmd.Parameters.Add(new MySqlParameter("firstName", cust.FirstName));

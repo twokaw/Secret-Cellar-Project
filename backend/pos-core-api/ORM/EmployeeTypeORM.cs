@@ -17,7 +17,7 @@ namespace pos_core_api.ORM
               FROM employeetype
               join employeetyperole
               using(typeid)
-              LEFT JOIN Employeerole
+              LEFT JOIN employeerole
               USING(roleid)";
 
         // Get: api/employee
@@ -45,8 +45,8 @@ namespace pos_core_api.ORM
         {
             MySqlCommand cmd = db.CreateCommand(@"
               SELECT * 
-              FROM employeeType 
-              WHERE TypeName = @TypeName
+              FROM employeetype 
+              WHERE typename = @typename
             ");
             cmd.Parameters.Add(new MySqlParameter("TypeName", typeName));
 
@@ -69,9 +69,9 @@ namespace pos_core_api.ORM
                 uint id;
                 MySqlCommand cmd = db.CreateCommand(@"
                     INSERT INTO employeeType 
-                    (TypeName)
+                    (typename)
                     VALUES 
-                    (@TypeName)
+                    (@typename)
                 ");
 
                 cmd.Parameters.Add(new MySqlParameter("TypeName", empTyp.TypeName));
@@ -99,9 +99,9 @@ namespace pos_core_api.ORM
             {
                 MySqlCommand cmd = db.CreateCommand(@"
                     INSERT INTO employeeRole 
-                    (RoleName, RoleDescription)
+                    (rolename, roledescription)
                     VALUES 
-                    (@RoleName, @RoleDescription)
+                    (@rolename, @roledescription)
                 ");
 
                 cmd.Parameters.Add(new MySqlParameter("RoleName", role.RoleName));
@@ -124,10 +124,10 @@ namespace pos_core_api.ORM
         public long AddRole(uint typeId, uint roleId)
         {
             MySqlCommand cmd = db.CreateCommand(@"
-                INSERT INTO employeeTypeRole
-                (TypeId, RoleId)
+                INSERT INTO employeetyperole
+                (typeid, roleid)
                 VALUES 
-                (@TypeId, @RoleId)
+                (@typeid, @roleid)
             ");
 
             cmd.Parameters.Add(new MySqlParameter("TypeId", typeId));
@@ -150,8 +150,8 @@ namespace pos_core_api.ORM
 
             MySqlCommand cmd = db.CreateCommand(@"
                 UPDATE employeetype 
-                SET typeName = @typeName
-                WHERE typeid = @typeID
+                SET typename = @typename
+                WHERE typeid = @typeid
             ");
 
             cmd.Parameters.Add(new MySqlParameter("typeID", empType.TypeID));
@@ -192,7 +192,7 @@ namespace pos_core_api.ORM
             MySqlCommand cmd = db.CreateCommand(@"
                 SELECT * 
                 FROM employeerole            
-                WHERE rolename = @roleID
+                WHERE rolename = @roleid
             ");
             cmd.Parameters.AddWithValue("RoleID", roleId);
             List<EmployeeRoleModel> empRoles = FetchRoles(cmd);
@@ -204,7 +204,7 @@ namespace pos_core_api.ORM
             MySqlCommand cmd = db.CreateCommand(@"
                 SELECT * 
                 FROM employeerole            
-                WHERE roleName = @roleName
+                WHERE rolename = @rolename
             ");
             cmd.Parameters.AddWithValue("roleName", roleName);
             List<EmployeeRoleModel> empRoles = FetchRoles(cmd);
@@ -234,10 +234,10 @@ namespace pos_core_api.ORM
         {
 
             MySqlCommand cmd = db.CreateCommand(@"
-                UPDATE employeeRole 
-                SET RoleName = @Rolename,
-                    RoleDescription = @RoleDescription
-                WHERE roleid = @roleID
+                UPDATE employeerole 
+                SET rolename = @rolename,
+                    roledescription = @roledescription
+                WHERE roleid = @roleid
             ");
 
             cmd.Parameters.Add(new MySqlParameter("roleID", empRole.RoleID ));
@@ -259,8 +259,8 @@ namespace pos_core_api.ORM
         {
             MySqlCommand cmd = db.CreateCommand(@"
                 DELETE FROM  employeeTypeRole
-                WHERE TypeId = @TypeId
-                AND   RoleId = @RoleId
+                WHERE typeid = @typeid
+                AND   roleid = @roleid
             ");
 
             cmd.Parameters.Add(new MySqlParameter("TypeId", typeId));
@@ -279,11 +279,11 @@ namespace pos_core_api.ORM
         public void Delete(uint typeId)
         {
             MySqlCommand cmd = db.CreateCommand(@"
-              DELETE FROM employeeRole 
-              WHERE roleid = @typeID;
+              DELETE FROM employeerole 
+              WHERE roleid = @typeid;
 
-              DELETE FROM employeeType 
-              WHERE typeid = @typeID;
+              DELETE FROM employeetype 
+              WHERE typeid = @typeid;
             ");
 
             cmd.Parameters.Add(new MySqlParameter("typeID", typeId));
@@ -302,7 +302,7 @@ namespace pos_core_api.ORM
         {
             MySqlCommand cmd = db.CreateCommand(@"
                 SELECT typeid 
-                FROM   employeeType 
+                FROM   employeetype 
                 WHERE  typeid = @typeid
             ");
 

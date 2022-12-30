@@ -14,12 +14,12 @@ namespace pos_core_api.ORM
         private readonly TransactionORM transactionORM;
         private const string CUSTOMERORDERSQL = @"
         SELECT *
-        FROM  v_CustomerOrder
+        FROM  v_customerorder
         ";
 
         private const string OUTSTANDINGCUSTOMERORDERSQL = @"
         SELECT *
-        FROM  v_CustomerOrder
+        FROM  v_customerorder
         WHERE IFNULL(DeliverQty, 0) < RequestQty
         ";
 
@@ -30,8 +30,6 @@ namespace pos_core_api.ORM
 
         public List<CustomerOrder> Get(bool includehistory)
         {
-
-
             MySqlCommand cmd = db.CreateCommand(@$"{(includehistory ? $"{CUSTOMERORDERSQL} " : $"{OUTSTANDINGCUSTOMERORDERSQL}")}
               ORDER BY customerID
             ");
@@ -76,7 +74,7 @@ namespace pos_core_api.ORM
         {
             MySqlCommand cmd = db.CreateCommand(@"
               INSERT INTO customerorder
-              (CustomerID, RequestDate)
+              (customerid, requestdate)
               VALUES
               (@custid, SYSDATE())
             ");
@@ -100,7 +98,7 @@ namespace pos_core_api.ORM
 
         public CustomerOrderItem GetCustomerItem(uint customerOrderItemID)
         {
-            string sqlStatement = $"{CUSTOMERORDERSQL} WHERE CustomerOrderItemID = @customerOrderItemID";
+            string sqlStatement = $"{CUSTOMERORDERSQL} WHERE customerorderitemid = @customerorderitemid";
 
             MySqlCommand cmd = db.CreateCommand(sqlStatement);
             cmd.Parameters.Add(new MySqlParameter("customerOrderItemID", customerOrderItemID));
@@ -123,7 +121,7 @@ namespace pos_core_api.ORM
         public CustomerOrder GetOrder(uint orderId, bool includehistory)
         {
             string sqlStatement = @$"{(includehistory ? $"{CUSTOMERORDERSQL} WHERE " : $"{OUTSTANDINGCUSTOMERORDERSQL} AND ")}
-              CustomerOrderid = @orderId
+              customerorderid = @orderid
             ";
 
             MySqlCommand cmd = db.CreateCommand(sqlStatement);
@@ -172,10 +170,10 @@ namespace pos_core_api.ORM
             DeliverQty(customerId, cust, null);
 
            MySqlCommand cmd = db.CreateCommand(@"
-                INSERT INTO customerorderItem
-                (CustomerID, InventoryID, Paid, Price, PaidDate, DeliverDate, DeliverQty, RequestQty)
+                INSERT INTO customerorderitem
+                (customerid, inventoryid, paid, price, paiddate, deliverdate, deliverqty, requestqty)
                 VALUES
-                (@CustomerID, @InventoryID, @Paid, @Price, @PaidDate, @DeliverDate, @DeliverQty, @RequestQty)
+                (@customerid, @inventoryid, @paid, @price, @paiddate, @deliverdate, @deliverqty, @requestqty)
             ");
             cmd.Parameters.Add(new MySqlParameter("CustomerID", customerId));
             cmd.Parameters.Add(new MySqlParameter("InventoryID", cust.Id));
@@ -268,13 +266,13 @@ namespace pos_core_api.ORM
             {
                 MySqlCommand cmd = db.CreateCommand(@"
                     UPDATE customerorderitem
-                    SET InventoryID     = @InventoryID, 
-                        RequestQTY      = @RequestQTY, 
-                        DeliverQTY      = @DeliverQTY, 
-                        Deliverdate     = @Deliverdate, 
-                        Price           = @Price,
-                        Paid            = @paid
-                    WHERE CustomerOrderItemID = @OrderItemID
+                    SET inventoryid     = @inventoryid, 
+                        requestqty      = @requestqty, 
+                        deliverqty      = @deliverqty, 
+                        deliverdate     = @deliverdate, 
+                        price           = @price,
+                        paid            = @paid
+                    WHERE customerorderitemid = @orderitemid
                 ");
 
                 cmd.Parameters.Add(new MySqlParameter("InventoryID", cust.Id));
@@ -325,9 +323,9 @@ namespace pos_core_api.ORM
 
                     cmd = db.CreateCommand(@$"
                         DELETE FROM customerorderitem
-                        WHERE CustomerOrderItemID = @OrderItemID
-                        AND RequestQty <= 0
-                        AND Paid = Price * DeliverQty
+                        WHERE customerorderitemid = @orderitemid
+                        AND requestqty <= 0
+                        AND paid = price * deliverqty
                     ");
                     cmd.Parameters.Add(new MySqlParameter("OrderItemID", cust.CustomerOrderItemID));
                     try
@@ -380,9 +378,9 @@ namespace pos_core_api.ORM
         private uint GetCustomerID(uint CustomerOrderItemId)
         {
             MySqlCommand cmd = db.CreateCommand(@"
-              SELECT customerID 
-              FROM CustomerOrderItem
-              WHERE CustomerOrderItemID = @custItemID;
+              SELECT customerid 
+              FROM customerorderitem
+              WHERE customerorderitemid = @custitemid;
             ");
             cmd.Parameters.AddWithValue("custItemID", CustomerOrderItemId);
 

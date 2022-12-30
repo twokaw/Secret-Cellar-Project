@@ -11,17 +11,15 @@ namespace pos_core_api.ORM
 {
     public class CustomerNoteORM: ICustomerNoteORM
     {
-        readonly DbConn db = new DbConn();
+        readonly DbConn db = new();
 
         const string CUSTOMERNOTESSQL = @"
-          SELECT CustomerNoteID, CustomerID, NoteTypeID, Note, NoteDate, NoteType 
-          FROM v_CustomerNotes
+          SELECT customernoteid, customerid, notetypeid, note, notedate, notetype 
+          FROM v_customernotes
         ";
 
         public List<CustomerNote> Get()
         {
-            
-
             MySqlCommand cmd = db.CreateCommand(CUSTOMERNOTESSQL);
             MySqlDataReader reader = cmd.ExecuteReader();
 
@@ -38,10 +36,8 @@ namespace pos_core_api.ORM
 
         public List<CustomerNote> Get(uint customerID)
         {
-            
-
             MySqlCommand cmd = db.CreateCommand(@$"{CUSTOMERNOTESSQL}
-              WHERE customerID = @custID
+              WHERE customerid = @custid
             ");
 
             cmd.Parameters.Add(new MySqlParameter("custID", customerID));
@@ -66,10 +62,8 @@ namespace pos_core_api.ORM
 
         public List<CustomerNote> GetbyType(uint customerTypeID)
         {
-            
-
             MySqlCommand cmd = db.CreateCommand(@$"{CUSTOMERNOTESSQL}
-              WHERE NoteTypeID = @customerTypeID
+              WHERE notetypeid = @customertypeid
             ");
 
             cmd.Parameters.Add(new MySqlParameter("customerTypeID", customerTypeID));
@@ -90,13 +84,11 @@ namespace pos_core_api.ORM
 
         public List<NoteType> GetNoteTypes()
         {
-            List<NoteType> output = new List<NoteType>();
+            List<NoteType> output = new();
             
-
-
             MySqlCommand cmd = db.CreateCommand(@$"
-              SELECT NotetypeId, NoteType
-              FROM   Notetype
+              SELECT notetypeid, notetype
+              FROM   notetype
             ");
 
             MySqlDataReader reader = cmd.ExecuteReader();
@@ -122,10 +114,10 @@ namespace pos_core_api.ORM
         public long Insert(CustomerNote custNote)
         {
             MySqlCommand cmd = db.CreateCommand(@"
-                INSERT INTO CustomerNote
-                ( CustomerId, NoteTypeId, Note, NoteDate)
+                INSERT INTO customernote
+                ( customerid, notetypeid, note, notedate)
                 VALUES 
-                ( @CustomerId, @NoteTypeId, @Note, @NoteDate)
+                ( @customerid, @notetypeid, @note, @notedate)
             ");
 
             cmd.Parameters.Add(new MySqlParameter("CustomerId", custNote.IdCustomer));
@@ -148,12 +140,12 @@ namespace pos_core_api.ORM
         public long Update(CustomerNote custNote)
         {
             MySqlCommand cmd = db.CreateCommand(@"
-                UPDATE customerNote 
-                SET CustomerId = @CustomerId,
-                    NoteTypeId = @NoteTypeId,
-                    Note       = @Note,
-                    NoteDate   = @NoteDate
-                WHERE CustomerNoteID = @CustomerNoteID
+                UPDATE customernote 
+                SET customerid = @customerid,
+                    notetypeid = @notetypeid,
+                    note       = @note,
+                    notedate   = @notedate
+                WHERE customernoteid = @customernoteid
             ");
             cmd.Parameters.Add(new MySqlParameter("CustomerNoteID", custNote.IdNote));
             cmd.Parameters.Add(new MySqlParameter("CustomerId", custNote.IdCustomer));
@@ -174,8 +166,8 @@ namespace pos_core_api.ORM
         public void Delete(uint custNoteID)
         {
             string sqlStatementDesc = @"
-                DELETE FROM CustomerNote
-                WHERE CustomerNoteID = @custID
+                DELETE FROM customernote
+                WHERE customernoteid = @custid
             ";
 
             MySqlCommand cmd = db.CreateCommand(sqlStatementDesc);
@@ -194,10 +186,10 @@ namespace pos_core_api.ORM
         public long InsertNoteType(NoteType noteType)
         {
             MySqlCommand cmd = db.CreateCommand(@"
-                INSERT INTO Notetype
-                (NoteType)
+                INSERT INTO notetype
+                (notetype)
                 VALUES 
-                (@NoteType)
+                (@notetype)
             ");
             cmd.Parameters.Add(new MySqlParameter("NoteType", noteType.Note_Type));
 
@@ -216,9 +208,9 @@ namespace pos_core_api.ORM
         public long UpdateNoteType(NoteType noteType)
         {
             MySqlCommand cmd = db.CreateCommand(@"
-                UPDATE Notetype 
-                SET NoteType = @NoteType
-                WHERE NoteTypeID = @NoteTypeID
+                UPDATE notetype 
+                SET notetype = @notetype
+                WHERE notetypeid = @notetypeid
             ");
             cmd.Parameters.Add(new MySqlParameter("NoteType", noteType.Note_Type));
             cmd.Parameters.Add(new MySqlParameter("NoteTypeID", noteType.IdNoteType));            
@@ -235,12 +227,10 @@ namespace pos_core_api.ORM
 
         public void DeleteNoteType(uint IdNoteType)
         {
-            string sqlStatementDesc = @"
-                DELETE FROM Notetype 
-                WHERE NoteTypeID = @NoteTypeID
-            ";
-
-            MySqlCommand cmd = db.CreateCommand(sqlStatementDesc);
+            MySqlCommand cmd = db.CreateCommand(@"
+                DELETE FROM notetype 
+                WHERE notetypeid = @notetypeid
+            ");
             cmd.Parameters.Add(new MySqlParameter("NoteTypeID", IdNoteType));     
             
             try
@@ -255,7 +245,7 @@ namespace pos_core_api.ORM
 
         private static List<CustomerNote> Fetch(MySqlDataReader reader)
         {
-            List<CustomerNote> output = new List<CustomerNote>();
+            List<CustomerNote> output = new();
 
             while (reader.Read())
                 output.Add(new CustomerNote
