@@ -6,8 +6,7 @@ using System.Windows.Forms;
 
 namespace SecretCellar.Settings_Panels
 {
-    public partial class PanReports : UserControl
-    {
+    public partial class PanReports : ManagedPanel {
         private class Tuple
         {
             public string Name { get; set; }

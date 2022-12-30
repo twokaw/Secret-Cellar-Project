@@ -29,26 +29,10 @@ namespace SecretCellar.Settings_Panels
         /// </summary>
         private void InitializeComponent()
         {
-            this.lstTypes = new System.Windows.Forms.ListBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.chk_lst_discount = new System.Windows.Forms.CheckedListBox();
-            this.lbl_discount = new System.Windows.Forms.Label();
-            this.btn_type_clear = new System.Windows.Forms.Button();
-            this.lbl_typename = new System.Windows.Forms.Label();
-            this.txt_typename = new System.Windows.Forms.TextBox();
-            this.btn_update_type = new System.Windows.Forms.Button();
-            this.btn_new_type = new System.Windows.Forms.Button();
-            this.lbl_localTax = new System.Windows.Forms.Label();
-            this.txt_localTax = new System.Windows.Forms.TextBox();
-            this.lbl_salesTax = new System.Windows.Forms.Label();
-            this.txt_salesTax = new System.Windows.Forms.TextBox();
-            this.lbl_bottleDep = new System.Windows.Forms.Label();
-            this.txt_bottleDep = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.cbx_tax = new System.Windows.Forms.ComboBox();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.panMain = new System.Windows.Forms.Panel();
+            this.lbl_discount = new System.Windows.Forms.Label();
             this.txt_orderIncrement = new System.Windows.Forms.TextBox();
+            this.chk_lst_discount = new System.Windows.Forms.CheckedListBox();
             this.label7 = new System.Windows.Forms.Label();
             this.txt_Bottles = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -56,204 +40,29 @@ namespace SecretCellar.Settings_Panels
             this.textBox_itemsUsingInventory = new System.Windows.Forms.TextBox();
             this.button_deleteInventory = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
+            this.txt_typename = new System.Windows.Forms.TextBox();
+            this.txt_localTax = new System.Windows.Forms.TextBox();
             this.txt_MinQty = new System.Windows.Forms.TextBox();
+            this.btn_type_clear = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
+            this.cbx_tax = new System.Windows.Forms.ComboBox();
+            this.lstTypes = new System.Windows.Forms.ListBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.panel1.SuspendLayout();
+            this.label1 = new System.Windows.Forms.Label();
+            this.lbl_typename = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txt_bottleDep = new System.Windows.Forms.TextBox();
+            this.lbl_bottleDep = new System.Windows.Forms.Label();
+            this.btn_update_type = new System.Windows.Forms.Button();
+            this.txt_salesTax = new System.Windows.Forms.TextBox();
+            this.btn_new_type = new System.Windows.Forms.Button();
+            this.lbl_salesTax = new System.Windows.Forms.Label();
+            this.lbl_localTax = new System.Windows.Forms.Label();
             this.panMain.SuspendLayout();
             this.SuspendLayout();
             // 
-            // lstTypes
-            // 
-            this.lstTypes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.lstTypes.FormattingEnabled = true;
-            this.lstTypes.ItemHeight = 16;
-            this.lstTypes.Location = new System.Drawing.Point(31, 66);
-            this.lstTypes.Margin = new System.Windows.Forms.Padding(9, 8, 9, 8);
-            this.lstTypes.Name = "lstTypes";
-            this.lstTypes.Size = new System.Drawing.Size(182, 340);
-            this.lstTypes.TabIndex = 0;
-            this.lstTypes.SelectedIndexChanged += new System.EventHandler(this.lstTypes_SelectedIndexChanged);
-            // 
-            // label1
-            // 
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
-            this.label1.Location = new System.Drawing.Point(31, 34);
-            this.label1.Margin = new System.Windows.Forms.Padding(0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(182, 24);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Inventory Type";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // chk_lst_discount
-            // 
-            this.chk_lst_discount.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.chk_lst_discount.FormattingEnabled = true;
-            this.chk_lst_discount.Location = new System.Drawing.Point(545, 118);
-            this.chk_lst_discount.Margin = new System.Windows.Forms.Padding(6);
-            this.chk_lst_discount.Name = "chk_lst_discount";
-            this.chk_lst_discount.Size = new System.Drawing.Size(317, 123);
-            this.chk_lst_discount.TabIndex = 9;
-            this.chk_lst_discount.SelectedIndexChanged += new System.EventHandler(this.chk_lst_discount_SelectedIndexChanged);
-            // 
-            // lbl_discount
-            // 
-            this.lbl_discount.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lbl_discount.Location = new System.Drawing.Point(590, 76);
-            this.lbl_discount.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.lbl_discount.Name = "lbl_discount";
-            this.lbl_discount.Size = new System.Drawing.Size(234, 31);
-            this.lbl_discount.TabIndex = 37;
-            this.lbl_discount.Text = "Discounts";
-            this.lbl_discount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // btn_type_clear
-            // 
-            this.btn_type_clear.Location = new System.Drawing.Point(689, 293);
-            this.btn_type_clear.Margin = new System.Windows.Forms.Padding(6);
-            this.btn_type_clear.Name = "btn_type_clear";
-            this.btn_type_clear.Size = new System.Drawing.Size(122, 35);
-            this.btn_type_clear.TabIndex = 6;
-            this.btn_type_clear.Text = "Clear";
-            this.btn_type_clear.UseVisualStyleBackColor = true;
-            this.btn_type_clear.Click += new System.EventHandler(this.btn_type_clear_Click);
-            // 
-            // lbl_typename
-            // 
-            this.lbl_typename.Location = new System.Drawing.Point(222, 27);
-            this.lbl_typename.Margin = new System.Windows.Forms.Padding(0);
-            this.lbl_typename.Name = "lbl_typename";
-            this.lbl_typename.Size = new System.Drawing.Size(89, 30);
-            this.lbl_typename.TabIndex = 35;
-            this.lbl_typename.Text = "Name:";
-            // 
-            // txt_typename
-            // 
-            this.txt_typename.Location = new System.Drawing.Point(307, 27);
-            this.txt_typename.Margin = new System.Windows.Forms.Padding(6);
-            this.txt_typename.Name = "txt_typename";
-            this.txt_typename.Size = new System.Drawing.Size(203, 22);
-            this.txt_typename.TabIndex = 1;
-            // 
-            // btn_update_type
-            // 
-            this.btn_update_type.Location = new System.Drawing.Point(545, 340);
-            this.btn_update_type.Margin = new System.Windows.Forms.Padding(6);
-            this.btn_update_type.Name = "btn_update_type";
-            this.btn_update_type.Size = new System.Drawing.Size(122, 35);
-            this.btn_update_type.TabIndex = 8;
-            this.btn_update_type.Text = "Update Type";
-            this.btn_update_type.UseVisualStyleBackColor = true;
-            this.btn_update_type.Click += new System.EventHandler(this.btn_update_type_Click);
-            // 
-            // btn_new_type
-            // 
-            this.btn_new_type.Location = new System.Drawing.Point(545, 293);
-            this.btn_new_type.Margin = new System.Windows.Forms.Padding(6);
-            this.btn_new_type.Name = "btn_new_type";
-            this.btn_new_type.Size = new System.Drawing.Size(122, 35);
-            this.btn_new_type.TabIndex = 7;
-            this.btn_new_type.Text = "New Type";
-            this.btn_new_type.UseVisualStyleBackColor = true;
-            this.btn_new_type.Click += new System.EventHandler(this.btn_new_type_Click);
-            // 
-            // lbl_localTax
-            // 
-            this.lbl_localTax.Location = new System.Drawing.Point(224, 331);
-            this.lbl_localTax.Margin = new System.Windows.Forms.Padding(0);
-            this.lbl_localTax.Name = "lbl_localTax";
-            this.lbl_localTax.Size = new System.Drawing.Size(127, 30);
-            this.lbl_localTax.TabIndex = 30;
-            this.lbl_localTax.Text = "Local Tax:";
-            // 
-            // txt_localTax
-            // 
-            this.txt_localTax.Location = new System.Drawing.Point(398, 331);
-            this.txt_localTax.Margin = new System.Windows.Forms.Padding(6);
-            this.txt_localTax.Name = "txt_localTax";
-            this.txt_localTax.ReadOnly = true;
-            this.txt_localTax.Size = new System.Drawing.Size(113, 22);
-            this.txt_localTax.TabIndex = 5;
-            this.txt_localTax.TabStop = false;
-            // 
-            // lbl_salesTax
-            // 
-            this.lbl_salesTax.Location = new System.Drawing.Point(223, 292);
-            this.lbl_salesTax.Margin = new System.Windows.Forms.Padding(0);
-            this.lbl_salesTax.Name = "lbl_salesTax";
-            this.lbl_salesTax.Size = new System.Drawing.Size(127, 30);
-            this.lbl_salesTax.TabIndex = 28;
-            this.lbl_salesTax.Text = "Sales Tax:";
-            // 
-            // txt_salesTax
-            // 
-            this.txt_salesTax.Location = new System.Drawing.Point(398, 293);
-            this.txt_salesTax.Margin = new System.Windows.Forms.Padding(6);
-            this.txt_salesTax.Name = "txt_salesTax";
-            this.txt_salesTax.ReadOnly = true;
-            this.txt_salesTax.Size = new System.Drawing.Size(113, 22);
-            this.txt_salesTax.TabIndex = 4;
-            this.txt_salesTax.TabStop = false;
-            // 
-            // lbl_bottleDep
-            // 
-            this.lbl_bottleDep.Location = new System.Drawing.Point(224, 255);
-            this.lbl_bottleDep.Margin = new System.Windows.Forms.Padding(0);
-            this.lbl_bottleDep.Name = "lbl_bottleDep";
-            this.lbl_bottleDep.Size = new System.Drawing.Size(124, 30);
-            this.lbl_bottleDep.TabIndex = 26;
-            this.lbl_bottleDep.Text = "Btl Deposit:";
-            // 
-            // txt_bottleDep
-            // 
-            this.txt_bottleDep.Location = new System.Drawing.Point(398, 255);
-            this.txt_bottleDep.Margin = new System.Windows.Forms.Padding(6);
-            this.txt_bottleDep.Name = "txt_bottleDep";
-            this.txt_bottleDep.ReadOnly = true;
-            this.txt_bottleDep.Size = new System.Drawing.Size(113, 22);
-            this.txt_bottleDep.TabIndex = 3;
-            this.txt_bottleDep.TabStop = false;
-            // 
-            // label3
-            // 
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
-            this.label3.Location = new System.Drawing.Point(223, 217);
-            this.label3.Margin = new System.Windows.Forms.Padding(0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(112, 33);
-            this.label3.TabIndex = 24;
-            this.label3.Text = "Tax Type:";
-            // 
-            // cbx_tax
-            // 
-            this.cbx_tax.FormattingEnabled = true;
-            this.cbx_tax.Location = new System.Drawing.Point(398, 217);
-            this.cbx_tax.Margin = new System.Windows.Forms.Padding(9, 8, 9, 8);
-            this.cbx_tax.Name = "cbx_tax";
-            this.cbx_tax.Size = new System.Drawing.Size(112, 24);
-            this.cbx_tax.TabIndex = 2;
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(231)))), ((int)(((byte)(206)))));
-            this.panel1.Controls.Add(this.panMain);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(909, 482);
-            this.panel1.TabIndex = 39;
-            // 
             // panMain
             // 
-            this.panMain.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.panMain.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(201)))), ((int)(((byte)(176)))));
             this.panMain.Controls.Add(this.lbl_discount);
             this.panMain.Controls.Add(this.txt_orderIncrement);
@@ -283,11 +92,23 @@ namespace SecretCellar.Settings_Panels
             this.panMain.Controls.Add(this.btn_new_type);
             this.panMain.Controls.Add(this.lbl_salesTax);
             this.panMain.Controls.Add(this.lbl_localTax);
-            this.panMain.Location = new System.Drawing.Point(3, 3);
+            this.panMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panMain.Location = new System.Drawing.Point(0, 0);
             this.panMain.Name = "panMain";
-            this.panMain.Size = new System.Drawing.Size(903, 476);
-            this.panMain.TabIndex = 48;
-            this.panMain.VisibleChanged += new System.EventHandler(this.panel3_VisibleChanged);
+            this.panMain.Size = new System.Drawing.Size(909, 482);
+            this.panMain.TabIndex = 49;
+            // 
+            // lbl_discount
+            // 
+            this.lbl_discount.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lbl_discount.Location = new System.Drawing.Point(590, 76);
+            this.lbl_discount.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.lbl_discount.Name = "lbl_discount";
+            this.lbl_discount.Size = new System.Drawing.Size(240, 31);
+            this.lbl_discount.TabIndex = 37;
+            this.lbl_discount.Text = "Discounts";
+            this.lbl_discount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // txt_orderIncrement
             // 
@@ -297,6 +118,18 @@ namespace SecretCellar.Settings_Panels
             this.txt_orderIncrement.Size = new System.Drawing.Size(113, 22);
             this.txt_orderIncrement.TabIndex = 45;
             this.txt_orderIncrement.TabStop = false;
+            // 
+            // chk_lst_discount
+            // 
+            this.chk_lst_discount.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.chk_lst_discount.FormattingEnabled = true;
+            this.chk_lst_discount.Location = new System.Drawing.Point(545, 118);
+            this.chk_lst_discount.Margin = new System.Windows.Forms.Padding(6);
+            this.chk_lst_discount.Name = "chk_lst_discount";
+            this.chk_lst_discount.Size = new System.Drawing.Size(323, 123);
+            this.chk_lst_discount.TabIndex = 9;
             // 
             // label7
             // 
@@ -343,7 +176,7 @@ namespace SecretCellar.Settings_Panels
             this.textBox_itemsUsingInventory.Location = new System.Drawing.Point(398, 412);
             this.textBox_itemsUsingInventory.Name = "textBox_itemsUsingInventory";
             this.textBox_itemsUsingInventory.ReadOnly = true;
-            this.textBox_itemsUsingInventory.Size = new System.Drawing.Size(164, 22);
+            this.textBox_itemsUsingInventory.Size = new System.Drawing.Size(194, 22);
             this.textBox_itemsUsingInventory.TabIndex = 37;
             // 
             // button_deleteInventory
@@ -355,7 +188,6 @@ namespace SecretCellar.Settings_Panels
             this.button_deleteInventory.TabIndex = 36;
             this.button_deleteInventory.Text = "Delete";
             this.button_deleteInventory.UseVisualStyleBackColor = true;
-            this.button_deleteInventory.Click += new System.EventHandler(this.button_deleteInventory_Click);
             // 
             // label4
             // 
@@ -366,6 +198,24 @@ namespace SecretCellar.Settings_Panels
             this.label4.TabIndex = 42;
             this.label4.Text = "Max Qty:";
             // 
+            // txt_typename
+            // 
+            this.txt_typename.Location = new System.Drawing.Point(307, 27);
+            this.txt_typename.Margin = new System.Windows.Forms.Padding(6);
+            this.txt_typename.Name = "txt_typename";
+            this.txt_typename.Size = new System.Drawing.Size(203, 22);
+            this.txt_typename.TabIndex = 1;
+            // 
+            // txt_localTax
+            // 
+            this.txt_localTax.Location = new System.Drawing.Point(398, 331);
+            this.txt_localTax.Margin = new System.Windows.Forms.Padding(6);
+            this.txt_localTax.Name = "txt_localTax";
+            this.txt_localTax.ReadOnly = true;
+            this.txt_localTax.Size = new System.Drawing.Size(113, 22);
+            this.txt_localTax.TabIndex = 5;
+            this.txt_localTax.TabStop = false;
+            // 
             // txt_MinQty
             // 
             this.txt_MinQty.Location = new System.Drawing.Point(398, 103);
@@ -374,6 +224,16 @@ namespace SecretCellar.Settings_Panels
             this.txt_MinQty.Size = new System.Drawing.Size(113, 22);
             this.txt_MinQty.TabIndex = 40;
             this.txt_MinQty.TabStop = false;
+            // 
+            // btn_type_clear
+            // 
+            this.btn_type_clear.Location = new System.Drawing.Point(689, 293);
+            this.btn_type_clear.Margin = new System.Windows.Forms.Padding(6);
+            this.btn_type_clear.Name = "btn_type_clear";
+            this.btn_type_clear.Size = new System.Drawing.Size(122, 35);
+            this.btn_type_clear.TabIndex = 6;
+            this.btn_type_clear.Text = "Clear";
+            this.btn_type_clear.UseVisualStyleBackColor = true;
             // 
             // label5
             // 
@@ -384,6 +244,27 @@ namespace SecretCellar.Settings_Panels
             this.label5.TabIndex = 43;
             this.label5.Text = "Min Qty:";
             // 
+            // cbx_tax
+            // 
+            this.cbx_tax.FormattingEnabled = true;
+            this.cbx_tax.Location = new System.Drawing.Point(398, 217);
+            this.cbx_tax.Margin = new System.Windows.Forms.Padding(9, 8, 9, 8);
+            this.cbx_tax.Name = "cbx_tax";
+            this.cbx_tax.Size = new System.Drawing.Size(112, 24);
+            this.cbx_tax.TabIndex = 2;
+            // 
+            // lstTypes
+            // 
+            this.lstTypes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.lstTypes.FormattingEnabled = true;
+            this.lstTypes.ItemHeight = 16;
+            this.lstTypes.Location = new System.Drawing.Point(31, 66);
+            this.lstTypes.Margin = new System.Windows.Forms.Padding(9, 8, 9, 8);
+            this.lstTypes.Name = "lstTypes";
+            this.lstTypes.Size = new System.Drawing.Size(182, 340);
+            this.lstTypes.TabIndex = 0;
+            // 
             // label6
             // 
             this.label6.Location = new System.Drawing.Point(224, 179);
@@ -393,17 +274,114 @@ namespace SecretCellar.Settings_Panels
             this.label6.TabIndex = 44;
             this.label6.Text = "Bottles:";
             // 
+            // label1
+            // 
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
+            this.label1.Location = new System.Drawing.Point(31, 34);
+            this.label1.Margin = new System.Windows.Forms.Padding(0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(182, 24);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Inventory Type";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lbl_typename
+            // 
+            this.lbl_typename.Location = new System.Drawing.Point(222, 27);
+            this.lbl_typename.Margin = new System.Windows.Forms.Padding(0);
+            this.lbl_typename.Name = "lbl_typename";
+            this.lbl_typename.Size = new System.Drawing.Size(89, 30);
+            this.lbl_typename.TabIndex = 35;
+            this.lbl_typename.Text = "Name:";
+            // 
+            // label3
+            // 
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
+            this.label3.Location = new System.Drawing.Point(223, 217);
+            this.label3.Margin = new System.Windows.Forms.Padding(0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(112, 33);
+            this.label3.TabIndex = 24;
+            this.label3.Text = "Tax Type:";
+            // 
+            // txt_bottleDep
+            // 
+            this.txt_bottleDep.Location = new System.Drawing.Point(398, 255);
+            this.txt_bottleDep.Margin = new System.Windows.Forms.Padding(6);
+            this.txt_bottleDep.Name = "txt_bottleDep";
+            this.txt_bottleDep.ReadOnly = true;
+            this.txt_bottleDep.Size = new System.Drawing.Size(113, 22);
+            this.txt_bottleDep.TabIndex = 3;
+            this.txt_bottleDep.TabStop = false;
+            // 
+            // lbl_bottleDep
+            // 
+            this.lbl_bottleDep.Location = new System.Drawing.Point(224, 255);
+            this.lbl_bottleDep.Margin = new System.Windows.Forms.Padding(0);
+            this.lbl_bottleDep.Name = "lbl_bottleDep";
+            this.lbl_bottleDep.Size = new System.Drawing.Size(124, 30);
+            this.lbl_bottleDep.TabIndex = 26;
+            this.lbl_bottleDep.Text = "Btl Deposit:";
+            // 
+            // btn_update_type
+            // 
+            this.btn_update_type.Location = new System.Drawing.Point(545, 340);
+            this.btn_update_type.Margin = new System.Windows.Forms.Padding(6);
+            this.btn_update_type.Name = "btn_update_type";
+            this.btn_update_type.Size = new System.Drawing.Size(122, 35);
+            this.btn_update_type.TabIndex = 8;
+            this.btn_update_type.Text = "Update Type";
+            this.btn_update_type.UseVisualStyleBackColor = true;
+            // 
+            // txt_salesTax
+            // 
+            this.txt_salesTax.Location = new System.Drawing.Point(398, 293);
+            this.txt_salesTax.Margin = new System.Windows.Forms.Padding(6);
+            this.txt_salesTax.Name = "txt_salesTax";
+            this.txt_salesTax.ReadOnly = true;
+            this.txt_salesTax.Size = new System.Drawing.Size(113, 22);
+            this.txt_salesTax.TabIndex = 4;
+            this.txt_salesTax.TabStop = false;
+            // 
+            // btn_new_type
+            // 
+            this.btn_new_type.Location = new System.Drawing.Point(545, 293);
+            this.btn_new_type.Margin = new System.Windows.Forms.Padding(6);
+            this.btn_new_type.Name = "btn_new_type";
+            this.btn_new_type.Size = new System.Drawing.Size(122, 35);
+            this.btn_new_type.TabIndex = 7;
+            this.btn_new_type.Text = "New Type";
+            this.btn_new_type.UseVisualStyleBackColor = true;
+            // 
+            // lbl_salesTax
+            // 
+            this.lbl_salesTax.Location = new System.Drawing.Point(223, 292);
+            this.lbl_salesTax.Margin = new System.Windows.Forms.Padding(0);
+            this.lbl_salesTax.Name = "lbl_salesTax";
+            this.lbl_salesTax.Size = new System.Drawing.Size(127, 30);
+            this.lbl_salesTax.TabIndex = 28;
+            this.lbl_salesTax.Text = "Sales Tax:";
+            // 
+            // lbl_localTax
+            // 
+            this.lbl_localTax.Location = new System.Drawing.Point(224, 331);
+            this.lbl_localTax.Margin = new System.Windows.Forms.Padding(0);
+            this.lbl_localTax.Name = "lbl_localTax";
+            this.lbl_localTax.Size = new System.Drawing.Size(127, 30);
+            this.lbl_localTax.TabIndex = 30;
+            this.lbl_localTax.Text = "Local Tax:";
+            // 
             // PanTypes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.panMain);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
+            this.ForeColor = System.Drawing.Color.Black;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "PanTypes";
             this.Size = new System.Drawing.Size(909, 482);
             this.Load += new System.EventHandler(this.PanTypes_Load);
-            this.panel1.ResumeLayout(false);
             this.panMain.ResumeLayout(false);
             this.panMain.PerformLayout();
             this.ResumeLayout(false);
@@ -412,35 +390,34 @@ namespace SecretCellar.Settings_Panels
 
         #endregion
 
-        private System.Windows.Forms.ListBox lstTypes;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.CheckedListBox chk_lst_discount;
-        private System.Windows.Forms.Label lbl_discount;
-        private System.Windows.Forms.Button btn_type_clear;
-        private System.Windows.Forms.Label lbl_typename;
-        private System.Windows.Forms.TextBox txt_typename;
-        private System.Windows.Forms.Button btn_update_type;
-        private System.Windows.Forms.Button btn_new_type;
-        private System.Windows.Forms.Label lbl_localTax;
-        private System.Windows.Forms.TextBox txt_localTax;
-        private System.Windows.Forms.Label lbl_salesTax;
-        private System.Windows.Forms.TextBox txt_salesTax;
-        private System.Windows.Forms.Label lbl_bottleDep;
-        private System.Windows.Forms.TextBox txt_bottleDep;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox cbx_tax;
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panMain;
-		private System.Windows.Forms.Button button_deleteInventory;
-		private System.Windows.Forms.TextBox textBox_itemsUsingInventory;
-		private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txt_Bottles;
-        private System.Windows.Forms.TextBox txt_MaxQty;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox txt_MinQty;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label lbl_discount;
         private System.Windows.Forms.TextBox txt_orderIncrement;
+        private System.Windows.Forms.CheckedListBox chk_lst_discount;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox txt_Bottles;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox txt_MaxQty;
+        private System.Windows.Forms.TextBox textBox_itemsUsingInventory;
+        private System.Windows.Forms.Button button_deleteInventory;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox txt_typename;
+        private System.Windows.Forms.TextBox txt_localTax;
+        private System.Windows.Forms.TextBox txt_MinQty;
+        private System.Windows.Forms.Button btn_type_clear;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ComboBox cbx_tax;
+        private System.Windows.Forms.ListBox lstTypes;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lbl_typename;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox txt_bottleDep;
+        private System.Windows.Forms.Label lbl_bottleDep;
+        private System.Windows.Forms.Button btn_update_type;
+        private System.Windows.Forms.TextBox txt_salesTax;
+        private System.Windows.Forms.Button btn_new_type;
+        private System.Windows.Forms.Label lbl_salesTax;
+        private System.Windows.Forms.Label lbl_localTax;
     }
 }

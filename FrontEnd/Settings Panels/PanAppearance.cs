@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace SecretCellar.Settings_Panels
 {
-    public partial class PanAppearance : UserControl {
+    public partial class PanAppearance : ManagedPanel {
         private ToolTip _programTips = new ToolTip();
 
 

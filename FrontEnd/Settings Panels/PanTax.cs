@@ -6,8 +6,7 @@ using System.Windows.Forms;
 
 namespace SecretCellar.Settings_Panels
 {
-    public partial class PanTax : UserControl
-    {
+    public partial class PanTax : ManagedPanel {
         readonly List<PaymentMethod> PayMethods;
         public PanTax()
         {

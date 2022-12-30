@@ -6,7 +6,7 @@ using NCR_Printer;
 using Shared;
 
 namespace SecretCellar.Orders_Panels {
-	public partial class Panel_SupplierOrder : UserControl {
+	public partial class Panel_SupplierOrder : ManagedPanel {
         private List<Inventory> inventory = null;
         private List<Supplier> suppliers = null;
 

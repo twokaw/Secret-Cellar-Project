@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 
 namespace SecretCellar.Orders_Panels {
-	public partial class Panel_Fulfillment : UserControl {
+	public partial class Panel_Fulfillment : ManagedPanel {
         private List<Inventory> inventory = null;
 
         private readonly Dictionary<uint, Transaction> transactions = new Dictionary<uint, Transaction>();

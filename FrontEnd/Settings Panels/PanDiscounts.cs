@@ -6,8 +6,7 @@ using System.Windows.Forms;
 
 namespace SecretCellar.Settings_Panels
 {
-    public partial class PanDiscount : UserControl
-    {
+    public partial class PanDiscount : ManagedPanel {
         private List<Discount> discounts = null;
         public Discount newDiscount = null;
 
