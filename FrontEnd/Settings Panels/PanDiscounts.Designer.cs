@@ -57,6 +57,7 @@ namespace SecretCellar.Settings_Panels
             this.chk_lst_discount.FormattingEnabled = true;
             this.chk_lst_discount.Location = new System.Drawing.Point(66, 52);
             this.chk_lst_discount.Margin = new System.Windows.Forms.Padding(6);
+            this.chk_lst_discount.MinimumSize = new System.Drawing.Size(0, 80);
             this.chk_lst_discount.Name = "chk_lst_discount";
             this.chk_lst_discount.Size = new System.Drawing.Size(776, 106);
             this.chk_lst_discount.TabIndex = 9;
