@@ -58,7 +58,7 @@ namespace SecretCellar.Settings_Panels
             this.chk_lst_discount.Location = new System.Drawing.Point(66, 52);
             this.chk_lst_discount.Margin = new System.Windows.Forms.Padding(6);
             this.chk_lst_discount.Name = "chk_lst_discount";
-            this.chk_lst_discount.Size = new System.Drawing.Size(776, 112);
+            this.chk_lst_discount.Size = new System.Drawing.Size(776, 106);
             this.chk_lst_discount.TabIndex = 9;
             this.chk_lst_discount.SelectedIndexChanged += new System.EventHandler(this.chk_lst_discount_SelectedIndexChanged);
             // 
@@ -88,7 +88,6 @@ namespace SecretCellar.Settings_Panels
             // 
             // panel2
             // 
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(201)))), ((int)(((byte)(176)))));
             this.panel2.Controls.Add(this.txt_discount);
             this.panel2.Controls.Add(this.btn_clear_discount);
             this.panel2.Controls.Add(this.lbl_discount);
@@ -115,7 +114,7 @@ namespace SecretCellar.Settings_Panels
             this.txt_discount.Location = new System.Drawing.Point(176, 285);
             this.txt_discount.Margin = new System.Windows.Forms.Padding(6);
             this.txt_discount.Name = "txt_discount";
-            this.txt_discount.Size = new System.Drawing.Size(111, 30);
+            this.txt_discount.Size = new System.Drawing.Size(111, 22);
             this.txt_discount.TabIndex = 11;
             // 
             // btn_clear_discount
@@ -134,7 +133,7 @@ namespace SecretCellar.Settings_Panels
             // 
             this.btn_delete_discount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_delete_discount.ForeColor = System.Drawing.Color.Red;
-            this.btn_delete_discount.Location = new System.Drawing.Point(697, 410);
+            this.btn_delete_discount.Location = new System.Drawing.Point(697, 360);
             this.btn_delete_discount.Margin = new System.Windows.Forms.Padding(0);
             this.btn_delete_discount.Name = "btn_delete_discount";
             this.btn_delete_discount.Size = new System.Drawing.Size(145, 48);
@@ -162,7 +161,7 @@ namespace SecretCellar.Settings_Panels
             this.txt_dis_name.Location = new System.Drawing.Point(176, 242);
             this.txt_dis_name.Margin = new System.Windows.Forms.Padding(6);
             this.txt_dis_name.Name = "txt_dis_name";
-            this.txt_dis_name.Size = new System.Drawing.Size(613, 30);
+            this.txt_dis_name.Size = new System.Drawing.Size(613, 22);
             this.txt_dis_name.TabIndex = 10;
             // 
             // btn_new_discount
@@ -203,7 +202,7 @@ namespace SecretCellar.Settings_Panels
             this.txt_dis_min.Location = new System.Drawing.Point(176, 327);
             this.txt_dis_min.Margin = new System.Windows.Forms.Padding(6);
             this.txt_dis_min.Name = "txt_dis_min";
-            this.txt_dis_min.Size = new System.Drawing.Size(111, 30);
+            this.txt_dis_min.Size = new System.Drawing.Size(111, 22);
             this.txt_dis_min.TabIndex = 12;
             // 
             // lbl_dis_min
@@ -232,15 +231,16 @@ namespace SecretCellar.Settings_Panels
             this.txt_dis_max.Location = new System.Drawing.Point(176, 376);
             this.txt_dis_max.Margin = new System.Windows.Forms.Padding(6);
             this.txt_dis_max.Name = "txt_dis_max";
-            this.txt_dis_max.Size = new System.Drawing.Size(111, 30);
+            this.txt_dis_max.Size = new System.Drawing.Size(111, 22);
             this.txt_dis_max.TabIndex = 13;
             // 
             // PanDiscount
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
+            this.ForeColor = System.Drawing.Color.Black;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "PanDiscount";
             this.Size = new System.Drawing.Size(909, 482);

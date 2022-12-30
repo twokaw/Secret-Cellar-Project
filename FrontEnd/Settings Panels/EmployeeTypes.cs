@@ -11,7 +11,7 @@ using Shared;
 
 namespace SecretCellar.Settings_Panels
 {
-    public partial class PanEmployeeTypes : UserControl
+    public partial class PanEmployeeTypes : ManagedPanel
     {
         private List<EmployeeTypeModel> employeeTypes = null;
         private List<EmployeeRoleModel> employeeRoles = null;

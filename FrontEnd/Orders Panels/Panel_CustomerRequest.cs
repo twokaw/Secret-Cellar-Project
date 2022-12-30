@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 
 namespace SecretCellar.Orders_Panels {
-	public partial class Panel_CustomerRequest : UserControl {
+	public partial class Panel_CustomerRequest : ManagedPanel {
         private string searchForCustomerText = "Search for customer";
 
 

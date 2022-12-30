@@ -6,9 +6,8 @@ using System.Windows.Forms;
 
 namespace SecretCellar
 {
-    public partial class ManagedForm : Form
-    {
-        private static readonly List<ManagedForm> _forms = new List<ManagedForm>();
+    public partial class ManagedPanel : UserControl {
+        private static readonly List<ManagedPanel> _forms = new List<ManagedPanel>();
         private static readonly Color _lightBlue = Color.FromArgb(255, 51, 153, 255);
         private static readonly Color _white = Color.FromArgb(255, 255, 255, 255);
 
@@ -26,7 +25,7 @@ namespace SecretCellar
             set {
                 Properties.Settings.Default.PanelColor = value;
 
-                foreach (ManagedForm f in _forms) {
+                foreach (ManagedPanel f in _forms) {
                     foreach (Panel panel in f.Controls.OfType<Panel>()) {
                         panel.BackColor = value;
                     }
@@ -39,7 +38,7 @@ namespace SecretCellar
             set {
                 Properties.Settings.Default.FontSet = value;
 
-                foreach (ManagedForm f in _forms) {
+                foreach (ManagedPanel f in _forms) {
                     f.Font = value;
 
                     foreach (Control c in f.Controls) {
@@ -54,7 +53,7 @@ namespace SecretCellar
             set {
                 Properties.Settings.Default.FontColor = value;
 
-                foreach (ManagedForm form in _forms) {
+                foreach (ManagedPanel form in _forms) {
                     form.ForeColor = value;
 
                     foreach (Control control in form.Controls) {
@@ -68,7 +67,7 @@ namespace SecretCellar
             set {
                 Properties.Settings.Default.ButtonColor = value;
 
-                foreach (ManagedForm form in _forms) {
+                foreach (ManagedPanel form in _forms) {
                     foreach (Control control in form.Controls.OfType<Button>()) {
                         control.BackColor = value;
                     }
@@ -80,7 +79,7 @@ namespace SecretCellar
             set {
                 Properties.Settings.Default.ButtonFontColor = value;
 
-                foreach (ManagedForm form in _forms) {
+                foreach (ManagedPanel form in _forms) {
                     foreach (Control control in form.Controls.OfType<Button>()) {
                         control.ForeColor = value;
                     }
@@ -92,7 +91,7 @@ namespace SecretCellar
             set {
                 Properties.Settings.Default.GridColor = value;
 
-                foreach (ManagedForm f in _forms) {
+                foreach (ManagedPanel f in _forms) {
                     foreach (DataGridView c in f.Controls.OfType<DataGridView>()) {
                         c.BackgroundColor = value;
                     }
@@ -104,7 +103,7 @@ namespace SecretCellar
             set {
                 Properties.Settings.Default.GridRowColor = value;
 
-                foreach (ManagedForm f in _forms) {
+                foreach (ManagedPanel f in _forms) {
                     foreach (DataGridView c in f.Controls.OfType<DataGridView>()) {
                         c.RowsDefaultCellStyle.BackColor = value;
                     }
@@ -116,7 +115,7 @@ namespace SecretCellar
             set {
                 Properties.Settings.Default.GridRowFontColor = value;
 
-                foreach (ManagedForm f in _forms) {
+                foreach (ManagedPanel f in _forms) {
                     foreach (DataGridView c in f.Controls.OfType<DataGridView>()) {
                         c.RowsDefaultCellStyle.ForeColor = value;
                     }
@@ -128,7 +127,7 @@ namespace SecretCellar
             set {
                 Properties.Settings.Default.GridAlternateRowColor = value;
 
-                foreach (ManagedForm f in _forms) {
+                foreach (ManagedPanel f in _forms) {
                     foreach (DataGridView c in f.Controls.OfType<DataGridView>()) {
                         c.AlternatingRowsDefaultCellStyle.BackColor = value;
                     }
@@ -140,7 +139,7 @@ namespace SecretCellar
             set {
                 Properties.Settings.Default.GridAlternateRowFontColor = value;
 
-                foreach (ManagedForm f in _forms) {
+                foreach (ManagedPanel f in _forms) {
                     foreach (DataGridView c in f.Controls.OfType<DataGridView>()) {
                         c.AlternatingRowsDefaultCellStyle.ForeColor = value;
                     }
@@ -169,16 +168,16 @@ namespace SecretCellar
         }
 
 
-        public ManagedForm()
+        public ManagedPanel()
         {
             _forms.Add(this);
             Console.WriteLine($"Constructed: {_forms.Count}");
-            base.FormClosed += ManagedForm_FormClosed;
-            base.Load += ManagedForm_Load;
+            //base.FormClosed += ManagedPanel_FormClosed;
+            base.Load += ManagedPanel_Load;
         }
 
 
-        private void ManagedForm_FormClosed(object sender, FormClosedEventArgs e) {
+        private void ManagedPanel_FormClosed(object sender, FormClosedEventArgs e) {
             _forms.Remove(this);
             //if(Forms.Count == 0 )
             //    CommonFont = new Font("Microsoft Sans Serif", 12, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -204,7 +203,7 @@ namespace SecretCellar
         }
 
 
-        private void ManagedForm_Load(object sender, EventArgs e)
+        private void ManagedPanel_Load(object sender, EventArgs e)
         {
             base.BackColor = BackgroundColor;
             base.ForeColor = FontColor;
@@ -213,33 +212,33 @@ namespace SecretCellar
             foreach (Control c in base.Controls)
             {
                 c.Font = FontStyle;
-                
-                if (c.GetType() == typeof(DataGridView))
-                {
-                    ((DataGridView)c).DefaultCellStyle = CellStyle;
-                    ((DataGridView)c).RowsDefaultCellStyle = CellStyle;
-                    ((DataGridView)c).AlternatingRowsDefaultCellStyle = CellAlternateRowStyle;
-                    ((DataGridView)c).BackgroundColor = DataGridViewColor;
-                    ((DataGridView)c).RowsDefaultCellStyle.BackColor = DataGridViewRowColor;
-                    ((DataGridView)c).RowsDefaultCellStyle.ForeColor = DataGridViewRowFontColor;
-                    ((DataGridView)c).RowsDefaultCellStyle.SelectionBackColor = _lightBlue;
-                    ((DataGridView)c).RowsDefaultCellStyle.SelectionForeColor = _white;
-                    ((DataGridView)c).AlternatingRowsDefaultCellStyle.BackColor = DataGridViewAlternateRowColor;
-                    ((DataGridView)c).AlternatingRowsDefaultCellStyle.ForeColor = DataGridViewAlternateRowFontColor;
-                    ((DataGridView)c).AlternatingRowsDefaultCellStyle.SelectionBackColor = _lightBlue;
-                    ((DataGridView)c).AlternatingRowsDefaultCellStyle.SelectionForeColor = _white;
-                }
 
-                else if (c.GetType() == typeof(Panel))
+                if (c.GetType() == typeof(Panel)) {
                     ((Panel)c).BackColor = PanelColor;
 
-                else if (c.GetType() == typeof(Button))
-                {
-                    c.BackColor = ButtonColor;
-                    c.ForeColor = ButtonFontColor;
+                    foreach (Control cc in c.Controls) {
+                        if (cc.GetType() == typeof(Button)) {
+                            cc.BackColor = ButtonColor;
+                            cc.ForeColor = ButtonFontColor;
+                        }
+
+                        else if (cc.GetType() == typeof(DataGridView)) {
+                            ((DataGridView)cc).DefaultCellStyle = CellStyle;
+                            ((DataGridView)cc).RowsDefaultCellStyle = CellStyle;
+                            ((DataGridView)cc).AlternatingRowsDefaultCellStyle = CellAlternateRowStyle;
+                            ((DataGridView)cc).BackgroundColor = DataGridViewColor;
+                            ((DataGridView)cc).RowsDefaultCellStyle.BackColor = DataGridViewRowColor;
+                            ((DataGridView)cc).RowsDefaultCellStyle.ForeColor = DataGridViewRowFontColor;
+                            ((DataGridView)cc).RowsDefaultCellStyle.SelectionBackColor = _lightBlue;
+                            ((DataGridView)cc).RowsDefaultCellStyle.SelectionForeColor = _white;
+                            ((DataGridView)cc).AlternatingRowsDefaultCellStyle.BackColor = DataGridViewAlternateRowColor;
+                            ((DataGridView)cc).AlternatingRowsDefaultCellStyle.ForeColor = DataGridViewAlternateRowFontColor;
+                            ((DataGridView)cc).AlternatingRowsDefaultCellStyle.SelectionBackColor = _lightBlue;
+                            ((DataGridView)cc).AlternatingRowsDefaultCellStyle.SelectionForeColor = _white;
+                        }
+                    }
                 }
             }
-
         }
     }
 }

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Windows.Forms;
 
 namespace SecretCellar.Orders_Panels {
-	public partial class Panel_History : UserControl {
+	public partial class Panel_History : ManagedPanel {
         private readonly string searchForCustomerText = "Search for customer";
         private List<Transaction> transaction_history = null;
         Transaction SelectTransaction = null;

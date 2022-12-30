@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace SecretCellar.Settings_Panels
 {
-    public partial class PanDefaults : UserControl
+    public partial class PanDefaults : ManagedPanel
     { 
         bool loaded = false;
         public PanDefaults()

@@ -424,5 +424,53 @@ namespace SecretCellar.Properties {
                 this["DefaultPanelColor"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("White")]
+        public global::System.Drawing.Color DefaultGridRowFontColor {
+            get {
+                return ((global::System.Drawing.Color)(this["DefaultGridRowFontColor"]));
+            }
+            set {
+                this["DefaultGridRowFontColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("White")]
+        public global::System.Drawing.Color GridRowFontColor {
+            get {
+                return ((global::System.Drawing.Color)(this["GridRowFontColor"]));
+            }
+            set {
+                this["GridRowFontColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Black")]
+        public global::System.Drawing.Color DefaultGridAlternateRowFontColor {
+            get {
+                return ((global::System.Drawing.Color)(this["DefaultGridAlternateRowFontColor"]));
+            }
+            set {
+                this["DefaultGridAlternateRowFontColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Black")]
+        public global::System.Drawing.Color GridAlternateRowFontColor {
+            get {
+                return ((global::System.Drawing.Color)(this["GridAlternateRowFontColor"]));
+            }
+            set {
+                this["GridAlternateRowFontColor"] = value;
+            }
+        }
     }
 }
