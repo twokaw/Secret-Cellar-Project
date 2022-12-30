@@ -207,9 +207,8 @@ namespace SecretCellar
         private void ManagedForm_Load(object sender, EventArgs e)
         {
             base.BackColor = BackgroundColor;
-            base.Font = FontStyle;
-
             base.ForeColor = FontColor;
+            base.Font = FontStyle;
 
             foreach (Control c in base.Controls)
             {
@@ -223,9 +222,11 @@ namespace SecretCellar
                     ((DataGridView)c).BackgroundColor = DataGridViewColor;
                     ((DataGridView)c).RowsDefaultCellStyle.BackColor = DataGridViewRowColor;
                     ((DataGridView)c).RowsDefaultCellStyle.ForeColor = DataGridViewRowFontColor;
+                    ((DataGridView)c).RowsDefaultCellStyle.SelectionBackColor = _lightBlue;
                     ((DataGridView)c).RowsDefaultCellStyle.SelectionForeColor = _white;
                     ((DataGridView)c).AlternatingRowsDefaultCellStyle.BackColor = DataGridViewAlternateRowColor;
                     ((DataGridView)c).AlternatingRowsDefaultCellStyle.ForeColor = DataGridViewAlternateRowFontColor;
+                    ((DataGridView)c).AlternatingRowsDefaultCellStyle.SelectionBackColor = _lightBlue;
                     ((DataGridView)c).AlternatingRowsDefaultCellStyle.SelectionForeColor = _white;
                 }
 

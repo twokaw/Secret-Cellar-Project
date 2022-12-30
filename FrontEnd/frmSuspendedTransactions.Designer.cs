@@ -38,13 +38,13 @@
             this.btnAdd = new System.Windows.Forms.Button();
             this.selectionListSuspendedTransactions = new System.Windows.Forms.ListBox();
             this.dataGridViewSuspendedTransaction = new System.Windows.Forms.DataGridView();
-            this.btn_CloseWindow = new System.Windows.Forms.Button();
             this.DESCRIPTION = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.QTY = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PRICE = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DISCOUNT = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BOTTLE_DEPOSIT = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TOTAL = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btn_CloseWindow = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSuspendedTransaction)).BeginInit();
             this.SuspendLayout();
             // 
@@ -122,14 +122,14 @@
             this.TOTAL});
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(51)))), ((int)(((byte)(69)))));
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Ivory;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridViewSuspendedTransaction.DefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridViewSuspendedTransaction.Location = new System.Drawing.Point(185, 10);
-            this.dataGridViewSuspendedTransaction.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.dataGridViewSuspendedTransaction.Margin = new System.Windows.Forms.Padding(1);
             this.dataGridViewSuspendedTransaction.Name = "dataGridViewSuspendedTransaction";
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
@@ -143,31 +143,19 @@
             this.dataGridViewSuspendedTransaction.RowHeadersWidth = 102;
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(51)))), ((int)(((byte)(69)))));
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.Ivory;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.Empty;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.Empty;
             this.dataGridViewSuspendedTransaction.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.dataGridViewSuspendedTransaction.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.dataGridViewSuspendedTransaction.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dataGridViewSuspendedTransaction.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(51)))), ((int)(((byte)(69)))));
-            this.dataGridViewSuspendedTransaction.RowTemplate.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.Ivory;
+            this.dataGridViewSuspendedTransaction.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.Empty;
+            this.dataGridViewSuspendedTransaction.RowTemplate.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.Empty;
             this.dataGridViewSuspendedTransaction.RowTemplate.Height = 40;
             this.dataGridViewSuspendedTransaction.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.dataGridViewSuspendedTransaction.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewSuspendedTransaction.Size = new System.Drawing.Size(811, 257);
             this.dataGridViewSuspendedTransaction.TabIndex = 13;
             this.dataGridViewSuspendedTransaction.TabStop = false;
-            // 
-            // btn_CloseWindow
-            // 
-            this.btn_CloseWindow.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_CloseWindow.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_CloseWindow.Location = new System.Drawing.Point(9, 279);
-            this.btn_CloseWindow.Name = "btn_CloseWindow";
-            this.btn_CloseWindow.Size = new System.Drawing.Size(135, 55);
-            this.btn_CloseWindow.TabIndex = 1;
-            this.btn_CloseWindow.Text = "Close";
-            this.btn_CloseWindow.UseVisualStyleBackColor = true;
-            this.btn_CloseWindow.Click += new System.EventHandler(this.btn_CloseWindow_Click);
             // 
             // DESCRIPTION
             // 
@@ -224,6 +212,18 @@
             this.TOTAL.MinimumWidth = 12;
             this.TOTAL.Name = "TOTAL";
             // 
+            // btn_CloseWindow
+            // 
+            this.btn_CloseWindow.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_CloseWindow.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_CloseWindow.Location = new System.Drawing.Point(9, 279);
+            this.btn_CloseWindow.Name = "btn_CloseWindow";
+            this.btn_CloseWindow.Size = new System.Drawing.Size(135, 55);
+            this.btn_CloseWindow.TabIndex = 1;
+            this.btn_CloseWindow.Text = "Close";
+            this.btn_CloseWindow.UseVisualStyleBackColor = true;
+            this.btn_CloseWindow.Click += new System.EventHandler(this.btn_CloseWindow_Click);
+            // 
             // frmSuspendedTransactions
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -235,6 +235,8 @@
             this.Controls.Add(this.selectionListSuspendedTransactions);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.btnDelete);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ForeColor = System.Drawing.Color.Black;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
