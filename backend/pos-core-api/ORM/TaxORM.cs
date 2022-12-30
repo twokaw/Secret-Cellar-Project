@@ -38,9 +38,9 @@ namespace pos_core_api.ORM
         {
             MySqlCommand cmd = db.CreateCommand(@"
                 INSERT INTO tax
-                (bottle_deposit, sales_tax, local_sales_tax, Tax_name)
+                (bottle_deposit, sales_tax, local_sales_tax, tax_name)
                 VALUES
-                (@bottle_deposit, @sales_tax, @local_sales_tax, @Tax_name)
+                (@bottle_deposit, @sales_tax, @local_sales_tax, @tax_name)
             ");
             cmd.Parameters.Add(new MySqlParameter("bottle_deposit", tax.BottleDeposit));
             cmd.Parameters.Add(new MySqlParameter("Tax_name", tax.TaxName));
@@ -69,8 +69,8 @@ namespace pos_core_api.ORM
                     SET bottle_deposit = @bottle_deposit, 
                         sales_tax = @sales_tax, 
                         local_sales_tax = @local_sales_tax, 
-                        tax_name = @Tax_name
-                    WHERE idTAX = @idTAX
+                        tax_name = @tax_name
+                    WHERE idtax = @idtax
                 ");
                 cmd.Parameters.Add(new MySqlParameter("idTAX", tax.IdTax));
                 cmd.Parameters.Add(new MySqlParameter("bottle_deposit", tax.BottleDeposit));
@@ -99,7 +99,7 @@ namespace pos_core_api.ORM
             {
                 MySqlCommand cmd = db.CreateCommand(@"
                     DELETE FROM v_tax
-                    WHERE idTAX = @idTAX
+                    WHERE idtax = @idtax
                 ");
                 cmd.Parameters.Add(new MySqlParameter("idTAX", taxId));
 
@@ -125,7 +125,7 @@ namespace pos_core_api.ORM
             MySqlCommand cmd = db.CreateCommand(@"
               SELECT * 
               FROM v_tax 
-              WHERE UPPER(Tax_name) = @name
+              WHERE UPPER(tax_name) = @name
             ");
             cmd.Parameters.Add(new MySqlParameter("name", name.ToUpper()));
             MySqlDataReader reader = cmd.ExecuteReader();
@@ -152,7 +152,7 @@ namespace pos_core_api.ORM
             MySqlCommand cmd = db.CreateCommand(@"
               SELECT * 
               FROM v_tax 
-              WHERE idTax = @ID
+              WHERE idtax = @id
             ");
             cmd.Parameters.Add(new MySqlParameter("ID", taxId));
             MySqlDataReader reader = cmd.ExecuteReader();

@@ -42,7 +42,7 @@ namespace pos_core_api.ORM
             MySqlCommand cmd = db.CreateCommand(@"
                 SELECT *
                 FROM v_inventory 
-                ORDER BY inventoryID, DiscountID
+                ORDER BY inventoryid, discountid
             ");   
             
             try
@@ -61,8 +61,8 @@ namespace pos_core_api.ORM
             MySqlCommand cmd = db.CreateCommand(@"
                 SELECT *
                 FROM v_inventory 
-                WHERE Inventoryid = @id
-                ORDER BY inventoryID, DiscountID
+                WHERE inventoryid = @id
+                ORDER BY inventoryid, discountid
             ");
 
             cmd.Parameters.Add(new MySqlParameter("id", id));
@@ -84,7 +84,7 @@ namespace pos_core_api.ORM
                 SELECT *
                 FROM v_inventory 
                 WHERE barcode = @bar
-                ORDER BY inventoryID, DiscountID
+                ORDER BY inventoryid, discountid
             ");
 
             cmd.Parameters.Add(new MySqlParameter("bar", barcode));
@@ -104,7 +104,7 @@ namespace pos_core_api.ORM
         public string GetInvHash()
         {
             MySqlCommand cmd = db.CreateCommand(@"
-                SELECT HashValue
+                SELECT hashvalue
                 FROM v_inventory_hash
             "); 
 
@@ -214,9 +214,9 @@ namespace pos_core_api.ORM
 
             MySqlCommand cmd = db.CreateCommand(@"
                 INSERT INTO inventory_description 
-                (name, supplierID, barcode, retail_price, discount_price, typeID, bottle_deposit_qty, nontaxable, nontaxable_local, InvMax, InvMin, OrderQty, Hidden) 
+                (name, supplierid, barcode, retail_price, discount_price, typeid, bottle_deposit_qty, nontaxable, nontaxable_local, invmax, invmin, orderqty, hidden) 
                 VALUES 
-                (@name, @supplierID, @barcode, @Price, @discount_price, @typeID, @bottles, @nonTaxable, @nonTaxableLocal, @InvMax, @InvMin, @OrderQty, @Hidden);
+                (@name, @supplierid, @barcode, @price, @discount_price, @typeid, @bottles, @nontaxable, @nontaxablelocal, @invmax, @invmin, @orderqty, @hidden);
             ");
 
             //cmd.Parameters.Add(new MySqlParameter("id", inv.Id));
@@ -249,7 +249,7 @@ namespace pos_core_api.ORM
 
             cmd = db.CreateCommand(@"
                 INSERT INTO inventory_price 
-                (inventoryID, Inventory_Qty, Supplier_price) 
+                (inventoryid, inventory_qty, supplier_price) 
                 VALUES 
                 (@id, @qty, @supplier_price);
             ");
@@ -289,19 +289,19 @@ namespace pos_core_api.ORM
             MySqlCommand cmd = db.CreateCommand(@"
                 UPDATE inventory_description 
                 SET name = @name,
-                    supplierID = @supplierID, 
+                    supplierid = @supplierid, 
                     barcode = @barcode,
-                    retail_price = @Price,
+                    retail_price = @price,
                     discount_price = @discount_price,
-                    typeID = @typeID, 
-                    bottle_deposit_qty = @bottleDepositQty,
-                    nontaxable = @nonTaxable, 
-                    nontaxable_local = @nonTaxableLocal,
-                    InvMax = @InvMax, 
-                    InvMin = @InvMin, 
-                    OrderQty = @OrderQty, 
-                    Hidden = @Hidden
-                WHERE InventoryId = @id;
+                    typeid = @typeid, 
+                    bottle_deposit_qty = @bottledepositqty,
+                    nontaxable = @nontaxable, 
+                    nontaxable_local = @nontaxablelocal,
+                    invmax = @invmax, 
+                    invmin = @invmin, 
+                    orderqty = @orderqty, 
+                    hidden = @hidden
+                WHERE inventoryid = @id;
             ");
 
             cmd.Parameters.Add(new MySqlParameter("id", inv.Id));
@@ -329,12 +329,12 @@ namespace pos_core_api.ORM
             }
 
             cmd = db.CreateCommand(@"
-                INSERT INTO  inventory_price 
-                (inventoryid, Inventory_Qty, Supplier_price)
+                INSERT INTO inventory_price 
+                (inventoryid, inventory_qty, supplier_price)
                 VALUES 
-                (@id, @Qty, @Supplier_price)
-                ON DUPLICATE KEY UPDATE Inventory_Qty  = @qty, 
-                        Supplier_price = @supplier_price;
+                (@id, @qty, @supplier_price)
+                ON DUPLICATE KEY UPDATE inventory_qty  = @qty, 
+                        supplier_price = @supplier_price;
             ");
 
             cmd.Parameters.Add(new MySqlParameter("id", inv.Id));
@@ -359,7 +359,7 @@ namespace pos_core_api.ORM
         {
             MySqlCommand cmd = db.CreateCommand(@"
                 DELETE FROM inventory_description 
-                WHERE InventoryID = @id
+                WHERE inventoryid = @id
             ");
             cmd.Parameters.Add(new MySqlParameter("id", invId));
 
@@ -380,20 +380,22 @@ namespace pos_core_api.ORM
               SELECT i.discountid, i.inventoryid, i.typeid, dt.discountid type_discount, di.discountid inv_discount, enabled
               FROM 
                (
-                 SELECT Discountid, inventoryid, typeid 
+                 SELECT discountid, inventoryid, typeid 
                  FROM   inventory_description
                  CROSS JOIN
                   (
-                    SELECT Discountid
+                    SELECT discountid
                     FROM discount
                   ) d
                  WHERE inventoryid = @invid
                ) i
                LEFT JOIN discount_type dt
-               ON i.Typeid = dt.typeid AND i.discountid = dt.discountid
+               ON  i.typeid = dt.typeid 
+               AND i.discountid = dt.discountid
  
                LEFT JOIN discount_inventory di
-               ON i.inventoryID = di.inventoryid AND i.Discountid = di.discountid;
+               ON  i.inventoryid = di.inventoryid 
+               AND i.discountid = di.discountid;
             ");
 
             cmd.Parameters.Add(new MySqlParameter("invid", inv.Id));
@@ -442,8 +444,8 @@ namespace pos_core_api.ORM
         {
             MySqlCommand cmd = db.CreateCommand(@"                   
                 DELETE FROM discount_inventory 
-                WHERE Inventoryid = @inventoryid
-                AND   Discountid  = @discountid;
+                WHERE inventoryid = @inventoryid
+                AND   discountid  = @discountid;
             ");
 
             cmd.Parameters.Add(new MySqlParameter("inventoryid", id));
@@ -463,7 +465,7 @@ namespace pos_core_api.ORM
         {
             MySqlCommand cmd = db.CreateCommand(@"                   
                 INSERT INTO discount_inventory 
-                 ( Inventoryid,  Discountid,  enabled)
+                 ( inventoryid,  discountid,  enabled)
                 VALUES
                  (@inventoryid, @discountid, @enabled);
             ");

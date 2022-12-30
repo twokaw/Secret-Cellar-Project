@@ -8,16 +8,16 @@ namespace pos_core_api.ORM
 {
     public class DiscountORM
     {
-        private readonly DbConn db = new DbConn();
+        private readonly DbConn db = new();
 
         public List<Discount> Get()
         {
-            List<Discount> output = new List<Discount>();
+            List<Discount> output = new();
             
 
             MySqlCommand cmd = db.CreateCommand(@"
-              SELECT DiscountID, DiscountName, minQty, maxQty, Discount
-              FROM V_Discount
+              SELECT discountid, discountname, minqty, maxqty, discount
+              FROM v_discount
             ");
 
             using (MySqlDataReader reader = cmd.ExecuteReader())
@@ -43,9 +43,9 @@ namespace pos_core_api.ORM
             
 
             MySqlCommand cmd = db.CreateCommand(@"
-              SELECT DiscountID, DiscountName, minQty, maxQty, Discount 
-              FROM v_Discount 
-              WHERE DiscountID = @ID
+              SELECT discountid, discountname, minqty, maxqty, discount 
+              FROM v_discount 
+              WHERE discountid = @id
             ");
             cmd.Parameters.Add(new MySqlParameter("ID", discountId));
             MySqlDataReader reader = cmd.ExecuteReader();
@@ -69,9 +69,9 @@ namespace pos_core_api.ORM
             
 
             MySqlCommand cmd = db.CreateCommand(@"
-              SELECT DiscountID, DiscountName, minQty, maxQty, Discount 
-              FROM v_Discount 
-              WHERE DiscountName = @Name
+              SELECT discountid, discountname, minqty, maxqty, discount 
+              FROM v_discount 
+              WHERE discountname = @name
             ");
             cmd.Parameters.Add(new MySqlParameter("Name", discountName));
             MySqlDataReader reader = cmd.ExecuteReader();
@@ -124,12 +124,12 @@ namespace pos_core_api.ORM
         private uint DoUpdate(Discount discount)
         {
             MySqlCommand cmd = db.CreateCommand(@"
-                UPDATE v_Discount
-                SET DiscountName = @DiscountName, 
-                    minQty = @minQty, 
-                    maxQty = @maxQty, 
-                    Discount = @Discount
-                WHERE Discountid = @idDiscount
+                UPDATE v_discount
+                SET discountname = @discountname, 
+                    minqty = @minqty, 
+                    maxqty = @maxqty, 
+                    discount = @discount
+                WHERE discountid = @iddiscount
             ");
             cmd.Parameters.Add(new MySqlParameter("idDiscount", discount.DiscountID));
             cmd.Parameters.Add(new MySqlParameter("DiscountName", discount.DiscountName));
@@ -152,10 +152,10 @@ namespace pos_core_api.ORM
         private uint DoInsert(Discount discount)
         {
             MySqlCommand cmd = db.CreateCommand(@"
-                INSERT INTO v_Discount
-                (DiscountName, minQty, maxQty, Discount)
+                INSERT INTO v_discount
+                (discountname, minqty, maxqty, discount)
                 VALUES
-                (@DiscountName, @minQty, @maxQty, @Discount)
+                (@discountname, @minqty, @maxqty, @discount)
             ");
             cmd.Parameters.Add(new MySqlParameter("DiscountName", discount.DiscountName));
             cmd.Parameters.Add(new MySqlParameter("minQty", discount.Min));
@@ -226,10 +226,9 @@ namespace pos_core_api.ORM
                 return false;
             else
             {
-   
                 MySqlCommand cmd = db.CreateCommand(@"
-                    DELETE FROM v_Discount
-                    WHERE DiscountID = @idDiscount
+                    DELETE FROM v_discount
+                    WHERE discountid = @iddiscount
                 ");
                 cmd.Parameters.Add(new MySqlParameter("idDiscount", DiscountId));
                 try
@@ -244,6 +243,5 @@ namespace pos_core_api.ORM
 
             return true;
         }
-
     }
 }

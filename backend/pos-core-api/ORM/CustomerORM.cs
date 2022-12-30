@@ -42,7 +42,7 @@ namespace pos_core_api.ORM
             
 
             string sqlStatement = @$"{CUSTOMERSQL}
-              WHERE customerID = @custID
+              WHERE customerid = @custid
             ";
 
             MySqlCommand cmd = db.CreateCommand(sqlStatement);
@@ -97,9 +97,9 @@ namespace pos_core_api.ORM
             
 
             string sqlStatement = @"
-              SELECT InventoryID,
-                     CustomerID,
-                     LastRequestDate
+              SELECT inventoryid,
+                     customerid,
+                     lastrequestdate
               FROM v_customerfavorite
             ";
 
@@ -119,11 +119,11 @@ namespace pos_core_api.ORM
         public CustomerFavorites GetCustomerFavorites(uint customerID)
         {
             string sqlStatement = @"
-              SELECT InventoryID,
-                     CustomerID,
-                     LastRequestDate
+              SELECT inventoryid,
+                     customerid,
+                     lastrequestdate
               FROM v_customerfavorite
-              WHERE CustomerID = @custId
+              WHERE customerid = @custid
             ";
 
             MySqlCommand cmd = db.CreateCommand(sqlStatement);
@@ -148,7 +148,7 @@ namespace pos_core_api.ORM
         public string GetCustHash()
         {
             using MySqlCommand cmd = db.CreateCommand(@"
-                SELECT HashValue
+                SELECT hashvalue
                 FROM v_customer_hash
             ");
 
@@ -172,10 +172,10 @@ namespace pos_core_api.ORM
 
             string sqlStatement = @"
               INSERT INTO customerfavorite
-              ( InventoryID, CustomerID)
+              ( inventoryid, customerid)
               VALUES
-              (@InventoryID, @customerID)
-              ON DUPLICATE KEY UPDATE customerID = @customerID
+              (@inventoryid, @customerid)
+              ON DUPLICATE KEY UPDATE customerid = @customerid
             ";
 
             MySqlCommand cmd = db.CreateCommand(sqlStatement);
@@ -198,8 +198,8 @@ namespace pos_core_api.ORM
 
             string sqlStatement = @"
               DELETE FROM customerfavorite
-              WHERE InventoryID = @InventoryID
-              AND   CustomerID  = @customerID
+              WHERE inventoryid = @inventoryid
+              AND   customerid  = @customerid
             ";
 
             MySqlCommand cmd = db.CreateCommand(sqlStatement);
@@ -293,7 +293,7 @@ namespace pos_core_api.ORM
         {
             MySqlCommand cmd = db.CreateCommand(@"
                 DELETE FROM customer 
-                WHERE customerID = @CustID
+                WHERE customerid = @custid
             ");
             cmd.Parameters.Add(new MySqlParameter("custID", custID));
 
@@ -311,7 +311,7 @@ namespace pos_core_api.ORM
         {
             MySqlCommand cmd = db.CreateCommand(@"
                 UPDATE customer 
-                SET Credit = IFNULL(Credit, 0) + @amount
+                SET credit = IFNULL(credit, 0) + @amount
                 WHERE customerID = @CustID
             ");
             cmd.Parameters.Add(new MySqlParameter("custID", custID));

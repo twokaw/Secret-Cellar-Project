@@ -15,14 +15,14 @@ namespace pos_core_api.ORM
         private readonly CustomerORM CustORM;
 
         private const string SQLGET = @"
-            SELECT receiptID, register, sold_datetime, customerID, empID, location, tax_exempt, discount, shipping, tranTypeid
+            SELECT receiptid, register, sold_datetime, customerid, empid, location, tax_exempt, discount, shipping, trantypeid
             FROM transaction
         ";
         private const string SQLGETPAYMENTS = @"
-                SELECT  p.receiptID, p.PayId, pm.Paymentmethod Method, p.Number, p.Amount, PaymentMethodId
+                SELECT  p.receiptid, p.payid, pm.paymentmethod method, p.number, p.amount, paymentmethodid
                 FROM payments p
-                JOIN Paymentmethod pm
-                USING (PaymentMethodId)
+                JOIN paymentmethod pm
+                USING (paymentmethodid)
         ";
 
         public TransactionORM(CustomerORM customerORM)
@@ -105,7 +105,7 @@ namespace pos_core_api.ORM
         {
             MySqlCommand cmd = db.CreateCommand(@$"{SQLGET}
                 JOIN v_suspendedtransaction
-                USING(ReceiptID);
+                USING(receiptid);
             ");
 
             try
@@ -122,7 +122,7 @@ namespace pos_core_api.ORM
         {
             MySqlCommand cmd = db.CreateCommand(@$"{SQLGET}
                 JOIN v_suspendedtransaction
-                USING(ReceiptID)
+                USING(receiptid)
                 WHERE customerid = @cid;
             ");
 
@@ -145,7 +145,7 @@ namespace pos_core_api.ORM
         {
             MySqlCommand cmd = db.CreateCommand(@$"
                 {SQLGET}
-                WHERE customerID = @customerID
+                WHERE customerid = @customerid
             ");
 
             if (start > DateTime.MinValue)
@@ -210,8 +210,8 @@ namespace pos_core_api.ORM
             MySqlCommand cmd = db.CreateCommand(@"
                 SELECT *
                 FROM v_transaction_items
-                WHERE receiptID = @receiptID
-                ORDER BY InventoryID, sold_price
+                WHERE receiptid = @receiptid
+                ORDER BY inventoryid, sold_price
             ");
 
             cmd.Parameters.Add(new MySqlParameter("receiptID", transaction.InvoiceID));
@@ -263,7 +263,7 @@ namespace pos_core_api.ORM
         public void GetPayments(Transaction transaction)
         {
             MySqlCommand cmd = db.CreateCommand(@$"{SQLGETPAYMENTS}
-                WHERE p.receiptID = @receiptID
+                WHERE p.receiptid = @receiptid
             ");
             cmd.Parameters.Add(new MySqlParameter("receiptID", transaction.InvoiceID));
 
@@ -274,7 +274,7 @@ namespace pos_core_api.ORM
         {
             MySqlCommand cmd = db.CreateCommand(@$"
                 {SQLGETPAYMENTS}
-                WHERE payID = @payId
+                WHERE payid = @payid
             ");
             cmd.Parameters.Add(new MySqlParameter("payId", payId));
 
@@ -309,8 +309,6 @@ namespace pos_core_api.ORM
             return payments;
         }
 
-
-
         public uint InsertTransaction(Transaction transaction, bool decrementItems = true)
         {
 
@@ -319,9 +317,9 @@ namespace pos_core_api.ORM
 
             MySqlCommand cmd = db.CreateCommand(@"
                 INSERT INTO transaction
-                (register,  sold_datetime,  customerID,  empID,  location,  tax_exempt,  discount, shipping, tranTypeid)
+                (register,  sold_datetime,  customerid,  empid,  location,  tax_exempt,  discount, shipping, trantypeid)
                 VALUES
-                (@register, @sold_datetime, @customerID, @empID, @location, @tax_exempt, @discount, @shipping, @TranType)
+                (@register, @sold_datetime, @customerid, @empid, @location, @tax_exempt, @discount, @shipping, @trantype)
             ");
 
             cmd.Parameters.Add(new MySqlParameter("register", transaction.RegisterID));
@@ -368,13 +366,13 @@ namespace pos_core_api.ORM
                 UPDATE transaction
                 SET register = @register,  
                     sold_datetime = @sold_datetime,  
-                    customerID = @customerID,   
-                    empID = @empID,  
+                    customerid = @customerid,   
+                    empid = @empid,  
                     location = @location,  
                     tax_exempt = @tax_exempt,  
                     discount = @discount, 
                     shipping = @shipping, 
-                    tranTypeid= @transType
+                    trantypeid= @transtype
                 WHERE Receiptid = @InvoiceID
             ");
             cmd.Parameters.Add(new MySqlParameter("register", transaction.RegisterID));
@@ -421,8 +419,8 @@ namespace pos_core_api.ORM
             {
                 cmd = db.CreateCommand (@"
                     DELETE FROM transaction_items
-                    WHERE receiptID = @receiptID
-                    AND   inventoryID =  @inventoryID
+                    WHERE receiptid = @receiptid
+                    AND   inventoryid =  @inventoryid
                 ");
                 cmd.Parameters.Add(new MySqlParameter("receiptID", transaction.InvoiceID));
                 cmd.Parameters.Add(new MySqlParameter("inventoryID", item.Id));
@@ -446,9 +444,9 @@ namespace pos_core_api.ORM
             using MySqlCommand cmd = db.CreateCommand(@"
                 UPDATE transaction_items
                 SET    sold_qty     = GREATEST(@sold_qty, 0),
-                       Refunded_Qty = GREATEST(@Refunded_Qty, 0)
-                WHERE  receiptID = @receiptID
-                AND    inventoryID = @inventoryID
+                       refunded_qty = GREATEST(@refunded_qty, 0)
+                WHERE  receiptid = @receiptid
+                AND    inventoryid = @inventoryid
             ");
 
             cmd.Parameters.Add(new MySqlParameter("receiptID", receiptId));
@@ -499,9 +497,9 @@ namespace pos_core_api.ORM
             if (item.DecrementInventory)
             {
                 MySqlCommand cmd = db.CreateCommand(@"
-                    UPDATE Inventory_price
-                    SET Inventory_qty = GREATEST(Inventory_qty - @qty, 0 ) 
-                    WHERE inventoryID = @inventoryID 
+                    UPDATE inventory_price
+                    SET inventory_qty = GREATEST(inventory_qty - @qty, 0 ) 
+                    WHERE inventoryid = @inventoryid 
                 ");
                 cmd.Parameters.Add(new MySqlParameter("qty", item.NumSold));
                 cmd.Parameters.Add(new MySqlParameter("inventoryID", item.Id));
@@ -519,9 +517,9 @@ namespace pos_core_api.ORM
         public void AddInventoryQty(Item item, int qty)
         {
             using MySqlCommand cmd = db.CreateCommand(@"
-                UPDATE Inventory_price 
-                SET Inventory_qty = Inventory_qty + @qty 
-                WHERE inventoryID = @inventoryID 
+                UPDATE inventory_price 
+                SET inventory_qty = inventory_qty + @qty 
+                WHERE inventoryid = @inventoryid 
             ");
             cmd.Parameters.Add(new MySqlParameter("qty", Math.Min(item.NumSold, qty)));
             cmd.Parameters.Add(new MySqlParameter("inventoryID", item.Id));
@@ -540,19 +538,19 @@ namespace pos_core_api.ORM
         {
             MySqlCommand cmd;
             string insert = @"
-                INSERT INTO Payments
-                ( ReceiptID,  Method,  Number,  Amount, PaymentMethodId)
+                INSERT INTO payments
+                ( receiptid,  method,  number,  amount, paymentmethodid)
                 VALUES
-                (@ReceiptID, @Method, @Number, @Amount, (SELECT PaymentMethodId FROM Paymentmethod WHERE PaymentMethod = @Method ))
+                (@receiptid, @method, @number, @amount, (SELECT paymentmethodid FROM paymentmethod WHERE paymentmethod = @method ))
             ";
 
             string update = @"
-                UPDATE Payments
-                SET  ReceiptID = @ReceiptID,
-                     Method = @Method,
-                     Number = @Number,
-                     Amount = @Amount,
-                     PaymentMethodid = (SELECT PaymentMethodid FROM Paymentmethod WHERE PaymentMethod = @Method ) 
+                UPDATE payments
+                SET  receiptid = @receiptid,
+                     method = @method,
+                     number = @number,
+                     amount = @amount,
+                     paymentmethodid = (SELECT paymentmethodid FROM paymentmethod WHERE paymentmethod = @method ) 
                 WHERE PayID = @PayID
             ";
             
@@ -606,11 +604,11 @@ namespace pos_core_api.ORM
             if (transaction.Payments.Count == 0)
             {
                 MySqlCommand cmd = db.CreateCommand(@"
-                    DELETE FROM Transaction_items 
-                    WHERE ReceiptID = @ReceiptID;
+                    DELETE FROM transaction_items 
+                    WHERE receiptid = @receiptid;
 
-                    DELETE FROM Transaction 
-                    WHERE ReceiptID = @ReceiptID;
+                    DELETE FROM transaction 
+                    WHERE receiptid = @receiptid;
                 ");
 
                 try
@@ -638,8 +636,8 @@ namespace pos_core_api.ORM
             if (pay.PayId > 0)
             {
                 MySqlCommand cmd = db.CreateCommand(@"
-                    DELETE FROM Payments
-                    WHERE payID = @payId
+                    DELETE FROM payments
+                    WHERE payid = @payid
                 ");
 
                 try
@@ -684,10 +682,9 @@ namespace pos_core_api.ORM
         }
         public List<PaymentMethod> GetPaymentMethods()
         {
-            List<PaymentMethod> result = new();
             string itemSQLStatement = @"
-                SELECT PaymentMethodid, PaymentMethod, PercentOffset, allowchange
-                FROM paymentMethod
+                SELECT paymentmethodid, paymentmethod, percentoffset, allowchange
+                FROM paymentmethod
             ";
             
             MySqlCommand cmd = db.CreateCommand(itemSQLStatement);
@@ -696,14 +693,15 @@ namespace pos_core_api.ORM
         }
         public PaymentMethod GetPaymentMethod(uint id)
         {
-            string itemSQLStatement = @"
-                SELECT PaymentMethodid, PaymentMethod, PercentOffset
-                FROM paymentMethod
-                WHERE PaymentMethodid = @id
-            ";
+            using MySqlCommand cmd = db.CreateCommand(@"
+                SELECT paymentmethodid, paymentmethod, percentoffset
+                FROM paymentmethod
+                WHERE paymentmethodid = @id
+            ");
+            cmd.Parameters.Add(new MySqlParameter("id", id));
 
-            using MySqlCommand cmd = db.CreateCommand(itemSQLStatement);
             List<PaymentMethod> result = FetchPaymentMethod(cmd);
+
             return result.Count > 0 ? result[0] : null;
         }
 
@@ -734,10 +732,10 @@ namespace pos_core_api.ORM
                 return null;
 
             string itemSQLStatement = @"
-                UPDATE paymentMethod
-                SET    PaymentMethod = @method, 
-                       PercentOffset = @offset, 
-                       AllowChange = @allowchange
+                UPDATE paymentmethod
+                SET    paymentmethod = @method, 
+                       percentoffset = @offset, 
+                       allowchange   = @allowchange
                 WHERE  PaymentMethodid = @id
             ";
 
