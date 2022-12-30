@@ -211,32 +211,55 @@ namespace SecretCellar
 
             foreach (Control c in base.Controls)
             {
-                c.Font = FontStyle;
+                UpdateColors(c);
+            }
+        }
 
-                if (c.GetType() == typeof(Panel)) {
-                    ((Panel)c).BackColor = PanelColor;
 
-                    foreach (Control cc in c.Controls) {
-                        if (cc.GetType() == typeof(Button)) {
-                            cc.BackColor = ButtonColor;
-                            cc.ForeColor = ButtonFontColor;
-                        }
+        /// <summary>
+        /// Recursively loops through all the sub panels to update the buttons, datagrids, and panel colors.
+        /// </summary>
+        /// <param name="c"></param>
+        private void UpdateColors(Control c) {
+            c.Font = FontStyle;
 
-                        else if (cc.GetType() == typeof(DataGridView)) {
-                            ((DataGridView)cc).DefaultCellStyle = CellStyle;
-                            ((DataGridView)cc).RowsDefaultCellStyle = CellStyle;
-                            ((DataGridView)cc).AlternatingRowsDefaultCellStyle = CellAlternateRowStyle;
-                            ((DataGridView)cc).BackgroundColor = DataGridViewColor;
-                            ((DataGridView)cc).RowsDefaultCellStyle.BackColor = DataGridViewRowColor;
-                            ((DataGridView)cc).RowsDefaultCellStyle.ForeColor = DataGridViewRowFontColor;
-                            ((DataGridView)cc).RowsDefaultCellStyle.SelectionBackColor = _lightBlue;
-                            ((DataGridView)cc).RowsDefaultCellStyle.SelectionForeColor = _white;
-                            ((DataGridView)cc).AlternatingRowsDefaultCellStyle.BackColor = DataGridViewAlternateRowColor;
-                            ((DataGridView)cc).AlternatingRowsDefaultCellStyle.ForeColor = DataGridViewAlternateRowFontColor;
-                            ((DataGridView)cc).AlternatingRowsDefaultCellStyle.SelectionBackColor = _lightBlue;
-                            ((DataGridView)cc).AlternatingRowsDefaultCellStyle.SelectionForeColor = _white;
-                        }
-                    }
+            if (c.GetType() == typeof(Button)) {
+                c.BackColor = ButtonColor;
+                c.ForeColor = ButtonFontColor;
+            }
+            else if (c.GetType() == typeof(DataGridView)) {
+                ((DataGridView)c).DefaultCellStyle = CellStyle;
+                ((DataGridView)c).RowsDefaultCellStyle = CellStyle;
+                ((DataGridView)c).AlternatingRowsDefaultCellStyle = CellAlternateRowStyle;
+                ((DataGridView)c).BackgroundColor = DataGridViewColor;
+                ((DataGridView)c).RowsDefaultCellStyle.BackColor = DataGridViewRowColor;
+                ((DataGridView)c).RowsDefaultCellStyle.ForeColor = DataGridViewRowFontColor;
+                ((DataGridView)c).RowsDefaultCellStyle.SelectionBackColor = _lightBlue;
+                ((DataGridView)c).RowsDefaultCellStyle.SelectionForeColor = _white;
+                ((DataGridView)c).AlternatingRowsDefaultCellStyle.BackColor = DataGridViewAlternateRowColor;
+                ((DataGridView)c).AlternatingRowsDefaultCellStyle.ForeColor = DataGridViewAlternateRowFontColor;
+                ((DataGridView)c).AlternatingRowsDefaultCellStyle.SelectionBackColor = _lightBlue;
+                ((DataGridView)c).AlternatingRowsDefaultCellStyle.SelectionForeColor = _white;
+            }
+            else if (c.GetType() == typeof(Panel)) {
+                ((Panel)c).BackColor = PanelColor;
+
+                foreach (Control cc in c.Controls) {
+                    UpdateColors(cc);
+                }
+            }
+            else if (c.GetType() == typeof(FlowLayoutPanel)) {
+                ((FlowLayoutPanel)c).BackColor = PanelColor;
+
+                foreach (Control cc in c.Controls) {
+                    UpdateColors(cc);
+                }
+            }
+            else if (c.GetType() == typeof(GroupBox)) {
+                ((GroupBox)c).BackColor = PanelColor;
+
+                foreach (Control cc in c.Controls) {
+                    UpdateColors(cc);
                 }
             }
         }
