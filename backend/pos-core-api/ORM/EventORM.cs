@@ -87,7 +87,7 @@ namespace pos_core_api.ORM
             MySqlCommand cmd = db.CreateCommand(@"
                 SELECT *
                 FROM v_event 
-                WHERE Inventoryid = @id
+                WHERE inventoryid = @id
             ");
             cmd.Parameters.Add(new MySqlParameter("id", id));
 
@@ -153,9 +153,9 @@ namespace pos_core_api.ORM
 
             MySqlCommand cmd = db.CreateCommand(@"
                 INSERT INTO inventory_description 
-                (name, barcode, retail_price, typeID, nontaxable, nontaxable_local) 
+                (name, barcode, retail_price, typeid, nontaxable, nontaxable_local) 
                 VALUES 
-                (@name, @barcode, @Price, @typeID, @nonTaxable, @nonTaxableLocal);
+                (@name, @barcode, @price, @typeid, @nontaxable, @nontaxablelocal);
             ");
 
             //cmd.Parameters.Add(new MySqlParameter("id", inv.Id));
@@ -180,14 +180,14 @@ namespace pos_core_api.ORM
             //Inserting into inventory_description
             cmd = db.CreateCommand(@"
                 INSERT INTO inventory_price 
-                (InventoryID, Inventory_Qty, Supplier_price) 
+                (inventoryid, inventory_qty, supplier_price) 
                 VALUES 
                 (@id, @qty, @supplier_price);
 
                 INSERT INTO events 
-                ( inventoryID,  eventDate,  Duration,  preorder,  atDoor) 
+                ( inventoryid,  eventdate,  duration,  preorder,  atdoor) 
                 VALUES 
-                (@inventoryID, @eventDate, @Duration, @preorder, @atDoor);
+                (@inventoryid, @eventdate, @duration, @preorder, @atdoor);
             ");
             cmd.Parameters.Add(new MySqlParameter("id", evnt.Id));
             cmd.Parameters.Add(new MySqlParameter("Qty", evnt.Qty));
@@ -230,10 +230,10 @@ namespace pos_core_api.ORM
                 UPDATE inventory_description 
                 SET    name    = @name, 
                        barcode = @barcode, 
-                       retail_price = @Price, 
-                       typeID = @typeID, 
-                       nontaxable = @nonTaxable, 
-                       nontaxable_local = @nonTaxableLocal
+                       retail_price = @price, 
+                       typeid = @typeid, 
+                       nontaxable = @nontaxable, 
+                       nontaxable_local = @nontaxablelocal
                 WHERE inventoryid = @id;
             ";
 
@@ -259,9 +259,9 @@ namespace pos_core_api.ORM
             //Inserting into inventory_description Changed to insert or update
             cmd = db.CreateCommand(@"
                 UPDATE inventory_price 
-                SET Inventory_Qty = @qty, 
-                    Supplier_price = @supplier_price
-                WHERE inventoryID = @id;
+                SET inventory_qty = @qty, 
+                    supplier_price = @supplier_price
+                WHERE inventoryid = @id;
             ");
 
             //cmd.Parameters.Add(new MySqlParameter("id", inv.Id));
@@ -275,11 +275,11 @@ namespace pos_core_api.ORM
             //Inserting into events
             cmd = db.CreateCommand(@"
                     UPDATE events 
-                    SET eventDate = @eventDate,  
-                        Duration = @Duration,  
+                    SET eventdate = @eventdate,  
+                        duration = @duration,  
                         preorder = @preorder,  
-                        atDoor = @atDoor
-                    WHERE inventoryID = @id;
+                        atdoor = @atdoor
+                    WHERE inventoryid = @id;
                 ");
 
             //cmd.Parameters.Add(new MySqlParameter("id", inv.Id));
@@ -406,9 +406,9 @@ namespace pos_core_api.ORM
 
             using MySqlCommand cmd = db.CreateCommand(@"
                 INSERT INTO event_waitlist
-                (eventId, customerId, customerName, dateAdded)
+                (eventid, customerid, customername, dateadded)
                 VALUES
-                (@eventId, @customerId, @customerName, @dateAdded);
+                (@eventid, @customerid, @customername, @dateadded);
             ");
                 
             cmd.Parameters.Add(new MySqlParameter("eventId", eventWaitlistItem.EventId));
@@ -429,8 +429,8 @@ namespace pos_core_api.ORM
         public void DeleteEventWaitlistItem(uint eventId, uint customerId) {
             MySqlCommand cmd = db.CreateCommand(@"
                 DELETE FROM event_waitlist
-                WHERE eventId = @eventId
-                AND customerId = @customerId
+                WHERE eventid = @eventid
+                AND customerid = @customerid
             ");
             cmd.Parameters.Add(new MySqlParameter("eventId", eventId));
             cmd.Parameters.Add(new MySqlParameter("customerId", customerId));
@@ -475,7 +475,7 @@ namespace pos_core_api.ORM
             MySqlCommand cmd = db.CreateCommand(@"
                 SELECT *
                 FROM v_event
-                WHERE inventoryID = @eventId;
+                WHERE inventoryid = @eventid;
             ");
             cmd.Parameters.Add(new MySqlParameter("eventId", eventId));
 
@@ -493,7 +493,11 @@ namespace pos_core_api.ORM
 
                     output.Add(outputItem);
                 }
-            } finally { db.CloseCommand(cmd); }
+            } 
+            finally 
+             {
+                db.CloseCommand(cmd); 
+             }
 
             return output[0];
         }

@@ -56,7 +56,7 @@ namespace pos_core_api.ORM
                 INSERT INTO supplier
                 (name,  web, phone) 
                 VALUES 
-                (@name,  @Web, @phone);
+                (@name,  @web, @phone);
             ");
 
             //cmd.Parameters.Add(new MySqlParameter("id", tester.Id));
@@ -79,11 +79,11 @@ namespace pos_core_api.ORM
         public uint Update(Supplier supplier)
         {
             MySqlCommand cmd = db.CreateCommand(@"
-                UPDATE Supplier
-                SET name = @name,
-                    web  =  @Web,
+                UPDATE supplier
+                SET name  = @name,
+                    web   = @web,
                     phone = @phone
-                WHERE SupplierID = @SupplierID;
+                WHERE supplierid = @supplierid;
             ");
             cmd.Parameters.Add(new MySqlParameter("SupplierID", supplier.SupplierID));
             cmd.Parameters.Add(new MySqlParameter("name", supplier.Name));
@@ -111,7 +111,7 @@ namespace pos_core_api.ORM
             string sqlStatement = @"
                 SELECT *
                 FROM supplier
-                WHERE supplierID = @id
+                WHERE supplierid = @id
             ";
             MySqlCommand cmd = db.CreateCommand(sqlStatement);
             cmd.Parameters.Add(new MySqlParameter("id", supplierID));

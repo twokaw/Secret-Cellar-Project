@@ -56,8 +56,8 @@ namespace pos_core_api.ORM
             MySqlCommand cmd = db.CreateCommand(@"
               SELECT modelId 
               FROM v_printer 
-              WHERE UPPER(makeName) = UPPER(@make)
-              AND  UPPER(modelName) = UPPER(@Model)
+              WHERE UPPER(makename) = UPPER(@make)
+              AND  UPPER(modelname) = UPPER(@Model)
             ");
             cmd.Parameters.Add(new MySqlParameter("make", make));
             cmd.Parameters.Add(new MySqlParameter("Model", model));
@@ -82,7 +82,7 @@ namespace pos_core_api.ORM
             MySqlCommand cmd = db.CreateCommand(@"
               SELECT * 
               FROM v_printer 
-              WHERE Modelid = @Id
+              WHERE modelid = @id
             ");
             cmd.Parameters.Add(new MySqlParameter("Id", PrinterId));
             try
@@ -119,17 +119,17 @@ namespace pos_core_api.ORM
         {
             MySqlCommand cmd = db.CreateCommand(@"
                 -- Add the printer Make, if it doesn't exist
-                INSERT IGNORE INTO printerMake
-                (printerMakeName) 
+                INSERT IGNORE INTO printermake
+                (printermakename) 
                 VALUES
-                (@Make);                
+                (@make);                
 
                 -- Add the printer Model, if it doesn't exist
-                INSERT IGNORE INTO printerModel
-                (printerModelName, printerMakeID ) 
-                SELECT @Model, printerMakeID 
-                FROM   printerMake 
-                WHERE  printerMakeName = @Make;
+                INSERT IGNORE INTO printermodel
+                (printermodelname, printermakeid ) 
+                SELECT @model, printermakeid 
+                FROM   printermake 
+                WHERE  printermakename = @make;
             ");
 
             cmd.Parameters.Add(new MySqlParameter("Make", printer.Make));
@@ -154,8 +154,8 @@ namespace pos_core_api.ORM
         public string GetMake(uint makeId)
         {
             MySqlCommand cmd = db.CreateCommand(@"
-                SELECT  PrinterMakeName
-                FROM PrinterMake
+                SELECT  printermakename
+                FROM printermake
                 WHERE printermakeid = @makeid
             ");
 
@@ -179,8 +179,8 @@ namespace pos_core_api.ORM
             List<string> result = new();
 
             MySqlCommand cmd = db.CreateCommand(@"
-                SELECT  PrinterMakeName
-                FROM PrinterMake
+                SELECT  printermakename
+                FROM printermake
             ");
 
             try
@@ -204,25 +204,25 @@ namespace pos_core_api.ORM
 
            string sql = @"
                 -- Add the printer Model, if it doesn't exist
-                INSERT IGNORE INTO Printercode
-                (Drawer, Cutter, PartialCutter) 
+                INSERT IGNORE INTO printercode
+                (drawer, cutter, partialcutter) 
                 VALUES
-                (@Drawer, @Cutter, @PartialCutter);
+                (@drawer, @cutter, @partialcutter);
 
-                INSERT IGNORE INTO printerModelCode
-                (printerModelID, printercodeid)
+                INSERT IGNORE INTO printermodelcode
+                (printermodelid, printercodeid)
 
-                SELECT @ModelID,  Printercodeid
-                FROM Printercode
-                WHERE Drawer = @Drawer
-                AND   Cutter = @Cutter
-                AND   PartialCutter = @PartialCutter;
+                SELECT @modelid,  printercodeid
+                FROM printercode
+                WHERE drawer = @drawer
+                AND   cutter = @cutter
+                AND   partialcutter = @partialcutter;
 
-                SELECT  Printercodeid
-                FROM Printercode
-                WHERE Drawer = @Drawer
-                AND   Cutter = @Cutter
-                AND   PartialCutter = @PartialCutter;
+                SELECT  printercodeid
+                FROM printercode
+                WHERE drawer = @drawer
+                AND   cutter = @cutter
+                AND   partialcutter = @partialcutter;
             ";
             MySqlCommand cmd;
 
@@ -250,9 +250,9 @@ namespace pos_core_api.ORM
             CodeIds = CodeIds.Trim(',');
 
             cmd = db.CreateCommand(@$"
-                    DELETE FROM printerModelcode
-                    WHERE printerModelID = @ModelID
-                    {(string.IsNullOrWhiteSpace(CodeIds) ? "" : $"AND NOT printerCodeid IN ({CodeIds})")};
+                    DELETE FROM printermodelcode
+                    WHERE printermodelid = @modelid
+                    {(string.IsNullOrWhiteSpace(CodeIds) ? "" : $"AND NOT printercodeid IN ({CodeIds})")};
                 ");
 
             cmd.Parameters.Add(new MySqlParameter("ModelID", printer.ModelId));
@@ -283,20 +283,20 @@ namespace pos_core_api.ORM
             {       
                 MySqlCommand cmd = db.CreateCommand(@"
                     -- Add the printer Make, if it doesn't exist
-                    INSERT IGNORE INTO printerMake
-                    (printerMakeName) 
+                    INSERT IGNORE INTO printermake
+                    (printermakename) 
                     VALUES
-                    (@Make);                
+                    (@make);                
 
                     -- Add the printer Model, if it doesn't exist
-                    UPDATE printerModel
-                    SET  printerModelName = @Model,
-                            printerMakeID  = ( 
-                            SELECT printerMakeID 
-                            FROM   printerMake 
-                            WHERE  printerMakeName = @Make
+                    UPDATE printermodel
+                    SET  printermodelname = @model,
+                            printermakeid  = ( 
+                            SELECT printermakeid 
+                            FROM   printermake 
+                            WHERE  printermakename = @make
                             )
-                    WHERE printerModelID = @ModelId;
+                    WHERE printermodelid = @modelid;
                 ");
                 cmd.Parameters.Add(new MySqlParameter("Make", printer.Make));
                 cmd.Parameters.Add(new MySqlParameter("ModelID", printer.ModelId));
@@ -324,11 +324,11 @@ namespace pos_core_api.ORM
             {
                 MySqlCommand cmd = db.CreateCommand(@"
 
-                    DELETE FROM printerModelCode
-                    WHERE printerModelID = @idPrinter;
+                    DELETE FROM printermodelcode
+                    WHERE printermodelid = @idprinter;
 
-                    DELETE FROM printerModel
-                    WHERE printerModelID = @idPrinter;
+                    DELETE FROM printermodel
+                    WHERE printermodelid = @idprinter;
                 ");
 
                 cmd.Parameters.Add(new MySqlParameter("idPrinter", ModelId));
