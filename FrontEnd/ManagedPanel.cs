@@ -213,27 +213,30 @@ namespace SecretCellar
             {
                 c.Font = FontStyle;
 
-                if (c.GetType() == typeof(DataGridView)) {
-                    ((DataGridView)c).DefaultCellStyle = CellStyle;
-                    ((DataGridView)c).RowsDefaultCellStyle = CellStyle;
-                    ((DataGridView)c).AlternatingRowsDefaultCellStyle = CellAlternateRowStyle;
-                    ((DataGridView)c).BackgroundColor = DataGridViewColor;
-                    ((DataGridView)c).RowsDefaultCellStyle.BackColor = DataGridViewRowColor;
-                    ((DataGridView)c).RowsDefaultCellStyle.ForeColor = DataGridViewRowFontColor;
-                    ((DataGridView)c).RowsDefaultCellStyle.SelectionBackColor = _lightBlue;
-                    ((DataGridView)c).RowsDefaultCellStyle.SelectionForeColor = _white;
-                    ((DataGridView)c).AlternatingRowsDefaultCellStyle.BackColor = DataGridViewAlternateRowColor;
-                    ((DataGridView)c).AlternatingRowsDefaultCellStyle.ForeColor = DataGridViewAlternateRowFontColor;
-                    ((DataGridView)c).AlternatingRowsDefaultCellStyle.SelectionBackColor = _lightBlue;
-                    ((DataGridView)c).AlternatingRowsDefaultCellStyle.SelectionForeColor = _white;
-                }
-
-                else if (c.GetType() == typeof(Panel))
+                if (c.GetType() == typeof(Panel)) {
                     ((Panel)c).BackColor = PanelColor;
 
-                else if (c.GetType() == typeof(Button)) {
-                    c.BackColor = ButtonColor;
-                    c.ForeColor = ButtonFontColor;
+                    foreach (Control cc in c.Controls) {
+                        if (cc.GetType() == typeof(Button)) {
+                            cc.BackColor = ButtonColor;
+                            cc.ForeColor = ButtonFontColor;
+                        }
+
+                        else if (cc.GetType() == typeof(DataGridView)) {
+                            ((DataGridView)cc).DefaultCellStyle = CellStyle;
+                            ((DataGridView)cc).RowsDefaultCellStyle = CellStyle;
+                            ((DataGridView)cc).AlternatingRowsDefaultCellStyle = CellAlternateRowStyle;
+                            ((DataGridView)cc).BackgroundColor = DataGridViewColor;
+                            ((DataGridView)cc).RowsDefaultCellStyle.BackColor = DataGridViewRowColor;
+                            ((DataGridView)cc).RowsDefaultCellStyle.ForeColor = DataGridViewRowFontColor;
+                            ((DataGridView)cc).RowsDefaultCellStyle.SelectionBackColor = _lightBlue;
+                            ((DataGridView)cc).RowsDefaultCellStyle.SelectionForeColor = _white;
+                            ((DataGridView)cc).AlternatingRowsDefaultCellStyle.BackColor = DataGridViewAlternateRowColor;
+                            ((DataGridView)cc).AlternatingRowsDefaultCellStyle.ForeColor = DataGridViewAlternateRowFontColor;
+                            ((DataGridView)cc).AlternatingRowsDefaultCellStyle.SelectionBackColor = _lightBlue;
+                            ((DataGridView)cc).AlternatingRowsDefaultCellStyle.SelectionForeColor = _white;
+                        }
+                    }
                 }
             }
         }
