@@ -64,6 +64,7 @@ namespace SecretCellar
             }
             else if (c.GetType() == typeof(GroupBox)) {
                 ((GroupBox)c).BackColor = ManagedForm.BackgroundColor;
+                ((GroupBox)c).ForeColor = ManagedForm.FontColor;
 
                 foreach (Control cc in c.Controls) {
                     UpdateColors(cc);
