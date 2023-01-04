@@ -9,8 +9,8 @@ namespace SecretCellar
     public partial class ManagedForm : Form
     {
         private static readonly List<ManagedForm> _forms = new List<ManagedForm>();
-        private static readonly Color _lightBlue = Color.FromArgb(255, 51, 153, 255);
-        private static readonly Color _white = Color.FromArgb(255, 255, 255, 255);
+        public static readonly Color LIGHT_BLUE = Color.FromArgb(255, 51, 153, 255);
+        public static readonly Color WHITE = Color.FromArgb(255, 255, 255, 255);
 
 
         public static Color BackgroundColor {
@@ -152,8 +152,8 @@ namespace SecretCellar
                 return new DataGridViewCellStyle {
                     BackColor = DataGridViewColor,
                     ForeColor = DataGridViewRowColor,
-                    SelectionBackColor = _lightBlue,
-                    SelectionForeColor = _white
+                    SelectionBackColor = LIGHT_BLUE,
+                    SelectionForeColor = WHITE
                 };
             }
         }
@@ -162,8 +162,8 @@ namespace SecretCellar
                 return new DataGridViewCellStyle {
                     BackColor = DataGridViewColor,
                     ForeColor = DataGridViewAlternateRowColor,
-                    SelectionBackColor = _lightBlue,
-                    SelectionForeColor = _white
+                    SelectionBackColor = LIGHT_BLUE,
+                    SelectionForeColor = WHITE
                 };
             }
         }
@@ -222,21 +222,68 @@ namespace SecretCellar
                     ((DataGridView)c).BackgroundColor = DataGridViewColor;
                     ((DataGridView)c).RowsDefaultCellStyle.BackColor = DataGridViewRowColor;
                     ((DataGridView)c).RowsDefaultCellStyle.ForeColor = DataGridViewRowFontColor;
-                    ((DataGridView)c).RowsDefaultCellStyle.SelectionBackColor = _lightBlue;
-                    ((DataGridView)c).RowsDefaultCellStyle.SelectionForeColor = _white;
+                    ((DataGridView)c).RowsDefaultCellStyle.SelectionBackColor = LIGHT_BLUE;
+                    ((DataGridView)c).RowsDefaultCellStyle.SelectionForeColor = WHITE;
                     ((DataGridView)c).AlternatingRowsDefaultCellStyle.BackColor = DataGridViewAlternateRowColor;
                     ((DataGridView)c).AlternatingRowsDefaultCellStyle.ForeColor = DataGridViewAlternateRowFontColor;
-                    ((DataGridView)c).AlternatingRowsDefaultCellStyle.SelectionBackColor = _lightBlue;
-                    ((DataGridView)c).AlternatingRowsDefaultCellStyle.SelectionForeColor = _white;
+                    ((DataGridView)c).AlternatingRowsDefaultCellStyle.SelectionBackColor = LIGHT_BLUE;
+                    ((DataGridView)c).AlternatingRowsDefaultCellStyle.SelectionForeColor = WHITE;
                 }
 
-                else if (c.GetType() == typeof(Panel))
+                else if (c.GetType() == typeof(Panel)) {
                     ((Panel)c).BackColor = PanelColor;
+
+                    foreach (Control cc in c.Controls) {
+                        if (cc.GetType() == typeof(Button)) {
+                            cc.BackColor = ButtonColor;
+                            cc.ForeColor = ButtonFontColor;
+                        }
+                        else if (cc.GetType() == typeof(DataGridView)) {
+                            ((DataGridView)cc).DefaultCellStyle = CellStyle;
+                            ((DataGridView)cc).RowsDefaultCellStyle = CellStyle;
+                            ((DataGridView)cc).AlternatingRowsDefaultCellStyle = CellAlternateRowStyle;
+                            ((DataGridView)cc).BackgroundColor = DataGridViewColor;
+                            ((DataGridView)cc).RowsDefaultCellStyle.BackColor = DataGridViewRowColor;
+                            ((DataGridView)cc).RowsDefaultCellStyle.ForeColor = DataGridViewRowFontColor;
+                            ((DataGridView)cc).RowsDefaultCellStyle.SelectionBackColor = LIGHT_BLUE;
+                            ((DataGridView)cc).RowsDefaultCellStyle.SelectionForeColor = WHITE;
+                            ((DataGridView)cc).AlternatingRowsDefaultCellStyle.BackColor = DataGridViewAlternateRowColor;
+                            ((DataGridView)cc).AlternatingRowsDefaultCellStyle.ForeColor = DataGridViewAlternateRowFontColor;
+                            ((DataGridView)cc).AlternatingRowsDefaultCellStyle.SelectionBackColor = LIGHT_BLUE;
+                            ((DataGridView)cc).AlternatingRowsDefaultCellStyle.SelectionForeColor = WHITE;
+                        }
+                    }
+                }
+
+                else if (c.GetType() == typeof(GroupBox)) {
+                    ((GroupBox)c).BackColor = BackgroundColor;
+                    ((GroupBox)c).ForeColor = FontColor;
+
+                    foreach (Control cc in c.Controls) {
+                        if (cc.GetType() == typeof(Button)) {
+                            cc.BackColor = ButtonColor;
+                            cc.ForeColor = ButtonFontColor;
+                        }
+                    }
+                }
 
                 else if (c.GetType() == typeof(Button))
                 {
                     c.BackColor = ButtonColor;
                     c.ForeColor = ButtonFontColor;
+                }
+
+                else if (c.GetType() == typeof(TouchKeyPad)) {
+                    foreach (Control cc in c.Controls) {
+                        if (cc.GetType() == typeof(Button)) {
+                            cc.BackColor = ButtonColor;
+                            cc.ForeColor = ButtonFontColor;
+                        }
+                    }
+                }
+
+                else if (c.GetType() == typeof(Label)) {
+                    ((Label)c).ForeColor = FontColor;
                 }
             }
 
