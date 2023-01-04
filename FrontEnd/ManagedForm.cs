@@ -230,13 +230,60 @@ namespace SecretCellar
                     ((DataGridView)c).AlternatingRowsDefaultCellStyle.SelectionForeColor = WHITE;
                 }
 
-                else if (c.GetType() == typeof(Panel))
+                else if (c.GetType() == typeof(Panel)) {
                     ((Panel)c).BackColor = PanelColor;
+
+                    foreach (Control cc in c.Controls) {
+                        if (cc.GetType() == typeof(Button)) {
+                            cc.BackColor = ButtonColor;
+                            cc.ForeColor = ButtonFontColor;
+                        }
+                        else if (cc.GetType() == typeof(DataGridView)) {
+                            ((DataGridView)cc).DefaultCellStyle = CellStyle;
+                            ((DataGridView)cc).RowsDefaultCellStyle = CellStyle;
+                            ((DataGridView)cc).AlternatingRowsDefaultCellStyle = CellAlternateRowStyle;
+                            ((DataGridView)cc).BackgroundColor = DataGridViewColor;
+                            ((DataGridView)cc).RowsDefaultCellStyle.BackColor = DataGridViewRowColor;
+                            ((DataGridView)cc).RowsDefaultCellStyle.ForeColor = DataGridViewRowFontColor;
+                            ((DataGridView)cc).RowsDefaultCellStyle.SelectionBackColor = LIGHT_BLUE;
+                            ((DataGridView)cc).RowsDefaultCellStyle.SelectionForeColor = WHITE;
+                            ((DataGridView)cc).AlternatingRowsDefaultCellStyle.BackColor = DataGridViewAlternateRowColor;
+                            ((DataGridView)cc).AlternatingRowsDefaultCellStyle.ForeColor = DataGridViewAlternateRowFontColor;
+                            ((DataGridView)cc).AlternatingRowsDefaultCellStyle.SelectionBackColor = LIGHT_BLUE;
+                            ((DataGridView)cc).AlternatingRowsDefaultCellStyle.SelectionForeColor = WHITE;
+                        }
+                    }
+                }
+
+                else if (c.GetType() == typeof(GroupBox)) {
+                    ((GroupBox)c).BackColor = BackgroundColor;
+                    ((GroupBox)c).ForeColor = FontColor;
+
+                    foreach (Control cc in c.Controls) {
+                        if (cc.GetType() == typeof(Button)) {
+                            cc.BackColor = ButtonColor;
+                            cc.ForeColor = ButtonFontColor;
+                        }
+                    }
+                }
 
                 else if (c.GetType() == typeof(Button))
                 {
                     c.BackColor = ButtonColor;
                     c.ForeColor = ButtonFontColor;
+                }
+
+                else if (c.GetType() == typeof(TouchKeyPad)) {
+                    foreach (Control cc in c.Controls) {
+                        if (cc.GetType() == typeof(Button)) {
+                            cc.BackColor = ButtonColor;
+                            cc.ForeColor = ButtonFontColor;
+                        }
+                    }
+                }
+
+                else if (c.GetType() == typeof(Label)) {
+                    ((Label)c).ForeColor = FontColor;
                 }
             }
 
