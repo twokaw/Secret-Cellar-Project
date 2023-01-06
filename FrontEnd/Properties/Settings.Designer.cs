@@ -448,5 +448,26 @@ namespace SecretCellar.Properties {
                 this["GridAlternateRowFontColor"] = value;
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("22, 22, 22")]
+        public global::System.Drawing.Color DefaultPanelFontColor {
+            get {
+                return ((global::System.Drawing.Color)(this["DefaultPanelFontColor"]));
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("22, 22, 22")]
+        public global::System.Drawing.Color PanelFontColor {
+            get {
+                return ((global::System.Drawing.Color)(this["PanelFontColor"]));
+            }
+            set {
+                this["PanelFontColor"] = value;
+            }
+        }
     }
 }
