@@ -43,10 +43,10 @@ Shueyville, IA 52338
       <Value Profile="(Default)">36</Value>
     </Setting>
     <Setting Name="BackgroundColor" Type="System.Drawing.Color" Scope="User">
-      <Value Profile="(Default)">247, 231, 206</Value>
+      <Value Profile="(Default)">230, 232, 238</Value>
     </Setting>
     <Setting Name="GridColor" Type="System.Drawing.Color" Scope="User">
-      <Value Profile="(Default)">238, 237, 196</Value>
+      <Value Profile="(Default)">60, 67, 77</Value>
     </Setting>
     <Setting Name="FontSet" Type="System.Drawing.Font" Scope="User">
       <Value Profile="(Default)">Microsoft Sans Serif, 12pt, style=Bold</Value>
@@ -55,10 +55,10 @@ Shueyville, IA 52338
       <Value Profile="(Default)">1024, 768</Value>
     </Setting>
     <Setting Name="DefaultBackgroundColor" Type="System.Drawing.Color" Scope="User">
-      <Value Profile="(Default)">247, 231, 206</Value>
+      <Value Profile="(Default)">230, 232, 238</Value>
     </Setting>
     <Setting Name="DefaultGridColor" Type="System.Drawing.Color" Scope="User">
-      <Value Profile="(Default)">238, 237, 196</Value>
+      <Value Profile="(Default)">60, 67, 77</Value>
     </Setting>
     <Setting Name="DefaultFont" Type="System.Drawing.Font" Scope="User">
       <Value Profile="(Default)">Microsoft Sans Serif, 12pt</Value>
@@ -79,52 +79,52 @@ Shueyville, IA 52338
       <Value Profile="(Default)">IA</Value>
     </Setting>
     <Setting Name="DefaultFontColor" Type="System.Drawing.Color" Scope="User">
-      <Value Profile="(Default)">Black</Value>
+      <Value Profile="(Default)">22, 22, 22</Value>
     </Setting>
     <Setting Name="FontColor" Type="System.Drawing.Color" Scope="User">
-      <Value Profile="(Default)">Black</Value>
+      <Value Profile="(Default)">22, 22, 22</Value>
     </Setting>
     <Setting Name="ButtonColor" Type="System.Drawing.Color" Scope="User">
-      <Value Profile="(Default)">Maroon</Value>
+      <Value Profile="(Default)">64, 70, 96</Value>
     </Setting>
     <Setting Name="ButtonFontColor" Type="System.Drawing.Color" Scope="User">
       <Value Profile="(Default)">White</Value>
     </Setting>
     <Setting Name="DefaultButtonColor" Type="System.Drawing.Color" Scope="Application">
-      <Value Profile="(Default)">Maroon</Value>
+      <Value Profile="(Default)">64, 70, 96</Value>
     </Setting>
     <Setting Name="DefaultButtonFontColor" Type="System.Drawing.Color" Scope="Application">
       <Value Profile="(Default)">White</Value>
     </Setting>
     <Setting Name="DefaultGridRowColor" Type="System.Drawing.Color" Scope="User">
-      <Value Profile="(Default)">110, 51, 69</Value>
+      <Value Profile="(Default)">41, 55, 86</Value>
     </Setting>
     <Setting Name="DefaultGridAlternateRowColor" Type="System.Drawing.Color" Scope="User">
-      <Value Profile="(Default)">255, 225, 225</Value>
+      <Value Profile="(Default)">152, 177, 203</Value>
     </Setting>
     <Setting Name="GridRowColor" Type="System.Drawing.Color" Scope="User">
-      <Value Profile="(Default)">110, 51, 69</Value>
+      <Value Profile="(Default)">41, 55, 86</Value>
     </Setting>
     <Setting Name="GridAlternateRowColor" Type="System.Drawing.Color" Scope="User">
-      <Value Profile="(Default)">255, 225, 225</Value>
+      <Value Profile="(Default)">152, 177, 203</Value>
     </Setting>
     <Setting Name="PanelColor" Type="System.Drawing.Color" Scope="User">
-      <Value Profile="(Default)">247, 231, 206</Value>
+      <Value Profile="(Default)">213, 223, 234</Value>
     </Setting>
     <Setting Name="DefaultPanelColor" Type="System.Drawing.Color" Scope="User">
-      <Value Profile="(Default)">247, 231, 206</Value>
+      <Value Profile="(Default)">213, 223, 234</Value>
     </Setting>
     <Setting Name="DefaultGridRowFontColor" Type="System.Drawing.Color" Scope="User">
-      <Value Profile="(Default)">White</Value>
+      <Value Profile="(Default)">233, 233, 233</Value>
     </Setting>
     <Setting Name="GridRowFontColor" Type="System.Drawing.Color" Scope="User">
-      <Value Profile="(Default)">White</Value>
+      <Value Profile="(Default)">233, 233, 233</Value>
     </Setting>
     <Setting Name="DefaultGridAlternateRowFontColor" Type="System.Drawing.Color" Scope="User">
-      <Value Profile="(Default)">Black</Value>
+      <Value Profile="(Default)">22, 22, 22</Value>
     </Setting>
     <Setting Name="GridAlternateRowFontColor" Type="System.Drawing.Color" Scope="User">
-      <Value Profile="(Default)">Black</Value>
+      <Value Profile="(Default)">22, 22, 22</Value>
     </Setting>
   </Settings>
 </SettingsFile>

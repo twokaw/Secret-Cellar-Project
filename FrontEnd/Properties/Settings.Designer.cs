@@ -151,7 +151,7 @@ namespace SecretCellar.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("247, 231, 206")]
+        [global::System.Configuration.DefaultSettingValueAttribute("230, 232, 238")]
         public global::System.Drawing.Color BackgroundColor {
             get {
                 return ((global::System.Drawing.Color)(this["BackgroundColor"]));
@@ -163,7 +163,7 @@ namespace SecretCellar.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("238, 237, 196")]
+        [global::System.Configuration.DefaultSettingValueAttribute("60, 67, 77")]
         public global::System.Drawing.Color GridColor {
             get {
                 return ((global::System.Drawing.Color)(this["GridColor"]));
@@ -199,7 +199,7 @@ namespace SecretCellar.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("247, 231, 206")]
+        [global::System.Configuration.DefaultSettingValueAttribute("230, 232, 238")]
         public global::System.Drawing.Color DefaultBackgroundColor {
             get {
                 return ((global::System.Drawing.Color)(this["DefaultBackgroundColor"]));
@@ -211,7 +211,7 @@ namespace SecretCellar.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("238, 237, 196")]
+        [global::System.Configuration.DefaultSettingValueAttribute("60, 67, 77")]
         public global::System.Drawing.Color DefaultGridColor {
             get {
                 return ((global::System.Drawing.Color)(this["DefaultGridColor"]));
@@ -289,7 +289,7 @@ namespace SecretCellar.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Black")]
+        [global::System.Configuration.DefaultSettingValueAttribute("22, 22, 22")]
         public global::System.Drawing.Color DefaultFontColor {
             get {
                 return ((global::System.Drawing.Color)(this["DefaultFontColor"]));
@@ -301,7 +301,7 @@ namespace SecretCellar.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Black")]
+        [global::System.Configuration.DefaultSettingValueAttribute("22, 22, 22")]
         public global::System.Drawing.Color FontColor {
             get {
                 return ((global::System.Drawing.Color)(this["FontColor"]));
@@ -313,7 +313,7 @@ namespace SecretCellar.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Maroon")]
+        [global::System.Configuration.DefaultSettingValueAttribute("64, 70, 96")]
         public global::System.Drawing.Color ButtonColor {
             get {
                 return ((global::System.Drawing.Color)(this["ButtonColor"]));
@@ -337,7 +337,7 @@ namespace SecretCellar.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Maroon")]
+        [global::System.Configuration.DefaultSettingValueAttribute("64, 70, 96")]
         public global::System.Drawing.Color DefaultButtonColor {
             get {
                 return ((global::System.Drawing.Color)(this["DefaultButtonColor"]));
@@ -355,7 +355,7 @@ namespace SecretCellar.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("110, 51, 69")]
+        [global::System.Configuration.DefaultSettingValueAttribute("41, 55, 86")]
         public global::System.Drawing.Color DefaultGridRowColor {
             get {
                 return ((global::System.Drawing.Color)(this["DefaultGridRowColor"]));
@@ -367,7 +367,7 @@ namespace SecretCellar.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("255, 225, 225")]
+        [global::System.Configuration.DefaultSettingValueAttribute("152, 177, 203")]
         public global::System.Drawing.Color DefaultGridAlternateRowColor {
             get {
                 return ((global::System.Drawing.Color)(this["DefaultGridAlternateRowColor"]));
@@ -379,7 +379,7 @@ namespace SecretCellar.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("110, 51, 69")]
+        [global::System.Configuration.DefaultSettingValueAttribute("41, 55, 86")]
         public global::System.Drawing.Color GridRowColor {
             get {
                 return ((global::System.Drawing.Color)(this["GridRowColor"]));
@@ -391,7 +391,7 @@ namespace SecretCellar.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("255, 225, 225")]
+        [global::System.Configuration.DefaultSettingValueAttribute("152, 177, 203")]
         public global::System.Drawing.Color GridAlternateRowColor {
             get {
                 return ((global::System.Drawing.Color)(this["GridAlternateRowColor"]));
@@ -403,7 +403,7 @@ namespace SecretCellar.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("247, 231, 206")]
+        [global::System.Configuration.DefaultSettingValueAttribute("213, 223, 234")]
         public global::System.Drawing.Color PanelColor {
             get {
                 return ((global::System.Drawing.Color)(this["PanelColor"]));
@@ -415,7 +415,7 @@ namespace SecretCellar.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("247, 231, 206")]
+        [global::System.Configuration.DefaultSettingValueAttribute("213, 223, 234")]
         public global::System.Drawing.Color DefaultPanelColor {
             get {
                 return ((global::System.Drawing.Color)(this["DefaultPanelColor"]));
@@ -427,7 +427,7 @@ namespace SecretCellar.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("White")]
+        [global::System.Configuration.DefaultSettingValueAttribute("233, 233, 233")]
         public global::System.Drawing.Color DefaultGridRowFontColor {
             get {
                 return ((global::System.Drawing.Color)(this["DefaultGridRowFontColor"]));
@@ -439,7 +439,7 @@ namespace SecretCellar.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("White")]
+        [global::System.Configuration.DefaultSettingValueAttribute("233, 233, 233")]
         public global::System.Drawing.Color GridRowFontColor {
             get {
                 return ((global::System.Drawing.Color)(this["GridRowFontColor"]));
@@ -451,7 +451,7 @@ namespace SecretCellar.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Black")]
+        [global::System.Configuration.DefaultSettingValueAttribute("22, 22, 22")]
         public global::System.Drawing.Color DefaultGridAlternateRowFontColor {
             get {
                 return ((global::System.Drawing.Color)(this["DefaultGridAlternateRowFontColor"]));
@@ -463,7 +463,7 @@ namespace SecretCellar.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Black")]
+        [global::System.Configuration.DefaultSettingValueAttribute("22, 22, 22")]
         public global::System.Drawing.Color GridAlternateRowFontColor {
             get {
                 return ((global::System.Drawing.Color)(this["GridAlternateRowFontColor"]));
