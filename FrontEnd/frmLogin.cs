@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Drawing;
 using System.Windows.Forms;
 using Shared;
 using Image = System.Drawing.Image;
 
 namespace SecretCellar
 {
-    public partial class frmLogin : Form
+    public partial class frmLogin : ManagedForm
     {
         public frmLogin(Image logo = null)
         {
