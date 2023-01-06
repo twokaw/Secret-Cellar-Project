@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="URL" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">http://localhost:5000</Value>
+      <Value Profile="(Default)">http://secretcellar:5000</Value>
     </Setting>
     <Setting Name="Logo" Type="System.String" Scope="User">
       <Value Profile="(Default)">logo.png</Value>

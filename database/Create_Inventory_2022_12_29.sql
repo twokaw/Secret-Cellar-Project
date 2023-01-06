@@ -1428,7 +1428,7 @@ SET character_set_client = @saved_cs_client;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `test2`()
+CREATE PROCEDURE `test2`()
 BEGIN 
    DECLARE invoice_count int;
    
@@ -1583,7 +1583,6 @@ DELIMITER ;
 /*!50001 SET character_set_results     = utf8mb4 */;
 /*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`invuser`@`localhost` SQL SECURITY DEFINER */
 /*!50001 VIEW `v_discount` AS select `discount`.`DiscountID` AS `DiscountID`,`discount`.`DiscountName` AS `DiscountName`,`discount`.`minQty` AS `minQty`,`discount`.`maxQty` AS `maxQty`,`discount`.`Discount` AS `Discount` from `discount` */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
