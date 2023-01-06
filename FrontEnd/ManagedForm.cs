@@ -58,6 +58,9 @@ namespace SecretCellar
                     form.ForeColor = value;
 
                     foreach (Control control in form.Controls) {
+                        if (control is Button
+                        || control is Panel) continue;
+
                         control.ForeColor = value;
                     }
                 }
@@ -206,6 +209,7 @@ namespace SecretCellar
             PanelColor = Properties.Settings.Default.DefaultPanelColor;
             //FontStyle = Properties.Settings.Default.DefaultFont;
             FontColor = Properties.Settings.Default.DefaultFontColor;
+            PanelFontColor = Properties.Settings.Default.DefaultPanelFontColor;
             ButtonColor = Properties.Settings.Default.DefaultButtonColor;
             ButtonFontColor = Properties.Settings.Default.DefaultButtonFontColor;
             DataGridViewColor = Properties.Settings.Default.DefaultGridColor;
