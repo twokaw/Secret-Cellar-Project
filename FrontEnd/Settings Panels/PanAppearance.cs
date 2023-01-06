@@ -81,6 +81,19 @@ namespace SecretCellar.Settings_Panels
 
 
         /// <summary>
+        /// Opens a color picker dialog to change the panel font color.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void button_panelFontColor_Click(object sender, EventArgs e) {
+            ColorDialog colorPicker = new ColorDialog { Color = ManagedForm.PanelFontColor };
+
+            if (colorPicker.ShowDialog() == DialogResult.OK)
+                ManagedForm.PanelFontColor = colorPicker.Color;
+        }
+
+
+        /// <summary>
         /// Opens a color picker dialog to change the font color.
         /// </summary>
         /// <param name="sender"></param>

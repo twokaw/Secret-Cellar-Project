@@ -63,6 +63,18 @@ namespace SecretCellar
                 }
             }
         }
+        public static Color PanelFontColor {
+            get { return Properties.Settings.Default.PanelFontColor; }
+            set {
+                Properties.Settings.Default.PanelFontColor = value;
+
+                foreach (ManagedForm form in _forms) {
+                    foreach (Control control in form.Controls.OfType<Panel>()) {
+                        control.ForeColor = value;
+                    }
+                }
+            }
+        }
         public static Color ButtonColor {
             get { return Properties.Settings.Default.ButtonColor; }
             set {
@@ -232,6 +244,7 @@ namespace SecretCellar
 
                 else if (c.GetType() == typeof(Panel)) {
                     ((Panel)c).BackColor = PanelColor;
+                    ((Panel)c).ForeColor = PanelFontColor;
 
                     foreach (Control cc in c.Controls) {
                         if (cc.GetType() == typeof(Button)) {
