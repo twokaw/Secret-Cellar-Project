@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 
 namespace SecretCellar.Orders_Panels {
-	public partial class Panel_CustomerOrder : UserControl {
+	public partial class Panel_CustomerOrder : ManagedPanel {
 		public Panel_CustomerOrder() {
 			InitializeComponent();
 

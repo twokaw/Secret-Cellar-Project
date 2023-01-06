@@ -4,8 +4,7 @@ using System.Windows.Forms;
 
 namespace SecretCellar.Settings_Panels
 {
-    public partial class PanReceipt : UserControl
-    {
+    public partial class PanReceipt : ManagedPanel {
         public PanReceipt()
         {
             InitializeComponent();

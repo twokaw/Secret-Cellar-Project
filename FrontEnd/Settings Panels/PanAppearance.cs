@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace SecretCellar.Settings_Panels
 {
-    public partial class PanAppearance : UserControl {
+    public partial class PanAppearance : ManagedPanel {
         private ToolTip _programTips = new ToolTip();
 
 
@@ -73,7 +73,7 @@ namespace SecretCellar.Settings_Panels
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void btn_panel_color_Click(object sender, EventArgs e) {
-            ColorDialog colorPicker = new ColorDialog { Color = ManagedForm.DataGridViewColor };
+            ColorDialog colorPicker = new ColorDialog { Color = ManagedForm.PanelColor };
 
             if (colorPicker.ShowDialog() == DialogResult.OK)
                 ManagedForm.PanelColor = colorPicker.Color;
@@ -86,7 +86,7 @@ namespace SecretCellar.Settings_Panels
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void btn_Font_Color_Click(object sender, EventArgs e) {
-            ColorDialog colorPicker = new ColorDialog { Color = ManagedForm.DataGridViewColor };
+            ColorDialog colorPicker = new ColorDialog { Color = ManagedForm.FontColor };
 
             if (colorPicker.ShowDialog() == DialogResult.OK)
                 ManagedForm.FontColor = colorPicker.Color;
@@ -94,36 +94,28 @@ namespace SecretCellar.Settings_Panels
 
 
         /// <summary>
-        /// Opens a color picker dialog to change the data grid row color.
+        /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btn_row_color_Click(object sender, EventArgs e) {
-            DataGridViewCellStyle cs = ManagedForm.CellStyle;
-            ColorDialog gridcolor = new ColorDialog { Color = cs.BackColor };
+        private void button_buttonBackColor_Click(object sender, EventArgs e) {
+            ColorDialog colorPicker = new ColorDialog { Color = ManagedForm.ButtonColor };
 
-            if (gridcolor.ShowDialog() == DialogResult.OK) {
-                cs.BackColor = gridcolor.Color;
-                cs.SelectionBackColor = Color.FromArgb(cs.BackColor.A, Math.Max(cs.BackColor.R - 25, 0), Math.Max(cs.BackColor.G - 25, 0), Math.Max(cs.BackColor.B - 25, 0));
-                ManagedForm.DataGridViewRowColor = cs.BackColor;
-            }
+            if (colorPicker.ShowDialog() == DialogResult.OK)
+                ManagedForm.ButtonColor = colorPicker.Color;
         }
 
 
         /// <summary>
-        /// Opens a color picker dialog to change the data grid alternate row color.
+        /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void button_gridAlternateRowColor_Click(object sender, EventArgs e) {
-            DataGridViewCellStyle cs = ManagedForm.CellStyle;
-            ColorDialog gridcolor = new ColorDialog { Color = cs.BackColor };
+        private void button_buttonFontColor_Click(object sender, EventArgs e) {
+            ColorDialog colorPicker = new ColorDialog { Color = ManagedForm.ButtonFontColor };
 
-            if (gridcolor.ShowDialog() == DialogResult.OK) {
-                cs.BackColor = gridcolor.Color;
-                cs.SelectionBackColor = Color.FromArgb(cs.BackColor.A, Math.Max(cs.BackColor.R - 25, 0), Math.Max(cs.BackColor.G - 25, 0), Math.Max(cs.BackColor.B - 25, 0));
-                ManagedForm.DataGridViewAlternateRowColor = cs.BackColor;
-            }
+            if (colorPicker.ShowDialog() == DialogResult.OK)
+                ManagedForm.ButtonFontColor = colorPicker.Color;
         }
 
 
@@ -133,14 +125,65 @@ namespace SecretCellar.Settings_Panels
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void button_gridBackColor_Click(object sender, EventArgs e) {
-            DataGridViewCellStyle cs = ManagedForm.CellStyle;
-            ColorDialog gridcolor = new ColorDialog { Color = cs.BackColor };
+            ColorDialog colorPicker = new ColorDialog { Color = ManagedForm.DataGridViewColor };
 
-            if (gridcolor.ShowDialog() == DialogResult.OK) {
-                cs.BackColor = gridcolor.Color;
-                cs.SelectionBackColor = Color.FromArgb(cs.BackColor.A, Math.Max(cs.BackColor.R - 25, 0), Math.Max(cs.BackColor.G - 25, 0), Math.Max(cs.BackColor.B - 25, 0));
-                ManagedForm.DataGridViewColor = cs.BackColor;
+            if (colorPicker.ShowDialog() == DialogResult.OK) {
+                ManagedForm.DataGridViewColor = colorPicker.Color;
             }
+        }
+
+
+        /// <summary>
+        /// Opens a color picker dialog to change the data grid row color.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btn_row_color_Click(object sender, EventArgs e) {
+            ColorDialog colorPicker = new ColorDialog { Color = ManagedForm.DataGridViewRowColor };
+
+            if (colorPicker.ShowDialog() == DialogResult.OK) {
+                ManagedForm.DataGridViewRowColor = colorPicker.Color;
+            }
+        }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void button_gridRowFontColor_Click(object sender, EventArgs e) {
+            ColorDialog colorPicker = new ColorDialog { Color = ManagedForm.DataGridViewRowFontColor };
+
+            if (colorPicker.ShowDialog() == DialogResult.OK)
+                ManagedForm.DataGridViewRowFontColor = colorPicker.Color;
+        }
+
+
+        /// <summary>
+        /// Opens a color picker dialog to change the data grid alternate row color.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void button_gridAlternateRowColor_Click(object sender, EventArgs e) {
+            ColorDialog colorPicker = new ColorDialog { Color = ManagedForm.DataGridViewAlternateRowColor };
+
+            if (colorPicker.ShowDialog() == DialogResult.OK) {
+                ManagedForm.DataGridViewAlternateRowColor = colorPicker.Color;
+            }
+        }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void button_gridAlternateRowFontColor_Click(object sender, EventArgs e) {
+            ColorDialog colorPicker = new ColorDialog { Color = ManagedForm.DataGridViewAlternateRowFontColor };
+
+            if (colorPicker.ShowDialog() == DialogResult.OK)
+                ManagedForm.DataGridViewAlternateRowFontColor = colorPicker.Color;
         }
 
 

@@ -11,8 +11,7 @@ using System.Windows.Forms;
 
 namespace SecretCellar.Settings_Panels
 {
-    public partial class PanEmployee : UserControl
-    {
+    public partial class PanEmployee : ManagedPanel {
         private List<EmployeeTypeModel> employeeTypes = null;
         private List<EmployeeRoleModel> employeeRoles = null;
         public PanEmployee()

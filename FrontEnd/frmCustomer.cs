@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace SecretCellar
 {
-    public partial class frmCustomer : Form
+    public partial class frmCustomer : ManagedForm
     {
         private Transaction _importedTransaction = null;
         private string _lastSortedColumnName = "";

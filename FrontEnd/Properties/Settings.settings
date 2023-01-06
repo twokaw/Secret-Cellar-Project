@@ -114,5 +114,17 @@ Shueyville, IA 52338
     <Setting Name="DefaultPanelColor" Type="System.Drawing.Color" Scope="User">
       <Value Profile="(Default)">247, 231, 206</Value>
     </Setting>
+    <Setting Name="DefaultGridRowFontColor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">White</Value>
+    </Setting>
+    <Setting Name="GridRowFontColor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">White</Value>
+    </Setting>
+    <Setting Name="DefaultGridAlternateRowFontColor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Black</Value>
+    </Setting>
+    <Setting Name="GridAlternateRowFontColor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Black</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

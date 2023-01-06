@@ -11,7 +11,7 @@ using Shared;
 
 namespace SecretCellar.Settings_Panels
 {
-    public partial class PanHardware : UserControl
+    public partial class PanHardware : ManagedPanel
     {
         private List<Printer> printerNames;
         private bool modelrefresh = false;

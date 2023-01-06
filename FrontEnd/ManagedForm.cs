@@ -9,6 +9,9 @@ namespace SecretCellar
     public partial class ManagedForm : Form
     {
         private static readonly List<ManagedForm> _forms = new List<ManagedForm>();
+        public static readonly Color LIGHT_BLUE = Color.FromArgb(255, 51, 153, 255);
+        public static readonly Color WHITE = Color.FromArgb(255, 255, 255, 255);
+
 
         public static Color BackgroundColor {
             get { return Properties.Settings.Default.BackgroundColor; }
@@ -108,6 +111,18 @@ namespace SecretCellar
                 }
             }
         }
+        public static Color DataGridViewRowFontColor {
+            get { return Properties.Settings.Default.GridRowFontColor; }
+            set {
+                Properties.Settings.Default.GridRowFontColor = value;
+
+                foreach (ManagedForm f in _forms) {
+                    foreach (DataGridView c in f.Controls.OfType<DataGridView>()) {
+                        c.RowsDefaultCellStyle.ForeColor = value;
+                    }
+                }
+            }
+        }
         public static Color DataGridViewAlternateRowColor {
             get { return Properties.Settings.Default.GridAlternateRowColor; }
             set {
@@ -120,17 +135,42 @@ namespace SecretCellar
                 }
             }
         }
+        public static Color DataGridViewAlternateRowFontColor {
+            get { return Properties.Settings.Default.GridAlternateRowFontColor; }
+            set {
+                Properties.Settings.Default.GridAlternateRowFontColor = value;
+
+                foreach (ManagedForm f in _forms) {
+                    foreach (DataGridView c in f.Controls.OfType<DataGridView>()) {
+                        c.AlternatingRowsDefaultCellStyle.ForeColor = value;
+                    }
+                }
+            }
+        }
         public static DataGridViewCellStyle CellStyle {
             get {
-                //TODO Grab the row, alternate row, and the background color and set it to this style before returning it.
-                return new DataGridViewCellStyle();
+                return new DataGridViewCellStyle {
+                    BackColor = DataGridViewColor,
+                    ForeColor = DataGridViewRowColor,
+                    SelectionBackColor = LIGHT_BLUE,
+                    SelectionForeColor = WHITE
+                };
+            }
+        }
+        public static DataGridViewCellStyle CellAlternateRowStyle {
+            get {
+                return new DataGridViewCellStyle {
+                    BackColor = DataGridViewColor,
+                    ForeColor = DataGridViewAlternateRowColor,
+                    SelectionBackColor = LIGHT_BLUE,
+                    SelectionForeColor = WHITE
+                };
             }
         }
 
 
         public ManagedForm()
         {
-
             _forms.Add(this);
             Console.WriteLine($"Constructed: {_forms.Count}");
             base.FormClosed += ManagedForm_FormClosed;
@@ -147,7 +187,7 @@ namespace SecretCellar
 
 
         /// <summary>
-        /// Sets the properties to default then updates the forms.
+        /// Sets the properties to default.
         /// </summary>
         public static void SetPropertiesToDefault() {
             BackgroundColor = Properties.Settings.Default.DefaultBackgroundColor;
@@ -158,31 +198,17 @@ namespace SecretCellar
             ButtonFontColor = Properties.Settings.Default.DefaultButtonFontColor;
             DataGridViewColor = Properties.Settings.Default.DefaultGridColor;
             DataGridViewRowColor = Properties.Settings.Default.DefaultGridRowColor;
+            DataGridViewRowFontColor = Properties.Settings.Default.DefaultGridRowFontColor;
             DataGridViewAlternateRowColor = Properties.Settings.Default.DefaultGridAlternateRowColor;
+            DataGridViewAlternateRowFontColor = Properties.Settings.Default.DefaultGridAlternateRowFontColor;
         }
 
-
-        private void InitializeComponent() {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ManagedForm));
-            this.SuspendLayout();
-            // 
-            // ManagedForm
-            // 
-            this.ClientSize = new System.Drawing.Size(278, 244);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "ManagedForm";
-            this.Load += new System.EventHandler(this.ManagedForm_Load);
-            this.ResumeLayout(false);
-
-        }
 
         private void ManagedForm_Load(object sender, EventArgs e)
         {
-
             base.BackColor = BackgroundColor;
-            base.Font = FontStyle;
-
             base.ForeColor = FontColor;
+            base.Font = FontStyle;
 
             foreach (Control c in base.Controls)
             {
@@ -190,19 +216,74 @@ namespace SecretCellar
                 
                 if (c.GetType() == typeof(DataGridView))
                 {
-                    ((DataGridView)c).BackgroundColor = DataGridViewColor;
                     ((DataGridView)c).DefaultCellStyle = CellStyle;
+                    ((DataGridView)c).RowsDefaultCellStyle = CellStyle;
+                    ((DataGridView)c).AlternatingRowsDefaultCellStyle = CellAlternateRowStyle;
+                    ((DataGridView)c).BackgroundColor = DataGridViewColor;
                     ((DataGridView)c).RowsDefaultCellStyle.BackColor = DataGridViewRowColor;
+                    ((DataGridView)c).RowsDefaultCellStyle.ForeColor = DataGridViewRowFontColor;
+                    ((DataGridView)c).RowsDefaultCellStyle.SelectionBackColor = LIGHT_BLUE;
+                    ((DataGridView)c).RowsDefaultCellStyle.SelectionForeColor = WHITE;
                     ((DataGridView)c).AlternatingRowsDefaultCellStyle.BackColor = DataGridViewAlternateRowColor;
+                    ((DataGridView)c).AlternatingRowsDefaultCellStyle.ForeColor = DataGridViewAlternateRowFontColor;
+                    ((DataGridView)c).AlternatingRowsDefaultCellStyle.SelectionBackColor = LIGHT_BLUE;
+                    ((DataGridView)c).AlternatingRowsDefaultCellStyle.SelectionForeColor = WHITE;
                 }
 
-                else if (c.GetType() == typeof(Panel))
+                else if (c.GetType() == typeof(Panel)) {
                     ((Panel)c).BackColor = PanelColor;
+
+                    foreach (Control cc in c.Controls) {
+                        if (cc.GetType() == typeof(Button)) {
+                            cc.BackColor = ButtonColor;
+                            cc.ForeColor = ButtonFontColor;
+                        }
+                        else if (cc.GetType() == typeof(DataGridView)) {
+                            ((DataGridView)cc).DefaultCellStyle = CellStyle;
+                            ((DataGridView)cc).RowsDefaultCellStyle = CellStyle;
+                            ((DataGridView)cc).AlternatingRowsDefaultCellStyle = CellAlternateRowStyle;
+                            ((DataGridView)cc).BackgroundColor = DataGridViewColor;
+                            ((DataGridView)cc).RowsDefaultCellStyle.BackColor = DataGridViewRowColor;
+                            ((DataGridView)cc).RowsDefaultCellStyle.ForeColor = DataGridViewRowFontColor;
+                            ((DataGridView)cc).RowsDefaultCellStyle.SelectionBackColor = LIGHT_BLUE;
+                            ((DataGridView)cc).RowsDefaultCellStyle.SelectionForeColor = WHITE;
+                            ((DataGridView)cc).AlternatingRowsDefaultCellStyle.BackColor = DataGridViewAlternateRowColor;
+                            ((DataGridView)cc).AlternatingRowsDefaultCellStyle.ForeColor = DataGridViewAlternateRowFontColor;
+                            ((DataGridView)cc).AlternatingRowsDefaultCellStyle.SelectionBackColor = LIGHT_BLUE;
+                            ((DataGridView)cc).AlternatingRowsDefaultCellStyle.SelectionForeColor = WHITE;
+                        }
+                    }
+                }
+
+                else if (c.GetType() == typeof(GroupBox)) {
+                    ((GroupBox)c).BackColor = BackgroundColor;
+                    ((GroupBox)c).ForeColor = FontColor;
+
+                    foreach (Control cc in c.Controls) {
+                        if (cc.GetType() == typeof(Button)) {
+                            cc.BackColor = ButtonColor;
+                            cc.ForeColor = ButtonFontColor;
+                        }
+                    }
+                }
 
                 else if (c.GetType() == typeof(Button))
                 {
                     c.BackColor = ButtonColor;
                     c.ForeColor = ButtonFontColor;
+                }
+
+                else if (c.GetType() == typeof(TouchKeyPad)) {
+                    foreach (Control cc in c.Controls) {
+                        if (cc.GetType() == typeof(Button)) {
+                            cc.BackColor = ButtonColor;
+                            cc.ForeColor = ButtonFontColor;
+                        }
+                    }
+                }
+
+                else if (c.GetType() == typeof(Label)) {
+                    ((Label)c).ForeColor = FontColor;
                 }
             }
 

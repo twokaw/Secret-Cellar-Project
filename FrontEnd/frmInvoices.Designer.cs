@@ -81,7 +81,7 @@ namespace SecretCellar {
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(51)))), ((int)(((byte)(69)))));
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Ivory;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
@@ -101,13 +101,13 @@ namespace SecretCellar {
             this.dataGridView_InvoiceData.RowHeadersWidth = 102;
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(51)))), ((int)(((byte)(69)))));
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.Ivory;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.Empty;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.Empty;
             this.dataGridView_InvoiceData.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.dataGridView_InvoiceData.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.dataGridView_InvoiceData.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dataGridView_InvoiceData.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(51)))), ((int)(((byte)(69)))));
-            this.dataGridView_InvoiceData.RowTemplate.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.Ivory;
+            this.dataGridView_InvoiceData.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.Empty;
+            this.dataGridView_InvoiceData.RowTemplate.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.Empty;
             this.dataGridView_InvoiceData.RowTemplate.Height = 40;
             this.dataGridView_InvoiceData.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.dataGridView_InvoiceData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -143,10 +143,10 @@ namespace SecretCellar {
             this.selectionList_Invoices.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.selectionList_Invoices.FormattingEnabled = true;
             this.selectionList_Invoices.ItemHeight = 18;
-            this.selectionList_Invoices.Location = new System.Drawing.Point(20, 110);
+            this.selectionList_Invoices.Location = new System.Drawing.Point(20, 92);
             this.selectionList_Invoices.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.selectionList_Invoices.Name = "selectionList_Invoices";
-            this.selectionList_Invoices.Size = new System.Drawing.Size(234, 220);
+            this.selectionList_Invoices.Size = new System.Drawing.Size(234, 238);
             this.selectionList_Invoices.TabIndex = 0;
             this.selectionList_Invoices.SelectedIndexChanged += new System.EventHandler(this.selectionList_Invoices_SelectedIndexChanged);
             // 
@@ -179,7 +179,7 @@ namespace SecretCellar {
             // textBox_Filter
             // 
             this.textBox_Filter.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_Filter.Location = new System.Drawing.Point(20, 68);
+            this.textBox_Filter.Location = new System.Drawing.Point(20, 53);
             this.textBox_Filter.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBox_Filter.Name = "textBox_Filter";
             this.textBox_Filter.Size = new System.Drawing.Size(234, 29);
@@ -230,7 +230,7 @@ namespace SecretCellar {
             // 
             this.checkBox_ClosedInvoices.AutoSize = true;
             this.checkBox_ClosedInvoices.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox_ClosedInvoices.Location = new System.Drawing.Point(20, 30);
+            this.checkBox_ClosedInvoices.Location = new System.Drawing.Point(20, 15);
             this.checkBox_ClosedInvoices.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.checkBox_ClosedInvoices.Name = "checkBox_ClosedInvoices";
             this.checkBox_ClosedInvoices.Size = new System.Drawing.Size(177, 28);
@@ -284,6 +284,8 @@ namespace SecretCellar {
             this.Controls.Add(this.button_CloseWindow);
             this.Controls.Add(this.selectionList_Invoices);
             this.Controls.Add(this.dataGridView_InvoiceData);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ForeColor = System.Drawing.Color.Black;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
