@@ -58,6 +58,21 @@ namespace SecretCellar
                     form.ForeColor = value;
 
                     foreach (Control control in form.Controls) {
+                        if (control is Button
+                        || control is Panel) continue;
+
+                        control.ForeColor = value;
+                    }
+                }
+            }
+        }
+        public static Color PanelFontColor {
+            get { return Properties.Settings.Default.PanelFontColor; }
+            set {
+                Properties.Settings.Default.PanelFontColor = value;
+
+                foreach (ManagedForm form in _forms) {
+                    foreach (Control control in form.Controls.OfType<Panel>()) {
                         control.ForeColor = value;
                     }
                 }
@@ -194,6 +209,7 @@ namespace SecretCellar
             PanelColor = Properties.Settings.Default.DefaultPanelColor;
             //FontStyle = Properties.Settings.Default.DefaultFont;
             FontColor = Properties.Settings.Default.DefaultFontColor;
+            PanelFontColor = Properties.Settings.Default.DefaultPanelFontColor;
             ButtonColor = Properties.Settings.Default.DefaultButtonColor;
             ButtonFontColor = Properties.Settings.Default.DefaultButtonFontColor;
             DataGridViewColor = Properties.Settings.Default.DefaultGridColor;
@@ -232,6 +248,7 @@ namespace SecretCellar
 
                 else if (c.GetType() == typeof(Panel)) {
                     ((Panel)c).BackColor = PanelColor;
+                    ((Panel)c).ForeColor = PanelFontColor;
 
                     foreach (Control cc in c.Controls) {
                         if (cc.GetType() == typeof(Button)) {

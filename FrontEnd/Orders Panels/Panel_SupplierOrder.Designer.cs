@@ -205,8 +205,8 @@ namespace SecretCellar.Orders_Panels {
             this.orderqty});
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(22)))), ((int)(((byte)(22)))));
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(51)))), ((int)(((byte)(69)))));
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Ivory;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
@@ -216,7 +216,7 @@ namespace SecretCellar.Orders_Panels {
             this.supp_dataGrid.ReadOnly = true;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(51)))), ((int)(((byte)(69)))));
             dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Ivory;
@@ -226,13 +226,9 @@ namespace SecretCellar.Orders_Panels {
             this.supp_dataGrid.RowHeadersWidth = 62;
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.Empty;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.Empty;
             this.supp_dataGrid.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.supp_dataGrid.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.supp_dataGrid.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.supp_dataGrid.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.Empty;
-            this.supp_dataGrid.RowTemplate.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.Empty;
             this.supp_dataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.supp_dataGrid.Size = new System.Drawing.Size(798, 494);
             this.supp_dataGrid.TabIndex = 15;
@@ -354,7 +350,6 @@ namespace SecretCellar.Orders_Panels {
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(231)))), ((int)(((byte)(206)))));
             this.panel1.Controls.Add(this.chk_OnlyRequired);
             this.panel1.Controls.Add(this.chk_ShowHidden);
             this.panel1.Controls.Add(this.lbl_qty);
@@ -371,7 +366,7 @@ namespace SecretCellar.Orders_Panels {
             this.panel1.Controls.Add(this.btn_print_supp);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(969, 554);
             this.panel1.TabIndex = 27;
@@ -382,7 +377,7 @@ namespace SecretCellar.Orders_Panels {
             this.chk_OnlyRequired.AutoSize = true;
             this.chk_OnlyRequired.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chk_OnlyRequired.Location = new System.Drawing.Point(825, 61);
-            this.chk_OnlyRequired.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.chk_OnlyRequired.Margin = new System.Windows.Forms.Padding(2);
             this.chk_OnlyRequired.Name = "chk_OnlyRequired";
             this.chk_OnlyRequired.Size = new System.Drawing.Size(133, 22);
             this.chk_OnlyRequired.TabIndex = 28;
@@ -396,7 +391,7 @@ namespace SecretCellar.Orders_Panels {
             this.chk_ShowHidden.AutoSize = true;
             this.chk_ShowHidden.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chk_ShowHidden.Location = new System.Drawing.Point(826, 13);
-            this.chk_ShowHidden.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.chk_ShowHidden.Margin = new System.Windows.Forms.Padding(2);
             this.chk_ShowHidden.Name = "chk_ShowHidden";
             this.chk_ShowHidden.Size = new System.Drawing.Size(126, 22);
             this.chk_ShowHidden.TabIndex = 27;
@@ -422,6 +417,8 @@ namespace SecretCellar.Orders_Panels {
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoSize = true;
             this.Controls.Add(this.panel1);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(22)))), ((int)(((byte)(22)))));
             this.Name = "Panel_SupplierOrder";
             this.Size = new System.Drawing.Size(969, 554);
             ((System.ComponentModel.ISupportInitialize)(this.supp_dataGrid)).EndInit();

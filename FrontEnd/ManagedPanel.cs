@@ -12,8 +12,8 @@ namespace SecretCellar
 
         private void ManagedPanel_Load(object sender, EventArgs e)
         {
-            base.BackColor = ManagedForm.BackgroundColor;
-            base.ForeColor = ManagedForm.FontColor;
+            base.BackColor = ManagedForm.PanelColor;
+            base.ForeColor = ManagedForm.PanelFontColor;
             base.Font = ManagedForm.FontStyle;
 
             foreach (Control c in base.Controls)
@@ -50,6 +50,7 @@ namespace SecretCellar
             }
             else if (c.GetType() == typeof(Panel)) {
                 ((Panel)c).BackColor = ManagedForm.PanelColor;
+                ((Panel)c).ForeColor = ManagedForm.PanelFontColor;
 
                 foreach (Control cc in c.Controls) {
                     UpdateColors(cc);
