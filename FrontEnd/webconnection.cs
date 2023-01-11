@@ -164,21 +164,6 @@ namespace SecretCellar
             }
         }
 
-        private bool IsLoginPage(string response)
-        {
-            if (response.Contains("/Login.aspx"))
-            {
-                if (AutoRelogin)
-                    Login();
-
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
         public bool Login()
         {
             return Login( _cred );

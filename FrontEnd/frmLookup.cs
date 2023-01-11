@@ -14,6 +14,7 @@ namespace SecretCellar
         private List<Discount> discounts = null;
         private string descriptionAndBarcodeSearchText = "Enter Description/Barcode";
         private bool refreshingItems = false;
+        public string NewBarcode {get; set;}
 
         public frmLookup() {
             InitializeComponent();
@@ -41,8 +42,6 @@ namespace SecretCellar
 
         public void SubmitButtonText(string value = "Add to Cart") { btn_add.Text = value; }
 
-        public frmLookup(Transaction transaction) : base() { SetTransaction(transaction); }
-        
         public void SetTransaction(Transaction transaction) { currentTransaction = transaction; }
 
         private void btn_add_Click(object sender, EventArgs e)
@@ -70,13 +69,11 @@ namespace SecretCellar
             }
         }
 
-
         private void btn_Cancel_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;
             this.Close();
         }
-
 
         private bool addCharge()
         {
@@ -90,9 +87,7 @@ namespace SecretCellar
             return false;
         }
 
-
         private void textBox1_TextChanged(object sender, EventArgs e) { RefreshInv(); }
-
 
         private void LookupView_SelectionChanged(object sender, EventArgs e)
         {
@@ -139,7 +134,6 @@ namespace SecretCellar
                 }
             }
         }
-
 
         private void btn_update_Click(object sender, EventArgs e)
         {
@@ -387,14 +381,16 @@ namespace SecretCellar
         private void cbxSupplyFilter_SelectedIndexChanged(object sender, EventArgs e) { RefreshInv(); }
         private void cbxOnlyItemsWithInventory_CheckedChanged(object sender, EventArgs e) { RefreshInv(); }
         private void chk_box_show_hidden_CheckedChanged(object sender, EventArgs e) { RefreshInv(); }
+        private void btn_clear_info_Click(object sender, EventArgs e) { Clear(); }
 
-        private void btn_clear_info_Click(object sender, EventArgs e)
+        public void Clear(string barcode = "")
         {
+
             btn_update.Text = "New Item";
             txtName.Text = "";
-            cboType.SelectedIndex = 1;
-            txtBarcode.Text = "";
-            cbo_Supplier.SelectedIndex = 1;
+            cboType.Text = "NONE";            
+            txtBarcode.Text = barcode;
+            cbo_Supplier.Text = "NONE";
             txt_qty.Text = "0";
             txtPrice.Text = "";
             currencyBox_discountPrice.Text = "";
@@ -408,15 +404,13 @@ namespace SecretCellar
         }
 
 		private void txtlookup_Enter(object sender, EventArgs e) {
-            if (txtlookup.Text == descriptionAndBarcodeSearchText) {
+            if (txtlookup.Text == descriptionAndBarcodeSearchText) 
                 txtlookup.Text = "";
-            }
         }
 
 		private void txtlookup_Leave(object sender, EventArgs e) {
-            if (string.IsNullOrEmpty(txtlookup.Text)) {
+            if (string.IsNullOrEmpty(txtlookup.Text)) 
                 txtlookup.Text = descriptionAndBarcodeSearchText;
-            }
         }
 
         public void RefreshInv() {
@@ -505,5 +499,13 @@ namespace SecretCellar
             if (selectedItemIsInSuspendedTransaction) { button_DeleteItem.Enabled = false; }
             else { button_DeleteItem.Enabled = true; }
         }
-	}
+
+        private void frmLookup_Load(object sender, EventArgs e) 
+        {
+            if(NewBarcode != "")
+            {
+                Clear(NewBarcode);
+            }
+        }
+    }
 }

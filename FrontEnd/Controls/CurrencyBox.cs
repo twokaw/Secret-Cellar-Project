@@ -117,7 +117,7 @@ namespace SecretCellar
 
                 string value = this.Text;
 
-                if (CursorPosition > 0 && value.Substring(CursorPosition - 1, 1) == ".")
+                if (CursorPosition > 0 && CursorPosition < value.Length && value.Substring(CursorPosition - 1, 1) == ".")
                     CursorPosition++;
 
                 Console.WriteLine($"CursorPosition period check : {CursorPosition}");
