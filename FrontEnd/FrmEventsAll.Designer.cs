@@ -186,13 +186,13 @@ namespace SecretCellar {
             // button_showPreviousEventData
             // 
             this.button_showPreviousEventData.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button_showPreviousEventData.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_showPreviousEventData.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_showPreviousEventData.Location = new System.Drawing.Point(353, 396);
             this.button_showPreviousEventData.Margin = new System.Windows.Forms.Padding(2);
             this.button_showPreviousEventData.Name = "button_showPreviousEventData";
             this.button_showPreviousEventData.Size = new System.Drawing.Size(215, 55);
             this.button_showPreviousEventData.TabIndex = 5;
-            this.button_showPreviousEventData.Text = "Show Event";
+            this.button_showPreviousEventData.Text = "Event Sales Info";
             this.button_showPreviousEventData.UseVisualStyleBackColor = true;
             this.button_showPreviousEventData.Click += new System.EventHandler(this.button_showPreviousEventData_Click);
             // 
