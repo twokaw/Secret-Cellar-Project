@@ -146,7 +146,7 @@
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(22)))), ((int)(((byte)(22)))));
             dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(51)))), ((int)(((byte)(69)))));
             dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Ivory;
             dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
@@ -828,12 +828,15 @@
             this.Controls.Add(this.cbxTypeFilter);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.txtlookup);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(22)))), ((int)(((byte)(22)))));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "frmLookup";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Item lookup";
+            this.Load += new System.EventHandler(this.frmLookup_Load);
             ((System.ComponentModel.ISupportInitialize)(this.LookupView)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
@@ -889,6 +892,7 @@
         private System.Windows.Forms.Button btn_close;
 		private System.Windows.Forms.Button button_DeleteItem;
         private System.Windows.Forms.Label label_discountPrice;
+        private CurrencyBox currencyBox_discountPrice;
         private System.Windows.Forms.DataGridViewTextBoxColumn Id;
         private System.Windows.Forms.DataGridViewTextBoxColumn Description;
         private System.Windows.Forms.DataGridViewTextBoxColumn Class;
@@ -898,6 +902,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn minqty;
         private System.Windows.Forms.DataGridViewTextBoxColumn orderqty;
         private System.Windows.Forms.DataGridViewTextBoxColumn maxqty;
-        private CurrencyBox currencyBox_discountPrice;
     }
 }

@@ -269,7 +269,10 @@ namespace SecretCellar
                         RefreshDataGrid();
                     }
                     else
-                        MessageBox.Show("Barcode not found");
+                    {
+                        DataAccess.instance.ShowLookupFormWithBarcode(transaction, txtBarcode.Text.Trim());
+                        RefreshDataGrid();
+                    }
                 }
 
                 txtBarcode.Clear();
