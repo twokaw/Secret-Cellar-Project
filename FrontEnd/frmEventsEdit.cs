@@ -27,10 +27,10 @@ namespace SecretCellar {
 			dateTimePicker_EventDate.Value = eventFromForm.EventDate;
 			dateTimePicker_Duration.Value = eventFromForm.Duration;
 			textBox_Quantity.Text = eventFromForm.Qty + "";
-			textBox_AtDoor.Text = eventFromForm.AtDoor.ToString("C").Substring(1);
-			textBox_Preorder.Text = eventFromForm.PreOrder.ToString("C").Substring(1);
-			textBox_Price.Text = eventFromForm.Price.ToString("C").Substring(1);
-			textBox_SupplierPrice.Text = eventFromForm.SupplierPrice.ToString("C").Substring(1);
+			textBox_AtDoor.Text = eventFromForm.AtDoor.ToString("C");
+			textBox_Preorder.Text = eventFromForm.PreOrder.ToString("C");
+			textBox_Price.Text = eventFromForm.Price.ToString("C");
+			textBox_SupplierPrice.Text = eventFromForm.SupplierPrice.ToString("C");
 			checkBox_NonTaxable.Checked = eventFromForm.NonTaxable;
 			checkBox_NonTaxableLocal.Checked = eventFromForm.NonTaxableLocal;
 		}
@@ -53,26 +53,25 @@ namespace SecretCellar {
 					}
 
 					//CREATE A NEW EVENT WITH THE QUANTITY AND SUPPLIER PRICE UPDATED
-					_eventToEdit = new Event(quantity, supplierPrice);
+					_eventToEdit = new Event(quantity, supplierPrice) {
+						//SET THE ID OF THE NEW EVENT TO THE EVENT THAT'S BEING EDITED
+						Id = _id,
+						Name = textBox_Name.Text,
+						EventDate = dateTimePicker_EventDate.Value,
+						Duration = dateTimePicker_Duration.Value,
+						PreOrder = Double.Parse(textBox_Preorder.Text.Substring(1)),
+						AtDoor = Double.Parse(textBox_AtDoor.Text.Substring(1)),
+						Price = Double.Parse(textBox_Price.Text.Substring(1)),
+						NonTaxable = checkBox_NonTaxable.Checked,
+						NonTaxableLocal = checkBox_NonTaxableLocal.Checked,
+						TypeID = 26,
+						IdTax = 4
+					};
 
-					//SET THE ID OF THE NEW EVENT TO THE EVENT THAT'S BEING EDITED
-					_eventToEdit.Id = _id;
+                    if (_eventToEdit.AllQty.Count > 0) _eventToEdit.AllQty[0].SupplierPrice = textBox_SupplierPrice.Value;
 
-					//UPDATE THE VALUES OF THE NEW EVENT
-					_eventToEdit.Name = textBox_Name.Text;
-					_eventToEdit.EventDate = dateTimePicker_EventDate.Value;
-					_eventToEdit.Duration = dateTimePicker_Duration.Value;
-					_eventToEdit.PreOrder = Double.Parse(textBox_Preorder.Text);
-					_eventToEdit.AtDoor = Double.Parse(textBox_AtDoor.Text);
-					_eventToEdit.Price = Double.Parse(textBox_Price.Text);
-					_eventToEdit.NonTaxable = checkBox_NonTaxable.Checked;
-					_eventToEdit.NonTaxableLocal = checkBox_NonTaxableLocal.Checked;
-
-					_eventToEdit.TypeID = 26;
-					_eventToEdit.IdTax = 4;
-
-					//CREATE THE EVENT IN THE DATABASE
-					DataAccess.instance.UpdateEvent(_eventToEdit);
+                    //CREATE THE EVENT IN THE DATABASE
+                    DataAccess.instance.UpdateEvent(_eventToEdit);
 
 					//CLOSE THE WINDOW
 					this.Close();

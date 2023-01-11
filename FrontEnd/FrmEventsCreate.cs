@@ -37,19 +37,18 @@ namespace SecretCellar {
 					}
 
 					//CREATE THE EVENT
-					Event newEvent = new Event(quantity, supplierPrice);
-
-					newEvent.Name = textBox_Name.Text;
-					newEvent.EventDate = dateTimePicker_EventDate.Value;
-					newEvent.Duration = dateTimePicker_Duration.Value;
-					newEvent.PreOrder = textBox_Preorder.Value;
-					newEvent.AtDoor = textBox_AtDoor.Value;
-					newEvent.Price = textBox_Price.Value;
-					newEvent.NonTaxable = checkBox_NonTaxable.Checked;
-					newEvent.NonTaxableLocal = checkBox_NonTaxableLocal.Checked;
-
-					newEvent.TypeID = 26;
-					newEvent.IdTax = 4;
+					Event newEvent = new Event(quantity, supplierPrice) {
+						Name = textBox_Name.Text,
+						EventDate = dateTimePicker_EventDate.Value,
+						Duration = dateTimePicker_Duration.Value,
+						PreOrder = textBox_Preorder.Value,
+						AtDoor = textBox_AtDoor.Value,
+						Price = textBox_Price.Value,
+						NonTaxable = checkBox_NonTaxable.Checked,
+						NonTaxableLocal = checkBox_NonTaxableLocal.Checked,
+						TypeID = 26,
+						IdTax = 4
+					};
 
 					//CREATE THE EVENT IN THE DATABASE
 					DataAccess.instance.CreateEvent(newEvent);
@@ -62,7 +61,7 @@ namespace SecretCellar {
 
 
 		private bool IsEmpty(string word) {
-			return word.Replace(" ", "") == "" ? true : false;
+			return word.Replace(" ", "") == "";
 		}
 
 		private bool HasNoErrors() {
