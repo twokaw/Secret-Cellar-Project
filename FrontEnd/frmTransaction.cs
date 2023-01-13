@@ -296,7 +296,7 @@ namespace SecretCellar
 
         private void btnShipping_Click(object sender, EventArgs e)
         {
-            frmCustom shipping = new frmCustom(transaction, "SERVICE", "Dry Cleaning");
+            frmCustom shipping = new frmCustom(transaction, "SERVICE", "Shipping");
 
             shipping.ShowDialog();
             RefreshDataGrid();
