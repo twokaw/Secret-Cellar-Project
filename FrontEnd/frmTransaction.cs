@@ -569,5 +569,10 @@ namespace SecretCellar
                 EnableBulkDiscount = caseDiscount.Checked
             };
         }
+
+        private void txtBarcode_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
