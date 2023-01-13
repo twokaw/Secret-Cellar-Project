@@ -74,6 +74,15 @@ namespace SecretCellar
         {
             lookup.SetTransaction(t);
             lookup.SubmitButtonText(submitText);
+            lookup.NewBarcode = "";
+            return lookup.ShowDialog();
+        }
+
+        public DialogResult ShowLookupFormWithBarcode(Transaction t, string barcode, String submitText = "Add to Cart")
+        {
+            lookup.SetTransaction(t);
+            lookup.SubmitButtonText(submitText);
+            lookup.NewBarcode = barcode;
             return lookup.ShowDialog();
         }
         public DialogResult ShowOrdersForm()
