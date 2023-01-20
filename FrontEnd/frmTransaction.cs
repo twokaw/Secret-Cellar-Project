@@ -425,7 +425,7 @@ namespace SecretCellar
             txt_Ship.Text = "$0.00";
 
             transaction = newTransaction;
-            transaction.EnableBulkDiscount = caseDiscount.Checked;
+              transaction.EnableBulkDiscount = caseDiscount.Checked;
             RefreshDataGrid();
         }
 
