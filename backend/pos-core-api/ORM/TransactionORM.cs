@@ -11,7 +11,7 @@ namespace pos_core_api.ORM
 {
     public class TransactionORM
     {
-        private readonly DbConn db = new DbConn();
+        private readonly DbConn db = new();
         private readonly CustomerORM CustORM;
 
         private const string SQLGET = @"
@@ -222,7 +222,7 @@ namespace pos_core_api.ORM
                 Item item = null;
                 while (itemReader.Read())
                 {
-                    if (item?.Id != itemReader.GetUInt32("inventoryid") || item?.Price != itemReader.GetUInt32("sold_price"))
+                    if (item?.Id != itemReader.GetUInt32("inventoryid") || item?.Price != itemReader.GetDouble("sold_price"))
                     {
                         item = new Item()
                         {
@@ -241,17 +241,30 @@ namespace pos_core_api.ORM
                         };
                         item.QtySold = 0;
                         transaction.Items.Add(item);
+
+                        item.QtySold += itemReader.IsDBNull("sold_qty") ? 0 : itemReader.GetUInt32("sold_qty");
+                        item.QtyRefunded += itemReader.IsDBNull("refunded_qty") ? 0 : itemReader.GetUInt32("refunded_qty");
+
+                        item.AllQty.Add(new InventoryQty
+                        {
+                            PurchasedDate = DateTime.Now,
+                            Qty = itemReader.IsDBNull("sold_qty") ? 0 : itemReader.GetUInt32("sold_qty"),
+                            SupplierPrice = itemReader.IsDBNull("supplier_price") ? 0.0 : itemReader.GetDouble("supplier_price"),
+                        });
                     }
 
-                    item.QtySold += itemReader.IsDBNull("sold_qty") ? 0 : itemReader.GetUInt32("sold_qty");
-                    item.QtyRefunded += itemReader.IsDBNull("refunded_qty") ? 0 : itemReader.GetUInt32("refunded_qty");
+                    if (!itemReader.IsDBNull("discountID") 
+                        && item.Discounts.FirstOrDefault(x => x.DiscountID == itemReader.GetUInt32("discountID")) == null)
+                        item.Discounts.Add(new Discount()
+                        {
+                            DiscountID = itemReader.GetUInt32("discountID"),
+                            DiscountName = itemReader.GetString("discountName"),
+                            Min = itemReader.IsDBNull("minqty") ? 0 : itemReader.GetUInt32("minqty"),
+                            Max = itemReader.IsDBNull("maxqty") ? 99999999 : itemReader.GetUInt32("maxqty"),
+                            Amount = itemReader.GetDouble("Discount"),
+                            Enabled = itemReader.IsDBNull("minqty") && itemReader.IsDBNull("maxqty")
+                        });
 
-                    item.AllQty.Add(new InventoryQty
-                    {
-                        PurchasedDate = DateTime.Now,
-                        Qty = itemReader.IsDBNull("sold_qty") ? 0 : itemReader.GetUInt32("sold_qty"),
-                        SupplierPrice = itemReader.IsDBNull("supplier_price") ? 0.0 : itemReader.GetDouble("supplier_price"),
-                    });
                 }
             }
             finally

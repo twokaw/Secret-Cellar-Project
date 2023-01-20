@@ -425,7 +425,7 @@ namespace SecretCellar
             txt_Ship.Text = "$0.00";
 
             transaction = newTransaction;
-
+            transaction.EnableBulkDiscount = caseDiscount.Checked;
             RefreshDataGrid();
         }
 
@@ -568,6 +568,11 @@ namespace SecretCellar
             {
                 EnableBulkDiscount = caseDiscount.Checked
             };
+        }
+
+        private void txtBarcode_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
