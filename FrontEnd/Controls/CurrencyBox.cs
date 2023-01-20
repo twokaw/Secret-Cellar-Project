@@ -66,17 +66,17 @@ namespace SecretCellar
         protected override void OnTextChanged(EventArgs e)
         {
             string newText = base.Text;
-            if (!newText.Contains("."))
-                newText += ".00";
-            else if ("." == newText.Substring(newText.Length - 2, 1))
-                newText += "0";
+            //if (!newText.Contains("."))
+            //    newText += ".00";
+            //else if ("." == newText.Substring(newText.Length - 2, 1))
+            //    newText += "0";
 
             newText = FormatText(newText);
             base.OnTextChanged(e);
 
             if (base.Text != newText)
             {
-                this.Text = FormatText(newText);
+                base.Text = FormatText(newText);
             }
 
             
@@ -96,20 +96,35 @@ namespace SecretCellar
 
         private void InsertChar(char character)
         {
+            string value;
+            int cursorPosition;
+            int orginalLength;
             if (this.TextLength == this.SelectionLength)
-                this.Clear();
+            {
+                value = "$0.0";
+                cursorPosition = 4;
+            }
+            else
+            {
+                value = this.Text;
+                cursorPosition = this.SelectionStart;
+            }
+            orginalLength = value.Length;
 
-            string value = this.Text;
             if (Char.IsDigit(character) &&  this.TextLength < this.MaxLength)
             {
-                value = value.Insert(CursorPosition, $"{character}");
-                CursorPosition++;
 
-                this.Text = FormatText(ToNumber(value) * 10);
+                value = value.Insert(cursorPosition, $"{character}");
 
-                Console.WriteLine($"CursorPosition INSERT : {CursorPosition}");
-                CursorPosition = UpdateCursorPostion(CursorPosition);
-                this.SelectionStart = CursorPosition;
+                if(value.Contains(".") && value.Length - value.IndexOf(".") > 3 )
+                    this.Text = FormatText(ToNumber(value) * 10);
+                else
+                    this.Text = FormatText(ToNumber(value));
+
+                //   Console.WriteLine($"CursorPosition INSERT : {CursorPosition}");
+                // CursorPosition = UpdateCursorPostion(CursorPosition);
+                this.SelectionStart = cursorPosition + this.Text.Length - orginalLength;
+
                 this.SelectionLength = 0;
             }
         }
