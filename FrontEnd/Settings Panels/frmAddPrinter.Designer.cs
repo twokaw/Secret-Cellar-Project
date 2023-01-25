@@ -51,88 +51,92 @@ namespace SecretCellar.Settings_Panels
             // 
             // txt_new_cut_code
             // 
-            this.txt_new_cut_code.Location = new System.Drawing.Point(80, 354);
+            this.txt_new_cut_code.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_new_cut_code.Location = new System.Drawing.Point(34, 420);
             this.txt_new_cut_code.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txt_new_cut_code.Name = "txt_new_cut_code";
-            this.txt_new_cut_code.Size = new System.Drawing.Size(224, 26);
+            this.txt_new_cut_code.Size = new System.Drawing.Size(224, 39);
             this.txt_new_cut_code.TabIndex = 58;
             // 
             // lbl_new_cut_code
             // 
             this.lbl_new_cut_code.AutoSize = true;
-            this.lbl_new_cut_code.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_new_cut_code.Location = new System.Drawing.Point(75, 323);
+            this.lbl_new_cut_code.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold);
+            this.lbl_new_cut_code.Location = new System.Drawing.Point(13, 375);
             this.lbl_new_cut_code.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_new_cut_code.Name = "lbl_new_cut_code";
-            this.lbl_new_cut_code.Size = new System.Drawing.Size(173, 25);
+            this.lbl_new_cut_code.Size = new System.Drawing.Size(301, 40);
             this.lbl_new_cut_code.TabIndex = 57;
             this.lbl_new_cut_code.Text = "Printer Cut Code";
             // 
             // txt_drawer_code
             // 
-            this.txt_drawer_code.Location = new System.Drawing.Point(82, 288);
+            this.txt_drawer_code.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_drawer_code.Location = new System.Drawing.Point(34, 304);
             this.txt_drawer_code.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txt_drawer_code.Name = "txt_drawer_code";
-            this.txt_drawer_code.Size = new System.Drawing.Size(224, 26);
+            this.txt_drawer_code.Size = new System.Drawing.Size(224, 39);
             this.txt_drawer_code.TabIndex = 56;
             // 
             // lbl_new_drawer
             // 
             this.lbl_new_drawer.AutoSize = true;
-            this.lbl_new_drawer.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_new_drawer.Location = new System.Drawing.Point(78, 257);
+            this.lbl_new_drawer.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold);
+            this.lbl_new_drawer.Location = new System.Drawing.Point(13, 259);
             this.lbl_new_drawer.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_new_drawer.Name = "lbl_new_drawer";
-            this.lbl_new_drawer.Size = new System.Drawing.Size(207, 25);
+            this.lbl_new_drawer.Size = new System.Drawing.Size(364, 40);
             this.lbl_new_drawer.TabIndex = 55;
             this.lbl_new_drawer.Text = "Printer Drawer Code";
             // 
             // txt_print_model
             // 
-            this.txt_print_model.Location = new System.Drawing.Point(82, 209);
+            this.txt_print_model.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_print_model.Location = new System.Drawing.Point(34, 184);
             this.txt_print_model.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txt_print_model.Name = "txt_print_model";
-            this.txt_print_model.Size = new System.Drawing.Size(224, 26);
+            this.txt_print_model.Size = new System.Drawing.Size(224, 39);
             this.txt_print_model.TabIndex = 54;
             // 
             // lbl_new_print_mdl
             // 
             this.lbl_new_print_mdl.AutoSize = true;
-            this.lbl_new_print_mdl.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_new_print_mdl.Location = new System.Drawing.Point(81, 178);
+            this.lbl_new_print_mdl.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold);
+            this.lbl_new_print_mdl.Location = new System.Drawing.Point(13, 139);
             this.lbl_new_print_mdl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_new_print_mdl.Name = "lbl_new_print_mdl";
-            this.lbl_new_print_mdl.Size = new System.Drawing.Size(202, 25);
+            this.lbl_new_print_mdl.Size = new System.Drawing.Size(355, 40);
             this.lbl_new_print_mdl.TabIndex = 53;
             this.lbl_new_print_mdl.Text = "Printer Model Name";
             // 
             // lbl_manufact
             // 
             this.lbl_manufact.AutoSize = true;
-            this.lbl_manufact.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_manufact.Location = new System.Drawing.Point(78, 88);
+            this.lbl_manufact.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold);
+            this.lbl_manufact.Location = new System.Drawing.Point(13, 23);
             this.lbl_manufact.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_manufact.Name = "lbl_manufact";
-            this.lbl_manufact.Size = new System.Drawing.Size(134, 25);
+            this.lbl_manufact.Size = new System.Drawing.Size(233, 40);
             this.lbl_manufact.TabIndex = 60;
             this.lbl_manufact.Text = "Printer Make";
             // 
             // cbx_manufact
             // 
+            this.cbx_manufact.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbx_manufact.FormattingEnabled = true;
-            this.cbx_manufact.Location = new System.Drawing.Point(82, 118);
+            this.cbx_manufact.Location = new System.Drawing.Point(34, 67);
             this.cbx_manufact.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cbx_manufact.Name = "cbx_manufact";
-            this.cbx_manufact.Size = new System.Drawing.Size(180, 28);
+            this.cbx_manufact.Size = new System.Drawing.Size(224, 40);
             this.cbx_manufact.TabIndex = 59;
             // 
             // btn_add_print
             // 
-            this.btn_add_print.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_add_print.Location = new System.Drawing.Point(872, 257);
-            this.btn_add_print.Margin = new System.Windows.Forms.Padding(9, 9, 9, 9);
+            this.btn_add_print.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold);
+            this.btn_add_print.Location = new System.Drawing.Point(850, 203);
+            this.btn_add_print.Margin = new System.Windows.Forms.Padding(9);
             this.btn_add_print.Name = "btn_add_print";
-            this.btn_add_print.Size = new System.Drawing.Size(226, 38);
+            this.btn_add_print.Size = new System.Drawing.Size(339, 65);
             this.btn_add_print.TabIndex = 61;
             this.btn_add_print.Text = "Add Printer";
             this.btn_add_print.UseVisualStyleBackColor = true;
@@ -140,23 +144,23 @@ namespace SecretCellar.Settings_Panels
             // 
             // btn_add_codes
             // 
-            this.btn_add_codes.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_add_codes.Location = new System.Drawing.Point(872, 178);
-            this.btn_add_codes.Margin = new System.Windows.Forms.Padding(9, 9, 9, 9);
+            this.btn_add_codes.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold);
+            this.btn_add_codes.Location = new System.Drawing.Point(850, 83);
+            this.btn_add_codes.Margin = new System.Windows.Forms.Padding(9);
             this.btn_add_codes.Name = "btn_add_codes";
-            this.btn_add_codes.Size = new System.Drawing.Size(226, 38);
+            this.btn_add_codes.Size = new System.Drawing.Size(339, 65);
             this.btn_add_codes.TabIndex = 62;
-            this.btn_add_codes.Text = "Add Print Codes";
+            this.btn_add_codes.Text = "Add Codes";
             this.btn_add_codes.UseVisualStyleBackColor = true;
             this.btn_add_codes.Click += new System.EventHandler(this.btn_add_codes_Click);
             // 
             // btn_close
             // 
-            this.btn_close.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_close.Location = new System.Drawing.Point(471, 494);
-            this.btn_close.Margin = new System.Windows.Forms.Padding(9, 9, 9, 9);
+            this.btn_close.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold);
+            this.btn_close.Location = new System.Drawing.Point(1000, 472);
+            this.btn_close.Margin = new System.Windows.Forms.Padding(9);
             this.btn_close.Name = "btn_close";
-            this.btn_close.Size = new System.Drawing.Size(226, 38);
+            this.btn_close.Size = new System.Drawing.Size(226, 65);
             this.btn_close.TabIndex = 63;
             this.btn_close.Text = "Close";
             this.btn_close.UseVisualStyleBackColor = true;
@@ -165,11 +169,11 @@ namespace SecretCellar.Settings_Panels
             // lbl_print_codes
             // 
             this.lbl_print_codes.AutoSize = true;
-            this.lbl_print_codes.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_print_codes.Location = new System.Drawing.Point(404, 132);
+            this.lbl_print_codes.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold);
+            this.lbl_print_codes.Location = new System.Drawing.Point(401, 23);
             this.lbl_print_codes.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_print_codes.Name = "lbl_print_codes";
-            this.lbl_print_codes.Size = new System.Drawing.Size(144, 25);
+            this.lbl_print_codes.Size = new System.Drawing.Size(250, 40);
             this.lbl_print_codes.TabIndex = 65;
             this.lbl_print_codes.Text = "Printer Codes";
             // 
@@ -182,14 +186,14 @@ namespace SecretCellar.Settings_Panels
             this.DrawerCode,
             this.CutCode,
             this.CodeId});
-            this.grid_print_codes.Location = new System.Drawing.Point(408, 178);
+            this.grid_print_codes.Location = new System.Drawing.Point(408, 83);
             this.grid_print_codes.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.grid_print_codes.Name = "grid_print_codes";
             this.grid_print_codes.ReadOnly = true;
             this.grid_print_codes.RowHeadersVisible = false;
             this.grid_print_codes.RowHeadersWidth = 62;
             this.grid_print_codes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grid_print_codes.Size = new System.Drawing.Size(405, 231);
+            this.grid_print_codes.Size = new System.Drawing.Size(405, 352);
             this.grid_print_codes.TabIndex = 64;
             // 
             // DrawerCode
@@ -224,14 +228,14 @@ namespace SecretCellar.Settings_Panels
             // 
             // btn_delete_codes
             // 
-            this.btn_delete_codes.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_delete_codes.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold);
             this.btn_delete_codes.ForeColor = System.Drawing.Color.Red;
-            this.btn_delete_codes.Location = new System.Drawing.Point(872, 371);
-            this.btn_delete_codes.Margin = new System.Windows.Forms.Padding(9, 9, 9, 9);
+            this.btn_delete_codes.Location = new System.Drawing.Point(850, 315);
+            this.btn_delete_codes.Margin = new System.Windows.Forms.Padding(9);
             this.btn_delete_codes.Name = "btn_delete_codes";
-            this.btn_delete_codes.Size = new System.Drawing.Size(238, 38);
+            this.btn_delete_codes.Size = new System.Drawing.Size(339, 65);
             this.btn_delete_codes.TabIndex = 66;
-            this.btn_delete_codes.Text = "Delete Print Codes";
+            this.btn_delete_codes.Text = "Delete Codes";
             this.btn_delete_codes.UseVisualStyleBackColor = true;
             this.btn_delete_codes.Click += new System.EventHandler(this.btn_delete_codes_Click);
             // 
