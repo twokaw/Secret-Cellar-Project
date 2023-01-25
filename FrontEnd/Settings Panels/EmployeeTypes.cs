@@ -109,5 +109,20 @@ namespace SecretCellar.Settings_Panels
             GetEmployeeRoles();
             GetEmployeeTypes();
         }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lbl_emp_name_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txt_typeName_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
     }

@@ -15,17 +15,9 @@ namespace SecretCellar
         {
             InitializeComponent();
             transaction = items;
-            //txtPercentLineItem.Focus();
-            //txtPercentTotalSale.Text = "";
-            //txtPercentTotalSale.Text = "0";//(transaction.Discount * 100).ToString();
-            // txtPercentTotalSale.Focus();
             touchKeyPad1.Target = txtPercentTotalSale;
             txtPercentTotalSale.Select();
             populate();
-        }
-
-        private void frmDiscount_Load(object sender, EventArgs e)
-        {
         }
 
         private void btnSelectItems_Click(object sender, EventArgs e)
@@ -276,11 +268,6 @@ namespace SecretCellar
         private void txtCashAmt_Enter(object sender, EventArgs e)
         {
             touchKeyPad1.Target = (TextBox)sender;
-        }
-
-        private void txtPercentTotalSale_Leave(object sender, EventArgs e)
-        {
-            Console.WriteLine("Left");
         }
     }
 }

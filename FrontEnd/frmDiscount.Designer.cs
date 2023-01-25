@@ -102,7 +102,6 @@
             this.txtPercentTotalSale.Click += new System.EventHandler(this.txtPercentTotalSale_Click);
             this.txtPercentTotalSale.Enter += new System.EventHandler(this.txtCashAmt_Enter);
             this.txtPercentTotalSale.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.digit_only);
-            this.txtPercentTotalSale.Leave += new System.EventHandler(this.txtPercentTotalSale_Leave);
             // 
             // lblFixedDiscount
             // 
@@ -429,7 +428,6 @@
             this.Name = "frmDiscount";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Discount";
-            this.Load += new System.EventHandler(this.frmDiscount_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
