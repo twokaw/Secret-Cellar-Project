@@ -54,19 +54,20 @@ namespace SecretCellar.Settings_Panels
             this.panel1.Controls.Add(this.btn_header);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(605, 320);
+            this.panel1.Size = new System.Drawing.Size(1512, 714);
             this.panel1.TabIndex = 0;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // btn_receipt_font_reset
             // 
             this.btn_receipt_font_reset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btn_receipt_font_reset.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
-            this.btn_receipt_font_reset.Location = new System.Drawing.Point(219, 193);
+            this.btn_receipt_font_reset.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold);
+            this.btn_receipt_font_reset.Location = new System.Drawing.Point(530, 204);
+            this.btn_receipt_font_reset.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
             this.btn_receipt_font_reset.Name = "btn_receipt_font_reset";
-            this.btn_receipt_font_reset.Size = new System.Drawing.Size(124, 47);
+            this.btn_receipt_font_reset.Size = new System.Drawing.Size(428, 105);
             this.btn_receipt_font_reset.TabIndex = 5;
             this.btn_receipt_font_reset.Text = "Reset Receipt Font";
             this.btn_receipt_font_reset.UseVisualStyleBackColor = true;
@@ -75,10 +76,11 @@ namespace SecretCellar.Settings_Panels
             // lbl_receipt_footer
             // 
             this.lbl_receipt_footer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lbl_receipt_footer.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
-            this.lbl_receipt_footer.Location = new System.Drawing.Point(405, 70);
+            this.lbl_receipt_footer.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold);
+            this.lbl_receipt_footer.Location = new System.Drawing.Point(1012, 147);
+            this.lbl_receipt_footer.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
             this.lbl_receipt_footer.Name = "lbl_receipt_footer";
-            this.lbl_receipt_footer.Size = new System.Drawing.Size(177, 18);
+            this.lbl_receipt_footer.Size = new System.Drawing.Size(442, 40);
             this.lbl_receipt_footer.TabIndex = 19;
             this.lbl_receipt_footer.Text = "Receipt Footer";
             this.lbl_receipt_footer.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -88,19 +90,21 @@ namespace SecretCellar.Settings_Panels
             // 
             this.txt_receipt_footer.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txt_receipt_footer.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
-            this.txt_receipt_footer.Location = new System.Drawing.Point(397, 89);
+            this.txt_receipt_footer.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold);
+            this.txt_receipt_footer.Location = new System.Drawing.Point(992, 199);
+            this.txt_receipt_footer.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
             this.txt_receipt_footer.Multiline = true;
             this.txt_receipt_footer.Name = "txt_receipt_footer";
-            this.txt_receipt_footer.Size = new System.Drawing.Size(193, 215);
+            this.txt_receipt_footer.Size = new System.Drawing.Size(476, 475);
             this.txt_receipt_footer.TabIndex = 4;
             // 
             // lbl_header
             // 
-            this.lbl_header.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
-            this.lbl_header.Location = new System.Drawing.Point(15, 70);
+            this.lbl_header.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold);
+            this.lbl_header.Location = new System.Drawing.Point(38, 147);
+            this.lbl_header.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
             this.lbl_header.Name = "lbl_header";
-            this.lbl_header.Size = new System.Drawing.Size(191, 16);
+            this.lbl_header.Size = new System.Drawing.Size(478, 36);
             this.lbl_header.TabIndex = 17;
             this.lbl_header.Text = "Receipt Header";
             this.lbl_header.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -109,20 +113,22 @@ namespace SecretCellar.Settings_Panels
             // 
             this.txt_receipt_header.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.txt_receipt_header.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
-            this.txt_receipt_header.Location = new System.Drawing.Point(15, 89);
+            this.txt_receipt_header.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold);
+            this.txt_receipt_header.Location = new System.Drawing.Point(38, 199);
+            this.txt_receipt_header.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
             this.txt_receipt_header.Multiline = true;
             this.txt_receipt_header.Name = "txt_receipt_header";
-            this.txt_receipt_header.Size = new System.Drawing.Size(193, 215);
+            this.txt_receipt_header.Size = new System.Drawing.Size(476, 475);
             this.txt_receipt_header.TabIndex = 2;
             // 
             // btn_rec_font
             // 
             this.btn_rec_font.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btn_rec_font.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
-            this.btn_rec_font.Location = new System.Drawing.Point(219, 255);
+            this.btn_rec_font.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold);
+            this.btn_rec_font.Location = new System.Drawing.Point(530, 342);
+            this.btn_rec_font.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
             this.btn_rec_font.Name = "btn_rec_font";
-            this.btn_rec_font.Size = new System.Drawing.Size(124, 47);
+            this.btn_rec_font.Size = new System.Drawing.Size(428, 105);
             this.btn_rec_font.TabIndex = 6;
             this.btn_rec_font.Text = "Change Receipt Font";
             this.btn_rec_font.UseVisualStyleBackColor = true;
@@ -131,10 +137,11 @@ namespace SecretCellar.Settings_Panels
             // btn_foot
             // 
             this.btn_foot.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_foot.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
-            this.btn_foot.Location = new System.Drawing.Point(400, 14);
+            this.btn_foot.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold);
+            this.btn_foot.Location = new System.Drawing.Point(1000, 31);
+            this.btn_foot.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
             this.btn_foot.Name = "btn_foot";
-            this.btn_foot.Size = new System.Drawing.Size(185, 31);
+            this.btn_foot.Size = new System.Drawing.Size(476, 69);
             this.btn_foot.TabIndex = 3;
             this.btn_foot.Text = "Change Receipt Footer";
             this.btn_foot.UseVisualStyleBackColor = true;
@@ -142,10 +149,11 @@ namespace SecretCellar.Settings_Panels
             // 
             // btn_header
             // 
-            this.btn_header.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
-            this.btn_header.Location = new System.Drawing.Point(20, 14);
+            this.btn_header.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold);
+            this.btn_header.Location = new System.Drawing.Point(50, 31);
+            this.btn_header.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
             this.btn_header.Name = "btn_header";
-            this.btn_header.Size = new System.Drawing.Size(185, 31);
+            this.btn_header.Size = new System.Drawing.Size(476, 69);
             this.btn_header.TabIndex = 1;
             this.btn_header.Text = "Change Receipt Header";
             this.btn_header.UseVisualStyleBackColor = true;
@@ -153,12 +161,14 @@ namespace SecretCellar.Settings_Panels
             // 
             // PanReceipt
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(15F, 29F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.panel1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(22)))), ((int)(((byte)(22)))));
+            this.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.Name = "PanReceipt";
-            this.Size = new System.Drawing.Size(605, 320);
+            this.Size = new System.Drawing.Size(1512, 714);
             this.Load += new System.EventHandler(this.PanReceipt_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

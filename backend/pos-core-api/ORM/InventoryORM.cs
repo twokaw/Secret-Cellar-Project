@@ -170,25 +170,17 @@ namespace pos_core_api.ORM
                     }
                 }
 
-                try
-                {
-                    if (!reader.IsDBNull("discountID")
-                    && outputItem.Discounts.FirstOrDefault(x => x.DiscountID == reader.GetUInt32("discountID")) == null)
-                        outputItem.Discounts.Add(new Discount()
-                        {
-                            DiscountID = reader.GetUInt32("discountID"),
-                            DiscountName = reader.GetString("discountName"),
-                            Min = reader.IsDBNull("minqty") ? 0 : reader.GetUInt32("minqty"),
-                            Max = reader.IsDBNull("maxqty") ? 99999999 : reader.GetUInt32("maxqty"),
-                            Amount = reader.GetDouble("Discount"),
-                            Enabled = reader.IsDBNull("minqty") && reader.IsDBNull("maxqty")
-                        });
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex);
-                    throw;
-                }
+                if (!reader.IsDBNull("discountID")
+                && outputItem.Discounts.FirstOrDefault(x => x.DiscountID == reader.GetUInt32("discountID")) == null)
+                    outputItem.Discounts.Add(new Discount()
+                    {
+                        DiscountID = reader.GetUInt32("discountID"),
+                        DiscountName = reader.GetString("discountName"),
+                        Min = reader.IsDBNull("minqty") ? 0 : reader.GetUInt32("minqty"),
+                        Max = reader.IsDBNull("maxqty") ? 99999999 : reader.GetUInt32("maxqty"),
+                        Amount = reader.GetDouble("Discount"),
+                        Enabled = reader.IsDBNull("minqty") && reader.IsDBNull("maxqty")
+                    });
 
                 if (!reader.IsDBNull("supplier_Price")
                 && outputItem.AllQty.FirstOrDefault(x => x.SupplierPrice == reader.GetDouble("supplier_Price")) == null)

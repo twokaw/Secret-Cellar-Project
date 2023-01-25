@@ -40,11 +40,17 @@ namespace SecretCellar
                 CursorPosition = Math.Max(0, --CursorPosition);
                 Console.WriteLine($"CursorPosition on Left : {CursorPosition}");
             }
-                
 
-            if (e.KeyCode == Keys.Delete || e.KeyCode == Keys.Back)
+
+            if (e.KeyCode == Keys.Delete )
             {
                 DeleteChar();
+                e.Handled = true;
+            }
+
+            else if (e.KeyCode == Keys.Back)
+            {
+                BackspaceChar();
                 e.Handled = true;
             }
         }
@@ -60,17 +66,17 @@ namespace SecretCellar
         protected override void OnTextChanged(EventArgs e)
         {
             string newText = base.Text;
-            if (!newText.Contains("."))
-                newText += ".00";
-            else if ("." == newText.Substring(newText.Length - 2, 1))
-                newText += "0";
+            //if (!newText.Contains("."))
+            //    newText += ".00";
+            //else if ("." == newText.Substring(newText.Length - 2, 1))
+            //    newText += "0";
 
             newText = FormatText(newText);
             base.OnTextChanged(e);
 
             if (base.Text != newText)
             {
-                this.Text = FormatText(newText);
+                base.Text = FormatText(newText);
             }
 
             
@@ -90,48 +96,95 @@ namespace SecretCellar
 
         private void InsertChar(char character)
         {
+            string value;
+            int cursorPosition;
+            int orginalLength;
             if (this.TextLength == this.SelectionLength)
-                this.Clear();
+            {
+                value = "$0.0";
+                cursorPosition = 4;
+            }
+            else
+            {
+                value = this.Text;
+                cursorPosition = this.SelectionStart;
+            }
+            orginalLength = value.Length;
 
-            string value = this.Text;
             if (Char.IsDigit(character) &&  this.TextLength < this.MaxLength)
             {
-                value = value.Insert(CursorPosition, $"{character}");
-                CursorPosition++;
 
-                this.Text = FormatText(ToNumber(value) * 10);
+                value = value.Insert(cursorPosition, $"{character}");
 
-                Console.WriteLine($"CursorPosition INSERT : {CursorPosition}");
-                this.SelectionStart = CursorPosition;
+                if(value.Contains(".") && value.Length - value.IndexOf(".") > 3 )
+                    this.Text = FormatText(ToNumber(value) * 10);
+                else
+                    this.Text = FormatText(ToNumber(value));
+
+                //   Console.WriteLine($"CursorPosition INSERT : {CursorPosition}");
+                // CursorPosition = UpdateCursorPostion(CursorPosition);
+                this.SelectionStart = cursorPosition + this.Text.Length - orginalLength;
+
                 this.SelectionLength = 0;
             }
+        }
+
+        private int UpdateCursorPostion(int cursorPosition) {
+            string value = this.Text;
+            double val = ToNumber(value);
+
+            if (value.Length <= cursorPosition) cursorPosition = value.Length;
+            else if (value.Length - cursorPosition >= 1 && val < .1) cursorPosition = 6;
+            else if (value.Length - cursorPosition >= 2 && val < 1.0) cursorPosition = 5;
+            else if (value.Length - cursorPosition >= 4 && val < 10.0) cursorPosition = 3;
+            else if (value.Length - cursorPosition >= 5 && val < 100.0) cursorPosition = 1;
+
+            return cursorPosition;  
         }
 
         private void DeleteChar()
         {
+            int cursorPosition = this.SelectionStart ;
             if (this.TextLength == this.SelectionLength)
                 this.Clear();
             else
             {
-                Console.WriteLine($"CursorPosition: {CursorPosition}");
+                Console.WriteLine($"DEL CursorPosition: {cursorPosition}");
 
                 string value = this.Text;
 
-                if (CursorPosition > 0 && CursorPosition < value.Length && value.Substring(CursorPosition - 1, 1) == ".")
-                    CursorPosition++;
+                if (cursorPosition > 0 && cursorPosition < value.Length && value.Substring(cursorPosition, 1) == ".")
+                    cursorPosition++;
 
-                Console.WriteLine($"CursorPosition period check : {CursorPosition}");
+                Console.WriteLine($"DEL CursorPosition period check : {cursorPosition}");
 
-                if (CursorPosition > 0 && this.TextLength > 4) CursorPosition--;
-                Console.WriteLine($"CursorPosition negative check : {CursorPosition}");
-                value = value.Remove(Math.Min(CursorPosition, value.Length -1), 1);
-                this.Text = FormatText(value);
+                //if (CursorPosition > 0 && this.TextLength > 4) CursorPosition--;
 
-                Console.WriteLine($"CursorPosition selection set : {CursorPosition}");
-                this.SelectionStart = CursorPosition ;
+                Console.WriteLine($"DEL CursorPosition negative check : {cursorPosition}");
+
+                value = value.Remove(Math.Min(cursorPosition, value.Length -1), 1);
+
+                double val = ToNumber(value);
+                if (value.Length - cursorPosition <= 2)
+                    val /= 10;
+                value = FormatText(val);
+                this.Text = value;
+
+                cursorPosition = UpdateCursorPostion(cursorPosition);
+
+                Console.WriteLine($"DEL CursorPosition selection set : {cursorPosition}");
+                this.SelectionStart = cursorPosition ;
                 this.SelectionLength = 0;
+
+                CursorPosition = cursorPosition ;
             }
         }
+
+        private void BackspaceChar()
+        {
+            DeleteChar();
+        }
+
 
         private string FormatText(double value)
         {

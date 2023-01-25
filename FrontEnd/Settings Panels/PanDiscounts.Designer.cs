@@ -55,11 +55,11 @@ namespace SecretCellar.Settings_Panels
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.chk_lst_discount.FormattingEnabled = true;
-            this.chk_lst_discount.Location = new System.Drawing.Point(66, 52);
+            this.chk_lst_discount.Location = new System.Drawing.Point(68, 83);
             this.chk_lst_discount.Margin = new System.Windows.Forms.Padding(6);
-            this.chk_lst_discount.MinimumSize = new System.Drawing.Size(0, 80);
+            this.chk_lst_discount.MinimumSize = new System.Drawing.Size(4, 80);
             this.chk_lst_discount.Name = "chk_lst_discount";
-            this.chk_lst_discount.Size = new System.Drawing.Size(776, 106);
+            this.chk_lst_discount.Size = new System.Drawing.Size(776, 94);
             this.chk_lst_discount.TabIndex = 9;
             this.chk_lst_discount.SelectedIndexChanged += new System.EventHandler(this.chk_lst_discount_SelectedIndexChanged);
             // 
@@ -70,7 +70,7 @@ namespace SecretCellar.Settings_Panels
             this.lbl_discount.Location = new System.Drawing.Point(13, 15);
             this.lbl_discount.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lbl_discount.Name = "lbl_discount";
-            this.lbl_discount.Size = new System.Drawing.Size(886, 31);
+            this.lbl_discount.Size = new System.Drawing.Size(886, 62);
             this.lbl_discount.TabIndex = 37;
             this.lbl_discount.Text = "Discounts";
             this.lbl_discount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -104,6 +104,7 @@ namespace SecretCellar.Settings_Panels
             this.panel2.Controls.Add(this.lbl_dis_max);
             this.panel2.Controls.Add(this.txt_dis_max);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(909, 482);
@@ -112,46 +113,49 @@ namespace SecretCellar.Settings_Panels
             // txt_discount
             // 
             this.txt_discount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.txt_discount.Location = new System.Drawing.Point(176, 285);
+            this.txt_discount.Location = new System.Drawing.Point(206, 262);
             this.txt_discount.Margin = new System.Windows.Forms.Padding(6);
             this.txt_discount.Name = "txt_discount";
-            this.txt_discount.Size = new System.Drawing.Size(111, 22);
+            this.txt_discount.Size = new System.Drawing.Size(183, 48);
             this.txt_discount.TabIndex = 11;
             // 
             // btn_clear_discount
             // 
             this.btn_clear_discount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_clear_discount.Location = new System.Drawing.Point(540, 306);
+            this.btn_clear_discount.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold);
+            this.btn_clear_discount.Location = new System.Drawing.Point(443, 305);
             this.btn_clear_discount.Margin = new System.Windows.Forms.Padding(0);
             this.btn_clear_discount.Name = "btn_clear_discount";
-            this.btn_clear_discount.Size = new System.Drawing.Size(147, 44);
+            this.btn_clear_discount.Size = new System.Drawing.Size(196, 65);
             this.btn_clear_discount.TabIndex = 14;
-            this.btn_clear_discount.Text = "Clear Discount ";
+            this.btn_clear_discount.Text = "Clear";
             this.btn_clear_discount.UseVisualStyleBackColor = true;
             this.btn_clear_discount.Click += new System.EventHandler(this.btn_clear_discount_Click);
             // 
             // btn_delete_discount
             // 
             this.btn_delete_discount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_delete_discount.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold);
             this.btn_delete_discount.ForeColor = System.Drawing.Color.Red;
-            this.btn_delete_discount.Location = new System.Drawing.Point(697, 360);
+            this.btn_delete_discount.Location = new System.Drawing.Point(648, 376);
             this.btn_delete_discount.Margin = new System.Windows.Forms.Padding(0);
             this.btn_delete_discount.Name = "btn_delete_discount";
-            this.btn_delete_discount.Size = new System.Drawing.Size(145, 48);
+            this.btn_delete_discount.Size = new System.Drawing.Size(196, 65);
             this.btn_delete_discount.TabIndex = 17;
-            this.btn_delete_discount.Text = "Delete Discount";
+            this.btn_delete_discount.Text = "Delete";
             this.btn_delete_discount.UseVisualStyleBackColor = true;
             this.btn_delete_discount.Click += new System.EventHandler(this.btn_delete_discount_Click);
             // 
             // btn_update_discount
             // 
             this.btn_update_discount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_update_discount.Location = new System.Drawing.Point(540, 360);
+            this.btn_update_discount.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold);
+            this.btn_update_discount.Location = new System.Drawing.Point(443, 375);
             this.btn_update_discount.Margin = new System.Windows.Forms.Padding(0);
             this.btn_update_discount.Name = "btn_update_discount";
-            this.btn_update_discount.Size = new System.Drawing.Size(147, 48);
+            this.btn_update_discount.Size = new System.Drawing.Size(196, 65);
             this.btn_update_discount.TabIndex = 15;
-            this.btn_update_discount.Text = "Update Discount";
+            this.btn_update_discount.Text = "Update";
             this.btn_update_discount.UseVisualStyleBackColor = true;
             this.btn_update_discount.Click += new System.EventHandler(this.btn_update_discount_Click);
             // 
@@ -159,85 +163,90 @@ namespace SecretCellar.Settings_Panels
             // 
             this.txt_dis_name.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txt_dis_name.Location = new System.Drawing.Point(176, 242);
+            this.txt_dis_name.Location = new System.Drawing.Point(206, 198);
             this.txt_dis_name.Margin = new System.Windows.Forms.Padding(6);
             this.txt_dis_name.Name = "txt_dis_name";
-            this.txt_dis_name.Size = new System.Drawing.Size(613, 22);
+            this.txt_dis_name.Size = new System.Drawing.Size(583, 48);
             this.txt_dis_name.TabIndex = 10;
             // 
             // btn_new_discount
             // 
             this.btn_new_discount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_new_discount.Location = new System.Drawing.Point(697, 305);
+            this.btn_new_discount.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold);
+            this.btn_new_discount.Location = new System.Drawing.Point(648, 305);
             this.btn_new_discount.Margin = new System.Windows.Forms.Padding(0);
             this.btn_new_discount.Name = "btn_new_discount";
-            this.btn_new_discount.Size = new System.Drawing.Size(145, 44);
+            this.btn_new_discount.Size = new System.Drawing.Size(196, 65);
             this.btn_new_discount.TabIndex = 16;
-            this.btn_new_discount.Text = "New Discount";
+            this.btn_new_discount.Text = "New";
             this.btn_new_discount.UseVisualStyleBackColor = true;
             this.btn_new_discount.Click += new System.EventHandler(this.btn_new_discount_Click);
             // 
             // lbl_dis_name
             // 
             this.lbl_dis_name.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.lbl_dis_name.Location = new System.Drawing.Point(66, 245);
+            this.lbl_dis_name.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_dis_name.Location = new System.Drawing.Point(20, 201);
             this.lbl_dis_name.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lbl_dis_name.Name = "lbl_dis_name";
-            this.lbl_dis_name.Size = new System.Drawing.Size(53, 19);
+            this.lbl_dis_name.Size = new System.Drawing.Size(191, 45);
             this.lbl_dis_name.TabIndex = 40;
             this.lbl_dis_name.Text = "Name:";
             // 
             // lbl_disc
             // 
             this.lbl_disc.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.lbl_disc.Location = new System.Drawing.Point(66, 285);
+            this.lbl_disc.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_disc.Location = new System.Drawing.Point(20, 262);
             this.lbl_disc.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lbl_disc.Name = "lbl_disc";
-            this.lbl_disc.Size = new System.Drawing.Size(73, 22);
+            this.lbl_disc.Size = new System.Drawing.Size(191, 45);
             this.lbl_disc.TabIndex = 46;
             this.lbl_disc.Text = "Discount:";
             // 
             // txt_dis_min
             // 
             this.txt_dis_min.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.txt_dis_min.Location = new System.Drawing.Point(176, 327);
+            this.txt_dis_min.Location = new System.Drawing.Point(206, 322);
             this.txt_dis_min.Margin = new System.Windows.Forms.Padding(6);
             this.txt_dis_min.Name = "txt_dis_min";
-            this.txt_dis_min.Size = new System.Drawing.Size(111, 22);
+            this.txt_dis_min.Size = new System.Drawing.Size(183, 48);
             this.txt_dis_min.TabIndex = 12;
             // 
             // lbl_dis_min
             // 
             this.lbl_dis_min.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.lbl_dis_min.Location = new System.Drawing.Point(63, 327);
+            this.lbl_dis_min.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_dis_min.Location = new System.Drawing.Point(20, 322);
             this.lbl_dis_min.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lbl_dis_min.Name = "lbl_dis_min";
-            this.lbl_dis_min.Size = new System.Drawing.Size(63, 22);
+            this.lbl_dis_min.Size = new System.Drawing.Size(191, 45);
             this.lbl_dis_min.TabIndex = 42;
             this.lbl_dis_min.Text = "Min Qty:";
             // 
             // lbl_dis_max
             // 
             this.lbl_dis_max.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.lbl_dis_max.Location = new System.Drawing.Point(63, 376);
+            this.lbl_dis_max.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_dis_max.Location = new System.Drawing.Point(20, 385);
             this.lbl_dis_max.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lbl_dis_max.Name = "lbl_dis_max";
-            this.lbl_dis_max.Size = new System.Drawing.Size(70, 22);
+            this.lbl_dis_max.Size = new System.Drawing.Size(191, 45);
             this.lbl_dis_max.TabIndex = 44;
             this.lbl_dis_max.Text = "Max Qty:";
             // 
             // txt_dis_max
             // 
             this.txt_dis_max.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.txt_dis_max.Location = new System.Drawing.Point(176, 376);
+            this.txt_dis_max.Location = new System.Drawing.Point(206, 385);
             this.txt_dis_max.Margin = new System.Windows.Forms.Padding(6);
             this.txt_dis_max.Name = "txt_dis_max";
-            this.txt_dis_max.Size = new System.Drawing.Size(111, 22);
+            this.txt_dis_max.Size = new System.Drawing.Size(183, 48);
             this.txt_dis_max.TabIndex = 13;
             // 
             // PanDiscount
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);

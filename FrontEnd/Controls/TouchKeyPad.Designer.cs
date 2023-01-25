@@ -64,7 +64,7 @@ namespace SecretCellar
             this.btn_delete.Name = "btn_delete";
             this.btn_delete.Size = new System.Drawing.Size(192, 96);
             this.btn_delete.TabIndex = 28;
-            this.btn_delete.Text = "DEL";
+            this.btn_delete.Text = "Del";
             this.btn_delete.UseVisualStyleBackColor = true;
             this.btn_delete.Click += new System.EventHandler(this.btn_delete_Click);
             // 
@@ -217,7 +217,7 @@ namespace SecretCellar
             this.Controls.Add(this.btn_3);
             this.Controls.Add(this.btn_2);
             this.Controls.Add(this.btn_1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "TouchKeyPad";
             this.Size = new System.Drawing.Size(578, 546);
             this.ResumeLayout(false);
