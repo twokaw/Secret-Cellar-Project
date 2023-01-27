@@ -184,7 +184,7 @@ namespace SecretCellar
             btn_cust_credit.Enabled = true;
 
             txt_credit_amount.Value = credit;
-            CurrentCustomer.Credit = credit;
+            if (CurrentCustomer != null) CurrentCustomer.Credit = credit;
 
             paymentType.Rows.Clear();
             Transaction.Payments.Clear();
