@@ -7,8 +7,10 @@ namespace SecretCellar
 {
     public partial class frmLogin : ManagedForm
     {
+        private int InvalidUserCount;
         public frmLogin(Image logo = null)
         {
+            InvalidUserCount = 0;
             InitializeComponent();
         }
 
@@ -25,9 +27,7 @@ namespace SecretCellar
         private void txtPin_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.KeyData == Keys.Enter || e.KeyData == Keys.Return)
-            {
                 Validate_user(txtPin.Text);
-            }
         }
 
         private void Validate_user(string text)
@@ -39,7 +39,13 @@ namespace SecretCellar
                 user = DataAccess.instance.LoginUser(text);
 
             if (user == null)
-                MessageBox.Show("Invalid user name");
+            { 
+                if (++InvalidUserCount > 3)
+                    Application.Exit();
+
+                lblError.Text = $"Invalid user name. Remaining tries {4 - InvalidUserCount}";
+                lblError.Visible = true;
+            }
             else
             {
                 this.DialogResult = DialogResult.OK;
