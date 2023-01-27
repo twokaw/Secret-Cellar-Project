@@ -15,7 +15,7 @@ namespace pos_core_api.ORM
         private readonly CustomerORM CustORM;
 
         private const string SQLGET = @"
-            SELECT receiptid, register, sold_datetime, customerid, empid, location, tax_exempt, discount, shipping, trantypeid
+            SELECT receiptid, register, sold_datetime, customerid, empid, location, tax_exempt, discount, shipping, trantypeid, enableBulkDiscount
             FROM transaction
         ";
         private const string SQLGETPAYMENTS = @"
@@ -194,7 +194,8 @@ namespace pos_core_api.ORM
                     TaxExempt = !reader.IsDBNull("tax_exempt") && reader.GetBoolean("tax_exempt"),
                     Discount = reader.IsDBNull("discount") ? 0.0 : reader.GetDouble("discount"),
                     Shipping = reader.IsDBNull("shipping") ? 0.0 : reader.GetDouble("shipping"),
-                    TranType = (Transaction.TranactionType)(reader.IsDBNull("tranTypeid") ? 0 : reader.GetByte("tranTypeid"))
+                    TranType = (Transaction.TranactionType)(reader.IsDBNull("tranTypeid") ? 0 : reader.GetByte("tranTypeid")),
+                    EnableBulkDiscount = reader.IsDBNull("enableBulkDiscount") ? false : reader.GetBoolean("enableBulkDiscount")
                 };
                 output.Add(transaction);
             }
@@ -330,9 +331,9 @@ namespace pos_core_api.ORM
 
             MySqlCommand cmd = db.CreateCommand(@"
                 INSERT INTO transaction
-                (register,  sold_datetime,  customerid,  empid,  location,  tax_exempt,  discount, shipping, trantypeid)
+                (register,  sold_datetime,  customerid,  empid,  location,  tax_exempt,  discount, shipping, trantypeid, enableBulkDiscount)
                 VALUES
-                (@register, @sold_datetime, @customerid, @empid, @location, @tax_exempt, @discount, @shipping, @trantype)
+                (@register, @sold_datetime, @customerid, @empid, @location, @tax_exempt, @discount, @shipping, @trantype, @enableBulkDiscount)
             ");
 
             cmd.Parameters.Add(new MySqlParameter("register", transaction.RegisterID));
@@ -344,6 +345,7 @@ namespace pos_core_api.ORM
             cmd.Parameters.Add(new MySqlParameter("discount", transaction.Discount));
             cmd.Parameters.Add(new MySqlParameter("shipping", transaction.Shipping));
             cmd.Parameters.Add(new MySqlParameter("tranType", transaction.TranType));
+            cmd.Parameters.Add(new MySqlParameter("enableBulkDiscount", transaction.EnableBulkDiscount));
 
             try
             {
@@ -385,7 +387,8 @@ namespace pos_core_api.ORM
                     tax_exempt = @tax_exempt,  
                     discount = @discount, 
                     shipping = @shipping, 
-                    trantypeid= @transtype
+                    trantypeid= @transtype,
+                    enableBulkDiscount = @enableBulkDiscount
                 WHERE Receiptid = @InvoiceID
             ");
             cmd.Parameters.Add(new MySqlParameter("register", transaction.RegisterID));
@@ -397,8 +400,9 @@ namespace pos_core_api.ORM
             cmd.Parameters.Add(new MySqlParameter("discount", transaction.Discount));
             cmd.Parameters.Add(new MySqlParameter("shipping", transaction.Shipping));
             cmd.Parameters.Add(new MySqlParameter("transType", transaction.TranType));
-            cmd.Parameters.Add(new MySqlParameter("InvoiceID", transaction.InvoiceID));      
-            
+            cmd.Parameters.Add(new MySqlParameter("InvoiceID", transaction.InvoiceID));
+            cmd.Parameters.Add(new MySqlParameter("enableBulkDiscount", transaction.EnableBulkDiscount));
+
             try
             {
                 cmd.ExecuteNonQuery();
