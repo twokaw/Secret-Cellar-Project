@@ -140,6 +140,15 @@ namespace SecretCellar
 
             if (eventWaitlistItems.Count > 0) { MessageBox.Show($"Cannot delete '{_selectedEvent.Name}' while customers are on the waitlist for it.", "Error"); return; }
 
+            PreviousEventData previousEventData = DataAccess.instance.GetPreviousEventData(_selectedEvent.Id);
+            if (previousEventData != null) {
+                if (previousEventData.AtDoorSold + previousEventData.PreOrderSold > 0) {
+                    MessageBox.Show($"Cannot delete '{_selectedEvent.Name}' when there are tickets sold.", "Error");
+                    //TODO Make this ask if the user wants to proceed, then just hide the event instead of deleting it.
+                    return;
+                }
+            }
+
             if (frmManagerOverride.DidOverride("Delete Event")) {
                 DataAccess.instance.DeleteEvent(_selectedEvent.Id);
                 UpdateEventGrid();
