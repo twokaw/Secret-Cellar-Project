@@ -100,7 +100,6 @@ namespace SecretCellar
 
         private void TxtFee_TextChanged(object sender, EventArgs e)
         {
-
             RestockFee = double.Parse(TxtFee.Text.Replace("$", ""));
         }
 

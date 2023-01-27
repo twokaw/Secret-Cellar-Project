@@ -19,7 +19,8 @@ namespace SecretCellar.Orders_Panels {
             lstbox_customer.DisplayMember = "FullName";
 
             //POPULATE THE DATA GRID
-            if (DataAccess.instance != null && transaction_history != null) { Populate(); }
+            if (DataAccess.instance != null && transaction_history != null) 
+                Populate(); 
         }
 
         /// <summary>
@@ -45,7 +46,6 @@ namespace SecretCellar.Orders_Panels {
             }
         }
 
-
         /// <summary>
         /// ON TEXT CHANGE
         /// </summary>
@@ -57,12 +57,6 @@ namespace SecretCellar.Orders_Panels {
                 Populate();
             else
 			    lstbox_customer.DataSource = DataAccess.instance.GetCustomer(textBox_CustomerName.Text);
-            // if()
-			/*Select(x => new {
-                customerID = x.CustomerID,
-                cust_name = $"{x.LastName}, {x.FirstName}"
-            }).
-              ToList();*/
 		}
 
         /// <summary>
@@ -135,7 +129,12 @@ namespace SecretCellar.Orders_Panels {
         /// <summary>
         /// REFRESH THE DATA GRID
         /// </summary>
-        private void Populate() {
+        private void Populate() 
+        {
+            uint tId = 0;
+
+            if(transaction_dataGrid.SelectedRows.Count > 0)
+                tId = uint.Parse(transaction_dataGrid.SelectedRows[0].Cells["trans_id"].Value.ToString());
             transaction_history = DataAccess.instance?.GetTransactions();
 
             if (transaction_history == null)
@@ -150,7 +149,7 @@ namespace SecretCellar.Orders_Panels {
                        trans_date = x.TransactionDateTime.ToString("MM/dd/yy"),
                        trans_total = x.Total.ToString("C")
                    })
-                   .OrderBy(x => x.trans_id)
+                   .OrderByDescending(x => x.trans_id)
                    .ToList();
             }
             else
@@ -166,9 +165,20 @@ namespace SecretCellar.Orders_Panels {
                       trans_date = x.TransactionDateTime.ToString("MM/dd/yy"),
                       trans_total = x.Total.ToString("C")
                     })
-                   .OrderBy(x => x.trans_id)
+                   .OrderByDescending(x => x.trans_id)
                    .ToList();
             }
+
+            if(tId > 0)
+            {
+                int idx = transaction_dataGrid.Rows
+                    .Cast<DataGridViewRow>()
+                    .FirstOrDefault(x => uint.Parse(x.Cells["trans_id"].Value.ToString()) == tId).Index;
+
+                if(idx > -1)
+                    transaction_dataGrid.Rows[idx].Selected = true;
+            }
+
         }
 
         private void end_dateTime_ValueChanged(object sender, EventArgs e)
@@ -189,9 +199,8 @@ namespace SecretCellar.Orders_Panels {
             {
                 uint id = uint.Parse(dgv_Items.SelectedRows[0].Cells[0].Value.ToString());
 
-                
                 Item i = SelectTransaction.Items.FirstOrDefault(x => x.Id == id);
-                double item_total = SelectTransaction.ItemPriceTotal(i) / i.NumSold;
+                double item_total = Math.Round(SelectTransaction.ItemPriceTotal(i) / i.NumSold,2,MidpointRounding.AwayFromZero);
                 frmReturnItem returnItem = new frmReturnItem(i, item_total);
 
                 if(returnItem.ShowDialog() == DialogResult.OK && returnItem.RefundQty > 0)
@@ -211,11 +220,6 @@ namespace SecretCellar.Orders_Panels {
         {
             LblLastRefund.Text = "";
             Populate();
-        }
-
-        private void transaction_dataGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
     }
 }
