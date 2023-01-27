@@ -229,7 +229,6 @@ namespace SecretCellar
             this.AcceptButton = this.btn_ok;
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(231)))), ((int)(((byte)(206)))));
             this.CancelButton = this.btn_cancel;
             this.ClientSize = new System.Drawing.Size(370, 490);
             this.Controls.Add(this.btn_clear);
