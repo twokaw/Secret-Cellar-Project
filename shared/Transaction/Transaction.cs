@@ -267,7 +267,7 @@ namespace Shared
 
                 foreach (Item i in Items)
                     if (i.Discounts.Any(x => x.DiscountID == dis.DiscountID) && i.Discount == 0.0)
-                        count += i.NumSold;
+                        count += i.QtySold;
 
                 if (count >= dis.Min && (count <= dis.Max || dis.Max == 0))
                     result.Add(dis);

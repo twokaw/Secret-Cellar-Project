@@ -108,7 +108,7 @@ namespace SecretCellar.Orders_Panels {
             if (transaction_dataGrid.SelectedRows.Count > 0) 
             {
                 SelectTransaction = transaction_history.First(x => x.InvoiceID == uint.Parse(transaction_dataGrid.SelectedRows[0].Cells["trans_id"].Value.ToString()));
-
+                SelectTransaction.EnableBulkDiscount = true;
                 var items = SelectTransaction.Items
                  .Select(x => new
                  {
@@ -188,6 +188,8 @@ namespace SecretCellar.Orders_Panels {
             else
             {
                 uint id = uint.Parse(dgv_Items.SelectedRows[0].Cells[0].Value.ToString());
+
+                
                 Item i = SelectTransaction.Items.FirstOrDefault(x => x.Id == id);
                 double item_total = SelectTransaction.ItemPriceTotal(i) / i.NumSold;
                 frmReturnItem returnItem = new frmReturnItem(i, item_total);
