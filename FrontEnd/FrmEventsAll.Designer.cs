@@ -42,6 +42,7 @@ namespace SecretCellar {
             this.label_Events = new System.Windows.Forms.Label();
             this.button_showPreviousEventData = new System.Windows.Forms.Button();
             this.checkBox_ShowPreviousEvents = new System.Windows.Forms.CheckBox();
+            this.label_doubleClick = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Events)).BeginInit();
             this.SuspendLayout();
             // 
@@ -80,7 +81,7 @@ namespace SecretCellar {
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(22)))), ((int)(((byte)(22)))));
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(51)))), ((int)(((byte)(69)))));
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Ivory;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
@@ -175,23 +176,23 @@ namespace SecretCellar {
             // 
             this.label_Events.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_Events.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label_Events.Location = new System.Drawing.Point(16, 14);
+            this.label_Events.Location = new System.Drawing.Point(18, 11);
             this.label_Events.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_Events.Name = "label_Events";
-            this.label_Events.Size = new System.Drawing.Size(384, 35);
+            this.label_Events.Size = new System.Drawing.Size(216, 26);
             this.label_Events.TabIndex = 4;
             this.label_Events.Text = "Upcoming Events";
             // 
             // button_showPreviousEventData
             // 
             this.button_showPreviousEventData.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button_showPreviousEventData.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_showPreviousEventData.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_showPreviousEventData.Location = new System.Drawing.Point(353, 396);
             this.button_showPreviousEventData.Margin = new System.Windows.Forms.Padding(2);
             this.button_showPreviousEventData.Name = "button_showPreviousEventData";
             this.button_showPreviousEventData.Size = new System.Drawing.Size(215, 55);
             this.button_showPreviousEventData.TabIndex = 5;
-            this.button_showPreviousEventData.Text = "Show Event";
+            this.button_showPreviousEventData.Text = "Event Sales Info";
             this.button_showPreviousEventData.UseVisualStyleBackColor = true;
             this.button_showPreviousEventData.Click += new System.EventHandler(this.button_showPreviousEventData_Click);
             // 
@@ -200,7 +201,7 @@ namespace SecretCellar {
             this.checkBox_ShowPreviousEvents.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.checkBox_ShowPreviousEvents.AutoSize = true;
             this.checkBox_ShowPreviousEvents.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox_ShowPreviousEvents.Location = new System.Drawing.Point(664, 18);
+            this.checkBox_ShowPreviousEvents.Location = new System.Drawing.Point(664, 14);
             this.checkBox_ShowPreviousEvents.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.checkBox_ShowPreviousEvents.Name = "checkBox_ShowPreviousEvents";
             this.checkBox_ShowPreviousEvents.Size = new System.Drawing.Size(149, 22);
@@ -209,18 +210,29 @@ namespace SecretCellar {
             this.checkBox_ShowPreviousEvents.UseVisualStyleBackColor = true;
             this.checkBox_ShowPreviousEvents.CheckedChanged += new System.EventHandler(this.checkBox_ShowPreviousEvents_CheckedChanged);
             // 
+            // label_doubleClick
+            // 
+            this.label_doubleClick.Location = new System.Drawing.Point(257, 37);
+            this.label_doubleClick.Name = "label_doubleClick";
+            this.label_doubleClick.Size = new System.Drawing.Size(321, 20);
+            this.label_doubleClick.TabIndex = 7;
+            this.label_doubleClick.Text = "Double click an event to go to its date";
+            // 
             // frmEventsAll
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(231)))), ((int)(((byte)(206)))));
             this.ClientSize = new System.Drawing.Size(834, 462);
+            this.Controls.Add(this.label_doubleClick);
             this.Controls.Add(this.checkBox_ShowPreviousEvents);
             this.Controls.Add(this.button_showPreviousEventData);
             this.Controls.Add(this.label_Events);
             this.Controls.Add(this.button_DeleteEvent);
             this.Controls.Add(this.button_CloseWindow);
             this.Controls.Add(this.dataGridView_Events);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(22)))), ((int)(((byte)(22)))));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -249,5 +261,6 @@ namespace SecretCellar {
         private System.Windows.Forms.DataGridViewTextBoxColumn AtDoorPrice;
         private System.Windows.Forms.DataGridViewTextBoxColumn Qty;
 		private System.Windows.Forms.CheckBox checkBox_ShowPreviousEvents;
-	}
+        private System.Windows.Forms.Label label_doubleClick;
+    }
 }

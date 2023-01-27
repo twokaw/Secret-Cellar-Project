@@ -164,12 +164,16 @@ namespace SecretCellar
                 double bottleDeposit = x.NumSold * x.Bottles * taxBottleDeposit;
                 double itemPrice = x.DiscountPrice > 0 ? x.DiscountPrice : (x.Price * (1 - x.Discount));
 
+				//TODO Need to store this bool in the database
+				selectedSuspendedTransaction.EnableBulkDiscount = true;
+
                 return new {
 					description = x.Description,
 					qty = x.NumSold,
 					price = x.Price.ToString("C"),
-					discount = x.DiscountPrice.ToString("C"),
-					bottleDeposit = bottleDeposit.ToString("C"),
+					DISCOUNTPRICE = x.DiscountPrice.ToString("C"),
+					discount = x.DiscountPrice > 0 ? "0%" : (Math.Floor(selectedSuspendedTransaction.ItemDiscount(x) * 100) / 100).ToString("P0"),
+                    bottleDeposit = bottleDeposit.ToString("C"),
 					total = (itemPrice * x.NumSold + bottleDeposit).ToString("C")
 				};
 			})

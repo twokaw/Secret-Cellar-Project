@@ -296,7 +296,7 @@ namespace SecretCellar
 
         private void btnShipping_Click(object sender, EventArgs e)
         {
-            frmCustom shipping = new frmCustom(transaction, "SERVICE", "Dry Cleaning");
+            frmCustom shipping = new frmCustom(transaction, "SERVICE", "Shipping");
 
             shipping.ShowDialog();
             RefreshDataGrid();
@@ -425,7 +425,8 @@ namespace SecretCellar
             txt_Ship.Text = "$0.00";
 
             transaction = newTransaction;
-              transaction.EnableBulkDiscount = caseDiscount.Checked;
+            transaction.EnableBulkDiscount = caseDiscount.Checked;
+
             RefreshDataGrid();
         }
 

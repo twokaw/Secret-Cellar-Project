@@ -118,12 +118,12 @@ namespace SecretCellar {
             this.label_SupplierPrice.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.label_SupplierPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_SupplierPrice.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label_SupplierPrice.Location = new System.Drawing.Point(40, 274);
+            this.label_SupplierPrice.Location = new System.Drawing.Point(23, 274);
             this.label_SupplierPrice.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_SupplierPrice.Name = "label_SupplierPrice";
-            this.label_SupplierPrice.Size = new System.Drawing.Size(125, 20);
+            this.label_SupplierPrice.Size = new System.Drawing.Size(142, 20);
             this.label_SupplierPrice.TabIndex = 55;
-            this.label_SupplierPrice.Text = "Supplier Price:";
+            this.label_SupplierPrice.Text = "Wholesale Price:";
             // 
             // label_NonTaxableLocal
             // 
