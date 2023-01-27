@@ -66,11 +66,7 @@ namespace SecretCellar
         protected override void OnTextChanged(EventArgs e)
         {
             string newText = base.Text;
-            //if (!newText.Contains("."))
-            //    newText += ".00";
-            //else if ("." == newText.Substring(newText.Length - 2, 1))
-            //    newText += "0";
-
+            
             newText = FormatText(newText);
             base.OnTextChanged(e);
 
@@ -78,9 +74,6 @@ namespace SecretCellar
             {
                 base.Text = FormatText(newText);
             }
-
-            
-            //CursorPosition = TextLength;
         }
 
         protected override void OnKeyPress(KeyPressEventArgs e)
@@ -121,8 +114,6 @@ namespace SecretCellar
                 else
                     this.Text = FormatText(ToNumber(value));
 
-                //   Console.WriteLine($"CursorPosition INSERT : {CursorPosition}");
-                // CursorPosition = UpdateCursorPostion(CursorPosition);
                 this.SelectionStart = cursorPosition + this.Text.Length - orginalLength;
 
                 this.SelectionLength = 0;
@@ -153,14 +144,9 @@ namespace SecretCellar
 
                 string value = this.Text;
 
-                if (cursorPosition > 0 && cursorPosition < value.Length && value.Substring(cursorPosition, 1) == ".")
+                if (cursorPosition > 0 && cursorPosition < value.Length 
+                && (value.Substring(cursorPosition, 1) == "." || value.Substring(cursorPosition, 1) == ","))
                     cursorPosition++;
-
-                Console.WriteLine($"DEL CursorPosition period check : {cursorPosition}");
-
-                //if (CursorPosition > 0 && this.TextLength > 4) CursorPosition--;
-
-                Console.WriteLine($"DEL CursorPosition negative check : {cursorPosition}");
 
                 value = value.Remove(Math.Min(cursorPosition, value.Length -1), 1);
 
@@ -173,10 +159,10 @@ namespace SecretCellar
                 cursorPosition = UpdateCursorPostion(cursorPosition);
 
                 Console.WriteLine($"DEL CursorPosition selection set : {cursorPosition}");
-                this.SelectionStart = cursorPosition ;
+                this.SelectionStart = cursorPosition;
                 this.SelectionLength = 0;
 
-                CursorPosition = cursorPosition ;
+                CursorPosition = cursorPosition;
             }
         }
 
@@ -184,7 +170,6 @@ namespace SecretCellar
         {
             DeleteChar();
         }
-
 
         private string FormatText(double value)
         {
