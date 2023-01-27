@@ -108,7 +108,7 @@ namespace SecretCellar.Orders_Panels {
             if (transaction_dataGrid.SelectedRows.Count > 0) 
             {
                 SelectTransaction = transaction_history.First(x => x.InvoiceID == uint.Parse(transaction_dataGrid.SelectedRows[0].Cells["trans_id"].Value.ToString()));
-                SelectTransaction.EnableBulkDiscount = true;
+
                 var items = SelectTransaction.Items
                  .Select(x => new
                  {
