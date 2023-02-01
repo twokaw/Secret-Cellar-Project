@@ -11,6 +11,30 @@ namespace SecretCellar
 {
     public partial class frmEvents : ManagedForm
     {
+        /// <summary>
+        /// Deletes the given event.
+        /// </summary>
+        /// <param name="selectedEvent"></param>
+        public static void DeleteEvent(Event selectedEvent) {
+            List<EventWaitlistItem> eventWaitlistItems = DataAccess.instance.GetEventsWaitlists().FindAll((item) => { return item.EventId == selectedEvent.Id; });
+            if (eventWaitlistItems.Count > 0) { MessageBox.Show($"Cannot delete '{selectedEvent.Name}' while customers are on the waitlist for it.", "Error"); return; }
+
+            PreviousEventData previousEventData = DataAccess.instance.GetPreviousEventData(selectedEvent.Id);
+            if (previousEventData != null) {
+                if (previousEventData.AtDoorSold + previousEventData.PreOrderSold > 0) {
+                    MessageBox.Show($"Cannot delete '{selectedEvent.Name}' when there are tickets sold.", "Error");
+                    //TODO Make this ask if the user wants to proceed, then just hide the event instead of deleting it. Show how many people bought a ticket.
+                    return;
+                }
+            }
+
+            if (frmManagerOverride.DidOverride("Delete Event")) {
+                DataAccess.instance.DeleteEvent(selectedEvent.Id);
+            }
+        }
+
+
+
         private Transaction _transaction;
         private Event _selectedEvent;
         
@@ -43,6 +67,16 @@ namespace SecretCellar
             //UPDATE THE SELECTED EVENT FIELD
             if (dataGridView_Events.SelectedRows.Count > 0) {
                 _selectedEvent = GetSelectedEvent();
+
+                PreviousEventData previousEventData = DataAccess.instance.GetPreviousEventData(_selectedEvent.Id);
+                if (previousEventData != null) {
+                    if (previousEventData.AtDoorSold + previousEventData.PreOrderSold > 0) {
+                        button_DeleteEvent.Text = "Hide";
+                    }
+                    else {
+                        button_DeleteEvent.Text = "Delete";
+                    }
+                }
             }
             
             UpdateTotal();
@@ -135,24 +169,8 @@ namespace SecretCellar
         private void button_DeleteEvent_Click(object sender, EventArgs e) {
             if (dataGridView_Events.SelectedRows.Count == 0) { return; }
 
-            List<EventWaitlistItem> eventWaitlistItems = DataAccess.instance.GetEventsWaitlists();
-            eventWaitlistItems = eventWaitlistItems.FindAll((item) => { return item.EventId == _selectedEvent.Id; });
-
-            if (eventWaitlistItems.Count > 0) { MessageBox.Show($"Cannot delete '{_selectedEvent.Name}' while customers are on the waitlist for it.", "Error"); return; }
-
-            PreviousEventData previousEventData = DataAccess.instance.GetPreviousEventData(_selectedEvent.Id);
-            if (previousEventData != null) {
-                if (previousEventData.AtDoorSold + previousEventData.PreOrderSold > 0) {
-                    MessageBox.Show($"Cannot delete '{_selectedEvent.Name}' when there are tickets sold.", "Error");
-                    //TODO Make this ask if the user wants to proceed, then just hide the event instead of deleting it.
-                    return;
-                }
-            }
-
-            if (frmManagerOverride.DidOverride("Delete Event")) {
-                DataAccess.instance.DeleteEvent(_selectedEvent.Id);
-                UpdateEventGrid();
-            }
+            DeleteEvent(_selectedEvent);
+            UpdateEventGrid();
         }
 
         private void button_EditEvent_Click(object sender, EventArgs e) {
