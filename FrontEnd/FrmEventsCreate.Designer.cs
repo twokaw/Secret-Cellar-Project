@@ -140,6 +140,7 @@ namespace SecretCellar {
             this.textBox_Name.Name = "textBox_Name";
             this.textBox_Name.Size = new System.Drawing.Size(303, 29);
             this.textBox_Name.TabIndex = 0;
+            this.textBox_Name.TextChanged += new System.EventHandler(this.textBox_Name_TextChanged);
             // 
             // label_Name
             // 
