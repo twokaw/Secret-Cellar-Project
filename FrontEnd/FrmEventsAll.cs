@@ -97,6 +97,32 @@ namespace SecretCellar {
 
 
         /// <summary>
+        /// On Selection Change.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void dataGridView_Events_SelectionChanged(object sender, EventArgs e) {
+            if (dataGridView_Events.SelectedRows.Count == 0) { return; }
+
+            button_DeleteEvent.Text = "Delete Event";
+            List<Event> listOfEvents = DataAccess.instance.GetEvent();
+
+            foreach (DataGridViewRow selectedRow in dataGridView_Events.SelectedRows) {
+                Event selectedEvent = listOfEvents.Find((ev) => { return uint.Parse(selectedRow.Cells["Id"].Value.ToString()) == ev.Id; });
+                if (selectedEvent == null) { continue; }  //SANITY CHECK
+
+                PreviousEventData previousEventData = DataAccess.instance.GetPreviousEventData(selectedEvent.Id);
+                if (previousEventData != null) {
+                    if (previousEventData.AtDoorSold + previousEventData.PreOrderSold > 0) {
+                        button_DeleteEvent.Text = "Hide Event";
+                        return;
+                    }
+                }
+            }
+        }
+
+
+        /// <summary>
         /// Refresh the grid
         /// </summary>
         private void UpdateEventGrid() {
@@ -137,5 +163,5 @@ namespace SecretCellar {
                 .ToList();
             }
         }
-	}
+    }
 }
