@@ -19,17 +19,35 @@ namespace SecretCellar
             List<EventWaitlistItem> eventWaitlistItems = DataAccess.instance.GetEventsWaitlists().FindAll((item) => { return item.EventId == selectedEvent.Id; });
             if (eventWaitlistItems.Count > 0) { MessageBox.Show($"Cannot delete '{selectedEvent.Name}' while customers are on the waitlist for it.", "Error"); return; }
 
+            bool doesHaveSoldData = false;
+            double numOfticketsSold = 0;
+
             PreviousEventData previousEventData = DataAccess.instance.GetPreviousEventData(selectedEvent.Id);
             if (previousEventData != null) {
-                if (previousEventData.AtDoorSold + previousEventData.PreOrderSold > 0) {
-                    MessageBox.Show($"Cannot delete '{selectedEvent.Name}' when there are tickets sold.", "Error");
-                    //TODO Make this ask if the user wants to proceed, then just hide the event instead of deleting it. Show how many people bought a ticket.
-                    return;
+                numOfticketsSold = previousEventData.AtDoorSold + previousEventData.PreOrderSold;
+
+                if (numOfticketsSold > 0) {
+                    doesHaveSoldData = true;
                 }
             }
 
-            if (frmManagerOverride.DidOverride("Delete Event")) {
-                DataAccess.instance.DeleteEvent(selectedEvent.Id);
+            bool didAcceptSoldDataPopUp = false;
+
+            if (doesHaveSoldData) {
+                DialogResult dialogResult = MessageBox.Show($"Are you sure you want to hide the '{selectedEvent.Name}' event? There {(numOfticketsSold > 1 ? "are" : "is")} {numOfticketsSold} ticket{(numOfticketsSold > 1? "s" : "")} sold.", "Confirm", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes) didAcceptSoldDataPopUp = true;
+            }
+            else didAcceptSoldDataPopUp = true;
+
+            if (didAcceptSoldDataPopUp && frmManagerOverride.DidOverride("Delete Event")) {
+                if (doesHaveSoldData) {
+                    //TODO Ensure this works. It doesn't right now.
+                    selectedEvent.Hidden = true;
+                    DataAccess.instance.UpdateEvent(selectedEvent);
+                }
+                else {
+                    DataAccess.instance.DeleteEvent(selectedEvent.Id);
+                }
             }
         }
 
