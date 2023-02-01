@@ -19,7 +19,17 @@ namespace Shared
         {
             get
             {
-                return $"{((Discount > 0) ? $" *{CalculatedDiscount:P0} OFF*" : "")} {string.Join(" ", Discounts.Where(x => x.Enabled && x.Active).Select(x => x.DiscountName))}";
+                string result = "";
+
+                if(CalculatedDiscount > 0)
+                {
+                    if (BulkDiscount > Discount)
+                        result = $" *{CalculatedDiscount:P0} {Discounts.FirstOrDefault(x => x.Enabled && x.Active && x.Amount == CalculatedDiscount).DiscountName}* ";
+                    else
+                        result = $" *{CalculatedDiscount:P0} OFF* ";
+                }
+
+                return result;
             }
         }
 
