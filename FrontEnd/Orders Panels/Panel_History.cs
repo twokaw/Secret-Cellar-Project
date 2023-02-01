@@ -171,9 +171,11 @@ namespace SecretCellar.Orders_Panels {
 
             if(tId > 0)
             {
+
+
                 int idx = transaction_dataGrid.Rows
                     .Cast<DataGridViewRow>()
-                    .FirstOrDefault(x => uint.Parse(x.Cells["trans_id"].Value.ToString()) == tId).Index;
+                    .FirstOrDefault(x => uint.Parse(x.Cells["trans_id"].Value.ToString()) == tId)?.Index ?? -1;
 
                 if(idx > -1)
                     transaction_dataGrid.Rows[idx].Selected = true;
