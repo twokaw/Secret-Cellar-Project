@@ -130,7 +130,7 @@ namespace SecretCellar {
             List<Inventory> inventories = DataAccess.instance.GetInventory();
 
             events = events.FindAll((e) => {
-                Inventory eventInventory = inventories.First((i) => { return i.Id == e.Id; });
+                Inventory eventInventory = inventories.Find((i) => { return i.Id == e.Id; });
                 if (eventInventory == null) return false;
 
                 return !eventInventory.Hidden;
