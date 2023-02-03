@@ -41,9 +41,11 @@ namespace SecretCellar
 
             if (didAcceptSoldDataPopUp && frmManagerOverride.DidOverride("Delete Event")) {
                 if (doesHaveSoldData) {
-                    //TODO Ensure this works. It doesn't right now.
-                    selectedEvent.Hidden = true;
-                    DataAccess.instance.UpdateEvent(selectedEvent);
+                    Inventory eventInventory = DataAccess.instance.GetInventory().First(x => x.Id == selectedEvent.Id);
+                    if (eventInventory == null) return;
+
+                    eventInventory.Hidden = true;
+                    DataAccess.instance.UpdateItem(eventInventory);
                 }
                 else {
                     DataAccess.instance.DeleteEvent(selectedEvent.Id);
@@ -210,7 +212,17 @@ namespace SecretCellar
 		}
 
         private void UpdateEventGrid() {
-            dataGridView_Events.DataSource = DataAccess.instance.GetEvent()
+            List<Event> events = DataAccess.instance.GetEvent();
+            List<Inventory> inventories = DataAccess.instance.GetInventory();
+
+            events = events.FindAll((e) => {
+                Inventory eventInventory = inventories.First((i) => { return i.Id == e.Id; });
+                if (eventInventory == null) return false;
+
+                return !eventInventory.Hidden;
+            });
+
+            dataGridView_Events.DataSource = events
             .Select(x => new {
                 eventId = x.Id,
                 eventBarcode = x.Barcode,
@@ -266,7 +278,8 @@ namespace SecretCellar
             //CLEAR OUT THE SELECTED EVENT IF THERE ARE NO ROWS
             if (dataGridView_Events.Rows.Count == 0) {
                 _selectedEvent = null;
-			}
+                button_DeleteEvent.Text = "Delete";
+            }
         }
 
         private void UpdateTotal() {

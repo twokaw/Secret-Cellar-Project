@@ -126,8 +126,18 @@ namespace SecretCellar {
         /// Refresh the grid
         /// </summary>
         private void UpdateEventGrid() {
+            List<Event> events = DataAccess.instance.GetEvent();
+            List<Inventory> inventories = DataAccess.instance.GetInventory();
+
+            events = events.FindAll((e) => {
+                Inventory eventInventory = inventories.First((i) => { return i.Id == e.Id; });
+                if (eventInventory == null) return false;
+
+                return !eventInventory.Hidden;
+            });
+
             if (checkBox_ShowPreviousEvents.Checked) {
-                dataGridView_Events.DataSource = DataAccess.instance.GetEvent()
+                dataGridView_Events.DataSource = events
                 .Select(x => new {
                     eventId = x.Id,
                     eventDate = x.EventDate,
@@ -145,7 +155,7 @@ namespace SecretCellar {
                 .ToList();
             }
             else {
-                dataGridView_Events.DataSource = DataAccess.instance.GetEvent()
+                dataGridView_Events.DataSource = events
                 .Select(x => new {
                     eventId = x.Id,
                     eventDate = x.EventDate,
