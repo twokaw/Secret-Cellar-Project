@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using Shared;
 
@@ -83,6 +84,15 @@ namespace SecretCellar {
 				hasNoErrors = false;
 				result += "Name field is not filled.\n";
 			}
+
+			//CHECK DUPLICATE NAME
+			List<Event> events = DataAccess.instance.GetEvent();
+			Event matchingEvent = events.Find((e) => { return e.Name == textBox_Name.Text; });
+			if (matchingEvent != null) {
+                hasNoErrors = false;
+                result += "Event name already exists.\n";
+            }
+
 
 			//CHECK TO MAKE SURE DURATION IS AFTER EVENT DATE
 			#region DATE COMPARISON
