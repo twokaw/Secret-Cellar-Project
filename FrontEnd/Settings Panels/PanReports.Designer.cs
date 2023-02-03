@@ -38,32 +38,31 @@ namespace SecretCellar.Settings_Panels
             this.label4 = new System.Windows.Forms.Label();
             this.dtp_start = new System.Windows.Forms.DateTimePicker();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.DgvItems = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvTypes = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DgvTotal = new System.Windows.Forms.DataGridView();
-            this.NameTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TotalValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BtnInventoryCopy = new System.Windows.Forms.Button();
             this.BtnInvTypeCopy = new System.Windows.Forms.Button();
             this.BtnTotalCopy = new System.Windows.Forms.Button();
+            this.DgvItems = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NameTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TotalValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DgvItems)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTypes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DgvTotal)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DgvItems)).BeginInit();
             this.SuspendLayout();
             // 
             // btn_Run
             // 
-            this.btn_Run.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
-            this.btn_Run.Location = new System.Drawing.Point(20, 26);
-            this.btn_Run.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.btn_Run.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
+            this.btn_Run.Location = new System.Drawing.Point(12, 18);
             this.btn_Run.Name = "btn_Run";
-            this.btn_Run.Size = new System.Drawing.Size(145, 55);
+            this.btn_Run.Size = new System.Drawing.Size(87, 38);
             this.btn_Run.TabIndex = 0;
             this.btn_Run.Text = "Run";
             this.btn_Run.UseVisualStyleBackColor = true;
@@ -74,10 +73,9 @@ namespace SecretCellar.Settings_Panels
             this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
-            this.label7.Location = new System.Drawing.Point(930, 99);
-            this.label7.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label7.Location = new System.Drawing.Point(558, 68);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(322, 49);
+            this.label7.Size = new System.Drawing.Size(193, 34);
             this.label7.TabIndex = 25;
             this.label7.Text = "Inventory";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -85,10 +83,9 @@ namespace SecretCellar.Settings_Panels
             // label6
             // 
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
-            this.label6.Location = new System.Drawing.Point(480, 93);
-            this.label6.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label6.Location = new System.Drawing.Point(288, 64);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(310, 49);
+            this.label6.Size = new System.Drawing.Size(186, 34);
             this.label6.TabIndex = 23;
             this.label6.Text = "Inventory Type";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -96,10 +93,9 @@ namespace SecretCellar.Settings_Panels
             // label8
             // 
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
-            this.label8.Location = new System.Drawing.Point(20, 97);
-            this.label8.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label8.Location = new System.Drawing.Point(12, 67);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(325, 49);
+            this.label8.Size = new System.Drawing.Size(195, 34);
             this.label8.TabIndex = 21;
             this.label8.Text = "Total";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -108,8 +104,7 @@ namespace SecretCellar.Settings_Panels
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
-            this.label5.Location = new System.Drawing.Point(727, 26);
-            this.label5.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label5.Location = new System.Drawing.Point(436, 18);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(57, 25);
             this.label5.TabIndex = 19;
@@ -119,19 +114,17 @@ namespace SecretCellar.Settings_Panels
             // 
             this.dtp_end.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
             this.dtp_end.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtp_end.Location = new System.Drawing.Point(833, 26);
-            this.dtp_end.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.dtp_end.Location = new System.Drawing.Point(500, 18);
             this.dtp_end.MinDate = new System.DateTime(2020, 1, 1, 0, 0, 0, 0);
             this.dtp_end.Name = "dtp_end";
-            this.dtp_end.Size = new System.Drawing.Size(287, 30);
+            this.dtp_end.Size = new System.Drawing.Size(174, 30);
             this.dtp_end.TabIndex = 2;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
-            this.label4.Location = new System.Drawing.Point(237, 26);
-            this.label4.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label4.Location = new System.Drawing.Point(142, 18);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(65, 25);
             this.label4.TabIndex = 17;
@@ -141,11 +134,10 @@ namespace SecretCellar.Settings_Panels
             // 
             this.dtp_start.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
             this.dtp_start.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtp_start.Location = new System.Drawing.Point(355, 26);
-            this.dtp_start.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.dtp_start.Location = new System.Drawing.Point(213, 18);
             this.dtp_start.MinDate = new System.DateTime(2020, 1, 1, 0, 0, 0, 0);
             this.dtp_start.Name = "dtp_start";
-            this.dtp_start.Size = new System.Drawing.Size(287, 30);
+            this.dtp_start.Size = new System.Drawing.Size(174, 30);
             this.dtp_start.TabIndex = 1;
             // 
             // panel1
@@ -167,61 +159,9 @@ namespace SecretCellar.Settings_Panels
             this.panel1.Controls.Add(this.dtp_start);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1387, 500);
+            this.panel1.Size = new System.Drawing.Size(832, 345);
             this.panel1.TabIndex = 29;
-            // 
-            // DgvItems
-            // 
-            this.DgvItems.AllowUserToAddRows = false;
-            this.DgvItems.AllowUserToDeleteRows = false;
-            this.DgvItems.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.DgvItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DgvItems.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn3,
-            this.dataGridViewTextBoxColumn4,
-            this.Price});
-            this.DgvItems.Location = new System.Drawing.Point(930, 152);
-            this.DgvItems.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.DgvItems.Name = "DgvItems";
-            this.DgvItems.ReadOnly = true;
-            this.DgvItems.RowHeadersVisible = false;
-            this.DgvItems.RowHeadersWidth = 62;
-            this.DgvItems.RowTemplate.Height = 28;
-            this.DgvItems.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.DgvItems.Size = new System.Drawing.Size(437, 332);
-            this.DgvItems.TabIndex = 31;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dataGridViewTextBoxColumn3.DataPropertyName = "Name";
-            this.dataGridViewTextBoxColumn3.HeaderText = "Name";
-            this.dataGridViewTextBoxColumn3.MinimumWidth = 8;
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.DataPropertyName = "Qty";
-            this.dataGridViewTextBoxColumn4.FillWeight = 50F;
-            this.dataGridViewTextBoxColumn4.HeaderText = "Qty";
-            this.dataGridViewTextBoxColumn4.MinimumWidth = 8;
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.ReadOnly = true;
-            this.dataGridViewTextBoxColumn4.Width = 50;
-            // 
-            // Price
-            // 
-            this.Price.DataPropertyName = "Price";
-            this.Price.HeaderText = "Price";
-            this.Price.MinimumWidth = 8;
-            this.Price.Name = "Price";
-            this.Price.ReadOnly = true;
-            this.Price.Width = 150;
             // 
             // dgvTypes
             // 
@@ -233,15 +173,14 @@ namespace SecretCellar.Settings_Panels
             this.dgvTypes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
             this.dataGridViewTextBoxColumn2});
-            this.dgvTypes.Location = new System.Drawing.Point(480, 152);
-            this.dgvTypes.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.dgvTypes.Location = new System.Drawing.Point(288, 105);
             this.dgvTypes.Name = "dgvTypes";
             this.dgvTypes.ReadOnly = true;
             this.dgvTypes.RowHeadersVisible = false;
             this.dgvTypes.RowHeadersWidth = 62;
             this.dgvTypes.RowTemplate.Height = 28;
             this.dgvTypes.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.dgvTypes.Size = new System.Drawing.Size(440, 332);
+            this.dgvTypes.Size = new System.Drawing.Size(264, 229);
             this.dgvTypes.TabIndex = 30;
             // 
             // dataGridViewTextBoxColumn1
@@ -272,16 +211,98 @@ namespace SecretCellar.Settings_Panels
             this.DgvTotal.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.NameTotal,
             this.TotalValue});
-            this.DgvTotal.Location = new System.Drawing.Point(20, 152);
-            this.DgvTotal.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.DgvTotal.Location = new System.Drawing.Point(12, 105);
             this.DgvTotal.Name = "DgvTotal";
             this.DgvTotal.ReadOnly = true;
             this.DgvTotal.RowHeadersVisible = false;
             this.DgvTotal.RowHeadersWidth = 62;
             this.DgvTotal.RowTemplate.Height = 28;
             this.DgvTotal.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.DgvTotal.Size = new System.Drawing.Size(450, 332);
+            this.DgvTotal.Size = new System.Drawing.Size(270, 229);
             this.DgvTotal.TabIndex = 29;
+            // 
+            // BtnInventoryCopy
+            // 
+            this.BtnInventoryCopy.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BtnInventoryCopy.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
+            this.BtnInventoryCopy.Location = new System.Drawing.Point(748, 64);
+            this.BtnInventoryCopy.Name = "BtnInventoryCopy";
+            this.BtnInventoryCopy.Size = new System.Drawing.Size(72, 38);
+            this.BtnInventoryCopy.TabIndex = 28;
+            this.BtnInventoryCopy.Text = "Copy";
+            this.BtnInventoryCopy.UseVisualStyleBackColor = true;
+            this.BtnInventoryCopy.Click += new System.EventHandler(this.BtnInventoryCopy_Click);
+            // 
+            // BtnInvTypeCopy
+            // 
+            this.BtnInvTypeCopy.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
+            this.BtnInvTypeCopy.Location = new System.Drawing.Point(480, 65);
+            this.BtnInvTypeCopy.Name = "BtnInvTypeCopy";
+            this.BtnInvTypeCopy.Size = new System.Drawing.Size(72, 38);
+            this.BtnInvTypeCopy.TabIndex = 27;
+            this.BtnInvTypeCopy.Text = "Copy";
+            this.BtnInvTypeCopy.UseVisualStyleBackColor = true;
+            this.BtnInvTypeCopy.Click += new System.EventHandler(this.BtnInvTypeCopy_Click);
+            // 
+            // BtnTotalCopy
+            // 
+            this.BtnTotalCopy.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
+            this.BtnTotalCopy.Location = new System.Drawing.Point(210, 63);
+            this.BtnTotalCopy.Name = "BtnTotalCopy";
+            this.BtnTotalCopy.Size = new System.Drawing.Size(72, 38);
+            this.BtnTotalCopy.TabIndex = 26;
+            this.BtnTotalCopy.Text = "Copy";
+            this.BtnTotalCopy.UseVisualStyleBackColor = true;
+            this.BtnTotalCopy.Click += new System.EventHandler(this.BtnTotalCopy_Click);
+            // 
+            // DgvItems
+            // 
+            this.DgvItems.AllowUserToAddRows = false;
+            this.DgvItems.AllowUserToDeleteRows = false;
+            this.DgvItems.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.DgvItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DgvItems.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn3,
+            this.dataGridViewTextBoxColumn4,
+            this.Price});
+            this.DgvItems.Location = new System.Drawing.Point(558, 105);
+            this.DgvItems.Name = "DgvItems";
+            this.DgvItems.ReadOnly = true;
+            this.DgvItems.RowHeadersVisible = false;
+            this.DgvItems.RowHeadersWidth = 62;
+            this.DgvItems.RowTemplate.Height = 28;
+            this.DgvItems.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.DgvItems.Size = new System.Drawing.Size(262, 229);
+            this.DgvItems.TabIndex = 31;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "Name";
+            this.dataGridViewTextBoxColumn3.HeaderText = "Name";
+            this.dataGridViewTextBoxColumn3.MinimumWidth = 8;
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.DataPropertyName = "Qty";
+            this.dataGridViewTextBoxColumn4.FillWeight = 50F;
+            this.dataGridViewTextBoxColumn4.HeaderText = "Qty";
+            this.dataGridViewTextBoxColumn4.MinimumWidth = 8;
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            this.dataGridViewTextBoxColumn4.Width = 50;
+            // 
+            // Price
+            // 
+            this.Price.DataPropertyName = "Price";
+            this.Price.HeaderText = "Price";
+            this.Price.MinimumWidth = 8;
+            this.Price.Name = "Price";
+            this.Price.ReadOnly = true;
             // 
             // NameTotal
             // 
@@ -301,58 +322,18 @@ namespace SecretCellar.Settings_Panels
             this.TotalValue.ReadOnly = true;
             this.TotalValue.Width = 113;
             // 
-            // BtnInventoryCopy
-            // 
-            this.BtnInventoryCopy.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnInventoryCopy.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
-            this.BtnInventoryCopy.Location = new System.Drawing.Point(1247, 93);
-            this.BtnInventoryCopy.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.BtnInventoryCopy.Name = "BtnInventoryCopy";
-            this.BtnInventoryCopy.Size = new System.Drawing.Size(120, 55);
-            this.BtnInventoryCopy.TabIndex = 28;
-            this.BtnInventoryCopy.Text = "Copy";
-            this.BtnInventoryCopy.UseVisualStyleBackColor = true;
-            this.BtnInventoryCopy.Click += new System.EventHandler(this.BtnInventoryCopy_Click);
-            // 
-            // BtnInvTypeCopy
-            // 
-            this.BtnInvTypeCopy.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
-            this.BtnInvTypeCopy.Location = new System.Drawing.Point(800, 94);
-            this.BtnInvTypeCopy.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.BtnInvTypeCopy.Name = "BtnInvTypeCopy";
-            this.BtnInvTypeCopy.Size = new System.Drawing.Size(120, 55);
-            this.BtnInvTypeCopy.TabIndex = 27;
-            this.BtnInvTypeCopy.Text = "Copy";
-            this.BtnInvTypeCopy.UseVisualStyleBackColor = true;
-            this.BtnInvTypeCopy.Click += new System.EventHandler(this.BtnInvTypeCopy_Click);
-            // 
-            // BtnTotalCopy
-            // 
-            this.BtnTotalCopy.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
-            this.BtnTotalCopy.Location = new System.Drawing.Point(350, 91);
-            this.BtnTotalCopy.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.BtnTotalCopy.Name = "BtnTotalCopy";
-            this.BtnTotalCopy.Size = new System.Drawing.Size(120, 55);
-            this.BtnTotalCopy.TabIndex = 26;
-            this.BtnTotalCopy.Text = "Copy";
-            this.BtnTotalCopy.UseVisualStyleBackColor = true;
-            this.BtnTotalCopy.Click += new System.EventHandler(this.BtnTotalCopy_Click);
-            // 
             // PanReports
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(15F, 29F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.panel1);
-            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(22)))), ((int)(((byte)(22)))));
-            this.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.Name = "PanReports";
-            this.Size = new System.Drawing.Size(1387, 500);
+            this.Size = new System.Drawing.Size(832, 345);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DgvItems)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTypes)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DgvTotal)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DgvItems)).EndInit();
             this.ResumeLayout(false);
 
         }

@@ -142,7 +142,7 @@ namespace Shared
 
         public double ItemPriceTotal(Item i)
         {
-            return Math.Round(ItemTax(i) + ItemLocalTax(i) + ItemPrice(i) + i.BottleDeposit, 2, MidpointRounding.AwayFromZero);
+            return Math.Round(ItemTax(i) + ItemLocalTax(i) + ItemPrice(i) + i.BottleDeposit * i.NumSold, 2, MidpointRounding.AwayFromZero);
         }
 
         public double Total
