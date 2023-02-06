@@ -56,11 +56,11 @@ namespace pos_core_api.ORM
             MySqlCommand cmd = db.CreateCommand(@"
               SELECT modelId 
               FROM v_printer 
-              WHERE UPPER(makename) = UPPER(@make)
-              AND  UPPER(modelname) = UPPER(@Model)
+              WHERE UPPER(makename) = @make
+              AND  UPPER(modelname) = @Model
             ");
-            cmd.Parameters.Add(new MySqlParameter("make", make));
-            cmd.Parameters.Add(new MySqlParameter("Model", model));
+            cmd.Parameters.Add(new MySqlParameter("make", make.ToUpper() ));
+            cmd.Parameters.Add(new MySqlParameter("Model", model.ToUpper()));
 
             try
             {
@@ -82,7 +82,7 @@ namespace pos_core_api.ORM
             MySqlCommand cmd = db.CreateCommand(@"
               SELECT * 
               FROM v_printer 
-              WHERE modelid = @id
+              WHERE modelid = @idd
             ");
             cmd.Parameters.Add(new MySqlParameter("Id", PrinterId));
             try
@@ -179,13 +179,13 @@ namespace pos_core_api.ORM
             List<string> result = new();
 
             MySqlCommand cmd = db.CreateCommand(@"
-                SELECT  printermakename
+                SELECT printermakename
                 FROM printermake
             ");
 
             try
             {
-                MySqlDataReader reader = cmd.ExecuteReader();
+                using MySqlDataReader reader = cmd.ExecuteReader();
 
                 while (reader.Read())
                     if(!reader.IsDBNull("PrinterMakeName") && !string.IsNullOrWhiteSpace(reader.GetString("PrinterMakeName")))

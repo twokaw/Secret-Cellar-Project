@@ -87,7 +87,10 @@ namespace SecretCellar.Settings_Panels
         {
             printerNames = DataAccess.instance.GetPrinter();
             cbx_manufact.DataSource = DataAccess.instance.GetPrinterMake();
-            cbx_manufact.SelectedItem = make ?? cbx_manufact.Items[0];
+
+            if(cbx_manufact.Items.Count > 0) 
+                cbx_manufact.SelectedItem = make ?? cbx_manufact.Items[0];
+
             if(make != null && model != null)
             {
                 modelrefresh = true;
