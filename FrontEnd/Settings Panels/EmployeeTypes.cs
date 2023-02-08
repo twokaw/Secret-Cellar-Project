@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Shared;
 
@@ -23,20 +18,19 @@ namespace SecretCellar.Settings_Panels
                 GetEmployeeRoles();
                 GetEmployeeTypes();
             }
-
-            
         }
-            private void GetEmployeeTypes()
-            {
-                employeeTypes = DataAccess.instance.GetEmployeeTypes();
-                cbx_empTypes.DataSource = employeeTypes;
-            }
 
-            private void GetEmployeeRoles()
-            {
-                employeeRoles = DataAccess.instance.GetEmployeeRoles();
-                chk_lstbx_Roles.DataSource = employeeRoles;
-            }
+        private void GetEmployeeTypes()
+        {
+            employeeTypes = DataAccess.instance.GetEmployeeTypes();
+            cbx_empTypes.DataSource = employeeTypes;
+        }
+
+        private void GetEmployeeRoles()
+        {
+            employeeRoles = DataAccess.instance.GetEmployeeRoles();
+            chk_lstbx_Roles.DataSource = employeeRoles;
+        }
 
         private void cbx_empTypes_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -109,20 +103,5 @@ namespace SecretCellar.Settings_Panels
             GetEmployeeRoles();
             GetEmployeeTypes();
         }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lbl_emp_name_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txt_typeName_TextChanged(object sender, EventArgs e)
-        {
-
-        }
     }
-    }
+}
