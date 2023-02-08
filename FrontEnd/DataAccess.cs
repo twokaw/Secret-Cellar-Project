@@ -756,7 +756,9 @@ namespace SecretCellar
             Response resp = null;
             string result = web.DataPut($"api/Event/", updatedEvent, resp);
 
-            return uint.TryParse(result, out uint id) ? 0 : id;
+			RefreshCache();
+
+			return uint.TryParse(result, out uint id) ? 0 : id;
         }
 
         public uint CreateEvent(Event newEvent)
@@ -764,13 +766,17 @@ namespace SecretCellar
             Response resp = null;
             string result = web.DataPost($"api/Event/", newEvent, resp);
 
-            return uint.TryParse(result, out uint id) ? 0 : id;
+			RefreshCache();
+
+			return uint.TryParse(result, out uint id) ? 0 : id;
         }
 
         public void DeleteEvent(uint eventId) {
             try { web.DataDelete($"api/Event/{eventId}"); }
             catch (Exception e) { LogError(e, "DeleteEvent"); }
-        }
+
+			RefreshCache();
+		}
 
         public List<EventWaitlistItem> GetEventsWaitlists() {
             string result = web.DataGet("api/Event/Waitlists");
