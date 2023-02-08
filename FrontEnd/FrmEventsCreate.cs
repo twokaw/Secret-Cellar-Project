@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using Shared;
 
@@ -16,11 +17,21 @@ namespace SecretCellar {
 			dateTimePicker_Duration.CustomFormat = "MM/dd/yyyy hh:mm tt";
 		}
 
+
 		private void button_CloseWindow_Click(object sender, EventArgs e) {
 			this.Close();
 		}
 
-		private void button_CreateEvent_Click(object sender, EventArgs e) {
+
+        private void textBox_Name_TextChanged(object sender, EventArgs e) {
+			if (textBox_Name.Text.Length > 50) {
+				textBox_Name.Text = textBox_Name.Text.Substring(0, textBox_Name.Text.Length-1);
+				textBox_Name.SelectionStart = textBox_Name.Text.Length;
+            }
+        }
+
+
+        private void button_CreateEvent_Click(object sender, EventArgs e) {
 			if (HasNoErrors()) {
 				if (frmManagerOverride.DidOverride("Create Event")) {
 					uint quantity = 9999;
@@ -73,6 +84,15 @@ namespace SecretCellar {
 				hasNoErrors = false;
 				result += "Name field is not filled.\n";
 			}
+
+			//CHECK DUPLICATE NAME
+			List<Event> events = DataAccess.instance.GetEvent();
+			Event matchingEvent = events.Find((e) => { return e.Name == textBox_Name.Text; });
+			if (matchingEvent != null) {
+                hasNoErrors = false;
+                result += "Event name already exists.\n";
+            }
+
 
 			//CHECK TO MAKE SURE DURATION IS AFTER EVENT DATE
 			#region DATE COMPARISON

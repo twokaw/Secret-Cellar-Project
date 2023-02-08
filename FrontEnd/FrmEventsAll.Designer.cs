@@ -97,6 +97,7 @@ namespace SecretCellar {
             this.dataGridView_Events.TabIndex = 0;
             this.dataGridView_Events.TabStop = false;
             this.dataGridView_Events.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_Events_CellDoubleClick);
+            this.dataGridView_Events.SelectionChanged += new System.EventHandler(this.dataGridView_Events_SelectionChanged);
             // 
             // Id
             // 

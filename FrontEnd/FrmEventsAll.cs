@@ -69,28 +69,12 @@ namespace SecretCellar {
             if (dataGridView_Events.SelectedRows.Count == 0) { return; }
             
             List<Event> listOfEvents = DataAccess.instance.GetEvent();
-            List<EventWaitlistItem> eventWaitlistItems = DataAccess.instance.GetEventsWaitlists();
 
             foreach (DataGridViewRow selectedRow in dataGridView_Events.SelectedRows) {
                 Event selectedEvent = listOfEvents.Find((ev) => { return uint.Parse(selectedRow.Cells["Id"].Value.ToString()) == ev.Id; });
                 if (selectedEvent == null) { continue; }  //SANITY CHECK
 
-                List<EventWaitlistItem> filteredList = eventWaitlistItems.FindAll((item) => { return item.EventId == selectedEvent.Id; });
-
-                if (filteredList.Count > 0) { MessageBox.Show($"Cannot delete '{selectedEvent.Name}' while customers are on the waitlist for it.", "Error"); continue; }
-
-                PreviousEventData previousEventData = DataAccess.instance.GetPreviousEventData(selectedEvent.Id);
-                if (previousEventData != null) {
-                    if (previousEventData.AtDoorSold + previousEventData.PreOrderSold > 0) {
-                        MessageBox.Show($"Cannot delete '{selectedEvent.Name}' when there are tickets sold.", "Error");
-                        //TODO Make this ask if the user wants to proceed, then just hide the event instead of deleting it.
-                        return;
-                    }
-                }
-
-                if (frmManagerOverride.DidOverride("Delete Event")) {
-                    DataAccess.instance.DeleteEvent(selectedEvent.Id);
-                }
+                frmEvents.DeleteEvent(selectedEvent);
             }
 
             UpdateEventGrid();
@@ -113,11 +97,47 @@ namespace SecretCellar {
 
 
         /// <summary>
+        /// On Selection Change.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void dataGridView_Events_SelectionChanged(object sender, EventArgs e) {
+            if (dataGridView_Events.SelectedRows.Count == 0) { return; }
+
+            button_DeleteEvent.Text = "Delete Event";
+            List<Event> listOfEvents = DataAccess.instance.GetEvent();
+
+            foreach (DataGridViewRow selectedRow in dataGridView_Events.SelectedRows) {
+                Event selectedEvent = listOfEvents.Find((ev) => { return uint.Parse(selectedRow.Cells["Id"].Value.ToString()) == ev.Id; });
+                if (selectedEvent == null) { continue; }  //SANITY CHECK
+
+                PreviousEventData previousEventData = DataAccess.instance.GetPreviousEventData(selectedEvent.Id);
+                if (previousEventData != null) {
+                    if (previousEventData.AtDoorSold + previousEventData.PreOrderSold > 0) {
+                        button_DeleteEvent.Text = "Hide Event";
+                        return;
+                    }
+                }
+            }
+        }
+
+
+        /// <summary>
         /// Refresh the grid
         /// </summary>
         private void UpdateEventGrid() {
+            List<Event> events = DataAccess.instance.GetEvent();
+            List<Inventory> inventories = DataAccess.instance.GetInventory();
+
+            events = events.FindAll((e) => {
+                Inventory eventInventory = inventories.Find((i) => { return i.Id == e.Id; });
+                if (eventInventory == null) return false;
+
+                return !eventInventory.Hidden;
+            });
+
             if (checkBox_ShowPreviousEvents.Checked) {
-                dataGridView_Events.DataSource = DataAccess.instance.GetEvent()
+                dataGridView_Events.DataSource = events
                 .Select(x => new {
                     eventId = x.Id,
                     eventDate = x.EventDate,
@@ -135,7 +155,7 @@ namespace SecretCellar {
                 .ToList();
             }
             else {
-                dataGridView_Events.DataSource = DataAccess.instance.GetEvent()
+                dataGridView_Events.DataSource = events
                 .Select(x => new {
                     eventId = x.Id,
                     eventDate = x.EventDate,
@@ -153,5 +173,5 @@ namespace SecretCellar {
                 .ToList();
             }
         }
-	}
+    }
 }
