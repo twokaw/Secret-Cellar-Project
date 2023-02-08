@@ -28,7 +28,7 @@ namespace WebApi.Controllers
             {
                 return Ok(DataAccess.Instance.Printer.GetMake());
             }
-            catch (Exception ex) { ErrorLogging.WriteToErrorLog(ex); return StatusCode(500, ex.Message); }
+            catch (Exception ex) { /*ErrorLogging.WriteToErrorLog(ex, "Printer Make error");*/ return StatusCode(500, $"Error:{ex.Message} : {ex.StackTrace}" ); }
         }
 
         // Get: api/Printer/make
