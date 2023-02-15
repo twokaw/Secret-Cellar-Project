@@ -89,25 +89,20 @@ namespace SecretCellar
                 {
                     txt_received_qty.Focus();
                     txt_received_qty.SelectAll();
-                    MessageBox.Show("Invalid Received Quantity");
+                    MessageBox.Show("Invalid Quantity");
 
                     return;
                 }
 
                 DataAccess.instance.UpdateItem(i);
-                
-                
             }
+
             refresh();
             txt_received_qty.Text = "";
-            txt_received_qty.Focus();
-
-
         }
 
         private void refresh()
         {
-            int selectedrow = (received_dataGrid.SelectedRows.Count > 0)? received_dataGrid.SelectedRows[0].Index : 0;
             uint id = ((Supplier)cbx_supplier.SelectedItem).SupplierID;
             received_dataGrid.DataSource = DataAccess.instance.GetInventory().Where(x => (id == x.SupplierID || id == 0) && x.OrderQty > 0).
                Select(x => new {
@@ -123,24 +118,15 @@ namespace SecretCellar
                }).
                OrderBy(x => x.Name).
                ToList();
-
-            if (received_dataGrid.SelectedRows.Count > 0 )
-            {
-                received_dataGrid.Rows[Math.Min(received_dataGrid.Rows.Count-1,selectedrow)].Selected = true;
-            }
-            
-            
         }
 
         private void btn_close_Click(object sender, EventArgs e)
         {
-            
             this.Close();
         }
 
         private void btn_all_received_Click(object sender, EventArgs e)
         {
-            
             foreach (DataGridViewRow row in received_dataGrid.Rows)
             {
                 Inventory i = DataAccess.instance.GetInventory().First(x => x.Id == uint.Parse(row.Cells["id"].Value.ToString()));
