@@ -9,10 +9,10 @@ namespace SecretCellar
     public partial class frmLookup : ManagedForm
     {
         private Transaction currentTransaction = null;
-        private List<Supplier> suppliers = null;
-        private List<InventoryType> types = null;
-        private List<Discount> discounts = null;
-        private string descriptionAndBarcodeSearchText = "Enter Description/Barcode";
+        private readonly List<Supplier> suppliers = null;
+        private readonly List<InventoryType> types = null;
+        private readonly List<Discount> discounts = null;
+        private readonly string descriptionAndBarcodeSearchText = "Enter Description/Barcode";
         private bool refreshingItems = false;
         public string NewBarcode {get; set;}
 
@@ -117,7 +117,7 @@ namespace SecretCellar
                 // CLEAR ALL THE DISCOUNTS THAT ARE IN THE DISCOUNTS LIST ALREADY
                 checkListBox_Discounts.Items.Clear();
 
-                InventoryType type;
+               // InventoryType type;
                 //ADD EACH DISCOUNT OF THE MATCHED INVENTORY TYPE TO THE CHECK BOX LIST AND SET IT TO TRUE
                 foreach (Discount discount in discounts)
                 {
