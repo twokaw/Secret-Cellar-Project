@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 namespace SecretCellar
 {
-    public partial class frmReceivedOrders : Form
+    public partial class frmReceivedOrders : ManagedForm
 
     {
         private List<Supplier> suppliers = null;
