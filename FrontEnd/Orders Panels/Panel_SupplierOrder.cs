@@ -8,11 +8,11 @@ using Shared;
 namespace SecretCellar.Orders_Panels {
 	public partial class Panel_SupplierOrder : ManagedPanel {
         private List<Inventory> inventory = null;
-        private List<Supplier> suppliers = null;
+        private readonly List<Supplier> suppliers = null;
 
         public Panel_SupplierOrder() {
 			InitializeComponent();
-            inventory = DataAccess.instance?.GetInventory() ?? new List<Inventory> ();
+           // inventory = DataAccess.instance?.GetInventory() ?? new List<Inventory> ();
             suppliers = DataAccess.instance?.GetSuppliers() ?? new List<Supplier>();
 
             //POPULATE SUPPLIERS
@@ -24,8 +24,7 @@ namespace SecretCellar.Orders_Panels {
 
             cbx_supplier.DataSource = suppliers;
             cbx_supplier.DisplayMember = "Name";
-
-            RefreshSupplier();
+          //  RefreshSupplier();
         }
 
         /////////
@@ -94,7 +93,6 @@ namespace SecretCellar.Orders_Panels {
             }
             txt_update_qty.Text = "";
             RefreshSupplier();
-            //orderTotal();
         }
 
         ///////////////////////
@@ -115,13 +113,6 @@ namespace SecretCellar.Orders_Panels {
             new PurchaseOrder(orderSupplier, listItems(orderSupplier)).Print();
         }
 
-        //////////////////////
-        //ON CHANGING SUPPLIER
-        //////////////////////
-        private void cbx_supplier_SelectedIndexChanged(object sender, EventArgs e) {
-            RefreshSupplier();
-        }
-
         ///////////////////
         //ON RECEIVED CLICK
         ///////////////////
@@ -133,15 +124,6 @@ namespace SecretCellar.Orders_Panels {
             txt_update_qty.Focus();
         }
 
-        /////////////////////////////////
-        //ON CHANGING DATA GRID SELECTION
-        /////////////////////////////////
-        private void supp_dataGrid_SelectionChanged(object sender, EventArgs e) {
-            if (supp_dataGrid.SelectedRows.Count > 0) {
-                Inventory i = inventory.First(x => x.Id == uint.Parse(supp_dataGrid.SelectedRows[0].Cells["id"].Value.ToString()));
-                txt_update_qty.Text = i.OrderQty.ToString();
-            }
-        }
 
         private void chk_ShowHidden_CheckedChanged(object sender, EventArgs e)
         {
@@ -151,6 +133,22 @@ namespace SecretCellar.Orders_Panels {
         private void chk_OnlyRequired_CheckedChanged(object sender, EventArgs e)
         {
             RefreshSupplier();
+        }
+
+        private void supp_dataGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            Console.WriteLine("SelectionChanged");
+            if (supp_dataGrid.SelectedRows.Count > 0)
+            {
+                Inventory i = inventory.First(x => x.Id == uint.Parse(supp_dataGrid.SelectedRows[0].Cells["id"].Value.ToString()));
+                txt_update_qty.Text = i.OrderQty.ToString();
+            }
+        }
+
+        private void cbx_supplier_Click(object sender, EventArgs e)
+        {
+            RefreshSupplier();
+
         }
     }
 }

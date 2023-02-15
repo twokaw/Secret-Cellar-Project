@@ -29,7 +29,7 @@ CREATE TABLE `customer` (
   `last_name` varchar(46) DEFAULT NULL,
   `business_name` varchar(46) DEFAULT NULL,
   `email` varchar(100) DEFAULT NULL,
-  `isWholesale` tinyint DEFAULT '0',
+  `isWholesale` tinyint DEFAULT '0',printermake
   `addr1` varchar(46) DEFAULT NULL,
   `addr2` varchar(46) DEFAULT NULL,
   `city` varchar(50) DEFAULT NULL,
@@ -59,7 +59,7 @@ UNLOCK TABLES;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `trg_Customer_BI` BEFORE INSERT ON `customer` FOR EACH ROW UPDATE tablelastchanged SET Last_Changed = NOW(6) WHERE TableName= 'Customer' */;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`invadmin`@`localhost`*/ /*!50003 TRIGGER `TRG_Customer_BI` BEFORE INSERT ON `customer` FOR EACH ROW UPDATE TableLastchanged SET Last_Changed = NOW(6) WHERE TableName= 'Customer' */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -74,7 +74,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `trg_Customer_BU` BEFORE UPDATE ON `customer` FOR EACH ROW UPDATE tablelastchanged SET Last_Changed = NOW(6) WHERE TableName= 'Customer' */;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`invadmin`@`localhost`*/ /*!50003 TRIGGER `TRG_Customer_BU` BEFORE UPDATE ON `customer` FOR EACH ROW UPDATE TableLastchanged SET Last_Changed = NOW(6) WHERE TableName= 'Customer' */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -89,7 +89,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `trg_Customer_BD` BEFORE DELETE ON `customer` FOR EACH ROW UPDATE tablelastchanged SET Last_Changed = NOW(6) WHERE TableName= 'Customer' */;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`invadmin`@`localhost`*/ /*!50003 TRIGGER `TRG_Customer_BD` BEFORE DELETE ON `customer` FOR EACH ROW UPDATE TableLastchanged SET Last_Changed = NOW(6) WHERE TableName= 'Customer' */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -131,7 +131,7 @@ UNLOCK TABLES;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `trg_customerfavorite_BI` BEFORE INSERT ON `customerfavorite` FOR EACH ROW UPDATE tablelastchanged SET Last_Changed = NOW(6) WHERE TableName= 'customerfavorite' */;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`invadmin`@`localhost`*/ /*!50003 TRIGGER `TRG_customerfavorite_BI` BEFORE INSERT ON `customerfavorite` FOR EACH ROW UPDATE TableLastchanged SET Last_Changed = NOW(6) WHERE TableName= 'customerfavorite' */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -146,7 +146,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `trg_customerfavorite_BU` BEFORE UPDATE ON `customerfavorite` FOR EACH ROW UPDATE tablelastchanged SET Last_Changed = NOW(6) WHERE TableName= 'customerfavorite' */;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`invadmin`@`localhost`*/ /*!50003 TRIGGER `TRG_customerfavorite_BU` BEFORE UPDATE ON `customerfavorite` FOR EACH ROW UPDATE TableLastchanged SET Last_Changed = NOW(6) WHERE TableName= 'customerfavorite' */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -161,7 +161,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `trg_customerfavorite_BD` BEFORE DELETE ON `customerfavorite` FOR EACH ROW UPDATE tablelastchanged SET Last_Changed = NOW(6) WHERE TableName= 'customerfavorite' */;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`invadmin`@`localhost`*/ /*!50003 TRIGGER `TRG_customerfavorite_BD` BEFORE DELETE ON `customerfavorite` FOR EACH ROW UPDATE TableLastchanged SET Last_Changed = NOW(6) WHERE TableName= 'customerfavorite' */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -207,7 +207,7 @@ UNLOCK TABLES;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `trg_customernote_BI` BEFORE INSERT ON `customernote` FOR EACH ROW UPDATE tablelastchanged SET Last_Changed = NOW(6) WHERE TableName= 'customernote' */;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`invadmin`@`localhost`*/ /*!50003 TRIGGER `TRG_customernote_BI` BEFORE INSERT ON `customernote` FOR EACH ROW UPDATE TableLastchanged SET Last_Changed = NOW(6) WHERE TableName= 'customernote' */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -222,7 +222,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `trg_customernote_BU` BEFORE UPDATE ON `customernote` FOR EACH ROW UPDATE tablelastchanged SET Last_Changed = NOW(6) WHERE TableName= 'customernote' */;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`invadmin`@`localhost`*/ /*!50003 TRIGGER `TRG_customernote_BU` BEFORE UPDATE ON `customernote` FOR EACH ROW UPDATE TableLastchanged SET Last_Changed = NOW(6) WHERE TableName= 'customernote' */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -237,7 +237,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `trg_customernote_BD` BEFORE DELETE ON `customernote` FOR EACH ROW UPDATE tablelastchanged SET Last_Changed = NOW(6) WHERE TableName= 'customernote' */;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`invadmin`@`localhost`*/ /*!50003 TRIGGER `TRG_customernote_BD` BEFORE DELETE ON `customernote` FOR EACH ROW UPDATE TableLastchanged SET Last_Changed = NOW(6) WHERE TableName= 'customernote' */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -281,7 +281,7 @@ UNLOCK TABLES;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `trg_customerorder_BI` BEFORE INSERT ON `customerorder` FOR EACH ROW UPDATE tablelastchanged SET Last_Changed = NOW(6) WHERE TableName= 'customerorder' */;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`invadmin`@`localhost`*/ /*!50003 TRIGGER `TRG_customerorder_BI` BEFORE INSERT ON `customerorder` FOR EACH ROW UPDATE TableLastchanged SET Last_Changed = NOW(6) WHERE TableName= 'customerorder' */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -296,7 +296,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `trg_customerorder_BU` BEFORE UPDATE ON `customerorder` FOR EACH ROW UPDATE tablelastchanged SET Last_Changed = NOW(6) WHERE TableName= 'customerorder' */;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`invadmin`@`localhost`*/ /*!50003 TRIGGER `TRG_customerorder_BU` BEFORE UPDATE ON `customerorder` FOR EACH ROW UPDATE TableLastchanged SET Last_Changed = NOW(6) WHERE TableName= 'customerorder' */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -311,7 +311,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `trg_CustomerOrder` BEFORE DELETE ON `customerorder` FOR EACH ROW BEGIN
+/*!50003 CREATE*/ /*!50017 DEFINER=`invadmin`@`localhost`*/ /*!50003 TRIGGER `TRG_CustomerOrder` BEFORE DELETE ON `customerorder` FOR EACH ROW BEGIN
   INSERT INTO CustomerOrderHist
   ( CustomerOrderID, CustomerID, InvoiceAmount, PaidAmount, RequestDate, DeliverDate, OrderNote, paidDate)
   VALUES
@@ -340,7 +340,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `trg_customerorder_BD` BEFORE DELETE ON `customerorder` FOR EACH ROW UPDATE tablelastchanged SET Last_Changed = NOW(6) WHERE TableName= 'customerorder' */;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`invadmin`@`localhost`*/ /*!50003 TRIGGER `TRG_customerorder_BD` BEFORE DELETE ON `customerorder` FOR EACH ROW UPDATE TableLastchanged SET Last_Changed = NOW(6) WHERE TableName= 'customerorder' */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -384,7 +384,7 @@ UNLOCK TABLES;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `trg_customerorderhist_BI` BEFORE INSERT ON `customerorderhist` FOR EACH ROW UPDATE tablelastchanged SET Last_Changed = NOW(6) WHERE TableName= 'customerorderhist' */;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`invadmin`@`localhost`*/ /*!50003 TRIGGER `TRG_customerorderhist_BI` BEFORE INSERT ON `customerorderhist` FOR EACH ROW UPDATE TableLastchanged SET Last_Changed = NOW(6) WHERE TableName= 'customerorderhist' */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -399,7 +399,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `trg_customerorderhist_BU` BEFORE UPDATE ON `customerorderhist` FOR EACH ROW UPDATE tablelastchanged SET Last_Changed = NOW(6) WHERE TableName= 'customerorderhist' */;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`invadmin`@`localhost`*/ /*!50003 TRIGGER `TRG_customerorderhist_BU` BEFORE UPDATE ON `customerorderhist` FOR EACH ROW UPDATE TableLastchanged SET Last_Changed = NOW(6) WHERE TableName= 'customerorderhist' */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -414,7 +414,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `trg_customerorderhist_BD` BEFORE DELETE ON `customerorderhist` FOR EACH ROW UPDATE tablelastchanged SET Last_Changed = NOW(6) WHERE TableName= 'customerorderhist' */;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`invadmin`@`localhost`*/ /*!50003 TRIGGER `TRG_customerorderhist_BD` BEFORE DELETE ON `customerorderhist` FOR EACH ROW UPDATE TableLastchanged SET Last_Changed = NOW(6) WHERE TableName= 'customerorderhist' */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -465,7 +465,7 @@ UNLOCK TABLES;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `trg_customerorderitem_BI` BEFORE INSERT ON `customerorderitem` FOR EACH ROW UPDATE tablelastchanged SET Last_Changed = NOW(6) WHERE TableName= 'customerorderitem' */;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`invadmin`@`localhost`*/ /*!50003 TRIGGER `TRG_customerorderitem_BI` BEFORE INSERT ON `customerorderitem` FOR EACH ROW UPDATE TableLastchanged SET Last_Changed = NOW(6) WHERE TableName= 'customerorderitem' */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -480,7 +480,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `customerorderitem_AFTER_INSERT` AFTER INSERT ON `customerorderitem` FOR EACH ROW BEGIN
+/*!50003 CREATE*/ /*!50017 DEFINER=`invadmin`@`localhost`*/ /*!50003 TRIGGER `customerorderitem_AFTER_INSERT` AFTER INSERT ON `customerorderitem` FOR EACH ROW BEGIN
        INSERT INTO customerorderitemhist
   (`CustomerOrderItemID`, `InventoryID`, `RequestQTY`, `DeliverQTY`, 
    `Transactiondate`, `Paid`, `CustomerID`, `Price`)
@@ -503,7 +503,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `trg_customerorderitem_BU` BEFORE UPDATE ON `customerorderitem` FOR EACH ROW UPDATE tablelastchanged SET Last_Changed = NOW(6) WHERE TableName= 'customerorderitem' */;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`invadmin`@`localhost`*/ /*!50003 TRIGGER `TRG_customerorderitem_BU` BEFORE UPDATE ON `customerorderitem` FOR EACH ROW UPDATE TableLastchanged SET Last_Changed = NOW(6) WHERE TableName= 'customerorderitem' */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -518,7 +518,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `customerorderitem_BEFORE_UPDATE` BEFORE UPDATE ON `customerorderitem` FOR EACH ROW BEGIN
+/*!50003 CREATE*/ /*!50017 DEFINER=`invadmin`@`localhost`*/ /*!50003 TRIGGER `customerorderitem_BEFORE_UPDATE` BEFORE UPDATE ON `customerorderitem` FOR EACH ROW BEGIN
        INSERT INTO customerorderitemhist
   (`CustomerOrderItemID`, `InventoryID`, `RequestQTY`, `DeliverQTY`, 
    `Transactiondate`, `Paid`, `CustomerID`, `Price`)
@@ -540,7 +540,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `customerorderitem_BEFORE_DELETE` BEFORE DELETE ON `customerorderitem` FOR EACH ROW BEGIN
+/*!50003 CREATE*/ /*!50017 DEFINER=`invadmin`@`localhost`*/ /*!50003 TRIGGER `customerorderitem_BEFORE_DELETE` BEFORE DELETE ON `customerorderitem` FOR EACH ROW BEGIN
   INSERT INTO customerorderitemhist
   (`CustomerOrderItemID`, `InventoryID`, `RequestQTY`, `DeliverQTY`, 
    `Transactiondate`, `Paid`, `CustomerID`, `Price`)
@@ -562,7 +562,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `trg_customerorderitem_BD` BEFORE DELETE ON `customerorderitem` FOR EACH ROW UPDATE tablelastchanged SET Last_Changed = NOW(6) WHERE TableName= 'customerorderitem' */;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`invadmin`@`localhost`*/ /*!50003 TRIGGER `TRG_customerorderitem_BD` BEFORE DELETE ON `customerorderitem` FOR EACH ROW UPDATE TableLastchanged SET Last_Changed = NOW(6) WHERE TableName= 'customerorderitem' */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -608,7 +608,7 @@ UNLOCK TABLES;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `trg_customerorderitemhist_BI` BEFORE INSERT ON `customerorderitemhist` FOR EACH ROW UPDATE tablelastchanged SET Last_Changed = NOW(6) WHERE TableName= 'customerorderitemhist' */;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`invadmin`@`localhost`*/ /*!50003 TRIGGER `TRG_customerorderitemhist_BI` BEFORE INSERT ON `customerorderitemhist` FOR EACH ROW UPDATE TableLastchanged SET Last_Changed = NOW(6) WHERE TableName= 'customerorderitemhist' */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -623,7 +623,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `trg_customerorderitemhist_BU` BEFORE UPDATE ON `customerorderitemhist` FOR EACH ROW UPDATE tablelastchanged SET Last_Changed = NOW(6) WHERE TableName= 'customerorderitemhist' */;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`invadmin`@`localhost`*/ /*!50003 TRIGGER `TRG_customerorderitemhist_BU` BEFORE UPDATE ON `customerorderitemhist` FOR EACH ROW UPDATE TableLastchanged SET Last_Changed = NOW(6) WHERE TableName= 'customerorderitemhist' */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -638,7 +638,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `trg_customerorderitemhist_BD` BEFORE DELETE ON `customerorderitemhist` FOR EACH ROW UPDATE tablelastchanged SET Last_Changed = NOW(6) WHERE TableName= 'customerorderitemhist' */;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`invadmin`@`localhost`*/ /*!50003 TRIGGER `TRG_customerorderitemhist_BD` BEFORE DELETE ON `customerorderitemhist` FOR EACH ROW UPDATE TableLastchanged SET Last_Changed = NOW(6) WHERE TableName= 'customerorderitemhist' */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -680,7 +680,7 @@ UNLOCK TABLES;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `trg_discount_BI` BEFORE INSERT ON `discount` FOR EACH ROW UPDATE tablelastchanged SET Last_Changed = NOW(6) WHERE TableName= 'discount' */;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`invadmin`@`localhost`*/ /*!50003 TRIGGER `TRG_discount_BI` BEFORE INSERT ON `discount` FOR EACH ROW UPDATE TableLastchanged SET Last_Changed = NOW(6) WHERE TableName= 'discount' */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -695,7 +695,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `trg_discount_BU` BEFORE UPDATE ON `discount` FOR EACH ROW UPDATE tablelastchanged SET Last_Changed = NOW(6) WHERE TableName= 'discount' */;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`invadmin`@`localhost`*/ /*!50003 TRIGGER `TRG_discount_BU` BEFORE UPDATE ON `discount` FOR EACH ROW UPDATE TableLastchanged SET Last_Changed = NOW(6) WHERE TableName= 'discount' */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -710,7 +710,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `trg_discount_BD` BEFORE DELETE ON `discount` FOR EACH ROW UPDATE tablelastchanged SET Last_Changed = NOW(6) WHERE TableName= 'discount' */;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`invadmin`@`localhost`*/ /*!50003 TRIGGER `TRG_discount_BD` BEFORE DELETE ON `discount` FOR EACH ROW UPDATE TableLastchanged SET Last_Changed = NOW(6) WHERE TableName= 'discount' */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -753,7 +753,7 @@ UNLOCK TABLES;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `trg_discount_inventory_BI` BEFORE INSERT ON `discount_inventory` FOR EACH ROW UPDATE tablelastchanged SET Last_Changed = NOW(6) WHERE TableName= 'discount_inventory' */;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`invadmin`@`localhost`*/ /*!50003 TRIGGER `TRG_discount_inventory_BI` BEFORE INSERT ON `discount_inventory` FOR EACH ROW UPDATE TableLastchanged SET Last_Changed = NOW(6) WHERE TableName= 'discount_inventory' */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -768,7 +768,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `trg_discount_inventory_BU` BEFORE UPDATE ON `discount_inventory` FOR EACH ROW UPDATE tablelastchanged SET Last_Changed = NOW(6) WHERE TableName= 'discount_inventory' */;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`invadmin`@`localhost`*/ /*!50003 TRIGGER `TRG_discount_inventory_BU` BEFORE UPDATE ON `discount_inventory` FOR EACH ROW UPDATE TableLastchanged SET Last_Changed = NOW(6) WHERE TableName= 'discount_inventory' */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -783,7 +783,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `trg_discount_inventory_BD` BEFORE DELETE ON `discount_inventory` FOR EACH ROW UPDATE tablelastchanged SET Last_Changed = NOW(6) WHERE TableName= 'discount_inventory' */;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`invadmin`@`localhost`*/ /*!50003 TRIGGER `TRG_discount_inventory_BD` BEFORE DELETE ON `discount_inventory` FOR EACH ROW UPDATE TableLastchanged SET Last_Changed = NOW(6) WHERE TableName= 'discount_inventory' */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -825,7 +825,7 @@ UNLOCK TABLES;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `trg_discount_type_BI` BEFORE INSERT ON `discount_type` FOR EACH ROW UPDATE tablelastchanged SET Last_Changed = NOW(6) WHERE TableName= 'discount_type' */;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`invadmin`@`localhost`*/ /*!50003 TRIGGER `TRG_discount_type_BI` BEFORE INSERT ON `discount_type` FOR EACH ROW UPDATE TableLastchanged SET Last_Changed = NOW(6) WHERE TableName= 'discount_type' */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -840,7 +840,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `trg_discount_type_BU` BEFORE UPDATE ON `discount_type` FOR EACH ROW UPDATE tablelastchanged SET Last_Changed = NOW(6) WHERE TableName= 'discount_type' */;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`invadmin`@`localhost`*/ /*!50003 TRIGGER `TRG_discount_type_BU` BEFORE UPDATE ON `discount_type` FOR EACH ROW UPDATE TableLastchanged SET Last_Changed = NOW(6) WHERE TableName= 'discount_type' */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -855,7 +855,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `trg_discount_type_BD` BEFORE DELETE ON `discount_type` FOR EACH ROW UPDATE tablelastchanged SET Last_Changed = NOW(6) WHERE TableName= 'discount_type' */;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`invadmin`@`localhost`*/ /*!50003 TRIGGER `TRG_discount_type_BD` BEFORE DELETE ON `discount_type` FOR EACH ROW UPDATE TableLastchanged SET Last_Changed = NOW(6) WHERE TableName= 'discount_type' */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -909,7 +909,7 @@ UNLOCK TABLES;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `trg_employee_BI` BEFORE INSERT ON `employee` FOR EACH ROW UPDATE tablelastchanged SET Last_Changed = NOW(6) WHERE TableName= 'employee' */;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`invadmin`@`localhost`*/ /*!50003 TRIGGER `TRG_employee_BI` BEFORE INSERT ON `employee` FOR EACH ROW UPDATE TableLastchanged SET Last_Changed = NOW(6) WHERE TableName= 'employee' */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -924,7 +924,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `trg_employee_BU` BEFORE UPDATE ON `employee` FOR EACH ROW UPDATE tablelastchanged SET Last_Changed = NOW(6) WHERE TableName= 'employee' */;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`invadmin`@`localhost`*/ /*!50003 TRIGGER `TRG_employee_BU` BEFORE UPDATE ON `employee` FOR EACH ROW UPDATE TableLastchanged SET Last_Changed = NOW(6) WHERE TableName= 'employee' */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -939,7 +939,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `trg_employee_BD` BEFORE DELETE ON `employee` FOR EACH ROW UPDATE tablelastchanged SET Last_Changed = NOW(6) WHERE TableName= 'employee' */;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`invadmin`@`localhost`*/ /*!50003 TRIGGER `TRG_employee_BD` BEFORE DELETE ON `employee` FOR EACH ROW UPDATE TableLastchanged SET Last_Changed = NOW(6) WHERE TableName= 'employee' */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -1081,7 +1081,7 @@ UNLOCK TABLES;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `trg_events_BI` BEFORE INSERT ON `events` FOR EACH ROW UPDATE tablelastchanged SET Last_Changed = NOW(6) WHERE TableName= 'events' */;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`invadmin`@`localhost`*/ /*!50003 TRIGGER `TRG_events_BI` BEFORE INSERT ON `events` FOR EACH ROW UPDATE TableLastchanged SET Last_Changed = NOW(6) WHERE TableName= 'events' */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -1096,7 +1096,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `trg_events_BU` BEFORE UPDATE ON `events` FOR EACH ROW UPDATE tablelastchanged SET Last_Changed = NOW(6) WHERE TableName= 'events' */;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`invadmin`@`localhost`*/ /*!50003 TRIGGER `TRG_events_BU` BEFORE UPDATE ON `events` FOR EACH ROW UPDATE TableLastchanged SET Last_Changed = NOW(6) WHERE TableName= 'events' */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -1111,7 +1111,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `trg_events_BD` BEFORE DELETE ON `events` FOR EACH ROW UPDATE tablelastchanged SET Last_Changed = NOW(6) WHERE TableName= 'events' */;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`invadmin`@`localhost`*/ /*!50003 TRIGGER `TRG_events_BD` BEFORE DELETE ON `events` FOR EACH ROW UPDATE TableLastchanged SET Last_Changed = NOW(6) WHERE TableName= 'events' */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -1168,7 +1168,7 @@ UNLOCK TABLES;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `trg_inventory_description_BI` BEFORE INSERT ON `inventory_description` FOR EACH ROW UPDATE tablelastchanged SET Last_Changed = NOW(6) WHERE TableName= 'inventory_description' */;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`invadmin`@`localhost`*/ /*!50003 TRIGGER `TRG_inventory_description_BI` BEFORE INSERT ON `inventory_description` FOR EACH ROW UPDATE TableLastchanged SET Last_Changed = NOW(6) WHERE TableName= 'inventory_description' */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -1183,7 +1183,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `trg_inventory_description_BU` BEFORE UPDATE ON `inventory_description` FOR EACH ROW UPDATE tablelastchanged SET Last_Changed = NOW(6) WHERE TableName= 'inventory_description' */;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`invadmin`@`localhost`*/ /*!50003 TRIGGER `TRG_inventory_description_BU` BEFORE UPDATE ON `inventory_description` FOR EACH ROW UPDATE TableLastchanged SET Last_Changed = NOW(6) WHERE TableName= 'inventory_description' */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -1198,7 +1198,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `trg_inventory_description_BD` BEFORE DELETE ON `inventory_description` FOR EACH ROW UPDATE tablelastchanged SET Last_Changed = NOW(6) WHERE TableName= 'inventory_description' */;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`invadmin`@`localhost`*/ /*!50003 TRIGGER `TRG_inventory_description_BD` BEFORE DELETE ON `inventory_description` FOR EACH ROW UPDATE TableLastchanged SET Last_Changed = NOW(6) WHERE TableName= 'inventory_description' */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -1240,7 +1240,7 @@ UNLOCK TABLES;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `trg_inventory_price_BI` BEFORE INSERT ON `inventory_price` FOR EACH ROW UPDATE tablelastchanged SET Last_Changed = NOW(6) WHERE TableName= 'inventory_price' */;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`invadmin`@`localhost`*/ /*!50003 TRIGGER `TRG_inventory_price_BI` BEFORE INSERT ON `inventory_price` FOR EACH ROW UPDATE TableLastchanged SET Last_Changed = NOW(6) WHERE TableName= 'inventory_price' */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -1255,7 +1255,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `trg_inventory_price_BU` BEFORE UPDATE ON `inventory_price` FOR EACH ROW UPDATE tablelastchanged SET Last_Changed = NOW(6) WHERE TableName= 'inventory_price' */;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`invadmin`@`localhost`*/ /*!50003 TRIGGER `TRG_inventory_price_BU` BEFORE UPDATE ON `inventory_price` FOR EACH ROW UPDATE TableLastchanged SET Last_Changed = NOW(6) WHERE TableName= 'inventory_price' */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -1270,7 +1270,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `trg_inventory_price_BD` BEFORE DELETE ON `inventory_price` FOR EACH ROW UPDATE tablelastchanged SET Last_Changed = NOW(6) WHERE TableName= 'inventory_price' */;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`invadmin`@`localhost`*/ /*!50003 TRIGGER `TRG_inventory_price_BD` BEFORE DELETE ON `inventory_price` FOR EACH ROW UPDATE TableLastchanged SET Last_Changed = NOW(6) WHERE TableName= 'inventory_price' */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -1338,7 +1338,7 @@ UNLOCK TABLES;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `trg_inventory_type_BI` BEFORE INSERT ON `inventory_type` FOR EACH ROW UPDATE tablelastchanged SET Last_Changed = NOW(6) WHERE TableName= 'inventory_type' */;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`invadmin`@`localhost`*/ /*!50003 TRIGGER `TRG_inventory_type_BI` BEFORE INSERT ON `inventory_type` FOR EACH ROW UPDATE TableLastchanged SET Last_Changed = NOW(6) WHERE TableName= 'inventory_type' */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -1353,7 +1353,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `trg_inventory_type_BU` BEFORE UPDATE ON `inventory_type` FOR EACH ROW UPDATE tablelastchanged SET Last_Changed = NOW(6) WHERE TableName= 'inventory_type' */;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`invadmin`@`localhost`*/ /*!50003 TRIGGER `TRG_inventory_type_BU` BEFORE UPDATE ON `inventory_type` FOR EACH ROW UPDATE TableLastchanged SET Last_Changed = NOW(6) WHERE TableName= 'inventory_type' */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -1368,7 +1368,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `trg_inventory_type_BD` BEFORE DELETE ON `inventory_type` FOR EACH ROW UPDATE tablelastchanged SET Last_Changed = NOW(6) WHERE TableName= 'inventory_type' */;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`invadmin`@`localhost`*/ /*!50003 TRIGGER `TRG_inventory_type_BD` BEFORE DELETE ON `inventory_type` FOR EACH ROW UPDATE TableLastchanged SET Last_Changed = NOW(6) WHERE TableName= 'inventory_type' */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -1407,7 +1407,7 @@ UNLOCK TABLES;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `trg_notetype_BI` BEFORE INSERT ON `notetype` FOR EACH ROW UPDATE tablelastchanged SET Last_Changed = NOW(6) WHERE TableName= 'notetype' */;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`invadmin`@`localhost`*/ /*!50003 TRIGGER `TRG_notetype_BI` BEFORE INSERT ON `notetype` FOR EACH ROW UPDATE TableLastchanged SET Last_Changed = NOW(6) WHERE TableName= 'notetype' */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -1422,7 +1422,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `trg_notetype_BU` BEFORE UPDATE ON `notetype` FOR EACH ROW UPDATE tablelastchanged SET Last_Changed = NOW(6) WHERE TableName= 'notetype' */;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`invadmin`@`localhost`*/ /*!50003 TRIGGER `TRG_notetype_BU` BEFORE UPDATE ON `notetype` FOR EACH ROW UPDATE TableLastchanged SET Last_Changed = NOW(6) WHERE TableName= 'notetype' */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -1437,7 +1437,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `trg_notetype_BD` BEFORE DELETE ON `notetype` FOR EACH ROW UPDATE tablelastchanged SET Last_Changed = NOW(6) WHERE TableName= 'notetype' */;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`invadmin`@`localhost`*/ /*!50003 TRIGGER `TRG_notetype_BD` BEFORE DELETE ON `notetype` FOR EACH ROW UPDATE TableLastchanged SET Last_Changed = NOW(6) WHERE TableName= 'notetype' */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -1478,7 +1478,7 @@ UNLOCK TABLES;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `trg_paymentmethod_BI` BEFORE INSERT ON `paymentmethod` FOR EACH ROW UPDATE tablelastchanged SET Last_Changed = NOW(6) WHERE TableName= 'paymentmethod' */;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`invadmin`@`localhost`*/ /*!50003 TRIGGER `TRG_paymentmethod_BI` BEFORE INSERT ON `paymentmethod` FOR EACH ROW UPDATE TableLastchanged SET Last_Changed = NOW(6) WHERE TableName= 'paymentmethod' */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -1493,7 +1493,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `trg_paymentmethod_BU` BEFORE UPDATE ON `paymentmethod` FOR EACH ROW UPDATE tablelastchanged SET Last_Changed = NOW(6) WHERE TableName= 'paymentmethod' */;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`invadmin`@`localhost`*/ /*!50003 TRIGGER `TRG_paymentmethod_BU` BEFORE UPDATE ON `paymentmethod` FOR EACH ROW UPDATE TableLastchanged SET Last_Changed = NOW(6) WHERE TableName= 'paymentmethod' */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -1508,7 +1508,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `trg_paymentmethod_BD` BEFORE DELETE ON `paymentmethod` FOR EACH ROW UPDATE tablelastchanged SET Last_Changed = NOW(6) WHERE TableName= 'paymentmethod' */;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`invadmin`@`localhost`*/ /*!50003 TRIGGER `TRG_paymentmethod_BD` BEFORE DELETE ON `paymentmethod` FOR EACH ROW UPDATE TableLastchanged SET Last_Changed = NOW(6) WHERE TableName= 'paymentmethod' */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -1552,7 +1552,7 @@ UNLOCK TABLES;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `trg_payments_BI` BEFORE INSERT ON `payments` FOR EACH ROW UPDATE tablelastchanged SET Last_Changed = NOW(6) WHERE TableName= 'payments' */;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`invadmin`@`localhost`*/ /*!50003 TRIGGER `TRG_payments_BI` BEFORE INSERT ON `payments` FOR EACH ROW UPDATE TableLastchanged SET Last_Changed = NOW(6) WHERE TableName= 'payments' */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -1567,7 +1567,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `trg_payments_BU` BEFORE UPDATE ON `payments` FOR EACH ROW UPDATE tablelastchanged SET Last_Changed = NOW(6) WHERE TableName= 'payments' */;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`invadmin`@`localhost`*/ /*!50003 TRIGGER `TRG_payments_BU` BEFORE UPDATE ON `payments` FOR EACH ROW UPDATE TableLastchanged SET Last_Changed = NOW(6) WHERE TableName= 'payments' */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -1582,7 +1582,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `trg_payments_BD` BEFORE DELETE ON `payments` FOR EACH ROW UPDATE tablelastchanged SET Last_Changed = NOW(6) WHERE TableName= 'payments' */;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`invadmin`@`localhost`*/ /*!50003 TRIGGER `TRG_payments_BD` BEFORE DELETE ON `payments` FOR EACH ROW UPDATE TableLastchanged SET Last_Changed = NOW(6) WHERE TableName= 'payments' */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -1624,7 +1624,7 @@ UNLOCK TABLES;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `trg_printercode_BI` BEFORE INSERT ON `printercode` FOR EACH ROW UPDATE tablelastchanged SET Last_Changed = NOW(6) WHERE TableName= 'printercode' */;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`invadmin`@`localhost`*/ /*!50003 TRIGGER `TRG_printercode_BI` BEFORE INSERT ON `printercode` FOR EACH ROW UPDATE TableLastchanged SET Last_Changed = NOW(6) WHERE TableName= 'printercode' */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -1639,7 +1639,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `trg_printercode_BU` BEFORE UPDATE ON `printercode` FOR EACH ROW UPDATE tablelastchanged SET Last_Changed = NOW(6) WHERE TableName= 'printercode' */;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`invadmin`@`localhost`*/ /*!50003 TRIGGER `TRG_printercode_BU` BEFORE UPDATE ON `printercode` FOR EACH ROW UPDATE TableLastchanged SET Last_Changed = NOW(6) WHERE TableName= 'printercode' */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -1654,7 +1654,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `trg_printercode_BD` BEFORE DELETE ON `printercode` FOR EACH ROW UPDATE tablelastchanged SET Last_Changed = NOW(6) WHERE TableName= 'printercode' */;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`invadmin`@`localhost`*/ /*!50003 TRIGGER `TRG_printercode_BD` BEFORE DELETE ON `printercode` FOR EACH ROW UPDATE TableLastchanged SET Last_Changed = NOW(6) WHERE TableName= 'printercode' */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -1694,7 +1694,7 @@ UNLOCK TABLES;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `trg_printermake_BI` BEFORE INSERT ON `printermake` FOR EACH ROW UPDATE tablelastchanged SET Last_Changed = NOW(6) WHERE TableName= 'printermake' */;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`invadmin`@`localhost`*/ /*!50003 TRIGGER `TRG_printermake_BI` BEFORE INSERT ON `printermake` FOR EACH ROW UPDATE TableLastchanged SET Last_Changed = NOW(6) WHERE TableName= 'printermake' */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -1709,7 +1709,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `trg_printermake_BU` BEFORE UPDATE ON `printermake` FOR EACH ROW UPDATE tablelastchanged SET Last_Changed = NOW(6) WHERE TableName= 'printermake' */;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`invadmin`@`localhost`*/ /*!50003 TRIGGER `TRG_printermake_BU` BEFORE UPDATE ON `printermake` FOR EACH ROW UPDATE TableLastchanged SET Last_Changed = NOW(6) WHERE TableName= 'printermake' */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -1724,7 +1724,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `trg_printermake_BD` BEFORE DELETE ON `printermake` FOR EACH ROW UPDATE tablelastchanged SET Last_Changed = NOW(6) WHERE TableName= 'printermake' */;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`invadmin`@`localhost`*/ /*!50003 TRIGGER `TRG_printermake_BD` BEFORE DELETE ON `printermake` FOR EACH ROW UPDATE TableLastchanged SET Last_Changed = NOW(6) WHERE TableName= 'printermake' */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -1767,7 +1767,7 @@ UNLOCK TABLES;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `trg_printermodel_BI` BEFORE INSERT ON `printermodel` FOR EACH ROW UPDATE tablelastchanged SET Last_Changed = NOW(6) WHERE TableName= 'printermodel' */;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`invadmin`@`localhost`*/ /*!50003 TRIGGER `TRG_printermodel_BI` BEFORE INSERT ON `printermodel` FOR EACH ROW UPDATE TableLastchanged SET Last_Changed = NOW(6) WHERE TableName= 'printermodel' */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -1782,7 +1782,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `trg_printermodel_BU` BEFORE UPDATE ON `printermodel` FOR EACH ROW UPDATE tablelastchanged SET Last_Changed = NOW(6) WHERE TableName= 'printermodel' */;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`invadmin`@`localhost`*/ /*!50003 TRIGGER `TRG_printermodel_BU` BEFORE UPDATE ON `printermodel` FOR EACH ROW UPDATE TableLastchanged SET Last_Changed = NOW(6) WHERE TableName= 'printermodel' */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -1797,7 +1797,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `trg_printermodel_BD` BEFORE DELETE ON `printermodel` FOR EACH ROW UPDATE tablelastchanged SET Last_Changed = NOW(6) WHERE TableName= 'printermodel' */;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`invadmin`@`localhost`*/ /*!50003 TRIGGER `TRG_printermodel_BD` BEFORE DELETE ON `printermodel` FOR EACH ROW UPDATE TableLastchanged SET Last_Changed = NOW(6) WHERE TableName= 'printermodel' */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -1840,7 +1840,7 @@ UNLOCK TABLES;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `trg_printermodelcode_BI` BEFORE INSERT ON `printermodelcode` FOR EACH ROW UPDATE tablelastchanged SET Last_Changed = NOW(6) WHERE TableName= 'printermodelcode' */;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`invadmin`@`localhost`*/ /*!50003 TRIGGER `TRG_printermodelcode_BI` BEFORE INSERT ON `printermodelcode` FOR EACH ROW UPDATE TableLastchanged SET Last_Changed = NOW(6) WHERE TableName= 'printermodelcode' */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -1855,7 +1855,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `trg_printermodelcode_BU` BEFORE UPDATE ON `printermodelcode` FOR EACH ROW UPDATE tablelastchanged SET Last_Changed = NOW(6) WHERE TableName= 'printermodelcode' */;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`invadmin`@`localhost`*/ /*!50003 TRIGGER `TRG_printermodelcode_BU` BEFORE UPDATE ON `printermodelcode` FOR EACH ROW UPDATE TableLastchanged SET Last_Changed = NOW(6) WHERE TableName= 'printermodelcode' */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -1870,7 +1870,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `trg_printermodelcode_BD` BEFORE DELETE ON `printermodelcode` FOR EACH ROW UPDATE tablelastchanged SET Last_Changed = NOW(6) WHERE TableName= 'printermodelcode' */;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`invadmin`@`localhost`*/ /*!50003 TRIGGER `TRG_printermodelcode_BD` BEFORE DELETE ON `printermodelcode` FOR EACH ROW UPDATE TableLastchanged SET Last_Changed = NOW(6) WHERE TableName= 'printermodelcode' */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -1911,7 +1911,7 @@ UNLOCK TABLES;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `trg_supplier_BI` BEFORE INSERT ON `supplier` FOR EACH ROW UPDATE tablelastchanged SET Last_Changed = NOW(6) WHERE TableName= 'supplier' */;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`invadmin`@`localhost`*/ /*!50003 TRIGGER `TRG_supplier_BI` BEFORE INSERT ON `supplier` FOR EACH ROW UPDATE TableLastchanged SET Last_Changed = NOW(6) WHERE TableName= 'supplier' */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -1926,7 +1926,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `trg_supplier_BU` BEFORE UPDATE ON `supplier` FOR EACH ROW UPDATE tablelastchanged SET Last_Changed = NOW(6) WHERE TableName= 'supplier' */;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`invadmin`@`localhost`*/ /*!50003 TRIGGER `TRG_supplier_BU` BEFORE UPDATE ON `supplier` FOR EACH ROW UPDATE TableLastchanged SET Last_Changed = NOW(6) WHERE TableName= 'supplier' */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -1941,7 +1941,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `trg_supplier_BD` BEFORE DELETE ON `supplier` FOR EACH ROW UPDATE tablelastchanged SET Last_Changed = NOW(6) WHERE TableName= 'supplier' */;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`invadmin`@`localhost`*/ /*!50003 TRIGGER `TRG_supplier_BD` BEFORE DELETE ON `supplier` FOR EACH ROW UPDATE TableLastchanged SET Last_Changed = NOW(6) WHERE TableName= 'supplier' */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -1956,10 +1956,10 @@ DROP TABLE IF EXISTS `tablelastchanged`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tablelastchanged` (
-  `idtablelastchanged` int NOT NULL AUTO_INCREMENT,
+  `idTableLastChanged` int NOT NULL AUTO_INCREMENT,
   `Last_changed` datetime(6) NOT NULL,
   `TableName` varchar(100) NOT NULL,
-  PRIMARY KEY (`idtablelastchanged`),
+  PRIMARY KEY (`idTableLastChanged`),
   UNIQUE KEY `TableName_UNIQUE` (`TableName`)
 ) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -2009,7 +2009,7 @@ UNLOCK TABLES;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `trg_tax_BI` BEFORE INSERT ON `tax` FOR EACH ROW UPDATE tablelastchanged SET Last_Changed = NOW(6) WHERE TableName= 'tax' */;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`invadmin`@`localhost`*/ /*!50003 TRIGGER `TRG_tax_BI` BEFORE INSERT ON `tax` FOR EACH ROW UPDATE TableLastchanged SET Last_Changed = NOW(6) WHERE TableName= 'tax' */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -2024,7 +2024,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `trg_tax_BU` BEFORE UPDATE ON `tax` FOR EACH ROW UPDATE tablelastchanged SET Last_Changed = NOW(6) WHERE TableName= 'tax' */;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`invadmin`@`localhost`*/ /*!50003 TRIGGER `TRG_tax_BU` BEFORE UPDATE ON `tax` FOR EACH ROW UPDATE TableLastchanged SET Last_Changed = NOW(6) WHERE TableName= 'tax' */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -2039,7 +2039,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `trg_tax_BD` BEFORE DELETE ON `tax` FOR EACH ROW UPDATE tablelastchanged SET Last_Changed = NOW(6) WHERE TableName= 'tax' */;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`invadmin`@`localhost`*/ /*!50003 TRIGGER `TRG_tax_BD` BEFORE DELETE ON `tax` FOR EACH ROW UPDATE TableLastchanged SET Last_Changed = NOW(6) WHERE TableName= 'tax' */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -2080,7 +2080,7 @@ UNLOCK TABLES;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `trg_tax_hist_BI` BEFORE INSERT ON `tax_hist` FOR EACH ROW UPDATE tablelastchanged SET Last_Changed = NOW(6) WHERE TableName= 'tax_hist' */;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`invadmin`@`localhost`*/ /*!50003 TRIGGER `TRG_tax_hist_BI` BEFORE INSERT ON `tax_hist` FOR EACH ROW UPDATE TableLastchanged SET Last_Changed = NOW(6) WHERE TableName= 'tax_hist' */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -2095,7 +2095,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `trg_tax_hist_BU` BEFORE UPDATE ON `tax_hist` FOR EACH ROW UPDATE tablelastchanged SET Last_Changed = NOW(6) WHERE TableName= 'tax_hist' */;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`invadmin`@`localhost`*/ /*!50003 TRIGGER `TRG_tax_hist_BU` BEFORE UPDATE ON `tax_hist` FOR EACH ROW UPDATE TableLastchanged SET Last_Changed = NOW(6) WHERE TableName= 'tax_hist' */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -2110,7 +2110,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `trg_tax_hist_BD` BEFORE DELETE ON `tax_hist` FOR EACH ROW UPDATE tablelastchanged SET Last_Changed = NOW(6) WHERE TableName= 'tax_hist' */;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`invadmin`@`localhost`*/ /*!50003 TRIGGER `TRG_tax_hist_BD` BEFORE DELETE ON `tax_hist` FOR EACH ROW UPDATE TableLastchanged SET Last_Changed = NOW(6) WHERE TableName= 'tax_hist' */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -2193,7 +2193,7 @@ UNLOCK TABLES;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `trg_transaction_BI` BEFORE INSERT ON `transaction` FOR EACH ROW UPDATE tablelastchanged SET Last_Changed = NOW(6) WHERE TableName= 'transaction' */;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`invadmin`@`localhost`*/ /*!50003 TRIGGER `TRG_transaction_BI` BEFORE INSERT ON `transaction` FOR EACH ROW UPDATE TableLastchanged SET Last_Changed = NOW(6) WHERE TableName= 'transaction' */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -2208,7 +2208,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `trg_transaction_BU` BEFORE UPDATE ON `transaction` FOR EACH ROW UPDATE tablelastchanged SET Last_Changed = NOW(6) WHERE TableName= 'transaction' */;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`invadmin`@`localhost`*/ /*!50003 TRIGGER `TRG_transaction_BU` BEFORE UPDATE ON `transaction` FOR EACH ROW UPDATE TableLastchanged SET Last_Changed = NOW(6) WHERE TableName= 'transaction' */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -2223,7 +2223,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `trg_transaction_BD` BEFORE DELETE ON `transaction` FOR EACH ROW UPDATE tablelastchanged SET Last_Changed = NOW(6) WHERE TableName= 'transaction' */;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`invadmin`@`localhost`*/ /*!50003 TRIGGER `TRG_transaction_BD` BEFORE DELETE ON `transaction` FOR EACH ROW UPDATE TableLastchanged SET Last_Changed = NOW(6) WHERE TableName= 'transaction' */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -2270,7 +2270,7 @@ UNLOCK TABLES;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `trg_transaction_items_BI` BEFORE INSERT ON `transaction_items` FOR EACH ROW UPDATE tablelastchanged SET Last_Changed = NOW(6) WHERE TableName= 'transaction_items' */;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`invadmin`@`localhost`*/ /*!50003 TRIGGER `TRG_transaction_items_BI` BEFORE INSERT ON `transaction_items` FOR EACH ROW UPDATE TableLastchanged SET Last_Changed = NOW(6) WHERE TableName= 'transaction_items' */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -2285,7 +2285,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `trg_transaction_items_BU` BEFORE UPDATE ON `transaction_items` FOR EACH ROW UPDATE tablelastchanged SET Last_Changed = NOW(6) WHERE TableName= 'transaction_items' */;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`invadmin`@`localhost`*/ /*!50003 TRIGGER `TRG_transaction_items_BU` BEFORE UPDATE ON `transaction_items` FOR EACH ROW UPDATE TableLastchanged SET Last_Changed = NOW(6) WHERE TableName= 'transaction_items' */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -2300,7 +2300,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `trg_transaction_items_BD` BEFORE DELETE ON `transaction_items` FOR EACH ROW UPDATE tablelastchanged SET Last_Changed = NOW(6) WHERE TableName= 'transaction_items' */;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`invadmin`@`localhost`*/ /*!50003 TRIGGER `TRG_transaction_items_BD` BEFORE DELETE ON `transaction_items` FOR EACH ROW UPDATE TableLastchanged SET Last_Changed = NOW(6) WHERE TableName= 'transaction_items' */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -2770,7 +2770,7 @@ SET character_set_client = @saved_cs_client;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `test2`()
+CREATE DEFINER=`invadmin`@`localhost` PROCEDURE `test2`()
 BEGIN 
    DECLARE invoice_count int;
    
@@ -2799,7 +2799,7 @@ DELIMITER ;
 /*!50001 SET character_set_results     = utf8mb4 */;
 /*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50013 DEFINER=`invadmin`@`localhost` SQL SECURITY DEFINER */
 /*!50001 VIEW `inventory_quantity` AS select 1 AS `item_name`,1 AS `inventoryID`,1 AS `quantity`,1 AS `barcode`,1 AS `retail_price`,1 AS `supplierID`,1 AS `item_description`,1 AS `typeID`,1 AS `bottle_deposit_qty`,1 AS `nontaxable`,1 AS `nontaxable_local` */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
@@ -2817,7 +2817,7 @@ DELIMITER ;
 /*!50001 SET character_set_results     = utf8mb4 */;
 /*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50013 DEFINER=`invadmin`@`localhost` SQL SECURITY DEFINER */
 /*!50001 VIEW `v_customer` AS select `customer`.`customerID` AS `customerID`,`customer`.`customer_discount` AS `customer_discount`,`customer`.`first_name` AS `first_name`,`customer`.`last_name` AS `last_name`,`customer`.`business_name` AS `business_name`,`customer`.`email` AS `email`,`customer`.`isWholesale` AS `isWholesale`,`customer`.`addr1` AS `addr1`,`customer`.`addr2` AS `addr2`,`customer`.`city` AS `city`,`customer`.`state` AS `state`,`customer`.`zip` AS `zip`,`customer`.`phone` AS `phone`,`customer`.`credit` AS `credit` from `customer` */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
@@ -2835,7 +2835,7 @@ DELIMITER ;
 /*!50001 SET character_set_results     = utf8mb4 */;
 /*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50013 DEFINER=`invadmin`@`localhost` SQL SECURITY DEFINER */
 /*!50001 VIEW `v_customer_hash` AS select md5(group_concat(concat_ws('#',`customer`.`customerID`,`customer`.`customer_discount`,`customer`.`first_name`,`customer`.`last_name`,`customer`.`business_name`,`customer`.`credit`) separator '##')) AS `HashValue` from `customer` */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
@@ -2853,7 +2853,7 @@ DELIMITER ;
 /*!50001 SET character_set_results     = utf8mb4 */;
 /*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50013 DEFINER=`invadmin`@`localhost` SQL SECURITY DEFINER */
 /*!50001 VIEW `v_customerfavorite` AS select `customerfavorite`.`InventoryID` AS `InventoryID`,`customer`.`customerID` AS `CustomerID`,max(`v_customerorder`.`RequestDate`) AS `LastRequestDate` from (((`customer` left join `customerfavorite` on((`customer`.`customerID` = `customerfavorite`.`CustomerID`))) left join `inventory_description` on((`customerfavorite`.`InventoryID` = `inventory_description`.`inventoryID`))) left join `v_customerorder` on(((`customerfavorite`.`InventoryID` = `v_customerorder`.`InventoryID`) and (`customer`.`customerID` = `v_customerorder`.`CustomerID`)))) group by `customerfavorite`.`InventoryID`,`customer`.`customerID` order by `customer`.`customerID` */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
@@ -2871,7 +2871,7 @@ DELIMITER ;
 /*!50001 SET character_set_results     = utf8mb4 */;
 /*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50013 DEFINER=`invadmin`@`localhost` SQL SECURITY DEFINER */
 /*!50001 VIEW `v_customernotes` AS select `customernote`.`CustomerNoteID` AS `CustomerNoteID`,`customernote`.`CustomerID` AS `CustomerID`,`customernote`.`NoteTypeID` AS `NoteTypeID`,`customernote`.`Note` AS `Note`,`customernote`.`NoteDate` AS `NoteDate`,`notetype`.`NoteType` AS `NoteType` from (`customernote` join `notetype` on((`customernote`.`NoteTypeID` = `notetype`.`NoteTypeID`))) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
@@ -2889,7 +2889,7 @@ DELIMITER ;
 /*!50001 SET character_set_results     = utf8mb4 */;
 /*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50013 DEFINER=`invadmin`@`localhost` SQL SECURITY DEFINER */
 /*!50001 VIEW `v_customerorder` AS select distinct `i`.`CustomerOrderItemID` AS `CustomerOrderItemID`,`c`.`customer_discount` AS `Customer_Discount`,`i`.`InventoryID` AS `InventoryID`,`d`.`name` AS `name`,`i`.`RequestQTY` AS `RequestQTY`,`d`.`orderQty` AS `OrderQTY`,`i`.`Paid` AS `Paid`,`d`.`inventory_qty` AS `Inventory_qty`,`i`.`DeliverQTY` AS `DeliverQTY`,`i`.`CustomerID` AS `CustomerID`,`i`.`RequestDate` AS `RequestDate`,`i`.`Deliverdate` AS `DeliverDate`,`i`.`Deliverdate` AS `itemDeliverDate`,`c`.`first_name` AS `First_name`,`d`.`inventory_type_name` AS `inventory_type_name`,`c`.`last_name` AS `Last_name`,`c`.`business_name` AS `Business_name`,`c`.`isWholesale` AS `isWholesale`,`d`.`bottle_deposit` AS `Bottle_Deposit`,`d`.`barcode` AS `barcode`,`i`.`Price` AS `price`,`i`.`PaidDate` AS `paiddate` from ((`customerorderitem` `i` join `v_inventory` `d` on((`i`.`InventoryID` = `d`.`inventoryID`))) join `customer` `c` on((`i`.`CustomerID` = `c`.`customerID`))) order by `i`.`CustomerID`,`i`.`CustomerOrderItemID` */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
@@ -2907,7 +2907,7 @@ DELIMITER ;
 /*!50001 SET character_set_results     = utf8mb4 */;
 /*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50013 DEFINER=`invadmin`@`localhost` SQL SECURITY DEFINER */
 /*!50001 VIEW `v_customerwithbalance` AS select `customer`.`customerID` AS `customerID`,`customer`.`customer_discount` AS `customer_discount`,`customer`.`first_name` AS `first_name`,`customer`.`last_name` AS `last_name`,`customer`.`business_name` AS `business_name`,`customer`.`email` AS `email`,`customer`.`isWholesale` AS `isWholesale`,`customer`.`addr1` AS `addr1`,`customer`.`addr2` AS `addr2`,`customer`.`city` AS `city`,`customer`.`state` AS `state`,`customer`.`zip` AS `zip`,`customer`.`phone` AS `phone`,`customer`.`credit` AS `credit`,`a`.`balancedue` AS `balancedue`,`a`.`suspendedTransactions` AS `suspendedTransactions` from (`customer` left join (select `transaction`.`customerID` AS `customerID`,ifnull(sum((`v_suspendedtransaction`.`TotalSale` - `v_suspendedtransaction`.`TotalPayment`)),0) AS `balancedue`,count(distinct `transaction`.`receiptID`) AS `suspendedTransactions` from (`transaction` join `v_suspendedtransaction` on((`transaction`.`receiptID` = `v_suspendedtransaction`.`receiptID`))) group by `transaction`.`customerID`) `a` on((`customer`.`customerID` = `a`.`customerID`))) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
@@ -2943,7 +2943,7 @@ DELIMITER ;
 /*!50001 SET character_set_results     = utf8mb4 */;
 /*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50013 DEFINER=`invadmin`@`localhost` SQL SECURITY DEFINER */
 /*!50001 VIEW `v_employee` AS select `employeetyperole`.`roleId` AS `roleId`,`employee`.`typeID` AS `typeID`,`employee`.`emp_id` AS `emp_id`,`employee`.`pin_number` AS `pin_number`,`employee`.`first_name` AS `first_name`,`employee`.`last_name` AS `last_name`,`employee`.`email` AS `email`,`employee`.`addr1` AS `addr1`,`employee`.`addr2` AS `addr2`,`employee`.`city` AS `city`,`employee`.`state` AS `state`,`employee`.`zip` AS `zip`,`employee`.`phone` AS `phone`,`employee`.`user_name` AS `user_name`,`employee`.`start_date` AS `start_date`,`employee`.`end_date` AS `end_date`,`employeetype`.`typeName` AS `typeName`,`employeerole`.`roleName` AS `roleName`,`employeerole`.`roleDescription` AS `roleDescription` from (((`employee` left join `employeetype` on((`employee`.`typeID` = `employeetype`.`typeId`))) left join `employeetyperole` on((`employee`.`typeID` = `employeetyperole`.`typeId`))) left join `employeerole` on((`employeetyperole`.`roleId` = `employeerole`.`roleId`))) order by `employee`.`emp_id` */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
@@ -2961,7 +2961,7 @@ DELIMITER ;
 /*!50001 SET character_set_results     = utf8mb4 */;
 /*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50013 DEFINER=`invadmin`@`localhost` SQL SECURITY DEFINER */
 /*!50001 VIEW `v_event` AS select `i`.`inventoryID` AS `inventoryID`,`i`.`name` AS `name`,`i`.`barcode` AS `barcode`,`i`.`nontaxable` AS `nontaxable`,`i`.`nontaxable_local` AS `nontaxable_local`,`i`.`retail_price` AS `retail_price`,`i`.`typeID` AS `typeID`,`t`.`inventory_type_name` AS `inventory_type_name`,`ip`.`inventory_qty` AS `inventory_qty`,`c`.`sales_tax` AS `sales_tax`,`c`.`local_sales_tax` AS `local_sales_tax`,`ip`.`purchased_date` AS `purchased_Date`,`ip`.`supplier_price` AS `supplier_price`,`e`.`Preorder` AS `PreOrder`,sum(if(((`ti`.`sold_price` <> `e`.`AtDoor`) and (`ti`.`sold_price` is not null)),`ti`.`sold_qty`,0)) AS `PreOrderSold`,sum(if(((`ti`.`sold_price` <> `e`.`AtDoor`) and (`ti`.`sold_price` is not null)),(`ti`.`sold_price` * `ti`.`sold_qty`),0)) AS `PreOrderProfit`,`e`.`AtDoor` AS `AtDoor`,sum(if(((`ti`.`sold_price` = `e`.`AtDoor`) and (`ti`.`sold_price` is not null)),`ti`.`sold_qty`,0)) AS `AtDoorSold`,sum(if(((`ti`.`sold_price` = `e`.`AtDoor`) and (`ti`.`sold_price` is not null)),(`ti`.`sold_price` * `ti`.`sold_qty`),0)) AS `AtDoorProfit`,`e`.`Duration` AS `Duration`,`e`.`EventDate` AS `EventDate`,`c`.`idTAX` AS `idTax`,`c`.`Tax_Name` AS `Tax_Name` from (((((`inventory_description` `i` join `inventory_type` `t` on((`i`.`typeID` = `t`.`typeID`))) join `tax` `c` on((`c`.`idTAX` = `t`.`idTax`))) join `events` `e` on((`i`.`inventoryID` = `e`.`inventoryID`))) join `inventory_price` `ip` on((`i`.`inventoryID` = `ip`.`inventoryID`))) left join `transaction_items` `ti` on((`i`.`inventoryID` = `ti`.`inventoryID`))) group by `i`.`inventoryID`,`i`.`name`,`i`.`barcode`,`i`.`nontaxable`,`i`.`nontaxable_local`,`i`.`retail_price`,`i`.`typeID`,`t`.`inventory_type_name`,`ip`.`inventory_qty`,`c`.`sales_tax`,`c`.`local_sales_tax`,`ip`.`purchased_date`,`ip`.`supplier_price`,`e`.`Preorder`,`e`.`AtDoor`,`e`.`Duration`,`e`.`EventDate`,`c`.`idTAX`,`c`.`Tax_Name` */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
@@ -2979,7 +2979,7 @@ DELIMITER ;
 /*!50001 SET character_set_results     = utf8mb4 */;
 /*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50013 DEFINER=`invadmin`@`localhost` SQL SECURITY DEFINER */
 /*!50001 VIEW `v_inventory` AS select `i`.`inventoryID` AS `inventoryID`,`i`.`description` AS `description`,`i`.`name` AS `name`,`i`.`barcode` AS `barcode`,`i`.`retail_price` AS `retail_price`,`i`.`discount_price` AS `discount_price`,`i`.`bottles` AS `bottles`,`i`.`nontaxable` AS `nontaxable`,`i`.`nontaxable_local` AS `nontaxable_local`,`i`.`typeID` AS `typeID`,`i`.`hidden` AS `hidden`,`i`.`supplierID` AS `supplierID`,`i`.`invMin` AS `invMin`,`i`.`invMax` AS `invMax`,`i`.`orderQty` AS `orderQty`,`i`.`RequestQty` AS `RequestQty`,`i`.`inventory_qty` AS `inventory_qty`,`i`.`RequiredQty` AS `RequiredQty`,`i`.`Orderincrement` AS `Orderincrement`,`i`.`supplier_price` AS `supplier_price`,`i`.`purchased_date` AS `purchased_date`,`i`.`DiscountID` AS `DiscountID`,`i`.`suspendedQty` AS `suspendedQty`,`i`.`supplier` AS `supplier`,`i`.`idTax` AS `idTax`,`i`.`inventory_type_name` AS `inventory_type_name`,`i`.`bottle_deposit` AS `bottle_deposit`,`i`.`sales_tax` AS `sales_tax`,`i`.`local_sales_tax` AS `local_sales_tax`,`i`.`Tax_Name` AS `Tax_Name`,`d`.`DiscountName` AS `DiscountName`,`d`.`Discount` AS `Discount`,`d`.`minQty` AS `minQty`,`d`.`maxQty` AS `maxQty` from ((select distinct `i`.`inventoryID` AS `inventoryID`,`i`.`description` AS `description`,`i`.`name` AS `name`,`i`.`barcode` AS `barcode`,`i`.`retail_price` AS `retail_price`,`i`.`discount_price` AS `discount_price`,ifnull(`i`.`bottles`,0) AS `bottles`,`i`.`nontaxable` AS `nontaxable`,`i`.`nontaxable_local` AS `nontaxable_local`,`i`.`typeID` AS `typeID`,`i`.`hidden` AS `hidden`,`i`.`supplierID` AS `supplierID`,ifnull(`i`.`invMin`,0) AS `invMin`,ifnull(`i`.`invMax`,0) AS `invMax`,`i`.`orderQty` AS `orderQty`,`i`.`RequestQty` AS `RequestQty`,`i`.`inventory_qty` AS `inventory_qty`,`i`.`RequiredQty` AS `RequiredQty`,`i`.`Orderincrement` AS `Orderincrement`,`i`.`supplier_price` AS `supplier_price`,`i`.`purchased_date` AS `purchased_date`,if((ifnull(`di`.`Enabled`,1) = 0),NULL,ifnull(`di`.`DiscountID`,`dt`.`DiscountID`)) AS `DiscountID`,ifnull(`sq`.`suspendedQty`,0) AS `suspendedQty`,`s`.`name` AS `supplier`,`t`.`idTax` AS `idTax`,`t`.`inventory_type_name` AS `inventory_type_name`,`c`.`bottle_deposit` AS `bottle_deposit`,`c`.`sales_tax` AS `sales_tax`,`c`.`local_sales_tax` AS `local_sales_tax`,`c`.`Tax_Name` AS `Tax_Name` from ((((((`v_inventorybase` `i` join `inventory_type` `t` on((`i`.`typeID` = `t`.`typeID`))) join `tax` `c` on((`c`.`idTAX` = `t`.`idTax`))) left join `supplier` `s` on((`i`.`supplierID` = `s`.`supplierID`))) left join `discount_inventory` `di` on((`i`.`inventoryID` = `di`.`InventoryID`))) left join `discount_type` `dt` on((`i`.`typeID` = `dt`.`typeID`))) left join `v_suspendtransactiondetail` `sq` on((`sq`.`inventoryID` = `i`.`inventoryID`)))) `i` left join `discount` `d` on((`i`.`DiscountID` = `d`.`DiscountID`))) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
@@ -2997,7 +2997,7 @@ DELIMITER ;
 /*!50001 SET character_set_results     = utf8mb4 */;
 /*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50013 DEFINER=`invadmin`@`localhost` SQL SECURITY DEFINER */
 /*!50001 VIEW `v_inventory_hash` AS select date_format(max(`tablelastchanged`.`Last_changed`),'%Y%m%d%H%i%S%f') AS `HashValue` from `tablelastchanged` where (`tablelastchanged`.`TableName` in ('inventory_description','inventory_type','inventory_price','supplier','customerorderitem')) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
@@ -3015,7 +3015,7 @@ DELIMITER ;
 /*!50001 SET character_set_results     = utf8mb4 */;
 /*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50013 DEFINER=`invadmin`@`localhost` SQL SECURITY DEFINER */
 /*!50001 VIEW `v_inventorybase` AS select `i`.`inventoryID` AS `inventoryID`,`i`.`description` AS `description`,`i`.`name` AS `name`,`i`.`barcode` AS `barcode`,`i`.`retail_price` AS `retail_price`,`i`.`discount_price` AS `discount_price`,`i`.`bottle_deposit_qty` AS `bottles`,`i`.`nontaxable` AS `nontaxable`,`i`.`nontaxable_local` AS `nontaxable_local`,`i`.`typeID` AS `typeID`,`i`.`hidden` AS `hidden`,`i`.`supplierID` AS `supplierID`,`i`.`InvMin` AS `invMin`,`i`.`InvMax` AS `invMax`,`i`.`OrderQty` AS `orderQty`,ifnull(`r`.`requestQty`,0) AS `RequestQty`,`ip`.`inventory_qty` AS `inventory_qty`,ifnull(if((((`q`.`totalQty` + `i`.`OrderQty`) - ifnull(`r`.`requestQty`,0)) > `i`.`InvMin`),0,(((`i`.`InvMax` - `q`.`totalQty`) + (ifnull(`r`.`requestQty`,0) DIV greatest(`i`.`orderIncrement`,1))) + if(((((`i`.`InvMax` - `q`.`totalQty`) - `i`.`OrderQty`) + (ifnull(`r`.`requestQty`,0) % greatest(`i`.`orderIncrement`,1))) > 0),greatest(`i`.`orderIncrement`,1),0))),0) AS `RequiredQty`,`i`.`orderIncrement` AS `Orderincrement`,`ip`.`supplier_price` AS `supplier_price`,`ip`.`purchased_date` AS `purchased_date` from (((`inventory_description` `i` left join `inventory_price` `ip` on((`i`.`inventoryID` = `ip`.`inventoryID`))) left join (select `coi`.`InventoryID` AS `InventoryId`,sum((`coi`.`RequestQTY` - `coi`.`DeliverQTY`)) AS `requestQty` from `customerorderitem` `coi` where ((`coi`.`RequestQTY` - `coi`.`DeliverQTY`) > 0) group by `coi`.`InventoryID`) `r` on((`r`.`InventoryId` = `i`.`inventoryID`))) left join (select `inventory_price`.`inventoryID` AS `inventoryID`,sum(`inventory_price`.`inventory_qty`) AS `totalQty` from `inventory_price` group by `inventory_price`.`inventoryID`) `q` on((`q`.`inventoryID` = `ip`.`inventoryID`))) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
@@ -3033,7 +3033,7 @@ DELIMITER ;
 /*!50001 SET character_set_results     = utf8mb4 */;
 /*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50013 DEFINER=`invadmin`@`localhost` SQL SECURITY DEFINER */
 /*!50001 VIEW `v_printer` AS select `printercode`.`printerCodeid` AS `CodeId`,`printermodel`.`PrinterModelid` AS `Modelid`,`printermake`.`printerMakeID` AS `MakeID`,`printermake`.`printerMakeName` AS `MakeName`,`printermodel`.`PrinterModelname` AS `Modelname`,`printercode`.`Drawer` AS `Drawer`,`printercode`.`Cutter` AS `Cutter`,`printercode`.`PartialCutter` AS `PartialCutter` from (((`printermake` join `printermodel` on((`printermake`.`printerMakeID` = `printermodel`.`printerMakeID`))) left join `printermodelcode` on((`printermodel`.`PrinterModelid` = `printermodelcode`.`PrinterModelid`))) left join `printercode` on((`printermodelcode`.`printerCodeid` = `printercode`.`printerCodeid`))) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
@@ -3051,7 +3051,7 @@ DELIMITER ;
 /*!50001 SET character_set_results     = utf8mb4 */;
 /*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50013 DEFINER=`invadmin`@`localhost` SQL SECURITY DEFINER */
 /*!50001 VIEW `v_suspendedtransaction` AS select `v_suspendtransactiondetail`.`receiptID` AS `receiptID`,sum(`v_suspendtransactiondetail`.`sold_price`) AS `TotalSale`,sum(`v_suspendtransactiondetail`.`PayAmount`) AS `TotalPayment` from `v_suspendtransactiondetail` group by `v_suspendtransactiondetail`.`receiptID` */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
@@ -3069,7 +3069,7 @@ DELIMITER ;
 /*!50001 SET character_set_results     = utf8mb4 */;
 /*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50013 DEFINER=`invadmin`@`localhost` SQL SECURITY DEFINER */
 /*!50001 VIEW `v_suspendtransactiondetail` AS select `transaction_items`.`inventoryID` AS `inventoryID`,`transaction_items`.`sold_qty` AS `suspendedQty`,`transaction`.`receiptID` AS `receiptID`,`transaction_items`.`sold_price` AS `sold_price`,`payments`.`Amount` AS `PayAmount` from (((`transaction` left join `transaction_items` on((`transaction`.`receiptID` = `transaction_items`.`receiptID`))) left join `payments` on((`transaction`.`receiptID` = `payments`.`ReceiptID`))) left join `trantype` on((`transaction`.`TranTypeid` = `trantype`.`TranTypeID`))) where (`trantype`.`TranTypeName` = 'Suspended') */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
@@ -3087,7 +3087,7 @@ DELIMITER ;
 /*!50001 SET character_set_results     = utf8mb4 */;
 /*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50013 DEFINER=`invadmin`@`localhost` SQL SECURITY DEFINER */
 /*!50001 VIEW `v_tax` AS select `tax`.`idTAX` AS `idTAX`,`tax`.`bottle_deposit` AS `bottle_deposit`,`tax`.`sales_tax` AS `sales_tax`,`tax`.`local_sales_tax` AS `local_sales_tax`,`tax`.`Tax_Name` AS `Tax_Name` from `tax` */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
@@ -3105,7 +3105,7 @@ DELIMITER ;
 /*!50001 SET character_set_results     = utf8mb4 */;
 /*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50013 DEFINER=`invadmin`@`localhost` SQL SECURITY DEFINER */
 /*!50001 VIEW `v_transaction_items` AS select `ti`.`receiptID` AS `receiptID`,`i`.`name` AS `name`,`ti`.`inventoryID` AS `InventoryID`,`i`.`barcode` AS `barcode`,`ti`.`sold_qty` AS `sold_qty`,`ti`.`Refunded_Qty` AS `refunded_qty`,`ti`.`sold_price` AS `sold_price`,`ti`.`discount_price` AS `discount_price`,`ti`.`supplier_price` AS `supplier_price`,`i`.`bottles` AS `bottles`,`i`.`inventory_type_name` AS `inventory_type_name`,`i`.`nontaxable` AS `nontaxable`,`i`.`nontaxable_local` AS `nontaxable_local`,`i`.`inventory_qty` AS `inventory_qty`,`i`.`bottle_deposit` AS `bottle_deposit`,`i`.`sales_tax` AS `sales_tax`,`i`.`local_sales_tax` AS `local_sales_tax`,`i`.`discountId` AS `discountId`,`i`.`DiscountName` AS `DiscountName`,`i`.`Discount` AS `Discount`,`i`.`minQty` AS `minQty`,`i`.`maxQty` AS `maxQty` from (`transaction_items` `ti` join (select `i`.`inventoryID` AS `inventoryID`,`i`.`name` AS `name`,`i`.`barcode` AS `barcode`,`i`.`bottles` AS `bottles`,`i`.`nontaxable` AS `nontaxable`,`i`.`nontaxable_local` AS `nontaxable_local`,`i`.`inventory_qty` AS `inventory_qty`,`i`.`inventory_type_name` AS `inventory_type_name`,`i`.`bottle_deposit` AS `bottle_deposit`,`i`.`sales_tax` AS `sales_tax`,`i`.`local_sales_tax` AS `local_sales_tax`,`d`.`DiscountID` AS `discountId`,`d`.`DiscountName` AS `DiscountName`,`d`.`Discount` AS `Discount`,`d`.`minQty` AS `minQty`,`d`.`maxQty` AS `maxQty` from ((select distinct `i`.`inventoryID` AS `inventoryID`,`i`.`name` AS `name`,`i`.`barcode` AS `barcode`,ifnull(`i`.`bottles`,0) AS `bottles`,`i`.`nontaxable` AS `nontaxable`,`i`.`nontaxable_local` AS `nontaxable_local`,`i`.`typeID` AS `typeID`,`i`.`inventory_qty` AS `inventory_qty`,if((ifnull(`di`.`Enabled`,1) = 0),NULL,ifnull(`di`.`DiscountID`,`dt`.`DiscountID`)) AS `DiscountID`,`t`.`inventory_type_name` AS `inventory_type_name`,`c`.`bottle_deposit` AS `bottle_deposit`,`c`.`sales_tax` AS `sales_tax`,`c`.`local_sales_tax` AS `local_sales_tax` from ((((`v_inventorybase` `i` join `inventory_type` `t` on((`i`.`typeID` = `t`.`typeID`))) join `tax` `c` on((`c`.`idTAX` = `t`.`idTax`))) left join `discount_inventory` `di` on((`i`.`inventoryID` = `di`.`InventoryID`))) left join `discount_type` `dt` on((`i`.`typeID` = `dt`.`typeID`)))) `i` left join `discount` `d` on((`i`.`DiscountID` = `d`.`DiscountID`)))) `i` on((`i`.`inventoryID` = `ti`.`inventoryID`))) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
@@ -3123,7 +3123,7 @@ DELIMITER ;
 /*!50001 SET character_set_results     = utf8mb4 */;
 /*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50013 DEFINER=`invadmin`@`localhost` SQL SECURITY DEFINER */
 /*!50001 VIEW `v_type` AS select `inventory_type`.`idTax` AS `idTax`,`discount_type`.`DiscountID` AS `DiscountID`,`inventory_type`.`typeID` AS `typeID`,`inventory_type`.`inventory_type_name` AS `inventory_type_name`,`inventory_type`.`min_qty` AS `min_qty`,`inventory_type`.`max_qty` AS `max_qty`,`inventory_type`.`bottles` AS `bottles`,`inventory_type`.`Increment_qty` AS `Increment_qty`,`discount`.`DiscountName` AS `DiscountName`,`discount`.`minQty` AS `minQty`,`discount`.`maxQty` AS `maxQty`,`discount`.`Discount` AS `Discount`,`tax`.`bottle_deposit` AS `bottle_deposit`,`tax`.`sales_tax` AS `sales_tax`,`tax`.`local_sales_tax` AS `local_sales_tax`,`tax`.`Tax_Name` AS `Tax_Name` from (((`inventory_type` left join `discount_type` on((`inventory_type`.`typeID` = `discount_type`.`typeID`))) left join `discount` on((`discount_type`.`DiscountID` = `discount`.`DiscountID`))) join `tax` on((`inventory_type`.`idTax` = `tax`.`idTAX`))) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
