@@ -11,6 +11,7 @@ namespace SecretCellar.Orders_Panels {
         private List<Inventory> _inventory = null;
         private readonly Dictionary<uint, Transaction> transactions = new Dictionary<uint, Transaction>();
 
+		private CustomerOrder _customerOrder = null;
 
 
         public Panel_Fulfillment() {
@@ -163,44 +164,63 @@ namespace SecretCellar.Orders_Panels {
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
-		private void cbx_fullfill_cust_SelectedIndexChanged(object sender, EventArgs e) { RefreshDatagrid(); }
+		private void cbx_fullfill_cust_SelectedIndexChanged(object sender, EventArgs e) {
+			_customerOrder = (CustomerOrder)cbx_fullfill_cust.SelectedItem;
+
+			RefreshDatagrid();
+		}
 
 
 		/// <summary>
 		/// Refresh the datagrid by calling the RefreshFillment method that takes a customer id as a parameter.
 		/// </summary>
 		public void RefreshDatagrid() {
-            _inventory = DataAccess.instance.GetInventory();
+			if (cbx_fullfill_cust.Items.Count == 0) return;
 
-			if (cbx_fullfill_cust.Items.Count > 0) {
-				uint customerId = ((CustomerOrder)cbx_fullfill_cust.SelectedItem).CustomerID;
-				List<CustomerOrderItem> custItems = (DataAccess.instance.GetCustomerOrderforCustomer(customerId)?.Items ?? new List<CustomerOrderItem>()).ToList();
+			_inventory = DataAccess.instance.GetInventory();
+			uint customerId;
 
-				fullfill_datagrid.DataSource = _inventory
-					.GroupJoin(custItems, i => i.Id, o => o.Id, (i, o) => new {
-						Inv = i,
-						Ord = o.SingleOrDefault()
-					})
-					.Where(x => x.Ord != null)
-					.Select(x => new {
-						id = x.Inv.Id,
-						barcode = x.Inv.Barcode,
-						name = x.Inv.Name,
-						qty = x.Inv.Qty,
-						orderqty = x.Inv.OrderQty,
-						requestqty = x.Ord.RequestQty,
-						price = x.Inv.Price,
-						due = x.Ord.RequestQty * x.Inv.Price - x.Ord.Paid
-					})
-					.ToList();
-			}
-        }
+			if (_customerOrder != null) { customerId = _customerOrder.CustomerID; }
+			else { customerId = ((CustomerOrder)cbx_fullfill_cust.SelectedItem).CustomerID; } //Probably don't need this else statement but it's a sanity check.
+																							  //_customerOrder should never be null here.
+
+			List<CustomerOrderItem> custItems = (DataAccess.instance.GetCustomerOrderforCustomer(customerId)?.Items ?? new List<CustomerOrderItem>()).ToList();
+
+			fullfill_datagrid.DataSource = _inventory
+				.GroupJoin(custItems, i => i.Id, o => o.Id, (i, o) => new {
+					Inv = i,
+					Ord = o.SingleOrDefault()
+				})
+				.Where(x => x.Ord != null)
+				.Select(x => new {
+					id = x.Inv.Id,
+					barcode = x.Inv.Barcode,
+					name = x.Inv.Name,
+					qty = x.Inv.Qty,
+					orderqty = x.Inv.OrderQty,
+					requestqty = x.Ord.RequestQty,
+					price = x.Inv.Price,
+					due = x.Ord.RequestQty * x.Inv.Price - x.Ord.Paid
+				})
+				.ToList();
+		}
 
 
 		/// <summary>
 		/// Refreshes the customer order list.
 		/// </summary>
-		private void RefreshCustomerOrderList() { cbx_fullfill_cust.DataSource = DataAccess.instance?.GetCustomerOrder(); }
+		private void RefreshCustomerOrderList() {
+			List<CustomerOrder> customerOrders = DataAccess.instance?.GetCustomerOrder();
+			if (customerOrders.Count == 0) {
+				_customerOrder = null;
+				return;
+			}
+
+			cbx_fullfill_cust.DataSource = customerOrders;
+
+			if (_customerOrder != null) { cbx_fullfill_cust.SelectedItem = _customerOrder; } //TODO This isn't getting selected correctly.
+			else { _customerOrder = (CustomerOrder)cbx_fullfill_cust.SelectedItem; }
+		}
 
 
         /// <summary>
