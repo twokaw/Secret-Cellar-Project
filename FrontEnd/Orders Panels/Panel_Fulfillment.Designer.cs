@@ -69,14 +69,14 @@ namespace SecretCellar.Orders_Panels {
 			this.cbx_fullfill_cust.Name = "cbx_fullfill_cust";
 			this.cbx_fullfill_cust.Size = new System.Drawing.Size(260, 28);
 			this.cbx_fullfill_cust.TabIndex = 13;
-			this.cbx_fullfill_cust.SelectedValueChanged += new System.EventHandler(this.frefresh);
+			this.cbx_fullfill_cust.SelectedIndexChanged += new System.EventHandler(this.cbx_fullfill_cust_SelectedIndexChanged);
 			// 
 			// btn_deliver_selected
 			// 
 			this.btn_deliver_selected.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.btn_deliver_selected.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
 			this.btn_deliver_selected.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btn_deliver_selected.Location = new System.Drawing.Point(589, 502);
+			this.btn_deliver_selected.Location = new System.Drawing.Point(589, 507);
 			this.btn_deliver_selected.Margin = new System.Windows.Forms.Padding(2);
 			this.btn_deliver_selected.Name = "btn_deliver_selected";
 			this.btn_deliver_selected.Size = new System.Drawing.Size(170, 36);
@@ -90,7 +90,7 @@ namespace SecretCellar.Orders_Panels {
 			this.btn_deliver_all.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.btn_deliver_all.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
 			this.btn_deliver_all.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btn_deliver_all.Location = new System.Drawing.Point(787, 502);
+			this.btn_deliver_all.Location = new System.Drawing.Point(787, 507);
 			this.btn_deliver_all.Margin = new System.Windows.Forms.Padding(2);
 			this.btn_deliver_all.Name = "btn_deliver_all";
 			this.btn_deliver_all.Size = new System.Drawing.Size(170, 36);
@@ -104,7 +104,7 @@ namespace SecretCellar.Orders_Panels {
 			this.btn_whole_assign_update.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.btn_whole_assign_update.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
 			this.btn_whole_assign_update.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btn_whole_assign_update.Location = new System.Drawing.Point(158, 502);
+			this.btn_whole_assign_update.Location = new System.Drawing.Point(166, 507);
 			this.btn_whole_assign_update.Name = "btn_whole_assign_update";
 			this.btn_whole_assign_update.Size = new System.Drawing.Size(122, 36);
 			this.btn_whole_assign_update.TabIndex = 23;
@@ -196,7 +196,6 @@ namespace SecretCellar.Orders_Panels {
 			this.fullfill_datagrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
 			this.fullfill_datagrid.Size = new System.Drawing.Size(947, 451);
 			this.fullfill_datagrid.TabIndex = 20;
-			this.fullfill_datagrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.fullfill_datagrid_CellContentClick);
 			// 
 			// id
 			// 

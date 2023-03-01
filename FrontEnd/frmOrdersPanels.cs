@@ -9,7 +9,7 @@ namespace SecretCellar {
 
 		public void refreshInv()
         {
-            panel_Fulfillment1.RefreshFillment();
+            panel_Fulfillment1.RefreshDatagrid();
             panel_CustomerOrder1.RefreshFavorite();
             panel_SupplierOrder1.RefreshSupplier();
         }
