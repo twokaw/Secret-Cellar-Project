@@ -23,8 +23,18 @@ namespace SecretCellar
 
             this.Transaction = transaction;
             txt_TenderTransTotal.Text = transaction.Total.ToString("C");
-            txt_CashOnly.Text = (transaction.Total 
-                              * (double)(1 - (PayMethods.FirstOrDefault(x => x.PayMethod == "CASH").PercentOffset / 100))).ToString("C");
+
+            if(PayMethods.FirstOrDefault(x => x.PayMethod == "CASH").PercentOffset != 0)
+            {
+                txt_CashOnly.Text = (transaction.Total 
+                                  * (double)(1 - (PayMethods.FirstOrDefault(x => x.PayMethod == "CASH").PercentOffset / 100))).ToString("C");
+            }
+            else
+            {
+                lbCashTotal.Visible = false;
+                txt_CashOnly.Visible = false;
+                LB_Total.Text = "Total";
+            }
 
             txtCashAmt.Focus();
             TaxFree = transaction.TaxExempt;

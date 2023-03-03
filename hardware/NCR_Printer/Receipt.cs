@@ -64,9 +64,8 @@ namespace NCR_Printer
             foreach (Item item in transaction.Items)
             {
                 string itemLine = $"{item.NumSold} - {item.Name}";
-   //             PrintText($"{itemLine}", false);
 
-                    PrintText($"{itemLine.Substring(0, Math.Min(itemLine.Length, Layout.DesctiptionWidth))}", false);
+                PrintText($"{itemLine.Substring(0, Math.Min(itemLine.Length, Layout.DesctiptionWidth))}", false);
 
                 bool isDiscounted = item.DiscountPrice > 0;
                 
@@ -78,7 +77,7 @@ namespace NCR_Printer
                 else if (item.DiscountText.Length > 0)
                 {
                     PrintText($"{item.Price * item.NumSold:C}", true, TextAlignment.Right);
-                    PrintText($"{item.DiscountText}", false);
+                    PrintText($"   {item.DiscountText}", false);
                     PrintText($"- {item.DiscountTotal :C}", true, TextAlignment.Right);
                 }
                 else

@@ -29,7 +29,8 @@ namespace SecretCellar.Settings_Panels
         private void GetEmployeeRoles()
         {
             employeeRoles = DataAccess.instance.GetEmployeeRoles();
-            chk_lstbx_Roles.DataSource = employeeRoles;
+         
+         //   chk_lstbx_Roles.DataSource = employeeRoles;
         }
 
         private void cbx_empTypes_SelectedIndexChanged(object sender, EventArgs e)
