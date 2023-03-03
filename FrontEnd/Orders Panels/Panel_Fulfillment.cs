@@ -12,6 +12,7 @@ namespace SecretCellar.Orders_Panels {
         private readonly Dictionary<uint, Transaction> transactions = new Dictionary<uint, Transaction>();
 
 		private CustomerOrder _customerOrder = null;
+		private bool _shouldUpdateSelectedCustomer = true;
 
 
         public Panel_Fulfillment() {
@@ -165,7 +166,7 @@ namespace SecretCellar.Orders_Panels {
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
 		private void cbx_fullfill_cust_SelectedIndexChanged(object sender, EventArgs e) {
-			_customerOrder = (CustomerOrder)cbx_fullfill_cust.SelectedItem;
+			if (_shouldUpdateSelectedCustomer) _customerOrder = (CustomerOrder)cbx_fullfill_cust.SelectedItem;
 
 			RefreshDatagrid();
 		}
@@ -216,9 +217,18 @@ namespace SecretCellar.Orders_Panels {
 				return;
 			}
 
+			_shouldUpdateSelectedCustomer = false;
 			cbx_fullfill_cust.DataSource = customerOrders;
+			_shouldUpdateSelectedCustomer = true;
 
-			if (_customerOrder != null) { cbx_fullfill_cust.SelectedItem = _customerOrder; } //TODO This isn't getting selected correctly.
+			if (_customerOrder != null) {
+				foreach (CustomerOrder co in cbx_fullfill_cust.Items) {
+					if (co.CustomerID == _customerOrder.CustomerID) {
+						cbx_fullfill_cust.SelectedItem = co;
+						break;
+					}
+				}
+			}
 			else { _customerOrder = (CustomerOrder)cbx_fullfill_cust.SelectedItem; }
 		}
 
