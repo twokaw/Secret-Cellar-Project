@@ -8,9 +8,9 @@ using System.Windows.Forms;
 
 namespace SecretCellar.Orders_Panels {
 	public partial class Panel_Fulfillment : ManagedPanel {
-        private List<Inventory> _inventory = null;
-        private readonly Dictionary<uint, Transaction> transactions = new Dictionary<uint, Transaction>();
+		private readonly Dictionary<uint, Transaction> _transactions = new Dictionary<uint, Transaction>();
 
+		private List<Inventory> _inventory = null;
 		private CustomerOrder _customerOrder = null;
 		private bool _shouldUpdateSelectedCustomer = true;
 
@@ -42,7 +42,7 @@ namespace SecretCellar.Orders_Panels {
 			if (frmManagerOverride.DidOverride("Update Delivered")) {
 				CustomerOrder custOrder = DataAccess.instance.GetCustomerOrderforCustomer(((CustomerOrder)cbx_fullfill_cust.SelectedItem).CustomerID);
 				Inventory inventory = _inventory.First(x => x.Id == uint.Parse(fullfill_datagrid.SelectedRows[0].Cells["id"].Value.ToString()));
-				CustomerOrderItem custOrderId = custOrder.Items.FirstOrDefault(x => x.Id == inventory.Id);
+				CustomerOrderItem custOrderItem = custOrder.Items.FirstOrDefault(x => x.Id == inventory.Id);
 
 				if (fullfill_datagrid.SelectedRows.Count > 0) {
 					uint transactionId = GetInvoiceID(custOrder.CustomerID);
@@ -50,9 +50,9 @@ namespace SecretCellar.Orders_Panels {
 					// i.OrderQty.Add(new CustomerOrder {RequestQty = coid.RequestQty, DeliveredDate = DateTime.Now, SupplierPrice = 0 });
 					
                     if (uint.TryParse(txt_deliverqty.Text.Trim(), out uint deliverQty)) {
-						custOrderId.DeliverQty += deliverQty;
-						DataAccess.instance.UpdateCustomerOrderItem(custOrder.CustomerID, transactionId, custOrderId);
-						inventory.AllQty.Remove(new InventoryQty { Qty = Convert.ToUInt32(fullfill_datagrid.SelectedRows[0].Cells["qty"].Value.ToString()) - custOrderId.DeliverQty });
+						custOrderItem.DeliverQty += deliverQty;
+						DataAccess.instance.UpdateCustomerOrderItem(custOrder.CustomerID, transactionId, custOrderItem);
+						inventory.AllQty.Remove(new InventoryQty { Qty = Convert.ToUInt32(fullfill_datagrid.SelectedRows[0].Cells["qty"].Value.ToString()) - custOrderItem.DeliverQty });
 					}
 					else {
 						txt_deliverqty.Focus();
@@ -239,16 +239,16 @@ namespace SecretCellar.Orders_Panels {
         /// <param name="customerId"></param>
         /// <returns></returns>
 		private uint GetInvoiceID(uint customerId) {
-			if (!transactions.ContainsKey(customerId)
+			if (!_transactions.ContainsKey(customerId)
 			|| DialogResult.No == MessageBox.Show(this, "Would you like to use the current Invoice (Yes) or create a new one (No)", "Use Current Invoice", MessageBoxButtons.YesNo)) {
-				transactions.Add(customerId, new Transaction() {
+				_transactions.Add(customerId, new Transaction() {
 					TranType = Transaction.TranactionType.Invoice
 				});
 
-				transactions[customerId].InvoiceID = DataAccess.instance.ProcessTransaction(transactions[customerId]);
+				_transactions[customerId].InvoiceID = DataAccess.instance.ProcessTransaction(_transactions[customerId]);
 			}
 
-			return transactions[customerId].InvoiceID;
+			return _transactions[customerId].InvoiceID;
 		}
     }
 }
