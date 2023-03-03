@@ -711,7 +711,7 @@ namespace pos_core_api.ORM
         public PaymentMethod GetPaymentMethod(uint id)
         {
             using MySqlCommand cmd = db.CreateCommand(@"
-                SELECT paymentmethodid, paymentmethod, percentoffset
+                SELECT paymentmethodid, paymentmethod, percentoffset, allowchange
                 FROM paymentmethod
                 WHERE paymentmethodid = @id
             ");
@@ -731,10 +731,10 @@ namespace pos_core_api.ORM
                 while (reader.Read())
                     result.Add(new PaymentMethod
                     {
-                        PaymentMethodId = reader.IsDBNull("PaymentMethodid") ? 0 : reader.GetUInt32("PaymentMethodid"),
-                        PayMethod = reader.IsDBNull("PaymentMethod") ? "" : reader.GetString("PaymentMethod"),
-                        PercentOffset = reader.IsDBNull("PercentOffset") ? 0 : reader.GetDecimal("PercentOffset"),
-                        AllowChange = !reader.IsDBNull("Allowchange") && reader.GetBoolean("allowchange")
+                        PaymentMethodId = reader.IsDBNull("paymentmethodid") ? 0 : reader.GetUInt32("paymentmethodid"),
+                        PayMethod = reader.IsDBNull("paymentmethod") ? "" : reader.GetString("paymentmethod"),
+                        PercentOffset = reader.IsDBNull("percentoffset") ? 0 : reader.GetDecimal("percentoffset"),
+                        AllowChange = !reader.IsDBNull("allowchange") && reader.GetBoolean("allowchange")
                     });
             }
             finally { db.CloseCommand(cmd); }
@@ -753,7 +753,7 @@ namespace pos_core_api.ORM
                 SET    paymentmethod = @method, 
                        percentoffset = @offset, 
                        allowchange   = @allowchange
-                WHERE  PaymentMethodid = @id
+                WHERE  paymentmethodid = @id
             ";
 
             using MySqlCommand cmd = db.CreateCommand(itemSQLStatement);

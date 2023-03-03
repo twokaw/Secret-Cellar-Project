@@ -66,7 +66,8 @@ namespace SecretCellar.Settings_Panels
         private void GetEmployeeRoles()
         {
             employeeRoles = DataAccess.instance.GetEmployeeRoles();
-            lstbx_roles.DataSource = employeeRoles;
+            //lstbx_roles.
+            //lstbx_roles.DataSource = employeeRoles; //.Select(x => x.RoleName ).ToList();
         }
         private void EndButtonText()
         {

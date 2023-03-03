@@ -14,6 +14,9 @@ namespace SecretCellar.Settings_Panels
             lst_tax_list.DataSource = DataAccess.instance?.GetTax();
             PayMethods = DataAccess.instance?.GetPaymentMethods();
             lst_tax_list.DisplayMember = "TaxName";
+
+            if(PayMethods != null)
+                txt_CashDiscount.Text = PayMethods.FirstOrDefault(x => x.PayMethod == "CASH")?.PercentOffset.ToString();
         }
 
         private void lst_tax_list_SelectedIndexChanged(object sender, EventArgs e) {
