@@ -210,9 +210,9 @@ namespace SecretCellar.Orders_Panels {
 		/// <summary>
 		/// Refreshes the customer order list.
 		/// </summary>
-		private void RefreshCustomerOrderList() {
+		public void RefreshCustomerOrderList() {
 			List<CustomerOrder> customerOrders = DataAccess.instance?.GetCustomerOrder();
-			if (customerOrders.Count == 0) {
+			if (customerOrders == null || customerOrders.Count == 0) {
 				_customerOrder = null;
 				return;
 			}
@@ -239,6 +239,7 @@ namespace SecretCellar.Orders_Panels {
         /// <param name="customerId"></param>
         /// <returns></returns>
 		private uint GetInvoiceID(uint customerId) {
+			//TODO error happens here somehow. ContainsKey should catch that it exists but it doesn't, then errors when you try to create a new one.
 			if (!_transactions.ContainsKey(customerId)
 			|| DialogResult.No == MessageBox.Show(this, "Would you like to use the current Invoice (Yes) or create a new one (No)", "Use Current Invoice", MessageBoxButtons.YesNo)) {
 				_transactions.Add(customerId, new Transaction() {
@@ -250,5 +251,5 @@ namespace SecretCellar.Orders_Panels {
 
 			return _transactions[customerId].InvoiceID;
 		}
-    }
+	}
 }
