@@ -63,21 +63,6 @@ namespace SecretCellar.Orders_Panels {
 					}
 				}
 
-				/*
-				else if (uint.TryParse(txt_deliverqty.Text.Trim(), out uint order))
-				{
-
-					if (coid.RequestQty >= order)
-					{
-						coid.RequestQty -= order;
-					}
-					else
-					{
-						i.OrderQty = 0;
-					}
-				}
-				*/
-
 				txt_deliverqty.Text = "";
 				RefreshCustomerOrderList();
 				RefreshDatagrid();
@@ -239,9 +224,10 @@ namespace SecretCellar.Orders_Panels {
         /// <param name="customerId"></param>
         /// <returns></returns>
 		private uint GetInvoiceID(uint customerId) {
-			//TODO error happens here somehow. ContainsKey should catch that it exists but it doesn't, then errors when you try to create a new one.
 			if (!_transactions.ContainsKey(customerId)
 			|| DialogResult.No == MessageBox.Show(this, "Would you like to use the current Invoice (Yes) or create a new one (No)", "Use Current Invoice", MessageBoxButtons.YesNo)) {
+				_transactions.Remove(customerId);
+				
 				_transactions.Add(customerId, new Transaction() {
 					TranType = Transaction.TranactionType.Invoice
 				});
@@ -249,6 +235,7 @@ namespace SecretCellar.Orders_Panels {
 				_transactions[customerId].InvoiceID = DataAccess.instance.ProcessTransaction(_transactions[customerId]);
 			}
 
+			//TODO When saying yes, it's not using the same invoice for some reason.
 			return _transactions[customerId].InvoiceID;
 		}
 	}
