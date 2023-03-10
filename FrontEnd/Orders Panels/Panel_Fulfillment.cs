@@ -235,7 +235,7 @@ namespace SecretCellar.Orders_Panels {
 				_transactions[customerId].InvoiceID = DataAccess.instance.ProcessTransaction(_transactions[customerId]);
 			}
 
-			//TODO When saying yes, it's not using the same invoice for some reason.
+			//TODO When saying yes, it's not using the same invoice for some reason. It creates one, then closes it and creates another one, but still uses the old transaction id.
 			return _transactions[customerId].InvoiceID;
 		}
 	}
