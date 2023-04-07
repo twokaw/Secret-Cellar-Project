@@ -88,9 +88,10 @@
 			this.dataGridView_employeeTypes.Name = "dataGridView_employeeTypes";
 			this.dataGridView_employeeTypes.ReadOnly = true;
 			this.dataGridView_employeeTypes.RowHeadersVisible = false;
-			this.dataGridView_employeeTypes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+			this.dataGridView_employeeTypes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
 			this.dataGridView_employeeTypes.Size = new System.Drawing.Size(240, 150);
 			this.dataGridView_employeeTypes.TabIndex = 14;
+			this.dataGridView_employeeTypes.SelectionChanged += new System.EventHandler(this.dataGridView_employeeTypes_SelectionChanged);
 			// 
 			// button_delete
 			// 
@@ -155,7 +156,7 @@
 			// 
 			this.btn_update.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.btn_update.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold);
-			this.btn_update.Location = new System.Drawing.Point(887, 417);
+			this.btn_update.Location = new System.Drawing.Point(194, 332);
 			this.btn_update.Margin = new System.Windows.Forms.Padding(5);
 			this.btn_update.Name = "btn_update";
 			this.btn_update.Size = new System.Drawing.Size(160, 46);
