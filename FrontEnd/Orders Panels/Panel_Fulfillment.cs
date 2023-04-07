@@ -6,42 +6,26 @@ using System.Windows.Forms;
 
 
 
-
 namespace SecretCellar.Orders_Panels {
 	public partial class Panel_Fulfillment : ManagedPanel {
-        private List<Inventory> inventory = null;
+		private readonly Dictionary<uint, Transaction> _transactions = new Dictionary<uint, Transaction>();
 
-        private readonly Dictionary<uint, Transaction> transactions = new Dictionary<uint, Transaction>();
+		private List<Inventory> _inventory = null;
+		private CustomerOrder _customerOrder = null;
+		private bool _shouldUpdateSelectedCustomer = true;
+
 
         public Panel_Fulfillment() {
 			InitializeComponent();
 
-            inventory = DataAccess.instance?.GetInventory();
+			RefreshCustomerOrderList();
 
-            cbx_fullfill_cust.DataSource = DataAccess.instance?.GetCustomerOrder();
-            cbx_fullfill_cust.DisplayMember = "FullName";
+			cbx_fullfill_cust.DisplayMember = "FullName";
             fullfill_datagrid.Columns[7].DefaultCellStyle.Format = "C";
             fullfill_datagrid.Columns[8].DefaultCellStyle.Format = "C";
 
-            if (cbx_fullfill_cust.SelectedItem != null) {
-                RefreshFillment();
-                /*
-                fullfill_datagrid.DataSource = ((CustomerOrder)cbx_fullfill_cust.SelectedItem).Items.
-                               Select(x => new
-                               {
-                                   fname = x.Name,
-                                   fid = x.Id,
-                                   ftype = x.ItemType,
-                                   fqty = x.Qty,
-                                   fbarcode = x.Barcode,
-                                   fprice = x.Price,
-                                   frequestqty = x.RequestQty
-                               }).
-                               OrderBy(x => x.fname).
-                               ToList();
-                */
-            }
-        }
+			RefreshDatagrid();
+		}
 
 
         /// <summary>
@@ -50,76 +34,41 @@ namespace SecretCellar.Orders_Panels {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void btn_delivered_update_Click(object sender, EventArgs e) {
-            if (cbx_fullfill_cust.SelectedIndex >= 0)
-            {
-                if (frmManagerOverride.DidOverride("Update Delivered")) {
-                    CustomerOrder custorder = DataAccess.instance.GetCustomerOrderforCustomer(((CustomerOrder)cbx_fullfill_cust.SelectedItem).CustomerID, false);
+            if (cbx_fullfill_cust.SelectedIndex < 0) {
+				MessageBox.Show("Please select an item to deliver");
+                return;
+			}
 
-                    Inventory i = inventory.First(x => x.Id == uint.Parse(fullfill_datagrid.SelectedRows[0].Cells["id"].Value.ToString()));
-                    CustomerOrderItem coid = custorder.Items.FirstOrDefault(x => x.Id == i.Id);
+			if (frmManagerOverride.DidOverride("Update Delivered")) {
+				CustomerOrder custOrder = DataAccess.instance.GetCustomerOrderforCustomer(((CustomerOrder)cbx_fullfill_cust.SelectedItem).CustomerID);
+				Inventory inventory = _inventory.First(x => x.Id == uint.Parse(fullfill_datagrid.SelectedRows[0].Cells["id"].Value.ToString()));
+				CustomerOrderItem custOrderItem = custOrder.Items.FirstOrDefault(x => x.Id == inventory.Id);
 
-                    if (fullfill_datagrid.SelectedRows.Count > 0) {
-                        uint tId = GetInvoiceID(custorder.CustomerID);
-                        //i.AllQty.Add(new InventoryQty { Qty = custorder.qty });
-                        // i.OrderQty.Add(new CustomerOrder {RequestQty = coid.RequestQty, DeliveredDate = DateTime.Now, SupplierPrice = 0 });
-                        if (uint.TryParse(txt_deliverqty.Text.Trim(), out uint dqty)) {
-                            coid.DeliverQty += dqty;
-                            DataAccess.instance.UpdateCustomerOrderItem(custorder.CustomerID, tId, coid);
-                            i.AllQty.Remove(new InventoryQty { Qty = Convert.ToUInt32(fullfill_datagrid.SelectedRows[0].Cells["qty"].Value.ToString()) - coid.DeliverQty });
-                        }
-                        else {
-                            txt_deliverqty.Focus();
-                            txt_deliverqty.SelectAll();
-                            MessageBox.Show("Invalid Order Quantity");
+				if (fullfill_datagrid.SelectedRows.Count > 0) {
+					uint transactionId = GetInvoiceID(custOrder.CustomerID);
+					//i.AllQty.Add(new InventoryQty { Qty = custorder.qty });
+					// i.OrderQty.Add(new CustomerOrder {RequestQty = coid.RequestQty, DeliveredDate = DateTime.Now, SupplierPrice = 0 });
+					
+                    if (uint.TryParse(txt_deliverqty.Text.Trim(), out uint deliverQty)) {
+						custOrderItem.DeliverQty += deliverQty;
+						DataAccess.instance.UpdateCustomerOrderItem(custOrder.CustomerID, transactionId, custOrderItem);
+						inventory.AllQty.Remove(new InventoryQty { Qty = Convert.ToUInt32(fullfill_datagrid.SelectedRows[0].Cells["qty"].Value.ToString()) - custOrderItem.DeliverQty });
+					}
+					else {
+						txt_deliverqty.Focus();
+						txt_deliverqty.SelectAll();
+						MessageBox.Show("Invalid Order Quantity");
 
-                            return;
-                        }
-                    }
+						return;
+					}
+				}
 
-                    /*
-                    else if (uint.TryParse(txt_deliverqty.Text.Trim(), out uint order))
-                    {
-
-                        if (coid.RequestQty >= order)
-                        {
-                            coid.RequestQty -= order;
-                        }
-                        else
-                        {
-                            i.OrderQty = 0;
-                        }
-                    }
-                    */
-
-                    txt_deliverqty.Text = "";
-                    refreshcust();
-                }
-            }
-            else
-            {
-                MessageBox.Show("Please select an item to deliver");
-            }
-            //RefreshFillment();
+				txt_deliverqty.Text = "";
+				RefreshCustomerOrderList();
+				RefreshDatagrid();
+			}
         }
 
-        private void refreshcust()
-        {
-            RefreshFillment(((CustomerOrder)cbx_fullfill_cust.SelectedItem).CustomerID);
-            /*fullfill_datagrid.DataSource = ((CustomerOrder)cbx_fullfill_cust.SelectedItem).Items.
-               Select(x => new
-               {
-                   fname = x.Name,
-                   fid = x.Id,
-                   ftype = x.ItemType,
-                   fqty = x.Qty,
-                   fbarcode = x.Barcode,
-                   fprice = x.Price,
-                   frequestqty = x.RequestQty
-               }).
-               OrderBy(x => x.fname).
-               ToList();
-            */
-        }
 
         /// <summary>
         /// Deliver all the items.
@@ -132,32 +81,16 @@ namespace SecretCellar.Orders_Panels {
 
                 uint tId = GetInvoiceID(custorder.CustomerID);
                 foreach (DataGridViewRow row in fullfill_datagrid.Rows) {
-                    Inventory i = inventory.First(x => x.Id == uint.Parse(row.Cells["id"].Value.ToString()));
+                    Inventory i = _inventory.First(x => x.Id == uint.Parse(row.Cells["id"].Value.ToString()));
                     CustomerOrderItem coid = custorder.Items.FirstOrDefault(x => x.Id == i.Id);
                     coid.DeliverQty = uint.Parse(row.Cells["requestqty"].Value.ToString());
                     DataAccess.instance.UpdateCustomerOrderItem(custorder.CustomerID, tId, coid);
                 }
 
                 txt_deliverqty.Text = "";
-                refreshcust();
-                //RefreshFillment();
-            }
-        }
-
-        private uint GetInvoiceID(uint customerId)
-        {
-            if (!transactions.ContainsKey(customerId) 
-            || DialogResult.No == MessageBox.Show(this, "Would you like to use the current Invoice (Yes) or create a new one (No)", "User Current Invoice", MessageBoxButtons.YesNo))
-            {
-                transactions.Add(customerId, new Transaction()
-                {
-                    TranType = Transaction.TranactionType.Invoice
-                });
-
-                transactions[customerId].InvoiceID = DataAccess.instance.ProcessTransaction(transactions[customerId]);
-            }
-
-            return transactions[customerId].InvoiceID;
+				RefreshCustomerOrderList();
+				RefreshDatagrid();
+			}
         }
 
 
@@ -173,7 +106,7 @@ namespace SecretCellar.Orders_Panels {
                 List<CustomerOrderItem> items = new List<CustomerOrderItem>();
 
                 foreach (DataGridViewRow row in fullfill_datagrid.SelectedRows) {
-                    Inventory i = inventory.First(x => x.Id == uint.Parse(row.Cells["id"].Value.ToString()));
+                    Inventory i = _inventory.First(x => x.Id == uint.Parse(row.Cells["id"].Value.ToString()));
                     CustomerOrderItem coid = custorder.Items.FirstOrDefault(x => x.Id == i.Id);
 
                     uint requestQty = uint.Parse(row.Cells["requestqty"].Value.ToString());
@@ -206,84 +139,104 @@ namespace SecretCellar.Orders_Panels {
                     DataAccess.instance.UpdateCustomerOrderItem(custorder.CustomerID, tId, coi);
 
                 txt_deliverqty.Text = "";
-                RefreshFillment(custorder.CustomerID);
-                //refreshcust();
+				RefreshCustomerOrderList();
+				RefreshDatagrid();
             }
         }
 
 
-        /// <summary>
-        /// Refresh the datagrid by calling the RefreshFillment method that takes a customer id as a parameter.
-        /// </summary>
-        public void RefreshFillment() {
-            inventory = DataAccess.instance.GetInventory();
-            RefreshFillment(((CustomerOrder)cbx_fullfill_cust.SelectedItem).CustomerID);
-        }
+		/// <summary>
+		/// Refreshes the datagrid on customer selection change.
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void cbx_fullfill_cust_SelectedIndexChanged(object sender, EventArgs e) {
+			if (_shouldUpdateSelectedCustomer) _customerOrder = (CustomerOrder)cbx_fullfill_cust.SelectedItem;
+
+			RefreshDatagrid();
+		}
+
+
+		/// <summary>
+		/// Refresh the datagrid by calling the RefreshFillment method that takes a customer id as a parameter.
+		/// </summary>
+		public void RefreshDatagrid() {
+			if (cbx_fullfill_cust.Items.Count == 0) return;
+
+			_inventory = DataAccess.instance.GetInventory();
+			uint customerId;
+
+			if (_customerOrder != null) { customerId = _customerOrder.CustomerID; }
+			else { customerId = ((CustomerOrder)cbx_fullfill_cust.SelectedItem).CustomerID; } //Probably don't need this else statement but it's a sanity check.
+																							  //_customerOrder should never be null here.
+
+			List<CustomerOrderItem> custItems = (DataAccess.instance.GetCustomerOrderforCustomer(customerId)?.Items ?? new List<CustomerOrderItem>()).ToList();
+
+			fullfill_datagrid.DataSource = _inventory
+				.GroupJoin(custItems, i => i.Id, o => o.Id, (i, o) => new {
+					Inv = i,
+					Ord = o.SingleOrDefault()
+				})
+				.Where(x => x.Ord != null)
+				.Select(x => new {
+					id = x.Inv.Id,
+					barcode = x.Inv.Barcode,
+					name = x.Inv.Name,
+					qty = x.Inv.Qty,
+					orderqty = x.Inv.OrderQty,
+					requestqty = x.Ord.RequestQty,
+					price = x.Inv.Price,
+					due = x.Ord.RequestQty * x.Inv.Price - x.Ord.Paid
+				})
+				.ToList();
+		}
+
+
+		/// <summary>
+		/// Refreshes the customer order list.
+		/// </summary>
+		public void RefreshCustomerOrderList() {
+			List<CustomerOrder> customerOrders = DataAccess.instance?.GetCustomerOrder();
+			if (customerOrders == null || customerOrders.Count == 0) {
+				_customerOrder = null;
+				return;
+			}
+
+			_shouldUpdateSelectedCustomer = false;
+			cbx_fullfill_cust.DataSource = customerOrders;
+			_shouldUpdateSelectedCustomer = true;
+
+			if (_customerOrder != null) {
+				foreach (CustomerOrder co in cbx_fullfill_cust.Items) {
+					if (co.CustomerID == _customerOrder.CustomerID) {
+						cbx_fullfill_cust.SelectedItem = co;
+						break;
+					}
+				}
+			}
+			else { _customerOrder = (CustomerOrder)cbx_fullfill_cust.SelectedItem; }
+		}
 
 
         /// <summary>
-        /// Refresh the datagrid.
+        /// Gets the invoice id with the given customer id.
         /// </summary>
         /// <param name="customerId"></param>
-        private void RefreshFillment(uint customerId) {
+        /// <returns></returns>
+		private uint GetInvoiceID(uint customerId) {
+			if (!_transactions.ContainsKey(customerId)
+			|| DialogResult.No == MessageBox.Show(this, "Would you like to use the current Invoice (Yes) or create a new one (No)", "Use Current Invoice", MessageBoxButtons.YesNo)) {
+				_transactions.Remove(customerId);
+				
+				_transactions.Add(customerId, new Transaction() {
+					TranType = Transaction.TranactionType.Invoice
+				});
 
-            uint custid = ((CustomerOrder)cbx_fullfill_cust.SelectedItem).CustomerID;
-            List<CustomerOrder> items = DataAccess.instance?.GetCustomerOrder();  
-            cbx_fullfill_cust.DataSource = items;
-            cbx_fullfill_cust.SelectedItem = items.FirstOrDefault(x=>x.CustomerID == custid);
-            List<CustomerOrderItem> custItems = (DataAccess.instance.GetCustomerOrderforCustomer(customerId)?.Items ?? new List<CustomerOrderItem>())./*Where(x => x.DeliverQty < x.RequestQty).*/ToList();
+				_transactions[customerId].InvoiceID = DataAccess.instance.ProcessTransaction(_transactions[customerId]);
+			}
 
-            fullfill_datagrid.DataSource = inventory
-                .GroupJoin(custItems, i => i.Id, o => o.Id, (i, o) => new {
-                    Inv = i,
-                    Ord = o.SingleOrDefault()
-                })
-                .Where(x => (x.Ord != null))
-                .Select(x => new {
-                    id = x.Inv.Id,
-                    barcode = x.Inv.Barcode,
-                    name = x.Inv.Name,
-                    qty = x.Inv.Qty,
-                    orderqty = x.Inv.OrderQty,
-                    requestqty = x.Ord.RequestQty,
-                    price = x.Inv.Price,
-                    due = x.Ord.RequestQty * x.Inv.Price - x.Ord.Paid
-                })
-                .ToList();
-        }
-
-
-        // frefresh updates fullfillment datagrid refresh on customer selection change
-        private void frefresh(object sender, EventArgs e)
-        {
-            /*fullfill_datagrid.DataSource = ((CustomerOrder)cbx_fullfill_cust.SelectedItem).Items.
-                              Select(x => new
-                              {
-                                  fname = x.Name,
-                                  fid = x.Id,
-                                  ftype = x.ItemType,
-                                  fqty = x.Qty,
-                                  fbarcode = x.Barcode,
-                                  fprice = x.Price,
-                                  frequestqty = x.RequestQty
-                              }).
-                              OrderBy(x => x.fname).
-                              ToList();
-
-        private void cbx_fullfill_cust_SelectedIndexChanged(object sender, EventArgs e)
-        {
-           */
-            if(cbx_fullfill_cust.Items.Count > 0)
-            {
-                uint cid = ((CustomerOrder)cbx_fullfill_cust.SelectedItem).CustomerID;
-                RefreshFillment(cid);
-
-            }
-        }
-
-        private void fullfill_datagrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-    }
+			//TODO When saying yes, it's not using the same invoice for some reason. It creates one, then closes it and creates another one, but still uses the old transaction id.
+			return _transactions[customerId].InvoiceID;
+		}
+	}
 }
