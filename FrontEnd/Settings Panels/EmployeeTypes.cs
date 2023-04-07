@@ -10,30 +10,49 @@ namespace SecretCellar.Settings_Panels
     {
         private List<EmployeeTypeModel> employeeTypes = null;
         private List<EmployeeRoleModel> employeeRoles = null;
-        public PanEmployeeTypes()
-        {
+        
+        
+        public PanEmployeeTypes() {
             InitializeComponent();
-            if (DataAccess.instance != null)
-            {
-                GetEmployeeRoles();
-                GetEmployeeTypes();
+
+			dataGridView_employeeTypes.Columns["Id"].Visible = false;
+
+			if (DataAccess.instance != null) {
+                RefreshEmployeeRoles();
+                RefreshEmployeeTypes();
             }
         }
 
-        private void GetEmployeeTypes()
-        {
+
+        /// <summary>
+        /// Refreshes the Employee Types.
+        /// </summary>
+        private void RefreshEmployeeTypes() {
             employeeTypes = DataAccess.instance.GetEmployeeTypes();
             cbx_empTypes.DataSource = employeeTypes;
+            dataGridView_employeeTypes.DataSource = employeeTypes.Select((emp) => new {
+                Id = emp.TypeID,
+                Type = emp.TypeName
+            }).ToList();
         }
 
-        private void GetEmployeeRoles()
-        {
-            employeeRoles = DataAccess.instance.GetEmployeeRoles();
-         
-         //   chk_lstbx_Roles.DataSource = employeeRoles;
-        }
 
-        private void cbx_empTypes_SelectedIndexChanged(object sender, EventArgs e)
+        /// <summary>
+        /// Refreshes the Employee Roles.
+        /// </summary>
+        private void RefreshEmployeeRoles() { employeeRoles = DataAccess.instance.GetEmployeeRoles(); }
+
+
+		/// <summary>
+		/// Refreshes both the employee roles and the employee types.
+		/// </summary>
+		public void RefreshLists() {
+			RefreshEmployeeRoles();
+			RefreshEmployeeTypes();
+		}
+
+
+		private void cbx_empTypes_SelectedIndexChanged(object sender, EventArgs e)
         {
             
             for (int i = 0; i < chk_lstbx_Roles.Items.Count; i++)
@@ -43,13 +62,12 @@ namespace SecretCellar.Settings_Panels
             txt_typeName.Text = cbx_empTypes.SelectedItem.ToString();
         }
 
-        private void chk_lstbx_Roles_SelectedIndexChanged(object sender, EventArgs e)
-        {
+        private void chk_lstbx_Roles_SelectedIndexChanged(object sender, EventArgs e) {
             txt_roleDescription.Text = ((EmployeeRoleModel)chk_lstbx_Roles.SelectedItem).RoleDescription;
         }
 
-        private void btn_update_Click(object sender, EventArgs e)
-        {
+
+        private void btn_update_Click(object sender, EventArgs e) {
             bool x = false;
             for (int i = 0; i < chk_lstbx_Roles.Items.Count; i++)
             {
@@ -67,11 +85,11 @@ namespace SecretCellar.Settings_Panels
                 }
             }
             DataAccess.instance.UpdateEmployeeType((EmployeeTypeModel)cbx_empTypes.SelectedItem);
-            empRefresh();
+            RefreshLists();
         }
 
-        private void btn_clear_Click(object sender, EventArgs e)
-        {
+
+        private void btn_clear_Click(object sender, EventArgs e) {
             txt_typeName.Clear();
             for (int i = 0; i < chk_lstbx_Roles.Items.Count; i++)
             {
@@ -80,8 +98,8 @@ namespace SecretCellar.Settings_Panels
             txt_typeName.Focus();
         }
 
-        private void btn_new_Click(object sender, EventArgs e)
-        {
+
+        private void btn_new_Click(object sender, EventArgs e) {
             EmployeeTypeModel emp = new EmployeeTypeModel();
             emp.TypeName = txt_typeName.Text;
 
@@ -96,13 +114,7 @@ namespace SecretCellar.Settings_Panels
 
                 }
             DataAccess.instance.InsertEmployeeType(emp);
-            empRefresh();
-        }
-
-        public void empRefresh()
-        {
-            GetEmployeeRoles();
-            GetEmployeeTypes();
+            RefreshLists();
         }
     }
 }
