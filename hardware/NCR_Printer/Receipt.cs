@@ -64,17 +64,25 @@ namespace NCR_Printer
             foreach (Item item in transaction.Items)
             {
                 string itemLine = $"{item.NumSold} - {item.Name}";
-                PrintText($"{itemLine.Substring(0, Math.Min(itemLine.Length, Layout.DesctiptionWidth - item.DiscountText.Length))}{item.DiscountText}", false);
+
+                PrintText($"{itemLine.Substring(0, Math.Min(itemLine.Length, Layout.DesctiptionWidth))}", false);
 
                 bool isDiscounted = item.DiscountPrice > 0;
                 
                 if (isDiscounted) {
                     Font strikethroughFont = new Font("Arial", 11, FontStyle.Strikeout);
-                    PrintText($"{item.Price:C}", strikethroughFont, true, TextAlignment.Right);
+                    PrintText($"{item.Price * item.NumSold:C}", strikethroughFont, true, TextAlignment.Right);
                     PrintText($"Discounted: {item.DiscountPrice:C}", 0, true, TextAlignment.Right);
                 }
-                else {
-                    PrintText($"{item.Price:C}", true, TextAlignment.Right);
+                else if (item.DiscountText.Length > 0)
+                {
+                    PrintText($"{item.Price * item.NumSold:C}", true, TextAlignment.Right);
+                    PrintText($"   {item.DiscountText}", false);
+                    PrintText($"- {item.DiscountTotal :C}", true, TextAlignment.Right);
+                }
+                else
+                {
+                    PrintText($"{item.Price * item.NumSold:C}", true, TextAlignment.Right);
                 }
             }
 
