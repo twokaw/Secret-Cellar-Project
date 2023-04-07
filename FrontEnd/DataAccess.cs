@@ -70,11 +70,12 @@ namespace SecretCellar
             */
         }
 
-        public DialogResult ShowLookupForm(Transaction t, String submitText = "Add to Cart")
+        public DialogResult ShowLookupForm(Transaction t, String submitText = "Add to Cart", string initialSearchValue = "")
         {
             lookup.SetTransaction(t);
             lookup.SubmitButtonText(submitText);
             lookup.NewBarcode = "";
+            lookup.InitialSearch = initialSearchValue;
             return lookup.ShowDialog();
         }
 
