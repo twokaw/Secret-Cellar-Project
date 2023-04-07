@@ -281,8 +281,8 @@ namespace SecretCellar
 
         private void btnLookup_Click(object sender, EventArgs e)
         {
-            DataAccess.instance.ShowLookupForm(transaction);
-            RefreshDataGrid();
+			DataAccess.instance.ShowLookupForm(transaction, "Add to Cart", txtBarcode.Text);
+			RefreshDataGrid();
         }
 
         private void btnEvents_Click(object sender, EventArgs e)

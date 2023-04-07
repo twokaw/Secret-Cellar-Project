@@ -106,6 +106,7 @@ namespace SecretCellar.Orders_Panels {
 		private void btn_update_custorder_Click(object sender, EventArgs e) {
 			if (custOrder_datagrid.SelectedRows.Count > 0) {
 				uint cid = ((Customer)cbx_cust_custorder.SelectedItem).CustomerID;
+				
 				if (cid > 0) {
 					uint iid = Convert.ToUInt32(custOrder_datagrid.SelectedRows[0].Cells["CustOrd_id"].Value?.ToString());
 
@@ -121,11 +122,9 @@ namespace SecretCellar.Orders_Panels {
 						});
 					else {
 						coi.RequestQty = Convert.ToUInt32(txt_orderqty_custorder.Text);
-						coi.CustomerOrderItemID = cid;
 						DataAccess.instance.UpdateCustomerOrderItem(cid, coi);
 					}
 
-					//DataAccess.instance.UpdateCustomerOrder(co);
 					RefreshFavorite(cid);
 				}
 			}

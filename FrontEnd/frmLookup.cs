@@ -15,6 +15,7 @@ namespace SecretCellar
         private readonly string descriptionAndBarcodeSearchText = "Enter Description/Barcode";
         private bool refreshingItems = false;
         public string NewBarcode {get; set;}
+        public string InitialSearch {get; set;}
 
         public frmLookup() {
             InitializeComponent();
@@ -506,6 +507,9 @@ namespace SecretCellar
             {
                 Clear(NewBarcode);
             }
-        }
+
+			txtlookup.Text = InitialSearch;
+			InitialSearch = "";
+		}
     }
 }
