@@ -30,6 +30,8 @@
         {
 			this.PanempTypes = new System.Windows.Forms.Panel();
 			this.dataGridView_employeeTypes = new System.Windows.Forms.DataGridView();
+			this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Type = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.button_delete = new System.Windows.Forms.Button();
 			this.chk_lstbx_Roles = new System.Windows.Forms.CheckedListBox();
 			this.lbl_emp_name = new System.Windows.Forms.Label();
@@ -41,9 +43,6 @@
 			this.lbl_description = new System.Windows.Forms.Label();
 			this.lbl_emp_roles = new System.Windows.Forms.Label();
 			this.label1 = new System.Windows.Forms.Label();
-			this.cbx_empTypes = new System.Windows.Forms.ComboBox();
-			this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Type = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.PanempTypes.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView_employeeTypes)).BeginInit();
 			this.SuspendLayout();
@@ -63,7 +62,6 @@
 			this.PanempTypes.Controls.Add(this.lbl_description);
 			this.PanempTypes.Controls.Add(this.lbl_emp_roles);
 			this.PanempTypes.Controls.Add(this.label1);
-			this.PanempTypes.Controls.Add(this.cbx_empTypes);
 			this.PanempTypes.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.PanempTypes.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.PanempTypes.Location = new System.Drawing.Point(0, 0);
@@ -83,27 +81,42 @@
 			this.dataGridView_employeeTypes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Id,
             this.Type});
-			this.dataGridView_employeeTypes.Location = new System.Drawing.Point(231, 59);
+			this.dataGridView_employeeTypes.Location = new System.Drawing.Point(27, 59);
 			this.dataGridView_employeeTypes.MultiSelect = false;
 			this.dataGridView_employeeTypes.Name = "dataGridView_employeeTypes";
 			this.dataGridView_employeeTypes.ReadOnly = true;
 			this.dataGridView_employeeTypes.RowHeadersVisible = false;
 			this.dataGridView_employeeTypes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-			this.dataGridView_employeeTypes.Size = new System.Drawing.Size(240, 150);
+			this.dataGridView_employeeTypes.Size = new System.Drawing.Size(240, 177);
 			this.dataGridView_employeeTypes.TabIndex = 14;
 			this.dataGridView_employeeTypes.SelectionChanged += new System.EventHandler(this.dataGridView_employeeTypes_SelectionChanged);
 			// 
+			// Id
+			// 
+			this.Id.DataPropertyName = "Id";
+			this.Id.HeaderText = "Id";
+			this.Id.Name = "Id";
+			this.Id.ReadOnly = true;
+			// 
+			// Type
+			// 
+			this.Type.DataPropertyName = "Type";
+			this.Type.HeaderText = "Type";
+			this.Type.Name = "Type";
+			this.Type.ReadOnly = true;
+			// 
 			// button_delete
 			// 
-			this.button_delete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.button_delete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.button_delete.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold);
-			this.button_delete.Location = new System.Drawing.Point(27, 417);
+			this.button_delete.Location = new System.Drawing.Point(214, 417);
 			this.button_delete.Margin = new System.Windows.Forms.Padding(5);
 			this.button_delete.Name = "button_delete";
 			this.button_delete.Size = new System.Drawing.Size(160, 46);
 			this.button_delete.TabIndex = 12;
 			this.button_delete.Text = "Delete";
 			this.button_delete.UseVisualStyleBackColor = true;
+			this.button_delete.Click += new System.EventHandler(this.button_delete_Click);
 			// 
 			// chk_lstbx_Roles
 			// 
@@ -133,10 +146,10 @@
 			// 
 			this.btn_clear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.btn_clear.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold);
-			this.btn_clear.Location = new System.Drawing.Point(27, 332);
+			this.btn_clear.Location = new System.Drawing.Point(27, 417);
 			this.btn_clear.Margin = new System.Windows.Forms.Padding(5);
 			this.btn_clear.Name = "btn_clear";
-			this.btn_clear.Size = new System.Drawing.Size(124, 46);
+			this.btn_clear.Size = new System.Drawing.Size(160, 46);
 			this.btn_clear.TabIndex = 9;
 			this.btn_clear.Text = "Clear";
 			this.btn_clear.UseVisualStyleBackColor = true;
@@ -154,9 +167,9 @@
 			// 
 			// btn_update
 			// 
-			this.btn_update.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.btn_update.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.btn_update.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold);
-			this.btn_update.Location = new System.Drawing.Point(194, 332);
+			this.btn_update.Location = new System.Drawing.Point(27, 332);
 			this.btn_update.Margin = new System.Windows.Forms.Padding(5);
 			this.btn_update.Name = "btn_update";
 			this.btn_update.Size = new System.Drawing.Size(160, 46);
@@ -167,9 +180,9 @@
 			// 
 			// btn_new
 			// 
-			this.btn_new.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.btn_new.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.btn_new.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold);
-			this.btn_new.Location = new System.Drawing.Point(717, 417);
+			this.btn_new.Location = new System.Drawing.Point(214, 332);
 			this.btn_new.Margin = new System.Windows.Forms.Padding(5);
 			this.btn_new.Name = "btn_new";
 			this.btn_new.Size = new System.Drawing.Size(160, 46);
@@ -224,31 +237,6 @@
 			this.label1.TabIndex = 1;
 			this.label1.Text = "Employee Types";
 			// 
-			// cbx_empTypes
-			// 
-			this.cbx_empTypes.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold);
-			this.cbx_empTypes.FormattingEnabled = true;
-			this.cbx_empTypes.Location = new System.Drawing.Point(27, 59);
-			this.cbx_empTypes.Margin = new System.Windows.Forms.Padding(5);
-			this.cbx_empTypes.Name = "cbx_empTypes";
-			this.cbx_empTypes.Size = new System.Drawing.Size(196, 33);
-			this.cbx_empTypes.TabIndex = 0;
-			this.cbx_empTypes.SelectedIndexChanged += new System.EventHandler(this.cbx_empTypes_SelectedIndexChanged);
-			// 
-			// Id
-			// 
-			this.Id.DataPropertyName = "Id";
-			this.Id.HeaderText = "Id";
-			this.Id.Name = "Id";
-			this.Id.ReadOnly = true;
-			// 
-			// Type
-			// 
-			this.Type.DataPropertyName = "Type";
-			this.Type.HeaderText = "Type";
-			this.Type.Name = "Type";
-			this.Type.ReadOnly = true;
-			// 
 			// PanEmployeeTypes
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
@@ -270,7 +258,6 @@
         #endregion
 
         private System.Windows.Forms.Panel PanempTypes;
-        private System.Windows.Forms.ComboBox cbx_empTypes;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lbl_emp_roles;
         private System.Windows.Forms.Label lbl_description;

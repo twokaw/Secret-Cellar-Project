@@ -10,6 +10,7 @@ namespace SecretCellar.Settings_Panels
     {
         private List<EmployeeTypeModel> employeeTypes = null;
         private List<EmployeeRoleModel> employeeRoles = null;
+        private EmployeeTypeModel _selectedEmployeeTypes = null;
         
         
         public PanEmployeeTypes() {
@@ -17,58 +18,75 @@ namespace SecretCellar.Settings_Panels
 
 			dataGridView_employeeTypes.Columns["Id"].Visible = false;
 
-			if (DataAccess.instance != null) {
-                RefreshEmployeeRoles();
-                RefreshEmployeeTypes();
-            }
-        }
-
-
-		private void dataGridView_employeeTypes_SelectionChanged(object sender, EventArgs e) {
-            //TODO The UInt Parse fails because the values aren't correct.
-            EmployeeTypeModel selectedEmployeeTypeModel = employeeTypes.Find((empType) => empType.TypeID == uint.Parse(dataGridView_employeeTypes.SelectedRows[0].Cells[0].Value.ToString()));
-            if (selectedEmployeeTypeModel == null) return;
-
-			for (int i=0; i<chk_lstbx_Roles.Items.Count; i++) {
-				chk_lstbx_Roles.SetItemChecked(i, selectedEmployeeTypeModel.Roles.Any(x => x.RoleID == ((EmployeeRoleModel)chk_lstbx_Roles.Items[i]).RoleID));
-			}
-
+			if (DataAccess.instance != null) RefreshLists();
 		}
 
 
-		private void cbx_empTypes_SelectedIndexChanged(object sender, EventArgs e) {
-            for (int i = 0; i < chk_lstbx_Roles.Items.Count; i++) {
-                chk_lstbx_Roles.SetItemChecked(i, ((EmployeeTypeModel)cbx_empTypes.SelectedItem).Roles.Any(x => x.RoleID == ((EmployeeRoleModel)chk_lstbx_Roles.Items[i]).RoleID));
-            }
+        /// <summary>
+        /// Update the role checkboxes on employee type select.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+		private void dataGridView_employeeTypes_SelectionChanged(object sender, EventArgs e) {
+            if (dataGridView_employeeTypes.SelectedRows.Count == 0 || dataGridView_employeeTypes.SelectedRows[0].Cells.Count == 0) return;
 
-            txt_typeName.Text = cbx_empTypes.SelectedItem.ToString();
-        }
+            string selectedId = dataGridView_employeeTypes.SelectedRows[0].Cells["Id"].Value.ToString();
+			_selectedEmployeeTypes = employeeTypes.Find((empType) => empType.TypeID == uint.Parse(selectedId));
+			if (_selectedEmployeeTypes == null) return;
+
+			for (int i=0; i<chk_lstbx_Roles.Items.Count; i++) {
+				chk_lstbx_Roles.SetItemChecked(i, _selectedEmployeeTypes.Roles.Any(x => x.RoleID == ((EmployeeRoleModel)chk_lstbx_Roles.Items[i]).RoleID));
+			}
+
+			txt_typeName.Text = _selectedEmployeeTypes.TypeName;
+		}
 
 
+        /// <summary>
+        /// Update the role description on checkbox select.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void chk_lstbx_Roles_SelectedIndexChanged(object sender, EventArgs e) {
             txt_roleDescription.Text = ((EmployeeRoleModel)chk_lstbx_Roles.SelectedItem).RoleDescription;
         }
 
 
+        /// <summary>
+        /// Update the selected employee type.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btn_update_Click(object sender, EventArgs e) {
+            if (_selectedEmployeeTypes == null) return;
+            if (txt_typeName.Text == "") { MessageBox.Show("Cannot have an empty name.", "Error"); return; }
+
             bool x = false;
             
             for (int i = 0; i < chk_lstbx_Roles.Items.Count; i++) {
-                x = ((EmployeeTypeModel)cbx_empTypes.SelectedItem).Roles.Any(y => y.RoleID == ((EmployeeRoleModel)chk_lstbx_Roles.Items[i]).RoleID);
+                x = _selectedEmployeeTypes.Roles.Any(y => y.RoleID == ((EmployeeRoleModel)chk_lstbx_Roles.Items[i]).RoleID);
                 if (x != chk_lstbx_Roles.GetItemChecked(i)) {
                     if (x) {
-                        ((EmployeeTypeModel)cbx_empTypes.SelectedItem).Roles.RemoveAll(y => y.RoleID == ((EmployeeRoleModel)chk_lstbx_Roles.Items[i]).RoleID);
+                        _selectedEmployeeTypes.Roles.RemoveAll(y => y.RoleID == ((EmployeeRoleModel)chk_lstbx_Roles.Items[i]).RoleID);
                     }
                     else {
-                        ((EmployeeTypeModel)cbx_empTypes.SelectedItem).Roles.Add((EmployeeRoleModel)chk_lstbx_Roles.Items[i]);
+                        _selectedEmployeeTypes.Roles.Add((EmployeeRoleModel)chk_lstbx_Roles.Items[i]);
                     }
                 }
             }
-            DataAccess.instance.UpdateEmployeeType((EmployeeTypeModel)cbx_empTypes.SelectedItem);
+
+            _selectedEmployeeTypes.TypeName = txt_typeName.Text;
+
+			DataAccess.instance.UpdateEmployeeType(_selectedEmployeeTypes);
             RefreshLists();
         }
 
 
+        /// <summary>
+        /// Clear the data.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btn_clear_Click(object sender, EventArgs e) {
             txt_typeName.Clear();
 
@@ -79,9 +97,17 @@ namespace SecretCellar.Settings_Panels
         }
 
 
+        /// <summary>
+        /// Create a new employee type.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btn_new_Click(object sender, EventArgs e) {
-            EmployeeTypeModel emp = new EmployeeTypeModel();
-            emp.TypeName = txt_typeName.Text;
+			if (txt_typeName.Text == "") { MessageBox.Show("Cannot have an empty name.", "Error"); return; }
+
+			EmployeeTypeModel emp = new EmployeeTypeModel() {
+                TypeName = txt_typeName.Text
+            };
 
             for (int i = 0; i < chk_lstbx_Roles.Items.Count; i++) {
                 if (chk_lstbx_Roles.GetItemChecked(i)) {
@@ -93,13 +119,26 @@ namespace SecretCellar.Settings_Panels
             RefreshLists();
         }
 
-        
+
+        /// <summary>
+        /// Delete the selected employee type.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+		private void button_delete_Click(object sender, EventArgs e) {
+			string selectedId = dataGridView_employeeTypes.SelectedRows[0].Cells["Id"].Value.ToString();
+			EmployeeTypeModel selectedEmployeeTypeModel = employeeTypes.Find((empType) => empType.TypeID == uint.Parse(selectedId));
+            if (selectedEmployeeTypeModel == null) return;
+            
+            //TODO Call DataAccess delete employee type here.
+		}
+
+
 		/// <summary>
 		/// Refreshes the Employee Types.
 		/// </summary>
 		private void RefreshEmployeeTypes() {
 			employeeTypes = DataAccess.instance.GetEmployeeTypes();
-			cbx_empTypes.DataSource = employeeTypes;
 			dataGridView_employeeTypes.DataSource = employeeTypes.Select((emp) => new {
 				Id = emp.TypeID,
 				Type = emp.TypeName
