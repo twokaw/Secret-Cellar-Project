@@ -4,8 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
-
-
 namespace SecretCellar.Orders_Panels {
 	public partial class Panel_CustomerOrder : ManagedPanel {
 		public Panel_CustomerOrder() {
@@ -19,7 +17,6 @@ namespace SecretCellar.Orders_Panels {
 			}
 		}
 
-
 		/// <summary>
 		/// On selected index change.
 		/// </summary>
@@ -29,7 +26,6 @@ namespace SecretCellar.Orders_Panels {
 			uint cid = ((Customer)cbx_cust_custorder.SelectedItem).CustomerID;
 			RefreshFavorite(cid);
 		}
-
 
 		/// <summary>
 		/// On click add favorites.
@@ -46,7 +42,6 @@ namespace SecretCellar.Orders_Panels {
 
 			RefreshFavorite(cid);
 		}
-
 
 		/// <summary>
 		/// On click remove favorites.
@@ -130,7 +125,6 @@ namespace SecretCellar.Orders_Panels {
 			}
 		}
 
-
 		/// <summary>
 		/// On Keypress.
 		/// </summary>
@@ -151,12 +145,16 @@ namespace SecretCellar.Orders_Panels {
 			RefreshFavorite(cid);
 		}
 
+		/// <summary>
+		/// Refresh Favorites
+		/// </summary>
 		public void RefreshFavorite()
         {
 			uint? cid = ((Customer)cbx_cust_custorder.SelectedItem)?.CustomerID;
 			if(cid != null)
 				RefreshFavorite(cid.Value);
 		}
+
 		/// <summary>
 		/// Refresh the favorites list.
 		/// </summary>
@@ -167,7 +165,8 @@ namespace SecretCellar.Orders_Panels {
             {
 				List<Supplier> suppliers = DataAccess.instance?.GetSuppliers();
 				List<CustomerFavorite> custFav = DataAccess.instance.GetCustomerFavorite(customerId).Favorites;
-				List<CustomerOrderItem> custItems = (DataAccess.instance.GetCustomerOrderforCustomer(customerId)?.Items ?? new List<CustomerOrderItem>()).Where(x => x.DeliverQty < x.RequestQty).ToList();
+				List<CustomerOrderItem> custItems = (DataAccess.instance.GetCustomerOrderforCustomer(customerId)?.Items ?? new List<CustomerOrderItem>())
+					                                .Where(x => x.DeliverQty < x.RequestQty).ToList();
 
 				custOrder_datagrid.DataSource = DataAccess.instance.GetInventory()
 					// Join in Favorites
@@ -175,6 +174,7 @@ namespace SecretCellar.Orders_Panels {
 						Inv = i,
 						Fav = f.SingleOrDefault()
 					})
+
 					//.Where(x => x.Fav.InventoryID != 0 && !x.Inv.Hidden)
 					.GroupJoin(custItems, i => i.Inv.Id, o => o.Id, (i, o) => new {
 						i.Inv,
@@ -189,9 +189,12 @@ namespace SecretCellar.Orders_Panels {
 						i.Ord,
 						Sup = o.SingleOrDefault()
 					}) 
-					.Where(x => (x.Fav != null || x.Ord != null) && (!x.Inv.Hidden ) &&
+
+					.Where(x => (x.Fav != null || x.Ord != null) &&
+								(!x.Inv.Hidden) &&
 								(cbx_supp_custorder.Text == "" ||
-								 cbx_supp_custorder.Text == x.Sup.Name))
+									cbx_supp_custorder.Text == x?.Sup?.Name))
+
 					.Select(x => new {
 						x.Inv.Id,
 						x.Inv.Name,
@@ -202,8 +205,8 @@ namespace SecretCellar.Orders_Panels {
 						x.Inv.Price,
 						Lastused = x.Fav?.Lastused.ToString("MM/dd/yy")
 					})
-					.ToList();
 
+					.ToList();
             }
 		}
     }

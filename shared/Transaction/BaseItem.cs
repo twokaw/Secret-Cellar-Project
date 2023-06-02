@@ -21,6 +21,9 @@ namespace Shared
         public uint RequestQty { get; set; }
         public uint SuspendedQty { get; set; }
         public uint RequiredQty { get; set; }
+        public int Vintage { get; set; }
+        public string Description2 { get; set; }
+
 
         // Price in dollars
         public double Price { get; set; }

@@ -143,7 +143,9 @@ namespace pos_core_api.ORM
                             Barcode = reader.IsDBNull("barcode") ? "" : reader.GetString("barcode"),
                             Price = reader.IsDBNull("retail_price") ? 0.00 : reader.GetDouble("retail_price"),
                             DiscountPrice = reader.IsDBNull("discount_price") ? 0.00 : reader.GetDouble("discount_price"),
+                            Description2 = reader.IsDBNull("description") ? "" : reader.GetString("description"),
                             TypeID = reader.IsDBNull("typeID") ? 0 : reader.GetUInt32("typeID"),
+                            Vintage= reader.IsDBNull("vintage") ? 0 : reader.GetInt32("vintage"),
                             Bottles = reader.IsDBNull("bottles") ? 0 : reader.GetUInt32("bottles"),
                             NonTaxable = !reader.IsDBNull("nontaxable") && (0 != reader.GetInt16("nontaxable")),
                             NonTaxableLocal = !reader.IsDBNull("nontaxable_local") && (0 != reader.GetInt16("nontaxable_local")),
@@ -292,7 +294,10 @@ namespace pos_core_api.ORM
                     invmax = @invmax, 
                     invmin = @invmin, 
                     orderqty = @orderqty, 
-                    hidden = @hidden
+                    hidden = @hidden, 
+                    vintage = @vintage, 
+                    Description = @description
+
                 WHERE inventoryid = @id;
             ");
 
@@ -309,7 +314,9 @@ namespace pos_core_api.ORM
             cmd.Parameters.Add(new MySqlParameter("InvMax", inv.InvMax));
             cmd.Parameters.Add(new MySqlParameter("InvMin", inv.InvMin));
             cmd.Parameters.Add(new MySqlParameter("OrderQty", inv.OrderQty));
-            cmd.Parameters.Add(new MySqlParameter("Hidden", inv.Hidden));
+            cmd.Parameters.Add(new MySqlParameter("hidden", inv.Hidden));
+            cmd.Parameters.Add(new MySqlParameter("vintage", inv.Vintage));
+            cmd.Parameters.Add(new MySqlParameter("Description", inv.Description2));
 
             try
             {
