@@ -1,12 +1,7 @@
 ﻿using Shared;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SecretCellar.Settings_Panels
@@ -23,11 +18,8 @@ namespace SecretCellar.Settings_Panels
                 GetEmployeeRoles();
                 PopulateEmp();
                 EndButtonText();
-                
             }
-
         }
-       
 
         /// <summary>
         /// Enables/Disables the buttons based on the given boolean.
@@ -43,20 +35,14 @@ namespace SecretCellar.Settings_Panels
             lbl_Login.Visible = shouldButtonsBeEnabled;
         }
 
-
         private void PopulateEmp()
         {
             if (chk_box_past_emp.Checked)
-            {
                 lst_employee.DataSource = DataAccess.instance.GetEmployee().Where(x => x.EndDate != null).ToList();
-
-            }
             else 
-            {
                 lst_employee.DataSource = DataAccess.instance.GetEmployee().Where(x => x.EndDate == null).ToList();
-            }
-
         } 
+
         private void GetEmployeeTypes()
         {
             employeeTypes = DataAccess.instance.GetEmployeeTypes();
@@ -66,22 +52,12 @@ namespace SecretCellar.Settings_Panels
         private void GetEmployeeRoles()
         {
             employeeRoles = DataAccess.instance.GetEmployeeRoles();
-            //lstbx_roles.
-            //lstbx_roles.DataSource = employeeRoles; //.Select(x => x.RoleName ).ToList();
+            lstbx_roles.DataSource = employeeRoles;
         }
-        private void EndButtonText()
-        {
-            if(chk_box_past_emp.CheckState == CheckState.Unchecked)
-                {
-                btn_end.Text = "Disabled";
-                }
-            else
-            {
-                btn_end.Text = "Enable";
-            }
-        }
-            
 
+        private void EndButtonText() =>
+            btn_end.Text = (chk_box_past_emp.CheckState == CheckState.Unchecked) ? "Disabled" : "Enable";
+        
         private void lst_employee_SelectedIndexChanged(object sender, EventArgs e)
         {
             txt_Login.Text = ((EmployeeModel)lst_employee.SelectedItem).UserName;
@@ -98,21 +74,15 @@ namespace SecretCellar.Settings_Panels
             txt_enddate.Text = ((EmployeeModel)lst_employee.SelectedItem).EndDate?.ToString("MM/dd/yyyy");
             btn_end.Text = ((EmployeeModel)lst_employee.SelectedItem).EndDate == null?"Disabled":"Enabled";
             cbx_types.SelectedItem = employeeTypes.FirstOrDefault(x => x.TypeID == ((EmployeeModel)lst_employee.SelectedItem).EmployeeType.TypeID);
-            for (int i = 0; i < lstbx_roles.Items.Count; i++)
-            {
-                lstbx_roles.SetItemChecked(i, ((EmployeeModel)lst_employee.SelectedItem).EmployeeType.Roles.Any(x => x.RoleID == ((EmployeeRoleModel)lstbx_roles.Items[i]).RoleID ));
-            }
-                
 
+            for (int i = 0; i < lstbx_roles.Items.Count; i++)
+                lstbx_roles.SetItemChecked(i, ((EmployeeModel)lst_employee.SelectedItem).EmployeeType.Roles.Any(x => x.RoleID == ((EmployeeRoleModel)lstbx_roles.Items[i]).RoleID ));
         }
 
         private void cbx_typesSelectedIndexChanged(object sender, EventArgs e)
         {
             for (int i = 0; i < lstbx_roles.Items.Count; i++)
-            {
                 lstbx_roles.SetItemChecked(i, ((EmployeeTypeModel)cbx_types.SelectedItem).Roles.Any(x => x.RoleID == ((EmployeeRoleModel)lstbx_roles.Items[i]).RoleID));
-            }
-            
         }
 
         private void btn_add_Click(object sender, EventArgs e)
@@ -126,9 +96,7 @@ namespace SecretCellar.Settings_Panels
                 return;
             }
             else
-            {
                 newEmp.FirstName = txt_fname.Text;
-            }
 
             if (string.IsNullOrEmpty(txt_lname.Text))
             {
@@ -138,12 +106,11 @@ namespace SecretCellar.Settings_Panels
                 return;
             }
             else
-            {
                 newEmp.LastName = txt_lname.Text;
-            }
 
             if(string.IsNullOrWhiteSpace (txt_Login.Text))
                 txt_Login.Text = (txt_lname.Text.Trim(), txt_fname.Text.Trim()).ToString();
+
             txt_Login.Text = txt_Login.Text.Trim(); 
 
             if (!CheckUserName(txt_Login.Text))
@@ -153,6 +120,7 @@ namespace SecretCellar.Settings_Panels
                 MessageBox.Show("Login is already in use.  Enter a new Login");
                 return;
             }
+
             newEmp.Address1 = txt_address1.Text;
             newEmp.Address2 = txt_address2.Text;
             newEmp.City = txt_city.Text;
@@ -161,7 +129,6 @@ namespace SecretCellar.Settings_Panels
             newEmp.PhoneNumber = txt_phone.Text;
             newEmp.Email = txt_email.Text;
             newEmp.PinNumber = 123;
-            
             newEmp.StartDate = (DateTime.TryParse(txt_startdate.Text, out DateTime startdate) ?startdate : DateTime.Now);
             newEmp.EmployeeType = (EmployeeTypeModel)cbx_types.SelectedItem;
 
@@ -175,7 +142,6 @@ namespace SecretCellar.Settings_Panels
             
             return null == emp || emp.EmpID == currentId;
         }
-
 
         private void btn_update_Click(object sender, EventArgs e)
         {
@@ -198,9 +164,7 @@ namespace SecretCellar.Settings_Panels
                 return;
             }
             else
-            {
                 updateEmp.FirstName = txt_fname.Text;
-            }
 
             if (string.IsNullOrEmpty(txt_lname.Text))
             {
@@ -210,9 +174,7 @@ namespace SecretCellar.Settings_Panels
                 return;
             }
             else
-            {
                 updateEmp.LastName = txt_lname.Text;
-            }
 
             updateEmp.Address1 = txt_address1.Text;
             updateEmp.Address2 = txt_address2.Text;
@@ -220,6 +182,7 @@ namespace SecretCellar.Settings_Panels
             updateEmp.State = txt_state.Text;
             updateEmp.ZipCode = txt_zipcode.Text;
             updateEmp.Email = txt_email.Text;
+            updateEmp.EmployeeType = (EmployeeTypeModel)cbx_types.SelectedItem;
             
             DataAccess.instance.UpdateEmployee(updateEmp);
             PopulateEmp();
@@ -253,9 +216,7 @@ namespace SecretCellar.Settings_Panels
 
         private void chk_box_past_emp_CheckedChanged(object sender, EventArgs e)
         {
-           
             PopulateEmp();
-            
             EndButtonText();
         }
     }

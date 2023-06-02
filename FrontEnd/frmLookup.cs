@@ -47,7 +47,7 @@ namespace SecretCellar
 
         private void btn_add_Click(object sender, EventArgs e)
         {
-            if (addCharge())
+            if (AddCharge())
             {
                 this.DialogResult = DialogResult.OK;
                 txtlookup.Text = "";
@@ -76,7 +76,7 @@ namespace SecretCellar
             this.Close();
         }
 
-        private bool addCharge()
+        private bool AddCharge()
         {
             if (LookupView.SelectedRows.Count > 0)
             {
@@ -88,7 +88,7 @@ namespace SecretCellar
             return false;
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e) { RefreshInv(); }
+        private void textBox1_TextChanged(object sender, EventArgs e) => RefreshInv();
 
         private void LookupView_SelectionChanged(object sender, EventArgs e)
         {
@@ -113,7 +113,9 @@ namespace SecretCellar
                 txt_min_qty.Text = i.InvMin.ToString();
                 txt_max_qty.Text = i.InvMax.ToString();
                 txt_order_qty.Text = i.OrderQty.ToString();
+                txt_Vintage.Text = i.Vintage.ToString();
                 chk_hide_item.Checked = i.Hidden;
+                txt_Description.Text = i.Description2.ToString();
 
                 // CLEAR ALL THE DISCOUNTS THAT ARE IN THE DISCOUNTS LIST ALREADY
                 checkListBox_Discounts.Items.Clear();
@@ -263,6 +265,10 @@ namespace SecretCellar
                         i.ItemType = cboType.Text;
                         i.TypeID = types.First(x => x.TypeName == cboType.Text).TypeId;
                         i.SupplierID = suppliers.First(x => x.Name == cbo_Supplier.Text).SupplierID;
+                        i.Description2 = txt_Description.Text;
+                        
+                        if(int.TryParse(txt_Vintage.Text.Trim(), out int vintage))
+                            i.Vintage = vintage;
 
                         i.Discounts.Clear();
 
@@ -320,7 +326,8 @@ namespace SecretCellar
                         PurchasedDate = DateTime.Now
                     });
 
-                    if (double.TryParse(txtPrice.Text, out double price)) i.Price = price;
+                    if (double.TryParse(txtPrice.Text, out double price)) 
+                        i.Price = price;
                     else {
                         txtPrice.Focus();
                         txtPrice.SelectAll();
@@ -328,7 +335,8 @@ namespace SecretCellar
                         return;
                     }
 
-                    if (double.TryParse(currencyBox_discountPrice.Text, out double discountPrice)) i.DiscountPrice = discountPrice;
+                    if (double.TryParse(currencyBox_discountPrice.Text, out double discountPrice)) 
+                        i.DiscountPrice = discountPrice;
                     else {
                         txtPrice.Focus();
                         txtPrice.SelectAll();
@@ -336,8 +344,10 @@ namespace SecretCellar
                         return;
                     }
 
-                    if (uint.TryParse(txtProd_Qty.Text, out uint product)) i.Bottles = product;
-                    else {
+                    if (uint.TryParse(txtProd_Qty.Text, out uint product)) 
+                    i.Bottles = product;
+                    else 
+                {
                         txtProd_Qty.Focus();
                         txtProd_Qty.SelectAll();
                         MessageBox.Show("Invalid Product Quantity");
@@ -347,7 +357,8 @@ namespace SecretCellar
                     i.TypeID = types.First(x => x.TypeName == cboType.Text).TypeId;
                     i.SupplierID = suppliers.First(x => x.Name == cbo_Supplier.Text).SupplierID;
 
-                    if (uint.TryParse(txt_min_qty.Text.Trim(), out uint min)) i.InvMin = min;
+                    if (uint.TryParse(txt_min_qty.Text.Trim(), out uint min)) 
+                        i.InvMin = min;
                     else {
                         txt_min_qty.Focus();
                         txt_min_qty.SelectAll();
@@ -355,18 +366,22 @@ namespace SecretCellar
                         return;
                     }
 
-                    if (uint.TryParse(txt_max_qty.Text.Trim(), out uint max)) i.InvMax = max;
+                    if (uint.TryParse(txt_max_qty.Text.Trim(), out uint max)) 
+                        i.InvMax = max;
                     else {
                         txt_max_qty.Focus();
                         txt_max_qty.SelectAll();
                         MessageBox.Show("Invalid Max Qty");
                         return;
                     }
+                    i.Description2 = txt_Description.Text;
 
+                if(int.TryParse (txt_Vintage.Text.Trim(), out int vintage))
+                    i.Vintage = vintage;
                     //i.InvMax = uint.Parse(txt_max_qty.Text.Trim());
                     //i.OrderQty = uint.Parse(txt_order_qty.Text.Trim());
 
-                    i.Id = DataAccess.instance.InsertItem(i);
+                i.Id = DataAccess.instance.InsertItem(i);
                     
                 }
                 else {
@@ -378,11 +393,11 @@ namespace SecretCellar
         }
 
 
-        private void cbxTypeFilter_SelectedIndexChanged(object sender, EventArgs e) { RefreshInv(); }
-        private void cbxSupplyFilter_SelectedIndexChanged(object sender, EventArgs e) { RefreshInv(); }
-        private void cbxOnlyItemsWithInventory_CheckedChanged(object sender, EventArgs e) { RefreshInv(); }
-        private void chk_box_show_hidden_CheckedChanged(object sender, EventArgs e) { RefreshInv(); }
-        private void btn_clear_info_Click(object sender, EventArgs e) { Clear(); }
+        private void cbxTypeFilter_SelectedIndexChanged(object sender, EventArgs e) => RefreshInv(); 
+        private void cbxSupplyFilter_SelectedIndexChanged(object sender, EventArgs e) => RefreshInv(); 
+        private void cbxOnlyItemsWithInventory_CheckedChanged(object sender, EventArgs e) => RefreshInv(); 
+        private void chk_box_show_hidden_CheckedChanged(object sender, EventArgs e) => RefreshInv(); 
+        private void btn_clear_info_Click(object sender, EventArgs e) => Clear(); 
 
         public void Clear(string barcode = "")
         {
@@ -400,6 +415,7 @@ namespace SecretCellar
             txt_min_qty.Text = "0";
             txt_order_qty.Text = "0";
             txt_max_qty.Text = "0";
+            txt_Vintage.Text = "";
             chk_hide_item.Checked = false;
             txtName.Focus();
         }
@@ -490,23 +506,25 @@ namespace SecretCellar
                     {
                         uint selectedItemId = uint.Parse(LookupView.SelectedRows[0].Cells["Id"].Value.ToString());
 
-                        if (item.Id == selectedItemId) { selectedItemIsInSuspendedTransaction = true; break; }
+                        if (item.Id == selectedItemId) 
+                        { 
+                            selectedItemIsInSuspendedTransaction = true; 
+                            break; 
+                        }
                     }
 
                     if (selectedItemIsInSuspendedTransaction) break; 
                 }
             }
 
-            if (selectedItemIsInSuspendedTransaction) { button_DeleteItem.Enabled = false; }
-            else { button_DeleteItem.Enabled = true; }
+            if (selectedItemIsInSuspendedTransaction) { btn_DeleteItem.Enabled = false; }
+            else { btn_DeleteItem.Enabled = true; }
         }
 
         private void frmLookup_Load(object sender, EventArgs e) 
         {
             if(NewBarcode != "")
-            {
                 Clear(NewBarcode);
-            }
 
 			txtlookup.Text = InitialSearch;
 			InitialSearch = "";
