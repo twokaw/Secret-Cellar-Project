@@ -384,6 +384,15 @@ namespace SecretCellar
             if (transaction.TranType == Transaction.TranactionType.Closed)
                 transaction.TranType = Transaction.TranactionType.Suspended;
 
+            //REMOVE ANY COUPONS BEFORE PROCESSING SO IT DOESN'T CREATE A SECOND SUSPENDED TRANSACTION
+            for (int i=transaction.Items.Count-1; i>=0; i--) {
+                Item item = transaction.Items[i];
+
+                if (item.Name == "Coupon") {
+                    transaction.Items.RemoveAt(i);
+                }
+			}
+
             //PROCESS THE TRANSACTION TO SUSPEND IT
             DataAccess.instance.ProcessTransaction(transaction);
 
