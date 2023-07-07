@@ -276,12 +276,11 @@ namespace pos_core_api.ORM
             }
         }
 
-        public void Delete(uint typeId)
-        {
-            MySqlCommand cmd = db.CreateCommand(@"
-              DELETE FROM employeerole 
-              WHERE roleid = @typeid;
+        public void Delete(uint typeId) {
+            EmployeeTypeModel employeeTypeModel = Get(typeId);
+			RemoveRolesFromType(typeId, employeeTypeModel.Roles);
 
+			MySqlCommand cmd = db.CreateCommand(@"
               DELETE FROM employeetype 
               WHERE typeid = @typeid;
             ");
@@ -297,6 +296,32 @@ namespace pos_core_api.ORM
                 db.CloseCommand(cmd);
             }
         }
+
+
+        /// <summary>
+        /// Removes all the roles from the type with the given id.
+        /// </summary>
+        /// <param name="typeId"></param>
+        /// <param name="roles"></param>
+        private void RemoveRolesFromType(uint typeId, List<EmployeeRoleModel> roles) {
+            roles.ForEach((role) => {
+				MySqlCommand cmd = db.CreateCommand(@"
+                    DELETE FROM employeetyperole
+                    WHERE typeid = @typeid and roleid = @roleID;
+                ");
+
+				cmd.Parameters.Add(new MySqlParameter("typeID", typeId));
+				cmd.Parameters.Add(new MySqlParameter("roleID", role.RoleID));
+
+				try {
+					cmd.ExecuteNonQuery();
+				}
+				finally {
+					db.CloseCommand(cmd);
+				}
+			});
+        }
+
 
         public bool DoesEmployeeTypeExist(uint typeId)
         {

@@ -64,7 +64,20 @@ namespace pos_core_api.Controllers
         
         }
 
-        [HttpPost("role")]
+
+		[HttpDelete("{id}")]
+		public IActionResult DeleteType(uint id) {
+			try {
+				DataAccess.Instance.EmployeeType.Delete(id);
+				return Ok();
+			}
+			catch (Exception ex) {
+				return BadRequest(ex.Message);
+			}
+		}
+
+
+		[HttpPost("role")]
         public IActionResult PostRole([FromBody] EmployeeRoleModel role)
         {
             try
@@ -91,5 +104,5 @@ namespace pos_core_api.Controllers
                 return BadRequest(ex.Message);
             }
         }
-    }
+	}
 }

@@ -231,7 +231,12 @@ namespace SecretCellar
             return (EmployeeTypeModel)JsonConvert.DeserializeObject(result, typeof(EmployeeTypeModel));
         }
 
-        public EmployeeTypeModel InsertEmployeeRole(EmployeeRoleModel empRole)
+		public void DeleteEmployeeType(uint id) {
+			try { web.DataDelete($"api/EmployeeType/{id}"); }
+			catch (Exception e) { LogError(e, "DeleteEmployeeType"); }
+		}
+
+		public EmployeeTypeModel InsertEmployeeRole(EmployeeRoleModel empRole)
         {
             string result = web.DataPost("api/EmployeeType/Role", empRole);
             return (EmployeeTypeModel)JsonConvert.DeserializeObject(result, typeof(EmployeeModel));
@@ -242,11 +247,11 @@ namespace SecretCellar
             string result = web.DataPut("api/EmployeeType/Role", empRole);
             return (EmployeeTypeModel)JsonConvert.DeserializeObject(result, typeof(EmployeeModel));
         }
-        #endregion
+		#endregion
 
 
-        #region Suppliers
-        public List<Supplier> GetSuppliers()
+		#region Suppliers
+		public List<Supplier> GetSuppliers()
         {
             string result = web.DataGet("api/Supplier");
             return JsonConvert.DeserializeObject<List<Supplier>>(result);
