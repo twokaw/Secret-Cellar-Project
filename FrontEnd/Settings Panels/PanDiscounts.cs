@@ -116,5 +116,10 @@ namespace SecretCellar.Settings_Panels
             discounts = DataAccess.instance.GetDiscount();
             discounts?.ForEach(x => chk_lst_discount.Items.Add(x.DiscountName));
         }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
