@@ -34,16 +34,6 @@ namespace SecretCellar.Settings_Panels
         }
 
 
-        private void cbx_empTypes_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            
-            for (int i = 0; i < chk_lstbx_Roles.Items.Count; i++)
-                chk_lstbx_Roles.SetItemChecked(i, ((EmployeeTypeModel)cbx_empTypes.SelectedItem).Roles.Any(x => x.RoleID == ((EmployeeRoleModel)chk_lstbx_Roles.Items[i]).RoleID));
-
-            txt_typeName.Text = cbx_empTypes.SelectedItem.ToString();
-        }
-
-
         /// <summary>
         /// Update the role checkboxes on employee type select.
         /// </summary>
