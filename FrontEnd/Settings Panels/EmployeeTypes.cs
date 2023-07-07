@@ -129,8 +129,9 @@ namespace SecretCellar.Settings_Panels
 			string selectedId = dataGridView_employeeTypes.SelectedRows[0].Cells["Id"].Value.ToString();
 			EmployeeTypeModel selectedEmployeeTypeModel = employeeTypes.Find((empType) => empType.TypeID == uint.Parse(selectedId));
             if (selectedEmployeeTypeModel == null) return;
-            
-            //TODO Call DataAccess delete employee type here.
+
+            DataAccess.instance.DeleteEmployeeType(selectedEmployeeTypeModel.TypeID);
+            RefreshEmployeeTypes();
 		}
 
 

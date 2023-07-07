@@ -277,8 +277,6 @@ namespace pos_core_api.ORM
         }
 
         public void Delete(uint typeId) {
-            //DELETE FROM employeerole 
-            //WHERE roleid = @typeid;
             EmployeeTypeModel employeeTypeModel = Get(typeId);
 			RemoveRolesFromType(typeId, employeeTypeModel.Roles);
 
