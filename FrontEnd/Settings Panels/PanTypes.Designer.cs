@@ -97,6 +97,7 @@ namespace SecretCellar.Settings_Panels
             this.panMain.Name = "panMain";
             this.panMain.Size = new System.Drawing.Size(909, 482);
             this.panMain.TabIndex = 49;
+            this.panMain.VisibleChanged += new System.EventHandler(this.panel3_VisibleChanged);
             // 
             // lbl_discount
             // 
@@ -115,7 +116,7 @@ namespace SecretCellar.Settings_Panels
             this.txt_orderIncrement.Location = new System.Drawing.Point(398, 141);
             this.txt_orderIncrement.Margin = new System.Windows.Forms.Padding(6);
             this.txt_orderIncrement.Name = "txt_orderIncrement";
-            this.txt_orderIncrement.Size = new System.Drawing.Size(113, 22);
+            this.txt_orderIncrement.Size = new System.Drawing.Size(113, 30);
             this.txt_orderIncrement.TabIndex = 45;
             this.txt_orderIncrement.TabStop = false;
             // 
@@ -128,8 +129,9 @@ namespace SecretCellar.Settings_Panels
             this.chk_lst_discount.Location = new System.Drawing.Point(545, 118);
             this.chk_lst_discount.Margin = new System.Windows.Forms.Padding(6);
             this.chk_lst_discount.Name = "chk_lst_discount";
-            this.chk_lst_discount.Size = new System.Drawing.Size(323, 123);
+            this.chk_lst_discount.Size = new System.Drawing.Size(323, 139);
             this.chk_lst_discount.TabIndex = 9;
+            this.chk_lst_discount.SelectedIndexChanged += new System.EventHandler(this.chk_lst_discount_SelectedIndexChanged);
             // 
             // label7
             // 
@@ -145,16 +147,16 @@ namespace SecretCellar.Settings_Panels
             this.txt_Bottles.Location = new System.Drawing.Point(398, 179);
             this.txt_Bottles.Margin = new System.Windows.Forms.Padding(6);
             this.txt_Bottles.Name = "txt_Bottles";
-            this.txt_Bottles.Size = new System.Drawing.Size(113, 22);
+            this.txt_Bottles.Size = new System.Drawing.Size(113, 30);
             this.txt_Bottles.TabIndex = 41;
             this.txt_Bottles.TabStop = false;
             // 
             // label2
             // 
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
-            this.label2.Location = new System.Drawing.Point(221, 407);
+            this.label2.Location = new System.Drawing.Point(226, 382);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(141, 32);
+            this.label2.Size = new System.Drawing.Size(136, 57);
             this.label2.TabIndex = 38;
             this.label2.Text = "Number of Items:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -164,7 +166,7 @@ namespace SecretCellar.Settings_Panels
             this.txt_MaxQty.Location = new System.Drawing.Point(398, 65);
             this.txt_MaxQty.Margin = new System.Windows.Forms.Padding(6);
             this.txt_MaxQty.Name = "txt_MaxQty";
-            this.txt_MaxQty.Size = new System.Drawing.Size(113, 22);
+            this.txt_MaxQty.Size = new System.Drawing.Size(113, 30);
             this.txt_MaxQty.TabIndex = 39;
             this.txt_MaxQty.TabStop = false;
             // 
@@ -176,18 +178,19 @@ namespace SecretCellar.Settings_Panels
             this.textBox_itemsUsingInventory.Location = new System.Drawing.Point(398, 412);
             this.textBox_itemsUsingInventory.Name = "textBox_itemsUsingInventory";
             this.textBox_itemsUsingInventory.ReadOnly = true;
-            this.textBox_itemsUsingInventory.Size = new System.Drawing.Size(194, 22);
+            this.textBox_itemsUsingInventory.Size = new System.Drawing.Size(112, 30);
             this.textBox_itemsUsingInventory.TabIndex = 37;
             // 
             // button_deleteInventory
             // 
-            this.button_deleteInventory.Location = new System.Drawing.Point(689, 340);
+            this.button_deleteInventory.Location = new System.Drawing.Point(689, 354);
             this.button_deleteInventory.Margin = new System.Windows.Forms.Padding(6);
             this.button_deleteInventory.Name = "button_deleteInventory";
-            this.button_deleteInventory.Size = new System.Drawing.Size(122, 35);
+            this.button_deleteInventory.Size = new System.Drawing.Size(122, 41);
             this.button_deleteInventory.TabIndex = 36;
             this.button_deleteInventory.Text = "Delete";
             this.button_deleteInventory.UseVisualStyleBackColor = true;
+            this.button_deleteInventory.Click += new System.EventHandler(this.button_deleteInventory_Click);
             // 
             // label4
             // 
@@ -203,7 +206,7 @@ namespace SecretCellar.Settings_Panels
             this.txt_typename.Location = new System.Drawing.Point(307, 27);
             this.txt_typename.Margin = new System.Windows.Forms.Padding(6);
             this.txt_typename.Name = "txt_typename";
-            this.txt_typename.Size = new System.Drawing.Size(203, 22);
+            this.txt_typename.Size = new System.Drawing.Size(203, 30);
             this.txt_typename.TabIndex = 1;
             // 
             // txt_localTax
@@ -212,7 +215,7 @@ namespace SecretCellar.Settings_Panels
             this.txt_localTax.Margin = new System.Windows.Forms.Padding(6);
             this.txt_localTax.Name = "txt_localTax";
             this.txt_localTax.ReadOnly = true;
-            this.txt_localTax.Size = new System.Drawing.Size(113, 22);
+            this.txt_localTax.Size = new System.Drawing.Size(113, 30);
             this.txt_localTax.TabIndex = 5;
             this.txt_localTax.TabStop = false;
             // 
@@ -221,7 +224,7 @@ namespace SecretCellar.Settings_Panels
             this.txt_MinQty.Location = new System.Drawing.Point(398, 103);
             this.txt_MinQty.Margin = new System.Windows.Forms.Padding(6);
             this.txt_MinQty.Name = "txt_MinQty";
-            this.txt_MinQty.Size = new System.Drawing.Size(113, 22);
+            this.txt_MinQty.Size = new System.Drawing.Size(113, 30);
             this.txt_MinQty.TabIndex = 40;
             this.txt_MinQty.TabStop = false;
             // 
@@ -230,10 +233,11 @@ namespace SecretCellar.Settings_Panels
             this.btn_type_clear.Location = new System.Drawing.Point(689, 293);
             this.btn_type_clear.Margin = new System.Windows.Forms.Padding(6);
             this.btn_type_clear.Name = "btn_type_clear";
-            this.btn_type_clear.Size = new System.Drawing.Size(122, 35);
+            this.btn_type_clear.Size = new System.Drawing.Size(122, 41);
             this.btn_type_clear.TabIndex = 6;
             this.btn_type_clear.Text = "Clear";
             this.btn_type_clear.UseVisualStyleBackColor = true;
+            this.btn_type_clear.Click += new System.EventHandler(this.btn_type_clear_Click);
             // 
             // label5
             // 
@@ -250,7 +254,7 @@ namespace SecretCellar.Settings_Panels
             this.cbx_tax.Location = new System.Drawing.Point(398, 217);
             this.cbx_tax.Margin = new System.Windows.Forms.Padding(9, 8, 9, 8);
             this.cbx_tax.Name = "cbx_tax";
-            this.cbx_tax.Size = new System.Drawing.Size(112, 24);
+            this.cbx_tax.Size = new System.Drawing.Size(112, 33);
             this.cbx_tax.TabIndex = 2;
             // 
             // lstTypes
@@ -258,12 +262,13 @@ namespace SecretCellar.Settings_Panels
             this.lstTypes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.lstTypes.FormattingEnabled = true;
-            this.lstTypes.ItemHeight = 16;
+            this.lstTypes.ItemHeight = 25;
             this.lstTypes.Location = new System.Drawing.Point(31, 66);
             this.lstTypes.Margin = new System.Windows.Forms.Padding(9, 8, 9, 8);
             this.lstTypes.Name = "lstTypes";
-            this.lstTypes.Size = new System.Drawing.Size(182, 340);
+            this.lstTypes.Size = new System.Drawing.Size(182, 329);
             this.lstTypes.TabIndex = 0;
+            this.lstTypes.SelectedIndexChanged += new System.EventHandler(this.lstTypes_SelectedIndexChanged);
             // 
             // label6
             // 
@@ -310,7 +315,7 @@ namespace SecretCellar.Settings_Panels
             this.txt_bottleDep.Margin = new System.Windows.Forms.Padding(6);
             this.txt_bottleDep.Name = "txt_bottleDep";
             this.txt_bottleDep.ReadOnly = true;
-            this.txt_bottleDep.Size = new System.Drawing.Size(113, 22);
+            this.txt_bottleDep.Size = new System.Drawing.Size(113, 30);
             this.txt_bottleDep.TabIndex = 3;
             this.txt_bottleDep.TabStop = false;
             // 
@@ -325,13 +330,14 @@ namespace SecretCellar.Settings_Panels
             // 
             // btn_update_type
             // 
-            this.btn_update_type.Location = new System.Drawing.Point(545, 340);
+            this.btn_update_type.Location = new System.Drawing.Point(545, 354);
             this.btn_update_type.Margin = new System.Windows.Forms.Padding(6);
             this.btn_update_type.Name = "btn_update_type";
-            this.btn_update_type.Size = new System.Drawing.Size(122, 35);
+            this.btn_update_type.Size = new System.Drawing.Size(122, 41);
             this.btn_update_type.TabIndex = 8;
             this.btn_update_type.Text = "Update Type";
             this.btn_update_type.UseVisualStyleBackColor = true;
+            this.btn_update_type.Click += new System.EventHandler(this.btn_update_type_Click);
             // 
             // txt_salesTax
             // 
@@ -339,7 +345,7 @@ namespace SecretCellar.Settings_Panels
             this.txt_salesTax.Margin = new System.Windows.Forms.Padding(6);
             this.txt_salesTax.Name = "txt_salesTax";
             this.txt_salesTax.ReadOnly = true;
-            this.txt_salesTax.Size = new System.Drawing.Size(113, 22);
+            this.txt_salesTax.Size = new System.Drawing.Size(113, 30);
             this.txt_salesTax.TabIndex = 4;
             this.txt_salesTax.TabStop = false;
             // 
@@ -348,10 +354,11 @@ namespace SecretCellar.Settings_Panels
             this.btn_new_type.Location = new System.Drawing.Point(545, 293);
             this.btn_new_type.Margin = new System.Windows.Forms.Padding(6);
             this.btn_new_type.Name = "btn_new_type";
-            this.btn_new_type.Size = new System.Drawing.Size(122, 35);
+            this.btn_new_type.Size = new System.Drawing.Size(122, 41);
             this.btn_new_type.TabIndex = 7;
             this.btn_new_type.Text = "New Type";
             this.btn_new_type.UseVisualStyleBackColor = true;
+            this.btn_new_type.Click += new System.EventHandler(this.btn_new_type_Click);
             // 
             // lbl_salesTax
             // 
@@ -373,7 +380,7 @@ namespace SecretCellar.Settings_Panels
             // 
             // PanTypes
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.panMain);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
