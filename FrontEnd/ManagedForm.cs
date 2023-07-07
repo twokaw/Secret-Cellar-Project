@@ -187,7 +187,7 @@ namespace SecretCellar
         public ManagedForm()
         {
             _forms.Add(this);
-            Console.WriteLine($"Constructed: {_forms.Count}");
+            //  Console.WriteLine($"Constructed: {_forms.Count}");
             base.FormClosed += ManagedForm_FormClosed;
             base.Load += ManagedForm_Load;
         }

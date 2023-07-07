@@ -9,11 +9,9 @@ using System.Windows.Forms;
 namespace SecretCellar.Orders_Panels {
 	public partial class Panel_Fulfillment : ManagedPanel {
 		private readonly Dictionary<uint, Transaction> _transactions = new Dictionary<uint, Transaction>();
-
 		private List<Inventory> _inventory = null;
 		private CustomerOrder _customerOrder = null;
 		private bool _shouldUpdateSelectedCustomer = true;
-
 
         public Panel_Fulfillment() {
 			InitializeComponent();
@@ -26,7 +24,6 @@ namespace SecretCellar.Orders_Panels {
 
 			RefreshDatagrid();
 		}
-
 
         /// <summary>
         /// Set the delivered quantity of the selected item by the amount in the Qty Delivered text box.
@@ -69,7 +66,6 @@ namespace SecretCellar.Orders_Panels {
 			}
         }
 
-
         /// <summary>
         /// Deliver all the items.
         /// </summary>
@@ -93,7 +89,6 @@ namespace SecretCellar.Orders_Panels {
 			}
         }
 
-
         /// <summary>
         /// Deliver the selected items.
         /// </summary>
@@ -116,8 +111,8 @@ namespace SecretCellar.Orders_Panels {
                         switch (MessageBox.Show(this, $"Insufficient quantity to fullfil the order\n"
                                                     + $"Inventory: {onhand}\n"
                                                     + $"Request Qty: {requestQty}\n\n"
-                                                    + $"Yes : Fulfill the full amount ({requestQty}) \n"
-                                                    + $"No  : Fulfill inventory amount ({onhand}) \n"
+                                                    + $"Yes : Fulfill the full amount ({requestQty})\n"
+                                                    + $"No  : Fulfill inventory amount ({onhand})\n"
                                                     + $"Cancel : Cancel Fulfillment",
                                                        "Insufficient quantity",
                                                     MessageBoxButtons.YesNoCancel)) {
@@ -224,12 +219,14 @@ namespace SecretCellar.Orders_Panels {
         /// <param name="customerId"></param>
         /// <returns></returns>
 		private uint GetInvoiceID(uint customerId) {
+
 			if (!_transactions.ContainsKey(customerId)
 			|| DialogResult.No == MessageBox.Show(this, "Would you like to use the current Invoice (Yes) or create a new one (No)", "Use Current Invoice", MessageBoxButtons.YesNo)) {
 				_transactions.Remove(customerId);
 				
 				_transactions.Add(customerId, new Transaction() {
-					TranType = Transaction.TranactionType.Invoice
+					TranType = Transaction.TranactionType.Invoice,
+					CustomerID = customerId
 				});
 
 				_transactions[customerId].InvoiceID = DataAccess.instance.ProcessTransaction(_transactions[customerId]);

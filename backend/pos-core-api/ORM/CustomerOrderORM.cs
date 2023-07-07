@@ -398,7 +398,6 @@ namespace pos_core_api.ORM
             }
         }
 
-
         private static List<CustomerOrder> FetchOrderCustomers(MySqlDataReader reader)
         {
             List<CustomerOrder> output = new();

@@ -83,12 +83,12 @@ namespace WebApi.Controllers
 
                 long id = DataAccess.Instance.CustomerOrder.Update(cust, customerID, transaction);
 
-                if (id > 0)
+                 if (id > 0)
                     return Ok(id);
                 else
                     return NotFound();
             }
-            catch (Exception ex)
+             catch (Exception ex)
             {
                 ErrorLogging.WriteToErrorLog(ex);
                 return StatusCode(500, ex.Message);
