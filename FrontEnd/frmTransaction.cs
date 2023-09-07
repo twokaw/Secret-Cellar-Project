@@ -204,7 +204,6 @@ namespace SecretCellar
             txt_transTax.Text = (transaction.Tax + transaction.LocalTax).ToString("C");
             txt_transDiscount.Text = transaction.DiscountTotal.ToString("C");
             txt_TransTotal.Text = transaction.Total.ToString("C");
-            txt_Ship.Text = transaction.Shipping.ToString("C");
 
             if (transaction.CustomerID >= 0) {
                 if (transaction.CustomerID == 0) { 
@@ -407,7 +406,6 @@ namespace SecretCellar
             txt_transTax.Text = "$0.00";
             txt_transDiscount.Text = "$0.00";
             txt_TransTotal.Text = "$0.00";
-            txt_Ship.Text = "$0.00";
 
             //HIDE THE SUSPEND TRANSACTION BUTTON
             pic_susp.Visible = false;
@@ -431,7 +429,6 @@ namespace SecretCellar
             txt_transTax.Text = "$0.00";
             txt_transDiscount.Text = "$0.00";
             txt_TransTotal.Text = "$0.00";
-            txt_Ship.Text = "$0.00";
 
             transaction = newTransaction;
             caseDiscount.Checked = transaction.EnableBulkDiscount;
