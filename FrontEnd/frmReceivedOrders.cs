@@ -1,57 +1,32 @@
 ﻿using System;
-using SecretCellar;
 using Shared;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace SecretCellar
-{
-    public partial class frmReceivedOrders : ManagedForm
 
-    {
-        private List<Supplier> suppliers = null;
-        public frmReceivedOrders()
-        {
+
+namespace SecretCellar {
+    public partial class frmReceivedOrders : ManagedForm {
+        public frmReceivedOrders() {
             InitializeComponent();
-            suppliers = DataAccess.instance.GetSuppliers();
-            suppliers.Insert(0, new Supplier()
-            {
+
+			List<Supplier> suppliers = DataAccess.instance.GetSuppliers();
+            suppliers.Insert(0, new Supplier() {
                 Name = "All",
                 SupplierID = 0
-
             });
 
             txt_received_qty.Focus();
             received_dataGrid.Columns[5].DefaultCellStyle.Format = "C";
             cbx_supplier.DataSource = suppliers;
             cbx_supplier.DisplayMember = "Name";
-
-            received_dataGrid.DataSource = DataAccess.instance.GetInventory().Where(x => x.OrderQty > 0).
-               Select(x => new {
-                   Name = x.Name,
-                   Id = x.Id,
-                   ItemType = x.ItemType,
-                   Qty = x.Qty,
-                   Barcode = x.Barcode,
-                   Price = x.SupplierPrice,
-                   minqty = x.InvMin,
-                   maxqty = x.InvMax,
-                   orderqty = x.OrderQty
-               }).
-               OrderBy(x => x.Name).
-               ToList();
+            cbx_supplier.SelectedIndex = 0;
         }
 
-        private void cbx_supplier_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            refresh();
-        }
+
+        private void cbx_supplier_SelectedIndexChanged(object sender, EventArgs e) { RefreshTable(); }
+
 
         private void btn_update_Click(object sender, EventArgs e) {
             if (received_dataGrid.SelectedRows.Count <= 0) {
@@ -98,7 +73,7 @@ namespace SecretCellar
 
 			DataAccess.instance.UpdateItem(inventory);
 
-			refresh();
+			RefreshTable();
             txt_received_qty.Text = "";
         }
 
@@ -123,15 +98,15 @@ namespace SecretCellar
 				DataAccess.instance.UpdateItem(inventory);
 			}
 
-			refresh();
+			RefreshTable();
 		}
 
 
-		private void refresh()
-        {
+		private void RefreshTable() {
             uint id = ((Supplier)cbx_supplier.SelectedItem).SupplierID;
-            received_dataGrid.DataSource = DataAccess.instance.GetInventory().Where(x => (id == x.SupplierID || id == 0) && x.OrderQty > 0).
-               Select(x => new {
+
+            received_dataGrid.DataSource = DataAccess.instance.GetInventory().Where(x => (id == x.SupplierID || id == 0) && x.OrderQty > 0)
+                .Select(x => new {
                    Name = x.Name,
                    Id = x.Id,
                    ItemType = x.ItemType,
@@ -141,9 +116,9 @@ namespace SecretCellar
                    minqty = x.InvMin,
                    maxqty = x.InvMax,
                    orderqty = x.OrderQty
-               }).
-               OrderBy(x => x.Name).
-               ToList();
+                })
+                .OrderBy(x => x.Name)
+                .ToList();
         }
 
 
