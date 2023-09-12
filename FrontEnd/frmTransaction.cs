@@ -207,7 +207,6 @@ namespace SecretCellar
             txt_transTax.Text = (transaction.Tax + transaction.LocalTax).ToString("C");
             txt_transDiscount.Text = transaction.DiscountTotal.ToString("C");
             txt_TransTotal.Text = transaction.Total.ToString("C");
-            txt_Ship.Text = transaction.Shipping.ToString("C");
 
             if (transaction.CustomerID >= 0) {
                 if (transaction.CustomerID == 0) { 
@@ -393,11 +392,20 @@ namespace SecretCellar
             if (transaction.TranType == Transaction.TranactionType.Closed)
                 transaction.TranType = Transaction.TranactionType.Suspended;
 
+            //REMOVE ANY COUPONS BEFORE PROCESSING SO IT DOESN'T CREATE A SECOND SUSPENDED TRANSACTION
+            for (int i=transaction.Items.Count-1; i>=0; i--) {
+                Item item = transaction.Items[i];
+
+                if (item.Name == "Coupon") {
+                    transaction.Items.RemoveAt(i);
+                }
+			}
+
             //PROCESS THE TRANSACTION TO SUSPEND IT
             DataAccess.instance.ProcessTransaction(transaction);
 
             transaction = CreateTransaction();
-
+            
             Clear();
 
             //HIDE THE SUSPEND TRANSACTION BUTTON
@@ -428,7 +436,6 @@ namespace SecretCellar
             txt_transTax.Text = "$0.00";
             txt_transDiscount.Text = "$0.00";
             txt_TransTotal.Text = "$0.00";
-            txt_Ship.Text = "$0.00";
 
             RefreshDataGrid();
             CheckAge();
