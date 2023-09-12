@@ -66,7 +66,13 @@ namespace SecretCellar {
             this.button_SubtractCredit.Text = "Subtract";
             this.button_SubtractCredit.UseVisualStyleBackColor = true;
             this.button_SubtractCredit.Click += new System.EventHandler(this.button_SubtractCredit_Click);
-
+            // 
+            // button_CloseWindow
+            // 
+            this.button_CloseWindow.Location = new System.Drawing.Point(0, 0);
+            this.button_CloseWindow.Name = "button_CloseWindow";
+            this.button_CloseWindow.Size = new System.Drawing.Size(75, 23);
+            this.button_CloseWindow.TabIndex = 0;
             // 
             // button_ResetCredit
             // 
@@ -104,7 +110,14 @@ namespace SecretCellar {
             this.button_ForceChange.Text = "Set";
             this.button_ForceChange.UseVisualStyleBackColor = true;
             this.button_ForceChange.Click += new System.EventHandler(this.button_ForceChange_Click);
-            //
+            // 
+            // button_Confirm
+            // 
+            this.button_Confirm.Location = new System.Drawing.Point(0, 0);
+            this.button_Confirm.Name = "button_Confirm";
+            this.button_Confirm.Size = new System.Drawing.Size(75, 23);
+            this.button_Confirm.TabIndex = 0;
+            // 
             // label_CustomersCreditValue
             // 
             this.label_CustomersCreditValue.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -148,6 +161,7 @@ namespace SecretCellar {
             this.touchKeyPad1.Size = new System.Drawing.Size(560, 550);
             this.touchKeyPad1.TabIndex = 58;
             this.touchKeyPad1.Target = null;
+            this.touchKeyPad1.Load += new System.EventHandler(this.touchKeyPad1_Load);
             // 
             // textBox_NewCreditAmount
             // 
@@ -203,6 +217,8 @@ namespace SecretCellar {
             this.Controls.Add(this.label_CustomersCreditValue);
             this.Controls.Add(this.label_NewCreditAmount);
             this.Controls.Add(this.textBox_NewCreditAmount);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(22)))), ((int)(((byte)(22)))));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(6);
