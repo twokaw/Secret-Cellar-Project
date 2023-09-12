@@ -84,5 +84,10 @@ namespace SecretCellar {
 				Close();
 			}
 		}
+
+        private void touchKeyPad1_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

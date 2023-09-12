@@ -13,13 +13,15 @@ namespace SecretCellar
     public partial class frmTransaction : ManagedForm
     {
         private Transaction transaction;
-
+        private Identification Id;
         private Customer CurrentCustomer = null;
         private Image logo = null;
 
         public frmTransaction()
         {
             InitializeComponent();
+
+
             txtBarcode.Focus();
             ReloadLogo();
             //this.Size = new System.Drawing.Size(1366, 768);
@@ -95,7 +97,8 @@ namespace SecretCellar
                 frmPayment payment = new frmPayment(transaction);
 
                 if (payment.ShowDialog() == DialogResult.OK) {
-                    try {
+                    try 
+                    {
                         DataAccess.instance.ProcessTransaction(transaction);
                     }
                     catch (Exception ex) {
@@ -263,15 +266,24 @@ namespace SecretCellar
                     RefreshDataGrid();
                 }
                 else {
-                    Inventory i = DataAccess.instance.GetItem(txtBarcode.Text.Trim());
-                    if (i != null) {
-                        transaction.Add(i);
-                        RefreshDataGrid();
+                    Identification id = Identification.CheckId(txtBarcode.Text);
+                    
+                    if (id != null)
+                    {
+                        CheckAge(id);
                     }
                     else
                     {
-                        DataAccess.instance.ShowLookupFormWithBarcode(transaction, txtBarcode.Text.Trim());
-                        RefreshDataGrid();
+                        Inventory i = DataAccess.instance.GetItem(txtBarcode.Text.Trim());
+                        if (i != null) {
+                            transaction.Add(i);
+                            RefreshDataGrid();
+                        }
+                        else
+                        {
+                            DataAccess.instance.ShowLookupFormWithBarcode(transaction, txtBarcode.Text.Trim());
+                            RefreshDataGrid();
+                        }
                     }
                 }
 
@@ -335,11 +347,8 @@ namespace SecretCellar
             txtBarcode.Focus();
         }
 
-
-        private void dataGridView1_Click(object sender, EventArgs e)
-        {
+        private void dataGridView1_Click(object sender, EventArgs e) =>
             txtBarcode.Focus();
-        }
 
         private void dataGridView1_RowsAdded(object sender, EventArgs e)
         {
@@ -387,33 +396,30 @@ namespace SecretCellar
             //PROCESS THE TRANSACTION TO SUSPEND IT
             DataAccess.instance.ProcessTransaction(transaction);
 
-            //CLEAR THE CURRENT TRANSACTION AND THE dataGridView1 SINCE THEY'RE NOW SUSPENDED
-            dataGridView1.Rows.Clear();
             transaction = CreateTransaction();
 
-            //RESET ALL THE TOTALS
-            txt_transSubTotal.Text = "$0.00";
-            txt_transBTLDPT.Text = "$0.00";
-            txt_itemTotal.Text = "$0.00";
-            txt_transTax.Text = "$0.00";
-            txt_transDiscount.Text = "$0.00";
-            txt_TransTotal.Text = "$0.00";
-            txt_Ship.Text = "$0.00";
+            Clear();
 
             //HIDE THE SUSPEND TRANSACTION BUTTON
             pic_susp.Visible = false;
 
             //CLEAR THE CURRENT CUSTOMER
             label_currentCustomerValue.Text = "";
-            RefreshDataGrid();
         }
-
 
         public void ImportTransaction(Transaction newTransaction)
         {
+            transaction.Items.Clear();
+
+            Clear();
+            transaction = newTransaction;
+            caseDiscount.Checked = transaction.EnableBulkDiscount;
+        }
+        private void Clear()
+        {
+
             //CLEAR WHATEVER WAS IN THE TRANSACTION ALREADY
             dataGridView1.Rows.Clear();
-            transaction.Items.Clear();
 
             //RESET ALL THE TOTALS
             txt_transSubTotal.Text = "$0.00";
@@ -424,10 +430,8 @@ namespace SecretCellar
             txt_TransTotal.Text = "$0.00";
             txt_Ship.Text = "$0.00";
 
-            transaction = newTransaction;
-            caseDiscount.Checked = transaction.EnableBulkDiscount;
-
             RefreshDataGrid();
+            CheckAge();
         }
 
         private void button_Invoices_Click(object sender, EventArgs e) {
@@ -438,7 +442,6 @@ namespace SecretCellar
         private void caseDiscount_CheckedChanged(object sender, EventArgs e)
         {
             transaction.EnableBulkDiscount = caseDiscount.Checked;
-
             RefreshDataGrid();
         }
 
@@ -465,7 +468,7 @@ namespace SecretCellar
             Application.Exit();
         }
 
-        private void btn_signout_Click(object sender, EventArgs e)
+        private void btn_signout_Click(object sender, EventArgs e) 
         {
             UserLogin();
         }
@@ -563,17 +566,42 @@ namespace SecretCellar
             pic_transaction.Image = ImgLstTenderButton.Images[0]; 
         }
 
-        private Transaction CreateTransaction()
-        {
-            return new Transaction()
+        private Transaction CreateTransaction() => 
+            new Transaction()
             {
                 EnableBulkDiscount = caseDiscount.Checked
             };
-        }
 
-        private void txtBarcode_TextChanged(object sender, EventArgs e)
+        private void CheckAge()
         {
+            lbl_twentyone.Text = $"Verify age above 21 AS OF: {DateTime.Now.AddYears(-21):MM/dd/yy}";
+            Id = null;
+        }
+        private void CheckAge(Identification id)
+        {
+            Id = id;
+            if (Id == null)
+                CheckAge();
 
+            if ( Id.Underage)
+            { 
+                lbl_twentyone.Text = $"Under Age";
+                lbl_twentyone.ForeColor = Color.Firebrick;
+            }
+
+            else if (Id.Expired)
+            { 
+                lbl_twentyone.Text = $"Expired Licence"; ;
+                lbl_twentyone.ForeColor = Color.Firebrick;
+            }
+
+            else if (Id.Valid)
+            {
+                lbl_twentyone.Text = $"Valid";
+                lbl_twentyone.ForeColor = Color.DarkGreen;
+            }
+            else
+                lbl_twentyone.Text = $"Check ID 21 AS OF: {DateTime.Now.AddYears(-21):MM/dd/yy}";
         }
     }
 }
