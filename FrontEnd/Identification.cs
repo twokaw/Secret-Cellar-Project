@@ -39,21 +39,21 @@ namespace SecretCellar
         {
             get
             {
-                return Underage && Expired;
+                return !Underage && !Expired;
             }
         }
         public bool Underage
         {
             get
             {
-                return CheckDate(DateOfBirth) > 21;
+                return CheckDate(DateOfBirth) < 21;
             }
         }
         public bool Expired
         {
             get
             {
-                return DateTime.Now < ExpirationDate;
+                return DateTime.Now > ExpirationDate;
             }
         }
         public string FirstName { get; set; }
