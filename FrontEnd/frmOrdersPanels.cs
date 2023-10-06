@@ -11,7 +11,7 @@ namespace SecretCellar {
         {
             panel_Fulfillment1.RefreshDatagrid();
             panel_CustomerOrder1.RefreshFavorite();
-            panel_SupplierOrder1.RefreshSupplier();
+            panel_SupplierOrder1.RefreshDataGrid();
         }
 
 		private void btn_close_Click(object sender, EventArgs e) {
