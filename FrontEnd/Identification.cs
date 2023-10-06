@@ -35,6 +35,8 @@ namespace SecretCellar
 
     public class Identification
     {
+        public int AgeRequirement { get; set; } = 21;
+
         public bool Valid
         {
             get
@@ -46,7 +48,7 @@ namespace SecretCellar
         {
             get
             {
-                return CheckDate(DateOfBirth) < 21;
+                return CheckDate(DateOfBirth) < AgeRequirement;
             }
         }
         public bool Expired
@@ -75,7 +77,6 @@ namespace SecretCellar
                     DateOfBirth = DateTime.ParseExact(GetStr(barcode, "DBB", "DBA"), "MMddyyyy", new CultureInfo("en-US")),
                     ExpirationDate = DateTime.ParseExact(GetStr(barcode, "DBA", "DBC"), "MMddyyyy", new CultureInfo("en-US"))
                 };
-
             }
         }
 
