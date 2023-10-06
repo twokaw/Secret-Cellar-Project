@@ -15,7 +15,7 @@ namespace SecretCellar
         private Transaction transaction;
         private Identification Id;
         private Customer CurrentCustomer = null;
-        private Image logo = null;
+        private Image Logo = null;
 
         public frmTransaction()
         {
@@ -30,12 +30,12 @@ namespace SecretCellar
             string path = Properties.Settings.Default.FontPath;
             if (path.Length > 0 && path[0] == '.')
                 path = $"{Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}{path.Substring(1)}";
-            logo = DataAccess.instance.ImportLogo();
+            Logo = DataAccess.instance.ImportLogo();
             PrintLayout receiptLayout = new PrintLayout()
             {
                 Header = Properties.Settings.Default.Header,
                 Footer = Properties.Settings.Default.Footer,
-                Logo = logo,
+                Logo = Logo,
                 FontDirectory = path,
                 BarcodeName = Properties.Settings.Default.BarcodeFont,
                 BarcodeFontSize = Properties.Settings.Default.BarcodeSize,
@@ -49,7 +49,7 @@ namespace SecretCellar
                 Height = 1100,
                 Header = Properties.Settings.Default.Header,
                 Footer = Properties.Settings.Default.Footer,
-                Logo = logo,
+                Logo = Logo,
                 FontDirectory = path,
                 BarcodeName = Properties.Settings.Default.BarcodeFont,
                 BarcodeFontSize = Properties.Settings.Default.BarcodeSize,
@@ -78,7 +78,7 @@ namespace SecretCellar
         {
             UserLogin();
 
-            lbl_twentyone.Text = $"21 AS OF: {DateTime.Now.AddYears(-21):MM/dd/yy}";
+            // lbl_twentyone.Text = $"21 AS OF: {DateTime.Now.AddYears(-21):MM/dd/yy}";
             lbl_twentyone.Font = new Font("Microsoft Sans Serif", 16, System.Drawing.FontStyle.Bold);
             transaction = CreateTransaction();
         }
@@ -230,6 +230,7 @@ namespace SecretCellar
                     }
                 }
             }
+            CheckAge(Id);
         }
 
         private void btnDeleteItem_Click(object sender, EventArgs e)
@@ -573,42 +574,71 @@ namespace SecretCellar
             pic_transaction.Image = ImgLstTenderButton.Images[0]; 
         }
 
-        private Transaction CreateTransaction() => 
-            new Transaction()
+        private Transaction CreateTransaction()
+        {
+            CheckAge();
+            return new Transaction()
             {
                 EnableBulkDiscount = caseDiscount.Checked
             };
-
-        private void CheckAge()
-        {
-            lbl_twentyone.Text = $"Verify age above 21 AS OF: {DateTime.Now.AddYears(-21):MM/dd/yy}";
-            Id = null;
         }
-        private void CheckAge(Identification id)
+   
+        private void CheckAge(int age = -1)
         {
-            Id = id;
-            if (Id == null)
-                CheckAge();
+            if (age < 0) 
+                age = AgeCheckRequire();
 
-            if ( Id.Underage)
-            { 
-                lbl_twentyone.Text = $"Under Age";
-                lbl_twentyone.ForeColor = Color.Firebrick;
-            }
-
-            else if (Id.Expired)
-            { 
-                lbl_twentyone.Text = $"Expired Licence"; ;
-                lbl_twentyone.ForeColor = Color.Firebrick;
-            }
-
-            else if (Id.Valid)
+            if (age > 0)
             {
-                lbl_twentyone.Text = $"Valid";
-                lbl_twentyone.ForeColor = Color.DarkGreen;
+                lbl_twentyone.Text = $"Verify age over 21: {DateTime.Now.AddYears(-age):MM/dd/yy}";
+                lbl_twentyone.ForeColor = Color.Firebrick;
             }
             else
-                lbl_twentyone.Text = $"Check ID 21 AS OF: {DateTime.Now.AddYears(-21):MM/dd/yy}";
+                lbl_twentyone.Text = "";
+            Id = null;
+        }
+
+        private void CheckAge(Identification id, int age = -1)
+        {
+            if (age < 0)
+                age = AgeCheckRequire();
+
+            Id = id;
+
+            if (Id == null)
+                CheckAge(age);
+            else
+            {
+                Id.AgeRequirement = age;
+
+                if ( Id.Underage)
+                { 
+                    lbl_twentyone.Text = $"Invalid - Under Age";
+                    lbl_twentyone.ForeColor = Color.Firebrick;
+                }
+
+                else if (Id.Expired)
+                { 
+                    lbl_twentyone.Text = $"Invalid - Expired Licence"; ;
+                    lbl_twentyone.ForeColor = Color.Firebrick;
+                }
+
+                else if (Id.Valid)
+                {
+                    lbl_twentyone.Text = $"Legal Age";
+                    lbl_twentyone.ForeColor = Color.DarkGreen;
+                }
+                else
+                    CheckAge(age);
+            }
+        }
+
+        int AgeCheckRequire()
+        {
+            if(transaction == null) 
+                return 0;
+            else
+                return transaction.Items.Max(x => (x.ItemType == "WINE" || x.ItemType == "BEER" || x.ItemType == "LIQUOR") ? 21 : (x.ItemType == "PROPANE" ? 18 : 0));
         }
     }
 }

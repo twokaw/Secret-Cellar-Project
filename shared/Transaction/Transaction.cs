@@ -205,7 +205,12 @@ namespace Shared
         public string CustomerName { get; set; }
         public uint CustomerID { get; set; }
         public double Shipping { get; set; }
-        
+        /*
+        int AgeCheckRequire()
+        {
+            return Items.Max(x => (x.ItemType == "WINE" || x.ItemType == "BEER" || x.ItemType == "LIQUOR") ? 21 : (x.ItemType == "PROPANE" ? 18 : 0));
+        }
+        */
         // Default constructor
         public Transaction()
         {
