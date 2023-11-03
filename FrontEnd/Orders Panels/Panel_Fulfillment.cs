@@ -8,7 +8,6 @@ using System.Windows.Forms;
 
 namespace SecretCellar.Orders_Panels {
 	public partial class Panel_Fulfillment : ManagedPanel {
-		private readonly Dictionary<uint, Transaction> _transactions = new Dictionary<uint, Transaction>();
 		private List<Inventory> _inventory = null;
 		private CustomerOrder _customerOrder = null;
 		private bool _shouldUpdateSelectedCustomer = true;
@@ -219,21 +218,32 @@ namespace SecretCellar.Orders_Panels {
         /// <param name="customerId"></param>
         /// <returns></returns>
 		private uint GetInvoiceID(uint customerId) {
+			List<Transaction> transactions = DataAccess.instance.GetTransactions();
+			transactions = transactions.FindAll((t) => t.TranType == Transaction.TranactionType.Invoice && t.CustomerID == customerId);
+			bool useNewTransaction = true;
 
-			if (!_transactions.ContainsKey(customerId)
-			|| DialogResult.No == MessageBox.Show(this, "Would you like to use the current Invoice (Yes) or create a new one (No)", "Use Current Invoice", MessageBoxButtons.YesNo)) {
-				_transactions.Remove(customerId);
-				
-				_transactions.Add(customerId, new Transaction() {
-					TranType = Transaction.TranactionType.Invoice,
-					CustomerID = customerId
-				});
+			if (transactions.Count > 0) {
+				DialogResult dialogResult = MessageBox.Show(this, "Would you like to use the current Invoice (Yes) or create a new one (No)", "Use Current Invoice", MessageBoxButtons.YesNo);
 
-				_transactions[customerId].InvoiceID = DataAccess.instance.ProcessTransaction(_transactions[customerId]);
+				if (dialogResult == DialogResult.Yes) { useNewTransaction = false; }
 			}
 
-			//TODO When saying yes, it's not using the same invoice for some reason. It creates one, then closes it and creates another one, but still uses the old transaction id.
-			return _transactions[customerId].InvoiceID;
+			if (useNewTransaction) {
+				Transaction transaction = new Transaction() {
+					TranType = Transaction.TranactionType.Invoice,
+					CustomerID = customerId
+				};
+
+				uint id = DataAccess.instance.ProcessTransaction(transaction);
+				return id;
+			}
+			else {
+				Transaction latestTransaction = transactions[transactions.Count-1];
+
+				//TODO When saying yes, it's not using the same invoice for some reason. It creates one, then closes it and creates another one, but still uses the old transaction id.
+				//TODO The above was changed and now just gets the latest invoice's id.
+				return latestTransaction.InvoiceID;
+			}
 		}
 	}
 }
