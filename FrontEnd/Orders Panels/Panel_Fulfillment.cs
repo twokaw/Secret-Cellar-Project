@@ -223,6 +223,7 @@ namespace SecretCellar.Orders_Panels {
 			bool useNewTransaction = true;
 
 			if (transactions.Count > 0) {
+				//TODO Will need to change this message box into an actual form that shows the list of invoices.
 				DialogResult dialogResult = MessageBox.Show(this, "Would you like to use the current Invoice (Yes) or create a new one (No)", "Use Current Invoice", MessageBoxButtons.YesNo);
 
 				if (dialogResult == DialogResult.Yes) { useNewTransaction = false; }
