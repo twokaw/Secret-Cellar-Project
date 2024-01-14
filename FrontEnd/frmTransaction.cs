@@ -93,14 +93,13 @@ namespace SecretCellar
 
         private void Tender()
         {
+            txtBarcode.Focus();
             if (transaction.Items.Count > 0 || CurrentCustomer != null) {
 
-                if(!CheckAge(Id))
+                if(!CheckAge(Id) && DialogResult.No == MessageBox.Show($"Is patron over the age of { AgeCheckRequire()}"))
                 {
-                 //   MessageBox.Show();
+                    return;
                 }
-
-
 
                 frmPayment payment = new frmPayment(transaction);
 
@@ -143,7 +142,6 @@ namespace SecretCellar
                     transaction.EnableBulkDiscount = caseDiscount.Checked;
                     label_currentCustomerValue.Text = "d";
                     RefreshDataGrid();
-                    txtBarcode.Focus();
                 }
             }
         }
@@ -447,7 +445,7 @@ namespace SecretCellar
             txt_TransTotal.Text = "$0.00";
 
             RefreshDataGrid();
-            CheckAge();
+            ClearAge();
         }
 
         private void button_Invoices_Click(object sender, EventArgs e) {
@@ -652,7 +650,7 @@ namespace SecretCellar
 
         int AgeCheckRequire()
         {
-            if(transaction == null) 
+            if(transaction == null || transaction.Items.Count == 0) 
                 return 0;
             else
                 return transaction.Items.Max(x => (x.ItemType == "WINE" || x.ItemType == "BEER" || x.ItemType == "LIQUOR") ? 21 : (x.ItemType == "PROPANE" ? 18 : 0));
