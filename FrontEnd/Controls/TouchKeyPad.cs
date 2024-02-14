@@ -48,9 +48,8 @@ namespace SecretCellar
                 targetText = targetText.Insert(decimalIndex - 1, ".");
                 Target.Text = targetText;
             }
-            else
-            {
-
+            else if(targetText.Length > 0)
+            { 
                 Target.Text = targetText.Remove(targetText.Length -1);
             }
             return;

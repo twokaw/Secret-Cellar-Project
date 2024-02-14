@@ -14,10 +14,8 @@ namespace SecretCellar
             InitializeComponent();
         }
 
-        private void frmLogin_Load(object sender, EventArgs e)
-        {
+        private void frmLogin_Load(object sender, EventArgs e) =>
             DataAccess.instance.AddPictureBox(pictureBox1);
-        }
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
@@ -43,6 +41,7 @@ namespace SecretCellar
                 if (++InvalidUserCount > 3)
                     Application.Exit();
 
+               
                 lblError.Text = $"Invalid user name. Remaining tries {4 - InvalidUserCount}";
                 lblError.Visible = true;
             }
@@ -51,6 +50,9 @@ namespace SecretCellar
                 this.DialogResult = DialogResult.OK;
                 this.Dispose();
             }
+            txtPin.Text = "";
+            txtPin.SelectAll();  
+            txtPin.Focus();
         }
     }
 }

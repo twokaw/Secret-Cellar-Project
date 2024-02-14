@@ -144,11 +144,12 @@ namespace SecretCellar
         private void btn_RemoveAllPayments_Click(object sender, EventArgs e)  { RemovePayments(); }
         private void UpdatePayment(string method, string number = null)
         {
-            if(Transaction.Payments.Count == 1 
-               && (Transaction.Payments[0].Method == "DONATE" || Transaction.Payments[0].Method == "BREAKAGE"))
+            if(method == "DONATE" || method == "BREAKAGE")
             {
                 Transaction.Payments.Clear();
-                Transaction.TaxExempt = TaxFree;
+                double nontax = txtDue.Value;
+                Transaction.AddPayment(new Payment { Method = method, Amount = nontax });
+                Transaction.TaxExempt = true;
             }
             double amount = txtCashAmt.Value;
             if (amount != 0.0)
@@ -200,7 +201,10 @@ namespace SecretCellar
             Transaction.Payments.Clear();
 
             Transaction.TaxExempt = TaxFree;
-            
+
+            if (method != "")
+                UpdatePayment(method);
+
             RefreshGrid();
         }
 
