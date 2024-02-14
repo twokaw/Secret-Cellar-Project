@@ -93,7 +93,14 @@ namespace SecretCellar
 
         private void Tender()
         {
+            txtBarcode.Focus();
             if (transaction.Items.Count > 0 || CurrentCustomer != null) {
+
+                if(!CheckAge(Id) && DialogResult.No == MessageBox.Show($"Is patron over the age of { AgeCheckRequire()}"))
+                {
+                    return;
+                }
+
                 frmPayment payment = new frmPayment(transaction);
 
                 if (payment.ShowDialog() == DialogResult.OK) {
@@ -135,7 +142,6 @@ namespace SecretCellar
                     transaction.EnableBulkDiscount = caseDiscount.Checked;
                     label_currentCustomerValue.Text = "d";
                     RefreshDataGrid();
-                    txtBarcode.Focus();
                 }
             }
         }
@@ -439,7 +445,7 @@ namespace SecretCellar
             txt_TransTotal.Text = "$0.00";
 
             RefreshDataGrid();
-            CheckAge();
+            ClearAge();
         }
 
         private void button_Invoices_Click(object sender, EventArgs e) {
@@ -576,37 +582,44 @@ namespace SecretCellar
 
         private Transaction CreateTransaction()
         {
-            CheckAge();
+            ClearAge();
             return new Transaction()
             {
                 EnableBulkDiscount = caseDiscount.Checked
             };
         }
-   
-        private void CheckAge(int age = -1)
+        private void  ClearAge()
+        {
+            lbl_twentyone.Text = "";
+            Id = null;
+        }
+
+        private bool CheckAge(int age = -1)
         {
             if (age < 0) 
                 age = AgeCheckRequire();
 
             if (age > 0)
             {
-                lbl_twentyone.Text = $"Verify age over 21: {DateTime.Now.AddYears(-age):MM/dd/yy}";
+                lbl_twentyone.Text = $"Verify age over {age}: {DateTime.Now.AddYears(-age):MM/dd/yy}";
                 lbl_twentyone.ForeColor = Color.Firebrick;
+                return false;
             }
             else
                 lbl_twentyone.Text = "";
-            Id = null;
+            return true;
         }
 
-        private void CheckAge(Identification id, int age = -1)
+        private bool CheckAge(Identification id, int age = -1)
         {
+            bool result = false;
             if (age < 0)
                 age = AgeCheckRequire();
 
             Id = id;
 
             if (Id == null)
-                CheckAge(age);
+                result = CheckAge(age);
             else
             {
                 Id.AgeRequirement = age;
@@ -619,23 +632,25 @@ namespace SecretCellar
 
                 else if (Id.Expired)
                 { 
-                    lbl_twentyone.Text = $"Invalid - Expired Licence"; ;
-                    lbl_twentyone.ForeColor = Color.Firebrick;
+                    lbl_twentyone.Text = $"Invalid - Expired Licence";
+                    lbl_twentyone.ForeColor = Color.Firebrick; 
                 }
 
                 else if (Id.Valid)
                 {
                     lbl_twentyone.Text = $"Legal Age";
                     lbl_twentyone.ForeColor = Color.DarkGreen;
+                    return true;
                 }
                 else
-                    CheckAge(age);
+                    result = CheckAge(age);
             }
+            return result;
         }
 
         int AgeCheckRequire()
         {
-            if(transaction == null) 
+            if(transaction == null || transaction.Items.Count == 0) 
                 return 0;
             else
                 return transaction.Items.Max(x => (x.ItemType == "WINE" || x.ItemType == "BEER" || x.ItemType == "LIQUOR") ? 21 : (x.ItemType == "PROPANE" ? 18 : 0));

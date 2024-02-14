@@ -144,10 +144,14 @@ namespace SecretCellar
             txt_discountTotal.Text = discount_total.ToString("c");
         }
 
-        public void coupons_discount()
+        public bool coupons_discount()
         {
-            if (double.TryParse(txtFixedDiscount.Value.ToString(), out double d))
+            if (double.TryParse(txtFixedDiscount.Value.ToString(), out double d) && d > 0.0)
+            {
                 transaction.Items.Add(new Item() { Price = -d, Name = "Coupon", QtySold = 1});
+                return true;
+            }
+            return false;
         }
 
         public void resetselectItemDiscount()
@@ -233,15 +237,25 @@ namespace SecretCellar
 
 
             //original code
-            transaction.Discount = Convert.ToDouble(txtPercentTotalSale.Text) / 100;
-            populate();
+            if(double.TryParse(txtPercentTotalSale.Text.Replace("-", "").Trim(), out double percent) && percent > 0)
+            {
+                if (percent > 100)
+                    MessageBox.Show("Percentage value may not exceed 100%");
+                else
+                {
+                    transaction.Discount = percent / 100;
+                    populate();
+                }
+            }
             txtPercentTotalSale.Text = "";
         }
 
 		private void button_Coupon_Click(object sender, EventArgs e) {
-            coupons_discount();
-            txtFixedDiscount.Clear();
-            populate();
+            if (coupons_discount())
+            {
+                txtFixedDiscount.Clear();
+                populate();
+            }
         }
 
 		private void button_Clear_Click(object sender, EventArgs e) {

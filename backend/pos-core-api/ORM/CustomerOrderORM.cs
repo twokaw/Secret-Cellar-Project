@@ -255,7 +255,7 @@ namespace pos_core_api.ORM
                 if (customerid == 0)
                     customerid = GetCustomerID(cust.CustomerOrderItemID);
 
-                DeliverQty(customerid, cust);
+                DeliverQty(customerid, cust, transaction);
             }
 
             if (temp.Id != cust.Id

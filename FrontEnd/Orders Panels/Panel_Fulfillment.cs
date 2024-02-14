@@ -146,7 +146,8 @@ namespace SecretCellar.Orders_Panels {
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
 		private void cbx_fullfill_cust_SelectedIndexChanged(object sender, EventArgs e) {
-			if (_shouldUpdateSelectedCustomer) _customerOrder = (CustomerOrder)cbx_fullfill_cust.SelectedItem;
+			if (_shouldUpdateSelectedCustomer) 
+				_customerOrder = (CustomerOrder)cbx_fullfill_cust.SelectedItem;
 
 			RefreshDatagrid();
 		}

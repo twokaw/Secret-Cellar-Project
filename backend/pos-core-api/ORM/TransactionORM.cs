@@ -687,15 +687,21 @@ namespace pos_core_api.ORM
         public bool FullyPaid(Transaction transaction)
         {
             double payments = 0;
+
             transaction.Payments.ForEach(x => payments += x.Amount);
 
-            if (transaction.PayMethod != "CREDIT")
-                return Math.Round(transaction.Total 
-                                * (double)(1 - (GetPaymentMethods().FirstOrDefault(x => x.PayMethod == "CASH").PercentOffset / 100)), 
-                                  2, 
-                                  MidpointRounding.AwayFromZero) <= payments;
-            else
-                return transaction.Total <= payments;
+            if (payments > 0)
+            {
+                if (transaction.PayMethod != "CREDIT")
+                    return Math.Round(transaction.Total
+                                    * (double)(1 - (GetPaymentMethods().FirstOrDefault(x => x.PayMethod == "CASH").PercentOffset / 100)),
+                                      2,
+                                      MidpointRounding.AwayFromZero) <= payments;
+                else
+                    return transaction.Total <= payments;
+            }
+
+            return false;
         }
         public List<PaymentMethod> GetPaymentMethods()
         {
